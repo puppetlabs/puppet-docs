@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+root = Pathname.new(__FILE__) + '../..'
+
+begin
+  require root + 'vendor/gems/environment.rb'
+rescue LoadError
+  abort "Make sure you have the 'bundler' gem installed, then run `gem bundle` first."
+end
+
+$LOAD_PATH.unshift(root + 'lib')
+require 'puppet_guides'
+
+p :foo
+
+PuppetGuides::Generator.new.generate
