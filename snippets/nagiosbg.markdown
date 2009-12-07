@@ -12,6 +12,6 @@ Nagios-parseable configuration files. By default, the statements
 will be added to `/etc/nagios/<type>.cfg`, but you can
 send them to a different file by setting their `target` attribute.
 
-You can purge Nagios resources using the `resources` type, but
+WARNING: You can purge Nagios resources using the `resources` type, but
 *only* in the default file locations. This is an architectural
 limitation.
