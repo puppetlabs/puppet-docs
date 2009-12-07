@@ -22,6 +22,11 @@ Platforms
 
 OSX is the only supported platform.
 
+Version Compatibility
+---------------------
+
+{TODO}
+
 Parameters
 ----------
 

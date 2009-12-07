@@ -135,9 +135,7 @@ module PuppetGuides
     end
 
     def add_snippets(body)
-      body.gsub(/\{([A-Z]+)\}/) do |m|
-        Snippet[$1]
-      end
+      Snippet.process(body)
     end
 
     def warn_about_broken_links(html)

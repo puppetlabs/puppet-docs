@@ -63,20 +63,7 @@ least notify us at Reductive Labs what you are doing, and hopefully
 we can work with you to get a native resource type for the work you
 are doing.
 
-Requirements
-------------
-
-No additional requirements.
-
-Platforms
----------
-
-Supported on all platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Parameters
 ----------
@@ -113,7 +100,7 @@ not exist, the command will fail.
 
 WARNING: This parameter is deprecated. Use 'environment' instead.
 
-TODO: Version statement
+{TODO}
 
 ### `environment`
 

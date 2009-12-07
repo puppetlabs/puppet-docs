@@ -5,25 +5,12 @@ and remove lists, it cannot reconfigure them.
 
 * * *
 
-Requirements
-------------
-
-No additional requirements.
-
-Platforms
----------
-
-Supported on all platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Examples
 --------
 
-`TODO`
+{TODO}
 
 Parameters
 ----------

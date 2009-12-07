@@ -5,20 +5,7 @@ Manage the `.k5login` file for a user.
 
 * * *
 
-Requirements
-------------
-
-No additional requirements.
-
-Platforms
----------
-
-All platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Examples
 --------

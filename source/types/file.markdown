@@ -9,6 +9,9 @@ Manages local files.
 
 * * *
 
+Background
+----------
+
 As Puppet matures, it expected that the `file`
 resource will be used less and less to manage content, and instead
 native resources will be used to do so.
@@ -19,20 +22,7 @@ location, rather than using native resources, please contact
 Reductive Labs and we can hopefully work with you to develop a
 native resource to support what you are doing.
 
-Requirements
-------------
-
-No special requirements.
-
-Platforms
----------
-
-Supported on all platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Examples
 --------

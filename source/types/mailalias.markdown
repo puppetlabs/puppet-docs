@@ -5,25 +5,12 @@ Creates an email alias in the local alias database.
 
 * * *
 
-Requirements
-------------
-
-No additional requirements.
-
-Platforms
----------
-
-Supported on all platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Examples
 --------
 
-`TODO`
+{TODO}
 
 Parameters
 ----------

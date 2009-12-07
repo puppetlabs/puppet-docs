@@ -5,8 +5,8 @@ Defines a repository for backing up files.
 
 * * *
 
-Introduction
-------------
+Background
+----------
 
 If no filebucket is defined,
 then files will be backed up in their current directory, but the
@@ -35,20 +35,7 @@ network and then use that as the default backup location:
 Puppetmaster servers create a filebucket by default, so this will
 work in a default configuration.
 
-Requirements
-------------
-
-No additional requirements.
-
-Platforms
----------
-
-Supported on all platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Parameters
 ----------
@@ -64,8 +51,6 @@ INFO: This is the `namevar` for this resource type.
 The path to the local filebucket. If this is unset, then the bucket
 is remote. The parameter `server` must can be specified to set the
 remote server.
-
-TODO: Caution?
 
 ### `port`
 

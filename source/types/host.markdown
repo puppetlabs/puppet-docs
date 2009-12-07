@@ -7,20 +7,7 @@ Installs and manages host entries.
 
 * * *
 
-Requirements
--------------
-
-No additional requirements.
-
-Platforms
----------
-
-Supported on all platforms.
-
-Version Compatibility
----------------------
-
-`TODO`
+{GENERIC}
 
 Examples
 --------
