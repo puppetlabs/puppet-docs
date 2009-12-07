@@ -136,22 +136,9 @@ The specific backend for provider to use. You will seldom need to
 specify this -- Puppet will usually discover the appropriate provider
 for your platform. Available providers are:
 
-<table class='providers'>
-  <tr>
-    <th>Provider</th>
-    <th>execute_changes</th>
-    <th>need_to_run?</th>
-    <th>parse_commands</th>
-  </tr>
-  <tr>
-    <th>augeas</th>
-    <td>X</td>
-    <td>X</td>
-    <td>X</td>
-  </tr>
-</table>
+#### `augeas`
 
-#### Features
+Supports the following features:
 
 `execute_changes`
 : Actually make the changes

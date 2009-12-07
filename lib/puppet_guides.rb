@@ -19,5 +19,6 @@ module PuppetGuides
   autoload :Reference,         "puppet_guides/reference"
   autoload :Helpers,           "puppet_guides/helpers"
   autoload :Levenshtein,       "puppet_guides/levenshtein"
+  autoload :Snippet,           "puppet_guides/snippet"
   
 end

@@ -98,6 +98,7 @@ provider for your platform. Available providers are:
 Manage Mac OS X authorization database rules and rights.
 
 Required binaries:
+
 * `/usr/bin/security`
 * `/usr/bin/sw_vers`
 

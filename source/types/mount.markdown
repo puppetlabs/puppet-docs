@@ -108,6 +108,7 @@ provider for your platform. Available providers are:
 #### `parsed`
 
 Required binaries:
+
 * `mount`
 * `umount`
 

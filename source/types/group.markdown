@@ -122,6 +122,7 @@ Group management via `pw`.
 Only works on FreeBSD.
 
 Required binaries:
+
 * `/usr/sbin/pw`
 
 NOTE: Default for `operatingsystem` == `freebsd`.

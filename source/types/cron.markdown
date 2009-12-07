@@ -129,8 +129,11 @@ The specific backend for provider to use. You will seldom need to
 specify this -- Puppet will usually discover the appropriate
 provider for your platform. Available providers are:
 
-`crontab`
-: Required binaries: `crontab`.
+#### `crontab`
+
+Required binaries:
+
+* `crontab`
 
 ### `special`
 

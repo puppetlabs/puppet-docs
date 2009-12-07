@@ -64,6 +64,7 @@ provider for your platform. Available providers are:
 #### `mailman`
 
 Required binaries:
+
 * `newlist`
 * `/var/lib/mailman/mail/mailman`
 * `list_lists`

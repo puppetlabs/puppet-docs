@@ -24,7 +24,7 @@ module PuppetGuides
     end
 
     def generate
-      guides = Dir.entries(view_path).find_all {|g| g =~ /^[^#]+\.markdown(?:\.erb)?$/ }
+      guides = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') }
 
       if ENV["ONLY"]
         only = ENV["ONLY"].split(",").map{|x| x.strip }.map {|o| "#{o}.markdown" }
@@ -42,33 +42,42 @@ module PuppetGuides
     end
 
     def generate_guide(guide)
-      guide =~ /(.*?)\.markdown(?:\.erb)?$/
+      guide =~ /(.*?)(\.markdown(?:\.erb))?$/
       name = $1
+      ext = $2
 
       puts "Generating #{name}"
 
-      file = File.join(output, "#{name}.html")
-      File.open(file, 'w') do |f|
+      rel_path = guide.sub(view_path, '')[1..-1]
+      slug = ext ? File.basename(rel_path, ext) : File.basename(rel_path, '.markdown')
+
+      planned_path = File.join(output, File.dirname(rel_path), slug) + '.html'
+
+      FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil
+      File.open(planned_path, 'w') do |f|
         @view = ActionView::Base.new(view_path)
         @view.extend(Helpers)
+        @view.instance_variable_set(:@to_root, '../' * rel_path.scan(/\//).size)
 
         if guide =~ /\.markdown\.erb$/
-          # Generate the erb pages with markdown formatting - e.g. index/authors
-          result = view.render(:layout => 'layout', :file => guide)
-          f.write markdown(result)
+          body = view.render(
+                             :layout => false,
+                             :inline => File.read(guide),
+                             :locals => {:page => Pathname.new(guide)})
         else
-          body = File.read(File.join(view_path, guide))
-          title, body = set_header_section(name, body, @view)
-          unless title && body
-            puts "Skipping..."
-            next
-          end
-          body = set_index(title, body, @view)
-          body = add_extras(body)
-          result = view.render(:layout => 'layout', :text => markdown(body, true).html_safe!)
-          f.write result
-          warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
+          body = File.read(guide)
         end
+        title, body = set_header_section(name, body, @view)
+        unless title && body
+          puts "Skipping..."
+          next
+        end
+        body = set_index(title, body, @view)
+        body = add_snippets(body)
+        body = add_extras(body)
+        result = view.render(:layout => 'layout', :text => markdown(body, true).html_safe!)
+        f.write result
+        warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
       end
     end
 
@@ -93,7 +102,7 @@ module PuppetGuides
     def set_index(title, body, view)
       index = <<-INDEX
       <div id="subCol">
-        <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Contents</h3>
+        <h3 class="chapter"><img src="#{@view.instance_variable_get(:@to_root)}images/chapters_icon.gif" alt="" />Contents</h3>
         <ol class="chapters">
       INDEX
 
@@ -122,6 +131,12 @@ module PuppetGuides
         result << markdown($2.strip)
         result << "</div>\n\n"
         result
+      end
+    end
+
+    def add_snippets(body)
+      body.gsub(/\{([A-Z]+)\}/) do |m|
+        Snippet[$1]
       end
     end
 
@@ -169,6 +184,6 @@ module PuppetGuides
           end
         end
     end
-    
+
   end
 end

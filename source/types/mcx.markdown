@@ -93,7 +93,8 @@ provider for your platform. Available providers are:
 MCX Settings management using DirectoryService on OS X.
 
 Required binaries:
-* `/usr/bin/dscl`.
+
+* `/usr/bin/dscl`
 
 NOTE: This provider was contributed by [Jeff
 McCune](mailto:mccune.jeff@gmail.com)

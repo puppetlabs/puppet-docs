@@ -63,8 +63,9 @@ The specific backend for provider to use. You will seldom need to
 specify this -- Puppet will usually discover the appropriate
 provider for your platform. Available providers are:
 
-`parsed`
-: The default provider.
+#### `parsed`
+
+The default provider.
 
 ### `target`
 
