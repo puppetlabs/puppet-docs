@@ -191,7 +191,7 @@ a, a:link, a:visited {
         background: url(../../images/puppet.png) 0 0 no-repeat;
 }
 
-#guides {
+#index-dialog {
 	width: 27em;
 	display: block;
 	background: #000;
@@ -209,17 +209,17 @@ a, a:link, a:visited {
 	padding-top: 2em;
 }
 
-#guides dt, #guides dd {
+#index-dialog dt, #index-dialog dd {
 	font-weight: normal;
 	font-size: 0.722em;
 	margin: 0;
 	padding: 0;
 }
-#guides dt {padding:0; margin: 0.5em 0 0;}
-#guides a {color: #FFF; background: none !important;}
-#guides .L, #guides .R {float: left; width: 50%; margin: 0; padding: 0;}
-#guides .R {float: right;}
-#guides hr {
+#index-dialog dt {padding:0; margin: 0.5em 0 0;}
+#index-dialog a {color: #FFF; background: none !important;}
+#index-dialog .L, #index-dialog .R {float: left; width: 50%; margin: 0; padding: 0;}
+#index-dialog .R {float: right;}
+#index-dialog hr {
 	display: block;
 	border: none;
 	height: 1px;

@@ -15,22 +15,23 @@
     </div>
     <div id="header">
       <div class="wrapper clearfix">
-        <h1><a href="index.html" title="Return to home page">docs.reductivelabs.com</a></h1>
+        <h1><a href="<%= @to_root %>index.html" title="Return to home page">docs.reductivelabs.com</a></h1>
         <p class="hide"><a href="#mainCol">Skip navigation</a>.</p>
         <ul class="nav">
-          <li><a href="index.html">Home</a></li>
-          <li class="index"><a href="index.html" onclick="guideMenu(); return false;" id="guidesMenu">Guides Index</a>
-          <div id="guides" class="clearfix" style="display: none;">
+          <li><a href="<%= @to_root %>index.html">Home</a></li>
+          <li class="index"><a href="index.html" onclick="guideMenu(); return false;" id="guidesMenu">Docs Index</a>
+          <div id="index-dialog" class="clearfix" style="display: none;">
             <hr />
             <dl class="L">
-              <dt>Resource Types</dt>
-              <dd><a href="<%= @to_root %>types/augeas.html">augeas</a></dd>
-              <dd><a href="<%= @to_root %>types/file.html">file</a></dd>
-              <dd><a href="<%= @to_root %>types/host.html">host</a></dd>
+              <dt>Guides</dt>
+              <dd><a href="<%= @to_root %>introduction.html">An Introduction to Puppet</a></dd>
+              <dd><a href="<%= @to_root %>installation.html">Installing Puppet</a></dd>
+              <dd><a href="<%= @to_root %>language_tutorial.html">Puppet Language Tutorial</a></dd>
             </dl>
             <dl class="R">
-              <dt>Extending Puppet</dt>
-              <dd><a href="two.html">Two</a></dd>
+              <dt>References</dt>
+              <dd><a href="<%= @to_root %>types/">Resource Types (Categorized)</a></dd>
+              <dd><a href="<%= @to_root %>types/alphabetical_index.html">Resource Types (Alphabetical)</a></dd>
             </dl>
           </div>
           </li>

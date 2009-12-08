@@ -72,9 +72,9 @@ module PuppetGuides
           puts "Skipping..."
           next
         end
-        body = set_index(title, body, @view)
         body = add_snippets(body)
         body = add_extras(body)
+        body = set_index(title, body, @view)
         result = view.render(:layout => 'layout', :text => markdown(body, true).html_safe!)
         f.write result
         warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
