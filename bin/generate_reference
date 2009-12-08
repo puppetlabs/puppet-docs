@@ -10,6 +10,6 @@ rescue LoadError
 end
 
 $LOAD_PATH.unshift(root + 'lib')
-require 'puppet_guides'
+require 'puppet_docs'
 
-PuppetGuides::Reference::Generator.new(*ARGV).generate
+PuppetDocs::Reference::Generator.new(*ARGV).generate

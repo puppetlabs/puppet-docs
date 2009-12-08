@@ -1,4 +1,4 @@
-module PuppetGuides
+module PuppetDocs
   module Helpers
     def guide(name, url, options = {}, &block)
       link = content_tag(:a, :href => url) { name }

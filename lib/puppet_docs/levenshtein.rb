@@ -1,4 +1,4 @@
-module PuppetGuides
+module PuppetDocs
   module Levenshtein
     # Based on the pseudocode in http://en.wikipedia.org/wiki/Levenshtein_distance.
     def self.distance(s1, s2)

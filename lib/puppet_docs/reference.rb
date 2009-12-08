@@ -1,4 +1,4 @@
-module PuppetGuides
+module PuppetDocs
 
   module Reference
 
@@ -43,7 +43,7 @@ module PuppetGuides
       end
 
       def prologue_filename
-        @prologue_filename ||= PuppetGuides.root + "reference-prologues/#{@name}.erb"
+        @prologue_filename ||= PuppetDocs.root + "reference-prologues/#{@name}.erb"
       end
 
       def valid_tags
@@ -76,7 +76,7 @@ module PuppetGuides
       end
       
       def puppet_dir
-        PuppetGuides.root + 'vendor/puppet'
+        PuppetDocs.root + 'vendor/puppet'
       end
       
       def setup_repository!
@@ -95,7 +95,7 @@ module PuppetGuides
       end
 
       def destination_filename
-        @destination_filename ||= PuppetGuides.root + "source/#{@name}-reference-#{@tag}.markdown"
+        @destination_filename ||= PuppetDocs.root + "source/#{@name}-reference-#{@tag}.markdown"
       end
 
       def puppetdoc_filename

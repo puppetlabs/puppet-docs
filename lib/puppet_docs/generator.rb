@@ -4,7 +4,7 @@ class String
   end unless "post 9415935902f120a9bac0bfce7129725a0db38ed3".respond_to?(:html_safe!)
 end
 
-module PuppetGuides
+module PuppetDocs
   class Generator
     attr_reader :output, :view_path, :view, :guides_dir
 

@@ -1,4 +1,4 @@
-module PuppetGuides
+module PuppetDocs
 
   class Snippet
 
@@ -28,7 +28,7 @@ module PuppetGuides
     private
 
     def filename
-      @filename ||= PuppetGuides.root + "snippets/#{@name}.markdown"
+      @filename ||= PuppetDocs.root + "snippets/#{@name}.markdown"
     end
 
     def content
