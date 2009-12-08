@@ -34,18 +34,9 @@ module PuppetDocs
       def prologue
         title = "#{@name.capitalize} Reference (#{version})\n========================\n\n"
         separator = "\n\n* * *\n\n"
-        if File.exist?(prologue_filename)
-          template = ERB.new(File.read(prologue_filename))
-          title + template.result(binding) + separator
-        else
-          title + separator
-        end
+        title + separator
       end
-
-      def prologue_filename
-        @prologue_filename ||= PuppetDocs.root + "reference-prologues/#{@name}.erb"
-      end
-
+      
       def valid_tags
         @valid_tags ||= at('master') { `git tag` }.grep(/\./).map { |s| s.strip }
       end

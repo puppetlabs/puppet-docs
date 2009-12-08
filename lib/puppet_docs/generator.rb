@@ -54,28 +54,23 @@ module PuppetDocs
       planned_path = File.join(output, File.dirname(rel_path), slug) + '.html'
 
       FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil
-      File.open(planned_path, 'w') do |f|
-        @view = ActionView::Base.new(view_path)
-        @view.extend(Helpers)
-        @view.instance_variable_set(:@to_root, '../' * rel_path.scan(/\//).size)
 
-        if guide =~ /\.markdown\.erb$/
-          body = view.render(
-                             :layout => false,
-                             :inline => File.read(guide),
-                             :locals => {:page => Pathname.new(guide)})
-        else
-          body = File.read(guide)
-        end
-        title, body = set_header_section(name, body, @view)
+      view = View.new(:to_root => '../' * rel_path.scan(/\//).size)
+
+      File.open(planned_path, 'w') do |f|
+        
+        body = raw_body(guide, view)
+        
+        title, body = set_header_section(name, body, view)
         unless title && body
           puts "Skipping..."
           next
         end
         body = add_snippets(body)
         body = add_extras(body)
-        body = set_index(title, body, @view)
-        result = view.render(:layout => 'layout', :text => markdown(body, true).html_safe!)
+        body = set_index(title, body, view)
+        
+        result = view.render(markdown(body, true).html_safe!)
         f.write result
         warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
       end
@@ -90,8 +85,8 @@ module PuppetDocs
           page_title = name.titleize
         end
         header = markdown(header)
-        view.content_for(:page_title) { page_title.html_safe! }
-        view.content_for(:header_section) { header.html_safe! }
+        view.set(:page_title, page_title.html_safe!)
+        view.set(:header_section, header.html_safe!)
         [page_title, new_body]
       else
         puts "Did not provide a prologue separator."
@@ -102,7 +97,7 @@ module PuppetDocs
     def set_index(title, body, view)
       index = <<-INDEX
       <div id="subCol">
-        <h3 class="chapter"><img src="#{@view.instance_variable_get(:@to_root)}images/chapters_icon.gif" alt="" />Contents</h3>
+        <h3 class="chapter"><img src="#{view[:to_root]}images/chapters_icon.gif" alt="" />Contents</h3>
         <ol class="chapters">
       INDEX
 
@@ -114,11 +109,22 @@ module PuppetDocs
       index << '</ol>'
       index << '</div>'
 
-      view.content_for(:index_section) { index.html_safe! }
+      view.set(:index_section, index.html_safe!)
 
       body
     end
 
+    def raw_body(path, view)
+      body = File.read(path)
+      if path =~ /\.markdown\.erb$/
+        raw_content = File.read(path)
+        view.set_local :page, Pathname.new(path)
+        view.render(body, :layout => false)
+      else
+        body
+      end
+    end
+    
     def markdown(body, include_settings = false)
       body = settings_content + body if include_settings
       Maruku.new(body).to_html
