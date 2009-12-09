@@ -110,7 +110,7 @@ manage these resources and their relationships to each other.
 ### Providers
 
 Puppet ships with many resource types (documented in the
-[type reference](types/)),
+[Type Guides](/guides/types/) and [References](/references/)),
 including all the basics like file, user, and package. The
 implementation for these types often varies dramatically from one
 platform to another, such as Mac OS X using DSLocal(NetInfo

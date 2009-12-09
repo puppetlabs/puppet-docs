@@ -1,0 +1,4 @@
+The `puppetmasterd` executable
+==============================
+
+* * *

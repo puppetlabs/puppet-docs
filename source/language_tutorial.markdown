@@ -17,8 +17,8 @@ Resources are fundamentally built from a type, a title, and a list
 of attributes, with each resource type having a specific list of
 supported attributes. You can find all of the supported resource
 types, their valid attributes, and documentation for all of it in
-the [Type Reference](types/). Here's a simple example
-of a resource:
+the [Type Guides](/guides/types/) and [References](/references/).
+Here's a simple example of a resource:
 
     file { "/etc/passwd":
         owner => root,
@@ -945,17 +945,12 @@ i.e. from the highest precedence to the lowest, hence:
 Comparison expressions include tests for equality using the `==`
 expression:
 
-::
-
-> if $variable == "foo" {
-> 
-> > include bar
-> 
-> } else {
-> :   include foobar
-> 
-> 
-> }
+    if $variable == "foo" {
+        include bar
+    } else {
+        include foobar
+    }
+{:puppet}
 
 Here if `$variable` has a value of `foo` then include the `bar`
 class otherwise include the `foobar` class.
@@ -968,6 +963,7 @@ operator:
     } else {
         $othervariable = "foobar"
     }
+{:puppet}
 
 In our second example if `$variable` has a value of `foo` then set
 the value the `$othervariable` variable to `bar` otherwise set the
@@ -981,9 +977,9 @@ example:
     $one = 1
     $one_thirty = 1.30
     $two = 2.034e-2
-    
-    
+        
     $result = ((( $two + 2) / $one_thirty) + 4 * 5.45) - (6 << ($two + 4)) + (0x800 + -9)
+{:puppet}
 
 #### Boolean expressions
 
@@ -993,6 +989,7 @@ for example:
     $one = 1
     $two = 2
     $var = ( $one < $two ) and ( $one + 1 == $two )
+{:puppet}
 
 #### Regex expressions
 
@@ -1002,6 +999,7 @@ using `=~` (match) and `!~` (not-match) for example:
     if $host =~ /^www(\d+)\./ {
         notice("Welcome web server #$1")
     }
+{:puppet}
 
 Like case and selectors, the regex match operators create limited
 scope variables for each regex capture. In the previous example,
@@ -1044,14 +1042,17 @@ Some functions can be used as a
 statement:
 
     notice("Something weird is going on")
+{:puppet}
 
 Or without parentheses:
 
     notice "Something weird is going on"
+{:puppet}
 
 Some functions instead return a value:
 
     file { "/my/file": content => template("mytemplate.erb") }
+{:puppet}
 
 NOTE: All functions run on the puppetmaster, so you only have access to the filesystem and resources on that host in your functions. The only exception to this is that any Facter facts that have been sent to the master from your clients are also at your disposal.
 
@@ -1069,6 +1070,7 @@ Files can also be imported using globbing, as implemented by Ruby's
 
     import "classes/*.pp"
     import "packages/[a-z]*.pp"
+{:puppet}
 
 Manifests should normally be organized into modules.
 
