@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rake'
 
-dependencies = %w(maruku nokogiri erubis)
+dependencies = %w(maruku nokogiri erubis rack)
 
 namespace :install do
   dependencies.each do |dep|
@@ -20,7 +20,7 @@ task :generate do
   sh "bin/generate"
 end
 
-desc "Serve generated output on port 9292 (requires 'rack')"
+desc "Serve generated output on port 9292"
 task :serve do
   sh "rackup"
 end

@@ -10,32 +10,46 @@ Clone the repository:
 
     $ git clone git://github.com/reductivelabs.com/puppet-docs.git
     
-Install the `bundler` gem, if you don't have it.
+Install the dependencies
 
-    $ sudo gem install bundler
-
-Install the dependencies (this won't install them system-wide):
-
-    $ cd puppet-docs
-    $ gem bundle
+    $ sudo rake install
 
 Generate the documentation:
 
-    $ bin/generate
+    $ rake generate
 
-Look at `output/index.html`, eg:
+Start a little server to view it at http://localhost:9292:
 
-    $ open output/index.html
+    $ rake serve
 
-Contribution
-------------
+Note: Use `rake run` to combine these last two steps.
+
+Errors and Omissions
+--------------------
+
+If something in the documentation doesn't seem right -- or if you
+think something important is missing, please [submit a ticket][1] to
+[the "puppet-docs" project][1] (not to Puppet itself).  The best way
+to get your change in is to contribute it; see the next section for
+details.
+
+NOTE: If you're talking about additional content, keep in mind that it might
+make more sense to be on the [Wiki][2].  You might want to start by
+adding it there.
+
+Contributing Changes
+--------------------
 
 * Fork the project.
-* Make your documentation addition/fix
+* Make your documentation addition/fix -- preferably in a branch.
 * If you're fixing or adding features to the generation 
-  infrastructure, add tests (or right now, start them!)
+  infrastructure, add some passing specs.
 * Commit, do not mess with the README, LICENSE, etc.
-* TODO: Add a ticket to the Redmine project when you're done with details.
+* [Submit a ticket][1] requesting your contribution be added, and make
+  sure you note the location of the repository and branch.
+
+[1]: http://projects.reductivelabs.com/projects/puppet-docs
+[2]: http://reductivelabs.com/trac/puppet/wiki
 
 Copyright
 ---------
