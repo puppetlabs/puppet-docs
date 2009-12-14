@@ -217,8 +217,9 @@ a, a:link, a:visited {
 }
 #index-dialog dt {padding:0; margin: 0.5em 0 0;}
 #index-dialog a {color: #FFF; background: none !important;}
-#index-dialog .L, #index-dialog .R {float: left; width: 50%; margin: 0; padding: 0;}
-#index-dialog .R {float: right;}
+#index-dialog dl {float: left; width: 100%; margin: 0; padding: 0;}
+#index-dialog dl.third {width: 33%;}
+#index-dialog dl.half {width: 50%;}
 #index-dialog hr {
 	display: block;
 	border: none;

@@ -20,20 +20,25 @@
         <ul class="nav">
           <li><a href="<%= @to_root %>index.html">Home</a></li>
           <li class="index"><a href="index.html" onclick="guideMenu(); return false;" id="guidesMenu">Docs Index</a>
-          <div id="index-dialog" class="clearfix" style="display: none;">
-            <hr />
-            <dl class="L">
-              <dt>Guides</dt>
-              <dd><a href="<%= @to_root %>introduction.html">An Introduction to Puppet</a></dd>
-              <dd><a href="<%= @to_root %>installation.html">Installing Puppet</a></dd>
-              <dd><a href="<%= @to_root %>language_tutorial.html">Puppet Language Tutorial</a></dd>
-            </dl>
-            <dl class="R">
-              <dt>References</dt>
-              <dd><a href="<%= @to_root %>types/">Resource Types (Categorized)</a></dd>
-              <dd><a href="<%= @to_root %>types/alphabetical_index.html">Resource Types (Alphabetical)</a></dd>
-            </dl>
-          </div>
+	          <div id="index-dialog" class="clearfix" style="display: none;">
+							<hr />
+	            <dl class='third'>
+	              <dt>Guides</dt>
+	              <dd><a href="<%= @to_root %>introduction.html">An Introduction to Puppet</a></dd>
+	              <dd><a href="<%= @to_root %>installation.html">Installing Puppet</a></dd>
+	              <dd><a href="<%= @to_root %>language_tutorial.html">Puppet Language Tutorial</a></dd>
+	            </dl>
+	            <dl class='third'>
+	              <dt>Projects</dt>
+	              <dd><a href="<%= @to_root %>/projects/dashboard/index.html">Puppet Dashboard</a></dd>
+	              <dd><a href="<%= @to_root %>/projects/forge/index.html">Puppet Forge</a></dd>
+	            </dl>
+	            <dl class='third'>
+	              <dt>References</dt>
+	              <dd><a href="<%= @to_root %>types/">Resource Types (Categorized)</a></dd>
+	              <dd><a href="<%= @to_root %>types/alphabetical_index.html">Resource Types (Alphabetical)</a></dd>
+	            </dl>
+	          </div>
           </li>
           <li><a href="contribute.html">Contribute</a></li>
         </ul>
