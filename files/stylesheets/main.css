@@ -111,7 +111,7 @@ body {
 	padding: 1.5em 0 1.5em 0;
 	}
 
-#mainCol {
+body #container #mainCol {
 	width: 45em;
 	}	
 
