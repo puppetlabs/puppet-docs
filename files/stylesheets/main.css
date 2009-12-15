@@ -113,7 +113,6 @@ body {
 
 #mainCol {
 	width: 45em;
-	margin-left: 2em;
 	}	
 
 #subCol {
@@ -139,7 +138,7 @@ body {
 	width: 67em;
 }
 
-#header .wrapper, #topNav .wrapper, #feature .wrapper {padding-left: 1em; width: 68em;}
+#header .wrapper, #topNav .wrapper, #feature .wrapper, #container #mainCol {padding-left: 1em; width: 68em;}
 #feature .wrapper {width: 45em; padding-right: 23em; position: relative; z-index: 0;}
 
 /* Links
