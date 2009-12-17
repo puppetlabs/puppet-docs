@@ -28,6 +28,14 @@ end
 desc "Generate docs and serve locally"
 task :run => [:generate, :serve]
 
+#
+# Reductive Labs Only:
+#
+
+desc "Release the documentation (Reductive Labs Only)"
+task :release do
+  sh "rsync -e ssh -avz output/ docadmin@reductivelabs.com:/var/www/docs/html"
+end
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
