@@ -2,10 +2,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Puppet Docs</title>
-    <link rel="stylesheet" type="text/css" href="<%= @to_root %>files/stylesheets/style.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="<%= @to_root %>files/stylesheets/syntax.css" media="all"/>
-  <script type="text/javascript" src="<%= @to_root %>files/javascripts/guides.js"></script>
-  <!-- <script type="text/javascript" src="<%= @to_root %>files/javascripts/code_highlighter.js"></script><script type="text/javascript" src="<%= @to_root %>files/javascripts/highlighters.js"></script> --></head>
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="all"/>
+  <script type="text/javascript" src="/files/javascripts/guides.js"></script>
+  <!-- <script type="text/javascript" src="/files/javascripts/code_highlighter.js"></script><script type="text/javascript" src="/files/javascripts/highlighters.js"></script> --></head>
   <body class="guide">
     <div id="topNav">
       <div class="wrapper">
@@ -16,28 +16,33 @@
     </div>
     <div id="header">
       <div class="wrapper clearfix">
-        <h1><a href="<%= @to_root %>index.html" title="Return to home page">docs.reductivelabs.com</a></h1>
+        <h1><a href="/" title="Return to home page">docs.reductivelabs.com</a></h1>
         <p class="hide"><a href="#mainCol">Skip navigation</a>.</p>
         <ul class="nav">
-          <li><a href="<%= @to_root %>index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li class="index"><a href="index.html" onclick="guideMenu(); return false;" id="guidesMenu">Docs Index</a>
 	          <div id="index-dialog" class="clearfix" style="display: none;">
-							<hr />
+	            <hr />
 	            <dl class='third'>
 	              <dt>Guides</dt>
-	              <dd><a href="<%= @to_root %>introduction.html">An Introduction to Puppet</a></dd>
-	              <dd><a href="<%= @to_root %>installation.html">Installing Puppet</a></dd>
-	              <dd><a href="<%= @to_root %>language_tutorial.html">Puppet Language Tutorial</a></dd>
+	              <dd><a href="/guides/introduction.html">An Introduction to Puppet</a></dd>
+	              <dd><a href="/guides/installation.html">Installing Puppet</a></dd>
+	              <dd><a href="/guides/language_tutorial.html">Puppet Language Tutorial</a></dd>
+                      <dt>Resource Types</dt>
+	              <dd><a href="/guides/types/">By Category</a></dd>
+	              <dd><a href="/guides/types/alphabetical_index.html">Alphabetical</a></dd>
 	            </dl>
 	            <dl class='third'>
 	              <dt>Projects</dt>
-	              <dd><a href="<%= @to_root %>/projects/dashboard/index.html">Puppet Dashboard</a></dd>
-	              <dd><a href="<%= @to_root %>/projects/forge/index.html">Puppet Forge</a></dd>
+	              <dd><a href="/projects/puppet/">Puppet (Core)</a></dd>
+	              <dd><a href="/projects/dashboard/index.html">Puppet Dashboard</a></dd>
 	            </dl>
 	            <dl class='third'>
 	              <dt>References</dt>
-	              <dd><a href="<%= @to_root %>types/">Resource Types (Categorized)</a></dd>
-	              <dd><a href="<%= @to_root %>types/alphabetical_index.html">Resource Types (Alphabetical)</a></dd>
+	              <dd><a href="/references/0.25.1rc2/">0.25.1rc2</a></dd>
+	              <dd><a href="/references/0.25.0/">0.25.0</a></dd>
+	              <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+	              <dd><a href="/references/">Older Versions</a></dd>
 	            </dl>
 	          </div>
           </li>

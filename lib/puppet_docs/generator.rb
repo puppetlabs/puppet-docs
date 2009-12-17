@@ -84,7 +84,7 @@ module PuppetDocs
         else
           page_title = name.titleize
         end
-        header = markdown(header)
+        header = markdown(add_snippets(header))
         view.set(:page_title, page_title.html_safe!)
         view.set(:header_section, header.html_safe!)
         [page_title, new_body]

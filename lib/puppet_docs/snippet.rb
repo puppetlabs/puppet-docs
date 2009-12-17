@@ -36,7 +36,7 @@ module PuppetDocs
         if filename.exist?
           # Warning: susceptible to infinite recursion if you're
           # not careful in your snippets.
-          Snippet.process(filename.read)
+          Snippet.process(filename.read.strip)
         else
           ''
         end

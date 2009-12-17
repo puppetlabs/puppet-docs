@@ -193,7 +193,7 @@ a, a:link, a:visited {
 }
 
 #index-dialog {
-	width: 27em;
+	width: 38em;
 	display: block;
 	background: #000;
 	border-radius: 1em;
@@ -395,21 +395,21 @@ pre code {
 .note {
 	background: #fff9d8 url(../../images/tab_note.gif) no-repeat left top;
 	border: none;
-	padding: 1em 1em 0.25em 48px;
+	padding: 1em 1em 1em 48px;
 	margin: 0.25em 0 1.5em 0;
 }
 
 .info {
 	background: #d5e9f6 url(../../images/tab_info.gif) no-repeat left top;
 	border: none;
-	padding: 1em 1em 0.25em 48px;
+	padding: 1em 1em 1em 48px;
 	margin: 0.25em 0 1.5em 0;
 }
 
 .warning {
 	background: #d5e9f6 url(../../images/tab_red.gif) no-repeat left top;
 	border: none;
-	padding: 1em 1em 0.25em 48px;
+	padding: 1em 1em 1em 48px;
 	margin: 0.25em 0 1.5em 0;
 }
 
