@@ -36,9 +36,21 @@ module PuppetDocs
         generate_guide(guide)
       end
 
+      copy_html
+
       # Copy images and css files to html directory
       FileUtils.cp_r File.join(guides_dir, 'images'), File.join(output, 'images')
       FileUtils.cp_r File.join(guides_dir, 'files'), File.join(output, 'files')
+    end
+
+    def copy_html
+      html = Dir[File.join(view_path, '**/*.html')].reject { |p| p.include?('#') }
+      html.each do |filename|
+        new_path = filename.sub(view_path, output)
+        FileUtils.mkdir_p(File.dirname(new_path)) rescue nil
+        FileUtils.cp filename, new_path
+        puts "Copied #{filename} to #{new_path}"
+      end
     end
 
     def generate_guide(guide)
@@ -104,11 +116,13 @@ module PuppetDocs
       html = Maruku.new("#{title}\n#{'=' * title.size}\n\n#{body}\n\n* Create TOC\n{:toc}").to_html_document
       doc = Nokogiri(html)
       toc = doc.css('.maruku_toc')
-      index << toc.css('ul').first.children.to_s
-
+      children = toc.css('ul').first.children
+      return body if children.empty?
+      index << children.to_s
+      
       index << '</ol>'
       index << '</div>'
-
+      
       view.set(:index_section, index.html_safe!)
 
       body

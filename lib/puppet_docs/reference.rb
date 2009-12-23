@@ -14,29 +14,28 @@ module PuppetDocs
 
       def generate
         puts "Generating #{@name} reference for #{version}."
-        %x{ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppetdoc -m markdown -r #{@name}}
-        if $?.success?
-          install
-          puts "Generated #{destination_filename}"
+        raw_content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppetdoc -m text -r #{@name}`
+        if raw_content
+          setup_destination!
+          content = nil
+          IO.popen("rst2html.py", "w+") do |rst2html|
+            rst2html.write raw_content
+            rst2html.close_write
+            content = rst2html.read
+          end
+          if content
+            File.open(destination_filename, 'w') { |f| f.write content }
+            puts "Wrote #{destination_filename}"
+          else
+            abort "Could not convert RST to HTML (requires rst2html.py from docutils)"
+          end
         else
-          abort "Could not generate #{@name} reference using puppetdoc at #{version}"
+          abort "Could not build #{@name} reference using puppetdoc at #{version}"
         end
       end
             
       private
 
-      def install
-        content = File.read(puppetdoc_filename)
-        content = content.sub(/^%\s+.*?/m, prologue)
-        File.open(destination_filename, 'w') { |f| f.write content }
-      end
-
-      def prologue
-        title = "#{@name.capitalize} Reference (#{version})\n========================\n\n"
-        separator = "\n\n* * *\n\n"
-        title + separator
-      end
-      
       def valid_tags
         @valid_tags ||= at('master') { `git tag` }.grep(/\./).map { |s| s.strip }
       end
@@ -86,13 +85,17 @@ module PuppetDocs
       end
 
       def destination_filename
-        @destination_filename ||= PuppetDocs.root + "source/#{@name}-reference-#{@tag}.markdown"
+        @destination_filename ||= destination_directory + (@name + ".html")
       end
 
-      def puppetdoc_filename
-        @puppetdoc_filename ||= File.join('/tmp', version.to_s, "#{@name}.mdwn")
+      def destination_directory
+        @destination_directory ||= PuppetDocs.root + "source/references" + @tag
       end
-      
+
+      def setup_destination!
+        destination_directory.mkpath
+      end
+
     end
     
   end

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>Report Reference</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5951 2009-05-18 18:03:10Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="report-reference">
+<h1 class="title">Report Reference</h1>
+
+<p><strong>This page is autogenerated; any changes will get overwritten</strong> <em>(last generated on Wed Dec 23 15:03:14 -0800 2009)</em></p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#log" id="id1">log</a></li>
+<li><a class="reference internal" href="#rrdgraph" id="id2">rrdgraph</a></li>
+<li><a class="reference internal" href="#store" id="id3">store</a></li>
+<li><a class="reference internal" href="#tagmail" id="id4">tagmail</a></li>
+</ul>
+</div>
+<p>Puppet clients can report back to the server after each transaction.  This
+transaction report is sent as a YAML dump of the
+<tt class="docutils literal"><span class="pre">Puppet::Transaction::Report</span></tt> class and includes every log message that was
+generated during the transaction along with as many metrics as Puppet knows how
+to collect.  See Reports and Reporting
+for more information on how to use reports.</p>
+<p>Currently, clients default to not sending in reports; you can enable reporting
+by setting the <tt class="docutils literal">report</tt> parameter to true.</p>
+<p>To use a report, set the <tt class="docutils literal">reports</tt> parameter on the server; multiple
+reports must be comma-separated.  You can also specify <tt class="docutils literal">none</tt> to disable
+reports entirely.</p>
+<p>Puppet provides multiple report handlers that will process client reports:</p>
+<div class="section" id="log">
+<h1><a class="toc-backref" href="#id1">log</a></h1>
+<p>Send all received logs to the local log destinations.  Usually
+the log destination is syslog.</p>
+</div>
+<div class="section" id="rrdgraph">
+<h1><a class="toc-backref" href="#id2">rrdgraph</a></h1>
+<p>Graph all available data about hosts using the RRD library.  You
+must have the Ruby RRDtool library installed to use this report, which
+you can get from <a class="reference external" href="http://rubyforge.org/projects/rubyrrdtool/">the RubyRRDTool RubyForge page</a>.  This package may also
+be available as <tt class="docutils literal"><span class="pre">ruby-rrd</span></tt> or <tt class="docutils literal"><span class="pre">rrdtool-ruby</span></tt> in your distribution's package
+management system.  The library and/or package will both require the binary
+<tt class="docutils literal">rrdtool</tt> package from your distribution to be installed.</p>
+<p>This report will create, manage, and graph RRD database files for each
+of the metrics generated during transactions, and it will create a
+few simple html files to display the reporting host's graphs.  At this
+point, it will not create a common index file to display links to
+all hosts.</p>
+<p>All RRD files and graphs get created in the <tt class="docutils literal">rrddir</tt> directory.  If
+you want to serve these publicly, you should be able to just alias that
+directory in a web server.</p>
+<p>If you really know what you're doing, you can tune the <tt class="docutils literal">rrdinterval</tt>,
+which defaults to the <tt class="docutils literal">runinterval</tt>.</p>
+</div>
+<div class="section" id="store">
+<h1><a class="toc-backref" href="#id3">store</a></h1>
+<p>Store the yaml report on disk.  Each host sends its report as a YAML dump
+and this just stores the file on disk, in the <tt class="docutils literal">reportdir</tt> directory.</p>
+<p>These files collect quickly -- one every half hour -- so it is a good idea
+to perform some maintenance on them if you use this report (it's the only
+default report).</p>
+</div>
+<div class="section" id="tagmail">
+<h1><a class="toc-backref" href="#id4">tagmail</a></h1>
+<p>This report sends specific log messages to specific email addresses
+based on the tags in the log messages.  See the
+tag documentation for more information
+on tags.</p>
+<p>To use this report, you must create a <tt class="docutils literal">tagmail.conf</tt> (in the location
+specified by <tt class="docutils literal">tagmap</tt>).  This is a simple file that maps tags to
+email addresses:  Any log messages in the report that match the specified
+tags will be sent to the specified email addresses.</p>
+<p>Tags must be comma-separated, and they can be negated so that messages
+only match when they do not have that tag.  The tags are separated from
+the email addresses by a colon, and the email addresses should also
+be comma-separated.</p>
+<p>Lastly, there is an <tt class="docutils literal">all</tt> tag that will always match all log messages.</p>
+<p>Here is an example tagmail.conf:</p>
+<pre class="literal-block">
+all: me&#64;domain.com
+webserver, !mailserver: httpadmins&#64;domain.com
+</pre>
+<p>This will send all messages to <tt class="docutils literal">me&#64;domain.com</tt>, and all messages from
+webservers that are not also from mailservers to <tt class="docutils literal">httpadmins&#64;domain.com</tt>.</p>
+<p>If you are using anti-spam controls, such as grey-listing, on your mail
+server you should whitelist the sending email (controlled by <tt class="docutils literal">reportform</tt>
+configuration option) to ensure your email is not discarded as spam.</p>
+<hr class="docutils" />
+<p><em>This page autogenerated on Wed Dec 23 15:03:14 -0800 2009</em></p>
+</div>
+</div>
+</body>
+</html>
