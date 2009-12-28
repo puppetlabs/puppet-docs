@@ -1,3 +1,4 @@
+/* Based on: */
 /* Guides.rubyonrails.org */
 /* Main.css */
 /* Created January 30, 2009 */
@@ -74,7 +75,7 @@ table th {
 body {
 	text-align: center;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 87.5%;
+	font-size: 11pt;
 	line-height: 1.5em;
 	background: #222;	
 	color: #999;
