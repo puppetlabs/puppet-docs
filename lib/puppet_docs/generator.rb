@@ -1,9 +1,3 @@
-class String
-  def html_safe!
-    self
-  end unless "post 9415935902f120a9bac0bfce7129725a0db38ed3".respond_to?(:html_safe!)
-end
-
 module PuppetDocs
   class Generator
     attr_reader :output, :view_path, :view, :guides_dir
@@ -19,12 +13,14 @@ module PuppetDocs
         FileUtils.rm_r(@output) if File.directory?(@output)
         FileUtils.mkdir(@output)
       end
+      create_log_directory!
 
       @view_path = File.join(@guides_dir, "source")
     end
 
     def generate
-      guides = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') }
+      puts "Logging in #{log_filename}"
+      guides = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') }
 
       if ENV["ONLY"]
         only = ENV["ONLY"].split(",").map{|x| x.strip }.map {|o| "#{o}.markdown" }
@@ -47,9 +43,10 @@ module PuppetDocs
       html = Dir[File.join(view_path, '**/*.html')].reject { |p| p.include?('#') }
       html.each do |filename|
         new_path = filename.sub(view_path, output)
+        start_progress filename[view_path.size..-1]
         FileUtils.mkdir_p(File.dirname(new_path)) rescue nil
         FileUtils.cp filename, new_path
-        puts "Copied #{filename} to #{new_path}"
+        stop_progress 'COPIED'
       end
     end
 
@@ -58,13 +55,13 @@ module PuppetDocs
       name = $1
       ext = $2
 
-      puts "Generating #{name}"
-
       rel_path = guide.sub(view_path, '')[1..-1]
       slug = ext ? File.basename(rel_path, ext) : File.basename(rel_path, '.markdown')
 
       planned_path = File.join(output, File.dirname(rel_path), slug) + '.html'
 
+      start_progress(name[view_path.size..-1] + (ext || ''))
+      
       FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil
 
       view = View.new(:to_root => '../' * rel_path.scan(/\//).size)
@@ -75,17 +72,20 @@ module PuppetDocs
         
         title, body = set_header_section(name, body, view)
         unless title && body
-          puts "Skipping..."
-          next
+          stop_progress 'MISSING PROLOGUE'
+          return false
         end
         body = add_snippets(body)
         body = add_extras(body)
         body = set_index(title, body, view)
         
-        result = view.render(markdown(body, true).html_safe!)
+        result = view.render(markdown(body, true))
         f.write result
         warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
+        stop_progress 'GENERATED'
       end
+    rescue Exception
+      stop_progress 'ERROR'
     end
 
     def set_header_section(name, body, view)
@@ -97,11 +97,11 @@ module PuppetDocs
           page_title = name.titleize
         end
         header = markdown(add_snippets(header))
-        view.set(:page_title, page_title.html_safe!)
-        view.set(:header_section, header.html_safe!)
+        view.set(:page_title, page_title)
+        view.set(:header_section, header)
         [page_title, new_body]
       else
-        puts "Did not provide a prologue separator."
+        # Did not provide a prologue separator
         false
       end
     end
@@ -113,7 +113,10 @@ module PuppetDocs
         <ol class="chapters">
       INDEX
 
-      html = Maruku.new("#{title}\n#{'=' * title.size}\n\n#{body}\n\n* Create TOC\n{:toc}").to_html_document
+      html = ''
+      logging do
+        html = Maruku.new("#{title}\n#{'=' * title.size}\n\n#{body}\n\n* Create TOC\n{:toc}").to_html_document
+      end
       doc = Nokogiri(html)
       toc = doc.css('.maruku_toc')
       children = toc.css('ul').first.children
@@ -123,7 +126,7 @@ module PuppetDocs
       index << '</ol>'
       index << '</div>'
       
-      view.set(:index_section, index.html_safe!)
+      view.set(:index_section, index)
 
       body
     end
@@ -141,7 +144,9 @@ module PuppetDocs
     
     def markdown(body, include_settings = false)
       body = settings_content + body if include_settings
-      Maruku.new(body).to_html
+      logging do
+        Maruku.new(body).to_html
+      end
     end
 
     def add_extras(body)
@@ -191,6 +196,27 @@ module PuppetDocs
       end
     end
 
+    def log_filename
+      @log_filename ||= PuppetDocs.root + 'log' + 'generator.log'
+    end
+
+    # Maruku's logging control is spotty (even using :on_error and
+    # :error_stream); for now we redirect $stderr output to keep it quiet.
+    def logging(&block) #:nodoc:
+      result = nil
+      log_filename.open('a', File::CREAT) do |log|
+        real = $stderr
+        $stderr = log
+        result = yield
+        $stderr = real
+      end
+      result
+    end
+
+    def create_log_directory!
+      log_filename.parent.mkpath
+    end
+
     def settings_content
       @settings_content ||=
         begin
@@ -201,6 +227,14 @@ module PuppetDocs
             ''
           end
         end
+    end
+
+    def start_progress(name)
+      print('%-70s ' % "#{name} ...")
+    end
+
+    def stop_progress(result)
+      puts "[#{result}]"
     end
 
   end
