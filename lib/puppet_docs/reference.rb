@@ -2,15 +2,15 @@ module PuppetDocs
 
   module Reference
 
-    # Find the special versions that should be synlinked
+    # Find the special versions that should be symlinked
     def self.special_versions
       listing = {}
-      listing[:latest] = generated_versions.detect { |v, dir| v.release_type != :final }
       listing[:stable] = generated_versions.detect { |v, dir| v.release_type == :final }
+      listing[:latest] = generated_versions.first
       listing
     end
 
-    # A sorted array of [version, path] for non-synlinked version paths
+    # A sorted array of [version, path] for non-symlinked version paths
     def self.generated_versions #:nodoc:
       return @generated_versions if @generated_versions
       possibles = generated_version_directories.map do |path|
