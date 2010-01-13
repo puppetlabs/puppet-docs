@@ -2,6 +2,31 @@ module PuppetDocs
 
   module Reference
 
+    # Find the special versions that should be synlinked
+    def self.special_versions
+      listing = {}
+      listing[:latest] = generated_versions.detect { |v, dir| v.release_type != :final }
+      listing[:stable] = generated_versions.detect { |v, dir| v.release_type == :final }
+      listing
+    end
+
+    # A sorted array of [version, path] for non-synlinked version paths
+    def self.generated_versions #:nodoc:
+      return @generated_versions if @generated_versions
+      possibles = generated_version_directories.map do |path|
+        [Versionomy.parse(path.basename), path]
+      end
+      @generated_versions = possibles.sort_by { |x| x.first }.reverse
+    end
+
+    # The valid, non-symlinked version paths
+    def self.generated_version_directories #:nodoc:
+      children = (PuppetDocs.root + "output/references").children
+      possibles = children.select do |child|
+        child.directory? && !child.symlink?
+      end
+    end
+
     class Generator
 
       def initialize(tag, name)

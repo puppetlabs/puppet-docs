@@ -3,7 +3,7 @@ require 'rubygems'
 require 'set'
 require 'pathname'
 
-%w(maruku nokogiri erubis).each do |dep|
+%w(maruku nokogiri erubis versionomy).each do |dep|
   begin
     require dep
   rescue LoadError

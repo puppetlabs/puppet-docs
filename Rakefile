@@ -4,7 +4,7 @@ require 'pathname'
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-dependencies = %w(maruku nokogiri erubis rack)
+dependencies = %w(maruku nokogiri erubis rack blockenspeil versiononomy)
 references = %w(configuration function indirection metaparameter network report type)
 
 namespace :install do
@@ -22,6 +22,7 @@ task :install => dependencies.map { |d| "install:#{d}" }
 desc "Generate the documentation"
 task :generate do
   sh "bin/generate"
+  Rake::Task['references:symlink'].invoke
 end
 
 desc "Serve generated output on port 9292"
@@ -33,6 +34,28 @@ desc "Generate docs and serve locally"
 task :run => [:generate, :serve]
 
 namespace :references do
+
+  namespace :symlink do
+
+    desc "Show the versions that will be symlinked"
+    task :versions do
+      require 'puppet_docs'
+      PuppetDocs::Reference.special_versions.each do |name, (version, source)|
+        puts "#{name}: #{version}"
+      end
+    end
+        
+  end
+
+  desc "Symlink the latest & stable directories"
+  task :symlink do
+    require 'puppet_docs'
+    PuppetDocs::Reference.special_versions.each do |name, (version, source)|
+      Dir.chdir 'output/references' do
+        ln_s version.to_s, name.to_s
+      end
+    end
+  end
 
   namespace :puppetdoc do
     
