@@ -204,7 +204,7 @@ module PuppetDocs
     # :error_stream); for now we redirect $stderr output to keep it quiet.
     def logging(&block) #:nodoc:
       result = nil
-      log_filename.open('a', File::CREAT) do |log|
+      log_filename.open('a') do |log|
         real = $stderr
         $stderr = log
         result = yield
