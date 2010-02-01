@@ -109,7 +109,7 @@ module PuppetDocs
     def set_index(title, body, view)
       index = <<-INDEX
       <div id="subCol">
-        <h3 class="chapter"><img src="#{view[:to_root]}images/chapters_icon.gif" alt="" />Contents</h3>
+        <h3 class="chapter">Contents</h3>
         <ol class="chapters">
       INDEX
 

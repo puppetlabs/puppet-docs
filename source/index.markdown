@@ -1,5 +1,7 @@
 Welcome
-=======
+=============
+
+* * *
 
 Here you'll find:
 
@@ -11,7 +13,9 @@ Here you'll find:
   [puppetdoc](/projects/puppet/puppetdoc.html)
 * Also be sure to check out the [Wiki](http://reductivelabs.com/trac/puppet/wiki)
 
-* * *
+
+{TODO}
+{GENERIC}
 
 Guides
 ------
@@ -34,7 +38,7 @@ Guides
 ### Developing Puppet
 
 * [Using Puppet from Source](/guides/from_source.html)
-
+    
 Projects
 --------
 
