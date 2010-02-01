@@ -91,7 +91,7 @@ module PuppetDocs
     def set_header_section(name, body, view)
       header, new_body = body.split(/\*\s+\*\s+\*/, 2)
       if new_body
-        if header =~ /^(\S[^\r\n]+)\r?\n-+\s*$/ms
+        if header =~ /^(\S[^\r\n]+)\r?\n=+\s*$/ms
           page_title = $1.strip
         else
           page_title = name.titleize
