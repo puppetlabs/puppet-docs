@@ -3,6 +3,9 @@ Welcome
 
 * * *
 
+
+{LANDING}
+
 Here you'll find:
 
 * Guides to walk you through installation and configuration of a
