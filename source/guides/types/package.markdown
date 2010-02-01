@@ -1,4 +1,7 @@
 package
+=======
+
+* * *
 
 Manage packages. There is a basic dichotomy in package support
 right now: Some package types (e.g., yum and apt) can retrieve

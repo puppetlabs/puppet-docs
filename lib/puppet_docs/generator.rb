@@ -94,7 +94,7 @@ module PuppetDocs
         if header =~ /^(\S[^\r\n]+)\r?\n=+\s*$/ms
           page_title = $1.strip
         else
-          page_title = name.titleize
+          return false
         end
         header = markdown(add_snippets(header))
         view.set(:page_title, page_title)

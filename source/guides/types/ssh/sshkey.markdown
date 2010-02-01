@@ -1,8 +1,13 @@
 sshkey
+======
 
-Installs and manages ssh host keys. At this point, this type only
-knows how to install keys into /etc/ssh/ssh\_known\_hosts, and it
-cannot manage user authorized keys yet.
+Installs and manages ssh host keys.
+
+* This type only knows how to install keys into
+  `/etc/ssh/ssh_known_hosts`, and it cannot manage user authorized
+  keys.
+
+* * *
 
 ### Parameters
 

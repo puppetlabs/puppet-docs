@@ -1,8 +1,11 @@
 selboolean
+==========
 
-Manages SELinux booleans on systems with SELinux support. The
-supported booleans are any of the ones found in
-/selinux/booleans/.
+Manages SELinux booleans on systems with SELinux support.
+
+* The supported booleans are any of the ones found in `/selinux/booleans/`
+
+* * *
 
 ### Parameters
 

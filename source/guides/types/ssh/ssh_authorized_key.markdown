@@ -1,7 +1,11 @@
-ssh\_authorized\_key
+ssh_authorized_key
+==================
 
-Manages SSH authorized keys. Currently only type 2 keys are
-supported.
+Manages SSH authorized keys.
+
+* Currently only type 2 keys are supported.
+
+* * *
 
 ### Parameters
 

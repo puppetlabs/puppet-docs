@@ -1,4 +1,7 @@
 tidy
+====
+
+* * *
 
 Remove unwanted files based on specific criteria. Multiple criteria
 are OR'd together, so a file that is too large but is not old

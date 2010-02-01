@@ -1,4 +1,7 @@
 schedule
+========
+
+* * *
 
 Defined schedules for Puppet. The important thing to understand
 about how schedules are currently implemented in Puppet is that
