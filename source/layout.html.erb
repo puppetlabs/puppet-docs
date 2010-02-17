@@ -12,7 +12,7 @@
 </head>
   <body id="resources">
     <div id="puppet-labs">
-      <div id="header">
+      <header id="header">
         <div class="site-width">
           <h1><a href="/"><span>Puppet Labs</span></a></h1>
           <a class="screen-reader-content" href="#content">Skip navigation</a>          
@@ -84,14 +84,14 @@
             <li id="company-tab"><a href="/company/"><span>Company</span><span class="subtitle">Meet Puppet Labs</span></a></li>
           </ul>
         </div>
-      </div>
-      <div id="masthead">
+      </header>
+      <section id="masthead">
         <div class="site-width">
           <h1>Documentation: <span class="section-name"><%= yield :page_title %></span></h1>
           <ul id="doc-navigation">
             <li><a href="/">Home</a></li>
             <li class="index">
-              <a id="index-dialog-toggle" href="index.html" id="guidesMenu">Docs Index</a>
+              <a id="index-dialog-toggle" href="index.html">Docs Index</a>
   	          <div id="index-dialog" style="display: none;">
   	            <dl>
   	              <dt>Guides</dt>
@@ -119,9 +119,9 @@
             <li><a href="/contribute.html">Contribute</a></li>
           </ul>
         </div>
-      </div>
+      </section>
     
-      <div id="content">
+      <section id="content">
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
@@ -132,9 +132,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
         
-      <div id="footer">
+      <footer id="footer">
         <div class="site-width">
           <div id="newsletter" class="section">
             <h4>Newsletter</h4>
@@ -164,8 +164,8 @@
             <img src="/images/book.png" />
           </div>
         </div>
-      </div>
-      <div id="copyright">
+      </footer>
+      <section id="copyright">
         <div class="site-width">
           &copy;
           <span class="vcard">
@@ -185,7 +185,7 @@
           <p>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0</a> License.</p>                   
         </div>
       </div>
-    </div>
+    </section>
     <script type="text/javascript" charset="utf-8">
       var is_ssl = ("https:" == document.location.protocol);
       var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";

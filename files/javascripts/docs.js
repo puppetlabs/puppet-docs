@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('#index-dialog-toggle').click(function(){
-    $('#index-dialog').toggle;
+    $('#index-dialog').toggle();
     return false;
   });
 });
