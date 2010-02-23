@@ -25,6 +25,9 @@ Steps for installing the documentation-generating code:
 
 5.  Start a little server to view it at http://localhost:9292:
 
+    Install librack-ruby1.8 using your package manager.   The
+    name of the package may vary by platform.
+
     $ rake serve
 
     Note: Use `rake run` to combine these last two steps.
