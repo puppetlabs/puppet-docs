@@ -6,8 +6,8 @@ a wide-range of operating systems.
 
 * * *
 
-Before you start
-----------------
+Before Starting
+---------------
 
 Start by reading the [Downloading Puppet](http://reductivelabs.com/trac/puppet/wiki/DownloadingPuppet)
 guide, which explains how to download packages or source code for your operating system.
@@ -16,7 +16,7 @@ You will need to install Puppet on all machines on both clients
 and the central Puppet master server(s).
 
 For most platforms, you can install 'puppet' via your package
-manager of choice.  For other platforms, you will need to install
+manager of choice.  For a few platforms, you will need to install
 using the [tarball](http://www.reductivelabs.com/downloads/puppet/) or
 [RubyGems](http://www.reductivelabs.com/downloads/gems/).
 
@@ -30,10 +30,8 @@ Ruby standard library is
 [facter](http://www.reductivelabs.com/projects/facter/index.html),
 which is also developed by Reductive Labs.
 
-All other prerequisites for Puppet are Ruby libraries, and they
-should all come with any standard Ruby 1.8.2+ install. The other
-prerequisites, should your OS not come with the complete standard
-library (or you are using a custom Ruby build), include:
+All other prerequisites Ruby libraries should come with any standard Ruby 1.8.2+ install.  Should your OS not come with the complete standard
+library (or you are using a custom Ruby build), these include:
 
 * base64
 * cgi
@@ -134,30 +132,30 @@ Building the Server
 
 ### Create Your Site Manifest
 
-Because the Puppet language is declarative, it does not make as
-much sense to speak of "executing" Puppet manifests, or to describe
-them as "scripts". We choose to use the word manifest to describe
-Puppet programs, and we speak of *applying* those manifests to the
-local system. Thus, a *manifest* is a text document written in the
+Puppet is a declarative system, so it does not make 
+much sense to speak of "executing" Puppet programs or scripts.
+Instead, we choose to use the word *manifest* to describe
+our Puppet code, and we speak of *applying* those manifests to the
+managed systems. Thus, a *manifest* is a text document written in the
 Puppet language and meant to describe and result in a desired configuration.
 
-Puppet is written with the assumption that you will have one
+Puppet assumes that you will have one
 central manifest capable of configuring an entire site, which
 we call the *site manifest*. You could have multiple, separate site
 manifests if you wanted, though if doing this each of them would need
-their own puppet servers.
+their own puppet servers.  Individual system differences can be seperated
+out, node by node, in the site manifest.
 
 Puppet will start with /etc/puppet/manifests/site.pp as the primary
 manifest, so create /etc/puppet/manifests and add your manifest,
 along with any files it includes, to that directory. It is highly
-recommended that you use
-[version control](http://svnbook.red-bean.com/) to keep track of
-changes to manifests.
+recommended that you use some form of version control (git, svn, etc) 
+to keep track of changes to manifests.
 
 ### Example Manifest
 
-The site manifest can be as simple or as complicated as you want. A
-good starting example is to make sure that your sudoers file has the
+The site manifest can do as little or as much as you want. A
+good starting point is a manifest that makes sure that your sudoers file has the
 appropriate permissions:
 
     # site.pp
