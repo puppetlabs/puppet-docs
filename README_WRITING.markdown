@@ -44,7 +44,7 @@ Something like:
     Homer Jay Simpson is a fictional main character in the animated
     television series "The Simpsons" and father of the eponymous family.
 
-    He has 3 shildren:
+    He has 3 children:
 
     * Bart
     * Lisa
