@@ -6,23 +6,28 @@ Curated documentation for Puppet.
 Installation
 ------------
 
-Clone the repository:
+1.  Clone the repository:
 
     $ git clone git://github.com/reductivelabs.com/puppet-docs.git
-    
-Install the dependencies
+
+2.  Use your package manager to install rake.    
+
+3.  Install the dependencies
 
     $ sudo rake install
 
-Generate the documentation:
+    If the above fails, you may need to use your package manager to install
+    files such as libxml2-dev and libxslt-dev
+
+4.  Generate the documentation:
 
     $ rake generate
 
-Start a little server to view it at http://localhost:9292:
+5.  Start a little server to view it at http://localhost:9292:
 
     $ rake serve
 
-Note: Use `rake run` to combine these last two steps.
+    Note: Use `rake run` to combine these last two steps.
 
 Errors and Omissions
 --------------------
