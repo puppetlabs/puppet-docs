@@ -18,7 +18,7 @@ wherever you see this:
 
 Feedback is great, and we'd like as much as possible... but if you
 know what needs to be added (to something you see, or based on other
-user feedback), why not contribute?
+user feedback), here's how to contribute directly:
 
 Making a Contribution
 ---------------------
@@ -84,4 +84,6 @@ In your ticket, provide:
    you're submitting (so we can pull it); if not, one or more attached
    git patches.
 
-We'll get back to you on your contribution as soon as possible.
+We'll get back to you on your contribution as soon as possible.  Thanks!
+
+

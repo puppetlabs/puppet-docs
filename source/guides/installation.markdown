@@ -1,32 +1,29 @@
 Installation Guide
 ==================
 
-Puppet supports a wide range of platforms and installation options.
-Read this guide for in-depth installation instructions.
+This guide covers in-depth installation instructions and options for Puppet on
+a wide-range of operating systems.
 
 * * *
 
 Before you start
 ----------------
 
-First, make sure to read the [Downloading Puppet](http://reductivelabs.com/trac/puppet/wiki/DownloadingPuppet)
-guide for how to get packages or source for your platform.
+Start by reading the [Downloading Puppet](http://reductivelabs.com/trac/puppet/wiki/DownloadingPuppet)
+guide, which explains how to download packages or source code for your operating system.
 
-You will need to install Puppet on all machines that will use it,
-including both clients and servers.
+You will need to install Puppet on all machines on both clients
+and the central Puppet master server(s).
 
-There are packages available for most platforms (use your normal
-package sources for them), but for the rest you will have to
-install using the
-[tarball](http://www.reductivelabs.com/downloads/puppet/) or
+For most platforms, you can install 'puppet' via your package
+manager of choice.  For other platforms, you will need to install
+using the [tarball](http://www.reductivelabs.com/downloads/puppet/) or
 [RubyGems](http://www.reductivelabs.com/downloads/gems/).
 
-INFO: Install instructions do not cover installing packages, since it is assumed
-you know how to retrieve and install packages for your specific
-platform.
+INFO: For instructions on installing puppet using a distribution-specific package manager, consult your operating system documentation.  Volunteer contributed operating system packages can also be found on the [downloads page](http://reductivelabs.com/trac/puppet/wiki/DownloadingPuppet)
 
 Ruby Prerequisites
--------------------
+------------------
 
 The only prerequisite for Puppet that doesn't come as part of the
 Ruby standard library is
@@ -36,7 +33,7 @@ which is also developed by Reductive Labs.
 All other prerequisites for Puppet are Ruby libraries, and they
 should all come with any standard Ruby 1.8.2+ install. The other
 prerequisites, should your OS not come with the complete standard
-library, are:
+library (or you are using a custom Ruby build), include:
 
 * base64
 * cgi
@@ -52,127 +49,30 @@ library, are:
 * webrick/https
 * xmlrpc
 
-NOTE: I recommend using whatever Ruby comes with your system,
-since that's what I've tested against in most cases and it's most
-likely to work correctly. If you feel the particular need to build
-it manually, you can get the source from
-[the Ruby site](http://ruby-lang.org/).
+NOTE: We strongly recommend using the version of Ruby that comes with your system, since that will have a higher degree of testing coverage.
+If you feel the particular need to build Ruby manually, you can get the source from [ruby-lang.org](http://ruby-lang.org/).
 
-Platform Prerequisites
-----------------------
+OS Packages
+-----------
 
-### Fedora
+If installing from a distribution maintained package, such as those listed on [Downloading Puppet Wiki Page](http://reductivelabs.com/trac/puppet/wiki/DownloadingPuppet) all OS prerequisites should be handled by your package manager.  See the Wiki for information on how to enable repositories for your particular OS.  Usually the latest stable version is available as a package.  If you would like to do puppet-development or see the latest versions, however, you will want to install from source.
 
-Fedora 11 hosts require these packages:
 
-* `selinux-policy-3.6.12-57.fc11.noarch`
-* `selinux-policy-targeted-3.6.12-57.fc11.noarch`
+Installing Facter From Source
+-----------------------------
 
-Or later, to avoid an issue with ifconfig AVC denials in SELinux
-enforcing mode on both the puppetmaster and puppet client.
-
-### Red Hat
-
-Puppet and Facter are available in Fedora; thanks to David
-Lutterkort at Red Hat. Fedora users can retrieve them via yum from
-their Fedora repositories. Users of Enterprise Linux (RHEL, CentOS,
-OEL, Scientific, Start.com, etc) can get the package from
-[Extra Packages for Enterprise Linux (EPEL)](https://fedoraproject.org/wiki/EPEL)-
-a Fedora add-on for EL.
-
-Please let the puppet-users mailing list know if you have built
-RPM's for RHEL2.1 or RHEL3 (or the equivalent CentOS builds)
-
-If you are building ruby on Red Hat (at least on version 3), you
-apparently must build it with CPPFLAGS=-I/usr/kerberos/include/,
-else you will have all kinds of unreasonable problems (thanks to
-Mario Martelli for tracking that one down).
-
-### Solaris
-
-There is a repository of Facter and Puppet packages for Solaris
-[here](http://garylaw.net/packages/). The packages require Ruby
-and some other dependencies from the
-[opencsw](http://opencsw.org/) or
-[blastwave](http://blastwave.org) projects. The tools pkg-get and
-pkgutil can handle installing these dependencies for you (in much
-the same way as apt-get or yum on Linux). Unlike the RPMs for RHEL,
-the Solaris packages will auto-start the puppetd client immediately
-post installation.
-
-If you get segfaults, core dumps, or 'library missing ciphers'
-errors, that is almost definitely a problem with that specific ruby
-package, not Puppet or Ruby itself. The current opencsw and
-blastwave Ruby seem OK.
-
-You might also find the
-[Solaris Puppet Client Installation Guide](http://reductivelabs.comhttp://reductivelabs.com/trac/puppet/wiki/SolarisPuppetClientInstallationGuide/)
-to be useful.
-
-Some very old packages can be found in the
-[downloads](http://reductivelabs.com/downloads/packages/SunOS).
-
-### Debian and Ubuntu
-
-You can download packages for Puppet from any Debian mirror.
-
-The package maintainer for Ruby on these platforms has decided to
-split the Ruby standard library into many packages. According to
-Eric Hollensbe, this is the package dependency list for Puppet on
-Debian:
-
-* ruby
-* irb
-* ri
-* rdoc
-* libxmlrpc-ruby
-* libopenssl-ruby
-* libstrscan-ruby
-* libsyslog-ruby
-* libwebrick-ruby
-
-Debian Stable tends to lag behind a bit with packages. You might
-want to
-[install the puppet packages from Unstable](http://reductivelabs.com/trac/puppet/wiki/PuppetDebian).
-
-Ubuntu Dapper Server (LTS): You need to enable the *universe*
-repository to install the above package list.
-
-### SuSE
-
-Martin Vuk has set up the SuSE build service to create Puppet and
-Facter packages, so you can get them
-[there](http://software.opensuse.org/download/system:/management/).
-Older versions of Puppet can still be retrieved from his old
-[yum repository](http://lmmri.fri.uni-lj.si/suse/).
-
-More about
-[puppet on SuSE and opensuse](http://reductivelabs.com/trac/puppet/wiki/PuppetSuSE).
-
-### Gentoo
-
-Thanks to José González Gómez, there are
-[now](http://packages.gentoo.org/package/app-admin/puppet) ebuilds
-available for Puppet in the official Portage repository.
-
-Also, as of September 2006 there is a problem with the PPC Ruby
-package that causes rdoc/usage to fail. The bug has been reported
-to the Gentoo folks.
-
-Install Facter
---------------
-
-First install facter. Like Puppet, there are
+The facter library is a prerequisite for Puppet. Like Puppet, there are
 [packages](http://www.reductivelabs.com/downloads/packages/)
-available for some platforms, but you might have to use the
-tarball:
+available for most platforms, though you may want to use the
+tarball if you would like to try a newer version or are using
+a platform without an OS package:
 
 Get the latest tarball:
     
     $ wget http://reductivelabs.com/downloads/facter/facter-latest.tgz
 {:shell}
 
-Untar and install it:
+Untar and install facter:
 
     $ gzip -d -c facter-latest.tgz | tar xf -
     $ cd facter-*
@@ -182,10 +82,10 @@ Untar and install it:
 There are also gems available in the
 [download](http://www.reductivelabs.com/downloads/) directory.
 
-Install Puppet
---------------
+Installing Puppet From Source
+-----------------------------
 
-Using the same mechanism, install the puppet libraries and
+Using the same mechanism as Facter, install the puppet libraries and
 executables:
 
     # get the latest tarball
@@ -204,12 +104,12 @@ You can also check the source out from the git repo:
     $ sudo ruby ./install.rb
 {:shell}
 
-Or you can also override the installation location:
+To install into a different location you can use:
 
     $ sudo ruby install.rb --bindir=/usr/bin --sbindir=/usr/sbin
 {:shell}
 
-### Alternative: Using Ruby Gems
+### Alternative Install Method: Using Ruby Gems
 
 You can also install Facter and Puppet via gems:
 
@@ -219,14 +119,13 @@ You can also install Facter and Puppet via gems:
       $ sudo gem install puppet-0.25.1.gem
 {:shell}
 
-The Reductive Labs gem server is broken. Find the latest gems
+Find the latest gems
 [here](http://reductivelabs.com/downloads/gems/)
 
 For more information on Ruby Gems, see the
 [Gems User Guide](http://docs.rubygems.org/read/book/1)
 
-WARNING: If you get the error, in `require: no such file to load`, you need
-to define the RUBYOPT environment variable as advised in the
+WARNING: If you get the error, in `require: no such file to load`, define the RUBYOPT environment variable as advised in the
 [post-install instructions](http://docs.rubygems.org/read/chapter/3#page70)
 of the RubyGems User Guide.
 
@@ -236,29 +135,29 @@ Building the Server
 ### Create Your Site Manifest
 
 Because the Puppet language is declarative, it does not make as
-much sense to speak of "executing" Puppet programs, or to describe
+much sense to speak of "executing" Puppet manifests, or to describe
 them as "scripts". We choose to use the word manifest to describe
 Puppet programs, and we speak of *applying* those manifests to the
 local system. Thus, a *manifest* is a text document written in the
-Puppet language and meant to result in a desired configuration.
+Puppet language and meant to describe and result in a desired configuration.
 
 Puppet is written with the assumption that you will have one
-central manifest capable of configuring your entire network, which
+central manifest capable of configuring an entire site, which
 we call the *site manifest*. You could have multiple, separate site
-manifests if you wanted, but at this point each of them would need
-their own servers.
+manifests if you wanted, though if doing this each of them would need
+their own puppet servers.
 
 Puppet will start with /etc/puppet/manifests/site.pp as the primary
 manifest, so create /etc/puppet/manifests and add your manifest,
 along with any files it includes, to that directory. It is highly
-recommended that you use some kind of
-[version control](http://svnbook.red-bean.com/) on your
-manifests.
+recommended that you use
+[version control](http://svnbook.red-bean.com/) to keep track of
+changes to manifests.
 
 ### Example Manifest
 
 The site manifest can be as simple or as complicated as you want. A
-good starting point is to make sure that your sudoers file has the
+good starting example is to make sure that your sudoers file has the
 appropriate permissions:
 
     # site.pp
@@ -274,8 +173,7 @@ tutorials listed on the
 Open Firewall Ports On Server and Client
 ----------------------------------------
 
-You may need to open port 8140, both tcp and udp, on the server and
-client machines.
+In order for the puppet server to centrally manage clients, you may need to open port 8140, both tcp and udp, on the server and client machines.
 
 Configure DNS
 -------------
@@ -286,69 +184,59 @@ to the server machine in the appropriate zone file.
 
     puppet.   IN   CNAME  crabcake.picnic.edu.
 
+By setting up the CNAME you will avoid having to specify the
+server name in the configuration of each client.
+
 See the book "DNS and Bind" by Cricket Liu et al if you need help
 with CNAME records. After adding the CNAME record, restart your
 name server. You can also add a host entry in the /etc/hosts file
 on both the server and client machines.
 
+For the server:
+
     127.0.0.1 localhost.localdomain localhost puppet
     
-or
+For the clients:
     
     192.168.1.67 crabcake.picnic.edu crabcake puppet
 
-Use the appropriate entry. 
-
 WARNING: If you can ping the server by
-the name 'puppet' but /var/log/messages on the clients still have
-entries stating the puppet client cannot connect to the server, you
-may have forgotten to open port 8140 on the server.
+the name 'puppet' but /var/log/messages on the clients still has
+entries stating the puppet client cannot connect to the server, 
+verify port 8140 is open on the server.
 
 Start the Central Daemon
 ------------------------
 
-Most sites should only need a single central server. Reductive Labs
-will soon publish a document describing how to build puppet
-architectures with failover capabilities and architectures that are
-capable of handling large loads, but for now only a single server
-is supported.
+Most sites should only need one central puppet server. Reductive Labs
+will be publishing a document describing best practices for scale-out
+and failover, though there are various ways to address handling
+in larger infrastructures.  For now, we'll explain how to
+work with the one server, and others can be added as needed.
 
-Decide which machine you want to be your central server; this is
-where you will be starting puppetmasterd.
+First, decide which machine will be the central server; this is
+where puppetmasterd will be run.
 
-The best way to start any daemon is using your local server's
+The best way to start any daemon is using the local server's
 service management system, often in the form of init scripts.
-Eventually Puppet will ship with an appropriate script for each
-platform (it already has appropriate scripts for Red Hat, Debian,
-and Solaris), but in the meantime you can either create your own,
-using an existing script as an example, or simply run without one
-(not recommended for production environments).
 
-Other than the system manifest at /etc/puppet/manifests/site.pp,
-the last thing you'll need is to create the puppet user and group
-that the daemon runs as. You can create these manually, or you can
-just start the daemon with the --mkusers flag, and it should create
-both of them for you (of course, this flag is only necessary the
-first time the daemon is run):
+If you're running on Red Hat, CentOS, Fedora, Debian, Ubuntu, or 
+Solaris, the OS package already contains a suitable init script.
+If you don't have one, you can either create your own using an existing
+init script as an example, or simply run without one (though this
+is not advisable for production environments).
+
+It is also neccessary to create the puppet user and group
+that the daemon will use.   Either create these manually, or start
+the daemon with the --mkusers flag to create them.
 
     # /usr/sbin/puppetmasterd --mkusers
 {:shell}
 
-On OSX, after installing Puppet via gem, puppetmasterd may be at a
-different path
+Starting the puppet daemon will automatically create all necessary certificates, directories, and files.
 
-    # /opt/local/bin/puppetmasterd --mkusers
-{:shell}
-
-Even without the `--mkusers` flag, it will automatically create all
-necessary certificates, directories, and files.
-
-NOTE: If you want the
-daemon to also function as a file server, so your clients can copy
-files from it, you will need to create a
-[fileserver configuration file](http://reductivelabs.com/trac/puppet/wiki/FileServingConfiguration);
-the daemon checks for the existence of this file at startup and
-automatically enables or disables file serving functionality.
+NOTE:  To enable the daemon to also function as a file server, so that clients can copy files from it, create a
+[fileserver configuration file](http://reductivelabs.com/trac/puppet/wiki/FileServingConfiguration) and restart pupetmasterd.
 
 Verifying Installation
 ----------------------
@@ -362,16 +250,13 @@ first client in verbose mode, with the --waitforcert flag enabled:
     # puppetd --server myserver.domain.com --waitforcert 60 --test
 {:shell}
 
-The default server for puppetd is puppet, so you could just create
-a CNAME of that to whatever server is running puppetmasterd.
-
 Adding the `--test` flag causes puppetd to stay in the foreground,
 print extra output, only run once and then exit, and to just exit
 if the remote configuration fails to compile (by default, puppetd
 will use a cached configuration if there is a problem with the
 remote manifests).
 
-In running the client, you should see the message
+In running the client, you should see the message:
 
     info: Requesting certificate
     warning: peer certificate won't be verified in this SSL session
@@ -399,30 +284,10 @@ from the server, receive its configuration, apply it locally, and
 exit normally.
 
 NOTE: By default, puppetd runs with a waitforcert of five minutes; set
-the value to 0 to disable it entirely.
-
-Finishing Installation
-----------------------
-
-There are already init scripts available for some platforms
-(notably, Red Hat versions, thanks to David Lutterkort's work on
-the [RPMs](http://www.reductivelabs.com/downloads/rpm/)), but for
-not-yet-supported platforms, you will need to create an init script
-that can start and stop puppetd. The process creates a PID file in
-its run directory (/var/puppet/run, by default), so you can use
-that to stop it.
-
-NOTE: The process will log to syslog by default in the daemon facility.
+the value to 0 to disable this wait-polling period entirely.
 
 Scaling your Installation
 -------------------------
 
-The default Puppet server uses an internal webrick web server. The
-webrick web server does not scale very well and is not recommended
-for production use beyond 10 to 20 nodes. It is recommend that you
-move your Puppet server to Mongrel or Passenger. You can find
-instructions at [Using Mongrel](http://reductivelabs.com/trac/puppet/wiki/UsingMongrel) and
-[Using Passenger](http://reductivelabs.com/trac/puppet/wiki/UsingPassenger) respectively.
-
-
-
+The default Puppet server uses the internal "WEBrick" ruby web server.   As this reference server does not scale very well, if you have more 
+than a few dozen nodes, it is recommended to use Mongrel or Passenger as the web server.  You can find detailed instructions at [Using Mongrel](http://reductivelabs.com/trac/puppet/wiki/UsingMongrel) and [Using Passenger](http://reductivelabs.com/trac/puppet/wiki/UsingPassenger) respectively.  There are various other tips to improve scaling capabilities that will be added here in the future.

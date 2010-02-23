@@ -1,9 +1,9 @@
 Using Puppet From Source
 ========================
 
-Puppet is currently implemented in Ruby and uses standard Ruby
-libraries. You should be able to run Puppet on any Unix-style host
-with Ruby. Windows support is planned but not currently available.
+Puppet is implemented in Ruby and uses standard Ruby
+libraries. You should be able to run Puppet on any Unix-style host 
+with ruby. Windows support is planned for future releases.
 
 * * *
 
@@ -20,7 +20,7 @@ and, if you want to run the tests, rake:
     $ rake -V
 {:shell}
 
-While Puppet should work with 1.8.1, there have been many reports of
+While Puppet should work with ruby 1.8.1, there have been many reports of
 problems with this version.
 
 Make sure you have [Git][1]:
@@ -31,9 +31,8 @@ Make sure you have [Git][1]:
 Get the Source
 --------------
 
-Puppet currently relies on another Reductive Labs tool,
+Puppet relies on another Reductive Labs library,
 [Facter][2]. Create a working directory and get them both:
-
 
     $ SETUP_DIR=~/git
     $ mkdir -p $SETUP_DIR
@@ -44,7 +43,7 @@ Puppet currently relies on another Reductive Labs tool,
 
 You will need to periodically run:
 
-    $ git pull origin
+    $ git pull origin --rebase
 {:shell}
 
 From your repositories to periodically update your clone to the latest code.
@@ -70,12 +69,11 @@ and track branches by using the following:
     git checkout --track -b 0.25.x origin/0.25.x
 {:shell}
 
-Tell Ruby How to Find It
-------------------------
+Tell Ruby How to Find Puppet and Facter
+---------------------------------------
 
-Last, we need to put the puppet binaries into our path and make the
+Finally, we need to put the puppet binaries into our path and make the
 Puppet and Facter libraries available to Ruby:
-
 
     $ PATH=$PATH:$SETUP_DIR/facter/bin:$SETUP_DIR/puppet/bin
     $ RUBYLIB=$SETUP_DIR/facter/lib:$SETUP_DIR/puppet/lib
@@ -83,9 +81,8 @@ Puppet and Facter libraries available to Ruby:
 {:shell}
 
 Facter changes far less often than Puppet and it is very minimal (a
-single library file and a single executable), so it is probably worth
-just installing it:
-
+single library file and a single executable), so it is probably best
+to just install it directly:
 
     $ cd facter
     $ sudo ruby ./install.rb
