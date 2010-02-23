@@ -4,7 +4,7 @@ require 'pathname'
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-dependencies = %w(maruku nokogiri erubis rack blockenspiel versiononomy)
+dependencies = %w(maruku nokogiri erubis rack blockenspiel versionomy)
 references = %w(configuration function indirection metaparameter network report type)
 
 namespace :install do
