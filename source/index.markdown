@@ -1,10 +1,7 @@
-Welcome
+Home
 =============
 
 * * *
-
-
-{LANDING}
 
 Here you'll find:
 

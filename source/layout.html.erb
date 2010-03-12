@@ -1,120 +1,181 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
   <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Puppet Labs - Docs</title>
-  <link rel="stylesheet" type="text/css" href="http://puppetlabs.designerandrew.com/stylesheets/style.css" media="all"/>
-  <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="all"/>
-  <script type="text/javascript" src="/files/javascripts/jquery-1.3.2.min.js"></script>
-  <script type="text/javascript" src="/files/javascripts/docs.js"></script>
-  <script type="text/javascript" src="http://puppetlabs.designerandrew.com/javascripts/drop_down.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Puppet Labs: Open Source Datacenter Automation</title>
+	<meta name="description" content="The open source leader in data center automation">
+	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.designerandrew.com/feed/rss/">
+	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.designerandrew.com/feed/atom/">
+	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.designerandrew.com/feed/">
+	<link rel="pingback" href="http://puppetlabs.designerandrew.com/wordpress/xmlrpc.php">
+	<link rel='stylesheet' id='wp-pagenavi-css'  href='http://puppetlabs.designerandrew.com/wordpress/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.60' type='text/css' media='all' />
+  <script type='text/javascript' src='http://puppetlabs.designerandrew.com/wordpress/wp-includes/js/jquery/jquery.js?ver=1.3.2'></script>
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.designerandrew.com/wordpress/xmlrpc.php?rsd" />
+  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://puppetlabs.designerandrew.com/wordpress/wp-includes/wlwmanifest.xml" /> 
+  <link rel='index' title='Puppet Labs' href='http://puppetlabs.designerandrew.com' />
+  <meta name="generator" content="WordPress 2.9.2" />
+  
+  <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://puppetlabs.designerandrew.com" />
+  <!-- /all in one seo pack -->
+
+	<link rel="stylesheet" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen">
+	<link rel="stylesheet" type="text/css" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/style.css" media="screen">
+
+  <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/ie_7.css" media="screen">
+  <![endif]-->
+
+  
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/html5.js"></script>
+
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery-1.3.1.min.js"></script>
+  <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.localScroll.js"></script>
+  <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.serialScroll.js"></script>
+  <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.scrollTo.js"></script>
+  <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.cookie.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.validate.min.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/cufon-yui.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/fonts/Klavika_400-Klavika_600.font.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/ampersands.js"></script>
+
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/fancy_zoom.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/drop_down.js"></script>
+  <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/hide_this.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/white_papers.js"></script>
+	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/docs.js"></script>
+
+	<script type="text/javascript">
+    Cufon.replace('h1, h2', { fontWeight: '600' });
+	</script>
 </head>
-  <body id="resources">
-    <div id="puppet-labs">
-      <header id="header">
-        <div class="site-width">
-          <h1><a href="/"><span>Puppet Labs</span></a></h1>
-          <a class="screen-reader-content" href="#content">Skip navigation</a>          
-          <ul id="global-navigation">
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.designerandrew.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+    		<nav>
+    			<ul id="global-navigation">
             <li id="puppet-tab" class="with-submenu">
-              <a href="/puppet/">
+              <a href="http://puppetlabs.designerandrew.com/puppet/">
                 <span>Puppet</span>
                 <span class="subtitle">IT Made Easy</span>
                 <span class="drop-down-trigger"></span>
               </a>
-              <ul>
+              <ul>            
                 <li>
                   <ul>
-                    <li><a href="/puppet/">Introduction</a></li>
-                    <li><a href="/puppet/requirements.php">Requirements</a></li>
-                    <li><a href="/puppet/features.php">Features</a></li>
-                    <li><a href="/puppet/case_studies.php">Case Studies</a></li>
-                    <li><a href="/puppet/white_papers.php">White Papers</a></li>              
+                    <li class="page_item page-item-757"><a href="http://puppetlabs.designerandrew.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+                    <li class="page_item page-item-769"><a href="http://puppetlabs.designerandrew.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+                    <li class="page_item page-item-828"><a href="http://puppetlabs.designerandrew.com/puppet/features/" title="Features">Features</a></li>
+                    <li class="page_item page-item-956"><a href="http://puppetlabs.designerandrew.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+                    <li class="page_item page-item-1159"><a href="http://puppetlabs.designerandrew.com/puppet/users/" title="Users">Users</a></li>
+                    <li class="page_item page-item-1074"><a href="/resources/white-papers" title="White Papers">White Papers</a></li>
+                    <li class="page_item page-item-1495"><a href="/resources/case-studies" title="Case Studies">Case Studies</a></li>
+                    <li class="page_item page-item-1044"><a href="/resources/downloads" title="Downloads">Downloads</a></li>
                   </ul>
                 </li>
                 <li>
                   <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Facter</a></li>
+                    <li class="page_item page-item-751"><a href="http://puppetlabs.designerandrew.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+  <li class="page_item page-item-753"><a href="http://puppetlabs.designerandrew.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
             <li id="services-tab" class="with-submenu">
-              <a href="/services/">
+              <a href="http://puppetlabs.designerandrew.com/services/">
                 <span>Services</span>
-                <span class="subtitle">Subscriptions, etc.</span>
+                <span class="subtitle">Support, Training</span>
                   <span class="drop-down-trigger"></span>
-                </a>
-                <ul>
-                  <li><a href="/services/">Overview</a></li>
-                  <li><a href="/services/subscriptions.php">Subscriptions</a></li>
-                  <li><a href="/services/training.php">Training <span class="ampersand">&amp;</span> Workshops</a></li>
-                  <li><a href="/services/partners.php">Partners</a></li>
-                </ul>
               </a>
+              <ul>
+                <li class="page_item page-item-783"><a href="http://puppetlabs.designerandrew.com/services/overview/" title="Overview">Overview</a></li>
+                <li class="page_item page-item-839"><a href="http://puppetlabs.designerandrew.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+                <li class="page_item page-item-845"><a href="http://puppetlabs.designerandrew.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+                <li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+                <li class="page_item page-item-851"><a href="http://puppetlabs.designerandrew.com/services/partners/" title="Partners">Partners</a></li>
+                <li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+              </ul>
             </li>
             <li id="resources-tab" class="with-submenu">
-              <a href="/resources/">
+              <a href="http://puppetlabs.designerandrew.com/resources/">
                 <span>Resources</span>
                 <span class="subtitle">Help for Puppeteers</span>
                 <span class="drop-down-trigger"></span>
               </a>
               <ul>
-                <li><a href="#">Documentation</a></li>
-                <li><a href="#">Wiki</a></li>
-                <li><a href="#">Bug Tracker</a></li>
+                <li class="page_item page-item-1048 current_page_item"><a href="http://puppetlabs.designerandrew.com/resources/overview-2/" title="Overview">Overview</a></li>
+                <li class="page_item page-item-1040"><a href="http://puppet-docs.designerandrew.com" title="Documentation">Documentation</a></li>
+                <li class="page_item page-item-872"><a href="http://puppetlabs.designerandrew.com/resources/downloads/" title="Downloads">Downloads</a></li>
+                <li class="page_item page-item-835"><a href="http://puppetlabs.designerandrew.com/resources/white-papers/" title="White Papers">White Papers</a></li>
+                <li class="page_item page-item-833"><a href="http://puppetlabs.designerandrew.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+                <li class="page_item page-item-1052"><a href="http://puppetlabs.designerandrew.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
               </ul>
 
             </li>
-            <li id="community-tab" class="with-submenu">
-              <a href="/blog.php">
+            <li id="community-tab">
+              <a href="http://puppetlabs.designerandrew.com/community/">
                 <span>Community</span>
-                <span class="subtitle">Blog, Mailing Lists, etc.</span>
+                <span class="subtitle">Blog, Mailing Lists</span>
+              </a>
+            </li>
+
+            <li id="company-tab" class="with-submenu">
+              <a href="http://puppetlabs.designerandrew.com/company/">
+                <span>Company</span><span class="subtitle">Meet Puppet Labs</span>
                 <span class="drop-down-trigger"></span>
               </a>
               <ul>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">User Mailing List</a></li>
-                <li><a href="#">Developer Mailing List</a></li>
+                <li><a href="http://puppetlabs.designerandrew.com/company/">About Us</a></li>
+                <li><a href="http://puppetlabs.designerandrew.com/company/#contact">Contact Us</a></li>
               </ul>
             </li>
 
-            <li id="company-tab"><a href="/company/"><span>Company</span><span class="subtitle">Meet Puppet Labs</span></a></li>
-          </ul>
-        </div>
-      </header>
+    			</ul>
+    		</nav>
+    	</div>
+    </header>  
+
       <section id="masthead">
         <div class="site-width">
-          <h1>Documentation: <span class="section-name"><%= yield :page_title %></span></h1>
+          <h1>Docs: <span class="section-name"><%= yield :page_title %></span></h1>
           <ul id="doc-navigation">
-            <li><a href="/">Home</a></li>
-            <li class="index">
-              <a id="index-dialog-toggle" href="index.html">Docs Index</a>
-  	          <div id="index-dialog" style="display: none;">
-  	            <dl>
-  	              <dt>Guides</dt>
-  	              <dd><a href="/guides/introduction.html">An Introduction to Puppet</a></dd>
-  	              <dd><a href="/guides/installation.html">Installing Puppet</a></dd>
-  	              <dd><a href="/guides/language_tutorial.html">Puppet Language Tutorial</a></dd>
-                        <dt>Resource Types</dt>
-  	              <dd><a href="/guides/types/">By Category</a></dd>
-  	              <dd><a href="/guides/types/alphabetical_index.html">Alphabetical</a></dd>
-  	            </dl>
-  	            <dl>
-  	              <dt>Projects</dt>
-  	              <dd><a href="/projects/puppet/">Puppet (Core)</a></dd>
-  	              <dd><a href="/projects/dashboard/index.html">Puppet Dashboard</a></dd>
-  	            </dl>
-  	            <dl>
-  	              <dt>References</dt>
-  	              <dd><a href="/references/0.25.1rc2/">0.25.1rc2</a></dd>
-  	              <dd><a href="/references/0.25.0/">0.25.0</a></dd>
-  	              <dd><a href="/references/0.24.8/">0.24.8</a></dd>
-  	              <dd><a href="/references/">Older Versions</a></dd>
-  	            </dl>
-  	          </div>
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Docs Index</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+	            <dl>
+	              <dt>Guides</dt>
+	              <dd><a href="/guides/introduction.html">An Introduction to Puppet</a></dd>
+	              <dd><a href="/guides/installation.html">Installing Puppet</a></dd>
+	              <dd><a href="/guides/language_tutorial.html">Puppet Language Tutorial</a></dd>
+                <dt>Resource Types</dt>
+	              <dd><a href="/guides/types/">By Category</a></dd>
+	              <dd><a href="/guides/types/alphabetical_index.html">Alphabetical</a></dd>
+	              <dt>Projects</dt>
+	              <dd><a href="/projects/puppet/">Puppet (Core)</a></dd>
+	              <dd><a href="/projects/dashboard/index.html">Puppet Dashboard</a></dd>
+	              <dt>References</dt>
+	              <dd><a href="/references/0.25.1rc2/">0.25.1rc2</a></dd>
+	              <dd><a href="/references/0.25.0/">0.25.0</a></dd>
+	              <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+	              <dd><a href="/references/">Older Versions</a></dd>
+	            </dl>
             </li>
             <li><a href="/contribute.html">Contribute</a></li>
           </ul>
@@ -134,71 +195,65 @@
         </div>
       </section>
         
-      <footer id="footer">
+  		<footer id="footer">
         <div class="site-width">
-          <div id="newsletter" class="section">
-            <h4>Newsletter</h4>
-            <p>Stay up to date on all things puppet</p>
-            <form>
-              <fieldset>
-                <legend>Newsletter</legend>
-                <input type="text" />
-                <button type="submit">Subscribe</button>
-              </fieldset>
-            </form>
-          </div>
-          <div id="secondary-navigation" class="section">
-            <h4>Elsewhere</h4>
-            <ul>
-              <li class="chat"><a href="#" rel="nofollow"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
-              <li class="discussion"><a href="#" rel="nofollow"><span class="indicator"></span><span>Join a Discussion Group</span></a></li>
-              <li class="facebook"><a href="#" rel="nofollow"><span class="indicator"></span><span>Become a Fan on Facebook</span></a></li>
-              <li class="subscribe"><a href="#" rel="nofollow"><span class="indicator"></span><span>Subscribe to our blog</span></a></li>
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <section id="newsletter">
+                <h4>Newsletter</h4>
+                <p>Stay up to date on all things puppet</p>
+                <form>
+                  <fieldset>
+                    <legend>Newsletter</legend>
+                    <input type="text" />
+                    <button type="submit">Subscribe</button>
+                  </fieldset>
+                </form>
+              </section>
+              <section id="elsewhere">
+                <h4>Elsewhere</h4>
+                <ul>
+                  <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+                  <li class="discussion"><a href="#" rel="external"><span class="indicator"></span><span>Join a Discussion Group</span></a></li>
+                  <li class="facebook"><a href="#" rel="external"><span class="indicator"></span><span>Become a Fan on Facebook</span></a></li>
+                  <li class="subscribe"><a href="#" rel="external"><span class="indicator"></span><span>Subscribe to our blog</span></a></li>
 
-              <li class="twitter"><a href="#" rel="nofollow"><span class="indicator"></span><span>Follow us on Twitter</span></a></li>
-            </ul>
-          </div>
-          <div id="book-it" class="section">
-            <h4>Get the book!</h4>
-            <p>Written by James Turnbull, <a href="#">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
-            <img src="/images/book.png" />
+                  <li class="twitter"><a href="#" rel="external"><span class="indicator"></span><span>Follow us on Twitter</span></a></li>
+                </ul>
+              </section>
+            </div>
+            <div class="secondary-content">
+              <section id="book-it">
+                <h4>Get the book!</h4>
+                <p>Written by James Turnbull, <a href="#">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+                <img src="http://puppetlabs.designerandrew.com/images/book.png" />
+              </section>
+            </div>
           </div>
         </div>
-      </footer>
-      <section id="copyright">
+  		</footer>
+
+      <div id="copyright">
         <div class="site-width">
-          &copy;
+          &copy; 2010 <a href="http://puppetlabs.designerandrew.com/" title="Puppet Labs">Puppet Labs</a>
           <span class="vcard">
            <span class="org">Reductive Labs</span>
            <a class="email" href="mailto:info@reductivelabs.com">info@reductivelabs.com</a>
             <span class="adr">
-             <span class="street-address">222 NW Davis Street, Suite 321</span>
+             <span class="street-address">222 NW Davis Street</span>
              /
-             <span class="locality">Portland</span>
-           , 
+             <span class="locality">Portland</span>, 
              <span class="region">OR</span>
              <span class="postal-code">97209</span>
 
             </span>
            <span class="tel">+1 503-805-9065</span>
-          </span>     
-          <p>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0</a> License.</p>                   
+          </span>          
         </div>
       </div>
-    </section>
-    <script type="text/javascript" charset="utf-8">
-      var is_ssl = ("https:" == document.location.protocol);
-      var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
-      document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript" charset="utf-8">
-      var feedback_widget_options = {};
-      feedback_widget_options.display = "overlay";  
-      feedback_widget_options.company = "reductivelabs";
-      feedback_widget_options.placement = "right";
-      feedback_widget_options.color = "#222";
-      feedback_widget_options.style = "idea";
-      var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
-    </script>
+    </div>
+    <script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2{ visibility : visible }</style>
+  	
   </body>
 </html>
