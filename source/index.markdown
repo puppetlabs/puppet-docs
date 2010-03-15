@@ -46,9 +46,9 @@ Advanced Topics
 * Environments -- seperate dev, stage, & production
 * Logs & Reporting
 * External Nodes
-* [Scaling Puppet](/guides/scaling.html)
-* Using Passenger
-* Using Mongrel
+* [Scaling Puppet](/guides/scaling.html) -- general tips & tricks
+* [Scaling With Passenger](/guides/passenger.html) -- for Puppet 0.24.6 and later
+* [Scaling With Mongrel](/guides/mongrel.html) -- for older versions of Puppet
 
 Resource Types
 --------------
