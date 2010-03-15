@@ -21,6 +21,7 @@ Guides
 
 * [An Introduction to Puppet](/guides/introduction.html)
 * [Installing Puppet](/guides/installation.html)
+* [Configuring Puppet](/guides/configuring.html)
 
 ### Using Puppet
 
