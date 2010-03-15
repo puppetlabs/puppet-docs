@@ -10,13 +10,13 @@ Getting Started
 ---------------
 
 * [An Introduction to Puppet](/guides/introduction.html)
-* Supported Platforms
+* [Supported Platforms] (/guides/platforms.html)
 * [Installing Puppet](/guides/installation.html)
 * [Configuring Puppet](/guides/configuring.html)
-* Frequently Asked Questions
+* [Frequently Asked Questions](/guides/faq.html)
 
-Understanding the System
-------------------------
+Understanding Puppet
+--------------------
 
 * Security Infrastructure
 * Central Management Daemon (puppetmasterd)
@@ -24,13 +24,15 @@ Understanding the System
 * Local Puppet (puppet)
 * Exploratory Shell (ralsh)
 
-Learning the Language
----------------------
+Learning More
+-------------
 
 * [Puppet Language Tutorial](/guides/language_tutorial.html)
 * Writing Modules
 * [Style Guide](/guides/style.html)
 * Best Practices
+* [Tips & Tricks](/guides/techniques.html)
+* [Troubleshooting](/guides/troubleshooting.html)
 
 Puppet Dashboard (Web GUI)
 --------------------------
