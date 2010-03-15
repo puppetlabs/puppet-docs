@@ -129,17 +129,6 @@ again. Because of this, Puppet users usually do just enough with
 their host install tools to get Puppet running, then they use
 Puppet to do everything else.
 
-### Graph Orientation
-
-Puppet models your datacenter as a directed graph.  This means
-it's possible to tell that when one item fails, which part of the
-graphs should and should not proceed.  This also enables execution
-of the system in a user defined order, without having to determine
-what file was executed via a command line tool and so on.  Further,
-a resource can appear only one time in the graph, making it impossible
-to set your configuration management infrastructure at war with itself
-by having conflicting definitions.
-
 ### Cross Platform
 
 Puppet's Resource Abstraction Layer (RAL) allows you to focus on the parts of the system
@@ -149,7 +138,7 @@ users the same, whether the user is stored in NetInfo or
 `/etc/passwd`.  We call these system entities
 `resources`.
 
-### Model Based
+### Model & Graph Based
 
 #### Resource Types
 
@@ -199,7 +188,10 @@ They also are used to determine whether a resource needs to respond to changes i
 another resource (such as if a service needs to restart if the configuration
 file for the service has changed).  This ordering reduces unneccessary commands, 
 such as avoiding restarting a service
-if the configuration has *not* changed.
+if the configuration has *not* changed.  
+
+Because the system is graph based, it's actually possible to generate a diagram
+(from Puppet) of the relationships between all of your resources.  
 
 Learning The Language
 ---------------------
