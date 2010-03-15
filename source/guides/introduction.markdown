@@ -180,7 +180,7 @@ the log level for the resource, whether the resource should be in
 `noop` mode so it never modifies the system, and the relationships
 between resources.
 
-##### Resource Relationships
+#### Resource Relationships
 
 Puppet has a system of modelling relationships between resources
 -- what resources should be evaluated before or after one another.
