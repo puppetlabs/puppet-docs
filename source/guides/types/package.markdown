@@ -1,4 +1,12 @@
-package
+Package
+=======
+
+Manages software installation and updates
+
+* * *
+
+About
+-----
 
 Manage packages. There is a basic dichotomy in package support
 right now: Some package types (e.g., yum and apt) can retrieve
@@ -12,7 +20,8 @@ using the `provider` parameter; each provider defines what it
 requires in order to function, and you must meet those requirements
 to use a given provider.
 
-### Features
+Features
+--------
 
 -   **installable**: The provider can install packages.
 -   **purgeable**: The provider can purge packages. This generally
@@ -42,9 +51,10 @@ sunfreeware **X** **X** **X** up2date **X** **X** **X** urpmi **X**
 **X** **X** **X** yum **X** **X** **X** **X** **X** ===========
 =========== ========= ============= =========== ===========
 
-### Parameters
+Parameters
+----------
 
-#### adminfile
+## adminfile
 
 A file containing package defaults for installing packages. This is
 currently only used on Solaris. The value will be validated
@@ -52,25 +62,25 @@ according to system rules, which in the case of Solaris means that
 it should either be a fully qualified path or it should be in
 /var/sadm/install/admin.
 
-#### allowcdrom
+## allowcdrom
 
 Tells apt to allow cdrom sources in the sources.list file. Normally
 apt will bail if you try this. Valid values are `true`, `false`.
 
-#### category
+## category
 
 A read-only parameter set by the package.
 
-#### configfiles
+## configfiles
 
 Whether configfiles should be kept or replaced. Most packages types
 do not support this parameter. Valid values are `keep`, `replace`.
 
-#### description
+## description
 
 A read-only parameter set by the package.
 
-#### ensure
+## ensure
 
 What state the package should be in. *latest* only makes sense for
 those packaging formats that can retrieve new packages on their own
@@ -82,11 +92,11 @@ support the notion of managing configuration files separately from
 `installed`), `absent`, `purged`, `latest`. Values can match
 `/./`.
 
-#### instance
+## instance
 
 A read-only parameter set by the package.
 
-#### name
+## name
 
 -   **namevar**
 
@@ -124,11 +134,11 @@ packages:
         require => Package[openssl]
     }
 
-#### platform
+## platform
 
 A read-only parameter set by the package.
 
-#### provider
+## provider
 
 The specific backend for provider to use. You will seldom need to
 specify this -- Puppet will usually discover the appropriate
@@ -262,32 +272,32 @@ provider for your platform. Available providers are:
     `upgradeable`, `versionable`.
 
 
-#### responsefile
+## responsefile
 
 A file containing any necessary answers to questions asked by the
 package. This is currently used on Solaris and Debian. The value
 will be validated according to system rules, but it should
 generally be a fully qualified path.
 
-#### root
+## root
 
 A read-only parameter set by the package.
 
-#### source
+## source
 
 Where to find the actual package. This must be a local file (or on
 a network file system) or a URL that your specific packaging type
 understands; Puppet will not retrieve files for you.
 
-#### status
+## status
 
 A read-only parameter set by the package.
 
-#### type
+## type
 
 Deprecated form of `provider`.
 
-#### vendor
+## vendor
 
 A read-only parameter set by the package.
 

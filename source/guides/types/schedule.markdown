@@ -1,4 +1,12 @@
 schedule
+========
+
+Determine when Puppet runs
+
+* * *
+
+About
+-----
 
 Defined schedules for Puppet. The important thing to understand
 about how schedules are currently implemented in Puppet is that
@@ -44,9 +52,10 @@ default, with the following attributes:
 This will cause resources to be applied every 30 minutes by
 default.
 
-### Parameters
+Parameters
+----------
 
-#### name
+## name
 
 -   **namevar**
 
@@ -62,7 +71,7 @@ schedule when assigning it to an object:
         schedule => daily
     }
 
-#### period
+## period
 
 The period of repetition for a resource. Choose from among a fixed
 list of *hourly*, *daily*, *weekly*, and *monthly*. The default is
@@ -97,13 +106,13 @@ See the `periodmatch` attribute for tuning whether to match times
 by their distance apart or by their specific value. Valid values
 are `hourly`, `daily`, `weekly`, `monthly`, `never`.
 
-#### periodmatch
+## periodmatch
 
 Whether periods should be matched by number (e.g., the two times
 are in the same hour) or by distance (e.g., the two times are 60
 minutes apart). Valid values are `number`, `distance`.
 
-#### range
+## range
 
 The earliest and latest that a resource can be applied. This is
 always a range within a 24 hour period, and hours must be specified
@@ -117,7 +126,7 @@ provided, using the normal colon as a separator. For instance:
 This is mostly useful for restricting certain resources to being
 applied in maintenance windows or during off-peak hours.
 
-#### repeat
+## repeat
 
 How often the application gets repeated in a given period. Defaults
 to 1. Must be an integer.

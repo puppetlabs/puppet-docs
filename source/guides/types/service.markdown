@@ -1,4 +1,12 @@
 service
+=======
+
+Control OS services
+
+* * *
+
+About
+-----
 
 Manage running services. Service support unfortunately varies
 widely by platform -- some platforms have very little if any
@@ -15,7 +23,8 @@ the service will get restarted. The actual command to restart the
 service depends on the platform. You can provide a special command
 for restarting with the `restart` attribute.
 
-### Features
+Features
+--------
 
 -   **controllable**: The provider uses a control variable.
 -   **enableable**: The provider can enable and disable the service
@@ -28,22 +37,23 @@ controllable enableable refreshable =========== ============
 launchd **X** **X** redhat **X** **X** runit **X** **X** smf **X**
 **X** =========== ============ ========== ===========
 
-### Parameters
+Parameters
+----------
 
-#### binary
+## binary
 
 The path to the daemon. This is only used for systems that do not
 support init scripts. This binary will be used to start the service
 if no `start` parameter is provided.
 
-#### control
+## control
 
 The control variable used to manage services (originally for
 HP-UX). Defaults to the upcased service name plus `START` replacing
 dots with underscores, for those providers that support the
 `controllable` feature.
 
-#### enable
+## enable
 
 Whether a service should be enabled to start at boot. This property
 behaves quite differently depending on the platform; wherever
@@ -51,18 +61,18 @@ possible, it relies on local tools to enable or disable a given
 service. Valid values are `true`, `false`. Requires features
 enableable.
 
-#### ensure
+## ensure
 
 Whether a service should be running. Valid values are `stopped`
 (also called `false`), `running` (also called `true`).
 
-#### hasrestart
+## hasrestart
 
 Specify that an init script has a `restart` option. Otherwise, the
 init script's `stop` and `start` methods are used. Valid values are
 `true`, `false`.
 
-#### hasstatus
+## hasstatus
 
 Declare the the service's init script has a functional status
 command. Based on testing, it was found that a large number of init
@@ -74,24 +84,24 @@ command using the `status` parameter).
 If you do not specify anything, then the service name will be
 looked for in the process table. Valid values are `true`, `false`.
 
-#### manifest
+## manifest
 
 Specify a command to config a service, or a path to a manifest to
 do so.
 
-#### name
+## name
 
 -   **namevar**
 
 The name of the service to run. This name is used to find the
 service in whatever service subsystem it is in.
 
-#### path
+## path
 
 The search path for finding init scripts. Multiple values should be
 separated by colons or provided as an array.
 
-#### pattern
+## pattern
 
 The pattern to search for in the process table. This is used for
 stopping services on platforms that do not support init scripts,
@@ -103,7 +113,7 @@ service, then the service name will be used instead.
 
 The pattern can be a simple string or any legal Ruby pattern.
 
-#### provider
+## provider
 
 The specific backend for provider to use. You will seldom need to
 specify this -- Puppet will usually discover the appropriate
@@ -285,23 +295,23 @@ provider for your platform. Available providers are:
     > > Supported features: `enableable`, `refreshable`.
 
 
-#### restart
+## restart
 
 Specify a *restart* command manually. If left unspecified, the
 service will be stopped and then started.
 
-#### start
+## start
 
 Specify a *start* command manually. Most service subsystems support
 a `start` command, so this will not need to be specified.
 
-#### status
+## status
 
 Specify a *status* command manually. If left unspecified, the
 status method will be determined automatically, usually by looking
 for the service in the process table.
 
-#### stop
+## stop
 
 Specify a *stop* command manually.
 
