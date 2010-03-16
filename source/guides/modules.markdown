@@ -47,76 +47,11 @@ can find more detail at the
 [Puppet Manifest Documentation](http://www.reductivelabs.com/trac/puppet/wiki/PuppetManifestDocumentation)
 page.
 
-Some Available Modules
-----------------------
+Community Resources
+-------------------
 
-A number of stand-alone modules are available:
-
--   [Trac module](http://github.com/lak/puppet-trac/tree/master) 
-    - A module for managing Trac
--   [Mercurial module](http://github.com/lak/puppet-mercurial/tree/master)
-    - A module for managing Mercurial
--   [Mongrel module](http://github.com/lak/puppet-mongrel/tree/master)
-    - A module for managing the Mongrel web server
--   [nginx module](http://github.com/lak/puppet-nginx/tree/master)
-    - A module for managing the nginx web server
--   [Subversion module](http://github.com/lak/puppet-subversion/tree/master)
-    - A module for managing Subversion
--   [SQLite3 module](http://github.com/lak/puppet-sqlite3/tree/master)
-    - A module for managing the SQLite3 DBMS
--   [RubyGems module](http://github.com/lak/puppet-rubygems/tree/master)
-    - A module for managing RubyGems
--   [Ruby module](http://github.com/lak/puppet-ruby/tree/master)
-    - A module for managing Ruby
--   [Rails module](http://github.com/lak/puppet-rails/tree/master)
-    - A module for managing the Rails framework
--   [Puppet module](http://github.com/lak/puppet-puppet/tree/master)
-    - A recursive module for managing Puppet
--   [PostgreSQL module](http://github.com/lak/puppet-postgres/tree/master)
-    - A module for managing the PostgreSQL DBMS
--   [git module](git://oppermannen.com/modules/git.git/) 
-    - Ubuntu/Debian specific at the moment (only available with the git:// protocol atm)
--   [xen module](git://oppermannen.com/modules/xen.git/)
-    - easily create xen domU's (only tested on Ubuntu feisty for now; only available with the git:// protocol atm)
--   [pbuilder](http://caspian.raphink.net/puppet/pbuilder_module_0.02.tgz)
-    - create, update and purge Debian pbuilders
--   [sysctl type](http://spook.wpi.edu/sysctl) 
-    - A native type for managing /etc/sysctl.conf - A Module which integrates this type and give a nice define, to set the sysctl, as well immediately [sysctl module](http://github.com/duritong/puppet-sysctl)
--   [puppet-module-denyhosts](http://github.com/pjs/puppet-module-denyhosts)
-    - A module for managing Denyhosts
-    ([http://denyhosts.sf.net](http://denyhosts.sf.net))
--   [ssh::auth](http://www.reductivelabs.com/trac/puppet/wiki/Recipes/ModuleSSHAuth)
-    - centrally create, distribute, and revoke ssh keys for users.
-
-Reductive Labs is working on a solution to allow everyone's modules to be hosted in one place.  More on this later!
-
-Module Collections
-------------------
-
-There are also several collections of modules available:
-
--   [[Complete Configuration]] - David Schmitt's complete
-    configuration modules
--   [Example42](http://www.example42.com/) - Lab42's configuration module
-    collection
--   [eshao's complete configuration](http://github.com/eshao/puppet)
-    -- another complete set of modules/configuration/documentation for
-    Puppet on FreeBSD (documents any changes from production set).
-    Heavily focuses on demonstrating best practices and techniques to
-    reduce code size. Author won't bite: willing to entertain emails to
-    explain/document any confusing aspects.
--   [Puppet Managed](http://puppetmanaged.org/) - Puppetmanaged.org
-    module collection
--   [Puppet Common Modules](http://projects.reductivelabs.com/projects/show/pcm) and see also [[Module Standards]]
--   [Reductive Labs](http://modules.reductivelabs.com/) - ReductiveLabs repository
--   [Koumbit modules](http://git.koumbit.net/) - Koumbit.org managed modules
--   [Immerda modules](http://git.puppet.immerda.ch/) - Immerda.ch managed modules
--   [p@rdalys](http://github.com/wrobel/pardalys/tree/master/pardalys) - A set of puppet modules and extensions for the [Kolab](http://www.kolab.org) groupware server
--   [Camptocamp](http://github.com/camptocamp) - Camptocamp repository
--   [Tryphon](http://github.com/albanpeignier/tryphon-puppet/tree/master) - Tryphon build scripts for Puppet includes rake tasks, cucumber tests and generate tasks
--   [Puzzle](http://puppet.git.puzzle.ch) - Puzzle repository
--   [Riseup](https://labs.riseup.net/code/projects/show/puppetmodules) - Riseup Labs modules
-
+A listing of available modules and user supplied modules are
+maintained on the Puppet Wiki [here](http://projects.reductivelabs.com/projects/puppet/wiki/Puppet_Modules).
 
 
 
