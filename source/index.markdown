@@ -34,8 +34,8 @@ Learning More
 Puppet Dashboard (Web GUI)
 --------------------------
 
-* Installing Dashboard
-* Using Dashboard
+* [Installing Dashboard](/guides/installing_dashboard.html)
+* [Using Dashboard](/guides/using_dashboard.html)
 
 Advanced Topics
 ---------------
@@ -52,7 +52,7 @@ Advanced Topics
 Resource Types
 --------------
 
-* [Types By Category](/guides/types/) -- resources managed out of the box
+* [Types By Category](/guides/types/) -- documentation on resources managed out of the box
 * [Alphabetical Listing](/guides/types/alphabetical_index.html)
 
 Extending Puppet
@@ -62,18 +62,18 @@ Extending Puppet
 * Writing Custom Types & Providers
 * Writing Custom Functions
 * Contributing to Puppet Core
-* REST API
+* REST API -- documentation coming soon
 
 Development Information
 -----------------------
-* [Running Puppet from Source](/guides/from_source.html)
-* Development Life Cycle
+* [Running Puppet from Source](/guides/from_source.html) -- preview the leading edge
+* [Development Life Cycle](/guides/development_lifecycle.html) -- learn how to contribute code
 
 Auto-generated Docs
 -------------------
 
 In addition to the formatted documentation above, [auto-generated documentation](references/) is available for
-previous Puppet versions. 
+current and previous Puppet versions. 
 
 Other Resources
 ---------------
