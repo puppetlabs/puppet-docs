@@ -15,10 +15,10 @@ Getting Started
 * [Configuring Puppet](/guides/configuring.html)
 * [Frequently Asked Questions](/guides/faq.html)
 
-Understanding Puppet
---------------------
+Components
+----------
 
-* Security Infrastructure
+* [Security Infrastructure / Securing Puppet](/guides/security.html)
 * Central Management Daemon (puppetmasterd)
 * Client Daemon (puppetd)
 * Local Puppet (puppet)
