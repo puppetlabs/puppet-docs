@@ -59,9 +59,8 @@ Extending Puppet
 ----------------
 
 * Writing Custom Facts
-* Writing Custom Types & Providers
+* [Writing Custom Types & Providers](/guides/custom_types.html)
 * Writing Custom Functions
-* Contributing to Puppet Core
 * REST API -- documentation coming soon
 
 Development Information
