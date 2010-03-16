@@ -18,11 +18,8 @@ Getting Started
 Components
 ----------
 
+* [puppetmasterd, puppetd, puppet, & ralsh](/guides/tools.html)
 * [Security Infrastructure / Securing Puppet](/guides/security.html)
-* Central Management Daemon (puppetmasterd)
-* Client Daemon (puppetd)
-* Local Puppet (puppet)
-* Exploratory Shell (ralsh)
 
 Learning More
 -------------
@@ -47,7 +44,7 @@ Advanced Topics
 * Virtual Resources 
 * Environments -- seperate dev, stage, & production
 * Logs & Reporting
-* External Nodes
+* [External Nodes](/guides/external_nodes.html) -- specify what your machines do using external data sources
 * [Scaling Puppet](/guides/scaling.html) -- general tips & tricks
 * [Scaling With Passenger](/guides/passenger.html) -- for Puppet 0.24.6 and later
 * [Scaling With Mongrel](/guides/mongrel.html) -- for older versions of Puppet
