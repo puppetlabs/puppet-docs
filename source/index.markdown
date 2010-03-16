@@ -25,7 +25,7 @@ Learning More
 -------------
 
 * [Puppet Language Tutorial](/guides/language_tutorial.html)
-* Writing Modules
+* [Puppet Modules](/guides/modules.html)
 * [Style Guide](/guides/style.html)
 * [Best Practices](/guides/best_practices.html)
 * [Tips & Tricks](/guides/techniques.html)
@@ -58,9 +58,9 @@ Resource Types
 Extending Puppet
 ----------------
 
-* Writing Custom Facts
+* [Writing Custom Facts](/guides/custom_facts.html)
 * [Writing Custom Types & Providers](/guides/custom_types.html)
-* Writing Custom Functions
+* [Writing Custom Functions](/guides/custom_functions.html)
 * REST API -- documentation coming soon
 
 Development Information
