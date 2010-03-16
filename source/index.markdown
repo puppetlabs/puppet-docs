@@ -30,7 +30,7 @@ Learning More
 * [Puppet Language Tutorial](/guides/language_tutorial.html)
 * Writing Modules
 * [Style Guide](/guides/style.html)
-* Best Practices
+* [Best Practices](/guides/best_practices.html)
 * [Tips & Tricks](/guides/techniques.html)
 * [Troubleshooting](/guides/troubleshooting.html)
 
