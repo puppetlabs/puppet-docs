@@ -9,7 +9,8 @@ Why Puppet
 As system administrators acquire more and more systems to manage, automation
 of mundane tasks is increasingly important.  Rather than develop in-house
 scripts, it is desirable to share a system that everyone can use, and invest
-in tools that can be used regardless of one's employer.
+in tools that can be used regardless of one's employer.  Certaintly doing
+things manually doesn't scale.
 
 Puppet has been developed to help the sysadmin community move to
 building and sharing mature tools that avoid the duplication of
@@ -27,10 +28,25 @@ even faster. The majority of Puppet implementations use at least
 one or two modules developed by someone else, and there are already
 hundreds of modules developed and shared by the community.
 
+Learning Recommendations
+------------------------
+
+We're glad you want to learn Puppet.  You're free to browse around the documentation as you like, though we generally recommend trying out Puppet locally first (without the 
+daemon and client/server setup), so you
+can understand the basic concepts.  From there, move on to
+centrally managed server infrastructure.   [Ralsh](/guides/tools.html)
+is also a great way to get your feet wet exploring the Puppet model,
+after you have read some of the basic information -- you can quickly see how
+the declarative model works for simple things like users, services, and file permissions.   
+Once you've learned the basics, make sure you understand classes and modules, 
+then move on to the advanced sections and read more about the features 
+that are useful to you.  Learning all at once is definitely not required.
+If you find something confusing, use the feedback tab to let us know.
+
 System Components
 -----------------
 
-Puppet is typically used in a client/server formation, with all
+Puppet is typically (but not always) used in a client/server formation, with all
 of your clients talking to one or more central servers. Each client
 contacts the server periodically (every half hour, by default),
 downloads the latest configuration, and makes sure it is in sync with
@@ -97,36 +113,34 @@ are part of the Puppet Ecosystem but not installed by default in the main
 distribution.  From a source checkout, look in the 'ext' directory
 for these useful tools and scripts.
 
+For more information about components, see the [Tools](/guides/tools.html) section.
+
 Features of the System
 ----------------------
 
 ### Idempotency
 
-One big difference between Puppet and most hand-rolled tools is
+One big difference between Puppet and most other tools is
 that Puppet configurations are idempotent, meaning they can safely
 be run multiple times. Once you develop your configuration, your
 machines will apply the configuration often -- by default, every 30
 minutes -- and Puppet will only make any changes to the system if
 the system state does not match the configured state.
 
-This behaviour is provided by Puppet's Transactional layer. Puppet
-does not yet have full transactional support -- transactions are
-not recorded, and thus cannot be rolled back -- but the basics are
-there, and they are what manage how changes happen to the system.
-If you tell the transactional system to operate in no-op, or
-dry-run, mode, using the `--noop` argument to one of the Puppet
-tools, then the transaction will guarantee that no work happens on
-your system. Similarly, if any changes do happen, the transaction
-will guarantee that those specific changes are logged.
+If you tell the system to operate in no-op ("aka
+dry-run"), mode, using the `--noop` argument to one of the Puppet
+tools, puppet will guarantee that no work happens on
+your system. Similarly, if any changes do happen when running
+without that flag, puppet will ensure those changes are logged.
 
-This way you can use Puppet to manage a machine throughout its
+Because of this, you can use Puppet to manage a machine throughout its
 lifecycle -- from initial installation, to ongoing upgrades, and
 finally to end-of-life, where you move services elsewhere. Unlike
 system install tools like Sun's Jumpstart or Red Hat's Kickstart,
 Puppet configurations can keep machines up to date for years,
-rather than just building them correctly and never touching them
-again. Because of this, Puppet users usually do just enough with
-their host install tools to get Puppet running, then they use
+rather than just building them correctly only the first time
+and then neccessitating a rebuild.  Puppet users usually do just enough with
+their host install tools to boostrap Puppet, then they use
 Puppet to do everything else.
 
 ### Cross Platform
@@ -138,14 +152,18 @@ users the same, whether the user is stored in NetInfo or
 `/etc/passwd`.  We call these system entities
 `resources`.
 
+Ralsh, listed in the [Tools](/guides/tools.html) section is a fun way to 
+try out the RAL before you get too deep into Puppet language.
+
 ### Model & Graph Based
 
 #### Resource Types
 
-The concept of each resource is modelled as a type.   This is to
-decouple the definition (for instance, a user) from how
+The concept of each resource (like service, file, user, group, etc) is modelled as a "type".   
+Puppet decouples the definition from how
 that implementation is fulfilled on a particular operating system,
-for instance, a Linux user versus an OS X user.
+for instance, a Linux user versus an OS X user can be talked about in the same way
+but are implemented differently inside of Puppet.
 
 See [Type Guides](/guides/types/) for a list of managed types
 and information about how to use them.
@@ -161,10 +179,12 @@ for the package type.
 
 #### Modifying the System
 
-Puppet resources are what are responsible for directly managing the
-bits on disk. You do not directly modify a system from the language
+Puppet resource providers are what are responsible for directly managing the
+bits on disk. You do not directly modify a system from Puppet language
 -- you use the language to specify a resource, which then
-modifies the system.   Rather than tacking a couple of lines onto
+modifies the system.   This way puppet language behaves exactly the same
+way in a centrally managed server setup as it does locally without a server.
+Rather than tacking a couple of lines onto
 the end of your `fstab`, you use the `mount` type to create a new
 resource that knows how to modify the `fstab`, or NetInfo, or
 wherever mount information is kept.
@@ -191,7 +211,7 @@ such as avoiding restarting a service
 if the configuration has *not* changed.  
 
 Because the system is graph based, it's actually possible to generate a diagram
-(from Puppet) of the relationships between all of your resources.  
+(from Puppet) of the relationships between all of your resources.
 
 Learning The Language
 ---------------------
