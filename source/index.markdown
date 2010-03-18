@@ -74,7 +74,12 @@ Development Information
 Auto-generated Docs
 -------------------
 
-In addition to the formatted documentation above, [auto-generated documentation](references/) is available for current and previous Puppet versions. 
+In addition to the formatted and annotated documentation above, [auto-generated documentation](references/) is available for current and previous Puppet versions.   Here are links to the latest versions:
+
+* [Metaparameters](/references/latest/metaparameter.html) -- these are usable on all types
+* [Types](/references/latest/types.html) -- all default types
+* [Configuration](/references/latest/configuration.html) -- all configuration file settings
+* [Functions](/references/latest/function.html) -- all built in functions
 
 Other Resources
 ---------------
