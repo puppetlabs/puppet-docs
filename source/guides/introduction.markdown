@@ -38,6 +38,7 @@ centrally managed server infrastructure.   [Ralsh](/guides/tools.html)
 is also a great way to get your feet wet exploring the Puppet model,
 after you have read some of the basic information -- you can quickly see how
 the declarative model works for simple things like users, services, and file permissions.   
+
 Once you've learned the basics, make sure you understand classes and modules, 
 then move on to the advanced sections and read more about the features 
 that are useful to you.  Learning all at once is definitely not required.
@@ -62,59 +63,8 @@ on how information passes between layers:
 
 ![image](http://reductivelabs.com/images/Puppet_Layers.png)
 
-See also [Configuring Puppet](/guides/configuring.html)
-
-### puppetmasterd
-
-puppetmasterd is the central server in a client/server puppet setup.
-Managed machines check in with the server, sending the server their
-'facts' (inventory information and other variables) and then are
-sent down a configuration to apply.  Managed machines can then
-optionally send back reports to the central server.
-
-### puppetd
-
-puppetd is a daemon that optionally runs on each managed machine
-and checks in periodically.  It can also be run on an on-demand
-basis, in non-daemon mode.   It can additionally be run in a "no-op"
-mode where it will only report if systems drift out of compliance
-with established policy, allowing admins to initiate changes
-manually.
-
-### puppet
-
-The 'puppet' executable can be used similarly to puppetd, except
-in local context.  For instance if you wanted to deploy manifest
-content directly to your server via rsync, and not use puppet,
-you would use the 'puppet' executable to execute the code.  This tool
-is also great for testing modules and manifests locally before
-deploying them to the central server.
-
-### puppetca
-
-When a managed node checks in for the first time, it will send
-a certificate signing request (CSR) to the central server.  If
-autosigning is not configured, puppetca is used to sign the CSR
-and make the node manageable.  'puppetca' can also be used
-to list signed certificates, as well as to revoke them.
-
-### facter
-
-Puppet uses a library called 'facter' to source variables
-from the managed system.   These variables can be used in conditionals
-as well as configuration file templates.  Facter, like Puppet,
-is user extensible, so it's possible to add your own facts.
-
-### additional tools/scripts
-
-Numerous contributed tools like 'puppetrun' (used
-to remotely trigger execution of puppet code at a specific point in time)
-are part of the Puppet Ecosystem but not installed by default in the main
-distribution.  From a source checkout, look in the 'ext' directory
-for these useful tools and scripts.
-
-For more information about components, see the [Tools](/guides/tools.html) section.
-
+See also [Configuring Puppet](/guides/configuring.html).  For more information about components (puppetmasterd, puppetd, puppet, and so on), see the [Tools](/guides/tools.html) section.
+  
 Features of the System
 ----------------------
 
