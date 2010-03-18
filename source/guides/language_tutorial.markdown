@@ -763,8 +763,7 @@ The variable `$0` will contain the whole match.
 
 `Case` is the other form of Puppet's two conditional statements, which
 can be wrapped around any Puppet code to add decision-making logic
-to your manifests.  Case statements, unlike selectors, do not return a value.   A common use for the `case` statement is to
-apply different classes to a particular node based on its operating
+to your manifests.  Case statements, unlike selectors, do not return a value.   A common use for the `case` statement is to apply different classes to a particular node based on its operating
 system:
 
     case $operatingsystem {
@@ -773,7 +772,7 @@ system:
         default: { include generic } # apply the generic class
     }
 
-Case statements can also specify multiple conditions, separating
+Case statements can also specify multiple match conditions by separating
 each with a comma:
 
     case $hostname {
@@ -785,8 +784,8 @@ each with a comma:
 Here, if the `$hostname` fact returns either `jack` or `jill` the
 `hill` class would be included.
 
-Starting with version 0.25, the `case` statement also supports
-regular expression options:
+In Puppet 0.25 and later, the `case` statement also supports
+regular expressions:
 
     case $hostname {
         /^j(ack|ill)$/:   { include hill    } # apply the hill class
@@ -799,8 +798,8 @@ In this last example, if `$hostname` matches either `jack` or
 matches either `humpty` or `dumpty`, then the `wall` class will be
 included.
 
-As with selectors, regular expressions captures are available and
-these creates limited scope variables `$0` to `$n`:
+As with selectors (see above), regular expressions captures are also available.
+These create limited scope variables `$0` to `$n`:
 
     case $hostname {
         /^j(ack|ill)$/:   { notice("Welcome $1!") } 
@@ -808,15 +807,12 @@ these creates limited scope variables `$0` to `$n`:
     }
 
 In this last example, if `$host` is `jack` or `jill` then a notice
-message will be printed with `$1` replaced by either `ack` or
-`ill`.
+message will be logged with `$1` replaced by either `ack` or
+`ill`.  `$0` contains the whole match.
 
 #### If/Else Statement
 
-Puppet's second conditional statement, `if/else` provides branching
-options based on the value of some expression. In releases prior to
-0.24.6 the `if` statement only provides a simple if/else structure
-based on the existence of a variable:
+`if/else` provides branching options based on the truth value of a variable:
 
     if $variable {
         file { "/some/file": ensure => present }
@@ -824,8 +820,8 @@ based on the existence of a variable:
         file { "/some/other/file": ensure => present }
     }
 
-Starting with version 0.24.6, the `if` statement can now branch
-based on a variable's value:
+In Puppet 0.24.6 and later, the `if` statement can also branch
+based on the value of an expression:
 
     if $server == "mongrel" {
         include mongrel
@@ -833,22 +829,21 @@ based on a variable's value:
         include nginx
     }
 
-Here is the variable `$server` is equal to `mongrel` then include
-the class `mongrel` otherwise include the class `nginx`.
+In the above example, if the value of the variable `$server` is equal to `mongrel`, Puppet
+will include the class `mongrel`, otherwise it will include the class `nginx`.
 
-Also possible are arithmetic expressions, for example:
+Arithmetic expressions are also possible, for example:
 
     if $ram > 1024 {
         $maxclient = 500
     }
 
 In the previous example if the value of the variable `$ram` is
-greater than `1024` then set the value of the `$maxclient` variable
+greater than `1024`,  Puppet will set the value of the `$maxclient` variable
 to `500`.
 
 More complex expressions combining arithmetric expressions with the
-Boolean operators `and`, `or`, or `not` are also possible, for
-example:
+Boolean operators `and`, `or`, or `not` are also possible:
 
     if ( $processor_count > 2 ) and (( $ram >= 16 * $gigabyte ) or ( $disksize > 1000 )) {
     include for_big_irons
@@ -856,14 +851,20 @@ example:
     include for_small_box
     }
 
-See the Expression section later on this page for further details
-of the expressions that are now available.
+See the Expression section further down for more information on expressions.
 
 ### Virtual Resources
 
-As of 0.20.0, resources can be specified as virtual, meaning they
-will not be sent to the client unless `realized`. This features
-adds new syntax to the language. A simple example follows:
+See [Virtual Resources](/guides/virtual_resources.html).
+
+Virtual resources are available in Puppet 0.20.0 and later.
+
+Virtual resources are resources that are not sent to the client unless `realized`. This
+allows for multiple parts of a puppet configuration to reference the same resource without
+having to duplicate the declaration of the resource.  You should remember that Puppet allows
+each resource to only be declared once.
+
+The syntax for a virtual resource is:
 
     @user { luke: ensure => present }
 
@@ -872,40 +873,47 @@ you can use a `collection`:
 
     User <| title == luke |>
 
-Or the `realize` function:
+This can be read as 'the user whose title is luke'.   This is equivalent to using
+the `realize` function:
 
     realize User[luke]
 
-The motivation for this feature is somewhat complicated; please see
-the virtual resources page for more information.
+Realization could also use other criteria, such as realizing Users that match
+a certain group, or using a metaparameter like 'tag'.
 
-{MISSINGREFS}
+The motivation for this feature is somewhat complicated; please see
+the [Virtual Resources](/guides/virtual_resources.html) page for more information.
 
 ### Exported Resources
 
 Exported resources are an extension of virtual resources used to
 allow different hosts managed by Puppet to influence each other's
-Puppet configuration. As with virtual resources, new syntax was
-added to the language for this purpose.
+Puppet configuration.  This is described in detail on the [Exported Resources](/guides/exported_resources.html) page.  As with virtual resources, new syntax was added to the language for this purpose.
 
 The key syntactical difference between virtual and exported
 resources is that the special sigils (@ and <| |\>) are doubled (@@
 and <<| |\>\>) when referring to an exported resource.
 
-Here is an example with exported resources:
+Here is an example with exported resources that shares SSH keys 
+between clients:
 
     class ssh {
     @@sshkey { $hostname: type => dsa, key => $sshdsakey }
         Sshkey <<| |>>
     }
 
+In the above example, notice that fulfillment and exporting are used
+together, so that any node that gets the 'sshkey' class will have
+all the ssh keys of other hosts.  This could be done differently so
+that the keys could be realized on different hosts.
+
 To actually work, the `storeconfig` parameter must be set to
-`true`.
+`true` in puppet.conf.  This allows configurations from client
+to be stored on the central server.
 
 The details of this feature are somewhat complicated; see
-the exported resources page for more information.
-
-{MISSINGREFS}
+the [Exported Resources](/guides/exported_resources.html) 
+page for more information.
 
 ### Reserved words & Acceptable characters
 
