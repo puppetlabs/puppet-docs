@@ -11,23 +11,23 @@ Getting Started
 
 * [An Introduction to Puppet](/guides/introduction.html)
 * [Supported Platforms] (/guides/platforms.html)
-* [Installing Puppet](/guides/installation.html)
-* [Configuring Puppet](/guides/configuring.html)
+* [Installing Puppet](/guides/installation.html) -- from packages, source, or gems
+* [Configuring Puppet](/guides/configuring.html) -- includes server setup & testing
 * [Frequently Asked Questions](/guides/faq.html)
 
 Components
 ----------
 
-* [puppetmasterd, puppetd, puppet, & ralsh](/guides/tools.html)
-* [Security Infrastructure / Securing Puppet](/guides/security.html)
+* [puppetmasterd, puppetd, puppet, & ralsh](/guides/tools.html) -- components of the system
+* [Security Infrastructure / Securing Puppet](/guides/security.html) -- how PKI works
 
 Learning More
 -------------
 
-* [Puppet Language Tutorial](/guides/language_tutorial.html)
-* [Puppet Modules](/guides/modules.html)
+* [Puppet Language Tutorial](/guides/language_tutorial.html) -- all the language details
+* [Puppet Modules](/guides/modules.html) -- modules make it easy to organize and share content
 * [Style Guide](/guides/style.html)
-* [Best Practices](/guides/best_practices.html)
+* [Best Practices](/guides/best_practices.html) -- use Puppet effectively
 * [Tips & Tricks](/guides/techniques.html)
 * [Troubleshooting](/guides/troubleshooting.html)
 
@@ -40,6 +40,7 @@ Puppet Dashboard (Web GUI)
 Advanced Topics
 ---------------
 
+* [Templating](/guides/templating.html) -- template out config files using ERB
 * [Extended Language Tutorial](/guides/more_language.html) -- how expressions work and other details
 * [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) -- share data between hosts
@@ -72,11 +73,11 @@ Development Information
 Auto-generated Docs
 -------------------
 
-In addition to the formatted documentation above, [auto-generated documentation](references/) is available for
-current and previous Puppet versions. 
+In addition to the formatted documentation above, [auto-generated documentation](references/) is available for current and previous Puppet versions. 
 
 Other Resources
 ---------------
 
 * [Puppet Wiki](http://reductivelabs.com/trac/puppet/wiki) 
 * [Puppet Patterns (Recipes)](http://reductivelabs.com/trac/puppet/wiki/Recipes)
+
