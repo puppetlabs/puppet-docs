@@ -5,7 +5,10 @@ After having read the [Language Tutorial](/guides/language_tutorial.html) you
 may be interested in further details of the Puppet language.  The
 guide below will showcase some features, though you may also want
 to read [Puppet Modules](/guides/modules.html) for some real
-world examples depending on your learning style.
+world examples depending on your learning style.  This document
+may trend more towards a programming language reference at times,
+as compared with the main language tutorial; don't worry
+if you don't grasp it all at once.  
 
 * * *
 
@@ -453,23 +456,26 @@ page for more information.
 
 ### Reserved words & Acceptable characters
 
-Generally, any word that the syntax uses for special meaning is
-probably also a reserved word, meaning you cannot use it for
-variable or type names. Thus, words like `true`, `define`,
-`inherits`, and `class` are all reserved. If you need to use a
-reserved word as a value, just quote it.
+You can use the characters A-Z, a-z, 0-9 and underscores in variables, resources and
+class names.   In Puppet releases prior to 0.24.6, you cannot start a class name with a number.
 
-You can use Aa-Zz, 0-9 and underscores in variables, resources and
-class names. It is important to note that in Puppet releases prior
-to 0.24.6 you cannot start a class name with a number.
+Any word that the syntax uses for special meaning is
+a reserved word, meaning you cannot use it for
+variable or type names.   Words like `true`, `define`,
+`inherits`, and `class` are all reserved. If you ever need to use a
+reserved word as a value, be sure to quote it.
 
 ### Comments
 
 Puppet supports two types of comments:
 
--   sh-style comments; they can either be on their own line or at
-    the end of a line (see the Conditionals example above).
--   multi-line comments (available from 0.24.7 onwards)
+-   Unix shell style comments; they can either be on their own line or at
+    the end of a line.
+-   multi-line C-style comments (available in Puppet 0.24.7 and later)
+
+Here is a shell style comment:
+
+    # this is a comment
 
 You can see an example of a multi-line comment:
 
@@ -481,20 +487,20 @@ Expressions
 ------------
 
 Starting with version 0.24.6 the Puppet language supports arbitrary
-expressions in `if` statement Boolean tests and in the right hand
+expressions in `if` statement boolean tests and in the right hand
 value of variable assignments.
 
 Puppet expressions can be composed of:
 
 -   boolean expressions, which are combination of other expressions
     combined by boolean operators (`and`, `or` and `not`)
--   comparison expression, which consist of variable, numerical
+-   comparison expressions, which consist of variables, numerical
     operands or other expressions combined with comparison operators (
     `==`, `!=`, `<`, `>`, `<=`, `>`, `>=`)
--   arithmetic expressions, which consists of variable, numerical
+-   arithmetic expressions, which consists of variables, numerical
     operands or other expressions combined with the following
     arithmetic operators: `+`, `-`, `/`, `*`, `<<`, `>>`
--   and starting with 0.25, regexes matches with the help of the
+-   and in Puppet 0.25 and later, regular expression matches with the help of the
     regex match operator: `=~` and `!~`
 
 Expressions can be enclosed in parenthesis, `()`, to group
@@ -502,8 +508,8 @@ expressions and resolve operator ambiguity.
 
 ### Operator precedence
 
-The Puppet operator precedence conforms to the standard precedence,
-i.e. from the highest precedence to the lowest, hence:
+The Puppet operator precedence conforms to the standard precedence in
+most systems, from highest to lowest:
 
     ! -> not
     * / -> times and divide
@@ -528,10 +534,10 @@ expression:
     }
 {:puppet}
 
-Here if `$variable` has a value of `foo` then include the `bar`
-class otherwise include the `foobar` class.
+Here if `$variable` has a value of `foo`, Puppet will then include the `bar`
+class, otherwise it will include the `foobar` class.
 
-Another example shows the use of the `!=` or not equal comparison
+Here is another example shows the use of the `!=` ("not equal") comparison
 operator:
 
     if $variable != "foo" {
@@ -541,9 +547,9 @@ operator:
     }
 {:puppet}
 
-In our second example if `$variable` has a value of `foo` then set
-the value the `$othervariable` variable to `bar` otherwise set the
-`$othervariable` variable to a value of `foobar`.
+In our second example if `$variable` has a value of `foo`, Puppet will then set
+the value of the `$othervariable` variable to `bar`, otherwise it will set the
+`$othervariable` variable to `foobar`.
 
 #### Arithmetic expressions
 
@@ -559,17 +565,16 @@ example:
 
 #### Boolean expressions
 
-Also possible are Boolean expressions using `or`, `and` and `not`,
-for example:
+Boolean expressions are also possible using `or`, `and` and `not`:
 
     $one = 1
     $two = 2
     $var = ( $one < $two ) and ( $one + 1 == $two )
 {:puppet}
 
-#### Regex expressions
+#### Regular expressions
 
-Starting with 0.25, Puppet supports regex matching expressions
+In Puppet 0.25 and later, Puppet supports regular expression matching
 using `=~` (match) and `!~` (not-match) for example:
 
     if $host =~ /^www(\d+)\./ {
@@ -578,14 +583,15 @@ using `=~` (match) and `!~` (not-match) for example:
 {:puppet}
 
 Like case and selectors, the regex match operators create limited
-scope variables for each regex capture. In the previous example,
+scope variables for each regex capture.  In the previous example,
 `$1` will be replaced by the number following `www` in `$host`.
-Those variables are valid only for the statements in the if
-clause.
+Those variables are valid only for the statements inside the 
+braces of the if clause.
 
 ### Backus Naur Form
 
-The available operators in Backus Naur Form:
+We've already covered the list of opeartors, though if you wish to see it, 
+here's the available operators in Backus Naur Form:
 
     <exp> ::=  <exp> <arithop> <exp>
              | <exp> <boolop> <exp>
@@ -608,17 +614,15 @@ The available operators in Backus Naur Form:
 Functions
 ---------
 
-Puppet supports many built in functions; see the function reference for details and see
-WritingYourOwnFunctions for information on how to create
+Puppet supports many built in functions; see the [Function Reference](/references/functions.html) for details -- see [Custom Functions](/custom_functions.html) for information on how to create
 your own custom functions. 
 
-{MISSINGREFS}
-
-Some functions can be used as a
-statement:
+Some functions can be used as a statement:
 
     notice("Something weird is going on")
 {:puppet}
+
+(The notice function above is an example of a function that will log on the server)
 
 Or without parentheses:
 
@@ -630,7 +634,7 @@ Some functions instead return a value:
     file { "/my/file": content => template("mytemplate.erb") }
 {:puppet}
 
-NOTE: All functions run on the puppetmaster, so you only have access to the filesystem and resources on that host in your functions. The only exception to this is that any Facter facts that have been sent to the master from your clients are also at your disposal.
+All functions run on the puppetmaster (central server), so you only have access to the filesystem and resources on that host from your functions. The only exception to this is that the value of any Facter facts that have been sent to the master from your clients are also at your disposal.  See the [Tools Guide](/guides/tools.html) for more information about these components.
 
 Importing Manifests
 -------------------
@@ -648,22 +652,26 @@ Files can also be imported using globbing, as implemented by Ruby's
     import "packages/[a-z]*.pp"
 {:puppet}
 
-Manifests should normally be organized into modules.
+Best practices calls for organizing manifests into [Modules](/guides/modules.html)
 
-{MISSINGREFS}
+Handling Compilation Errors
+---------------------------
 
-Compilation Errors
-------------------
+Puppet does not use manifests directly, it compiles them down to a internal format
+that the clients can understand.
 
-By default, the server configuration
-variable `usecacheonfailure` is set to `true`. This means
-that when a manifest fails to compile, the old manifest is used
-instead. This may result in surprising behaviour if you are editing
-complex configurations. Running puppetd with
-`--no-usecacheonfailure` or with `--test`, or setting
+By default, when a manifest fails to compile, the previously compiled version of the Puppet 
+manifest is used instead.
+
+This behavior is governed by a setting in puppet.conf -- it is 'usecacheonfailure'
+and is set by default to 'true'.
+
+This may result in surprising behaviour if you are editing
+complex configurations. 
+
+Running puppetd with `--no-usecacheonfailure` or with `--test`, or setting
 `usecacheonfailure = false` in the configuration file, will disable
 this behaviour.
 
-{MISSINGREFS}
 
 
