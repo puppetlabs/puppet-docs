@@ -80,6 +80,7 @@ In addition to the formatted and annotated documentation above, [auto-generated 
 * [Types](/references/latest/types.html) -- all default types
 * [Configuration](/references/latest/configuration.html) -- all configuration file settings
 * [Functions](/references/latest/function.html) -- all built in functions
+* [Report](/references/latest/report.html) -- available reports
 
 Other Resources
 ---------------
