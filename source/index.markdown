@@ -61,7 +61,7 @@ Extending Puppet
 ----------------
 
 * [Writing Custom Facts](/guides/custom_facts.html)
-* [Writing Custom Types & Providers](/guides/custom_types.html)
+* [Writing Custom Types & Providers](/guides/custom_types.html) -- content pending
 * [Writing Custom Functions](/guides/custom_functions.html)
 * [Plugins In Modules](/guides/plugins_in_modules.html) -- where to put plugins, how to sync to clients
 * REST API -- documentation coming soon
