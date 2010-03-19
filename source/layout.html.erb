@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.designerandrew.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.designerandrew.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.designerandrew.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.designerandrew.com/wordpress/xmlrpc.php">
 
-<head>
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>">
-	<title><?php bloginfo('name'); ?> <?php wp_title(); ?></title>
-	<meta name="description" content="<?php bloginfo('description'); ?>">
-	<link rel="alternate" type="text/xml" title="<?php bloginfo('name'); ?> RSS 0.92 Feed" href="<?php bloginfo('rss_url'); ?>">
-	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed" href="<?php bloginfo('atom_url'); ?>">
-	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS 2.0 Feed" href="<?php bloginfo('rss2_url'); ?>">
-	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-
-	<?php wp_enqueue_script('jquery'); ?>
-	<?php wp_head(); ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/javascripts/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen">
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" media="screen">
-
-  <!--[if IE 7]>
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/ie_7.css" media="screen">
-  <![endif]-->
+  	<link rel='stylesheet' id='wp-pagenavi-css'  href='http://puppetlabs.designerandrew.com/wordpress/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.60' type='text/css' media='all' />
+    <script type='text/javascript' src='http://puppetlabs.designerandrew.com/wordpress/wp-includes/js/jquery/jquery.js?ver=1.3.2'></script>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.designerandrew.com/wordpress/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://puppetlabs.designerandrew.com/wordpress/wp-includes/wlwmanifest.xml" /> 
+    <link rel='index' title='Puppet Labs' href='http://puppetlabs.designerandrew.com' />
+    <meta name="generator" content="WordPress 2.9.2" />
   
-  <!--[if IE 8]>
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/ie_8.css" media="screen">
-  <![endif]-->		
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://puppetlabs.designerandrew.com" />
+    <!-- /all in one seo pack -->
+	
+  	<link rel="stylesheet" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen">
+  	<link rel="stylesheet" type="text/css" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/style.css" media="screen">
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" type="text/css" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/ie_7.css" media="screen">
+    <![endif]-->
   
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/html5.js"></script>
+    <!--[if IE 8]>
+      <link rel="stylesheet" type="text/css" href="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/ie_8.css" media="screen">
+    <![endif]-->		
+  
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/html5.js"></script>
 
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/jquery-1.3.1.min.js"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/jquery.localScroll.js"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/jquery.serialScroll.js"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/jquery.scrollTo.js"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/jquery.cookie.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/jquery.validate.min.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery-1.3.1.min.js"></script>
+    <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.localScroll.js"></script>
+    <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.serialScroll.js"></script>
+    <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.scrollTo.js"></script>
+    <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.cookie.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/jquery.validate.min.js"></script>
 
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/cufon-yui.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/fonts/Klavika_400-Klavika_600.font.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/ampersands.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/cufon-yui.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/fonts/Klavika_400-Klavika_600.font.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/ampersands.js"></script>
 
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/drop_down.js"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/hide_this.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/white_papers.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/docs.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/javascripts/fancy_zoom.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/drop_down.js"></script>
+    <script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/hide_this.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/white_papers.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/docs.js"></script>
+  	<script src="http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/javascripts/fancy_zoom.js"></script>
 
-	<script type="text/javascript">
-    Cufon.replace('h1, h2', { fontWeight: '600' });
-	</script>
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
 </head>
+
 
 
         
@@ -60,12 +70,11 @@
       <div class="site-width">
     		<h1><a href="http://puppetlabs.designerandrew.com/"><span>Puppet Labs</span></a></h1>
         <a class="screen-reader-content" href="#content">Skip navigation</a>
-    		<nav>
-    			<ul id="global-navigation">
+        <nav>
+      		<ul id="global-navigation">
             <li id="puppet-tab" class="with-submenu">
               <a href="http://puppetlabs.designerandrew.com/puppet/">
                 <span>Puppet</span>
-                <span class="subtitle">IT Made Easy</span>
                 <span class="drop-down-trigger"></span>
               </a>
               <ul>            
@@ -84,7 +93,7 @@
                 <li>
                   <ul>
                     <li class="page_item page-item-751"><a href="http://puppetlabs.designerandrew.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
-  <li class="page_item page-item-753"><a href="http://puppetlabs.designerandrew.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+                    <li class="page_item page-item-753"><a href="http://puppetlabs.designerandrew.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
                   </ul>
                 </li>
               </ul>
@@ -92,8 +101,7 @@
             <li id="services-tab" class="with-submenu">
               <a href="http://puppetlabs.designerandrew.com/services/">
                 <span>Services</span>
-                <span class="subtitle">Support, Training</span>
-                  <span class="drop-down-trigger"></span>
+                <span class="drop-down-trigger"></span>
               </a>
               <ul>
                 <li class="page_item page-item-783"><a href="http://puppetlabs.designerandrew.com/services/overview/" title="Overview">Overview</a></li>
@@ -107,11 +115,10 @@
             <li id="resources-tab" class="with-submenu">
               <a href="http://puppetlabs.designerandrew.com/resources/">
                 <span>Resources</span>
-                <span class="subtitle">Help for Puppeteers</span>
                 <span class="drop-down-trigger"></span>
               </a>
               <ul>
-                <li class="page_item page-item-1048 current_page_item"><a href="http://puppetlabs.designerandrew.com/resources/overview-2/" title="Overview">Overview</a></li>
+                <li class="page_item page-item-1048"><a href="http://puppetlabs.designerandrew.com/resources/overview-2/" title="Overview">Overview</a></li>
                 <li class="page_item page-item-1040"><a href="http://puppet-docs.designerandrew.com" title="Documentation">Documentation</a></li>
                 <li class="page_item page-item-872"><a href="http://puppetlabs.designerandrew.com/resources/downloads/" title="Downloads">Downloads</a></li>
                 <li class="page_item page-item-835"><a href="http://puppetlabs.designerandrew.com/resources/white-papers/" title="White Papers">White Papers</a></li>
@@ -123,13 +130,12 @@
             <li id="community-tab">
               <a href="http://puppetlabs.designerandrew.com/community/">
                 <span>Community</span>
-                <span class="subtitle">Blog, Mailing Lists</span>
               </a>
             </li>
 
             <li id="company-tab" class="with-submenu">
               <a href="http://puppetlabs.designerandrew.com/company/">
-                <span>Company</span><span class="subtitle">Meet Puppet Labs</span>
+                <span>Company</span>
                 <span class="drop-down-trigger"></span>
               </a>
               <ul>
@@ -137,9 +143,14 @@
                 <li><a href="http://puppetlabs.designerandrew.com/company/#contact">Contact Us</a></li>
               </ul>
             </li>
-
-    			</ul>
-    		</nav>
+      		</ul>	   
+          <ul id="misc-navigation">
+            <li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+            <li><a href="http://docs.puppetlabs.com">Support</a></li>
+            <li><a href="/company/#contact">Contact Us</a></li>
+            <li><a href="/resources/downloads" class="gateway">Download</a></li>
+          </ul>
+        </nav>
     	</div>
     </header>  
 
