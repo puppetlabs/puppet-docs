@@ -1,5 +1,5 @@
 Techniques
-----------
+==========
 
 Here are some useful tips & tricks.
 

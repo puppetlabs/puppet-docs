@@ -1,5 +1,5 @@
 Security Infrastructure
------------------------
+=======================
 
 Learn about Puppet's built in security systems.
 

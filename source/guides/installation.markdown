@@ -9,9 +9,6 @@ a wide-range of operating systems.
 Before Starting
 ---------------
 
-Start by reading the [Downloading Puppet](http://reductivelabs.com/trac/puppet/wiki/DownloadingPuppet)
-guide, which explains how to download packages or source code for your operating system.
-
 You will need to install Puppet on all machines on both clients
 and the central Puppet master server(s).
 

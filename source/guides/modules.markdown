@@ -1,13 +1,13 @@
 Puppet Modules
---------------
+==============
 
 Modules are an excellent way for you to organize your Puppet content.
 Learn to use them early!
 
 * * *
 
-Puppet Modules
---------------
+About
+-----
 
 When you have multiple files related to a single application, it
 often makes sense to turn them into a module. This allows you to
@@ -29,14 +29,16 @@ stored in a separate subdirectory:
     must be added to the template name:
     template("mymodule/mytemplate.erb")
 -   Files - stored in files/, these are available from the file
-    server under modules/\<module name>/\<file name>.
+    server under modules/module_name/file_name.
 
 These three file types cover all of the content you would provide
 to puppetmasterd. For a more detailed description of how modules
 should be organised, see [[Module Organisation]] .
 
+{{MISSINGREFS}}
+
 (For info on how you can put types and facts into your modules, see
-the wiki page [[Plugins In Modules]] )
+the [Plugins In Modules](/guides/plugins_in_modules.html)
 
 Module Documentation
 --------------------
