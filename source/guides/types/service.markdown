@@ -1,8 +1,6 @@
 service
 =======
 
-Control OS services
-
 * * *
 
 About

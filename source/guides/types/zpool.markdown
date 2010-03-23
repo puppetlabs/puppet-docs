@@ -1,4 +1,7 @@
 zpool
+=====
+
+* * *
 
 Manage zpools. Create and delete zpools. The provider WILL NOT
 SYNC, only report differences.

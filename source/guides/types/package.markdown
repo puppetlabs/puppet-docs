@@ -5,9 +5,6 @@ Manages software installation and updates
 
 * * *
 
-About
------
-
 Manage packages. There is a basic dichotomy in package support
 right now: Some package types (e.g., yum and apt) can retrieve
 their own package files, while others (e.g., rpm and sun) cannot.

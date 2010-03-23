@@ -1,5 +1,6 @@
 resources
 =========
+<<<<<<< HEAD:source/guides/types/resources.markdown
 
 Manage how other resources are handled
 
@@ -7,14 +8,22 @@ Manage how other resources are handled
 
 About 
 -----
+=======
+>>>>>>> andrew/themed:source/guides/types/resources.markdown
 
 This is a metatype that can manage other resource types. Any
 metaparams specified here will be passed on to any generated
 resources, so you can purge umanaged resources but set `noop` to
 true so the purging is only logged and does not actually happen.
 
+<<<<<<< HEAD:source/guides/types/resources.markdown
 Parameters
 ----------
+=======
+* * *
+
+### Parameters
+>>>>>>> andrew/themed:source/guides/types/resources.markdown
 
 ## name
 

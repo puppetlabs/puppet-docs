@@ -1,13 +1,6 @@
 Puppet (Core)
 =============
 
-Puppet is a model-driven open source framework designed to efficiently
-manage data center infrastructure.
-
-* Also see the [Puppet Dashboard](/projects/dashboard/), a web
-  interface that provides node management and reporting tools for
-  Puppet.
-
 * * *
 
 Installing Puppet

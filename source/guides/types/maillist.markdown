@@ -1,4 +1,5 @@
 maillist
+========
 
 Manage email lists. This resource type currently can only create
 and remove lists, it cannot reconfigure them.

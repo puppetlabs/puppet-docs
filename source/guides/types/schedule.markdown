@@ -5,9 +5,6 @@ Determine when Puppet runs
 
 * * *
 
-About
------
-
 Defined schedules for Puppet. The important thing to understand
 about how schedules are currently implemented in Puppet is that
 they can only be used to stop a resource from being applied, they

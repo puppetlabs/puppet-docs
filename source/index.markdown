@@ -1,10 +1,9 @@
-Welcome
-=======
+Puppet Docs
+===========
 
-This is the Puppet documentation site. 
+Welcome to the Puppet documentation site. 
 
 * * *
-
 
 Getting Started
 ---------------
@@ -101,9 +100,5 @@ To contribute ideas, problems, or suggestions, simply use the feedback tab on th
 If you would like to submit your own content, the process is easy.  You can fork the project
 on <A HREF="http://github.com/reductivelabs.com">github</A>, make changes, and send
 us a pull request.  See the README files in the project for more information.
-
-
-
-
 
 

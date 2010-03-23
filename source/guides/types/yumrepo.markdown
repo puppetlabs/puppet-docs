@@ -1,4 +1,7 @@
 yumrepo
+=======
+
+* * *
 
 The client-side description of a yum repository. Repository
 configurations are found by parsing /etc/yum.conf and the files

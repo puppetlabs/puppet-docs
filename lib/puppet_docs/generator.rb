@@ -91,10 +91,10 @@ module PuppetDocs
     def set_header_section(name, body, view)
       header, new_body = body.split(/\*\s+\*\s+\*/, 2)
       if new_body
-        if header =~ /^(\S[^\r\n]+)\r?\n-+\s*$/ms
+        if header =~ /^(\S[^\r\n]+)\r?\n=+\s*$/ms
           page_title = $1.strip
         else
-          page_title = name.titleize
+          return false
         end
         header = markdown(add_snippets(header))
         view.set(:page_title, page_title)
@@ -109,7 +109,7 @@ module PuppetDocs
     def set_index(title, body, view)
       index = <<-INDEX
       <div id="subCol">
-        <h3 class="chapter"><img src="#{view[:to_root]}images/chapters_icon.gif" alt="" />Contents</h3>
+        <h3 class="chapter">Contents</h3>
         <ol class="chapters">
       INDEX
 
