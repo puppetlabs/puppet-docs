@@ -9,7 +9,7 @@ Are you using the default webserver?
 ------------------------------------
 
 The default web server used to enable Puppet's web services connectivity is "WEBrick", which is essentially a reference
-implementation, and is not very fast.  Switching to a more efficient web server implementation such as [Passenger](/guides/passenger.html) or [Mongrel](guides/mongrel.html) will allow for serving many more nodes concurrently from the same server.   This performance tweak will offer the most immediate benefits.
+implementation, and is not very fast.  Switching to a more efficient web server implementation such as [Passenger](/guides/passenger.html) or [Mongrel](guides/mongrel.html) will allow for serving many more nodes concurrently from the same server.   This performance tweak will offer the most immediate benefits.  If your system can work with Passenger, that is currently the recommended route.  On older systems, use Mongrel. 
 
 Delayed check in
 ----------------
