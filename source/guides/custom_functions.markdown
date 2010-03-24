@@ -174,10 +174,10 @@ parser know that it must recompile the configuration if that file
 changes. In 0.23.2, this can be achieved by adding this to the
 function:
 
-    self.interp.newfile(<FILENAME>)
+    self.interp.newfile($filename)
 
 In future releases, this will change to
-parser.watch\_file(\<FILENAME>).
+parser.watch\_file($filename).
 
 Finally, an example. This function takes a filename as argument and
 returns the last line of that file as its value:
