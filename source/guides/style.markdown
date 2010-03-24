@@ -12,7 +12,7 @@ legal syntaxes, etc.  These guidelines were developed at Stanford
 University, where complexity drove the need for a highly formalized
 and structured stylistic practice which is strictly adhered to by the
 dozen Unix admins who maintain over fifty (50) unique server models
-using over five hundred (00) individual manifests and over one
+using over five hundred (500) individual manifests and over one
 thousand (1,000) unique classes to maintain over four hundred (400)
 servers (and those numbers are growing constantly as nearly half the
 infrastructure remains to be migrated to Puppet).  With this much code
