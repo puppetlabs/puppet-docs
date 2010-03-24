@@ -99,12 +99,12 @@ end
 
 #
 # Reductive Labs Only:
-#
+# DISABLED FOR NOW, not the right location
 
-desc "Release the documentation (Reductive Labs Only)"
-task :release do
-  sh "rsync -e ssh -avz output/ docadmin@reductivelabs.com:/var/www/docs/html"
-end
+#desc "Release the documentation (Reductive Labs Only)"
+#task :release do
+#  sh "rsync -e ssh -avz output/ docadmin@reductivelabs.com:/var/www/docs/html"
+#end
 
 #require 'spec/rake/spectask'
 #Spec::Rake::SpecTask.new(:spec) do |spec|
