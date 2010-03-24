@@ -45,7 +45,7 @@ Functions are loaded from files with a .rb extension in the
 following locations:
 
 -   $libdir/puppet/parser/functions
--   $moduledir/\<modulename>/plugins/puppet/parser/functions
+-   $moduledir/$modulename/plugins/puppet/parser/functions
 -   puppet/parser/functions sub-directories in your Ruby
     $LOAD\_PATH
 
