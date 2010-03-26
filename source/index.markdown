@@ -31,7 +31,7 @@ Once you've learned the basics, go here next.
 
 * [Puppet Language Tutorial](/guides/language_tutorial.html) -- all the language details
 * [Puppet Modules](/guides/modules.html) -- modules make it easy to organize and share content
-* [Style Guide](/guides/style.html)
+* [Style Guide](/guides/style.html) -- Puppet community conventions
 * [Best Practices](/guides/best_practices.html) -- use Puppet effectively
 * [Tips & Tricks](/guides/techniques.html)
 * [Troubleshooting](/guides/troubleshooting.html)
