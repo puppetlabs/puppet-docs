@@ -1,5 +1,5 @@
 Custom Facts
-------------
+============
 
 Extend facter by writing your own custom facts to provide information to Puppet.
 
@@ -39,20 +39,21 @@ Puppet master server:
             end
     end
 
-**Note: The {chomp} is required to provide clean data.**
+Note that the `chomp` is required to provide clean data.
 
 We then use the instructions in [Plugins In Modules](/guides/plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
 run the value of our new fact will be available to use in your
 manifests.
 
-**Note: The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code. You will find lots of examples of how to interpret different types of system data and return useful facts.**
+The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code. You will find lots of examples of how to interpret different types of system data and return useful facts.
 
-**Note:** You may not be able to view your custom fact when running
+You may not be able to view your custom fact when running
 facter on the client node. If you are unable to view the custom
 fact, try adding the "factpath" to the FACTERLIB environmental
-variable. (**example:**
-*export FACTERLIB=/var/lib/puppet/lib/facter*)
+variable:
+
+    export FACTERLIB=/var/lib/puppet/lib/facter
 
 Using other facts
 -----------------
@@ -184,7 +185,7 @@ The following command line or config file options are available
 -   factsignore (.svn CVS): What files to ignore when pulling down
     facts.
 
-**Note: The approach described here for factsync is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](/guides/plugins_in_modules.html) page.**
+Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](/guides/plugins_in_modules.html) page.
 
 
 
