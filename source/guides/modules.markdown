@@ -7,24 +7,21 @@ How to organize Puppet content inside of modules.
 
 # General Information
 
-A [module](/guides/modules.html) is a collection of resources, classes, files, definitions
-and templates. It can be used to configure a specific application,
-for example an Apache or a Rails module or it can be a collection
-to configure a specific function, for example a module that
-configures a Trac site or a particular Rails application. 
+A Puppet Module is a collection of resources, classes, files, definitions
+and templates. It might be used to configure Apache or a Rails module, or a
+Trac site or a particular Rails application.
 
-These modules are then easily re-distributable, for example, this will
+Modules are easily re-distributable.  For example, this will
 enable you to have the default site configuration under
 /etc/puppet, with modules shipped by puppet proper in
-/usr/share/puppet/ and a happy mix-and-match of VCS-checkouts in
-various states of development and production-readiness.
+/usr/share/puppet/.  You could also have other directories containing a happy mix-and-match 
+of version control checkouts in various states of development and production readiness.
 
-Modules as described on this page are available in Puppet version
-0.22.2 and later.
+Modules are available in Puppet version 0.22.2 and later.
 
 ## Configuration
 
-There are only two items that can be configured for modules:
+There are two configuration settings that pertain to modules:
 
 1.  The search path for modules is configured as a colon-separated
     list of directories in the puppetmaster section of puppetmaster's
@@ -43,7 +40,6 @@ There are only two items that can be configured for modules:
     configuration for that module is always ignored, and specifying a
     path will produce a warning.
 
-
 ## Sources of Modules
 
 To accommodate different locations in the file system for the
@@ -57,24 +53,26 @@ special anonymous module which is always searched first to retain
 backwards compatibility to today's layout.
 
 For some environments it might be worthwhile to consider extending
-the modulepath configuration item to contain branches directly from
-VCS, e.g. by saying
-svn:file:///Volumes/svn/repos/management/master/puppet.testing/trunk
+the modulepath configuration item to contain branches checked out directly from
+version control, for example:
+
+    svn:file:///Volumes/svn/repos/management/master/puppet.testing/trunk
+
 to set-up access for a testing Puppet master as is done manually in
-BranchTesting.
+the Branch Testing.
 
 ## Naming
 
-Module names MUST be normal words, matching [-\\w+] in Ruby
+Module names must be normal words, matching `[-\\w+]` 
 (letters, numbers, underscores and dashes), and not containing the
-namespace separators :: or /. While it might be desirable to allow
+namespace separators `::` or `/`. While it might be desirable to allow
 module hierarchies, for now modules cannot be nested.
 
 In the filesystem modules are always referred to by the down-cased
 version of their name to prevent the potential ambiguity that would
 otherwise result.
 
-The module name: site is reserved for local use and should not be
+The module name `site` is reserved for local use and should not be
 used in modules meant for distribution.
 
 # Internal Organisation
@@ -106,7 +104,7 @@ under the manifests folder. If adding additional .pp files, naming
 them after the class they define will allow auto lookup magic
 (explained further below in Module Lookup).
 
-One of the things we want to accomplish with modules is code
+One of the things to be accomplished with modules is code
 sharing. A module by nature should be self-contained: one should be
 able to get a module from somewhere and drop it into your module
 path and have it work.
@@ -114,9 +112,9 @@ path and have it work.
 There are cases, however, where the module depends on generic
 things that most people will already have defines or classes for in
 their regular manifests. Instead of adding these into the manifests
-of your module, add them to the depends folder (which is basically
+of your module, add them to the `depends` folder (which is basically
 only documenting, it doesn't change how your module works) and
-mention these in your README, so people can at least see exactly
+mention these in your `README`, so people can at least see exactly
 what your module expects from these generic dependencies, and
 possibly integrate them into their own regular manifests.
 
@@ -151,7 +149,7 @@ and have these files in the file system:
         templates/
           auto.master.erb
 
-Notice that the file source path includes a modules/ component.
+Notice that the file source path includes a `modules/` component.
 In Puppet version 0.25 and later, you must include this component in
 source paths in order to serve files from modules. Puppet 0.25 will
 still accept source paths without it, but it will warn you with a
