@@ -248,6 +248,15 @@ is seen by Puppet. Otherwise it will just return false, indicating
 that you still have a problem (and you'll more than likely get a
 "Unknown Function" error on your clients).
 
+Referencing Custom Functions In Templates
+-----------------------------------------
+
+To call a custom function within a [Puppet Template](/guides/templating.html), you can do:
+
+   <%= scope.function_namegoeshere(["one","two"]) %>
+
+Replace "namegoeshere" with the function name, and even if there is only one argument, still
+include the array brackets.
 
 
 
