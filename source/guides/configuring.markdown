@@ -86,7 +86,7 @@ appropriate permissions:
 
 For more information on how to create the site manifest, see the
 tutorials listed on the
-[Getting Started](http://reductivelabs.com/trac/puppet/wiki/GettingStarted) page.
+[Getting Started](http://puppetlabs.com/trac/puppet/wiki/GettingStarted) page.
 
 
 Start the Central Daemon
@@ -120,7 +120,7 @@ the daemon with the --mkusers flag to create them.
 Starting the puppet daemon will automatically create all necessary certificates, directories, and files.
 
 NOTE:  To enable the daemon to also function as a file server, so that clients can copy files from it, create a
-[fileserver configuration file](http://reductivelabs.com/trac/puppet/wiki/FileServingConfiguration) and restart pupetmasterd.
+[fileserver configuration file](http://puppetlabs.com/trac/puppet/wiki/FileServingConfiguration) and restart pupetmasterd.
 
 Verifying Installation
 ----------------------

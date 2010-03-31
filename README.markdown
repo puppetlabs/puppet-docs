@@ -10,7 +10,7 @@ Steps for installing the documentation-generating code:
 
 1.  Clone the repository:
 
-    $ git clone git://github.com/reductivelabs.com/puppet-docs.git
+    $ git clone git://github.com/reductivelabs/puppet-docs.git
 
 2.  Use your package manager to install rake, libxml2-dev, and 
     libxslt-dev.  Package names may vary by platform.

@@ -53,13 +53,13 @@ that configuration. Once done, it can send a report back to the
 server indicating what, if anything, happened. This diagram shows
 the data flow in a regular Puppet implementation:
 
-![image](http://reductivelabs.com/images/Puppet_Star.png)
+![image](http://puppetlabs.com/images/Puppet_Star.png)
 
 Puppet's functionality is built as a stack of separate layers, each
 responsible for a fixed aspect of the system, with tight controls
 on how information passes between layers:
 
-![image](http://reductivelabs.com/images/Puppet_Layers.png)
+![image](http://puppetlabs.com/images/Puppet_Layers.png)
 
 To use Puppet effectively, you'll need to understand a bit about
 each of these layers, how they relate to each other, and which
@@ -474,10 +474,10 @@ definition to do this for you:
 Then you can use that definition and make it clear that even though
 you're just creating files, you're really configuring a virtual host:
 
-    virtual_host { "reductivelabs.com":
+    virtual_host { "puppetlabs.com":
         order   => 100,
         ip      => "192.168.0.100",
-        docroot => "/var/www/reductivelabs.com/htdocs"
+        docroot => "/var/www/puppetlabs.com/htdocs"
     }
 
 You could reuse this
@@ -583,6 +583,6 @@ most useful idioms. There is comprehensive
 and there are many [example patterns][^patterns]: to get you further
 along. We're constantly working on the documentation, so if you have
 any specific requests, send them to docs at
-[reductivelabs.com](http://reductivelabs.com).
+[puppetlabs.com](http://puppetlabs.com).
 
-[^patterns]: http://reductivelabs.com/trac/puppet/wiki/Recipes
+[^patterns]: http://puppetlabs.com/trac/puppet/wiki/Recipes

@@ -47,7 +47,7 @@ hosting a puppetmaster. So use either 2.2.2, or 2.2.5. Note that
 while it was expected that Passenger 2.2.2 would be the last
 version which can host a 0.24.x puppetmaster, that turns out to be
 not true, cf.
-[this bug report](http://projects.reductivelabs.com/issues/2386#change-9238).
+[this bug report](http://projects.puppetlabs.com/issues/2386#change-9238).
 So, passenger 2.2.5 works fine.
 
 Installation Instructions for Puppet 0.25.x

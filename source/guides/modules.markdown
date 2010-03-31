@@ -213,7 +213,7 @@ look for a file in $templatedir/autofs/auto.master.erb and then
 autofs/templates/auto.master.erb on the module path. This allows
 more-generic files to be provided in the templatedir and
 more-specific files under the module path (see the discussion under
-[Feature 1012](http://projects.reductivelabs.com/issues/1012) for
+[Feature 1012](http://projects.puppetlabs.com/issues/1012) for
 the history here).
 
 ## Module Importing
@@ -267,7 +267,7 @@ clear.
 From Puppet version 0.24.7 you can generate automated documentation
 from resources, classes and modules using the puppetdoc tool. You
 can find more detail at the
-[Puppet Manifest Documentation](http://www.reductivelabs.com/trac/puppet/wiki/PuppetManifestDocumentation)
+[Puppet Manifest Documentation](http://www.puppetlabs.com/trac/puppet/wiki/PuppetManifestDocumentation)
 page.
 
 ## See Also

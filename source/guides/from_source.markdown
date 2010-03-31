@@ -89,4 +89,4 @@ to just install it directly:
 {:shell}
 
 [1]: http://git.or.cz/
-[2]: http://reductivelabs.com/products/facter
+[2]: http://puppetlabs.com/products/facter

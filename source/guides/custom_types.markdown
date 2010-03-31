@@ -7,7 +7,7 @@ Learn how to create your own custom types & providers in Puppet
 
 # Organizational Principles
 
-![image](http://reductivelabs.com/images/ResourceTypesProviders.png)
+![image](http://puppetlabs.com/images/ResourceTypesProviders.png)
 
 When creating a new Puppet type, you will be create two things:
 The resource type itself, which we normally just call a

@@ -90,7 +90,7 @@ through specifying exceptions to otherwise standard classes.
 There are regular feature and release updates on the
 [Mailing List](http://groups.google.com/group/puppet-dev), and you
 can always find the latest release on the
-[downloads page](http://reductivelabs.com/downloads).
+[downloads page](http://puppetlabs.com/downloads).
 
 ## I have found a security issue in Puppet. Who do I tell?
 
@@ -186,7 +186,7 @@ See [Puppet Graphs](/guides/graphs.html)
 ## How do all of these variables, like $operatingsystem, get set?
 
 The variables are all set by
-[Facter](http://reductivelabs.com/projects/facter). You can get a
+[Facter](http://puppetlabs.com/projects/facter). You can get a
 full listing of the available variables and their values by running
 facter by itself in a shell.:
 
@@ -206,7 +206,7 @@ and Puppet version of the server respectively.
 
 Not directly no but Facter has a special types of facts that can be
 set from environment variables. Any environment variable with a
-prefix of [FACTER](http://reductivelabs.com/projects/facter) will
+prefix of [FACTER](http://puppetlabs.com/projects/facter) will
 be taken by Facter and converted into a fact, for example:
 
     $ FACTER_FOO="bar"
