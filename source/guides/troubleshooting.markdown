@@ -3,7 +3,7 @@ Troubleshooting
 
 Answers to some common problems that may come up.
 
-Basic workflow items are covered in the main section of the documentation.  If you're looking for how to do something unconventional, you may also wish to read [Techniques](/guides/techniques.html).
+Basic workflow items are covered in the main section of the documentation.  If you're looking for how to do something unconventional, you may also wish to read [Techniques](./techniques.html).
 
 * * *
 

@@ -59,6 +59,6 @@ The puppet_dashboard report assumes that your Dashboard server is available at `
 External Node Tool
 ------------------
 
-Puppet Dashboard functions as an external node tool. All nodes make a puppet-compatible YAML specification available for export. See bin/external_node for an example script that connects to Puppet Dashboard as an external node tool.  See the instructions [here](/guides/external_nodes.html) for more information about external nodes.
+Puppet Dashboard functions as an external node tool. All nodes make a puppet-compatible YAML specification available for export. See bin/external_node for an example script that connects to Puppet Dashboard as an external node tool.  See the instructions [here](./external_nodes.html) for more information about external nodes.
 
 

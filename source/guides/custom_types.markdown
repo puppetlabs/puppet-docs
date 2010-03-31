@@ -22,8 +22,8 @@ determine what features a provider can (or should) provide.
 
 The providers implement support for that type by translating calls
 in the resource type to operations on the system.  As mentioned
-in our [Introduction](/guides/introduction.html) and [Language
-Tutorial](/guides/language_tutorial.html), an example would be
+in our [Introduction](./introduction.html) and [Language
+Tutorial](./language_tutorial.html), an example would be
 that "yum" and "apt" are both different providers that fulfill
 the "package" type.
 
@@ -37,7 +37,7 @@ will be copied directly into `libdir`, so make sure you make a
 puppet/type directory in your `pluginsource`, too.
 
 In Puppet 0.24 and later, the "old" `pluginsync` function has been
-deprecated and you should see the [Plugins In Modules](/guides/plugins_in_modules.html) page for details of distributing custom types and facts via modules.
+deprecated and you should see the [Plugins In Modules](./plugins_in_modules.html) page for details of distributing custom types and facts via modules.
 
 The internals of how types are created have changed over Puppet's
 lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn't do.  
@@ -75,7 +75,7 @@ some parameters. Once these are defined, as long as the type is put into
 lib/puppet/type anywhere in Ruby's search path, Puppet will
 autoload the type when you reference it in the Puppet language. 
 
-We have already mentioned Puppet provides a `libdir` setting where you can copy the files outside the Ruby search path.  See also [Plugins In Modules](/guides/plugins_in_modules.html)
+We have already mentioned Puppet provides a `libdir` setting where you can copy the files outside the Ruby search path.  See also [Plugins In Modules](./plugins_in_modules.html)
 
 All types should also provide inline documention in the @doc class
 instance variable. The text format is in Restructured Text.

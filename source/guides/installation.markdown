@@ -127,5 +127,5 @@ of the RubyGems User Guide.
 Configuring Puppet
 ------------------
 
-Now that the packages are installed, see [Configuring Puppet](/guides/configuring.html) for setup instructions.
+Now that the packages are installed, see [Configuring Puppet](./configuring.html) for setup instructions.
 

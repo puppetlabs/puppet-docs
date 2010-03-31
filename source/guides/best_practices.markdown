@@ -8,7 +8,7 @@ This guide includes some tips to getting the most out of Puppet.  It is derived 
 Use Modules When Possible
 -------------------------
 
-Puppet modules as covered in the [language reference](/guides/language_reference) are something everyone shoulduse.   If you have an application you are managing, add a module for it, so that you can keep the manifests, plugins (if any), source files, and templates together.
+Puppet modules as covered in the [language reference](./language_reference) are something everyone shoulduse.   If you have an application you are managing, add a module for it, so that you can keep the manifests, plugins (if any), source files, and templates together.
 
 Keep Your Puppet Content In Version Control
 -------------------------------------------
@@ -25,7 +25,7 @@ When naming classes, a class that disables ssh should be inherited from the ssh 
 Style
 -----
 
-For recommendations on syntax and formatting, follow the [Style Guide](/guides/style.html)
+For recommendations on syntax and formatting, follow the [Style Guide](./style.html)
 
 Classes Vs Defined Types
 ------------------------

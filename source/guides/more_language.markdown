@@ -1,10 +1,10 @@
 Extended Language Tutorial
 ==========================
 
-After having read the [Language Tutorial](/guides/language_tutorial.html) you
+After having read the [Language Tutorial](./language_tutorial.html) you
 may be interested in further details of the Puppet language.  The
 guide below will showcase some features, though you may also want
-to read [Puppet Modules](/guides/modules.html) for some real
+to read [Puppet Modules](./modules.html) for some real
 world examples depending on your learning style.  This document
 may trend more towards a programming language reference at times,
 as compared with the main language tutorial; don't worry
@@ -397,7 +397,7 @@ See the Expression section further down for more information on expressions.
 
 ### Virtual Resources
 
-See [Virtual Resources](/guides/virtual_resources.html).
+See [Virtual Resources](./virtual_resources.html).
 
 Virtual resources are available in Puppet 0.20.0 and later.
 
@@ -421,13 +421,13 @@ Realization could also use other criteria, such as realizing Users that match
 a certain group, or using a metaparameter like 'tag'.
 
 The motivation for this feature is somewhat complicated; please see
-the [Virtual Resources](/guides/virtual_resources.html) page for more information.
+the [Virtual Resources](./virtual_resources.html) page for more information.
 
 ### Exported Resources
 
 Exported resources are an extension of virtual resources used to
 allow different hosts managed by Puppet to influence each other's
-Puppet configuration.  This is described in detail on the [Exported Resources](/guides/exported_resources.html) page.  As with virtual resources, new syntax was added to the language for this purpose.
+Puppet configuration.  This is described in detail on the [Exported Resources](./exported_resources.html) page.  As with virtual resources, new syntax was added to the language for this purpose.
 
 The key syntactical difference between virtual and exported
 resources is that the special sigils (@ and <| |\>) are doubled (@@
@@ -451,7 +451,7 @@ To actually work, the `storeconfig` parameter must be set to
 to be stored on the central server.
 
 The details of this feature are somewhat complicated; see
-the [Exported Resources](/guides/exported_resources.html) 
+the [Exported Resources](./exported_resources.html) 
 page for more information.
 
 ### Reserved words & Acceptable characters
@@ -634,7 +634,7 @@ Some functions instead return a value:
     file { "/my/file": content => template("mytemplate.erb") }
 {:puppet}
 
-All functions run on the puppetmaster (central server), so you only have access to the filesystem and resources on that host from your functions. The only exception to this is that the value of any Facter facts that have been sent to the master from your clients are also at your disposal.  See the [Tools Guide](/guides/tools.html) for more information about these components.
+All functions run on the puppetmaster (central server), so you only have access to the filesystem and resources on that host from your functions. The only exception to this is that the value of any Facter facts that have been sent to the master from your clients are also at your disposal.  See the [Tools Guide](./tools.html) for more information about these components.
 
 Importing Manifests
 -------------------
@@ -652,7 +652,7 @@ Files can also be imported using globbing, as implemented by Ruby's
     import "packages/[a-z]*.pp"
 {:puppet}
 
-Best practices calls for organizing manifests into [Modules](/guides/modules.html)
+Best practices calls for organizing manifests into [Modules](./modules.html)
 
 Handling Compilation Errors
 ---------------------------

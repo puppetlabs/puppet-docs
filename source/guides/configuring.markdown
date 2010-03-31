@@ -173,6 +173,6 @@ the value to 0 to disable this wait-polling period entirely.
 Scaling your Installation
 -------------------------
 
-For more about how to tune Puppet for large environments, see [Scaling Puppet](/guides/scaling.html).
+For more about how to tune Puppet for large environments, see [Scaling Puppet](./scaling.html).
 
 

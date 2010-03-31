@@ -6,7 +6,7 @@ Frequently Asked Questions
 This document covers frequently asked questions not well covered elsewhere in the
 documentation or on the main website. 
 
-You may also wish to see [Troubleshooting](/guides/troubleshooting.html) or [Techniques](/guides/techniques)
+You may also wish to see [Troubleshooting](./troubleshooting.html) or [Techniques](/guides/techniques)
 for additional assorted information about specific technical items.
 
 General
@@ -181,7 +181,7 @@ should build on the RHEL and CentOS variants.
 
 ## How do I use Puppet's graphing support?
 
-See [Puppet Graphs](/guides/graphs.html)
+See [Puppet Graphs](./graphs.html)
 
 ## How do all of these variables, like $operatingsystem, get set?
 

@@ -19,7 +19,7 @@ The Concept
 -----------
 
 You can add new facts by writing a snippet of Ruby code on the
-Puppet master. We then use [Plugins In Modules](/guides/plugins_in_modules.html) to distribute our
+Puppet master. We then use [Plugins In Modules](./plugins_in_modules.html) to distribute our
 facts to the client.
 
 An Example
@@ -41,7 +41,7 @@ Puppet master server:
 
 Note that the `chomp` is required to provide clean data.
 
-We then use the instructions in [Plugins In Modules](/guides/plugins_in_modules.html) page to copy
+We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
 run the value of our new fact will be available to use in your
 manifests.
@@ -124,7 +124,7 @@ Alternatively, you can set $FACTERLIB to a directory with your new
 facts in, and they will be recognised on the Puppet master.
 
 It is important to note that to use the facts on your clients you
-will still need to distribute them using the [Plugins In Modules](/guides/plugins_in_modules.html)
+will still need to distribute them using the [Plugins In Modules](./plugins_in_modules.html)
 method.
 
 Viewing Fact Values
@@ -185,7 +185,7 @@ The following command line or config file options are available
 -   factsignore (.svn CVS): What files to ignore when pulling down
     facts.
 
-Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](/guides/plugins_in_modules.html) page.
+Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](./plugins_in_modules.html) page.
 
 
 

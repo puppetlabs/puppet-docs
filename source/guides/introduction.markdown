@@ -34,7 +34,7 @@ Learning Recommendations
 We're glad you want to learn Puppet.  You're free to browse around the documentation as you like, though we generally recommend trying out Puppet locally first (without the 
 daemon and client/server setup), so you
 can understand the basic concepts.  From there, move on to
-centrally managed server infrastructure.   [Ralsh](/guides/tools.html)
+centrally managed server infrastructure.   [Ralsh](./tools.html)
 is also a great way to get your feet wet exploring the Puppet model,
 after you have read some of the basic information -- you can quickly see how
 the declarative model works for simple things like users, services, and file permissions.   
@@ -63,7 +63,7 @@ on how information passes between layers:
 
 ![image](http://puppetlabs.com/images/Puppet_Layers.png)
 
-See also [Configuring Puppet](/guides/configuring.html).  For more information about components (puppetmasterd, puppetd, puppet, and so on), see the [Tools](/guides/tools.html) section.
+See also [Configuring Puppet](./configuring.html).  For more information about components (puppetmasterd, puppetd, puppet, and so on), see the [Tools](/guides/tools.html) section.
   
 Features of the System
 ----------------------
@@ -102,7 +102,7 @@ users the same, whether the user is stored in NetInfo or
 `/etc/passwd`.  We call these system entities
 `resources`.
 
-Ralsh, listed in the [Tools](/guides/tools.html) section is a fun way to 
+Ralsh, listed in the [Tools](./tools.html) section is a fun way to 
 try out the RAL before you get too deep into Puppet language.
 
 ### Model & Graph Based
@@ -115,7 +115,7 @@ that implementation is fulfilled on a particular operating system,
 for instance, a Linux user versus an OS X user can be talked about in the same way
 but are implemented differently inside of Puppet.
 
-See [Type Guides](/guides/types/) for a list of managed types
+See [Type Guides](./types/) for a list of managed types
 and information about how to use them.
 
 #### Providers
@@ -169,6 +169,6 @@ Learning The Language
 Seeing a few examples in action will greatly help in learning the system.
 
 For information about the Puppet language, see the excellent
-[Language Tutorial](/guides/language_tutorial.html)
+[Language Tutorial](./language_tutorial.html)
 
 

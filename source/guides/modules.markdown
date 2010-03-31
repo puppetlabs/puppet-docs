@@ -118,7 +118,7 @@ mention these in your `README`, so people can at least see exactly
 what your module expects from these generic dependencies, and
 possibly integrate them into their own regular manifests.
 
-(See [Plugins In Modules](/guides/plugins_in_modules.html) for info on how to put custom types and
+(See [Plugins In Modules](./plugins_in_modules.html) for info on how to put custom types and
 facts into modules in the plugins/ subdir)
 
 ## Example
@@ -273,7 +273,7 @@ page.
 ## See Also
 
 Distributing custom facts and types via modules: [Plugins In
-Modules](/guides/plugins_in_modules.html)
+Modules](./plugins_in_modules.html)
 
 
 

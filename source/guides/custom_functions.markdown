@@ -251,7 +251,7 @@ that you still have a problem (and you'll more than likely get a
 Referencing Custom Functions In Templates
 -----------------------------------------
 
-To call a custom function within a [Puppet Template](/guides/templating.html), you can do:
+To call a custom function within a [Puppet Template](./templating.html), you can do:
 
    <%= scope.function_namegoeshere(["one","two"]) %>
 

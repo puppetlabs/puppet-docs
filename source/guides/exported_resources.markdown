@@ -2,7 +2,7 @@ Exporting and Collecting Resources
 ==================================
 
 Exporting and collecting resources is an extension of [Virtual
-Resources](/guides/virtual_resources.html) . Puppet provides an experimental superset of virtual
+Resources](./virtual_resources.html) . Puppet provides an experimental superset of virtual
 resources, using a similar syntax. In addition to these resources
 being virtual, they're also "exported" to other hosts on your
 network.

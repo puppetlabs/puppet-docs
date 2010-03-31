@@ -17,7 +17,7 @@ puppetmasterd
 
 Puppetmasterd is a central management daemon.  In most installations, you'll have one puppetmasterd
 server and each managed machine will run 'puppetd'.   By default, puppetmasterd runs a certificate
-authority, which you can read more about in the [security section](/guides/security.html).
+authority, which you can read more about in the [security section](./security.html).
 
 Puppetmasterd will automatically serve up puppet orders to managed systems, as well as files and
 templates.   

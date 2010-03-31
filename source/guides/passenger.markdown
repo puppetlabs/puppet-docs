@@ -10,7 +10,7 @@ Supported Versions
 ------------------
 
 Passenger support is present in release 0.24.6 and later versions only.  For earlier
-versions, consider [Using Mongrel](/guides/mongrel.html).
+versions, consider [Using Mongrel](./mongrel.html).
 
 Why Passenger
 -------------
