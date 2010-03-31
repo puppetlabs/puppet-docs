@@ -1,4 +1,0 @@
-The `puppetd` executable
-========================
-
-* * *

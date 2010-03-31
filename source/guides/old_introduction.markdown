@@ -318,7 +318,7 @@ you'll want to start the service:
 We've introduced a couple of new things here. First is the
 `$operatingsystem` variable. This variable is set, along with many
 others, in the top-level scope by the parser, which gets the values
-from [Facter](/projects/facter) -- you can get a list of all
+from [Facter](../projects/facter) -- you can get a list of all
 available variables by just running the stand-alone `facter`
 script, but you'll also want to know about `$ipaddress` and
 `$hostname`, just to start.

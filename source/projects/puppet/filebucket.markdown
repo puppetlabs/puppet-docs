@@ -1,4 +1,0 @@
-The `filebucket` executable
-===========================
-
-* * *
