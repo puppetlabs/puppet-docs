@@ -14,7 +14,8 @@ Examples
 
     host { 'peer':
         ip => '192.168.1.121',
-        ensure => 'present'
+        host_aliases => [ "foo", "bar" ],
+        ensure => 'present',
     }
 {:puppet}
 
@@ -22,12 +23,10 @@ Examples
 Parameters
 ----------
 
-### `alias`
+### `host_aliases`
 
-Any alias the host might have. Multiple values must be specified as
-an array. Note that this state has the same name as one of the
-metaparams; using this state to set aliases will make those aliases
-available in your Puppet scripts and also on disk.
+Any aliases the host might have. Multiple values must be specified as
+an array
 
 ### `ensure`
 
