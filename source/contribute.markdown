@@ -71,9 +71,9 @@ screencasts](http://learn.github.com/).
 ### Submit a Ticket
 
 Visit the [Puppet Documentation
-Project](http://projects.reductivelabs.com/projects/puppet-docs/) and
+Project](http://projects.puppetlabs.com/projects/puppet-docs/) and
 submit a ticket.  You'll need to create a [Redmine
-account](http://projects.reductivelabs.com/account/register) if you
+account](http://projects.puppetlabs.com/account/register) if you
 don't already have one.
 
 In your ticket, provide:
