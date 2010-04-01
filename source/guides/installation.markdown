@@ -57,7 +57,7 @@ Installing Facter From Source
 -----------------------------
 
 The facter library is a prerequisite for Puppet. Like Puppet, there are
-[packages](http://www.puppetlabs.com/downloads/packages/)
+[packages](http://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet)
 available for most platforms, though you may want to use the
 tarball if you would like to try a newer version or are using
 a platform without an OS package:
