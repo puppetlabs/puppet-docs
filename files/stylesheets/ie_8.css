@@ -1,0 +1,245 @@
+.site-width,
+ul.categories a,
+body.single article section nav,
+ul.users li.user,
+div.primary-secondary-content,
+div.primary-secondary-content .primary-content,
+div.primary-secondary-content .secondary-content,
+ul.features li.feature,
+div#copyright .vcard span.org,
+div#copyright .vcard .adr:before,
+div#copyright .vcard .adr,
+.tec-events .tec-event .event{
+	height: 1%;
+}
+
+/* @group Header */
+
+header#header,
+header#header ul,
+header#header ul li,
+header#header ul li ul,
+header#header ul li ul li,
+header#header ul li ul li a {
+	z-index: 5;
+	position: relative;
+}
+
+#header ul#misc-navigation{
+	width: 340px !important;
+}
+
+header#header ul#global-navigation > li{
+	vertical-align: top;
+}
+
+header#header ul#global-navigation > li#community-tab{
+	margin-top: 0;
+}
+
+header#header ul#global-navigation > li > a {
+	z-index: 6;
+}
+
+
+header#header h1 a {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}
+
+header#header h1 a:hover{
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+header#header ul a span.drop-down-trigger {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+header#header ul#global-navigation > li > a:active span.drop-down-trigger {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+
+
+header#header ul li:hover span.drop-down-trigger,
+header#header a:hover span.drop-down-trigger {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+
+/* @end */
+
+/* @group Masthead */
+
+body.single section#masthead h1{
+  float: left;
+  margin-left: 60px;
+}
+
+body.single section#masthead a.back{
+	position: absolute;
+	left: 0;
+}
+
+section#masthead a.back span {
+}
+
+section#masthead a.back:hover span {
+}
+
+/* @end */
+
+/* @group Footer */
+
+footer#footer ul li a:hover span {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+/* @end */
+
+section#content{
+  z-index: 1;
+}
+
+
+/* @group Layouts */
+
+/* @group Home */
+
+body#home .scroll{
+  overflow: hidden;
+  position: relative;
+}
+
+body#home #masthead .site-width {
+  padding-top: 3em;
+  padding-bottom: 1em;
+  background: url(images/puppet-logo-280-colorized.png) left -80px no-repeat;
+  height: 320px !important;
+  zoom: 1;
+}
+
+body#home section#masthead h1{
+	width: 500px;
+}
+
+body#home section#masthead p{
+  margin-left: 420px;
+}
+
+/* @end */
+
+/* @group Blog */
+
+/* @group Masthead */
+
+body.blog #masthead,
+body.blog #masthead ol,
+body.blog #masthead ol li,
+body.blog #masthead ol li ul{
+  position: relative;
+  z-index: 2;
+}
+
+body.blog #masthead ol > li.active > ul,
+body.blog #masthead ol li.with-submenu > ul {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+body.blog #masthead ol li:hover span.drop-down-trigger {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+
+
+/* @end */
+
+/* @group Sidebar */
+
+#subscription-section{
+  margin-top: 1em;
+}
+
+#subscription-section a {
+	line-height: 1em;
+}
+
+#subscription-section a span.count {
+	position: relative;
+	top: 0.25em;  
+}
+
+#subscription-section a span.label{
+	position: relative;
+	top: -0.5em;
+}
+
+.secondary-content section button {
+	padding: 0.25em 0 0;
+	line-height: 1em;
+	zoom: 1;
+	position: relative;
+	top: -1.33em;
+}
+
+#mailing-lists-section a.gateway+a.gateway {
+	margin-left: 0.4em;
+	margin-right: -1em;
+}
+
+
+/* @end */
+
+#subscription-section span.indicator {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);
+}
+
+#subscription-section a:hover span.indicator {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+ul.threads li.thread span.indicator {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+
+ul.threads li.thread:hover span.indicator {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+/* @end */
+
+/* @group Resources */
+
+body#resources.docs #masthead li.with-submenu dl {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+body#resources.docs #masthead li.active.with-submenu dl {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+body#resources.docs #masthead ol li:hover span.drop-down-trigger {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Shared */
+
+.events .event span.indicator {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+
+.events .event:hover span.indicator {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+/* @end */
+
+/* @group Form */
+
+label.error {
+  height: auto;
+}
+
+/* @end */

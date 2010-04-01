@@ -24,9 +24,20 @@
   	<!--
        <link rel="stylesheet" href="http://puppetlabs.com/wp-content/themes/puppetlabs/javascripts/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen">
         -->
-  
-	<link rel="stylesheet" type="text/css" href="http://puppetlabs.com/wp-content/themes/puppetlabs/style.css" media="screen">
 
+        <!-- this is rather dumb but we want the docs to work in offline mode where absolute URLs do not work -->  
+        <!-- the CSS is far too large to embed and needs to be pared down -->
+
+	<link rel="stylesheet" type="text/css" href="./files/stylesheets/style.css" media="screen"> <!-- index -->
+	<link rel="stylesheet" type="text/css" href="../files/stylesheets/style.css" media="screen"> <!-- guides -->
+	<link rel="stylesheet" type="text/css" href="../../files/stylesheets/style.css" media="screen"> <!-- guides/something -->
+	<link rel="stylesheet" type="text/css" href="../../../files/stylesheets/style.css" media="screen"> <!-- guides/something/something -->
+
+        <!--
+	<link rel="stylesheet" type="text/css" href="http://puppetlabs.com/wp-content/themes/puppetlabs/style.css" media="screen">
+        -->
+
+    <!-- IE won't work so well in offline mode -->
     <!--[if IE 7]>
       <link rel="stylesheet" type="text/css" href="http://puppetlabs.com/wp-content/themes/puppetlabs/ie_7.css" media="screen">
     <![endif]-->
