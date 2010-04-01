@@ -21,15 +21,65 @@ about them. It does not directly modify /etc/passwd or anything.
 -   **manages\_solaris\_rbac**: The provider can manage roles and
     normal users
 
-================ ================= ===============
-================= ==================== Provider allows\_duplicates
-manages\_homedir manages\_passwords manages\_solaris\_rbac
-================ ================= ===============
-================= ==================== directoryservice **X**
-hpuxuseradd **X** **X** ldap **X** pw **X** **X** user\_role\_add
-**X** **X** **X** **X** useradd **X** **X** ================
-================= =============== =================
-====================
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="20%" />
+<col width="18%" />
+<col width="20%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Provider</th>
+<th class="head">allows_duplicates</th>
+
+<th class="head">manages_homedir</th>
+<th class="head">manages_passwords</th>
+<th class="head">manages_solaris_rbac</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>directoryservice</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr><td>hpuxuseradd</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>ldap</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr><td>pw</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>user_role_add</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+<td><strong>X</strong></td>
+</tr>
+<tr><td>useradd</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
 
 ### Parameters
 

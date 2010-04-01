@@ -5,11 +5,6 @@ Manage groups.
 
 * * *
 
-Requirements
-------------
-
-Differs by provider, [see below][provider].
-
 Platforms
 ---------
 
@@ -76,6 +71,37 @@ such as OS X, group membership is managed as an
 attribute of the group, not the user record. Providers must have
 the feature `manages_members` to manage the `members` property of
 a group record.
+
+
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Provider</th>
+
+<th class="head">manages_members</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>directoryservice</td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>groupadd</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>ldap</td>
+<td>&nbsp;</td>
+
+</tr>
+<tr><td>pw</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
 
 Available providers are:
 

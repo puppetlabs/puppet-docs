@@ -33,20 +33,205 @@ Features
     package database for installed version(s), and can select which out
     of a set of available versions of a package to install if asked.
 
-=========== =========== ========= ============= ===========
-=========== Provider installable purgeable uninstallable
-upgradeable versionable =========== =========== =========
-============= =========== =========== appdmg **X** apple **X** apt
-**X** **X** **X** **X** **X** aptitude **X** **X** **X** **X**
-**X** aptrpm **X** **X** **X** **X** **X** blastwave **X** **X**
-**X** darwinport **X** **X** **X** dpkg **X** **X** **X** **X**
-fink **X** **X** **X** **X** **X** freebsd **X** **X** gem **X**
-**X** **X** **X** hpux **X** **X** openbsd **X** **X** pkgdmg **X**
-portage **X** **X** **X** **X** ports **X** **X** **X** rpm **X**
-**X** **X** **X** rug **X** **X** **X** **X** sun **X** **X** **X**
-sunfreeware **X** **X** **X** up2date **X** **X** **X** urpmi **X**
-**X** **X** **X** yum **X** **X** **X** **X** **X** ===========
-=========== ========= ============= =========== ===========
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="14%" />
+<col width="20%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Provider</th>
+<th class="head">installable</th>
+
+<th class="head">purgeable</th>
+<th class="head">uninstallable</th>
+<th class="head">upgradeable</th>
+<th class="head">versionable</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>appdmg</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>apple</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>apt</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>aptitude</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+<td><strong>X</strong></td>
+</tr>
+<tr><td>aptrpm</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>blastwave</td>
+
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>darwinport</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+<td>&nbsp;</td>
+</tr>
+<tr><td>dpkg</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>fink</td>
+<td><strong>X</strong></td>
+
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>freebsd</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+<tr><td>gem</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>hpux</td>
+<td><strong>X</strong></td>
+
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>openbsd</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>pkgdmg</td>
+
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>portage</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+</tr>
+<tr><td>ports</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>rpm</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>rug</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+</tr>
+<tr><td>sun</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>sunfreeware</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>up2date</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr><td>urpmi</td>
+<td><strong>X</strong></td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>yum</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+</tbody>
+</table>
+
 
 Parameters
 ----------

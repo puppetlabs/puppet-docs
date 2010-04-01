@@ -28,12 +28,79 @@ Features
 -   **enableable**: The provider can enable and disable the service
 -   **refreshable**: The provider can restart the service.
 
-=========== ============ ========== =========== Provider
-controllable enableable refreshable =========== ============
-========== =========== base **X** daemontools **X** **X** debian
-**X** **X** freebsd **X** **X** gentoo **X** **X** init **X**
-launchd **X** **X** redhat **X** **X** runit **X** **X** smf **X**
-**X** =========== ============ ========== ===========
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="27%" />
+<col width="23%" />
+<col width="25%" />
+
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Provider</th>
+<th class="head">controllable</th>
+<th class="head">enableable</th>
+<th class="head">refreshable</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>base</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+<td><strong>X</strong></td>
+</tr>
+<tr><td>daemontools</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>debian</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+
+</tr>
+<tr><td>freebsd</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>gentoo</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+
+<tr><td>init</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>launchd</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>redhat</td>
+
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>runit</td>
+<td>&nbsp;</td>
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+<tr><td>smf</td>
+<td>&nbsp;</td>
+
+<td><strong>X</strong></td>
+<td><strong>X</strong></td>
+</tr>
+</tbody>
+</table>
 
 Parameters
 ----------
