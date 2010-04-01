@@ -64,12 +64,4 @@ Resources Types are the building blocks of your Puppet configuration.
 
 * [exec](exec.html)
 
-* * * * *
 
-### Puppet Tools
-
-* [filebucket](filebucket.html)
-* [notify](notify.html)
-* [resources](resources.html)
-* [schedule](schedule.html)
-* [tidy](tidy.html)
