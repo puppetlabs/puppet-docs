@@ -3,6 +3,8 @@ Puppet Docs
 
 Welcome to the Puppet documentation site. 
 
+An downloadable version of this guide may be found on our [downloads page](http://www.puppetlabs.com/resources/downloads/).
+
 * * *
 
 Getting Started
