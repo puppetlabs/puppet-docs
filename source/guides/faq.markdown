@@ -181,7 +181,18 @@ should build on the RHEL and CentOS variants.
 
 ## How do I use Puppet's graphing support?
 
-See [Puppet Graphs](./graphs.html)
+Puppet has graphing support capable of creating graph files of the
+relationships between your Puppet client configurations. 
+
+The graphs are created by and on the
+client, so you must enable `graph=true` in your Puppet.conf and
+set `graphdir` to the directory where graphs should be output.  The
+resultant files will be created in `dot` format which is readable by 
+[OmniGraffle](http://www.omnigroup.com/applications/omnigraffle/) (OS X)
+or [graphviz](http://www.graphviz.org/).   To generate a visual from
+the dot file in graphviz, run the following:
+
+    dot -Tpng /var/puppet/state/graphs/resources.dot -o /tmp/configuration.png
 
 ## How do all of these variables, like $operatingsystem, get set?
 
