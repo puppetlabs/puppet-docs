@@ -1,3 +1,5 @@
+/* @override http://localhost:9292/files/stylesheets/style.css */
+
 /* @override 
 	http://puppetlabs.com/wp-content/themes/puppetlabs/style.css
 	http://puppetlabs.com/wordpress/wp-content/themes/puppetlabs/style.css
@@ -446,7 +448,7 @@ header#header h1 a {
 	display: block;
 	height: 100%;
 	width: 100%;
-  background: url(images/puppet-labs.png) left center no-repeat;
+  background: url(images/puppet-labs.png) no-repeat left center;
   position: relative;
   opacity: 0.5;
   -webkit-transition: 0.33s linear;
