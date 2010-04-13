@@ -1,13 +1,17 @@
+rm -rf output
+mkdir output
 rake generate
 # very lame hack to make docs usable via relative paths
 # for downloaded copies, which requires that HTML
 # versions also have relative paths.  
-cp -r output/files output/guides/files
-cp -r output/files output/guides/types/files
-cp -r output/files output/guides/types/nagios/files
-cp -r output/files output/guides/types/selinux/files
-cp -r output/files output/guides/types/ssh/files
-cp -r output/files output/references/files
+cd output
+ln -s ../files guides/files
+ln -s ../../files guides/types/files
+ln -s ../../../files guides/types/nagios/files
+ln -s ../../../files guides/types/selinux/files
+ln -s ../../files guides/types/ssh/files
+ln -s ../files references/files
+cd -
 now=`date '+%m-%d-%y'`
 filename="puppetdocs-$now.tar"
 (rm $filename)

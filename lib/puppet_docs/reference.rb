@@ -43,7 +43,7 @@ module PuppetDocs
         if raw_content
           setup_destination!
           content = nil
-          IO.popen("rst2html.py", "w+") do |rst2html|
+          IO.popen("rst2html", "w+") do |rst2html| # was rst2html.py ... why?
             rst2html.write raw_content
             rst2html.close_write
             content = rst2html.read

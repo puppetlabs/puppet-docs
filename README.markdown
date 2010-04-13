@@ -28,9 +28,19 @@ Steps for installing the documentation-generating code:
     Install librack-ruby1.8 using your package manager.   The
     name of the package may vary by platform.
 
+    Also install python-docutils which is needed to build
+    the generated reference docs.
+ 
     $ rake serve
 
     Note: Use `rake run` to combine these last two steps.
+
+Build Generated Docs For A Given Puppet Version
+-----------------------------------------------
+
+$ VERSION=0.25.0 rake references:puppetdoc 
+
+requires python-docutils
 
 Errors and Omissions
 --------------------

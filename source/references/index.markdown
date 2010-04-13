@@ -11,6 +11,7 @@ Puppetdoc-generated references are available for a wide range of versions.
 Available Versions
 ------------------
 
+* [0.25.4](0.25.4/)
 * [0.25.3](0.25.3/)
 * [0.25.2](0.25.2/)
 * [0.25.1](0.25.1/)
