@@ -1,14 +1,6 @@
-/* @override http://localhost:9292/files/stylesheets/style.css */
+/* @override http://local.puppetlabs.com/wordpress/wp-content/themes/puppetlabs/style.css */
 
-/* @override 
-	http://puppetlabs.com/wp-content/themes/puppetlabs/style.css
-	http://puppetlabs.com/wordpress/wp-content/themes/puppetlabs/style.css
-	http://puppetlabs.com/wordpress/wp-content/themes/puppetlabs/style.css
-	http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/style.css
-	http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/style.css
-	http://puppetlabs.designerandrew.com/wordpress/wp-content/themes/puppetlabs/style.css
-	http://puppetlabs.com/wp-content/themes/puppetlabs/style.css
-*/
+/* @override http://www.puppetlabs.com/wp-content/themes/puppetlabs/style.css */
 
 /*
 Theme Name: Puppet Labs
@@ -22,9 +14,9 @@ Tags: minimalist, html5
 	Puppet Labs v1.0
 	http://diggingintowordpress.com/
 
-  This theme is based off of the H5 theme, which was lovingly
-  designed and developed by Jeff Starr. That guy blogs at 
-  perishablepress.com and designs at monzilla.biz.
+  This theme is based off of the H5 theme. It was developed by
+  Andrew Maier. He blogs at http://uxbooth.com and designs
+  stuff at http://designerandrew.com
 
 */
 
@@ -98,10 +90,18 @@ body {
   background: #ccc;
 }
 
+/* @group Accessiblity */
+
+.screen-reader-content {
+  display: none !important;
+}
+
+/* @end */
+
 /* @group Animations */
 
 @-webkit-keyframes pulse-dark{
-	0%{
+	0% {
 	   background-color: rgba(0,0,0,0.25);
 	}
 	
@@ -123,7 +123,6 @@ body {
   min-width: 940px;
   margin: 0 auto;
   position: relative;
-
 /*background: url(images/grid.png) !important;*/
 }
 
@@ -134,14 +133,6 @@ body {
   height: 0;
   visibility: hidden;
 }
-
-/* @group Accessiblity */
-
-.screen-reader-content {
-  display: none !important;
-}
-
-/* @end */
 
 /* @group Typography */
 
@@ -448,7 +439,7 @@ header#header h1 a {
 	display: block;
 	height: 100%;
 	width: 100%;
-  background: url(images/puppet-labs.png) no-repeat left center;
+  background: url(images/puppet-labs.png) left center no-repeat;
   position: relative;
   opacity: 0.5;
   -webkit-transition: 0.33s linear;
@@ -793,7 +784,7 @@ section#masthead a.back span {
   color: white;
   font-size: 1em;
   -webkit-border-radius: 4px;
-  -moz-border-radius: ;
+  -moz-border-radius: 4px;
   opacity: 0;
   visibility: hidden;
 	position: absolute;
@@ -1110,7 +1101,7 @@ body#home section#masthead ul li.download a span.indicator {
 }
 
 body#home section#masthead ul li:after {
-  content: "♦";
+  content: "";
   padding-left: 0.67em;
   color: #fff8e5;
 }
@@ -2484,6 +2475,7 @@ body.page-id-1159 ul.local-navigation li.page-item-1159 > a {
 ul.users {
   margin-right: -300px;
 }
+
 ul.users li.user {
   margin-bottom: 2.5em;
   position: relative;
@@ -2494,6 +2486,66 @@ ul.users li.user {
   -webkit-transition: 0.5s;
 -moz-transition: 0.5s;
 }
+
+ul.users:hover li.user a.case-study{  
+}
+
+ul.users li.user.with-case-study span.indicator{
+	background: url(images/icons/16/16x16/doc_lines.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+	position: absolute;
+	top: 1em;
+	right: 0;  
+	opacity: 0.5;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out; 
+}
+
+ul.users li.user.with-case-study img{
+	-webkit-transition: 0.75s;
+	-moz-transition: 0.75s; 
+}
+
+ul.users li.user.with-case-study:hover img{
+	opacity: 0.5;
+}
+
+ul.users li.user.with-case-study:hover span.indicator{
+	opacity: 1;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out; 
+}
+
+ul.users li.user a.gateway{
+  background: #555;
+  background: rgba(0,0,0,0.67);
+  color: white;
+  padding: 0.5em;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  width: 150px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+	-webkit-transition: 0.125s;
+	-moz-transition: 0.125s;
+}
+
+ul.users li.user.with-case-study:hover a.gateway{
+	opacity: 1;
+	visibility: visible;
+}
+
+ul.users li.user a.gateway:hover{
+  text-decoration: underline;
+  background: rgba(0,0,0,0.85);
+}
+
+
 
 ul.users li.user:nth-child(5n+5){
 	margin-right: 0;
@@ -2512,6 +2564,7 @@ ul.users li.user h3 {
   padding-bottom: 0.5em;
   color: #555;
   font-size: 1em;
+  margin-top: 0;
 }
 
 ul.users li.user h3 a{
@@ -3980,55 +4033,66 @@ div.wp-pagenavi span.current {
 
 /* @group JS Plugins */
 
-/* @group jCarousel */
+/* @group infiniteCarousel */
 
-.jcarousel-container {
+.infiniteCarousel {
+  width: 540px;
   position: relative;
+  height: 160px;
 }
 
-.jcarousel-clip {
-  z-index: 2;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  position: relative;
+.infiniteCarousel h3{
+	display: none !important;
 }
 
-.jcarousel-list {
-  z-index: 1;
-  overflow: hidden;
-  position: relative;
+
+.infiniteCarousel .wrapper {
+  width: 540px; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
+  overflow: auto;
+  height: 160px;
+  position: absolute;
   top: 0;
-  left: 0;
-  margin: 0;
-  padding: 0;
 }
 
-.jcarousel-list li,
-.jcarousel-item {
+.infiniteCarousel .wrapper ul {
+  width: 540px; /* single item * n */
+  position: absolute;
+  top: 0;
+}
+
+.infiniteCarousel ul li {
+  display: block;
   float: left;
-  list-style: none;
-  /* We 
-
-set the width/height explicitly. No width/height causes infinite loops. */
-    width: 180px;
-  height: 180px;
+  height: 160px;
+  width: 160px;
+  padding-right: 20px;
 }
 
-/**
- * The buttons are added dynamically by jCarousel before
- * the <ul> list (inside the <div> described above) and
- * have the classnames "jcarousel-next" and "jcarousel-prev".
- */
+.infiniteCarousel ul li img{
+  vertical-align: top;
+  width: 100%;
+}
 
-.jcarousel-next {
-  z-index: 3;
+.infiniteCarousel .arrow {
   display: none;
 }
 
-.jcarousel-prev {
-  z-index: 3;
-  display: none;
+.infiniteCarousel .forward {
+  background-position: 0 0;
+  right: 0;
+}
+
+.infiniteCarousel .back {
+  background-position: 0 -72px;
+  left: 0;
+}
+
+.infiniteCarousel .forward:hover {
+  background-position: 0 -36px;
+}
+
+.infiniteCarousel .back:hover {
+  background-position: 0 -108px;
 }
 
 
