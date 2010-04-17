@@ -100,7 +100,7 @@ that they are corrected within a reasonable time frame.
 
 If you have identified an issue then please send an email to the
 Security mailbox
-\<[security@reductivelabs.net](mailto:security@reductivelabs.net)>
+\<[security@puppetlabs.net](mailto:security@puppetlabs.net)>
 with the details.
 
 ### Recent Notifications

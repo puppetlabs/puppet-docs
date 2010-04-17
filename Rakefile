@@ -103,7 +103,7 @@ end
 
 #desc "Release the documentation (Puppet Labs Only)"
 #task :release do
-#  sh "rsync -e ssh -avz output/ docadmin@reductivelabs.com:/var/www/docs/html"
+#  sh "rsync -e ssh -avz output/ docadmin@puppetlabs.com:/var/www/docs/html"
 #end
 
 #require 'spec/rake/spectask'

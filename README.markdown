@@ -68,7 +68,7 @@ Contributing Changes
   sure you note the location of the repository and branch.
 
 [1]: http://projects.puppetlabs.com/projects/puppet-docs
-[2]: http://reductivelabs.com/trac/puppet/wiki
+[2]: http://projects.puppetlabs.com/projects/puppet/wiki/
 [3]: http://github.com
 
 Copyright
