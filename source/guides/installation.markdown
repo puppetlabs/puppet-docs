@@ -17,7 +17,7 @@ manager of choice.  For a few platforms, you will need to install
 using the [tarball](http://www.puppetlabs.com/downloads/puppet/) or
 [RubyGems](http://www.puppetlabs.com/downloads/gems/).
 
-INFO: For instructions on installing puppet using a distribution-specific package manager, consult your operating system documentation.  Volunteer contributed operating system packages can also be found on the [downloads page](http://puppetlabs.com/trac/puppet/wiki/DownloadingPuppet)
+INFO: For instructions on installing puppet using a distribution-specific package manager, consult your operating system documentation.  Volunteer contributed operating system packages can also be found on the [downloads page](http://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet)
 
 Ruby Prerequisites
 ------------------
@@ -50,7 +50,7 @@ If you feel the particular need to build Ruby manually, you can get the source f
 OS Packages
 -----------
 
-If installing from a distribution maintained package, such as those listed on [Downloading Puppet Wiki Page](http://puppetlabs.com/trac/puppet/wiki/DownloadingPuppet) all OS prerequisites should be handled by your package manager.  See the Wiki for information on how to enable repositories for your particular OS.  Usually the latest stable version is available as a package.  If you would like to do puppet-development or see the latest versions, however, you will want to install from source.
+If installing from a distribution maintained package, such as those listed on the [Downloading Puppet Wiki Page](http://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet) all OS prerequisites should be handled by your package manager.  See the Wiki for information on how to enable repositories for your particular OS.  Usually the latest stable version is available as a package.  If you would like to do puppet-development or see the latest versions, however, you will want to install from source.
 
 
 Installing Facter From Source
