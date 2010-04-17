@@ -98,10 +98,10 @@ namespace :references do
 end
 
 #
-# Reductive Labs Only:
+# Puppet Labs Only:
 # DISABLED FOR NOW, not the right location
 
-#desc "Release the documentation (Reductive Labs Only)"
+#desc "Release the documentation (Puppet Labs Only)"
 #task :release do
 #  sh "rsync -e ssh -avz output/ docadmin@reductivelabs.com:/var/www/docs/html"
 #end

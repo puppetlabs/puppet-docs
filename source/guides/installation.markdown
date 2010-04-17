@@ -25,7 +25,7 @@ Ruby Prerequisites
 The only prerequisite for Puppet that doesn't come as part of the
 Ruby standard library is
 [facter](http://www.puppetlabs.com/projects/facter/index.html),
-which is also developed by Reductive Labs.
+which is also developed by Puppet Labs.
 
 All other prerequisites Ruby libraries should come with any standard Ruby 1.8.2+ install.  Should your OS not come with the complete standard
 library (or you are using a custom Ruby build), these include:

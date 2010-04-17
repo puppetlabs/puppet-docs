@@ -92,7 +92,7 @@ tutorials listed on the
 Start the Central Daemon
 ------------------------
 
-Most sites should only need one central puppet server. Reductive Labs
+Most sites should only need one central puppet server. Puppet Labs
 will be publishing a document describing best practices for scale-out
 and failover, though there are various ways to address handling
 in larger infrastructures.  For now, we'll explain how to

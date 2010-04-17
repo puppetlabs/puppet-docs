@@ -5,7 +5,7 @@ Learn what platforms are supported.
 
 * * * 
 
-Please [contact Reductive Labs](http://puppetlabs.com/contact/) if you are interested in a platform
+Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform
 not on this list.
 
 Linux

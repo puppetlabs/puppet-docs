@@ -31,7 +31,7 @@ Make sure you have [Git][1]:
 Get the Source
 --------------
 
-Puppet relies on another Reductive Labs library,
+Puppet relies on another Puppet Labs library,
 [Facter][2]. Create a working directory and get them both:
 
     $ SETUP_DIR=~/git

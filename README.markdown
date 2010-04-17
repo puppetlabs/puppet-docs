@@ -74,6 +74,6 @@ Contributing Changes
 Copyright
 ---------
 
-Copyright (c) 2009-2010 Reductive Labs. See LICENSE for details.
+Copyright (c) 2009-2010 Puppet Labs. See LICENSE for details.
 
 

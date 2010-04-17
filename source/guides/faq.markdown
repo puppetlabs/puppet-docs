@@ -94,7 +94,7 @@ can always find the latest release on the
 
 ## I have found a security issue in Puppet. Who do I tell?
 
-Reductive Labs and the Puppet project take security very seriously.
+Puppet Labs and the Puppet project take security very seriously.
 We handle all security problems brought to our attention and ensure
 that they are corrected within a reasonable time frame.
 
