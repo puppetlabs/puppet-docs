@@ -474,10 +474,10 @@ In these cases, writing an [External Nodes](./external_nodes.html)
 script can help, and that can take the place of your node definitions.  See
 that section for more information.
 
-To Be Continued
----------------
+The Extended Language Tutorial
+------------------------------
 
-The [Extend Language Tutorial](./more_language.html) offers more
+The [Extended Language Tutorial](./more_language.html) offers more
 features of the Puppet language, including details on variable scoping,
 conditional expressions, and other features.  You may also learn a lot
 about the language by browsing through [Puppet Modules](./modules.html)
