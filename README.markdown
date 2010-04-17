@@ -67,7 +67,7 @@ Contributing Changes
 * [Submit a ticket][1] requesting your contribution be added, and make
   sure you note the location of the repository and branch.
 
-[1]: http://projects.reductivelabs.com/projects/puppet-docs
+[1]: http://projects.puppetlabs.com/projects/puppet-docs
 [2]: http://reductivelabs.com/trac/puppet/wiki
 [3]: http://github.com
 

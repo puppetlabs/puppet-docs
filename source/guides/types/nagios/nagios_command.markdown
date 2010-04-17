@@ -38,7 +38,7 @@ provider for your platform. Available providers are:
 
 #### `naginator`
 
-Uses [Naginator](http://projects.reductivelabs.com/projects/naginator)
+Uses [Naginator](http://projects.puppetlabs.com/projects/naginator)
 
 ### `target`
 
