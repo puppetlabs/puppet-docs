@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'pathname'
+require 'fileutils'
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
@@ -32,6 +33,23 @@ end
 
 desc "Generate docs and serve locally"
 task :run => [:generate, :serve]
+
+desc "Create tarball of documentation"
+task :tarball do
+  FileUtils.rm_rf 'output'
+  Rake::Task['generate'].invoke
+  FileUtils.cd('output')
+  FileUtils.ln_s '../files', 'guides/files'
+  FileUtils.ln_s '../../files', 'guides/types/files'
+  FileUtils.ln_s '../../../files', 'guides/types/nagios/files'
+  FileUtils.ln_s '../../../files', 'guides/types/selinux/files'
+  FileUtils.ln_s '../../files', 'guides/types/ssh/files'
+  FileUtils.ln_s '../files', 'references/files'
+  sh "tar -czf puppetdocs-latest.tar.gz *"
+  FileUtils.mv 'puppetdocs-latest.tar.gz', '..'
+  FileUtils.cd '..'
+  FileUtils.rm_rf 'output'
+end
 
 namespace :references do
 
