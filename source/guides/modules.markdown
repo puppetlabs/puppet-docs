@@ -58,9 +58,6 @@ version control, for example:
 
     svn:file:///Volumes/svn/repos/management/master/puppet.testing/trunk
 
-to set-up access for a testing Puppet master as is done manually in
-the Branch Testing.
-
 ## Naming
 
 Module names must be normal words, matching `[-\\w+]` 
@@ -87,7 +84,7 @@ and templates arranged in a specific directory structure:
           manifests/
              init.pp
              defaults.pp
-          plugins/
+          lib/
              puppet/
                 parser/
                    functions
@@ -96,6 +93,8 @@ and templates arranged in a specific directory structure:
              facter/
           templates/
           README
+
+*NOTE: In Puppet versions prior to 0.25.0 the `lib` directory was named `plugins`. Other directory names are unchanged.*
 
 Each module must contain a init.pp manifest file at the specified
 location. This manifest file can contain all the classes associated
