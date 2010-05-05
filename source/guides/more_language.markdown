@@ -39,6 +39,8 @@ not single quotes.   Single-quoted strings will not do any variable interpolatio
 To put a quote character or `$` in a double-quoted string where it would
 normally have a special meaning, precede it with an escaping `\`. For an actual `\`, use `\\`.
 
+We recommend using single quotes for all strings that do not require variable interpolation. Use double quotes for those strings that require variable interpolation.
+
 ### Capitalization
 
 Capitalization of resources is used in two major ways:
@@ -54,15 +56,15 @@ Capitalization of resources is used in two major ways:
 
 As mentioned in the class and resource examples above, Puppet allows usage of arrays in various areas.  Arrays are defined in puppet look like this:
 
-    [ "one", "two", "three" ]
+    [ 'one', 'two', 'three' ]
 
 Several type members, such as 'alias' in the 'host' definition
 definition accept arrays as their value. A host resource with
 multiple aliases would look like this:
 
-    host { "one.example.com":
-        alias  => [ "satu", "dua", "tiga" ],
-        ip     => "192.168.100.1",
+    host { 'one.example.com':
+        alias  => [ 'satu', 'dua', 'tiga' ],
+        ip     => '192.168.100.1',
         ensure => present,
     }
 
@@ -72,22 +74,22 @@ three aliases 'satu', 'dua', and 'tiga'.
 Or, for example, if you want a resource to require multiple other
 resources, the way to do this would be like this:
 
-    resource { "baz":
-        require  => [ Package["foo"], File["bar"] ],
+    resource { 'baz':
+        require  => [ Package['foo'], File['bar'] ],
     }
 
 Another example for array usage is to call a custom defined
 resource multiple times, like this:
 
     define php::pear() {
-        package { "php-${name}": ensure => installed }
+        package { "`php-${name}": ensure => installed }
     }
     
-    php::pear { ["ldap", "mysql", "ps", "snmp", "sqlite", "tidy", "xmlrpc"]: }
+    php::pear { ['ldap', 'mysql', 'ps', 'snmp', 'sqlite', 'tidy', 'xmlrpc']: }
 
 Of course, this can be used for native types as well:
 
-    file { [ "foo", "bar", "foobar" ]:
+    file { [ 'foo', 'bar', 'foobar' ]:
         owner => root,
         group => root,
         mode  => 600,
@@ -97,9 +99,9 @@ Of course, this can be used for native types as well:
 
 Puppet supports variables like most other languages you may be familiar with.  Puppet variables are denoted with `$`:
 
-    $content = "some content\n"
+    $content = 'some content\n'
     
-    file { "/tmp/testing": content => $content }
+    file { '/tmp/testing': content => $content }
 
 Puppet language is a declarative language, which means that its scoping and
 assignment rules are somewhat different than a normal imperative
@@ -109,11 +111,11 @@ on order in the file to determine the value of the variable.  Order
 does not matter in a declarative language.  Doing so will result in an error:
 
     $user = root
-    file { "/etc/passwd":
+    file { '/etc/passwd':
         owner => $user,
     }
     $user = bin
-    file { "/bin":
+    file { '/bin':
         owner   => $user,
         recurse => true,
     }
@@ -121,23 +123,23 @@ does not matter in a declarative language.  Doing so will result in an error:
 Rather than reassigning variables, instead use the built in conditionals:
 
     $group = $operatingsystem ? {
-        solaris => "sysadmin",
-        default => "wheel",
+        solaris => 'sysadmin',
+        default => 'wheel',
     }
 
 A variable may only be assigned once.  However you still can set the same variable in non-overlapping scopes. For example, to set top-level
 configuration values:
 
     node a {
-        $setting = "this"
+        $setting = 'this'
         include class_using_setting
     }
     node b {
-        $setting = "that"
+        $setting = 'that'
         include class_using_setting
     }
 
-In the above example, both "a" and "b" have different scopes, so this is
+In the above example, both 'a' and "b" have different scopes, so this is
 not reassignment of the same variable.
 
 #### Variable Scope
@@ -156,13 +158,13 @@ the code is defined.
 
 For example:
 
-    $test = "top"
+    $test = 'top'
     class myclass {
         exec { "/bin/echo $test": logoutput => true }
     }
     
     class other {
-        $test = "other"
+        $test = 'other'
         include myclass
     }
     
@@ -180,7 +182,7 @@ allows you to use variables defined in other classes.
 For example:
 
     class myclass {
-        $test = "content"
+        $test = 'content'
     }
     
     class anotherclass {
@@ -255,10 +257,10 @@ variable based on a fact or another variable. In addition to any
 number of specified values, selectors also allow you to specify a
 default if no value matches.  Here's a simple example:
 
-    file { "/etc/config":
+    file { '/etc/config':
         owner => $operatingsystem ? {
-            "sunos"   => "adm",
-            "redhat"  => "bin",
+            'sunos'   => 'adm',
+            'redhat'  => 'bin',
             default => undef,
         },
     }
@@ -271,8 +273,8 @@ the lack of quotes can cause syntax errors.
 Selectors can also be used in variable assignment:
 
     $owner = $operatingsystem ? {
-        sunos   => "adm",
-        redhat  => "bin",
+        sunos   => 'adm',
+        redhat  => 'bin',
         default => undef,
     }
 
@@ -280,7 +282,7 @@ In Puppet 0.25 and later, selectors can also be used with regular
 expressions:
 
     $owner = $operatingsystem ? {
-        /(redhat|debian)/   => "bin",
+        /(redhat|debian)/   => 'bin',
         default => undef,
     }
 
@@ -292,8 +294,8 @@ Like Perl and some other languages with regular expression support, captures in 
 limited scope variables (`$0` to `$n`):
 
     $system = $operatingsystem ? {
-        /(redhat|debian)/   => "our system is $1",
-        default => "our system is unknown",
+        /(redhat|debian)/   => 'our system is $1',
+        default => 'our system is unknown',
     }
 
 In this last example, `$1` will get replaced by the content of the
@@ -344,8 +346,8 @@ As with selectors (see above), regular expressions captures are also available.
 These create limited scope variables `$0` to `$n`:
 
     case $hostname {
-        /^j(ack|ill)$/:   { notice("Welcome $1!") } 
-        default:          { notice("Welcome stranger") }
+        /^j(ack|ill)$/:   { notice('Welcome $1!') } 
+        default:          { notice('Welcome stranger') }
     }
 
 In this last example, if `$host` is `jack` or `jill` then a notice
@@ -357,15 +359,15 @@ message will be logged with `$1` replaced by either `ack` or
 `if/else` provides branching options based on the truth value of a variable:
 
     if $variable {
-        file { "/some/file": ensure => present }
+        file { '/some/file': ensure => present }
     } else {
-        file { "/some/other/file": ensure => present }
+        file { '/some/other/file': ensure => present }
     }
 
 In Puppet 0.24.6 and later, the `if` statement can also branch
 based on the value of an expression:
 
-    if $server == "mongrel" {
+    if $server == 'mongrel' {
         include mongrel
     } else {
         include nginx
@@ -527,7 +529,7 @@ most systems, from highest to lowest:
 Comparison expressions include tests for equality using the `==`
 expression:
 
-    if $variable == "foo" {
+    if $variable == 'foo' {
         include bar
     } else {
         include foobar
@@ -537,13 +539,13 @@ expression:
 Here if `$variable` has a value of `foo`, Puppet will then include the `bar`
 class, otherwise it will include the `foobar` class.
 
-Here is another example shows the use of the `!=` ("not equal") comparison
+Here is another example shows the use of the `!=` ('not equal') comparison
 operator:
 
-    if $variable != "foo" {
-        $othervariable = "bar"
+    if $variable != 'foo' {
+        $othervariable = 'bar'
     } else {
-        $othervariable = "foobar"
+        $othervariable = 'foobar'
     }
 {:puppet}
 
@@ -578,7 +580,7 @@ In Puppet 0.25 and later, Puppet supports regular expression matching
 using `=~` (match) and `!~` (not-match) for example:
 
     if $host =~ /^www(\d+)\./ {
-        notice("Welcome web server #$1")
+        notice('Welcome web server #$1')
     }
 {:puppet}
 
@@ -609,7 +611,7 @@ here's the available operators in Backus Naur Form:
     
     <rightvalue> ::= <variable> | <function-call> | <literals>
     <literals> ::= <float> | <integer> | <hex-integer> | <octal-integer> | <quoted-string>
-    <regex> ::= "/regex/"
+    <regex> ::= '/regex/'
 
 Functions
 ---------
@@ -619,19 +621,19 @@ your own custom functions.
 
 Some functions can be used as a statement:
 
-    notice("Something weird is going on")
+    notice('Something weird is going on')
 {:puppet}
 
 (The notice function above is an example of a function that will log on the server)
 
 Or without parentheses:
 
-    notice "Something weird is going on"
+    notice 'Something weird is going on'
 {:puppet}
 
 Some functions instead return a value:
 
-    file { "/my/file": content => template("mytemplate.erb") }
+    file { '/my/file': content => template('mytemplate.erb') }
 {:puppet}
 
 All functions run on the puppetmaster (central server), so you only have access to the filesystem and resources on that host from your functions. The only exception to this is that the value of any Facter facts that have been sent to the master from your clients are also at your disposal.  See the [Tools Guide](./tools.html) for more information about these components.
@@ -648,8 +650,8 @@ directory as the file doing the importing.
 Files can also be imported using globbing, as implemented by Ruby's
 `Dir.glob` method:
 
-    import "classes/*.pp"
-    import "packages/[a-z]*.pp"
+    import 'classes/*.pp'
+    import 'packages/[a-z]*.pp'
 {:puppet}
 
 Best practices calls for organizing manifests into [Modules](./modules.html)

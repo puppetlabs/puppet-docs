@@ -50,7 +50,7 @@ versions of Puppet).  We would recommend starting with the 'guides'.
 Let's get started.   Here's a simple example of a resource in Puppet,
 where we are describing the permissions and ownership of a file:
 
-    file { "/etc/passwd":
+    file { '/etc/passwd':
         owner => root,
         group => root,
         mode  => 644,
@@ -67,10 +67,10 @@ operating systems?   For these cases,
 Puppet allows you to specify a local name in addition to the
 title:
 
-    file { "sshdconfig":
+    file { 'sshdconfig':
         name => $operatingsystem ? {
-            solaris => "/usr/local/etc/ssh/sshd_config",
-            default => "/etc/ssh/sshd_config",
+            solaris => '/usr/local/etc/ssh/sshd_config',
+            default => '/etc/ssh/sshd_config',
         },
         owner => root,
         group => root,
@@ -83,7 +83,7 @@ to repeat that OS specific logic.
 
 For instance, let's add a service that depends on the file:
 
-    service { "sshd":
+    service { 'sshd':
         subscribe => File[sshdconfig],
     }
 
@@ -101,8 +101,8 @@ What happens if our resource depends on multiple resources?
 From Puppet version 0.24.6 you can specify multiple relationships
 like so:
 
-    service { "sshd":
-        require => File["sshdconfig", "sshconfig", "authorized_keys"]
+    service { 'sshd':
+        require => File['sshdconfig', 'sshconfig', 'authorized_keys']
 
 It's important to note here that the title alone identifies the resource.
 Even if the resource seems to conceptually point to the same entity,
@@ -110,13 +110,13 @@ it's the title that matters.  The following is possible in Puppet,
 but is to be avoided as it can lead to errors once things get
 sent down to the client.
 
-    file { "sshdconfig":
-        name  => "/usr/local/etc/ssh/sshd_config",
-        owner => "root",
+    file { 'sshdconfig':
+        name  => '/usr/local/etc/ssh/sshd_config',
+        owner => 'root',
     }
     
-    file { "/usr/local/etc/ssh/sshd_config":
-        owner => "sshd",
+    file { '/usr/local/etc/ssh/sshd_config':
+        owner => 'sshd',
     }
 
 ### Metaparameters
@@ -139,8 +139,8 @@ capitalized resource specification that has no title.  For instance,
 in the example below, we'll set the default path for all execution
 of commmands:
 
-    Exec { path => "/usr/bin:/bin:/usr/sbin:/sbin" }
-    exec { "echo this works": }
+    Exec { path => '/usr/bin:/bin:/usr/sbin:/sbin' }
+    exec { 'echo this works': }
 
 The first statement in this snippet provides a default value for
 `exec` resources; Exec resources require either fully qualified paths or a
@@ -168,13 +168,13 @@ are wrapped in curly braces.  The following simple example creates a simple clas
 
     class unix {
         file {
-            "/etc/passwd": 
-                owner => "root", 
-                group => "root", 
+            '/etc/passwd': 
+                owner => 'root', 
+                group => 'root', 
                 mode  => 644;
-            "/etc/shadow": 
-                owner => "root", 
-                group => "root", 
+            '/etc/shadow': 
+                owner => 'root', 
+                group => 'root', 
                 mode  => 440;
         }
     }
@@ -183,14 +183,14 @@ You'll notice we introduced some shorthand here.   This is the same
 as saying:
 
     class unix {
-        file { "/etc/password":
-             owner => "root", 
-             group => "root", 
+        file { '/etc/password':
+             owner => 'root', 
+             group => 'root', 
              mode  => 644;
         }
-        file { "/etc/shadow":
-             owner => "root", 
-             group => "root", 
+        file { '/etc/shadow':
+             owner => 'root', 
+             group => 'root', 
              mode  => 440;
         }
     }
@@ -204,15 +204,15 @@ class can only inherit from one other class, not more than one.
 In programming terms, this is called 'single inheritance'.
 
     class freebsd inherits unix {
-        File["/etc/passwd"] { group => wheel }
-        File["/etc/shadow"] { group => wheel }
+        File['/etc/passwd'] { group => wheel }
+        File['/etc/shadow'] { group => wheel }
     }
 
 If we needed to undo some logic specified in a parent class, we can
 use undef like so:
 
     class freebsd inherits unix {
-        File["/etc/passwd"] { group => undef }
+        File['/etc/passwd'] { group => undef }
     }
 
 In the above example, nodes which include the `unix` class will have the
@@ -224,7 +224,7 @@ In Puppet version 0.24.6 and higher, you can specify multiple overrides like
 so:
 
     class freebsd inherits unix {
-        File["/etc/passwd","/etc/shadow"] { group => wheel }
+        File['/etc/passwd', '/etc/shadow'] { group => wheel }
     }
 
 There are other ways to use inheritance.  In Puppet 0.23.1 and
@@ -232,12 +232,12 @@ higher, it's possible to add values to resource parameters using
 the '+>' ('plusignment') operator:
 
     class apache {
-        service { "apache": require => Package["httpd"] }
+        service { 'apache': require => Package['httpd'] }
     }
     
     class apache-ssl inherits apache {
         # host certificate is required for SSL to function
-        Service[apache] { require +> File["apache.pem"] }
+        Service[apache] { require +> File['apache.pem'] }
     }
 
 The above example makes the second class require all the packages in the first,
@@ -246,23 +246,23 @@ with the addition of 'apache.pem'.
 To append multiple requires, use array brackets and commas:
 
     class apache {
-        service { "apache": require => Package["httpd"] }
+        service { 'apache': require => Package['httpd'] }
     }
     
     class apache-ssl inherits apache {
-        Service[apache] { require +> [ File["apache.pem"], File["/etc/httpd/conf/httpd.conf"] ] }
+        Service[apache] { require +> [ File['apache.pem'], File['/etc/httpd/conf/httpd.conf'] ] }
     }
 
 The above would make the `require` parameter in the `apache-ssl`
 class equal to
 
-    [Package["httpd"], File["apache.pem"], File["/etc/httpd/conf/httpd.conf"]]
+    [Package['httpd'], File['apache.pem'], File['/etc/httpd/conf/httpd.conf']]
 
 Like resources, you can also create relationships between classes with
 'require', like so:
 
     class apache {
-        service { "apache": require => Class["squid"] }
+        service { 'apache': require => Class['squid'] }
     }
 
 The above example uses the `require` metaparameter to make the `apache`
@@ -272,8 +272,8 @@ In Puppet version 0.24.6 and higher, you can specify multiple relationships
 like so:
 
     class apache {
-        service { "apache":
-                      require => Class["squid", "xml", "jakarta"]
+        service { 'apache':
+                      require => Class['squid', 'xml', 'jakarta']
 
 It's not dangerous to reference a class with a require more than once.
 Classes are evaluated using the `include` function (which we will
@@ -286,9 +286,9 @@ of achieving modularity and scoping.  For example:
 
     class myclass {
     class nested {
-        file { "/etc/passwd": 
-        owner => "root", 
-        group => "root", 
+        file { '/etc/passwd': 
+        owner => 'root', 
+        group => 'root', 
         mode  => 644;
         }
     }
@@ -312,8 +312,8 @@ introduced with the `define` keyword (not `class`) and they support arguments bu
         }
     }
    
-    svn_repo { puppet_repo: path => "/var/svn_puppet" }
-    svn_repo { other_repo:  path => "/var/svn_other" }
+    svn_repo { puppet_repo: path => '/var/svn_puppet' }
+    svn_repo { other_repo:  path => '/var/svn_other' }
 
 Note how variables can be used within the definitions.  We use dollar sign ($) variables.  Note the use of the variable `$title` above.  This is a bit of technical knowledge, but as of Puppet 0.22.3 and later, definitions can have both a name and a title represented by the `$title` and `$name`
 variables respectively. By default, `$title` and `$name` are set to
@@ -337,7 +337,7 @@ metaparameters using built-in variables.   Here's an example:
     }
     
     svn_repo { puppet: 
-       path => "/var/svn",
+       path => '/var/svn',
        require => Package[subversion],
     }
 
@@ -387,7 +387,9 @@ chosen to fulfill those instructions.
 
 Node definitions look just like classes, including supporting
 inheritance, but they are special in that when a node (a managed
-computer running puppetd) connects to the Puppet master daemon, its name will be looked for in the list of defined nodes.   The information found for the node will then be evaluated for that node, and then node will
+computer running puppetd) connects to the Puppet master daemon, its 
+name will be looked for in the list of defined nodes.   The information 
+found for the node will then be evaluated for that node, and then node will
 be sent that configuration.
 
 Node names can be the short host name, or the fully qualified
@@ -395,7 +397,7 @@ domain name (FQDN).  Some names, especially fully qualified ones,
 need to be quoted, so it is a best practice to quote all of them.
 Here's an example:
 
-    node "www.testing.com" {
+    node 'www.testing.com' {
        include common 
        include apache, squid
     }
@@ -407,7 +409,7 @@ classes.
 You can also specify that multiple nodes recieve an indentical
 configuration by seperating each with a comma:
 
-    node "www.testing.com", "www2.testing.com", "www3.testing.com" {
+    node 'www.testing.com', 'www2.testing.com', 'www3.testing.com' {
        include common 
        include apache, squid
     }
@@ -447,7 +449,7 @@ set in the same file?
 Nodes support a limited inheritance model.  Like classes, nodes
 can only inherit from one other node:
 
-    node "www2.testing.com" inherits "www.testing.com" {
+    node 'www2.testing.com' inherits 'www.testing.com' {
         include loadbalancer
     }
 
