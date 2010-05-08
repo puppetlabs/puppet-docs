@@ -43,16 +43,16 @@ module PuppetDocs
         if raw_content
           setup_destination!
           content = nil
-          IO.popen("rst2html", "w+") do |rst2html| # was rst2html.py ... why?
-            rst2html.write raw_content
-            rst2html.close_write
-            content = rst2html.read
+          IO.popen("pandoc -s -r rst -w markdown", "w+") do |pandoc| # was rst2html.py ... why?
+            pandoc.write raw_content
+            pandoc.close_write
+            content = pandoc.read
           end
           if content
             File.open(destination_filename, 'w') { |f| f.write content }
             puts "Wrote #{destination_filename}"
           else
-            abort "Could not convert RST to HTML (requires rst2html.py from docutils)"
+            abort "Could not convert RST to Markdown (requires pandoc)"
           end
         else
           abort "Could not build #{@name} reference using puppetdoc at #{version}"
@@ -110,7 +110,7 @@ module PuppetDocs
       end
 
       def destination_filename
-        @destination_filename ||= destination_directory + (@name + ".html")
+        @destination_filename ||= destination_directory + (@name + ".markdown")
       end
 
       def destination_directory

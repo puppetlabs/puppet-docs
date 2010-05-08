@@ -1,13 +1,13 @@
 module PuppetDocs
   class Generator
-    attr_reader :output, :view_path, :view, :guides_dir
+    attr_reader :output, :view_path, :view, :source_dir
 
     class MissingPrologueError < ::ArgumentError; end
 
     def initialize(output = nil)
-      @guides_dir = File.join(File.dirname(__FILE__), '..', '..')
+      @source_dir = File.join(File.dirname(__FILE__), '..', '..')
 
-      @output = output || File.join(@guides_dir, "output")
+      @output = output || File.join(@source_dir, "output")
 
       unless ENV["ONLY"]
         FileUtils.rm_r(@output) if File.directory?(@output)
@@ -15,12 +15,13 @@ module PuppetDocs
       end
       create_log_directory!
 
-      @view_path = File.join(@guides_dir, "source")
+      @view_path = File.join(@source_dir, "source")
     end
 
     def generate
       puts "Logging in #{log_filename}"
-      guides = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') }
+      guides = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') || p.include?('references') }
+      refs = Dir[File.join(view_path, 'references/**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') }
 
       if ENV["ONLY"]
         only = ENV["ONLY"].split(",").map{|x| x.strip }.map {|o| "#{o}.markdown" }
@@ -32,11 +33,15 @@ module PuppetDocs
         generate_guide(guide)
       end
 
+      refs.each do |ref|
+        generate_ref(ref)
+      end
+
       copy_html
 
       # Copy images and css files to html directory
-      FileUtils.cp_r File.join(guides_dir, 'images'), File.join(output, 'images')
-      FileUtils.cp_r File.join(guides_dir, 'files'), File.join(output, 'files')
+      FileUtils.cp_r File.join(source_dir, 'images'), File.join(output, 'images')
+      FileUtils.cp_r File.join(source_dir, 'files'), File.join(output, 'files')
     end
 
     def copy_html
@@ -48,6 +53,44 @@ module PuppetDocs
         FileUtils.cp filename, new_path
         stop_progress 'COPIED'
       end
+    end
+
+    def generate_ref(ref)
+      ref =~ /(.*?)(\.markdown(?:\.erb))?$/
+      name = $1
+      ext = $2
+
+      rel_path = ref.sub(view_path, '')[1..-1]
+      slug = ext ? File.basename(rel_path, ext) : File.basename(rel_path, '.markdown')
+
+      planned_path = File.join(output, File.dirname(rel_path), slug) + '.html'
+
+      start_progress(name[view_path.size..-1] + (ext || ''))
+    
+      FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil 
+
+      view = View.new(:to_root => '../' * rel_path.scan(/\//).size)
+
+      File.open(planned_path, 'w') do |f| 
+    
+        body = raw_body(ref, view)
+    
+        title, body = set_ref_header_section(name, body, view)
+        unless title && body
+          stop_progress 'MISSING PROLOGUE'
+          return false
+        end 
+        body = add_snippets(body)
+        body = add_extras(body)
+        body = set_index(title, body, view)
+
+        result = view.render(markdown(body, true))
+        f.write result
+        warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
+        stop_progress 'GENERATED'
+      end
+    rescue Exception
+      stop_progress 'ERROR'
     end
 
     def generate_guide(guide)
@@ -105,6 +148,24 @@ module PuppetDocs
         false
       end
     end
+
+    def set_ref_header_section(name, body, view)
+      header, new_body = body.split(/\*\(last generated on .*\)\*/, 2)
+      if new_body
+        if header =~ /^\%\s(\S[^\r\n]+)\r?\n\%\s*$/ms
+          page_title = $1.strip
+        else
+          return false
+        end 
+        header = markdown(add_snippets(header))
+        view.set(:page_title, page_title)
+        view.set(:header_section, header)
+        [page_title, new_body]
+      else
+        # Did not provide a prologue separator
+        false
+      end 
+    end 
 
     def set_index(title, body, view)
       index = <<-INDEX
