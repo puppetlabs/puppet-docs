@@ -85,8 +85,8 @@ appropriate permissions:
 {:puppet}
 
 For more information on how to create the site manifest, see the
-tutorials listed on the
-[Getting Started](http://puppetlabs.com/trac/puppet/wiki/GettingStarted) page.
+tutorials listed in the 
+[Getting Started](../index.html#getting_started) section.
 
 
 Start the Central Daemon

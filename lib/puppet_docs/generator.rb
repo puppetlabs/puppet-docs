@@ -54,7 +54,7 @@ module PuppetDocs
         stop_progress 'COPIED'
       end
     end
-
+    
     def generate_ref(ref)
       ref =~ /(.*?)(\.markdown(?:\.erb))?$/
       name = $1
