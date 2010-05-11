@@ -549,7 +549,7 @@ operator:
     }
 {:puppet}
 
-In our second example if `$variable` has a value of `foo`, Puppet will then set
+In our second example if `$variable` is not equal to a value of `foo`, Puppet will then set
 the value of the `$othervariable` variable to `bar`, otherwise it will set the
 `$othervariable` variable to `foobar`.
 
