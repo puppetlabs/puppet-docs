@@ -24,7 +24,7 @@ The puppet client looks for a server named 'puppet'. If you have
 local DNS zone files, you may want to add a CNAME record pointing
 to the server machine in the appropriate zone file.
 
-    puppet.   IN   CNAME  crabcake.picnic.edu.
+    puppet   IN   CNAME  crabcake.picnic.edu.
 
 By setting up the CNAME you will avoid having to specify the
 server name in the configuration of each client.
