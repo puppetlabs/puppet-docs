@@ -39,7 +39,7 @@ and custom plugins stored on the puppetmasterd server are transferred down to ma
 puppet
 ------
 
-When running puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppetdis run instead of puppet.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppetd. 
+When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet is run instead of puppetd.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppetd. 
 
 facter
 ------
