@@ -127,7 +127,7 @@ Rather than reassigning variables, instead use the built in conditionals:
         default => 'wheel',
     }
 
-A variable may only be assigned once.  However you still can set the same variable in non-overlapping scopes. For example, to set top-level
+A variable may only be assigned once per scope.  However you still can set the same variable in non-overlapping scopes. For example, to set top-level
 configuration values:
 
     node a {
@@ -139,7 +139,7 @@ configuration values:
         include class_using_setting
     }
 
-In the above example, both 'a' and "b" have different scopes, so this is
+In the above example, nodes "a" and "b" have different scopes, so this is
 not reassignment of the same variable.
 
 #### Variable Scope
