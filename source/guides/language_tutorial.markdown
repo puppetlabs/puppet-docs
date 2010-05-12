@@ -9,8 +9,7 @@ some basic concepts.  Understanding
 the Puppet language is key, as it's the main driver of how
 you tell your Puppet managed machines what to do.
 
-Afterwards, you may wish to look at the [Extended Language Tutorial]
-(./more_language.html) for further information.
+Afterwards, you may wish to look at the [Extended Language Tutorial](./more_language.html) for further information.
 
 * * *
 
