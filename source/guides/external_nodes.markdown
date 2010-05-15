@@ -61,13 +61,6 @@ script in your /etc/puppet/puppet.conf:
 
     [main]
     external_nodes = /usr/local/bin/puppet_node_classifier
-
-For version 0.24 and later an additional configuration option,
-node\_terminus, needs to be specified to select the appropriate
-node terminus:
-
-    [main]
-    external_nodes = /usr/local/bin/puppet_node_classifier
     node_terminus = exec
 
 There are two different versions of External Node support, the
@@ -110,6 +103,11 @@ output:
     END
     exit 0
 
+In addition to these options you can also access fact values in your node 
+classifier scripts.  Before the classifier is called the $vardir/yaml/facts/ 
+directory is populated with a YAML file containing fact values.  This file can 
+be queried for fact values.
+ 
 This example will produce results basically equivalent to this node
 entry:
 
@@ -119,6 +117,8 @@ entry:
         $mail_server = 'mail.example.com'
         include common, puppet, dns, ntp
     }
+
+The resulting node will also be located in the "production" environment.
 
 In both versions, the script should exit with code 0 after
 producing the desired output. Exit with a non-zero exit code if you
@@ -143,7 +143,4 @@ definition:
     node default inherits basenode {
       include common, puppet, dns, ntp
     }
-
-
-
 
