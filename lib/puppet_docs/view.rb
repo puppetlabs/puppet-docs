@@ -3,19 +3,19 @@ module PuppetDocs
   class View
 
     def self.layout
-      @layout ||=
-        if default_layout_path.exist?
-          default_layout_path.read
-        end
+      if ENV.fetch("PDF","") != ""
+          path = PuppetDocs.root + "source/layout_pdf.html.erb"
+      else
+          path = PuppetDocs.root + "source/layout.html.erb"
+      end 
+      puts "XDEBUG: my path is = #{path}"
+      path.read
     end
       
-    def self.layout=(text)
-      @layout = text
-    end
-
-    def self.default_layout_path
-      PuppetDocs.root + "source/layout.html.erb"
-    end
+    # FIXME: I'm not sure why we want to do this.  Disabling for now.
+    #def self.layout=(text)
+    #  @layout = text
+    #end
 
     def self.render_defaults
       @render_defaults ||= {:layout => true}

@@ -22,8 +22,16 @@ task :install => dependencies.map { |d| "install:#{d}" }
 
 desc "Generate the documentation"
 task :generate do
+  ENV.delete("PDF")
   sh "bin/generate"
   Rake::Task['references:symlink'].invoke
+end
+
+task :generate_pdf do
+  ENV["PDF"]="1"
+  sh "bin/generate"
+  Rake::Task['references:symlink'].invoke
+  sh "htmldoc -f puppet.pdf output/index.html output/guides/*.html output/guides/types/nagios/*.html output/guides/types/*.html output/guides/types/selinux/*.html output/guides/types/ssh/*.html"
 end
 
 desc "Serve generated output on port 9292"
