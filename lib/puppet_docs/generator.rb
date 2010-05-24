@@ -89,7 +89,9 @@ module PuppetDocs
         warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
         stop_progress 'GENERATED'
       end
-    rescue Exception
+    rescue => err
+      puts err.inspect
+      puts err.backtrace 
       stop_progress 'ERROR'
     end
 
@@ -127,7 +129,9 @@ module PuppetDocs
         warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
         stop_progress 'GENERATED'
       end
-    rescue Exception
+    rescue => err
+      puts err.inspect
+      puts err.backtrace
       stop_progress 'ERROR'
     end
 
