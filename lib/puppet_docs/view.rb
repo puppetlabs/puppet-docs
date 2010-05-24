@@ -8,7 +8,6 @@ module PuppetDocs
       else
           path = PuppetDocs.root + "source/layout.html.erb"
       end 
-      puts "XDEBUG: my path is = #{path}"
       path.read
     end
       
