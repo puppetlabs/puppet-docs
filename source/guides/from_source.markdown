@@ -43,7 +43,7 @@ Puppet relies on another Puppet Labs library,
 
 You will need to periodically run:
 
-    $ git pull origin --rebase
+    $ git pull --rebase origin
 {:shell}
 
 From your repositories to periodically update your clone to the latest code.
