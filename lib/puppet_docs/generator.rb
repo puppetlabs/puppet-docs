@@ -216,7 +216,7 @@ module PuppetDocs
     end
 
     def add_extras(body)
-      body.gsub(/^(NOTE|INFO|WARNING)(?:\.|\:)(.*?)(?:\r?\n){2,}/ms) do |m|
+      body.gsub(/^(NOTE|INFO|WARNING)(?:\.|\:)(.*?)(?:\r?\n){2,}/m) do |m|
         css_class = $1.downcase
         result = "<div class='#{css_class}'>"
         result << markdown($2.strip)

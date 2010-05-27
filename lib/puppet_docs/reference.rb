@@ -14,7 +14,7 @@ module PuppetDocs
     def self.generated_versions #:nodoc:
       return @generated_versions if @generated_versions
       possibles = generated_version_directories.map do |path|
-        [Versionomy.parse(path.basename), path]
+        [Versionomy.parse(path.basename.to_s), path]
       end
       @generated_versions = possibles.sort_by { |x| x.first }.reverse
     end
