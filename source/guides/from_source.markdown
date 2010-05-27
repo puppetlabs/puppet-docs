@@ -80,9 +80,11 @@ Puppet and Facter libraries available to Ruby:
     $ export PATH RUBYLIB
 {:shell}
 
-Facter changes far less often than Puppet and it is very minimal (a
-single library file and a single executable), so it is probably best
-to just install it directly:
+Note: environment variables (depending on your OS) can get stripped 
+when running as sudo.  If you experience problems, you may want to simply
+execute things as root.
+
+Next we must install facter.  Facter changes far less often than Puppet and is a very minimal tool/library:
 
     $ cd facter
     $ sudo ruby ./install.rb
