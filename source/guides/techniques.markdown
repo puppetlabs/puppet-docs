@@ -154,7 +154,7 @@ processing.
 ERB files are easy to syntax check. For a file mytemplate.erb,
 run:
 
-    $ erb -x -T '-' mytemplate.erb | ruby -c
+    $ erb -x -T '-' -P mytemplate.erb | ruby -c
 
 The trim option specified corresponds to what Puppet uses.
 
