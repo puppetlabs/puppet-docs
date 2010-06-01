@@ -2,6 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'pathname'
 require 'fileutils'
+require 'linktree'
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
@@ -31,7 +32,8 @@ task :generate_pdf do
   ENV["PDF"]="1"
   sh "bin/generate"
   Rake::Task['references:symlink'].invoke
-  sh "htmldoc -f puppet.pdf output/index.html output/guides/*.html output/guides/types/nagios/*.html output/guides/types/*.html output/guides/types/selinux/*.html output/guides/types/ssh/*.html"
+  what_files = Scanner.new('output','output/index.html').run()
+  sh "htmldoc -f puppet.pdf #{what_files}"
 end
 
 desc "Serve generated output on port 9292"
