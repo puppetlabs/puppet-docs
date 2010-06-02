@@ -62,6 +62,7 @@ module PuppetDocs
       private
 
       def valid_tags
+        %x{git fetch --tags origin}
         @valid_tags ||= at('master') { `git tag` }.grep(/\./).map { |s| s.strip }
       end
       
