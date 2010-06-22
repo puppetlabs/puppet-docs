@@ -137,8 +137,8 @@ Note that this location is not within the puppetmaster's $libdir
 path. Placing the custom function within the module plugins
 directory will not result in the puppetmasterd loading the new
 custom function. The puppet client can be used to help deploy the
-custom function by copying it from
-\<MODULEPATH>/\<module>/plugins/puppet/parser/functions to the
+custom function by copying it from 
+MODULEPATH/module/plugins/puppet/parser/functions to the
 proper $libdir location. To do so run the puppet client on the
 server. When the client runs it will download the custom function
 from the module's plugins directory and deposit it within the
