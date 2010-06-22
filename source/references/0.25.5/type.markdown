@@ -1458,7 +1458,7 @@ deploying this to other machines.
 
 The XML Plist. The value of MCXSettings in DirectoryService. This
 is the standard output from the system command: dscl localhost
--mcxexport /Local/Default/<ds\_type\>/<ds\_name\> Note that
+-mcxexport /Local/Default/ds\_type/ds\_name Note that
 ds\_type is capitalized and plural in the dscl command. Requires
 features manages\_content.
 
