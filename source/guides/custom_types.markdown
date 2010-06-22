@@ -358,11 +358,3 @@ a bunch of class methods on the provider:
 Additionally, each feature gets a separate boolean method, so the
 above example would result in a paint? method on the provider.
 
-# See Also
-
--   [[Development\_Provider\_Development|Development/Provider Development]]
--   [[Development\_Complete\_Resource\_Example|Development/Complete Resource Example]]
-
-
-
-
