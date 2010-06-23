@@ -59,13 +59,92 @@ Currently paths cannot contain trailing slashes or an error will result. Also ta
 
 auth.conf
 ---------
+rest_authconfig = $confdir/auth.conf
 
-Documentation for auth.conf is pending.
+The auth.conf doesn't exist by default, but puppet has some default settings
+that will be put in place if you don't create an auth.conf.  You'll see these
+settings if you run your puppetmaster in debug mode and then connect with a
+client.
+
+There's also an example auth.conf file in the puppet source in conf/auth.conf
+
+http://github.com/reductivelabs/puppet/blob/master/conf/auth.conf
+
+The ACL's (Access Control Lists) in the auth.conf are checked in order of
+appearance.
+
+Supported syntax:
+auth.conf supports two different syntax depending on how
+you want to express the ACL.
+
+### Path syntax
+
+path /path/to/resource
+[environment envlist]
+[method methodlist]
+[auth[enthicated] {yes|no|on|off|any}]
+allow [host|ip|*]
+deny [host|ip]
+
+The path is matched as a prefix. That is /file matches both /file_metadata and
+/file_content.
+
+Ex:
+
+    path /certificate_revocation_list/ca
+    method find
+    allow *
+
+will allow all nodes to access the certificates services
+
+### Regex syntax:
+
+This is differentiated from the path syntaxby a '~'
+
+path ~ regex
+[environment envlist]
+[method methodlist]
+[auth[enthicated] {yes|no|on|off|any}]
+allow [host|ip|*]
+deny [host|ip]
+
+The regex syntax is the same as ruby ones.
+
+Ex:
+
+    path ~ .pp$
+
+will match every resource ending in .pp (manifests files for instance)
+
+    path ~ ^/catalog/([^/]+)$
+    method find
+    allow $1
+
+will allow nodes to retrieve their only their own catalog
+
+environment:: restrict an ACL to a specific set of environments
+method:: restrict an ACL to a specific set of methods (find, search, save)
+auth:: restrict an ACL to an authenticated or unauthenticated request
+the default when unspecified is to restrict the ACL to authenticated requests
+(ie exactly as if auth yes was present).
+
+If you want to test the REST API without worrying about ACL permissions, here's
+a completely permissive auth.conf file
+
+    path /
+    auth no
+    allow *
 
 namespaceauth.conf
 ------------------
+authconfig = $confdir/namespaceauth.conf
 
-Documentation for namespaceauth.conf is pending
+This file controls the http connections to the puppet agent.  It is necessary
+to start the puppet agent with the listen true option.
+
+There's an example namespaceauth.conf file in the puppet source in conf/auth.conf
+
+http://github.com/reductivelabs/puppet/blob/master/conf/namespaceauth.conf
 
 Serverless operation
 --------------------

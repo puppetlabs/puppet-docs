@@ -12,7 +12,7 @@ Steps for installing the documentation-generating code:
 
     $ git clone git://github.com/reductivelabs/puppet-docs.git
 
-2.  Use your package manager to install rake, libxml2-dev, and 
+2.  Use your package manager to install rake, libxml2-dev, and
     libxslt-dev.  Package names may vary by platform.
 
 3.  Install the ruby dependencies
@@ -30,7 +30,7 @@ Steps for installing the documentation-generating code:
 
     Also install python-docutils which is needed to build
     the generated reference docs.
- 
+
     $ rake serve
 
     Note: Use `rake run` to combine these last two steps.
@@ -38,7 +38,7 @@ Steps for installing the documentation-generating code:
 Build Generated Docs For A Given Puppet Version
 -----------------------------------------------
 
-$ VERSION=0.25.0 rake references:puppetdoc 
+$ VERSION=0.25.0 rake references:puppetdoc
 
 requires python-docutils
 
@@ -61,7 +61,7 @@ Contributing Changes
 * Fork the project (we recommend [GitHub][3])
 * Make sure you read the writing guide, README_WRITING.markdown
 * Make your documentation addition/fix -- preferably in a branch.
-* If you're fixing or adding features to the generation 
+* If you're fixing or adding features to the generation
   infrastructure, add some passing specs.
 * Commit, do not mess with the README, LICENSE, etc.
 * [Submit a ticket][1] requesting your contribution be added, and make

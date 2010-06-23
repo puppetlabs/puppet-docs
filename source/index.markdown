@@ -80,7 +80,7 @@ Adapt Puppet to your specific requirements through extensible code.
 * [Provider Development](./guides/provider_development.html) -- more about providers
 * [Writing Custom Functions](./guides/custom_functions.html)
 * [Plugins In Modules](./guides/plugins_in_modules.html) -- where to put plugins, how to sync to clients
-* REST API -- documentation coming soon
+* [REST API](./guides/rest_api.html) -- reference of api accessible resources
 
 Development Information
 -----------------------
