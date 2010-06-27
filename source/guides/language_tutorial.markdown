@@ -154,7 +154,7 @@ Defaults are not global -- they only affect the current scope and scopes below t
 ### Resource Collections
 
 Aggregation is a powerful concept in Puppet.  There are two ways to combine multiple resources into one easier to use resource: Classes and definitions. Classes model fundamental aspects of nodes, they say "this node IS a webserver" or "this node is one of these".  In programming terminology classes are
-are singletons -- they only ever get evaluated once per node.
+singletons -- they only ever get evaluated once per node.
 
 Definitions, on the other hand, can be reused many times on the same node.  They essentially work as if you created your own Puppet type just by using the language.  They are meant to be evaluated multiple times, with different inputs each time.  This means you can pass variable values into the defines.
 
