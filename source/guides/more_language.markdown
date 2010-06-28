@@ -616,7 +616,7 @@ here's the available operators in Backus Naur Form:
 Functions
 ---------
 
-Puppet supports many built in functions; see the [Function Reference](/references/functions.html) for details -- see [Custom Functions](/custom_functions.html) for information on how to create
+Puppet supports many built in functions; see the [Function Reference](/references/stable/function.html) for details -- see [Custom Functions](/guides/custom_functions.html) for information on how to create
 your own custom functions. 
 
 Some functions can be used as a statement:
