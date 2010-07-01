@@ -21,6 +21,12 @@ end
 desc "Install dependencies"
 task :install => dependencies.map { |d| "install:#{d}" }
 
+desc "Release"
+task :release do
+  Rake::Task['generate_pdf'].invoke
+  Rake::Task['tarball'].invoke 
+end
+
 desc "Generate the documentation"
 task :generate do
   ENV.delete("PDF")
@@ -46,9 +52,7 @@ task :run => [:generate, :serve]
 
 desc "Create tarball of documentation"
 task :tarball do
-  FileUtils.rm_rf 'output'
-  Rake::Task['generate'].invoke
-  FileUtils.cd('output')
+  FileUtils.cd 'output'
   FileUtils.ln_s '../files', 'guides/files'
   FileUtils.ln_s '../../files', 'guides/types/files'
   FileUtils.ln_s '../../../files', 'guides/types/nagios/files'
@@ -58,7 +62,6 @@ task :tarball do
   sh "tar -czf puppetdocs-latest.tar.gz *"
   FileUtils.mv 'puppetdocs-latest.tar.gz', '..'
   FileUtils.cd '..'
-  FileUtils.rm_rf 'output'
 end
 
 namespace :references do

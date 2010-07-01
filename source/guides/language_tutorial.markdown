@@ -836,6 +836,16 @@ based on the value of an expression:
 In the above example, if the value of the variable `$server` is equal to `mongrel`, Puppet
 will include the class `mongrel`, otherwise it will include the class `nginx`.
 
+From version 2.6 and later an `elsif` construct was introduced into the language:
+
+  if $server == 'mongrel' {
+      include mongrel
+  } elsif $server == 'nginx' {
+      include nginx
+  } else {
+      include thin
+  }
+
 Arithmetic expressions are also possible, for example:
 
     if $ram > 1024 {
