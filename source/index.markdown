@@ -52,7 +52,6 @@ Advanced Topics
 Power user features.
 
 * [Templating](./guides/templating.html) -- template out config files using ERB
-* [Extended Language Tutorial](./guides/more_language.html) -- how expressions work and other details
 * [Virtual Resources](./guides/virtual_resources.html)
 * [Exported Resources](./guides/exported_resources.html) -- share data between hosts
 * [Environments](./guides/environment.html) -- seperate dev, stage, & production

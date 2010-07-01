@@ -14,11 +14,14 @@ About Exported Resources
 
 While virtual resources can only be collected by the host that
 specified them, exported resources can be collected by any host.
-You must set the storeconfigs configuration parameter to true to
+You **must** set the storeconfigs configuration parameter to true to
 enable this functionality (you can see information about stored
 configuration on the [[Using Stored Configuration]] wiki page), and
 Puppet will automatically create a database for storing
 configurations (using [Ruby on Rails](http://rubyonrails.org/)).
+
+    [puppetmasterd]
+    storeconfigs = true
 
 This allows one host to configure another host; for instance, a
 host could configure its services using Puppet, and then could
