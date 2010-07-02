@@ -4,6 +4,13 @@ require 'pathname'
 require 'fileutils'
 require 'linktree'
 
+begin
+  require "vlad"
+  Vlad.load(:app => nil, :scm => "git")
+rescue LoadError
+  # do nothing
+end
+
 $LOAD_PATH.unshift File.expand_path('lib')
 
 dependencies = %w(maruku nokogiri erubis rack blockenspiel versionomy)
@@ -20,12 +27,6 @@ end
 
 desc "Install dependencies"
 task :install => dependencies.map { |d| "install:#{d}" }
-
-desc "Release"
-task :release do
-  Rake::Task['generate_pdf'].invoke
-  Rake::Task['tarball'].invoke 
-end
 
 desc "Generate the documentation"
 task :generate do
@@ -127,27 +128,6 @@ namespace :references do
   end
   
 end
-
-#
-# Puppet Labs Only:
-# DISABLED FOR NOW, not the right location
-
-#desc "Release the documentation (Puppet Labs Only)"
-#task :release do
-#  sh "rsync -e ssh -avz output/ docadmin@puppetlabs.com:/var/www/docs/html"
-#end
-
-#require 'spec/rake/spectask'
-#Spec::Rake::SpecTask.new(:spec) do |spec|
-#  spec.libs << 'lib' << 'spec'
-#  spec.spec_files = FileList['spec/**/*_spec.rb']
-#end
-
-#Spec::Rake::SpecTask.new(:rcov) do |spec|
-#  spec.libs << 'lib' << 'spec'
-#  spec.pattern = 'spec/**/*_spec.rb'
-#  spec.rcov = true
-#end
 
 task :default => :spec
 
