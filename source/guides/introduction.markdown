@@ -55,13 +55,13 @@ that configuration.  Once done, the client can send a report back to the
 server indicating if anything needed to change. This diagram shows
 the data flow in a regular Puppet implementation:
 
-![image](./images/Puppet_Star.png)
+![image](/images/Puppet_Star.png)
 
 Puppet's functionality is built as a stack of separate layers, each
 responsible for a fixed aspect of the system, with tight controls
 on how information passes between layers:
 
-![image](./images/Puppet_Layers.png)
+![image](/images/Puppet_Layers.png)
 
 See also [Configuring Puppet](./configuring.html).  For more information about components (puppetmasterd, puppetd, puppet, and so on), see the [Tools](/guides/tools.html) section.
   

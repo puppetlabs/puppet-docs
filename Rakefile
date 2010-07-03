@@ -41,6 +41,7 @@ task :generate_pdf do
   Rake::Task['references:symlink'].invoke
   what_files = Scanner.new('output','output/index.html').run()
   sh "htmldoc -f puppet.pdf #{what_files}"
+  sh "rm -fr output"
 end
 
 desc "Serve generated output on port 9292"

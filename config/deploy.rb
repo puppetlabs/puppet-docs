@@ -19,6 +19,7 @@ namespace :vlad do
     date = DateTime.now.strftime("%Y%m%d")
     sh "git checkout -b release_#{date}"
     Rake::Task['generate_pdf'].invoke
+    Rake::Task['generate'].invoke
     Rake::Task['tarball'].invoke
     sh "git add -f output puppet.pdf puppetdocs-latest.tar.gz"
     sh "git commit -a -m 'Release dated #{date}'"

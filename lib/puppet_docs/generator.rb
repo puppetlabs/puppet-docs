@@ -54,7 +54,7 @@ module PuppetDocs
         stop_progress 'COPIED'
       end
     end
-    
+
     def generate_ref(ref)
       ref =~ /(.*?)(\.markdown(?:\.erb))?$/
       name = $1
@@ -66,20 +66,20 @@ module PuppetDocs
       planned_path = File.join(output, File.dirname(rel_path), slug) + '.html'
 
       start_progress(name[view_path.size..-1] + (ext || ''))
-    
-      FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil 
+
+      FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil
 
       view = View.new(:to_root => '../' * rel_path.scan(/\//).size)
 
-      File.open(planned_path, 'w') do |f| 
-    
+      File.open(planned_path, 'w') do |f|
+
         body = raw_body(ref, view)
-    
+
         title, body = set_ref_header_section(name, body, view)
         unless title && body
           stop_progress 'MISSING PROLOGUE'
           return false
-        end 
+        end
         body = add_snippets(body)
         body = add_extras(body)
         body = set_index(title, body, view)
@@ -91,7 +91,7 @@ module PuppetDocs
       end
     rescue => err
       puts err.inspect
-      puts err.backtrace 
+      puts err.backtrace
       stop_progress 'ERROR'
     end
 
@@ -106,15 +106,15 @@ module PuppetDocs
       planned_path = File.join(output, File.dirname(rel_path), slug) + '.html'
 
       start_progress(name[view_path.size..-1] + (ext || ''))
-      
+
       FileUtils.mkdir_p(File.dirname(planned_path)) rescue nil
 
       view = View.new(:to_root => '../' * rel_path.scan(/\//).size)
 
       File.open(planned_path, 'w') do |f|
-        
+
         body = raw_body(guide, view)
-        
+
         title, body = set_header_section(name, body, view)
         unless title && body
           stop_progress 'MISSING PROLOGUE'
@@ -123,7 +123,7 @@ module PuppetDocs
         body = add_snippets(body)
         body = add_extras(body)
         body = set_index(title, body, view)
-        
+
         result = view.render(markdown(body, true))
         f.write result
         warn_about_broken_links(result) if ENV.key?("WARN_BROKEN_LINKS")
@@ -161,7 +161,7 @@ module PuppetDocs
           header = ''
         else
           return false
-        end 
+        end
         header = markdown(add_snippets(header))
         view.set(:page_title, page_title)
         view.set(:header_section, header)
@@ -169,8 +169,8 @@ module PuppetDocs
       else
         # Did not provide a prologue separator
         false
-      end 
-    end 
+      end
+    end
 
     def set_index(title, body, view)
       index = <<-INDEX
@@ -188,10 +188,10 @@ module PuppetDocs
       children = toc.css('ul').first.children
       return body if children.empty?
       index << children.to_s
-      
+
       index << '</ol>'
       index << '</div>'
-      
+
       view.set(:index_section, index)
 
       body
@@ -207,7 +207,7 @@ module PuppetDocs
         body
       end
     end
-    
+
     def markdown(body, include_settings = false)
       body = settings_content + body if include_settings
       logging do
@@ -233,7 +233,7 @@ module PuppetDocs
       anchors = extract_anchors(html)
       check_fragment_identifiers(html, anchors)
     end
-    
+
     def extract_anchors(html)
       # Markdown generates headers with IDs computed from titles.
       anchors = Set.new
@@ -249,7 +249,7 @@ module PuppetDocs
       anchors += Set.new(html.scan(/<p\s+class="footnote"\s+id="([^"]+)/).flatten)
       return anchors
     end
-    
+
     def check_fragment_identifiers(html, anchors)
       html.scan(/<a\s+href="#([^"]+)/).flatten.each do |fragment_identifier|
         next if fragment_identifier == 'mainCol' # in layout, jumps to some DIV
