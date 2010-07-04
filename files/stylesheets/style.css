@@ -138,7 +138,7 @@ body {
 
 @font-face {
 	font-family: 'CallunaRegular';
-	src: url('fonts/Calluna-Regular.eot');
+	src: url('fonts/Calluna-Regular.otf');
 	src: local('Calluna Regular'), local('Calluna-Regular'), url('fonts/Calluna-Regular.woff') format('woff'), url('fonts/Calluna-Regular.otf') format('opentype'), url('fonts/Calluna-Regular.svg#Calluna-Regular') format('svg');
 }
 
