@@ -33,7 +33,7 @@ because you can have Puppet handle most or all of the details, and
 you can download code from other sysadmins to help you get done
 even faster. The majority of Puppet implementations use at least
 one or two modules developed by someone else, and there are already
-tens of recipes available in Puppet's [Patterns][^patterns]
+tens of patterns available in Puppet's [Patterns][^patterns]
 
 Puppet As a Tool
 ----------------
