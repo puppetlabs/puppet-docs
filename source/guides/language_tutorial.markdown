@@ -127,6 +127,50 @@ between resources. You can see the full list of all metaparameters in the
 [Metaparameter Reference](/references/stable/metaparameters.html), though
 we'll point out additional ones we use as we continue the tutorial.
 
+#### Chaining resources
+
+Since Puppet version 2.6 it has also been possible to chain together resources:
+
+    Package['sudo'] -> File['sshdconfig'] => Service['sshd']
+
+You can now also specify relationships directly in the language:
+
+   File[/foo] -> Service[bar]
+
+Specifies a normal dependency while:
+
+   File[/foo] ~> Service[bar]
+
+Specifies a subscription.
+
+You can also do relationship chaining, specifying multiple
+relationships on a single line:
+
+   File[/foo] -> Package[baz] -> Service[bar]
+
+Note that while it's confusing, you don't have to have all
+of the arrows be the same direction:
+
+   File[/foo] -> Service[bar] <- Package[baz]
+
+This can provide some succinctness at the cost of readability.
+
+You can also specify full resources, rather than just
+resource refs:
+
+    file { "/foo": ensure => present } -> package { bar: ensure => installed } 
+
+But wait! There's more! You can also specify a subscription on either side
+of the relationship marker:
+
+    yumrepo { foo: .... } 
+    package { bar: provider => yum, ... }
+    Yumrepo <| |> -> Package <| provider == yum |>
+
+This, finally, provides easy many to many relationships in Puppet, but it also opens
+the door to massive dependency cycles. This last feature is a very powerful stick,
+and you can considerably hurt yourself with it.
+
 ### Resource Defaults
 
 Sometimes you will need to specify a default parameter value for a set
@@ -296,6 +340,28 @@ of achieving modularity and scoping.  For example:
 
 In this example, the `nested` class inside the outer `myclass` is included as
 `myclass::nested` inside of the class named `anotherclass`.  Order is important here.  Class `myclass` must be evaluated before class `anotherclass` for this example to work properly.
+
+#### Parameterised Classes
+
+In Puppet release 2.6 and later, classes are extended to allow the passing of paremeters into classes.  
+
+To create a class with parameters you can now specify:
+
+    class apache($version) {
+      ... class contents ...
+    }
+
+Classes with parameters are not added using the include function but rather the resulting class can then be included more like a definition:
+
+    node webserver {
+      class { apache: version => "1.3.13" }
+    }
+
+You can also specify default parameter values in your class like so:
+
+    class apache($version="1.3.13",$home="/var/www") {
+      ... class contents ...
+    }
 
 #### Definitions
 
@@ -553,6 +619,25 @@ Of course, this can be used for native types as well:
         group => root,
         mode  => 600,
     }
+
+### Hashes
+
+Since Puppet version 2.6, hashes have been supported in the language.  These hashes are defined like Ruby hashes using the form:
+
+    hash: { key1 => val1, ... }
+
+The hash keys are strings, but hash values can be any possible RHS values allowed in the language like function calls, variables, etc.
+
+It is possible to assign hashes to a variable like so:
+
+    $myhash = { key1 => "myval", key2 => $b }
+
+And to access hash members (recursively) from a variable containing a hash (this also works for arrays too):
+
+    $myhash = { key => { subkey => "b" }}
+    notice($myhash[key][subjey]]
+
+You can also use a hash member as a resource title, as a default definition parameter, or potentially as the value of a resource parameter,
 
 ### Variables
 
