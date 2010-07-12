@@ -9,7 +9,7 @@ Resources Types are the building blocks of your Puppet configuration.
 
 {TYPESHEADER}
 
-<%- page.parent.children.each do |e| -%>
+<%- page.parent.children.sort.each do |e| -%>
 <%- if e != page -%>
 <%- if e.to_s =~ /markdown$/ -%>
 * [<%= e.basename('.markdown') %>](<%= e.basename('.markdown') %>.html)
