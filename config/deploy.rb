@@ -25,10 +25,11 @@ namespace :vlad do
     sh "git commit -a -m 'Release dated #{date}'"
     sh "git push --force origin release_#{date}"
     sh "git checkout master"
-    sh "git branch -d release_#{date}"
+    sh "git branch -D release_#{date}"
   end
 
   remote_task :release do
+    date = DateTime.now.strftime("%Y%m%d")
     repo = "#{deploy_to}/repo"
     run "rm -fr #{repo}; mkdir -p #{repo}"
     run "git clone #{repository} #{repo}"
