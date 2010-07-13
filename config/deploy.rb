@@ -15,7 +15,7 @@ end
 
 namespace :vlad do
 
-  remote_task :release do
+  remote_task :build do
     date = DateTime.now.strftime("%Y%m%d")
     sh "git checkout -b release_#{date}"
     Rake::Task['generate_pdf'].invoke
@@ -25,6 +25,10 @@ namespace :vlad do
     sh "git commit -a -m 'Release dated #{date}'"
     sh "git push --force origin release_#{date}"
     sh "git checkout master"
+    sh "git branch -d release_#{date}"
+  end
+
+  remote_task :release do
     repo = "#{deploy_to}/repo"
     run "rm -fr #{repo}; mkdir -p #{repo}"
     run "git clone #{repository} #{repo}"
