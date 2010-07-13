@@ -1,7 +1,7 @@
 module PuppetDocs
 
   module StringExt
-    
+
     def underscore
       to_s.gsub(/::/, '/').
         gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').

@@ -7,10 +7,10 @@ module PuppetDocs
           path = PuppetDocs.root + "source/layout_pdf.html.erb"
       else
           path = PuppetDocs.root + "source/layout.html.erb"
-      end 
+      end
       path.read
     end
-      
+
     # FIXME: I'm not sure why we want to do this.  Disabling for now.
     #def self.layout=(text)
     #  @layout = text
@@ -37,7 +37,7 @@ module PuppetDocs
     def [](name)
       @data[name]
     end
-    
+
     def render(*args)
       options = args.last.is_a?(Hash) ? args.pop : {}
       options = self.class.render_defaults.merge(options)
@@ -62,7 +62,7 @@ module PuppetDocs
         end
       end
     end
-    
+
   end
 
 end

@@ -41,7 +41,7 @@ module PuppetDocs
           ''
         end
     end
-    
+
   end
 
 end
