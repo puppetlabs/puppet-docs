@@ -135,23 +135,23 @@ Since Puppet version 2.6 it has also been possible to chain together resources:
 
 You can now also specify relationships directly in the language:
 
-   File[/foo] -> Service[bar]
+    File[/foo] -> Service[bar]
 
 Specifies a normal dependency while:
 
-   File[/foo] ~> Service[bar]
+    File[/foo] ~> Service[bar]
 
 Specifies a subscription.
 
 You can also do relationship chaining, specifying multiple
 relationships on a single line:
 
-   File[/foo] -> Package[baz] -> Service[bar]
+    File[/foo] -> Package[baz] -> Service[bar]
 
 Note that while it's confusing, you don't have to have all
 of the arrows be the same direction:
 
-   File[/foo] -> Service[bar] <- Package[baz]
+    File[/foo] -> Service[bar] <- Package[baz]
 
 This can provide some succinctness at the cost of readability.
 
