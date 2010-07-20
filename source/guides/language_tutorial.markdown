@@ -18,7 +18,7 @@ Puppet language is really relatively simple compared to many
 programming languages.  As you are reading over this guide,
 it may also be helpful to look over various Puppet modules
 people have already written.   Complete real world examples
-can serve as a great introduction to Puppet.  See the [Modules](/github/modules.html) 
+can serve as a great introduction to Puppet.  See the [Modules](/guides/modules.html) 
 page for more information and some links to list of community developed Puppet content.
 
 Resources
