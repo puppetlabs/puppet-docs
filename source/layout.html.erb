@@ -205,64 +205,69 @@ pageTracker._trackPageview();
           </div>
         </div>
       </section>
-        
-  		<footer id="footer">
-        <div class="site-width">
-          <div class="primary-secondary-content">
-            <div class="primary-content">
-              <section id="newsletter">
-                <h4>Newsletter</h4>
-                <p>Stay up to date on all things puppet</p>
-                <form action="http://lfov.net/webrecorder/f" method="post" name="Newsletter">
-                  <input type="hidden" name="formid" value="3d424fd0-4204-435f-afde-aa1c4a6bc2f1"/>
-                  <input type="hidden" name="cid" value="LF_c268993e"/>
-                  <fieldset>
-                    <legend>Newsletter</legend>
-                    <label form="email">Email</label>
-                    <input type="text" name="email" id="email" />
-                    <button type="submit">Subscribe</button>
-                  </fieldset>
-                </form>
-              </section>
-              <section id="elsewhere">
-                <h4>Elsewhere</h4>
-                <ul>
-                  <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
-                  <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Mailing List</span></a></li>
-                  <li class="facebook"><a href="http://www.facebook.com/pages/Portland-OR/Reductive-Labs/190644013795?ref=ts&v=wall" rel="external"><span class="indicator"></span><span>Become a Fan on Facebook</span></a></li>
-                  <li class="subscribe"><a href="http://feeds.feedburner.com/PuppetLabs" rel="external"><span class="indicator"></span><span>Subscribe to our blog</span></a></li>
 
-                  <li class="twitter"><a href="http://twitter.com/puppetlabs" rel="external"><span class="indicator"></span><span>Follow us on Twitter</span></a></li>
-                </ul>
-              </section>
-            </div>
-            <div class="secondary-content">
-              <section id="book-it">
-                <h4>Get the book!</h4>
-                <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
-                <img src="http://puppetlabs.com/images/book.png" />
-              </section>
-            </div>
+		<footer id="footer">
+      <div class="site-width">
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+              <p>Stay up to date on all things puppet</p>
+              <form action="http://lfov.net/webrecorder/f" method="post" name="Newsletter" id="footerform">
+                <input type="hidden" name="formid" value="3d424fd0-4204-435f-afde-aa1c4a6bc2f1"/>
+                <input type="hidden" name="cid" value="LF_c268993e"/>
+                <fieldset>
+                  <legend>Newsletter</legend>
+                  <label form="email">Email</label>
+                  <input type="text" name="email" id="email" class="required email" />
+                  <button type="submit">Subscribe</button>
+                </fieldset>
+              </form>
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Mailing List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>
+
+		
+
+              </ul>
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://puppetlabs.com/images/book.png" /></a>
+            </section>
           </div>
         </div>
-  		</footer>
-      <div id="copyright">
-        <div class="site-width">
-          &copy; 2010 <a href="http://puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
-          <span class="vcard">
-           <span class="org">Puppet Labs</span>
-           <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
-            <span class="adr">
-             <span class="street-address">222 NW Davis Street</span>
-             /
-             <span class="locality">Portland</span>, 
-             <span class="region">OR</span>
-             <span class="postal-code">97209</span>
+      </div>
+		</footer>
 
-            </span>
-           <span class="tel">+1 503-805-9065</span>
-          </span>          
-        </div>
+    <div id="copyright">
+      <div class="site-width">
+        &copy; <?= date('Y'); ?> <a href="<?php bloginfo('url'); ?>/" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+          <span class="adr">
+           <span class="street-address">222 NW Davis Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+         <span class="tel">1-877-575-9775</span>
+        </span>          
       </div>
     </div>
     <!-- BEGIN: LOOPFUSE TRACKING -->
@@ -274,7 +279,7 @@ pageTracker._trackPageview();
     <!-- END: LOOPFUSE TRACKING -->
     
   	<script type="text/javascript">Cufon.now();</script>
-  	<style type="text/css">h1, h2{ visibility : visible }</style>
-  	
-  </body>
-</html>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        
