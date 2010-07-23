@@ -1012,7 +1012,7 @@ page for more information.
 
 ### Reserved words & Acceptable characters
 
-You can use the characters A-Z, a-z, 0-9 and underscores in variables, resources and
+You can use the characters A-Z, a-z, 0-9, dashes ('-'),  and underscores in variables, resources and
 class names.   In Puppet releases prior to 0.24.6, you cannot start a class name with a number.
 
 Any word that the syntax uses for special meaning is
