@@ -23,9 +23,10 @@ been signed by the puppet master and use that certificate to connect, or for
 testing to set the security policy so that any request from anywhere is
 allowed.
 
-The security policy for the API can be controlled through the [rest_authconfig]
-(./security.html#authconf) file, and specifically for the nodes running puppet agent
-through the [namespaceauth] (./security.html#namespaceauthconf) file.
+The security policy for the API can be controlled through the 
+[rest_authconfig] (./security.html#authconf) file, and specifically for the 
+nodes running puppet agent through the 
+[namespaceauth] (./security.html#namespaceauthconf) file.
 
 Testing the REST API using curl
 =================
@@ -36,7 +37,7 @@ can be seen using [curl] (http://en.wikipedia.org/wiki/CURL).
     curl --cert /etc/puppet/ssl/certs/mymachine.pem --key /etc/puppet/ssl/private_keys/mymachine.pem --cacert /etc/puppet/ssl/ca/ca_crt.pem -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
 
 Most of this command is just setting the appropriate ssl certificates, which
-will be different depending on your where your ssldir is and your node name.
+will be different depending on where your ssldir is and your node name.
 For simplicity, lets look at this command without the certificate related
 options, which I'll assume you're either passing in as above or changing the
 [security policy] (./security.html) so that you don't need to be authenticated.
