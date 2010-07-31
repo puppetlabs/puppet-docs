@@ -129,47 +129,67 @@ we'll point out additional ones we use as we continue the tutorial.
 
 #### Chaining resources
 
-Since Puppet version 2.6 it has also been possible to chain together resources:
+As of puppet version 2.6.0, resources may be chained together to declare
+relationships between and among them.
 
-    Package['sudo'] -> File['sshdconfig'] => Service['sshd']
+You can now specify relationships directly as statements in addition to
+the before and require resource metaparameters of previous versions:
 
-You can now also specify relationships directly in the language:
+    File["/etc/ntp.conf"] -> Service[ntpd]
 
-    File[/foo] -> Service[bar]
+"Manage the ntp configuration file before the ntpd service"
 
-Specifies a normal dependency while:
+You can specify a "notify" relationship by employing the tilde instead of the
+hyphen:
 
-    File[/foo] ~> Service[bar]
+    File["/etc/ntp.conf"] ~> Service[ntpd]
 
-Specifies a subscription.
+"Manage the ntp configuration file before the ntpd service and notify the
+service of changes to the ntp configuration file."
 
-You can also do relationship chaining, specifying multiple
-relationships on a single line:
+You can also do relationship chaining, specifying multiple relationships on a
+single line:
 
-    File[/foo] -> Package[baz] -> Service[bar]
+    Package[ntp] -> File["/etc/ntp.conf"] -> Service[ntpd]
 
-Note that while it's confusing, you don't have to have all
-of the arrows be the same direction:
+"First, manage the ntp package, second manage the ntp configuration file, third
+manage the ntpd service."
 
-    File[/foo] -> Service[bar] <- Package[baz]
+Note that while it's confusing, you don't have to have all of the arrows be the
+same direction:
 
-This can provide some succinctness at the cost of readability.
+    File["/etc/ntp.conf"] -> Service[ntpd] <- Package[ntp]
 
-You can also specify full resources, rather than just
-resource refs:
+"The ntpd service requires /etc/ntp.conf and the ntp package"
 
-    file { "/foo": ensure => present } -> package { bar: ensure => installed } 
+Please note, relationships declared in this manner are between adjacent
+resources.  In this example, the ntp package and the ntp configuration file are
+related to each other and puppet may try to manage the configuration file
+before the package is even installed, which may not be the desired behavior.
 
-But wait! There's more! You can also specify a subscription on either side
+Chaining in this manner can provide some succinctness at the cost of
+readability.
+
+You can also specify relationships when resources are declared, in addition to
+the above resource reference examples:
+
+    package { "ntp": } -> file { "/etc/ntp.conf": }
+
+"Manage the ntp package before the ntp configuration file"
+
+But wait! There's more! You can also specify a collection on either side
 of the relationship marker:
 
-    yumrepo { foo: .... } 
-    package { bar: provider => yum, ... }
+    yumrepo { localyumrepo: .... }
+    package { ntp: provider => yum, ... }
     Yumrepo <| |> -> Package <| provider == yum |>
 
-This, finally, provides easy many to many relationships in Puppet, but it also opens
-the door to massive dependency cycles. This last feature is a very powerful stick,
-and you can considerably hurt yourself with it.
+"Manage all yum repository resources before managing all package resources
+using the yum provider."
+
+This, finally, provides easy many to many relationships in Puppet, but it also
+opens the door to massive dependency cycles. This last feature is a very
+powerful stick, and you can considerably hurt yourself with it.
 
 ### Resource Defaults
 
