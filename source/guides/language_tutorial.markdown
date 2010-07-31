@@ -383,6 +383,62 @@ You can also specify default parameter values in your class like so:
       ... class contents ...
     }
 
+#### Run Stages
+
+Also added in Puppet version 2.6, you now have the ability to specify any
+number of stages which provide another method to control the ordering of
+resource management in puppet.  If you have a large number of resources in your
+catalog it may become tedious and cumbersome to explicitly manage every
+relationship between the resources where order is important.  In this
+situation, run-stages provides you the ability to associate a class to a single
+stage.  Puppet will guarantee stages run in a specific predictable order every
+catalog run.
+
+In order to use run-stages, you must first declare additional stages beyond the
+already present main stage.  You can then configure puppet to manage each stage
+in a specific order using the same resource relationship syntax, before,
+require, "->" and "<-".  The relationship of stages will then gurantee the
+ordering of classes associated with each stage.
+
+By default there is only one stage named "main" and all classes are
+automatically associated with this stage.  Unless explicitly stated, a class
+will be associated with the main stage.  With only one stage the effect of run
+stages is the same as previous versions of puppet since resources within a
+stage are managed in arbitrary order unless they have explicit relationships
+declared.
+
+In order to declare additional stage resources, follow the same consistent and
+simple declarative syntax of the puppet language:
+
+    stage { "first": before => Stage[main] }
+    stage { "last": require => Stage[main] }
+
+"All classes associated with the first stage are to be managed before the
+classes associated with the main stage.  All classes associated with the
+last stage are to be managed after the classes associated with the main
+stage."
+
+Once stages have been declared, a class may be associated with a stage other
+than main using the "stage" class parameter.
+
+    class {
+      "apt-keys": stage => first;
+      "sendmail": stage => main;
+      "apache":   stage => last;
+    }
+
+"Associate all resources in the class apt-keys with the first run stage, all
+resources in the class sendmail with the main stage, and all resources in the
+apache class with the last stage."
+
+This short declaration guarantees resources in the apt-keys class are managed
+before resources in the sendmail class, which in turn is managed before
+resources in the apache class.
+
+Please note that stage is not a metaparameter.  The run stage must be specified
+as a class parameter and as such classes must use the resource declaration
+syntax as shown rather than the "include" statement.
+
 #### Definitions
 
 Definitions follow the same basic form as classes, but they are
