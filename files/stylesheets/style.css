@@ -2899,15 +2899,17 @@ ol.chapters li {
 }
 
 ol.chapters > li{
-  padding-left: 2em;
+  padding-left: 1em;
 }
 
 ol.chapters > li:before {
 	display: block;
-	width: 1.5em;
 	left: 0;
 	position: absolute;
 	white-space: nowrap;
+	width: 1.5em;
+	text-align: right;
+	margin-left: -1em;
 }
 
 ol.chapters > li ul {
@@ -2918,12 +2920,12 @@ ol.chapters > li > ul {
   counter-reset: subsection;
   font-size: 0.85em;
   padding-top: 0.5em;
+  padding-left: .75em;
 }
 
 ol.chapters > li > ul > li {
   font-weight: normal;
   counter-increment: subsection;
-	padding-left: 2.25em;
 }
 
 ol.chapters > li > ul li:before {
@@ -2932,15 +2934,17 @@ ol.chapters > li > ul li:before {
   position: absolute;
   left: 0;
   top: 0;
+	width: 3em;
+	text-align: right;
+	margin-left: -3.25em;
 }
 ol.chapters > li > ul > li > ul {
   padding-top: 0.4em;
   counter-reset: subsubsection;
-  margin-left: -2.25em;
+  padding-left: 1.75em;
 }
 
 ol.chapters > li > ul > li > ul > li{
-  padding-left: 3.33em;
 }
 ol.chapters > li > ul > li > ul > li:before {
   content: counter(section) "." counter(subsection) "." counter(subsubsection);
