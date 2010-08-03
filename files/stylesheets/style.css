@@ -2936,7 +2936,7 @@ ol.chapters > li > ul li:before {
   top: 0;
 	width: 3em;
 	text-align: right;
-	margin-left: -3.25em;
+	margin-left: -3.75em;
 }
 ol.chapters > li > ul > li > ul {
   padding-top: 0.4em;
