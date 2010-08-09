@@ -215,31 +215,17 @@ more-specific files under the module path (see the discussion under
 [Feature 1012](http://projects.puppetlabs.com/issues/1012) for
 the history here).
 
-## Module Importing
-
-For manifests, imports can either import a whole module (which
-amounts to importing the module's init.pp) or import a specific
-file from the module:
-
-    import "autofs"                # Looks for 'autofs/manifests/init.pp' on the module path
-    import "autofs/init.pp"        # Looks for the same file on the module path
-    import "autofs/util/stuff.pp"  # Looks for 'autofs/manifests/util/stuff.pp' on the module path
-
-If nothing appropriate is found on the module path, Puppet will try
-to resolve the import relative to the directory containing the
-manifest doing the import.
-
-Modules need to be imported into Puppet to make use of them.
-However, from version Puppet 0.23.1 onwards, everything under the
+From version Puppet 0.23.1 onwards, everything under the
 modulepath is automatically imported into Puppet and is available
-to be used. Puppet will attempt to auto-load classes and
-definitions from modules, so you don't have to explicitly import
+to be used. This is called module autoloading.  Puppet will attempt to 
+auto-load classes and definitions from modules, so you don't have to explicitly import
 them. You can just include the module class or start using the
 definition. Note that the init.pp file will always be loaded first,
 so you can put all of your classes and definitions in there if you
-prefer. But with namespaces, some additional magic is available.
+prefer. 
 
-Let's say your autofs module has a class defined in init.pp but you
+With namespaces, some additional magic is also available. Let's say your 
+autofs module has a class defined in init.pp but you
 want an additional class called craziness. If you define that class
 as autofs::craziness and store it in file craziness.pp under the
 manifests directory, then simply using something like include
