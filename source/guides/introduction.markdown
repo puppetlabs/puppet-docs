@@ -9,7 +9,7 @@ Why Puppet
 As system administrators acquire more and more systems to manage, automation
 of mundane tasks is increasingly important.  Rather than develop in-house
 scripts, it is desirable to share a system that everyone can use, and invest
-in tools that can be used regardless of one's employer.  Certaintly doing
+in tools that can be used regardless of one's employer.  Certainly doing
 things manually doesn't scale.
 
 Puppet has been developed to help the sysadmin community move to
