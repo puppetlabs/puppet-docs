@@ -652,45 +652,46 @@ header#header li:hover a span.subtitle {
 
 /* @group Misc Navigation */
 
-#header ul#misc-navigation{
+#header #misc-navigation{
   position: absolute;
   top: 0;
   right: 0;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+#header #misc-navigation ul {
+  padding: 3px 10px 5px;
+  display:inline-block;
   white-space: nowrap;
   -webkit-border-bottom-left-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
   -moz-border-radius-bottomleft: 6px;
   -moz-border-radius-bottomright: 6px;
-  padding: 3px 10px 5px;
-  font-size: 0.85em;
-  font-weight: bold;
   background: #514a6b;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#514a6b), to(#524f74));
   background: -moz-linear-gradient(#514a6b, #524f74);
   -webkit-box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
   -moz-box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
-  width: 320px;
-  text-align: center;
 }
 
-#header ul#misc-navigation li{
+#header #misc-navigation ul li{
 	display: inline-block;
 	margin-right: 0.8em;
 }
 
-#header ul#misc-navigation li:last-child{
+#header #misc-navigation ul li:last-child{
 	margin-right: -0.67em;
 }
 
-#header ul#misc-navigation li a{
+#header #misc-navigation ul li a{
 	color: #9c99b3;
 }
 
-#header ul#misc-navigation li a:hover{
+#header #misc-navigation ul li a:hover{
 	text-decoration: underline;
 }
 
-#header ul#misc-navigation li a.gateway{
+#header #misc-navigation a.gateway{
 	border: none;
 	background: #7f6799;
 	color: white;
@@ -698,10 +699,15 @@ header#header li:hover a span.subtitle {
 	line-height: 1.5em;
 }
 
-#header ul#misc-navigation li a.gateway:hover{
+#header #misc-navigation a.gateway:hover{
   background-color: #ba5500;
   text-decoration: none;
 }
+
+#header #misc-navigation form {display:inline-block; padding:5px 10px 5px;}
+#header #misc-navigation form input {display:inline-block; margin:0 10px 0 0 !important; padding:2px !important; width:auto !important; font-size:1em !important;}
+#header input.searchbtn {padding:0.25em 0.5em; line-height:1.5em; font-weight:bold; background: #7f6799; color:#fff; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; border:none !important;}
+#header input.searchbtn:hover {background-color:#ba5500; color:#fff;}
 
 
 /* @end */
