@@ -63,12 +63,26 @@ ol, ul {
 
 table {
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 1px;
 }
 
 caption, th, td {
   text-align: left;
   font-weight: normal;
+  background: #888;
+}
+
+table th {background:#888; color:#fff; padding:1em;}
+table td {background:#f0f0f0; padding:1em;}
+
+table th:first-child {
+  -webkit-border-top-left-radius: 0.5em;
+  -moz-border-radius-topleft: 0.5em;
+}
+
+table th:last-child {
+  -webkit-border-top-right-radius: 0.5em;
+  -moz-border-radius-topright: 0.5em;
 }
 
 blockquote:before, blockquote:after,
