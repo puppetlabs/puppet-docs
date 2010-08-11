@@ -8,19 +8,21 @@ Once Puppet is installed, learn how to set it up for initial operation.
 Open Firewall Ports On Server and Client
 ----------------------------------------
 
-In order for the puppet server to centrally manage clients, you may need to open port 8140, both tcp and udp, on the server and client machines.
+In order for the puppet server to centrally manage clients, you may need to open port 8140, both TCP and UDP, on the server and client machines.
 
 Configuration Files
 -------------------
 
-The main configuration file for Puppet is /etc/puppet/puppet.conf.  A package based installation file will have created this file automatically.  Unlisted settings have reasonable defaults.   To see all the possible values, you may run:
+The main configuration file for Puppet is `/etc/puppet/puppet.conf`.  A package based 
+installation file will have created this file automatically.  Unlisted settings have 
+reasonable defaults.   To see all the possible values, you may run:
 
-    puppet --genconfig   
+    $ puppet --genconfig   
 
 Configure DNS
 -------------
 
-The puppet client looks for a server named 'puppet'. If you have
+The puppet client looks for a server named `puppet`. If you have
 local DNS zone files, you may want to add a CNAME record pointing
 to the server machine in the appropriate zone file.
 
@@ -31,7 +33,7 @@ server name in the configuration of each client.
 
 See the book "DNS and Bind" by Cricket Liu et al if you need help
 with CNAME records. After adding the CNAME record, restart your
-name server. You can also add a host entry in the /etc/hosts file
+name server. You can also add a host entry in the `/etc/hosts` file
 on both the server and client machines.
 
 For the server:
@@ -43,7 +45,7 @@ For the clients:
     192.168.1.67 crabcake.picnic.edu crabcake puppet
 
 WARNING: If you can ping the server by
-the name 'puppet' but /var/log/messages on the clients still has
+the name `puppet` but Syslog (for example `/var/log/messages`) on the clients still has
 entries stating the puppet client cannot connect to the server, 
 verify port 8140 is open on the server.
 
@@ -66,8 +68,8 @@ manifests if you wanted, though if doing this each of them would need
 their own puppet servers.  Individual system differences can be seperated
 out, node by node, in the site manifest.
 
-Puppet will start with /etc/puppet/manifests/site.pp as the primary
-manifest, so create /etc/puppet/manifests and add your manifest,
+Puppet will start with `/etc/puppet/manifests/site.pp` as the primary
+manifest, so create `/etc/puppet/manifests` and add your manifest,
 along with any files it includes, to that directory. It is highly
 recommended that you use some form of version control (git, svn, etc)
 to keep track of changes to manifests.
@@ -112,7 +114,7 @@ is not advisable for production environments).
 
 It is also neccessary to create the puppet user and group
 that the daemon will use.   Either create these manually, or start
-the daemon with the --mkusers flag to create them.
+the daemon with the `--mkusers` flag to create them.
 
     # /usr/sbin/puppetmasterd --mkusers
 {:shell}
@@ -129,7 +131,7 @@ To verify that your daemon is working as expected, pick a single
 client to use as a testbed. Once Puppet is installed on that
 machine, run a single client against the central server to verify
 that everything is working appropriately. You should start the
-first client in verbose mode, with the --waitforcert flag enabled:
+first client in verbose mode, with the `--waitforcert` flag enabled:
 
     # puppetd --server myserver.domain.com --waitforcert 60 --test
 {:shell}

@@ -32,8 +32,7 @@ default set to production and will only be changed by changing the
 clients configuration or per command parameter. You can't set it to
 a default value on the server side . For a more detailed discussion
 have a look at:
-[environment default setting](http://groups.google.com/group/puppet-users/browse_thread/thread/f97bfad1e46c83c4?hl=en#)
-- thread on the mailing list.
+[environment default setting](http://groups.google.com/group/puppet-users/browse_thread/thread/f97bfad1e46c83c4?hl=en#) thread on the mailing list.
 
 Goal of Environments
 --------------------
@@ -75,13 +74,13 @@ preference to the main sections. For instance:
         modulepath = /usr/share/puppet/development/modules
 
 In this case, any clients in the development environment will use
-the site.pp file located in the directory
-/usr/share/puppet/development and Puppet would search for any
-modules under the /usr/share/puppet/development/modules directory.
+the `site.pp` file located in the directory
+`/usr/share/puppet/development` and Puppet would search for any
+modules under the `/usr/share/puppet/development/modules` directory.
 
 Running with any other environment or without an environment would
-default to the site.pp file and directory specified in the manifest
-and modulepath values in the [main] configuration section.
+default to the `site.pp` file and directory specified in the `manifest`
+and `modulepath` values in the `[main]` configuration section.
 
 Only certain parameters make sense to be configured
 per-environment, and all of those parameters revolve around
@@ -108,12 +107,12 @@ It is recommended that you switch as much as possible to modules if
 you plan on using environments.
 
 Additionally, the file server uses an environment-specific module
-path; if you do your file serExported Resourcesving from modules, instead of
+path; if you do your file serving from modules, instead of
 separately mounted directories, your clients will be able to get
 environment-specific files.
 
 Finally, the current environment is also available as the variable
-$environment within your manifests, so you can use the same
+`$environment` within your manifests, so you can use the same
 manifests everywhere and behave differently internally depending on
 the environment.
 
@@ -121,14 +120,14 @@ Setting The Client's Environment
 --------------------------------
 
 To specify which environment the Puppet client uses you can specify
-a value for the environment configuration variable in the client's
-puppet.conf file:
+a value for the `environment` configuration variable in the client's
+`puppet.conf` file:
 
     [puppetd]
         environment = development
 
 This will inform the server which environment the client is in,
-here development.
+here `development`.
 
 You can also specify this on the command line:
 
@@ -182,7 +181,3 @@ redirected to the contents of:
 instead.
 
 This allows your facts to differ depending upon your environment.
-
-
-
-

@@ -998,13 +998,13 @@ will include the class `mongrel`, otherwise it will include the class `nginx`.
 
 From version 2.6 and later an `elsif` construct was introduced into the language:
 
-  if $server == 'mongrel' {
-      include mongrel
-  } elsif $server == 'nginx' {
-      include nginx
-  } else {
-      include thin
-  }
+    if $server == 'mongrel' {
+        include mongrel
+    } elsif $server == 'nginx' {
+        include nginx
+    } else {
+        include thin
+    }
 
 Arithmetic expressions are also possible, for example:
 
@@ -1020,9 +1020,9 @@ More complex expressions combining arithmetric expressions with the
 Boolean operators `and`, `or`, or `not` are also possible:
 
     if ( $processor_count > 2 ) and (( $ram >= 16 * $gigabyte ) or ( $disksize > 1000 )) {
-    include for_big_irons
+        include for_big_irons
     } else {
-    include for_small_box
+        include for_small_box
     }
 
 See the Expression section further down for more information on expressions.
