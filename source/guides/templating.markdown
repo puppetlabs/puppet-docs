@@ -24,9 +24,9 @@ Templates are evaluated via a simple function:
 
 You can specify the full path to your template, or you can put all
 your templates in Puppet's templatedir, which usually defaults to
-/var/puppet/templates (you can find out what it is on your system
-by running puppet --configprint templatedir).  Best practices indicates
-including the template in the 'templates' directory inside your [Module]
+`/var/puppet/templates` (you can find out what it is on your system
+by running `puppet --configprint templatedir`).  Best practices indicates
+including the template in the `templates` directory inside your [Module]
 (./modules.html).
 
 Templates are always evaluated by the parser, not by the client.
