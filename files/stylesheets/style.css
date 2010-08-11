@@ -55,6 +55,8 @@ body {
   background: white;
 }
 
+code { font-family: monospace }
+
 ol, ul {
   list-style: none;
 }
