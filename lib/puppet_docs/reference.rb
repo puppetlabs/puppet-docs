@@ -39,33 +39,23 @@ module PuppetDocs
 
       def generate
         puts "Generating #{@name} reference for #{version}."
-        raw_content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppetdoc -m text -r #{@name}`
-        if raw_content
+        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppetdoc -m text -r #{@name}`
+        if content
           setup_destination!
-          content = nil
-          IO.popen("pandoc -s -r rst -w markdown", "w+") do |pandoc| # was rst2html.py ... why?
-            pandoc.write raw_content
-            pandoc.close_write
-            content = pandoc.read
-          end
-          if content
-            File.open(destination_filename, 'w') { |f| f.write content }
-            puts "Wrote #{destination_filename}"
-          else
-            abort "Could not convert RST to Markdown (requires pandoc)"
-          end
-        else
+          File.open(destination_filename, 'w') { |f| f.write content }
+          puts "Wrote #{destination_filename}"
+         else
           abort "Could not build #{@name} reference using puppetdoc at #{version}"
         end
       end
-            
+
       private
 
       def valid_tags
         %x{git fetch --tags origin}
         @valid_tags ||= at('master') { `git tag` }.grep(/\./).map { |s| s.strip }
       end
-      
+
       def version
         @version ||=
           at @tag do
@@ -90,11 +80,11 @@ module PuppetDocs
           end
         end
       end
-      
+
       def puppet_dir
         PuppetDocs.root + 'vendor/puppet'
       end
-      
+
       def setup_repository!
         if File.directory?(puppet_dir)
           at 'master' do
@@ -123,7 +113,7 @@ module PuppetDocs
       end
 
     end
-    
+
   end
 
 end
