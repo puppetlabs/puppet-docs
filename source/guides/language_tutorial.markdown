@@ -124,7 +124,7 @@ parameters that work with any resource type.
 In the examples in the section above we used two metaparameters,
 `subscribe` and `require`, both of which build relationships
 between resources. You can see the full list of all metaparameters in the
-[Metaparameter Reference](/references/stable/metaparameters.html), though
+[Metaparameter Reference](/references/stable/metaparameter.html), though
 we'll point out additional ones we use as we continue the tutorial.
 
 #### Chaining resources
