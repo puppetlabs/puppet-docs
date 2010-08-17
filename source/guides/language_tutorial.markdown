@@ -854,6 +854,12 @@ Here the `$ssh_users` variable contains an array with the elements
 `myself` and `someone`. Using the variable append syntax, `+=`, we
 added another element, `someone_else` to the array.
 
+Please note, variables cannot be modified in the same scope because of the
+declarative nature of Puppet.  As a result, $ssh_users contains the element
+'someone_else' only in the scope of class test and not outside scopes.
+Resources outside of this scope will "see" the original array containing only
+myself and someone.
+
 ### Conditionals
 
 At some point you'll need to use a different value based on the value of a variable, or decide to not do something if a particular value is set.
