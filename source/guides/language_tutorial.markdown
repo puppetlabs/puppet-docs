@@ -920,8 +920,8 @@ Like Perl and some other languages with regular expression support, captures in 
 limited scope variables (`$0` to `$n`):
 
     $system = $operatingsystem ? {
-        /(redhat|debian)/   => 'our system is $1',
-        default => 'our system is unknown',
+        /(redhat|debian)/   => "our system is $1",
+        default => "our system is unknown",
     }
 
 In this last example, `$1` will get replaced by the content of the
@@ -972,8 +972,8 @@ As with selectors (see above), regular expressions captures are also available.
 These create limited scope variables `$0` to `$n`:
 
     case $hostname {
-        /^j(ack|ill)$/:   { notice('Welcome $1!') } 
-        default:          { notice('Welcome stranger') }
+        /^j(ack|ill)$/:   { notice("Welcome $1!") } 
+        default:          { notice("Welcome stranger") }
     }
 
 In this last example, if `$host` is `jack` or `jill` then a notice
