@@ -8,6 +8,8 @@ Learn what platforms are supported.
 Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform
 not on this list.
 
+Puppet requires Ruby to run and currently supports Ruby version 1.8.1 to 1.8.7.  Ruby 1.9.x is not yet supported.
+
 Linux
 -----
 
@@ -21,6 +23,7 @@ Linux
     -   Oracle Linux
     -   SuSE Linux 8 and later
     -   Ubuntu 7.04 and later    
+    -   ArchLinux
 
 BSD
 ---
@@ -32,8 +35,9 @@ Other Unix
     -   Macintosh OS X
     -   Sun Solaris 2.6
     -   Sun Solaris 7 and later
+    -   AIX
+    -   HP-UX
 
 Windows
 -------
-    -   Windows support is coming in 2010!
-
+    -   Windows (verison 2.6.0 and later)
