@@ -54,7 +54,7 @@ Power user features.
 * [Templating](./guides/templating.html) -- template out config files using ERB
 * [Virtual Resources](./guides/virtual_resources.html)
 * [Exported Resources](./guides/exported_resources.html) -- share data between hosts
-* [Environments](./guides/environment.html) -- seperate dev, stage, & production
+* [Environments](./guides/environment.html) -- separate dev, stage, & production
 * [Reporting](./guides/reporting.html) -- learn what your nodes are up to
 * [External Nodes](./guides/external_nodes.html) -- specify what your machines do using external data sources
 * [Scaling Puppet](./guides/scaling.html) -- general tips & tricks
