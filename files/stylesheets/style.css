@@ -677,6 +677,7 @@ header#header li:hover a span.subtitle {
   padding: 3px 10px 5px;
   display:inline-block;
   white-space: nowrap;
+  vertical-align:top;
   -webkit-border-bottom-left-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
   -moz-border-radius-bottomleft: 6px;
