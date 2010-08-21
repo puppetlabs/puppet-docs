@@ -40,7 +40,7 @@ task :generate_pdf do
   sh "bin/generate"
   Rake::Task['references:symlink'].invoke
   what_files = Scanner.new('output','output/index.html').run()
-  sh "htmldoc -f puppet.pdf #{what_files}"
+  sh "htmldoc --book --title --no-toc --titlefile images/PuppetLabshorizontal.png -f puppet.pdf #{what_files}"
   sh "rm -fr output"
 end
 
