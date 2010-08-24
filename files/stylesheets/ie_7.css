@@ -1,7 +1,6 @@
 a.gateway,
 ol > li:before,
 span.ampersand,
-#header ul#misc-navigation li,
 header#header ul#global-navigation > li,
 section#masthead a.back,
 footer#footer input,
@@ -33,7 +32,8 @@ div.wp-pagenavi span.current{
   display: inline;
 }
 
-
+#misc-navigation ul,
+#misc-navigation li {display:block; float:left;}
 
 .site-width,
 ul.categories a,
