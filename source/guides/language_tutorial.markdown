@@ -41,6 +41,7 @@ Chaining Resources              |        |        |        |        |   X   |
 Hashes                          |        |        |        |        |   X   |
 Parameterised Class             |        |        |        |        |   X   |
 Run Stages                      |        |        |        |        |   X   |
+The "in" syntax                 |        |        |        |        |   X   |
 
 Resources
 ---------
@@ -859,6 +860,26 @@ to variables, for example:
 
 See the Expression section later on this page for further details
 of the expressions that are now available.
+
+From Puppet 2.6.0 you can also use the "in" syntax.  This operator allows 
+you to find if the left operand is in the right one. The left operand must 
+be resort to a string, but the right operand can be:
+
+* a string
+* an array
+* a hash (the search is done on the keys)
+
+This syntax can be used in any place where an expression is supported:
+
+    $eatme = 'eat'
+    if $eatme in ['ate', 'eat'] {
+    ...
+    }
+
+    $value = 'beat generation'
+    if 'eat' in $value {
+      notice("on the road")
+    }
 
 #### Appending to Variables
 
