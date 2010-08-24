@@ -861,9 +861,11 @@ to variables, for example:
 See the Expression section later on this page for further details
 of the expressions that are now available.
 
+#### The "in" syntax
+
 From Puppet 2.6.0 you can also use the "in" syntax.  This operator allows 
 you to find if the left operand is in the right one. The left operand must 
-be resort to a string, but the right operand can be:
+be a string, but the right operand can be:
 
 * a string
 * an array
