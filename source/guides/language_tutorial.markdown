@@ -21,6 +21,27 @@ people have already written.   Complete real world examples
 can serve as a great introduction to Puppet.  See the [Modules](/guides/modules.html) 
 page for more information and some links to list of community developed Puppet content.
 
+
+Language Feature by Release
+---------------------------
+
+Feature                         | 0.23.1 | 0.24.6 | 0.24.7 | 0.25.0 | 0.25.1 | 2.6.0 |
+--------------------------------|:------:|:------:|:------:|:------:|:------:|:-----:|
+Multiple Resource relationships |        |   X    |   X    |   X    |   X    |   X   |
+Chaining Resources              |        |        |        |        |        |   X   |
+Class Inheritance Overrides     |        |   X    |   X    |   X    |   X    |   X   |
+Plusignment operator (+>)       |    X   |   X    |   X    |   X    |   X    |   X   |
+Parameterised Class             |        |        |        |        |        |   X   |
+Run Stages                      |        |        |        |        |        |   X   |
+Node regular expressions        |        |        |        |   X    |   X    |   X   |
+Hashes                          |        |        |        |        |        |   X   |
+Expressions in Variables        |        |        |        |   X    |   X    |   X   |
+Appending to Variables (+=)     |        |   X    |   X    |   X    |   X    |   X   |
+RegExes in conditionals         |        |        |        |   X    |   X    |   X   |
+Elsif in conditionals           |        |        |        |        |        |   X   |
+Class names starting with 0-9   |        |  X     |   X    |   X    |   X    |   X   |
+Multi-line C-style comments     |        |        |   X    |   X    |   X    |   X   |
+
 Resources
 ---------
 
@@ -339,7 +360,7 @@ It's not dangerous to reference a class with a require more than once.
 Classes are evaluated using the `include` function (which we will
 mention later). If a class has already been evaluated once, then `include` essentially does nothing.
 
-##### Qualification Of Nested Classes
+#### Qualification Of Nested Classes
 
 Puppet allows you to nest classes inside one another as a way
 of achieving modularity and scoping.  For example:
@@ -363,7 +384,7 @@ In this example, the `nested` class inside the outer `myclass` is included as
 
 #### Parameterised Classes
 
-In Puppet release 2.6 and later, classes are extended to allow the passing of paremeters into classes.  
+In Puppet release 2.6.0 and later, classes are extended to allow the passing of paremeters into classes.  
 
 To create a class with parameters you can now specify:
 
@@ -385,7 +406,7 @@ You can also specify default parameter values in your class like so:
 
 #### Run Stages
 
-Also added in Puppet version 2.6, you now have the ability to specify any
+Run stage were added in Puppet version 2.6.0, you now have the ability to specify any
 number of stages which provide another method to control the ordering of
 resource management in puppet.  If you have a large number of resources in your
 catalog it may become tedious and cumbersome to explicitly manage every
@@ -698,7 +719,7 @@ Of course, this can be used for native types as well:
 
 ### Hashes
 
-Since Puppet version 2.6, hashes have been supported in the language.  These hashes are defined like Ruby hashes using the form:
+Since Puppet version 2.6.0, hashes have been supported in the language.  These hashes are defined like Ruby hashes using the form:
 
     hash: { key1 => val1, ... }
 
@@ -810,8 +831,7 @@ For example:
     }
 
 In this example, the value of the `$other` variable evaluates to
-`content`. Qualified variables are read-only -- you can
-not set a variable's value from other class.
+`content`. Qualified variables are read-only -- you cannot set a variable's value from other class.
 
 Variable qualification is dependent on the evaluation order of your
 classes. Class `myclass` must be evaluated before class
@@ -904,7 +924,7 @@ Selectors can also be used in variable assignment:
         default => undef,
     }
 
-In Puppet 0.25 and later, selectors can also be used with regular
+In Puppet 0.25.0 and later, selectors can also be used with regular
 expressions:
 
     $owner = $operatingsystem ? {
@@ -954,7 +974,7 @@ each with a comma:
 Here, if the `$hostname` fact returns either `jack` or `jill` the
 `hill` class would be included.
 
-In Puppet 0.25 and later, the `case` statement also supports
+In Puppet 0.25.0 and later, the `case` statement also supports
 regular expressions:
 
     case $hostname {
@@ -1002,7 +1022,7 @@ based on the value of an expression:
 In the above example, if the value of the variable `$server` is equal to `mongrel`, Puppet
 will include the class `mongrel`, otherwise it will include the class `nginx`.
 
-From version 2.6 and later an `elsif` construct was introduced into the language:
+From version 2.6.0 and later an `elsif` construct was introduced into the language:
 
     if $server == 'mongrel' {
         include mongrel
@@ -1138,7 +1158,7 @@ Puppet expressions can be composed of:
 -   arithmetic expressions, which consists of variables, numerical
     operands or other expressions combined with the following
     arithmetic operators: `+`, `-`, `/`, `*`, `<<`, `>>`
--   and in Puppet 0.25 and later, regular expression matches with the help of the
+-   and in Puppet 0.25.0 and later, regular expression matches with the help of the
     regex match operator: `=~` and `!~`
 
 Expressions can be enclosed in parenthesis, `()`, to group
@@ -1212,7 +1232,7 @@ Boolean expressions are also possible using `or`, `and` and `not`:
 
 #### Regular expressions
 
-In Puppet 0.25 and later, Puppet supports regular expression matching
+In Puppet 0.25.0 and later, Puppet supports regular expression matching
 using `=~` (match) and `!~` (not-match) for example:
 
     if $host =~ /^www(\d+)\./ {

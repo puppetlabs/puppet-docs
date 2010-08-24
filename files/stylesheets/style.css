@@ -208,6 +208,16 @@ h4 {
   margin-bottom: 0.5em;
 }
 
+h5 {
+  color: #888;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: bold;
+  margin-top: 1em; 
+  margin-bottom: 0.5em;
+}
+
 div.section+h3 {
   margin-top: 0;
 }
