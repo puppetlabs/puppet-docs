@@ -25,22 +25,22 @@ page for more information and some links to list of community developed Puppet c
 Language Feature by Release
 ---------------------------
 
-Feature                         | 0.23.1 | 0.24.6 | 0.24.7 | 0.25.0 | 0.25.1 | 2.6.0 |
---------------------------------|:------:|:------:|:------:|:------:|:------:|:-----:|
-Multiple Resource relationships |        |   X    |   X    |   X    |   X    |   X   |
-Chaining Resources              |        |        |        |        |        |   X   |
-Class Inheritance Overrides     |        |   X    |   X    |   X    |   X    |   X   |
-Plusignment operator (+>)       |    X   |   X    |   X    |   X    |   X    |   X   |
-Parameterised Class             |        |        |        |        |        |   X   |
-Run Stages                      |        |        |        |        |        |   X   |
-Node regular expressions        |        |        |        |   X    |   X    |   X   |
-Hashes                          |        |        |        |        |        |   X   |
-Expressions in Variables        |        |        |        |   X    |   X    |   X   |
-Appending to Variables (+=)     |        |   X    |   X    |   X    |   X    |   X   |
-RegExes in conditionals         |        |        |        |   X    |   X    |   X   |
-Elsif in conditionals           |        |        |        |        |        |   X   |
-Class names starting with 0-9   |        |  X     |   X    |   X    |   X    |   X   |
-Multi-line C-style comments     |        |        |   X    |   X    |   X    |   X   |
+Feature                         | 0.23.1 | 0.24.6 | 0.24.7 | 0.25.0 | 2.6.0 |
+--------------------------------|:------:|:------:|:------:|:------:|:-----:|
+Plusignment operator (+>)       |    X   |   X    |   X    |   X    |   X   |
+Multiple Resource relationships |        |   X    |   X    |   X    |   X   |
+Class Inheritance Overrides     |        |   X    |   X    |   X    |   X   |
+Appending to Variables (+=)     |        |   X    |   X    |   X    |   X   |
+Class names starting with 0-9   |        |   X    |   X    |   X    |   X   |
+Multi-line C-style comments     |        |        |   X    |   X    |   X   |
+Node regular expressions        |        |        |        |   X    |   X   |
+Expressions in Variables        |        |        |        |   X    |   X   |
+RegExes in conditionals         |        |        |        |   X    |   X   |
+Elsif in conditionals           |        |        |        |        |   X   |
+Chaining Resources              |        |        |        |        |   X   |
+Hashes                          |        |        |        |        |   X   |
+Parameterised Class             |        |        |        |        |   X   |
+Run Stages                      |        |        |        |        |   X   |
 
 Resources
 ---------
