@@ -40,4 +40,4 @@ Other Unix
 
 Windows
 -------
-    -   Windows (verison 2.6.0 and later)
+    -   Windows (version 2.6.0 and later)
