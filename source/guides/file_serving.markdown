@@ -1,4 +1,9 @@
-# The Puppet File Server
+The Puppet File Server
+======================
+
+Learn how to use Puppet's file serving capability.
+
+* * * 
 
 Puppet comes with both a client and server for copying files
 around. The file serving function is provided as part of the
