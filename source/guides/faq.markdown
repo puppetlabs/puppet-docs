@@ -136,8 +136,6 @@ Upgrading
 When upgrading to a new version of Puppet, always upgrade the
 server first. Old clients can point at a new server but you may
 have problems when pointing a new client at an old server.
-[[[Frequently\_Asked\_Questions#table-of-contents|Frequently Asked
-Questions]] ]
 
 ## How should I upgrade Puppet & Facter?
 
@@ -147,8 +145,6 @@ than installing them from source. If you do install them from
 source make sure you remove old versions including all application
 and library files (excepting configuration in /etc/puppet
 obviously) entirely before upgrading.
-[[[Frequently\_Asked\_Questions#table-of-contents|Frequently Asked
-Questions]] ]
 
 ## How do I know what's changed when I upgrade?
 
