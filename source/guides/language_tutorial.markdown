@@ -234,7 +234,7 @@ use undef like so:
     }
 
 In the above example, nodes which include the `unix` class will have the
-password file's group set to "wheel", while nodes including
+password file's group set to `root`, while nodes including
 `freebsd` would have the password file group ownership left
 unmodified.
 
