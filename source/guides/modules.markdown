@@ -13,8 +13,8 @@ Trac site or a particular Rails application.
 
 Modules are easily re-distributable.  For example, this will
 enable you to have the default site configuration under
-/etc/puppet, with modules shipped by puppet proper in
-/usr/share/puppet/.  You could also have other directories containing a happy mix-and-match 
+`/etc/puppet`, with modules shipped by Puppet proper in
+`/usr/share/puppet/`.  You could also have other directories containing a happy mix-and-match 
 of version control checkouts in various states of development and production readiness.
 
 Modules are available in Puppet version 0.22.2 and later.
@@ -24,8 +24,8 @@ Modules are available in Puppet version 0.22.2 and later.
 There are two configuration settings that pertain to modules:
 
 1.  The search path for modules is configured as a colon-separated
-    list of directories in the puppetmaster section of puppetmaster's
-    config file with the modulepath parameter:
+    list of directories in the [puppetmasterd] (pre-2.6.0) or [master] (2.6.x and later) section of Puppet master's
+    config file with the `modulepath` parameter:
 
         [puppetmasterd]
         ...
@@ -47,8 +47,8 @@ different use cases, there is a configuration variable modulepath
 which is a list of directories to scan in turn.
 
 A reasonable default could be configured as
-/etc/puppet/modules:/usr/share/puppet:/var/lib/modules.
-Alternatively, the /etc/puppet directory could be established as a
+`/etc/puppet/modules:/usr/share/puppet:/var/lib/modules`.
+Alternatively, the `/etc/puppet` directory could be established as a
 special anonymous module which is always searched first to retain
 backwards compatibility to today's layout.
 
@@ -79,11 +79,9 @@ and templates arranged in a specific directory structure:
 
     MODULE_PATH/
        downcased_module_name/
-          depends/
           files/
           manifests/
              init.pp
-             defaults.pp
           lib/
              puppet/
                 parser/
@@ -96,7 +94,7 @@ and templates arranged in a specific directory structure:
 
 *NOTE: In Puppet versions prior to 0.25.0 the `lib` directory was named `plugins`. Other directory names are unchanged.*
 
-Each module must contain a init.pp manifest file at the specified
+Each module must contain a `init.pp` manifest file at the specified
 location. This manifest file can contain all the classes associated
 with this module or additional .pp files can be added directly
 under the manifests folder. If adding additional .pp files, naming
@@ -126,7 +124,7 @@ As an example, consider a autofs module that installs a fixed
 auto.homes map and generates the auto.master from a template. Its
 init.pp could look something like:
 
-    class autofs::client {
+    class autofs {
       package { autofs: ensure => latest }
       service { autofs: ensure => running }
       file { "/etc/auto.homes":
@@ -259,7 +257,6 @@ page.
 
 Distributing custom facts and types via modules: [Plugins In
 Modules](./plugins_in_modules.html)
-
 
 
 
