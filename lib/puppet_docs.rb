@@ -1,5 +1,5 @@
 require 'rubygems'
-
+require 'fileutils'
 require 'set'
 require 'pathname'
 
@@ -24,7 +24,7 @@ module PuppetDocs
   autoload :Snippet,           "puppet_docs/snippet"
   autoload :View,              "puppet_docs/view"
   autoload :StringExt,         "puppet_docs/string_ext"
-  
+
 end
 
 class String

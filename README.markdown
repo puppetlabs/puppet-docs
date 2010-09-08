@@ -15,6 +15,8 @@ Steps for installing the documentation-generating code:
 2.  Use your package manager to install rake, libxml2-dev, and
     libxslt-dev.  Package names may vary by platform.
 
+    If you are using version < 1.8.7 of Ruby you will need to install version 0.3.3 of blockenspiel and remove it from the Rakefile.
+
 3.  Install the ruby dependencies
 
     $ sudo rake install
