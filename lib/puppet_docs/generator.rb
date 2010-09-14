@@ -156,8 +156,8 @@ module PuppetDocs
     def set_ref_header_section(name, body, view)
       header, new_body = body.split(/\*\*This page .*\*\*$|\*\(last generated .*\)\*$/, 2)
       if new_body
-        if header =~ /^\%\s(\S[^\r\n]+)\r?\n\%\s*$/ms
-          page_title = $1.strip
+        if header =~ /^(\#|\%)\s(\S[^\r\n]+)$/ms
+          page_title = $2.strip
           header = ''
         else
           return false
