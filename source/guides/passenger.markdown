@@ -50,11 +50,11 @@ not true, cf.
 [this bug report](http://projects.puppetlabs.com/issues/2386#change-9238).
 So, passenger 2.2.5 works fine.
 
-Installation Instructions for Puppet 0.25.x
--------------------------------------------
+Installation Instructions for Puppet 0.25.x and 2.6.x
+-----------------------------------------------------
 
 Please see
-[ext/rack/README in the puppet source](http://github.com/reductivelabs/puppet/tree/master/ext/rack)
+[ext/rack/README in the puppet source](http://github.com/puppetlabs/puppet/tree/master/ext/rack)
 tree for instructions.
 
 Whatever you do, make sure your config.ru file is owned by the

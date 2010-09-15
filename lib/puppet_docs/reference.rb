@@ -92,7 +92,7 @@ module PuppetDocs
           end
         else
           puts "Retrieving puppet source."
-          %x{git clone git://github.com/reductivelabs/puppet.git '#{puppet_dir}'}
+          %x{git clone git://github.com/puppetlabs/puppet.git '#{puppet_dir}'}
         end
       end
 

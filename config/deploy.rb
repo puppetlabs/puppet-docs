@@ -1,5 +1,5 @@
 set :application, "docs.puppetlabs.com"
-set :repository, "git://github.com/reductivelabs/puppet-docs.git"
+set :repository, "git://github.com/puppetlabs/puppet-docs.git"
 
 task :primary do
     set :user,      "deploy"
