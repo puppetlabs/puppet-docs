@@ -909,13 +909,13 @@ At some point you'll need to use a different value based on the value of a varia
 
 Puppet currently supports two types of conditionals:
 
--   The *selector* which can only be used within resources to pick
-    the correct value for an attribute, and
+-   The *selector* which can be used within resources and variable assignments
+    to pick the correct value for an attribute, and
 -   *statement conditionals* which can be used more widely in your
     manifests to include additional classes, define distinct sets of
     resources within a class, or make other structural decisions.
 
-Case students do not return a value.   Selectors do.  That is the primary difference between them and why you would use one and not the other.
+Case statements do not return a value.   Selectors do.  That is the primary difference between them and why you would use one and not the other.
 
 #### Selectors
 
