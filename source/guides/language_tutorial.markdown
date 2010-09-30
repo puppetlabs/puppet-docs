@@ -666,7 +666,7 @@ We recommend using single quotes for all strings that do not require variable in
 
 ### Capitalization
 
-Capitalization of resources is used in two major ways:
+Capitalization of resources is used in three major ways:
 
 -   Referencing: when you want to reference an already declared resource, usually for dependency purposes, you have to capitalize the name of the resource, for example,
     `require => File[sshdconfig]`.
