@@ -169,8 +169,8 @@ pageTracker._trackPageview();
 			  <ul>
 				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
 				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
-				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
 				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
 				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
 			  </ul>
 			<form action="http://www.google.com/cse" id="cse-search-box">
@@ -236,6 +236,7 @@ pageTracker._trackPageview();
 
 		<footer id="footer">
       <div class="site-width">
+
         <div class="primary-secondary-content">
           <div class="primary-content">
             <section id="newsletter">
@@ -243,37 +244,71 @@ pageTracker._trackPageview();
                  <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
                   <p>  
 		<h4>Newsletter</h4>
+
               <p>Stay up to date on all things puppet</p>
-              <form action="http://lfov.net/webrecorder/f" method="post" name="Newsletter" id="footerform">
-                <input type="hidden" name="formid" value="3d424fd0-4204-435f-afde-aa1c4a6bc2f1"/>
-                <input type="hidden" name="cid" value="LF_c268993e"/>
-                <fieldset>
-                  <legend>Newsletter</legend>
-                  <label form="email">Email</label>
-                  <input type="text" name="email" id="email" class="required email" />
-                  <button type="submit">Subscribe</button>
-                </fieldset>
-              </form>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
 
             </section>
             <section id="elsewhere">
               <h4>Get Involved</h4>
               <ul>
-                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
-                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Mailing List</span></a></li>
-                
-                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>
 
-		
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
 
               </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
             </section>
           </div>
           <div class="secondary-content">
             <section id="book-it">
               <h4>Get the book!</h4>
+
               <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
-              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://puppetlabs.com/images/book.png" /></a>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
             </section>
           </div>
         </div>
@@ -282,10 +317,11 @@ pageTracker._trackPageview();
 
     <div id="copyright">
       <div class="site-width">
-        &copy; <?= date('Y'); ?> <a href="<?php bloginfo('url'); ?>/" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a>
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
         <span class="vcard">
          <span class="org"></span>
          <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
           <span class="adr">
            <span class="street-address">222 NW Davis Street</span>
            /
@@ -294,6 +330,7 @@ pageTracker._trackPageview();
            <span class="postal-code">97209</span>
 
           </span>
+
          <span class="tel">1-877-575-9775</span>
         </span>          
       </div>
