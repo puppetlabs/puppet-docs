@@ -1,7 +1,7 @@
-Puppet Docs
-===========
+Puppet Labs Documentation
+=========================
 
-Welcome to the Puppet documentation site. 
+Welcome to the Puppet Labs documentation site. 
 
 An downloadable version of this guide may be found on our [downloads page](http://www.puppetlabs.com/resources/downloads/).
 
