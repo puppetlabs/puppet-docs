@@ -20,17 +20,22 @@ module PuppetDocs
 
     def generate
       puts "Logging in #{log_filename}"
-      guides = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') || p.include?('references') }
+      puppet = Dir[File.join(view_path, '**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') || p.include?('references') }
+      mcollective = Dir[File.join(view_path, 'mcollective/**/*.{markdown,md}')].reject { |p| p.include?('html') || p.include?('referenes') }
       refs = Dir[File.join(view_path, 'references/**/*.{markdown,erb}')].reject { |p| p.include?('#') || p.include?('html') }
 
       if ENV["ONLY"]
         only = ENV["ONLY"].split(",").map{|x| x.strip }.map {|o| "#{o}.markdown" }
-        guides = guides.find_all {|g| only.include?(g) }
-        puts "GENERATING ONLY #{guides.inspect}"
+        puppet = puppet.find_all {|p| only.include?(p) }
+        puts "GENERATING ONLY #{puppet.inspect}"
       end
 
-      guides.each do |guide|
-        generate_guide(guide)
+      puppet.each do |puppet|
+        generate_guide(puppet)
+      end
+
+      mcollective.each do |mcollective|
+        generate_guide(mcollective)
       end
 
       refs.each do |ref|
