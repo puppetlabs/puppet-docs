@@ -111,9 +111,9 @@ Get the certificate revocation list.
 
 GET `/certificate_revocation_list/ca`
 
-Example:
+Example: 
 
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
+    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate_revocation_list/ca
 
 ### Certificate Request
 
@@ -180,7 +180,7 @@ File serving is covered in more depth on the [wiki](http://projects.puppetlabs.c
 
 ### Node
 
-Returns the Facts for the specified node
+Returns the Puppet::Node information (including facts) for the specified node
 
 GET `/{environment}/node/{node certificate name}`
 
@@ -195,8 +195,38 @@ Just used for testing
 GET `/{environment}/status/{anything}`
 
 Example:
-
+=======
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/status/puppetclient
+
+### Facts
+
+GET `/{environment}/facts/{anything}`
+
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/facts/{anything}
+
+PUT `/{environment}/facts/{node name}`
+
+    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/pupet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node name}
+
+### Inventory
+
+GET `/{environment}/inventory/{anything}`
+
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/inventory/search\?facts.processorcount.ge=2\&facts.operatingsystem=Ubuntu
+
+fact filters must be proceeded by "facts." and if you want to do a comparison besides equality, you must append ".comparisontype" to the fact name.  Available comparison types are:
+
+#### String comparison
+
+* `eq` --- This is the default and will be used if no comparison is specified
+* `ne` --- `!=`
+
+#### Numeric comparison
+
+* `lt` --- `<`
+* `le` --- `<=`
+* `gt` --- `>`
+* `ge` --- `>=`
 
 ## The agent REST API
 
@@ -218,7 +248,7 @@ Example:
 
 Cause the client to update like puppetrun or puppet kick
 
-PUT `/{environment}/run/{node certificate name}`
+PUT `/{environment}/run/{anything}`
 
 Example:
 
