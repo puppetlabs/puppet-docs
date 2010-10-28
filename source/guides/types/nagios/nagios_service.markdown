@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_service
+---
+
 nagios_service
 ===============
 

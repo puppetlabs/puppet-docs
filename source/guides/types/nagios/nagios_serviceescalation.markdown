@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_serviceescalation
+---
+
 nagios_serviceescalation
 ========================
 

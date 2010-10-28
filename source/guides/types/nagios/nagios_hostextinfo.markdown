@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_hostextinfo
+---
+
 nagios_hostextinfo
 ==================
 

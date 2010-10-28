@@ -1,3 +1,8 @@
+---
+layout: default
+title: Network Reference
+---
+
 % Network Reference
 % 
 % 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: The Puppet File Server
+---
+
 The Puppet File Server
 ======================
 

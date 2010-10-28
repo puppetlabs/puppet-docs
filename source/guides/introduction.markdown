@@ -1,3 +1,8 @@
+---
+layout: default
+title: Introduction to Puppet
+---
+
 Introduction to Puppet
 ======================
 

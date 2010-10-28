@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en-US">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title>Documentation | Puppet Labs - <%= yield :page_title %></title>
+  	<title>Documentation | Puppet Labs - {{page.title}}</title>
   	<meta name="description" content="The open source leader in data center automation">
   	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
   	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
@@ -41,7 +41,8 @@ pageTracker._trackPageview();
 	
     <!-- FIXME: absolute paths -->
 
-    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> <!-- index -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
 
     <!--[if IE 7]>
 	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
@@ -191,7 +192,7 @@ pageTracker._trackPageview();
 
       <section id="masthead">
         <div class="site-width">
-          <h1>Docs: <span class="section-name"><%= yield :page_title %></span></h1>
+          <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
           <ul id="doc-navigation">
             <li><a href="/">Docs Home</a></li>
             <li class="with-submenu">
@@ -202,12 +203,16 @@ pageTracker._trackPageview();
                <!-- the following links can't be relative, unfortunately -->
                <!-- future: add some JS to disable this if running from file:// -->
 	            <dl>
-	              <dt>Guides</dt>
+	              <dt>Puppet Guides</dt>
 	              <dd><a href="/index.html">Index</a></dd>
-                      <dt>Resource Types</dt>
+                      <dt>Puppet Resource Types</dt>
 	              <dd><a href="/guides/types/">By Category</a></dd>
 	              <dd><a href="/guides/types/alphabetical_index.html">Alphabetical</a></dd>
-	              <dt>References</dt>
+                      <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+	              <dt>MCollective Reference</dt>
+                      <dd><a href="/mcollective/reference/index.html">Index</a></dd>
+                      <dt>Puppet References</dt>
                       <dd><a href="/references/2.6.2/">2.6.2</a></dd>
                       <dd><a href="/references/2.6.0/">2.6.0</a></dd> 
                       <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
@@ -224,11 +229,15 @@ pageTracker._trackPageview();
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
-              <%= yield :header_section %>
-              <%= yield %>
+              {{ content }}
             </div>
             <div class="secondary-content">
-              <%= yield :index_section %>
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  {{ content | toc }}
+                  </ol>
+                  </div>
             </div>
           </div>
         </div>

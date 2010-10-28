@@ -1,3 +1,8 @@
+---
+layout: default
+title: Best Practices
+---
+
 Best Practices
 ==============
 

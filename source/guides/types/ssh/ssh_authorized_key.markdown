@@ -1,3 +1,8 @@
+---
+layout: default
+title: ssh_authorized_key
+---
+
 ssh_authorized_key
 ==================
 

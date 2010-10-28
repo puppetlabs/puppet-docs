@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_timeperiod
+---
+
 nagios_timeperiod
 =================
 

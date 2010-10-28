@@ -1,3 +1,8 @@
+---
+layout: default
+title: Scaling Puppet
+---
+
 Scaling Puppet
 ==============
 

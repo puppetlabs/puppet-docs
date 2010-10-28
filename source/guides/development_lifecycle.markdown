@@ -1,3 +1,8 @@
+---
+layout: default
+title: Development Lifecycle
+---
+
 Development Lifecycle
 =====================
 

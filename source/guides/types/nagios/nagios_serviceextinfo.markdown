@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_serviceextinfo
+---
+
 nagios_serviceextinfo
 =====================
 

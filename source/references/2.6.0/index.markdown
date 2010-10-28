@@ -1,6 +1,11 @@
-% 2.6.0 References
-%
-%
+---
+layout: default
+title: 2.6.0 References 
+---
+
+# 2.6.0 References
+
+
 
 *(last generated on Mon Jul 20 22:21:29 +1000 2010)*
 

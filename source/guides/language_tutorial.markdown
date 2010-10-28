@@ -1,3 +1,8 @@
+---
+layout: default
+title: Language Tutorial
+---
+
 Language Tutorial
 =================
 

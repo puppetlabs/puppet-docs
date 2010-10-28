@@ -1,6 +1,4 @@
-% References
-%
-%
+# References
 
 Puppetdoc-generated references are available for a wide range of versions.
 

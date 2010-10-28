@@ -1,6 +1,9 @@
-% 0.24.7 References
-%
-%
+---
+layout: default
+title: 0.24.7 References
+---
+
+# 0.24.7 References
 
 *(last generated on Sat May 08 22:21:29 +1000 2010)*
 

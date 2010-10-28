@@ -1,3 +1,8 @@
+---
+layout: default
+title: Resource Types
+---
+
 Resource Types
 ==============
 

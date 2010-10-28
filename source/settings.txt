@@ -1,4 +1,0 @@
-HTML use syntax: true
-
-{:ruby:     lang=ruby}
-{:shell:    lang=sh}

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Complete Resource Example
+---
+
 Complete Resource Example
 =========================
 

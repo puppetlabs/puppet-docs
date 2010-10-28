@@ -1,3 +1,8 @@
+---
+layout: default
+title: Report Reference
+---
+
 % Report Reference
 % 
 % 

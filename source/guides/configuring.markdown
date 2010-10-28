@@ -1,3 +1,8 @@
+---
+layout: default
+title: Configuration Guide
+---
+
 Configuration Guide
 ===================
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Puppet Labs Documentation
+---
+
 Puppet Labs Documentation
 =========================
 
@@ -6,6 +11,8 @@ Welcome to the Puppet Labs documentation site.
 An downloadable version of this guide may be found on our [downloads page](http://www.puppetlabs.com/resources/downloads/).
 
 * * *
+
+NOTE: You can find the Marionette Collective documentation [here](./mcollective/index.html).
 
 Getting Started
 ---------------
@@ -115,6 +122,6 @@ This document belongs to the community and is licensed under the Creative Common
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.
 
-To contribute ideas, problems, or suggestions, simply use the [Contribute](./contribute.html) link.  If you would like to submit your own content, the process is easy.  You can fork the project on <A HREF="http://github.com/reductivelabs/puppet-doc">github</A>, make changes, and send us a pull request.  See the README files in the project for more information.
+To contribute ideas, problems, or suggestions, simply use the [Contribute](./contribute.html) link.  If you would like to submit your own content, the process is easy.  You can fork the project on <A HREF="http://github.com/puppetlabs/puppet-doc">github</A>, make changes, and send us a pull request.  See the README files in the project for more information.
 
 

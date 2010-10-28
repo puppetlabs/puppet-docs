@@ -1,3 +1,8 @@
+---
+layout: default
+title: Exporting and Collecting Resources
+---
+
 Exporting and Collecting Resources
 ==================================
 

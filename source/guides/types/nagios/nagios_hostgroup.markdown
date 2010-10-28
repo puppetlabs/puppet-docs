@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_hostgroup
+---
+
 nagios_hostgroup
 ================
 

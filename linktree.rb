@@ -3,8 +3,8 @@
 # Copyright 2010, Puppet Labs
 # Michael DeHaan <michael@puppetlabs.com>
 #
-# Given any directory tree containing HTML files, output the list 
-# of files in the order that they would be best fed to htmldoc, so 
+# Given any directory tree containing HTML files, output the list
+# of files in the order that they would be best fed to htmldoc, so
 # that PDF conversion of the files reads logically.  NOTE: it turns
 # out trying to do this by software is a BAD idea and our docs
 # don't have a lot of structure.  A better approach in the future
@@ -41,7 +41,7 @@ class Scanner
         pattern = /\.html$/
         @candidates = get_candidates(@tree,pattern)
    end
-   
+
     def run()
         # first we sort candidates by depth so things further down in the tree appear later
         sorted = get_sorted_candidates(@candidates)
@@ -52,13 +52,13 @@ class Scanner
         compute(sorted) { |candidate,link|
            link = link.gsub("//","/")
            unless link.nil? or links.include?(link) or link.include?("references")
-                links << link if File.exists?(link) 
+                links << link if File.exists?(link)
            end
         }
         links = links.insert(0, @head)
         links.join(' ')
     end
-    
+
     def get_sorted_candidates(candidates)
         candidates.sort { |a,b| depth_cmp(a,b,@head) }
     end
@@ -100,7 +100,7 @@ class Scanner
         else
             nil
         end
-    end 
+    end
 
     def compute(candidates)
         candidates.each do |candidate|

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Custom Types
+---
+
 Custom Types
 ============
 

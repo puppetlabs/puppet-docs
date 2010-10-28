@@ -1,3 +1,8 @@
+---
+layout: default
+title: Custom Functions
+---
+
 Custom Functions
 ================
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Using Puppet From Source
+---
+
 Using Puppet From Source
 ========================
 

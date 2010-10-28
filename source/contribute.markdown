@@ -1,3 +1,8 @@
+---
+layout: default
+title: Contribute
+---
+
 Contribute
 ==========
 
@@ -26,7 +31,7 @@ Making a Contribution
 Version control for the project is handled with
 [Git](http://git-scm.com/).
 
-The URL of the repository is: [http://github.com/reductivelabs/puppet-docs](http://github.com/reductivelabs/puppet-docs)
+The URL of the repository is: [http://github.com/puppetlabs/puppet-docs](http://github.com/puppetlabs/puppet-docs)
 
 NOTE: We recommend using a [GitHub](http://github.com) account to
 contribute to this project -- but we also accept git patches.  Read
@@ -42,13 +47,13 @@ repository, and clone your fresh repository:
 If you're not using GitHub, just clone our copy directly (you can push
 to your own remote host or provide git patches later):
 
-    $ git clone git://github.com/reductivelabs/puppet-docs.git
+    $ git clone git://github.com/puppetlabs/puppet-docs.git
 
 ### Learn how add documentation
 
 Read the
- [README](http://github.com/reductivelabs/puppet-docs/blob/master/README.markdown)
-and [README_WRITING](http://github.com/reductivelabs/puppet-docs/blob/master/README_WRITING.markdown) in the source.
+ [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown)
+and [README_WRITING](http://github.com/puppetlabs/puppet-docs/blob/master/README_WRITING.markdown) in the source.
 
 ### Make your changes
 

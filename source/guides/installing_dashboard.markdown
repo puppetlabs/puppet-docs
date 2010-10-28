@@ -1,3 +1,8 @@
+---
+layout: default
+title: Puppet Dashboard
+---
+
 Puppet Dashboard
 ================
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Style Guide
+---
+
 Style Guide
 ===========
 

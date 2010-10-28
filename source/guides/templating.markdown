@@ -1,3 +1,8 @@
+---
+layout: default
+title: Using Puppet Templates
+---
+
 Using Puppet Templates
 ======================
 

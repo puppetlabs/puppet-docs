@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_contactgroup
+---
+
 nagios_contactgroup
 ===================
 

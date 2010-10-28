@@ -1,3 +1,8 @@
+---
+layout: default
+title: nagios_host
+---
+
 nagios_host
 ===========
 

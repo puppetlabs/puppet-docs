@@ -1,3 +1,8 @@
+---
+layout: default
+title: Custom Facts
+---
+
 Custom Facts
 ============
 

@@ -13,7 +13,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-dependencies = %w(maruku nokogiri erubis rack blockenspiel versionomy)
+dependencies = %w(jekyll maruku nokogiri erubis rack blockenspiel versionomy)
 references = %w(configuration function indirection metaparameter network report type)
 
 namespace :install do
@@ -31,22 +31,21 @@ task :install => dependencies.map { |d| "install:#{d}" }
 desc "Generate the documentation"
 task :generate do
   ENV.delete("PDF")
-  sh "bin/generate"
+  system("jekyll output")
   Rake::Task['references:symlink'].invoke
 end
 
 task :generate_pdf do
   ENV["PDF"]="1"
-  sh "bin/generate"
+  system("jekyll output")
   Rake::Task['references:symlink'].invoke
   what_files = Scanner.new('output','output/index.html').run()
-  sh "htmldoc --book --title --no-toc --titlefile images/PuppetLabshorizontal.png -f puppet.pdf #{what_files}"
-  sh "rm -fr output"
+  system("htmldoc --book --title --no-toc --titlefile images/PuppetLabshorizontal.png -f puppet.pdf #{what_files}")
 end
 
 desc "Serve generated output on port 9292"
 task :serve do
-  sh "rackup"
+  system("rackup")
 end
 
 desc "Generate docs and serve locally"

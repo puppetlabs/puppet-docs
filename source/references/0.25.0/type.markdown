@@ -1,3 +1,8 @@
+---
+layout: default
+title: Type Reference
+---
+
 % Type Reference
 % 
 % 

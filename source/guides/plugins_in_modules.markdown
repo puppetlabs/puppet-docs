@@ -1,3 +1,8 @@
+---
+layout: default
+title: Plugins in Modules
+---
+
 Plugins in Modules
 ==================
 

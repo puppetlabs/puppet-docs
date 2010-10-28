@@ -1,3 +1,8 @@
+---
+layout: default
+title: Virtual Resources
+---
+
 Virtual Resources
 =================
 
