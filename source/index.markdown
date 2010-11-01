@@ -20,7 +20,7 @@ Getting Started
 New users should begin here.
 
 * [An Introduction to Puppet](./guides/introduction.html)
-* [Supported Platforms] (./guides/platforms.html)
+* [Supported Platforms](./guides/platforms.html)
 * [Installing Puppet](./guides/installation.html) -- from packages, source, or gems
 * [Configuring Puppet](./guides/configuring.html) -- includes server setup & testing
 * [Frequently Asked Questions](./guides/faq.html)

@@ -11,6 +11,12 @@ rescue LoadError
   # do nothing
 end
 
+Dir.glob(File.dirname(__FILE__) + "/../vendor/gems/*").each do |path|
+  gem_name = File.basename(path.gsub(/-[\d\.]+$/, ''))
+  $LOAD_PATH << path + "/lib/"
+  require gem_name
+end
+
 $LOAD_PATH.unshift File.expand_path('lib')
 
 dependencies = %w(jekyll maruku nokogiri erubis rack blockenspiel versionomy)
@@ -31,16 +37,20 @@ task :install => dependencies.map { |d| "install:#{d}" }
 desc "Generate the documentation"
 task :generate do
   ENV.delete("PDF")
-  system("jekyll output")
+  Dir.chdir("source")
+  system("jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
+  Dir.chdir("..")
 end
 
 task :generate_pdf do
   ENV["PDF"]="1"
-  system("jekyll output")
+  Dir.chdir("source")
+  system("jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
   what_files = Scanner.new('output','output/index.html').run()
   system("htmldoc --book --title --no-toc --titlefile images/PuppetLabshorizontal.png -f puppet.pdf #{what_files}")
+  Dir.chdir("..")
 end
 
 desc "Serve generated output on port 9292"
@@ -83,7 +93,7 @@ namespace :references do
   task :symlink do
     require 'puppet_docs'
     PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-      Dir.chdir 'output/references' do
+      Dir.chdir '../output/references' do
         ln_s version.to_s, name.to_s
       end
     end
