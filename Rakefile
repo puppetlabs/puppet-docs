@@ -64,13 +64,13 @@ task :run => [:generate, :serve]
 desc "Create tarball of documentation"
 task :tarball do
   FileUtils.cd 'output'
-  FileUtils.ln_s '../files', 'guides/files'
-  FileUtils.ln_s '../../files', 'guides/types/files'
-  FileUtils.ln_s '../../../files', 'guides/types/nagios/files'
-  FileUtils.ln_s '../../../files', 'guides/types/selinux/files'
-  FileUtils.ln_s '../../files', 'guides/types/ssh/files'
-  FileUtils.ln_s '../files', 'references/files'
-  sh "tar -czf puppetdocs-latest.tar.gz *"
+  FileUtils.ln_sf 'files', 'guides/files'
+  FileUtils.ln_sf 'files', 'guides/types/files'
+  FileUtils.ln_sf 'files', 'guides/types/nagios/files'
+  FileUtils.ln_sf 'files', 'guides/types/selinux/files'
+  FileUtils.ln_sf 'files', 'guides/types/ssh/files'
+  FileUtils.ln_sf 'files', 'references/files'
+  sh "tar --ignore-failed-read -czf puppetdocs-latest.tar.gz *"
   FileUtils.mv 'puppetdocs-latest.tar.gz', '..'
   FileUtils.cd '..'
 end
