@@ -48,7 +48,7 @@ task :generate_pdf do
   Dir.chdir("source")
   system("jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
-  what_files = Scanner.new('output','output/index.html').run()
+  what_files = Scanner.new('../output','../output/index.html').run()
   system("htmldoc --book --title --no-toc --titlefile images/PuppetLabshorizontal.png -f puppet.pdf #{what_files}")
   Dir.chdir("..")
 end
@@ -94,7 +94,7 @@ namespace :references do
     require 'puppet_docs'
     PuppetDocs::Reference.special_versions.each do |name, (version, source)|
       Dir.chdir '../output/references' do
-        ln_s version.to_s, name.to_s
+        ln_sf version.to_s, name.to_s
       end
     end
   end
