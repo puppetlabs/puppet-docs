@@ -76,9 +76,9 @@ following directories:
     /etc/puppet/modules/custom/plugins/puppet/provider
     /etc/puppet/modules/custom/plugins/facter
 
-## Module structure for 0.25.x
+## Module structure for 0.25.x and later
 
-In 0.25.0 and later releases, Puppet changes uses 'lib' for the
+In 0.25.0 and later releases, including 2.6.x releases, Puppet changes uses 'lib' for the
 name of the plugins directory.
 
 This change was introducued in 0.25.0 and modules with an outdated
