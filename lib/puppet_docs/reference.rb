@@ -46,8 +46,8 @@ module PuppetDocs
           header = "---\nlayout: default\ntitle: "
           File.open(destination_filename).read() =~ /\# (.*)\n/
           title = $1
-          file = IO.read(destination_file)
-          open(destination_file, 'w') { |f| f << header << title << "\n---" << "\n\n" << file}
+          file = IO.read(destination_filename)
+          open(destination_filename, 'w') { |f| f << header << title << "\n---" << "\n\n" << file}
           puts "Wrote #{destination_filename}"
          else
           abort "Could not build #{@name} reference using puppetdoc at #{version}"
