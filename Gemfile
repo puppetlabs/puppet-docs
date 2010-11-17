@@ -3,9 +3,6 @@ source "http://gemcutter.org"
 
 gem 'jekyll'
 gem 'maruku'
-gem 'actionpack'
-gem 'nokogiri'
-gem 'erubis'
-gem 'rack'
-gem 'blockenspiel'
+gem 'kramdown'
 gem 'versionomy'
+gem 'rack'

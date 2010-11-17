@@ -2,7 +2,10 @@ require 'rubygems'
 require 'rake'
 require 'pathname'
 require 'fileutils'
-require 'linktree'
+
+Dir.glob(File.join("vendor", "gems", "*", "lib")).each do |lib|
+  $LOAD_PATH.unshift(File.expand_path(lib))
+end
 
 begin
   require "vlad"
@@ -11,15 +14,9 @@ rescue LoadError
   # do nothing
 end
 
-Dir.glob(File.dirname(__FILE__) + "/../vendor/gems/*").each do |path|
-  gem_name = File.basename(path.gsub(/-[\d\.]+$/, ''))
-  $LOAD_PATH << path + "/lib/"
-  require gem_name
-end
-
 $LOAD_PATH.unshift File.expand_path('lib')
 
-dependencies = %w(jekyll maruku nokogiri erubis rack blockenspiel versionomy)
+dependencies = %w(jekyll maruku rack versionomy kramdown)
 references = %w(configuration function indirection metaparameter network report type)
 
 namespace :install do
@@ -36,20 +33,9 @@ task :install => dependencies.map { |d| "install:#{d}" }
 
 desc "Generate the documentation"
 task :generate do
-  ENV.delete("PDF")
   Dir.chdir("source")
-  system("jekyll --kramdown ../output")
+  system("../vendor/gems/jekyll-0.7.0/bin/jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
-  Dir.chdir("..")
-end
-
-task :generate_pdf do
-  ENV["PDF"]="1"
-  Dir.chdir("source")
-  system("jekyll --kramdown ../output")
-  Rake::Task['references:symlink'].invoke
-  what_files = Scanner.new('../output','../output/index.html').run()
-  system("htmldoc --book --title --no-toc --titlefile images/PuppetLabshorizontal.png -f puppet.pdf #{what_files}")
   Dir.chdir("..")
 end
 

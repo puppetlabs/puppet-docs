@@ -15,8 +15,6 @@ Steps for installing the documentation-generating code:
 2.  Use your package manager to install rake, libxml2-dev, and
     libxslt-dev.  Package names may vary by platform.
 
-    If you are using version < 1.8.7 of Ruby you will need to install version 0.3.3 of blockenspiel and remove it from the Rakefile.
-
 3.  Install the ruby dependencies
 
     $ sudo rake install
@@ -27,12 +25,6 @@ Steps for installing the documentation-generating code:
 
 5.  Start a little server to view it at http://localhost:9292:
 
-    Install librack-ruby1.8 using your package manager.   The
-    name of the package may vary by platform.
-
-    Also install python-docutils which is needed to build
-    the generated reference docs.
-
     $ rake serve
 
     Note: Use `rake run` to combine these last two steps.
@@ -41,8 +33,6 @@ Build Generated Docs For A Given Puppet Version
 -----------------------------------------------
 
 $ VERSION=0.25.0 rake references:puppetdoc
-
-requires python-docutils
 
 Errors and Omissions
 --------------------

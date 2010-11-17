@@ -3,7 +3,7 @@ require 'fileutils'
 require 'set'
 require 'pathname'
 
-%w(jekyll maruku nokogiri erubis versionomy).each do |dep|
+%w(jekyll maruku versionomy).each do |dep|
   begin
     require dep
   rescue LoadError
