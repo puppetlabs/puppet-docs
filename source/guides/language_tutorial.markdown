@@ -686,6 +686,13 @@ As mentioned in the class and resource examples above, Puppet allows usage of ar
 
     [ 'one', 'two', 'three' ]
 
+You can access array entries by their index, for example:
+
+    $foo = [ 'one', 'two', 'three' ]
+    notice $foo[1]
+
+Would return `two`.
+
 Several type members, such as 'alias' in the 'host' definition
 definition accept arrays as their value. A host resource with
 multiple aliases would look like this:
