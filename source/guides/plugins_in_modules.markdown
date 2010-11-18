@@ -67,6 +67,10 @@ For providers, place them in:
 
     <MODULEPATH>/<module>/lib/puppet/provider
 
+For functions, place them in:
+
+    <MODULEPATH>/<module>/lib/puppet/parser/functions
+
 Similarly, Facter facts belong in the facter subdirectory of the
 library directory:
 
@@ -78,6 +82,7 @@ following directories:
 
     /etc/puppet/modules/custom/lib/puppet/type
     /etc/puppet/modules/custom/lib/puppet/provider
+    /etc/puppet/modules/custom/lib/puppet/parser/functions
     /etc/puppet/modules/custom/lib/facter
 
 ## Module structure for 0.24.x (outdated)
@@ -129,7 +134,7 @@ need to set these values then try something like:
     plugindest = $vardir/lib
     factpath = $vardir/lib/facter
 
-# Usage for Server Custom Functions
+# Note on Usage for Server Custom Functions
 
 Functions are executed on the server while compiling the manifest.
 A module defined in the manifest can include functions in the
