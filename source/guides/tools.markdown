@@ -15,20 +15,20 @@ Single binary
 
 From verison 2.6.0 and onwards all the Puppet functions are also available via a single Puppet binary, in the style of git.
 
-List of binary changes
+List of binary changes:
 
-puppetmasterd –> puppet master
-puppetd –> puppet agent
-puppet –> puppet apply
-puppetca –> puppet cert
-ralsh –> puppet resource
-puppetrun –> puppet kick
-puppetqd –> puppet queue
-filebucket –> puppet filebucket
-puppetdoc –> puppet doc
-pi –> puppet describe
+* puppetmasterd &rarr; puppet master
+* puppetd &rarr; puppet agent
+* puppet &rarr; puppet apply
+* puppetca &rarr; puppet cert
+* ralsh &rarr; puppet resource
+* puppetrun &rarr; puppet kick
+* puppetqd &rarr; puppet queue
+* filebucket &rarr; puppet filebucket
+* puppetdoc &rarr; puppet doc
+* pi &rarr; puppet describe
 
-This also results in a change in the puppet.conf configuration file. The sections, previously things like [puppetd], now should be renamed to match the new binary names. So [puppetd] becomes [agent]. You will be prompted to do this when you start Puppet. A log message will be generated for each section that needs to be renamed. This is merely a warning – existing configuration file will work unchanged.
+This also results in a change in the puppet.conf configuration file. The sections, previously things like \[puppetd\], now should be renamed to match the new binary names. So \[puppetd\] becomes \[agent\]. You will be prompted to do this when you start Puppet. A log message will be generated for each section that needs to be renamed. This is merely a warning – existing configuration file will work unchanged.
  
 Manpage documentation
 ---------------------
