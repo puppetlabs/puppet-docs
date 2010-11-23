@@ -66,8 +66,8 @@ to specify all of them.
 You can find all of the supported resource
 types, their valid attributes, and documentation for all of it in
 the [Type Guides](./types/) and [References](/references/).
-The guides section will provide in depth examples and commentary, where
-as the references version is auto generated (and also available for past
+The guides section will provide in depth examples and commentary, whereas 
+the references version is auto generated (and also available for past
 versions of Puppet).  We would recommend starting with the 'guides'.
 
 Let's get started.   Here's a simple example of a resource in Puppet,

@@ -65,8 +65,9 @@ version control, for example:
 
 ## Naming
 
-Module names must be normal words, matching `[-\\w+]` 
-(letters, numbers, underscores and dashes), and not containing the
+Module names may only contain letters, numbers, underscores, and dashes 
+(i.e. they must match the regular expression `[_-\w]+`). In particular, 
+they may not contain the 
 namespace separators `::` or `/`. While it might be desirable to allow
 module hierarchies, for now modules cannot be nested.
 
