@@ -51,31 +51,6 @@ in fact Ruby modules.  Ruby libraries in your plugins directories behave like Ru
 libraries in any other (system) Ruby lib directory, and their paths need to
 match whatever Ruby would normally look for.
 
-## Module structure for 0.24.x (outdated)
-
-For example, Ruby expects Puppet resource types to be in
-$libdir/puppet/type/$type.rb, so for modules you would put them
-here:
-
-    <MODULEPATH>/<module>/plugins/puppet/type
-
-For providers you place them in:
-
-    <MODULEPATH>/<module>/plugins/puppet/provider
-
-Similarly, Facter facts belong in the facter subdirectory of the
-library directory:
-
-    <MODULEPATH>/<module>/plugins/facter
-
-If we are using our custom module and our modulepath is
-/etc/puppet/modules then types and facts would be stored in the
-following directories:
-
-    /etc/puppet/modules/custom/plugins/puppet/type
-    /etc/puppet/modules/custom/plugins/puppet/provider
-    /etc/puppet/modules/custom/plugins/facter
-
 ## Module structure for 0.25.x and later
 
 In 0.25.0 and later releases, including 2.6.x releases, Puppet changes uses 'lib' for the
@@ -92,6 +67,10 @@ For providers, place them in:
 
     <MODULEPATH>/<module>/lib/puppet/provider
 
+For functions, place them in:
+
+    <MODULEPATH>/<module>/lib/puppet/parser/functions
+
 Similarly, Facter facts belong in the facter subdirectory of the
 library directory:
 
@@ -103,7 +82,33 @@ following directories:
 
     /etc/puppet/modules/custom/lib/puppet/type
     /etc/puppet/modules/custom/lib/puppet/provider
+    /etc/puppet/modules/custom/lib/puppet/parser/functions
     /etc/puppet/modules/custom/lib/facter
+
+## Module structure for 0.24.x (outdated)
+
+For example, Ruby expects Puppet resource types to be in
+$libdir/puppet/type/$type.rb, so for modules you would put them
+here:
+
+    <MODULEPATH>/<module>/plugins/puppet/type
+
+For providers you place them in: 
+
+    <MODULEPATH>/<module>/plugins/puppet/provider
+
+Similarly, Facter facts belong in the facter subdirectory of the 
+library directory:
+
+    <MODULEPATH>/<module>/plugins/facter
+
+If we are using our custom module and our modulepath is
+/etc/puppet/modules then types and facts would be stored in the 
+following directories:
+
+    /etc/puppet/modules/custom/plugins/puppet/type
+    /etc/puppet/modules/custom/plugins/puppet/provider
+    /etc/puppet/modules/custom/plugins/facter
 
 ## Enabling Pluginsync
 
@@ -129,7 +134,7 @@ need to set these values then try something like:
     plugindest = $vardir/lib
     factpath = $vardir/lib/facter
 
-# Usage for Server Custom Functions
+# Note on Usage for Server Custom Functions
 
 Functions are executed on the server while compiling the manifest.
 A module defined in the manifest can include functions in the
