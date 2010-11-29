@@ -168,8 +168,8 @@ can't use the hyphen.
 
 ## How Do I Test/Run Manifests?
 
-Once you have Puppet installed according the the [[Installation
-Guide]] , just can run the puppet executable against your example:
+Once you have Puppet installed according the the [Installation
+Guide](./installation.html), just can run the puppet executable against your example:
 
     puppet -v example.pp
 

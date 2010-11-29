@@ -162,7 +162,7 @@ search path for picking which value to use:
 Plugins and Facts
 -----------------
 
-Note that currently [[Plugins In Modules]] don't mix well with
+Note that currently [Plugins In Modules](./plugins_in_modules.html) don't mix well with
 environments. Although you may put plugins such as types or facts
 into modules, they will still be referenced by the default
 modulepath, and not by the modulepath of the client environment.

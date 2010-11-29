@@ -307,9 +307,8 @@ requiring resource.
 
 # Providers
 
-Look at the
-[[Development\_Provider\_Development|Development/Provider
-Development]] page for intimate detail; this document will only
+Look at the [Provider Development](./provider_development.html)
+page for intimate detail; this document will only
 cover how the resource types and providers need to interact.Because
 the properties call getter and setter methods on the providers,
 except in the case of ensure, the providers must define getters and

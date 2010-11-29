@@ -119,7 +119,7 @@ this way.
 
 In Puppet version 0.24.6 onwards you can use complex expressions in
 if statements and variable assignments. You can see examples of how
-to do this in the [[Language Tutorial]] .
+to do this in the [Language Tutorial](./language_tutorial.html) .
 
 In versions prior to 0.24.6 Puppet does not support complex
 conditionals: if can only test for the existence of a variable, and

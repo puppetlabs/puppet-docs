@@ -92,7 +92,7 @@ are allowed or denied access: by IP address, by name, or a global
 allow using \*.
 
 If clients are not connecting to the Puppet file server directly,
-eg. using a reverse proxy and Mongrel (see [[Using Mongrel]] ),
+eg. using a reverse proxy and Mongrel (see [Using Mongrel](./mongrel.html) ),
 then the file server will see all the connections as coming from
 the proxy server and not the Puppet client. In this case it is
 probably best to restrict access based on the hostname, as
