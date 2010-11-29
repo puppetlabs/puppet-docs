@@ -36,16 +36,16 @@ hundreds of modules developed and shared by the community.
 Learning Recommendations
 ------------------------
 
-We're glad you want to learn Puppet.  You're free to browse around the documentation as you like, though we generally recommend trying out Puppet locally first (without the 
+We're glad you want to learn Puppet.  You're free to browse around the documentation as you like, though we generally recommend trying out Puppet locally first (without the
 daemon and client/server setup), so you
 can understand the basic concepts.  From there, move on to
 centrally managed server infrastructure.   [Ralsh](./tools.html)
 is also a great way to get your feet wet exploring the Puppet model,
 after you have read some of the basic information -- you can quickly see how
-the declarative model works for simple things like users, services, and file permissions.   
+the declarative model works for simple things like users, services, and file permissions.
 
-Once you've learned the basics, make sure you understand classes and modules, 
-then move on to the advanced sections and read more about the features 
+Once you've learned the basics, make sure you understand classes and modules,
+then move on to the advanced sections and read more about the features
 that are useful to you.  Learning all at once is definitely not required.
 If you find something confusing, use the feedback tab to let us know.
 
@@ -69,7 +69,7 @@ on how information passes between layers:
 ![image](/images/Puppet_Layers.png)
 
 See also [Configuring Puppet](./configuring.html).  For more information about components (puppetmasterd, puppetd, puppet, and so on), see the [Tools](/guides/tools.html) section.
-  
+
 Features of the System
 ----------------------
 
@@ -107,14 +107,14 @@ users the same, whether the user is stored in NetInfo or
 `/etc/passwd`.  We call these system entities
 `resources`.
 
-Ralsh, listed in the [Tools](./tools.html) section is a fun way to 
+Ralsh, listed in the [Tools](./tools.html) section is a fun way to
 try out the RAL before you get too deep into Puppet language.
 
 ### Model & Graph Based
 
 #### Resource Types
 
-The concept of each resource (like service, file, user, group, etc) is modelled as a "type".   
+The concept of each resource (like service, file, user, group, etc) is modelled as a "type".
 Puppet decouples the definition from how
 that implementation is fulfilled on a particular operating system,
 for instance, a Linux user versus an OS X user can be talked about in the same way
@@ -149,7 +149,7 @@ the way a resource is managed.  For instance, users have an
 attribute that specicies whether the home directory should
 be created.
 
-'Metaparams' are another special kind of attribute, those exist on 
+'Metaparams' are another special kind of attribute, those exist on
 all resources.  This include things like
 the log level for the resource, whether the resource should be in
 `noop` mode so it never modifies the system, and the relationships
@@ -161,9 +161,9 @@ Puppet has a system of modelling relationships between resources
 -- what resources should be evaluated before or after one another.
 They also are used to determine whether a resource needs to respond to changes in
 another resource (such as if a service needs to restart if the configuration
-file for the service has changed).  This ordering reduces unneccessary commands, 
+file for the service has changed).  This ordering reduces unneccessary commands,
 such as avoiding restarting a service
-if the configuration has *not* changed.  
+if the configuration has *not* changed.
 
 Because the system is graph based, it's actually possible to generate a diagram
 (from Puppet) of the relationships between all of your resources.

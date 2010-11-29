@@ -298,21 +298,21 @@ packages:
         solaris => SMCossl,
         default => openssl
     }
-    
+
     # It is not an error to set an alias to the same value as the
     # object name.
     package { $ssl:
         ensure => installed,
         alias => openssl
     }
-    
+
     . etc. .
-    
+
     $ssh = $operatingsystem ? {
         solaris => SMCossh,
         default => openssh
     }
-    
+
     # Use the alias to specify a dependency, rather than
     # having another selector to figure it out again.
     package { $ssh:

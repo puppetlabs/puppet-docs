@@ -29,7 +29,7 @@ puppetdoc –> puppet doc
 pi –> puppet describe
 
 This also results in a change in the puppet.conf configuration file. The sections, previously things like [puppetd], now should be renamed to match the new binary names. So [puppetd] becomes [agent]. You will be prompted to do this when you start Puppet. A log message will be generated for each section that needs to be renamed. This is merely a warning – existing configuration file will work unchanged.
- 
+
 Manpage documentation
 ---------------------
 
@@ -45,7 +45,7 @@ server and each managed machine will run 'puppetd'.   By default, puppetmasterd 
 authority, which you can read more about in the [security section](./security.html).
 
 Puppetmasterd will automatically serve up puppet orders to managed systems, as well as files and
-templates.   
+templates.
 
 The main configuration file for both puppetmasterd and puppetd/puppet is /etc/puppet/puppet.conf,
 which has sections for each application.
@@ -64,7 +64,7 @@ and custom plugins stored on the puppetmasterd server are transferred down to ma
 puppet or puppet apply
 ----------------------
 
-When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet is run instead of puppetd.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppetd. 
+When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet is run instead of puppetd.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppetd.
 
 puppetca or puppet cert
 -----------------------
@@ -111,7 +111,7 @@ There are two main usage modes.   For example, to list information about the use
 It can also be used to make additions and removals, as well as to list resources found on a system:
 
     > puppet resource User "bob" ensure=present group=admin
- 
+
     notice: /User[bob]/ensure: created
     user { 'bob':
         shell => '/bin/sh',
@@ -121,7 +121,7 @@ It can also be used to make additions and removals, as well as to list resources
         ensure => 'present',
         password => '!'
     }
- 
+
     > puppet resource User "bob" ensure=absent
     ...
 
@@ -133,7 +133,7 @@ Ralsh, therefore, can be a handy tool for admins who have to maintain various pl
 facter
 ------
 
-Clients use a library/tool called facter to provide information about the OS (version information, IP information, etc) to the central server.   These variables can then be used in conditionals, string expressions, and in templates.  To see a list of facts any node offers, simply run 'facter' on that node.  Facter is a required/included part of all Puppet installations. 
+Clients use a library/tool called facter to provide information about the OS (version information, IP information, etc) to the central server.   These variables can then be used in conditionals, string expressions, and in templates.  To see a list of facts any node offers, simply run 'facter' on that node.  Facter is a required/included part of all Puppet installations.
 
 
 

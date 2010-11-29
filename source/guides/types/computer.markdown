@@ -25,7 +25,7 @@ Only supported on OSX (`$operatingsystem == 'darwin'`)
 
 NOTE: Note that these are distinctly different kinds of objects to
 [hosts](host.html), as they require a MAC address and can have all sorts of
-policy attached to them. If you wish to manage `/etc/hosts` on Mac 
+policy attached to them. If you wish to manage `/etc/hosts` on Mac
 OSX,then simply use the [host type](host.html) as per other platforms.
 
 

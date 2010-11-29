@@ -35,7 +35,7 @@ Puppet master and the clients.
 
 If you have existing plugins you were syncing from an earlier version of Puppet
 , we'll need to perform a few steps to get
-things converted to using the new system.  On the Puppet master, 
+things converted to using the new system.  On the Puppet master,
 if you have an existing plugins section in
 your fileserver.conf, get rid of the path parameter (if you leave
 the path parameter in place, then the mount will behave like any
@@ -93,17 +93,17 @@ here:
 
     <MODULEPATH>/<module>/plugins/puppet/type
 
-For providers you place them in: 
+For providers you place them in:
 
     <MODULEPATH>/<module>/plugins/puppet/provider
 
-Similarly, Facter facts belong in the facter subdirectory of the 
+Similarly, Facter facts belong in the facter subdirectory of the
 library directory:
 
     <MODULEPATH>/<module>/plugins/facter
 
 If we are using our custom module and our modulepath is
-/etc/puppet/modules then types and facts would be stored in the 
+/etc/puppet/modules then types and facts would be stored in the
 following directories:
 
     /etc/puppet/modules/custom/plugins/puppet/type
@@ -147,7 +147,7 @@ Note that this location is not within the puppetmaster's $libdir
 path. Placing the custom function within the module plugins
 directory will not result in the puppetmasterd loading the new
 custom function. The puppet client can be used to help deploy the
-custom function by copying it from 
+custom function by copying it from
 MODULEPATH/module/plugins/puppet/parser/functions to the
 proper $libdir location. To do so run the puppet client on the
 server. When the client runs it will download the custom function

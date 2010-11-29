@@ -7,7 +7,7 @@ Using Puppet From Source
 ========================
 
 Puppet is implemented in Ruby and uses standard Ruby
-libraries. You should be able to run Puppet on any Unix-style host 
+libraries. You should be able to run Puppet on any Unix-style host
 with ruby. Windows support is planned for future releases.
 
 * * *
@@ -85,7 +85,7 @@ Puppet and Facter libraries available to Ruby:
     $ export PATH RUBYLIB
 {:shell}
 
-Note: environment variables (depending on your OS) can get stripped 
+Note: environment variables (depending on your OS) can get stripped
 when running as sudo.  If you experience problems, you may want to simply
 execute things as root.
 

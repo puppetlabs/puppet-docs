@@ -8,7 +8,7 @@ Supported Platforms
 
 Learn what platforms are supported.
 
-* * * 
+* * *
 
 Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform
 not on this list.
@@ -18,7 +18,7 @@ Puppet requires Ruby to run and currently supports Ruby version 1.8.1 to 1.8.7. 
 Linux
 -----
 
-    -   CentOS 
+    -   CentOS
     -   Debian 3.1 and later
     -   Fedora Core 2-6
     -   Fedora 7 and later
@@ -27,7 +27,7 @@ Linux
     -   RHEL 3 and later
     -   Oracle Linux
     -   SuSE Linux 8 and later
-    -   Ubuntu 7.04 and later    
+    -   Ubuntu 7.04 and later
     -   ArchLinux
 
 BSD

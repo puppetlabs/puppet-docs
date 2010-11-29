@@ -126,7 +126,7 @@ resources. For example:
     file {
         "/tmp/testing": content => "whatever"
     }
-    
+
     File<| |> {
         mode => 0600
     }
@@ -144,7 +144,7 @@ As another example, one can write:
 
     file { "/tmp/a": content => "a" }
     file { "/tmp/b": content => "b" }
-    
+
     File <| title != "/tmp/b" |> {
         require => File["/tmp/b"]
     }
@@ -158,7 +158,7 @@ without respecting the override on inheritance rule:
             "/tmp/testing": content => "whatever"
         }
     }
-    
+
     class b {
         include a
         File<| |> {

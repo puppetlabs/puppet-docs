@@ -8,7 +8,7 @@ The Puppet File Server
 
 Learn how to use Puppet's file serving capability.
 
-* * * 
+* * *
 
 Puppet comes with both a client and server for copying files
 around. The file serving function is provided as part of the
@@ -24,14 +24,14 @@ used through the source attribute of file objects:
     }
 
 As the example implies, Puppet's fileserving function abstracts
-local filesystem topology by supporting fileservice "modules".  
+local filesystem topology by supporting fileservice "modules".
 
-In release 0.25.0 and later you must specify your source statements 
+In release 0.25.0 and later you must specify your source statements
 in the format:
 
     source => "puppet://server/modules/module_name/file"
 
-Note the addition of the "modules" statement which differs from the earlier 
+Note the addition of the "modules" statement which differs from the earlier
 0.24.x releases.
 
 Specifying a path to serve and a name for the path, clients may

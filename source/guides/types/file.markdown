@@ -10,7 +10,7 @@ Manages local files.
 
 * Sets ownership and permissions.
 * Supports creation of both files and directories.
-* Retrieves entire files from remote servers. 
+* Retrieves entire files from remote servers.
 
 * * *
 

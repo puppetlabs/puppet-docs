@@ -43,7 +43,7 @@ The name of the host handling email for the list.
 The name of the email list.
 
 INFO: This is the `namevar` for this resource type.
- 
+
 ### `password`
 
 The admin password.

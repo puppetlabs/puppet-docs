@@ -39,9 +39,9 @@ For example:
         cwd => "/prod/build/dir",
         path => "/usr/bin:/usr/sbin:/bin"
     }
-    
+
     . etc. .
-    
+
     # defined in the test class
     exec { "make":
         cwd => "/test/build/dir",
@@ -177,7 +177,7 @@ triggering an action:
     file { "/etc/aliases":
         source => "puppet://server/module/aliases"
     }
-    
+
     # Rebuild the database, but only when the file changes
     exec { newaliases:
         path => ["/usr/bin", "/usr/sbin"],
@@ -230,4 +230,4 @@ within Ruby. If you are using Puppet to create this user, the exec
 will automatically require the user, as long as it is specified by
 name.
 
-  
+

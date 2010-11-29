@@ -7,7 +7,7 @@ Language Tutorial
 =================
 
 The purpose of Puppet's language is to make it easy to specify the
-resources you need to manage on the machines you're managing. 
+resources you need to manage on the machines you're managing.
 
 This guide will show you how the language works, going through
 some basic concepts.  Understanding
@@ -23,7 +23,7 @@ Puppet language is really relatively simple compared to many
 programming languages.  As you are reading over this guide,
 it may also be helpful to look over various Puppet modules
 people have already written.   Complete real world examples
-can serve as a great introduction to Puppet.  See the [Modules](/guides/modules.html) 
+can serve as a great introduction to Puppet.  See the [Modules](/guides/modules.html)
 page for more information and some links to list of community developed Puppet content.
 
 
@@ -52,9 +52,9 @@ Resources
 ---------
 
 The fundamental unit of modelling in Puppet is a resource.  Resources
-describe some aspect of a system; it might be a file, a service, a 
+describe some aspect of a system; it might be a file, a service, a
 package, or perhaps even a custom resource that you have developed.
-We'll show later how resources can be aggregated together with 
+We'll show later how resources can be aggregated together with
 "defines" and "classes", and even show how to organize things
 with "modules", but resources are what we should start with first.
 
@@ -137,7 +137,7 @@ sent down to the client.
         name  => '/usr/local/etc/ssh/sshd_config',
         owner => 'root',
     }
-    
+
     file { '/usr/local/etc/ssh/sshd_config':
         owner => 'sshd',
     }
@@ -191,13 +191,13 @@ are wrapped in curly braces.  The following simple example creates a simple clas
 
     class unix {
         file {
-            '/etc/passwd': 
-                owner => 'root', 
-                group => 'root', 
+            '/etc/passwd':
+                owner => 'root',
+                group => 'root',
                 mode  => 644;
-            '/etc/shadow': 
-                owner => 'root', 
-                group => 'root', 
+            '/etc/shadow':
+                owner => 'root',
+                group => 'root',
                 mode  => 440;
         }
     }
@@ -207,13 +207,13 @@ as saying:
 
     class unix {
         file { '/etc/passwd':
-             owner => 'root', 
-             group => 'root', 
+             owner => 'root',
+             group => 'root',
              mode  => 644;
         }
         file { '/etc/shadow':
-             owner => 'root', 
-             group => 'root', 
+             owner => 'root',
+             group => 'root',
              mode  => 440;
         }
     }
@@ -257,7 +257,7 @@ the '+>' ('plusignment') operator:
     class apache {
         service { 'apache': require => Package['httpd'] }
     }
-    
+
     class apache-ssl inherits apache {
         # host certificate is required for SSL to function
         Service[apache] { require +> File['apache.pem'] }
@@ -271,7 +271,7 @@ To append multiple requires, use array brackets and commas:
     class apache {
         service { 'apache': require => Package['httpd'] }
     }
-    
+
     class apache-ssl inherits apache {
         Service[apache] { require +> [ File['apache.pem'], File['/etc/httpd/conf/httpd.conf'] ] }
     }
@@ -309,14 +309,14 @@ of achieving modularity and scoping.  For example:
 
     class myclass {
     class nested {
-        file { '/etc/passwd': 
-        owner => 'root', 
-        group => 'root', 
+        file { '/etc/passwd':
+        owner => 'root',
+        group => 'root',
         mode  => 644;
         }
     }
     }
-    
+
     class anotherclass {
     include myclass::nested
     }
@@ -326,7 +326,7 @@ In this example, the `nested` class inside the outer `myclass` is included as
 
 #### Parameterised Classes
 
-In Puppet release 2.6.0 and later, classes are extended to allow the passing of parameters into classes.  
+In Puppet release 2.6.0 and later, classes are extended to allow the passing of parameters into classes.
 
 To create a class with parameters you can now specify:
 
@@ -412,7 +412,7 @@ introduced with the `define` keyword (not `class`) and they support arguments bu
             unless => "/bin/test -d $path",
         }
     }
-   
+
     svn_repo { puppet_repo: path => '/var/svn_puppet' }
     svn_repo { other_repo:  path => '/var/svn_other' }
 
@@ -426,7 +426,7 @@ Earlier we mentioned that "metaparameters" are attributes that are available on 
 metaparameters using built-in variables.   Here's an example:
 
     define svn_repo($path) {
-        exec {"create_repo_${name}": 
+        exec {"create_repo_${name}":
             command => "/usr/bin/svnadmin create $path/$title",
             unless => "/bin/test -d $path",
         }
@@ -436,8 +436,8 @@ metaparameters using built-in variables.   Here's an example:
             }
         }
     }
-    
-    svn_repo { puppet: 
+
+    svn_repo { puppet:
        path => '/var/svn',
        require => Package[subversion],
     }
@@ -552,8 +552,8 @@ chosen to fulfill those instructions.
 
 Node definitions look just like classes, including supporting
 inheritance, but they are special in that when a node (a managed
-computer running the Puppet client) connects to the Puppet master daemon, its 
-name will be looked for in the list of defined nodes.   The information 
+computer running the Puppet client) connects to the Puppet master daemon, its
+name will be looked for in the list of defined nodes.   The information
 found for the node will then be evaluated for that node, and then node will
 be sent that configuration.
 
@@ -563,19 +563,19 @@ need to be quoted, so it is a best practice to quote all of them.
 Here's an example:
 
     node 'www.testing.com' {
-       include common 
+       include common
        include apache, squid
     }
 
 The previous node definition creates a node called
 `www.testing.com` and includes the `common`, `apache` and `squid`
-classes.  
+classes.
 
 You can also specify that multiple nodes receive an identical
 configuration by separating each with a comma:
 
     node 'www.testing.com', 'www2.testing.com', 'www3.testing.com' {
-       include common 
+       include common
        include apache, squid
     }
 
@@ -622,7 +622,7 @@ In this node definition the `www2.testing.com` inherits any
 configuration specified for the `www.testing.com` node in addition
 to including the `loadbalancer` class.   In other words, it does
 everything "www.testing.com" does, but also takes on some
-additional functionality. 
+additional functionality.
 
 #### Default Nodes
 
@@ -719,7 +719,7 @@ resource multiple times, like this:
     define php::pear() {
         package { "`php-${name}": ensure => installed }
     }
-    
+
     php::pear { ['ldap', 'mysql', 'ps', 'snmp', 'sqlite', 'tidy', 'xmlrpc']: }
 
 Of course, this can be used for native types as well:
@@ -754,7 +754,7 @@ You can also use a hash member as a resource title, as a default definition para
 Puppet supports variables like most other languages you may be familiar with.  Puppet variables are denoted with `$`:
 
     $content = 'some content\n'
-    
+
     file { '/tmp/testing': content => $content }
 
 Puppet language is a declarative language, which means that its scoping and
@@ -816,12 +816,12 @@ For example:
     class myclass {
         exec { "/bin/echo $test": logoutput => true }
     }
-    
+
     class other {
         $test = 'other'
         include myclass
     }
-    
+
     include other
 
 In this case, there's a top-level scope, a new scope for `other`,
@@ -838,7 +838,7 @@ For example:
     class myclass {
         $test = 'content'
     }
-    
+
     class anotherclass {
         $other = $myclass::test
     }
@@ -858,7 +858,7 @@ would see by running `facter` on a client system within Puppet manifests
 and also within Puppet templates.  To use a fact as a variable
 prefix the name of the fact with `$`. For example, the value of the
 `operatingsystem` and `puppetversion` facts would be available as
-the variables `$operatingsystem` and `$puppetversion`.  
+the variables `$operatingsystem` and `$puppetversion`.
 
 #### Variable Expressions
 
@@ -875,8 +875,8 @@ of the expressions that are now available.
 
 #### The "in" syntax
 
-From Puppet 2.6.0 you can also use the "in" syntax.  This operator allows 
-you to find if the left operand is in the right one. The left operand must 
+From Puppet 2.6.0 you can also use the "in" syntax.  This operator allows
+you to find if the left operand is in the right one. The left operand must
 be a string, but the right operand can be:
 
 * a string
@@ -900,7 +900,7 @@ This syntax can be used in any place where an expression is supported:
 In Puppet 0.24.6 and later, values can be appended to array variables:
 
     $ssh_users = [ 'myself', 'someone' ]
-    
+
     class test {
        $ssh_users += ['someone_else']
     }
@@ -931,7 +931,7 @@ Case statements do not return a value.   Selectors do.  That is the primary diff
 
 #### Selectors
 
-If you're familiar with programming terms, The selector syntax works like a multi-valued trinary operator, similar to C's `foo = bar ? 1 : 0` operator where `foo` will be set to `1` if `bar` evaluates to true and `0` if `bar` is false. 
+If you're familiar with programming terms, The selector syntax works like a multi-valued trinary operator, similar to C's `foo = bar ? 1 : 0` operator where `foo` will be set to `1` if `bar` evaluates to true and `0` if `bar` is false.
 
 Selectors are useful to specify a resource attribute or assign a
 variable based on a fact or another variable. In addition to any
@@ -1027,7 +1027,7 @@ As with selectors (see above), regular expressions captures are also available.
 These create limited scope variables `$0` to `$n`:
 
     case $hostname {
-        /^j(ack|ill)$/:   { notice("Welcome $1!") } 
+        /^j(ack|ill)$/:   { notice("Welcome $1!") }
         default:          { notice("Welcome stranger") }
     }
 
@@ -1094,7 +1094,7 @@ See [Virtual Resources](./virtual_resources.html).
 
 Virtual resources are available in Puppet 0.20.0 and later.
 
-Virtual resources are resources that are not sent to the client unless `realized`. 
+Virtual resources are resources that are not sent to the client unless `realized`.
 
 The syntax for a virtual resource is:
 
@@ -1126,7 +1126,7 @@ The key syntactical difference between virtual and exported
 resources is that the special sigils (@ and <| |\>) are doubled (@@
 and <<| |\>\>) when referring to an exported resource.
 
-Here is an example with exported resources that shares SSH keys 
+Here is an example with exported resources that shares SSH keys
 between clients:
 
     class ssh {
@@ -1144,7 +1144,7 @@ To actually work, the `storeconfig` parameter must be set to
 to be stored on the central server.
 
 The details of this feature are somewhat complicated; see
-the [Exported Resources](./exported_resources.html) 
+the [Exported Resources](./exported_resources.html)
 page for more information.
 
 ### Reserved words & Acceptable characters
@@ -1252,7 +1252,7 @@ example:
     $one = 1
     $one_thirty = 1.30
     $two = 2.034e-2
-        
+
     $result = ((( $two + 2) / $one_thirty) + 4 * 5.45) - (6 << ($two + 4)) + (0x800 + -9)
 {:puppet}
 
@@ -1278,12 +1278,12 @@ using `=~` (match) and `!~` (not-match) for example:
 Like case and selectors, the regex match operators create limited
 scope variables for each regex capture.  In the previous example,
 `$1` will be replaced by the number following `www` in `$host`.
-Those variables are valid only for the statements inside the 
+Those variables are valid only for the statements inside the
 braces of the if clause.
 
 ### Backus Naur Form
 
-We've already covered the list of operators, though if you wish to see it, 
+We've already covered the list of operators, though if you wish to see it,
 here's the available operators in Backus Naur Form:
 
     <exp> ::=  <exp> <arithop> <exp>
@@ -1294,12 +1294,12 @@ here's the available operators in Backus Naur Form:
              | - <exp>
              | "(" <exp> ")"
              | <rightvalue>
-    
+
     <arithop> ::= "+" | "-" | "/" | "*" | "<<" | ">>"
-    <boolop>  ::= "and" | "or"  
+    <boolop>  ::= "and" | "or"
     <compop>  ::= "==" | "!=" | ">" | ">=" | "<=" | "<"
     <matchop>  ::= "=~" | "!~"
-    
+
     <rightvalue> ::= <variable> | <function-call> | <literals>
     <literals> ::= <float> | <integer> | <hex-integer> | <octal-integer> | <quoted-string>
     <regex> ::= '/regex/'
@@ -1308,7 +1308,7 @@ Functions
 ---------
 
 Puppet supports many built in functions; see the [Function Reference](/references/stable/function.html) for details -- see [Custom Functions](/guides/custom_functions.html) for information on how to create
-your own custom functions. 
+your own custom functions.
 
 Some functions can be used as a statement:
 
@@ -1353,14 +1353,14 @@ Handling Compilation Errors
 Puppet does not use manifests directly, it compiles them down to a internal format
 that the clients can understand.
 
-By default, when a manifest fails to compile, the previously compiled version of the Puppet 
+By default, when a manifest fails to compile, the previously compiled version of the Puppet
 manifest is used instead.
 
 This behavior is governed by a setting in `puppet.conf` called `usecacheonfailure`
 and is set by default to `true`.
 
 This may result in surprising behaviour if you are editing
-complex configurations. 
+complex configurations.
 
 Running the Puppet client with `--no-usecacheonfailure` or with `--test`, or setting
 `usecacheonfailure = false` in the configuration file, will disable

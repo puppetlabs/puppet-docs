@@ -63,7 +63,7 @@ such as in this case of telling bind to reload its configuration
 when it changes:
 
     file { "/etc/bind": source => "/dist/apps/bind" }
-    
+
     exec { "/usr/bin/ndc reload":
       subscribe => File["/etc/bind"],
       refreshonly => true

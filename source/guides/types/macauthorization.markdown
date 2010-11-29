@@ -6,7 +6,7 @@ title: macauthorization
 macauthorization
 ================
 
-Manage the Mac OS X authorization database. 
+Manage the Mac OS X authorization database.
 
 * * *
 

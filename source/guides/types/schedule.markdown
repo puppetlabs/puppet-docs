@@ -68,7 +68,7 @@ schedule when assigning it to an object:
         period => daily,
         range => [2, 4]
     }
-    
+
     exec { "/usr/bin/apt-get update":
         schedule => daily
     }

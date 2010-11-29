@@ -110,7 +110,7 @@ Note: some explanations of namespaceauth.conf are due in this documentation.
 ## Processing Reports
 
 As previously mentioned, by default the server stores incoming YAML reports to
-disk. There are other reports types available that can process each report as it arrives, 
+disk. There are other reports types available that can process each report as it arrives,
 or you can write a separate processor that handles the reports on your own schedule.
 
 ### Using Builtin Reports

@@ -8,7 +8,7 @@ Environments
 
 Manage development, stage, and production differences.
 
-* * * 
+* * *
 
 Using Multiple Environments
 ---------------------------
@@ -73,7 +73,7 @@ preference to the main sections. For instance:
     [main]
         manifest   = /usr/share/puppet/site.pp
         modulepath = /usr/share/puppet/modules
-    
+
     [development]
         manifest   = /usr/share/puppet/development/site.pp
         modulepath = /usr/share/puppet/development/modules

@@ -9,7 +9,7 @@ Frequently Asked Questions
 * * *
 
 This document covers frequently asked questions not well covered elsewhere in the
-documentation or on the main website. 
+documentation or on the main website.
 
 You may also wish to see [Troubleshooting](./troubleshooting.html) or [Techniques](/guides/techniques)
 for additional assorted information about specific technical items.
@@ -42,7 +42,7 @@ another.
 
 As to just using Ruby as the input format, that unnecessarily ties
 Puppet to Ruby, which is undesirable, and Ruby provides a bit too
-much functionality.  We believe systems administrators should be 
+much functionality.  We believe systems administrators should be
 able to model their datacenters in a higher level system, and
 for those that need the power of Ruby, writing custom functions,
 types, and providers is still possible.
@@ -65,11 +65,11 @@ from Puppet, but there are sizes that are more likely to benefit.
 Organizations with only a handful of servers are unlikely to
 consider maintaining those servers to be a real problem, while
 those that have more need to consider carefully how they eliminate
-manual management tasks.   
+manual management tasks.
 
 ## My servers are all unique; can Puppet still help?
 
-Yes.   
+Yes.
 
 All servers are at least somewhat unique -- with different host
 names and different IP addresses -- but very few servers are
@@ -154,7 +154,7 @@ obviously) entirely before upgrading.
 ## How do I know what's changed when I upgrade?
 
 The best way to find out what's changed in Puppet is to read the
-release notes which are posted to the puppet-announce mailing list. 
+release notes which are posted to the puppet-announce mailing list.
 They will tell you about new features, functions, deprecations and other changes to Puppet.
 
 * * * * *
@@ -183,12 +183,12 @@ should build on the RHEL and CentOS variants.
 ## How do I use Puppet's graphing support?
 
 Puppet has graphing support capable of creating graph files of the
-relationships between your Puppet client configurations. 
+relationships between your Puppet client configurations.
 
 The graphs are created by and on the
 client, so you must enable `graph=true` in your Puppet.conf and
 set `graphdir` to the directory where graphs should be output.  The
-resultant files will be created in `dot` format which is readable by 
+resultant files will be created in `dot` format which is readable by
 [OmniGraffle](http://www.omnigroup.com/applications/omnigraffle/) (OS X)
 or [graphviz](http://www.graphviz.org/).   To generate a visual from
 the dot file in graphviz, run the following:

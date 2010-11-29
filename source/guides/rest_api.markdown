@@ -28,9 +28,9 @@ been signed by the puppet master and use that certificate to connect, or for
 testing to set the security policy so that any request from anywhere is
 allowed.
 
-The security policy for the API can be controlled through the 
-[rest_authconfig] (./security.html#authconf) file, and specifically for the 
-nodes running puppet agent through the 
+The security policy for the API can be controlled through the
+[rest_authconfig] (./security.html#authconf) file, and specifically for the
+nodes running puppet agent through the
 [namespaceauth] (./security.html#namespaceauthconf) file.
 
 Testing the REST API using curl

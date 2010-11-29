@@ -19,7 +19,7 @@ Trac site or a particular Rails application.
 Modules are easily re-distributable.  For example, this will
 enable you to have the default site configuration under
 `/etc/puppet`, with modules shipped by Puppet proper in
-`/usr/share/puppet/`.  You could also have other directories containing a happy mix-and-match 
+`/usr/share/puppet/`.  You could also have other directories containing a happy mix-and-match
 of version control checkouts in various states of development and production readiness.
 
 Modules are available in Puppet version 0.22.2 and later.
@@ -65,7 +65,7 @@ version control, for example:
 
 ## Naming
 
-Module names must be normal words, matching `[-\\w+]` 
+Module names must be normal words, matching `[-\\w+]`
 (letters, numbers, underscores and dashes), and not containing the
 namespace separators `::` or `/`. While it might be desirable to allow
 module hierarchies, for now modules cannot be nested.
@@ -220,14 +220,14 @@ the history here).
 
 From version Puppet 0.23.1 onwards, everything under the
 modulepath is automatically imported into Puppet and is available
-to be used. This is called module autoloading.  Puppet will attempt to 
+to be used. This is called module autoloading.  Puppet will attempt to
 auto-load classes and definitions from modules, so you don't have to explicitly import
 them. You can just include the module class or start using the
 definition. Note that the init.pp file will always be loaded first,
 so you can put all of your classes and definitions in there if you
-prefer. 
+prefer.
 
-With namespaces, some additional magic is also available. Let's say your 
+With namespaces, some additional magic is also available. Let's say your
 autofs module has a class defined in init.pp but you
 want an additional class called craziness. If you define that class
 as autofs::craziness and store it in file craziness.pp under the
