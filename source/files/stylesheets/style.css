@@ -419,6 +419,14 @@ span.alternate {
   top: -0.1em;
 }
 
+sup a:link {
+  text-decoration: underline;
+}
+  
+sup a:visited {
+  text-decoration: underline;
+}
+
 .footnotes {
   font-size: 8pt
 }
