@@ -196,7 +196,7 @@ provider for your platform. Available providers are:
     > this same binary will be searched for in the process table to stop
     > the service. It is preferable to specify start, stop, and status
     > commands, akin to how you would do so using `init`.
-    > 
+    >
     > > Required binaries: `kill`. Supported features: `refreshable`.
 
 -   **daemontools**: Daemontools service management.
@@ -204,37 +204,37 @@ provider for your platform. Available providers are:
     > This provider manages daemons running supervised by D.J.Bernstein
     > daemontools. It tries to detect the service directory, with by
     > order of preference:
-    > 
+    >
     > -   /service
     > -   /etc/service
     > -   /var/lib/svscan
-    > 
+    >
     > The daemon directory should be placed in a directory that can be by
     > default in:
-    > 
+    >
     > -   /var/lib/service
     > -   /etc
-    > 
+    >
     > or this can be overriden in the service resource parameters:
-    > 
+    >
     >     service {
     >      "myservice":
     >        provider => "daemontools", path => "/path/to/daemons";
     >     }
-    > 
+    >
     > This provider supports out of the box:
-    > 
+    >
     > -   start/stop (mapped to enable/disable)
     > -   enable/disable
     > -   restart
     > -   status
-    > 
+    >
     > If a service has ensure =\> "running", it will link /path/to/daemon
     > to /path/to/service, which will automatically enable the service.
-    > 
+    >
     > If a service has ensure =\> "stopped", it will only down the
     > service, not remove the /path/to/service link.
-    > 
+    >
     > > Required binaries: `/usr/bin/svstat`, `/usr/bin/svc`. Supported
     > > features: `enableable`, `refreshable`.
 
@@ -243,7 +243,7 @@ provider for your platform. Available providers are:
     > The only difference is that this supports service enabling and
     > disabling via `update-rc.d` and determines enabled status via
     > `invoke-rc.d`.
-    > 
+    >
     > > Required binaries: `/usr/sbin/update-rc.d`,
     > > `/usr/sbin/invoke-rc.d`. Default for `operatingsystem` ==
     > > `debianubuntu`. Supported features: `enableable`, `refreshable`.
@@ -252,14 +252,14 @@ provider for your platform. Available providers are:
     `init`-style service management.
 
     > Uses `rc.conf.d` for service enabling and disabling.
-    > 
+    >
     > Default for `operatingsystem` == `freebsd`. Supported features:
     > `enableable`, `refreshable`.
 
 -   **gentoo**: Gentoo's form of `init`-style service management.
 
     > Uses `rc-update` for service enabling and disabling.
-    > 
+    >
     > > Required binaries: `/sbin/rc-update`. Default for `operatingsystem`
     > > == `gentoo`. Supported features: `enableable`, `refreshable`.
 
@@ -269,7 +269,7 @@ provider for your platform. Available providers are:
     > because so few scripts do, so you need to either provide a status
     > command or specify via `hasstatus` that one already exists in the
     > init script.
-    > 
+    >
     > > Supported features: `refreshable`.
 
 -   **launchd**: launchd service management framework.
@@ -277,37 +277,37 @@ provider for your platform. Available providers are:
     > This provider manages launchd jobs, the default service framework
     > for Mac OS X, that has also been open sourced by Apple for possible
     > use on other platforms.
-    > 
+    >
     > See:
     > :   -   [http://developer.apple.com/macosx/launchd.html](http://developer.apple.com/macosx/launchd.html)
     >     -   [http://launchd.macosforge.org/](http://launchd.macosforge.org/)
-    > 
+    >
     > This provider reads plists out of the following directories:
     > :   -   /System/Library/LaunchDaemons
     >     -   /System/Library/LaunchAgents
     >     -   /Library/LaunchDaemons
     >     -   /Library/LaunchAgents
-    > 
-    > 
+    >
+    >
     > and builds up a list of services based upon each plists "Label"
     > entry.
-    > 
+    >
     > This provider supports:
     > :   -   ensure =\> running/stopped,
     >     -   enable =\> true/false
     >     -   status
     >     -   restart
-    > 
+    >
     > Here is how the Puppet states correspond to launchd states:
     > :   -   stopped =\> job unloaded
     >     -   started =\> job loaded
     >     -   enabled =\> 'Disable' removed from job plist file
     >     -   disabled =\> 'Disable' added to job plist file
-    > 
-    > 
+    >
+    >
     > Note that this allows you to do something launchctl can't do, which
     > is to be in a state of "stopped/enabled or "running/disabled".
-    > 
+    >
     > > Required binaries: `/usr/bin/sw_vers`, `/bin/launchctl`. Default
     > > for `operatingsystem` == `darwin`. Supported features:
     > > `enableable`, `refreshable`.
@@ -316,7 +316,7 @@ provider for your platform. Available providers are:
     `init`-style service management:
 
     > Uses `chkconfig` for service enabling and disabling.
-    > 
+    >
     > > Required binaries: `/sbin/chkconfig`, `/sbin/service`. Default for
     > > `operatingsystem` == `redhatfedorasusecentosslesoelovm`. Supported
     > > features: `enableable`, `refreshable`.
@@ -356,10 +356,10 @@ provider for your platform. Available providers are:
     > Starting a service is effectively equivalent to enabling it, so
     > there is only support for starting and stopping services, which
     > also enables and disables them, respectively.
-    > 
+    >
     > By specifying manifest =\> "/path/to/service.xml", the SMF manifest
     > will be imported if it does not exist.
-    > 
+    >
     > > Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`,
     > > `/usr/sbin/svccfg`. Default for `operatingsystem` == `solaris`.
     > > Supported features: `enableable`, `refreshable`.

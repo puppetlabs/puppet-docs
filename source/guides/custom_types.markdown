@@ -7,7 +7,7 @@ Custom Types
 ============
 
 Learn how to create your own custom types & providers in Puppet
- 
+
 * * *
 
 # Organizational Principles
@@ -45,16 +45,16 @@ In Puppet 0.24 and later, the "old" `pluginsync` function has been
 deprecated and you should see the [Plugins In Modules](./plugins_in_modules.html) page for details of distributing custom types and facts via modules.
 
 The internals of how types are created have changed over Puppet's
-lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn't do.  
+lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn't do.
 
 # Resource Types
 
 When defining the resource type, focus on what the resource can do,
-not how it does it (that is the job for providers!). 
+not how it does it (that is the job for providers!).
 
-The first thing you have to figure out is what `properties` the resource has. Properties are the changeable bits, like a file's owner or a user's UID. 
+The first thing you have to figure out is what `properties` the resource has. Properties are the changeable bits, like a file's owner or a user's UID.
 
-After adding properties, Then you need to add any other necessary `parameters`, which can affect how the resource behaves but do not directly manage the resource itself. Parameters handle things like whether to recurse when managing files or where to look for service init scripts. 
+After adding properties, Then you need to add any other necessary `parameters`, which can affect how the resource behaves but do not directly manage the resource itself. Parameters handle things like whether to recurse when managing files or where to look for service init scripts.
 
 Resource types also support special parameters, called `MetaParameters`, that are supported by all resource types, but you can safely ignore these since they are already defined and you won't normally add more.  You may remember that things like `require` are metaparameters.
 
@@ -78,7 +78,7 @@ The above code should be stored in puppet/type/database.rb (within the `libpath`
 A normal type will define multiple properties and possibly
 some parameters. Once these are defined, as long as the type is put into
 lib/puppet/type anywhere in Ruby's search path, Puppet will
-autoload the type when you reference it in the Puppet language. 
+autoload the type when you reference it in the Puppet language.
 
 We have already mentioned Puppet provides a `libdir` setting where you can copy the files outside the Ruby search path.  See also [Plugins In Modules](./plugins_in_modules.html)
 
@@ -237,7 +237,7 @@ instance, given the following definition:
 
     newparam(:color) do
         desc "Your color, and stuff."
-    
+
         newvalues(:blue, :red, /.+/)
     end
 
@@ -253,9 +253,9 @@ and munge hooks:
 
     newparam(:color) do
         desc "Your color, and stuff."
-    
+
         newvalues(:blue, :red, /.+/)
-    
+
         validate do |value|
             if value == "green"
                 raise ArgumentError,
@@ -264,7 +264,7 @@ and munge hooks:
                 super
             end
         end
-    
+
         munge do |value|
             case value
             when :mauve, :violet # are these colors really any different?
@@ -307,9 +307,8 @@ requiring resource.
 
 # Providers
 
-Look at the
-[[Development\_Provider\_Development|Development/Provider
-Development]] page for intimate detail; this document will only
+Look at the [Provider Development](./provider_development.html)
+page for intimate detail; this document will only
 cover how the resource types and providers need to interact.Because
 the properties call getter and setter methods on the providers,
 except in the case of ensure, the providers must define getters and
@@ -329,7 +328,7 @@ those prameters are used with providers missing those features:
     newtype(:coloring) do
         feature :paint, "The ability to paint.", :methods => [:paint]
         feature :draw, "The ability to draw."
-    
+
         newparam(:color, :required_features => %w{paint}) do
             ...
         end

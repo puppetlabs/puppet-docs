@@ -68,7 +68,7 @@ tarball if you would like to try a newer version or are using
 a platform without an OS package:
 
 Get the latest tarball:
-    
+
     $ wget http://puppetlabs.com/downloads/facter/facter-latest.tgz
 {:shell}
 

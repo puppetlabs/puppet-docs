@@ -15,7 +15,7 @@ Puppet supports templates and templating via
 [ERB](http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/), which is
 part of the Ruby standard library and is used for many other
 projects including Ruby on Rails.  While it is a Ruby templating
-system, you do not need to understand much Ruby to use ERB.  
+system, you do not need to understand much Ruby to use ERB.
 
 Templates allow you to manage the content of template files, for example configuration files that
 cannot yet be managed directly by a built-in Puppet type.   This might include
@@ -45,7 +45,7 @@ variables are available for substitution within templates.
 
 ## Using templates
 
-Here is an example for generating the Apache configuration for 
+Here is an example for generating the Apache configuration for
 [Trac](http://trac.edgewall.org/) sites:
 
     define tracsite($cgidir, $tracdir) {
@@ -58,7 +58,7 @@ Here is an example for generating the Apache configuration for
             content => template("tracsite.erb"),
             notify => Service[apache2]
         }
-    
+
         symlink { "tracsym-$name":
             path => "$cgidir/$name.cgi",
             ensure => "/usr/share/trac/cgi-bin/trac.cgi"
@@ -69,12 +69,12 @@ And then here's the template:
 
     <Location "/cgi-bin/ <%= name %>.cgi">
         SetEnv TRAC_ENV "/export/svn/trac/<%= name %>"
-    </Location> 
-    
+    </Location>
+
     # You need something like this to authenticate users
     <Location "/cgi-bin/<%= name %>.cgi/login">
-        AuthType Basic 
-        AuthName "Trac" 
+        AuthType Basic
+        AuthName "Trac"
         AuthUserFile /etc/apache2/auth/svn
         Require valid-user
     </Location>
@@ -100,8 +100,8 @@ code like this:
 
 You could have a template like this:
 
-    <% values.each do |val| -%> 
-    Some stuff with <%= val %> 
+    <% values.each do |val| -%>
+    Some stuff with <%= val %>
     <% end -%>
 
 This would produce:
@@ -113,7 +113,7 @@ This would produce:
 Note that normally, ERB template lines that just have code on them
 would get translated into blank lines.  This is because ERB generates
 newlines by default.  To prevent this, we use the closing tag -%> instead of %>.
- 
+
 As we mentioned, erb is a Ruby system, but you don't need to know Ruby
 well to use ERB.   Internally, Puppet's values get translated to real Ruby values,
 including true and false, so you can be pretty confident that

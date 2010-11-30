@@ -6,7 +6,7 @@ title: nagios_service
 nagios_service
 ===============
 
-The Nagios type service. 
+The Nagios type service.
 
 * * *
 

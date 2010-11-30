@@ -36,7 +36,7 @@ Classes Vs Defined Types
 ------------------------
 
 Classes are not to be thought of in the 'object oriented' meaning of a class.
-This means a machine belongs to a particular class of machine.  
+This means a machine belongs to a particular class of machine.
 
 For instance, a generic webserver would be a class. You would
 include that class as part of any node that needed to be built as a

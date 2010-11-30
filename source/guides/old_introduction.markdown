@@ -199,7 +199,7 @@ specifying those resources. The most basic statement is a single
 resource specification:
 
     # Make sure the modes on the sudoers file are correct
-    file { "/etc/sudoers": 
+    file { "/etc/sudoers":
       owner => "root",
       group => "root",
       mode  => 644
@@ -251,7 +251,7 @@ both the package and the configuration file into a class:
 
     class sudo {
       package { sudo: ensure => installed }
-      file { 
+      file {
         "/etc/sudoers":
           owner => "root",
           group => "root",
@@ -276,11 +276,11 @@ example:
     class base {
       file { "/my/file": content => template("base.erb") }
     }
-    
+
     class sub inherits base {
       # override the content
       File["/my/file"] { content => template("other.erb") }
-    } 
+    }
 
 In the `sub` class above, the resource type (in this case `File`)
 is capitalized. This means that we are referring to a type that has
@@ -433,7 +433,7 @@ rvalue functions, which return values but are expected not to have
 side effects:
 
     notice("This is a log message") # a statement
-    
+
     $content = template("mytemplate.erb") # an rvalue
 
 It ships with quite a few built-in functions, all of which are
@@ -497,7 +497,7 @@ Subversion repositories:
             command => "/usr/bin/svnadmin create $path/$name",
             creates => "$path/$name" # only run if this file does not exist
         }
-    }  
+    }
 
 Very simple, but then using it makes it immediately clear what
 you're doing:
@@ -514,7 +514,7 @@ Subversion repositories named `puppet` using `exec` and you'd never know
 as long as they had different paths, but if you wrap that exec in a
 definition and always use it to create your Subversion repositories,
 this would throw a parse error and you'd catch it before you ever
-deployed it.  
+deployed it.
 
 ### Nodes
 

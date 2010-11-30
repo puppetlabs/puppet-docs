@@ -15,7 +15,7 @@ SSL
 
 In centrally managed server context, Puppet uses SSL for security, which is the same thing your
 browser uses.   We find this system is much easier to distribute than relying on SSH keys for
-bi-directional communication, and is better suited to writing applications (as opposed to 
+bi-directional communication, and is better suited to writing applications (as opposed to
 just doing remote scripting).
 
 puppetca
@@ -23,8 +23,8 @@ puppetca
 
 When a node starts up that does not have a certificate, it checks in with the configured
 puppetmaster (central management daemon) and sends a certificate request.  Puppet can
-either be configured to autosign the certificate (generally not recommended for 
-production environmnets), or a list of certificates that need to be signed can be 
+either be configured to autosign the certificate (generally not recommended for
+production environmnets), or a list of certificates that need to be signed can be
 shown with:
 
     puppetca --list

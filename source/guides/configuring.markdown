@@ -18,11 +18,11 @@ In order for the puppet server to centrally manage clients, you may need to open
 Configuration Files
 -------------------
 
-The main configuration file for Puppet is `/etc/puppet/puppet.conf`.  A package based 
-installation file will have created this file automatically.  Unlisted settings have 
+The main configuration file for Puppet is `/etc/puppet/puppet.conf`.  A package based
+installation file will have created this file automatically.  Unlisted settings have
 reasonable defaults.   To see all the possible values, you may run:
 
-    $ puppet --genconfig   
+    $ puppet --genconfig
 
 Configure DNS
 -------------
@@ -44,14 +44,14 @@ on both the server and client machines.
 For the server:
 
     127.0.0.1 localhost.localdomain localhost puppet
-    
+
 For the clients:
-    
+
     192.168.1.67 crabcake.picnic.edu crabcake puppet
 
 WARNING: If you can ping the server by
 the name `puppet` but Syslog (for example `/var/log/messages`) on the clients still has
-entries stating the puppet client cannot connect to the server, 
+entries stating the puppet client cannot connect to the server,
 verify port 8140 is open on the server.
 
 Puppet Language Setup
@@ -92,7 +92,7 @@ appropriate permissions:
 {:puppet}
 
 For more information on how to create the site manifest, see the
-tutorials listed in the 
+tutorials listed in the
 [Getting Started](../index.html#getting_started) section.
 
 
@@ -111,7 +111,7 @@ where puppetmasterd will be run.
 The best way to start any daemon is using the local server's
 service management system, often in the form of init scripts.
 
-If you're running on Red Hat, CentOS, Fedora, Debian, Ubuntu, or 
+If you're running on Red Hat, CentOS, Fedora, Debian, Ubuntu, or
 Solaris, the OS package already contains a suitable init script.
 If you don't have one, you can either create your own using an existing
 init script as an example, or simply run without one (though this
@@ -157,7 +157,7 @@ INFO: This message will repeat every 60 seconds with the above
 command.
 
 This is normal, since your server is not auto-signing certificates
-as a security precaution. 
+as a security precaution.
 
 On your server, list the waiting certificates:
 

@@ -8,7 +8,7 @@ Custom Functions
 
 Extend the Puppet interpreter by writing your own custom functions.
 
-* * * 
+* * *
 
 # Writing your own functions
 
@@ -152,7 +152,7 @@ functions.
 ## Example 1
 
     require 'ipaddr'
-    
+
     module Puppet::Parser::Functions
       newfunction(:minute_from_address, :type => :rvalue) do |args|
         IPAddr.new(lookupvar('ipaddress')).to_i % 60
@@ -162,7 +162,7 @@ functions.
 ## Example 2
 
     require 'md5'
-    
+
     module Puppet::Parser::Functions
       newfunction(:hour_from_fqdn, :type => :rvalue) do |args|
         MD5.new(lookupvar('fqdn')).to_s.hex % 24

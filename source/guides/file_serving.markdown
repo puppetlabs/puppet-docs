@@ -8,7 +8,7 @@ The Puppet File Server
 
 This guide covers the use of Puppet's file serving capability.
 
-* * * 
+* * *
 
 The `puppet master` daemon includes a file server for transferring static files. If a `file` resource declaration contains a `puppet:` URI in its `source` attribute, nodes will retrieve that file from the master's file server:
 
@@ -111,8 +111,8 @@ Securing the Puppet file server consists of allowing
 specific access and denying specific access. By default, all nodes can access the `modules` mount point and no nodes can access custom mount points. 
 Classes of nodes can be identified (for permission or denial) in three ways: by IP address, by name, or by a single global wildcard (`*`). 
 
-If nodes are not connecting to the Puppet file server directly,
-e.g. using a reverse proxy and Mongrel (see [Using Mongrel](http://projects.puppetlabs.com/projects/1/wiki/Using_Mongrel)),
+If clients are not connecting to the Puppet file server directly,
+eg. using a reverse proxy and Mongrel (see [Using Mongrel](./mongrel.html)),
 then the file server will see all the connections as coming from
 the proxy server rather than the Puppet client. In this case, it is best to restrict access based on hostname. Additionally, the 
 machine(s) acting as reverse proxy (usually 127.0.0.0/8) will need to be 

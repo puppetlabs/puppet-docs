@@ -21,7 +21,7 @@ While virtual resources can only be collected by the host that
 specified them, exported resources can be collected by any host.
 You **must** set the storeconfigs configuration parameter to true to
 enable this functionality (you can see information about stored
-configuration on the [[Using Stored Configuration]] wiki page), and
+configuration on the [Using Stored Configuration](http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration) wiki page, and
 Puppet will automatically create a database for storing
 configurations (using [Ruby on Rails](http://rubyonrails.org/)).
 
@@ -126,7 +126,7 @@ resources. For example:
     file {
         "/tmp/testing": content => "whatever"
     }
-    
+
     File<| |> {
         mode => 0600
     }
@@ -144,7 +144,7 @@ As another example, one can write:
 
     file { "/tmp/a": content => "a" }
     file { "/tmp/b": content => "b" }
-    
+
     File <| title != "/tmp/b" |> {
         require => File["/tmp/b"]
     }
@@ -158,7 +158,7 @@ without respecting the override on inheritance rule:
             "/tmp/testing": content => "whatever"
         }
     }
-    
+
     class b {
         include a
         File<| |> {

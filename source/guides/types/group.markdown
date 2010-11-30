@@ -68,9 +68,9 @@ NOTE: This is the `namevar` for this resource type.
 
 The specific backend for provider to use. You will seldom need to
 specify this -- Puppet will usually discover the appropriate
-provider for your platform. 
+provider for your platform.
 
-NOTE: On most platforms this can only create groups. Group 
+NOTE: On most platforms this can only create groups. Group
 membership must be managed on individual users. On some platforms
 such as OS X, group membership is managed as an
 attribute of the group, not the user record. Providers must have

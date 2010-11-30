@@ -32,7 +32,7 @@ network and then use that as the default backup location:
 
     # Define the bucket
     filebucket { main: server => puppet }
-    
+
     # Specify it as the default target
     File { backup => main }
 {:puppet}

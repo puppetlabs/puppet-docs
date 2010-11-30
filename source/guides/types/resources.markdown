@@ -8,9 +8,9 @@ resources
 
 Manage how other resources are handled
 
-* * * 
+* * *
 
-About 
+About
 =======
 
 This is a metatype that can manage other resource types. Any

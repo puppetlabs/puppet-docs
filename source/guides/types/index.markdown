@@ -50,14 +50,14 @@ Resources Types are the building blocks of your Puppet configuration.
 
 ### Configuration Files
 
-* [augeas](augeas.html) 
+* [augeas](augeas.html)
 
 ### Mail
 
 * [mailalias](mailalias.html)
 * [maillist](maillist.html)
 
-### Monitoring 
+### Monitoring
 
 * See the [nagios](nagios/) types
 

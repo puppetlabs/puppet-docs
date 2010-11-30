@@ -15,7 +15,7 @@ Adding Custom Facts to Facter
 
 Sometimes you need to be able to write conditional expressions
 based on site-specific data that just isn't available via Facter (or use
-a variable in a template that isn't there).  
+a variable in a template that isn't there).
 A solution can be achieved by adding a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
 in manifests.
@@ -37,7 +37,7 @@ and create our new fact in a file, hardware\_platform.rb, on the
 Puppet master server:
 
     # hardware_platform.rb
-    
+
     Facter.add("hardware_platform") do
             setcode do
                     %x{/bin/uname -i}.chomp
@@ -72,7 +72,7 @@ An example:
         setcode do
             begin
                 Facter.lsbdistid
-            rescue 
+            rescue
                 Facter.loadfacts()
             end
             distid = Facter.value('lsbdistid')
@@ -98,7 +98,7 @@ loaded by puppetd, there is a small hack:
           mkdir rubylib
           cd rubylib
           ln -s /path/to/puppet/facts facter
-          RUBYLIB=. facter 
+          RUBYLIB=. facter
 
 Testing
 -------

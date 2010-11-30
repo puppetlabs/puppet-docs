@@ -36,7 +36,7 @@ Arrow Alignment
 
 The arrow (`=>`) should be aligned at the column one space out from the longest parameter.  Not obvious in the above example is that the arrow is only aligned per resource.  Therefore, the following is correct:
 
-    exec { 
+    exec {
         "blah":
             path => "/usr/bin",
             cwd  => "/tmp";
@@ -48,7 +48,7 @@ The arrow (`=>`) should be aligned at the column one space out from the longest 
 
 But the following is incorrect:
 
-    exec { 
+    exec {
         "blah":
             path        => "/usr/bin",
             cwd         => "/tmp";
@@ -79,7 +79,7 @@ Example:
 
 ### Commas
 
-The last attribute-value pair ends with a comma even though there are no other 
+The last attribute-value pair ends with a comma even though there are no other
 attribute-value pairs.
 
 Example:
@@ -140,7 +140,7 @@ formatting in the example below:
 
 Note that in this case, even though there is a file resource with only one
 attribute-value pair, the single line format is not used.  Also note that the last attribute-value
-pair ends with a semicolon.  
+pair ends with a semicolon.
 
 If all the file resources had only one attribute, the single line format could be used as
 below:

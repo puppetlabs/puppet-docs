@@ -8,7 +8,7 @@ Supported Platforms
 
 Learn what platforms are supported.
 
-* * * 
+* * *
 
 Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform
 not on this list.

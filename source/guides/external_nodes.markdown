@@ -7,7 +7,7 @@ External Nodes
 ==============
 
 Do you have an external database (or LDAP? or File?) that lists which of your machines
-should fulfill certain functions?   Puppet's external nodes feature helps you tie that 
+should fulfill certain functions?   Puppet's external nodes feature helps you tie that
 data into Puppet, so you have less data to enter and manage.
 
 * * *
@@ -56,7 +56,7 @@ Limitations of External Nodes
 
 External nodes can't specify resources of any kind - they can only
 specify class membership, environments and attributes. Those
-classes can be in hierarchies however, so inheritance is available. 
+classes can be in hierarchies however, so inheritance is available.
 
 Configuring puppetmasterd
 -------------------------
@@ -108,11 +108,11 @@ output:
     END
     exit 0
 
-In addition to these options you can also access fact values in your node 
-classifier scripts.  Before the classifier is called the $vardir/yaml/facts/ 
-directory is populated with a YAML file containing fact values.  This file can 
+In addition to these options you can also access fact values in your node
+classifier scripts.  Before the classifier is called the $vardir/yaml/facts/
+directory is populated with a YAML file containing fact values.  This file can
 be queried for fact values.
- 
+
 This example will produce results basically equivalent to this node
 entry:
 

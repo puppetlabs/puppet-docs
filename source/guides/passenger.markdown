@@ -9,7 +9,7 @@ Passenger
 Using Passenger instead of WEBrick for web services offers numerous performance
 advantages.  This guide shows how to set it up.
 
-* * * 
+* * *
 
 Supported Versions
 ------------------
@@ -98,14 +98,14 @@ If you want the older 2.2.2 gem, you could manually download the
 just add the correct versions to your gem command:
 
       gem install -v 0.4.0 rack
-      gem install -v 2.2.2 passenger 
+      gem install -v 2.2.2 passenger
 
 ### Enable Apache modules "ssl" and "headers":
 
     # for Debian or Ubuntu:
     a2enmod ssl
     a2enmod headers
-    
+
     # for RHEL5
     yum install mod_ssl
 
@@ -133,7 +133,7 @@ Go:
 
     # For Debian/Ubuntu
     /etc/init.d/apache2 restart
-    
+
     # For RHEL5
     /etc/init.d/httpd restart
 
@@ -142,7 +142,7 @@ init script does not get called anymore:
 
     # For Debian/Ubuntu
     update-rc.d -f puppetmaster remove
-    
+
     # For RHEL5
     chkconfig puppetmaster off
     chkconfig httpd on
@@ -160,7 +160,7 @@ puppetmaster port (8140).
 
     Listen 8140
     <VirtualHost *:8140>
-    
+
         SSLEngine on
         SSLCipherSuite SSLv2:-LOW:-EXPORT:RC4+RSA
         SSLCertificateFile      /var/lib/puppet/ssl/certs/puppet-server.inqnet.at.pem
@@ -172,12 +172,12 @@ puppetmaster port (8140).
         SSLVerifyClient optional
         SSLVerifyDepth  1
         SSLOptions +StdEnvVars
-    
+
         # The following client headers allow the same configuration to work with Pound.
         RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
-    
+
         RackAutoDetect On
         DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
         <Directory /usr/share/puppet/rack/puppetmasterd/>
@@ -215,11 +215,11 @@ The config.ru file for Puppet 0.24.x
 
     # This file is mostly based on puppetmasterd, which is part of
     # the standard puppet distribution.
-    
+
     require 'rack'
     require 'puppet'
     require 'puppet/network/http_server/rack'
-    
+
     # startup code stolen from bin/puppetmasterd
     Puppet.parse_config
     Puppet::Util::Log.level = :info
@@ -228,8 +228,8 @@ The config.ru file for Puppet 0.24.x
     Puppet::Node::Facts.terminus_class = :yaml
     # Cache our nodes in yaml.  Currently not configurable.
     Puppet::Node.cache_class = :yaml
-    
-    
+
+
     # The list of handlers running inside this puppetmaster
     handlers = {
         :Status => {},
@@ -239,15 +239,15 @@ The config.ru file for Puppet 0.24.x
         :FileBucket => {},
         :Report => {}
     }
-    
+
     # Fire up the Rack-Server instance
     server = Puppet::Network::HTTPServer::Rack.new(handlers)
-    
+
     # prepare the rack app
     app = proc do |env|
         server.process(env)
     end
-    
+
     # Go.
     run app
 

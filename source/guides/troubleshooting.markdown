@@ -39,7 +39,7 @@ problem:
     1.  Run "sudo puppetca --clean \$fqdn" on the Puppetmaster to
         clear the certificates.
     2.  Remove the entire SSL directory of the client machine:
-    
+
     > rm -r etc/puppet/ssl rm -r /var/lib/puppet/ssl
 
 Assuming that you're not re-installing, by far the most common
@@ -52,7 +52,7 @@ certificate with openssl:
 
     sudo openssl verify -CAfile /etc/puppet/ssl/certs/ca.pem /etc/puppet/ssl/certs/myhostname.domain.com.pem
 
-This can also happen if you've followed the [[Using Mongrel]]
+This can also happen if you've followed the [Using Mongrel](./mongrel.html)
 pattern to alleviate file download problems. If your set-up is such
 that the host name differs from the name in the Puppet server
 certificate, or there is any other SSL certificate negotiation
@@ -203,7 +203,7 @@ This error happens when you use unquoted comparators with dots in
 them, a'la:
 
     class autofs {
-    
+
       case $kernelversion {
         2.6.9:   { $autofs_packages = ["autofs", "autofs5"] }
         default: { $autofs_packages = ["autofs"] }
@@ -213,7 +213,7 @@ them, a'la:
 That 2.6.9 needs to have doublequotes around it, like so:
 
     class autofs {
-    
+
        case $kernelversion {
          "2.6.9":   { $autofs_packages = ["autofs", "autofs5"] }
          default: { $autofs_packages = ["autofs"] }
@@ -287,11 +287,11 @@ It is generally assumed that the following will result in the
            ensure => present,
         }
     }
-    
+
     node base_node {
         include test_class
     }
-    
+
     node my_node inherits base_node {
         $testname = 'my_node'
     }
@@ -313,11 +313,11 @@ include classes rather than inheriting them. For example:
            ensure => present,
         }
     }
-    
+
     class base_node_class {
         include test_class
     }
-    
+
     node my_node {
         $testname = 'my_node'
         include base_node_class
@@ -336,7 +336,7 @@ The following would also not work as generally expected:
              ensure => present,
         }
     }
-    
+
     class child_class inherits base_class {
         $myvar = 'fred'
     }
@@ -350,14 +350,14 @@ class itself (otherwise it will cause a variable scope conflict -
 $myvar would be set twice in the same child\_class scope):
 
     $myvar = 'bob'
-    
+
     class base_class {
         file {"/tmp/testvar":
              content => "$myvar",
              ensure => present,
         }
     }
-    
+
     class child_class {
         $myvar = 'fred'
         include base_class
@@ -373,7 +373,7 @@ Example:
              content => template("john.erb"),
         }
     }
-    
+
     class child_class inherits base_class {
         $myvar = 'fred'
         File["/tmp/testvar"] { content => template("john.erb") }
@@ -392,7 +392,7 @@ sidestep the problem altogether with a define:
         }
         testvar_file { "/tmp/testvar": }
     }
-    
+
     class child_class inherits base_class {
         Base_class::Testvar_file["/tmp/testvar"] { myvar => fred }
     }
@@ -405,7 +405,7 @@ of solving this issue. You can use qualified methods like:
     class foo {
         $foovariable = "foobar"
     }
-    
+
     class bar {
         $barvariable = $foo::foovariable
     }

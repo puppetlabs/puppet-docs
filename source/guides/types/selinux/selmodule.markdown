@@ -7,7 +7,7 @@ selmodule
 =========
 
 Manages loading and unloading of SELinux policy modules on the
-system. 
+system.
 
 * Requires SELinux support. See `man semodule(8)` for more
 information on SELinux policy modules.
