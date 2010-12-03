@@ -122,6 +122,36 @@ applied to a node unless it realizes them, e.g.:
 
     realize Msg[test1], Msg[test2]
 
+Keep in mind that resources inside virtualized define-based
+resources must have unique names. The following example will
+fail comlaining about the File resource being defined twice:
 
+        define basket($arg) {
+                file{'foo':
+                        ensure  => present,
+                        content => "$arg"
+                        }
+                }
+        @basket { 'fruit': arg => 'apple' }
+        @basket { 'berry': arg => 'watermelon' }
+
+        realize Basket[apple], Basket[berry]
+
+Here's a working example:
+
+        define basket($arg) {
+            file{"$name":
+                ensure  => present,
+                content => "$arg"
+                }
+            }
+        @basket { 'fruit': arg => 'apple' }
+        @basket { 'berry': arg => 'watermelon' }
+
+        realize Basket[apple], Basket[berry]
+
+Notice the "$name" in the File resource: it will contain a different
+value for each realized @basket. Another notable detail is that, of course,
+the result of the above code will be two files, named *fruit* and *berry*.
 
 
