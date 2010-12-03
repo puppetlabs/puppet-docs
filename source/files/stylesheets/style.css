@@ -238,6 +238,10 @@ strong {
   font-weight: bold;
 }
 
+em {
+  font-weight: bold;
+}
+
 p {
   margin-bottom: 1em;
   line-height: 1.75em;
