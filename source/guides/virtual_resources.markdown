@@ -120,38 +120,36 @@ virtual. For example:
 With the above definitions, neither of the msg resources will be
 applied to a node unless it realizes them, e.g.:
 
-    realize Msg[test1], Msg[test2]
+    realize( Msg[test1], Msg[test2] )
 
 Keep in mind that resources inside virtualized define-based
 resources must have unique names. The following example will
-fail comlaining about the File resource being defined twice:
+fail, complaining that `File[foo]` is defined twice:
 
         define basket($arg) {
                 file{'foo':
                         ensure  => present,
-                        content => "$arg"
+                        content => "$arg",
                         }
                 }
         @basket { 'fruit': arg => 'apple' }
         @basket { 'berry': arg => 'watermelon' }
 
-        realize Basket[apple], Basket[berry]
+        realize( Basket[fruit], Basket[berry] )
 
 Here's a working example:
 
         define basket($arg) {
             file{"$name":
                 ensure  => present,
-                content => "$arg"
+                content => "$arg",
                 }
             }
         @basket { 'fruit': arg => 'apple' }
         @basket { 'berry': arg => 'watermelon' }
 
-        realize Basket[apple], Basket[berry]
+        realize( Basket[fruit], Basket[berry] )
 
-Notice the "$name" in the File resource: it will contain a different
-value for each realized @basket. Another notable detail is that, of course,
-the result of the above code will be two files, named *fruit* and *berry*.
+Note that the working example will result in two File resources, named `fruit` and `berry`. 
 
 
