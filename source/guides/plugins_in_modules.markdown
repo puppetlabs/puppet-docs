@@ -46,6 +46,12 @@ and facts are not relevant to any particular module you can create
 a generic module to hold all custom facts and types. It is
 recommended that you name this module `custom`.
 
+The `custom` module needs to be a valid module with the correct directory structure and 
+an `init.pp` file.  The module then needs to be included in your Puppet configuration to 
+ensure your plugins are loaded:
+
+    include custom
+
 While ordinarily in Puppet, you do not need to know Ruby, plugins are
 in fact Ruby modules.  Ruby libraries in your plugins directories behave like Ruby
 libraries in any other (system) Ruby lib directory, and their paths need to
@@ -56,7 +62,7 @@ match whatever Ruby would normally look for.
 In 0.25.0 and later releases, including 2.6.x releases, Puppet changes uses 'lib' for the
 name of the plugins directory.
 
-This change was introducued in 0.25.0 and modules with an outdated
+This change was introduced in 0.25.0 and modules with an outdated
 `plugins` directory name will generate a deprecation warning. The plugins
 directory will be formally deprecated in the Rowlf release of
 Puppet. This deprecation changes your module paths to:
