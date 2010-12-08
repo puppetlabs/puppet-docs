@@ -10,7 +10,7 @@ This guide covers the use of Puppet's file serving capability.
 
 * * *
 
-The `puppet master` daemon includes a file server for transferring static files. If a `file` resource declaration contains a `puppet:` URI in its `source` attribute, nodes will retrieve that file from the master's file server:
+The `puppet master` service includes a file server for transferring static files. If a `file` resource declaration contains a `puppet:` URI in its `source` attribute, nodes will retrieve that file from the master's file server:
 
     # copy a remote file to /etc/sudoers
     file { "/etc/sudoers":
@@ -49,13 +49,8 @@ If `test_module` were installed in `/usr/share/puppet/modules`, the same URI wou
 
     /usr/share/puppet/modules/test_module/files/testfile.txt
 
-Although no additional configuration is required to use the `modules` mount point, some access controls can be specified in the file server configuration (see below) by adding a `[modules]` configuration block with no path specified:
+Although no additional configuration is required to use the `modules` mount point, some access controls can be specified in the file server configuration by adding a `[modules]` configuration block; see [Security](#security).
 
-    [modules]
-        allow *.domain.com
-        deny *.wireless.domain.com
-
-It is not currently possible to apply more granular access controls (e.g. per module) inside the `modules` mount point. 
 
 [^oldmodulemounts]: Older versions of Puppet generated individual mount points for each installed module; to reduce namespace conflicts, these were changed to subdirectories of the catch-all `modules` mount point in version 0.25.0. 
 
@@ -70,18 +65,22 @@ The default location for the file server's configuration data is
 `--fsconfig` flag to `puppet master`. 
 
 The format of the fileserver.conf file is almost
-exactly like that of [rsync](http://samba.anu.edu.au/rsync/) (although it does not yet support the full functionality of rsync), and roughly resembles an INI file:
+exactly like that of [rsync](http://samba.anu.edu.au/rsync/), and roughly resembles an INI file:
 
     [mount_point]
         path /path/to/files
         allow *.domain.com
         deny *.wireless.domain.com
 
-These three options represent the only options currently available
-in the configuration file. The path is the only required option. The
-default security configuration is to deny all access, so if no
-allow lines are specified, the module will be configured but
-available to no one.
+The following options can currently be specified for a given mount point:
+
+* The `path` to the mount's location on the disk
+* Any number of `allow` directives
+* Any number of `deny` directives
+
+`path` is the only required option, but since the
+default security configuration is to deny all access, a mount point with no 
+`allow` directives would not be available to any nodes.
 
 The path can contain any or all of %h, %H, and %d, which are
 dynamically replaced by the client's hostname, its fully qualified
@@ -107,21 +106,22 @@ directory locations that have trailing slashes.
 
 ## Security
 
-Securing the Puppet file server consists of allowing
-specific access and denying specific access. By default, all nodes can access the `modules` mount point and no nodes can access custom mount points. 
-Classes of nodes can be identified (for permission or denial) in three ways: by IP address, by name, or by a single global wildcard (`*`). 
+Securing the Puppet file server consists of allowing and denying access (at varying levels of specificity) per mount point. Groups of nodes can be identified for permission or denial in three ways: by IP address, by name, or by a single global wildcard (`*`). Custom mount points default to denying all access. 
+
+In addition to custom mount points, there are two special mount points which can be managed with `fileserver.conf`: `modules` and `plugins`. Neither of these mount points should have a `path` option specified. The behavior of the `modules` mount point is described above under [Serving Files From Custom Mount Points](#serving-files-from-custom-mount-points). The `plugins` mount is not a true mount point, but is rather a hook to allow `fileserver.conf` to specify which nodes are permitted to sync plugins from the Puppet Master. Both of these mount points exist by default, and both default to allowing all access; if **any** `allow` or `deny` directives are set for one of these special mounts, its security settings will behave like those of a normal mount (i.e., it will default to denying all access). Note that these are the only mount points for which `deny *` is not redundant.
 
 If nodes are not connecting to the Puppet file server directly,
 e.g. using a reverse proxy and Mongrel (see [Using Mongrel](./mongrel.html)),
 then the file server will see all the connections as coming from
-the proxy server rather than the Puppet client. In this case, it is best to restrict access based on hostname. Additionally, the 
+the proxy server's IP address rather than that of the Puppet Agent node. In this case, it is best to restrict access based on hostname. Additionally, the 
 machine(s) acting as reverse proxy (usually 127.0.0.0/8) will need to be 
-allowed to access the mount point.
+allowed to access the applicable mount points.
 
 ### Priority
 
-All deny statements are parsed before all allow statements, so if
-any deny statements match a node, that node will be denied. Nodes that aren't specifically denied will have an opportunity to match the allow statements, and will be denied if they do not match any. 
+More specific `deny` and `allow` statements take precedence over less specific statements; that is, an `allow` statement for `node.domain.com` would let it connect despite a `deny` statement for `*.domain.com`. At a given level of specificity, `deny` statements take precedence over `allow` statements. 
+
+Unpredictable behavior can result from mixing IP address directives with hostname and domain name directives, so try to avoid doing that.  (Currently, if node.domain.com's IP address is 192.168.1.80 and `fileserver.conf` contains `allow 192.168.1.80` and `deny node.domain.com`, the IP-based `allow` directive will actually take precedence. This behavior may be changed in the future and should not be relied upon.)
 
 ### Host Names
 
@@ -155,3 +155,4 @@ Specifying a single wildcard will let any node access a mount point:
         allow *
 
 Note that the default behavior for custom mount points is equivalent to `deny *`. 
+
