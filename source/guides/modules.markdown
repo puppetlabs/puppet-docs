@@ -200,14 +200,14 @@ Unfortunately, you cannot apply more granular access controls, for
 example at the per module level as yet.
 
 To make a module usable with both the command line client and a
-puppetmaster, you can use a URL of the form puppet:///path, i.e. a
+puppetmaster, you can use a URL of the form `puppet:///path`, i.e. a
 URL without an explicit server name. Such URL's are treated
 slightly differently by puppet and puppetd: puppet searches for a
 serverless URL in the local filesystem, and puppetd retrieves such
 files from the fileserver on the puppetmaster. This makes it
-possible to use the same module in a standalone puppet script by
-running puppet --modulepath path script.pp and as part of a site
-manifest on a puppetmaster, without any changes to the module.
+possible to use the same module as part of a site
+manifest on a puppetmaster and in a standalone puppet script by
+running `puppet --modulepath {path} script.pp`, without any changes to the module.
 
 Finally, template files are searched in a manner similar to
 manifests and files: a mention of

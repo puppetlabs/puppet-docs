@@ -154,13 +154,13 @@ On older versions of Puppet, prior to 0.24.0, a different method
 called factsync was used for custom fact distribution. Puppet would
 look for custom facts on
 [puppet://$server/facts](puppet://%24server/facts) by default and
-you needed to run puppetd with --factsync option (or add factsync =
-true to puppetd.conf). This would enable the syncing of these files
+you needed to run puppetd with `--factsync` option (or add `factsync =
+true` to puppetd.conf). This would enable the syncing of these files
 to the local file system and loading them within puppetd.
 
 Facts were synced to a local directory ($vardir/facts, by default)
 before facter was run, so they would be available the first time.
-If $factsource was unset, the --factsync option is equivalent to:
+If $factsource was unset, the `--factsync` option is equivalent to:
 
     file { $factdir: source => "puppet://puppet/facts", recurse => true }
 

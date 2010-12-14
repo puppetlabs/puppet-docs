@@ -337,7 +337,7 @@ provider for your platform. Available providers are:
     `installable`.
 -   **apple**: Package management based on OS X's builtin packaging system. This is
     :   essentially the simplest and least functional package system in
-        existence --it only supports installation; no deletion or upgrades.
+        existence -- it only supports installation; no deletion or upgrades.
         The provider will automatically add the `.pkg` extension, so leave
         that off when specifying the package name. Required binaries:
         `/usr/sbin/installer`. Supported features: `installable`.
