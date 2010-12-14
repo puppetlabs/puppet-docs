@@ -30,7 +30,7 @@ Components
 
 Learn more about major working parts of the Puppet system.
 
-* [puppetmasterd, puppetd, puppet, & ralsh](./guides/tools.html) -- components of the system
+* [Puppet commands: master, agent, apply, resource, and more](./guides/tools.html) -- components of the system
 * [Security Infrastructure / Securing Puppet](./guides/security.html) -- how PKI works
 
 Extended Knowledge

@@ -33,8 +33,8 @@ host could configure its services using Puppet, and then could
 export Nagios configurations to monitor those services.
 
 The key syntactical difference between virtual and exported
-resources is that the special sigils (@ and \<| |>) are doubled (@@
-and \<\<| |>>) when referring to an exported resource.
+resources is that the special sigils (`@` and `<| |>`) are doubled (`@@`
+and `<<| |>>`) when referring to an exported resource.
 
 Here is an example with exported resources:
 
