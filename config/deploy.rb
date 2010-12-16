@@ -15,6 +15,7 @@ end
 
 namespace :vlad do
 
+  desc "Build the documentation site"
   remote_task :build do
     date = DateTime.now.strftime("%Y%m%d")
     sh "git checkout -b release_#{date}"
@@ -28,6 +29,7 @@ namespace :vlad do
     sh "git branch -D release_#{date}"
   end
 
+  desc "Release the documentation site"
   remote_task :release do
     date = DateTime.now.strftime("%Y%m%d")
     repo = "#{deploy_to}/repo"
@@ -39,4 +41,6 @@ namespace :vlad do
     run "rm -fr #{repo}"
   end
 
+  desc "Build and release the documentation site"
+  task :deploy => ['vlad:build', 'vlad:release']
 end
