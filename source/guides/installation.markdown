@@ -99,7 +99,7 @@ executables:
 You can also check the source out from the git repo:
 
     $ mkdir -p ~/git && cd ~/git
-    $ git clone git://github.com/reductivelabs/puppet
+    $ git clone git://github.com/puppetlabs/puppet
     $ cd puppet
     $ sudo ruby ./install.rb
 {:shell}
