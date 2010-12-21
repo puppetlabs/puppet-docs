@@ -10,7 +10,7 @@ Extend the Puppet interpreter by writing your own custom functions.
 
 * * *
 
-# Writing your own functions
+## Writing your own functions
 
 The Puppet language and interpreter is very extensible. One of the
 places you can extend Puppet is in creating new functions to be
@@ -24,7 +24,7 @@ To write functions, you'll want to have a fundamental understanding
 of the Ruby programming language, since all functions must be
 written in that language.
 
-# Gotchas
+### Gotchas
 
 There are a few things that can trip you up when you're writing
 your functions:
@@ -44,7 +44,7 @@ your functions:
 -   To use a *fact* about a client, use lookupvar('fact\_name')
     instead of Facter['fact\_name'].value. See examples below.
 
-# Where to put your functions
+### Where to put your functions
 
 Functions are loaded from files with a .rb extension in the
 following locations:
@@ -68,7 +68,7 @@ code for the my\_function function in
 and it'll be loaded by the Puppetmaster when you first use that
 function.
 
-# Baby's First Function -- small steps
+## First Function -- small steps
 
 New functions are defined by executing the newfunction method
 inside the Puppet::Parser::Functions module. You pass the name of
@@ -131,7 +131,7 @@ around. The moral: just because a function *seems* like a good
 idea, don't be so quick to assume that it'll be the answer to all
 your problems.
 
-# Using Facts and Variables
+## Using Facts and Variables
 
 "But damnit", you say, "now you've got this idea of splaying my
 cron jobs on different machines, and I just ''have'' to do this
@@ -149,7 +149,7 @@ so that's your idea up in smoke then." Aaah, but we have *facts*.
 Not opinions, but cold hard facts. And we can use them in our
 functions.
 
-## Example 1
+### Example 1
 
     require 'ipaddr'
 
@@ -159,7 +159,7 @@ functions.
       end
     end
 
-## Example 2
+### Example 2
 
     require 'md5'
 
@@ -172,7 +172,7 @@ functions.
 Basically, to get a fact's or variable's value, you just call
 lookupvar('name').
 
-# Accessing Files
+## Accessing Files
 
 If your function will be accessing files, then you need to let the
 parser know that it must recompile the configuration if that file
@@ -181,8 +181,10 @@ function:
 
     self.interp.newfile($filename)
 
-In future releases, this will change to
-parser.watch\_file($filename).
+In release 0.25.x and later, this has changed to
+
+    parser = Puppet::Parser::Parser.new(environment)
+    parser.watch\_file($filename)
 
 Finally, an example. This function takes a filename as argument and
 returns the last line of that file as its value:
@@ -205,12 +207,12 @@ file, so if your Puppet clients are contacting the master very
 regularly (I test with a 3 second delay), then it may be a few runs
 through the configuration before the file change is detected.
 
-# Calling Functions from Functions
+## Calling Functions from Functions
 
 Functions can be accessed from other functions by prefixing them
 with "function" and underscore.
 
-## Example
+### Example
 
     module Puppet::Parser::Functions
       newfunction(:myfunc2, :type => :rvalue) do |args|
@@ -218,14 +220,14 @@ with "function" and underscore.
       end
     end
 
-# Handling Errors
+## Handling Errors
 
 To throw a parse/compile error in your function, in a similar
 manner to the fail() function:
 
     raise Puppet::ParseError, "my error"
 
-# Troubleshooting Functions
+## Troubleshooting Functions
 
 If you're experiencing problems with your functions loading,
 there's a couple of things you can do to see what might be causing
@@ -253,15 +255,11 @@ is seen by Puppet. Otherwise it will just return false, indicating
 that you still have a problem (and you'll more than likely get a
 "Unknown Function" error on your clients).
 
-Referencing Custom Functions In Templates
------------------------------------------
+## Referencing Custom Functions In Templates
 
 To call a custom function within a [Puppet Template](./templating.html), you can do:
 
-   <%= scope.function_namegoeshere(["one","two"]) %>
+    <%= scope.function_namegoeshere(["one","two"]) %>
 
 Replace "namegoeshere" with the function name, and even if there is only one argument, still
 include the array brackets.
-
-
-
