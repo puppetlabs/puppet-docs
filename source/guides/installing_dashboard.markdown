@@ -13,12 +13,12 @@ Puppet Dashboard is a web front end that keeps you informed and in control of ev
 Latest version of code/instructions
 -----------------------------------
 
-The latest version of Dashboard can be found at [github.com](http://github.com/reductivelabs/puppet-dashboard/) along with the latest version of this install documentation.  They are included here as an overview for printed documentation purposes, though we'd recommend you read the versions from github instead.
+The latest version of Dashboard can be found at [github.com](http://github.com/puppetlabs/puppet-dashboard/) along with the latest version of this install documentation.  They are included here as an overview for printed documentation purposes, though we'd recommend you read the versions from github instead.
 
 Source, community and support
 -----------------------------
 
-* [Puppet Dashboard source code](http://github.com/reductivelabs/puppet-dashboard)
+* [Puppet Dashboard source code](http://github.com/puppetlabs/puppet-dashboard)
 * [Puppet Dashboard issue tracker](http://projects.puppetlabs.com/projects/dashboard)
 * [Puppet Dashboard mailing list](http://groups.google.com/group/puppet-dashboard)
 * [Puppet users mailing list](http://groups.google.com/group/puppet-users)
@@ -102,7 +102,7 @@ Installation
 
    1. Checkout the latest source code using the [Git](http://git-scm.com/) revision control system:
 
-          git clone git://github.com/reductivelabs/puppet-dashboard.git
+          git clone git://github.com/puppetlabs/puppet-dashboard.git
 
    2. Or install the software using APT or RPM packages. See `README_PACKAGES.markdown` for instructions.
 
