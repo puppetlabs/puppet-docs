@@ -31,8 +31,7 @@ You can specify the full path to your template, or you can put all
 your templates in Puppet's templatedir, which usually defaults to
 `/var/puppet/templates` (you can find out what it is on your system
 by running `puppet --configprint templatedir`).  Best practices indicates
-including the template in the `templates` directory inside your [Module]
-(./modules.html).
+including the template in the `templates` directory inside your [module](./modules.html).
 
 Templates are always evaluated by the parser, not by the client.
 This means that if you are using puppetmasterd, then the templates

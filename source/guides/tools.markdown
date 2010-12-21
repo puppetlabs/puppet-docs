@@ -6,7 +6,7 @@ title: Tools
 Tools
 =====
 
-Here's an overview of the major tools in the Puppet solution.
+This guide covers the major tools that comprise Puppet. 
 
 * * *
 

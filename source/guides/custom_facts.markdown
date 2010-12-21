@@ -32,8 +32,8 @@ An Example
 
 Let's say we need to get the output of uname -i to single out a
 specific type of workstation. To do these we create a fact. We
-start by giving the fact a name, in this case, hardware\_platform,
-and create our new fact in a file, hardware\_platform.rb, on the
+start by giving the fact a name, in this case, `hardware_platform`,
+and create our new fact in a file, `hardware_platform.rb`, on the
 Puppet master server:
 
     # hardware_platform.rb
@@ -106,8 +106,8 @@ Testing
 Of course, we can test that our code works before adding it to
 Puppet.
 
-Create a directory called facter/ somewhere, we often use
-{\~/lib/ruby/facter}, and set the environment variable $RUBYLIB to
+Create a directory called facter/ somewhere (we often use
+`~/lib/ruby/facter`), and set the environment variable `$RUBYLIB` to
 its parent directory. You can then run facter, and it will import
 your code:
 
@@ -116,7 +116,7 @@ your code:
     $ facter hardware_platform
     SUNW,Sun-Blade-1500
 
-Adding this path to your $RUBYLIB also means you can see this fact
+Adding this path to your `$RUBYLIB` also means you can see this fact
 when you run Puppet. Hence, you should now see the following when
 running puppetd:
 
@@ -125,7 +125,7 @@ running puppetd:
     info: Loading fact hardware_platform
     ...
 
-Alternatively, you can set $FACTERLIB to a directory with your new
+Alternatively, you can set `$FACTERLIB` to a directory with your new
 facts in, and they will be recognised on the Puppet master.
 
 It is important to note that to use the facts on your clients you
@@ -137,7 +137,7 @@ Viewing Fact Values
 
 You can also determine what facts (and their values) your clients
 return by checking the contents of the client's yaml output. To do
-this we check the $yamldir (by default $vardir/yaml/) on the Puppet
+this we check the `$yamldir` (by default `$vardir/yaml/`) on the Puppet
 master:
 
     # grep kernel /var/lib/puppet/yaml/node/puppetslave.example.org.yaml
@@ -154,13 +154,13 @@ On older versions of Puppet, prior to 0.24.0, a different method
 called factsync was used for custom fact distribution. Puppet would
 look for custom facts on
 [puppet://$server/facts](puppet://%24server/facts) by default and
-you needed to run puppetd with --factsync option (or add factsync =
-true to puppetd.conf). This would enable the syncing of these files
+you needed to run puppetd with `--factsync` option (or add `factsync =
+true` to puppetd.conf). This would enable the syncing of these files
 to the local file system and loading them within puppetd.
 
 Facts were synced to a local directory ($vardir/facts, by default)
 before facter was run, so they would be available the first time.
-If $factsource was unset, the --factsync option is equivalent to:
+If $factsource was unset, the `--factsync` option is equivalent to:
 
     file { $factdir: source => "puppet://puppet/facts", recurse => true }
 

@@ -19,12 +19,12 @@ implementation, and is not very fast.  Switching to a more efficient web server 
 Delayed check in
 ----------------
 
-Puppet's default configuration asks that each node check in every 30 minutes.  An option called 'splay' can add a random configurable lag to this check in time, to further balance out check in frequency.  Alternatively, do not run puppetd as a daemon, and add 'puppetd' with '--onetime' to your crontab, allowing for setting different crontab intervals on different servers.
+Puppet's default configuration asks that each node check in every 30 minutes.  An option called 'splay' can add a random configurable lag to this check in time, to further balance out check in frequency.  Alternatively, do not run puppetd as a daemon, and add `puppetd` with `--onetime` to your crontab, allowing for setting different crontab intervals on different servers.
 
 Triggered selective updates
 ---------------------------
 
-Similar to the delayed checkin and cron strategies, it's possible to trigger node updates on an 'as needed' basis.  Managed nodes can be configured to not check in automatically every 30 minutes, but rather to check in only when requested.  'puppetrun' (in the 'ext' directory of the Puppet checkout) may be used to selectively update hosts.  Alternatively, do not run the daemon, and a tool like [Func](http://fedorahosted.org/func) could be used to launch 'puppetd' with the --onetime option.
+Similar to the delayed checkin and cron strategies, it's possible to trigger node updates on an 'as needed' basis.  Managed nodes can be configured to not check in automatically every 30 minutes, but rather to check in only when requested.  'puppetrun' (in the 'ext' directory of the Puppet checkout) may be used to selectively update hosts.  Alternatively, do not run the daemon, and a tool like [Func](http://fedorahosted.org/func) could be used to launch `puppetd` with the `--onetime` option.
 
 No central host
 ---------------

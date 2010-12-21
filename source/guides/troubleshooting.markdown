@@ -23,9 +23,9 @@ when the 'parent' file is re-read.
 To make sure your new file is actually read, simply 'touch' the
 site.pp (or importing file) and the glob will be re-evaluated.
 
-## Why don't my certificates show as waiting to be signed on my server when I do a "puppetca --list"?
+## Why don't my certificates show as waiting to be signed on my server when I do a "`puppetca --list`"?
 
-puppetca must be run as root. If you are not root then rerun the
+`puppetca` must be run with root privileges. If you are not root, then re-run the
 command with sudo:
 
     sudo puppetca --list
@@ -36,11 +36,11 @@ Firstly, if you're re-installing a machine, you probably haven't
 cleared the previous certificate for that machine. To correct the
 problem:
 
-    1.  Run "sudo puppetca --clean \$fqdn" on the Puppetmaster to
-        clear the certificates.
-    2.  Remove the entire SSL directory of the client machine:
+1.  Run `sudo puppetca --clean {certname}` on the Puppetmaster to
+    clear the certificates.
+2.  Remove the entire SSL directory of the client machine:
 
-    > rm -r etc/puppet/ssl rm -r /var/lib/puppet/ssl
+        rm -r etc/puppet/ssl rm -r /var/lib/puppet/ssl
 
 Assuming that you're not re-installing, by far the most common
 cause of SSL problems is that the clock on the client machine is
