@@ -85,6 +85,10 @@ In your ticket, provide:
 
 1. Any additional background on your change.
 2. The versions of Puppet (or supporting project) to which it pertains.
+
+If you feel comfortable with git, feel free to help us by including either
+of the following:
+
 3. If using GitHub or another remote host, the URL to the branch
    you're submitting (so we can pull it); if not, one or more attached
    git patches.
