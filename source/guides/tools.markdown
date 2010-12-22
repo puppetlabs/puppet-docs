@@ -37,39 +37,35 @@ Additional information about the options supported by the various tools listed b
 are listed in the manpages for those tools.   Please consult the manpages to learn
 more.
 
-puppetmasterd or puppet master
-------------------------------
+puppet master (or puppetmasterd)
+--------------------------------
 
-Puppetmasterd is a central management daemon.  In most installations, you'll have one puppetmasterd
-server and each managed machine will run 'puppetd'.   By default, puppetmasterd runs a certificate
+Puppet master is a central management daemon.  In most installations, you'll have one puppet master
+server and each managed machine will run puppet agent.   By default, puppet master runs a certificate
 authority, which you can read more about in the [security section](./security.html).
 
-Puppetmasterd will automatically serve up puppet orders to managed systems, as well as files and
-templates.
+Puppet master serves compiled configurations, files, templates, and custom plugins to managed nodes.
 
-The main configuration file for both puppetmasterd and puppetd/puppet is /etc/puppet/puppet.conf,
+The main configuration file for puppet master, puppet agent, and puppet apply is `/etc/puppet/puppet.conf`,
 which has sections for each application.
 
-puppetd or puppet agent
------------------------
+puppet agent (or puppetd)
+-------------------------
 
-Puppetd runs on each managed node.   By default, it will wake up every 30 minutes (configurable),
-check in with puppetmasterd, send puppetmasterd new information about the system (facts), and
-then recieve a 'compiled catalog' containing the desired system configuration that should be applied
-as ordered by the central server.   Servers only see the information that the central server tells
-them they should see, for instance, the server does not see configuration orders for other servers.
-It is then the responsibility of the puppet daemon to make the system match the orders given.  Modules
-and custom plugins stored on the puppetmasterd server are transferred down to managed nodes automatically.
+Puppet agent runs on each managed node.   By default, it will wake up every 30 minutes (configurable),
+check in with puppetmasterd, send puppetmasterd new information about the system (facts), and receive a 'compiled catalog' describing the desired system configuration. Puppet agent is then responsible for making the system match the compiled catalog. If `pluginsync` is enabled in a given node's configuration, custom plugins stored on the Puppet Master server are transferred to it automatically.
 
-puppet or puppet apply
-----------------------
+The puppet master server determines what information a given managed node should see based on its unique identifier ("certname"); that node will not be able to see configurations intended for other machines. 
 
-When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet is run instead of puppetd.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppetd.
+puppet apply (or puppet)
+------------------------
 
-puppetca or puppet cert
------------------------
+When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet apply is run instead of puppt agent.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppt agent.
 
-The puppetca or puppet cert command is used to sign, list and examine certificates used by Puppet to secure the connection between the Puppet master and agents.  The most common usage is to sign the certificates of Puppet agents awaiting authorisation:
+puppet cert (or puppetca)
+-------------------------
+
+The puppet cert command is used to sign, list and examine certificates used by Puppet to secure the connection between the Puppet master and agents.  The most common usage is to sign the certificates of Puppet agents awaiting authorisation:
 
     > puppet cert --list
     agent.example.com
@@ -84,17 +80,17 @@ You can also list all signed and unsigned certificates:
 
 Certificates with a + next to them are signed.  All others are awaiting signature.
 
-puppetdoc or puppet doc
------------------------
+puppet doc (or puppetdoc)
+-------------------------
 
-Puppet doc generates documentation about Puppet and also about your Puppet manifests. It allows you to document your manifests and output details of your configuration in HTML, Markdown and RDoc.
+Puppet doc generates documentation about Puppet and your manifests, which it can output in HTML, Markdown and RDoc.
 
-ralsh or puppet resource
-------------------------
+puppet resource (or ralsh)
+--------------------------
 
-Ralsh (also available in Puppet 2.6.0 onwards as `puppet resource`) is the "Resource Abstraction Layer SHell".  It can be used to try out Puppet concepts, or simply to manipulate your local system.
+Puppet resource (also known as `ralsh`, for "Resource Abstraction Layer SHell") uses Puppet's resource abstractino layer to interactively view and manipulate your local system.
 
-There are two main usage modes.   For example, to list information about the user 'xyz':
+For example, to list information about the user 'xyz':
 
     > puppet resource User "xyz"
 
@@ -128,12 +124,12 @@ It can also be used to make additions and removals, as well as to list resources
     > puppet resource  User
     ...
 
-Ralsh, therefore, can be a handy tool for admins who have to maintain various platforms.  It's possible to use ralsh the exact same way on OS X as it is Linux; eliminating the need to remember differences between commands.  You'll also see that it aggregrates information from multiple files and shows them together in a unified context.  Thus, for new Puppet users, ralsh can make a great introduction to the power of the resource abstraction layer.
+Puppet Resource is most frequently used as a learning tool, but it can also be used to avoid memorizing differences in common commands when maintaining multiple platforms. (Note that puppet resource can be used the same way on OS X as on Linux, e.g.)
 
 facter
 ------
 
-Clients use a library/tool called facter to provide information about the OS (version information, IP information, etc) to the central server.   These variables can then be used in conditionals, string expressions, and in templates.  To see a list of facts any node offers, simply run 'facter' on that node.  Facter is a required/included part of all Puppet installations.
+Puppet agent nodes use a library (and associated front-end tool) called facter to provide information about the OS (version information, IP address, etc) to the central server.  Facts provided by facter are exposed to Puppet manifests as global variables, which can be used in conditionals, string expressions, and templates.  To see a list of facts any node offers, simply open a shell session on that node and run `facter`.  Facter is included with (and required by) all Puppet installations.
 
 
 
