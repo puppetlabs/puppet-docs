@@ -24,7 +24,7 @@ Puppet's default configuration asks that each node check in every 30 minutes.  A
 Triggered selective updates
 ---------------------------
 
-Similar to the delayed checkin and cron strategies, it's possible to trigger node updates on an 'as needed' basis.  Managed nodes can be configured to not check in automatically every 30 minutes, but rather to check in only when requested.  'puppetrun' (in the 'ext' directory of the Puppet checkout) may be used to selectively update hosts.  Alternatively, do not run the daemon, and a tool like [Func](http://fedorahosted.org/func) could be used to launch `puppetd` with the `--onetime` option.
+Similar to the delayed checkin and cron strategies, it's possible to trigger node updates on an 'as needed' basis.  Managed nodes can be configured to not check in automatically every 30 minutes, but rather to check in only when requested.  'puppetrun' (in the 'ext' directory of the Puppet checkout) may be used to selectively update hosts.  Alternatively, do not run the daemon, and a tool like [mcollective](http://www.puppetlabs.com/mcollective/introduction/) could be used to launch `puppetd` with the `--onetime` option.
 
 No central host
 ---------------
