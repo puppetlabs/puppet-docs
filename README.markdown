@@ -83,7 +83,8 @@ Contributing Changes
 --------------------
 
 * Fork the project (we recommend [GitHub][3])
-* Make sure you read the writing guide, README_WRITING.markdown
+* Make sure you read the writing guide (README_WRITING.markdown) and the 
+[style and usage guide][4]
 * Make your documentation addition/fix -- preferably in a branch.
 * If you're fixing or adding features to the generation
   infrastructure, add some passing specs.
@@ -94,6 +95,7 @@ Contributing Changes
 [1]: http://projects.puppetlabs.com/projects/puppet-docs
 [2]: http://projects.puppetlabs.com/projects/puppet/wiki/
 [3]: http://github.com
+[4]: http://docs.puppetlabs.com/guides/style_and_usage.html
 
 Copyright
 ---------
