@@ -493,7 +493,7 @@ the before and require resource metaparameters of previous versions:
 You can specify a "notify" relationship by employing the tilde instead of the
 hyphen:
 
-    File["/etc/ntp.conf"] &tilde;> Service[ntpd]
+    File["/etc/ntp.conf"] ~> Service[ntpd]
 
 "Manage the ntp configuration file before the ntpd service and notify the
 service of changes to the ntp configuration file."
