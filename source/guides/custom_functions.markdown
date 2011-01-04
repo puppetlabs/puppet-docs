@@ -39,32 +39,17 @@ your functions:
 -   The name of the file containing your function must be the
     same as the name of function; otherwise it won't get automatically
     loaded.
--   To use a *fact* about a client, use `lookupvar({fact name})`
-    instead of `Facter[{fact name}].value`. See examples below.
+-   To use a *fact* about a client, use `lookupvar('{fact name}')`
+    instead of `Facter['{fact name}'].value`. See examples below.
 
 ### Where to put your functions
 
-Functions are loaded from files with a .rb extension in the
-following locations:
+Functions are implemented in individual .rb files (whose filenames must match the names of their respective functions), and should be distributed in modules. Put custom functions in the lib/puppet/parser/functions subdirectory of your module; see [Plugins in Modules](./plugins_in_modules.html) for additional details (including compatibility with versions of Puppet prior to 0.25.0). 
+
+If you are using a version of Puppet prior to 0.24.0, or have some other compelling reason to not use [plugins in modules](./plugins_in_modules.html), functions can also be loaded from .rb files in the following locations:
 
 -   `$libdir/puppet/parser/functions`
--   `$moduledir/$modulename/plugins/puppet/parser/functions`
--   `puppet/parser/functions` sub-directories in your Ruby
-    `$LOAD_PATH`
-
-For example, if you are using the default libdir (`/var/puppet/lib`), you would put your
-functions in `/var/puppet/lib/puppet/parser/functions`.
-
-The file name is derived from the name of the function that Puppet
-is trying to run. So, let's say that /usr/local/lib/site\_ruby is
-in your machine's $LOAD\_PATH (this is certainly true on
-Debian/Ubuntu systems, I'd expect it to be true on a lot of other
-platforms too), you can create the directory
-/usr/local/lib/site\_ruby/puppet/parser/functions, then put the
-code for the my\_function function in
-/usr/local/lib/site\_ruby/puppet/parser/functions/my\_function.rb,
-and it'll be loaded by the Puppetmaster when you first use that
-function.
+-   `puppet/parser/functions` sub-directories in your Ruby `$LOAD_PATH`
 
 ## First Function -- small steps
 
@@ -86,23 +71,20 @@ To use this function, it's as simple as using it in your manifest:
 
     write_line_to_file('/tmp/some_file', "Hello world!")
 
-Now, before Luke has a coronary -- that is not a good example of a
-useful function. I can't imagine why you would want to be able to
-do this in Puppet in real life. This is purely an example of how a
-function *can* be written.
+(Note that this is not a useful function by any stretch of the imagination.)
 
 The arguments to the function are passed into the block via the
-args argument to the block. This is simply an array of all of the
+`args` argument to the block. This is simply an array of all of the
 arguments given in the manifest when the function is called.
 There's no real parameter validation, so you'll need to do that
 yourself.
 
-This simple write\_line\_to\_file function is an example of a
+This simple `write_line_to_file` function is an example of a
 *statement* function. It performs an action, and does not return a
-value. Hence it must be used on its own. The other type of function
+value. The other type of function
 is an *rvalue* function, which you must use in a context which
-requires a value, such as an if statement, case statement, or a
-variable or attribute assignment. You could implement a rand
+requires a value, such as an `if` statement, a `case` statement, or a
+variable or attribute assignment. You could implement a `rand`
 function like this:
 
     module Puppet::Parser::Functions
@@ -113,7 +95,7 @@ function like this:
 
 This function works identically to the Ruby built-in rand function.
 Randomising things isn't quite as useful as you might think,
-though. The first use for a rand function that springs to mind is
+though. The first use for a `rand` function that springs to mind is
 probably to vary the minute of a cron job. For instance, to stop
 all your machines from running a job at the same time, you might do
 something like:
@@ -131,20 +113,18 @@ your problems.
 
 ## Using Facts and Variables
 
-"But damnit", you say, "now you've got this idea of splaying my
-cron jobs on different machines, and I just ''have'' to do this
-now. You can't leave me hanging like this." Well, it can be done.
-The trick is to tie your minute value to something that's invariant
-in time, but different across machines. Personally, I like the MD5
-hash of the hostname, modulo 60, or perhaps the IP address of the
-host, converted to an integer, modulo 60. Neither of them will
-guarantee uniqueness, but you can't really expect that with a range
+Which raises the question: what _should_ you do if you want to splay
+your cron jobs on different machines?
+The trick is to tie the minute value to something that's invariant
+in time, but different across machines. Perhaps the MD5
+hash of the hostname, modulo 60, or maybe the IP address of the
+host converted to an integer, modulo 60. Neither 
+guarantees uniqueness, but you can't really expect that with a range
 of no more than 60 anyway.
 
-But how do you get at the hostname or IP address of the client
-machine? "You already told us that functions are run on the server,
-so that's your idea up in smoke then." Aaah, but we have *facts*.
-Not opinions, but cold hard facts. And we can use them in our
+But given that functions are run on the puppet master, how do you get at 
+the hostname or IP address of the agent node?
+The answer is that facts returned by facter can be used in our
 functions.
 
 ### Example 1
@@ -168,12 +148,12 @@ functions.
     end
 
 Basically, to get a fact's or variable's value, you just call
-lookupvar('name').
+`lookupvar('{fact name}')`.
 
 ## Calling Functions from Functions
 
 Functions can be accessed from other functions by prefixing them
-with "function" and underscore.
+with `function_`.
 
 ### Example
 
@@ -186,7 +166,7 @@ with "function" and underscore.
 ## Handling Errors
 
 To throw a parse/compile error in your function, in a similar
-manner to the fail() function:
+manner to the `fail()` function:
 
     raise Puppet::ParseError, "my error"
 
@@ -212,8 +192,8 @@ the problem.
     > Puppet::Parser::Functions.function(:my_funct)
     => "function_my_funct"
 
-Substitute :my\_funct with the name of your function, and it should
-return something similar to "function\_my\_funct" if the function
+Substitute `:my_funct` with the name of your function, and it should
+return something similar to "`function_my_funct`" if the function
 is seen by Puppet. Otherwise it will just return false, indicating
 that you still have a problem (and you'll more than likely get a
 "Unknown Function" error on your clients).
