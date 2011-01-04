@@ -14,15 +14,14 @@ Extend the Puppet interpreter by writing your own custom functions.
 
 The Puppet language and interpreter is very extensible. One of the
 places you can extend Puppet is in creating new functions to be
-executed on the server (the host running puppetmasterd) at the time
+executed on the puppet master at the time
 that the manifest is compiled. To give you an idea of what you can
 do with these functions, the built-in template and include
 functions are implemented in exactly the same way as the functions
 you're learning to write here.
 
-To write functions, you'll want to have a fundamental understanding
-of the Ruby programming language, since all functions must be
-written in that language.
+Custom functions are written in Ruby, so you'll need a working 
+understanding of the language before you begin. 
 
 ### Gotchas
 
@@ -34,28 +33,27 @@ your functions:
     server, and you can't do anything that requires direct access to
     the client machine.
 -   There are actually two completely different types of functions
-    available -- *statements* and *rvalues*. The difference is in
-    whether the function is supposed to return a value or not. You must
-    declare if your function is an ''rvalue'' by passing :type =>
-    :rvalue when creating the function (see the examples below).
--   The name of the file you put your function into must be the
-    same as the name of function, otherwise it won't get automatically
-    loaded. This ''will'' bite you some day.
--   To use a *fact* about a client, use lookupvar('fact\_name')
-    instead of Facter['fact\_name'].value. See examples below.
+    available -- *rvalues* (which return a value) and *statements* 
+    (which do not). If you are writing an rvalue function, you must pass 
+    `:type => :rvalue` when creating the function; see the examples below.
+-   The name of the file containing your function must be the
+    same as the name of function; otherwise it won't get automatically
+    loaded.
+-   To use a *fact* about a client, use `lookupvar({fact name})`
+    instead of `Facter[{fact name}].value`. See examples below.
 
 ### Where to put your functions
 
 Functions are loaded from files with a .rb extension in the
 following locations:
 
--   $libdir/puppet/parser/functions
--   $moduledir/$modulename/plugins/puppet/parser/functions
--   puppet/parser/functions sub-directories in your Ruby
-    $LOAD\_PATH
+-   `$libdir/puppet/parser/functions`
+-   `$moduledir/$modulename/plugins/puppet/parser/functions`
+-   `puppet/parser/functions` sub-directories in your Ruby
+    `$LOAD_PATH`
 
-For example, if default libdir is /var/puppet/lib, then you would put your
-functions in /var/puppet/lib/puppet/parser/functions.
+For example, if you are using the default libdir (`/var/puppet/lib`), you would put your
+functions in `/var/puppet/lib/puppet/parser/functions`.
 
 The file name is derived from the name of the function that Puppet
 is trying to run. So, let's say that /usr/local/lib/site\_ruby is
@@ -73,7 +71,7 @@ function.
 New functions are defined by executing the newfunction method
 inside the Puppet::Parser::Functions module. You pass the name of
 the function as a symbol to newfunction, and the code to be run as
-a block. So a trivial function to write a string to a file /tmp
+a block. So a trivial function to write a string to a file in /tmp
 might look like this:
 
     module Puppet::Parser::Functions
