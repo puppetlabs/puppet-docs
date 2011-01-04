@@ -172,41 +172,6 @@ functions.
 Basically, to get a fact's or variable's value, you just call
 lookupvar('name').
 
-## Accessing Files
-
-If your function will be accessing files, then you need to let the
-parser know that it must recompile the configuration if that file
-changes. In 0.23.2, this can be achieved by adding this to the
-function:
-
-    self.interp.newfile($filename)
-
-In release 0.25.x and later, this has changed to
-
-    parser = Puppet::Parser::Parser.new(environment)
-    parser.watch\_file($filename)
-
-Finally, an example. This function takes a filename as argument and
-returns the last line of that file as its value:
-
-    module Puppet::Parser::Functions
-      newfunction(:file_last_line, :type => :rvalue) do |args|
-        self.interp.newfile(args[0])
-        lines = IO.readlines(args[0])
-        lines[lines.length - 1]
-      end
-    end
-
-A directory name may also be passed. The exact behaviour may be
-platform-dependent, but on my GNU/Linux system, this caused it to
-watch for files being added, removed, or modified in that
-directory.
-
-Note that there may be a delay before Puppet picks up the changed
-file, so if your Puppet clients are contacting the master very
-regularly (I test with a 3 second delay), then it may be a few runs
-through the configuration before the file change is detected.
-
 ## Calling Functions from Functions
 
 Functions can be accessed from other functions by prefixing them
@@ -263,3 +228,45 @@ To call a custom function within a [Puppet Template](./templating.html), you can
 
 Replace "namegoeshere" with the function name, and even if there is only one argument, still
 include the array brackets.
+
+## Notes on Backward Compatibility
+
+### Accessing Files With Older Versions of Puppet
+
+In Puppet 2.6.0 and later, functions can access files with the expectation that
+it will just work. In versions prior to 2.6.0, functions that accessed files
+had to explicitly warn the parser to recompile the configuration if the files 
+they relied on changed. 
+
+If you find yourself needing to write custom functions for older versions of Puppet, the relevant instructions are preserved below. 
+
+#### Accessing Files in Puppet 0.23.2 through 0.24.9
+
+Until Puppet 0.25.0, safe file access was achieved by adding `self.interp.newfile($filename)` to the function. E.g., to accept a file name and return the last line of that file:
+
+    module Puppet::Parser::Functions
+      newfunction(:file_last_line, :type => :rvalue) do |args|
+        self.interp.newfile(args[0])
+        lines = IO.readlines(args[0])
+        lines[lines.length - 1]
+      end
+    end
+
+#### Accessing Files in Puppet 0.25.x
+
+In release 0.25.0, the necessary code changed to:
+
+    parser = Puppet::Parser::Parser.new(environment)
+    parser.watch_file($filename)
+
+This new code was used identically to the older code:
+
+    module Puppet::Parser::Functions
+      newfunction(:file_last_line, :type => :rvalue) do |args|
+        parser = Puppet::Parser::Parser.new(environment)
+        parser.watch_file($filename)
+        lines = IO.readlines(args[0])
+        lines[lines.length - 1]
+      end
+    end
+
