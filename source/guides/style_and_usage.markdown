@@ -24,6 +24,10 @@ Occasionally, like with 2.6, a major version changes the terminology or the name
 
 Eventually, we may need a prominent "decoder" document; in the meantime, the [Tools](./tools.html) reference will do.
 
+Synecdoche
+----------
+
+It is okay to refer to a piece of physical or virtual hardware as a "puppet master" or "puppet agent," and it can potentially be less confusing than calling them "clients" or "servers" (especially since it's pretty likely that a given agent node is also a server in some capacity). Also good: "agent node" and "puppet master server." 
 
 "Puppet"
 --------
