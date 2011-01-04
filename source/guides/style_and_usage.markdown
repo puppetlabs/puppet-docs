@@ -52,6 +52,12 @@ Occasionally you want a variable substitution to happen in the reader's brain in
 The Puppet DSL includes curly braces in its syntax, so take care. We may eventually look for another way to format placeholder text.
 
 
+Quoting Commands and Responses
+------------------------------
+
+If you're quoting a shell command inline, context should keep it from being confusing. If quoting a group of commands and responses as a code block, prefix the commands with $ or #, depending on whether they're to be run with user or root privileges. For clarity, you can also choose to prefix the responses with \>.
+
+
 Coming soon
 -----------
 
