@@ -88,7 +88,7 @@ Puppet doc generates documentation about Puppet and your manifests, which it can
 puppet resource (or ralsh)
 --------------------------
 
-Puppet resource (also known as `ralsh`, for "Resource Abstraction Layer SHell") uses Puppet's resource abstractino layer to interactively view and manipulate your local system.
+Puppet resource (also known as `ralsh`, for "Resource Abstraction Layer SHell") uses Puppet's resource abstraction layer to interactively view and manipulate your local system.
 
 For example, to list information about the user 'xyz':
 
