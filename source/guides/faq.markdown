@@ -255,8 +255,9 @@ a procedural step-by-step model of execution) seemed misleading.
 
 ## What characters are permitted in a class name?
 
-Alphanumeric and hyphens ("-") only. Qualified variables also
-can't use the hyphen. <!-- This needs an updated answer. -->
+Classes should be named using only alphanumeric characters. 
+
+Currently, Puppet also permits hyphens ("-") in class names, but using them is **not recommended** because hyphens are _not_ valid characters in qualified variable names. Thus, although a class name of `my-httpd` would be valid, none of its variables could ever be accessed from a different class, as variable names like `$my-httpd::foo` would be invalid. Current best practice is to avoid this situation.
 
 ## How Do I Apply and Test Manifests?
 
