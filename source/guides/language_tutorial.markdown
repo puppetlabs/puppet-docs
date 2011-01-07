@@ -745,7 +745,7 @@ It is possible to assign hashes to a variable like so:
 And to access hash members (recursively) from a variable containing a hash (this also works for arrays too):
 
     $myhash = { key => { subkey => "b" }}
-    notice($myhash[key][subjey]]
+    notice($myhash[key][subkey]]
 
 You can also use a hash member as a resource title, as a default definition parameter, or potentially as the value of a resource parameter,
 
