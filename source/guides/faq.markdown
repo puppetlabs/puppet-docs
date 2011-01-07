@@ -146,6 +146,13 @@ location. Puppet can also be used to handle uniqueness, either by
 allowing special provision of what makes a given host unique or
 through specifying exceptions to otherwise standard classes.
 
+## When is the Next Release?
+
+There are regular feature and release updates on the
+[Mailing List](http://groups.google.com/group/puppet-dev), and you
+can always find the latest release on the
+[downloads page](http://puppetlabs.com/downloads).
+
 ## I have found a security issue in Puppet. Who do I tell?
 
 Puppet Labs and the Puppet project take security very seriously.
@@ -166,22 +173,22 @@ potentially affect Puppet.
 - [CVE-2009-3564](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) -- Resolved in 0.25.2
 - [CVE-2010-0156](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) -- Resolved in 0.25.2
 
-## Who is Puppet Labs (formerly Reductive Labs)?
+## Who Is Puppet Labs?
 
-Puppet Labs is a small, private company focused on re-framing
+Puppet Labs (formerly Reductive Labs) is a small, private company focused on re-framing
 the server automation problem. More information about Puppet Labs is available
 [on our website](http://www.puppetlabs.com/company/overview/).
 
-## How do I contribute?
+## How Do I Contribute?
 
-First, join one or both of the Mailing Lists. There is currently
+First, join one or both of the mailing lists. There is currently
 a [development list](http://groups.google.com/group/puppet-dev/),
-and a [user discussion list](http://groups.google.com/group/puppet-users/)
-as well. You can also join the IRC channel \#puppet on
+and a [user discussion list](http://groups.google.com/group/puppet-users/). 
+You can also join the IRC channel \#puppet on
 irc.freenode.net, where Puppet's developers will be hanging out
 most days (and nights).
 
-If you are interested in helping with Puppet's development you can
+If you are interested in helping with Puppet's development, you can
 read about how it is developed and how to submit patches and fixes
 on the [Development Lifecycle](http://projects.puppetlabs.com/projects/puppet/wiki/Development_Development_Lifecycle) wiki page.
 
@@ -203,13 +210,6 @@ Puppet Labs also provides source tarballs and packages for the latest release
 in the [downloads](http://puppetlabs.com/resources/downloads) area 
 of the site, and the current state of development is always available
 at [Puppet Labs' repository on Github](https://github.com/puppetlabs/puppet). <!-- Need mention of our public repos -->
-
-## When is the Next Release?
-
-There are regular feature and release updates on the
-[Mailing List](http://groups.google.com/group/puppet-dev), and you
-can always find the latest release on the
-[downloads page](http://puppetlabs.com/downloads).
 
 ## What's The Minimum Version of Ruby?
 
@@ -340,7 +340,7 @@ facts is left as as exercise for the reader.
 
 It is very tempting to enable autosign for all nodes, as it cuts
 down on the manual steps required to bootstrap a new node (or
-indeed to move it to a new puppetmaster).
+indeed to move it to a new puppet master).
 
 Typically this would be done with a \*.mydomain.com or even \* in
 the autosign.conf file.
@@ -349,12 +349,12 @@ This however can be very dangerous as it can enable a node to
 masquerade as another node, and get the configuration intended for
 that node. The reason for this is that the node chooses the
 certificate common name ('CN' - usually its fqdn, but this is fully
-configurable), and the puppetmaster then uses this CN to look up
+configurable), and the puppet master then uses this CN to look up
 the node definition to serve. The certificate itself is stored, so
 two nodes could not connect with the same CN (eg
 alice.mydomain.com), but this is not the problem.
 
-The problem lies in the fact that the puppetmaster does not make a
+The problem lies in the fact that the puppet master does not make a
 1-1 mapping between a node and the first certificate it saw for it,
 and hence multiple certificates can map to the same node, for
 example:
@@ -364,20 +364,20 @@ example:
     also matches node alice { } definition.
 
 Without autosigning, it would be apparent that bob was trying to
-get alice's configuration - as the puppetca process lists the full
+get alice's configuration - as the puppet cert process lists the full
 fqdn/CN presented. With autosign turned on, bob silently retrieves
 alice's configuration.
 
 Depending on your environment, this may not present a significant
 risk. It essentially boils down to the question 'Do I trust
-everything that can connect to my Puppetmaster?'.
+everything that can connect to my puppet master?'.
 
 If you do still choose to have a permanent, or semi-permanent,
 permissive autosign.conf, please consider doing the following:
 
--   Firewall your puppetmaster - restrict port tcp/8140 to only
+-   Firewall your puppet master - restrict port tcp/8140 to only
     networks that you trust.
--   Create puppetmasters for each 'trust zone', and only include
+-   Create puppet masters for each 'trust zone', and only include
     the trusted nodes in that Puppet masters manifest.
--   Never use a full wildcard such as \*
+-   Never use a full wildcard such as \*.
 
