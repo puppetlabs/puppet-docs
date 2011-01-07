@@ -144,7 +144,7 @@ location. Puppet can also be used to handle uniqueness, either by
 allowing special provision of what makes a given host unique or
 through specifying exceptions to otherwise standard classes.
 
-### When is the Next Release?
+### When is the next release?
 
 There are regular feature and release updates on the
 [Mailing List](http://groups.google.com/group/puppet-dev), and you
@@ -171,13 +171,13 @@ potentially affect Puppet.
 - [CVE-2009-3564](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) -- Resolved in 0.25.2
 - [CVE-2010-0156](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) -- Resolved in 0.25.2
 
-### Who Is Puppet Labs?
+### Who is Puppet Labs?
 
 Puppet Labs (formerly Reductive Labs) is a small, private company focused on re-framing
 the server automation problem. More information about Puppet Labs is available
 [on our website](http://www.puppetlabs.com/company/overview/).
 
-### How Do I Contribute?
+### How do I contribute?
 
 First, join one or both of the mailing lists. There is currently
 a [development list](http://groups.google.com/group/puppet-dev/),
@@ -211,7 +211,7 @@ in the [downloads](http://puppetlabs.com/resources/downloads) area
 of the site, and you can view the current state of development (or start contributing code!)
 at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
-### What's The Minimum Version of Ruby?
+### What's the minimum version of Ruby?
 
 Puppet is supported on all versions of Ruby from 1.8.2 on up. It
 will sometimes work on 1.8.1, but it's not supported on that
@@ -247,7 +247,7 @@ which are posted to the
 Configuration
 -------------
 
-### What is a Manifest?
+### What is a manifest?
 
 "Manifest" is the word we chose to describe a declarative Puppet program. 
 Since Puppet configurations are idempotent, words like "script" (which implies
@@ -259,7 +259,7 @@ Classes should be named using only alphanumeric characters.
 
 Currently, Puppet also permits hyphens ("-") in class names, but using them is **not recommended** because hyphens are _not_ valid characters in qualified variable names. Thus, although a class name of `my-httpd` would be valid, none of its variables could ever be accessed from a different class, as variable names like `$my-httpd::foo` would be invalid. Current best practice is to avoid this situation.
 
-### How Do I Apply and Test Manifests?
+### How do I apply and test manifests?
 
 Once you have Puppet installed according the the [Installation
 Guide](./installation.html), just run `puppet apply` against your example:
@@ -281,7 +281,7 @@ Library, which is provided by the ruby-shadow package. The
 ruby-shadow library is available natively for fc6 (and higher), and
 should build on the corresponding RHEL and CentOS variants.
 
-### How Do I Use Puppet's Graphing Support?
+### How do I use Puppet's graphing support?
 
 Puppet has graphing support capable of creating graph files of your
 aagent node configurations.
