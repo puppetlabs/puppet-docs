@@ -109,12 +109,6 @@ Yes: Puppet can manage any type of machine, and is used
 to manage many organizations that have a mix of laptops and
 desktops.
 
-(Puppet is most frequently referred to in the context of "server management,"
-partly because we've found that most organizations are more concerned with
-server management than workstation management, and partly just because the term
-"server" is more aesthetically appealing than "computer," but Puppet would be
-ideal for organizations with a large number of workstations.)
-
 ## Does Puppet run on Windows?
 
 The short answer is 'not yet'.   Windows support is slated
