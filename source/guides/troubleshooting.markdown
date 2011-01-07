@@ -15,7 +15,7 @@ Basic workflow items are covered in the main section of the documentation.  If y
 ## Why hasn't my new node configuration been noticed?
 
 If you're using separate node definition files and import them into
-site.pp with an import \*.node (for example) you'll find that new
+site.pp (with an `import *.node`, for example) you'll find that new
 files added won't get noticed until you restart puppetmasterd. This
 is due to the fact globs aren't evaluated on each run, but only
 when the 'parent' file is re-read.
@@ -23,12 +23,12 @@ when the 'parent' file is re-read.
 To make sure your new file is actually read, simply 'touch' the
 site.pp (or importing file) and the glob will be re-evaluated.
 
-## Why don't my certificates show as waiting to be signed on my server when I do a "`puppetca --list`"?
+## Why don't my certificates show as waiting to be signed on my server when I do a "`puppet cert --list`"?
 
-`puppetca` must be run with root privileges. If you are not root, then re-run the
+puppet cert must be run with root privileges. If you are not root, then re-run the
 command with sudo:
 
-    sudo puppetca --list
+    sudo puppet cert --list
 
 ## I keep getting "certificates were not trusted". What's wrong?
 
@@ -36,11 +36,9 @@ Firstly, if you're re-installing a machine, you probably haven't
 cleared the previous certificate for that machine. To correct the
 problem:
 
-1.  Run `sudo puppetca --clean {certname}` on the Puppetmaster to
+1.  Run `sudo puppet cert --clean {node certname}` on the puppet master to
     clear the certificates.
-2.  Remove the entire SSL directory of the client machine:
-
-        rm -r etc/puppet/ssl rm -r /var/lib/puppet/ssl
+2.  Remove the entire SSL directory of the client machine (`sudo rm -r etc/puppet/ssl; rm -r /var/lib/puppet/ssl`).
 
 Assuming that you're not re-installing, by far the most common
 cause of SSL problems is that the clock on the client machine is
@@ -62,8 +60,8 @@ cURL), or revert to the original Webrick installation.
 
 ## I'm getting IPv6 errors; what's wrong?
 
-This can apparently happen if Ruby is not compiled with IPv6
-support; see the mail thread for more details. The only known
+This can happen if Ruby is not compiled with IPv6
+support. The only known
 solution is to make sure you're running a version of Ruby compiled
 with IPv6 support.
 
@@ -104,37 +102,6 @@ standard. This should carry more weight by pointing out an
 official, published standard they're failing to meet, rather than
 trying to explain how their bug is causing problems in Puppet.
 
-## I'm using the Nagios types but the Puppet run on the server running Nagios is starting to take ages
-
-**Note:** This has heavily been improved with 0.25 and it's not
-anymore a problem. The proposed workaround should be considered
-only on systems running puppet \< 0.25
-
-If you are exporting Nagios objects, they will need to be collected
-on your Nagios server to be added to the nagios service
-configuration file.
-
-Let's say you are exporting some hundreds of nagios\_service
-objects, the corresponding nagios\_service.cfg file will be quite
-large. On every puppet run however, for each and every
-nagios\_service defined, puppet will have to seek through that file
-to see if anything has changed. This is incredibly time consuming.
-
-You'll have better results using the "target" option for the
-nagios\_service tyepe, e.g.
-
-    nagios_service { "check_ssh_$fqdn":
-         ensure => present,
-         check_command => "check_ssh",
-         use => "generic-service",
-         host_name => $fqdn,
-         service_description => "SSH",
-         target => "/etc/nagios/nagios_service.d/check_ssh_$fqdn"
-    }
-
-This will dramatically improve your puppet run performance, as
-puppet only has to look in the directory for the file it needs and
-seek through a file with only one service definition in it.
 
 ## Why is my external node configuration failing ? I get no errors by running the script by hand.
 
@@ -145,7 +112,7 @@ client
     err: Could not retrieve catalog; skipping run
 
 it is because of some invalid YAML output from your external node
-script. Check [http://www.yaml.org](http://www.yaml.org) if you
+script. Check [yaml.org](http://www.yaml.org) if you
 have doubts about validity.
 
 # Puppet Syntax Errors
@@ -175,7 +142,7 @@ and the error would be Syntax error at 'ensure'; expected '}' .
 You can also get the same error if you forget a comma. For
 instance, in this example the comma is missing at the end of line
 3:
- service {
+    service {
       "myservice":
         provider => "runit"
         path => "/path/to/daemons"
@@ -203,17 +170,17 @@ This error happens when you use unquoted comparators with dots in
 them, a'la:
 
     class autofs {
-
+    
       case $kernelversion {
         2.6.9:   { $autofs_packages = ["autofs", "autofs5"] }
         default: { $autofs_packages = ["autofs"] }
       }
     }
 
-That 2.6.9 needs to have doublequotes around it, like so:
+That 2.6.9 needs to have double quotes around it, like so:
 
     class autofs {
-
+    
        case $kernelversion {
          "2.6.9":   { $autofs_packages = ["autofs", "autofs5"] }
          default: { $autofs_packages = ["autofs"] }
@@ -287,11 +254,11 @@ It is generally assumed that the following will result in the
            ensure => present,
         }
     }
-
+    
     node base_node {
         include test_class
     }
-
+    
     node my_node inherits base_node {
         $testname = 'my_node'
     }
@@ -313,11 +280,11 @@ include classes rather than inheriting them. For example:
            ensure => present,
         }
     }
-
+    
     class base_node_class {
         include test_class
     }
-
+    
     node my_node {
         $testname = 'my_node'
         include base_node_class
@@ -336,7 +303,7 @@ The following would also not work as generally expected:
              ensure => present,
         }
     }
-
+    
     class child_class inherits base_class {
         $myvar = 'fred'
     }
@@ -350,14 +317,14 @@ class itself (otherwise it will cause a variable scope conflict -
 $myvar would be set twice in the same child\_class scope):
 
     $myvar = 'bob'
-
+    
     class base_class {
         file {"/tmp/testvar":
              content => "$myvar",
              ensure => present,
         }
     }
-
+    
     class child_class {
         $myvar = 'fred'
         include base_class
@@ -373,7 +340,7 @@ Example:
              content => template("john.erb"),
         }
     }
-
+    
     class child_class inherits base_class {
         $myvar = 'fred'
         File["/tmp/testvar"] { content => template("john.erb") }
@@ -392,7 +359,7 @@ sidestep the problem altogether with a define:
         }
         testvar_file { "/tmp/testvar": }
     }
-
+    
     class child_class inherits base_class {
         Base_class::Testvar_file["/tmp/testvar"] { myvar => fred }
     }
@@ -405,7 +372,7 @@ of solving this issue. You can use qualified methods like:
     class foo {
         $foovariable = "foobar"
     }
-
+    
     class bar {
         $barvariable = $foo::foovariable
     }

@@ -17,48 +17,102 @@ for additional assorted information about specific technical items.
 General
 -------
 
-## What license is Puppet released under?
+### What is Puppet?
+
+Puppet is an open-source next-generation server automation tool. It
+is composed of a declarative language for expressing system
+configuration, a client and server for distributing it, and a
+library for realizing the configuration.
+
+The primary design goal of Puppet is that it have an expressive
+enough language backed by a powerful enough library that you can
+write your own server automation applications in just a few lines
+of code. Puppet's deep extensibility and open source license lets you 
+add functionality as needed and share your innovations with others. 
+
+To learn more about the capabilities of Puppet, start at the [main Puppet documentation](../).
+
+### What license is Puppet released under?
 
 Puppet is open source and is released under the
 [GNU Public License](http://www.gnu.org/copyleft/gpl.html), version 2 or
 greater.
 
-## Why does Puppet have its own language?
+### Why does Puppet have its own language?
 
-People often ask why Puppet does not use something like XML or YAML as the
-configuration format; otherwise people ask why I didn't just choose
-to just use Ruby as the input language.
+Why not use XML or YAML as the configuration format? Why not use Ruby as the
+input language?
 
-The input format for Puppet is not XML or YAML because these are
-data formats developed to be easy for computers to handle. They do
-not do conditionals (although, yes, they support data structures
-that could be considered conditionals), but mostly, they're just
+The language used for manifests is ultimately Puppet's human interface, and XML
+and YAML, being data formats developed around the processing capabilities of
+computers, are
 horrible human interfaces. While some people are comfortable
 reading and writing them, there's a reason why we use web browsers
 instead of just reading the HTML directly. Also, using XML or YAML
-would limit the ability to make sure the interface is declarative
+would limit any assurance that the interface was declarative
 -- one process might treat an XML configuration differently from
 another.
 
-As to just using Ruby as the input format, that unnecessarily ties
-Puppet to Ruby, which is undesirable, and Ruby provides a bit too
-much functionality.  We believe systems administrators should be
-able to model their datacenters in a higher level system, and
-for those that need the power of Ruby, writing custom functions,
-types, and providers is still possible.
+As for just using Ruby as the input format, Puppet 2.6.0 actually added
+this functionality, and manifests can now be written in pure Ruby. However,
+this capability should be used carefully and avoided where possible:
+the full grammar of Ruby is often _too_ much functionality,
+and we believe systems administrators should be
+able to model their datacenters in a higher-level system. Writing manifests in
+the Puppet DSL and separating needed Ruby extensions out into redistributable
+custom functions, facts, types, and providers is usually the best balance of 
+power and maintainability. 
 
-## Can Puppet manage workstations?
+### Why is Puppet written in Ruby?
 
-Yes, Puppet can manage any type of machine.  Puppet is used
+From Luke Kanies, Puppet's author: 
+
+> I was a sysadmin by trade and
+> had mostly developed in perl, but when I tried to write the
+> prototype I had in mind, I couldn't get the class relationships I
+> wanted in perl. I tried Python, because this was around 2003 and
+> Python was the next new thing and everyone was saying how great it
+> is, but I just can't seem to write in Python at all. A friend had
+> said he'd heard Ruby was cool, so I gave it a try, and in four
+> hours I went from never having seen a line of it to having a
+> working prototype. I haven't looked back since then, and haven't
+> regretted the choice.
+
+### Who would find Puppet useful?
+
+Any organization that would like to reduce the cost of maintaining
+its computers could benefit from using Puppet. However, because the
+return on investment is linked to multiple factors, like current
+administrative overhead, diversity among existing computers, and
+cost of downtime, it can be difficult for organizations to
+determine whether they should invest in any configuration
+management tools, much less Puppet. Puppet Labs can always be
+contacted directly at <info@puppetlabs.com> to help answer this
+question.
+
+Generally, however, an organization should be using server
+automation if any of the following are true:
+
+-   It has high server administration costs
+-   It pays a high price for downtime, either because of contracts
+    or opportunity cost
+-   It has many servers that are essentially either identical or
+    nearly identical
+-   It requires flexibility and agility in server configuration
+
+
+### Can Puppet manage workstations?
+
+Yes: Puppet can manage any type of machine, and is used
 to manage many organizations that have a mix of laptops and
 desktops.
 
-## Does Puppet run on Windows?
+### Does Puppet run on Windows?
 
 The short answer is 'not yet'.   Windows support is slated
-to be available in 2010.
+to be available in 2011.
 
-## What size organizations should use Puppet?
+### What size organizations should use Puppet?
 
 There is no minimum or maximum organization size that can benefit
 from Puppet, but there are sizes that are more likely to benefit.
@@ -67,7 +121,7 @@ consider maintaining those servers to be a real problem, while
 those that have more need to consider carefully how they eliminate
 manual management tasks.
 
-## My servers are all unique; can Puppet still help?
+### My servers are all unique; can Puppet still help?
 
 Yes.
 
@@ -90,25 +144,23 @@ location. Puppet can also be used to handle uniqueness, either by
 allowing special provision of what makes a given host unique or
 through specifying exceptions to otherwise standard classes.
 
-## When is the Next Release?
+### When is the next release?
 
 There are regular feature and release updates on the
 [Mailing List](http://groups.google.com/group/puppet-dev), and you
 can always find the latest release on the
 [downloads page](http://puppetlabs.com/downloads).
 
-## I have found a security issue in Puppet. Who do I tell?
+### I have found a security issue in Puppet. Who do I tell?
 
 Puppet Labs and the Puppet project take security very seriously.
 We handle all security problems brought to our attention and ensure
 that they are corrected within a reasonable time frame.
 
 If you have identified an issue then please send an email to the
-Security mailbox
-\<[security@puppetlabs.net](mailto:security@puppetlabs.net)>
-with the details.
+Security mailbox (<security@puppetlabs.net>) with the details.
 
-### Recent Notifications
+#### Recent Notifications
 
 Experience has shown that "security through obscurity" does not
 work. Public disclosure allows for more rapid and better solutions
@@ -116,17 +168,50 @@ to security problems. In that vein, this page addresses Puppet's
 status with respect to various known security holes, which could
 potentially affect Puppet.
 
-CVE
-Status
-[CVE-2009-3564](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564)
-Resolved in 0.25.2
-[CVE-2010-0156](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156)
-Resolved in 0.25.2
+- [CVE-2009-3564](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) -- Resolved in 0.25.2
+- [CVE-2010-0156](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) -- Resolved in 0.25.2
+
+### Who is Puppet Labs?
+
+Puppet Labs (formerly Reductive Labs) is a small, private company focused on re-framing
+the server automation problem. More information about Puppet Labs is available
+[on our website](http://www.puppetlabs.com/company/overview/).
+
+### How do I contribute?
+
+First, join one or both of the mailing lists. There is currently
+a [development list](http://groups.google.com/group/puppet-dev/),
+and a [user discussion list](http://groups.google.com/group/puppet-users/). 
+You can also join the IRC channel \#puppet on
+irc.freenode.net, where Puppet's developers will be hanging out
+most days (and nights).
+
+If you are interested in helping with Puppet's development, you can
+read about how it is developed and how to submit patches and fixes
+on the [Development Lifecycle](http://projects.puppetlabs.com/projects/puppet/wiki/Development_Development_Lifecycle) wiki page.
+
+The most valuable contribution you can make, though, is to use
+Puppet and submit your feedback, either directly on IRC or through
+the mailing list, or by reporting to the
+[bug database](http://projects.puppetlabs.com/projects/show/puppet).
+We're always looking for great ideas to incorporate into Puppet.
 
 Installation
 ------------
 
-## What's The Minimum Version of Ruby?
+### Where can I get Puppet?
+
+Many operating system vendors offer Puppet in their package repositories, 
+which is often the most convenient way to install Puppet. Puppet Labs
+also maintains its own public package repositories at <http://yum.puppetlabs.com> and 
+<http://apt.puppetlabs.com>. 
+
+In addition, source tarballs and packages for the latest release of Puppet are available
+in the [downloads](http://puppetlabs.com/resources/downloads) area 
+of the site, and you can view the current state of development (or start contributing code!)
+at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
+
+### What's the minimum version of Ruby?
 
 Puppet is supported on all versions of Ruby from 1.8.2 on up. It
 will sometimes work on 1.8.1, but it's not supported on that
@@ -136,13 +221,13 @@ release.
 Upgrading
 ---------
 
-## Should I upgrade the client or server first?
+### Should I upgrade the client or server first?
 
 When upgrading to a new version of Puppet, always upgrade the
 server first. Old clients can point at a new server but you may
 have problems when pointing a new client at an old server.
 
-## How should I upgrade Puppet & Facter?
+### How should I upgrade Puppet and Facter?
 
 The best way to install and to upgrade Puppet and Facter is via
 your operating system's package management system. This is easier
@@ -151,51 +236,67 @@ source make sure you remove old versions including all application
 and library files (excepting configuration in /etc/puppet
 obviously) entirely before upgrading.
 
-## How do I know what's changed when I upgrade?
+### How do I know what's changed when I upgrade?
 
-The best way to find out what's changed in Puppet is to read the
-release notes which are posted to the puppet-announce mailing list.
-They will tell you about new features, functions, deprecations and other changes to Puppet.
+The best way to find out what's changed in Puppet is to read the release notes,
+which are posted to the 
+[puppet-announce mailing list](http://groups.google.com/group/puppet-announce) and 
+[archived on the Puppet wiki](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes).
 
-* * * * *
 
-# Configuration
+Configuration
+-------------
 
-## What characters are permitted in a class name?
+### What is a manifest?
 
-Alphanumeric and hyphens '-' only.  Qualified variables also
-can't use the hyphen.
+"Manifest" is the word we chose to describe a declarative Puppet program. 
+Since Puppet configurations are idempotent, words like "script" (which implies
+a procedural step-by-step model of execution) seemed misleading.
 
-## How Do I Test/Run Manifests?
+### What characters are permitted in a class name?
+
+Classes should be named using only alphanumeric characters. 
+
+Currently, Puppet also permits hyphens ("-") in class names, but using them is **not recommended** because hyphens are _not_ valid characters in qualified variable names. Thus, although a class name of `my-httpd` would be valid, none of its variables could ever be accessed from a different class, as variable names like `$my-httpd::foo` would be invalid. Current best practice is to avoid this situation.
+
+### How do I apply and test manifests?
 
 Once you have Puppet installed according the the [Installation
-Guide](./installation.html), just can run the puppet executable against your example:
+Guide](./installation.html), just run `puppet apply` against your example:
 
-    puppet -v example.pp
+    puppet apply -v example.pp
 
-## How do I manage passwords on Red Hat Enterprise Linux & Fedora Core?
+### How do I document my manifests?
 
-As described in the Type reference you need the Shadow Password
-Library, this is provided by the ruby-shadow package. The
-ruby-shadow library is available natively for fc6 (and higher) and
-should build on the RHEL and CentOS variants.
+The puppet language includes a simple documentation syntax, which is currently 
+documented on the
+[Puppet Manifest Documentation wiki page](http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Manifest_Documentation). 
+The puppetdoc command uses this inline documentation to automatically generate 
+RDoc or HTML documents for your manifests and modules.
 
-## How do I use Puppet's graphing support?
+### How do I manage passwords on Red Hat Enterprise Linux, CentOS, and Fedora Core?
 
-Puppet has graphing support capable of creating graph files of the
-relationships between your Puppet client configurations.
+As described in the [Type reference](../references/latest/type.html), you need the Shadow Password
+Library, which is provided by the ruby-shadow package. The
+ruby-shadow library is available natively for fc6 (and higher), and
+should build on the corresponding RHEL and CentOS variants.
 
-The graphs are created by and on the
-client, so you must enable `graph=true` in your Puppet.conf and
-set `graphdir` to the directory where graphs should be output.  The
-resultant files will be created in `dot` format which is readable by
+### How do I use Puppet's graphing support?
+
+Puppet has graphing support capable of creating graph files of your
+aagent node configurations.
+
+These graphs are created by and on the
+agent nodes, so you must enable `graph=true` in the `[agent]` section of your nodes' Puppet.conf and
+set `graphdir` to the directory where graphs should be written.  The
+resulting files will be created in `.dot` format, which is readable by
 [OmniGraffle](http://www.omnigroup.com/applications/omnigraffle/) (OS X)
-or [graphviz](http://www.graphviz.org/).   To generate a visual from
-the dot file in graphviz, run the following:
+or [graphviz](http://www.graphviz.org/).   To generate an image from
+a dot file using the `dot` utility included with graphviz, run the following:
 
     dot -Tpng /var/puppet/state/graphs/resources.dot -o /tmp/configuration.png
 
-## How do all of these variables, like $operatingsystem, get set?
+### How do all of these variables, like $operatingsystem, get set?
 
 The variables are all set by
 [Facter](http://puppetlabs.com/projects/facter). You can get a
@@ -204,36 +305,42 @@ facter by itself in a shell.:
 
     # facter
 
-## Are there variables available other than those provided by Facter?
+### Are there variables available other than those provided by Facter?
 
-Puppet also provides a few in-built variables you can use in your
-manifests.  The first is provided by the Puppet client and returns the current
-environment, appropriately it is called $environment.
+Puppet provides a few in-built variables you can use in your
+manifests:
 
-Also available are the $server, $serverip and $serverversion
-variables. These contain the fully-qualified domain, IP address,
-and Puppet version of the server respectively.
+* `$environment` -- Provided by the puppet agent; returns the agent node's current
+environment.
+* `$servername` -- Provided by the puppet master; returns the master server's
+fully-qualified domain name. (Note that this information is gathered from the
+master server by Facter, rather than read from the config files; even if the
+master's certname is set to something other than its fully-qualified domain
+name, this variable will still contain the server's fqdn.)
+* `$serverip` -- Provided by the puppet master; returns the master server's IP address.
+* `$serverversion` -- Provided by the puppet master; returns puppet master's current version. 
 
-## Can I access environmental variables with Facter?
+### Can I access environment variables with Facter?
 
-Not directly no but Facter has a special types of facts that can be
-set from environment variables. Any environment variable with a
-prefix of [FACTER](http://puppetlabs.com/projects/facter) will
-be taken by Facter and converted into a fact, for example:
+Not directly. However, Facter reads in custom facts from a special subset of
+environment variables. Any environment variable with a
+prefix of `FACTER_` will be converted into a fact when Facter runs. For example:
 
     $ FACTER_FOO="bar"
     $ export FACTER_FOO
     $ facter | grep 'foo'
       foo => bar
 
-The value of the FACTER\_FOO environmental variable would now be
-available in your Puppet manifests as $foo with a value of 'bar'.
+The value of the `FACTER_FOO` environment variable would now be
+available in your Puppet manifests as $foo, and would have a value of 'bar'.
+Using shell scripting to export an arbitrary subset of environment variables as
+facts is left as as exercise for the reader.
 
-## Why shouldn't I use autosign for all my clients?
+### Why shouldn't I use autosign for all my clients?
 
 It is very tempting to enable autosign for all nodes, as it cuts
 down on the manual steps required to bootstrap a new node (or
-indeed to move it to a new puppetmaster).
+indeed to move it to a new puppet master).
 
 Typically this would be done with a \*.mydomain.com or even \* in
 the autosign.conf file.
@@ -242,12 +349,12 @@ This however can be very dangerous as it can enable a node to
 masquerade as another node, and get the configuration intended for
 that node. The reason for this is that the node chooses the
 certificate common name ('CN' - usually its fqdn, but this is fully
-configurable), and the puppetmaster then uses this CN to look up
+configurable), and the puppet master then uses this CN to look up
 the node definition to serve. The certificate itself is stored, so
 two nodes could not connect with the same CN (eg
 alice.mydomain.com), but this is not the problem.
 
-The problem lies in the fact that the puppetmaster does not make a
+The problem lies in the fact that the puppet master does not make a
 1-1 mapping between a node and the first certificate it saw for it,
 and hence multiple certificates can map to the same node, for
 example:
@@ -257,20 +364,20 @@ example:
     also matches node alice { } definition.
 
 Without autosigning, it would be apparent that bob was trying to
-get alice's configuration - as the puppetca process lists the full
+get alice's configuration - as the puppet cert process lists the full
 fqdn/CN presented. With autosign turned on, bob silently retrieves
-alices config.
+alice's configuration.
 
 Depending on your environment, this may not present a significant
 risk. It essentially boils down to the question 'Do I trust
-everything that can connect to my Puppetmaster?'.
+everything that can connect to my puppet master?'.
 
 If you do still choose to have a permanent, or semi-permanent,
 permissive autosign.conf, please consider doing the following:
 
--   Firewall your puppetmaster - restrict port tcp/8140 to only
+-   Firewall your puppet master - restrict port tcp/8140 to only
     networks that you trust.
--   Create puppetmasters for each 'trust zone', and only include
+-   Create puppet masters for each 'trust zone', and only include
     the trusted nodes in that Puppet masters manifest.
--   Never use a full wildcard such as \*
+-   Never use a full wildcard such as \*.
 
