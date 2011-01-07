@@ -14,8 +14,6 @@ documentation or on the main website.
 You may also wish to see [Troubleshooting](./troubleshooting.html) or [Techniques](/guides/techniques)
 for additional assorted information about specific technical items.
 
-TODO: fix header levels, mention the public repos (yum.puppetlabs/apt.puppetlabs.com), 
-
 General
 -------
 
@@ -204,12 +202,14 @@ Installation
 ### Where can I get Puppet?
 
 Many operating system vendors offer Puppet in their package repositories, 
-which is often the most convenient way to install Puppet. 
+which is often the most convenient way to install Puppet. Puppet Labs
+also maintains its own public package repositories at <http://yum.puppetlabs.com> and 
+<http://apt.puppetlabs.com>. 
 
-Puppet Labs also provides source tarballs and packages for the latest release
+In addition, source tarballs and packages for the latest release of Puppet are available
 in the [downloads](http://puppetlabs.com/resources/downloads) area 
-of the site, and the current state of development is always available
-at [Puppet Labs' repository on Github](https://github.com/puppetlabs/puppet). <!-- Need mention of our public repos -->
+of the site, and you can view the current state of development (or start contributing code!)
+at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
 ### What's The Minimum Version of Ruby?
 
