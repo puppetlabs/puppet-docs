@@ -805,7 +805,7 @@ variables are only valid and accessible in certain places in a
 program.  Using the same variable name in different parts of
 the language do not refer to the same value.
 
-Classes, components, and nodes introduce a new scope. Puppet is
+Classes and nodes introduce new scopes. Puppet is
 currently dynamically scoped, which means that scope hierarchies
 are created based on where the code is evaluated instead of where
 the code is defined.
