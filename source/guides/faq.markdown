@@ -202,7 +202,7 @@ Installation
 ### Where can I get Puppet?
 
 Many operating system vendors offer Puppet in their package repositories, 
-which is often the most convenient way to install Puppet. Puppet Labs
+which is the most convenient way to install Puppet. Puppet Labs
 also maintains its own public package repositories at <http://yum.puppetlabs.com> and 
 <http://apt.puppetlabs.com>. 
 
@@ -229,12 +229,15 @@ have problems when pointing a new client at an old server.
 
 ### How should I upgrade Puppet and Facter?
 
-The best way to install and to upgrade Puppet and Facter is via
-your operating system's package management system. This is easier
-than installing them from source. If you do install them from
-source make sure you remove old versions including all application
-and library files (excepting configuration in /etc/puppet
-obviously) entirely before upgrading.
+The best way to install and upgrade Puppet and Facter is via
+your operating system's package management system, using either your
+vendor's repository or one of Puppet Labs' public repositories.
+
+If you have installed Puppet from
+source, make sure you remove old versions entirely (including all application
+and library files) before upgrading. Configuration data (usually located
+in `/etc/puppet` or `/var/lib/puppet`, although the location can vary) can
+be left in place between installs.
 
 ### How do I know what's changed when I upgrade?
 
