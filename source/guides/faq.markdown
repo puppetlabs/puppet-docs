@@ -109,8 +109,11 @@ desktops.
 
 ### Does Puppet run on Windows?
 
-The short answer is 'not yet'.   Windows support is slated
-to be available in 2011.
+The short answer is "not yet." 
+
+Experimental Windows support was added in Puppet 2.6. Although
+it's not yet ready for deployment, this support will be improved and 
+extended during 2011.
 
 ### What size organizations should use Puppet?
 
