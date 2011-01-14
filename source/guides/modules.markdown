@@ -184,9 +184,10 @@ relative to one of the subdirectories of the module module\_name.
 For file references on the fileserver, a similar lookup is used so
 that a reference to puppet://$servername/modules/autofs/auto.homes
 resolves to the file autofs/files/auto.homes in the module's path.
-
-Warning: This will only work if you do not have an explicit, for
-example [autofs] mount already declared in your fileserver.conf.
+(Note that this behavior will break if you have declared an explicit
+`[autofs]` mount in your [fileserver.conf](./file_serving.html), so
+take care to avoid name collisions when assigning custom fileserver
+mount points outside of modules.)
 
 You can apply some access controls to files in your modules by
 creating a [modules] file mount, which should be specified without
@@ -219,31 +220,50 @@ more-specific files under the module path (see the discussion under
 [Feature 1012](http://projects.puppetlabs.com/issues/1012) for
 the history here).
 
-From version Puppet 0.23.1 onwards, everything under the
-modulepath is automatically imported into Puppet and is available
-to be used. This is called module autoloading.  Puppet will attempt to
-auto-load classes and definitions from modules, so you don't have to explicitly import
-them. You can just include the module class or start using the
-definition. Note that the init.pp file will always be loaded first,
-so you can put all of your classes and definitions in there if you
-prefer.
+### Module Autoloading
 
-With namespaces, some additional magic is also available. Let's say your
-autofs module has a class defined in init.pp but you
-want an additional class called craziness. If you define that class
-as autofs::craziness and store it in file craziness.pp under the
-manifests directory, then simply using something like include
-autofs::craziness will trigger puppet to search for a class called
-craziness in a file named craziness.pp in a module named autofs in
-the specified module paths. Hooray!
+Since version 0.23.1, Puppet will attempt to autoload classes and
+definitions from modules, so you no longer have to explicitly import them; you can
+just include the class or start using the definition. 
 
-If you prefer to keep class autofs in a file named autofs.pp,
-create an init.pp file containing simply:
+The rules Puppet uses to find the appropriate manifest when a module
+class or definition is declared are pretty easy to
+understand, and break down like this:
 
-    import "*"
+<table>
+<tr>
+<td><code>include foo</code></td>
+        <td><code><p># {modulepath}/foo/manifests/init.pp</p>
+                  <p>class foo { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>include foo::bar</code></td>
+        <td><code><p># {modulepath}/foo/manifests/bar.pp</p>
+                  <p>class foo::bar { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>foo::params { "example": value =&gt; 'meow' }</code></td>
+        <td><code><p># {modulepath}/foo/manifests/params.pp</p>
+                  <p>define foo::params ($value) { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>class { "foo::bar::awesome": }</code></td>
+        <td><code><p># {modulepath}/foo/manifests/bar/awesome.pp</p>
+                  <p>class foo::bar::awesome { ... }</p></code></td>
+</tr>
+</table>
 
-And you will then be able to reference the class by using include
-autofs just as if it were defined in init.pp.
+In short, lookup paths within a module's manifest directory are derived by splitting class and definition names on `::` separators, then interpreting the first element as the name of the module, the final element as the filename (with a `.pp` extension appended), and any intermediate elements as subdirectories of the module's manifests directory:
+
+    {module name}::{directory}::{filename (sans extension)}
+
+The one special case is that a one-word class or definition name which matches the name of the module will always be found in `manifests/init.pp`.[^init]
+
+Since lookup of classes and definitions is based on filename, take care to 
+always rename both at the same time. 
+
+[^init]: Puppet actually always loads the `init.pp` manifest, so sometimes you can cheat and just write all your module's classes in there.  This makes it harder for people to find where your class or define lives, though, so we don't recommend it.
+
 
 ## Generated Module Documentation
 
