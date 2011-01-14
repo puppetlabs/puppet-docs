@@ -184,9 +184,10 @@ relative to one of the subdirectories of the module module\_name.
 For file references on the fileserver, a similar lookup is used so
 that a reference to puppet://$servername/modules/autofs/auto.homes
 resolves to the file autofs/files/auto.homes in the module's path.
-
-Warning: This will only work if you do not have an explicit, for
-example [autofs] mount already declared in your fileserver.conf.
+(Note that this behavior will break if you have declared an explicit
+`[autofs]` mount in your [fileserver.conf](./file_serving.html), so
+take care to avoid name collisions when assigning custom fileserver
+mount points outside of modules.)
 
 You can apply some access controls to files in your modules by
 creating a [modules] file mount, which should be specified without
@@ -219,60 +220,49 @@ more-specific files under the module path (see the discussion under
 [Feature 1012](http://projects.puppetlabs.com/issues/1012) for
 the history here).
 
-From version Puppet 0.23.1 onwards, everything under the modulepath is
-automatically imported into Puppet and is available to be used, through the
-magic of "module autoloading".  Puppet will attempt to auto-load classes and
-definitions from modules, so you don't have to explicitly import them. You can
-just include the module class or start using the definition.
+### Module Autoloading
 
-The rules that puppet uses to find the appropriate manifest are pretty easy to
+Since version 0.23.1, Puppet will attempt to autoload classes and
+definitions from modules, so you no longer have to explicitly import them; you can
+just include the class or start using the definition. 
+
+The rules Puppet uses to find the appropriate manifest when a module
+class or definition is declared are pretty easy to
 understand, and break down like this:
 
-    include puppet
-    => modules/puppet/manifests/init.pp
-    # class puppet { ...
+<table>
+<tr>
+<td><code>include foo</code></td>
+        <td><code><p># {modulepath}/foo/manifests/init.pp</p>
+                  <p>class foo { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>include foo::bar</code></td>
+        <td><code><p># {modulepath}/foo/manifests/bar.pp</p>
+                  <p>class foo::bar { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>foo::params { "example": value =&gt; 'meow' }</code></td>
+        <td><code><p># {modulepath}/foo/manifests/params.pp</p>
+                  <p>define foo::params ($value) { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>class { "foo::bar::awesome": }</code></td>
+        <td><code><p># {modulepath}/foo/manifests/bar/awesome.pp</p>
+                  <p>class foo::bar::awesome { ... }</p></code></td>
+</tr>
+</table>
 
-    include puppet::master
-    => modules/puppet/manifests/master.pp
-    # class puppet::master { ...
+In short, lookup paths within a module's manifest directory are derived by splitting class and definition names on `::` separators, then interpreting the first element as the name of the module, the final element as the filename (with a `.pp` extension appended), and any intermediate elements as subdirectories of the module's manifests directory:
 
-    puppet::params { "example": value => 'meow' }
-    => modules/puppet/manifests/params.pp
-    # define puppet::params ($value) { ...
+    {module name}::{directory}::{filename (sans extension)}
 
-    class { "puppet::master::awesome": }
-    => modules/puppet/manifests/master/awesome.pp
-    # class puppet::master::awesome { ...
+The one special case is that a one-word class or definition name which matches the name of the module will always be found in `manifests/init.pp`.[^init]
 
-So, the break-down is pretty simple: split up your `include` or `define` name
-on the `::` marks.  The first word is the name of the module - in the examples
-above, that is always in the module "puppet".
+Since lookup of classes and definitions is based on filename, take care to 
+always rename both at the same time. 
 
-If that was the only word (eg: `include puppet`, which doesn't have a `::` in
-it) then we look for `manifests/init.pp` in the module directory.
-
-If you had any words left, though, we transform them into another file in that
-directory by treating the last one as the filename and the middle all as
-directories.
-
-    For the example puppet::master::awesome ...
-    
-    puppet is the *module* name.
-    master is a *directory* under the module manifests directory.
-    awesome is the manifest name; we stick '.pp' on the end.
-
-One big tip: make *sure* that the name of your `class` or `define` matches the
-name of the file.  If you rename one of them, rename the other one at the same
-time and all...
-
-That makes it pretty easy to locate the file for any definition: if it is
-named after the module, look in `init.pp`, otherwise look for the files
-matching those rules.
-
-
-Pro tip: we actually always load the `init.pp` manifest, so sometimes you can
-cheat and just write your classes in there.  It makes it harder for people to
-find where your class or define lives, though, so we don't recommend it.
+[^init]: Puppet actually always loads the `init.pp` manifest, so sometimes you can cheat and just write all your module's classes in there.  This makes it harder for people to find where your class or define lives, though, so we don't recommend it.
 
 
 ## Generated Module Documentation
