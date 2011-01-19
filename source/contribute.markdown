@@ -16,10 +16,8 @@ Providing Feedback
 ----------------
 
 You don't have to write documentation to help us out; you can submit
-feedback from any page by using the "Feedback" tab to the left, or
-wherever you see this:
-
-{FEEDBACK}
+feedback by [submitting a ticket](contribute.html#submit-a-ticket) or 
+emailing [Puppet Labs](mailto:info@puppetlabs.com).
 
 Feedback is great, and we'd like as much as possible... but if you
 know what needs to be added (to something you see, or based on other
