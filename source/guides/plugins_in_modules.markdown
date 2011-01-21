@@ -70,6 +70,8 @@ following directories:
     /etc/puppet/modules/custom/lib/puppet/parser/functions
     /etc/puppet/modules/custom/lib/facter
 
+Note: 0.25.x versions of Puppet have a known bug whereby plugins are instead loaded from the deprecated `plugins` directories of modules when applying a manifest locally with the `puppet` command, even though puppetmasterd will correctly serve the contents of `lib/` directories to agent nodes. This bug is fixed in Puppet 2.6.
+
 ## Enabling Pluginsync
 
 After setting up the directory structure, we then need to turn on pluginsync in our puppet.conf configuration file on both the master and the clients:
@@ -105,7 +107,7 @@ restart the Puppet master.
 
 # Legacy 0.24.x and Plugins in Modules
 
-For older Puppet release the `lib` directory was called `plugins`
+For older Puppet release the `lib` directory was called `plugins`.
 
 So for types you would place them in:
 
