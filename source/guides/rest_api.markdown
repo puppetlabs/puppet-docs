@@ -108,8 +108,8 @@ PUT `/{environment}/report/{node certificate name}`
 
 ### File Server
 GET `/file{metadata, content, bucket}/{file}`
-File serving is covered in more depth on the [wiki]
-(http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration)
+
+File serving is covered in more depth on the [wiki](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration)
 
 ### Node - Returns the Facts for the specified node
 GET `/{environment}/node/{node certificate name}`
