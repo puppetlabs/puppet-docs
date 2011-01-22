@@ -76,7 +76,20 @@ GET `/certificate/{ca, other}`
 Example:
 
     curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
-    curl -k -H "Accept: s" https://puppetcleint:8139/production/certificate/puppetclient
+    curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
+
+### Resources
+
+Returns a list of resources, like executing `puppet resource` (`ralsh`) on the command line.
+
+GET `/{environment}/resource/{resource_type}/{resource_name}`
+
+GET `/{environment}/resources/{resource_type}`
+
+Example:
+
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource/user/puppet
+    curl -k -H "Accept: yaml" https://puppetclient:8139/production/resources/user
 
 ## The master REST API
 
@@ -127,11 +140,32 @@ Example:
 
     curl -k -X PUT -H "Content-Type: text/yaml" -d "{key:value}" https://puppetclient:8139/production/report/puppetclient
 
+#### Resource Types
+
+Return a list of resources from the master
+
+GET `/{environment}/resource_type/{hostclass,definition,node}`
+
+GET `/{environment}/resource_types/*`
+
+Example:
+
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource_type/puppetclient
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource_types/*
+
+#### File Bucket
+
+Get or put a file into the file bucket.
+
+GET `/file_bucket_files/{file}
+
+Example:
+
 #### File Server
 
 Get a file from the file server.
 
-GET `/file{metadata, content, bucket}/{file}`
+GET `/file_{metadata, content}/{file}`
 
 File serving is covered in more depth on the [wiki](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration)
 
