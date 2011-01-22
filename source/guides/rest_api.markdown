@@ -108,7 +108,8 @@ Example:
 
 Get the certificate requests.
 
-GET `/{environment}/certificate_requests/{anything}`  
+GET `/{environment}/certificate_requests/{anything}`
+
 GET `/{environment}/certificate_request/{node certificate name}`
 
 Example:
