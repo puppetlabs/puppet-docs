@@ -93,11 +93,9 @@ Example:
 
 ## The master REST API
 
-### Authenticated Resources
+A valid and signed certificate is required to retrieve these resourc
 
-A valid and signed certificate is required to retrieve these resources.
-
-#### Catalogs
+### Catalogs
 
 Get a catalog from the node.
 
@@ -107,7 +105,7 @@ Example:
 
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/catalog/myclient
 
-#### Certificate Revocation List
+### Certificate Revocation List
 
 Get the certificate revocation list.
 
@@ -117,7 +115,7 @@ Example:
 
     curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
 
-#### Certificate Request
+### Certificate Request
 
 Get the certificate requests.
 
@@ -130,7 +128,7 @@ Example:
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/puppetclient
 
-#### Reports
+### Reports
 
 Submit a report.
 
@@ -140,7 +138,7 @@ Example:
 
     curl -k -X PUT -H "Content-Type: text/yaml" -d "{key:value}" https://puppetclient:8139/production/report/puppetclient
 
-#### Resource Types
+### Resource Types
 
 Return a list of resources from the master
 
@@ -153,7 +151,7 @@ Example:
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource_type/puppetclient
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource_types/*
 
-#### File Bucket
+### File Bucket
 
 Get or put a file into the file bucket.
 
@@ -161,7 +159,7 @@ GET `/file_bucket_files/{file}
 
 Example:
 
-#### File Server
+### File Server
 
 Get a file from the file server.
 
@@ -169,7 +167,7 @@ GET `/file_{metadata, content}/{file}`
 
 File serving is covered in more depth on the [wiki](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration)
 
-#### Node
+### Node
 
 Returns the Facts for the specified node
 
@@ -179,7 +177,7 @@ Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/node/puppetclient
 
-#### Status
+### Status
 
 Just used for testing
 
