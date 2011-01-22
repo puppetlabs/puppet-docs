@@ -3,8 +3,7 @@ layout: default
 title: REST API
 ---
 
-REST API
-==================
+# REST API
 
 Both puppet master and puppet agent have RESTful API's that they use to communicate.
 The basic structure of the url to access this API is
@@ -15,10 +14,7 @@ The basic structure of the url to access this API is
 Details about what resources are available and the formats they return are
 below.
 
-* * *
-
-REST API Security
-==================
+## REST API Security
 
 Puppet usually takes care of [security](./security.html) and SSL certificate
 management for you, but if you want to use the RESTful API outside of that
@@ -33,8 +29,7 @@ The security policy for the API can be controlled through the
 nodes running puppet agent through the 
 [namespaceauth](./security.html#namespaceauthconf) file.
 
-Testing the REST API using curl
-=================
+## Testing the REST API using curl
 
 An example of how you can use the REST API to retrieve the catalog for a node
 can be seen using [curl](http://en.wikipedia.org/wiki/CURL).
@@ -70,72 +65,117 @@ that's something you would need before you authenticate.
     -----BEGIN CERTIFICATE-----
     MIICHTCCAYagAwIBAgIBATANBgkqhkiG9w0BAQUFADAXMRUwEwYDVQQDDAxwdXBw
 
-puppet master and puppet agent shared REST API Reference
-==================
+## The master and agent shared API
 
 ### Certificate
+
+Get a certficate or the master's CA certificate.
+
 GET `/certificate/{ca, other}`
+
+Example:
 
     curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
     curl -k -H "Accept: s" https://puppetcleint:8139/production/certificate/puppetclient
 
-puppet master REST API Reference
-==================
+## The master REST API
 
-## Authenticated Resources (valid, signed certificate required)
+### Authenticated Resources
 
-### Catalogs
+A valid and signed certificate is required to retrieve these resources.
+
+#### Catalogs
+
+Get a catalog from the node.
+
 GET `/{environment}/catalog/{node certificate name}`
+
+Example:
 
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/catalog/myclient
 
-### Certificate Revocation List
+#### Certificate Revocation List
+
+Get the certificate revocation list.
+
 GET `/certificate_revocation_list/ca`
+
+Example:
 
     curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
 
-### Certificate Request
-GET `/{environment}/certificate_requests/{anything}`
-GET `/{environment}/certificate_request/{node certificate name}
+#### Certificate Request
+
+Get the certificate requests.
+
+GET `/{environment}/certificate_requests/{anything}`  
+GET `/{environment}/certificate_request/{node certificate name}`
+
+Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/puppetclient
 
-### Reports - Submit a report
+#### Reports
+
+Submit a report.
+
 PUT `/{environment}/report/{node certificate name}`
+
+Example:
 
     curl -k -X PUT -H "Content-Type: text/yaml" -d "{key:value}" https://puppetclient:8139/production/report/puppetclient
 
-### File Server
+#### File Server
+
+Get a file from the file server.
+
 GET `/file{metadata, content, bucket}/{file}`
 
 File serving is covered in more depth on the [wiki](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration)
 
-### Node - Returns the Facts for the specified node
+#### Node
+
+Returns the Facts for the specified node
+
 GET `/{environment}/node/{node certificate name}`
+
+Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/node/puppetclient
 
-### Status - Just used for testing
+#### Status
+
+Just used for testing
+
 GET `/{environment}/status/{anything}`
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_request/puppetclient
+Example:
 
-puppet agent REST API Reference
-==================
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/status/puppetclient
 
-puppet agent is by default set not to listen to HTTP requests.  To enable this you
+## The agent REST API
+
+The puppet agent is by default set not to listen to HTTP requests.  To enable this you
 must set `listen = true` in the puppet.conf or pass `--listen true` to puppet agent
 when starting.  The [namespaceauth](./security.html#namespaceauthconf) file must
 also exist, and the [rest_authconfig](./security.html#authconf) must allow
 access to these resources, which isn't done by default.
 
 ### Facts
+
 GET `/{environment}/facts/{anything}`
+
+Example:
 
     curl -k -H "Accept: yaml" https://puppetclient:8139/production/facts/{anything}
 
-### Run - Cause the client to update like puppetrun or puppet kick
+### Run
+
+Cause the client to update like puppetrun or puppet kick
+
 PUT `/{environment}/run/{node certificate name}`
+
+Example:
 
     curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/production/run/{anything}
