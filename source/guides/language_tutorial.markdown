@@ -73,11 +73,13 @@ versions of Puppet).  We would recommend starting with the 'guides'.
 Let's get started.   Here's a simple example of a resource in Puppet,
 where we are describing the permissions and ownership of a file:
 
+{% highlight ruby %}
     file { '/etc/passwd':
         owner => root,
         group => root,
         mode  => 644,
     }
+{% endhighlight %}
 
 Any machine on which this snippet is executed will use it to verify
 that the passwd file is configured as specified. The field before
@@ -90,6 +92,7 @@ operating systems?   For these cases,
 Puppet allows you to specify a local name in addition to the
 title:
 
+{% highlight ruby %}
     file { 'sshdconfig':
         name => $operatingsystem ? {
             solaris => '/usr/local/etc/ssh/sshd_config',
@@ -99,6 +102,7 @@ title:
         group => root,
         mode  => 644,
     }
+{% endhighlight %}
 
 By using the title, which is always the same, it's easy to refer
 to the file resource elsewhere in our configuration without having
@@ -106,9 +110,11 @@ to repeat that OS specific logic.
 
 For instance, let's add a service that depends on the file:
 
+{% highlight ruby %}
     service { 'sshd':
         subscribe => File[sshdconfig],
     }
+{% endhighlight %}
 
 This will cause the `sshd` service to get restarted when the
 `sshdconfig` file changes. You'll notice that when we reference a
@@ -124,8 +130,11 @@ What happens if our resource depends on multiple resources?
 From Puppet version 0.24.6 you can specify multiple relationships
 like so:
 
+{% highlight ruby %}
     service { 'sshd':
         require => File['sshdconfig', 'sshconfig', 'authorized_keys']
+    }
+{% endhighlight %}
 
 It's important to note here that the title alone identifies the resource.
 Even if the resource seems to conceptually point to the same entity,
@@ -133,6 +142,7 @@ it's the title that matters.  The following is possible in Puppet,
 but is to be avoided as it can lead to errors once things get
 sent down to the client.
 
+{% highlight ruby %}
     file { 'sshdconfig':
         name  => '/usr/local/etc/ssh/sshd_config',
         owner => 'root',
@@ -141,6 +151,7 @@ sent down to the client.
     file { '/usr/local/etc/ssh/sshd_config':
         owner => 'sshd',
     }
+{% endhighlight %}
 
 ### Metaparameters
 
@@ -162,8 +173,10 @@ capitalized resource specification that has no title.  For instance,
 in the example below, we'll set the default path for all execution
 of commmands:
 
+{% highlight ruby %}
     Exec { path => '/usr/bin:/bin:/usr/sbin:/sbin' }
     exec { 'echo this works': }
+{% endhighlight %}
 
 The first statement in this snippet provides a default value for
 `exec` resources; Exec resources require either fully qualified paths or a
@@ -189,6 +202,7 @@ Both classes and defines are very useful and you should make use of them when bu
 Classes are introduced with the `class` keyword, and their contents
 are wrapped in curly braces.  The following simple example creates a simple class that manages two separate files:
 
+{% highlight ruby %}
     class unix {
         file {
             '/etc/passwd':
@@ -201,10 +215,12 @@ are wrapped in curly braces.  The following simple example creates a simple clas
                 mode  => 440;
         }
     }
+{% endhighlight %}
 
 You'll notice we introduced some shorthand here.   This is the same
 as saying:
 
+{% highlight ruby %}
     class unix {
         file { '/etc/passwd':
              owner => 'root',
@@ -217,6 +233,7 @@ as saying:
              mode  => 440;
         }
     }
+{% endhighlight %}
 
 Classes also support a simple form of object inheritance.  For those
 not acquainted with programming terms, this means that we can extend
@@ -226,17 +243,21 @@ subclasses to override resource settings defined in parent classes. A
 class can only inherit from one other class, not more than one.
 In programming terms, this is called 'single inheritance'.
 
+{% highlight ruby %}
     class freebsd inherits unix {
         File['/etc/passwd'] { group => wheel }
         File['/etc/shadow'] { group => wheel }
     }
+{% endhighlight %}
 
 If we needed to undo some logic specified in a parent class, we can
 use undef like so:
 
+{% highlight ruby %}
     class freebsd inherits unix {
         File['/etc/passwd'] { group => undef }
     }
+{% endhighlight %}
 
 In the above example, nodes which include the `unix` class will have the
 password file's group set to `root`, while nodes including
@@ -246,14 +267,17 @@ unmodified.
 In Puppet version 0.24.6 and higher, you can specify multiple overrides like
 so:
 
+{% highlight ruby %}
     class freebsd inherits unix {
         File['/etc/passwd', '/etc/shadow'] { group => wheel }
     }
+{% endhighlight %}
 
 There are other ways to use inheritance.  In Puppet 0.23.1 and
 higher, it's possible to add values to resource parameters using
 the '+>' ('plusignment') operator:
 
+{% highlight ruby %}    
     class apache {
         service { 'apache': require => Package['httpd'] }
     }
@@ -262,12 +286,14 @@ the '+>' ('plusignment') operator:
         # host certificate is required for SSL to function
         Service[apache] { require +> File['apache.pem'] }
     }
+{% endhighlight %}
 
 The above example makes the second class require all the packages in the first,
 with the addition of 'apache.pem'.
 
 To append multiple requires, use array brackets and commas:
 
+{% highlight ruby %}
     class apache {
         service { 'apache': require => Package['httpd'] }
     }
@@ -275,18 +301,23 @@ To append multiple requires, use array brackets and commas:
     class apache-ssl inherits apache {
         Service[apache] { require +> [ File['apache.pem'], File['/etc/httpd/conf/httpd.conf'] ] }
     }
+{% endhighlight %}
 
 The above would make the `require` parameter in the `apache-ssl`
 class equal to
 
+{% highlight ruby %}
     [Package['httpd'], File['apache.pem'], File['/etc/httpd/conf/httpd.conf']]
+{% endhighlight %}
 
 Like resources, you can also create relationships between classes with
 'require', like so:
 
+{% highlight ruby %}
     class apache {
         service { 'apache': require => Class['squid'] }
     }
+{% endhighlight %}
 
 The above example uses the `require` metaparameter to make the `apache`
 class dependent on the `squid` class.
@@ -294,9 +325,12 @@ class dependent on the `squid` class.
 In Puppet version 0.24.6 and higher, you can specify multiple relationships
 like so:
 
+{% highlight ruby %}
     class apache {
         service { 'apache':
                       require => Class['squid', 'xml', 'jakarta']
+    }
+{% endhighlight %}
 
 It's not dangerous to reference a class with a require more than once.
 Classes are evaluated using the `include` function (which we will
@@ -309,6 +343,7 @@ within the enclosing class using their short names, and can be declared
 everywhere else using their fully-qualified names (which are split with 
 the `::` namespace separator). For example:
 
+{% highlight ruby %}
     class myclass {
         class nested {
             file { '/etc/passwd':
@@ -322,6 +357,7 @@ the `::` namespace separator). For example:
     class anotherclass {
     include myclass::nested
     }
+{% endhighlight %}
 
 In this example, the `nested` class inside the outer `myclass` is included as
 `myclass::nested` inside of the class named `anotherclass`.  Order is important here: class `myclass` must be evaluated before class `anotherclass` for this example to work properly.
@@ -330,6 +366,7 @@ In this example, the `nested` class inside the outer `myclass` is included as
 
 It gets more complex if the nested class's name happens to match that of any top-level class. Consider the following: 
 
+{% highlight ruby %}
     class someclass {
         class nested {
             notice("I am someclass::nested!")
@@ -341,6 +378,7 @@ It gets more complex if the nested class's name happens to match that of any top
     class nested {
         notice("I am plain-old nested, also known as ::nested!")
     }
+{% endhighlight %}
 
 The fact that it's not immediately and unambiguously clear which `nested` class is being declared by `someclass`'s `include nested` statement should give you pause about nesting classes in all but the most limited use cases; with only a little additional complexity, tracking down class names can get seriously problematic. (As for this example, `someclass`'s include statement will include `someclass::nested`; to include `nested`, you would have to declare it as `::nested`.)
 
@@ -352,21 +390,27 @@ In Puppet release 2.6.0 and later, classes are extended to allow the passing of 
 
 To create a class with parameters you can now specify:
 
+{% highlight ruby %}
     class apache($version) {
       ... class contents ...
     }
+{% endhighlight %}
 
 Classes with parameters are not added using the include function but rather the resulting class can then be included more like a definition:
 
+{% highlight ruby %}
     node webserver {
       class { apache: version => "1.3.13" }
     }
+{% endhighlight %}
 
 You can also specify default parameter values in your class like so:
 
+{% highlight ruby %}
     class apache($version="1.3.13",$home="/var/www") {
       ... class contents ...
     }
+{% endhighlight %}
 
 #### Run Stages
 
@@ -395,26 +439,30 @@ declared.
 In order to declare additional stage resources, follow the same consistent and
 simple declarative syntax of the puppet language:
 
+{% highlight ruby %}
     stage { "first": before => Stage[main] }
     stage { "last": require => Stage[main] }
+{% endhighlight %}
 
-"All classes associated with the first stage are to be managed before the
+All classes associated with the first stage are to be managed before the
 classes associated with the main stage.  All classes associated with the
 last stage are to be managed after the classes associated with the main
-stage."
+stage.
 
 Once stages have been declared, a class may be associated with a stage other
 than main using the "stage" class parameter.
 
+{% highlight ruby %}
     class {
       "apt-keys": stage => first;
       "sendmail": stage => main;
       "apache":   stage => last;
     }
+{% endhighlight %}
 
-"Associate all resources in the class apt-keys with the first run stage, all
+Associate all resources in the class apt-keys with the first run stage, all
 resources in the class sendmail with the main stage, and all resources in the
-apache class with the last stage."
+apache class with the last stage.
 
 This short declaration guarantees resources in the apt-keys class are managed
 before resources in the sendmail class, which in turn is managed before
@@ -426,9 +474,14 @@ syntax as shown rather than the "include" statement.
 
 #### Definitions
 
-Definitions follow the same basic form as classes, but they are
-introduced with the `define` keyword (not `class`) and they support arguments but no inheritance.  As mentioned previously, defines can be reused multiple times on the same system and take parameters.   Suppose we want to create a define that creates source control repositories.  We probably would want to create multiple repositories on the same system, so we would use a define, not a class.  Here's an example:
+Definitions follow the same basic form as classes, but they are introduced with the 
+`define` keyword (not `class`) and they support arguments but no inheritance.  As 
+mentioned previously, defines can be reused multiple times on the same system and 
+take parameters.   Suppose we want to create a define that creates source control 
+repositories.  We probably would want to create multiple repositories on the same 
+system, so we would use a define, not a class.  Here's an example:
 
+{% highlight ruby %}
     define svn_repo($path) {
         exec { "/usr/bin/svnadmin create $path/$title":
             unless => "/bin/test -d $path",
@@ -437,16 +490,22 @@ introduced with the `define` keyword (not `class`) and they support arguments bu
 
     svn_repo { puppet_repo: path => '/var/svn_puppet' }
     svn_repo { other_repo:  path => '/var/svn_other' }
+{% endhighlight %}
 
-Note how variables can be used within the definitions.  We use dollar sign ($) variables.  Note the use of the variable `$title` above.  This is a bit of technical knowledge, but as of Puppet 0.22.3 and later, definitions can have both a name and a title represented by the `$title` and `$name`
-variables respectively. By default, `$title` and `$name` are set to
-the same value, but you can set a `title` attribute and pass a
-different name as a parameter.  '$title' and '$name' only work in defines,
-not in classes or other resources.
+Note how variables can be used within the definitions.  We use dollar sign ($) variables.  
+Also note the use of the variable `$title` above.  This is a bit of technical knowledge, 
+but as of Puppet 0.22.3 and later, definitions can have both a name and a title represented 
+by the `$title` and `$name` variables respectively. By default, `$title` and `$name` are set 
+to the same value, but you can set a `title` attribute and pass a different name as a parameter.  
+The '$title' and '$name' only work in defines, not in classes or other resources.
 
-Earlier we mentioned that "metaparameters" are attributes that are available on all resource types.  Defined types can also use metaparameters, for instance we can use 'require' inside of a definition.  We can reference the values of those
-metaparameters using built-in variables.   Here's an example:
+Earlier we mentioned that "metaparameters" are attributes that are available on all resource 
+types.  Defined types can also use metaparameters, for instance we can use 'require' inside 
+of a definition.  We can reference the values of those metaparameters using built-in variables.   
 
+Here's an example:
+
+{% highlight ruby %}
     define svn_repo($path) {
         exec {"create_repo_${name}":
             command => "/usr/bin/svnadmin create $path/$title",
@@ -463,8 +522,9 @@ metaparameters using built-in variables.   Here's an example:
        path => '/var/svn',
        require => Package[subversion],
     }
+{% endhighlight %}
 
-The above is perhaps not a perfect example, as most likely we'd
+The above is perhaps not a perfect example, as most likely we would
 know that subversion was always required for svn checkouts.  However
 you can see from the above how it's possible to use defined types
 with requires and other metaparameters.
@@ -489,8 +549,9 @@ all be defined in the class, because there will normally be one
 copy of each on a given host.   (This idiom is sometimes
 referred to as "service-package-file").
 
-Definitions would be used to manage resources like virtual hosts, of which you can have many, or to encode some simple information in a reusable wrapper to save
-typing.
+Definitions would be used to manage resources like virtual hosts, of 
+which you can have many, or to encode some simple information in a reusable 
+wrapper to save typing.
 
 #### Modules
 
@@ -508,32 +569,40 @@ relationships between and among them.
 You can now specify relationships directly as statements in addition to
 the before and require resource metaparameters of previous versions:
 
+{% highlight ruby %}
     File["/etc/ntp.conf"] -> Service[ntpd]
+{% endhighlight %}
 
-"Manage the ntp configuration file before the ntpd service"
+Manage the ntp configuration file before the ntpd service
 
 You can specify a "notify" relationship by employing the tilde instead of the
 hyphen:
 
+{% highlight ruby %}
     File["/etc/ntp.conf"] ~> Service[ntpd]
+{% endhighlight %}
 
-"Manage the ntp configuration file before the ntpd service and notify the
-service of changes to the ntp configuration file."
+This manages the ntp configuration file before the ntpd service and notifies the
+service of changes to the ntp configuration file.
 
 You can also do relationship chaining, specifying multiple relationships on a
 single line:
 
+{% highlight ruby %}
     Package[ntp] -> File["/etc/ntp.conf"] -> Service[ntpd]
+{% endhighlight %}
 
-"First, manage the ntp package, second manage the ntp configuration file, third
-manage the ntpd service."
+Here we first manage the ntp package, second manage the ntp configuration file, 
+and third manage the ntpd service.
 
 Note that while it's confusing, you don't have to have all of the arrows be the
 same direction:
 
+{% highlight ruby %}
     File["/etc/ntp.conf"] -> Service[ntpd] <- Package[ntp]
+{% endhighlight %}
 
-"The ntpd service requires /etc/ntp.conf and the ntp package"
+Here the ntpd service requires /etc/ntp.conf and the ntp package.
 
 Please note, relationships declared in this manner are between adjacent
 resources.  In this example, the ntp package and the ntp configuration file are
@@ -546,19 +615,23 @@ readability.
 You can also specify relationships when resources are declared, in addition to
 the above resource reference examples:
 
+{% highlight ruby %}
     package { "ntp": } -> file { "/etc/ntp.conf": }
+{% endhighlight %}
 
-"Manage the ntp package before the ntp configuration file"
+Here we manage the ntp package before the ntp configuration file.
 
 But wait! There's more! You can also specify a collection on either side
 of the relationship marker:
 
+{% highlight ruby %}
     yumrepo { localyumrepo: .... }
     package { ntp: provider => yum, ... }
     Yumrepo <| |> -> Package <| provider == yum |>
+{% endhighlight %}
 
-"Manage all yum repository resources before managing all package resources
-using the yum provider."
+This manages all yum repository resources before managing all package resources
+using the yum provider.
 
 This, finally, provides easy many to many relationships in Puppet, but it also
 opens the door to massive dependency cycles. This last feature is a very
@@ -584,10 +657,12 @@ domain name (FQDN).  Some names, especially fully qualified ones,
 need to be quoted, so it is a best practice to quote all of them.
 Here's an example:
 
+{% highlight ruby %}
     node 'www.testing.com' {
        include common
        include apache, squid
     }
+{% endhighlight %}
 
 The previous node definition creates a node called
 `www.testing.com` and includes the `common`, `apache` and `squid`
@@ -596,10 +671,12 @@ classes.
 You can also specify that multiple nodes receive an identical
 configuration by separating each with a comma:
 
+{% highlight ruby %}
     node 'www.testing.com', 'www2.testing.com', 'www3.testing.com' {
        include common
        include apache, squid
     }
+{% endhighlight %}
 
 The previous examples creates three identical nodes:
 `www.testing.com`, `www2.testing.com`, and `www3.testing.com`.
@@ -610,16 +687,20 @@ In Puppet 0.25.0 and later, nodes can also be matched
 by regular expressions, which is much more convenient than
 listing them individually, one-by-one:
 
+{% highlight ruby %}
     node /^www\d+$/ {
         include common
     }
+{% endhighlight %}
 
 The above would match any host called `www` and ending with one or more
 digits.  Here's another example:
 
+{% highlight ruby %}
     node /^(foo|bar)\.testing\.com$/ {
         include common
     }
+{% endhighlight %}
 
 The above example would match either host `foo` or `bar` in the testing.com
 domain.
@@ -636,9 +717,11 @@ set in the same file?
 Nodes support a limited inheritance model.  Like classes, nodes
 can only inherit from one other node:
 
+{% highlight ruby %}
     node 'www2.testing.com' inherits 'www.testing.com' {
         include loadbalancer
     }
+{% endhighlight %}
 
 In this node definition the `www2.testing.com` inherits any
 configuration specified for the `www.testing.com` node in addition
@@ -684,7 +767,9 @@ So far, we've mentioned variables in terms of defines.  If you
 need to use those variables within a string, use double quotes,
 not single quotes.   Single-quoted strings will not do any variable interpolation,  double-quoted strings will. Variables in strings can also be bracketed with `{}` which makes them easier to use together, and also a bit cleaner to read:
 
+{% highlight ruby %}
     $value = "${one}${two}"
+{% endhighlight %}
 
 To put a quote character or `$` in a double-quoted string where it would
 normally have a special meaning, precede it with an escaping `\`. For an actual `\`, use `\\`.
@@ -695,8 +780,10 @@ We recommend using single quotes for all strings that do not require variable in
 
 Capitalization of resources is used in three major ways:
 
--   Referencing: when you want to reference an already declared resource, usually for dependency purposes, you have to capitalize the name of the resource, for example,
+-   Referencing: when you want to reference an already declared resource, usually for dependency purposes, you have to capitalize the name of the resource, for example
+{% highlight ruby %}
     `require => File[sshdconfig]`.
+{% endhighlight %}
 
 -   Inheritance.  When overwriting the resource settings of a parent class from a subclass, use the uppercase versions of the resource names.  Using the lowercase versions will result in an error.   See the inheritance section above for an example of this.
 
@@ -706,12 +793,16 @@ Capitalization of resources is used in three major ways:
 
 As mentioned in the class and resource examples above, Puppet allows usage of arrays in various areas.  Arrays are defined in puppet look like this:
 
+{% highlight ruby %}
     [ 'one', 'two', 'three' ]
+{% endhighlight %}
 
 You can access array entries by their index, for example:
 
+{% highlight ruby %}
     $foo = [ 'one', 'two', 'three' ]
     notice $foo[1]
+{% endhighlight %}
 
 Would return `two`.
 
@@ -719,11 +810,13 @@ Several type members, such as 'alias' in the 'host' definition
 definition accept arrays as their value. A host resource with
 multiple aliases would look like this:
 
+{% highlight ruby %}
     host { 'one.example.com':
         alias  => [ 'satu', 'dua', 'tiga' ],
         ip     => '192.168.100.1',
         ensure => present,
     }
+{% endhighlight %}
 
 This would add a host 'one.example.com' to the hosts list with the
 three aliases 'satu', 'dua', and 'tiga'.
@@ -731,43 +824,55 @@ three aliases 'satu', 'dua', and 'tiga'.
 Or, for example, if you want a resource to require multiple other
 resources, the way to do this would be like this:
 
+{% highlight ruby %}
     resource { 'baz':
         require  => [ Package['foo'], File['bar'] ],
     }
+{% endhighlight %}
 
 Another example for array usage is to call a custom defined
 resource multiple times, like this:
 
+{% highlight ruby %}
     define php::pear() {
         package { "`php-${name}": ensure => installed }
     }
 
     php::pear { ['ldap', 'mysql', 'ps', 'snmp', 'sqlite', 'tidy', 'xmlrpc']: }
+{% endhighlight %}
 
 Of course, this can be used for native types as well:
 
+{% highlight ruby %}
     file { [ 'foo', 'bar', 'foobar' ]:
         owner => root,
         group => root,
         mode  => 600,
     }
+{% endhighlight %}
 
 ### Hashes
 
 Since Puppet version 2.6.0, hashes have been supported in the language.  These hashes are defined like Ruby hashes using the form:
 
+{% highlight ruby %}
     hash: { key1 => val1, ... }
+{% endhighlight %}
 
 The hash keys are strings, but hash values can be any possible RHS values allowed in the language like function calls, variables, etc.
 
 It is possible to assign hashes to a variable like so:
 
+{% highlight ruby %}
     $myhash = { key1 => "myval", key2 => $b }
+{% endhighlight %}
 
 And to access hash members (recursively) from a variable containing a hash (this also works for arrays too):
 
+{% highlight ruby %}
     $myhash = { key => { subkey => "b" }}
     notice($myhash[key][subkey]]
+{% endhighlight %}
 
 You can also use a hash member as a resource title, as a default definition parameter, or potentially as the value of a resource parameter,
 
@@ -775,9 +880,11 @@ You can also use a hash member as a resource title, as a default definition para
 
 Puppet supports variables like most other languages you may be familiar with.  Puppet variables are denoted with `$`:
 
+{% highlight ruby %}
     $content = 'some content\n'
 
     file { '/tmp/testing': content => $content }
+{% endhighlight %}
 
 Puppet language is a declarative language, which means that its scoping and
 assignment rules are somewhat different than a normal imperative
@@ -786,6 +893,7 @@ value of a variable within a single scope, because that would rely
 on order in the file to determine the value of the variable.  Order
 does not matter in a declarative language.  Doing so will result in an error:
 
+{% highlight ruby %}
     $user = root
     file { '/etc/passwd':
         owner => $user,
@@ -795,17 +903,21 @@ does not matter in a declarative language.  Doing so will result in an error:
         owner   => $user,
         recurse => true,
     }
+{% endhighlight %}
 
 Rather than reassigning variables, instead use the built in conditionals:
 
+{% highlight ruby %}
     $group = $operatingsystem ? {
         solaris => 'sysadmin',
         default => 'wheel',
     }
+{% endhighlight %}
 
 A variable may only be assigned once per scope.  However you still can set the same variable in non-overlapping scopes. For example, to set top-level
 configuration values:
 
+{% highlight ruby %}
     node a {
         $setting = 'this'
         include class_using_setting
@@ -814,6 +926,7 @@ configuration values:
         $setting = 'that'
         include class_using_setting
     }
+{% endhighlight %}
 
 In the above example, nodes "a" and "b" have different scopes, so this is
 not reassignment of the same variable.
@@ -834,6 +947,7 @@ the code is defined.
 
 For example:
 
+{% highlight ruby %}
     $test = 'top'
     class myclass {
         exec { "/bin/echo $test": logoutput => true }
@@ -845,6 +959,7 @@ For example:
     }
 
     include other
+{% endhighlight %}
 
 In this case, there's a top-level scope, a new scope for `other`,
 and the a scope below that for `myclass`. When this code is
@@ -857,6 +972,7 @@ allows you to use variables defined in other classes.
 
 For example:
 
+{% highlight ruby %}
     class myclass {
         $test = 'content'
     }
@@ -864,6 +980,7 @@ For example:
     class anotherclass {
         $other = $myclass::test
     }
+{% endhighlight %}
 
 In this example, the value of the `$other` variable evaluates to
 `content`. Qualified variables are read-only -- you cannot set a variable's value from other class.
@@ -887,10 +1004,12 @@ the variables `$operatingsystem` and `$puppetversion`.
 In Puppet 0.24.6 and later, arbitrary expressions can be assigned
 to variables, for example:
 
+{% highlight ruby %}
     $inch_to_cm = 2.54
     $rack_length_cm = 19 * $inch_to_cm
     $gigabyte = 1024 * 1024 * 1024
     $can_update = ($ram_gb * $gigabyte) > 1 << 24
+{% endhighlight %}
 
 See the Expression section later on this page for further details
 of the expressions that are now available.
@@ -907,6 +1026,7 @@ be a string, but the right operand can be:
 
 This syntax can be used in any place where an expression is supported:
 
+{% highlight ruby %}
     $eatme = 'eat'
     if $eatme in ['ate', 'eat'] {
     ...
@@ -916,16 +1036,19 @@ This syntax can be used in any place where an expression is supported:
     if 'eat' in $value {
       notice("on the road")
     }
+{% endhighlight %}
 
 #### Appending to Variables
 
 In Puppet 0.24.6 and later, values can be appended to array variables:
 
+{% highlight ruby %}
     $ssh_users = [ 'myself', 'someone' ]
 
     class test {
        $ssh_users += ['someone_else']
     }
+{% endhighlight %}
 
 Here the `$ssh_users` variable contains an array with the elements
 `myself` and `someone`. Using the variable append syntax, `+=`, we
@@ -960,6 +1083,7 @@ variable based on a fact or another variable. In addition to any
 number of specified values, selectors also allow you to specify a
 default if no value matches.  Here's a simple example:
 
+{% highlight ruby %}
     file { '/etc/config':
         owner => $operatingsystem ? {
             'sunos'   => 'adm',
@@ -967,6 +1091,7 @@ default if no value matches.  Here's a simple example:
             default => undef,
         },
     }
+{% endhighlight %}
 
 If the `$operatingsystem` fact (sent up from 'facter') returns `sunos` or `redhat` then the ownership of the file is set to `adm` or `bin` respectively. Any other result and the `owner` attribute will not be set, because it is listed as `undef`.
 
@@ -975,19 +1100,23 @@ the lack of quotes can cause syntax errors.
 
 Selectors can also be used in variable assignment:
 
+{% highlight ruby %}
     $owner = $operatingsystem ? {
         sunos   => 'adm',
         redhat  => 'bin',
         default => undef,
     }
+{% endhighlight %}
 
 In Puppet 0.25.0 and later, selectors can also be used with regular
 expressions:
 
+{% highlight ruby %}
     $owner = $operatingsystem ? {
         /(redhat|debian)/   => 'bin',
         default => undef,
     }
+{% endhighlight %}
 
 In this last example, if `$operatingsystem` value matches either redhat
 or debian, then `bin` will be the selected result, otherwise the owner
@@ -996,10 +1125,12 @@ will not be set (`undef`).
 Like Perl and some other languages with regular expression support, captures in selector regular expressions automatically create some
 limited scope variables (`$0` to `$n`):
 
+{% highlight ruby %}
     $system = $operatingsystem ? {
         /(redhat|debian)/   => "our system is $1",
         default => "our system is unknown",
     }
+{% endhighlight %}
 
 In this last example, `$1` will get replaced by the content of the
 capture (here either `redhat` or `debian`).
@@ -1013,20 +1144,24 @@ can be wrapped around any Puppet code to add decision-making logic
 to your manifests.  Case statements, unlike selectors, do not return a value.   A common use for the `case` statement is to apply different classes to a particular node based on its operating
 system:
 
+{% highlight ruby %}
     case $operatingsystem {
         sunos:   { include solaris } # apply the solaris class
         redhat:  { include redhat  } # apply the redhat class
         default: { include generic } # apply the generic class
     }
+{% endhighlight %}
 
 Case statements can also specify multiple match conditions by separating
 each with a comma:
 
+{% highlight ruby %}
     case $hostname {
         jack,jill:      { include hill    } # apply the hill class
         humpty,dumpty:  { include wall    } # apply the wall class
         default:        { include generic } # apply the generic class
     }
+{% endhighlight %}
 
 Here, if the `$hostname` fact returns either `jack` or `jill` the
 `hill` class would be included.
@@ -1034,11 +1169,13 @@ Here, if the `$hostname` fact returns either `jack` or `jill` the
 In Puppet 0.25.0 and later, the `case` statement also supports
 regular expressions:
 
+{% highlight ruby %}
     case $hostname {
         /^j(ack|ill)$/:   { include hill    } # apply the hill class
         /^[hd]umpty$/:    { include wall    } # apply the wall class
         default:          { include generic } # apply the generic class
     }
+{% endhighlight %}
 
 In this last example, if `$hostname` matches either `jack` or
 `jill`, then the `hill` class will be included. But if `$hostname`
@@ -1048,10 +1185,12 @@ included.
 As with selectors (see above), regular expressions captures are also available.
 These create limited scope variables `$0` to `$n`:
 
+{% highlight ruby %}
     case $hostname {
         /^j(ack|ill)$/:   { notice("Welcome $1!") }
         default:          { notice("Welcome stranger") }
     }
+{% endhighlight %}
 
 In this last example, if `$host` is `jack` or `jill` then a notice
 message will be logged with `$1` replaced by either `ack` or
@@ -1059,28 +1198,33 @@ message will be logged with `$1` replaced by either `ack` or
 
 #### If/Else Statement
 
-`if/else` provides branching options based on the truth value of a variable:
+The `if/else` provides branching options based on the truth value of a variable:
 
+{% highlight ruby %}
     if $variable {
         file { '/some/file': ensure => present }
     } else {
         file { '/some/other/file': ensure => present }
     }
+{% endhighlight %}
 
 In Puppet 0.24.6 and later, the `if` statement can also branch
 based on the value of an expression:
 
+{% highlight ruby %}
     if $server == 'mongrel' {
         include mongrel
     } else {
         include nginx
     }
+{% endhighlight %}
 
 In the above example, if the value of the variable `$server` is equal to `mongrel`, Puppet
 will include the class `mongrel`, otherwise it will include the class `nginx`.
 
 From version 2.6.0 and later an `elsif` construct was introduced into the language:
 
+{% highlight ruby %}
     if $server == 'mongrel' {
         include mongrel
     } elsif $server == 'nginx' {
@@ -1088,12 +1232,15 @@ From version 2.6.0 and later an `elsif` construct was introduced into the langua
     } else {
         include thin
     }
+{% endhighlight %}
 
 Arithmetic expressions are also possible, for example:
 
+{% highlight ruby %}
     if $ram > 1024 {
         $maxclient = 500
     }
+{% endhighlight %}
 
 In the previous example if the value of the variable `$ram` is
 greater than `1024`,  Puppet will set the value of the `$maxclient` variable
@@ -1102,11 +1249,13 @@ to `500`.
 More complex expressions combining arithmetric expressions with the
 Boolean operators `and`, `or`, or `not` are also possible:
 
+{% highlight ruby %}
     if ( $processor_count > 2 ) and (( $ram >= 16 * $gigabyte ) or ( $disksize > 1000 )) {
         include for_big_irons
     } else {
         include for_small_box
     }
+{% endhighlight %}
 
 See the Expression section further down for more information on expressions.
 
@@ -1120,17 +1269,23 @@ Virtual resources are resources that are not sent to the client unless `realized
 
 The syntax for a virtual resource is:
 
+{% highlight ruby %}
     @user { luke: ensure => present }
+{% endhighlight %}
 
 The user luke is now defined virtually. To realize that definition,
 you can use a `collection`:
 
+{% highlight ruby %}
     User <| title == luke |>
+{% endhighlight %}
 
 This can be read as 'the user whose title is luke'.   This is equivalent to using
 the `realize` function:
 
+{% highlight ruby %}
     realize User[luke]
+{% endhighlight %}
 
 Realization could also use other criteria, such as realizing Users that match
 a certain group, or using a metaparameter like 'tag'.
@@ -1142,7 +1297,8 @@ the [Virtual Resources](./virtual_resources.html) page for more information.
 
 Exported resources are an extension of virtual resources used to
 allow different hosts managed by Puppet to influence each other's
-Puppet configuration.  This is described in detail on the [Exported Resources](./exported_resources.html) page.  As with virtual resources, new syntax was added to the language for this purpose.
+Puppet configuration.  This is described in detail on the [Exported Resources](./exported_resources.html) page.  
+As with virtual resources, new syntax was added to the language for this purpose.
 
 The key syntactical difference between virtual and exported
 resources is that the special sigils (@ and <| |\>) are doubled (@@
@@ -1151,10 +1307,12 @@ and <<| |\>\>) when referring to an exported resource.
 Here is an example with exported resources that shares SSH keys
 between clients:
 
+{% highlight ruby %}
     class ssh {
     @@sshkey { $hostname: type => dsa, key => $sshdsakey }
         Sshkey <<| |>>
     }
+{% endhighlight %}
 
 In the above example, notice that fulfillment and exporting are used
 together, so that any node that gets the 'sshkey' class will have
@@ -1190,13 +1348,17 @@ Puppet supports two types of comments:
 
 Here is a shell style comment:
 
+{% highlight ruby %}
     # this is a comment
+{% endhighlight %}
 
 You can see an example of a multi-line comment:
 
+{% highlight ruby %}
     /*
     this is a comment
     */
+{% endhighlight %}
 
 Expressions
 ------------
@@ -1242,12 +1404,13 @@ most systems, from highest to lowest:
 Comparison expressions include tests for equality using the `==`
 expression:
 
+{% highlight ruby %}
     if $variable == 'foo' {
         include bar
     } else {
         include foobar
     }
-{:puppet}
+{% endhighlight %}
 
 Here if `$variable` has a value of `foo`, Puppet will then include the `bar`
 class, otherwise it will include the `foobar` class.
@@ -1255,12 +1418,13 @@ class, otherwise it will include the `foobar` class.
 Here is another example shows the use of the `!=` ('not equal') comparison
 operator:
 
+{% highlight ruby %}
     if $variable != 'foo' {
         $othervariable = 'bar'
     } else {
         $othervariable = 'foobar'
     }
-{:puppet}
+{% endhighlight %}
 
 In our second example if `$variable` is not equal to a value of `foo`, Puppet will then set
 the value of the `$othervariable` variable to `bar`, otherwise it will set the
@@ -1271,31 +1435,34 @@ the value of the `$othervariable` variable to `bar`, otherwise it will set the
 You can also perform a variety of arithmetic expressions, for
 example:
 
+{% highlight ruby %}
     $one = 1
     $one_thirty = 1.30
     $two = 2.034e-2
 
     $result = ((( $two + 2) / $one_thirty) + 4 * 5.45) - (6 << ($two + 4)) + (0x800 + -9)
-{:puppet}
+{% endhighlight %}
 
 #### Boolean expressions
 
 Boolean expressions are also possible using `or`, `and` and `not`:
 
+{% highlight ruby %}
     $one = 1
     $two = 2
     $var = ( $one < $two ) and ( $one + 1 == $two )
-{:puppet}
+{% endhighlight %}
 
 #### Regular expressions
 
 In Puppet 0.25.0 and later, Puppet supports regular expression matching
 using `=~` (match) and `!~` (not-match) for example:
 
+{% highlight ruby %}
     if $host =~ /^www(\d+)\./ {
         notice('Welcome web server #$1')
     }
-{:puppet}
+{% endhighlight %}
 
 Like case and selectors, the regex match operators create limited
 scope variables for each regex capture.  In the previous example,
@@ -1334,20 +1501,23 @@ your own custom functions.
 
 Some functions can be used as a statement:
 
+{% highlight ruby %}
     notice('Something weird is going on')
-{:puppet}
+{% endhighlight %}
 
 (The notice function above is an example of a function that will log on the server)
 
 Or without parentheses:
 
+{% highlight ruby %}
     notice 'Something weird is going on'
-{:puppet}
+{% endhighlight %}
 
 Some functions instead return a value:
 
+{% highlight ruby %}
     file { '/my/file': content => template('mytemplate.erb') }
-{:puppet}
+{% endhighlight %}
 
 All functions run on the Puppet master, so you only have access to the file system and resources on that host from your functions. The only exception to this is that the value of any Facter facts that have been sent to the master from your clients are also at your disposal.  See the [Tools Guide](./tools.html) for more information about these components.
 
@@ -1363,9 +1533,10 @@ directory as the file doing the importing.
 Files can also be imported using globbing, as implemented by Ruby's
 `Dir.glob` method:
 
+{% highlight ruby %}
     import 'classes/*.pp'
     import 'packages/[a-z]*.pp'
-{:puppet}
+{% endhighlight %}
 
 Best practices calls for organizing manifests into [Modules](./modules.html)
 
