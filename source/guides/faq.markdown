@@ -35,8 +35,7 @@ To learn more about the capabilities of Puppet, start at the [main Puppet docume
 ### What license is Puppet released under?
 
 Puppet is open source and is released under the
-[GNU Public License](http://www.gnu.org/copyleft/gpl.html), version 2 or
-greater.
+[GNU Public License](http://www.gnu.org/copyleft/gpl.html) version 2.
 
 ### Why does Puppet have its own language?
 
