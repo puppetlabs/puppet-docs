@@ -255,7 +255,7 @@ understand, and break down like this:
 
 In short, lookup paths within a module's manifest directory are derived by splitting class and definition names on `::` separators, then interpreting the first element as the name of the module, the final element as the filename (with a `.pp` extension appended), and any intermediate elements as subdirectories of the module's manifests directory:
 
-    {module name}::{directory}::{filename (sans extension)}
+    {module name}::{subdirectory}::{...}::{filename (sans extension)}
 
 The one special case is that a one-word class or definition name which matches the name of the module will always be found in `manifests/init.pp`.[^init]
 
