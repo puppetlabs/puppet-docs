@@ -85,11 +85,12 @@ The site manifest can do as little or as much as you want. A
 good starting point is a manifest that makes sure that your sudoers file has the
 appropriate permissions:
 
+{% highlight ruby %}
     # site.pp
     file { "/etc/sudoers":
         owner => root, group => root, mode => 440
     }
-{:puppet}
+{% endhighlight %} 
 
 For more information on how to create the site manifest, see the
 tutorials listed in the
@@ -122,7 +123,6 @@ that the daemon will use.   Either create these manually, or start
 the daemon with the `--mkusers` flag to create them.
 
     # /usr/sbin/puppetmasterd --mkusers
-{:shell}
 
 Starting the puppet daemon will automatically create all necessary certificates, directories, and files.
 
@@ -139,7 +139,6 @@ that everything is working appropriately. You should start the
 first client in verbose mode, with the `--waitforcert` flag enabled:
 
     # puppetd --server myserver.domain.com --waitforcert 60 --test
-{:shell}
 
 Adding the `--test` flag causes puppetd to stay in the foreground,
 print extra output, only run once and then exit, and to just exit
@@ -162,13 +161,11 @@ as a security precaution.
 On your server, list the waiting certificates:
 
     # puppetca --list
-{:shell}
 
 You should see the name of the test client. Now go ahead and sign
 the certificate:
 
     # puppetca --sign mytestclient.domain.com
-{:shell}
 
 Within 60 seconds, your test client should receive its certificate
 from the server, receive its configuration, apply it locally, and

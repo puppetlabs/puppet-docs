@@ -36,6 +36,7 @@ Arrow Alignment
 
 The arrow (`=>`) should be aligned at the column one space out from the longest parameter.  Not obvious in the above example is that the arrow is only aligned per resource.  Therefore, the following is correct:
 
+{% highlight ruby %}
     exec {
         "blah":
             path => "/usr/bin",
@@ -44,10 +45,11 @@ The arrow (`=>`) should be aligned at the column one space out from the longest 
             subscribe   => File["/etc/test"],
             refreshonly => true;
     }
-{:puppet}
+{% endhighlight %}
 
 But the following is incorrect:
 
+{% highlight ruby %}
     exec {
         "blah":
             path        => "/usr/bin",
@@ -56,7 +58,7 @@ But the following is incorrect:
             subscribe   => File["/etc/test"],
             refreshonly => true;
     }
-{:puppet}
+{% endhighlight %}
 
 Attributes and Values
 ---------------------
@@ -71,11 +73,12 @@ the owner will never be a native value.
 
 Example:
 
+{% highlight ruby %}
     file { "/tmp/somefile":
         ensure => exists,
         owner  => "root",
     }
-{:puppet}
+{% endhighlight %}
 
 ### Commas
 
@@ -84,11 +87,12 @@ attribute-value pairs.
 
 Example:
 
+{% highlight ruby %}
     file { "/tmp/somefile":
         ensure => exists,
         owner  => "root",
     }
-{:puppet}
+{% endhighlight %}
 
 Resource Names
 --------------
@@ -99,13 +103,15 @@ double quotes allows for consistent look-and-feel.
 
 Incorrect:
 
+{% highlight ruby %}
     package { openssh: ensure => present }
-{:puppet}
+{% endhighlight %}
 
 Correct:
 
+{% highlight ruby %}
     package { "openssh": ensure => present }
-{:puppet}
+{% endhighlight %}
 
 
 Resource Declaration
@@ -116,8 +122,9 @@ Resource Declaration
 In cases where there is only one attribute-value pair, a resource can be
 declared in a single line:
 
+{% highlight ruby %}
     file { "/tmp/somefile": ensure => exists }
-{:puppet}
+{% endhighlight %}
 
 ### Multi-Declaration resource statements
 
@@ -125,6 +132,7 @@ In Puppet, when multiple resources of the same type need to be defined, they
 can be defined within a single semi-colon separated statement.  Observe the
 formatting in the example below:
 
+{% highlight ruby %}
     file {
         "/tmp/app":
             ensure => directory;
@@ -136,7 +144,7 @@ formatting in the example below:
             owner  => "webapp",
             mode   => 755;
     }
-{:puppet}
+{% endhighlight %}
 
 Note that in this case, even though there is a file resource with only one
 attribute-value pair, the single line format is not used.  Also note that the last attribute-value
@@ -145,12 +153,13 @@ pair ends with a semicolon.
 If all the file resources had only one attribute, the single line format could be used as
 below:
 
+{% highlight ruby %}
     file {
         "/tmp/app":       ensure => directory;
         "/tmp/app/file":  ensure => file;
         "/tmp/app/file2": ensure => file;
     }
-{:puppet}
+{% endhighlight %}
 
 As in the above example, parameter names should be aligned at the column one space out from the colon after the longest resource name (`/tmp/app/file2` in this example).
 
@@ -161,11 +170,12 @@ Symlinks
 To make the intended behavior explicitly clear, the following is recommended as the
 correct way to specifiy symlinked files:
 
+{% highlight ruby %}
     file { "/var/log/syslog":
         ensure => link,
         target => "/var/log/messages",
     }
-{:puppet}
+{% endhighlight %}
 
 
 Case Statements
@@ -173,6 +183,7 @@ Case Statements
 
 A well-formed example of a case select statement:
 
+{% highlight ruby %}
     case $cloneid {
         "xorn": {
             include soe-workstation
@@ -215,4 +226,4 @@ A well-formed example of a case select statement:
             }
         }
     }
-{:puppet}
+{% endhighlight %}
