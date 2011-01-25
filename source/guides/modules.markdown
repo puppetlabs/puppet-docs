@@ -65,17 +65,13 @@ version control, for example:
 
 ## Naming
 
-Module names may only contain letters, numbers, underscores, and dashes 
-(i.e. they must match the regular expression `[_-\w]+`). In particular, 
-they may not contain the 
-namespace separators `::` or `/`. While it might be desirable to allow
-module hierarchies, for now modules cannot be nested.
+Module names may contain letters, numbers, and underscores, and their first character must be a lowercase letter or a number. (Prior to Puppet 0.24.6, module and class names could not begin with numbers.) That is, module names are subject to the same restrictions that apply to class names, with the added restriction that they cannot contain the namespace separator (`::`). 
 
-In the filesystem modules are always referred to by the down-cased
-version of their name to prevent the potential ambiguity that would
-otherwise result.
+Module and class names may also include dashes, but as this prevents their variables from being externally accessed, it is not recommended. When declaring classes, class and module names are treated case-insensitively. 
 
-The module name `site` is reserved for local use and should not be
+If you prefer regular expressions, all of the above can be summarized by saying module names must match the expression `[a-z0-9][a-zA-Z0-9_-]*`, and should probably match the expression `[a-z0-9][a-z0-9_]*`. 
+
+Modules cannot be nested. The module name `site` is reserved for local use and should not be
 used in modules meant for distribution.
 
 # Internal Organisation
