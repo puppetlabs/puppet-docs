@@ -65,7 +65,7 @@ version control, for example:
 
 ## Naming
 
-Module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. That is, module names are subject to the same restrictions that apply to class names, with the added restriction that they cannot contain the namespace separator (`::`), as modules cannot be nested. 
+Module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested. 
 
 Although some names that violate these restrictions currently work, using them is not recommended.
 
