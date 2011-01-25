@@ -856,7 +856,7 @@ Of course, this can be used for native types as well:
 Since Puppet version 2.6.0, hashes have been supported in the language.  These hashes are defined like Ruby hashes using the form:
 
 {% highlight ruby %}
-    hash: { key1 => val1, ... }
+    { key1 => val1, key2 => val2, ... }
 {% endhighlight %}
 
 The hash keys are strings, but hash values can be any possible RHS values allowed in the language like function calls, variables, etc.
