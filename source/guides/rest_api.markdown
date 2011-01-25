@@ -155,9 +155,20 @@ Example:
 
 Get or put a file into the file bucket.
 
-GET `/file_bucket_files/{file}
+GET `/{environment}/file_bucket_file/md5/{checksum}`
 
-Example:
+PUT `/{environment}/file_bucket_file/md5/{checksum}`
+
+GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files: Puppet 2.6.5 and later)
+
+HEAD /{environment}`/file_bucket_file/md5/{checksum}` (determine if a file is present: Puppet 2.6.5 and later)
+
+Examples:
+
+    curl -k -H "Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6
+    curl -k -X PUT -H "Content-Type: text/plain" Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6 --data-binary @foo.txt
+    curl -k -H "Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6?diff_with=6572b5dc4c56366aaa36d996969a8885
+    curl -k -I -H "Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6
 
 ### File Server
 
