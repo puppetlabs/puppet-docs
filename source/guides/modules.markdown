@@ -65,15 +65,9 @@ version control, for example:
 
 ## Naming
 
-Module names may only contain letters, numbers, underscores, and dashes 
-(i.e. they must match the regular expression `[_-\w]+`). In particular, 
-they may not contain the 
-namespace separators `::` or `/`. While it might be desirable to allow
-module hierarchies, for now modules cannot be nested.
+Module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested. 
 
-In the filesystem modules are always referred to by the down-cased
-version of their name to prevent the potential ambiguity that would
-otherwise result.
+Although some names that violate these restrictions currently work, using them is not recommended.
 
 The module name `site` is reserved for local use and should not be
 used in modules meant for distribution.
@@ -255,7 +249,7 @@ understand, and break down like this:
 
 In short, lookup paths within a module's manifest directory are derived by splitting class and definition names on `::` separators, then interpreting the first element as the name of the module, the final element as the filename (with a `.pp` extension appended), and any intermediate elements as subdirectories of the module's manifests directory:
 
-    {module name}::{directory}::{filename (sans extension)}
+    {module name}::{subdirectory}::{...}::{filename (sans extension)}
 
 The one special case is that a one-word class or definition name which matches the name of the module will always be found in `manifests/init.pp`.[^init]
 
