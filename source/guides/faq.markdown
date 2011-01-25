@@ -258,11 +258,13 @@ Configuration
 Since Puppet configurations are idempotent, words like "script" (which implies
 a procedural step-by-step model of execution) seemed misleading.
 
-### What characters are permitted in a class name?
+### What characters are permitted in a class name? In a module name? In other identifiers?
 
-The short version is that class names can contain lowercase letters, numbers, and underscores, with `::` available as a namespace separator. Underscores are not allowed at the beginning of a class name.
+Class names can contain lowercase letters, numbers, and underscores, and should begin with a lowercase letter. "`::`" can be used as a namespace separator.
 
-The slightly longer version is that Puppet also permits uppercase letters and hyphens ("-") in class names, but you shouldn't use those: Hyphens are not valid characters in qualified variable names (so although a class name of `my-httpd` would be valid, variable names like `$my-httpd::foo` would not), and while Puppet ignores capitalization in class and module names (i.e. a class defined as "fooBAR" could be declared as "foobar"), a capital letter at the beginning of a class name will result in a syntax error. Best practice is to avoid all of these situations.
+The same rules should be used when naming defined resource types, modules, and parameters, although modules and parameters cannot use the namespace separator.
+
+Variable names can include alphanumeric characters and underscores, and are case-sensitive.
 
 ### How do I apply and test manifests?
 
