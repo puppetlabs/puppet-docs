@@ -1331,7 +1331,7 @@ page for more information.
 
 Variable names can include alphanumeric characters and underscores, and are case-sensitive.
 
-Class names, module names, and the names of defined resource types should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. The names of defined resource types and custom native resource types should obey the same restrictions. Although some names that violate these restrictions currently work, using them is not recommended.
+Class names, module names, and the names of defined and custom resource types should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Although some names that violate these restrictions currently work, using them is not recommended.
 
 Class names can use `::` as a namespace separator, which is both semantically useful and a means of controlling the behavior of the module autoloader. The final segment of a [qualified variable](#qualified-variables) name must obey the restrictions on variable names, and the preceding segments must obey the restrictions on class names. 
 
