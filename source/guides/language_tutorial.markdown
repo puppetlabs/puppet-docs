@@ -1329,8 +1329,18 @@ page for more information.
 
 ### Reserved words & Acceptable characters
 
+Variable names can include alphanumeric characters and underscores, and are case-sensitive. 
+
+Class and module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter. The same restrictions should apply to the names of defined resource types and custom native resource types. 
+
+(Current versions of Puppet also support dashes in class names ; they are case-insensitive, but cannot begin with a capital letter, an underscore, or a dash. (In Puppet releases prior to 0.24.6, class names couldn't begin with numbers, either, and had to begin with a lowercase letter.) 
+
+Class names can use `::` as a namespace separator, which is both semantically useful and a means of controlling the behavior of the module autoloader. 
+
+There is no practical restriction on resource names. 
+
 You can use the characters A-Z, a-z, 0-9, dashes ('-'),  and underscores in variables, resources and
-class names.   In Puppet releases prior to 0.24.6, you cannot start a class name with a number.
+class names.   
 
 Any word that the syntax uses for special meaning is
 a reserved word, meaning you cannot use it for
