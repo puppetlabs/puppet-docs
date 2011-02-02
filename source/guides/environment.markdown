@@ -31,12 +31,12 @@ one on either the client or server, then it will behave as though
 environments do not exist at all, so you can safely ignore this
 feature if you do not need it.
 
-**Please note:** Not using environments doesn't mean that client
+**Please note:** Not using environments doesn't mean the client
 doesn't have an environment set. The client's environment is per
 default set to production and will only be changed by changing the
-clients configuration or per command parameter. You can't set it to
-a default value on the server side . For a more detailed discussion
-have a look at:
+client's configuration or specifying the environment on the command line.
+You can't set it to a default value on the server side. For a more
+detailed discussion, have a look at:
 [environment default setting](http://groups.google.com/group/puppet-users/browse_thread/thread/f97bfad1e46c83c4?hl=en#) thread on the mailing list.
 
 Goal of Environments
@@ -87,10 +87,10 @@ Running with any other environment or without an environment would
 default to the `site.pp` file and directory specified in the `manifest`
 and `modulepath` values in the `[main]` configuration section.
 
-Only certain parameters make sense to be configured
-per-environment, and all of those parameters revolve around
+Only certain settings make sense to be configured
+per-environment, and all of those settings revolve around
 specifying what files to use to compile a client's configuration.
-Those parameters are:
+Those settings are:
 
 -   **modulepath**: Where to look for modules. It's best to have a
     standard module directory that all environments share and then a
@@ -100,7 +100,7 @@ Those parameters are:
     different versions of a given template in each environment.
 -   **manifest**: Which file to use as the main entry point for the
     configuration. The Puppet parser looks for other files to compile
-    in the same directory as this manifest, so this parameter also
+    in the same directory as this manifest, so this setting also
     determines where other per-environment Puppet manifests should be
     stored. With a separate module path, it should be easy to use the
     same simple manifest in all environments.
