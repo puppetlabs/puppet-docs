@@ -12,7 +12,7 @@ Here are some useful tips & tricks.
 
 ## How Can I Manage Whole Directories of Files Without Explicitly Listing the Files?
 
-The file type has a parameter recurse which can be used to
+The file type has a "recurse" attribute, which can be used to
 synchronize the contents of a target directory recursively with a
 chosen source. In the example below, the entire /etc/httpd/conf.d
 directory is synchronized recursively with the copy on the server:
@@ -45,7 +45,7 @@ changes.
 
 In the example given below, we'd like to create a user called tim
 who we want to put in the fearme group. By using the require
-parameter, we can create a dependency between the user tim and the
+attribute, we can create a dependency between the user tim and the
 group fearme. The result is that user tim will not be created until
 puppet is certain that the fearme group exists.
 

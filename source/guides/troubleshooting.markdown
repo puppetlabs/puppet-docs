@@ -78,24 +78,24 @@ permanently until you can upgrade.
 ## Why does Puppet keep trying to start a running service?
 
 The ideal way to check for a service is to use the hasstatus
-parameter, which calls the init script with the status parameter.
+attribute, which calls the init script with its `status` command.
 This should report back to Puppet whether the service is running or
 stopped.
 
 In some broken scripts, however, the status output will be correct
 ("Ok" or "not running"), but the exit code of the script will be
-incorrect. Most commonly, the script will always blindly return 0,
-no matter what the actual service state is. Puppet only uses the
-exit code, so interprets this as "the service is stopped".
+incorrect. (Most commonly, the script will always blindly return 0.)
+Puppet only uses the exit code, and so may behave unpredictably in
+these cases.
 
 There are two workarounds, and one fix. If you must deal with the
-scripts broken behavior as is, you can modify your resource to
-either use the pattern parameter to look for a particular process
-name, or the status parameter to use a custom script to check for
-the service status.
+script's broken behavior as is, your resource can either use the "pattern"
+attribute to look for a particular name in the process table, or use the
+"status" attribute to specify a custom script that returns the proper exit
+code for the service's status.
 
-The fix is to rewrite the init script to use the proper exit codes.
-When rewriting them, or submitting bug reports to vendors or
+The longer-term fix is to rewrite the service's init script to use the proper
+exit codes. When rewriting them, or submitting bug reports to vendors or
 upstream, be sure to reference the
 [LSB Init Script Actions](http://refspecs.linux-foundation.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html)
 standard. This should carry more weight by pointing out an
@@ -103,7 +103,7 @@ official, published standard they're failing to meet, rather than
 trying to explain how their bug is causing problems in Puppet.
 
 
-## Why is my external node configuration failing ? I get no errors by running the script by hand.
+## Why is my external node configuration failing? I get no errors by running the script by hand.
 
 Most of the time, if you get the following error when running you
 client
@@ -223,7 +223,7 @@ needs removing.
 
 ## Syntax error at '=>'; expected ')'
 
-This error can occur when you use a manifest like:
+This error results from incorrect syntax in a defined resource type:
 
     define foo($param => 'value') { ... }
 

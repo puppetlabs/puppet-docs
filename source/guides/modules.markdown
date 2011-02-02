@@ -28,9 +28,9 @@ Modules are available in Puppet version 0.22.2 and later.
 
 There are two configuration settings that pertain to modules:
 
-1.  The search path for modules is configured as a colon-separated
-    list of directories in the [puppetmasterd] (pre-2.6.0) or [master] (2.6.x and later) section of Puppet master's
-    config file with the `modulepath` parameter:
+1.  The search path for modules is defined with the `modulepath` setting
+    in the `[puppetmasterd]` (pre-2.6) or `[master]` (post-2.6) section of the puppet
+    master's config file, and it should be a colon-separated list of directories:
 
         [puppetmasterd]
         ...
@@ -40,7 +40,7 @@ There are two configuration settings that pertain to modules:
     environment variable, which must also be a colon-separated list of
     directories.
 
-2.  Access control settings for the fileserver module modules in
+2.  Access control settings for the fileserver module `[modules]` are set in
     fileserver.conf, as described later in this page. The path
     configuration for that module is always ignored, and specifying a
     path will produce a warning.
@@ -65,7 +65,7 @@ version control, for example:
 
 ## Naming
 
-Module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested. 
+Module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
 
 Although some names that violate these restrictions currently work, using them is not recommended.
 
@@ -218,7 +218,7 @@ the history here).
 
 Since version 0.23.1, Puppet will attempt to autoload classes and
 definitions from modules, so you no longer have to explicitly import them; you can
-just include the class or start using the definition. 
+just include the class or start using the definition.
 
 The rules Puppet uses to find the appropriate manifest when a module
 class or definition is declared are pretty easy to
@@ -253,8 +253,8 @@ In short, lookup paths within a module's manifest directory are derived by split
 
 The one special case is that a one-word class or definition name which matches the name of the module will always be found in `manifests/init.pp`.[^init]
 
-Since lookup of classes and definitions is based on filename, take care to 
-always rename both at the same time. 
+Since lookup of classes and definitions is based on filename, take care to
+always rename both at the same time.
 
 [^init]: Puppet actually always loads the `init.pp` manifest, so sometimes you can cheat and just write all your module's classes in there.  This makes it harder for people to find where your class or define lives, though, so we don't recommend it.
 
