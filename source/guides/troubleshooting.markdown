@@ -365,7 +365,7 @@ sidestep the problem altogether with a define:
     }
 
 Whilst not directly solving the problem also useful are qualified
-variables that allow you to refer to and assign variables from
+variables that allow you to refer to variables from
 other classes. Qualified variables might provoke alternate methods
 of solving this issue. You can use qualified methods like:
 
