@@ -19,7 +19,7 @@ About Exported Resources
 
 While virtual resources can only be collected by the host that
 specified them, exported resources can be collected by any host.
-You **must** set the storeconfigs configuration parameter to true to
+You **must** set the storeconfigs setting to true to
 enable this functionality (you can see information about stored
 configuration on the [Using Stored Configuration](http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration) wiki page, and
 Puppet will automatically create a database for storing
@@ -114,7 +114,7 @@ Exported Resources Override
 
 Beginning in version 0.25, some new syntax has been introduced that
 allows creation of collections of any resources, not just virtual
-ones, based on filter conditions, and override of parameters in the
+ones, based on filter conditions, and override of attributes in the
 created collection. This feature is not constrained to the override
 in inherited context, as is the case in the usual resource
 override.
@@ -131,14 +131,14 @@ resources. For example:
         mode => 0600
     }
 
-The filter condition goes in the middle of the \<| |> sigils. In
+The filter condition goes in the middle of the `<| |>` sigils. In
 the above example the condition is empty, so all file resources
 (not just virtual ones) are selected, and all file resources will
 have their modes overridden to 0600.
 
 In the past this syntax only collected virtual resources. It now
 collects all matching resources, virtual or no, and allows you to
-override parameters in any of the collection so defined.
+override attributes in any of the collection so defined.
 
 As another example, one can write:
 
