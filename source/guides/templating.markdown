@@ -165,10 +165,16 @@ This snippet will print all the defined tags in the catalog:
     The tag <%= tag %> is defined
     <% end -%>
 
-And this snippet will print all the defined class in the catalog:
+This snippet will print all the defined classes in the catalog:
 
     <% classes.each do |klass| -%>
     The class <%= klass %> is defined
+    <% end -%>
+
+And this snippet will print all of the variable names defined in the current scope:
+
+    <% scope.to_hash.keys.each do |k| -%>
+    <%= k %>
     <% end -%>
 
 ## Syntax Checking
