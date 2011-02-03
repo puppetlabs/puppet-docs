@@ -37,6 +37,24 @@ To learn more about the capabilities of Puppet, start at the [main Puppet docume
 Puppet is open source and is released under the
 [GNU Public License](http://www.gnu.org/copyleft/gpl.html) version 2.
 
+### What's special about Puppet's model-driven design?
+
+Traditionally, managing the configurations of a large group of computers has
+meant a series of imperative steps, which is often metonymically called "SSH and
+a _for_ loop." This general approach grew more sophisticated over time, but it
+retained the more profound limitations at its root.
+
+Puppet takes a different approach, which is to model everything -- the current
+state of the node, the desired configuration state, the actions taken during
+configuration enforcement -- as data: each node receives a catalogue of
+resources and relationships, compares it to the current system state, and makes
+changes as needed to bring the system into compliance.
+
+The benefits of this go beyond just healing the headaches of configuration drift
+and unknown system state: modeling systems as data lets Puppet simulate
+configuration changes, track the history of a system over its lifecycle, and
+prove that refactored manifest code still produces the same system state.
+
 ### Why does Puppet have its own language?
 
 Why not use XML or YAML as the configuration format? Why not use Ruby as the
