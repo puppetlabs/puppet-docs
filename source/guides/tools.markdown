@@ -131,7 +131,7 @@ puppet inspect
 
 Puppet inspect generates an inspection report and sends it to the puppet master. It cannot be run as a daemon.
 
-Inspection reports differ from standard Puppet reports, as they do not record the actions taken by Puppet when applying a catalog; instead, they document the current state of all resource attributes which have been marked as auditable with the `audit` metaparameter. (The most recent cached catalog is used to determine which resource attributes are auditable.)
+Inspection reports differ from standard Puppet reports, as they do not record the actions taken by Puppet when applying a catalog; instead, they document the current state of all resource attributes which have been marked as auditable with the [`audit` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#audit). (The most recent cached catalog is used to determine which resource attributes are auditable.)
 
 Inspection reports are handled identically to standard reports, and must be differentiated  at parse time by your report tools; see the [report format documentation](http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2) for more details. Although a future version of Puppet Dashboard will support viewing of inspection reports, Puppet Labs does not currently ship any inspection report tools.
 
