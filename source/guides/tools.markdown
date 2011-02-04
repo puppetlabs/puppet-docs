@@ -124,7 +124,18 @@ It can also be used to make additions and removals, as well as to list resources
     > puppet resource  User
     ...
 
-Puppet Resource is most frequently used as a learning tool, but it can also be used to avoid memorizing differences in common commands when maintaining multiple platforms. (Note that puppet resource can be used the same way on OS X as on Linux, e.g.)
+Puppet resource is most frequently used as a learning tool, but it can also be used to avoid memorizing differences in common commands when maintaining multiple platforms. (Note that puppet resource can be used the same way on OS X as on Linux, e.g.)
+
+puppet inspect
+--------------
+
+Puppet inspect generates an inspection report and sends it to the puppet master. It cannot be run as a daemon.
+
+Inspection reports differ from standard Puppet reports, as they do not record the actions taken by Puppet when applying a catalog; instead, they document the current state of all resource attributes which have been marked as auditable with the `audit` metaparameter. (The most recent cached catalog is used to determine which resource attributes are auditable.)
+
+Inspection reports are handled identically to standard reports, and must be differentiated  at parse time by your report tools; see the [report format documentation](http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2) for more details. Although a future version of Puppet Dashboard will support viewing of inspection reports, Puppet Labs does not currently ship any inspection report tools.
+
+Puppet inspect was added in Puppet 2.6.5.
 
 facter
 ------
