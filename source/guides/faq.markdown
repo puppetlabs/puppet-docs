@@ -40,20 +40,24 @@ Puppet is open source and is released under the
 ### What's special about Puppet's model-driven design?
 
 Traditionally, managing the configurations of a large group of computers has
-meant a series of imperative steps, which is often metonymically called "SSH and
-a _for_ loop." This general approach grew more sophisticated over time, but it
+meant a series of imperative steps; in its rawest state, SSH and
+a _for_ loop. This general approach grew more sophisticated over time, but it
 retained the more profound limitations at its root.
 
 Puppet takes a different approach, which is to model everything -- the current
 state of the node, the desired configuration state, the actions taken during
-configuration enforcement -- as data: each node receives a catalogue of
+configuration enforcement -- as data: each node receives a catalog of
 resources and relationships, compares it to the current system state, and makes
 changes as needed to bring the system into compliance.
 
-The benefits of this go beyond just healing the headaches of configuration drift
+The benefits go far beyond just healing the headaches of configuration drift
 and unknown system state: modeling systems as data lets Puppet simulate
 configuration changes, track the history of a system over its lifecycle, and
-prove that refactored manifest code still produces the same system state.
+prove that refactored manifest code still produces the same system state. 
+It also drastically lowers the bar for hacking and extending Puppet: instead of
+analyzing code and reverse-engineering the effects of each step, a user can just
+parse data, and sysadmins have been able to add significant value to their
+Puppet deployments with an afternoon's worth of perl scripting.
 
 ### Why does Puppet have its own language?
 
