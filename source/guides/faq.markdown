@@ -54,10 +54,11 @@ The benefits go far beyond just healing the headaches of configuration drift
 and unknown system state: modeling systems as data lets Puppet simulate
 configuration changes, track the history of a system over its lifecycle, and
 prove that refactored manifest code still produces the same system state. 
-It also drastically lowers the bar for hacking and extending Puppet: instead of
-analyzing code and reverse-engineering the effects of each step, a user can just
-parse data, and sysadmins have been able to add significant value to their
-Puppet deployments with an afternoon's worth of perl scripting.
+It also drastically lowers the barrier to entry for hacking and extending
+Puppet: instead of analyzing code and reverse-engineering the effects of each
+step, a user can just parse data, and sysadmins have been able to add
+significant value to their Puppet deployments with an afternoon's worth of perl
+scripting.
 
 ### Why does Puppet have its own language?
 
