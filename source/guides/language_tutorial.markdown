@@ -791,7 +791,7 @@ Capitalization of resources is used in three major ways:
 
 ### Arrays
 
-As mentioned in the class and resource examples above, Puppet allows usage of arrays in various areas.  Arrays are defined in puppet look like this:
+As mentioned in the class and resource examples above, Puppet allows usage of arrays in various areas.  Arrays defined in puppet look like this:
 
 {% highlight ruby %}
     [ 'one', 'two', 'three' ]
