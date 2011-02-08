@@ -10,10 +10,12 @@ Once Puppet is installed, learn how to set it up for initial operation.
 
 * * *
 
-Open Firewall Ports On Server and Client
-----------------------------------------
+Open Firewall Ports On Server and Agent Node
+--------------------------------------------
 
-In order for the puppet server to centrally manage clients, you may need to open port 8140, both TCP and UDP, on the server and client machines.
+In order for the puppet server to centrally manage agent nodes, you
+may need to open port 8140, both TCP and UDP, on the server and
+agent nodes.
 
 Configuration Files
 -------------------
@@ -24,34 +26,34 @@ reasonable defaults.   To see all the possible values, you may run:
 
     $ puppet --genconfig
 
-Configure DNS
--------------
+Configure DNS (Optional)
+------------------------
 
-The puppet client looks for a server named `puppet`. If you have
-local DNS zone files, you may want to add a CNAME record pointing
-to the server machine in the appropriate zone file.
+The puppet agent looks for a server named `puppet` by default. If you
+choose, you can set up a puppet DNS CNAME record to avoid having to
+specify your puppet master hostname in the configuration of each agent node.
+
+If you have local DNS zone files, you can add a CNAME record
+pointing to the server machine in the appropriate zone file.
 
     puppet   IN   CNAME  crabcake.picnic.edu.
-
-By setting up the CNAME you will avoid having to specify the
-server name in the configuration of each client.
 
 See the book "DNS and Bind" by Cricket Liu et al if you need help
 with CNAME records. After adding the CNAME record, restart your
 name server. You can also add a host entry in the `/etc/hosts` file
-on both the server and client machines.
+on both the server and agent nodes.
 
 For the server:
 
     127.0.0.1 localhost.localdomain localhost puppet
 
-For the clients:
+For the agent nodes:
 
     192.168.1.67 crabcake.picnic.edu crabcake puppet
 
-WARNING: If you can ping the server by
-the name `puppet` but Syslog (for example `/var/log/messages`) on the clients still has
-entries stating the puppet client cannot connect to the server,
+WARNING: If you can ping the server by the name `puppet` but
+Syslog (for example `/var/log/messages`) on the agent nodes still has
+entries stating the puppet agent cannot connect to the server,
 verify port 8140 is open on the server.
 
 Puppet Language Setup
@@ -126,17 +128,17 @@ the daemon with the `--mkusers` flag to create them.
 
 Starting the puppet daemon will automatically create all necessary certificates, directories, and files.
 
-NOTE:  To enable the daemon to also function as a file server, so that clients can copy files from it, create a
+NOTE:  To enable the daemon to also function as a file server, so that agent nodes can copy files from it, create a
 [fileserver configuration file](./file_serving.html) and restart pupetmasterd.
 
 Verifying Installation
 ----------------------
 
 To verify that your daemon is working as expected, pick a single
-client to use as a testbed. Once Puppet is installed on that
-machine, run a single client against the central server to verify
+agent node to use as a testbed. Once Puppet is installed on that
+machine, run the agent against the central server to verify
 that everything is working appropriately. You should start the
-first client in verbose mode, with the `--waitforcert` flag enabled:
+agent in verbose mode the first time and with the `--waitforcert` flag enabled:
 
     # puppetd --server myserver.domain.com --waitforcert 60 --test
 
@@ -146,7 +148,7 @@ if the remote configuration fails to compile (by default, puppetd
 will use a cached configuration if there is a problem with the
 remote manifests).
 
-In running the client, you should see the message:
+In running the agent, you should see the message:
 
     info: Requesting certificate
     warning: peer certificate won't be verified in this SSL session
@@ -162,12 +164,12 @@ On your server, list the waiting certificates:
 
     # puppetca --list
 
-You should see the name of the test client. Now go ahead and sign
+You should see the name of the test agent node. Now go ahead and sign
 the certificate:
 
-    # puppetca --sign mytestclient.domain.com
+    # puppetca --sign mytestagent.domain.com
 
-Within 60 seconds, your test client should receive its certificate
+Within 60 seconds, your test agent should receive its certificate
 from the server, receive its configuration, apply it locally, and
 exit normally.
 
