@@ -150,9 +150,9 @@ manual management tasks.
 
 Yes.
 
-All servers are at least somewhat unique -- with different host
-names and different IP addresses -- but very few servers are
-entirely unique, since nearly every one runs a relatively standard
+All servers are at least somewhat unique (with different host
+names and different IP addresses) but very few servers are
+entirely unique since nearly every one runs a relatively standard
 operating system. Servers are also often very similar to other
 servers within a single organization -- all Solaris servers might
 have similar security settings, or all web servers might have
@@ -197,9 +197,9 @@ Puppet's known security holes and their status:
 
 ### Who is Puppet Labs?
 
-Puppet Labs (formerly Reductive Labs) is a small, private company focused on re-framing
-the server automation problem. More information about Puppet Labs is available
-[on our website](http://www.puppetlabs.com/company/overview/).
+Puppet Labs (formerly Reductive Labs) is a small, private company
+focused on re-framing the server automation problem. More information
+about Puppet Labs is available [on our website](http://www.puppetlabs.com/company/overview/).
 
 ### How do I contribute?
 
@@ -237,10 +237,7 @@ at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
 ### What's the minimum version of Ruby?
 
-Puppet is supported on all versions of Ruby from 1.8.2 on up. It
-will sometimes work on 1.8.1, but it's not supported on that
-release.
-
+Puppet is supported on all versions of Ruby from 1.8.2 on up.
 
 Upgrading
 ---------
