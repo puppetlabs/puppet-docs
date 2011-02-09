@@ -13,7 +13,7 @@ This guide covers the major tools that comprise Puppet.
 Single binary
 -------------
 
-From verison 2.6.0 and onwards all the Puppet functions are also available via a single Puppet binary, in the style of git.
+From version 2.6.0 and onwards all the Puppet functions are also available via a single Puppet binary, in the style of git.
 
 List of binary changes:
 
@@ -60,7 +60,7 @@ The puppet master server determines what information a given managed node should
 puppet apply (or puppet)
 ------------------------
 
-When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet apply is run instead of puppt agent.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppt agent.
+When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), puppet apply is run instead of puppet agent.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppet agent.
 
 puppet cert (or puppetca)
 -------------------------

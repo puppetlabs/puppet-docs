@@ -24,7 +24,7 @@ puppetca
 When a node starts up that does not have a certificate, it checks in with the configured
 puppetmaster (central management daemon) and sends a certificate request.  Puppet can
 either be configured to autosign the certificate (generally not recommended for
-production environmnets), or a list of certificates that need to be signed can be
+production environments), or a list of certificates that need to be signed can be
 shown with:
 
     puppetca --list
@@ -60,7 +60,7 @@ The path can contain any or all of %h, %H, and %d, which are dynamically replace
 
 The request for file /private/file.txt from client client1.example.com will look for a file /data/private/client1/file.txt, while the same request from client2.example.com will try to retrieve the file /data/private/client2/file.txt on the fileserver.
 
-Currently paths cannot contain trailing slashes or an error will result. Also take care that in puppet.conf youare not specifying directory locations that have trailing slashes.
+Currently paths cannot contain trailing slashes or an error will result. Also take care that in puppet.conf you are not specifying directory locations that have trailing slashes.
 
 auth.conf
 ---------
