@@ -24,7 +24,7 @@ is composed of a declarative language for expressing system
 configuration, a client and server for distributing it, and a
 library for realizing the configuration.
 
-The primary design goal of Puppet is that it have an expressive
+The primary design goal of Puppet is to have an expressive
 enough language backed by a powerful enough library that you can
 write your own server automation applications in just a few lines
 of code. Puppet's deep extensibility and open source license lets you 
