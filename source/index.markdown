@@ -40,11 +40,26 @@ Once you've learned the basics, go here next.
 
 * [Puppet Language Tutorial](./guides/language_tutorial.html) -- all the language details
 * [Puppet Modules](./guides/modules.html) -- modules make it easy to organize and share content
-* [Puppet File Serving](./guides/file_serving.html) -- Serving files with Puppet
+* [Puppet File Serving](./guides/file_serving.html) -- serving files with Puppet
 * [Style Guide](./guides/style.html) -- Puppet community conventions
 * [Best Practices](./guides/best_practices.html) -- use Puppet effectively
 * [Tips & Tricks](./guides/techniques.html)
 * [Troubleshooting](./guides/troubleshooting.html)
+
+References
+----------
+
+Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, and more. 
+
+* [Resource Types](./references/latest/type.html) -- all default types
+* [Functions](./references/latest/function.html) -- all built in functions
+* [Metaparameters](./references/latest/metaparameter.html) -- all type-independent resource attributes
+* [Configuration](./references/latest/configuration.html) -- all configuration file settings
+* [Report](./references/latest/report.html) -- all available report handlers
+
+These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
+
+* [Versioned References](references/) -- inline docs from Puppet's past and present
 
 Puppet Dashboard (Web GUI)
 --------------------------
@@ -69,14 +84,6 @@ Power user features.
 * [Scaling With Passenger](./guides/passenger.html) -- for Puppet 0.24.6 and later
 * [Scaling With Mongrel](./guides/mongrel.html) -- for older versions of Puppet
 
-Resource Types
---------------
-
-Documentation on what Puppet can manage out of the box.
-
-* [Types By Category](./guides/types/) -- documentation on resources managed out of the box
-* [Alphabetical Listing](./guides/types/alphabetical_index.html)
-
 Extending Puppet
 ----------------
 
@@ -97,17 +104,6 @@ Learn how to work with Puppet core.
 
 * [Running Puppet from Source](./guides/from_source.html) -- preview the leading edge
 * [Development Life Cycle](./guides/development_lifecycle.html) -- learn how to contribute code
-
-Auto-generated Docs
--------------------
-
-In addition to the formatted and annotated documentation above, [auto-generated documentation](references/) is available for current and previous Puppet versions.   Here are links to the latest versions:
-
-* [Metaparameters](./references/latest/metaparameter.html) -- these are usable on all types
-* [Types](./references/latest/type.html) -- all default types
-* [Configuration](./references/latest/configuration.html) -- all configuration file settings
-* [Functions](./references/latest/function.html) -- all built in functions
-* [Report](./references/latest/report.html) -- available reports
 
 Other Resources
 ---------------
