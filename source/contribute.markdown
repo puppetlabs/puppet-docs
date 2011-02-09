@@ -6,39 +6,48 @@ title: Contribute
 Contribute
 ==========
 
-We welcome community contributions to the documentation.
-
-Here's how you can help.
+We welcome community contributions to the documentation! You can help by filing
+tickets, reporting errors and typos, and editing the documentation.
 
 * * *
 
-Providing Feedback
-----------------
+Filing Tickets
+--------------
 
-You don't have to write documentation to help us out; you can submit
-feedback by [submitting a ticket](contribute.html#submit-a-ticket) or 
-emailing [Puppet Labs](mailto:info@puppetlabs.com).
+The Puppet documentation is managed like a software project, and you can file
+bug reports and feature requests in its
+[issue tracker](http://projects.puppetlabs.com/projects/puppet-docs/).
+You'll need to create a [Redmine account](http://projects.puppetlabs.com/account/register)
+if you don't already have one.
 
-Feedback is great, and we'd like as much as possible... but if you
-know what needs to be added (to something you see, or based on other
-user feedback), here's how to contribute directly:
+In your ticket, please give as much information as possible about what's
+missing, what's inaccurate, or what's outdated, including URLs to the affected pages
+and your best understanding of what the documentation _should_ say. 
+We'll begin looking into the problem and update the ticket as soon as possible.
 
-Making a Contribution
----------------------
+Reporting Errors and Typos
+--------------------------
+
+If you spot a typo or other minor error and don't want to go through
+the overhead of filing a ticket or editing the documentation, you can 
+report it via email to <faq@puppetlabs.com>. 
+
+Editing the Documentation
+-------------------------
+
+If there's a hole in the documentation and you know just what needs to be added, here's how to contribute directly:
+
+### Use Git
 
 Version control for the project is handled with
-[Git](http://git-scm.com/).
+[Git](http://git-scm.com/). The URL of the repository is <http://github.com/puppetlabs/puppet-docs>
+We recommend using a [GitHub](http://github.com) account and pull requests to
+contribute to this project, but we also accept Git patches.
 
-The URL of the repository is: [http://github.com/puppetlabs/puppet-docs](http://github.com/puppetlabs/puppet-docs)
-
-NOTE: We recommend using a [GitHub](http://github.com) account to
-contribute to this project -- but we also accept git patches.  Read
-below for more information.
-
-### Fork the project
+### Fork the Project and Clone the Repo
 
 If you're using Github, [fork](http://help.github.com/forking/) our
-repository, and clone your fresh repository:
+repository, and clone your fresh repository to your local disk:
 
     $ git clone git@github.com:yourname/puppet-docs.git
 
@@ -47,20 +56,21 @@ to your own remote host or provide git patches later):
 
     $ git clone git://github.com/puppetlabs/puppet-docs.git
 
-### Learn how add documentation
+### Learn How to Write Puppet Documentation
 
 Read the
- [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown)
-and [README_WRITING](http://github.com/puppetlabs/puppet-docs/blob/master/README_WRITING.markdown) in the source.
+[README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown)
+and [README_WRITING](http://github.com/puppetlabs/puppet-docs/blob/master/README_WRITING.markdown)
+files in the puppet-docs source.
 
-### Make your changes
+### Make Your Edits
 
 Add your documentation fixes.
 
-NOTE: If you modify any of the generator (Ruby) code, make sure you
+NOTE: If you modify any of the code used to generate the documentation, make sure you
 provide passing tests that cover your changes.
 
-### Commit and Push
+### Commit and Push/Patch
 
 * If you're using GitHub (or your own hosted repository), push to a
   remote branch.
@@ -73,24 +83,13 @@ screencasts](http://learn.github.com/).
 
 ### Submit a Ticket
 
-Visit the [Puppet Documentation
-Project](http://projects.puppetlabs.com/projects/puppet-docs/) and
-submit a ticket.  You'll need to create a [Redmine
-account](http://projects.puppetlabs.com/account/register) if you
-don't already have one.
+Visit the [Puppet Documentation Project](http://projects.puppetlabs.com/projects/puppet-docs/)
+in Redmine and submit a ticket describing the problem and your proposed
+changes; you'll need to create a [Redmine account](http://projects.puppetlabs.com/account/register)
+if you don't already have one. Be sure to provide the background on
+your change, the versions of Puppet (or supporting project)
+to which the change pertains, and (if you're using GitHub or another
+remote host) the URL to the branch you're submitting. (If you're working
+with only a local Git repository, please attach one or more patches containing your edits.)
 
-In your ticket, provide:
-
-1. Any additional background on your change.
-2. The versions of Puppet (or supporting project) to which it pertains.
-
-If you feel comfortable with git, feel free to help us by including either
-of the following:
-
-3. If using GitHub or another remote host, the URL to the branch
-   you're submitting (so we can pull it); if not, one or more attached
-   git patches.
-
-We'll get back to you on your contribution as soon as possible.  Thanks!
-
-
+We'll get back to you on your contribution as soon as possible. And thanks!
