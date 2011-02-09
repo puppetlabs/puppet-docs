@@ -140,7 +140,4 @@ Puppet inspect was added in Puppet 2.6.5.
 facter
 ------
 
-Puppet agent nodes use a library (and associated front-end tool) called facter to provide information about the OS (version information, IP address, etc) to the central server.  Facts provided by facter are exposed to Puppet manifests as global variables, which can be used in conditionals, string expressions, and templates.  To see a list of facts any node offers, simply open a shell session on that node and run `facter`.  Facter is included with (and required by) all Puppet installations.
-
-
-
+Puppet agent nodes use a library (and associated front-end tool) called facter to provide information about the hardware and OS (version information, IP address, etc) to the puppet master server. These facts are exposed to Puppet manifests as global variables, which can be used in conditionals, string expressions, and templates.  To see a list of the facts any node offers, simply open a shell session on that node and run `facter`.  Facter is included with (and required by) all Puppet installations.
