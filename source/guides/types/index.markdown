@@ -13,8 +13,6 @@ Resources Types are the building blocks of your Puppet configuration.
 
 * * *
 
-{TYPESHEADER}
-
 ### Access & Permissions
 
 * [file](file.html)
