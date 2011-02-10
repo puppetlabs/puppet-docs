@@ -181,7 +181,7 @@ Variables defined in the current scope are available as entries in the hash retu
     <%= k %>
     <% end -%>
 
-Puppet functions can be called by prepending "function_" to the beginning of the function name. For example, including one template inside another: 
+Puppet functions can be called by prepending "`function_`" to the beginning of the function name. For example, including one template inside another: 
 
     <%= scope.function_template("module/template2.erb") %>
 
