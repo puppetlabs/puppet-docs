@@ -336,54 +336,6 @@ It's not dangerous to reference a class with a require more than once.
 Classes are evaluated using the `include` function (which we will
 mention later). If a class has already been evaluated once, then `include` essentially does nothing.
 
-#### Qualification Of Nested Classes
-
-Classes whose definitions are nested inside other classes can be declared
-within the enclosing class using their short names, and can be declared
-everywhere else using their fully-qualified names (which are split with 
-the `::` namespace separator). For example:
-
-{% highlight ruby %}
-    class myclass {
-        class nested {
-            file { '/etc/passwd':
-            owner => 'root',
-            group => 'root',
-            mode  => 644;
-            }
-        }
-    }
-
-    class anotherclass {
-    include myclass::nested
-    }
-{% endhighlight %}
-
-In this example, the `nested` class inside the outer `myclass` is included as
-`myclass::nested` inside of the class named `anotherclass`.  Order is important here: class `myclass` must be evaluated before class `anotherclass` for this example to work properly.
-
-**Note that this construct is usually not advisable,** and in most cases your purposes are better served by explicitly stating the fully namespaced class name (`class myclass::nested { ... }`), placing classes in their own files, and [taking advantage of module autoloading](./modules.html#module-autoloading). This allows a user to understand the rough structure of a module by simply viewing a directory listing, which is a significant legibility win. Not only does nesting classes forego that advantage, but it means the nested class's "real" name (`myclass::nested`) is never actually mentioned at the site of its definition, so it can't be easily searched for. 
-
-It gets more complex if the nested class's name happens to match that of any top-level class. Consider the following: 
-
-{% highlight ruby %}
-    class someclass {
-        class nested {
-            notice("I am someclass::nested!")
-        }
-        
-        include nested
-    }
-    
-    class nested {
-        notice("I am plain-old nested, also known as ::nested!")
-    }
-{% endhighlight %}
-
-The fact that it's not immediately and unambiguously clear which `nested` class is being declared by `someclass`'s `include nested` statement should give you pause about nesting classes in all but the most limited use cases; with only a little additional complexity, tracking down class names can get seriously problematic. (As for this example, `someclass`'s include statement will include `someclass::nested`; to include `nested`, you would have to declare it as `::nested`.)
-
-Lastly, although the nesting of class definitions has absolutely no effect on variable scope, it has the unfortunate property of _looking_ like it does to a reader who is familiar with lexically scoped languages and has briefly forgotten that the Puppet DSL is dynamically scoped. This alone is reason to avoid nesting wherever possible. 
-
 #### Parameterised Classes
 
 In Puppet release 2.6.0 and later, classes are extended to allow the passing of parameters into classes.
