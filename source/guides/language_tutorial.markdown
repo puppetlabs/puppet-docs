@@ -187,10 +187,10 @@ Defaults are not global -- they only affect the current scope and scopes below t
 
 ### Resource Collections
 
-Aggregation is a powerful concept in Puppet.  There are two ways to combine multiple resources into one easier to use resource: Classes and definitions. Classes model fundamental aspects of nodes, they say "this node IS a webserver" or "this node is one of these".  In programming terminology classes are
+Aggregation is a powerful concept in Puppet.  There are two ways to combine multiple resources into one easier to use resource: Classes and defined resource types. Classes model fundamental aspects of nodes, they say "this node IS a webserver" or "this node is one of these".  In programming terminology classes are
 singletons -- they only ever get evaluated once per node.
 
-Definitions, on the other hand, can be reused many times on the same node.  They essentially work as if you created your own Puppet type just by using the language.  They are meant to be evaluated multiple times, with different inputs each time.  This means you can pass variable values into the defines.
+Defined resource types, on the other hand, can be reused many times on the same node.  They essentially work as if you created your own Puppet type just by using the language.  They are meant to be evaluated multiple times, with different inputs each time.  This means you can pass variable values into the defines.
 
 Both classes and defines are very useful and you should make use of them when building out your puppet infrastructure.
 
@@ -333,54 +333,6 @@ It's not dangerous to reference a class with a require more than once.
 Classes are evaluated using the `include` function (which we will
 mention later). If a class has already been evaluated once, then `include` essentially does nothing.
 
-#### Qualification Of Nested Classes
-
-Classes whose definitions are nested inside other classes can be declared
-within the enclosing class using their short names, and can be declared
-everywhere else using their fully-qualified names (which are split with 
-the `::` namespace separator). For example:
-
-{% highlight ruby %}
-    class myclass {
-        class nested {
-            file { '/etc/passwd':
-            owner => 'root',
-            group => 'root',
-            mode  => 644;
-            }
-        }
-    }
-
-    class anotherclass {
-    include myclass::nested
-    }
-{% endhighlight %}
-
-In this example, the `nested` class inside the outer `myclass` is included as
-`myclass::nested` inside of the class named `anotherclass`.  Order is important here: class `myclass` must be evaluated before class `anotherclass` for this example to work properly.
-
-**Note that this construct is usually not advisable,** and in most cases your purposes are better served by explicitly stating the fully namespaced class name (`class myclass::nested { ... }`), placing classes in their own files, and [taking advantage of module autoloading](./modules.html#module-autoloading). This allows a user to understand the rough structure of a module by simply viewing a directory listing, which is a significant legibility win. Not only does nesting classes forego that advantage, but it means the nested class's "real" name (`myclass::nested`) is never actually mentioned at the site of its definition, so it can't be easily searched for. 
-
-It gets more complex if the nested class's name happens to match that of any top-level class. Consider the following: 
-
-{% highlight ruby %}
-    class someclass {
-        class nested {
-            notice("I am someclass::nested!")
-        }
-        
-        include nested
-    }
-    
-    class nested {
-        notice("I am plain-old nested, also known as ::nested!")
-    }
-{% endhighlight %}
-
-The fact that it's not immediately and unambiguously clear which `nested` class is being declared by `someclass`'s `include nested` statement should give you pause about nesting classes in all but the most limited use cases; with only a little additional complexity, tracking down class names can get seriously problematic. (As for this example, `someclass`'s include statement will include `someclass::nested`; to include `nested`, you would have to declare it as `::nested`.)
-
-Lastly, although the nesting of class definitions has absolutely no effect on variable scope, it has the unfortunate property of _looking_ like it does to a reader who is familiar with lexically scoped languages and has briefly forgotten that the Puppet DSL is dynamically scoped. This alone is reason to avoid nesting wherever possible. 
-
 #### Parameterised Classes
 
 In Puppet release 2.6.0 and later, classes are extended to allow the passing of parameters into classes.
@@ -393,7 +345,7 @@ To create a class with parameters you can now specify:
     }
 {% endhighlight %}
 
-Classes with parameters are not added using the include function but rather the resulting class can then be included more like a definition:
+Classes with parameters are not declared using the include function but with an alternate syntax similar to a resource declaration:
 
 {% highlight ruby %}
     node webserver {
@@ -469,14 +421,13 @@ Please note that stage is not a metaparameter.  The run stage must be specified
 as a class parameter and as such classes must use the resource declaration
 syntax as shown rather than the "include" statement.
 
-#### Definitions
+#### Defined Resource Types
 
-Definitions follow the same basic form as classes, but they are introduced with the 
+Defined resource types follow the same basic form as classes, but they are introduced with the 
 `define` keyword (not `class`) and they support arguments but no inheritance.  As 
-mentioned previously, defines can be reused multiple times on the same system and 
-take parameters.   Suppose we want to create a define that creates source control 
+mentioned previously, defined resource types take parameters and can be reused multiple times on the same system.   Suppose we want to create a resource collection that creates source control 
 repositories.  We probably would want to create multiple repositories on the same 
-system, so we would use a define, not a class.  Here's an example:
+system, so we would use a defined type, not a class.  Here's an example:
 
 {% highlight ruby %}
     define svn_repo($path) {
@@ -489,18 +440,13 @@ system, so we would use a define, not a class.  Here's an example:
     svn_repo { other_repo:  path => '/var/svn_other' }
 {% endhighlight %}
 
-Note how variables can be used within the definitions.  We use dollar sign ($) variables.  
-Also note the use of the variable `$title` above.  This is a bit of technical knowledge, 
-but as of Puppet 0.22.3 and later, definitions can have both a name and a title represented 
-by the `$title` and `$name` variables respectively. By default, `$title` and `$name` are set 
-to the same value, but you can set a `title` attribute and pass a different name as a parameter.  
-The '$title' and '$name' only work in defines, not in classes or other resources.
+Note how parameters specified in the definition (`define svn_repo($path)`) must appear as resource attributes (`path => '/var/svn_puppet'`) whenever a resource of the new type is declared and are available as variables (`unless => "/bin/test -d $path"`) within the definition. Multiple variables (separated by commas) can be specified. Default values can also be specified for any parameter with `=`, and any parameter which has a default becomes non-mandatory when a resource of the new type is declared. 
 
-Earlier we mentioned that "metaparameters" are attributes that are available on all resource 
-types.  Defined types can also use metaparameters, for instance we can use 'require' inside 
-of a definition.  We can reference the values of those metaparameters using built-in variables.   
+Defined types have a number of built-in variables available, including `$name` and `$title`, which are set to the title of the resource when it is declared. (The reasons for having two identical variables with this information are outside the scope of this document, and these two special variables cannot be used the same way in classes or other resources.) As of Puppet 2.6.5, the `$name` and `$title` variables can also be used as default values for parameters:
 
-Here's an example:
+    define svn_repo($path = "/var/$name") {...}
+
+Any metaparameters used when a defined resource is declared are also made available in the definition as variables: 
 
 {% highlight ruby %}
     define svn_repo($path) {
@@ -522,16 +468,15 @@ Here's an example:
 {% endhighlight %}
 
 The above is perhaps not a perfect example, as most likely we would
-know that subversion was always required for svn checkouts.  However
-you can see from the above how it's possible to use defined types
-with requires and other metaparameters.
+know that subversion was always required for svn checkouts, but it illustrates how `require` and other metaparameters can be used in defined types.
 
-#### Classes vs. Definitions
 
-Classes and definitions are created similarly (although classes do
+#### Classes vs. Defined Resource Types
+
+Classes and defined types are created similarly (although classes do
 not accept parameters), but they are used very differently.
 
-Definitions are used to define reusable objects which will have
+Defined types are used to define reusable objects which will have
 multiple instances on a given host, so they cannot include any
 resources that will only have one instance.  For instance, multiple
 uses of the same define cannot create the same file.
@@ -542,17 +487,17 @@ you'll only ever get one copy of the resources.
 
 Most often, services will be defined in a class, where the
 service's package, configuration files, and running service will
-all be defined in the class, because there will normally be one
+all be gathered, because there will normally be one
 copy of each on a given host.   (This idiom is sometimes
 referred to as "service-package-file").
 
-Definitions would be used to manage resources like virtual hosts, of 
+Defined types would be used to manage resources like virtual hosts, of 
 which you can have many, or to encode some simple information in a reusable 
 wrapper to save typing.
 
 #### Modules
 
-You can (and should!) combine collections of classes, definitions and resources
+You can (and should!) combine collections of classes, defined types, and resources
 into modules. Modules are portable collections of configuration,
 for example a module might contain all the resources required to
 configure Postfix or Apache. You can find out more on the
@@ -1529,8 +1474,8 @@ Importing Manifests
 -------------------
 
 Puppet has an `import` keyword for importing other manifests. Code
-in those external manifests should always be stored in a `class` or
-`definition` or it will be imported into the main scope and applied
+in those external manifests should always be stored in a class or
+defined resource type, or else it will be imported into the main scope and applied
 to all nodes. Currently files are only searched for within the same
 directory as the file doing the importing.
 
