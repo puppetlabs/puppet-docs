@@ -65,10 +65,7 @@ to specify all of them.
 
 You can find all of the supported resource
 types, their valid attributes, and documentation for all of it in
-the [Type Guides](./types/) and [References](/references/).
-The guides section will provide in depth examples and commentary, whereas 
-the references version is auto generated (and also available for past
-versions of Puppet).  We would recommend starting with the 'guides'.
+the [References](/references/stable/type.html).
 
 Let's get started.   Here's a simple example of a resource in Puppet,
 where we are describing the permissions and ownership of a file:
