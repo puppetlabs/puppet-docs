@@ -66,7 +66,7 @@ Attributes and Values
 ### Quoting
 
 Attributes for resources should not be double quoted but their values should
-be unless they are native types.  For instance, the keyword `exists` as a value
+be unless they are native types.  For instance, the keyword `present` as a value
 of the ensure attribute of a file resource should not be in double quotes.  In
 contrast, the owner attribute of a file should have a value in double quotes as
 the owner will never be a native value.
@@ -75,7 +75,7 @@ Example:
 
 {% highlight ruby %}
     file { "/tmp/somefile":
-        ensure => exists,
+        ensure => present,
         owner  => "root",
     }
 {% endhighlight %}
@@ -89,7 +89,7 @@ Example:
 
 {% highlight ruby %}
     file { "/tmp/somefile":
-        ensure => exists,
+        ensure => present,
         owner  => "root",
     }
 {% endhighlight %}
@@ -123,7 +123,7 @@ In cases where there is only one attribute-value pair, a resource can be
 declared in a single line:
 
 {% highlight ruby %}
-    file { "/tmp/somefile": ensure => exists }
+    file { "/tmp/somefile": ensure => present }
 {% endhighlight %}
 
 ### Multi-Declaration resource statements
@@ -137,10 +137,10 @@ formatting in the example below:
         "/tmp/app":
             ensure => directory;
         "/tmp/app/file":
-            ensure => exists,
+            ensure => present,
             owner  => "webapp";
         "/tmp/app/file2":
-            ensure => exists,
+            ensure => present,
             owner  => "webapp",
             mode   => 755;
     }
