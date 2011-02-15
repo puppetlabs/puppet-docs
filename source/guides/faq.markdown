@@ -185,16 +185,15 @@ that they are corrected within a reasonable time frame.
 If you have identified an issue then please send an email to the
 Security mailbox (<security@puppetlabs.net>) with the details.
 
-#### Recent Notifications
+#### Recent Security Notifications
 
-Experience has shown that "security through obscurity" does not
-work. Public disclosure allows for more rapid and better solutions
-to security problems. In that vein, this page addresses Puppet's
-status with respect to various known security holes, which could
-potentially affect Puppet.
+Public disclosure makes our users safer, by allowing better
+and more rapid solutions to security problems. The following is a list of
+Puppet's known security holes and their status:
 
-- [CVE-2009-3564](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) -- Resolved in 0.25.2
-- [CVE-2010-0156](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) -- Resolved in 0.25.2
+- [Authorization vulnerability in Puppet 2.6.x](https://groups.google.com/group/puppet-announce/browse_thread/thread/df661158e175e117) -- Resolved in 2.6.4
+- [CVE-2009-3564 (Failure to reset supplementary groups)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) -- Resolved in 0.25.2
+- [CVE-2010-0156 (Symlink attack allowing local users to overwrite arbitrary files)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) -- Resolved in 0.25.2 and 0.24.9
 
 ### Who is Puppet Labs?
 
