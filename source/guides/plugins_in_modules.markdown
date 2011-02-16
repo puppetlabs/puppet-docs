@@ -42,9 +42,21 @@ in a module:
 
     <MODULEPATH>/<module>/lib/puppet/type
 
+    for instance, let's say you have a custom package provider called custom_type.rb, you would place it in the following location
+
+    <MODULEPATH>/<module>/lib/puppet/provider/type/custom_pkg.rb
+
 For providers, place them in:
 
     <MODULEPATH>/<module>/lib/puppet/provider
+
+    Let's say you have a custom package provider called custom_pkg.rb, you would place it in the following location:
+
+      <MODULEPATH>/<module>/lib/puppet/provider/package/custom_pkg.rb
+
+    Let's say you have a custom user provider called custom_user.rb, you would place it in the following location:
+
+      <MODULEPATH>/<module>/lib/puppet/provider/package/custom_user.rb
 
 For functions, place them in:
 
