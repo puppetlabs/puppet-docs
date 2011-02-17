@@ -473,17 +473,16 @@ know that subversion was always required for svn checkouts, but it illustrates h
 
 #### Classes vs. Defined Resource Types
 
-Classes and defined types are created similarly (although classes do
-not accept parameters), but they are used very differently.
+Classes and defined types are created similarly, but they are used very differently.
 
 Defined types are used to define reusable objects which will have
 multiple instances on a given host, so they cannot include any
 resources that will only have one instance.  For instance, multiple
 uses of the same define cannot create the same file.
 
-Classes, on the other hand, are guaranteed to
-be singletons -- you can include them as many times as you want and
-you'll only ever get one copy of the resources.
+Classes, on the other hand, are guaranteed to be singletons -- you
+can include them as many times as you want and you'll only ever
+get one copy of the resources.
 
 Most often, services will be defined in a class, where the
 service's package, configuration files, and running service will
