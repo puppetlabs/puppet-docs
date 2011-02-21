@@ -13,9 +13,9 @@ Once Puppet is installed, learn how to set it up for initial operation.
 Open Firewall Ports On Server and Agent Node
 --------------------------------------------
 
-In order for the puppet server to centrally manage agent nodes, you
-may need to open port 8140, both TCP and UDP, on the server and
-agent nodes.
+In order for the puppet master server to centrally manage agent nodes, you
+may need to open port 8140 for incoming tcp connections on the puppet master.
+Consult your firewall documentation for more details. 
 
 Configuration Files
 -------------------
@@ -51,7 +51,7 @@ For the agent nodes:
 
     192.168.1.67 crabcake.picnic.edu crabcake puppet
 
-WARNING: If you can ping the server by the name `puppet` but
+NOTE: If you can ping the server by the name `puppet` but
 Syslog (for example `/var/log/messages`) on the agent nodes still has
 entries stating the puppet agent cannot connect to the server,
 verify port 8140 is open on the server.
@@ -102,14 +102,14 @@ tutorials listed in the
 Start the Central Daemon
 ------------------------
 
-Most sites should only need one central puppet server. Puppet Labs
+Most sites should only need one puppet master server. Puppet Labs
 will be publishing a document describing best practices for scale-out
 and failover, though there are various ways to address handling
 in larger infrastructures.  For now, we'll explain how to
 work with the one server, and others can be added as needed.
 
 First, decide which machine will be the central server; this is
-where puppetmasterd will be run.
+where puppet master will be run.
 
 The best way to start any daemon is using the local server's
 service management system, often in the form of init scripts.
@@ -124,12 +124,12 @@ It is also neccessary to create the puppet user and group
 that the daemon will use.   Either create these manually, or start
 the daemon with the `--mkusers` flag to create them.
 
-    # /usr/sbin/puppetmasterd --mkusers
+    # puppet master --mkusers
 
 Starting the puppet daemon will automatically create all necessary certificates, directories, and files.
 
 NOTE:  To enable the daemon to also function as a file server, so that agent nodes can copy files from it, create a
-[fileserver configuration file](./file_serving.html) and restart pupetmasterd.
+[fileserver configuration file](./file_serving.html) and restart puppet master.
 
 Verifying Installation
 ----------------------
@@ -140,11 +140,11 @@ machine, run the agent against the central server to verify
 that everything is working appropriately. You should start the
 agent in verbose mode the first time and with the `--waitforcert` flag enabled:
 
-    # puppetd --server myserver.domain.com --waitforcert 60 --test
+    # puppet agent --server myserver.domain.com --waitforcert 60 --test
 
-Adding the `--test` flag causes puppetd to stay in the foreground,
+Adding the `--test` flag causes puppet agent to stay in the foreground,
 print extra output, only run once and then exit, and to just exit
-if the remote configuration fails to compile (by default, puppetd
+if the remote configuration fails to compile (by default, puppet agent
 will use a cached configuration if there is a problem with the
 remote manifests).
 
@@ -162,18 +162,18 @@ as a security precaution.
 
 On your server, list the waiting certificates:
 
-    # puppetca --list
+    # puppet cert --list
 
 You should see the name of the test agent node. Now go ahead and sign
 the certificate:
 
-    # puppetca --sign mytestagent.domain.com
+    # puppet cert --sign mytestagent.domain.com
 
 Within 60 seconds, your test agent should receive its certificate
 from the server, receive its configuration, apply it locally, and
 exit normally.
 
-NOTE: By default, puppetd runs with a waitforcert of five minutes; set
+NOTE: By default, puppet agent runs with a waitforcert of five minutes; set
 the value to 0 to disable this wait-polling period entirely.
 
 Scaling your Installation
