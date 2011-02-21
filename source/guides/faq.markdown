@@ -150,9 +150,9 @@ manual management tasks.
 
 Yes.
 
-All servers are at least somewhat unique (with different host
-names and different IP addresses) but very few servers are
-entirely unique since nearly every one runs a relatively standard
+All servers are at least somewhat unique, but very few servers are
+entirely unique; host names and IP addresses (e.g.) will always 
+differ, but nearly every server runs a relatively standard
 operating system. Servers are also often very similar to other
 servers within a single organization -- all Solaris servers might
 have similar security settings, or all web servers might have
