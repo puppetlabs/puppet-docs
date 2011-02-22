@@ -89,7 +89,7 @@ this way.
 
 In Puppet version 0.24.6 onwards you can use complex expressions in
 if statements and variable assignments. You can see examples of how
-to do this in the [Language Tutorial](./language_tutorial.html).
+to do this in the [language guide](./language_guide.html).
 
 ## Can I output Facter facts in YAML?
 

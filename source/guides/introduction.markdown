@@ -174,6 +174,6 @@ Learning The Language
 Seeing a few examples in action will greatly help in learning the system.
 
 For information about the Puppet language, see the excellent
-[Language Tutorial](./language_tutorial.html)
+[language guide](./language_guide.html)
 
 

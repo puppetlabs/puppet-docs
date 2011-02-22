@@ -27,8 +27,7 @@ determine what features a provider can (or should) provide.
 
 The providers implement support for that type by translating calls
 in the resource type to operations on the system.  As mentioned
-in our [Introduction](./introduction.html) and [Language
-Tutorial](./language_tutorial.html), an example would be
+in our [Introduction](./introduction.html) and [language guide](./language_guide.html), an example would be
 that "yum" and "apt" are both different providers that fulfill
 the "package" type.
 
