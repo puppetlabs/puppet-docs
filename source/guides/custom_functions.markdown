@@ -33,7 +33,7 @@ your functions:
     server, and you can't do anything that requires direct access to
     the client machine.
 -   There are actually two completely different types of functions
-    available -- *rvalues* (which return a value) and *statements* 
+    available --- *rvalues* (which return a value) and *statements* 
     (which do not). If you are writing an rvalue function, you must pass 
     `:type => :rvalue` when creating the function; see the examples below.
 -   The name of the file containing your function must be the
@@ -51,7 +51,7 @@ If you are using a version of Puppet prior to 0.24.0, or have some other compell
 -   `$libdir/puppet/parser/functions`
 -   `puppet/parser/functions` sub-directories in your Ruby `$LOAD_PATH`
 
-## First Function -- small steps
+## First Function --- small steps
 
 New functions are defined by executing the newfunction method
 inside the Puppet::Parser::Functions module. You pass the name of

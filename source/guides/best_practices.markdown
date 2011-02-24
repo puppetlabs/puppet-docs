@@ -18,7 +18,7 @@ Use Modules When Possible
 Keep Your Puppet Content In Version Control
 -------------------------------------------
 
-Keep your Puppet manifests in version control.  You can pick your favorite systems -- popular choices include git and svn.
+Keep your Puppet manifests in version control.  You can pick your favorite systems --- popular choices include git and svn.
 
 Naming Conventions
 ------------------

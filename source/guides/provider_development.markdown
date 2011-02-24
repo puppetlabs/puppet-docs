@@ -34,7 +34,7 @@ throughout this document, and the examples used are current as of
 Providers are always associated with a single resource type, so
 they are created by calling the provide class method on that
 resource type. When declarating a provider, you can specify a
-parent class -- for instance, all package providers have a common
+parent class --- for instance, all package providers have a common
 parent class:
 
     Puppet::Type.type(:package).provide :dpkg, :parent => Puppet::Provider::Package do
@@ -104,7 +104,7 @@ To test Facter values, just use the name of the fact:
 
 Note that case doesn't matter in the tests, nor does it matter
 whether the values are strings or symbols. It also doesn't matter
-whether you specify an array or a single value -- Puppet does an OR
+whether you specify an array or a single value --- Puppet does an OR
 on the list of values.
 
 # Default Providers
@@ -166,7 +166,7 @@ return a provider instance for every package in the dpkg database.
 # Provider Methods
 
 By default, you have to define all of your getter and setter
-methods. For simple cases, this is sufficient -- you just implement
+methods. For simple cases, this is sufficient --- you just implement
 the code that does the work for that property.
 
 However, because things are rarely so simple, Puppet attempts to

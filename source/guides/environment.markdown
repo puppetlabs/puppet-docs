@@ -17,7 +17,7 @@ As of 0.24.0, Puppet has support for multiple environments, along
 the same lines as
 [Ruby on Rails](http://wiki.rubyonrails.org/rails/pages/Environments).
 The idea behind these environments is to provide an easy mechanism
-for managing machines at different levels of SLA -- some machines
+for managing machines at different levels of SLA --- some machines
 need to be up constantly and thus cannot tolerate disruptions and
 usually use older software, while other machines are more up to
 date and are used for testing upgrades to more important machines.

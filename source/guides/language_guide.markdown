@@ -59,7 +59,7 @@ We'll show later how resources can be aggregated together with
 with "modules", but resources are what we should start with first.
 
 Each resource has a type, a title, and a list
-of attributes -- each resource in Puppet can support various attributes,
+of attributes --- each resource in Puppet can support various attributes,
 though many of them will have reasonable defaults and you won't have
 to specify all of them.
 
@@ -183,12 +183,12 @@ This way you can specify a single default path for your entire configuration, an
 
 Defaults work with any resource type in Puppet.
 
-Defaults are not global -- they only affect the current scope and scopes below the current one.  If you want a default setting to affect your entire configuration, your only choice currently is to specify them outside of any class.  We'll mention classes in the next section.
+Defaults are not global --- they only affect the current scope and scopes below the current one.  If you want a default setting to affect your entire configuration, your only choice currently is to specify them outside of any class.  We'll mention classes in the next section.
 
 ### Resource Collections
 
 Aggregation is a powerful concept in Puppet.  There are two ways to combine multiple resources into one easier to use resource: Classes and defined resource types. Classes model fundamental aspects of nodes, they say "this node IS a webserver" or "this node is one of these".  In programming terminology classes are
-singletons -- they only ever get evaluated once per node.
+singletons --- they only ever get evaluated once per node.
 
 Defined resource types, on the other hand, can be reused many times on the same node.  They essentially work as if you created your own Puppet type just by using the language.  They are meant to be evaluated multiple times, with different inputs each time.  This means you can pass variable values into the defines.
 
@@ -480,7 +480,7 @@ multiple instances on a given host, so they cannot include any
 resources that will only have one instance.  For instance, multiple
 uses of the same define cannot create the same file.
 
-Classes, on the other hand, are guaranteed to be singletons -- you
+Classes, on the other hand, are guaranteed to be singletons --- you
 can include them as many times as you want and you'll only ever
 get one copy of the resources.
 
@@ -924,7 +924,7 @@ For example:
 {% endhighlight %}
 
 In this example, the value of the `$other` variable evaluates to
-`content`. Qualified variables are read-only -- you cannot set a variable's value from other class.
+`content`. Qualified variables are read-only --- you cannot set a variable's value from other class.
 
 Variable qualification is dependent on the evaluation order of your
 classes. Class `myclass` must be evaluated before class
@@ -1444,7 +1444,7 @@ here's the available operators in Backus Naur Form:
 Functions
 ---------
 
-Puppet supports many built in functions; see the [Function Reference](/references/stable/function.html) for details -- see [Custom Functions](/guides/custom_functions.html) for information on how to create
+Puppet supports many built in functions; see the [Function Reference](/references/stable/function.html) for details --- see [Custom Functions](/guides/custom_functions.html) for information on how to create
 your own custom functions.
 
 Some functions can be used as a statement:

@@ -19,7 +19,7 @@ called `ensurable` that handles modeling creation and destruction; it
 creates an `ensure` property and adds `absent` and `present` values for
 it, which in turn require three methods on the provider, `create`,
 `destroy`, and `exists?`. Here's the first start to the resource.  We're
-going to create one called 'file' -- this is an example of how we'd
+going to create one called 'file' --- this is an example of how we'd
 create a resource for something Puppet already has.  You can see
 how this would be extensible to handle one of your own ideas:
 

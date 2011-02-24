@@ -41,7 +41,7 @@ daemon and client/server setup), so you
 can understand the basic concepts.  From there, move on to
 centrally managed server infrastructure.   [Ralsh](./tools.html)
 is also a great way to get your feet wet exploring the Puppet model,
-after you have read some of the basic information -- you can quickly see how
+after you have read some of the basic information --- you can quickly see how
 the declarative model works for simple things like users, services, and file permissions.
 
 Once you've learned the basics, make sure you understand classes and modules,
@@ -78,8 +78,8 @@ Features of the System
 One big difference between Puppet and most other tools is
 that Puppet configurations are idempotent, meaning they can safely
 be run multiple times. Once you develop your configuration, your
-machines will apply the configuration often -- by default, every 30
-minutes -- and Puppet will only make any changes to the system if
+machines will apply the configuration often --- by default, every 30
+minutes --- and Puppet will only make any changes to the system if
 the system state does not match the configured state.
 
 If you tell the system to operate in no-op ("aka
@@ -89,7 +89,7 @@ your system. Similarly, if any changes do happen when running
 without that flag, puppet will ensure those changes are logged.
 
 Because of this, you can use Puppet to manage a machine throughout its
-lifecycle -- from initial installation, to ongoing upgrades, and
+lifecycle --- from initial installation, to ongoing upgrades, and
 finally to end-of-life, where you move services elsewhere. Unlike
 system install tools like Sun's Jumpstart or Red Hat's Kickstart,
 Puppet configurations can keep machines up to date for years,
@@ -102,7 +102,7 @@ Puppet to do everything else.
 
 Puppet's Resource Abstraction Layer (RAL) allows you to focus on the parts of the system
 you care about, ignoring implementation details like command
-names, arguments, and file formats -- your tools should treat all
+names, arguments, and file formats --- your tools should treat all
 users the same, whether the user is stored in NetInfo or
 `/etc/passwd`.  We call these system entities
 `resources`.
@@ -136,7 +136,7 @@ for the package type.
 
 Puppet resource providers are what are responsible for directly managing the
 bits on disk. You do not directly modify a system from Puppet language
--- you use the language to specify a resource, which then
+--- you use the language to specify a resource, which then
 modifies the system.   This way puppet language behaves exactly the same
 way in a centrally managed server setup as it does locally without a server.
 Rather than tacking a couple of lines onto
@@ -158,7 +158,7 @@ between resources.
 #### Resource Relationships
 
 Puppet has a system of modelling relationships between resources
--- what resources should be evaluated before or after one another.
+--- what resources should be evaluated before or after one another.
 They also are used to determine whether a resource needs to respond to changes in
 another resource (such as if a service needs to restart if the configuration
 file for the service has changed).  This ordering reduces unneccessary commands,

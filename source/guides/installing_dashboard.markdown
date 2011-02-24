@@ -44,7 +44,7 @@ The Puppet Dashboard will run on most Unix, Linux and Mac OS X systems once its 
 
        apt-get install -y build-essential irb libmysql-ruby libmysqlclient-dev libopenssl-ruby libreadline-ruby mysql-server rake rdoc ri ruby ruby-dev
 
-2. Install the `gem` package manager -- do not use the one packaged with the operating system:
+2. Install the `gem` package manager --- do not use the one packaged with the operating system:
 
        URL="http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz"
        PACKAGE=$(echo $URL | sed "s/\.[^\.]*$//; s/^.*\///")
@@ -77,7 +77,7 @@ The Puppet Dashboard will run on most Unix, Linux and Mac OS X systems once its 
        service mysqld start
        chkconfig mysqld on
 
-4. Install the `gem` package manager -- do not install RubyGems version 1.3.6 or newer because they are incompatible with the Ruby shipped with CentOS 5.5:
+4. Install the `gem` package manager --- do not install RubyGems version 1.3.6 or newer because they are incompatible with the Ruby shipped with CentOS 5.5:
 
        URL="http://production.cf.rubygems.org/rubygems/rubygems-1.3.5.tgz"
        PACKAGE=$(echo $URL | sed "s/\.[^\.]*$//; s/^.*\///")
@@ -145,9 +145,9 @@ There are many ways to run a Ruby web application like the Puppet Dashboard, we 
 
            ./script/server -p 8080
 
-2. **Passenger**: This plugin for [Apache](http://httpd.apache.org/) or [Nginx](http://nginx.org/) makes it easy to multile Ruby web apps quickly and efficiently using multiple instances -- it's great for production use. If used along with Ruby Enterprise Edition, it can dramatically reduce the memry required to run Ruby web applications. For further information, please see [Passenger/](http://www.modrails.com/) and [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/) and the example apache configuration in `ext/passenger/dashboard-vhost.conf`.
+2. **Passenger**: This plugin for [Apache](http://httpd.apache.org/) or [Nginx](http://nginx.org/) makes it easy to multile Ruby web apps quickly and efficiently using multiple instances --- it's great for production use. If used along with Ruby Enterprise Edition, it can dramatically reduce the memry required to run Ruby web applications. For further information, please see [Passenger/](http://www.modrails.com/) and [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/) and the example apache configuration in `ext/passenger/dashboard-vhost.conf`.
 
-3. **Thin**: This fast and reliable server can run multiple instances of the Puppet Dashboard application behind a proxy like [Apache](http://httpd.apache.org/) or [Nginx](http://nginx.org/) to appear as a single website -- it's great for production use. For further information, please see [Thin](http://code.macournoyer.com/thin/).
+3. **Thin**: This fast and reliable server can run multiple instances of the Puppet Dashboard application behind a proxy like [Apache](http://httpd.apache.org/) or [Nginx](http://nginx.org/) to appear as a single website --- it's great for production use. For further information, please see [Thin](http://code.macournoyer.com/thin/).
 
 Reporting
 ---------
@@ -253,7 +253,7 @@ Security
 
 *WARNING:* The Puppet Dashboard provides access to sensitive information and can make changes to your Puppet-managed infrastructure. You must restrict access to it to protect it!
 
-The Puppet Dashboard does not currently provide authentication, authorization or encryption -- although work on these is in progress.
+The Puppet Dashboard does not currently provide authentication, authorization or encryption --- although work on these is in progress.
 
 Third-party tools that can help secure a Puppet Dashboard include:
 

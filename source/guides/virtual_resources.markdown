@@ -36,7 +36,7 @@ You can't configure user johnny in both the solaris and freebsd
 classes.
 
 For most cases, this is fine, because most resources are distinctly
-related to a single Puppet class -- they belong in the webserver
+related to a single Puppet class --- they belong in the webserver
 class, mailserver class, or whatever. Some resources can not be
 cleanly tied to a specific class, though; multiple
 otherwise-unrelated classes might need a specific resource. For
@@ -75,7 +75,7 @@ mythical user, we would use:
 
 As promised, we've got the user type (capitalized, because we're
 performing a type-level operation), and we're looking for the user
-whose title is luke. "Title" is special here -- it is the value
+whose title is luke. "Title" is special here --- it is the value
 before the colon when you specify the user. This is somewhat of an
 inconsistency in Puppet, because this value is often referred to as
 the name, but many types have a name parameter and they could have

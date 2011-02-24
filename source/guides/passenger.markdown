@@ -280,7 +280,7 @@ adjusting these options in your apache configuration:
     for apache compatibility are not needed with Puppet.
 
 As is expected with traditional web servers, once your service
-starts using swap, performance degradation will occur -- so be mindful
+starts using swap, performance degradation will occur --- so be mindful
 of your memory/swap usage on your Puppetmaster.
 
 To monitor the age of your puppetmasterd processes within

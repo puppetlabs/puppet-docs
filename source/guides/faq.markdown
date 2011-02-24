@@ -44,9 +44,9 @@ meant a series of imperative steps; in its rawest state, SSH and
 a _for_ loop. This general approach grew more sophisticated over time, but it
 retained the more profound limitations at its root.
 
-Puppet takes a different approach, which is to model everything -- the current
+Puppet takes a different approach, which is to model everything --- the current
 state of the node, the desired configuration state, the actions taken during
-configuration enforcement -- as data: each node receives a catalog of
+configuration enforcement --- as data: each node receives a catalog of
 resources and relationships, compares it to the current system state, and makes
 changes as needed to bring the system into compliance.
 
@@ -72,7 +72,7 @@ horrible human interfaces. While some people are comfortable
 reading and writing them, there's a reason why we use web browsers
 instead of just reading the HTML directly. Also, using XML or YAML
 would limit any assurance that the interface was declarative
--- one process might treat an XML configuration differently from
+--- one process might treat an XML configuration differently from
 another.
 
 As for just using Ruby as the input format, Puppet 2.6.0 actually added
@@ -154,9 +154,9 @@ All servers are at least somewhat unique, but very few servers are
 entirely unique; host names and IP addresses (e.g.) will always 
 differ, but nearly every server runs a relatively standard
 operating system. Servers are also often very similar to other
-servers within a single organization -- all Solaris servers might
+servers within a single organization --- all Solaris servers might
 have similar security settings, or all web servers might have
-roughly equivalent configurations -- even if they're very different
+roughly equivalent configurations --- even if they're very different
 from servers in other organizations. Finally, servers are often
 needlessly unique, in that they have been built and managed
 manually with no attempt at retaining appropriate consistency.
@@ -191,9 +191,9 @@ Public disclosure makes our users safer, by allowing better
 and more rapid solutions to security problems. The following is a list of
 Puppet's known security holes and their status:
 
-- [Authorization vulnerability in Puppet 2.6.x](https://groups.google.com/group/puppet-announce/browse_thread/thread/df661158e175e117) -- Resolved in 2.6.4
-- [CVE-2009-3564 (Failure to reset supplementary groups)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) -- Resolved in 0.25.2
-- [CVE-2010-0156 (Symlink attack allowing local users to overwrite arbitrary files)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) -- Resolved in 0.25.2 and 0.24.9
+- [Authorization vulnerability in Puppet 2.6.x](https://groups.google.com/group/puppet-announce/browse_thread/thread/df661158e175e117) --- Resolved in 2.6.4
+- [CVE-2009-3564 (Failure to reset supplementary groups)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) --- Resolved in 0.25.2
+- [CVE-2010-0156 (Symlink attack allowing local users to overwrite arbitrary files)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) --- Resolved in 0.25.2 and 0.24.9
 
 ### Who is Puppet Labs?
 
@@ -336,15 +336,15 @@ facter by itself in a shell.:
 Puppet provides a few in-built variables you can use in your
 manifests:
 
-* `$environment` -- Provided by the puppet agent; returns the agent node's current
+* `$environment` --- Provided by the puppet agent; returns the agent node's current
 environment.
-* `$servername` -- Provided by the puppet master; returns the master server's
+* `$servername` --- Provided by the puppet master; returns the master server's
 fully-qualified domain name. (Note that this information is gathered from the
 master server by Facter, rather than read from the config files; even if the
 master's certname is set to something other than its fully-qualified domain
 name, this variable will still contain the server's fqdn.)
-* `$serverip` -- Provided by the puppet master; returns the master server's IP address.
-* `$serverversion` -- Provided by the puppet master; returns puppet master's current version. 
+* `$serverip` --- Provided by the puppet master; returns the master server's IP address.
+* `$serverversion` --- Provided by the puppet master; returns puppet master's current version. 
 
 ### Can I access environment variables with Facter?
 
