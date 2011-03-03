@@ -16,7 +16,7 @@ Latest: [Ordering][] &rarr;
 
 * * * 
 
-[learningvm]: url
+[learningvm]: http://www.puppetlabs.com/downloads/learning/learn_puppet.tar.bz2
 <!-- Chapters: -->
 [ral]: ./ral.html
 [Manifests]: ./manifests.html
@@ -41,6 +41,8 @@ So to learn Puppet effectively, you need a virtual machine you can experiment on
 In short, you want _this_ virtual machine:
 
 * [Learning Puppet VM][learningvm]
+
+(Size: 496MB. MD5: [99d7a3440526de80b4b59331f9826b7d](http://www.puppetlabs.com/downloads/learning/learn_puppet.tar.bz2.md5sum))
 
 Currently, this has been tested with VMWare Fusion on OS X, but it should be usable with other virtualization software; we hope to test it with VirtualBox soon. The root user's password is `puppet`, and you should be able to SSH into it without a problem; for your convenience, the system is configured to write its current IP address to the login screen about ten seconds after it boots. Beyond that, teaching the use of virtualization software is outside the scope of this introduction, but [let me know](mailto:nick.fagerlund@puppetlabs.com) if you run into trouble and we'll try to refine our approach over time.
 
