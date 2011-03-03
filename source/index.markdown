@@ -22,10 +22,20 @@ Small documents for getting help fast.
 * Core Types Cheat Sheet --- available in [single-page flavor](./puppet_core_types_cheatsheet.pdf) (double-sided), [extra breathing room flavor](./puppet_core_types_cheatsheet_expanded.pdf) (six pages), and [plain web page](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/) flavor
 * [Frequently Asked Questions](./guides/faq.html)
 
+Learning Puppet
+---------------
+
+Learn to use Puppet! New users: start here.
+
+* [Introduction and Index](./learning/)
+* [Resources and the RAL](./learning/ral.html) --- learn about resources, the molecules of system configuration
+* [Manifests](./learning/manifests.html) --- start writing and applying Puppet code
+* [Ordering](./learning/ordering.html) --- learn to join resources that depend on each other
+
 Getting Started
 ---------------
 
-New users should begin here.
+Guides on getting Puppet up and running.
 
 * [An Introduction to Puppet](./guides/introduction.html)
 * [Supported Platforms](./guides/platforms.html)
