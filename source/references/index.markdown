@@ -14,6 +14,7 @@ Puppet generated references are available for a wide range of versions.
 Available Versions
 ------------------
 
+* [2.6.5](2.6.5/)
 * [2.6.4](2.6.4/)
 * [2.6.3](2.6.3/)
 * [2.6.2](2.6.2/)
