@@ -30,7 +30,7 @@ Yeah, that easy.
 
 You can use `puppet` --- that is, without any subcommand --- as a shortcut for `puppet apply`; it has the rockstar parking in the UI because of how often it runs at an interactive command line. I'll mostly be saying "puppet apply" for clarity's sake. 
 
-The behavior of Puppet's man pages is currently in flux. You can always get help for Puppet's command line tools by running the tool with the --help flag; in the Learning Puppet VM, which uses Puppet Enterprise, you can also run `pe-man puppet apply` to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will use Git-style man pages (`man puppet-apply`) with improved formatting.
+The behavior of Puppet's man pages is currently in flux. You can always get help for Puppet's command line tools by running the tool with the `--help` flag; in the Learning Puppet VM, which uses Puppet Enterprise, you can also run `pe-man puppet apply` to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will use Git-style man pages (`man puppet-apply`) with improved formatting.
 
 Manifests
 ---------
@@ -50,9 +50,8 @@ Before being applied, manifests get compiled into a **"catalog,"** which is a [d
 
 Why? Several really good reasons, which we'll get to once we rediscover agent/master Puppet;[^reasons] it's not urgent at the moment. But I'm mentioning it now as kind of an experiment: I think there are several things in Puppet that are easy to explain if you understand that split and quite baffling if you don't, so try keeping this in the back of your head and we'll see if it pays off later.
 
-OK, enough about that; let's write some code! This will all be happening on your master VM,[^whichvm] so log in as root now; you'll probably want to stash these test manifests somewhere convenient, like `/root/learning-manifests`.
+OK, enough about that; let's write some code! This will all be happening on your main Learning Puppet VM, so log in as root now; you'll probably want to stash these test manifests somewhere convenient, like `/root/learning-manifests`.
 
-[^whichvm]: This would all work on either, actually, but we'll eventually be re-using some of the later exercises, which will be easier if they're on the master. 
 [^reasons]: There are also a few I can mention now, actually. If you drastically refactor your manifest code and want to make sure it still generates the same configurations, you can just intercept the catalogs and use a special diff tool on them; if the same nodes get the same configurations, you can be sure the code acts the same without having to model the execution of the code in your head. Compiling to a catalog also makes it much easier to simulate applying a configuration, and since the catalog is just data, it's relatively easy to parse and analyze with your own tool of choice.
 [dag]: http://en.wikipedia.org/wiki/Directed_acyclic_graph
 
@@ -161,12 +160,12 @@ All right, notice how we left out some important attributes there and everything
 
 To people who occasionally delve into the Puppet source code, the one attribute that defaults to the title is called the **"namevar,"** which is a little weird but as good a name as any. It's almost always the attribute that amounts to the resource's _identity,_ the one thing that should always be unique about each instance. 
 
-This can be a convenient shortcut, but be wary of overusing it; there are several common cases where it makes sense to give a resource a symbolic title and assign its name as a normal attribute. In particular, it's a good idea to do so if a resource's name is long or you want to assign the name conditionally depending on the nature of the system.
+This can be a convenient shortcut, but be wary of overusing it; there are several common cases where it makes more sense to give a resource a symbolic title and assign its name (-var) as a normal attribute. In particular, it's a good idea to do so if a resource's name is long or you want to assign the name conditionally depending on the nature of the system.
 
     notify {'bignotify':
         message => "I'm completely enormous, and will mess up the formatting of your 
             code! Also, since I need to fire before some other resource, you'll need
-            to refer to me by title later using the Notice['title'] syntax, and you
+            to refer to me by title later using the Notify['title'] syntax, and you
             really don't want to have to type this all over again.",
     }
 
