@@ -8,8 +8,6 @@ Puppet Labs Documentation
 
 Welcome to the Puppet Labs documentation site. 
 
-An downloadable version of the Puppet documentation may be found on our [downloads page](http://www.puppetlabs.com/resources/downloads/).
-
 * * *
 
 NOTE: You can find the Marionette Collective documentation [here](./mcollective/index.html).
