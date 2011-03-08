@@ -208,11 +208,12 @@ PUT `/{environment}/facts/{node name}`
 
     curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/pupet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node name}
 
-### Inventory
 
-GET `/{environment}/inventory/{anything}`
+### Facts Search
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/inventory/search\?facts.processorcount.ge=2\&facts.operatingsystem=Ubuntu
+GET `/{environment}/facts_search/{anything}`
+
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu
 
 fact filters must be proceeded by "facts." and if you want to do a comparison besides equality, you must append ".comparisontype" to the fact name.  Available comparison types are:
 
