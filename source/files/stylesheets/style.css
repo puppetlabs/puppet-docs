@@ -417,6 +417,17 @@ span.ampersand{
   margin-top: -0.33em;  
 }
 
+code span.ampersand {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    text-transform: inherit;
+    margin-top: inherit;
+}
+
 span.alternate {
   letter-spacing: normal;
   position: relative;
