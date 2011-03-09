@@ -93,7 +93,7 @@ Example:
 
 ## The master REST API
 
-A valid and signed certificate is required to retrieve these resourc
+A valid and signed certificate is required to retrieve these resources.
 
 ### Catalogs
 
@@ -195,7 +195,7 @@ Just used for testing
 GET `/{environment}/status/{anything}`
 
 Example:
-=======
+
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/status/puppetclient
 
 ### Facts
@@ -217,7 +217,7 @@ GET `/{environment}/facts_search/{anything}`
 
 fact filters must be proceeded by "facts." and if you want to do a comparison besides equality, you must append ".comparisontype" to the fact name.  Available comparison types are:
 
-#### String comparison
+#### String/general comparison
 
 * `eq` --- This is the default and will be used if no comparison is specified
 * `ne` --- `!=`
