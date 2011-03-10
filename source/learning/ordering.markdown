@@ -157,7 +157,11 @@ Next, edit our new copy of the file. There's a line in there that says `Password
     }
 {% endhighlight %}
 
-Except that won't work! If we apply this manifest, the config file will change, but `sshd` will keep acting on the old config file until it restarts... and if it's only restarting when the system reboots, that could be years from now. If we want the service to change its behavior as soon as we change our policy, we'll have to tell it to monitor the config file.
+Except that won't work! (Don't run it, and if you did, read this footnote.[^inbetween]) If we apply this manifest, the config file will change, but `sshd` will keep acting on the old config file until it restarts... and if it's only restarting when the system reboots, that could be years from now. 
+
+If we want the service to change its behavior as soon as we change our policy, we'll have to tell it to monitor the config file.
+
+[^inbetween]: If you DID apply the incomplete manifest, something interesting happened: your machine is now in a half-rolled-out condition that puts the lie to what I said earlier about not having to worry about the system's current state. Since the config file is now in sync with its desired state, Puppet won't change it during the next run, which means applying the complete manifest won't cause the service to refresh until either the source file or the file on the system changes one more time. <br><br>In practice, this isn't a huge problem, because only your development machines are likely to end up in this state; your production nodes won't have been given incomplete configurations. In the meantime, you have two options for cleaning up after applying an incomplete manifest: For a one-time fix, echo a bogus comment to the bottom of the file on the system (`echo "# ignoreme" >> /etc/ssh/sshd_config`), or for a more complete approach, make a comment in the source file that contains a version string, which you can update whenever you make significant changes to the associated manifest(s). Both of these approaches will mark the config file as out of sync, replace it during the Puppet run, and send the refresh event to the service. 
 
 {% highlight ruby %}
     # /root/learning-manifests/break_ssh.pp, again
