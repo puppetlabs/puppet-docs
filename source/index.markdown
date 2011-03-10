@@ -46,6 +46,7 @@ Components
 Learn more about major working parts of the Puppet system.
 
 * [Puppet commands: master, agent, apply, resource, and more](./guides/tools.html) --- components of the system
+* [Puppet manpages](./man) --- detailed information about each Puppet application
 * [Security Infrastructure / Securing Puppet](./guides/security.html) --- how PKI works
 
 Extended Knowledge

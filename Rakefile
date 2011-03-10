@@ -61,6 +61,23 @@ task :tarball do
   FileUtils.cd '..'
 end
 
+desc "Update the contents of source/man/{app}.markdown" # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
+task :update_manpages do
+  puppet = ENV['PUPPETDIR']
+  applications  = Dir.glob(%Q{#{puppet}/lib/puppet/application/*})
+  ronn = %x{which ronn}.chomp
+  unless File.executable?(ronn) then fail("Ronn does not appear to be installed.") end
+  applications.each do |app|
+    app.gsub!( /^#{puppet}\/lib\/puppet\/application\/(.*?)\.rb/, '\1')
+    headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\n"
+    manstring = %x{RUBYLIB=#{puppet}/lib:$RUBYLIB #{puppet}/bin/puppet #{app} --help | #{ronn} --pipe -f}
+    File.open(%Q{./source/man/#{app}.markdown}, 'w') do |file|
+      file.puts("#{headerstring}#{manstring}")
+    end
+  end
+
+end
+
 namespace :references do
 
   namespace :symlink do
