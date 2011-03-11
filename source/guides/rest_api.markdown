@@ -200,26 +200,30 @@ Example:
 
 ### Facts
 
-GET `/{environment}/facts/{anything}`
+GET `/{environment}/facts/{node certname}`
 
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/facts/{anything}
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/facts/{node certname}
 
-PUT `/{environment}/facts/{node name}`
+PUT `/{environment}/facts/{node certname}`
 
-    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/pupet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node name}
+    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/pupet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node certname}
 
 
 ### Facts Search
 
-GET `/{environment}/facts_search/{anything}`
+GET `/{environment}/facts_search/search?{facts search string}`
 
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu
 
-fact filters must be proceeded by "facts." and if you want to do a comparison besides equality, you must append ".comparisontype" to the fact name.  Available comparison types are:
+Facts search strings are constructed as a series of terms separated by `&`; if there is more than one term, the search combines the terms with boolean AND. There is currently no API for searching with boolean OR. Each term is composed as follows: 
+
+    facts.{name of fact}.{comparison type}={string for comparison}
+
+If you leave off the `.{comparison type}`, the comparison will default to simple equality. The following comparison types are available: 
 
 #### String/general comparison
 
-* `eq` --- This is the default and will be used if no comparison is specified
+* `eq` --- `==` (default)
 * `ne` --- `!=`
 
 #### Numeric comparison
