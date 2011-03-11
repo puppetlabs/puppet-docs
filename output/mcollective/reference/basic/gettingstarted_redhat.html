@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Getting Started</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Getting Started</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              
+<h1 id="getting-started">Getting Started</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#getting-started">Getting Started</a>    <ul>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#activemq">ActiveMQ</a>        <ul>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#configuring">Configuring</a></li>
+          <li><a href="#starting">Starting</a></li>
+        </ul>
+      </li>
+      <li><a href="#marionette-collective">Marionette Collective</a>        <ul>
+          <li><a href="#installation">Installation</a></li>
+        </ul>
+      </li>
+      <li><a href="#configuring-1">Configuring</a>        <ul>
+          <li><a href="#create-facts">Create Facts</a></li>
+          <li><a href="#start-the-server">Start the Server</a></li>
+          <li><a href="#test-connectivity">Test connectivity</a></li>
+          <li><a href="#plugins">Plugins</a></li>
+          <li><a href="#further-reading">Further Reading</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Getting started using Red Hat based distribution like Red Hat Enterprise Linux and CentOS is easy as RPMs are available for all the required components.  This guide walks you through the process.</p>
+
+<p>If you just want to experiment with the system please try our <a href="/mcollective/ec2demo.html">EC2 based demo</a>.  You should be familiar with the architecture and terminology of Marionette Collective, please review the <a href="/mcollective/screencasts.html#message_flow">basic architecture, terminology and message flow</a> screencast first.</p>
+
+<h2 id="requirements">Requirements</h2>
+<p>We try to keep the requirements on external Gems to a minimum, you only need:</p>
+
+<ul>
+  <li>A Stomp server, tested against <a href="http://activemq.apache.org/">ActiveMQ</a></li>
+  <li>Ruby</li>
+  <li>Rubygems</li>
+  <li><a href="http://stomp.codehaus.org/Ruby+Client">Ruby Stomp Client</a></li>
+</ul>
+
+<h2 id="packages">Packages</h2>
+
+<p>We strongly recommend you set up a local Yum repository that will host all the packages on your LAN, you can get the prerequisite packages here:</p>
+
+<ul>
+  <li><a href="http://www.puppetlabs.com/downloads/mcollective/">ActiveMQ</a> - activemq-5.4.0-2.el5.noarch.rpm, activemq-info-provider-5.4.0-2.el5.noarch.rpm, tanukiwrapper-3.2.3-1jpp.<code>*</code>.rpm</li>
+  <li>Java - OpenJDK that is included with your distribution</li>
+  <li>Ruby - included with your distribution</li>
+  <li>RubyGems - <a href="http://fedoraproject.org/wiki/EPEL">EPEL</a></li>
+  <li>Stomp Ruby Gem - <a href="http://fedoraproject.org/wiki/EPEL">EPEL</a></li>
+  <li><a href="http://www.puppetlabs.com/downloads/mcollective/">MCollective</a> - mcollective-1.x.x-1.el5.noarch.rpm, mcollective-common-1.x.x-1.el5.noarch.rpm, mcollective-client-1.x.x-1.el5.noarch.rpm</li>
+</ul>
+
+<p>The rest of this guide will assume you set up a Yum repository.</p>
+
+<h2 id="activemq">ActiveMQ</h2>
+<p>ActiveMQ is currently the most used and tested middleware for use with MCollective.</p>
+
+<p>You need at least one ActiveMQ server on your network, all the nodes you wish to manage will connect to the central ActiveMQ server.
+Later on your can <a href="/mcollective/reference/integration/activemq_clusters.html">cluster the ActiveMQ servers for availability and scale</a>.</p>
+
+<h3 id="install">Install</h3>
+
+<p>On the server that you chose to configure as the ActiveMQ server:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">%</span> yum install java-1.6.0-openjdk activemq
+</code></pre>
+</div>
+
+<h3 id="configuring">Configuring</h3>
+
+<p>Initially you&rsquo;ll just keep it simple with a single ActiveMQ broker and a basic user setup, further security information for ActiveMQ
+can be found <a href="/mcollective/reference/integration/activemq_security.html">here</a></p>
+
+<p>Place the following in <em>/etc/activemq/activemq.xml</em> you can download this file from <a href="http://github.com/puppetlabs/marionette-collective/raw/master/ext/activemq/examples/single-broker/activemq.xml">GitHub</a></p>
+
+<p>Other examples are also available from <a href="http://github.com/puppetlabs/marionette-collective/tree/master/ext/activemq/examples/">GitHub</a></p>
+
+<div class="highlight"><pre><code class="xml"><span class="nt">&lt;beans</span>
+  <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+  <span class="na">xmlns:amq=</span><span class="s">&quot;http://activemq.apache.org/schema/core&quot;</span>
+  <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd</span>
+<span class="s">  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd</span>
+<span class="s">  http://activemq.apache.org/camel/schema/spring http://activemq.apache.org/camel/schema/spring/camel-spring.xsd&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;broker</span> <span class="na">xmlns=</span><span class="s">&quot;http://activemq.apache.org/schema/core&quot;</span> <span class="na">brokerName=</span><span class="s">&quot;localhost&quot;</span> <span class="na">useJmx=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;managementContext&gt;</span>
+            <span class="nt">&lt;managementContext</span> <span class="na">createConnector=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/managementContext&gt;</span>
+
+        <span class="nt">&lt;plugins&gt;</span>
+          <span class="nt">&lt;statisticsBrokerPlugin/&gt;</span>
+          <span class="nt">&lt;simpleAuthenticationPlugin&gt;</span>
+            <span class="nt">&lt;users&gt;</span>
+              <span class="nt">&lt;authenticationUser</span> <span class="na">username=</span><span class="s">&quot;mcollective&quot;</span> <span class="na">password=</span><span class="s">&quot;marionette&quot;</span> <span class="na">groups=</span><span class="s">&quot;mcollective,everyone&quot;</span><span class="nt">/&gt;</span>
+              <span class="nt">&lt;authenticationUser</span> <span class="na">username=</span><span class="s">&quot;admin&quot;</span> <span class="na">password=</span><span class="s">&quot;secret&quot;</span> <span class="na">groups=</span><span class="s">&quot;mcollective,admin,everyone&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/users&gt;</span>
+          <span class="nt">&lt;/simpleAuthenticationPlugin&gt;</span>
+          <span class="nt">&lt;authorizationPlugin&gt;</span>
+            <span class="nt">&lt;map&gt;</span>
+              <span class="nt">&lt;authorizationMap&gt;</span>
+                <span class="nt">&lt;authorizationEntries&gt;</span>
+                  <span class="nt">&lt;authorizationEntry</span> <span class="na">queue=</span><span class="s">&quot;&gt;&quot;</span> <span class="na">write=</span><span class="s">&quot;admins&quot;</span> <span class="na">read=</span><span class="s">&quot;admins&quot;</span> <span class="na">admin=</span><span class="s">&quot;admins&quot;</span> <span class="nt">/&gt;</span>
+                  <span class="nt">&lt;authorizationEntry</span> <span class="na">topic=</span><span class="s">&quot;&gt;&quot;</span> <span class="na">write=</span><span class="s">&quot;admins&quot;</span> <span class="na">read=</span><span class="s">&quot;admins&quot;</span> <span class="na">admin=</span><span class="s">&quot;admins&quot;</span> <span class="nt">/&gt;</span>
+                  <span class="nt">&lt;authorizationEntry</span> <span class="na">topic=</span><span class="s">&quot;mcollective.&gt;&quot;</span> <span class="na">write=</span><span class="s">&quot;mcollective&quot;</span> <span class="na">read=</span><span class="s">&quot;mcollective&quot;</span> <span class="na">admin=</span><span class="s">&quot;mcollective&quot;</span> <span class="nt">/&gt;</span>
+                  <span class="nt">&lt;authorizationEntry</span> <span class="na">topic=</span><span class="s">&quot;mcollective.&gt;&quot;</span> <span class="na">write=</span><span class="s">&quot;mcollective&quot;</span> <span class="na">read=</span><span class="s">&quot;mcollective&quot;</span> <span class="na">admin=</span><span class="s">&quot;mcollective&quot;</span> <span class="nt">/&gt;</span>
+                  <span class="nt">&lt;authorizationEntry</span> <span class="na">topic=</span><span class="s">&quot;ActiveMQ.Advisory.&gt;&quot;</span> <span class="na">read=</span><span class="s">&quot;everyone&quot;</span> <span class="na">write=</span><span class="s">&quot;everyone&quot;</span> <span class="na">admin=</span><span class="s">&quot;everyone&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/authorizationEntries&gt;</span>
+              <span class="nt">&lt;/authorizationMap&gt;</span>
+            <span class="nt">&lt;/map&gt;</span>
+          <span class="nt">&lt;/authorizationPlugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+
+        <span class="nt">&lt;systemUsage&gt;</span>
+            <span class="nt">&lt;systemUsage&gt;</span>
+                <span class="nt">&lt;memoryUsage&gt;</span>
+                    <span class="nt">&lt;memoryUsage</span> <span class="na">limit=</span><span class="s">&quot;20 mb&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/memoryUsage&gt;</span>
+                <span class="nt">&lt;storeUsage&gt;</span>
+                    <span class="nt">&lt;storeUsage</span> <span class="na">limit=</span><span class="s">&quot;1 gb&quot;</span> <span class="na">name=</span><span class="s">&quot;foo&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/storeUsage&gt;</span>
+                <span class="nt">&lt;tempUsage&gt;</span>
+                    <span class="nt">&lt;tempUsage</span> <span class="na">limit=</span><span class="s">&quot;100 mb&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;/tempUsage&gt;</span>
+            <span class="nt">&lt;/systemUsage&gt;</span>
+        <span class="nt">&lt;/systemUsage&gt;</span>
+
+        <span class="nt">&lt;transportConnectors&gt;</span>
+            <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;openwire&quot;</span> <span class="na">uri=</span><span class="s">&quot;tcp://0.0.0.0:6166&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&quot;stomp&quot;</span> <span class="na">uri=</span><span class="s">&quot;stomp://0.0.0.0:6163&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/transportConnectors&gt;</span>
+    <span class="nt">&lt;/broker&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre>
+</div>
+
+<p>This creates a user <em>mcollective</em> with the password <em>marionette</em> and give it access to read/write/admin <em>/topic/mcollective.<code>*</code></em>.  You should change this passsword.</p>
+
+<h3 id="starting">Starting</h3>
+
+<p>Start the ActiveMQ service:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">  # /etc/init.d/activemq start</span>
+</code></pre>
+</div>
+
+<p>You should see it running in the process list:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go"> # ps -auxw|grep java</span>
+<span class="go"> activemq  3012  0.1 14.5 1155112 152180 ?      Sl   Dec28   2:02 java -Dactivemq.home=/usr/share/activemq -Dactivemq.base=/usr/share/activemq -Dcom.sun.management.jmxremote -Dorg.apache.activemq.UseDedicatedTaskRunner=true -Xmx512m -Djava.library.path=/usr/lib:/usr/lib64 -classpath /usr/share/java/tanukiwrapper.jar:/usr/share/activemq/bin/run.jar -Dwrapper.key=eg4_VvENzCmvtAKg -Dwrapper.port=32000 -Dwrapper.jvm.port.min=31000 -Dwrapper.jvm.port.max=31999 -Dwrapper.pid=3000 -Dwrapper.version=3.2.3 -Dwrapper.native_library=wrapper -Dwrapper.service=TRUE -Dwrapper.cpu.timeout=10 -Dwrapper.jvmid=1 org.tanukisoftware.wrapper.WrapperSimpleApp org.apache.activemq.console.Main start</span>
+</code></pre>
+</div>
+
+<p>You should also see it listening on port 6163 in your network stack</p>
+
+<p>You should open port 6163 for all your nodes to connect to.</p>
+
+<h2 id="marionette-collective">Marionette Collective</h2>
+
+<p>There are a few packages supplied and you will have potentially two type of server:</p>
+
+<ul>
+  <li>Nodes that you wish to manage using mcollective need the mcollective and mcollective-common packages</li>
+  <li>Nodes that you wish to use to initiate requests from also known as clients need mcollective-client and mcollective-common packages</li>
+</ul>
+
+<p>A machine can be both at once, in which case you need to install all 3 packages.  We&rsquo;ll work on the assumption here that you wish to both manage your machine and use it as a client by installing all 3 packages on our initial node.</p>
+
+<h3 id="installation">Installation</h3>
+
+<div class="highlight"><pre><code class="console"><span class="go"> # yum install mcollective mcollective-client mcollective-common rubygem-stomp</span>
+</code></pre>
+</div>
+
+<h2 id="configuring-1">Configuring</h2>
+<p>You&rsquo;ll need to tweak some configs in <em>/etc/mcollective/client.cfg</em>, a full reference of config settings can be
+found <a href="/mcollective/reference/basic/configuration.html">here</a>:</p>
+
+<p>We&rsquo;re assuming you called the machine running ActiveMQ <em>stomp.example.net</em> please change as appropriate</p>
+
+<div class="highlight"><pre><code class="ini">  <span class="c"># main config</span>
+  <span class="na">topicprefix</span> <span class="o">=</span> <span class="s">/topic/mcollective</span>
+  <span class="na">libdir</span> <span class="o">=</span> <span class="s">/usr/libexec/mcollective</span>
+  <span class="na">logfile</span> <span class="o">=</span> <span class="s">/dev/null</span>
+  <span class="na">loglevel</span> <span class="o">=</span> <span class="s">error</span>
+
+  <span class="c"># connector plugin config</span>
+  <span class="na">connector</span> <span class="o">=</span> <span class="s">stomp</span>
+  <span class="na">plugin.stomp.host</span> <span class="o">=</span> <span class="s">stomp.example.net</span>
+  <span class="na">plugin.stomp.port</span> <span class="o">=</span> <span class="s">6163</span>
+  <span class="na">plugin.stomp.user</span> <span class="o">=</span> <span class="s">mcollective</span>
+  <span class="na">plugin.stomp.password</span> <span class="o">=</span> <span class="s">marionette</span>
+
+  <span class="c"># security plugin config</span>
+  <span class="na">securityprovider</span> <span class="o">=</span> <span class="s">psk</span>
+  <span class="na">plugin.psk</span> <span class="o">=</span> <span class="s">abcdefghj</span>
+</code></pre>
+</div>
+
+<p>You should also create <em>/etc/mcollective/server.cfg</em> here&rsquo;s a sample, , a full reference of config settings can be found here <a href="/mcollective/reference/basic/configuration.html">ConfigurationReference</a>:</p>
+
+<div class="highlight"><pre><code class="ini">  <span class="c"># main config</span>
+  <span class="na">topicprefix</span> <span class="o">=</span> <span class="s">/topic/mcollective</span>
+  <span class="na">libdir</span> <span class="o">=</span> <span class="s">/usr/libexec/mcollective</span>
+  <span class="na">logfile</span> <span class="o">=</span> <span class="s">/var/log/mcollective.log</span>
+  <span class="na">daemonize</span> <span class="o">=</span> <span class="s">1</span>
+  <span class="na">loglevel</span> <span class="o">=</span> <span class="s">info</span>
+
+  <span class="c"># connector plugin config</span>
+  <span class="na">connector</span> <span class="o">=</span> <span class="s">stomp</span>
+  <span class="na">plugin.stomp.host</span> <span class="o">=</span> <span class="s">stomp.example.net</span>
+  <span class="na">plugin.stomp.port</span> <span class="o">=</span> <span class="s">6163</span>
+  <span class="na">plugin.stomp.user</span> <span class="o">=</span> <span class="s">mcollective</span>
+  <span class="na">plugin.stomp.password</span> <span class="o">=</span> <span class="s">marionette</span>
+
+  <span class="c"># facts</span>
+  <span class="na">factsource</span> <span class="o">=</span> <span class="s">yaml</span>
+  <span class="na">plugin.yaml</span> <span class="o">=</span> <span class="s">/etc/mcollective/facts.yaml</span>
+
+  <span class="c"># security plugin config</span>
+  <span class="na">securityprovider</span> <span class="o">=</span> <span class="s">psk</span>
+  <span class="na">plugin.psk</span> <span class="o">=</span> <span class="s">abcdefghj</span>
+</code></pre>
+</div>
+
+<p>Replace the <em>plugin.psk</em> in both these files with a Pre-Shared Key of your own.</p>
+
+<p><em>NOTE:</em> If you are testing the development versions - 1.1.3 and newer - you should use make a small adjustment to both config
+files above:</p>
+
+<div class="highlight"><pre><code class="ini"><span class="na">topicprefix</span> <span class="o">=</span> <span class="s">/topic/</span>
+</code></pre>
+</div>
+
+<h3 id="create-facts">Create Facts</h3>
+<p>By default - and for this setup - we&rsquo;ll use a simple YAML file for a fact source, later on you can use Puppet Labs Facter or something else.</p>
+
+<p>Create <em>/etc/mcollective/facts.yaml</em> along these lines:</p>
+
+<div class="highlight"><pre><code class="yaml">  <span class="l-Scalar-Plain">---</span>
+  <span class="l-Scalar-Plain">location</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">devel</span>
+  <span class="l-Scalar-Plain">country</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">uk</span>
+</code></pre>
+</div>
+
+<h3 id="start-the-server">Start the Server</h3>
+
+<p>The packages include standard init script, just start the server:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">  # /etc/init.d/mcollective restart</span>
+</code></pre>
+</div>
+
+<p>You should see in the log file somethig like:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">  # tail /var/log/mcollective.log</span>
+<span class="go">  I, [2010-12-29T11:15:32.321744 #11479]  INFO -- : mcollectived:33 The Marionette Collective 1.1.0 started logging at info level</span>
+</code></pre>
+</div>
+
+<h3 id="test-connectivity">Test connectivity</h3>
+
+<p>If all is fine and you see this log message you can test with the client code:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">%</span> mc-ping
+<span class="go">your.domain.com                           time=74.41 ms</span>
+
+<span class="go">---- ping statistics ----</span>
+<span class="go">1 replies max: 74.41 min: 74.41 avg: 74.41</span>
+</code></pre>
+</div>
+
+<p>This sends out a simple &lsquo;hello&rsquo; packet to all the machines, as we only installed one you should have just one reply.</p>
+
+<p>If you install the <em>mcollective</em> and <em>mcollective-common</em> packages along wit the facts and server.cfg you should see more nodes show up here.</p>
+
+<p>You can explore other aspects of your machines:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">%</span> mc-find-hosts --with-fact <span class="nv">country</span><span class="o">=</span>uk
+<span class="go">your.domain.com</span>
+</code></pre>
+</div>
+
+<p>This searches all systems currently active for ones with a fact <em>country=uk</em>, it got the data from the yaml file you made earlier.</p>
+
+<p>If you use confiuration management tools like puppet and the nodes are setup with classes with <em>classes.txt</em> in <em>/var/lib/puppet</em> then you
+can search for nodes with a specific class on them - the locations will configurable soon:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">%</span> mc-find-hosts --with-class common::linux
+<span class="go">your.domain.com</span>
+</code></pre>
+</div>
+
+<p>The filter commands are important they will be the main tool you use to target only parts of your infrastructure with calls to agents.</p>
+
+<p>See the <em>&ndash;help</em> option to the various <em>mc-<code>*</code></em> script for available options.  You can now look at some of the available plugins and
+play around, you might need to run the server process as root if you want to play with services etc.</p>
+
+<h3 id="plugins">Plugins</h3>
+<p>We provide limited default plugins, you can look on our sister project <a href="http://projects.puppetlabs.com/projects/mcollective-plugins/wiki">MCollective Plugins</a> where you will
+find various plugins to manage packages, services etc.</p>
+
+<h3 id="further-reading">Further Reading</h3>
+<p>From here you should look at the rest of the wiki pages some key pages are:</p>
+
+<ul>
+  <li><a href="/mcollective/screencasts.html">Screencasts</a> - Get a hands-on look at what is possible</li>
+  <li><a href="/mcollective/terminology.html">Terminology</a></li>
+  <li><a href="/mcollective/simplerpc/">Introduction to Simple RPC</a> - a simple to use framework for writing clients and agents</li>
+  <li><a href="/mcollective/reference/basic/daemon.html">ControllingTheDaemon</a> - Controlling a running daemon</li>
+  <li><a href="/mcollective/reference/plugins/security_aes.html">AESSecurityPlugin</a> - Using AES+RSA for secure message encryption and authentication of clients</li>
+  <li><a href="/mcollective/reference/plugins/security_ssl.html">SSLSecurityPlugin</a> - Using SSL for secure message signing and authentication of clients</li>
+  <li><a href="/mcollective/reference/plugins/connector_stomp.html">ConnectorStomp</a> - Full details on the Stomp adapter including failover pools</li>
+</ul>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#requirements">Requirements</a></li><li><a href="#packages">Packages</a></li><li><a href="#activemq">ActiveMQ</a></li><li><a href="#install">Install</a></li><li><a href="#configuring">Configuring</a></li><li><a href="#starting">Starting</a></li><li><a href="#marionette-collective">Marionette Collective</a></li><li><a href="#installation">Installation</a></li><li><a href="#configuring-1">Configuring</a></li><li><a href="#create-facts">Create Facts</a></li><li><a href="#start-the-server">Start the Server</a></li><li><a href="#test-connectivity">Test connectivity</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#further-reading">Further Reading</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

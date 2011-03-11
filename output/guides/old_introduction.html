@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Introduction to Puppet</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Introduction to Puppet</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="introduction-to-puppet">Introduction to Puppet</h1>
+
+<hr />
+
+<h2 id="why-puppet-exists">Why Puppet Exists</h2>
+
+<p>System administrators, or &ldquo;sysadmins&rdquo;, have a long tradition of
+writing simple tools to help them get their work done faster,
+whether they work for a large organization maintaining hundreds or
+thousands of machines or they just maintain a couple of machines
+part time. Very little of this software ever gets published,
+though, which means very little of it is ever reused and very
+little of it ever develops into mature tools useful outside the
+organization that wrote it. This, combined with the fact that
+organizations rather than sysadmins usually retain the copyright
+for these tools, means that most sysadmins start from scratch at
+every new company, building ever-more-powerful systems based on ssh
+and a <code>for</code> loop or something similar.</p>
+
+<p>Puppet has been developed to help the sysadmin community move to
+building and sharing mature tools that avoid the duplication of
+everyone solving the same problem. It does so in two ways:</p>
+
+<ul>
+  <li>It provides a powerful framework to simplify the majority of
+the technical tasks that sysadmins need to perform</li>
+  <li>The sysadmin work is written as code in Puppet&rsquo;s custom
+language which is shareable just like any other code.</li>
+</ul>
+
+<p>This means that your work as a sysadmin can get done much faster,
+because you can have Puppet handle most or all of the details, and
+you can download code from other sysadmins to help you get done
+even faster. The majority of Puppet implementations use at least
+one or two modules developed by someone else, and there are already
+tens of patterns available in Puppet&rsquo;s [Patterns]<sup id="fnref:patterns"><a href="#fn:patterns" rel="footnote">1</a></sup></p>
+
+<h2 id="puppet-as-a-tool">Puppet As a Tool</h2>
+
+<p>The vast majority of Puppet&rsquo;s internals could be reused by other
+projects, but it was written as a comprehensive configuration
+management tool, although with close attention to keep the
+different pieces decoupled. Puppet does everything possible to
+enable you to use it however you like, but it has its own defaults
+that it will prefer.</p>
+
+<p>In particular, Puppet is usually used in a star formation, with all
+of your clients talking to one or more central servers. Each client
+contacts the server periodically (every half hour, by default),
+gets its latest configuration, and makes sure it is in sync with
+that configuration. Once done, it can send a report back to the
+server indicating what, if anything, happened. This diagram shows
+the data flow in a regular Puppet implementation:</p>
+
+<p><img src="http://puppetlabs.com/images/Puppet_Star.png" alt="image" /></p>
+
+<p>Puppet&rsquo;s functionality is built as a stack of separate layers, each
+responsible for a fixed aspect of the system, with tight controls
+on how information passes between layers:</p>
+
+<p><img src="http://puppetlabs.com/images/Puppet_Layers.png" alt="image" /></p>
+
+<p>To use Puppet effectively, you&rsquo;ll need to understand a bit about
+each of these layers, how they relate to each other, and which
+layer is responsible for a given aspect of Puppet&rsquo;s functionality.</p>
+
+<h2 id="idempotency">Idempotency</h2>
+
+<p>One big difference between Puppet and most hand-rolled tools is
+that Puppet configurations are idempotent, meaning they can safely
+be run multiple times. Once you develop your configuration, your
+machines will apply the configuration often &ndash; by default, every 30
+minutes &ndash; and Puppet will only make any changes to the system if
+the system state does not match the configured state.</p>
+
+<p>This behaviour is provided by Puppet&rsquo;s Transactional layer. Puppet
+does not yet have full transactional support &ndash; transactions are
+not recorded, and thus cannot be rolled back &ndash; but the basics are
+there, and they are what manage how changes happen to the system.
+If you tell the transactional system to operate in no-op, or
+dry-run, mode, using the <code>--noop</code> argument to one of the Puppet
+tools, then the transaction will guarantee that no work happens on
+your system. Similarly, if any changes do happen, the transaction
+will guarantee that those specific changes are logged.</p>
+
+<p>This way you can use Puppet to manage a machine throughout its
+lifecycle &ndash; from initial installation, to ongoing upgrades, and
+finally to end-of-life, where you move services elsewhere. Unlike
+system install tools like Sun&rsquo;s Jumpstart or Red Hat&rsquo;s Kickstart,
+Puppet configurations can keep machines up to date for years,
+rather than just building them correctly and never touching them
+again. Because of this, Puppet users usually do just enough with
+their host install tools to get Puppet running, then they use
+Puppet to do everything else.</p>
+
+<h2 id="a-resource-abstraction-layer">A Resource Abstraction Layer</h2>
+
+<p>Puppet&rsquo;s main goal is to allow you to focus on the system entities
+you really care about, ignoring implementation details like command
+names, arguments, and file formats &ndash; your tools should treat all
+users the same, whether the user is stored in NetInfo or
+<code>/etc/passwd</code>, and you shouldn&rsquo;t have to care which local tools are
+used to interact with the user store. We call these system entities
+<code>resources</code>, and Puppet is developed around making it easy to
+manage these resources and their relationships to each other.</p>
+
+<h3 id="providers">Providers</h3>
+
+<p>Puppet ships with many resource types (documented in the
+<a href="./types/">Type Guides</a> and <a href="/references/">References</a>),
+including all the basics like file, user, and package. The
+implementation for these types often varies dramatically from one
+platform to another, such as Mac OS X using DSLocal(NetInfo
+pre-10.5, Leopard) for a user database, or the wide variety in
+package formats supported by different platforms, so Puppet
+supports multiple implementations per resource type (e.g., there
+are currently 17 implementations of the package type). Puppet calls
+these implementations <code>providers</code>, and it will normally choose an
+appropriate default provider for your resource, based on your
+platform or what providers are functional, although you can easily
+override the chosen value.</p>
+
+<h3 id="modifying-the-system">Modifying the System</h3>
+
+<p>Puppet resources are what are responsible for directly managing the
+bits on disk. You cannot directly modify a system from the language
+&ndash; you must use the language to specify a resource, which then
+modifies the system. This often results in a rethinking of typical
+configuration tasks &ndash; rather than tacking a couple of lines onto
+the end of your <code>fstab</code>, you use the <code>mount</code> type to create a new
+resource that knows how to modify the <code>fstab</code>, or NetInfo, or
+wherever mount information is kept.</p>
+
+<p>All resources are simple collections of attributes, some of which
+change how the resource functions and some of which directly manage
+the resource (these are called <code>properties</code>). For instance, users
+have an attribute that determines whether creating a user also
+creates the home directory &ndash; this doesn&rsquo;t directly modify the
+user, it just changes how the user is created. Most of the
+attributes you&rsquo;ll care about are properties, though, which on the
+user are things like the <code>uid</code>, <code>gid</code>, and home directory; when you
+change these, they directly modify the system.</p>
+
+<p>There is another special kind of attribute, those which work on all
+resources. These are called <code>metaparams</code>, and include things like
+the log level for the resource, whether the resource should be in
+<code>noop</code> mode so it never modifies the system, and all of the
+relationship handling.</p>
+
+<h4 id="resource-relationships">Resource Relationships</h4>
+
+<p>Puppet&rsquo;s support for resource relationships is one of its key
+features, since these relationships are used to determine the order
+of execution when applying a configuration and they also are used
+to determine whether a resource needs to respond to changes in
+another resource.</p>
+
+<p>If you specify that one resource, such as a service, depends on
+another resource, such as a configuration file, then Puppet will
+always guarantee that the required resource will get applied before
+the requiring resource. This way you know you&rsquo;ll never try to start
+your service until the correct configuration file is in place.</p>
+
+<p>You can go one further and say that Puppet should restart the
+service whenever the configuration file changes, so when you use
+Puppet to manage both a service and its dependencies, you can
+always be sure that the service is running the most recent code
+against the most current configuration, for instance.</p>
+
+<h4 id="exec-resources">Exec Resources</h4>
+
+<p>Sometimes, there will not be a resource type already developed for
+managing the resource you&rsquo;re interested in; for these cases, we
+provide an <code>exec</code> resource type, which allows you to run external
+commands, along with hooks to make the exec behave idempotently.
+For instance, you can create an <code>exec</code> instance that creates a
+Subversion repository using the <code>svnadmin</code> command, along with a
+check that causes the command to only get run if the repository
+does not already exist. Puppet&rsquo;s language lets you wrap these
+<code>exec</code> resources so that they look more like normal resources and
+are reusable; you would use an <code>svnrepo</code> resource, rather than
+typing out the full <code>exec</code> command each time, in this case.</p>
+
+<h2 id="the-language">The Language</h2>
+
+<h3 id="resources">Resources</h3>
+
+<p>Puppet is all about managing resources, so the language focuses on
+specifying those resources. The most basic statement is a single
+resource specification:</p>
+
+<pre><code># Make sure the modes on the sudoers file are correct
+file { "/etc/sudoers":
+  owner =&gt; "root",
+  group =&gt; "root",
+  mode  =&gt; 644
+}
+</code></pre>
+
+<p>Here we&rsquo;ve got the required elements for any resource: The type
+(file), the title of the resource (<code>/etc/sudoers</code>), and the
+attributes. Note that we have to quote the file path here, but any
+word matching <code>[-\w]+</code> (meaning any alphanumeric word plus the <code>-</code>
+character, such as <code>node-name</code> or <code>fake_w0rd</code>) does not need to be
+quoted. Whitespace is largely irrelevant in Puppet.</p>
+
+<p>We can also create multiple resources in one set of brackets by
+separating the different resource instances with semicolons:</p>
+
+<pre><code>file {
+  "/etc/sudoers":
+    owner =&gt; "root",
+    group =&gt; "root",
+    mode  =&gt; 644;
+  "/usr/sbin/sudo":
+    owner =&gt; "root",
+    group =&gt; "root",
+    mode  =&gt; 4111
+}
+</code></pre>
+
+<p>Trailing commas and trailing semicolons are perfectly acceptable.</p>
+
+<h4 id="stopping-configuration-overlap">Stopping Configuration Overlap</h4>
+
+<p>Puppet&rsquo;s interpreter will not let you manage the same resource from
+multiple parts of your configuration. For instance, if two
+different Puppet classes attempt to specify the same resource, then
+you will get a parse error.</p>
+
+<p>This is how Puppet ensures that two classes do not overlap, so you
+can be confident that your class does not conflict with one
+developed by your coworker or that you downloaded off the &lsquo;net.</p>
+
+<p>Puppet&rsquo;s current mechanism for determining if two resources overlap
+is by comparing the type and title: If two resources have the same
+type and title, then they are considered to be the same resource.</p>
+
+<h3 id="classes">Classes</h3>
+
+<p>The next step up is to start associating resources; you would
+normally have at least the <code>sudo</code> package installed, and you&rsquo;d put
+both the package and the configuration file into a class:</p>
+
+<pre><code>class sudo {
+  package { sudo: ensure =&gt; installed }
+  file {
+    "/etc/sudoers":
+      owner =&gt; "root",
+      group =&gt; "root",
+      mode  =&gt; 644;
+    "/usr/sbin/sudo":
+      owner =&gt; "root",
+      group =&gt; "root",
+      mode  =&gt; 4111
+  }
+}
+</code></pre>
+
+<p>Then you can just call <code>include sudo</code> and both resources would get
+applied.</p>
+
+<h4 id="inheritance">Inheritance</h4>
+
+<p>Puppet supports a limited form of class inheritance, but it&rsquo;s only
+useful for one thing: Subclasses can override resources defined in
+parent classes, using a special override syntax. Here&rsquo;s a contrived
+example:</p>
+
+<pre><code>class base {
+  file { "/my/file": content =&gt; template("base.erb") }
+}
+
+class sub inherits base {
+  # override the content
+  File["/my/file"] { content =&gt; template("other.erb") }
+}
+</code></pre>
+
+<p>In the <code>sub</code> class above, the resource type (in this case <code>File</code>)
+is capitalized. This means that we are referring to a type that has
+already been declared. Using <code>file</code> instead would be illegal since
+that would result in resource overlap.</p>
+
+<h2 id="a-more-complicated-example-ssh">A More Complicated Example: SSH</h2>
+
+<p>Life isn&rsquo;t always this easy, though. Most packages have an
+associated service, and there usually isn&rsquo;t much consistency in
+names across platforms. For instance, nearly every Unix-like
+variant these days has Secure Shell installed, but they all seem to
+pick random names for both the package and the service. Also,
+you&rsquo;re going to want to do more than just install the package,
+you&rsquo;ll want to start the service:</p>
+
+<pre><code>class ssh {
+  package { ssh: ensure =&gt; installed }
+  file { sshd_config:
+    name =&gt; $operatingsystem ? {
+      Darwin  =&gt; "/etc/sshd_config",
+      Solaris =&gt; "/opt/csw/etc/ssh/sshd_config",
+      default =&gt; "/etc/ssh/sshd_config"
+    },
+    source =&gt; "puppet://server.domain.com/files/ssh/sshd_config"
+  }
+  service { ssh:
+    name =&gt; $operatingsystem ? {
+      Solaris =&gt; openssh,
+      default =&gt; ssh
+    },
+    ensure    =&gt; running,
+    subscribe =&gt; [Package[ssh], File[sshd_config]]
+  }
+}
+</code></pre>
+
+<h3 id="facter-variables">Facter Variables</h3>
+
+<p>We&rsquo;ve introduced a couple of new things here. First is the
+<code>$operatingsystem</code> variable. This variable is set, along with many
+others, in the top-level scope by the parser, which gets the values
+from <a href="../projects/facter">Facter</a> &ndash; you can get a list of all
+available variables by just running the stand-alone <code>facter</code>
+script, but you&rsquo;ll also want to know about <code>$ipaddress</code> and
+<code>$hostname</code>, just to start.</p>
+
+<h3 id="selectors">Selectors</h3>
+
+<p>Another new thing is the <code>? { ... }</code> syntax, which we call a
+<code>selector</code> and is somewhat similar to the relatively common trinary
+operator. This tests the variable before the <code>?</code>, and picks a
+matching value from the provided list, or the <code>default</code> value if
+nothing matches. This allows us to provide different values based
+on the operating system, host name, or just about anything else we
+want. Note that it is a parse error if no value matches. Also,
+selectors (as of 0.22.2) are case-insensitive in their matching.</p>
+
+<h3 id="titles-vs-names">Titles vs. Names</h3>
+
+<p>A somewhat weird thing here is that we&rsquo;re providing a second name
+to some of our resources. Note that above I called the value before
+the colon the resource&rsquo;s <code>title</code> &ndash; this is the name by which you
+know the resource, and it&rsquo;s how you refer to the resource when
+setting up relationships. However, the computers aren&rsquo;t quite so
+handy as you, so you have to tell them how to find the resource
+locally. In that case, you provide a separate <code>name</code>, which
+defaults to being the same as the title, and the resource uses the
+name to modify the system but Puppet uses the title for everything
+else.</p>
+
+<h3 id="resource-relationships-1">Resource Relationships</h3>
+
+<p>Lastly, we pull all this together by specifying a relationship
+between our service and its package and configuration file. The
+<code>File[sshd_config]</code> syntax is called a <code>resource reference</code>, and
+it&rsquo;s used to uniquely refer to a resource. Note that the service
+can just specify the title of the configuration file, it does not
+need to specify the full path &ndash; this is good, because otherwise
+you&rsquo;d have to use another selector, which would get old fast.</p>
+
+<h2 id="other-language-features">Other Language Features</h2>
+
+<h3 id="truth">Truth</h3>
+
+<p>Nearly everything in Puppet is treated as a string, including
+numbers and booleans, but if you use an unquoted <code>true</code> or <code>false</code>,
+then Puppet will treat these as booleans (quote them if you want
+them to be strings). These are useful as default values for
+definitions, but they&rsquo;re also often used as values to resource
+attributes.</p>
+
+<h3 id="variables">Variables</h3>
+
+<p>We&rsquo;ve already seen the usage of variables, but of course you can
+set them, also:</p>
+
+<pre><code>$myvar = value
+</code></pre>
+
+<p>Puppet will refuse to allow you to assign to the same variable
+twice in a given class or definition, because it will only ever use
+the second value and your first value will get thrown away, since
+all variable assignments are evaluated before any resource
+specifications.</p>
+
+<h3 id="more-conditionals">More Conditionals</h3>
+
+<p>We&rsquo;ve already seen <code>selectors</code>, which are useful for selecting
+values, but Puppet also supports case statements, for when you want
+to conditionally include entire resource specifications:</p>
+
+<pre><code>case $operatingsystem {
+Darwin: { file { "/some/file": ensure =&gt; present } }
+default: { file { "/other/file": ensure =&gt; present } }
+}
+</code></pre>
+
+<p>As with selectors, case statements do case-insensitive matching.</p>
+
+<p>There&rsquo;s also a simple <code>if/else</code> construct, which is basically just
+a trimmed-down <code>case</code>:</p>
+
+<pre><code>if $should {
+  file { "/some/file": ensure =&gt; present }
+} else {
+  file { "/other/file": ensure =&gt; present }
+}
+</code></pre>
+
+<p>From Puppet version 0.24.6 Puppet also supports comparison
+operators.</p>
+
+<h3 id="arrays">Arrays</h3>
+
+<p>Puppet has very limited support for arrays &ndash; you can create them,
+and pass them as values, but you can not modify them. They&rsquo;re
+mostly useful for passing multiple values to an attribute, as above
+in the SSH example, or in managing multiple similar resources at
+once:</p>
+
+<pre><code>user { [bin, adm]: ensure =&gt; present }
+</code></pre>
+
+<p>This is a simple short-hand for creating two user resources, one
+for each item in the array.</p>
+
+<h3 id="functions">Functions</h3>
+
+<p>Puppet supports a simple function syntax, and all functions are
+hard-wired as either statements, which do not return values, and
+rvalue functions, which return values but are expected not to have
+side effects:</p>
+
+<pre><code>notice("This is a log message") # a statement
+
+$content = template("mytemplate.erb") # an rvalue
+</code></pre>
+
+<p>It ships with quite a few built-in functions, all of which are
+documented in the
+<a href="functions/">function reference</a>.
+Some of the most useful ones are
+`include`` , which evaluates the named classes, and <code>template</code>, which
+uses ERb_ to generate file contents.   It is often useful to create
+your own custom functions, which is
+very easy to do with Puppet.</p>
+
+<p>{MISSINGREFS}</p>
+
+<h3 id="definitions">Definitions</h3>
+
+<p>One of the most useful syntactical structures in Puppet are
+definitions, which can be used to wrap multiple resources that
+together act like a single resource, or possible to wrap a single
+resource but with a different model so it&rsquo;s more clear what the
+resource does.  For instance, Apache2 virtual hosts on Debian are very
+simple to manage &ndash; you drop the virtual host configuration into
+<code>/etc/apache2/sites-available</code>, and then you link the file over
+to <code>/etc/apache2/sites-enabled</code>.  You could duplicate this code for
+every virtual host, but it&rsquo;s much easier and better to create a
+definition to do this for you:</p>
+
+<pre><code>define virtual_host($docroot, $ip, $order = 500, $ensure = "enabled") {
+    $file = "/etc/sites-available/$name.conf"
+
+    # The template fills in the docroot, ip, and name.
+    file { $file:
+        content =&gt; template("virtual_host.erb"),
+        notify  =&gt; Service[apache]
+    }
+    file { "/etc/sites-enabled/$order-$name.conf":
+        ensure =&gt; $ensure ? {
+            enabled  =&gt; $file,
+            disabled =&gt; absent
+        }
+    }
+}
+</code></pre>
+
+<p>Then you can use that definition and make it clear that even though
+you&rsquo;re just creating files, you&rsquo;re really configuring a virtual host:</p>
+
+<pre><code>virtual_host { "puppetlabs.com":
+    order   =&gt; 100,
+    ip      =&gt; "192.168.0.100",
+    docroot =&gt; "/var/www/puppetlabs.com/htdocs"
+}
+</code></pre>
+
+<p>You could reuse this
+definition for every virtual host on your network.  This is often used
+to wrap one or more<code>exec</code>resources to make it more clear what is being
+done.  For instance, here is a simple definition that creates
+Subversion repositories:</p>
+
+<pre><code># Create a new subversion repository.
+define svnrepo($path) {
+    exec { "create-svn-$name":
+        command =&gt; "/usr/bin/svnadmin create $path/$name",
+        creates =&gt; "$path/$name" # only run if this file does not exist
+    }
+}
+</code></pre>
+
+<p>Very simple, but then using it makes it immediately clear what
+you&rsquo;re doing:</p>
+
+<pre><code>svnrepo { puppet: path =&gt; "/var/lib/svn" }
+</code></pre>
+
+<p>Also, the definition can handle platform differences in a way that you
+wouldn&rsquo;t want to do every time you created a repository.  Another
+reason to wrap your duplicate resources in definitions is that
+Puppet&rsquo;s interpreter can be used to verify that you aren&rsquo;t managing
+the same resource in multiple places and can provide more meaningful
+error messages if you are.  For instance, you could create different
+Subversion repositories named <code>puppet</code> using <code>exec</code> and you&rsquo;d never know
+as long as they had different paths, but if you wrap that exec in a
+definition and always use it to create your Subversion repositories,
+this would throw a parse error and you&rsquo;d catch it before you ever
+deployed it.</p>
+
+<h3 id="nodes">Nodes</h3>
+
+<p>The last important language construct is the
+node definition.  This works essentially exactly like the class
+definition, including inheritance, except that instead of explicitly
+loading a node, Puppet&rsquo;s interpreter does it for you when a node
+connects.  The interpreter looks through the list of node definitions
+for one matching the client name and evaluates the resulting
+definition if it finds one.  You can also define a<code>default</code>node, which
+will be used if an appropriate node definition cannot be found.  Note
+that you can use fully qualified node names, but you must single quote
+them.  You can also start the Puppet server with <code>--no-nodes</code> to
+disable the use of the node definition; instead, the interpreter will
+just evaluate all of the top level code, so you&rsquo;d need to use
+something like a case statement to determine what classes a given node
+would get.</p>
+
+<h2 id="language-tutorial">Language Tutorial</h2>
+
+<p>For more information on the Puppet Language, read the <a href="language_tutorial.html">language
+tutorial</a>, which covers the language in
+more detail.</p>
+
+<h2 id="reporting">Reporting</h2>
+
+<p>By default, clients do not send reports back to Puppet, but this can
+be easily enabled by putting ``report = true<code> in </code>puppetd.conf`.</p>
+
+<p>The reports that clients send back include every log message generated
+during the transaction, along with some basic metrics like how many
+resources are being managed, how many changed, how many failed, and
+how many were restarted.</p>
+
+<p>By default, the reports are stored on disk in YAML, so you can easily
+write a simple Ruby script to process these reports and turn them into
+summary web pages.  There are other reports described in the <code>report
+reference</code>, including a report that stores the metrics in RRD_
+database files.</p>
+
+<h2 id="stand-alone">Stand Alone</h2>
+
+<p>While Puppet is meant to be used client/server, it ships with a
+stand-alone <code>puppet</code> interpreter.  This can be used to run simple
+stand-alone Puppet scripts, or you can use it like Cfengine, where you
+pull all of the configurations down and then compile them locally.
+It&rsquo;s also very useful for initializing your Puppet server, since you
+can start it with <code>--use-nodes</code> to have it use the node definitions;
+you can create a Puppet configuration that will configure the server
+entirely, and then use Puppet to configure itself. Mmm, self-reference.</p>
+
+<h2 id="dynamism">Dynamism</h2>
+
+<p>Wherever possible, Puppet automatically loads new code that you
+write. You can create custom functions, resource types, providers,
+reports, and much more, drop them into the right directory in your
+Ruby search path, and start using them &ndash; Puppet will load them
+automatically.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This is only meant as an introduction to the breadth of
+functionality in Puppet, with a quick run-through of many of the
+most useful idioms. There is comprehensive
+<a href="index.html">documentation</a>,
+and there are many [example patterns][^patterns]: to get you further
+along. We&rsquo;re constantly working on the documentation, so if you have
+any specific requests, send them to docs at
+<a href="http://puppetlabs.com">puppetlabs.com</a>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:patterns">
+      <p>http://puppetlabs.com/trac/puppet/wiki/Recipes<a href="#fnref:patterns" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#why-puppet-exists">Why Puppet Exists</a></li><li><a href="#puppet-as-a-tool">Puppet As a Tool</a></li><li><a href="#idempotency">Idempotency</a></li><li><a href="#a-resource-abstraction-layer">A Resource Abstraction Layer</a></li><li><a href="#providers">Providers</a></li><li><a href="#modifying-the-system">Modifying the System</a></li><li><a href="#the-language">The Language</a></li><li><a href="#resources">Resources</a></li><li><a href="#classes">Classes</a></li><li><a href="#a-more-complicated-example-ssh">A More Complicated Example: SSH</a></li><li><a href="#facter-variables">Facter Variables</a></li><li><a href="#selectors">Selectors</a></li><li><a href="#titles-vs-names">Titles vs. Names</a></li><li><a href="#resource-relationships-1">Resource Relationships</a></li><li><a href="#other-language-features">Other Language Features</a></li><li><a href="#truth">Truth</a></li><li><a href="#variables">Variables</a></li><li><a href="#more-conditionals">More Conditionals</a></li><li><a href="#arrays">Arrays</a></li><li><a href="#functions">Functions</a></li><li><a href="#definitions">Definitions</a></li><li><a href="#nodes">Nodes</a></li><li><a href="#language-tutorial">Language Tutorial</a></li><li><a href="#reporting">Reporting</a></li><li><a href="#stand-alone">Stand Alone</a></li><li><a href="#dynamism">Dynamism</a></li><li><a href="#conclusion">Conclusion</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

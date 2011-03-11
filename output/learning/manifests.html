@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Learning — Manifests</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Learning — Manifests</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="learning--manifests">Learning — Manifests</h1>
+
+<p>You understand the RAL; now learn about manifests and start writing and applying Puppet code.</p>
+
+<hr />
+
+<p>&larr; <a href="./ral.html">Resources and the RAL</a> &mdash; <a href="./">Index</a> &mdash; <a href="./ordering.html">Resource Ordering</a> &rarr;</p>
+
+<hr />
+
+<h2 id="no-strings-attached">No Strings Attached</h2>
+
+<p>You probably already know that Puppet usually runs in an agent/master (that is, client/server) configuration, but ignore that for now. It&rsquo;s not important yet and you can get a lot done without it, so for the time being, we have no strings on us. </p>
+
+<p>Instead, we&rsquo;re going to use <a href="../guides/tools.html#puppet-apply-or-puppet">puppet apply</a>, which applies a manifest on the local system. It&rsquo;s the simplest way to run Puppet, and it works like this: </p>
+
+<pre><code>$ puppet apply my_test_manifest.pp
+</code></pre>
+
+<p>Yeah, that easy.</p>
+
+<p>You can use <code>puppet</code> &mdash; that is, without any subcommand &mdash; as a shortcut for <code>puppet apply</code>; it has the rockstar parking in the UI because of how often it runs at an interactive command line. I&rsquo;ll mostly be saying &ldquo;puppet apply&rdquo; for clarity&rsquo;s sake. </p>
+
+<p>The behavior of Puppet&rsquo;s man pages is currently in flux. You can always get help for Puppet&rsquo;s command line tools by running the tool with the <code>--help</code> flag; in the Learning Puppet VM, which uses Puppet Enterprise, you can also run <code>pe-man puppet apply</code> to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will use Git-style man pages (<code>man puppet-apply</code>) with improved formatting.</p>
+
+<h2 id="manifests">Manifests</h2>
+
+<p>Puppet programs are called &ldquo;manifests,&rdquo; and they use the .pp file extension.</p>
+
+<p>The core of the Puppet language is the <em>resource declaration,</em> which represents the desired state of one resource. Manifests can also use conditional statements, group resources into collections, generate text with functions, reference code in other manifests, and do many other things, but it all ultimately comes down to making sure the right resources are being managed the right way. </p>
+
+<h2 id="an-aside-compilation">An Aside: Compilation</h2>
+
+<p>Manifests don&rsquo;t get used directly when Puppet syncs resources. Instead, the flow of a Puppet run goes a little like this:</p>
+
+<p><img src="../images/learning-manifest2defined_state.png" alt="Diagram: Manifests are compiled into a catalog, which is then applied to yield the desired system state." /></p>
+
+<p>Before being applied, manifests get compiled into a <strong>&ldquo;catalog,&rdquo;</strong> which is a <a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graph</a> that only represents resources and the order in which they need to be synced. All of the conditional logic, data lookup, variable interpolation, and resource grouping gets computed away during compilation, and the catalog doesn&rsquo;t have any of it.</p>
+
+<p>Why? Several really good reasons, which we&rsquo;ll get to once we rediscover agent/master Puppet;<sup id="fnref:reasons"><a href="#fn:reasons" rel="footnote">1</a></sup> it&rsquo;s not urgent at the moment. But I&rsquo;m mentioning it now as kind of an experiment: I think there are several things in Puppet that are easy to explain if you understand that split and quite baffling if you don&rsquo;t, so try keeping this in the back of your head and we&rsquo;ll see if it pays off later.</p>
+
+<p>OK, enough about that; let&rsquo;s write some code! This will all be happening on your main Learning Puppet VM, so log in as root now; you&rsquo;ll probably want to stash these test manifests somewhere convenient, like <code>/root/learning-manifests</code>.</p>
+
+<h2 id="resource-declarations">Resource Declarations</h2>
+
+<p>Let&rsquo;s start by just declaring a single resource:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/training-manifests/1.file.pp</span>
+    
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;testfile&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/testfile&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+        <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="s1">&#39;640&#39;</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;I&#39;m a test file.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>And apply!</p>
+
+<pre><code># puppet apply 1.file.pp
+notice: /Stage[main]//File[testfile]/ensure: created
+# cat /tmp/testfile
+I'm a test file.
+# ls -lah /tmp/testfile
+-rw-r----- 1 root root 16 Feb 23 13:15 /tmp/testfile
+</code></pre>
+
+<p>You&rsquo;ve seen this syntax before, but let&rsquo;s take a closer look at the language here.</p>
+
+<ul>
+  <li>First, you have the <strong>type</strong> (&ldquo;file&rdquo;), followed by&hellip;</li>
+  <li>&hellip;a pair of curly braces that encloses everything else about the resource. Inside those, you have&hellip;
+    <ul>
+      <li>&hellip;the resource <strong>title,</strong> followed by a colon&hellip;</li>
+      <li>&hellip;and then a set of <strong>attribute <code>=&gt;</code> value</strong> pairs describing the resource. </li>
+    </ul>
+  </li>
+</ul>
+
+<p>A few other notes about syntax:</p>
+
+<ul>
+  <li>
+    <p>Missing commas and colons are the number one syntax error made by learners. If you take out the comma after <code>ensure =&gt; present</code> in the example above, you&rsquo;ll get an error like this: </p>
+
+    <pre><code>  Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node barn2.magpie.lan
+</code></pre>
+
+    <p>Missing colons do about the same thing. So watch for that. Also, although you don&rsquo;t strictly need the comma after the final attribute <code>=&gt;</code> value pair, you should always put it there anyhow. Trust me. </p>
+  </li>
+  <li>Capitalization matters! You can&rsquo;t declare a resource with <code>File {'testfile:'...</code>, because that does something entirely different. (Specifically, it breaks. But it&rsquo;s <em>kind</em> of similar to what we use to tweak an existing resource, which we&rsquo;ll get to later.)</li>
+  <li>Quoting values matters! Built-in values like <code>present</code> shouldn&rsquo;t be quoted, but normal strings should be. For all intents and purposes, everything is a string, including numbers. Puppet uses the same rules for single and double quotes as everyone else:
+    <ul>
+      <li>Single quotes are completely literal, except that you write a literal quote with <code>\'</code> and a literal backslash with <code>\\</code>. </li>
+      <li>Double quotes let you interpolate $variables and add newlines with <code>\n</code>.</li>
+    </ul>
+  </li>
+  <li>Whitespace is fungible for readability. Lining up the <code>=&gt;</code> arrows (sometimes called &ldquo;fat commas&rdquo;) is good practice if you ever expect someone else to read this code &mdash; note that future and mirror universe versions of yourself count as &ldquo;someone else.&rdquo; </li>
+</ul>
+
+<blockquote>
+  <p><strong>Exercise:</strong> Declare a file resource in a manifest and apply it! Try changing the login message by setting the content of <code>/etc/motd</code>.</p>
+</blockquote>
+
+<h2 id="once-more-with-feeling">Once More, With Feeling!</h2>
+
+<p>Okay, you sort of have the idea by now. Let&rsquo;s make a whole wad of totally useless files! (And throw in some <code>notify</code> resources for good measure.)</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/training-manifests/2.file.pp</span>
+    
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test2&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">directory</span><span class="p">,</span>
+        <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mi">644</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test3&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
+        <span class="n">target</span> <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/test1&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+    <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;I&#39;m notifying you.&quot;</span><span class="p">:}</span> <span class="c1"># Whitespace is fungible, remember.</span>
+    <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;So am I!&quot;</span><span class="p">:}</span>
+</code></pre>
+</div>
+
+<pre><code># puppet apply 2.file.pp
+notice: /Stage[main]//File[/tmp/test2]/ensure: created
+notice: /Stage[main]//File[/tmp/test3]/ensure: created
+notice: /Stage[main]//File[/tmp/test1]/ensure: created
+notice: I'm notifying you.
+notice: /Stage[main]//Notify[I'm notifying you.]/message: defined 'message' as 'I'm notifying you.'
+notice: So am I!
+notice: /Stage[main]//Notify[So am I!]/message: defined 'message' as 'So am I!'
+
+# ls -lah /tmp/test*
+-rw-r--r--  1 root root    3 Feb 23 15:54 test1
+lrwxrwxrwx  1 root root   10 Feb 23 15:54 test3 -&gt; /tmp/test1
+-rw-r-----  1 root root   16 Feb 23 15:05 testfile
+
+/tmp/test2:
+total 16K
+drwxr-xr-x 2 root root 4.0K Feb 23 16:02 .
+drwxrwxrwt 5 root root 4.0K Feb 23 16:02 ..
+
+# cat /tmp/test3
+Hi.
+</code></pre>
+
+<p>That was totally awesome. What just happened?</p>
+
+<h3 id="titles-and-namevars">Titles and Namevars</h3>
+
+<p>All right, notice how we left out some important attributes there and everything still worked? Almost every resource type has one attribute whose value defaults to the resource&rsquo;s title. For the <code>file</code> resource, that&rsquo;s <code>path</code>; with <code>notify</code>, it&rsquo;s <code>message</code>. A lot of the time (<code>user</code>, <code>group</code>, <code>package</code>&hellip;), it&rsquo;s plain old <code>name</code>. </p>
+
+<p>To people who occasionally delve into the Puppet source code, the one attribute that defaults to the title is called the <strong>&ldquo;namevar,&rdquo;</strong> which is a little weird but as good a name as any. It&rsquo;s almost always the attribute that amounts to the resource&rsquo;s <em>identity,</em> the one thing that should always be unique about each instance. </p>
+
+<p>This can be a convenient shortcut, but be wary of overusing it; there are several common cases where it makes more sense to give a resource a symbolic title and assign its name (-var) as a normal attribute. In particular, it&rsquo;s a good idea to do so if a resource&rsquo;s name is long or you want to assign the name conditionally depending on the nature of the system.</p>
+
+<pre><code>notify {'bignotify':
+    message =&gt; "I'm completely enormous, and will mess up the formatting of your 
+        code! Also, since I need to fire before some other resource, you'll need
+        to refer to me by title later using the Notify['title'] syntax, and you
+        really don't want to have to type this all over again.",
+}
+</code></pre>
+
+<p>The upshot is that our <code>notify {"I'm notifying you.":}</code> resource above has the exact same effect as:</p>
+
+<pre><code>notify {'other title':
+    message =&gt; "I'm notifying you.",
+}
+</code></pre>
+
+<p>&hellip; because the <code>message</code> attribute just steals the resource title if you don&rsquo;t give it anything of its own.</p>
+
+<p>Puppet will always keep you from making resources with duplicate titles, and will almost always keep you from making resources with duplicate name/namevar values. (<code>exec</code> resources are the main exception.)</p>
+
+<p>And finally, you don&rsquo;t need an encyclopedic memory of what the namevar is for each resource &mdash; when in doubt, just choose a descriptive title and specify the attributes you need.</p>
+
+<h3 id="for-directories">644 = 755 For Directories</h3>
+
+<p>We said <code>/tmp/test2/</code> should have permissions mode 644, but our <code>ls -lah</code> showed mode 755. That&rsquo;s because Puppet groups the read bit and the traverse bit for directories, which is almost always what you actually want. The idea is to let you recursively manage whole directories as mode 644 without making all their files executable.</p>
+
+<h3 id="new-ensure-values">New Ensure Values</h3>
+
+<p>The <code>file</code> type has several different values for its ensure attribute: <code>present</code>, <code>absent</code>, <code>file</code>, <code>directory</code>, and <code>link</code>. They&rsquo;re listed on the <a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">core types cheat sheet</a> whenever you need to refresh your memory, and they&rsquo;re fairly self-explanatory. </p>
+
+<h2 id="the-destination">The Destination</h2>
+
+<p>Here&rsquo;s a pretty crucial part of learning to think like a Puppet user. Try applying that manifest again.</p>
+
+<pre><code># puppet apply 2.file.pp
+notice: I'm notifying you.
+notice: /Stage[main]//Notify[I'm notifying you.]/message: defined 'message' as 'I'm notifying you.'
+notice: So am I!
+notice: /Stage[main]//Notify[So am I!]/message: defined 'message' as 'So am I!'
+</code></pre>
+
+<p>And again!</p>
+
+<pre><code># rm /tmp/test3
+# puppet apply 2.file.pp
+notice: I'm notifying you.
+notice: /Stage[main]//Notify[I'm notifying you.]/message: defined 'message' as 'I'm notifying you.'
+notice: /Stage[main]//File[/tmp/test3]/ensure: created
+notice: So am I!
+notice: /Stage[main]//Notify[So am I!]/message: defined 'message' as 'So am I!'
+</code></pre>
+
+<p>The notifies are firing every time, because that&rsquo;s what they&rsquo;re for, but Puppet doesn&rsquo;t do anything with the file resources unless they&rsquo;re wrong on disk; if they&rsquo;re wrong, it makes them right. Remember how I said Puppet was declarative? This is how that pays off: You can apply the same configuration every half hour without having to know anything about how the system currently looks. Manifests describe the destination, and Puppet handles the journey.</p>
+
+<blockquote>
+  <p><strong>Exercise:</strong> Write and apply a manifest that&rsquo;ll make sure Apache (<code>httpd</code>) is running, use a web browser on your host OS to view the Apache welcome page, then modify the manifest to turn Apache back off. (Hint: You&rsquo;ll have to check the <a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">cheat sheet</a> or the <a href="http://docs.puppetlabs.com/references/latest/type.html">types reference</a>, because the <code>service</code> type&rsquo;s <code>ensure</code> values differ from the ones you&rsquo;ve seen so far.)</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Slightly more difficult exercise:</strong> Write and apply a manifest that uses the <a href="http://docs.puppetlabs.com/references/latest/type.html#sshauthorizedkey"><code>ssh_authorized_key</code></a> type to let you log into the learning VM as root without a password. You&rsquo;ll need to already have an SSH key.</p>
+</blockquote>
+
+<h2 id="next">Next</h2>
+
+<p>Resource declarations: Check! You know how to use the fundamental building blocks of Puppet code, so now it&rsquo;s time to learn <a href="./ordering.html">how those blocks fit together</a>. </p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:reasons">
+      <p>There are also a few I can mention now, actually. If you drastically refactor your manifest code and want to make sure it still generates the same configurations, you can just intercept the catalogs and use a special diff tool on them; if the same nodes get the same configurations, you can be sure the code acts the same without having to model the execution of the code in your head. Compiling to a catalog also makes it much easier to simulate applying a configuration, and since the catalog is just data, it&rsquo;s relatively easy to parse and analyze with your own tool of choice.<a href="#fnref:reasons" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#no-strings-attached">No Strings Attached</a></li><li><a href="#manifests">Manifests</a></li><li><a href="#an-aside-compilation">An Aside: Compilation</a></li><li><a href="#resource-declarations">Resource Declarations</a></li><li><a href="#once-more-with-feeling">Once More, With Feeling!</a></li><li><a href="#titles-and-namevars">Titles and Namevars</a></li><li><a href="#for-directories">644 = 755 For Directories</a></li><li><a href="#new-ensure-values">New Ensure Values</a></li><li><a href="#the-destination">The Destination</a></li><li><a href="#next">Next</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

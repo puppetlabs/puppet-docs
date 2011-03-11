@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Writing SimpleRPC Agents</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Writing SimpleRPC Agents</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              
+<h1 id="writing-simplerpc-agents">Writing SimpleRPC Agents</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#writing-simplerpc-agents">Writing SimpleRPC Agents</a>    <ul>
+      <li><a href="#conventions-regarding-incoming-data">Conventions regarding Incoming Data</a></li>
+      <li><a href="#sample-agent">Sample Agent</a>        <ul>
+          <li><a href="#agent-name">Agent Name</a></li>
+          <li><a href="#meta-data-and-initialization">Meta Data and Initialization</a></li>
+          <li><a href="#writing-actions">Writing Actions</a></li>
+        </ul>
+      </li>
+      <li><a href="#help-and-the-data-description-language">Help and the Data Description Language</a></li>
+      <li><a href="#validating-input">Validating Input</a></li>
+      <li><a href="#agent-configuration">Agent Configuration</a></li>
+      <li><a href="#accessing-the-input">Accessing the Input</a></li>
+      <li><a href="#running-shell-commands">Running Shell Commands</a></li>
+      <li><a href="#constructing-replies">Constructing Replies</a>        <ul>
+          <li><a href="#reply-data">Reply Data</a></li>
+          <li><a href="#reply-status">Reply Status</a></li>
+        </ul>
+      </li>
+      <li><a href="#authorization">Authorization</a></li>
+      <li><a href="#auditing">Auditing</a></li>
+      <li><a href="#logging">Logging</a></li>
+      <li><a href="#processing-hooks">Processing Hooks</a>        <ul>
+          <li><a href="#startuphook">startup<code>_</code>hook</a></li>
+          <li><a href="#beforeprocessinghook">before<code>_</code>processing<code>_</code>hook</a></li>
+          <li><a href="#afterprocessinghook">after<code>_</code>processing<code>_</code>hook</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Simple RPC works because it makes a lot of assumptions about how you write agents, we&rsquo;ll try to capture those assumptions here and show you how to apply them to our Helloworld agent.</p>
+
+<p>We&rsquo;ve recorded a <a href="http://mcollective.blip.tv/file/3808928/">tutorial that will give you a quick look at what is involved in writing agents</a>.</p>
+
+<h2 id="conventions-regarding-incoming-data">Conventions regarding Incoming Data</h2>
+
+<p>As you&rsquo;ve seen in <a href="/mcollective/simplerpc/clients.html">SimpleRPCClients</a> our clients will send requests like:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>A more complex example might be:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">exim</span><span class="o">.</span><span class="n">setsender</span><span class="p">(</span><span class="ss">:msgid</span> <span class="o">=&gt;</span> <span class="s2">&quot;1NOTVx-00028U-7G&quot;</span><span class="p">,</span> <span class="ss">:sender</span> <span class="o">=&gt;</span> <span class="s2">&quot;foo@bar.com&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Effectively this creates a hash with the members <em>:msgid</em> and <em>:sender</em>, you could use strings for the data items too:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">exim</span><span class="o">.</span><span class="n">setsender</span><span class="p">(</span><span class="s2">&quot;msgid&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1NOTVx-00028U-7G&quot;</span><span class="p">,</span> <span class="s2">&quot;senderid&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;foo@bar.com&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Your data types should be preserved if your Security plugin supports that - the default one does - so you can pass in Arrays, Hashes, OpenStructs, Hashes of Hashes but you should always pass something in and it should be key/value pairs like a Hash expects.</p>
+
+<p>From version <em>0.4.5</em> onward you cannot use the a data item called <em>:process_results</em> as this has special meaning to the agent and client.  This will indicate to the agent that the client is&rsquo;nt going to be waiting to process results.  You might choose not to send back a reply based on this.</p>
+
+<h2 id="sample-agent">Sample Agent</h2>
+<p>Here&rsquo;s our sample <em>Helloworld</em> agent:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="k">module</span> <span class="nn">MCollective</span>
+<span class="lineno"> 2</span>     <span class="k">module</span> <span class="nn">Agent</span>
+<span class="lineno"> 3</span>         <span class="k">class</span> <span class="nc">Helloworld</span><span class="o">&lt;</span><span class="no">RPC</span><span class="o">::</span><span class="no">Agent</span>
+<span class="lineno"> 4</span>             <span class="c1"># Basic echo server</span>
+<span class="lineno"> 5</span>             <span class="n">action</span> <span class="s2">&quot;echo&quot;</span> <span class="k">do</span>
+<span class="lineno"> 6</span>                 <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span> <span class="nb">String</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span>                 <span class="n">reply</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+<span class="lineno"> 9</span>             <span class="k">end</span>
+<span class="lineno">10</span>         <span class="k">end</span>
+<span class="lineno">11</span>     <span class="k">end</span>
+<span class="lineno">12</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Strictly speaking this Agent will work but isn&rsquo;t considered complete - there&rsquo;s no meta data and no help.</p>
+
+<p>A helper agent called <a href="/mcollective/reference/plugins/rpcutil.html"><em>rpcutil</em></a> is included from version <em>0.4.9</em> onward that helps you gather stats, inventory etc about the running daemon.  It&rsquo;s a full SimpleRPC agent including DDL, you can look at it too for an example.</p>
+
+<h3 id="agent-name">Agent Name</h3>
+<p>The agent name is derived from the class name, the example code creates <em>MCollective::Agent::Helloworld</em> and the agent name would be <em>helloworld</em>.</p>
+
+<p><a name="Meta_Data_and_Initialization">&nbsp;</a></p>
+
+<h3 id="meta-data-and-initialization">Meta Data and Initialization</h3>
+<p>Simple RPC agents still need meta data like in <a href="/mcollective/reference/basic/basic_agent_and_client.html">WritingAgents</a>, without it you&rsquo;ll just have some defaults assigned, code below adds the meta data to our agent:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="k">module</span> <span class="nn">MCollective</span>
+<span class="lineno"> 2</span>     <span class="k">module</span> <span class="nn">Agent</span>
+<span class="lineno"> 3</span>         <span class="k">class</span> <span class="nc">Helloworld</span><span class="o">&lt;</span><span class="no">RPC</span><span class="o">::</span><span class="no">Agent</span>
+<span class="lineno"> 4</span>             <span class="n">metadata</span> <span class="ss">:name</span>        <span class="o">=&gt;</span> <span class="s2">&quot;SimpleRPC Sample Agent&quot;</span><span class="p">,</span>
+<span class="lineno"> 5</span>                      <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">&quot;Echo service for MCollective&quot;</span><span class="p">,</span>
+<span class="lineno"> 6</span>                      <span class="ss">:author</span>      <span class="o">=&gt;</span> <span class="s2">&quot;R.I.Pienaar&quot;</span><span class="p">,</span>
+<span class="lineno"> 7</span>                      <span class="ss">:license</span>     <span class="o">=&gt;</span> <span class="s2">&quot;GPLv2&quot;</span><span class="p">,</span>
+<span class="lineno"> 8</span>                      <span class="ss">:version</span>     <span class="o">=&gt;</span> <span class="s2">&quot;1.1&quot;</span><span class="p">,</span>
+<span class="lineno"> 9</span>                      <span class="ss">:url</span>         <span class="o">=&gt;</span> <span class="s2">&quot;http://projects.puppetlabs.com/projects/mcollective-plugins/wiki&quot;</span><span class="p">,</span>
+<span class="lineno">10</span>                      <span class="ss">:timeout</span>     <span class="o">=&gt;</span> <span class="mi">60</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span>             <span class="c1"># Basic echo server</span>
+<span class="lineno">13</span>             <span class="n">action</span> <span class="s2">&quot;echo&quot;</span> <span class="k">do</span>
+<span class="lineno">14</span>                 <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span> <span class="nb">String</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>                 <span class="n">reply</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+<span class="lineno">17</span>             <span class="k">end</span>
+<span class="lineno">18</span>         <span class="k">end</span>
+<span class="lineno">19</span>     <span class="k">end</span>
+<span class="lineno">20</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>The added code sets our creator info, license and version as well as a timeout.  The timeout is how long MCollective will let your agent run for before killing them, this is a very important number and should be given careful consideration.  If you set it too low your agents will be terminated before their work is done.</p>
+
+<p>The default timeout for SimpleRPC agents is <em>10</em>.</p>
+
+<h3 id="writing-actions">Writing Actions</h3>
+<p>Actions are the individual tasks that your agent can do, they should just be in methods matching the <em>name<code>_</code>action</em>.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno">1</span>             <span class="k">def</span> <span class="nf">echo_action</span>
+<span class="lineno">2</span>                 <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span> <span class="nb">String</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span>                 <span class="n">reply</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+<span class="lineno">5</span>             <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>There&rsquo;s a helper to create this for you, you saw it earlier:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno">1</span>             <span class="n">action</span> <span class="s2">&quot;echo&quot;</span> <span class="k">do</span>
+<span class="lineno">2</span>                 <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span> <span class="nb">String</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span>                 <span class="n">reply</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+<span class="lineno">5</span>             <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>These two code blocks have the identical outcome, the 2nd usage is recommended.</p>
+
+<p>Creates an action called &ldquo;echo&rdquo;.  They don&rsquo;t and can&rsquo;t take any arguments.</p>
+
+<h2 id="help-and-the-data-description-language">Help and the Data Description Language</h2>
+<p>We have a separate file that goes together with an agent and is used to describe the agent in detail, a DDL file for the above echo agent can be seen below:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="n">metadata</span> <span class="ss">:name</span>        <span class="o">=&gt;</span> <span class="s2">&quot;SimpleRPC Sample Agent&quot;</span><span class="p">,</span>
+<span class="lineno"> 2</span>          <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">&quot;Echo service for MCollective&quot;</span><span class="p">,</span>
+<span class="lineno"> 3</span>          <span class="ss">:author</span>      <span class="o">=&gt;</span> <span class="s2">&quot;R.I.Pienaar&quot;</span><span class="p">,</span>
+<span class="lineno"> 4</span>          <span class="ss">:license</span>     <span class="o">=&gt;</span> <span class="s2">&quot;GPLv2&quot;</span><span class="p">,</span>
+<span class="lineno"> 5</span>          <span class="ss">:version</span>     <span class="o">=&gt;</span> <span class="s2">&quot;1.1&quot;</span><span class="p">,</span>
+<span class="lineno"> 6</span>          <span class="ss">:url</span>         <span class="o">=&gt;</span> <span class="s2">&quot;http://projects.puppetlabs.com/projects/mcollective-plugins/wiki&quot;</span><span class="p">,</span>
+<span class="lineno"> 7</span>          <span class="ss">:timeout</span>     <span class="o">=&gt;</span> <span class="mi">60</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="n">action</span> <span class="s2">&quot;echo&quot;</span><span class="p">,</span> <span class="n">description</span> <span class="s2">&quot;Echos back any message it receives&quot;</span> <span class="k">do</span>
+<span class="lineno">10</span>    <span class="n">input</span> <span class="ss">:msg</span><span class="p">,</span>
+<span class="lineno">11</span>          <span class="ss">:prompt</span>      <span class="o">=&gt;</span> <span class="s2">&quot;Service Name&quot;</span><span class="p">,</span>
+<span class="lineno">12</span>          <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">&quot;The service to get the status for&quot;</span><span class="p">,</span>
+<span class="lineno">13</span>          <span class="ss">:type</span>        <span class="o">=&gt;</span> <span class="ss">:string</span><span class="p">,</span>
+<span class="lineno">14</span>          <span class="ss">:validation</span>  <span class="o">=&gt;</span> <span class="s1">&#39;^[a-zA-Z\-_\d]+$&#39;</span><span class="p">,</span>
+<span class="lineno">15</span>          <span class="ss">:optional</span>    <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+<span class="lineno">16</span>          <span class="ss">:maxlength</span>   <span class="o">=&gt;</span> <span class="mi">30</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span>    <span class="n">output</span> <span class="ss">:data</span><span class="p">,</span>
+<span class="lineno">19</span>           <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="s2">&quot;The message we received&quot;</span><span class="p">,</span>
+<span class="lineno">20</span>           <span class="ss">:display_as</span>  <span class="o">=&gt;</span> <span class="s2">&quot;Message&quot;</span>
+<span class="lineno">21</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>As you can see the DDL file expand on the basic syntax adding a lot of markup, help and other important validation data.  This information - when available - helps in making more robust clients and also potentially auto generating user interfaces.</p>
+
+<p>The DDL is a complex topic, read all about it in <a href="/mcollective/simplerpc/ddl.html">SimpleRPCDDL</a>.</p>
+
+<h2 id="validating-input">Validating Input</h2>
+<p>If you&rsquo;ve followed the conventions and put the incoming data in a Hash structure then you can use a few of the provided validators to make sure your data that you received is what you expected.</p>
+
+<p>If you didn&rsquo;t use Hashes for input the validators would not be usable to you.  In future validation will happen automatically based on the <a href="/mcollective/simplerpc/ddl.html">SimpleRPCDDL</a> so I strongly suggest you follow the agent design pattern shown here using hashes.</p>
+
+<p>In the sample action above we validate the <em>:msg</em> input to be of type <em>String</em>, here are a few more examples:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno">1</span>    <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span><span class="sr"> /[a-zA-Z]+/</span>
+<span class="lineno">2</span>    <span class="n">validate</span> <span class="ss">:ipaddr</span><span class="p">,</span> <span class="ss">:ipv4address</span>
+<span class="lineno">3</span>    <span class="n">validate</span> <span class="ss">:ipaddr</span><span class="p">,</span> <span class="ss">:ipv6address</span>
+<span class="lineno">4</span>    <span class="n">validate</span> <span class="ss">:commmand</span><span class="p">,</span> <span class="ss">:shellsafe</span>
+</code></pre>
+</div>
+
+<p>The table below shows the validators we support currently</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type of Check</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Regular Expressions</td>
+      <td>Matches the input against the supplied regular expression</td>
+      <td>validate :msg, /[a-zA-Z]+/</td>
+    </tr>
+    <tr>
+      <td>Type Checks</td>
+      <td>Verifies that input is of a given ruby data type</td>
+      <td>validate :msg, String</td>
+    </tr>
+    <tr>
+      <td>IPv4 Checks</td>
+      <td>Validates an ip v4 address, note 5.5.5.5 is technically a valid address</td>
+      <td>validate :ipaddr, :ipv4address</td>
+    </tr>
+    <tr>
+      <td>IPv6 Checks</td>
+      <td>Validates an ip v6 address</td>
+      <td>validate :ipaddr, :ipv6address</td>
+    </tr>
+    <tr>
+      <td>system call safety checks</td>
+      <td>Makes sure the input is a string and has no &gt;&lt;backtick or pipe characters in it</td>
+      <td>validate :command, :shellsafe</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All of these checks will raise an InvalidRPCData exception, you shouldn&rsquo;t catch this exception as the Simple RPC framework catches those and handles them appropriately.</p>
+
+<p>We&rsquo;ll make input validators plugins so you can provide your own types of validation easily.</p>
+
+<h2 id="agent-configuration">Agent Configuration</h2>
+
+<p>You can save configuration for your agents in the main server config file:</p>
+
+<div class="highlight"><pre><code class="ini"> <span class="na">plugin.helloworld.setting</span> <span class="o">=</span> <span class="s">foo</span>
+</code></pre>
+</div>
+
+<p>In your code you can retrieve the config setting like this:</p>
+
+<div class="highlight"><pre><code class="ini"> <span class="na">setting</span> <span class="o">=</span> <span class="s">config.pluginconf[&quot;helloworld.setting&quot;] || &quot;&quot;</span>
+</code></pre>
+</div>
+
+<p>This will set the setting to whatever is the config file of &ldquo;&rdquo; if unset.</p>
+
+<h2 id="accessing-the-input">Accessing the Input</h2>
+<p>As you see from the echo example our input is easy to get to by just looking in <em>request.data</em>, this would be a Hash of exactly what was sent in by the client in the original request.</p>
+
+<p>The request object is in instance of <em>MCollective::RPC::Request</em>, you can also gain access to the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>time</td>
+      <td>The time the message was sent</td>
+    </tr>
+    <tr>
+      <td>action</td>
+      <td>The action it is directed at</td>
+    </tr>
+    <tr>
+      <td>data</td>
+      <td>The actual hash of data</td>
+    </tr>
+    <tr>
+      <td>sender</td>
+      <td>The id of the sender</td>
+    </tr>
+    <tr>
+      <td>agent</td>
+      <td>Which agent it was directed at</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Since data is the actual Hash you can gain access to your input like:</p>
+
+<div class="highlight"><pre><code class="ruby"> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>OR</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>Accessing it via the first will give you full access to all the normal Hash methods where the 2nd will only give you access to <em>include?</em>.</p>
+
+<h2 id="running-shell-commands">Running Shell Commands</h2>
+
+<p>NOTE: Only available since 1.1.3</p>
+
+<p>A helper function exist that makes it easier to run shell commands and gain
+access to their <em>STDOUT</em> and <em>STDERR</em>.</p>
+
+<p>We recommend everyone use this method for calling to shell commands as it forces
+<em>LC_ALL</em> to <em>C</em> as well as wait on all the children and avoids zombies, you can
+set unique working directories and shell environments that would be impossible
+using simple <em>system</em> that is provided with Ruby.</p>
+
+<p>The simplest case is just to run a command and send output back to the client:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">[</span><span class="ss">:status</span><span class="o">]</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo &#39;hello world&#39;&quot;</span><span class="p">,</span> <span class="ss">:stdout</span> <span class="o">=&gt;</span> <span class="ss">:out</span><span class="p">,</span> <span class="ss">:stderr</span> <span class="o">=&gt;</span> <span class="ss">:err</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Here you will have set <em>reply[:out]</em>, <em>reply[:err]</em> and <em>reply[:status]</em> based
+on the output from the command</p>
+
+<p>You can append the output of the command to any string:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">out</span> <span class="o">=</span> <span class="o">[]</span>
+<span class="n">err</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo &#39;hello world&#39;&quot;</span><span class="p">,</span> <span class="ss">:stdout</span> <span class="o">=&gt;</span> <span class="n">out</span><span class="p">,</span> <span class="ss">:stderr</span> <span class="o">=&gt;</span> <span class="n">err</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Here the STDOUT of the command will be saved in the variable <em>out</em> and not sent
+back to the caller.  The only caveat is that the variables <em>out</em> and <em>err</em> should
+have the <em>&laquo;</em> method, so if you supplied an array each line of output will be a
+single member of the array.  In the example <em>out</em> would be an array of lines
+while <em>err</em> would just be a big multi line string.</p>
+
+<p>By default any trailing new lines will be included in the output and error:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">[</span><span class="ss">:status</span><span class="o">]</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo &#39;hello world&#39;&quot;</span><span class="p">,</span> <span class="ss">:stdout</span> <span class="o">=&gt;</span> <span class="ss">:out</span><span class="p">,</span> <span class="ss">:stderr</span> <span class="o">=&gt;</span> <span class="ss">:err</span><span class="p">)</span>
+<span class="n">reply</span><span class="o">[</span><span class="ss">:stdout</span><span class="o">].</span><span class="n">chomp!</span>
+<span class="n">reply</span><span class="o">[</span><span class="ss">:stderr</span><span class="o">].</span><span class="n">chomp!</span>
+</code></pre>
+</div>
+
+<p>You can shorten this to:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">[</span><span class="ss">:status</span><span class="o">]</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo &#39;hello world&#39;&quot;</span><span class="p">,</span> <span class="ss">:stdout</span> <span class="o">=&gt;</span> <span class="ss">:out</span><span class="p">,</span> <span class="ss">:stderr</span> <span class="o">=&gt;</span> <span class="ss">:err</span><span class="p">,</span> <span class="ss">:chomp</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>This will remove a trailing new line from the <em>reply[:out]</em> and <em>reply[:err]</em>.</p>
+
+<p>If you wanted this command to run from the <em>/tmp</em> directory:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">[</span><span class="ss">:status</span><span class="o">]</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo &#39;hello world&#39;&quot;</span><span class="p">,</span> <span class="ss">:stdout</span> <span class="o">=&gt;</span> <span class="ss">:out</span><span class="p">,</span> <span class="ss">:stderr</span> <span class="o">=&gt;</span> <span class="ss">:err</span><span class="p">,</span> <span class="ss">:cwd</span> <span class="o">=&gt;</span> <span class="s2">&quot;/tmp&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Or if you wanted to include a shell Environment variable:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">[</span><span class="ss">:status</span><span class="o">]</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo &#39;hello world&#39;&quot;</span><span class="p">,</span> <span class="ss">:stdout</span> <span class="o">=&gt;</span> <span class="ss">:out</span><span class="p">,</span> <span class="ss">:stderr</span> <span class="o">=&gt;</span> <span class="ss">:err</span><span class="p">,</span> <span class="ss">:environment</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s2">&quot;FOO&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;BAR&quot;</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>You have to set the cwd and environment through these options, do not simply
+call <em>chdir</em> or adjust the <em>ENV</em> hash in an agent as that will not be safe in
+the context of a multi threaded Ruby application.</p>
+
+<h2 id="constructing-replies">Constructing Replies</h2>
+
+<h3 id="reply-data">Reply Data</h3>
+<p>The reply data is in the <em>reply</em> variable and is an instance of <em>MCollective::RPC::Reply</em>.</p>
+
+<p>You can pass values back by simply assining anything to the data like here:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>In this example data will be a String, nothing fancy gets done to it if you assign directly to <em>reply.data</em></p>
+
+<p>Or there&rsquo;s a few convenience methods if you wanted to pass back a hash of data.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>Here reply will act as if it&rsquo;s a hash so you don&rsquo;t have to do <em>reply.data<code>[</code>:msg<code>]</code></em> all the time.</p>
+
+<h3 id="reply-status">Reply Status</h3>
+<p>As pointed out in the <a href="/mcollective/simplerpc/clients.html#Results_and_Exceptions">ResultsandExceptions</a> page results all include status messages and the reply object has a helper to create those.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">rmmsg_action</span>
+   <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span> <span class="nb">String</span>
+   <span class="n">validate</span> <span class="ss">:msg</span><span class="p">,</span><span class="sr"> /[a-zA-Z]+-[a-zA-Z]+-[a-zA-Z]+-[a-zA-Z]+/</span>
+   <span class="n">reply</span><span class="o">.</span><span class="n">fail</span> <span class="s2">&quot;No such message </span><span class="si">#{</span><span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="k">unless</span> <span class="n">have_msg?</span><span class="p">(</span><span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span><span class="p">)</span>
+
+   <span class="c1"># check all the validation passed before doing any work</span>
+   <span class="k">return</span> <span class="k">unless</span> <span class="n">reply</span><span class="o">.</span><span class="n">statuscode</span> <span class="o">==</span> <span class="mi">0</span>
+
+   <span class="c1"># now remove the message from the queue</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>The number in <em>reply.fail</em> corresponds to the codes in <a href="/mcollective/simplerpc/clients.html#Results_and_Exceptions">ResultsandExceptions</a> it would default to <em>1</em> so you could just say:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">reply</span><span class="o">.</span><span class="n">fail</span> <span class="s2">&quot;No such message </span><span class="si">#{</span><span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">unless</span> <span class="n">have_msg?</span><span class="p">(</span><span class="n">request</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>This is hypothetical action that is supposed to remove a message from some queue, if we do have a String as input that matches our message id&rsquo;s we then check that we do have such a message and if we don&rsquo;t we fail with a helpful message.</p>
+
+<p>Technically this will just set <em>statuscode</em> and <em>statusmsg</em> fields in the reply to appropriate values.</p>
+
+<p>It won&rsquo;t actually raise exceptions or exit your action though you should do that yourself as in the example here.</p>
+
+<p>From version 0.4.3 onward there is also a <em>fail!</em> instead of just <em>fail</em> it does the same basic function but also raises exceptions.  This lets you abort processing of the agent immediately without performing your own checks on <em>statuscode</em> as above later on.</p>
+
+<h2 id="authorization">Authorization</h2>
+<p>You can write a fine grained Authorization system to control access to actions and agents, please see <a href="/mcollective/simplerpc/authorization.html">SimpleRPCAuthorization</a> for full details.</p>
+
+<h2 id="auditing">Auditing</h2>
+<p>The actions that agents perform can be Audited by code you provide, potentially creating a centralized audit log of all actions.  See <a href="/mcollective/simplerpc/auditing.html">SimpleRPCAuditing</a> for full details.</p>
+
+<h2 id="logging">Logging</h2>
+<p>You can write to the server log file using the normal logger class:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">logger</span><span class="o">.</span><span class="n">debug</span> <span class="p">(</span><span class="s2">&quot;Hello from your agent&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>You can log at levels <em>info</em>, <em>warn</em>, <em>debug</em>, <em>fatal</em> or <em>error</em>.</p>
+
+<h2 id="processing-hooks">Processing Hooks</h2>
+<p>We provide a few hooks into the processing of a message, you&rsquo;ve already used this earlier to <a href="#Meta_Data_and_Initialization">set meta data</a>.</p>
+
+<p>You&rsquo;d use these hooks to add some functionality into the processing chain of agents, maybe you want to add extra logging for audit purposes of the raw incoming message and replies, these hooks will let you do that.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hook Function Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>startup_hook</td>
+      <td>Called at the end of the initialize method of the <em>RPC::Agent</em> base class</td>
+    </tr>
+    <tr>
+      <td>before_processing_hook(msg, connection)</td>
+      <td>Before processing of a message starts, pass in the raw message and the <em>MCollective::Connector</em> class</td>
+    </tr>
+    <tr>
+      <td>after_processing_hook</td>
+      <td>Just before the message is dispatched to the client</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="startuphook">startup<code>_</code>hook</h3>
+<p>Called at the end of the <em>RPC::Agent</em> standard initialize method use this to adjust meta parameters, timeouts and any setup you need to do.</p>
+
+<p>This will not be called right when the daemon starts up, we use lazy loading and initialization so it will only be called the first time a request for this agent arrives.</p>
+
+<h3 id="beforeprocessinghook">before<code>_</code>processing<code>_</code>hook</h3>
+<p>Called just after a message was received from the middleware before it gets passed to the handlers.  <em>request</em> and <em>reply</em> will already be set, the msg passed is the message as received from the normal mcollective runner and the connection is the actual connector.</p>
+
+<p>You can in theory send off new messages over the connector maybe for auditing or something, probably limited use case in simple agents.</p>
+
+<h3 id="afterprocessinghook">after<code>_</code>processing<code>_</code>hook</h3>
+<p>Called at the end of processing just before the response gets sent to the middleware.</p>
+
+<p>This gets run outside of the main exception handling block of the agent so you should handle any exceptions you could raise yourself.  The reason  it is outside of the block is so you&rsquo;ll have access to even status codes set by the exception handlers.  If you do raise an exception it will just be passed onto the runner and processing will fail.</p>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#conventions-regarding-incoming-data">Conventions regarding Incoming Data</a></li><li><a href="#sample-agent">Sample Agent</a></li><li><a href="#agent-name">Agent Name</a></li><li><a href="#meta-data-and-initialization">Meta Data and Initialization</a></li><li><a href="#writing-actions">Writing Actions</a></li><li><a href="#help-and-the-data-description-language">Help and the Data Description Language</a></li><li><a href="#validating-input">Validating Input</a></li><li><a href="#agent-configuration">Agent Configuration</a></li><li><a href="#accessing-the-input">Accessing the Input</a></li><li><a href="#running-shell-commands">Running Shell Commands</a></li><li><a href="#constructing-replies">Constructing Replies</a></li><li><a href="#reply-data">Reply Data</a></li><li><a href="#reply-status">Reply Status</a></li><li><a href="#authorization">Authorization</a></li><li><a href="#auditing">Auditing</a></li><li><a href="#logging">Logging</a></li><li><a href="#processing-hooks">Processing Hooks</a></li><li><a href="#">hook</a></li><li><a href="#">hook</a></li><li><a href="#">hook</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

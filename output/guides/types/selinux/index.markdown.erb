@@ -1,0 +1,16 @@
+Security-Enhanced Linux Types
+==============================
+
+* * *
+
+Types
+-----
+<%- page.parent.children.each do |e| -%>
+<%- if e != page -%>
+<%- if e.to_s =~ /markdown$/ -%>
+* [<%= e.basename('.markdown') %>](<%= e.basename('.markdown') %>.html)
+<%- elsif e.directory? -%>
+* [<%= e.basename %>](<%= e.basename %>/) types
+<%- end -%>
+<%- end -%>
+<%- end -%>

@@ -1,0 +1,20 @@
+Resource Types
+==============
+
+Resources Types are the building blocks of your Puppet configuration.
+
+* This is an alphabetical listing of the standard types (see the [categorized listing](index.html))
+
+* * *
+
+{TYPESHEADER}
+
+<%- page.parent.children.sort.each do |e| -%>
+<%- if e != page -%>
+<%- if e.to_s =~ /markdown$/ -%>
+* [<%= e.basename('.markdown') %>](<%= e.basename('.markdown') %>.html)
+<%- elsif e.directory? -%>
+* [<%= e.basename %>](<%= e.basename %>/) types
+<%- end -%>
+<%- end -%>
+<%- end -%>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - The Puppet File Server</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">The Puppet File Server</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="the-puppet-file-server">The Puppet File Server</h1>
+
+<p>This guide covers the use of Puppet&rsquo;s file serving capability.</p>
+
+<hr />
+
+<p>The <code>puppet master</code> service includes a file server for transferring static files. If a <code>file</code> resource declaration contains a <code>puppet:</code> URI in its <code>source</code> attribute, nodes will retrieve that file from the master&rsquo;s file server:</p>
+
+<pre><code># copy a remote file to /etc/sudoers
+file { "/etc/sudoers":
+    mode =&gt; 440,
+    owner =&gt; root,
+    group =&gt; root,
+    source =&gt; "puppet:///modules/module_name/sudoers"
+}
+</code></pre>
+
+<p>All puppet file server URIs are structured as follows:</p>
+
+<pre><code>puppet://{server hostname (optional)}/{mount point}/{remainder of path}
+</code></pre>
+
+<p>If a server hostname is omitted (i.e. <code>puppet:///{mount point}/{path}</code>; note the triple-slash), the URI will resolve to whichever server the evaluating node considers to be its master. As this makes manifest code more portable and reusable, hostnames should be omitted whenever possible. </p>
+
+<p>The remainder of the <code>puppet:</code> URI maps to the server&rsquo;s filesystem in one of two ways, depending on whether the files are provided by a module or exposed through a custom mount point. </p>
+
+<h2 id="serving-module-files">Serving Module Files</h2>
+
+<p>As the vast majority of file serving should be done through <a href="modules.html">modules</a>, the Puppet file server provides a special and semi-magical mount point called <code>modules</code>, which is available by default. If a URI&rsquo;s mount point is <code>modules</code>, Puppet will:</p>
+
+<ul>
+  <li>Interpret the next segment of the path as the name of a module&hellip;<sup id="fnref:oldmodulemounts"><a href="#fn:oldmodulemounts" rel="footnote">1</a></sup></li>
+  <li>&hellip; locate that module in the server&rsquo;s <code>modulepath</code> (as described <a href="modules.html">here</a> under &ldquo;Module Lookup&rdquo;)&hellip;</li>
+  <li>&hellip; and resolve the remainder of the path starting in that module&rsquo;s <code>files/</code> directory.</li>
+</ul>
+
+<p>That is to say, if a module named <code>test_module</code> is installed in the central server&rsquo;s <code>/etc/puppet/modules</code> directory, the following puppet: URI&hellip;</p>
+
+<pre><code>puppet:///modules/test_module/testfile.txt
+</code></pre>
+
+<p>&hellip;will resolve to the following absolute path:</p>
+
+<pre><code>/etc/puppet/modules/test_module/files/testfile.txt
+</code></pre>
+
+<p>If <code>test_module</code> were installed in <code>/usr/share/puppet/modules</code>, the same URI would instead resolve to:</p>
+
+<pre><code>/usr/share/puppet/modules/test_module/files/testfile.txt
+</code></pre>
+
+<p>Although no additional configuration is required to use the <code>modules</code> mount point, some access controls can be specified in the file server configuration by adding a <code>[modules]</code> configuration block; see <a href="#security">Security</a>.</p>
+
+<h2 id="serving-files-from-custom-mount-points">Serving Files From Custom Mount Points</h2>
+
+<p>Puppet can also serve files from arbitrary mount points specified in the server&rsquo;s file server configuration (see below). When serving files from a custom mount point, Puppet does not perform the additional URI abstraction used in the <code>modules</code> mount, and will resolve the path following the mount name as a simple directory structure.</p>
+
+<h2 id="file-server-configuration">File Server Configuration</h2>
+
+<p>The default location for the file server&rsquo;s configuration data is 
+/etc/puppet/fileserver.conf; this can be changed by passing the
+<code>--fsconfig</code> flag to <code>puppet master</code>. </p>
+
+<p>The format of the fileserver.conf file is almost
+exactly like that of <a href="http://samba.anu.edu.au/rsync/">rsync</a>, and roughly resembles an INI file:</p>
+
+<pre><code>[mount_point]
+    path /path/to/files
+    allow *.domain.com
+    deny *.wireless.domain.com
+</code></pre>
+
+<p>The following options can currently be specified for a given mount point:</p>
+
+<ul>
+  <li>The <code>path</code> to the mount&rsquo;s location on the disk</li>
+  <li>Any number of <code>allow</code> directives</li>
+  <li>Any number of <code>deny</code> directives</li>
+</ul>
+
+<p><code>path</code> is the only required option, but since the
+default security configuration is to deny all access, a mount point with no 
+<code>allow</code> directives would not be available to any nodes.</p>
+
+<p>The path can contain any or all of %h, %H, and %d, which are
+dynamically replaced by the client&rsquo;s hostname, its fully qualified
+domain name and its domain name, respectively. All are taken from
+the client&rsquo;s SSL certificate (so be careful if you&rsquo;ve got
+hostname/certname mismatches). This is useful in creating modules
+where files for each client are kept completely separately, e.g.
+for private ssh host keys. For example, with the configuration</p>
+
+<pre><code>[private]
+    path /data/private/%h
+    allow *
+</code></pre>
+
+<p>the request for file /private/file.txt from client
+client1.example.com will look for a file
+/data/private/client1/file.txt, while the same request from
+client2.example.com will try to retrieve the file
+/data/private/client2/file.txt on the fileserver.</p>
+
+<p>Currently paths cannot contain trailing slashes or an error will
+result. Also take care that in puppet.conf you are not specifying
+directory locations that have trailing slashes.</p>
+
+<h2 id="security">Security</h2>
+
+<p>Securing the Puppet file server consists of allowing and denying access (at varying levels of specificity) per mount point. Groups of nodes can be identified for permission or denial in three ways: by IP address, by name, or by a single global wildcard (<code>*</code>). Custom mount points default to denying all access. </p>
+
+<p>In addition to custom mount points, there are two special mount points which can be managed with <code>fileserver.conf</code>: <code>modules</code> and <code>plugins</code>. Neither of these mount points should have a <code>path</code> option specified. The behavior of the <code>modules</code> mount point is described above under <a href="#serving-files-from-custom-mount-points">Serving Files From Custom Mount Points</a>. The <code>plugins</code> mount is not a true mount point, but is rather a hook to allow <code>fileserver.conf</code> to specify which nodes are permitted to sync plugins from the Puppet Master. Both of these mount points exist by default, and both default to allowing all access; if <strong>any</strong> <code>allow</code> or <code>deny</code> directives are set for one of these special mounts, its security settings will behave like those of a normal mount (i.e., it will default to denying all access). Note that these are the only mount points for which <code>deny *</code> is not redundant.</p>
+
+<p>If nodes are not connecting to the Puppet file server directly,
+e.g. using a reverse proxy and Mongrel (see <a href="./mongrel.html">Using Mongrel</a>),
+then the file server will see all the connections as coming from
+the proxy server&rsquo;s IP address rather than that of the Puppet Agent node. In this case, it is best to restrict access based on hostname. Additionally, the 
+machine(s) acting as reverse proxy (usually 127.0.0.0/8) will need to be 
+allowed to access the applicable mount points.</p>
+
+<h3 id="priority">Priority</h3>
+
+<p>More specific <code>deny</code> and <code>allow</code> statements take precedence over less specific statements; that is, an <code>allow</code> statement for <code>node.domain.com</code> would let it connect despite a <code>deny</code> statement for <code>*.domain.com</code>. At a given level of specificity, <code>deny</code> statements take precedence over <code>allow</code> statements. </p>
+
+<p>Unpredictable behavior can result from mixing IP address directives with hostname and domain name directives, so try to avoid doing that.  (Currently, if node.domain.com&rsquo;s IP address is 192.168.1.80 and <code>fileserver.conf</code> contains <code>allow 192.168.1.80</code> and <code>deny node.domain.com</code>, the IP-based <code>allow</code> directive will actually take precedence. This behavior may be changed in the future and should not be relied upon.)</p>
+
+<h3 id="host-names">Host Names</h3>
+
+<p>Host names can be specified using either a complete hostname, or
+specifying an entire domain using the <code>*</code> wildcard:</p>
+
+<pre><code>[export]
+    path /export
+    allow host.domain1.com
+    allow *.domain2.com
+    deny badhost.domain2.com
+</code></pre>
+
+<h3 id="ip-addresses">IP Addresses</h3>
+
+<p>IP address can be specified similarly to host names, using either
+complete IP addresses or wildcarded addresses. You can also use
+CIDR-style notation:</p>
+
+<pre><code>[export]
+    path /export
+    allow 127.0.0.1
+    allow 192.168.0.*
+    allow 192.168.1.0/24
+</code></pre>
+
+<h3 id="global-allow">Global allow</h3>
+
+<p>Specifying a single wildcard will let any node access a mount point:</p>
+
+<pre><code>[export]
+    path /export
+    allow *
+</code></pre>
+
+<p>Note that the default behavior for custom mount points is equivalent to <code>deny *</code>. </p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:oldmodulemounts">
+      <p>Older versions of Puppet generated individual mount points for each installed module; to reduce namespace conflicts, these were changed to subdirectories of the catch-all <code>modules</code> mount point in version 0.25.0. <a href="#fnref:oldmodulemounts" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#serving-module-files">Serving Module Files</a></li><li><a href="#serving-files-from-custom-mount-points">Serving Files From Custom Mount Points</a></li><li><a href="#file-server-configuration">File Server Configuration</a></li><li><a href="#security">Security</a></li><li><a href="#priority">Priority</a></li><li><a href="#host-names">Host Names</a></li><li><a href="#ip-addresses">IP Addresses</a></li><li><a href="#global-allow">Global allow</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

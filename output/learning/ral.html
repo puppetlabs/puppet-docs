@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Learning — Resources</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Learning — Resources</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="learning--resources-and-the-ral">Learning — Resources and the RAL</h1>
+
+<p>Resources are the building blocks of Puppet, and the division of resources into types and providers is what gives Puppet its power. </p>
+
+<hr />
+
+<p>You are at the beginning. &mdash; <a href="./">Index</a> &mdash; <a href="./manifests.html">Manifests</a> &rarr;</p>
+
+<hr />
+
+<h2 id="molecules">Molecules</h2>
+
+<p>Imagine a system&rsquo;s configuration as a collection of molecules; call them <strong>&ldquo;resources.&rdquo;</strong> </p>
+
+<p>These pieces vary in size, complexity, and lifespan: a user account can be a resource, as can a specific file, a software package, a running service, or a scheduled cron job. Even a single invocation of a shell command can be a resource.</p>
+
+<p>Any resource is very similar to a class of related things: every file has a path and an owner, and every user has a name, a UID, and a group. Which is to say: <em>similar resources can be grouped into types.</em> Furthermore, the most important attributes of a resource type are usually conceptually identical across operating systems, regardless of how the implementations differ. That is, <em>the description of a resource can be abstracted away from its implementation.</em> </p>
+
+<p>These two insights form Puppet&rsquo;s resource abstraction layer (RAL). The RAL splits resources into <strong>types</strong> (high-level models) and <strong>providers</strong> (platform-specific implementations), and lets you describe resources in a way that can apply to any system. </p>
+
+<h2 id="sync-read-check-write">Sync: Read, Check, Write</h2>
+
+<p>Puppet uses the RAL to both read and modify the state of resources on a system. Since it&rsquo;s a declarative system, Puppet starts with an understanding of what state a resource <em>should</em> have. To sync the resource, it uses the RAL to query the current state, compares that against the desired state, then uses the RAL again to make any necessary changes. </p>
+
+<h2 id="anatomy-of-a-resource">Anatomy of a Resource</h2>
+
+<p>In Puppet, every resource is an instance of a <strong>resource type</strong> and is identified by a <strong>title;</strong> it has a number of <strong>attributes</strong> (which are defined by its type), and each attribute has a <strong>value.</strong> </p>
+
+<p>The Puppet language represents a resource like this:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">user</span> <span class="p">{</span> <span class="s1">&#39;dave&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+        <span class="n">uid</span>        <span class="o">=&gt;</span> <span class="s1">&#39;507&#39;</span><span class="p">,</span>
+        <span class="n">gid</span>        <span class="o">=&gt;</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+        <span class="n">shell</span>      <span class="o">=&gt;</span> <span class="s1">&#39;/bin/zsh&#39;</span><span class="p">,</span>
+        <span class="n">home</span>       <span class="o">=&gt;</span> <span class="s1">&#39;/home/dave&#39;</span><span class="p">,</span>
+        <span class="n">managehome</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>This syntax is the heart of the Puppet language, and you&rsquo;ll be seeing it a lot. Hopefully you can already see how it lays out all of the resource&rsquo;s parts (type, title, attributes, and values) in a fairly straightforward way.</p>
+
+<h2 id="the-resource-shell">The Resource Shell</h2>
+
+<p>Puppet ships with a tool called puppet resource, which uses the RAL to let you query and modify your system from the shell. Use it to get some experience with the RAL before learning to write and apply manifests.</p>
+
+<p>Puppet resource&rsquo;s first argument is a resource type. If executed with no further arguments&hellip;</p>
+
+<pre><code>$ puppet resource user
+</code></pre>
+
+<p>&hellip; it will query the system and return every resource of that type it can recognize in the system&rsquo;s current state. </p>
+
+<p>You can retrieve a specific resource&rsquo;s state by providing a resource name as a second argument.</p>
+
+<pre><code>$ puppet resource user root
+
+user { 'root':
+    home =&gt; '/var/root',
+    shell =&gt; '/bin/sh',
+    uid =&gt; '0',
+    ensure =&gt; 'present',
+    password =&gt; '*',
+    gid =&gt; '0',
+    comment =&gt; 'System Administrator'
+}
+</code></pre>
+
+<p>Note that puppet resource returns Puppet code when it reads a resource from the system! You can use this code later to restore the resource to the state it&rsquo;s in now.</p>
+
+<p>If any attribute=value pairs are provided as additional arguments to puppet resource, it will modify the resource, which can include creating it or destroying it:</p>
+
+<pre><code>$ puppet resource user dave ensure=present shell="/bin/zsh" home="/home/dave" managehome=true
+
+notice: /User[dave]/ensure: created
+
+user { 'dave':
+    ensure =&gt; 'present',
+    home =&gt; '/home/dave',
+    shell =&gt; '/bin/zsh'
+}
+</code></pre>
+
+<p>(Note that this command line assignment syntax differs from the Puppet language&rsquo;s normal attribute =&gt; value syntax.)</p>
+
+<p>Finally, if you specify a resource and use the <code>--edit</code> flag, you can change that resource in your text editor; after the buffer is saved and closed, puppet resource will modify the resource to match your changes. </p>
+
+<h2 id="the-core-resource-types">The Core Resource Types</h2>
+
+<p>Puppet has a number of built-in types, and new native types can be distributed with modules. Puppet&rsquo;s core types, the ones you&rsquo;ll get familiar with first, are <a href="../references/latest/type.html#notify">notify</a>, <a href="../references/latest/type.html#file">file</a>, <a href="../references/latest/type.html#package">package</a>, <a href="../references/latest/type.html#service">service</a>, <a href="../references/latest/type.html#exec">exec</a>, <a href="../references/latest/type.html#cron">cron</a>, <a href="../references/latest/type.html#user-3">user</a>, and <a href="../references/latest/type.html#group-2">group</a>. Don&rsquo;t worry about memorizing them immediately, since we&rsquo;ll be covering various resources as we use them, but do take a second to print out a copy of the <a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">core types cheat sheet</a>, a double-sided page covering these eight types. It is doctor-recommended<sup id="fnref:doctor"><a href="#fn:doctor" rel="footnote">1</a></sup> and has been clinically shown to treat reference inflammation. </p>
+
+<!-- TODO: Change that to a link to the PDF. -->
+
+<p>Documentation for all of the built-in types <a href="../references/latest/type.html">can always be found in the reference section of this site</a>, and can be generated on the fly with the puppet describe utility.</p>
+
+<h2 id="an-aside-puppet-describe--s">An Aside: puppet describe -s</h2>
+
+<p>You can get help for any of the Puppet executables by running them with the <code>--help</code> flag, but it&rsquo;s worth pausing for an aside on puppet describe&rsquo;s <code>-s</code> flag. </p>
+
+<pre><code>$ puppet describe -s user
+
+user
+====
+Manage users.  This type is mostly built to manage system
+users, so it is lacking some features useful for managing normal
+users.
+
+This resource type uses the prescribed native tools for creating
+groups and generally uses POSIX APIs for retrieving information
+about them.  It does not directly modify `/etc/passwd` or anything.
+
+
+Parameters
+----------
+    allowdupe, auth_membership, auths, comment, ensure, expiry, gid, groups,
+    home, key_membership, keys, managehome, membership, name, password,
+    password_max_age, password_min_age, profile_membership, profiles,
+    project, role_membership, roles, shell, uid
+
+Providers
+---------
+    directoryservice, hpuxuseradd, ldap, pw, user_role_add, useradd
+</code></pre>
+
+<p><code>-s</code> makes puppet describe dump a compact list of the given resource type&rsquo;s attributes and providers. This isn&rsquo;t useful when learning about a type for the first time or looking up allowed values, but it&rsquo;s fantastic when you have the name of an attribute on the tip of your tongue or you can&rsquo;t remember which two out of &ldquo;group,&rdquo; &ldquo;groups,&rdquo; and &ldquo;gid&rdquo; are applicable for the user type. </p>
+
+<!-- Todo: add more exercises, potentially elaborate on a first few resource types. -->
+
+<h2 id="next">Next</h2>
+
+<p>Puppet resource can be useful for one-off jobs, but Puppet was born for greater things. <a href="./manifests.html">Time to write some manifests</a>. </p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:doctor">
+      <p>The core types cheat sheet is not actually doctor-recommended. If you&rsquo;re a sysadmin with an M.D., please email me so I can change this footnote.<a href="#fnref:doctor" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#molecules">Molecules</a></li><li><a href="#sync-read-check-write">Sync: Read, Check, Write</a></li><li><a href="#anatomy-of-a-resource">Anatomy of a Resource</a></li><li><a href="#the-resource-shell">The Resource Shell</a></li><li><a href="#the-core-resource-types">The Core Resource Types</a></li><li><a href="#an-aside-puppet-describe--s">An Aside: puppet describe -s</a></li><li><a href="#next">Next</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

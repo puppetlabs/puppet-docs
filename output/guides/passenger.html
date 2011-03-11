@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Passenger</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Passenger</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="passenger">Passenger</h1>
+
+<p>Using Passenger instead of WEBrick for web services offers numerous performance
+advantages.  This guide shows how to set it up.</p>
+
+<hr />
+
+<h2 id="supported-versions">Supported Versions</h2>
+
+<p>Passenger support is present in release 0.24.6 and later versions only.  For earlier
+versions, consider <a href="./mongrel.html">Using Mongrel</a>.</p>
+
+<h2 id="why-passenger">Why Passenger</h2>
+
+<p>Traditionally, the puppetmaster would embed a WEBrick or Mongrel
+Web Server to serve the puppet clients. This may work well for you,
+but a few people feel like using a proven web server like Apache
+would be superior for this purpose.</p>
+
+<h2 id="what-is-passenger">What is Passenger?</h2>
+
+<p><a href="http://www.modrails.com/">Passenger</a> (AKA mod_rails or mod_rack)
+is the Apache 2.x Extension which lets you run Rails or Rack
+applications inside Apache.</p>
+
+<p>Puppet (&gt;0.24.6) now ships with a Rack application which can embed
+a puppetmaster. While it should be compatible with every Rack
+application server, it has only been tested with Passenger.</p>
+
+<p>Depending on your operating system, the versions of Puppet, Apache
+and Passenger may not support this implementation. Specifically,
+Ubuntu Hardy ships with an older version of puppet (0.24.4) and
+doesn&rsquo;t include passenger at all, however updated packages for
+puppet can be found
+<a href="https://launchpad.net/~bitpusher/+archive/ppa">here</a>. There are
+also some passenger packages there, but as of 2009-09-28 they do
+not seem to have the latest passenger (2.2.5), so better install
+passenger from a gem as per the instructions at [modrails.com].</p>
+
+<p>Note: Passenger versions 2.2.3 and 2.2.4 have known bugs regarding
+to the SSL environment variables, which make them unsuitable for
+hosting a puppetmaster. So use either 2.2.2, or 2.2.5. Note that
+while it was expected that Passenger 2.2.2 would be the last
+version which can host a 0.24.x puppetmaster, that turns out to be
+not true, cf.
+<a href="http://projects.puppetlabs.com/issues/2386#change-9238">this bug report</a>.
+So, passenger 2.2.5 works fine.</p>
+
+<h2 id="installation-instructions-for-puppet-025x-and-26x">Installation Instructions for Puppet 0.25.x and 2.6.x</h2>
+
+<p>Please see
+<a href="http://github.com/puppetlabs/puppet/tree/master/ext/rack">ext/rack/README in the puppet source</a>
+tree for instructions.</p>
+
+<p>Whatever you do, make sure your config.ru file is owned by the
+puppet user! Passenger will setuid to that user.</p>
+
+<h2 id="installation-instructions-for-puppet-024x-for-debianubuntu-and-rhel5">Installation Instructions for Puppet 0.24.x for Debian/Ubuntu and RHEL5</h2>
+
+<p>Make sure puppetmasterd ran at least once, so puppetmasterd SSL
+certificates are setup intially.</p>
+
+<h3 id="install-apache-2-rack-and-passenger">Install Apache 2, Rack and Passenger</h3>
+
+<p>For Debian/Ubuntu:</p>
+
+<pre><code>apt-get install apache2
+apt-get install ruby1.8-dev
+</code></pre>
+
+<p>For RHEL5 (needs the <a href="https://fedoraproject.org/wiki/EPEL">EPEL</a>
+repository enabled):</p>
+
+<pre><code>yum install httpd httpd-devel ruby-devel rubygems
+</code></pre>
+
+<h3 id="install-rackpassenger">Install Rack/Passenger</h3>
+
+<p>The latest version of Passenger (2.2.5) appears to work fine on
+RHEL5:</p>
+
+<pre><code>gem install rack
+gem install passenger
+passenger-install-apache2-module
+</code></pre>
+
+<p>If you want the older 2.2.2 gem, you could manually download the
+.gem file from
+<a href="http://rubyforge.org/frs/?group_id=5873">RubyForge</a>. Or, you could
+just add the correct versions to your gem command:</p>
+
+<pre><code>  gem install -v 0.4.0 rack
+  gem install -v 2.2.2 passenger
+</code></pre>
+
+<h3 id="enable-apache-modules-ssl-and-headers">Enable Apache modules &ldquo;ssl&rdquo; and &ldquo;headers&rdquo;:</h3>
+
+<pre><code># for Debian or Ubuntu:
+a2enmod ssl
+a2enmod headers
+
+# for RHEL5
+yum install mod_ssl
+</code></pre>
+
+<h3 id="configure-apache">Configure Apache</h3>
+
+<p>For Debian/Ubuntu:</p>
+
+<pre><code>cp apache2.conf /etc/apache2/sites-available/puppetmasterd  (see below for the file contents)
+ln -s /etc/apache2/sites-available/puppetmasterd /etc/apache2/sites-enabled/puppetmasterd
+vim /etc/apache2/conf.d/puppetmasterd (replace the hostnames)
+</code></pre>
+
+<p>For RHEL5:</p>
+
+<pre><code>cp puppetmaster.conf /etc/httpd/conf.d/ (see below for file contents)
+vim /etc/httpd/conf.d/puppetmaster.conf (replace hostnames with corrent values)
+</code></pre>
+
+<p>Install the rack application [1]:</p>
+
+<pre><code>mkdir -p /usr/share/puppet/rack/puppetmasterd
+mkdir /usr/share/puppet/rack/puppetmasterd/public /usr/share/puppet/rack/puppetmasterd/tmp
+cp config.ru /usr/share/puppet/rack/puppetmasterd
+chown puppet /usr/share/puppet/rack/puppetmasterd/config.ru
+</code></pre>
+
+<p>Go:</p>
+
+<pre><code># For Debian/Ubuntu
+/etc/init.d/apache2 restart
+
+# For RHEL5
+/etc/init.d/httpd restart
+</code></pre>
+
+<p>If all works well, you&rsquo;ll want to make sure your puppmetmasterd
+init script does not get called anymore:</p>
+
+<pre><code># For Debian/Ubuntu
+update-rc.d -f puppetmaster remove
+
+# For RHEL5
+chkconfig puppetmaster off
+chkconfig httpd on
+</code></pre>
+
+<p>[1] Passenger will not let applications run as root or the Apache
+user, instead an implicit setuid will be done, to the user whom
+owns config.ru. Therefore, config.ru shall be owned by the puppet
+user.</p>
+
+<h2 id="apache-configuration-for-puppet-024x">Apache Configuration for Puppet 0.24.x</h2>
+
+<p>This Apache Virtual Host configures the puppetmaster on the default
+puppetmaster port (8140).</p>
+
+<pre><code>Listen 8140
+&lt;VirtualHost *:8140&gt;
+
+    SSLEngine on
+    SSLCipherSuite SSLv2:-LOW:-EXPORT:RC4+RSA
+    SSLCertificateFile      /var/lib/puppet/ssl/certs/puppet-server.inqnet.at.pem
+    SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/puppet-server.inqnet.at.pem
+    SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
+    SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
+    # CRL checking should be enabled; if you have problems with Apache complaining about the CRL, disable the next line
+    SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
+    SSLVerifyClient optional
+    SSLVerifyDepth  1
+    SSLOptions +StdEnvVars
+
+    # The following client headers allow the same configuration to work with Pound.
+    RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
+    RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
+    RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
+
+    RackAutoDetect On
+    DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
+    &lt;Directory /usr/share/puppet/rack/puppetmasterd/&gt;
+        Options None
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>If the current puppetmaster is not a certificate authority, you may
+need to change the following lines. The certs/ca.pem file should
+exist as long as the puppetmaster has been signed by the CA.</p>
+
+<pre><code>  SSLCertificateChainFile /var/lib/puppet/ssl/certs/ca.pem
+    SSLCACertificateFile    /var/lib/puppet/ssl/certs/ca.pem
+</code></pre>
+
+<p>For Debian hosts you might wish to add:</p>
+
+<pre><code>  LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.5/ext/apache2/mod_passenger.so
+    PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.5
+    PassengerRuby /usr/bin/ruby1.8
+</code></pre>
+
+<p>For RHEL hosts you may need to add:</p>
+
+<pre><code>   LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-2.2.5/ext/apache2/mod_passenger.so
+   PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-2.2.5
+   PassengerRuby /usr/bin/ruby
+</code></pre>
+
+<p>For details about enabling and configuring Passenger, see the
+<a href="http://www.modrails.com/install.html">Passenger install guide</a>.</p>
+
+<h2 id="the-configru-file-for-puppet-024x">The config.ru file for Puppet 0.24.x</h2>
+
+<pre><code># This file is mostly based on puppetmasterd, which is part of
+# the standard puppet distribution.
+
+require 'rack'
+require 'puppet'
+require 'puppet/network/http_server/rack'
+
+# startup code stolen from bin/puppetmasterd
+Puppet.parse_config
+Puppet::Util::Log.level = :info
+Puppet::Util::Log.newdestination(:syslog)
+# A temporary solution, to at least make the master work for now.
+Puppet::Node::Facts.terminus_class = :yaml
+# Cache our nodes in yaml.  Currently not configurable.
+Puppet::Node.cache_class = :yaml
+
+
+# The list of handlers running inside this puppetmaster
+handlers = {
+    :Status =&gt; {},
+    :FileServer =&gt; {},
+    :Master =&gt; {},
+    :CA =&gt; {},
+    :FileBucket =&gt; {},
+    :Report =&gt; {}
+}
+
+# Fire up the Rack-Server instance
+server = Puppet::Network::HTTPServer::Rack.new(handlers)
+
+# prepare the rack app
+app = proc do |env|
+    server.process(env)
+end
+
+# Go.
+run app
+</code></pre>
+
+<p>If you don&rsquo;t want to run with the CA enabled, you could drop the
+&lsquo;:CA =&gt; {}&rsquo; line from the config.ru above.</p>
+
+<h2 id="the-configru-file-for-025x">The config.ru file for 0.25.x</h2>
+
+<p>Please see ext/rack in the 0.25 source tree for the proper
+config.ru file.</p>
+
+<h2 id="suggested-tweaks">Suggested Tweaks</h2>
+
+<p>Larry Ludwig&rsquo;s testing of passenger/puppetmasterd recommends
+adjusting these options in your apache configuration:</p>
+
+<ul>
+  <li>PassengerPoolIdleTime 300 - Set to 5 min (300 seconds) or less.
+The shorting this option allows for puppetmasterd to get refreshed
+at some interval. This option is also somewhat dependent upon the
+amount of puppetd nodes connecting and at what interval.</li>
+  <li>PassengerMaxPoolSize 15 - to 15% more instances than what&rsquo;s
+needed. This will allow idle puppetmasterd to get recycled. The net
+effect is less memory will be used, not more.</li>
+  <li>PassengerUseGlobalQueue on - Since communication with the
+puppetmaster from puppetd is a long process (more than 20 seconds
+in most cases) and will allow for processes to get recycled better</li>
+  <li>PassengerHighPerformance on - The additional Passenger features
+for apache compatibility are not needed with Puppet.</li>
+</ul>
+
+<p>As is expected with traditional web servers, once your service
+starts using swap, performance degradation will occur &mdash; so be mindful
+of your memory/swap usage on your Puppetmaster.</p>
+
+<p>To monitor the age of your puppetmasterd processes within
+Passenger, run</p>
+
+<pre><code>passenger-status | grep PID | sort
+
+  PID: 14590   Sessions: 1    Processed: 458     Uptime: 3m 40s
+  PID: 7117    Sessions: 0    Processed: 10980   Uptime: 1h 43m 41s
+  PID: 7355    Sessions: 0    Processed: 9736    Uptime: 1h 38m 38s
+  PID: 7575    Sessions: 0    Processed: 9395    Uptime: 1h 32m 27s
+  PID: 9950    Sessions: 0    Processed: 6581    Uptime: 1h 2m 35s
+</code></pre>
+
+<p>Passenger can be configured to be recycling puppetmasterd
+every few hours to ensure memory/garbage collection from Ruby is
+not a factor.</p>
+
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#supported-versions">Supported Versions</a></li><li><a href="#why-passenger">Why Passenger</a></li><li><a href="#what-is-passenger">What is Passenger?</a></li><li><a href="#installation-instructions-for-puppet-025x-and-26x">Installation Instructions for Puppet 0.25.x and 2.6.x</a></li><li><a href="#installation-instructions-for-puppet-024x-for-debianubuntu-and-rhel5">Installation Instructions for Puppet 0.24.x for Debian/Ubuntu and RHEL5</a></li><li><a href="#install-apache-2-rack-and-passenger">Install Apache 2, Rack and Passenger</a></li><li><a href="#install-rackpassenger">Install Rack/Passenger</a></li><li><a href="#enable-apache-modules-ssl-and-headers">Enable Apache modules &ldquo;ssl&rdquo; and &ldquo;headers&rdquo;:</a></li><li><a href="#configure-apache">Configure Apache</a></li><li><a href="#apache-configuration-for-puppet-024x">Apache Configuration for Puppet 0.24.x</a></li><li><a href="#the-configru-file-for-puppet-024x">The config.ru file for Puppet 0.24.x</a></li><li><a href="#the-configru-file-for-025x">The config.ru file for 0.25.x</a></li><li><a href="#suggested-tweaks">Suggested Tweaks</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

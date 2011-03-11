@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Troubleshooting</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Troubleshooting</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="troubleshooting">Troubleshooting</h1>
+
+<p>Answers to some common problems that may come up.</p>
+
+<p>Basic workflow items are covered in the main section of the documentation.  If you&rsquo;re looking for how to do something unconventional, you may also wish to read <a href="./techniques.html">Techniques</a>.</p>
+
+<hr />
+
+<h2 id="why-hasnt-my-new-node-configuration-been-noticed">Why hasn&rsquo;t my new node configuration been noticed?</h2>
+
+<p>If you&rsquo;re using separate node definition files and import them into
+site.pp (with an <code>import *.node</code>, for example) you&rsquo;ll find that new
+files added won&rsquo;t get noticed until you restart puppetmasterd. This
+is due to the fact globs aren&rsquo;t evaluated on each run, but only
+when the &lsquo;parent&rsquo; file is re-read.</p>
+
+<p>To make sure your new file is actually read, simply &lsquo;touch&rsquo; the
+site.pp (or importing file) and the glob will be re-evaluated.</p>
+
+<h2 id="why-dont-my-certificates-show-as-waiting-to-be-signed-on-my-server-when-i-do-a-puppet-cert---list">Why don&rsquo;t my certificates show as waiting to be signed on my server when I do a &ldquo;<code>puppet cert --list</code>&rdquo;?</h2>
+
+<p>puppet cert must be run with root privileges. If you are not root, then re-run the
+command with sudo:</p>
+
+<pre><code>sudo puppet cert --list
+</code></pre>
+
+<h2 id="i-keep-getting-certificates-were-not-trusted-whats-wrong">I keep getting &ldquo;certificates were not trusted&rdquo;. What&rsquo;s wrong?</h2>
+
+<p>Firstly, if you&rsquo;re re-installing a machine, you probably haven&rsquo;t
+cleared the previous certificate for that machine. To correct the
+problem:</p>
+
+<ol>
+  <li>Run <code>sudo puppet cert --clean {node certname}</code> on the puppet master to
+clear the certificates.</li>
+  <li>Remove the entire SSL directory of the client machine (<code>sudo rm -r etc/puppet/ssl; rm -r /var/lib/puppet/ssl</code>).</li>
+</ol>
+
+<p>Assuming that you&rsquo;re not re-installing, by far the most common
+cause of SSL problems is that the clock on the client machine is
+set incorrectly, which confuses SSL because the &ldquo;validFrom&rdquo; date in
+the certificate is in the future.</p>
+
+<p>You can figure the problem out by manually verifying the
+certificate with openssl:</p>
+
+<pre><code>sudo openssl verify -CAfile /etc/puppet/ssl/certs/ca.pem /etc/puppet/ssl/certs/myhostname.domain.com.pem
+</code></pre>
+
+<p>This can also happen if you&rsquo;ve followed the <a href="./mongrel.html">Using Mongrel</a>
+pattern to alleviate file download problems. If your set-up is such
+that the host name differs from the name in the Puppet server
+certificate, or there is any other SSL certificate negotiation
+problem, the SSL handshake between client and server will fail. In
+this case, either alleviate the SSL handshake problems (debug using
+cURL), or revert to the original Webrick installation.</p>
+
+<h2 id="im-getting-ipv6-errors-whats-wrong">I&rsquo;m getting IPv6 errors; what&rsquo;s wrong?</h2>
+
+<p>This can happen if Ruby is not compiled with IPv6
+support. The only known
+solution is to make sure you&rsquo;re running a version of Ruby compiled
+with IPv6 support.</p>
+
+<h2 id="im-getting-tlsv1-alert-unknown-ca-errors-whats-wrong">I&rsquo;m getting tlsv1 alert unknown ca errors; what&rsquo;s wrong?</h2>
+
+<p>This problem is caused by puppetmasterd not being able to read its
+ca certificate. This problem might occur up to 0.18.4 but has been
+fixed in 0.19.0. You can probably fix it for versions before 0.19.0
+by changing the group ownership of the /etc/puppet/ssl directory to
+the puppet group, but puppetd may change the group back. Having
+puppetmasterd start as the root user should fix the problem
+permanently until you can upgrade.</p>
+
+<h2 id="why-does-puppet-keep-trying-to-start-a-running-service">Why does Puppet keep trying to start a running service?</h2>
+
+<p>The ideal way to check for a service is to use the hasstatus
+attribute, which calls the init script with its <code>status</code> command.
+This should report back to Puppet whether the service is running or
+stopped.</p>
+
+<p>In some broken scripts, however, the status output will be correct
+(&ldquo;Ok&rdquo; or &ldquo;not running&rdquo;), but the exit code of the script will be
+incorrect. (Most commonly, the script will always blindly return 0.)
+Puppet only uses the exit code, and so may behave unpredictably in
+these cases.</p>
+
+<p>There are two workarounds, and one fix. If you must deal with the
+script&rsquo;s broken behavior as is, your resource can either use the &ldquo;pattern&rdquo;
+attribute to look for a particular name in the process table, or use the
+&ldquo;status&rdquo; attribute to specify a custom script that returns the proper exit
+code for the service&rsquo;s status.</p>
+
+<p>The longer-term fix is to rewrite the service&rsquo;s init script to use the proper
+exit codes. When rewriting them, or submitting bug reports to vendors or
+upstream, be sure to reference the
+<a href="http://refspecs.linux-foundation.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">LSB Init Script Actions</a>
+standard. This should carry more weight by pointing out an
+official, published standard they&rsquo;re failing to meet, rather than
+trying to explain how their bug is causing problems in Puppet.</p>
+
+<h2 id="why-is-my-external-node-configuration-failing-i-get-no-errors-by-running-the-script-by-hand">Why is my external node configuration failing? I get no errors by running the script by hand.</h2>
+
+<p>Most of the time, if you get the following error when running you
+client</p>
+
+<pre><code>warning: Not using cache on failed catalog
+err: Could not retrieve catalog; skipping run
+</code></pre>
+
+<p>it is because of some invalid YAML output from your external node
+script. Check <a href="http://www.yaml.org">yaml.org</a> if you
+have doubts about validity.</p>
+
+<h1 id="puppet-syntax-errors">Puppet Syntax Errors</h1>
+
+<p>Puppet generates syntax errors when manifests are incorrectly
+written. Sometimes these errors can be a little cryptic. Below is a
+list of common errors and their explanations that should help you
+trouble-shoot your manifests.</p>
+
+<h2 id="syntax-error-at--expected--at-manifestppnnn">Syntax error at &lsquo;}&rsquo;; expected &lsquo;}&rsquo; at manifest.pp:nnn</h2>
+
+<p>This error can occur when:</p>
+
+<pre><code>service { "fred" }
+</code></pre>
+
+<p>This contrived example demonstrates one way to get the very
+confusing error of Puppet&rsquo;s parser expecting what it found. In this
+example, the colon ( : ) is missing after the service title. A
+variant looks like:</p>
+
+<pre><code>service { "fred"
+    ensure =&gt; running
+}
+</code></pre>
+
+<p>and the error would be Syntax error at &lsquo;ensure&rsquo;; expected &lsquo;}&rsquo; .</p>
+
+<p>You can also get the same error if you forget a comma. For
+instance, in this example the comma is missing at the end of line
+3:
+    service {
+      &ldquo;myservice&rdquo;:
+        provider =&gt; &ldquo;runit&rdquo;
+        path =&gt; &ldquo;/path/to/daemons&rdquo;
+    }</p>
+
+<h2 id="syntax-error-at--expected--at-manifestppnnn-1">Syntax error at &lsquo;:&rsquo;; expected &lsquo;]&rsquo; at manifest.pp:nnn</h2>
+
+<p>This error can occur when:</p>
+
+<pre><code>classname::define_name {
+    "jdbc/automation":
+        cpoolid     =&gt; "automationPool",
+        require     =&gt; [ Classname::other_define_name["automationPool"] ],
+}
+</code></pre>
+
+<p>The problem here is that Puppet requires that object references in
+the require lines to begin with a capital letter. However, since
+this is a reference to a class and a define, the define also needs
+to have a capital letter, so Classname::Other_define_name would
+be the correct syntax.</p>
+
+<h2 id="syntax-error-at--expected--at-manifestppnnn-2">Syntax error at &lsquo;.&rsquo;; expected &lsquo;}&rsquo; at manifest.pp:nnn</h2>
+
+<p>This error happens when you use unquoted comparators with dots in
+them, a&rsquo;la:</p>
+
+<pre><code>class autofs {
+
+  case $kernelversion {
+    2.6.9:   { $autofs_packages = ["autofs", "autofs5"] }
+    default: { $autofs_packages = ["autofs"] }
+  }
+}
+</code></pre>
+
+<p>That 2.6.9 needs to have double quotes around it, like so:</p>
+
+<pre><code>class autofs {
+
+   case $kernelversion {
+     "2.6.9":   { $autofs_packages = ["autofs", "autofs5"] }
+     default: { $autofs_packages = ["autofs"] }
+   }
+ }
+</code></pre>
+
+<h2 id="could-not-match-definename-at-manifestppnnn-on-node-nodename">Could not match &lsquo;_define_name&rsquo; at manifest.pp:nnn on node nodename</h2>
+
+<p>This error can occur using a manifest like:</p>
+
+<pre><code>case $ensure {
+    "present": {
+        _define_name {
+            "$title":
+                user        =&gt; $user,
+        }
+    }
+}
+</code></pre>
+
+<p>This one is simple - you cannot begin a function name (define name)
+with an underscore.</p>
+
+<h2 id="duplicate-definition-classnamedefinenamesystem-is-already-defined-in-file-manifestpp-at-line-nnn-cannot-redefine-at-manifestppnnn-on-node-nodename">Duplicate definition: Classname::Define_name[system] is already defined in file manifest.pp at line nnn; cannot redefine at manifest.pp:nnn on node nodename</h2>
+
+<p>This error can occur when using a manifest like:</p>
+
+<pre><code>Classname::define_name {
+     "system":
+         properties  =&gt; "Name=system";
+     .....
+     "system":
+          properties  =&gt; "Name=system";
+ }
+</code></pre>
+
+<p>The most confusing part of this error is that the line numbers are
+usually the same - this is the case when using the block format
+that Puppet supports for a resource definition. In this contrived
+example, the system entry has been defined twice, so one of them
+needs removing.</p>
+
+<h2 id="syntax-error-at--expected-">Syntax error at &lsquo;=&gt;&rsquo;; expected &lsquo;)&rsquo;</h2>
+
+<p>This error results from incorrect syntax in a defined resource type:</p>
+
+<pre><code>define foo($param =&gt; 'value') { ... }
+</code></pre>
+
+<p>Default values for parameters are assigned, not defined, therefore
+a &lsquo;=&rsquo;, not a &lsquo;=&gt;&rsquo; operator is needed.</p>
+
+<h2 id="err-exported-resource-blahsometitle-cannot-override-local-resource-on-node-nodename">err: Exported resource Blah[$some_title] cannot override local resource on node $nodename</h2>
+
+<p>While this is not a classic &ldquo;syntax&rdquo; error, it is a annoying error
+none-the-less. The actual error tells you that you have a local
+resource Blah[$some_title] that puppet refuses to overwrite with a
+collected resource of the same name. What most often happens, that
+the same resource is exported by two nodes. One of them is
+collected first and when trying to collect the second resource,
+this error happens as the first is already converted to a &ldquo;local&rdquo;
+resource.</p>
+
+<h1 id="common-misconceptions">Common Misconceptions</h1>
+
+<h2 id="node-inheritance-and-variable-scope">Node Inheritance and Variable Scope</h2>
+
+<p>It is generally assumed that the following will result in the
+/tmp/puppet-test.variable file containing the string &lsquo;my_node&rsquo;:</p>
+
+<pre><code>class test_class {
+    file { "/tmp/puppet-test.variable":
+       content =&gt; "$testname",
+       ensure =&gt; present,
+    }
+}
+
+node base_node {
+    include test_class
+}
+
+node my_node inherits base_node {
+    $testname = 'my_node'
+}
+</code></pre>
+
+<p>Contrary to expectations, /tmp/puppet-test.variable is created with
+no contents. This is because the inherited test_class remains in
+the scope of base_node, where $testname is undefined.</p>
+
+<p>Node inheritance is currently only really useful for inheriting
+static or self-contained classes, and is as a result of quite
+limited value.</p>
+
+<p>A workaround is to define classes for your node types - essentially
+include classes rather than inheriting them. For example:</p>
+
+<pre><code>class test_class {
+    file { "/tmp/puppet-test.variable":
+       content =&gt; "$testname",
+       ensure =&gt; present,
+    }
+}
+
+class base_node_class {
+    include test_class
+}
+
+node my_node {
+    $testname = 'my_node'
+    include base_node_class
+}
+</code></pre>
+
+<p>/tmp/puppet-test.variable will now contain &lsquo;my_node&rsquo; as desired.</p>
+
+<h2 id="class-inheritance-and-variable-scope">Class Inheritance and Variable Scope</h2>
+
+<p>The following would also not work as generally expected:</p>
+
+<pre><code>class base_class {
+    $myvar = 'bob'
+    file {"/tmp/testvar":
+         content =&gt; "$myvar",
+         ensure =&gt; present,
+    }
+}
+
+class child_class inherits base_class {
+    $myvar = 'fred'
+}
+</code></pre>
+
+<p>The /tmp/testvar file would be created with the content &lsquo;bob&rsquo;, as
+this is the value of $myvar where the type is defined.</p>
+
+<p>A workaround would be to &lsquo;include&rsquo; the base_class, rather than
+inheriting it, and also to strip the $myvar out of the included
+class itself (otherwise it will cause a variable scope conflict -
+$myvar would be set twice in the same child_class scope):</p>
+
+<pre><code>$myvar = 'bob'
+
+class base_class {
+    file {"/tmp/testvar":
+         content =&gt; "$myvar",
+         ensure =&gt; present,
+    }
+}
+
+class child_class {
+    $myvar = 'fred'
+    include base_class
+}
+</code></pre>
+
+<p>In some cases you can reset the content of the file resource so
+that the scope used for the content (e.g., template) is rebound.
+Example:</p>
+
+<pre><code>class base_class {
+    $myvar = 'bob'
+    file { "/tmp/testvar":
+         content =&gt; template("john.erb"),
+    }
+}
+
+class child_class inherits base_class {
+    $myvar = 'fred'
+    File["/tmp/testvar"] { content =&gt; template("john.erb") }
+}
+</code></pre>
+
+<p>(john.erb contains a reference like &lt;%= myvar %&gt;.)</p>
+
+<p>To avoid the duplication of the template filename, it is better to
+sidestep the problem altogether with a define:</p>
+
+<pre><code>class base_class {
+    define testvar_file($myvar="bob") {
+         file { $name:
+             content =&gt; template("john.erb"),
+         }
+    }
+    testvar_file { "/tmp/testvar": }
+}
+
+class child_class inherits base_class {
+    Base_class::Testvar_file["/tmp/testvar"] { myvar =&gt; fred }
+}
+</code></pre>
+
+<p>Whilst not directly solving the problem also useful are qualified
+variables that allow you to refer to variables from
+other classes. Qualified variables might provoke alternate methods
+of solving this issue. You can use qualified methods like:</p>
+
+<pre><code>class foo {
+    $foovariable = "foobar"
+}
+
+class bar {
+    $barvariable = $foo::foovariable
+}
+</code></pre>
+
+<p>In this example the value of the of the $barvariable variable in
+the bar class will be set to foobar the value of the $foovariable
+variable which was set in the foo class.</p>
+
+<h1 id="custom-type--provider-development">Custom Type &amp; Provider development</h1>
+
+<h2 id="err-could-not-retrieve-catalog-invalid-parameter-foo-for-type-bar">err: Could not retrieve catalog: Invalid parameter &lsquo;foo&rsquo; for type &lsquo;bar&rsquo;</h2>
+
+<p>When you are developing new custom types, you should restart both
+the puppetmasterd and the puppetd before running the configuration
+using the new custom type. The pluginsync feature will then
+synchronise the files and the new code will be loaded when both
+daemons are restarted.</p>
+
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#why-hasnt-my-new-node-configuration-been-noticed">Why hasn&rsquo;t my new node configuration been noticed?</a></li><li><a href="#">&rdquo;?</a></li><li><a href="#i-keep-getting-certificates-were-not-trusted-whats-wrong">I keep getting &ldquo;certificates were not trusted&rdquo;. What&rsquo;s wrong?</a></li><li><a href="#im-getting-ipv6-errors-whats-wrong">I&rsquo;m getting IPv6 errors; what&rsquo;s wrong?</a></li><li><a href="#im-getting-tlsv1-alert-unknown-ca-errors-whats-wrong">I&rsquo;m getting tlsv1 alert unknown ca errors; what&rsquo;s wrong?</a></li><li><a href="#why-does-puppet-keep-trying-to-start-a-running-service">Why does Puppet keep trying to start a running service?</a></li><li><a href="#why-is-my-external-node-configuration-failing-i-get-no-errors-by-running-the-script-by-hand">Why is my external node configuration failing? I get no errors by running the script by hand.</a></li><li><a href="#syntax-error-at--expected--at-manifestppnnn">Syntax error at &lsquo;}&rsquo;; expected &lsquo;}&rsquo; at manifest.pp:nnn</a></li><li><a href="#syntax-error-at--expected--at-manifestppnnn-1">Syntax error at &lsquo;:&rsquo;; expected &lsquo;]&rsquo; at manifest.pp:nnn</a></li><li><a href="#syntax-error-at--expected--at-manifestppnnn-2">Syntax error at &lsquo;.&rsquo;; expected &lsquo;}&rsquo; at manifest.pp:nnn</a></li><li><a href="#could-not-match-definename-at-manifestppnnn-on-node-nodename">Could not match &lsquo;_define_name&rsquo; at manifest.pp:nnn on node nodename</a></li><li><a href="#duplicate-definition-classnamedefinenamesystem-is-already-defined-in-file-manifestpp-at-line-nnn-cannot-redefine-at-manifestppnnn-on-node-nodename">Duplicate definition: Classname::Define_name[system] is already defined in file manifest.pp at line nnn; cannot redefine at manifest.pp:nnn on node nodename</a></li><li><a href="#syntax-error-at--expected-">Syntax error at &lsquo;=&gt;&rsquo;; expected &lsquo;)&rsquo;</a></li><li><a href="#err-exported-resource-blahsometitle-cannot-override-local-resource-on-node-nodename">err: Exported resource Blah[$some_title] cannot override local resource on node $nodename</a></li><li><a href="#node-inheritance-and-variable-scope">Node Inheritance and Variable Scope</a></li><li><a href="#class-inheritance-and-variable-scope">Class Inheritance and Variable Scope</a></li><li><a href="#err-could-not-retrieve-catalog-invalid-parameter-foo-for-type-bar">err: Could not retrieve catalog: Invalid parameter &lsquo;foo&rsquo; for type &lsquo;bar&rsquo;</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

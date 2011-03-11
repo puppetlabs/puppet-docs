@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Changelog</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Changelog</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="changelog">Changelog</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#changelog">Changelog</a>    <ul>
+      <li><a href="#version-11x">Version 1.1.x</a></li>
+      <li><a href="#version-10x">Version 1.0.x</a></li>
+      <li><a href="#version-04x">Version 0.4.x</a></li>
+      <li><a href="#version-03x">Version 0.3.x</a></li>
+      <li><a href="#version-02x">Version 0.2.x</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="version-11x">Version 1.1.x</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Ticket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2011/03/08</td>
+      <td>PluginManager can now create new instances on demand for a plugin type</td>
+      <td>6622</td>
+    </tr>
+    <tr>
+      <td><em>2011/03/07</em></td>
+      <td><em>Release 1.1.3</em></td>
+      <td>6609</td>
+    </tr>
+    <tr>
+      <td>2011/03/04</td>
+      <td>Rename /usr/sbin/mc to /usr/bin/mco</td>
+      <td>6578</td>
+    </tr>
+    <tr>
+      <td>2011/03/01</td>
+      <td>Wrap rpcclient in applications ensuring that options is always set</td>
+      <td>6308</td>
+    </tr>
+    <tr>
+      <td>2011/02/28</td>
+      <td>Make communicating with the middleware more robust by including send calls in timeouts</td>
+      <td>6505</td>
+    </tr>
+    <tr>
+      <td>2011/02/28</td>
+      <td>Create a wrapper to safely run shell commands avoiding zombies</td>
+      <td>6392</td>
+    </tr>
+    <tr>
+      <td>2011/02/19</td>
+      <td>Introduce Subcollectives for network partitioning</td>
+      <td>5967</td>
+    </tr>
+    <tr>
+      <td>2011/02/19</td>
+      <td>Improve error handling when parsing arguments in the rpc application</td>
+      <td>6388</td>
+    </tr>
+    <tr>
+      <td>2011/02/19</td>
+      <td>Fix error logging when file_logger creation fails</td>
+      <td>6387</td>
+    </tr>
+    <tr>
+      <td>2011/02/17</td>
+      <td>Correctly parse MCOLLECTIVE_EXTRA_OPTS in the new unified binary framework</td>
+      <td>6354</td>
+    </tr>
+    <tr>
+      <td>2011/02/15</td>
+      <td>Allow the signing key and Debian distribution to be customized</td>
+      <td>6321</td>
+    </tr>
+    <tr>
+      <td>2011/02/14</td>
+      <td>Remove inadvertently included package.ddl</td>
+      <td>6313</td>
+    </tr>
+    <tr>
+      <td>2011/02/14</td>
+      <td>Handle missing libdirs without crashing</td>
+      <td>6306</td>
+    </tr>
+    <tr>
+      <td><em>2011/02/14</em></td>
+      <td><em>Release 1.1.2</em></td>
+      <td>6303</td>
+    </tr>
+    <tr>
+      <td>2011/02/13</td>
+      <td>Surpress replies to SimpleRPC clients who did not request results</td>
+      <td>6305</td>
+    </tr>
+    <tr>
+      <td>2011/02/11</td>
+      <td>Fix Debian packaging error due to the same file in multiple packages</td>
+      <td>6276</td>
+    </tr>
+    <tr>
+      <td>2011/02/11</td>
+      <td>The application framework will now disconnect from the middleware for consistancy</td>
+      <td>6292</td>
+    </tr>
+    <tr>
+      <td>2011/02/11</td>
+      <td>Returning <em>nil</em> from a registration plugin will skip registration</td>
+      <td>6289</td>
+    </tr>
+    <tr>
+      <td>2011/02/11</td>
+      <td>Set loglevel to warn by default if not specified in the config file</td>
+      <td>6287</td>
+    </tr>
+    <tr>
+      <td>2011/02/10</td>
+      <td>Fix backward compatability with empty fact strings</td>
+      <td>6278</td>
+    </tr>
+    <tr>
+      <td><em>2011/02/07</em></td>
+      <td><em>Release 1.1.1</em></td>
+      <td>6080</td>
+    </tr>
+    <tr>
+      <td>2011/02/02</td>
+      <td>Load the DDL from disk once per printrpc call and not for every result</td>
+      <td>5958</td>
+    </tr>
+    <tr>
+      <td>2011/02/02</td>
+      <td>Include full Apache 2 license text</td>
+      <td>6113</td>
+    </tr>
+    <tr>
+      <td>2011/01/31</td>
+      <td>Create a new single executable application framework</td>
+      <td>5897</td>
+    </tr>
+    <tr>
+      <td>2011/01/30</td>
+      <td>Fix backward compatibility with old foo=/bar/ style fact searches</td>
+      <td>5985</td>
+    </tr>
+    <tr>
+      <td>2011/01/30</td>
+      <td>Documentation update to reflect correct default identity behavior</td>
+      <td>6073</td>
+    </tr>
+    <tr>
+      <td>2011/01/29</td>
+      <td>Let the YAML file force fact reloads when the files update</td>
+      <td>6057</td>
+    </tr>
+    <tr>
+      <td>2011/01/29</td>
+      <td>Add the ability for fact plugins to force fact invalidation</td>
+      <td>6057</td>
+    </tr>
+    <tr>
+      <td>2011/01/29</td>
+      <td>Document an approach to disable type validation in the DDL</td>
+      <td>6066</td>
+    </tr>
+    <tr>
+      <td>2011/01/19</td>
+      <td>Add basic filters to the mc-ping command</td>
+      <td>5933</td>
+    </tr>
+    <tr>
+      <td>2011/01/19</td>
+      <td>Add a ping action to the rpcutil agent</td>
+      <td>5937</td>
+    </tr>
+    <tr>
+      <td>2011/01/17</td>
+      <td>Allow MC::RPC#printrpc to print single results</td>
+      <td>5918</td>
+    </tr>
+    <tr>
+      <td>2011/01/16</td>
+      <td>Provide SimpleRPC style results when accessing the MC::Client results directly</td>
+      <td>5912</td>
+    </tr>
+    <tr>
+      <td>2011/01/11</td>
+      <td>Add an option to Base64 encode the STOMP payload</td>
+      <td>5815</td>
+    </tr>
+    <tr>
+      <td>2011/01/11</td>
+      <td>Fix a bug with forcing all facts to be strings</td>
+      <td>5832</td>
+    </tr>
+    <tr>
+      <td>2011/01/08</td>
+      <td>When using reload_agents or USR1 signal no agents would be reloaded</td>
+      <td>5808</td>
+    </tr>
+    <tr>
+      <td>2011/01/04</td>
+      <td>Use the LSB based init script on SUSE</td>
+      <td>5762</td>
+    </tr>
+    <tr>
+      <td>2011/01/04</td>
+      <td>Remove the use of a Singleton in the logging class</td>
+      <td>5749</td>
+    </tr>
+    <tr>
+      <td>2011/01/02</td>
+      <td>Add AES+RSA security plugin</td>
+      <td>5696</td>
+    </tr>
+    <tr>
+      <td>2010/12/31</td>
+      <td>Security plugins now have access to the callerid of the message they are replying to</td>
+      <td>5745</td>
+    </tr>
+    <tr>
+      <td>2010/12/30</td>
+      <td>Allow - in fact names</td>
+      <td>5727</td>
+    </tr>
+    <tr>
+      <td>2010/12/29</td>
+      <td>Treat machines that fail security validation like ones that did not respond</td>
+      <td>5700</td>
+    </tr>
+    <tr>
+      <td><em>2010/12/29</em></td>
+      <td><em>Release 1.1.0</em></td>
+      <td>5695</td>
+    </tr>
+    <tr>
+      <td>2010/12/28</td>
+      <td>Remove trailing whitespace from all source files</td>
+      <td>5702</td>
+    </tr>
+    <tr>
+      <td>2010/12/28</td>
+      <td>Adjust the logfile audit format to include local time and all on one line</td>
+      <td>5694</td>
+    </tr>
+    <tr>
+      <td>2010/12/26</td>
+      <td>Improve the SimpleRPC fact_filter helper to support new fact operators</td>
+      <td>5678</td>
+    </tr>
+    <tr>
+      <td>2010/12/25</td>
+      <td>Increase the rpcutil timeout to allow for slow facts</td>
+      <td>5679</td>
+    </tr>
+    <tr>
+      <td>2010/12/25</td>
+      <td>Allow for network and fact source latency when calculating client timeout</td>
+      <td>5676</td>
+    </tr>
+    <tr>
+      <td>2010/12/25</td>
+      <td>Remove MCOLLECTIVE_TIMEOUT and MCOLLECTIVE_DTIMEOUT environment vars in favour of MCOLLECTIVE_EXTRA_OPTS</td>
+      <td>5675</td>
+    </tr>
+    <tr>
+      <td>2010/12/25</td>
+      <td>Refactor the creation of the options hash so other tools don&rsquo;t need to know the internal formats</td>
+      <td>5672</td>
+    </tr>
+    <tr>
+      <td>2010/12/21</td>
+      <td>The fact plugin format has been changed and simplified, the base now provides caching and thread safety</td>
+      <td>5083</td>
+    </tr>
+    <tr>
+      <td>2010/12/20</td>
+      <td>Add parameters &lt;=, &gt;=, &lt;, &gt;, !=, == and =~ to fact selection</td>
+      <td>5084</td>
+    </tr>
+    <tr>
+      <td>2010/12/14</td>
+      <td>Add experimental sshkey security plugin</td>
+      <td>5085</td>
+    </tr>
+    <tr>
+      <td>2010/12/13</td>
+      <td>Log a startup message showing version and log level</td>
+      <td>5538</td>
+    </tr>
+    <tr>
+      <td>2010/12/13</td>
+      <td>Add a console logger</td>
+      <td>5537</td>
+    </tr>
+    <tr>
+      <td>2010/12/13</td>
+      <td>Logging is now plugable and a syslog plugin was provided</td>
+      <td>5082</td>
+    </tr>
+    <tr>
+      <td>2010/12/13</td>
+      <td>Allow libdir to be an array of directories for agents and ddl files</td>
+      <td>5253</td>
+    </tr>
+    <tr>
+      <td>2010/12/13</td>
+      <td>The progress bar will now intelligently figure out the terminal dimentions</td>
+      <td>5524</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="version-10x">Version 1.0.x</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Ticket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>2011/02/16</em></td>
+      <td><em>Release 1.0.1</em></td>
+      <td>6342</td>
+    </tr>
+    <tr>
+      <td>2011/02/02</td>
+      <td>Include full Apache 2 license text</td>
+      <td>6113</td>
+    </tr>
+    <tr>
+      <td>2011/01/29</td>
+      <td>The YAML fact plugin kept deleted facts in memory</td>
+      <td>6056</td>
+    </tr>
+    <tr>
+      <td>2011/01/04</td>
+      <td>Use the LSB based init script on SUSE</td>
+      <td>5762</td>
+    </tr>
+    <tr>
+      <td>2010/12/30</td>
+      <td>Allow - in fact names</td>
+      <td>5727</td>
+    </tr>
+    <tr>
+      <td>2010/12/29</td>
+      <td>Treat machines that fail security validation like ones that did not respond</td>
+      <td>5700</td>
+    </tr>
+    <tr>
+      <td>2010/12/25</td>
+      <td>Allow for network and fact source latency when calculating client timeout</td>
+      <td>5676</td>
+    </tr>
+    <tr>
+      <td>2010/12/25</td>
+      <td>Increase the rpcutil timeout to allow for slow facts</td>
+      <td>5679</td>
+    </tr>
+    <tr>
+      <td><em>2010/12/13</em></td>
+      <td><em>Release 1.0.0</em></td>
+      <td>5453</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="version-04x">Version 0.4.x</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Ticket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2010/12/04</td>
+      <td>Remove the LSB requirements for RedHat systems</td>
+      <td>5451</td>
+    </tr>
+    <tr>
+      <td>2010/11/23</td>
+      <td>Make the YAML fact source thread safe and force all facts to strings</td>
+      <td>5377</td>
+    </tr>
+    <tr>
+      <td>2010/11/23</td>
+      <td>Add get_config_item to rpcutil to retrieve a running config value from a server</td>
+      <td>5376</td>
+    </tr>
+    <tr>
+      <td>2010/11/20</td>
+      <td>Convert mc-facts into a SimpleRPC client</td>
+      <td>5371</td>
+    </tr>
+    <tr>
+      <td>2010/11/18</td>
+      <td>Added GPG signing to Rake packaging tasks (SIGNED=1)</td>
+      <td>5355</td>
+    </tr>
+    <tr>
+      <td>2010/11/17</td>
+      <td>Improve error messages from clients in the case of failure</td>
+      <td>5329</td>
+    </tr>
+    <tr>
+      <td>2010/11/17</td>
+      <td>Add helpers to disconnect from the middleware and update all bundled clients</td>
+      <td>5328</td>
+    </tr>
+    <tr>
+      <td>2010/11/16</td>
+      <td>Correct LSB provides and requires in default init script</td>
+      <td>5222</td>
+    </tr>
+    <tr>
+      <td>2010/11/16</td>
+      <td>Input validation on rpcutil has been improved to match all valid facts</td>
+      <td>5320</td>
+    </tr>
+    <tr>
+      <td>2010/11/16</td>
+      <td>Add the ability to limit the results to a subset of hosts</td>
+      <td>5306</td>
+    </tr>
+    <tr>
+      <td>2010/11/15</td>
+      <td>Add fire and forget mode to SimpleRPC custom_request</td>
+      <td>5305</td>
+    </tr>
+    <tr>
+      <td>2010/11/09</td>
+      <td>General connection settings to the Stomp connector was ignored</td>
+      <td>5245</td>
+    </tr>
+    <tr>
+      <td><em>2010/10/18</em></td>
+      <td><em>Release version 0.4.10</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/10/18</td>
+      <td>Document exit command to mc-controller</td>
+      <td>152</td>
+    </tr>
+    <tr>
+      <td>2010/10/13</td>
+      <td>Log messages that don&rsquo;t pass the filters at debug level</td>
+      <td>149</td>
+    </tr>
+    <tr>
+      <td>2010/10/03</td>
+      <td>Preserve options in cases where RPC::Client instances exist in the same program</td>
+      <td>148</td>
+    </tr>
+    <tr>
+      <td>2010/09/30</td>
+      <td>Add the ability to set different types of callerid in the PSK plugin</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <td>2010/09/30</td>
+      <td>Improve Ruby 1.9.x compatibility</td>
+      <td>142</td>
+    </tr>
+    <tr>
+      <td>2010/09/29</td>
+      <td>Improve error handling in registration to avoid high CPU usage loops</td>
+      <td>143</td>
+    </tr>
+    <tr>
+      <td><em>2010/09/21</em></td>
+      <td><em>Release version 0.4.9</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/09/20</td>
+      <td>Improve Debian packaging task</td>
+      <td>140</td>
+    </tr>
+    <tr>
+      <td>2010/09/20</td>
+      <td>Add :boolean type support to the DDL</td>
+      <td>138</td>
+    </tr>
+    <tr>
+      <td>2010/09/19</td>
+      <td>Refactor MCollective::RPC to add less unneeded stuff to Object</td>
+      <td>137</td>
+    </tr>
+    <tr>
+      <td>2010/09/18</td>
+      <td>Prevent duplicate config loading with multiple clients active</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <td>2010/09/18</td>
+      <td>Rotate the log file by default, keeping 5 x 2MB files</td>
+      <td>135</td>
+    </tr>
+    <tr>
+      <td>2010/09/18</td>
+      <td>Write a overview document detailing security of the collective</td>
+      <td>131</td>
+    </tr>
+    <tr>
+      <td>2010/09/18</td>
+      <td>Add MCollective.version, set it during packaging and include it in the rpcutil agent</td>
+      <td>134</td>
+    </tr>
+    <tr>
+      <td>2010/09/13</td>
+      <td>mc-inventory now use SimpleRPC and the rpcutil agent and display server stats</td>
+      <td>133</td>
+    </tr>
+    <tr>
+      <td>2010/09/13</td>
+      <td>Make the path to the rpc-help.erb configurable and set sane default</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>2010/09/13</td>
+      <td>Make the configfile used available in the Config class and add to rpcutil</td>
+      <td>132</td>
+    </tr>
+    <tr>
+      <td>2010/09/12</td>
+      <td>Rework internal statistics and add a rpcutil agent</td>
+      <td>129</td>
+    </tr>
+    <tr>
+      <td>2010/09/12</td>
+      <td>Fix internal memory structures related to agent meta data</td>
+      <td>128</td>
+    </tr>
+    <tr>
+      <td>2010/08/24</td>
+      <td>Update the OpenBSD port for changes in 0.4.8 tarball</td>
+      <td>125</td>
+    </tr>
+    <tr>
+      <td>2010/08/23</td>
+      <td>Fix indention/block error in M:R:Stats</td>
+      <td>124</td>
+    </tr>
+    <tr>
+      <td>2010/08/23</td>
+      <td>Fix permissions in the RPM for files in /etc</td>
+      <td>123</td>
+    </tr>
+    <tr>
+      <td>2010/08/23</td>
+      <td>Fix language in two error messages</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <td><em>2010/08/20</em></td>
+      <td><em>Release version 0.4.8</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/08/19</td>
+      <td>Fix missing help template in debian packages</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>2010/08/18</td>
+      <td>Clean up some hardlink warnings in the Rakefile</td>
+      <td>117</td>
+    </tr>
+    <tr>
+      <td>2010/08/18</td>
+      <td>Include the website in the main repo and add a simple Rake task</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <td>2010/08/17</td>
+      <td>Handle exceptions for missing plugins better</td>
+      <td>115</td>
+    </tr>
+    <tr>
+      <td>2010/08/17</td>
+      <td>Add support for ~/.mcollective as a config file</td>
+      <td>114</td>
+    </tr>
+    <tr>
+      <td>2010/08/07</td>
+      <td>SSL security plugin can use either YAML or Marshal</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>2010/08/06</td>
+      <td>Multiple YAML files can now be used as fact source</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <td>2010/08/06</td>
+      <td>Allow log level to be adjusted at run time with USR2</td>
+      <td>113</td>
+    </tr>
+    <tr>
+      <td>2010/07/31</td>
+      <td>Add basic report scripting support to mc-inventory</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>2010/07/06</td>
+      <td>Removed &lsquo;rpm&rsquo; from the default rake task</td>
+      <td>109</td>
+    </tr>
+    <tr>
+      <td>2010/07/06</td>
+      <td>Add redhat-lsb to the server RPM dependencies</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <td><em>2010/06/29</em></td>
+      <td><em>Release version 0.4.7</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/06/27</td>
+      <td>Change default factsource to Yaml</td>
+      <td>106</td>
+    </tr>
+    <tr>
+      <td>2010/06/27</td>
+      <td>Added VIM snippets to create DDLs and Agents</td>
+      <td>102</td>
+    </tr>
+    <tr>
+      <td>2010/06/26</td>
+      <td>DDL based help now works better with Symbols in in/output</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <td>2010/06/23</td>
+      <td>Whitespace at the end of config lines are now stripped</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>2010/06/22</td>
+      <td>printrpc will now inject some colors into results</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <td>2010/06/22</td>
+      <td>Recover from syntax and other errors in agents</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <td>2010/06/17</td>
+      <td>The agent a MC::RPC::Client is working on is now available</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <td>2010/06/17</td>
+      <td>Integrate the DDL with data display helpers like printrpc</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <td>2010/06/15</td>
+      <td>Avoid duplicate topic subscribes in complex clients</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>2010/06/15</td>
+      <td>Catch some unhandled exceptions in RPC Agents</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <td>2010/06/15</td>
+      <td>Fix missing help template file from RPM</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td><em>2010/06/14</em></td>
+      <td><em>Release version 0.4.6</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/06/12</td>
+      <td>Qualify the Process class to avoid clashes in the discovery agent</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>2010/06/12</td>
+      <td>Add mc-inventory which shows agents, classes and facts for a node</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <td>2010/06/11</td>
+      <td>mc-facts now supports standard filters</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <td>2010/06/11</td>
+      <td>Add connection pool retry options and ssl for connection</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>2010/06/11</td>
+      <td>Add support for specifying multiple stomp hosts for failover</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <td>2010/06/10</td>
+      <td>Tighten up handling of filters to avoid nil&rsquo;s getting into them</td>
+      <td>83</td>
+    </tr>
+    <tr>
+      <td>2010/06/09</td>
+      <td>Sort the mc-facts output to be more readable</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <td>2010/06/08</td>
+      <td>Fix deprecation warnings in newer Stomp gems</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <td><em>2010/06/03</em></td>
+      <td><em>Release version 0.4.5</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/06/01</td>
+      <td>Improve the main discovery agent by adding facts and classes to its inventory action</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <td>2010/05/30</td>
+      <td>Add various helpers to get reports as text instead of printing them</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <td>2010/05/30</td>
+      <td>Add a custom_request method to call SimpleRPC agents with your own discovery</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <td>2010/05/30</td>
+      <td>Refactor RPC::Client to be more generic and easier to maintain</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <td>2010/05/29</td>
+      <td>Fix a small scoping issue in Security::Base</td>
+      <td>76</td>
+    </tr>
+    <tr>
+      <td>2010/05/25</td>
+      <td>Add option &ndash;no-progress to disable progress bar for SimpleRPC</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <td>2010/05/23</td>
+      <td>Add some missing dependencies to the RPMs</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <td>2010/05/22</td>
+      <td>Add an option <em>:process_results</em> to the client</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <td>2010/05/13</td>
+      <td>Fix help output that still shows old branding</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <td>2010/04/27</td>
+      <td>The supplied generic stompclient now accepts STOMP_PORT in the environment</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <td>2010/04/26</td>
+      <td>Add a SimpleRPC Client helper to reset filters</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <td>2010/04/26</td>
+      <td>Listen for signal USR1 and reload all agents from disk</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <td>2010/04/12</td>
+      <td>Add SimpleRPC Authorization support</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td><em>2010/04/03</em></td>
+      <td><em>Release version 0.4.4</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/03/27</td>
+      <td>Make it easier to construct SimpleRPC requests to use with the standard client library</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <td>2010/03/27</td>
+      <td>Manipulating the filters via the helper methods will force rediscovery</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>2010/03/23</td>
+      <td>Prevent Activesupport when brought in by Facter from breaking our logs</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <td>2010/03/23</td>
+      <td>Clean up logging for messages not targeted at us</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>2010/03/19</td>
+      <td>Add exception handling to the registration base class</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <td>2010/03/03</td>
+      <td>Use /usr/bin/env ruby instead of hardcoded paths</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <td>2010/02/17</td>
+      <td>Improve mc-controller and document it</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <td>2010/02/08</td>
+      <td>Remove some close coupling with Stomp to easy creating of other connectors</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <td>2010/02/01</td>
+      <td>Made the discovery agent timeout configurable using plugin.discovery.timeout</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <td>2010/01/25</td>
+      <td>mc-controller now correctly loads/reloads agents.</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>2010/01/25</td>
+      <td>Building packages has been improved to ensure rdocs are always included</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <td><em>2010/01/24</em></td>
+      <td><em>Release version 0.4.3</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/01/23</td>
+      <td>Handle ctrl-c during discovery without showing exceptions to users</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>2010/01/21</td>
+      <td>Force all facts in the YAML fact source to be strings</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <td>2010/01/19</td>
+      <td>Add auditing to SimpleRPC clients and Agents</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/01/18</td>
+      <td>The SRPM we provide will now build outside of the Rake environment</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>2010/01/18</td>
+      <td>Add a <em>fail!</em> method to RPC::Agent</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <td>2010/01/18</td>
+      <td>mc-rpc can now be used without supplying arguments</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>2010/01/18</td>
+      <td>Don&rsquo;t raise an error if no user/pass is given to the stomp connector, try unauthenticated mode</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <td>2010/01/17</td>
+      <td>Improve error message when Regex validation failed on SimpleRPC input</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td><em>2010/01/13</em></td>
+      <td><em>Release version 0.4.2</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/01/13</td>
+      <td>New packaging for Debian provided by Riccardo Setti</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <td>2010/01/07</td>
+      <td>Improved LSB compliance of the init script - thanks Riccardo Setti</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>2010/01/07</td>
+      <td>Multiple calls to SimpleRPC client would reset discovered hosts</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <td>2010/01/04</td>
+      <td>Timeouts can now be changed with MCOLLECTIVE_TIMEOUT and MCOLLECTIVE_DTIMEOUT environment vars</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>2010/01/04</td>
+      <td>Specify class and fact filters easier with the new -W or &ndash;with option</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>2010/01/04</td>
+      <td>Added COPYING file to RPMs and tarball</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <td>2010/01/04</td>
+      <td>Make shorter filter options -C, -I, -A and -F</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <td><em>2010/01/02</em></td>
+      <td><em>Release version 0.4.1</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2010/01/02</td>
+      <td>Added hooks to plug into the processing of requests, also enabled setting meta data and timeouts</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>2010/01/02</td>
+      <td>Created readers for @config and @logger in the SimpleRPC agent</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>2009/12/30</td>
+      <td>Don&rsquo;t send out any requests if no nodes were discovered</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>2009/12/30</td>
+      <td>Added :discovered and :discovered_nodes to client stats</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>2009/12/30</td>
+      <td>Add a empty_filter? helper to the RPC mixin</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>2009/12/30</td>
+      <td>Fix formatting bug with progress bar</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>2009/12/29</td>
+      <td>Simplify mc-rpc command line</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>2009/12/29</td>
+      <td>Fix layout issue when printing hosts that did not respond</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td><em>2009/12/29</em></td>
+      <td><em>Release version 0.4.0</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2009/12/28</td>
+      <td>Add support for other configuration management systems like chef in the &ndash;with-class filters</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>2009/12/28</td>
+      <td>Add a <em>Util.empty_filter?</em> to test for an empty filter</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2009/12/27</td>
+      <td>Create a new client framework - SimpleRPC</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>2009/12/27</td>
+      <td>Add support for multiple filters of the same type</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="version-03x">Version 0.3.x</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Ticket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>2009/12/17</em></td>
+      <td><em>Release version 0.3.0</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2009/12/16</td>
+      <td>Improvements for newer versions of Ruby where TERM signal was not handled</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>2009/12/07</td>
+      <td>MCollective::Util is now a module and plugins can drop in util classes in the plugin dir</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>2009/12/07</td>
+      <td>The Rakefile now works with rake provided on Debian 4 systems</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2009/12/07</td>
+      <td>Improvements in the RC script for Debian and older Ubuntu systems</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="version-02x">Version 0.2.x</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Date</td>
+      <td>Description</td>
+      <td>Ticket</td>
+    </tr>
+    <tr>
+      <td>2009/12/01</td>
+      <td>Release version 0.2.0</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#version-11x">Version 1.1.x</a></li><li><a href="#version-10x">Version 1.0.x</a></li><li><a href="#version-04x">Version 0.4.x</a></li><li><a href="#version-03x">Version 0.3.x</a></li><li><a href="#version-02x">Version 0.2.x</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

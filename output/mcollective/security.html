@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Security Overview</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Security Overview</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              
+<h1 id="security-overview">Security Overview</h1>
+
+<p>Due to the <a href="/mcollective/reference/basic/messageflow.html">broadcast paradigm</a> of mcollective security is a complex topic to
+discuss.</p>
+
+<p>This discussion will focus on strong SSL and AES+RSA based security plugins,
+these are not the default or only option but is currently the most secure.
+Both the <a href="/mcollective/reference/plugins/security_ssl.html">SSL security plugin</a> and <a href="/mcollective/reference/plugins/security_aes.html">AES security plugin</a> provide strong caller
+identification, this is used by the <a href="/mcollective/simplerpc/">SimpleRPC</a> framework for <a href="/mcollective/simplerpc/authorization.html">Authorization</a>
+and <a href="/mcollective/simplerpc/auditing.html">Auditing</a>.</p>
+
+<p>As every organisation has its own needs almost all aspects of the security
+system is pluggable.  This is an overview of the current state of SSL based
+Authentication, Authorization and Auditing.</p>
+
+<center><img src="/mcollective/images/mcollective-aaa.png" /></center>
+
+<p>The image above is a reference to use in the following pages, it shows a
+MCollective Setup and indicates the areas of discussion.</p>
+
+<p>The focus here is on ActiveMQ, some of the details and capabilities will
+differ between middleware systems.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#security-overview">Security Overview</a>    <ul>
+      <li><a href="#client-connections-and-credentials">Client Connections and Credentials</a>        <ul>
+          <li><a href="#the-aesrsa-securith-plugin">The AES+RSA securith plugin</a></li>
+          <li><a href="#the-ssl-security-plugin">The SSL security plugin</a></li>
+        </ul>
+      </li>
+      <li><a href="#connection-to-middleware">Connection to Middleware</a></li>
+      <li><a href="#middleware-authorization-and-authentication">Middleware Authorization and Authentication</a></li>
+      <li><a href="#node-connections-and-credentials">Node connections and credentials</a></li>
+      <li><a href="#simplerpc-authorization">SimpleRPC Authorization</a></li>
+      <li><a href="#simplerpc-auditing">SimpleRPC Auditing</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="client-connections-and-credentials">Client Connections and Credentials</h2>
+
+<p>Every STOMP connection has a username and password, this is used to gain basic
+access to the ActiveMQ system.  We have a <a href="/mcollective/reference/integration/activemq_security.html">ActiveMQ Security</a> sample setup
+documented.</p>
+
+<p>ActiveMQ can use LDAP and other security providers, details of this is out of
+scope here, you should use their documentation or the recently released book
+for details of that.</p>
+
+<h3 id="the-aesrsa-securith-plugin">The AES+RSA securith plugin</h3>
+<p>When using the <a href="/mcollective/reference/plugins/security_aes.html">AES security plugin</a> each user also gets a private and public
+key, like with SSH you need to ensure that the private keys remain private
+and not shared between users.</p>
+
+<p>This plugin can be configured to distribute public keys at the cost of some
+security, you can also manually distribute keys for the most secure setup.</p>
+
+<p>The public / private key pair is used to encrypt using AES and then to encrypt
+the key used during the AES phase using RSA.  This provides encrypted payloads
+securing the reply strucutres.</p>
+
+<p>The client embeds a <em>caller</em> structure in each request, if RSA decryption
+pass the rest of the MCollective agents, auditing etc can securely know who
+initiated a request.</p>
+
+<p>This caller is used later during Authorization and Auditing.</p>
+
+<p>This plugin comes with a significant setup, maintenance and performance overhead
+if all you need is to securely identify users use the SSL security plugin instead.</p>
+
+<h3 id="the-ssl-security-plugin">The SSL security plugin</h3>
+<p>When using the <a href="/mcollective/reference/plugins/security_ssl.html">SSL security plugin</a> each user also gets a private and public
+certificate, like with SSH you need to ensure that the private keys remain
+private and not be shared between users.  The public part needs to be
+distributed to all nodes.</p>
+
+<p>The private key is used to cryptographically sign each request being made by a
+client, later the public key will be used to validate the signature for
+authenticity.</p>
+
+<p>The client embeds a <em>caller</em> structure in each request, if SSL signature
+validation pass the rest of the MCollective agents, auditing etc can securely
+know who initiated a request.</p>
+
+<p>This caller is used later during Authorization and Auditing.</p>
+
+<h2 id="connection-to-middleware">Connection to Middleware</h2>
+
+<p>By default the connections between Middleware and Nodes are not encrypted, just
+signed using the SSL keys above.  <a href="http://activemq.apache.org/how-do-i-use-ssl.html">ActiveMQ supports TLS</a> and the
+<a href="http://activemq.apache.org/stomp.html">stomp connector</a> supports this.</p>
+
+<p>The <a href="/mcollective/reference/plugins/connector_stomp.html">MCollective STOMP Connector</a> also supports TLS, to configure MCollective
+to speak TLS to your nodes please follow our notes about <a href="/mcollective/reference/integration/activemq_ssl.html">ActiveMQ SSL</a>.</p>
+
+<p>Enabling TLS throughout will secure your connections from any kind of sniffing
+and Man in The Middle attacks.  Unfortunately the Rubygem we use do not provide
+options for enforcing a specific CA etc.  The authors are willing to extend it
+to support these based on requests, file support tickets if you need our help
+in working with them as we already have a good working relationship.</p>
+
+<p>At present there is a bug in the TLS setup with ActiveMQ and RabbitMQ does not
+support it at all.  If you need security of the payloads in your messages use
+the AES security plugin.</p>
+
+<h2 id="middleware-authorization-and-authentication">Middleware Authorization and Authentication</h2>
+
+<p>As mentioned above ActiveMQ has it&rsquo;s own users and every node and client
+authenticates using these.</p>
+
+<p>In addition to this you can on the middleware layer restrict access to topics,
+you can for example run a development and production collective on the same
+ActiveMQ infrastructure and allow your developers access to just the development
+collective using these controls.  They are not very fine grained but should be a
+import step to configure for any real setup.</p>
+
+<p>We have a sample <a href="/mcollective/reference/integration/activemq_security.html">ActiveMQ Security</a> setup documented that has this kind of
+control.</p>
+
+<p>By combining this topic level restrictions with <a href="reference/basic/subcollectives.html">Subcollectives</a> you can create
+virtually isolated groups of nodes and give certain users access to only those
+subcollectives.  Effectively partitioning out a subset of machines and giving
+secure access to just those.</p>
+
+<h2 id="node-connections-and-credentials">Node connections and credentials</h2>
+
+<p>As with the client the node needs a username and password to connect to the
+middleware and can also use TLS.</p>
+
+<p>It&rsquo;s not a problem if all the nodes share a username and password for the
+connection since generally nodes do not make new requests.  You can enable
+registration features that will see your nodes make connections, you should
+restrict this as outlined in the previous section.</p>
+
+<p>When using the <a href="/mcollective/reference/plugins/security_ssl.html">SSL security plugin</a> all the nodes share a same SSL private
+and public key, all replies are signed using this key.  It would not be
+impossible to add a per node certificate setup but I do not think this will
+add a significant level of security over what we have today.</p>
+
+<p>When using the <a href="/mcollective/reference/plugins/security_aes.html">AES security plugin</a> nodes can have their own sets of keys
+and registration data can be secured.  Replies are encrypted using the clients
+key and so only the client who made the request can read the replies.</p>
+
+<h2 id="simplerpc-authorization">SimpleRPC Authorization</h2>
+
+<p>The RPC framework has a pluggable <a href="/mcollective/simplerpc/authorization.html">Authorization</a> system, you can create very
+fine grain control over requests, for example using the <a href="http://code.google.com/p/mcollective-plugins/wiki/ActionPolicy">ActionPolicy</a> setup you
+can create a policy like this:</p>
+
+<div class="highlight"><pre><code class="text">policy default deny
+allow   cert=rip      *                       *                *
+allow   cert=john     *                       customer=acme    acme::devserver
+allow   cert=john     enable disable status   customer=acme    *
+</code></pre>
+</div>
+
+<p>This applied to the service agent will allow different level of access to
+actions to different people.  The caller id is based directly on the SSL Private
+Key in use and subject to validation on every node.</p>
+
+<p>As with other aspects of mcollective authorization is tied closely with meta
+data like facts and classes so you can use these to structure your authorization
+as can be seen above.</p>
+
+<p>You can provide your own authorization layers to fit your ogranizational needs,
+they can be specific to an agent or apply to the entire collective.</p>
+
+<h2 id="simplerpc-auditing">SimpleRPC Auditing</h2>
+
+<p>The RPC layer can keep detailed <a href="/mcollective/simplerpc/auditing.html">Auditing</a> records of every request received,
+the audit log shows the - SSL signature or RSA verified - caller, what agent, action
+and any arguments that was sent for every request.</p>
+
+<p>The audit layer is a plugin based system, we provide one that logs to a file on
+every node and there are <a href="http://code.google.com/p/mcollective-plugins/wiki/AuditCentralRPCLog">community plugins</a> that keeps a centralized
+log both in log files and in MongoDB NoSQL database.</p>
+
+<p>Which to use depends on your usecase, obviously a centralized auditing system
+for thousands of nodes is very complex and will require a special plugin to be
+developed the community centralized audit log is ok for roughly 100 nodes or
+so.</p>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#client-connections-and-credentials">Client Connections and Credentials</a></li><li><a href="#the-aesrsa-securith-plugin">The AES+RSA securith plugin</a></li><li><a href="#the-ssl-security-plugin">The SSL security plugin</a></li><li><a href="#connection-to-middleware">Connection to Middleware</a></li><li><a href="#middleware-authorization-and-authentication">Middleware Authorization and Authentication</a></li><li><a href="#node-connections-and-credentials">Node connections and credentials</a></li><li><a href="#simplerpc-authorization">SimpleRPC Authorization</a></li><li><a href="#simplerpc-auditing">SimpleRPC Auditing</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

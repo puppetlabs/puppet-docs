@@ -1,0 +1,5476 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Type Reference</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Type Reference</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="type-reference">Type Reference</h1>
+
+<p><strong>This page is autogenerated; any changes will get overwritten</strong> <em>(last generated on Thu Mar 10 12:36:38 +1100 2011)</em></p>
+
+<h2 id="resource-types">Resource Types</h2>
+
+<ul>
+  <li>
+    <p>The <em>namevar</em> is the parameter used to uniquely identify a type instance.
+This is the parameter that gets assigned when a string is provided before
+the colon in a type declaration.  In general, only developers will need to
+worry about which parameter is the <code>namevar</code>.</p>
+
+    <p>In the following code:</p>
+
+    <pre><code>file { "/etc/passwd":
+  owner =&gt; root,
+  group =&gt; root,
+  mode =&gt; 644
+}
+</code></pre>
+
+    <p><code>/etc/passwd</code> is considered the title of the file object (used for things like
+dependency handling), and because <code>path</code> is the namevar for <code>file</code>, that
+string is assigned to the <code>path</code> parameter.</p>
+  </li>
+  <li>
+    <p><em>Parameters</em> determine the specific configuration of the instance.  They either
+directly modify the system (internally, these are called properties) or they affect
+how the instance behaves (e.g., adding a search path for <code>exec</code> instances or determining recursion on <code>file</code> instances).</p>
+  </li>
+  <li>
+    <p><em>Providers</em> provide low-level functionality for a given resource type.  This is
+usually in the form of calling out to external commands.</p>
+
+    <p>When required binaries are specified for providers, fully qualifed paths
+indicate that the binary must exist at that specific path and unqualified
+binaries indicate that Puppet will search for the binary using the shell
+path.</p>
+  </li>
+  <li>
+    <p><em>Features</em> are abilities that some providers might not support.  You can use the list
+of supported features to determine how a given provider can be used.</p>
+
+    <p>Resource types define features they can use, and providers can be tested to see
+which features they provide.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="augeas">augeas</h3>
+
+<p>Apply the changes (single or array of changes) to the filesystem
+via the augeas tool.</p>
+
+<p>Requires:</p>
+
+<ul>
+  <li>augeas to be installed (http://www.augeas.net)</li>
+  <li>ruby-augeas bindings</li>
+</ul>
+
+<p>Sample usage with a string:</p>
+
+<pre><code>augeas{"test1" :
+  context =&gt; "/files/etc/sysconfig/firstboot",
+  changes =&gt; "set RUN_FIRSTBOOT YES",
+  onlyif  =&gt; "match other_value size &gt; 0",
+}
+</code></pre>
+
+<p>Sample usage with an array and custom lenses:</p>
+
+<pre><code>augeas{"jboss_conf":
+  context =&gt; "/files",
+  changes =&gt; [
+    "set /etc/jbossas/jbossas.conf/JBOSS_IP $ipaddress",
+    "set /etc/jbossas/jbossas.conf/JAVA_HOME /usr"
+  ],
+  load_path =&gt; "$/usr/share/jbossas/lenses",
+}
+</code></pre>
+
+<h4 id="features">Features</h4>
+
+<ul>
+  <li><em>execute_changes</em>: Actually make the changes</li>
+  <li><em>need_to_run?</em>: If the command should run</li>
+  <li><em>parse_commands</em>: Parse the command string</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>execute_changes</th>
+      <th>need_to_run?</th>
+      <th>parse_commands</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>augeas</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters">Parameters</h4>
+
+<h5 id="changes">changes</h5>
+
+<p>The changes which should be applied to the filesystem. This
+can be either a string which contains a command or an array of commands.
+Commands supported are:</p>
+
+<pre><code>set [PATH] [VALUE]     Sets the value VALUE at loction PATH
+rm [PATH]              Removes the node at location PATH
+remove [PATH]          Synonym for rm
+clear [PATH]           Keeps the node at PATH, but removes the value.
+ins [LABEL] [WHERE] [PATH]    Inserts an empty node LABEL either [WHERE={before|after}] PATH.
+insert [LABEL] [WHERE] [PATH] Synonym for ins
+</code></pre>
+
+<p>If the parameter &lsquo;context&rsquo; is set that value is prepended to PATH</p>
+
+<h5 id="context">context</h5>
+
+<p>Optional context path. This value is prepended to the paths of all changes if the path is relative. If INCL is set, defaults to &lsquo;/files&rsquo; + INCL, otherwise the empty string</p>
+
+<h5 id="force">force</h5>
+
+<p>Optional command to force the augeas type to execute even if it thinks changes
+will not be made. This does not overide the only setting. If onlyif is set, then the
+foce setting will not override that result</p>
+
+<h5 id="incl">incl</h5>
+
+<p>Load only a specific file, e.g. <code>/etc/hosts</code>.  When this parameter is set, you must also set the lens parameter to indicate which lens to use.</p>
+
+<h5 id="lens">lens</h5>
+
+<p>Use a specific lens, e.g. <code>Hosts.lns</code>. When this parameter is set, you must also set the incl parameter to indicate which file to load. Only that file will be loaded, which greatly speeds up execution of the type</p>
+
+<h5 id="loadpath">load_path</h5>
+
+<p>Optional colon separated list of directories; these directories are searched for schema definitions</p>
+
+<h5 id="name">name</h5>
+
+<p>The name of this task. Used for uniqueness</p>
+
+<h5 id="onlyif">onlyif</h5>
+
+<p>Optional augeas command and comparisons to control the execution of this type.
+Supported onlyif syntax:</p>
+
+<pre><code>get [AUGEAS_PATH] [COMPARATOR] [STRING]
+match [MATCH_PATH] size [COMPARATOR] [INT]
+match [MATCH_PATH] include [STRING]
+match [MATCH_PATH] not_include [STRING]
+match [MATCH_PATH] == [AN_ARRAY]
+match [MATCH_PATH] != [AN_ARRAY]
+</code></pre>
+
+<p>where:</p>
+
+<pre><code>AUGEAS_PATH is a valid path scoped by the context
+MATCH_PATH is a valid match synatx scoped by the context
+COMPARATOR is in the set [&gt; &gt;= != == &lt;= &lt;]
+STRING is a string
+INT is a number
+AN_ARRAY is in the form ['a string', 'another']
+</code></pre>
+
+<h5 id="provider">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>augeas</strong>:       Supported features: <code>execute_changes</code>, <code>need_to_run?</code>, <code>parse_commands</code>.</li>
+</ul>
+
+<h5 id="returns">returns</h5>
+
+<p>The expected return code from the augeas command. Should not be set</p>
+
+<h5 id="root">root</h5>
+
+<p>A file system path; all files loaded by Augeas are loaded underneath ROOT</p>
+
+<h5 id="typecheck">type_check</h5>
+
+<p>Set to true if augeas should perform typechecking. Optional, defaults to false  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<hr />
+
+<h3 id="computer">computer</h3>
+
+<p>Computer object management using DirectoryService
+on OS X.</p>
+
+<p>Note that these are distinctly different kinds of objects to &lsquo;hosts&rsquo;,
+as they require a MAC address and can have all sorts of policy attached to
+them.</p>
+
+<p>This provider only manages Computer objects in the local directory service
+domain, not in remote directories.</p>
+
+<p>If you wish to manage <code>/etc/hosts</code> file on Mac OS X, then simply use the host
+type as per other platforms.</p>
+
+<p>This type primarily exists to create localhost Computer objects that MCX
+policy can then be attached to.</p>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<h5 id="enaddress">en_address</h5>
+
+<p>The MAC address of the primary network interface. Must match en0.</p>
+
+<h5 id="ensure">ensure</h5>
+
+<p>Control the existences of this computer record. Set this attribute to
+<code>present</code> to ensure the computer record exists.  Set it to <code>absent</code>
+to delete any computer records with this name  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="ipaddress">ip_address</h5>
+
+<p>The IP Address of the Computer object.</p>
+
+<h5 id="name-1">name</h5>
+
+<p>The authoritative &lsquo;short&rsquo; name of the computer record.</p>
+
+<h5 id="provider-1">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li>
+    <p><strong>directoryservice</strong>: Computer object management using DirectoryService on OS X.
+Note that these are distinctly different kinds of objects to &lsquo;hosts&rsquo;,
+as they require a MAC address and can have all sorts of policy attached to
+them.</p>
+
+    <p>This provider only manages Computer objects in the local directory service
+domain, not in remote directories.</p>
+
+    <p>If you wish to manage /etc/hosts on Mac OS X, then simply use the host
+type as per other platforms.</p>
+
+    <pre><code>Default for `operatingsystem` == `darwin`.  
+</code></pre>
+  </li>
+</ul>
+
+<h5 id="realname">realname</h5>
+
+<p>The &lsquo;long&rsquo; name of the computer record.</p>
+
+<hr />
+
+<h3 id="cron">cron</h3>
+
+<p>Installs and manages cron jobs.  All fields except the command
+and the user are optional, although specifying no periodic
+fields would result in the command being executed every
+minute.  While the name of the cron job is not part of the actual
+job, it is used by Puppet to store and retrieve it.</p>
+
+<p>If you specify a cron job that matches an existing job in every way
+except name, then the jobs will be considered equivalent and the
+new name will be permanently associated with that job.  Once this
+association is made and synced to disk, you can then manage the job
+normally (e.g., change the schedule of the job).</p>
+
+<p>Example:</p>
+
+<pre><code>cron { logrotate:
+  command =&gt; "/usr/sbin/logrotate",
+  user =&gt; root,
+  hour =&gt; 2,
+  minute =&gt; 0
+}
+</code></pre>
+
+<p>Note that all cron values can be specified as an array of values:</p>
+
+<pre><code>cron { logrotate:
+  command =&gt; "/usr/sbin/logrotate",
+  user =&gt; root,
+  hour =&gt; [2, 4]
+}
+</code></pre>
+
+<p>Or using ranges, or the step syntax <code>*/2</code> (although there&rsquo;s no guarantee that
+your <code>cron</code> daemon supports it):</p>
+
+<pre><code>cron { logrotate:
+  command =&gt; "/usr/sbin/logrotate",
+  user =&gt; root,
+  hour =&gt; ['2-4'],
+  minute =&gt; '*/10'
+}
+</code></pre>
+
+<h4 id="parameters-2">Parameters</h4>
+
+<h5 id="command">command</h5>
+
+<p>The command to execute in the cron job.  The environment
+provided to the command varies by local system rules, and it is
+best to always provide a fully qualified command.  The user&rsquo;s
+profile is not sourced when the command is run, so if the
+user&rsquo;s environment is desired it should be sourced manually.</p>
+
+<p>All cron parameters support <code>absent</code> as a value; this will
+remove any existing values for that field.</p>
+
+<h5 id="ensure-1">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="environment">environment</h5>
+
+<p>Any environment settings associated with this cron job.  They
+will be stored between the header and the job in the crontab.  There
+can be no guarantees that other, earlier settings will not also
+affect a given cron job.</p>
+
+<p>Also, Puppet cannot automatically determine whether an existing,
+unmanaged environment setting is associated with a given cron
+job.  If you already have cron jobs with environment settings,
+then Puppet will keep those settings in the same place in the file,
+but will not associate them with a specific job.</p>
+
+<p>Settings should be specified exactly as they should appear in
+the crontab, e.g., <code>PATH=/bin:/usr/bin:/usr/sbin</code>.</p>
+
+<h5 id="hour">hour</h5>
+
+<p>The hour at which to run the cron job. Optional;
+if specified, must be between 0 and 23, inclusive.</p>
+
+<h5 id="minute">minute</h5>
+
+<p>The minute at which to run the cron job.
+Optional; if specified, must be between 0 and 59, inclusive.</p>
+
+<h5 id="month">month</h5>
+
+<p>The month of the year.  Optional; if specified
+must be between 1 and 12 or the month name (e.g., December).</p>
+
+<h5 id="monthday">monthday</h5>
+
+<p>The day of the month on which to run the
+command.  Optional; if specified, must be between 1 and 31.</p>
+
+<h5 id="name-2">name</h5>
+
+<p>The symbolic name of the cron job.  This name
+is used for human reference only and is generated automatically
+for cron jobs found on the system.  This generally won&rsquo;t
+matter, as Puppet will do its best to match existing cron jobs
+against specified jobs (and Puppet adds a comment to cron jobs it adds), but it is at least possible that converting from
+unmanaged jobs to managed jobs might require manual
+intervention.</p>
+
+<h5 id="provider-2">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>crontab</strong>:   Required binaries: <code>crontab</code>.    </li>
+</ul>
+
+<h5 id="special">special</h5>
+
+<p>Special schedules</p>
+
+<h5 id="target">target</h5>
+
+<p>Where the cron job should be stored.  For crontab-style
+entries this is the same as the user and defaults that way.
+Other providers default accordingly.</p>
+
+<h5 id="user">user</h5>
+
+<p>The user to run the command as.  This user must
+be allowed to run cron jobs, which is not currently checked by
+Puppet.</p>
+
+<p>The user defaults to whomever Puppet is running as.</p>
+
+<h5 id="weekday">weekday</h5>
+
+<p>The weekday on which to run the command.
+Optional; if specified, must be between 0 and 7, inclusive, with
+0 (or 7) being Sunday, or must be the name of the day (e.g., Tuesday).</p>
+
+<hr />
+
+<h3 id="exec">exec</h3>
+
+<p>Executes external commands.  It is critical that all commands
+executed using this mechanism can be run multiple times without
+harm, i.e., they are <em>idempotent</em>.  One useful way to create idempotent
+commands is to use the checks like <code>creates</code> to avoid running the
+command unless some condition is met.</p>
+
+<p>Note that you can restrict an <code>exec</code> to only run when it receives
+events by using the <code>refreshonly</code> parameter; this is a useful way to
+have your configuration respond to events with arbitrary commands.</p>
+
+<p>Note also that if an <code>exec</code> receives an event from another resource,
+it will get executed again (or execute the command specified in <code>refresh</code>, if there is one).</p>
+
+<p>There is a strong tendency to use <code>exec</code> to do whatever work Puppet
+can&rsquo;t already do; while this is obviously acceptable (and unavoidable)
+in the short term, it is highly recommended to migrate work from <code>exec</code>
+to native Puppet types as quickly as possible.  If you find that
+you are doing a lot of work with <code>exec</code>, please at least notify
+us at Puppet Labs what you are doing, and hopefully we can work with
+you to get a native resource type for the work you are doing.</p>
+
+<h4 id="parameters-3">Parameters</h4>
+
+<h5 id="command-1">command</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The actual command to execute.  Must either be fully qualified
+or a search path for the command must be provided.  If the command
+succeeds, any output produced will be logged at the instance&rsquo;s
+normal log level (usually <code>notice</code>), but if the command fails
+(meaning its return code does not match the specified code) then
+any output is logged at the <code>err</code> log level.</p>
+
+<h5 id="creates">creates</h5>
+
+<p>A file that this command creates.  If this
+parameter is provided, then the command will only be run
+if the specified file does not exist:</p>
+
+<pre><code>exec { "tar xf /my/tar/file.tar":
+  cwd =&gt; "/var/tmp",
+  creates =&gt; "/var/tmp/myfile",
+  path =&gt; ["/usr/bin", "/usr/sbin"]
+}
+</code></pre>
+
+<h5 id="cwd">cwd</h5>
+
+<p>The directory from which to run the command.  If
+this directory does not exist, the command will fail.</p>
+
+<h5 id="env">env</h5>
+
+<p>This parameter is deprecated. Use &lsquo;environment&rsquo; instead.</p>
+
+<h5 id="environment-1">environment</h5>
+
+<p>Any additional environment variables you want to set for a
+command.  Note that if you use this to set PATH, it will override
+the <code>path</code> attribute.  Multiple environment variables should be
+specified as an array.</p>
+
+<h5 id="group">group</h5>
+
+<p>The group to run the command as.  This seems to work quite
+haphazardly on different platforms &ndash; it is a platform issue
+not a Ruby or Puppet one, since the same variety exists when
+running commnands as different users in the shell.</p>
+
+<h5 id="logoutput">logoutput</h5>
+
+<p>Whether to log output.  Defaults to logging output at the
+loglevel for the <code>exec</code> resource. Use <em>on_failure</em> to only
+log the output when the command reports an error.  Values are
+<strong>true</strong>, <em>false</em>, <em>on_failure</em>, and any legal log level.  Valid values are <code>true</code>, <code>false</code>, <code>on_failure</code>.</p>
+
+<h5 id="onlyif-1">onlyif</h5>
+
+<p>If this parameter is set, then this <code>exec</code> will only run if
+the command returns 0.  For example:</p>
+
+<pre><code>exec { "logrotate":
+  path =&gt; "/usr/bin:/usr/sbin:/bin",
+  onlyif =&gt; "test `du /var/log/messages | cut -f1` -gt 100000"
+}
+</code></pre>
+
+<p>This would run <code>logrotate</code> only if that test returned true.</p>
+
+<p>Note that this command follows the same rules as the main command,
+which is to say that it must be fully qualified if the path is not set.</p>
+
+<p>Also note that onlyif can take an array as its value, e.g.:</p>
+
+<pre><code>onlyif =&gt; ["test -f /tmp/file1", "test -f /tmp/file2"]
+</code></pre>
+
+<p>This will only run the exec if /all/ conditions in the array return true.</p>
+
+<h5 id="path">path</h5>
+
+<p>The search path used for command execution.
+Commands must be fully qualified if no path is specified.  Paths
+can be specified as an array or as a colon-separated list.</p>
+
+<h5 id="refresh">refresh</h5>
+
+<p>How to refresh this command.  By default, the exec is just
+called again when it receives an event from another resource,
+but this parameter allows you to define a different command
+for refreshing.</p>
+
+<h5 id="refreshonly">refreshonly</h5>
+
+<p>The command should only be run as a
+refresh mechanism for when a dependent object is changed.  It only
+makes sense to use this option when this command depends on some
+other object; it is useful for triggering an action:</p>
+
+<pre><code># Pull down the main aliases file
+file { "/etc/aliases":
+  source =&gt; "puppet://server/module/aliases"
+}
+
+# Rebuild the database, but only when the file changes
+exec { newaliases:
+  path =&gt; ["/usr/bin", "/usr/sbin"],
+  subscribe =&gt; File["/etc/aliases"],
+  refreshonly =&gt; true
+}
+</code></pre>
+
+<p>Note that only <code>subscribe</code> and <code>notify</code> can trigger actions, not <code>require</code>,
+so it only makes sense to use <code>refreshonly</code> with <code>subscribe</code> or <code>notify</code>.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="returns-1">returns</h5>
+
+<p>The expected return code(s).  An error will be returned if the
+executed command returns something else.  Defaults to 0. Can be
+specified as an array of acceptable return codes or a single value.</p>
+
+<h5 id="timeout">timeout</h5>
+
+<p>The maximum time the command should take.  If the command takes
+longer than the timeout, the command is considered to have failed
+and will be stopped.  Use any negative number to disable the timeout.
+The time is specified in seconds.</p>
+
+<h5 id="tries">tries</h5>
+
+<p>The number of times execution of the command should be tried.
+Defaults to &lsquo;1&rsquo;. This many attempts will be made to execute
+the command until an acceptable return code is returned.
+Note that the timeout paramater applies to each try rather than
+to the complete set of tries.</p>
+
+<h5 id="trysleep">try_sleep</h5>
+
+<p>The time to sleep in seconds between &lsquo;tries&rsquo;.</p>
+
+<h5 id="unless">unless</h5>
+
+<p>If this parameter is set, then this <code>exec</code> will run unless
+the command returns 0.  For example:</p>
+
+<pre><code>exec { "/bin/echo root &gt;&gt; /usr/lib/cron/cron.allow":
+  path =&gt; "/usr/bin:/usr/sbin:/bin",
+  unless =&gt; "grep root /usr/lib/cron/cron.allow 2&gt;/dev/null"
+}
+</code></pre>
+
+<p>This would add <code>root</code> to the cron.allow file (on Solaris) unless
+<code>grep</code> determines it&rsquo;s already there.</p>
+
+<p>Note that this command follows the same rules as the main command,
+which is to say that it must be fully qualified if the path is not set.</p>
+
+<h5 id="user-1">user</h5>
+
+<p>The user to run the command as.  Note that if you
+use this then any error output is not currently captured.  This
+is because of a bug within Ruby.  If you are using Puppet to
+create this user, the exec will automatically require the user,
+as long as it is specified by name.</p>
+
+<hr />
+
+<h3 id="file">file</h3>
+
+<p>Manages local files, including setting ownership and
+permissions, creation of both files and directories, and
+retrieving entire files from remote servers.  As Puppet matures, it
+expected that the <code>file</code> resource will be used less and less to
+manage content, and instead native resources will be used to do so.</p>
+
+<p>If you find that you are often copying files in from a central
+location, rather than using native resources, please contact
+Puppet Labs and we can hopefully work with you to develop a
+native resource to support what you are doing.</p>
+
+<h4 id="parameters-4">Parameters</h4>
+
+<h5 id="backup">backup</h5>
+
+<p>Whether files should be backed up before
+being replaced.  The preferred method of backing files up is via
+a <code>filebucket</code>, which stores files by their MD5 sums and allows
+easy retrieval without littering directories with backups.  You
+can specify a local filebucket or a network-accessible
+server-based filebucket by setting <code>backup =&gt; bucket-name</code>.
+Alternatively, if you specify any value that begins with a <code>.</code>
+(e.g., <code>.puppet-bak</code>), then Puppet will use copy the file in
+the same directory with that value as the extension of the
+backup. Setting <code>backup =&gt; false</code> disables all backups of the
+file in question.</p>
+
+<p>Puppet automatically creates a local filebucket named <code>puppet</code> and
+defaults to backing up there.  To use a server-based filebucket,
+you must specify one in your configuration</p>
+
+<pre><code>  filebucket { main:
+    server =&gt; puppet
+  }
+</code></pre>
+
+<p>The <code>puppet master</code> daemon creates a filebucket by default,
+so you can usually back up to your main server with this
+configuration.  Once you&rsquo;ve described the bucket in your
+configuration, you can use it in any file</p>
+
+<pre><code>  file { "/my/file":
+    source =&gt; "/path/in/nfs/or/something",
+    backup =&gt; main
+  }
+</code></pre>
+
+<p>This will back the file up to the central server.</p>
+
+<p>At this point, the benefits of using a filebucket are that you do not
+have backup files lying around on each of your machines, a given
+version of a file is only backed up once, and you can restore
+any given file manually, no matter how old.  Eventually,
+transactional support will be able to automatically restore
+filebucketed files.</p>
+
+<h5 id="checksum">checksum</h5>
+
+<p>The checksum type to use when checksumming a file.</p>
+
+<p>The default checksum parameter, if checksums are enabled, is md5.  Valid values are <code>md5</code>, <code>md5lite</code>, <code>mtime</code>, <code>ctime</code>, <code>none</code>.</p>
+
+<h5 id="content">content</h5>
+
+<p>Specify the contents of a file as a string.  Newlines, tabs, and
+spaces can be specified using the escaped syntax (e.g., \n for a newline).  The primary purpose of this parameter is to provide a
+kind of limited templating::</p>
+
+<p>define resolve(nameserver1, nameserver2, domain, search) {
+    $str = &ldquo;search $search
+  domain $domain
+  nameserver $nameserver1
+  nameserver $nameserver2
+  &ldquo;</p>
+
+<pre><code>file { "/etc/resolv.conf":
+  content =&gt; $str
+}   }
+</code></pre>
+
+<p>This attribute is especially useful when used with
+<code>PuppetTemplating templating</code>:trac:.</p>
+
+<h5 id="ctime">ctime</h5>
+
+<p>A read-only state to check the file ctime.</p>
+
+<h5 id="ensure-2">ensure</h5>
+
+<p>Whether to create files that don&rsquo;t currently exist.
+Possible values are <em>absent</em>, <em>present</em>, <em>file</em>, and <em>directory</em>.
+Specifying <code>present</code> will match any form of file existence, and
+if the file is missing will create an empty file. Specifying
+<code>absent</code> will delete the file (and directory if recurse =&gt; true).</p>
+
+<p>Anything other than those values will be considered to be a symlink.
+For instance, the following text creates a link:</p>
+
+<pre><code># Useful on solaris
+file { "/etc/inetd.conf":
+  ensure =&gt; "/etc/inet/inetd.conf"
+}
+</code></pre>
+
+<p>You can make relative links:</p>
+
+<pre><code># Useful on solaris
+file { "/etc/inetd.conf":
+  ensure =&gt; "inet/inetd.conf"
+}
+</code></pre>
+
+<p>If you need to make a relative link to a file named the same
+as one of the valid values, you must prefix it with <code>./</code> or
+something similar.</p>
+
+<p>You can also make recursive symlinks, which will create a
+directory structure that maps to the target directory,
+with directories corresponding to each directory
+and links corresponding to each file.  Valid values are <code>absent</code> (also called <code>false</code>), <code>file</code>, <code>present</code>, <code>directory</code>, <code>link</code>.  Values can match <code>/./</code>.</p>
+
+<h5 id="force-1">force</h5>
+
+<p>Force the file operation.  Currently only used when replacing
+directories with links.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="group-1">group</h5>
+
+<p>Which group should own the file.  Argument can be either group
+name or group ID.</p>
+
+<h5 id="ignore">ignore</h5>
+
+<p>A parameter which omits action on files matching
+specified patterns during recursion.  Uses Ruby&rsquo;s builtin globbing
+engine, so shell metacharacters are fully supported, e.g. <code>[a-z]*</code>.
+Matches that would descend into the directory structure are ignored,
+e.g., <code>*/*</code>.</p>
+
+<h5 id="links">links</h5>
+
+<p>How to handle links during file actions.  During file copying,
+<code>follow</code> will copy the target file instead of the link, <code>manage</code>
+will copy the link itself, and <code>ignore</code> will just pass it by.
+When not copying, <code>manage</code> and <code>ignore</code> behave equivalently
+(because you cannot really ignore links entirely during local recursion), and <code>follow</code> will manage the file to which the
+link points.  Valid values are <code>follow</code>, <code>manage</code>.</p>
+
+<h5 id="mode">mode</h5>
+
+<p>Mode the file should be.  Currently relatively limited:
+you must specify the exact mode the file should be.</p>
+
+<p>Note that when you set the mode of a directory, Puppet always
+sets the search/traverse (1) bit anywhere the read (4) bit is set.
+This is almost always what you want: read allows you to list the
+entries in a directory, and search/traverse allows you to access
+(read/write/execute) those entries.)  Because of this feature, you
+can recursively make a directory and all of the files in it
+world-readable by setting e.g.:</p>
+
+<pre><code>file { '/some/dir':
+  mode =&gt; 644,
+  recurse =&gt; true,
+}
+</code></pre>
+
+<p>In this case all of the files underneath <code>/some/dir</code> will have
+mode 644, and all of the directories will have mode 755.</p>
+
+<h5 id="mtime">mtime</h5>
+
+<p>A read-only state to check the file mtime.</p>
+
+<h5 id="owner">owner</h5>
+
+<p>To whom the file should belong.  Argument can be user name or
+user ID.</p>
+
+<h5 id="path-1">path</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The path to the file to manage.  Must be fully qualified.</p>
+
+<h5 id="provider-3">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>microsoft_windows</strong>: Uses Microsoft Windows functionality to manage file&rsquo;s users and rights.    </li>
+  <li><strong>posix</strong>: Uses POSIX functionality to manage file&rsquo;s users and rights.    </li>
+</ul>
+
+<h5 id="purge">purge</h5>
+
+<p>Whether unmanaged files should be purged.  If you have a filebucket
+configured the purged files will be uploaded, but if you do not,
+this will destroy data.  Only use this option for generated
+files unless you really know what you are doing.  This option only
+makes sense when recursively managing directories.</p>
+
+<p>Note that when using <code>purge</code> with <code>source</code>, Puppet will purge any files
+that are not on the remote system.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="recurse">recurse</h5>
+
+<p>Whether and how deeply to do recursive
+management.  Valid values are <code>true</code>, <code>false</code>, <code>inf</code>, <code>remote</code>.  Values can match <code>/^[0-9]+$/</code>.</p>
+
+<h5 id="recurselimit">recurselimit</h5>
+
+<p>How deeply to do recursive management.  Values can match <code>/^[0-9]+$/</code>.</p>
+
+<h5 id="replace">replace</h5>
+
+<p>Whether or not to replace a file that is
+sourced but exists.  This is useful for using file sources
+purely for initialization.  Valid values are <code>true</code> (also called <code>yes</code>), <code>false</code> (also called <code>no</code>).</p>
+
+<h5 id="selrange">selrange</h5>
+
+<p>What the SELinux range component of the context of the file should be.
+Any valid SELinux range component is accepted.  For example <code>s0</code> or
+<code>SystemHigh</code>.  If not specified it defaults to the value returned by
+matchpathcon for the file, if any exists.  Only valid on systems with
+SELinux support enabled and that have support for MCS (Multi-Category
+Security).</p>
+
+<h5 id="selrole">selrole</h5>
+
+<p>What the SELinux role component of the context of the file should be.
+Any valid SELinux role component is accepted.  For example <code>role_r</code>.
+If not specified it defaults to the value returned by matchpathcon for
+the file, if any exists.  Only valid on systems with SELinux support
+enabled.</p>
+
+<h5 id="seltype">seltype</h5>
+
+<p>What the SELinux type component of the context of the file should be.
+Any valid SELinux type component is accepted.  For example <code>tmp_t</code>.
+If not specified it defaults to the value returned by matchpathcon for
+the file, if any exists.  Only valid on systems with SELinux support
+enabled.</p>
+
+<h5 id="seluser">seluser</h5>
+
+<p>What the SELinux user component of the context of the file should be.
+Any valid SELinux user component is accepted.  For example <code>user_u</code>.
+If not specified it defaults to the value returned by matchpathcon for
+the file, if any exists.  Only valid on systems with SELinux support
+enabled.</p>
+
+<h5 id="source">source</h5>
+
+<p>Copy a file over the current file.  Uses <code>checksum</code> to
+determine when a file should be copied.  Valid values are either
+fully qualified paths to files, or URIs.  Currently supported URI
+types are <em>puppet</em> and <em>file</em>.</p>
+
+<p>This is one of the primary mechanisms for getting content into
+applications that Puppet does not directly support and is very
+useful for those configuration files that don&rsquo;t change much across
+sytems.  For instance:</p>
+
+<pre><code>class sendmail {
+  file { "/etc/mail/sendmail.cf":
+    source =&gt; "puppet://server/modules/module_name/sendmail.cf"
+  }
+}
+</code></pre>
+
+<p>You can also leave out the server name, in which case <code>puppet agent</code>
+will fill in the name of its configuration server and <code>puppet apply</code>
+will use the local filesystem.  This makes it easy to use the same
+configuration in both local and centralized forms.</p>
+
+<p>Currently, only the <code>puppet</code> scheme is supported for source
+URL&rsquo;s. Puppet will connect to the file server running on
+<code>server</code> to retrieve the contents of the file. If the
+<code>server</code> part is empty, the behavior of the command-line
+interpreter (<code>puppet apply</code>) and the client demon (<code>puppet agent</code>) differs
+slightly: <code>apply</code> will look such a file up on the module path
+on the local host, whereas <code>agent</code> will connect to the
+puppet server that it received the manifest from.</p>
+
+<p>See the <a href="http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration">fileserver configuration documentation</a> for information on how to configure
+and use file services within Puppet.</p>
+
+<p>If you specify multiple file sources for a file, then the first
+source that exists will be used.  This allows you to specify
+what amount to search paths for files:</p>
+
+<pre><code>file { "/path/to/my/file":
+  source =&gt; [
+    "/modules/nfs/files/file.$host",
+    "/modules/nfs/files/file.$operatingsystem",
+    "/modules/nfs/files/file"
+  ]
+}
+</code></pre>
+
+<p>This will use the first found file as the source.</p>
+
+<p>You cannot currently copy links using this mechanism; set <code>links</code>
+to <code>follow</code> if any remote sources are links.</p>
+
+<h5 id="sourceselect">sourceselect</h5>
+
+<p>Whether to copy all valid sources, or just the first one.  This parameter
+is only used in recursive copies; by default, the first valid source is the
+only one used as a recursive source, but if this parameter is set to <code>all</code>,
+then all valid sources will have all of their contents copied to the local host,
+and for sources that have the same file, the source earlier in the list will
+be used.  Valid values are <code>first</code>, <code>all</code>.</p>
+
+<h5 id="target-1">target</h5>
+
+<p>The target for creating a link.  Currently, symlinks are the
+only type supported.  Valid values are <code>notlink</code>.  Values can match <code>/./</code>.</p>
+
+<h5 id="type">type</h5>
+
+<p>A read-only state to check the file type.</p>
+
+<hr />
+
+<h3 id="filebucket">filebucket</h3>
+
+<p>A repository for backing up files.  If no filebucket is
+defined, then files will be backed up in their current directory,
+but the filebucket can be either a host- or site-global repository
+for backing up.  It stores files and returns the MD5 sum, which
+can later be used to retrieve the file if restoration becomes
+necessary.  A filebucket does not do any work itself; instead,
+it can be specified as the value of <em>backup</em> in a <strong>file</strong> object.</p>
+
+<p>Currently, filebuckets are only useful for manual retrieval of
+accidentally removed files (e.g., you look in the log for the md5 sum and retrieve the file with that sum from the filebucket), but
+when transactions are fully supported filebuckets will be used to
+undo transactions.</p>
+
+<p>You will normally want to define a single filebucket for your
+whole network and then use that as the default backup location:</p>
+
+<pre><code># Define the bucket
+filebucket { main: server =&gt; puppet }
+
+# Specify it as the default target
+File { backup =&gt; main }
+</code></pre>
+
+<p>Puppetmaster servers create a filebucket by default, so this will
+work in a default configuration.</p>
+
+<h4 id="parameters-5">Parameters</h4>
+
+<h5 id="name-3">name</h5>
+
+<p>The name of the filebucket.</p>
+
+<h5 id="path-2">path</h5>
+
+<p>The path to the local filebucket.  If this is
+unset, then the bucket is remote.  The parameter <em>server</em> must
+can be specified to set the remote server.</p>
+
+<h5 id="port">port</h5>
+
+<p>The port on which the remote server is listening.
+Defaults to the normal Puppet port, 8140.</p>
+
+<h5 id="server">server</h5>
+
+<p>The server providing the remote filebucket.  If this is not
+specified then <em>path</em> is checked. If it is set, then the
+bucket is local.  Otherwise the puppetmaster server specified
+in the config or at the commandline is used.</p>
+
+<hr />
+
+<h3 id="group-2">group</h3>
+
+<p>Manage groups. On most platforms this can only create groups.
+Group membership must be managed on individual users.</p>
+
+<p>On some platforms such as OS X, group membership is managed as an
+attribute of the group, not the user record. Providers must have
+the feature &lsquo;manages_members&rsquo; to manage the &lsquo;members&rsquo; property of
+a group record.</p>
+
+<h4 id="features-1">Features</h4>
+
+<ul>
+  <li><em>manages_members</em>: For directories where membership is an attribute of groups not users.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>manages_members</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>directoryservice</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>groupadd</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>ldap</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>pw</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-6">Parameters</h4>
+
+<h5 id="allowdupe">allowdupe</h5>
+
+<p>Whether to allow duplicate GIDs.  This option does not work on
+FreeBSD (contract to the <code>pw</code> man page).  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="authmembership">auth_membership</h5>
+
+<p>whether the provider is authoritative for group membership.</p>
+
+<h5 id="ensure-3">ensure</h5>
+
+<p>Create or remove the group.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="gid">gid</h5>
+
+<p>The group ID.  Must be specified numerically.  If not
+specified, a number will be picked, which can result in ID
+differences across systems and thus is not recommended.  The
+GID is picked according to local system standards.</p>
+
+<h5 id="members">members</h5>
+
+<p>The members of the group. For directory services where group
+membership is stored in the group objects, not the users.  Requires features manages_members.</p>
+
+<h5 id="name-4">name</h5>
+
+<p>The group name.  While naming limitations vary by
+system, it is advisable to keep the name to the degenerate
+limitations, which is a maximum of 8 characters beginning with
+a letter.</p>
+
+<h5 id="provider-4">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li>
+    <p><strong>directoryservice</strong>: Group management using DirectoryService on OS X.</p>
+
+    <p>Required binaries: <code>/usr/bin/dscl</code>.    Default for <code>operatingsystem</code> == <code>darwin</code>.    Supported features: <code>manages_members</code>.</p>
+  </li>
+  <li>
+    <p><strong>groupadd</strong>: Group management via <code>groupadd</code> and its ilk.</p>
+
+    <p>The default for most platforms</p>
+
+    <p>Required binaries: <code>groupdel</code>, <code>groupadd</code>, <code>groupmod</code>.    </p>
+  </li>
+  <li>
+    <p><strong>ldap</strong>: Group management via <code>ldap</code>.</p>
+
+    <p>This provider requires that you have valid values for all of the
+ldap-related settings, including <code>ldapbase</code>.  You will also almost
+definitely need settings for <code>ldapuser</code> and <code>ldappassword</code>, so that
+your clients can write to ldap.</p>
+
+    <p>Note that this provider will automatically generate a GID for you if you do
+not specify one, but it is a potentially expensive operation, as it
+iterates across all existing groups to pick the appropriate next one.</p>
+  </li>
+  <li>
+    <p><strong>pw</strong>: Group management via <code>pw</code>.</p>
+
+    <p>Only works on FreeBSD.</p>
+
+    <p>Required binaries: <code>/usr/sbin/pw</code>.    Default for <code>operatingsystem</code> == <code>freebsd</code>.  </p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="host">host</h3>
+
+<p>Installs and manages host entries.  For most systems, these
+entries will just be in <code>/etc/hosts</code>, but some systems (notably OS X)
+will have different solutions.</p>
+
+<h4 id="parameters-7">Parameters</h4>
+
+<h5 id="ensure-4">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="hostaliases">host_aliases</h5>
+
+<p>Any aliases the host might have.  Multiple values must be
+specified as an array.</p>
+
+<h5 id="ip">ip</h5>
+
+<p>The host&rsquo;s IP address, IPv4 or IPv6.</p>
+
+<h5 id="name-5">name</h5>
+
+<p>The host name.</p>
+
+<h5 id="provider-5">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>parsed</strong>:     </li>
+</ul>
+
+<h5 id="target-2">target</h5>
+
+<p>The file in which to store service information.  Only used by
+those providers that write to disk. On most systems this defaults to <code>/etc/hosts</code>.</p>
+
+<hr />
+
+<h3 id="k5login">k5login</h3>
+
+<p>Manage the <code>.k5login</code> file for a user.  Specify the full path to
+the <code>.k5login</code> file as the name and an array of principals as the
+property principals.</p>
+
+<h4 id="parameters-8">Parameters</h4>
+
+<h5 id="ensure-5">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="mode-1">mode</h5>
+
+<p>Manage the k5login file&rsquo;s mode</p>
+
+<h5 id="path-3">path</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The path to the file to manage.  Must be fully qualified.</p>
+
+<h5 id="principals">principals</h5>
+
+<p>The principals present in the <code>.k5login</code> file.</p>
+
+<h5 id="provider-6">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>k5login</strong>: The k5login provider is the only provider for the k5login
+    type.    </li>
+</ul>
+
+<hr />
+
+<h3 id="macauthorization">macauthorization</h3>
+
+<p>Manage the Mac OS X authorization database.
+See the <a href="http://developer.apple.com/documentation/Security/Conceptual/Security_Overview/Security_Services/chapter_4_section_5.html">Apple developer site</a> for more information.</p>
+
+<h4 id="parameters-9">Parameters</h4>
+
+<h5 id="allowroot">allow_root</h5>
+
+<p>Corresponds to &lsquo;allow-root&rsquo; in the authorization store, renamed
+due to hyphens being problematic. Specifies whether a right should be
+allowed automatically if the requesting process is running with
+uid == 0.  AuthorizationServices defaults this attribute to false if
+not specified  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="authclass">auth_class</h5>
+
+<p>Corresponds to &lsquo;class&rsquo; in the authorization store, renamed due
+to &lsquo;class&rsquo; being a reserved word.  Valid values are <code>user</code>, <code>evaluate-mechanisms</code>, <code>allow</code>, <code>deny</code>, <code>rule</code>.</p>
+
+<h5 id="authtype">auth_type</h5>
+
+<p>type - can be a &lsquo;right&rsquo; or a &lsquo;rule&rsquo;. &lsquo;comment&rsquo; has not yet been
+implemented.  Valid values are <code>right</code>, <code>rule</code>.</p>
+
+<h5 id="authenticateuser">authenticate_user</h5>
+
+<p>Corresponds to &lsquo;authenticate-user&rsquo; in the authorization store,
+renamed due to hyphens being problematic.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="comment">comment</h5>
+
+<p>The &lsquo;comment&rsquo; attribute for authorization resources.</p>
+
+<h5 id="ensure-6">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="group-3">group</h5>
+
+<p>The user must authenticate as a member of this group. This
+attribute can be set to any one group.</p>
+
+<h5 id="kofn">k_of_n</h5>
+
+<p>k-of-n describes how large a subset of rule mechanisms must
+succeed for successful authentication. If there are &lsquo;n&rsquo; mechanisms,
+then &lsquo;k&rsquo; (the integer value of this parameter) mechanisms must succeed.
+The most common setting for this parameter is &lsquo;1&rsquo;. If k-of-n is not
+set, then &lsquo;n-of-n&rsquo; mechanisms must succeed.</p>
+
+<h5 id="mechanisms">mechanisms</h5>
+
+<p>an array of suitable mechanisms.</p>
+
+<h5 id="name-6">name</h5>
+
+<p>The name of the right or rule to be managed.
+Corresponds to &lsquo;key&rsquo; in Authorization Services. The key is the name
+of a rule. A key uses the same naming conventions as a right. The
+Security Server uses a rule’s key to match the rule with a right.
+Wildcard keys end with a ‘.’. The generic rule has an empty key value.
+Any rights that do not match a specific rule use the generic rule.</p>
+
+<h5 id="provider-7">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li>
+    <p><strong>macauthorization</strong>: Manage Mac OS X authorization database rules and rights.</p>
+
+    <p>Required binaries: <code>/usr/bin/sw_vers</code>, <code>/usr/bin/security</code>.    Default for <code>operatingsystem</code> == <code>darwin</code>.  </p>
+  </li>
+</ul>
+
+<h5 id="rule">rule</h5>
+
+<p>The rule(s) that this right refers to.</p>
+
+<h5 id="sessionowner">session_owner</h5>
+
+<p>Corresponds to &lsquo;session-owner&rsquo; in the authorization store,
+renamed due to hyphens being problematic.  Whether the session owner
+automatically matches this rule or right.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="shared">shared</h5>
+
+<p>If this is set to true, then the Security Server marks the
+credentials used to gain this right as shared. The Security Server
+may use any shared credentials to authorize this right. For maximum
+security, set sharing to false so credentials stored by the Security
+Server for one application may not be used by another application.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="timeout-1">timeout</h5>
+
+<p>The credential used by this rule expires in the specified
+number of seconds. For maximum security where the user must
+authenticate every time, set the timeout to 0. For minimum security,
+remove the timeout attribute so the user authenticates only once per
+session.</p>
+
+<h5 id="tries-1">tries</h5>
+
+<p>The number of tries allowed.</p>
+
+<hr />
+
+<h3 id="mailalias">mailalias</h3>
+
+<p>Creates an email alias in the local alias database.</p>
+
+<h4 id="parameters-10">Parameters</h4>
+
+<h5 id="ensure-7">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="name-7">name</h5>
+
+<p>The alias name.</p>
+
+<h5 id="provider-8">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>aliases</strong>:     </li>
+</ul>
+
+<h5 id="recipient">recipient</h5>
+
+<p>Where email should be sent.  Multiple values
+should be specified as an array.</p>
+
+<h5 id="target-3">target</h5>
+
+<p>The file in which to store the aliases.  Only used by
+those providers that write to disk.</p>
+
+<hr />
+
+<h3 id="maillist">maillist</h3>
+
+<p>Manage email lists.  This resource type currently can only create
+and remove lists, it cannot reconfigure them.</p>
+
+<h4 id="parameters-11">Parameters</h4>
+
+<h5 id="admin">admin</h5>
+
+<p>The email address of the administrator.</p>
+
+<h5 id="description">description</h5>
+
+<p>The description of the mailing list.</p>
+
+<h5 id="ensure-8">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>, <code>purged</code>.</p>
+
+<h5 id="mailserver">mailserver</h5>
+
+<p>The name of the host handling email for the list.</p>
+
+<h5 id="name-8">name</h5>
+
+<p>The name of the email list.</p>
+
+<h5 id="password">password</h5>
+
+<p>The admin password.</p>
+
+<h5 id="provider-9">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>mailman</strong>:   Required binaries: <code>/usr/lib/mailman/bin/newlist</code>, <code>/usr/lib/mailman/mail/mailman</code>, <code>/usr/lib/mailman/bin/list_lists</code>, <code>/usr/lib/mailman/bin/rmlist</code>.    </li>
+</ul>
+
+<h5 id="webserver">webserver</h5>
+
+<p>The name of the host providing web archives and the administrative interface.</p>
+
+<hr />
+
+<h3 id="mcx">mcx</h3>
+
+<p>MCX object management using DirectoryService on OS X.</p>
+
+<p>The default provider of this type merely manages the XML plist as
+reported by the dscl -mcxexport command.  This is similar to the
+content property of the file type in Puppet.</p>
+
+<p>The recommended method of using this type is to use Work Group Manager
+to manage users and groups on the local computer, record the resulting
+puppet manifest using the command &lsquo;ralsh mcx&rsquo; then deploying this
+to other machines.</p>
+
+<h4 id="features-2">Features</h4>
+
+<ul>
+  <li><em>manages_content</em>: The provider can manage MCXSettings as a string.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>manages_content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mcxcontent</td>
+      <td><em>X</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-12">Parameters</h4>
+
+<h5 id="content-1">content</h5>
+
+<p>The XML Plist.  The value of MCXSettings in DirectoryService.
+This is the standard output from the system command:</p>
+
+<pre><code>dscl localhost -mcxexport /Local/Default/&lt;ds_type&gt;/ds_name
+</code></pre>
+
+<p>Note that <code>ds_type</code> is capitalized and plural in the dscl command.  Requires features manages_content.</p>
+
+<h5 id="dsname">ds_name</h5>
+
+<p>The name to attach the MCX Setting to.
+e.g. &lsquo;localhost&rsquo; when ds_type =&gt; computer. This setting is not
+required, as it may be parsed so long as the resource name is
+parseable.  e.g. /Groups/admin where &lsquo;group&rsquo; is the dstype.</p>
+
+<h5 id="dstype">ds_type</h5>
+
+<p>The DirectoryService type this MCX setting attaches to.  Valid values are <code>user</code>, <code>group</code>, <code>computer</code>, <code>computerlist</code>.</p>
+
+<h5 id="ensure-9">ensure</h5>
+
+<p>Create or remove the MCX setting.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="name-9">name</h5>
+
+<p>The name of the resource being managed.
+The default naming convention follows Directory Service paths:</p>
+
+<pre><code>/Computers/localhost
+/Groups/admin
+/Users/localadmin
+</code></pre>
+
+<p>The <code>ds_type</code> and <code>ds_name</code> type parameters are not necessary if the
+default naming convention is followed.</p>
+
+<h5 id="provider-10">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li>
+    <p><strong>mcxcontent</strong>: MCX Settings management using DirectoryService on OS X.</p>
+
+    <p>This provider manages the entire MCXSettings attribute available
+to some directory services nodes.  This management is &lsquo;all or nothing&rsquo;
+in that discrete application domain key value pairs are not managed
+by this provider.</p>
+
+    <p>It is recommended to use WorkGroup Manager to configure Users, Groups,
+Computers, or ComputerLists, then use &lsquo;ralsh mcx&rsquo; to generate a puppet
+manifest from the resulting configuration.</p>
+
+    <p>Original Author: Jeff McCune (mccune.jeff@gmail.com)</p>
+
+    <p>Required binaries: <code>/usr/bin/dscl</code>.    Default for <code>operatingsystem</code> == <code>darwin</code>.    Supported features: <code>manages_content</code>.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="mount">mount</h3>
+
+<p>Manages mounted filesystems, including putting mount
+information into the mount table. The actual behavior depends
+on the value of the &lsquo;ensure&rsquo; parameter.</p>
+
+<p>Note that if a <code>mount</code> receives an event from another resource,
+it will try to remount the filesystems if <code>ensure</code> is set to <code>mounted</code>.</p>
+
+<h4 id="features-3">Features</h4>
+
+<ul>
+  <li><em>refreshable</em>: The provider can remount the filesystem.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>refreshable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>parsed</td>
+      <td><em>X</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-13">Parameters</h4>
+
+<h5 id="atboot">atboot</h5>
+
+<p>Whether to mount the mount at boot.  Not all platforms
+support this.</p>
+
+<h5 id="blockdevice">blockdevice</h5>
+
+<p>The device to fsck.  This is property is only valid
+on Solaris, and in most cases will default to the correct
+value.</p>
+
+<h5 id="device">device</h5>
+
+<p>The device providing the mount.  This can be whatever
+device is supporting by the mount, including network
+devices or devices specified by UUID rather than device
+path, depending on the operating system.</p>
+
+<h5 id="dump">dump</h5>
+
+<p>Whether to dump the mount.  Not all platform support this.
+Valid values are <code>1</code> or <code>0</code>. or <code>2</code> on FreeBSD, Default is <code>0</code>.  Values can match <code>/(0|1)/</code>, <code>/(0|1)/</code>.</p>
+
+<h5 id="ensure-10">ensure</h5>
+
+<p>Control what to do with this mount. Set this attribute to
+<code>umounted</code> to make sure the filesystem is in the filesystem table
+but not mounted (if the filesystem is currently mounted, it will be unmounted).  Set it to <code>absent</code> to unmount (if necessary) and remove
+the filesystem from the fstab.  Set to <code>mounted</code> to add it to the
+fstab and mount it. Set to <code>present</code> to add to fstab but not change
+mount/unmount status  Valid values are <code>defined</code> (also called <code>present</code>), <code>unmounted</code>, <code>absent</code>, <code>mounted</code>.</p>
+
+<h5 id="fstype">fstype</h5>
+
+<p>The mount type.  Valid values depend on the
+operating system.  This is a required option.</p>
+
+<h5 id="name-10">name</h5>
+
+<p>The mount path for the mount.</p>
+
+<h5 id="options">options</h5>
+
+<p>Mount options for the mounts, as they would
+appear in the fstab.</p>
+
+<h5 id="pass">pass</h5>
+
+<p>The pass in which the mount is checked.</p>
+
+<h5 id="path-4">path</h5>
+
+<p>The deprecated name for the mount point.  Please use <code>name</code> now.</p>
+
+<h5 id="provider-11">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>parsed</strong>:   Required binaries: <code>mount</code>, <code>umount</code>.      Supported features: <code>refreshable</code>.</li>
+</ul>
+
+<h5 id="remounts">remounts</h5>
+
+<p>Whether the mount can be remounted  <code>mount -o remount</code>.  If
+this is false, then the filesystem will be unmounted and remounted
+manually, which is prone to failure.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="target-4">target</h5>
+
+<p>The file in which to store the mount table.  Only used by
+those providers that write to disk.</p>
+
+<hr />
+
+<h3 id="nagioscommand">nagios_command</h3>
+
+<p>The Nagios type command.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_command.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-14">Parameters</h4>
+
+<h5 id="commandline">command_line</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="commandname">command_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type command</p>
+
+<h5 id="ensure-11">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="provider-12">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="target-5">target</h5>
+
+<p>target</p>
+
+<h5 id="use">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioscontact">nagios_contact</h3>
+
+<p>The Nagios type contact.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_contact.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-15">Parameters</h4>
+
+<h5 id="address1">address1</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="address2">address2</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="address3">address3</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="address4">address4</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="address5">address5</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="address6">address6</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="alias">alias</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="cansubmitcommands">can_submit_commands</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contactname">contact_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type contact</p>
+
+<h5 id="contactgroups">contactgroups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="email">email</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-12">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="hostnotificationcommands">host_notification_commands</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostnotificationoptions">host_notification_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostnotificationperiod">host_notification_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostnotificationsenabled">host_notifications_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="pager">pager</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-13">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retainnonstatusinformation">retain_nonstatus_information</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retainstatusinformation">retain_status_information</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicenotificationcommands">service_notification_commands</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicenotificationoptions">service_notification_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicenotificationperiod">service_notification_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicenotificationsenabled">service_notifications_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-6">target</h5>
+
+<p>target</p>
+
+<h5 id="use-1">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioscontactgroup">nagios_contactgroup</h3>
+
+<p>The Nagios type contactgroup.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_contactgroup.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-16">Parameters</h4>
+
+<h5 id="alias-1">alias</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contactgroupmembers">contactgroup_members</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contactgroupname">contactgroup_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type contactgroup</p>
+
+<h5 id="ensure-13">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="members-1">members</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-14">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-1">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-7">target</h5>
+
+<p>target</p>
+
+<h5 id="use-2">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioshost">nagios_host</h3>
+
+<p>The Nagios type host.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_host.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-17">Parameters</h4>
+
+<h5 id="actionurl">action_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="activechecksenabled">active_checks_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="address">address</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="alias-2">alias</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkcommand">check_command</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkfreshness">check_freshness</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkinterval">check_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkperiod">check_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contactgroups-1">contact_groups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contacts">contacts</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="displayname">display_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-14">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="eventhandler">event_handler</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="eventhandlerenabled">event_handler_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="failurepredictionenabled">failure_prediction_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="firstnotificationdelay">first_notification_delay</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="flapdetectionenabled">flap_detection_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="flapdetectionoptions">flap_detection_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="freshnessthreshold">freshness_threshold</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="highflapthreshold">high_flap_threshold</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostname">host_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type host</p>
+
+<h5 id="hostgroups">hostgroups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimage">icon_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimagealt">icon_image_alt</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="initialstate">initial_state</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="lowflapthreshold">low_flap_threshold</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="maxcheckattempts">max_check_attempts</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notes">notes</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notesurl">notes_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationinterval">notification_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationoptions">notification_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationperiod">notification_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationsenabled">notifications_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="obsessoverhost">obsess_over_host</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="parents">parents</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="passivechecksenabled">passive_checks_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="processperfdata">process_perf_data</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-15">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-2">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retainnonstatusinformation-1">retain_nonstatus_information</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retainstatusinformation-1">retain_status_information</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retryinterval">retry_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="stalkingoptions">stalking_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="statusmapimage">statusmap_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-8">target</h5>
+
+<p>target</p>
+
+<h5 id="use-3">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="vrmlimage">vrml_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioshostdependency">nagios_hostdependency</h3>
+
+<p>The Nagios type hostdependency.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_hostdependency.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-18">Parameters</h4>
+
+<h5 id="naginatorname">_naginator_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type hostdependency</p>
+
+<h5 id="dependencyperiod">dependency_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="dependenthostname">dependent_host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="dependenthostgroupname">dependent_hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-15">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="executionfailurecriteria">execution_failure_criteria</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostname-1">host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostgroupname">hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="inheritsparent">inherits_parent</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationfailurecriteria">notification_failure_criteria</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-16">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-3">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-9">target</h5>
+
+<p>target</p>
+
+<h5 id="use-4">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioshostescalation">nagios_hostescalation</h3>
+
+<p>The Nagios type hostescalation.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_hostescalation.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-19">Parameters</h4>
+
+<h5 id="naginatorname-1">_naginator_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type hostescalation</p>
+
+<h5 id="contactgroups-2">contact_groups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contacts-1">contacts</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-16">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="escalationoptions">escalation_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="escalationperiod">escalation_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="firstnotification">first_notification</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostname-2">host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostgroupname-1">hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="lastnotification">last_notification</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationinterval-1">notification_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-17">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-4">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-10">target</h5>
+
+<p>target</p>
+
+<h5 id="use-5">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioshostextinfo">nagios_hostextinfo</h3>
+
+<p>The Nagios type hostextinfo.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_hostextinfo.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-20">Parameters</h4>
+
+<h5 id="ensure-17">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="hostname-3">host_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type hostextinfo</p>
+
+<h5 id="iconimage-1">icon_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimagealt-1">icon_image_alt</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notes-1">notes</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notesurl-1">notes_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-18">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-5">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="statusmapimage-1">statusmap_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-11">target</h5>
+
+<p>target</p>
+
+<h5 id="use-6">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="vrmlimage-1">vrml_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagioshostgroup">nagios_hostgroup</h3>
+
+<p>The Nagios type hostgroup.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_hostgroup.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-21">Parameters</h4>
+
+<h5 id="actionurl-1">action_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="alias-3">alias</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-18">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="hostgroupmembers">hostgroup_members</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostgroupname-2">hostgroup_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type hostgroup</p>
+
+<h5 id="members-2">members</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notes-2">notes</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notesurl-2">notes_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-19">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-6">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-12">target</h5>
+
+<p>target</p>
+
+<h5 id="use-7">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagiosservice">nagios_service</h3>
+
+<p>The Nagios type service.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_service.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-22">Parameters</h4>
+
+<h5 id="naginatorname-2">_naginator_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type service</p>
+
+<h5 id="actionurl-2">action_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="activechecksenabled-1">active_checks_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkcommand-1">check_command</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkfreshness-1">check_freshness</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkinterval-1">check_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="checkperiod-1">check_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contactgroups-3">contact_groups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contacts-2">contacts</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="displayname-1">display_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-19">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="eventhandler-1">event_handler</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="eventhandlerenabled-1">event_handler_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="failurepredictionenabled-1">failure_prediction_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="firstnotificationdelay-1">first_notification_delay</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="flapdetectionenabled-1">flap_detection_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="flapdetectionoptions-1">flap_detection_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="freshnessthreshold-1">freshness_threshold</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="highflapthreshold-1">high_flap_threshold</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostname-4">host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostgroupname-3">hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimage-2">icon_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimagealt-2">icon_image_alt</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="initialstate-1">initial_state</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="isvolatile">is_volatile</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="lowflapthreshold-1">low_flap_threshold</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="maxcheckattempts-1">max_check_attempts</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="normalcheckinterval">normal_check_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notes-3">notes</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notesurl-3">notes_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationinterval-2">notification_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationoptions-1">notification_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationperiod-1">notification_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationsenabled-1">notifications_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="obsessoverservice">obsess_over_service</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="parallelizecheck">parallelize_check</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="passivechecksenabled-1">passive_checks_enabled</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="processperfdata-1">process_perf_data</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-20">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-7">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retainnonstatusinformation-2">retain_nonstatus_information</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retainstatusinformation-2">retain_status_information</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retrycheckinterval">retry_check_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="retryinterval-1">retry_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicedescription">service_description</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicegroups">servicegroups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="stalkingoptions-1">stalking_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-13">target</h5>
+
+<p>target</p>
+
+<h5 id="use-8">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagiosservicedependency">nagios_servicedependency</h3>
+
+<p>The Nagios type servicedependency.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_servicedependency.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-23">Parameters</h4>
+
+<h5 id="naginatorname-3">_naginator_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type servicedependency</p>
+
+<h5 id="dependencyperiod-1">dependency_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="dependenthostname-1">dependent_host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="dependenthostgroupname-1">dependent_hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="dependentservicedescription">dependent_service_description</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-20">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="executionfailurecriteria-1">execution_failure_criteria</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostname-5">host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostgroupname-4">hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="inheritsparent-1">inherits_parent</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationfailurecriteria-1">notification_failure_criteria</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-21">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-8">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicedescription-1">service_description</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-14">target</h5>
+
+<p>target</p>
+
+<h5 id="use-9">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagiosserviceescalation">nagios_serviceescalation</h3>
+
+<p>The Nagios type serviceescalation.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_serviceescalation.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-24">Parameters</h4>
+
+<h5 id="naginatorname-4">_naginator_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type serviceescalation</p>
+
+<h5 id="contactgroups-4">contact_groups</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="contacts-3">contacts</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-21">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="escalationoptions-1">escalation_options</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="escalationperiod-1">escalation_period</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="firstnotification-1">first_notification</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostname-6">host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="hostgroupname-5">hostgroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="lastnotification-1">last_notification</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notificationinterval-3">notification_interval</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-22">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-9">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicedescription-2">service_description</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicegroupname">servicegroup_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-15">target</h5>
+
+<p>target</p>
+
+<h5 id="use-10">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagiosserviceextinfo">nagios_serviceextinfo</h3>
+
+<p>The Nagios type serviceextinfo.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_serviceextinfo.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-25">Parameters</h4>
+
+<h5 id="naginatorname-5">_naginator_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type serviceextinfo</p>
+
+<h5 id="actionurl-3">action_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-22">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="hostname-7">host_name</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimage-3">icon_image</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="iconimagealt-3">icon_image_alt</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notes-4">notes</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notesurl-4">notes_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-23">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-10">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicedescription-3">service_description</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-16">target</h5>
+
+<p>target</p>
+
+<h5 id="use-11">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagiosservicegroup">nagios_servicegroup</h3>
+
+<p>The Nagios type servicegroup.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_servicegroup.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-26">Parameters</h4>
+
+<h5 id="actionurl-4">action_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="alias-4">alias</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-23">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="members-3">members</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notes-5">notes</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="notesurl-5">notes_url</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-24">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-11">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicegroupmembers">servicegroup_members</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="servicegroupname-1">servicegroup_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type servicegroup</p>
+
+<h5 id="target-17">target</h5>
+
+<p>target</p>
+
+<h5 id="use-12">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="nagiostimeperiod">nagios_timeperiod</h3>
+
+<p>The Nagios type timeperiod.  This resource type is autogenerated using the
+model developed in Naginator, and all of the Nagios types are generated using the
+same code and the same library.</p>
+
+<p>This type generates Nagios configuration statements in Nagios-parseable configuration
+files.  By default, the statements will be added to <code>/etc/nagios/nagios_timeperiod.cfg</code>, but
+you can send them to a different file by setting their <code>target</code> attribute.</p>
+
+<p>You can purge Nagios resources using the <code>resources</code> type, but <em>only</em>
+in the default file locations.  This is an architectural limitation.</p>
+
+<h4 id="parameters-27">Parameters</h4>
+
+<h5 id="alias-5">alias</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="ensure-24">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="exclude">exclude</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="friday">friday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="monday">monday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="provider-25">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>naginator</strong>:     </li>
+</ul>
+
+<h5 id="register-12">register</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="saturday">saturday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="sunday">sunday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="target-18">target</h5>
+
+<p>target</p>
+
+<h5 id="thursday">thursday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="timeperiodname">timeperiod_name</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name parameter for Nagios type timeperiod</p>
+
+<h5 id="tuesday">tuesday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="use-13">use</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<h5 id="wednesday">wednesday</h5>
+
+<p>Nagios configuration file parameter.</p>
+
+<hr />
+
+<h3 id="notify">notify</h3>
+
+<p>Sends an arbitrary message to the agent run-time log.</p>
+
+<h4 id="parameters-28">Parameters</h4>
+
+<h5 id="message">message</h5>
+
+<p>The message to be sent to the log.</p>
+
+<h5 id="name-11">name</h5>
+
+<p>An arbitrary tag for your own reference; the name of the message.</p>
+
+<h5 id="withpath">withpath</h5>
+
+<p>Whether to not to show the full object path.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<hr />
+
+<h3 id="package">package</h3>
+
+<p>Manage packages.  There is a basic dichotomy in package
+support right now:  Some package types (e.g., yum and apt) can
+retrieve their own package files, while others (e.g., rpm and sun) cannot.  For those package formats that cannot retrieve
+their own files, you can use the <code>source</code> parameter to point to
+the correct file.</p>
+
+<p>Puppet will automatically guess the packaging format that you are
+using based on the platform you are on, but you can override it
+using the <code>provider</code> parameter; each provider defines what it
+requires in order to function, and you must meet those requirements
+to use a given provider.</p>
+
+<h4 id="features-4">Features</h4>
+
+<ul>
+  <li><em>holdable</em>: The provider is capable of placing packages on hold such that they are not automatically upgraded as a result of other package dependencies unless explicit action is taken by a user or another package. Held is considered a superset of installed.</li>
+  <li><em>installable</em>: The provider can install packages.</li>
+  <li><em>purgeable</em>: The provider can purge packages.  This generally means that all traces of the package are removed, including existing configuration files.  This feature is thus destructive and should be used with the utmost care.</li>
+  <li><em>uninstallable</em>: The provider can uninstall packages.</li>
+  <li><em>upgradeable</em>: The provider can upgrade to the latest version of a package.  This feature is used by specifying <code>latest</code> as the desired value for the package.</li>
+  <li><em>versionable</em>: The provider is capable of interrogating the package database for installed version(s), and can select which out of a set of available versions of a package to install if asked.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>holdable</th>
+      <th>installable</th>
+      <th>purgeable</th>
+      <th>uninstallable</th>
+      <th>upgradeable</th>
+      <th>versionable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>aix</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>appdmg</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>apple</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>apt</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>aptitude</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>aptrpm</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>blastwave</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>darwinport</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>dpkg</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>fink</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>freebsd</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>gem</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>hpux</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>nim</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>openbsd</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>pkg</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>pkgdmg</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>portage</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>ports</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>portupgrade</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>rpm</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>rug</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>sun</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>sunfreeware</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>up2date</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>urpmi</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>yum</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>zypper</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-29">Parameters</h4>
+
+<h5 id="adminfile">adminfile</h5>
+
+<p>A file containing package defaults for installing packages.
+This is currently only used on Solaris.  The value will be
+validated according to system rules, which in the case of
+Solaris means that it should either be a fully qualified path
+or it should be in <code>/var/sadm/install/admin</code>.</p>
+
+<h5 id="allowcdrom">allowcdrom</h5>
+
+<p>Tells apt to allow cdrom sources in the sources.list file.
+Normally apt will bail if you try this.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="category">category</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<h5 id="configfiles">configfiles</h5>
+
+<p>Whether configfiles should be kept or replaced.  Most packages
+types do not support this parameter.  Valid values are <code>keep</code>, <code>replace</code>.</p>
+
+<h5 id="description-1">description</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<h5 id="ensure-25">ensure</h5>
+
+<p>What state the package should be in.
+<em>latest</em> only makes sense for those packaging formats that can
+retrieve new packages on their own and will throw an error on
+those that cannot.  For those packaging systems that allow you
+to specify package versions, specify them here.  Similarly,
+<em>purged</em> is only useful for packaging systems that support
+the notion of managing configuration files separately from
+&lsquo;normal&rsquo; system files.  Valid values are <code>present</code> (also called <code>installed</code>), <code>absent</code>, <code>purged</code>, <code>held</code>, <code>latest</code>.  Values can match <code>/./</code>.</p>
+
+<h5 id="flavor">flavor</h5>
+
+<p>Newer versions of OpenBSD support &lsquo;flavors&rsquo;, which are
+further specifications for which type of package you want.</p>
+
+<h5 id="instance">instance</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<h5 id="name-12">name</h5>
+
+<p>The package name.  This is the name that the packaging
+system uses internally, which is sometimes (especially on Solaris)
+a name that is basically useless to humans.  If you want to
+abstract package installation, then you can use aliases to provide
+a common name to packages:</p>
+
+<pre><code># In the 'openssl' class
+$ssl = $operatingsystem ? {
+  solaris =&gt; SMCossl,
+  default =&gt; openssl
+}
+
+# It is not an error to set an alias to the same value as the
+# object name.
+package { $ssl:
+  ensure =&gt; installed,
+  alias =&gt; openssl
+}
+
+. etc. .
+
+$ssh = $operatingsystem ? {
+  solaris =&gt; SMCossh,
+  default =&gt; openssh
+}
+
+# Use the alias to specify a dependency, rather than
+# having another selector to figure it out again.
+package { $ssh:
+  ensure =&gt; installed,
+  alias =&gt; openssh,
+  require =&gt; Package[openssl]
+}
+</code></pre>
+
+<h5 id="platform">platform</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<h5 id="provider-26">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>aix</strong>: Installation from AIX Software directory  Required binaries: <code>/usr/sbin/installp</code>, <code>/usr/bin/lslpp</code>.    Default for <code>operatingsystem</code> == <code>aix</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>appdmg</strong>: Package management which copies application bundles to a target.  Required binaries: <code>/usr/bin/hdiutil</code>, <code>/usr/bin/curl</code>, <code>/usr/bin/ditto</code>.      Supported features: <code>installable</code>.</li>
+  <li><strong>apple</strong>: Package management based on OS X&rsquo;s builtin packaging system.  This is
+  essentially the simplest and least functional package system in existence &ndash;
+  it only supports installation; no deletion or upgrades.  The provider will
+  automatically add the <code>.pkg</code> extension, so leave that off when specifying
+  the package name.  Required binaries: <code>/usr/sbin/installer</code>.      Supported features: <code>installable</code>.</li>
+  <li><strong>apt</strong>: Package management via <code>apt-get</code>.  Required binaries: <code>/usr/bin/debconf-set-selections</code>, <code>/usr/bin/apt-get</code>, <code>/usr/bin/apt-cache</code>.    Default for <code>operatingsystem</code> == <code>debianubuntu</code>.    Supported features: <code>holdable</code>, <code>installable</code>, <code>purgeable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>aptitude</strong>: Package management via <code>aptitude</code>.  Required binaries: <code>/usr/bin/aptitude</code>, <code>/usr/bin/apt-cache</code>.      Supported features: <code>holdable</code>, <code>installable</code>, <code>purgeable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>aptrpm</strong>: Package management via <code>apt-get</code> ported to <code>rpm</code>.  Required binaries: <code>rpm</code>, <code>apt-get</code>, <code>apt-cache</code>.      Supported features: <code>installable</code>, <code>purgeable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>blastwave</strong>: Package management using Blastwave.org&rsquo;s <code>pkg-get</code> command on Solaris.  Required binaries: <code>pkg-get</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>darwinport</strong>: Package management using DarwinPorts on OS X.  Required binaries: <code>/opt/local/bin/port</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>dpkg</strong>: Package management via <code>dpkg</code>.  Because this only uses <code>dpkg</code>
+  and not <code>apt</code>, you must specify the source of any packages you want
+  to manage.  Required binaries: <code>/usr/bin/dpkg-deb</code>, <code>/usr/bin/dpkg-query</code>, <code>/usr/bin/dpkg</code>.      Supported features: <code>holdable</code>, <code>installable</code>, <code>purgeable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>fink</strong>: Package management via <code>fink</code>.  Required binaries: <code>/sw/bin/dpkg-query</code>, <code>/sw/bin/fink</code>, <code>/sw/bin/apt-get</code>, <code>/sw/bin/apt-cache</code>.      Supported features: <code>holdable</code>, <code>installable</code>, <code>purgeable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>freebsd</strong>: The specific form of package management on FreeBSD.  This is an
+  extremely quirky packaging system, in that it freely mixes between
+  ports and packages.  Apparently all of the tools are written in Ruby,
+  so there are plans to rewrite this support to directly use those
+  libraries.  Required binaries: <code>/usr/sbin/pkg_info</code>, <code>/usr/sbin/pkg_add</code>, <code>/usr/sbin/pkg_delete</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>.</li>
+  <li><strong>gem</strong>: Ruby Gem support.  If a URL is passed via <code>source</code>, then that URL is used as the
+  remote gem repository; if a source is present but is not a valid URL, it will be
+  interpreted as the path to a local gem file.  If source is not present at all,
+  the gem will be installed from the default gem repositories.  Required binaries: <code>gem</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>hpux</strong>: HP-UX&rsquo;s packaging system.  Required binaries: <code>/usr/sbin/swinstall</code>, <code>/usr/sbin/swlist</code>, <code>/usr/sbin/swremove</code>.    Default for <code>operatingsystem</code> == <code>hp-ux</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>.</li>
+  <li><strong>nim</strong>: Installation from NIM LPP source  Required binaries: <code>/usr/sbin/nimclient</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>openbsd</strong>: OpenBSD&rsquo;s form of <code>pkg_add</code> support.  Required binaries: <code>pkg_info</code>, <code>pkg_add</code>, <code>pkg_delete</code>.    Default for <code>operatingsystem</code> == <code>openbsd</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>versionable</code>.</li>
+  <li><strong>pkg</strong>: OpenSolaris image packaging system. See pkg(5) for more information  Required binaries: <code>/usr/bin/pkg</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>pkgdmg</strong>: Package management based on Apple&rsquo;s Installer.app and DiskUtility.app.  This package works by checking the contents of a DMG image for Apple pkg or mpkg files. Any number of pkg or mpkg files may exist in the root directory of the DMG file system. Sub directories are not checked for packages.  See <code>the wiki docs &lt;http://projects.puppetlabs.com/projects/puppet/wiki/Package_Management_With_Dmg_Patterns&gt;</code> for more detail.  Required binaries: <code>/usr/bin/hdiutil</code>, <code>/usr/bin/curl</code>, <code>/usr/sbin/installer</code>.    Default for <code>operatingsystem</code> == <code>darwin</code>.    Supported features: <code>installable</code>.</li>
+  <li><strong>portage</strong>: Provides packaging support for Gentoo&rsquo;s portage system.  Required binaries: <code>/usr/bin/emerge</code>, <code>/usr/bin/eix</code>, <code>/usr/bin/eix-update</code>.    Default for <code>operatingsystem</code> == <code>gentoo</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>ports</strong>: Support for FreeBSD&rsquo;s ports.  Again, this still mixes packages and ports.  Required binaries: <code>/usr/sbin/pkg_info</code>, <code>/usr/local/sbin/portupgrade</code>, <code>/usr/local/sbin/portversion</code>, <code>/usr/local/sbin/pkg_deinstall</code>.    Default for <code>operatingsystem</code> == <code>freebsd</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>portupgrade</strong>: Support for FreeBSD&rsquo;s ports using the portupgrade ports management software.
+  Use the port&rsquo;s full origin as the resource name. eg (ports-mgmt/portupgrade)
+  for the portupgrade port.  Required binaries: <code>/usr/sbin/pkg_info</code>, <code>/usr/local/sbin/portupgrade</code>, <code>/usr/local/sbin/portinstall</code>, <code>/usr/local/sbin/portversion</code>, <code>/usr/local/sbin/pkg_deinstall</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>rpm</strong>: RPM packaging support; should work anywhere with a working <code>rpm</code>
+  binary.  Required binaries: <code>rpm</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>rug</strong>: Support for suse <code>rug</code> package manager.  Required binaries: <code>rpm</code>, <code>/usr/bin/rug</code>.    Default for <code>operatingsystem</code> == <code>susesles</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>sun</strong>: Sun&rsquo;s packaging system.  Requires that you specify the source for
+  the packages you&rsquo;re managing.  Required binaries: <code>/usr/bin/pkginfo</code>, <code>/usr/sbin/pkgadd</code>, <code>/usr/sbin/pkgrm</code>.    Default for <code>operatingsystem</code> == <code>solaris</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>sunfreeware</strong>: Package management using sunfreeware.com&rsquo;s <code>pkg-get</code> command on Solaris.
+  At this point, support is exactly the same as <code>blastwave</code> support and
+  has not actually been tested.  Required binaries: <code>pkg-get</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>up2date</strong>: Support for Red Hat&rsquo;s proprietary <code>up2date</code> package update
+  mechanism.  Required binaries: <code>/usr/sbin/up2date-nox</code>.    Default for <code>lsbdistrelease</code> == <code>2.134</code> and <code>operatingsystem</code> == <code>redhatoelovm</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>.</li>
+  <li><strong>urpmi</strong>: Support via <code>urpmi</code>.  Required binaries: <code>urpmi</code>, <code>urpmq</code>, <code>rpm</code>.    Default for <code>operatingsystem</code> == <code>mandrivamandrake</code>.    Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>yum</strong>: Support via <code>yum</code>.  Required binaries: <code>python</code>, <code>rpm</code>, <code>yum</code>.    Default for <code>operatingsystem</code> == <code>fedoracentosredhat</code>.    Supported features: <code>installable</code>, <code>purgeable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+  <li><strong>zypper</strong>: Support for SuSE <code>zypper</code> package manager. Found in SLES10sp2+ and SLES11  Required binaries: <code>/usr/bin/zypper</code>, <code>rpm</code>.      Supported features: <code>installable</code>, <code>uninstallable</code>, <code>upgradeable</code>, <code>versionable</code>.</li>
+</ul>
+
+<h5 id="responsefile">responsefile</h5>
+
+<p>A file containing any necessary answers to questions asked by
+the package.  This is currently used on Solaris and Debian.  The
+value will be validated according to system rules, but it should
+generally be a fully qualified path.</p>
+
+<h5 id="root-1">root</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<h5 id="source-1">source</h5>
+
+<p>Where to find the actual package.  This must be a local file
+(or on a network file system) or a URL that your specific
+packaging type understands; Puppet will not retrieve files for you.</p>
+
+<h5 id="status">status</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<h5 id="type-1">type</h5>
+
+<p>Deprecated form of <code>provider</code>.</p>
+
+<h5 id="vendor">vendor</h5>
+
+<p>A read-only parameter set by the package.</p>
+
+<hr />
+
+<h3 id="resources">resources</h3>
+
+<p>This is a metatype that can manage other resource types.  Any
+metaparams specified here will be passed on to any generated resources,
+so you can purge umanaged resources but set <code>noop</code> to true so the
+purging is only logged and does not actually happen.</p>
+
+<h4 id="parameters-30">Parameters</h4>
+
+<h5 id="name-13">name</h5>
+
+<p>The name of the type to be managed.</p>
+
+<h5 id="purge-1">purge</h5>
+
+<p>Purge unmanaged resources.  This will delete any resource
+that is not specified in your configuration
+and is not required by any specified resources.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="unlesssystemuser">unless_system_user</h5>
+
+<p>This keeps system users from being purged.  By default, it
+does not purge users whose UIDs are less than or equal to 500, but you can specify
+a different UID as the inclusive limit.  Valid values are <code>true</code>, <code>false</code>.  Values can match <code>/^\d+$/</code>.</p>
+
+<hr />
+
+<h3 id="schedule">schedule</h3>
+
+<p>Defined schedules for Puppet.  The important thing to understand
+about how schedules are currently implemented in Puppet is that they
+can only be used to stop a resource from being applied, they never
+guarantee that it is applied.</p>
+
+<p>Every time Puppet applies its configuration, it will collect the
+list of resources whose schedule does not eliminate them from
+running right then, but there is currently no system in place to
+guarantee that a given resource runs at a given time.  If you
+specify a very  restrictive schedule and Puppet happens to run at a
+time within that schedule, then the resources will get applied;
+otherwise, that work may never get done.</p>
+
+<p>Thus, it behooves you to use wider scheduling (e.g., over a couple of
+hours) combined with periods and repetitions.  For instance, if you
+wanted to restrict certain resources to only running once, between
+the hours of two and 4 AM, then you would use this schedule:</p>
+
+<p>schedule { maint:
+    range =&gt; &ldquo;2 - 4&rdquo;,
+    period =&gt; daily,
+    repeat =&gt; 1
+  }</p>
+
+<p>With this schedule, the first time that Puppet runs between 2 and 4 AM,
+all resources with this schedule will get applied, but they won&rsquo;t
+get applied again between 2 and 4 because they will have already
+run once that day, and they won&rsquo;t get applied outside that schedule
+because they will be outside the scheduled range.</p>
+
+<p>Puppet automatically creates a schedule for each valid period with the
+same name as that period (e.g., hourly and daily).  Additionally,
+a schedule named <em>puppet</em> is created and used as the default,
+with the following attributes:</p>
+
+<p>schedule { puppet:
+    period =&gt; hourly,
+    repeat =&gt; 2
+  }</p>
+
+<p>This will cause resources to be applied every 30 minutes by default.</p>
+
+<h4 id="parameters-31">Parameters</h4>
+
+<h5 id="name-14">name</h5>
+
+<p>The name of the schedule.  This name is used to retrieve the
+schedule when assigning it to an object:</p>
+
+<p>schedule { daily:
+    period =&gt; daily,
+    range =&gt; &ldquo;2 - 4&rdquo;,
+  }</p>
+
+<p>exec { &ldquo;/usr/bin/apt-get update&rdquo;:
+    schedule =&gt; daily
+  }</p>
+
+<h5 id="period">period</h5>
+
+<p>The period of repetition for a resource.  Choose from among
+a fixed list of <em>hourly</em>, <em>daily</em>, <em>weekly</em>, and <em>monthly</em>.
+The default is for a resource to get applied every time that
+Puppet runs, whatever that period is.</p>
+
+<p>Note that the period defines how often a given resource will get
+applied but not when; if you would like to restrict the hours
+that a given resource can be applied (e.g., only at night during
+a maintenance window) then use the <code>range</code> attribute.</p>
+
+<p>If the provided periods are not sufficient, you can provide a
+value to the <em>repeat</em> attribute, which will cause Puppet to
+schedule the affected resources evenly in the period the
+specified number of times.  Take this schedule:</p>
+
+<pre><code>schedule { veryoften:
+  period =&gt; hourly,
+  repeat =&gt; 6
+}
+</code></pre>
+
+<p>This can cause Puppet to apply that resource up to every 10 minutes.</p>
+
+<p>At the moment, Puppet cannot guarantee that level of
+repetition; that is, it can run up to every 10 minutes, but
+internal factors might prevent it from actually running that
+often (e.g., long-running Puppet runs will squash conflictingly scheduled runs).</p>
+
+<p>See the <code>periodmatch</code> attribute for tuning whether to match
+times by their distance apart or by their specific value.  Valid values are <code>hourly</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>never</code>.</p>
+
+<h5 id="periodmatch">periodmatch</h5>
+
+<p>Whether periods should be matched by number (e.g., the two times
+are in the same hour) or by distance (e.g., the two times are
+60 minutes apart).  Valid values are <code>number</code>, <code>distance</code>.</p>
+
+<h5 id="range">range</h5>
+
+<p>The earliest and latest that a resource can be applied.  This
+is always a range within a 24 hour period, and hours must be
+specified in numbers between 0 and 23, inclusive.  Minutes and
+seconds can be provided, using the normal colon as a separator.
+For instance:</p>
+
+<p>schedule { maintenance:
+    range =&gt; &ldquo;1:30 - 4:30&rdquo;
+  }</p>
+
+<p>This is mostly useful for restricting certain resources to being
+applied in maintenance windows or during off-peak hours.</p>
+
+<h5 id="repeat">repeat</h5>
+
+<p>How often the application gets repeated in a given period.
+Defaults to 1. Must be an integer.</p>
+
+<hr />
+
+<h3 id="selboolean">selboolean</h3>
+
+<p>Manages SELinux booleans on systems with SELinux support.  The supported booleans
+are any of the ones found in <code>/selinux/booleans/</code>.</p>
+
+<h4 id="parameters-32">Parameters</h4>
+
+<h5 id="name-15">name</h5>
+
+<p>The name of the SELinux boolean to be managed.</p>
+
+<h5 id="persistent">persistent</h5>
+
+<p>If set true, SELinux booleans will be written to disk and persist accross reboots.
+The default is <code>false</code>.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="provider-27">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>getsetsebool</strong>: Manage SELinux booleans using the getsebool and setsebool binaries.  Required binaries: <code>/usr/sbin/getsebool</code>, <code>/usr/sbin/setsebool</code>.    </li>
+</ul>
+
+<h5 id="value">value</h5>
+
+<p>Whether the the SELinux boolean should be enabled or disabled.  Valid values are <code>on</code>, <code>off</code>.</p>
+
+<hr />
+
+<h3 id="selmodule">selmodule</h3>
+
+<p>Manages loading and unloading of SELinux policy modules
+on the system.  Requires SELinux support.  See man semodule(8)
+for more information on SELinux policy modules.</p>
+
+<h4 id="parameters-33">Parameters</h4>
+
+<h5 id="ensure-26">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="name-16">name</h5>
+
+<p>The name of the SELinux policy to be managed.  You should not
+include the customary trailing .pp extension.</p>
+
+<h5 id="provider-28">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>semodule</strong>: Manage SELinux policy modules using the semodule binary.  Required binaries: <code>/usr/sbin/semodule</code>.    </li>
+</ul>
+
+<h5 id="selmoduledir">selmoduledir</h5>
+
+<p>The directory to look for the compiled pp module file in.
+Currently defaults to <code>/usr/share/selinux/targeted</code>.  If selmodulepath
+is not specified the module will be looked for in this directory in a
+in a file called NAME.pp, where NAME is the value of the name parameter.</p>
+
+<h5 id="selmodulepath">selmodulepath</h5>
+
+<p>The full path to the compiled .pp policy module.  You only need to use
+this if the module file is not in the directory pointed at by selmoduledir.</p>
+
+<h5 id="syncversion">syncversion</h5>
+
+<p>If set to <code>true</code>, the policy will be reloaded if the
+version found in the on-disk file differs from the loaded
+version.  If set to <code>false</code> (the default) the the only check
+that will be made is if the policy is loaded at all or not.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<hr />
+
+<h3 id="service">service</h3>
+
+<p>Manage running services.  Service support unfortunately varies
+widely by platform &ndash; some platforms have very little if any
+concept of a running service, and some have a very codified and
+powerful concept.  Puppet&rsquo;s service support will generally be able
+to make up for any inherent shortcomings (e.g., if there is no
+&lsquo;status&rsquo; command, then Puppet will look in the process table for a
+command matching the service name), but the more information you
+can provide the better behaviour you will get.  Or, you can just
+use a platform that has very good service support.</p>
+
+<p>Note that if a <code>service</code> receives an event from another resource,
+the service will get restarted. The actual command to restart the
+service depends on the platform. You can provide a special command
+for restarting with the <code>restart</code> attribute.</p>
+
+<h4 id="features-5">Features</h4>
+
+<ul>
+  <li><em>controllable</em>: The provider uses a control variable.</li>
+  <li><em>enableable</em>: The provider can enable and disable the service</li>
+  <li><em>refreshable</em>: The provider can restart the service.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>controllable</th>
+      <th>enableable</th>
+      <th>refreshable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>base</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>bsd</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>daemontools</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>debian</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>freebsd</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>gentoo</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>init</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>launchd</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>redhat</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>runit</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>smf</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>src</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-34">Parameters</h4>
+
+<h5 id="binary">binary</h5>
+
+<p>The path to the daemon.  This is only used for
+systems that do not support init scripts.  This binary will be
+used to start the service if no <code>start</code> parameter is
+provided.</p>
+
+<h5 id="control">control</h5>
+
+<p>The control variable used to manage services (originally for HP-UX).
+Defaults to the upcased service name plus <code>START</code> replacing dots with
+underscores, for those providers that support the <code>controllable</code> feature.</p>
+
+<h5 id="enable">enable</h5>
+
+<p>Whether a service should be enabled to start at boot.
+This property behaves quite differently depending on the platform;
+wherever possible, it relies on local tools to enable or disable
+a given service.  Valid values are <code>true</code>, <code>false</code>.  Requires features enableable.</p>
+
+<h5 id="ensure-27">ensure</h5>
+
+<p>Whether a service should be running.  Valid values are <code>stopped</code> (also called <code>false</code>), <code>running</code> (also called <code>true</code>).</p>
+
+<h5 id="hasrestart">hasrestart</h5>
+
+<p>Specify that an init script has a <code>restart</code> option.  Otherwise,
+the init script&rsquo;s <code>stop</code> and <code>start</code> methods are used.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="hasstatus">hasstatus</h5>
+
+<p>Declare the the service&rsquo;s init script has a
+functional status command.  Based on testing, it was found
+that a large number of init scripts on different platforms do
+not support any kind of status command; thus, you must specify
+manually whether the service you are running has such a
+command (or you can specify a specific command using the
+<code>status</code> parameter).</p>
+
+<p>If you do not specify anything, then the service name will be
+looked for in the process table.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="manifest">manifest</h5>
+
+<p>Specify a command to config a service, or a path to a manifest to do so.</p>
+
+<h5 id="name-17">name</h5>
+
+<p>The name of the service to run.  This name is used to find
+the service in whatever service subsystem it is in.</p>
+
+<h5 id="path-5">path</h5>
+
+<p>The search path for finding init scripts.  Multiple values should
+be separated by colons or provided as an array.</p>
+
+<h5 id="pattern">pattern</h5>
+
+<p>The pattern to search for in the process table.
+This is used for stopping services on platforms that do not
+support init scripts, and is also used for determining service
+status on those service whose init scripts do not include a status
+command.</p>
+
+<p>If this is left unspecified and is needed to check the status
+of a service, then the service name will be used instead.</p>
+
+<p>The pattern can be a simple string or any legal Ruby pattern.</p>
+
+<h5 id="provider-29">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li>
+    <p><strong>base</strong>: The simplest form of service support.</p>
+
+    <p>You have to specify enough about your service for this to work; the
+minimum you can specify is a binary for starting the process, and this
+same binary will be searched for in the process table to stop the
+service.  It is preferable to specify start, stop, and status commands,
+akin to how you would do so using <code>init</code>.</p>
+
+    <p>Required binaries: <code>kill</code>.      Supported features: <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>bsd</strong>: FreeBSD&rsquo;s (and probably NetBSD?) form of <code>init</code>-style service management.</p>
+
+    <p>Uses <code>rc.conf.d</code> for service enabling and disabling.</p>
+
+    <pre><code>Supported features: `enableable`, `refreshable`.
+</code></pre>
+  </li>
+  <li>
+    <p><strong>daemontools</strong>: Daemontools service management.</p>
+
+    <p>This provider manages daemons running supervised by D.J.Bernstein daemontools.
+It tries to detect the service directory, with by order of preference:</p>
+
+    <ul>
+      <li>/service</li>
+      <li>/etc/service</li>
+      <li>/var/lib/svscan</li>
+    </ul>
+
+    <p>The daemon directory should be placed in a directory that can be
+by default in:</p>
+
+    <ul>
+      <li>/var/lib/service</li>
+      <li>/etc</li>
+    </ul>
+
+    <p>or this can be overriden in the service resource parameters::</p>
+
+    <p>service {
+    &ldquo;myservice&rdquo;:
+    provider =&gt; &ldquo;daemontools&rdquo;, path =&gt; &ldquo;/path/to/daemons&rdquo;;
+  }</p>
+
+    <p>This provider supports out of the box:</p>
+
+    <ul>
+      <li>start/stop (mapped to enable/disable)</li>
+      <li>enable/disable</li>
+      <li>restart</li>
+      <li>status</li>
+    </ul>
+
+    <p>If a service has ensure =&gt; &ldquo;running&rdquo;, it will link /path/to/daemon to
+/path/to/service, which will automatically enable the service.</p>
+
+    <p>If a service has ensure =&gt; &ldquo;stopped&rdquo;, it will only down the service, not
+remove the /path/to/service link.</p>
+
+    <p>Required binaries: <code>/usr/bin/svc</code>, <code>/usr/bin/svstat</code>.      Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>debian</strong>: Debian&rsquo;s form of <code>init</code>-style management.</p>
+
+    <p>The only difference is that this supports service enabling and disabling
+via <code>update-rc.d</code> and determines enabled status via <code>invoke-rc.d</code>.</p>
+
+    <p>Required binaries: <code>/usr/sbin/update-rc.d</code>, <code>/usr/sbin/invoke-rc.d</code>.    Default for <code>operatingsystem</code> == <code>debianubuntu</code>.    Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li><strong>freebsd</strong>: Provider for FreeBSD. Makes use of rcvar argument of init scripts and parses/edits rc files.    Default for <code>operatingsystem</code> == <code>freebsd</code>.    Supported features: <code>enableable</code>, <code>refreshable</code>.</li>
+  <li>
+    <p><strong>gentoo</strong>: Gentoo&rsquo;s form of <code>init</code>-style service management.</p>
+
+    <p>Uses <code>rc-update</code> for service enabling and disabling.</p>
+
+    <p>Required binaries: <code>/sbin/rc-update</code>.    Default for <code>operatingsystem</code> == <code>gentoo</code>.    Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>init</strong>: Standard init service management.</p>
+
+    <p>This provider assumes that the init script has no <code>status</code> command,
+because so few scripts do, so you need to either provide a status
+command or specify via <code>hasstatus</code> that one already exists in the
+init script.</p>
+
+    <pre><code>Supported features: `refreshable`.
+</code></pre>
+  </li>
+  <li>
+    <p><strong>launchd</strong>: launchd service management framework.</p>
+
+    <p>This provider manages launchd jobs, the default service framework for
+Mac OS X, that has also been open sourced by Apple for possible use on
+other platforms.</p>
+
+    <p>See:
+* http://developer.apple.com/macosx/launchd.html
+* http://launchd.macosforge.org/</p>
+
+    <p>This provider reads plists out of the following directories:
+* /System/Library/LaunchDaemons
+* /System/Library/LaunchAgents
+* /Library/LaunchDaemons
+* /Library/LaunchAgents</p>
+
+    <p>and builds up a list of services based upon each plists &ldquo;Label&rdquo; entry.</p>
+
+    <p>This provider supports:
+* ensure =&gt; running/stopped,
+* enable =&gt; true/false
+* status
+* restart</p>
+
+    <p>Here is how the Puppet states correspond to launchd states:
+* stopped =&gt; job unloaded
+* started =&gt; job loaded
+* enabled =&gt; &lsquo;Disable&rsquo; removed from job plist file
+* disabled =&gt; &lsquo;Disable&rsquo; added to job plist file</p>
+
+    <p>Note that this allows you to do something launchctl can&rsquo;t do, which is to
+be in a state of &ldquo;stopped/enabled or &ldquo;running/disabled&rdquo;.</p>
+
+    <p>Required binaries: <code>/bin/launchctl</code>, <code>/usr/bin/sw_vers</code>, <code>/usr/bin/plutil</code>.    Default for <code>operatingsystem</code> == <code>darwin</code>.    Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>redhat</strong>: Red Hat&rsquo;s (and probably many others) form of <code>init</code>-style service management:</p>
+
+    <p>Uses <code>chkconfig</code> for service enabling and disabling.</p>
+
+    <p>Required binaries: <code>/sbin/chkconfig</code>, <code>/sbin/service</code>.    Default for <code>operatingsystem</code> == <code>redhatfedorasusecentosslesoelovm</code>.    Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>runit</strong>: Runit service management.</p>
+
+    <p>This provider manages daemons running supervised by Runit.
+It tries to detect the service directory, with by order of preference:</p>
+
+    <ul>
+      <li>/service</li>
+      <li>/var/service</li>
+      <li>/etc/service</li>
+    </ul>
+
+    <p>The daemon directory should be placed in a directory that can be
+by default in:</p>
+
+    <ul>
+      <li>/etc/sv</li>
+    </ul>
+
+    <p>or this can be overriden in the service resource parameters::</p>
+
+    <p>service {
+    &ldquo;myservice&rdquo;:
+    provider =&gt; &ldquo;runit&rdquo;, path =&gt; &ldquo;/path/to/daemons&rdquo;;
+  }</p>
+
+    <p>This provider supports out of the box:</p>
+
+    <ul>
+      <li>start/stop</li>
+      <li>enable/disable</li>
+      <li>restart</li>
+      <li>status</li>
+    </ul>
+
+    <p>Required binaries: <code>/usr/bin/sv</code>.      Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>smf</strong>: Support for Sun&rsquo;s new Service Management Framework.</p>
+
+    <p>Starting a service is effectively equivalent to enabling it, so there is
+only support for starting and stopping services, which also enables and
+disables them, respectively.</p>
+
+    <p>By specifying manifest =&gt; &ldquo;/path/to/service.xml&rdquo;, the SMF manifest will
+be imported if it does not exist.</p>
+
+    <p>Required binaries: <code>/usr/sbin/svcadm</code>, <code>/usr/bin/svcs</code>, <code>/usr/sbin/svccfg</code>.    Default for <code>operatingsystem</code> == <code>solaris</code>.    Supported features: <code>enableable</code>, <code>refreshable</code>.</p>
+  </li>
+  <li>
+    <p><strong>src</strong>: Support for AIX&rsquo;s System Resource controller.</p>
+
+    <p>Services are started/stopped based on the stopsrc and startsrc
+commands, and some services can be refreshed with refresh command.</p>
+
+    <ul>
+      <li>
+        <p>Enabling and disableing services is not supported, as it requires
+modifications to /etc/inittab.</p>
+      </li>
+      <li>
+        <p>Starting and stopping groups of subsystems is not yet supported
+Required binaries: <code>/usr/bin/stopsrc</code>, <code>/usr/bin/startsrc</code>, <code>/usr/bin/lssrc</code>, <code>/usr/bin/refresh</code>.    Default for <code>operatingsystem</code> == <code>aix</code>.    Supported features: <code>refreshable</code>.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="restart">restart</h5>
+
+<p>Specify a <em>restart</em> command manually.  If left
+unspecified, the service will be stopped and then started.</p>
+
+<h5 id="start">start</h5>
+
+<p>Specify a <em>start</em> command manually.  Most service subsystems
+support a <code>start</code> command, so this will not need to be
+specified.</p>
+
+<h5 id="status-1">status</h5>
+
+<p>Specify a <em>status</em> command manually.  This command must
+return 0 if the service is running and a nonzero value otherwise.
+Ideally, these return codes should conform to
+<a href="http://refspecs.freestandards.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">the LSB&rsquo;s specification for init script status actions</a>,
+but puppet only considers the difference between 0 and nonzero
+to be relevant.</p>
+
+<p>If left unspecified, the status method will be determined
+automatically, usually by looking for the service in the process
+table.</p>
+
+<h5 id="stop">stop</h5>
+
+<p>Specify a <em>stop</em> command manually.</p>
+
+<hr />
+
+<h3 id="sshauthorizedkey">ssh_authorized_key</h3>
+
+<p>Manages SSH authorized keys. Currently only type 2 keys are
+supported.</p>
+
+<h4 id="parameters-35">Parameters</h4>
+
+<h5 id="ensure-28">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="key">key</h5>
+
+<p>The key itself; generally a long string of hex digits.</p>
+
+<h5 id="name-18">name</h5>
+
+<p>The SSH key comment. This attribute is currently used as a
+system-wide primary key and therefore has to be unique.</p>
+
+<h5 id="options-1">options</h5>
+
+<p>Key options, see sshd(8) for possible values. Multiple values
+should be specified as an array.</p>
+
+<h5 id="provider-30">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>parsed</strong>: Parse and generate authorized_keys files for SSH.    </li>
+</ul>
+
+<h5 id="target-19">target</h5>
+
+<p>The absolute filename in which to store the SSH key. This
+property is optional and should only be used in cases where keys
+are stored in a non-standard location (i.e.<code> not in
+</code>~user/.ssh/authorized_keys`).</p>
+
+<h5 id="type-2">type</h5>
+
+<p>The encryption type used: ssh-dss or ssh-rsa.  Valid values are <code>ssh-dss</code> (also called <code>dsa</code>), <code>ssh-rsa</code> (also called <code>rsa</code>).</p>
+
+<h5 id="user-2">user</h5>
+
+<p>The user account in which the SSH key should be installed.
+The resource will automatically depend on this user.</p>
+
+<hr />
+
+<h3 id="sshkey">sshkey</h3>
+
+<p>Installs and manages ssh host keys.  At this point, this type
+only knows how to install keys into <code>/etc/ssh/ssh_known_hosts</code>.  See 
+the <code>ssh_authorized_key</code> type to manage authorized keys.</p>
+
+<h4 id="parameters-36">Parameters</h4>
+
+<h5 id="ensure-29">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="hostaliases-1">host_aliases</h5>
+
+<p>Any aliases the host might have.  Multiple values must be
+specified as an array.</p>
+
+<h5 id="key-1">key</h5>
+
+<p>The key itself; generally a long string of hex digits.</p>
+
+<h5 id="name-19">name</h5>
+
+<p>The host name that the key is associated with.</p>
+
+<h5 id="provider-31">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>parsed</strong>: Parse and generate host-wide known hosts files for SSH.    </li>
+</ul>
+
+<h5 id="target-20">target</h5>
+
+<p>The file in which to store the ssh key.  Only used by
+the <code>parsed</code> provider.</p>
+
+<h5 id="type-3">type</h5>
+
+<p>The encryption type used.  Probably ssh-dss or ssh-rsa.  Valid values are <code>ssh-dss</code> (also called <code>dsa</code>), <code>ssh-rsa</code> (also called <code>rsa</code>).</p>
+
+<hr />
+
+<h3 id="stage">stage</h3>
+
+<p>A resource type for specifying run stages.  The actual stage should
+be specified on resources:</p>
+
+<pre><code>class { foo: stage =&gt; pre }
+</code></pre>
+
+<p>And you must manually control stage order:</p>
+
+<pre><code>stage { pre: before =&gt; Stage[main] }
+</code></pre>
+
+<p>You automatically get a &lsquo;main&rsquo; stage created, and by default all resources
+get inserted into that stage.</p>
+
+<p>You can only set stages on class resources, not normal builtin resources.</p>
+
+<h4 id="parameters-37">Parameters</h4>
+
+<h5 id="name-20">name</h5>
+
+<p>The name of the stage. This will be used as the &lsquo;stage&rsquo; for each resource.</p>
+
+<hr />
+
+<h3 id="tidy">tidy</h3>
+
+<p>Remove unwanted files based on specific criteria.  Multiple
+criteria are OR&rsquo;d together, so a file that is too large but is not
+old enough will still get tidied.</p>
+
+<p>If you don&rsquo;t specify either <code>age</code> or <code>size</code>, then all files will
+be removed.</p>
+
+<p>This resource type works by generating a file resource for every file
+that should be deleted and then letting that resource perform the
+actual deletion.</p>
+
+<h4 id="parameters-38">Parameters</h4>
+
+<h5 id="age">age</h5>
+
+<p>Tidy files whose age is equal to or greater than
+the specified time.  You can choose seconds, minutes,
+hours, days, or weeks by specifying the first letter of any
+of those words (e.g., &lsquo;1w&rsquo;).</p>
+
+<p>Specifying 0 will remove all files.</p>
+
+<h5 id="backup-1">backup</h5>
+
+<p>Whether tidied files should be backed up.  Any values are passed
+directly to the file resources used for actual file deletion, so use
+its backup documentation to determine valid values.</p>
+
+<h5 id="matches">matches</h5>
+
+<p>One or more (shell type) file glob patterns, which restrict
+the list of files to be tidied to those whose basenames match
+at least one of the patterns specified. Multiple patterns can
+be specified using an array.</p>
+
+<p>Example:</p>
+
+<pre><code>tidy { "/tmp":
+  age =&gt; "1w",
+  recurse =&gt; 1,
+  matches =&gt; [ "[0-9]pub*.tmp", "*.temp", "tmpfile?" ]
+}
+</code></pre>
+
+<p>This removes files from <code>/tmp</code> if they are one week old or older,
+are not in a subdirectory and match one of the shell globs given.</p>
+
+<p>Note that the patterns are matched against the basename of each
+file &ndash; that is, your glob patterns should not have any &lsquo;/&rsquo;
+characters in them, since you are only specifying against the last
+bit of the file.</p>
+
+<p>Finally, note that you must now specify a non-zero/non-false value
+for recurse if matches is used, as matches only apply to files found
+by recursion (there&rsquo;s no reason to use static patterns match against
+a statically determined path).  Requiering explicit recursion clears
+up a common source of confusion.</p>
+
+<h5 id="path-6">path</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The path to the file or directory to manage.  Must be fully
+qualified.</p>
+
+<h5 id="recurse-1">recurse</h5>
+
+<p>If target is a directory, recursively descend
+into the directory looking for files to tidy.  Valid values are <code>true</code>, <code>false</code>, <code>inf</code>.  Values can match <code>/^[0-9]+$/</code>.</p>
+
+<h5 id="rmdirs">rmdirs</h5>
+
+<p>Tidy directories in addition to files; that is, remove
+directories whose age is older than the specified criteria.
+This will only remove empty directories, so all contained
+files must also be tidied before a directory gets removed.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="size">size</h5>
+
+<p>Tidy files whose size is equal to or greater than
+the specified size.  Unqualified values are in kilobytes, but
+<em>b</em>, <em>k</em>, and <em>m</em> can be appended to specify <em>bytes</em>, <em>kilobytes</em>,
+and <em>megabytes</em>, respectively.  Only the first character is
+significant, so the full word can also be used.</p>
+
+<h5 id="type-4">type</h5>
+
+<p>Set the mechanism for determining age.  Valid values are <code>atime</code>, <code>mtime</code>, <code>ctime</code>.</p>
+
+<hr />
+
+<h3 id="user-3">user</h3>
+
+<p>Manage users.  This type is mostly built to manage system
+users, so it is lacking some features useful for managing normal
+users.</p>
+
+<p>This resource type uses the prescribed native tools for creating
+groups and generally uses POSIX APIs for retrieving information
+about them.  It does not directly modify <code>/etc/passwd</code> or anything.</p>
+
+<h4 id="features-6">Features</h4>
+
+<ul>
+  <li><em>allows_duplicates</em>: The provider supports duplicate users with the same UID.</li>
+  <li><em>manages_expiry</em>: The provider can manage the expiry date for a user.</li>
+  <li><em>manages_homedir</em>: The provider can create and remove home directories.</li>
+  <li><em>manages_password_age</em>: The provider can set age requirements and restrictions for passwords.</li>
+  <li><em>manages_passwords</em>: The provider can modify user passwords, by accepting a password hash.</li>
+  <li><em>manages_solaris_rbac</em>: The provider can manage roles and normal users</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>allows_duplicates</th>
+      <th>manages_expiry</th>
+      <th>manages_homedir</th>
+      <th>manages_password_age</th>
+      <th>manages_passwords</th>
+      <th>manages_solaris_rbac</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>directoryservice</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>hpuxuseradd</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>ldap</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>pw</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>user_role_add</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>useradd</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-39">Parameters</h4>
+
+<h5 id="allowdupe-1">allowdupe</h5>
+
+<p>Whether to allow duplicate UIDs.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="authmembership-1">auth_membership</h5>
+
+<p>Whether specified auths should be treated as the only auths
+of which the user is a member or whether they should merely
+be treated as the minimum membership list.  Valid values are <code>inclusive</code>, <code>minimum</code>.</p>
+
+<h5 id="auths">auths</h5>
+
+<p>The auths the user has.  Multiple auths should be
+specified as an array.  Requires features manages_solaris_rbac.</p>
+
+<h5 id="comment-1">comment</h5>
+
+<p>A description of the user.  Generally is a user&rsquo;s full name.</p>
+
+<h5 id="ensure-30">ensure</h5>
+
+<p>The basic state that the object should be in.  Valid values are <code>present</code>, <code>absent</code>, <code>role</code>.</p>
+
+<h5 id="expiry">expiry</h5>
+
+<p>The expiry date for this user. Must be provided in
+a zero padded YYYY-MM-DD format - e.g 2010-02-19.  Requires features manages_expiry.</p>
+
+<h5 id="gid-1">gid</h5>
+
+<p>The user&rsquo;s primary group.  Can be specified numerically or
+by name.</p>
+
+<h5 id="groups">groups</h5>
+
+<p>The groups of which the user is a member.  The primary
+group should not be listed.  Multiple groups should be
+specified as an array.</p>
+
+<h5 id="home">home</h5>
+
+<p>The home directory of the user.  The directory must be created
+separately and is not currently checked for existence.</p>
+
+<h5 id="keymembership">key_membership</h5>
+
+<p>Whether specified key value pairs should be treated as the only attributes
+of the user or whether they should merely
+be treated as the minimum list.  Valid values are <code>inclusive</code>, <code>minimum</code>.</p>
+
+<h5 id="keys">keys</h5>
+
+<p>Specify user attributes in an array of keyvalue pairs  Requires features manages_solaris_rbac.</p>
+
+<h5 id="managehome">managehome</h5>
+
+<p>Whether to manage the home directory when managing the user.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="membership">membership</h5>
+
+<p>Whether specified groups should be treated as the only groups
+of which the user is a member or whether they should merely
+be treated as the minimum membership list.  Valid values are <code>inclusive</code>, <code>minimum</code>.</p>
+
+<h5 id="name-21">name</h5>
+
+<p>User name.  While limitations are determined for
+each operating system, it is generally a good idea to keep to
+the degenerate 8 characters, beginning with a letter.</p>
+
+<h5 id="password-1">password</h5>
+
+<p>The user&rsquo;s password, in whatever encrypted format the local machine requires. Be sure to enclose any value that includes a dollar sign ($) in single quotes (&lsquo;).  Requires features manages_passwords.</p>
+
+<h5 id="passwordmaxage">password_max_age</h5>
+
+<p>The maximum amount of time in days a password may be used before it must be changed  Requires features manages_password_age.</p>
+
+<h5 id="passwordminage">password_min_age</h5>
+
+<p>The minimum amount of time in days a password must be used before it may be changed  Requires features manages_password_age.</p>
+
+<h5 id="profilemembership">profile_membership</h5>
+
+<p>Whether specified roles should be treated as the only roles
+of which the user is a member or whether they should merely
+be treated as the minimum membership list.  Valid values are <code>inclusive</code>, <code>minimum</code>.</p>
+
+<h5 id="profiles">profiles</h5>
+
+<p>The profiles the user has.  Multiple profiles should be
+specified as an array.  Requires features manages_solaris_rbac.</p>
+
+<h5 id="project">project</h5>
+
+<p>The name of the project associated with a user  Requires features manages_solaris_rbac.</p>
+
+<h5 id="provider-32">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>directoryservice</strong>: User management using DirectoryService on OS X.  Required binaries: <code>/usr/bin/dscl</code>.    Default for <code>operatingsystem</code> == <code>darwin</code>.    Supported features: <code>manages_passwords</code>.</li>
+  <li><strong>hpuxuseradd</strong>: User management for hp-ux! Undocumented switch to special usermod because HP-UX regular usermod is TOO STUPID to change stuff while the user is logged in.  Required binaries: <code>/usr/sam/lbin/userdel.sam</code>, <code>/usr/sam/lbin/usermod.sam</code>, <code>/usr/sbin/useradd</code>.    Default for <code>operatingsystem</code> == <code>hp-ux</code>.    Supported features: <code>allows_duplicates</code>, <code>manages_homedir</code>.</li>
+  <li>
+    <p><strong>ldap</strong>: User management via <code>ldap</code>.  This provider requires that you
+  have valid values for all of the ldap-related settings,
+  including <code>ldapbase</code>.  You will also almost definitely need settings
+  for <code>ldapuser</code> and <code>ldappassword</code>, so that your clients can write
+  to ldap.</p>
+
+    <p>Note that this provider will automatically generate a UID for you if
+  you do not specify one, but it is a potentially expensive operation,
+  as it iterates across all existing users to pick the appropriate next
+  one.      Supported features: <code>manages_passwords</code>.</p>
+  </li>
+  <li><strong>pw</strong>: User management via <code>pw</code> on FreeBSD.  Required binaries: <code>pw</code>.    Default for <code>operatingsystem</code> == <code>freebsd</code>.    Supported features: <code>allows_duplicates</code>, <code>manages_homedir</code>.</li>
+  <li><strong>user_role_add</strong>: User management inherits <code>useradd</code> and adds logic to manage roles on Solaris using roleadd.  Required binaries: <code>roleadd</code>, <code>roledel</code>, <code>rolemod</code>, <code>passwd</code>, <code>userdel</code>, <code>useradd</code>, <code>usermod</code>.    Default for <code>operatingsystem</code> == <code>solaris</code>.    Supported features: <code>allows_duplicates</code>, <code>manages_homedir</code>, <code>manages_password_age</code>, <code>manages_passwords</code>, <code>manages_solaris_rbac</code>.</li>
+  <li><strong>useradd</strong>: User management via <code>useradd</code> and its ilk.  Note that you will need to install the <code>Shadow Password</code> Ruby library often known as ruby-libshadow to manage user passwords.  Required binaries: <code>chage</code>, <code>userdel</code>, <code>useradd</code>, <code>usermod</code>.      Supported features: <code>allows_duplicates</code>, <code>manages_expiry</code>, <code>manages_homedir</code>, <code>manages_password_age</code>, <code>manages_passwords</code>.</li>
+</ul>
+
+<h5 id="rolemembership">role_membership</h5>
+
+<p>Whether specified roles should be treated as the only roles
+of which the user is a member or whether they should merely
+be treated as the minimum membership list.  Valid values are <code>inclusive</code>, <code>minimum</code>.</p>
+
+<h5 id="roles">roles</h5>
+
+<p>The roles the user has.  Multiple roles should be
+specified as an array.  Requires features manages_solaris_rbac.</p>
+
+<h5 id="shell">shell</h5>
+
+<p>The user&rsquo;s login shell.  The shell must exist and be
+executable.</p>
+
+<h5 id="uid">uid</h5>
+
+<p>The user ID.  Must be specified numerically.  For new users
+being created, if no user ID is specified then one will be
+chosen automatically, which will likely result in the same user
+having different IDs on different systems, which is not
+recommended.  This is especially noteworthy if you use Puppet
+to manage the same user on both Darwin and other platforms,
+since Puppet does the ID generation for you on Darwin, but the
+tools do so on other platforms.</p>
+
+<hr />
+
+<h3 id="vcsrepo">vcsrepo</h3>
+
+<p>A local version control repository</p>
+
+<h4 id="features-7">Features</h4>
+
+<ul>
+  <li><em>bare_repositories</em>: The provider differentiates between bare repositories and those with working copies</li>
+  <li><em>filesystem_types</em>: The provider supports different filesystem types</li>
+  <li><em>gzip_compression</em>: The provider supports explicit GZip compression levels</li>
+  <li><em>reference_tracking</em>: The provider supports tracking revision references that can change over time (eg, some VCS tags and branch names)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>bare_repositories</th>
+      <th>filesystem_types</th>
+      <th>gzip_compression</th>
+      <th>reference_tracking</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>bzr</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>cvs</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>git</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>hg</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+    <tr>
+      <td>svn</td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+      <td>&nbsp;</td>
+      <td><em>X</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parameters-40">Parameters</h4>
+
+<h5 id="compression">compression</h5>
+
+<p>Compression level  Requires features gzip_compression.</p>
+
+<h5 id="ensure-31">ensure</h5>
+
+<p>Valid values are <code>present</code>, <code>bare</code>, <code>absent</code>, <code>latest</code>.</p>
+
+<h5 id="fstype-1">fstype</h5>
+
+<p>Filesystem type  Requires features filesystem_types.</p>
+
+<h5 id="path-7">path</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>Absolute path to repository</p>
+
+<h5 id="provider-33">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>bzr</strong>: Supports Bazaar repositories  Required binaries: <code>bzr</code>.    Default for <code>bzr</code> == <code>exists</code>.    Supported features: <code>reference_tracking</code>.</li>
+  <li><strong>cvs</strong>: Supports CVS repositories/workspaces  Required binaries: <code>cvs</code>.    Default for <code>cvs</code> == <code>exists</code>.    Supported features: <code>gzip_compression</code>, <code>reference_tracking</code>.</li>
+  <li><strong>git</strong>: Supports Git repositories  Required binaries: <code>git</code>.    Default for <code>git</code> == <code>exists</code>.    Supported features: <code>bare_repositories</code>, <code>reference_tracking</code>.</li>
+  <li><strong>hg</strong>: Supports Mercurial repositories  Required binaries: <code>hg</code>.    Default for <code>hg</code> == <code>exists</code>.    Supported features: <code>reference_tracking</code>.</li>
+  <li><strong>svn</strong>: Supports Subversion repositories  Required binaries: <code>svn</code>, <code>svnadmin</code>.    Default for <code>svn</code> == <code>exists</code>.    Supported features: <code>filesystem_types</code>, <code>reference_tracking</code>.</li>
+</ul>
+
+<h5 id="revision">revision</h5>
+
+<p>The revision of the repository  Values can match <code>/^\S+$/</code>.</p>
+
+<h5 id="source-2">source</h5>
+
+<p>The source URI for the repository</p>
+
+<hr />
+
+<h3 id="yumrepo">yumrepo</h3>
+
+<p>The client-side description of a yum repository. Repository
+configurations are found by parsing <code>/etc/yum.conf</code> and
+the files indicated by the <code>reposdir</code> option in that file 
+(see yum.conf(5) for details)</p>
+
+<p>Most parameters are identical to the ones documented
+in yum.conf(5)</p>
+
+<p>Continuation lines that yum supports for example for the
+baseurl are not supported. No attempt is made to access
+files included with the <strong>include</strong> directive</p>
+
+<h4 id="parameters-41">Parameters</h4>
+
+<h5 id="baseurl">baseurl</h5>
+
+<p>The URL for this repository.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="cost">cost</h5>
+
+<p>Cost of this repository.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/\d+/</code>.</p>
+
+<h5 id="descr">descr</h5>
+
+<p>A human readable description of the repository.
+This corresponds to the name parameter in yum.conf(5).
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="enabled">enabled</h5>
+
+<p>Whether this repository is enabled or disabled. Possible
+values are &lsquo;0&rsquo;, and &lsquo;1&rsquo;.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/(0|1)/</code>.</p>
+
+<h5 id="enablegroups">enablegroups</h5>
+
+<p>Determines whether yum will allow the use of
+package groups for this  repository. Possible
+values are &lsquo;0&rsquo;, and &lsquo;1&rsquo;.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/(0|1)/</code>.</p>
+
+<h5 id="exclude-1">exclude</h5>
+
+<p>List of shell globs. Matching packages will never be
+considered in updates or installs for this repo.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="failovermethod">failovermethod</h5>
+
+<p>Either &lsquo;roundrobin&rsquo; or &lsquo;priority&rsquo;.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/roundrobin|priority/</code>.</p>
+
+<h5 id="gpgcheck">gpgcheck</h5>
+
+<p>Whether to check the GPG signature on packages installed
+from this repository. Possible values are &lsquo;0&rsquo;, and &lsquo;1&rsquo;.</p>
+
+<p>Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/(0|1)/</code>.</p>
+
+<h5 id="gpgkey">gpgkey</h5>
+
+<p>The URL for the GPG key with which packages from this
+repository are signed.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="httpcaching">http_caching</h5>
+
+<p>Either &lsquo;packages&rsquo; or &lsquo;all&rsquo; or &lsquo;none&rsquo;.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/packages|all|none/</code>.</p>
+
+<h5 id="include">include</h5>
+
+<p>A URL from which to include the config.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="includepkgs">includepkgs</h5>
+
+<p>List of shell globs. If this is set, only packages
+matching one of the globs will be considered for
+update or install.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="keepalive">keepalive</h5>
+
+<p>Either &lsquo;1&rsquo; or &lsquo;0&rsquo;. This tells yum whether or not HTTP/1.1
+keepalive  should  be  used with this repository.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/(0|1)/</code>.</p>
+
+<h5 id="metadataexpire">metadata_expire</h5>
+
+<p>Number of seconds after which the metadata will expire.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/[0-9]+/</code>.</p>
+
+<h5 id="mirrorlist">mirrorlist</h5>
+
+<p>The URL that holds the list of mirrors for this repository.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="name-22">name</h5>
+
+<p>The name of the repository.  This corresponds to the
+repositoryid parameter in yum.conf(5).</p>
+
+<h5 id="priority">priority</h5>
+
+<p>Priority of this repository from 1-99. Requires that
+the priorities plugin is installed and enabled.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/[1-9][0-9]?/</code>.</p>
+
+<h5 id="protect">protect</h5>
+
+<p>Enable or disable protection for this repository. Requires
+that the protectbase plugin is installed and enabled.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/(0|1)/</code>.</p>
+
+<h5 id="proxy">proxy</h5>
+
+<p>URL to the proxy server for this repository.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="proxypassword">proxy_password</h5>
+
+<p>Password for this proxy.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="proxyusername">proxy_username</h5>
+
+<p>Username for this proxy.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/.*/</code>.</p>
+
+<h5 id="timeout-2">timeout</h5>
+
+<p>Number of seconds to wait for a connection before timing
+out.
+Set this to &lsquo;absent&rsquo; to remove it from the file completely  Valid values are <code>absent</code>.  Values can match <code>/[0-9]+/</code>.</p>
+
+<hr />
+
+<h3 id="zfs">zfs</h3>
+
+<p>Manage zfs. Create destroy and set properties on zfs instances.</p>
+
+<h4 id="parameters-42">Parameters</h4>
+
+<h5 id="compression-1">compression</h5>
+
+<p>The compression property.</p>
+
+<h5 id="copies">copies</h5>
+
+<p>The copies property.</p>
+
+<h5 id="ensure-32">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="mountpoint">mountpoint</h5>
+
+<p>The mountpoint property.</p>
+
+<h5 id="name-23">name</h5>
+
+<p>The full name for this filesystem. (including the zpool)</p>
+
+<h5 id="provider-34">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>solaris</strong>: Provider for Solaris zfs.  Required binaries: <code>/usr/sbin/zfs</code>.    Default for <code>operatingsystem</code> == <code>solaris</code>.  </li>
+</ul>
+
+<h5 id="quota">quota</h5>
+
+<p>The quota property.</p>
+
+<h5 id="reservation">reservation</h5>
+
+<p>The reservation property.</p>
+
+<h5 id="sharenfs">sharenfs</h5>
+
+<p>The sharenfs property.</p>
+
+<h5 id="snapdir">snapdir</h5>
+
+<p>The snapdir property.</p>
+
+<hr />
+
+<h3 id="zone">zone</h3>
+
+<p>Solaris zones.</p>
+
+<h4 id="parameters-43">Parameters</h4>
+
+<h5 id="autoboot">autoboot</h5>
+
+<p>Whether the zone should automatically boot.  Valid values are <code>true</code>, <code>false</code>.</p>
+
+<h5 id="clone">clone</h5>
+
+<p>Instead of installing the zone, clone it from another zone.
+If the zone root resides on a zfs file system, a snapshot will be
+used to create the clone, is it redisides on ufs, a copy of the zone
+will be used. The zone you clone from must not be running.</p>
+
+<h5 id="createargs">create_args</h5>
+
+<p>Arguments to the zonecfg create command.  This can be used to create branded zones.</p>
+
+<h5 id="ensure-33">ensure</h5>
+
+<p>The running state of the zone.  The valid states directly reflect
+the states that <code>zoneadm</code> provides.  The states are linear,
+in that a zone must be <code>configured</code> then <code>installed</code>, and
+only then can be <code>running</code>.  Note also that <code>halt</code> is currently
+used to stop zones.</p>
+
+<h5 id="id">id</h5>
+
+<p>The numerical ID of the zone.  This number is autogenerated
+and cannot be changed.</p>
+
+<h5 id="inherit">inherit</h5>
+
+<p>The list of directories that the zone inherits from the global
+zone.  All directories must be fully qualified.</p>
+
+<h5 id="installargs">install_args</h5>
+
+<p>Arguments to the zoneadm install command.  This can be used to create branded zones.</p>
+
+<h5 id="ip-1">ip</h5>
+
+<p>The IP address of the zone.  IP addresses must be specified
+with the interface, separated by a colon, e.g.: bge0:192.168.0.1.
+For multiple interfaces, specify them in an array.</p>
+
+<h5 id="iptype">iptype</h5>
+
+<p>The IP stack type of the zone. Can either be &lsquo;shared&rsquo; or &lsquo;exclusive&rsquo;.  Valid values are <code>shared</code>, <code>exclusive</code>.</p>
+
+<h5 id="name-24">name</h5>
+
+<p>The name of the zone.</p>
+
+<h5 id="path-8">path</h5>
+
+<p>The root of the zone&rsquo;s filesystem.  Must be a fully qualified
+file name.  If you include &lsquo;%s&rsquo; in the path, then it will be
+replaced with the zone&rsquo;s name.  At this point, you cannot use
+Puppet to move a zone.</p>
+
+<h5 id="pool">pool</h5>
+
+<p>The resource pool for this zone.</p>
+
+<h5 id="provider-35">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>solaris</strong>: Provider for Solaris Zones.  Required binaries: <code>/usr/sbin/zoneadm</code>, <code>/usr/sbin/zonecfg</code>.    Default for <code>operatingsystem</code> == <code>solaris</code>.  </li>
+</ul>
+
+<h5 id="realhostname">realhostname</h5>
+
+<p>The actual hostname of the zone.</p>
+
+<h5 id="shares">shares</h5>
+
+<p>Number of FSS CPU shares allocated to the zone.</p>
+
+<h5 id="sysidcfg">sysidcfg</h5>
+
+<p>The text to go into the sysidcfg file when the zone is first
+booted.  The best way is to use a template:</p>
+
+<pre><code># $templatedir/sysidcfg
+system_locale=en_US
+timezone=GMT
+terminal=xterms
+security_policy=NONE
+root_password=&lt;%= password %&gt;
+timeserver=localhost
+name_service=DNS {domain_name=&lt;%= domain %&gt; name_server=&lt;%= nameserver %&gt;}
+network_interface=primary {hostname=&lt;%= realhostname %&gt;
+  ip_address=&lt;%= ip %&gt;
+  netmask=&lt;%= netmask %&gt;
+  protocol_ipv6=no
+  default_route=&lt;%= defaultroute %&gt;}
+nfs4_domain=dynamic
+</code></pre>
+
+<p>And then call that:</p>
+
+<pre><code>zone { myzone:
+  ip =&gt; "bge0:192.168.0.23",
+  sysidcfg =&gt; template(sysidcfg),
+  path =&gt; "/opt/zones/myzone",
+  realhostname =&gt; "fully.qualified.domain.name"
+}
+</code></pre>
+
+<p>The sysidcfg only matters on the first booting of the zone,
+so Puppet only checks for it at that time.</p>
+
+<hr />
+
+<h3 id="zpool">zpool</h3>
+
+<p>Manage zpools. Create and delete zpools. The provider WILL NOT SYNC, only report differences.</p>
+
+<p>Supports vdevs with mirrors, raidz, logs and spares.</p>
+
+<h4 id="parameters-44">Parameters</h4>
+
+<h5 id="disk">disk</h5>
+
+<p>The disk(s) for this pool. Can be an array or space separated string</p>
+
+<h5 id="ensure-34">ensure</h5>
+
+<p>The basic property that the resource should be in.  Valid values are <code>present</code>, <code>absent</code>.</p>
+
+<h5 id="log">log</h5>
+
+<p>Log disks for this pool. (doesn&rsquo;t support mirroring yet)</p>
+
+<h5 id="mirror">mirror</h5>
+
+<p>List of all the devices to mirror for this pool. Each mirror should be a space separated string:</p>
+
+<p>mirror =&gt; [&ldquo;disk1 disk2&rdquo;, &ldquo;disk3 disk4&rdquo;]</p>
+
+<h5 id="pool-1">pool</h5>
+
+<ul>
+  <li><strong>namevar</strong></li>
+</ul>
+
+<p>The name for this pool.</p>
+
+<h5 id="provider-36">provider</h5>
+
+<p>The specific backend for provider to use. You will
+seldom need to specify this &ndash; Puppet will usually discover the
+appropriate provider for your platform.  Available providers are:</p>
+
+<ul>
+  <li><strong>solaris</strong>: Provider for Solaris zpool.  Required binaries: <code>/usr/sbin/zpool</code>.    Default for <code>operatingsystem</code> == <code>solaris</code>.  </li>
+</ul>
+
+<h5 id="raidparity">raid_parity</h5>
+
+<p>Determines parity when using raidz property.</p>
+
+<h5 id="raidz">raidz</h5>
+
+<p>List of all the devices to raid for this pool. Should be an array of space separated strings:</p>
+
+<p>raidz =&gt; [&ldquo;disk1 disk2&rdquo;, &ldquo;disk3 disk4&rdquo;]</p>
+
+<h5 id="spare">spare</h5>
+
+<p>Spare disk(s) for this pool.</p>
+
+<hr />
+
+<p><em>This page autogenerated on Thu Mar 10 12:36:41 +1100 2011</em></p>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#resource-types">Resource Types</a></li><li><a href="#augeas">augeas</a></li><li><a href="#computer">computer</a></li><li><a href="#cron">cron</a></li><li><a href="#exec">exec</a></li><li><a href="#file">file</a></li><li><a href="#filebucket">filebucket</a></li><li><a href="#group-2">group</a></li><li><a href="#host">host</a></li><li><a href="#k5login">k5login</a></li><li><a href="#macauthorization">macauthorization</a></li><li><a href="#mailalias">mailalias</a></li><li><a href="#maillist">maillist</a></li><li><a href="#mcx">mcx</a></li><li><a href="#mount">mount</a></li><li><a href="#nagioscommand">nagios_command</a></li><li><a href="#nagioscontact">nagios_contact</a></li><li><a href="#nagioscontactgroup">nagios_contactgroup</a></li><li><a href="#nagioshost">nagios_host</a></li><li><a href="#nagioshostdependency">nagios_hostdependency</a></li><li><a href="#nagioshostescalation">nagios_hostescalation</a></li><li><a href="#nagioshostextinfo">nagios_hostextinfo</a></li><li><a href="#nagioshostgroup">nagios_hostgroup</a></li><li><a href="#nagiosservice">nagios_service</a></li><li><a href="#nagiosservicedependency">nagios_servicedependency</a></li><li><a href="#nagiosserviceescalation">nagios_serviceescalation</a></li><li><a href="#nagiosserviceextinfo">nagios_serviceextinfo</a></li><li><a href="#nagiosservicegroup">nagios_servicegroup</a></li><li><a href="#nagiostimeperiod">nagios_timeperiod</a></li><li><a href="#notify">notify</a></li><li><a href="#package">package</a></li><li><a href="#resources">resources</a></li><li><a href="#schedule">schedule</a></li><li><a href="#selboolean">selboolean</a></li><li><a href="#selmodule">selmodule</a></li><li><a href="#service">service</a></li><li><a href="#sshauthorizedkey">ssh_authorized_key</a></li><li><a href="#sshkey">sshkey</a></li><li><a href="#stage">stage</a></li><li><a href="#tidy">tidy</a></li><li><a href="#user-3">user</a></li><li><a href="#vcsrepo">vcsrepo</a></li><li><a href="#yumrepo">yumrepo</a></li><li><a href="#zfs">zfs</a></li><li><a href="#zone">zone</a></li><li><a href="#zpool">zpool</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

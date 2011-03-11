@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Module Organization</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Module Organization</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="module-organization">Module Organization</h1>
+
+<p>How to organize Puppet content inside of modules.</p>
+
+<hr />
+
+<h1 id="general-information">General Information</h1>
+
+<p>A Puppet Module is a collection of resources, classes, files, definitions
+and templates. It might be used to configure Apache or a Rails module, or a
+Trac site or a particular Rails application.</p>
+
+<p>Modules are easily re-distributable.  For example, this will
+enable you to have the default site configuration under
+<code>/etc/puppet</code>, with modules shipped by Puppet proper in
+<code>/usr/share/puppet/</code>.  You could also have other directories containing a happy mix-and-match
+of version control checkouts in various states of development and production readiness.</p>
+
+<p>Modules are available in Puppet version 0.22.2 and later.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>There are two configuration settings that pertain to modules:</p>
+
+<ol>
+  <li>
+    <p>The search path for modules is defined with the <code>modulepath</code> setting
+in the <code>[puppetmasterd]</code> (pre-2.6) or <code>[master]</code> (post-2.6) section of the puppet
+master&rsquo;s config file, and it should be a colon-separated list of directories:</p>
+
+    <pre><code>[puppetmasterd]
+...
+modulepath = /var/lib/puppet/modules:/data/puppet/modules
+</code></pre>
+
+    <p>The search path can be added to at runtime by setting the PUPPETLIB
+environment variable, which must also be a colon-separated list of
+directories.</p>
+  </li>
+  <li>
+    <p>Access control settings for the fileserver module <code>[modules]</code> are set in
+fileserver.conf, as described later in this page. The path
+configuration for that module is always ignored, and specifying a
+path will produce a warning.</p>
+  </li>
+</ol>
+
+<h2 id="sources-of-modules">Sources of Modules</h2>
+
+<p>To accommodate different locations in the file system for the
+different use cases, there is a configuration variable modulepath
+which is a list of directories to scan in turn.</p>
+
+<p>A reasonable default could be configured as
+<code>/etc/puppet/modules:/usr/share/puppet:/var/lib/modules</code>.
+Alternatively, the <code>/etc/puppet</code> directory could be established as a
+special anonymous module which is always searched first to retain
+backwards compatibility to today&rsquo;s layout.</p>
+
+<p>For some environments it might be worthwhile to consider extending
+the modulepath configuration item to contain branches checked out directly from
+version control, for example:</p>
+
+<pre><code>svn:file:///Volumes/svn/repos/management/master/puppet.testing/trunk
+</code></pre>
+
+<h2 id="naming">Naming</h2>
+
+<p>Module names should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression <code>[a-z][a-z0-9_]*</code>. Note that these are the same restrictions that apply to class names, with the added restriction that module names cannot contain the namespace separator (<code>::</code>) as modules cannot be nested.</p>
+
+<p>Although some names that violate these restrictions currently work, using them is not recommended.</p>
+
+<p>The module name <code>site</code> is reserved for local use and should not be
+used in modules meant for distribution.</p>
+
+<h1 id="internal-organisation">Internal Organisation</h1>
+
+<p>A Puppet module contains manifests, distributable files, plugins
+and templates arranged in a specific directory structure:</p>
+
+<pre><code>MODULE_PATH/
+   downcased_module_name/
+      files/
+      manifests/
+         init.pp
+      lib/
+         puppet/
+            parser/
+               functions
+            provider/
+            type/
+         facter/
+      templates/
+      README
+</code></pre>
+
+<p><em>NOTE: In Puppet versions prior to 0.25.0 the <code>lib</code> directory was named <code>plugins</code>. Other directory names are unchanged.</em></p>
+
+<p>Each module must contain a <code>init.pp</code> manifest file at the specified
+location. This manifest file can contain all the classes associated
+with this module or additional .pp files can be added directly
+under the manifests folder. If adding additional .pp files, naming
+them after the class they define will allow auto lookup magic
+(explained further below in Module Lookup).</p>
+
+<p>One of the things to be accomplished with modules is code
+sharing. A module by nature should be self-contained: one should be
+able to get a module from somewhere and drop it into your module
+path and have it work.</p>
+
+<p>There are cases, however, where the module depends on generic
+things that most people will already have defines or classes for in
+their regular manifests. Instead of adding these into the manifests
+of your module, add them to the <code>depends</code> folder (which is basically
+only documenting, it doesn&rsquo;t change how your module works) and
+mention these in your <code>README</code>, so people can at least see exactly
+what your module expects from these generic dependencies, and
+possibly integrate them into their own regular manifests.</p>
+
+<p>(See <a href="./plugins_in_modules.html">Plugins In Modules</a> for info on how to put custom types and
+facts into modules in the plugins/ subdir)</p>
+
+<h2 id="example">Example</h2>
+
+<p>As an example, consider a autofs module that installs a fixed
+auto.homes map and generates the auto.master from a template. Its
+init.pp could look something like:</p>
+
+<pre><code>class autofs {
+  package { autofs: ensure =&gt; latest }
+  service { autofs: ensure =&gt; running }
+  file { "/etc/auto.homes":
+    source =&gt; "puppet://$servername/modules/autofs/auto.homes"
+  }
+  file { "/etc/auto.master":
+    content =&gt; template("autofs/auto.master.erb")
+  }
+}
+</code></pre>
+
+<p>and have these files in the file system:</p>
+
+<pre><code>MODULE_PATH/
+  autofs/
+    manifests/
+      init.pp
+    files/
+      auto.homes
+    templates/
+      auto.master.erb
+</code></pre>
+
+<p>Notice that the file source path includes a <code>modules/</code> component.
+In Puppet version 0.25 and later, you must include this component in
+source paths in order to serve files from modules. Puppet 0.25 will
+still accept source paths without it, but it will warn you with a
+deprecation notice about &ldquo;Files found in modules without specifying
+&lsquo;modules&rsquo; in file path&rdquo;. In versions 0.24 and earlier, source paths
+should <em>not</em> include the modules/ component.</p>
+
+<p>Note also that you can still access files in modules when using
+puppet instead of puppetd; just leave off the server name and
+puppetd will fill in the server for you (using its configuration
+server as its file server) and puppet will use its module path:</p>
+
+<pre><code>file { "/etc/auto.homes":
+    source =&gt; "puppet:///modules/autofs/auto.homes"
+}
+</code></pre>
+
+<h2 id="module-lookup">Module Lookup</h2>
+
+<p>Since modules contain different subdirectories for different types
+of files, a little behind-the-scenes magic makes sure that the
+right file is accessed in the right context. All module searches
+are done within the modulepath, a colon-separated list of
+directories. In most cases, searching files in modules amounts to
+inserting one of manifest, files, or templates after the first
+component into a path, i.e. paths can be thought of as
+downcased_module_name/part_path where part_path is a path
+relative to one of the subdirectories of the module module_name.</p>
+
+<p>For file references on the fileserver, a similar lookup is used so
+that a reference to puppet://$servername/modules/autofs/auto.homes
+resolves to the file autofs/files/auto.homes in the module&rsquo;s path.
+(Note that this behavior will break if you have declared an explicit
+<code>[autofs]</code> mount in your <a href="./file_serving.html">fileserver.conf</a>, so
+take care to avoid name collisions when assigning custom fileserver
+mount points outside of modules.)</p>
+
+<p>You can apply some access controls to files in your modules by
+creating a [modules] file mount, which should be specified without
+a path statement, in the fileserver.conf configuration file:</p>
+
+<pre><code>[modules]
+allow *.domain.com
+deny *.wireless.domain.com
+</code></pre>
+
+<p>Unfortunately, you cannot apply more granular access controls, for
+example at the per module level as yet.</p>
+
+<p>To make a module usable with both the command line client and a
+puppetmaster, you can use a URL of the form <code>puppet:///path</code>, i.e. a
+URL without an explicit server name. Such URL&rsquo;s are treated
+slightly differently by puppet and puppetd: puppet searches for a
+serverless URL in the local filesystem, and puppetd retrieves such
+files from the fileserver on the puppetmaster. This makes it
+possible to use the same module as part of a site
+manifest on a puppetmaster and in a standalone puppet script by
+running <code>puppet --modulepath {path} script.pp</code>, without any changes to the module.</p>
+
+<p>Finally, template files are searched in a manner similar to
+manifests and files: a mention of
+template(&ldquo;autofs/auto.master.erb&rdquo;) will make the puppetmaster first
+look for a file in $templatedir/autofs/auto.master.erb and then
+autofs/templates/auto.master.erb on the module path. This allows
+more-generic files to be provided in the templatedir and
+more-specific files under the module path (see the discussion under
+<a href="http://projects.puppetlabs.com/issues/1012">Feature 1012</a> for
+the history here).</p>
+
+<h3 id="module-autoloading">Module Autoloading</h3>
+
+<p>Since version 0.23.1, Puppet will attempt to autoload classes and
+definitions from modules, so you no longer have to explicitly import them; you can
+just include the class or start using the definition.</p>
+
+<p>The rules Puppet uses to find the appropriate manifest when a module
+class or definition is declared are pretty easy to
+understand, and break down like this:</p>
+
+<table>
+<tr>
+<td><code>include foo</code></td>
+        <td><code><p># {modulepath}/foo/manifests/init.pp</p>
+                  <p>class foo { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>include foo::bar</code></td>
+        <td><code><p># {modulepath}/foo/manifests/bar.pp</p>
+                  <p>class foo::bar { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>foo::params { "example": value =&gt; 'meow' }</code></td>
+        <td><code><p># {modulepath}/foo/manifests/params.pp</p>
+                  <p>define foo::params ($value) { ... }</p></code></td>
+</tr>
+<tr>
+<td><code>class { "foo::bar::awesome": }</code></td>
+        <td><code><p># {modulepath}/foo/manifests/bar/awesome.pp</p>
+                  <p>class foo::bar::awesome { ... }</p></code></td>
+</tr>
+</table>
+
+<p>In short, lookup paths within a module&rsquo;s manifest directory are derived by splitting class and definition names on <code>::</code> separators, then interpreting the first element as the name of the module, the final element as the filename (with a <code>.pp</code> extension appended), and any intermediate elements as subdirectories of the module&rsquo;s manifests directory:</p>
+
+<pre><code>{module name}::{subdirectory}::{...}::{filename (sans extension)}
+</code></pre>
+
+<p>The one special case is that a one-word class or definition name which matches the name of the module will always be found in <code>manifests/init.pp</code>.<sup id="fnref:init"><a href="#fn:init" rel="footnote">1</a></sup></p>
+
+<p>Since lookup of classes and definitions is based on filename, take care to
+always rename both at the same time.</p>
+
+<h2 id="generated-module-documentation">Generated Module Documentation</h2>
+
+<p>If you decide to make your modules available to others (and please
+do!), then please also make sure you document your module so others
+can understand and use them. Most importantly, make sure the
+dependencies on other defines and classes not in your module are
+clear.</p>
+
+<p>From Puppet version 0.24.7 you can generate automated documentation
+from resources, classes and modules using the puppetdoc tool. You
+can find more detail at the
+<a href="http://www.puppetlabs.com/trac/puppet/wiki/PuppetManifestDocumentation">Puppet Manifest Documentation</a>
+page.</p>
+
+<h2 id="see-also">See Also</h2>
+
+<p>Distributing custom facts and types via modules: <a href="./plugins_in_modules.html">Plugins In
+Modules</a></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:init">
+      <p>Puppet actually always loads the <code>init.pp</code> manifest, so sometimes you can cheat and just write all your module&rsquo;s classes in there.  This makes it harder for people to find where your class or define lives, though, so we don&rsquo;t recommend it.<a href="#fnref:init" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#configuration">Configuration</a></li><li><a href="#sources-of-modules">Sources of Modules</a></li><li><a href="#naming">Naming</a></li><li><a href="#example">Example</a></li><li><a href="#module-lookup">Module Lookup</a></li><li><a href="#module-autoloading">Module Autoloading</a></li><li><a href="#generated-module-documentation">Generated Module Documentation</a></li><li><a href="#see-also">See Also</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

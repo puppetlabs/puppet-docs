@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Indirection Reference</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Indirection Reference</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="indirection-reference">Indirection Reference</h1>
+
+<p><strong>This page is autogenerated; any changes will get overwritten</strong> <em>(last generated on Fri Mar 04 06:25:29 +1100 2011)</em></p>
+
+<p>This is the list of all indirections, their associated terminus classes, and how you select between them.</p>
+
+<p>In general, the appropriate terminus class is selected by the application for you (e.g., <code>puppet agent</code> would always use the <code>rest</code>
+terminus for most of its indirected classes), but some classes are tunable via normal settings.  These will have <code>terminus setting</code> documentation listed with them.</p>
+
+<h2 id="catalog">catalog</h2>
+
+<ul>
+  <li><strong>Terminus Setting</strong>: catalog_terminus</li>
+</ul>
+
+<h3 id="activerecord">active_record</h3>
+
+<h3 id="compiler">compiler</h3>
+
+<p>Puppet&rsquo;s catalog compilation interface, and its back-end is
+Puppet&rsquo;s compiler</p>
+
+<h3 id="queue">queue</h3>
+
+<h3 id="rest">rest</h3>
+
+<p>Find resource catalogs over HTTP via REST.</p>
+
+<h3 id="yaml">yaml</h3>
+
+<p>Store catalogs as flat files, serialized using YAML.</p>
+
+<h2 id="certificate">certificate</h2>
+
+<h3 id="ca">ca</h3>
+
+<p>Manage the CA collection of signed SSL certificates on disk.</p>
+
+<h3 id="file">file</h3>
+
+<p>Manage SSL certificates on disk.</p>
+
+<h3 id="rest-1">rest</h3>
+
+<p>Find and save certificates over HTTP via REST.</p>
+
+<h2 id="certificaterequest">certificate_request</h2>
+
+<h3 id="ca-1">ca</h3>
+
+<p>Manage the CA collection of certificate requests on disk.</p>
+
+<h3 id="file-1">file</h3>
+
+<p>Manage the collection of certificate requests on disk.</p>
+
+<h3 id="rest-2">rest</h3>
+
+<p>Find and save certificate requests over HTTP via REST.</p>
+
+<h2 id="certificaterevocationlist">certificate_revocation_list</h2>
+
+<h3 id="ca-2">ca</h3>
+
+<p>Manage the CA collection of certificate requests on disk.</p>
+
+<h3 id="file-2">file</h3>
+
+<p>Manage the global certificate revocation list.</p>
+
+<h3 id="rest-3">rest</h3>
+
+<p>Find and save certificate revocation lists over HTTP via REST.</p>
+
+<h2 id="facts">facts</h2>
+
+<ul>
+  <li><strong>Terminus Setting</strong>: facts_terminus</li>
+</ul>
+
+<h3 id="activerecord-1">active_record</h3>
+
+<h3 id="couch">couch</h3>
+
+<h3 id="facter">facter</h3>
+
+<p>Retrieve facts from Facter.  This provides a somewhat abstract interface
+between Puppet and Facter.  It&rsquo;s only <code>somewhat</code> abstract because it always
+returns the local host&rsquo;s facts, regardless of what you attempt to find.</p>
+
+<h3 id="memory">memory</h3>
+
+<p>Keep track of facts in memory but nowhere else.  This is used for
+one-time compiles, such as what the stand-alone <code>puppet</code> does.
+To use this terminus, you must load it with the data you want it
+to contain.</p>
+
+<h3 id="rest-4">rest</h3>
+
+<p>Find and save facts about nodes over HTTP via REST.</p>
+
+<h3 id="yaml-1">yaml</h3>
+
+<p>Store client facts as flat files, serialized using YAML, or
+return deserialized facts from disk.</p>
+
+<h2 id="filebucketfile">file_bucket_file</h2>
+
+<h3 id="file-3">file</h3>
+
+<p>Store files in a directory set based on their checksums.</p>
+
+<h3 id="rest-5">rest</h3>
+
+<p>This is a REST based mechanism to send/retrieve file to/from the filebucket</p>
+
+<h2 id="filecontent">file_content</h2>
+
+<h3 id="file-4">file</h3>
+
+<p>Retrieve file contents from disk.</p>
+
+<h3 id="fileserver">file_server</h3>
+
+<p>Retrieve file contents using Puppet&rsquo;s fileserver.</p>
+
+<h3 id="rest-6">rest</h3>
+
+<p>Retrieve file contents via a REST HTTP interface.</p>
+
+<h2 id="filemetadata">file_metadata</h2>
+
+<h3 id="file-5">file</h3>
+
+<p>Retrieve file metadata directly from the local filesystem.</p>
+
+<h3 id="fileserver-1">file_server</h3>
+
+<p>Retrieve file metadata using Puppet&rsquo;s fileserver.</p>
+
+<h3 id="rest-7">rest</h3>
+
+<p>Retrieve file metadata via a REST HTTP interface.</p>
+
+<h2 id="key">key</h2>
+
+<h3 id="ca-3">ca</h3>
+
+<p>Manage the CA&rsquo;s private on disk.  This terminus <em>only</em> works
+with the CA key, because that&rsquo;s the only key that the CA ever interacts
+with.</p>
+
+<h3 id="file-6">file</h3>
+
+<p>Manage SSL private and public keys on disk.</p>
+
+<h2 id="node">node</h2>
+
+<p>Where to find node information.
+A node is composed of its name, its facts, and its environment.</p>
+
+<ul>
+  <li><strong>Terminus Setting</strong>: node_terminus</li>
+</ul>
+
+<h3 id="activerecord-2">active_record</h3>
+
+<h3 id="exec">exec</h3>
+
+<p>Call an external program to get node information.  See
+the <a href="http://docs.puppetlabs.com/guides/external_nodes.html">External Nodes</a> page for more information.</p>
+
+<h3 id="ldap">ldap</h3>
+
+<p>Search in LDAP for node configuration information.  See
+the <a href="http://projects.puppetlabs.com/projects/puppet/wiki/Ldap_Nodes">LDAP Nodes</a> page for more information.  This will first
+search for whatever the certificate name is, then (if that name
+contains a <code>.</code>) for the short name, then <code>default</code>.</p>
+
+<h3 id="memory-1">memory</h3>
+
+<p>Keep track of nodes in memory but nowhere else.  This is used for
+one-time compiles, such as what the stand-alone <code>puppet</code> does.
+To use this terminus, you must load it with the data you want it
+to contain; it is only useful for developers and should generally not
+be chosen by a normal user.</p>
+
+<h3 id="plain">plain</h3>
+
+<p>Always return an empty node object. Assumes you keep track of nodes
+in flat file manifests.  You should use it when you don&rsquo;t have some other,
+functional source you want to use, as the compiler will not work without a
+valid node terminus.</p>
+
+<p>Note that class is responsible for merging the node&rsquo;s facts into the
+node instance before it is returned.</p>
+
+<h3 id="rest-8">rest</h3>
+
+<p>This will eventually be a REST-based mechanism for finding nodes.  It is currently non-functional.</p>
+
+<h3 id="yaml-2">yaml</h3>
+
+<p>Store node information as flat files, serialized using YAML,
+or deserialize stored YAML nodes.</p>
+
+<h2 id="report">report</h2>
+
+<h3 id="processor">processor</h3>
+
+<p>Puppet&rsquo;s report processor.  Processes the report with each of
+the report types listed in the &lsquo;reports&rsquo; setting.</p>
+
+<h3 id="rest-9">rest</h3>
+
+<p>Get server report over HTTP via REST.</p>
+
+<h2 id="resource">resource</h2>
+
+<h3 id="ral">ral</h3>
+
+<h3 id="rest-10">rest</h3>
+
+<h2 id="resourcetype">resource_type</h2>
+
+<h3 id="parser">parser</h3>
+
+<p>Return the data-form of a resource type.</p>
+
+<h3 id="rest-11">rest</h3>
+
+<p>Retrieve resource types via a REST HTTP interface.</p>
+
+<h2 id="status">status</h2>
+
+<h3 id="local">local</h3>
+
+<h3 id="rest-12">rest</h3>
+
+<hr />
+
+<p><em>This page autogenerated on Fri Mar 04 06:25:32 +1100 2011</em></p>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#catalog">catalog</a></li><li><a href="#activerecord">active_record</a></li><li><a href="#compiler">compiler</a></li><li><a href="#queue">queue</a></li><li><a href="#rest">rest</a></li><li><a href="#yaml">yaml</a></li><li><a href="#certificate">certificate</a></li><li><a href="#ca">ca</a></li><li><a href="#file">file</a></li><li><a href="#rest-1">rest</a></li><li><a href="#certificaterequest">certificate_request</a></li><li><a href="#ca-1">ca</a></li><li><a href="#file-1">file</a></li><li><a href="#rest-2">rest</a></li><li><a href="#certificaterevocationlist">certificate_revocation_list</a></li><li><a href="#ca-2">ca</a></li><li><a href="#file-2">file</a></li><li><a href="#rest-3">rest</a></li><li><a href="#facts">facts</a></li><li><a href="#activerecord-1">active_record</a></li><li><a href="#couch">couch</a></li><li><a href="#facter">facter</a></li><li><a href="#memory">memory</a></li><li><a href="#rest-4">rest</a></li><li><a href="#yaml-1">yaml</a></li><li><a href="#filebucketfile">file_bucket_file</a></li><li><a href="#file-3">file</a></li><li><a href="#rest-5">rest</a></li><li><a href="#filecontent">file_content</a></li><li><a href="#file-4">file</a></li><li><a href="#fileserver">file_server</a></li><li><a href="#rest-6">rest</a></li><li><a href="#filemetadata">file_metadata</a></li><li><a href="#file-5">file</a></li><li><a href="#fileserver-1">file_server</a></li><li><a href="#rest-7">rest</a></li><li><a href="#key">key</a></li><li><a href="#ca-3">ca</a></li><li><a href="#file-6">file</a></li><li><a href="#node">node</a></li><li><a href="#activerecord-2">active_record</a></li><li><a href="#exec">exec</a></li><li><a href="#ldap">ldap</a></li><li><a href="#memory-1">memory</a></li><li><a href="#plain">plain</a></li><li><a href="#rest-8">rest</a></li><li><a href="#yaml-2">yaml</a></li><li><a href="#report">report</a></li><li><a href="#processor">processor</a></li><li><a href="#rest-9">rest</a></li><li><a href="#resource">resource</a></li><li><a href="#ral">ral</a></li><li><a href="#rest-10">rest</a></li><li><a href="#resourcetype">resource_type</a></li><li><a href="#parser">parser</a></li><li><a href="#rest-11">rest</a></li><li><a href="#status">status</a></li><li><a href="#local">local</a></li><li><a href="#rest-12">rest</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

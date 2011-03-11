@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Writing SimpleRPC Clients</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Writing SimpleRPC Clients</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              
+<h1 id="writing-simplerpc-clients">Writing SimpleRPC Clients</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#writing-simplerpc-clients">Writing SimpleRPC Clients</a>    <ul>
+      <li><a href="#the-basic-client">The Basic Client</a></li>
+      <li><a href="#call-an-agent-and-print-the-result">Call an Agent and print the result</a></li>
+      <li><a href="#adjusting-the-output">Adjusting the output</a>        <ul>
+          <li><a href="#verbosely-displaying-results">Verbosely displaying results</a></li>
+          <li><a href="#disabling-the-progress-indicator">Disabling the progress indicator</a></li>
+          <li><a href="#saving-the-reports-in-variables-without-printing">Saving the reports in variables without printing</a></li>
+        </ul>
+      </li>
+      <li><a href="#applying-filters-programatically">Applying filters programatically</a></li>
+      <li><a href="#resetting-filters-to-empty">Resetting filters to empty</a></li>
+      <li><a href="#forcing-rediscovery">Forcing Rediscovery</a></li>
+      <li><a href="#only-sending-requests-to-a-subset-of-discovered-nodes">Only sending requests to a subset of discovered nodes</a></li>
+      <li><a href="#gaining-access-to-the-full-mcollectiveclient">Gaining access to the full MCollective::Client</a></li>
+      <li><a href="#dealing-with-the-results-directly">Dealing with the results directly</a>        <ul>
+          <li><a href="#results-and-exceptions">Results and Exceptions</a></li>
+          <li><a href="#simple-rpc-style-results">Simple RPC style results</a></li>
+          <li><a href="#gaining-access-to-mcollectiveclientreq-results">Gaining access to MCollective::Client#req results</a></li>
+        </ul>
+      </li>
+      <li><a href="#adding-custom-command-line-options">Adding custom command line options</a></li>
+      <li><a href="#disabling-command-line-parsing-and-supplying-your-options-programatically">Disabling command line parsing and supplying your options programatically</a></li>
+      <li><a href="#sending-simplerpc-requests-without-discovery-and-blocking">Sending SimpleRPC requests without discovery and blocking</a></li>
+      <li><a href="#doing-your-own-discovery">Doing your own discovery</a></li>
+      <li><a href="#the-rpcutil-helper-agent">The <em>rpcutil</em> Helper Agent</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>As pointed out in the <a href="index.html">SimpleRPCIntroduction</a> page you can use the <em>mc-rpc</em> CLI
+to call agents and it will do it&rsquo;s best to print results in a sane way.  When
+this is not enough you can write your own clients.</p>
+
+<p>Simple RPC clients can do most of what a normal <a href="agents.html">client</a> can do
+but it makes a lot of things much easier if you stick to the Simple RPC
+conventions.</p>
+
+<p>This guide shows how to write standalone scripts to interact with your
+collective.  Since version 1.1.1 there is a single executable system.  You can
+apply most of the techniques documented here to writing plugins for that
+application system.  See the full reference for the plugin system
+<a href="../reference/plugins/application.html">here</a>.  You should try to write your general agent CLIs using
+this plugin system.</p>
+
+<p>We&rsquo;ve recorded a <a href="http://mcollective.blip.tv/file/3808928/">tutorial that will give you a quick look at what is involved
+in writing agents and a very simple client</a>.</p>
+
+<p>We&rsquo;ll walk through building a ever more complex example of Hello World here.</p>
+
+<h2 id="the-basic-client">The Basic Client</h2>
+<p>The client is mostly a bunch of helper methods that you use as a <a href="http://juixe.com/techknow/index.php/2006/06/15/mixins-in-ruby/">Ruby
+Mixin</a> in your own code, it provides:</p>
+
+<ul>
+  <li>Standard command line option parsing with help output</li>
+  <li>Ability to add your own command line options</li>
+  <li>Simple access to agents and actions</li>
+  <li>Tools to help you print results</li>
+  <li>Tools to print stats</li>
+  <li>Tools to construct your own filters</li>
+  <li>While retaining full power of <em>MCollective::Client</em> if you need the additional feature sets</li>
+  <li>And being as simple or as complex to match your level of code proficiency</li>
+</ul>
+
+<p>We&rsquo;ll write a client for the <em>Helloworld</em> agent that you saw in the
+<a href="index.html">SimpleRPCIntroduction</a>.</p>
+
+<h2 id="call-an-agent-and-print-the-result">Call an Agent and print the result</h2>
+<p>A basic hello world client can be seen below:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="c1">#!/usr/bin/ruby</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="nb">require</span> <span class="s1">&#39;mcollective&#39;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="kp">include</span> <span class="no">MCollective</span><span class="o">::</span><span class="no">RPC</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span> <span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span> <span class="n">printrpcstats</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="n">mc</span><span class="o">.</span><span class="n">disconnect</span>
+</code></pre>
+</div>
+
+<p>Save this into <em>hello.rb</em> and run it with <em>&ndash;help</em>, you should see the standard basic help including filters for discovery.</p>
+
+<p>If you&rsquo;ve set up the Agent and run the client you should see something along these lines:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="err">$</span> <span class="n">hello</span><span class="o">.</span><span class="n">rb</span>
+
+<span class="no">Finished</span> <span class="n">processing</span> <span class="mi">44</span> <span class="n">hosts</span> <span class="k">in</span> <span class="mi">375</span><span class="o">.</span><span class="mi">57</span> <span class="n">ms</span>
+</code></pre>
+</div>
+
+<p>While it ran you would have seen a little progress bar and then just the summary line.  The idea is that if you&rsquo;re talking to a 1000 machine there&rsquo;s no point in seeing a thousand <em>OK</em>, you only want to see what failed and this is exactly what happens here, you&rsquo;re only seeing errors.</p>
+
+<p>If you run it with <em>&ndash;verbose</em> you&rsquo;ll see a line of text for every host and also a larger summary of results.</p>
+
+<p>I&rsquo;ll explain each major line in the code below then add some more features from there:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="kp">include</span> <span class="no">MCollective</span><span class="o">::</span><span class="no">RPC</span>
+
+<span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The first line pulls in the various helper functions that we provide, this is the Mixin we mentioned earlier.</p>
+
+<p>We then create a new client to the agent &ldquo;helloworld&rdquo; that you access through the <em>mc</em> variable.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+
+<span class="n">printrpcstats</span>
+</code></pre>
+</div>
+
+<p>To call a specific action you simply have to do <em>mc.echo</em> this calls the <em>echo</em> action, we pass a <em>:msg</em> parameter into it with the string we want echo&rsquo;d back.  The parameters will differ from action to action.  It returns a simple array of the results that you can print any way you want, we&rsquo;ll show that later.</p>
+
+<p><em>printrpc</em> and <em>printrpcstats</em> are functions used to print the results and stats respectively.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">disconnect</span>
+</code></pre>
+</div>
+
+<p>This cleanly disconnects the client from the middleware, some middleware tools like ActiveMQ will log confusing exceptions if you do not do this.  It&rsquo;s good form to always disconnect but isn&rsquo;t strictly required.</p>
+
+<h2 id="adjusting-the-output">Adjusting the output</h2>
+
+<h3 id="verbosely-displaying-results">Verbosely displaying results</h3>
+<p>As you see there&rsquo;s no indication that discovery is happening and as pointed out we do not display results that are ok, you can force verbosity as below on individual requests:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">discover</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+
+<span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">),</span> <span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</code></pre>
+</div>
+
+<p>Here we&rsquo;ve added a <em>:verbose</em> flag and we&rsquo;ve specifically called the discover method.  Usually you don&rsquo;t need to call discover it will do it on demand.  Doing it this way you&rsquo;ll always see the line:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">Determining the amount of hosts matching filter for 2 seconds .... 44</span>
+</code></pre>
+</div>
+
+<p>Passing verbose to <em>printrpc</em> forces it to print all the results, failures or not.</p>
+
+<p>If you just wanted to force verbose on for all client interactions, do:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>In this case everything will be verbose, regardless of command line options.</p>
+
+<h3 id="disabling-the-progress-indicator">Disabling the progress indicator</h3>
+<p>You can disable the twirling progress indicator easily:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="kp">false</span>
+</code></pre>
+</div>
+
+<p>Now whenever you call an action you will not see the progress indicator.</p>
+
+<h3 id="saving-the-reports-in-variables-without-printing">Saving the reports in variables without printing</h3>
+<p>As of version <em>0.4.5</em> you can retrieve the stats from the clients and also get text of reports without printing them:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">stats</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stats</span>
+
+<span class="n">report</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">report</span>
+</code></pre>
+</div>
+
+<p><em>report</em> will now have the text that would have been displayed by &lsquo;printrpcstats&rsquo; you can also use <em>no_response_report</em> to get report text for just the list of hosts that didnt respond.</p>
+
+<p>If you didn&rsquo;t want to just print the results out to STDOUT you can also get them back as just text:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">report</span> <span class="o">=</span> <span class="n">rpcresults</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="applying-filters-programatically">Applying filters programatically</h2>
+<p>You can pass filters on the command line using the normal <em>&ndash;with-<code>*</code></em> options but you can also do it programatically.  Here&rsquo;s a new version of the client that only calls machines with the configuration management class <em>/dev_server/</em> and the fact <em>country=uk</em></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">class_filter</span><span class="sr"> /dev_server/</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">fact_filter</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;uk&quot;</span>
+
+<span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>You can set other filters like <em>agent<code>_</code>filter</em> and <em>identity<code>_</code>filter</em>.</p>
+
+<p>As of version 1.1.0 the fact_filter method supports a few other forms in adition to above:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">fact_filter</span> <span class="s2">&quot;country=uk&quot;</span>
+<span class="n">mc</span><span class="o">.</span><span class="n">fact_filter</span> <span class="s2">&quot;physicalprocessorcount&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;=&quot;</span>
+</code></pre>
+</div>
+
+<p>This will limit it to all machines in the UK with more than 3 processors.</p>
+
+<h2 id="resetting-filters-to-empty">Resetting filters to empty</h2>
+<p>If while using the client you wish to reset the filters to an empty set of filters - containing only the agent name that you&rsquo;re busy addressing you can do it as follows:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">class_filter</span><span class="sr"> /dev_server/</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">reset_filter</span>
+</code></pre>
+</div>
+
+<p>After this code snippet the filter will only have an agent filter of <em>helloworld</em> set.</p>
+
+<h2 id="forcing-rediscovery">Forcing Rediscovery</h2>
+<p>By default it will only do discovery once per script and then re-use the results, you can though force rediscovery if you had to adjust filters mid run for example.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">class_filter</span><span class="sr"> /dev_server/</span>
+<span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">reset</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">fact_filter</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;uk&quot;</span>
+<span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Here we make one <em>echo</em> call - which would do a discovery - we then reset the client, adjust filters and call it again.  The 2nd call would do a new discovery and have new client lists etc.</p>
+
+<h2 id="only-sending-requests-to-a-subset-of-discovered-nodes">Only sending requests to a subset of discovered nodes</h2>
+<p>By default all nodes that get discovered will get the request.  This isn&rsquo;t always desirable maybe you want to deploy only to a random subset of hosts or maybe you have a service exposed over MCollective that you want to treat as a HA service and so only speak with one host that provides the functionality.</p>
+
+<p>You can limit the hosts to talk to either using a number or a percentage, the code below shows both:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+
+<span class="n">mc</span><span class="o">.</span><span class="n">limit_targets</span> <span class="o">=</span> <span class="s2">&quot;10%&quot;</span>
+<span class="n">printrpc</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to MCollective Simple RPC&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>This will pick 10% of the discovered hosts - or 1 if 10% is less than 1 - and only target those nodes with your request.  You can also set it to an integer.</p>
+
+<p>This functionality is only available from version <em>1.0.0</em> and newer.</p>
+
+<h2 id="gaining-access-to-the-full-mcollectiveclient">Gaining access to the full MCollective::Client</h2>
+<p>If you wanted to work with the Client directly as in <a href="agents.html">WritingAgents</a> after perhaps setting up some queries or gathering data first you can gain access to the client, you might also need access to the options array that was parsed out from the command line and any subsequent filters that you added.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">client</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">options</span>
+</code></pre>
+</div>
+
+<p>The first call will set up the CLI option parsing, create clients etc, you can then just grab the client and options and go on as per <a href="agents.html">WritingAgents</a>.  This is a much quicker way to write full power clients, by just by short-circuiting the options parsing etc.</p>
+
+<h2 id="dealing-with-the-results-directly">Dealing with the results directly</h2>
+<p>The biggest reason that you&rsquo;d write custom clients is probably if you wanted to do custom processing of the results, there are 2 options to do it.</p>
+
+<p><a name="Results_and_Exceptions"> </a></p>
+
+<h3 id="results-and-exceptions">Results and Exceptions</h3>
+<p>Results have a set structure and depending on how you access the results you will either get Exceptions or result codes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status Code</th>
+      <th>Description</th>
+      <th>Exception Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>OK</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>OK, failed.  All the data parsed ok, we have a action matching the request but the requested action could not be completed.</td>
+      <td>RPCAborted</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Unknown action</td>
+      <td>UnknownRPCAction</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Missing data</td>
+      <td>MissingRPCData</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Invalid data</td>
+      <td>InvalidRPCData</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Other error</td>
+      <td>UnknownRPCError</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Just note these now, I&rsquo;ll reference them later down.</p>
+
+<h3 id="simple-rpc-style-results">Simple RPC style results</h3>
+<p>Simple RPC provides a trimmed down version of results from the basic Client library.  You&rsquo;d choose to use this if you just want to do simple things or maybe you&rsquo;re just learning Ruby.  You&rsquo;ll get to process the results <em>after</em> the call is either done or timed out completely.</p>
+
+<p>This is an important difference between the two approaches, in one you can parse the results as it comes in, in the other you will only get results after processing is done.  This would be the main driving facter for choosing one over the other.</p>
+
+<p>Here&rsquo;s an example that will print out results in a custom way.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;hello world&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">resp</span><span class="o">|</span>
+   <span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%-40s: %s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">resp</span><span class="o">[</span><span class="ss">:sender</span><span class="o">]</span><span class="p">,</span> <span class="n">resp</span><span class="o">[</span><span class="ss">:data</span><span class="o">]</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This will produce a result something like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">dev1.you.net                          : hello world</span>
+<span class="go">dev2.you.net                          : hello world</span>
+<span class="go">dev3.you.net                          : hello world</span>
+</code></pre>
+</div>
+
+<p>The <em>each</em> in the above code just loops through the array of results.  Results are an array of Hashes, the data you got for above has the following structure:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">[{:statusmsg=&gt;&quot;OK&quot;,</span>
+<span class="go"> :sender=&gt;&quot;dev1.your.net&quot;,</span>
+<span class="go"> :data=&gt;&quot;hello world&quot;,</span>
+<span class="go"> :statuscode=&gt;0},</span>
+<span class="go">{:statusmsg=&gt;&quot;OK&quot;,</span>
+<span class="go"> :sender=&gt;&quot;dev2.your.net&quot;,</span>
+<span class="go"> :data=&gt;&quot;hello world&quot;,</span>
+<span class="go"> :statuscode=&gt;0}]</span>
+</code></pre>
+</div>
+
+<p>The <em>:statuscode</em> matches the table above so you can make decisions based on each result&rsquo;s status.</p>
+
+<h3 id="gaining-access-to-mcollectiveclientreq-results">Gaining access to MCollective::Client#req results</h3>
+<p>You can get access to each result in real time, in this case you will need to handle the exceptions in the table above and you&rsquo;ll get a different style of result set.  The result set will be exactly as from the full blown client.</p>
+
+<p>In this mode there will be no progress indicator, you&rsquo;ll deal with results as and when they come in not after the fact as in the previous example.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;hello world&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">resp</span><span class="o">|</span>
+   <span class="k">begin</span>
+      <span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%-40s: %s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">resp</span><span class="o">[</span><span class="ss">:senderid</span><span class="o">]</span><span class="p">,</span> <span class="n">resp</span><span class="o">[</span><span class="ss">:body</span><span class="o">][</span><span class="ss">:data</span><span class="o">]</span><span class="p">)</span>
+   <span class="k">rescue</span> <span class="no">RPCError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+      <span class="nb">puts</span> <span class="s2">&quot;The RPC agent returned an error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+   <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>The output will be the same as above</p>
+
+<p>In this mode the results you get will be like this:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="p">{</span><span class="ss">:msgtarget</span><span class="o">=&gt;</span><span class="s2">&quot;/topic/mcollective.helloworld.reply&quot;</span><span class="p">,</span>
+ <span class="ss">:senderid</span><span class="o">=&gt;</span><span class="s2">&quot;dev2.your.net&quot;</span><span class="p">,</span>
+ <span class="ss">:msgtime</span><span class="o">=&gt;</span><span class="mi">1261696663</span><span class="p">,</span>
+ <span class="ss">:hash</span><span class="o">=&gt;</span><span class="s2">&quot;2d37daf690c4bcef5b5380b1e0c55f0c&quot;</span><span class="p">,</span>
+ <span class="ss">:body</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:statusmsg</span><span class="o">=&gt;</span><span class="s2">&quot;OK&quot;</span><span class="p">,</span> <span class="ss">:statuscode</span><span class="o">=&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="ss">:data</span><span class="o">=&gt;</span><span class="s2">&quot;hello world&quot;</span><span class="p">},</span>
+ <span class="ss">:requestid</span><span class="o">=&gt;</span><span class="s2">&quot;2884afb0b52cb38ea4d4a3146d18ef5f&quot;</span><span class="p">,</span>
+ <span class="ss">:senderagent</span><span class="o">=&gt;</span><span class="s2">&quot;helloworld&quot;</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Note how here we need to catch the exceptions, just handing <em>:statuscode</em> will not be enough as the RPC client will raise exceptions - all descendant from <em>RPCError</em> so you can easily catch just those.</p>
+
+<p>As of version 1.1.1 you can additionally gain access to a SimpleRPC style result in addition to the more complex native client results:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;hello world&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">resp</span><span class="p">,</span> <span class="n">simpleresp</span><span class="o">|</span>
+   <span class="k">begin</span>
+      <span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%-40s: %s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">simpleresp</span><span class="o">[</span><span class="ss">:sender</span><span class="o">]</span><span class="p">,</span> <span class="n">simpleresp</span><span class="o">[</span><span class="ss">:data</span><span class="o">]</span><span class="p">)</span>
+   <span class="k">rescue</span> <span class="no">RPCError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+      <span class="nb">puts</span> <span class="s2">&quot;The RPC agent returned an error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+   <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>You can still use printrpc to print these style of results and gain advantage of the DDL and so forth:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="s2">&quot;hello world&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">resp</span><span class="p">,</span> <span class="n">simpleresp</span><span class="o">|</span>
+   <span class="k">begin</span>
+      <span class="n">printrpc</span> <span class="n">simpleresp</span>
+   <span class="k">rescue</span> <span class="no">RPCError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+      <span class="nb">puts</span> <span class="s2">&quot;The RPC agent returned an error: </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+   <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>You will need to handle exceptions yourself but you have a simpler result set to deal with</p>
+
+<h2 id="adding-custom-command-line-options">Adding custom command line options</h2>
+<p>You can look at the <em>mc-rpc</em> script for a big sample, here I am just adding a simple <em>&ndash;msg</em> option to our script so you can customize the message that will be sent and received.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="c1">#!/usr/bin/ruby</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="nb">require</span> <span class="s1">&#39;mcollective&#39;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="kp">include</span> <span class="no">MCollective</span><span class="o">::</span><span class="no">RPC</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span> <span class="n">options</span> <span class="o">=</span> <span class="n">rpcoptions</span> <span class="k">do</span> <span class="o">|</span><span class="n">parser</span><span class="p">,</span> <span class="n">options</span><span class="o">|</span>
+<span class="lineno"> 8</span>    <span class="n">parser</span><span class="o">.</span><span class="n">define_head</span> <span class="s2">&quot;Generic Echo Client&quot;</span>
+<span class="lineno"> 9</span>    <span class="n">parser</span><span class="o">.</span><span class="n">banner</span> <span class="o">=</span> <span class="s2">&quot;Usage: hello [options] [filters] --msg MSG&quot;</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>    <span class="n">parser</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;--msg MSG&#39;</span><span class="p">,</span> <span class="s1">&#39;Message to pass&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span>
+<span class="lineno">12</span>       <span class="n">options</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span>
+<span class="lineno">13</span>    <span class="k">end</span>
+<span class="lineno">14</span> <span class="k">end</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span> <span class="k">unless</span> <span class="n">options</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="ss">:msg</span><span class="p">)</span>
+<span class="lineno">17</span>    <span class="nb">puts</span><span class="p">(</span><span class="s2">&quot;You need to specify a message with --msg&quot;</span><span class="p">)</span>
+<span class="lineno">18</span>    <span class="nb">exit!</span> <span class="mi">1</span>
+<span class="lineno">19</span> <span class="k">end</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span> <span class="n">mc</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">,</span> <span class="ss">:options</span> <span class="o">=&gt;</span> <span class="n">options</span><span class="p">)</span>
+<span class="lineno">22</span> 
+<span class="lineno">23</span> <span class="n">mc</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="ss">:msg</span> <span class="o">=&gt;</span> <span class="n">options</span><span class="o">[</span><span class="ss">:msg</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">resp</span><span class="o">|</span>
+<span class="lineno">24</span>    <span class="nb">printf</span><span class="p">(</span><span class="s2">&quot;%-40s: %s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">resp</span><span class="o">[</span><span class="ss">:sender</span><span class="o">]</span><span class="p">,</span> <span class="n">resp</span><span class="o">[</span><span class="ss">:data</span><span class="o">]</span><span class="p">)</span>
+<span class="lineno">25</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>This version of the code should be run like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">%</span> test.rb --msg foo
+<span class="go">dev1.you.net                          : foo</span>
+<span class="go">dev2.you.net                          : foo</span>
+<span class="go">dev3.you.net                          : foo</span>
+</code></pre>
+</div>
+
+<p>Documentation for the Options Parser can be found <a href="http://github.com/puppetlabs/marionette-collective/blob/master/lib/mcollective/optionparser.rb">in it&rsquo;s code</a> you can also look at the various <em>mc-<code>*</code></em> scripts that come with the code.</p>
+
+<p>And finally if you add options as above rather than try to parse it yourself you will get help integration for free:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">%</span> hello.rb --help
+<span class="go">Usage: hello [options] [filters] --msg MSG</span>
+<span class="go">Generic Echo Client</span>
+<span class="go">    -m, --msg MSG                    Message to pass</span>
+
+<span class="go">Common Options</span>
+<span class="go">    -c, --config FILE                Load configuratuion from file rather than default</span>
+<span class="go">        --dt SECONDS                 Timeout for doing discovery</span>
+<span class="go">        --discovery-timeout</span>
+<span class="go">    -t, --timeout SECONDS            Timeout for calling remote agents</span>
+<span class="go">    -q, --quiet                      Do not be verbose</span>
+<span class="go">    -v, --verbose                    Be verbose</span>
+<span class="go">    -h, --help                       Display this screen</span>
+
+<span class="go">Host Filters</span>
+<span class="go">        --wf, --with-fact fact=val   Match hosts with a certain fact</span>
+<span class="go">        --wc, --with-class CLASS     Match hosts with a certain configuration management class</span>
+<span class="go">        --wa, --with-agent AGENT     Match hosts with a certain agent</span>
+<span class="go">        --wi, --with-identity IDENT  Match hosts with a certain configured identity</span>
+</code></pre>
+</div>
+
+<h2 id="disabling-command-line-parsing-and-supplying-your-options-programatically">Disabling command line parsing and supplying your options programatically</h2>
+
+<p>Sometimes, perhaps when embedding an MCollective client into another tool like Puppet, you do not want MCollective to do any command line parsing as there might be conflicting command line options etc.</p>
+
+<p>This can be achieved by supplying an options hash to the SimpleRPC client:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="kp">include</span> <span class="no">MCollective</span><span class="o">::</span><span class="no">RPC</span>
+
+<span class="n">options</span> <span class="o">=</span>  <span class="no">MCollective</span><span class="o">::</span><span class="no">Util</span><span class="o">.</span><span class="n">default_options</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:options</span> <span class="o">=&gt;</span> <span class="n">options</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>This will create a RPC client for the agent test without any options parsing at all.</p>
+
+<p>To set options like discovery timeout and so forth you will need use either the client utilities or manipulate the hash upfront, the client utility methods is the best.   The code below sets the discovery timeout in a way that does not require you to know any internal structures or the content of the options hash.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">options</span> <span class="o">=</span>  <span class="no">MCollective</span><span class="o">::</span><span class="no">Util</span><span class="o">.</span><span class="n">default_options</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:options</span> <span class="o">=&gt;</span> <span class="n">options</span><span class="p">})</span>
+<span class="n">client</span><span class="o">.</span><span class="n">discovery_timeout</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre>
+</div>
+
+<p>Using this method of creating custom options hashes mean we can make internal changes to MCollective without affecting your code in the future.</p>
+
+<h2 id="sending-simplerpc-requests-without-discovery-and-blocking">Sending SimpleRPC requests without discovery and blocking</h2>
+
+<p>Usually this section will not apply to you.  The client libraries support sending a request without waiting for a reply.  This could be useful if you want to clean yum caches but don&rsquo;t really care if it actually happens everywhere.</p>
+
+<p>You will loose these abilities:</p>
+
+<ul>
+  <li>Knowing if your request was received by any agents</li>
+  <li>Any stats about processing times etc</li>
+  <li>Any information about the success or failure of your request</li>
+</ul>
+
+<p>The above should make it clear already that this is a limited use case, it&rsquo;s essentially a broadcast request with no feedback loop.</p>
+
+<p>The code below will send a request to the <em>runonce</em> action for an agent <em>puppetd</em>, once the request is dispatched I will have no idea if it got handled etc, my code will just continue onwards.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">p</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;puppetd&quot;</span><span class="p">)</span>
+
+<span class="nb">p</span><span class="o">.</span><span class="n">identity_filter</span> <span class="s2">&quot;your.box.com&quot;</span>
+<span class="n">reqid</span> <span class="o">=</span> <span class="nb">p</span><span class="o">.</span><span class="n">runonce</span><span class="p">(</span><span class="ss">:forcerun</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:process_results</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>This will honor any attached filters set either programatically or through the command line, it will send the request but will
+just not handle any responses.  All it will do is return the request id.</p>
+
+<h2 id="doing-your-own-discovery">Doing your own discovery</h2>
+<p>For web applications you&rsquo;d probably use cached copied of Registration data to do discovery rather than wait for MC to do discovery between each request.</p>
+
+<p>To do this, you&rsquo;ll need to construct a filter and a list of expected hosts and then do a custom call:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">puppet</span> <span class="o">=</span> <span class="n">rpcclient</span><span class="p">(</span><span class="s2">&quot;puppetd&quot;</span><span class="p">)</span>
+
+<span class="n">printrpc</span> <span class="n">puppet</span><span class="o">.</span><span class="n">custom_request</span><span class="p">(</span><span class="s2">&quot;runonce&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:forcerun</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">},</span> <span class="s2">&quot;your.box.com&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;identity&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;your.box.com&quot;</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>This will do a call with exactly the same stats, block and other semantics as a normal call like:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">printrpc</span> <span class="n">puppet</span><span class="o">.</span><span class="n">runonce</span><span class="p">(</span><span class="ss">:forcerun</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>But instead of doing any discovery it will use the host list and filter you supplied in the call.</p>
+
+<h2 id="the-rpcutil-helper-agent">The <em>rpcutil</em> Helper Agent</h2>
+
+<p>A helper agent called <a href="/mcollective/reference/plugins/rpcutil.html"><em>rpcutil</em></a> is included from version <em>0.4.9</em> onward that helps you gather stats, inventory etc about the running daemon.</p>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#the-basic-client">The Basic Client</a></li><li><a href="#call-an-agent-and-print-the-result">Call an Agent and print the result</a></li><li><a href="#adjusting-the-output">Adjusting the output</a></li><li><a href="#verbosely-displaying-results">Verbosely displaying results</a></li><li><a href="#disabling-the-progress-indicator">Disabling the progress indicator</a></li><li><a href="#saving-the-reports-in-variables-without-printing">Saving the reports in variables without printing</a></li><li><a href="#applying-filters-programatically">Applying filters programatically</a></li><li><a href="#resetting-filters-to-empty">Resetting filters to empty</a></li><li><a href="#forcing-rediscovery">Forcing Rediscovery</a></li><li><a href="#only-sending-requests-to-a-subset-of-discovered-nodes">Only sending requests to a subset of discovered nodes</a></li><li><a href="#gaining-access-to-the-full-mcollectiveclient">Gaining access to the full MCollective::Client</a></li><li><a href="#dealing-with-the-results-directly">Dealing with the results directly</a></li><li><a href="#results-and-exceptions">Results and Exceptions</a></li><li><a href="#simple-rpc-style-results">Simple RPC style results</a></li><li><a href="#gaining-access-to-mcollectiveclientreq-results">Gaining access to MCollective::Client#req results</a></li><li><a href="#adding-custom-command-line-options">Adding custom command line options</a></li><li><a href="#disabling-command-line-parsing-and-supplying-your-options-programatically">Disabling command line parsing and supplying your options programatically</a></li><li><a href="#sending-simplerpc-requests-without-discovery-and-blocking">Sending SimpleRPC requests without discovery and blocking</a></li><li><a href="#doing-your-own-discovery">Doing your own discovery</a></li><li><a href="#">Helper Agent</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

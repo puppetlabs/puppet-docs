@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Configuration Reference</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Configuration Reference</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="configuration-reference">Configuration Reference</h1>
+
+<p><strong>This page is autogenerated; any changes will get overwritten</strong> <em>(last generated on Fri Oct 08 06:41:53 +1100 2010)</em></p>
+
+<h2 id="specifying-configuration-parameters">Specifying Configuration Parameters</h2>
+
+<h3 id="on-the-command-line">On The Command-Line</h3>
+
+<p>Every Puppet executable (with the exception of <code>puppetdoc</code>) accepts all of
+the parameters below, but not all of the arguments make sense for every executable.</p>
+
+<p>I have tried to be as thorough as possible in the descriptions of the
+arguments, so it should be obvious whether an argument is appropriate or not.</p>
+
+<p>These parameters can be supplied to the executables either as command-line
+options or in the configuration file.  For instance, the command-line
+invocation below would set the configuration directory to <code>/private/puppet</code>:</p>
+
+<pre><code>$ puppet agent --confdir=/private/puppet
+</code></pre>
+
+<p>Note that boolean options are turned on and off with a slightly different
+syntax on the command line:</p>
+
+<pre><code>$ puppet agent --storeconfigs
+
+$ puppet agent --no-storeconfigs
+</code></pre>
+
+<p>The invocations above will enable and disable, respectively, the storage of
+the client configuration.</p>
+
+<h3 id="configuration-files">Configuration Files</h3>
+
+<p>As mentioned above, the configuration parameters can also be stored in a
+configuration file, located in the configuration directory.  As root, the
+default configuration directory is <code>/etc/puppet</code>, and as a regular user, the
+default configuration directory is <code>~user/.puppet</code>.  As of 0.23.0, all
+executables look for <code>puppet.conf</code> in their configuration directory
+(although they previously looked for separate files).  For example,
+<code>puppet.conf</code> is located at <code>/etc/puppet/puppet.conf</code> as <code>root</code> and
+<code>~user/.puppet/puppet.conf</code> as a regular user by default.</p>
+
+<p>All executables will set any parameters set within the <code>[main]</code> section,
+and each executable will also use one of the <code>[master]</code>, <code>[agent]</code>.</p>
+
+<h4 id="file-format">File Format</h4>
+
+<p>The file follows INI-style formatting.  Here is an example of a very simple
+<code>puppet.conf</code> file:</p>
+
+<pre><code>[main]
+  confdir = /private/puppet
+  storeconfigs = true
+</code></pre>
+
+<p>Note that boolean parameters must be explicitly specified as <code>true</code> or
+<code>false</code> as seen above.</p>
+
+<p>If you need to change file parameters (e.g., reset the mode or owner), do
+so within curly braces on the same line:</p>
+
+<pre><code>[main]
+  myfile = /tmp/whatever {owner = root, mode = 644}
+</code></pre>
+
+<p>If you&rsquo;re starting out with a fresh configuration, you may wish to let
+the executable generate a template configuration file for you by invoking
+the executable in question with the <code>--genconfig</code> command.  The executable
+will print a template configuration to standard output, which can be
+redirected to a file like so:</p>
+
+<pre><code>$ puppet agent --genconfig &gt; /etc/puppet/puppet.conf
+</code></pre>
+
+<p>Note that this invocation will replace the contents of any pre-existing
+<code>puppet.conf</code> file, so make a backup of your present config if it contains
+valuable information.</p>
+
+<p>Like the <code>--genconfig</code> argument, the executables also accept a <code>--genmanifest</code>
+argument, which will generate a manifest that can be used to manage all of
+Puppet&rsquo;s directories and files and prints it to standard output.  This can
+likewise be redirected to a file:</p>
+
+<pre><code>$ puppet agent --genmanifest &gt; /etc/puppet/manifests/site.pp
+</code></pre>
+
+<p>Puppet can also create user and group accounts for itself (one <code>puppet</code> group
+and one <code>puppet</code> user) if it is invoked as <code>root</code> with the <code>--mkusers</code> argument:</p>
+
+<pre><code>$ puppet agent --mkusers
+</code></pre>
+
+<h2 id="signals">Signals</h2>
+
+<p>The <code>puppet agent</code> and <code>puppet master</code> executables catch some signals for special
+handling.  Both daemons catch (<code>SIGHUP</code>), which forces the server to restart
+tself.  Predictably, interrupt and terminate (<code>SIGINT</code> and <code>SIGTERM</code>) will shut
+down the server, whether it be an instance of <code>puppet agent</code> or <code>puppet master</code>.</p>
+
+<p>Sending the <code>SIGUSR1</code> signal to an instance of <code>puppet agent</code> will cause it to
+immediately begin a new configuration transaction with the server.  This
+signal has no effect on <code>puppet master</code>.</p>
+
+<h2 id="configuration-parameter-reference">Configuration Parameter Reference</h2>
+
+<p>Below is a list of all documented parameters.  Not all of them are valid with all
+Puppet executables, but the executables will ignore any inappropriate values.</p>
+
+<h3 id="asyncstoreconfigs">async_storeconfigs</h3>
+
+<p>Whether to use a queueing system to provide asynchronous database integration. Requires that <code>puppetqd</code> be running and that &lsquo;PSON&rsquo; support for ruby be installed.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="authconfig">authconfig</h3>
+
+<p>The configuration file that defines the rights to the different namespaces and methods.  This can be used as a coarse-grained authorization system for both <code>puppet agent</code> and <code>puppet master</code>.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/namespaceauth.conf</li>
+</ul>
+
+<h3 id="autoflush">autoflush</h3>
+
+<p>Whether log files should always flush to disk.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="autosign">autosign</h3>
+
+<p>Whether to enable autosign.  Valid values are true (which autosigns any key request, and is a very bad idea), false (which never autosigns any key request), and the path to a file, which uses that configuration file to determine which keys to sign.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/autosign.conf</li>
+</ul>
+
+<h3 id="bindaddress">bindaddress</h3>
+
+<p>The address a listening server should bind to.  Mongrel servers default to 127.0.0.1 and WEBrick defaults to 0.0.0.0.</p>
+
+<h3 id="bucketdir">bucketdir</h3>
+
+<p>Where FileBucket files are stored.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/bucket</li>
+</ul>
+
+<h3 id="ca">ca</h3>
+
+<p>Wether the master should function as a certificate authority.</p>
+
+<ul>
+  <li><em>Default</em>: true</li>
+</ul>
+
+<h3 id="cadays">ca_days</h3>
+
+<p>How long a certificate should be valid. This parameter is deprecated, use ca_ttl instead</p>
+
+<h3 id="camd">ca_md</h3>
+
+<p>The type of hash used in certificates.</p>
+
+<ul>
+  <li><em>Default</em>: md5</li>
+</ul>
+
+<h3 id="caname">ca_name</h3>
+
+<p>The name to use the Certificate Authority certificate.</p>
+
+<ul>
+  <li><em>Default</em>: Puppet CA: $certname</li>
+</ul>
+
+<h3 id="caport">ca_port</h3>
+
+<p>The port to use for the certificate authority.</p>
+
+<ul>
+  <li><em>Default</em>: $masterport</li>
+</ul>
+
+<h3 id="caserver">ca_server</h3>
+
+<p>The server to use for certificate authority requests.  It&rsquo;s a separate server because it cannot and does not need to horizontally scale.</p>
+
+<ul>
+  <li><em>Default</em>: $server</li>
+</ul>
+
+<h3 id="cattl">ca_ttl</h3>
+
+<p>The default TTL for new certificates; valid values must be an integer, optionally followed by one of the units &lsquo;y&rsquo; (years of 365 days), &lsquo;d&rsquo; (days), &lsquo;h&rsquo; (hours), or &lsquo;s&rsquo; (seconds). The unit defaults to seconds. If this parameter is set, ca_days is ignored. Examples are &lsquo;3600&rsquo; (one hour) and &lsquo;1825d&rsquo;, which is the same as &lsquo;5y&rsquo; (5 years) </p>
+
+<ul>
+  <li><em>Default</em>: 5y</li>
+</ul>
+
+<h3 id="cacert">cacert</h3>
+
+<p>The CA certificate.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/ca_crt.pem</li>
+</ul>
+
+<h3 id="cacrl">cacrl</h3>
+
+<p>The certificate revocation list (CRL) for the CA. Will be used if present but otherwise ignored.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/ca_crl.pem</li>
+</ul>
+
+<h3 id="cadir">cadir</h3>
+
+<p>The root directory for the certificate authority.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/ca</li>
+</ul>
+
+<h3 id="cakey">cakey</h3>
+
+<p>The CA private key.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/ca_key.pem</li>
+</ul>
+
+<h3 id="capass">capass</h3>
+
+<p>Where the CA stores the password for the private key</p>
+
+<ul>
+  <li><em>Default</em>: $caprivatedir/ca.pass</li>
+</ul>
+
+<h3 id="caprivatedir">caprivatedir</h3>
+
+<p>Where the CA stores private certificate information.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/private</li>
+</ul>
+
+<h3 id="capub">capub</h3>
+
+<p>The CA public key.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/ca_pub.pem</li>
+</ul>
+
+<h3 id="catalogformat">catalog_format</h3>
+
+<p>(Deprecated for &lsquo;preferred_serialization_format&rsquo;) What format to use to dump the catalog.  Only supports &lsquo;marshal&rsquo; and &lsquo;yaml&rsquo;.  Only matters on the client, since it asks the server for a specific format.</p>
+
+<h3 id="catalogterminus">catalog_terminus</h3>
+
+<p>Where to get node catalogs.  This is useful to change if, for instance, you&rsquo;d like to pre-compile catalogs and store them in memcached or some other easily-accessed store.</p>
+
+<ul>
+  <li><em>Default</em>: compiler</li>
+</ul>
+
+<h3 id="certinventory">cert_inventory</h3>
+
+<p>A Complete listing of all certificates</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/inventory.txt</li>
+</ul>
+
+<h3 id="certdir">certdir</h3>
+
+<p>The certificate directory.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/certs</li>
+</ul>
+
+<h3 id="certdnsnames">certdnsnames</h3>
+
+<p>The DNS names on the Server certificate as a colon-separated list. If it&rsquo;s anything other than an empty string, it will be used as an alias in the created certificate.  By default, only the server gets an alias set up, and only for &lsquo;puppet&rsquo;.</p>
+
+<h3 id="certificaterevocation">certificate_revocation</h3>
+
+<p>Whether certificate revocation should be supported by downloading a Certificate Revocation List (CRL) to all clients.  If enabled, CA chaining will almost definitely not work.</p>
+
+<ul>
+  <li><em>Default</em>: true</li>
+</ul>
+
+<h3 id="certname">certname</h3>
+
+<p>The name to use when handling certificates.  Defaults to the fully qualified domain name.</p>
+
+<ul>
+  <li><em>Default</em>: pelin.lovedthanlost.net</li>
+</ul>
+
+<h3 id="classfile">classfile</h3>
+
+<p>The file in which puppet agent stores a list of the classes associated with the retrieved configuration.  Can be loaded in the separate <code>puppet</code> executable using the <code>--loadclasses</code> option.</p>
+
+<ul>
+  <li><em>Default</em>: $statedir/classes.txt</li>
+</ul>
+
+<h3 id="clientdatadir">client_datadir</h3>
+
+<p>The directory in which serialized data is stored on the client.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/client_data</li>
+</ul>
+
+<h3 id="clientbucketdir">clientbucketdir</h3>
+
+<p>Where FileBucket files are stored locally.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/clientbucket</li>
+</ul>
+
+<h3 id="clientyamldir">clientyamldir</h3>
+
+<p>The directory in which client-side YAML data is stored.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/client_yaml</li>
+</ul>
+
+<h3 id="code">code</h3>
+
+<p>Code to parse directly.  This is essentially only used by <code>puppet</code>, and should only be set if you&rsquo;re writing your own Puppet executable</p>
+
+<h3 id="color">color</h3>
+
+<p>Whether to use colors when logging to the console. Valid values are <code>ansi</code> (equivalent to <code>true</code>), <code>html</code> (mostly used during testing with TextMate), and <code>false</code>, which produces no color.</p>
+
+<ul>
+  <li><em>Default</em>: ansi</li>
+</ul>
+
+<h3 id="confdir">confdir</h3>
+
+<p>The main Puppet configuration directory.  The default for this parameter is calculated based on the user.  If the process is running as root or the user that <code>puppet master</code> is supposed to run as, it defaults to a system directory, but if it&rsquo;s running as any other user, it defaults to being in <code>~</code>.</p>
+
+<ul>
+  <li><em>Default</em>: /etc/puppet</li>
+</ul>
+
+<h3 id="config">config</h3>
+
+<p>The configuration file for doc.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/puppet.conf</li>
+</ul>
+
+<h3 id="configversion">config_version</h3>
+
+<p>How to determine the configuration version.  By default, it will be the time that the configuration is parsed, but you can provide a shell script to override how the version is determined.  The output of this script will be added to every log message in the reports, allowing you to correlate changes on your hosts to the source version on the server.</p>
+
+<h3 id="configprint">configprint</h3>
+
+<p>Print the value of a specific configuration parameter.  If a parameter is provided for this, then the value is printed and puppet exits.  Comma-separate multiple values.  For a list of all values, specify &lsquo;all&rsquo;.  This feature is only available in Puppet versions higher than 0.18.4.</p>
+
+<h3 id="configtimeout">configtimeout</h3>
+
+<p>How long the client should wait for the configuration to be retrieved before considering it a failure.  This can help reduce flapping if too many clients contact the server at one time.</p>
+
+<ul>
+  <li><em>Default</em>: 120</li>
+</ul>
+
+<h3 id="couchdburl">couchdb_url</h3>
+
+<p>The url where the puppet couchdb database will be created</p>
+
+<ul>
+  <li><em>Default</em>: http://127.0.0.1:5984/puppet</li>
+</ul>
+
+<h3 id="csrdir">csrdir</h3>
+
+<p>Where the CA stores certificate requests</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/requests</li>
+</ul>
+
+<h3 id="daemonize">daemonize</h3>
+
+<p>Send the process into the background.  This is the default.</p>
+
+<ul>
+  <li><em>Default</em>: true</li>
+</ul>
+
+<h3 id="dbadapter">dbadapter</h3>
+
+<p>The type of database to use.</p>
+
+<ul>
+  <li><em>Default</em>: sqlite3</li>
+</ul>
+
+<h3 id="dbconnections">dbconnections</h3>
+
+<p>The number of database connections. Only used when networked databases are used.  Will be ignored if the value is an empty string or is less than 1.</p>
+
+<ul>
+  <li><em>Default</em>: 0</li>
+</ul>
+
+<h3 id="dblocation">dblocation</h3>
+
+<p>The database cache for client configurations.  Used for querying within the language.</p>
+
+<ul>
+  <li><em>Default</em>: $statedir/clientconfigs.sqlite3</li>
+</ul>
+
+<h3 id="dbmigrate">dbmigrate</h3>
+
+<p>Whether to automatically migrate the database.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="dbname">dbname</h3>
+
+<p>The name of the database to use.</p>
+
+<ul>
+  <li><em>Default</em>: puppet</li>
+</ul>
+
+<h3 id="dbpassword">dbpassword</h3>
+
+<p>The database password for caching. Only used when networked databases are used.</p>
+
+<ul>
+  <li><em>Default</em>: puppet</li>
+</ul>
+
+<h3 id="dbport">dbport</h3>
+
+<p>The database password for caching. Only used when networked databases are used.</p>
+
+<h3 id="dbserver">dbserver</h3>
+
+<p>The database server for caching. Only used when networked databases are used.</p>
+
+<ul>
+  <li><em>Default</em>: localhost</li>
+</ul>
+
+<h3 id="dbsocket">dbsocket</h3>
+
+<p>The database socket location. Only used when networked databases are used.  Will be ignored if the value is an empty string.</p>
+
+<h3 id="dbuser">dbuser</h3>
+
+<p>The database user for caching. Only used when networked databases are used.</p>
+
+<ul>
+  <li><em>Default</em>: puppet</li>
+</ul>
+
+<h3 id="diff">diff</h3>
+
+<p>Which diff command to use when printing differences between files.</p>
+
+<ul>
+  <li><em>Default</em>: diff</li>
+</ul>
+
+<h3 id="diffargs">diff_args</h3>
+
+<p>Which arguments to pass to the diff command when printing differences between files.</p>
+
+<ul>
+  <li><em>Default</em>: -u</li>
+</ul>
+
+<h3 id="downcasefacts">downcasefacts</h3>
+
+<p>Whether facts should be made all lowercase when sent to the server.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="dynamicfacts">dynamicfacts</h3>
+
+<p>Facts that are dynamic; these facts will be ignored when deciding whether changed facts should result in a recompile.  Multiple facts should be comma-separated.</p>
+
+<ul>
+  <li><em>Default</em>: memorysize,memoryfree,swapsize,swapfree</li>
+</ul>
+
+<h3 id="environment">environment</h3>
+
+<p>The environment Puppet is running in.  For clients (e.g., <code>puppet agent</code>) this determines the environment itself, which is used to find modules and much more.  For servers (i.e., <code>puppet master</code>) this provides the default environment for nodes we know nothing about.</p>
+
+<ul>
+  <li><em>Default</em>: production</li>
+</ul>
+
+<h3 id="evaltrace">evaltrace</h3>
+
+<p>Whether each resource should log when it is being evaluated.  This allows you to interactively see exactly what is being done.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="externalnodes">external_nodes</h3>
+
+<p>An external command that can produce node information.  The output must be a YAML dump of a hash, and that hash must have one or both of <code>classes</code> and <code>parameters</code>, where <code>classes</code> is an array and <code>parameters</code> is a hash.  For unknown nodes, the commands should exit with a non-zero exit code. This command makes it straightforward to store your node mapping information in other data sources like databases.</p>
+
+<ul>
+  <li><em>Default</em>: none</li>
+</ul>
+
+<h3 id="factdest">factdest</h3>
+
+<p>Where Puppet should store facts that it pulls down from the central server.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/facts/</li>
+</ul>
+
+<h3 id="factpath">factpath</h3>
+
+<p>Where Puppet should look for facts.  Multiple directories should be colon-separated, like normal PATH variables.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/lib/facter:$vardir/facts</li>
+</ul>
+
+<h3 id="factsterminus">facts_terminus</h3>
+
+<p>The node facts terminus.</p>
+
+<ul>
+  <li><em>Default</em>: facter</li>
+</ul>
+
+<h3 id="factsignore">factsignore</h3>
+
+<p>What files to ignore when pulling down facts.</p>
+
+<ul>
+  <li><em>Default</em>: .svn CVS</li>
+</ul>
+
+<h3 id="factsource">factsource</h3>
+
+<p>From where to retrieve facts.  The standard Puppet <code>file</code> type is used for retrieval, so anything that is a valid file source can be used here.</p>
+
+<ul>
+  <li><em>Default</em>: puppet://$server/facts/</li>
+</ul>
+
+<h3 id="factsync">factsync</h3>
+
+<p>Whether facts should be synced with the central server.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="fileserverconfig">fileserverconfig</h3>
+
+<p>Where the fileserver configuration is stored.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/fileserver.conf</li>
+</ul>
+
+<h3 id="filetimeout">filetimeout</h3>
+
+<p>The minimum time to wait (in seconds) between checking for updates in configuration files.  This timeout determines how quickly Puppet checks whether a file (such as manifests or templates) has changed on disk.</p>
+
+<ul>
+  <li><em>Default</em>: 15</li>
+</ul>
+
+<h3 id="freezemain">freeze_main</h3>
+
+<p>Freezes the &lsquo;main&rsquo; class, disallowing any code to be added to it.  This essentially means that you can&rsquo;t have any code outside of a node, class, or definition other than in the site manifest.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="genconfig">genconfig</h3>
+
+<p>Whether to just print a configuration to stdout and exit.  Only makes sense when used interactively.  Takes into account arguments specified on the CLI.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="genmanifest">genmanifest</h3>
+
+<p>Whether to just print a manifest to stdout and exit.  Only makes sense when used interactively.  Takes into account arguments specified on the CLI.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="graph">graph</h3>
+
+<p>Whether to create dot graph files for the different configuration graphs.  These dot files can be interpreted by tools like OmniGraffle or dot (which is part of ImageMagick).</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="graphdir">graphdir</h3>
+
+<p>Where to store dot-outputted graphs.</p>
+
+<ul>
+  <li><em>Default</em>: $statedir/graphs</li>
+</ul>
+
+<h3 id="group">group</h3>
+
+<p>The group puppet master should run as.</p>
+
+<ul>
+  <li><em>Default</em>: puppet</li>
+</ul>
+
+<h3 id="hostcert">hostcert</h3>
+
+<p>Where individual hosts store and look for their certificates.</p>
+
+<ul>
+  <li><em>Default</em>: $certdir/$certname.pem</li>
+</ul>
+
+<h3 id="hostcrl">hostcrl</h3>
+
+<p>Where the host&rsquo;s certificate revocation list can be found. This is distinct from the certificate authority&rsquo;s CRL.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/crl.pem</li>
+</ul>
+
+<h3 id="hostcsr">hostcsr</h3>
+
+<p>Where individual hosts store and look for their certificate requests.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/csr_$certname.pem</li>
+</ul>
+
+<h3 id="hostprivkey">hostprivkey</h3>
+
+<p>Where individual hosts store and look for their private key.</p>
+
+<ul>
+  <li><em>Default</em>: $privatekeydir/$certname.pem</li>
+</ul>
+
+<h3 id="hostpubkey">hostpubkey</h3>
+
+<p>Where individual hosts store and look for their public key.</p>
+
+<ul>
+  <li><em>Default</em>: $publickeydir/$certname.pem</li>
+</ul>
+
+<h3 id="httpcompression">http_compression</h3>
+
+<p>Allow http compression in REST communication with the master. This setting might improve performance for agent -&gt; master communications over slow WANs. Your puppetmaster needs to support compression (usually by activating some settings in a reverse-proxy in front of the puppetmaster, which rules out webrick). It is harmless to activate this settings if your master doesn&rsquo;t support compression, but if it supports it, this setting might reduce performance on high-speed LANs.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="httpproxyhost">http_proxy_host</h3>
+
+<p>The HTTP proxy host to use for outgoing connections.  Note: You may need to use a FQDN for the server hostname when using a proxy.</p>
+
+<ul>
+  <li><em>Default</em>: none</li>
+</ul>
+
+<h3 id="httpproxyport">http_proxy_port</h3>
+
+<p>The HTTP proxy port to use for outgoing connections</p>
+
+<ul>
+  <li><em>Default</em>: 3128</li>
+</ul>
+
+<h3 id="httplog">httplog</h3>
+
+<p>Where the puppet agent web server logs.</p>
+
+<ul>
+  <li><em>Default</em>: $logdir/http.log</li>
+</ul>
+
+<h3 id="ignorecache">ignorecache</h3>
+
+<p>Ignore cache and always recompile the configuration.  This is useful for testing new configurations, where the local cache may in fact be stale even if the timestamps are up to date - if the facts change or if the server changes.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="ignoreimport">ignoreimport</h3>
+
+<p>A parameter that can be used in commit hooks, since it enables you to parse-check a single file rather than requiring that all files exist.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="ignoreschedules">ignoreschedules</h3>
+
+<p>Boolean; whether puppet agent should ignore schedules.  This is useful for initial puppet agent runs.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="keylength">keylength</h3>
+
+<p>The bit length of keys.</p>
+
+<ul>
+  <li><em>Default</em>: 1024</li>
+</ul>
+
+<h3 id="ldapattrs">ldapattrs</h3>
+
+<p>The LDAP attributes to include when querying LDAP for nodes.  All returned attributes are set as variables in the top-level scope. Multiple values should be comma-separated.  The value &lsquo;all&rsquo; returns all attributes.</p>
+
+<ul>
+  <li><em>Default</em>: all</li>
+</ul>
+
+<h3 id="ldapbase">ldapbase</h3>
+
+<p>The search base for LDAP searches.  It&rsquo;s impossible to provide a meaningful default here, although the LDAP libraries might have one already set.  Generally, it should be the &lsquo;ou=Hosts&rsquo; branch under your main directory.</p>
+
+<h3 id="ldapclassattrs">ldapclassattrs</h3>
+
+<p>The LDAP attributes to use to define Puppet classes.  Values should be comma-separated.</p>
+
+<ul>
+  <li><em>Default</em>: puppetclass</li>
+</ul>
+
+<h3 id="ldapnodes">ldapnodes</h3>
+
+<p>Whether to search for node configurations in LDAP.  See http://projects.puppetlabs.com/projects/puppet/wiki/LDAP_Nodes for more information.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="ldapparentattr">ldapparentattr</h3>
+
+<p>The attribute to use to define the parent node.</p>
+
+<ul>
+  <li><em>Default</em>: parentnode</li>
+</ul>
+
+<h3 id="ldappassword">ldappassword</h3>
+
+<p>The password to use to connect to LDAP.</p>
+
+<h3 id="ldapport">ldapport</h3>
+
+<p>The LDAP port.  Only used if <code>ldapnodes</code> is enabled.</p>
+
+<ul>
+  <li><em>Default</em>: 389</li>
+</ul>
+
+<h3 id="ldapserver">ldapserver</h3>
+
+<p>The LDAP server.  Only used if <code>ldapnodes</code> is enabled.</p>
+
+<ul>
+  <li><em>Default</em>: ldap</li>
+</ul>
+
+<h3 id="ldapssl">ldapssl</h3>
+
+<p>Whether SSL should be used when searching for nodes. Defaults to false because SSL usually requires certificates to be set up on the client side.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="ldapstackedattrs">ldapstackedattrs</h3>
+
+<p>The LDAP attributes that should be stacked to arrays by adding the values in all hierarchy elements of the tree.  Values should be comma-separated.</p>
+
+<ul>
+  <li><em>Default</em>: puppetvar</li>
+</ul>
+
+<h3 id="ldapstring">ldapstring</h3>
+
+<p>The search string used to find an LDAP node.</p>
+
+<ul>
+  <li><em>Default</em>: (&amp;(objectclass=puppetClient)(cn=%s))</li>
+</ul>
+
+<h3 id="ldaptls">ldaptls</h3>
+
+<p>Whether TLS should be used when searching for nodes. Defaults to false because TLS usually requires certificates to be set up on the client side.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="ldapuser">ldapuser</h3>
+
+<p>The user to use to connect to LDAP.  Must be specified as a full DN.</p>
+
+<h3 id="lexical">lexical</h3>
+
+<p>Whether to use lexical scoping (vs. dynamic).</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="libdir">libdir</h3>
+
+<p>An extra search path for Puppet.  This is only useful for those files that Puppet will load on demand, and is only guaranteed to work for those cases.  In fact, the autoload mechanism is responsible for making sure this directory is in Ruby&rsquo;s search path</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/lib</li>
+</ul>
+
+<h3 id="listen">listen</h3>
+
+<p>Whether puppet agent should listen for connections.  If this is true, then by default only the <code>runner</code> server is started, which allows remote authorized and authenticated nodes to connect and trigger <code>puppet agent</code> runs.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="localcacert">localcacert</h3>
+
+<p>Where each client stores the CA certificate.</p>
+
+<ul>
+  <li><em>Default</em>: $certdir/ca.pem</li>
+</ul>
+
+<h3 id="localconfig">localconfig</h3>
+
+<p>Where puppet agent caches the local configuration.  An extension indicating the cache format is added automatically.</p>
+
+<ul>
+  <li><em>Default</em>: $statedir/localconfig</li>
+</ul>
+
+<h3 id="logdir">logdir</h3>
+
+<p>The Puppet log directory.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/log</li>
+</ul>
+
+<h3 id="manageinternalfilepermissions">manage_internal_file_permissions</h3>
+
+<p>Whether Puppet should manage the owner, group, and mode of files it uses internally</p>
+
+<ul>
+  <li><em>Default</em>: true</li>
+</ul>
+
+<h3 id="manifest">manifest</h3>
+
+<p>The entry-point manifest for puppet master.</p>
+
+<ul>
+  <li><em>Default</em>: $manifestdir/site.pp</li>
+</ul>
+
+<h3 id="manifestdir">manifestdir</h3>
+
+<p>Where puppet master looks for its manifests.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/manifests</li>
+</ul>
+
+<h3 id="masterhttplog">masterhttplog</h3>
+
+<p>Where the puppet master web server logs.</p>
+
+<ul>
+  <li><em>Default</em>: $logdir/masterhttp.log</li>
+</ul>
+
+<h3 id="masterlog">masterlog</h3>
+
+<p>Where puppet master logs.  This is generally not used, since syslog is the default log destination.</p>
+
+<ul>
+  <li><em>Default</em>: $logdir/puppetmaster.log</li>
+</ul>
+
+<h3 id="masterport">masterport</h3>
+
+<p>Which port puppet master listens on.</p>
+
+<ul>
+  <li><em>Default</em>: 8140</li>
+</ul>
+
+<h3 id="maximumuid">maximum_uid</h3>
+
+<p>The maximum allowed UID.  Some platforms use negative UIDs but then ship with tools that do not know how to handle signed ints, so the UIDs show up as huge numbers that can then not be fed back into the system.  This is a hackish way to fail in a slightly more useful way when that happens.</p>
+
+<ul>
+  <li><em>Default</em>: 4294967290</li>
+</ul>
+
+<h3 id="mkusers">mkusers</h3>
+
+<p>Whether to create the necessary user and group that puppet agent will run as.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="modulepath">modulepath</h3>
+
+<p>The search path for modules as a colon-separated list of directories.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/modules:/usr/share/puppet/modules</li>
+</ul>
+
+<h3 id="name">name</h3>
+
+<p>The name of the application, if we are running as one.  The default is essentially $0 without the path or <code>.rb</code>.</p>
+
+<ul>
+  <li><em>Default</em>: doc</li>
+</ul>
+
+<h3 id="nodename">node_name</h3>
+
+<p>How the puppetmaster determines the client&rsquo;s identity and sets the &lsquo;hostname&rsquo;, &lsquo;fqdn&rsquo; and &lsquo;domain&rsquo; facts for use in the manifest, in particular for determining which &lsquo;node&rsquo; statement applies to the client. Possible values are &lsquo;cert&rsquo; (use the subject&rsquo;s CN in the client&rsquo;s certificate) and &lsquo;facter&rsquo; (use the hostname that the client reported in its facts)</p>
+
+<ul>
+  <li><em>Default</em>: cert</li>
+</ul>
+
+<h3 id="nodeterminus">node_terminus</h3>
+
+<p>Where to find information about nodes.</p>
+
+<ul>
+  <li><em>Default</em>: plain</li>
+</ul>
+
+<h3 id="noop">noop</h3>
+
+<p>Whether puppet agent should be run in noop mode.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="onetime">onetime</h3>
+
+<p>Run the configuration once, rather than as a long-running daemon. This is useful for interactively running puppetd.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="parseonly">parseonly</h3>
+
+<p>Just check the syntax of the manifests.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="passfile">passfile</h3>
+
+<p>Where puppet agent stores the password for its private key. Generally unused.</p>
+
+<ul>
+  <li><em>Default</em>: $privatedir/password</li>
+</ul>
+
+<h3 id="path">path</h3>
+
+<p>The shell search path.  Defaults to whatever is inherited from the parent process.</p>
+
+<ul>
+  <li><em>Default</em>: none</li>
+</ul>
+
+<h3 id="pidfile">pidfile</h3>
+
+<p>The pid file</p>
+
+<ul>
+  <li><em>Default</em>: $rundir/$name.pid</li>
+</ul>
+
+<h3 id="plugindest">plugindest</h3>
+
+<p>Where Puppet should store plugins that it pulls down from the central server.</p>
+
+<ul>
+  <li><em>Default</em>: $libdir</li>
+</ul>
+
+<h3 id="pluginsignore">pluginsignore</h3>
+
+<p>What files to ignore when pulling down plugins.</p>
+
+<ul>
+  <li><em>Default</em>: .svn CVS .git</li>
+</ul>
+
+<h3 id="pluginsource">pluginsource</h3>
+
+<p>From where to retrieve plugins.  The standard Puppet <code>file</code> type is used for retrieval, so anything that is a valid file source can be used here.</p>
+
+<ul>
+  <li><em>Default</em>: puppet://$server/plugins</li>
+</ul>
+
+<h3 id="pluginsync">pluginsync</h3>
+
+<p>Whether plugins should be synced with the central server.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="postruncommand">postrun_command</h3>
+
+<p>A command to run after every agent run.  If this command returns a non-zero return code, the entire Puppet run will be considered to have failed, even though it might have performed work during the normal run.</p>
+
+<h3 id="preferredserializationformat">preferred_serialization_format</h3>
+
+<p>The preferred means of serializing ruby instances for passing over the wire.  This won&rsquo;t guarantee that all instances will be serialized using this method, since not all classes can be guaranteed to support this format, but it will be used for all classes that support it.</p>
+
+<ul>
+  <li><em>Default</em>: pson</li>
+</ul>
+
+<h3 id="preruncommand">prerun_command</h3>
+
+<p>A command to run before every agent run.  If this command returns a non-zero return code, the entire Puppet run will fail.</p>
+
+<h3 id="privatedir">privatedir</h3>
+
+<p>Where the client stores private certificate information.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/private</li>
+</ul>
+
+<h3 id="privatekeydir">privatekeydir</h3>
+
+<p>The private key directory.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/private_keys</li>
+</ul>
+
+<h3 id="publickeydir">publickeydir</h3>
+
+<p>The public key directory.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/public_keys</li>
+</ul>
+
+<h3 id="puppetdlockfile">puppetdlockfile</h3>
+
+<p>A lock file to temporarily stop puppet agent from doing anything.</p>
+
+<ul>
+  <li><em>Default</em>: $statedir/puppetdlock</li>
+</ul>
+
+<h3 id="puppetdlog">puppetdlog</h3>
+
+<p>The log file for puppet agent.  This is generally not used.</p>
+
+<ul>
+  <li><em>Default</em>: $logdir/puppetd.log</li>
+</ul>
+
+<h3 id="puppetport">puppetport</h3>
+
+<p>Which port puppet agent listens on.</p>
+
+<ul>
+  <li><em>Default</em>: 8139</li>
+</ul>
+
+<h3 id="queuesource">queue_source</h3>
+
+<p>Which type of queue to use for asynchronous processing.  If your stomp server requires authentication, you can include it in the URI as long as your stomp client library is at least 1.1.1</p>
+
+<ul>
+  <li><em>Default</em>: stomp://localhost:61613/</li>
+</ul>
+
+<h3 id="queuetype">queue_type</h3>
+
+<p>Which type of queue to use for asynchronous processing.</p>
+
+<ul>
+  <li><em>Default</em>: stomp</li>
+</ul>
+
+<h3 id="railsloglevel">rails_loglevel</h3>
+
+<p>The log level for Rails connections.  The value must be a valid log level within Rails.  Production environments normally use <code>info</code> and other environments normally use <code>debug</code>.</p>
+
+<ul>
+  <li><em>Default</em>: info</li>
+</ul>
+
+<h3 id="railslog">railslog</h3>
+
+<p>Where Rails-specific logs are sent</p>
+
+<ul>
+  <li><em>Default</em>: $logdir/rails.log</li>
+</ul>
+
+<h3 id="report">report</h3>
+
+<p>Whether to send reports after every transaction.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="reportport">report_port</h3>
+
+<p>The port to communicate with the report_server.</p>
+
+<ul>
+  <li><em>Default</em>: $masterport</li>
+</ul>
+
+<h3 id="reportserver">report_server</h3>
+
+<p>The server to which to send transaction reports.</p>
+
+<ul>
+  <li><em>Default</em>: $server</li>
+</ul>
+
+<h3 id="reportdir">reportdir</h3>
+
+<p>The directory in which to store reports received from the client.  Each client gets a separate subdirectory.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/reports</li>
+</ul>
+
+<h3 id="reportfrom">reportfrom</h3>
+
+<p>The &lsquo;from&rsquo; email address for the reports.</p>
+
+<ul>
+  <li><em>Default</em>: report@pelin.lovedthanlost.net</li>
+</ul>
+
+<h3 id="reports">reports</h3>
+
+<p>The list of reports to generate.  All reports are looked for in <code>puppet/reports/name.rb</code>, and multiple report names should be comma-separated (whitespace is okay).</p>
+
+<ul>
+  <li><em>Default</em>: store</li>
+</ul>
+
+<h3 id="reportserver-1">reportserver</h3>
+
+<p>(Deprecated for &lsquo;report_server&rsquo;) The server to which to send transaction reports.</p>
+
+<ul>
+  <li><em>Default</em>: $server</li>
+</ul>
+
+<h3 id="reporturl">reporturl</h3>
+
+<p>The URL used by the http reports processor to send reports</p>
+
+<ul>
+  <li><em>Default</em>: http://localhost:3000/reports</li>
+</ul>
+
+<h3 id="reqbits">req_bits</h3>
+
+<p>The bit length of the certificates.</p>
+
+<ul>
+  <li><em>Default</em>: 2048</li>
+</ul>
+
+<h3 id="requestdir">requestdir</h3>
+
+<p>Where host certificate requests are stored.</p>
+
+<ul>
+  <li><em>Default</em>: $ssldir/certificate_requests</li>
+</ul>
+
+<h3 id="restauthconfig">rest_authconfig</h3>
+
+<p>The configuration file that defines the rights to the different rest indirections.  This can be used as a fine-grained authorization system for <code>puppet master</code>.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/auth.conf</li>
+</ul>
+
+<h3 id="rrddir">rrddir</h3>
+
+<p>The directory where RRD database files are stored. Directories for each reporting host will be created under this directory.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/rrd</li>
+</ul>
+
+<h3 id="rrdinterval">rrdinterval</h3>
+
+<p>How often RRD should expect data. This should match how often the hosts report back to the server.</p>
+
+<ul>
+  <li><em>Default</em>: $runinterval</li>
+</ul>
+
+<h3 id="runmode">run_mode</h3>
+
+<p>The effective &lsquo;run mode&rsquo; of the application: master, agent, or user.</p>
+
+<ul>
+  <li><em>Default</em>: master</li>
+</ul>
+
+<h3 id="rundir">rundir</h3>
+
+<p>Where Puppet PID files are kept.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/run</li>
+</ul>
+
+<h3 id="runinterval">runinterval</h3>
+
+<p>How often puppet agent applies the client configuration; in seconds.</p>
+
+<ul>
+  <li><em>Default</em>: 1800</li>
+</ul>
+
+<h3 id="sendmail">sendmail</h3>
+
+<p>Where to find the sendmail binary with which to send email.</p>
+
+<ul>
+  <li><em>Default</em>: /usr/sbin/sendmail</li>
+</ul>
+
+<h3 id="serial">serial</h3>
+
+<p>Where the serial number for certificates is stored.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/serial</li>
+</ul>
+
+<h3 id="server">server</h3>
+
+<p>The server to which server puppet agent should connect</p>
+
+<ul>
+  <li><em>Default</em>: puppet</li>
+</ul>
+
+<h3 id="serverdatadir">server_datadir</h3>
+
+<p>The directory in which serialized data is stored, usually in a subdirectory.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/server_data</li>
+</ul>
+
+<h3 id="servertype">servertype</h3>
+
+<p>The type of server to use.  Currently supported options are webrick and mongrel.  If you use mongrel, you will need a proxy in front of the process or processes, since Mongrel cannot speak SSL.</p>
+
+<ul>
+  <li><em>Default</em>: webrick</li>
+</ul>
+
+<h3 id="showdiff">show_diff</h3>
+
+<p>Whether to print a contextual diff when files are being replaced.  The diff is printed on stdout, so this option is meaningless unless you are running Puppet interactively. This feature currently requires the <code>diff/lcs</code> Ruby library.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="signeddir">signeddir</h3>
+
+<p>Where the CA stores signed certificates.</p>
+
+<ul>
+  <li><em>Default</em>: $cadir/signed</li>
+</ul>
+
+<h3 id="smtpserver">smtpserver</h3>
+
+<p>The server through which to send email reports.</p>
+
+<ul>
+  <li><em>Default</em>: none</li>
+</ul>
+
+<h3 id="splay">splay</h3>
+
+<p>Whether to sleep for a pseudo-random (but consistent) amount of time before a run.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="splaylimit">splaylimit</h3>
+
+<p>The maximum time to delay before runs.  Defaults to being the same as the run interval.</p>
+
+<ul>
+  <li><em>Default</em>: $runinterval</li>
+</ul>
+
+<h3 id="sslclientheader">ssl_client_header</h3>
+
+<p>The header containing an authenticated client&rsquo;s SSL DN.  Only used with Mongrel.  This header must be set by the proxy to the authenticated client&rsquo;s SSL DN (e.g., <code>/CN=puppet.puppetlabs.com</code>). See http://projects.puppetlabs.com/projects/puppet/wiki/Using_Mongrel for more information.</p>
+
+<ul>
+  <li><em>Default</em>: HTTP_X_CLIENT_DN</li>
+</ul>
+
+<h3 id="sslclientverifyheader">ssl_client_verify_header</h3>
+
+<p>The header containing the status message of the client verification. Only used with Mongrel.  This header must be set by the proxy to &lsquo;SUCCESS&rsquo; if the client successfully authenticated, and anything else otherwise. See http://projects.puppetlabs.com/projects/puppet/wiki/Using_Mongrel for more information.</p>
+
+<ul>
+  <li><em>Default</em>: HTTP_X_CLIENT_VERIFY</li>
+</ul>
+
+<h3 id="ssldir">ssldir</h3>
+
+<p>Where SSL certificates are kept.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/ssl</li>
+</ul>
+
+<h3 id="statedir">statedir</h3>
+
+<p>The directory where Puppet state is stored.  Generally, this directory can be removed without causing harm (although it might result in spurious service restarts).</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/state</li>
+</ul>
+
+<h3 id="statefile">statefile</h3>
+
+<p>Where puppet agent and puppet master store state associated with the running configuration.  In the case of puppet master, this file reflects the state discovered through interacting with clients.</p>
+
+<ul>
+  <li><em>Default</em>: $statedir/state.yaml</li>
+</ul>
+
+<h3 id="storeconfigs">storeconfigs</h3>
+
+<p>Whether to store each client&rsquo;s configuration.  This requires ActiveRecord from Ruby on Rails.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="stricthostnamechecking">strict_hostname_checking</h3>
+
+<p>Whether to only search for the complete hostname as it is in the certificate when searching for node information in the catalogs.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="summarize">summarize</h3>
+
+<p>Whether to print a transaction summary.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="syslogfacility">syslogfacility</h3>
+
+<p>What syslog facility to use when logging to syslog.  Syslog has a fixed list of valid facilities, and you must choose one of those; you cannot just make one up.</p>
+
+<ul>
+  <li><em>Default</em>: daemon</li>
+</ul>
+
+<h3 id="tagmap">tagmap</h3>
+
+<p>The mapping between reporting tags and email addresses.</p>
+
+<ul>
+  <li><em>Default</em>: $confdir/tagmail.conf</li>
+</ul>
+
+<h3 id="tags">tags</h3>
+
+<p>Tags to use to find resources.  If this is set, then only resources tagged with the specified tags will be applied. Values must be comma-separated.</p>
+
+<h3 id="templatedir">templatedir</h3>
+
+<p>Where Puppet looks for template files.  Can be a list of colon-seperated directories.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/templates</li>
+</ul>
+
+<h3 id="thinstoreconfigs">thin_storeconfigs</h3>
+
+<p>Boolean; wether storeconfigs store in the database only the facts and exported resources. If true, then storeconfigs performance will be higher and still allow exported/collected resources, but other usage external to Puppet might not work</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="trace">trace</h3>
+
+<p>Whether to print stack traces on some errors</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="usecachedcatalog">use_cached_catalog</h3>
+
+<p>Whether to only use the cached catalog rather than compiling a new catalog on every run.  Puppet can be run with this enabled by default and then selectively disabled when a recompile is desired.</p>
+
+<ul>
+  <li><em>Default</em>: false</li>
+</ul>
+
+<h3 id="usecacheonfailure">usecacheonfailure</h3>
+
+<p>Whether to use the cached configuration when the remote configuration will not compile.  This option is useful for testing new configurations, where you want to fix the broken configuration rather than reverting to a known-good one.</p>
+
+<ul>
+  <li><em>Default</em>: true</li>
+</ul>
+
+<h3 id="user">user</h3>
+
+<p>The user puppet master should run as.</p>
+
+<ul>
+  <li><em>Default</em>: puppet</li>
+</ul>
+
+<h3 id="vardir">vardir</h3>
+
+<p>Where Puppet stores dynamic and growing data.  The default for this parameter is calculated specially, like <code>confdir</code>_.</p>
+
+<ul>
+  <li><em>Default</em>: /var/lib/puppet</li>
+</ul>
+
+<h3 id="yamldir">yamldir</h3>
+
+<p>The directory in which YAML data is stored, usually in a subdirectory.</p>
+
+<ul>
+  <li><em>Default</em>: $vardir/yaml</li>
+</ul>
+
+<h3 id="zlib">zlib</h3>
+
+<p>Boolean; whether to use the zlib library</p>
+
+<ul>
+  <li><em>Default</em>: true</li>
+</ul>
+
+<hr />
+
+<p><em>This page autogenerated on Fri Oct 08 06:41:53 +1100 2010</em></p>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#specifying-configuration-parameters">Specifying Configuration Parameters</a></li><li><a href="#on-the-command-line">On The Command-Line</a></li><li><a href="#configuration-files">Configuration Files</a></li><li><a href="#signals">Signals</a></li><li><a href="#configuration-parameter-reference">Configuration Parameter Reference</a></li><li><a href="#asyncstoreconfigs">async_storeconfigs</a></li><li><a href="#authconfig">authconfig</a></li><li><a href="#autoflush">autoflush</a></li><li><a href="#autosign">autosign</a></li><li><a href="#bindaddress">bindaddress</a></li><li><a href="#bucketdir">bucketdir</a></li><li><a href="#ca">ca</a></li><li><a href="#cadays">ca_days</a></li><li><a href="#camd">ca_md</a></li><li><a href="#caname">ca_name</a></li><li><a href="#caport">ca_port</a></li><li><a href="#caserver">ca_server</a></li><li><a href="#cattl">ca_ttl</a></li><li><a href="#cacert">cacert</a></li><li><a href="#cacrl">cacrl</a></li><li><a href="#cadir">cadir</a></li><li><a href="#cakey">cakey</a></li><li><a href="#capass">capass</a></li><li><a href="#caprivatedir">caprivatedir</a></li><li><a href="#capub">capub</a></li><li><a href="#catalogformat">catalog_format</a></li><li><a href="#catalogterminus">catalog_terminus</a></li><li><a href="#certinventory">cert_inventory</a></li><li><a href="#certdir">certdir</a></li><li><a href="#certdnsnames">certdnsnames</a></li><li><a href="#certificaterevocation">certificate_revocation</a></li><li><a href="#certname">certname</a></li><li><a href="#classfile">classfile</a></li><li><a href="#clientdatadir">client_datadir</a></li><li><a href="#clientbucketdir">clientbucketdir</a></li><li><a href="#clientyamldir">clientyamldir</a></li><li><a href="#code">code</a></li><li><a href="#color">color</a></li><li><a href="#confdir">confdir</a></li><li><a href="#config">config</a></li><li><a href="#configversion">config_version</a></li><li><a href="#configprint">configprint</a></li><li><a href="#configtimeout">configtimeout</a></li><li><a href="#couchdburl">couchdb_url</a></li><li><a href="#csrdir">csrdir</a></li><li><a href="#daemonize">daemonize</a></li><li><a href="#dbadapter">dbadapter</a></li><li><a href="#dbconnections">dbconnections</a></li><li><a href="#dblocation">dblocation</a></li><li><a href="#dbmigrate">dbmigrate</a></li><li><a href="#dbname">dbname</a></li><li><a href="#dbpassword">dbpassword</a></li><li><a href="#dbport">dbport</a></li><li><a href="#dbserver">dbserver</a></li><li><a href="#dbsocket">dbsocket</a></li><li><a href="#dbuser">dbuser</a></li><li><a href="#diff">diff</a></li><li><a href="#diffargs">diff_args</a></li><li><a href="#downcasefacts">downcasefacts</a></li><li><a href="#dynamicfacts">dynamicfacts</a></li><li><a href="#environment">environment</a></li><li><a href="#evaltrace">evaltrace</a></li><li><a href="#externalnodes">external_nodes</a></li><li><a href="#factdest">factdest</a></li><li><a href="#factpath">factpath</a></li><li><a href="#factsterminus">facts_terminus</a></li><li><a href="#factsignore">factsignore</a></li><li><a href="#factsource">factsource</a></li><li><a href="#factsync">factsync</a></li><li><a href="#fileserverconfig">fileserverconfig</a></li><li><a href="#filetimeout">filetimeout</a></li><li><a href="#freezemain">freeze_main</a></li><li><a href="#genconfig">genconfig</a></li><li><a href="#genmanifest">genmanifest</a></li><li><a href="#graph">graph</a></li><li><a href="#graphdir">graphdir</a></li><li><a href="#group">group</a></li><li><a href="#hostcert">hostcert</a></li><li><a href="#hostcrl">hostcrl</a></li><li><a href="#hostcsr">hostcsr</a></li><li><a href="#hostprivkey">hostprivkey</a></li><li><a href="#hostpubkey">hostpubkey</a></li><li><a href="#httpcompression">http_compression</a></li><li><a href="#httpproxyhost">http_proxy_host</a></li><li><a href="#httpproxyport">http_proxy_port</a></li><li><a href="#httplog">httplog</a></li><li><a href="#ignorecache">ignorecache</a></li><li><a href="#ignoreimport">ignoreimport</a></li><li><a href="#ignoreschedules">ignoreschedules</a></li><li><a href="#keylength">keylength</a></li><li><a href="#ldapattrs">ldapattrs</a></li><li><a href="#ldapbase">ldapbase</a></li><li><a href="#ldapclassattrs">ldapclassattrs</a></li><li><a href="#ldapnodes">ldapnodes</a></li><li><a href="#ldapparentattr">ldapparentattr</a></li><li><a href="#ldappassword">ldappassword</a></li><li><a href="#ldapport">ldapport</a></li><li><a href="#ldapserver">ldapserver</a></li><li><a href="#ldapssl">ldapssl</a></li><li><a href="#ldapstackedattrs">ldapstackedattrs</a></li><li><a href="#ldapstring">ldapstring</a></li><li><a href="#ldaptls">ldaptls</a></li><li><a href="#ldapuser">ldapuser</a></li><li><a href="#lexical">lexical</a></li><li><a href="#libdir">libdir</a></li><li><a href="#listen">listen</a></li><li><a href="#localcacert">localcacert</a></li><li><a href="#localconfig">localconfig</a></li><li><a href="#logdir">logdir</a></li><li><a href="#manageinternalfilepermissions">manage_internal_file_permissions</a></li><li><a href="#manifest">manifest</a></li><li><a href="#manifestdir">manifestdir</a></li><li><a href="#masterhttplog">masterhttplog</a></li><li><a href="#masterlog">masterlog</a></li><li><a href="#masterport">masterport</a></li><li><a href="#maximumuid">maximum_uid</a></li><li><a href="#mkusers">mkusers</a></li><li><a href="#modulepath">modulepath</a></li><li><a href="#name">name</a></li><li><a href="#nodename">node_name</a></li><li><a href="#nodeterminus">node_terminus</a></li><li><a href="#noop">noop</a></li><li><a href="#onetime">onetime</a></li><li><a href="#parseonly">parseonly</a></li><li><a href="#passfile">passfile</a></li><li><a href="#path">path</a></li><li><a href="#pidfile">pidfile</a></li><li><a href="#plugindest">plugindest</a></li><li><a href="#pluginsignore">pluginsignore</a></li><li><a href="#pluginsource">pluginsource</a></li><li><a href="#pluginsync">pluginsync</a></li><li><a href="#postruncommand">postrun_command</a></li><li><a href="#preferredserializationformat">preferred_serialization_format</a></li><li><a href="#preruncommand">prerun_command</a></li><li><a href="#privatedir">privatedir</a></li><li><a href="#privatekeydir">privatekeydir</a></li><li><a href="#publickeydir">publickeydir</a></li><li><a href="#puppetdlockfile">puppetdlockfile</a></li><li><a href="#puppetdlog">puppetdlog</a></li><li><a href="#puppetport">puppetport</a></li><li><a href="#queuesource">queue_source</a></li><li><a href="#queuetype">queue_type</a></li><li><a href="#railsloglevel">rails_loglevel</a></li><li><a href="#railslog">railslog</a></li><li><a href="#report">report</a></li><li><a href="#reportport">report_port</a></li><li><a href="#reportserver">report_server</a></li><li><a href="#reportdir">reportdir</a></li><li><a href="#reportfrom">reportfrom</a></li><li><a href="#reports">reports</a></li><li><a href="#reportserver-1">reportserver</a></li><li><a href="#reporturl">reporturl</a></li><li><a href="#reqbits">req_bits</a></li><li><a href="#requestdir">requestdir</a></li><li><a href="#restauthconfig">rest_authconfig</a></li><li><a href="#rrddir">rrddir</a></li><li><a href="#rrdinterval">rrdinterval</a></li><li><a href="#runmode">run_mode</a></li><li><a href="#rundir">rundir</a></li><li><a href="#runinterval">runinterval</a></li><li><a href="#sendmail">sendmail</a></li><li><a href="#serial">serial</a></li><li><a href="#server">server</a></li><li><a href="#serverdatadir">server_datadir</a></li><li><a href="#servertype">servertype</a></li><li><a href="#showdiff">show_diff</a></li><li><a href="#signeddir">signeddir</a></li><li><a href="#smtpserver">smtpserver</a></li><li><a href="#splay">splay</a></li><li><a href="#splaylimit">splaylimit</a></li><li><a href="#sslclientheader">ssl_client_header</a></li><li><a href="#sslclientverifyheader">ssl_client_verify_header</a></li><li><a href="#ssldir">ssldir</a></li><li><a href="#statedir">statedir</a></li><li><a href="#statefile">statefile</a></li><li><a href="#storeconfigs">storeconfigs</a></li><li><a href="#stricthostnamechecking">strict_hostname_checking</a></li><li><a href="#summarize">summarize</a></li><li><a href="#syslogfacility">syslogfacility</a></li><li><a href="#tagmap">tagmap</a></li><li><a href="#tags">tags</a></li><li><a href="#templatedir">templatedir</a></li><li><a href="#thinstoreconfigs">thin_storeconfigs</a></li><li><a href="#trace">trace</a></li><li><a href="#usecachedcatalog">use_cached_catalog</a></li><li><a href="#usecacheonfailure">usecacheonfailure</a></li><li><a href="#user">user</a></li><li><a href="#vardir">vardir</a></li><li><a href="#yamldir">yamldir</a></li><li><a href="#zlib">zlib</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Puppet Dashboard</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Puppet Dashboard</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="puppet-dashboard">Puppet Dashboard</h1>
+
+<p>Puppet Dashboard is a web front end that keeps you informed and in control of everything going on in your Puppet ecosystem. It currently functions as a <a href="#external_node_classification">node classification tool</a> and <a href="#reporting">a reporting dashboard</a> and will soon do much more, including having better marketing copy.</p>
+
+<hr />
+
+<h2 id="latest-version-of-codeinstructions">Latest version of code/instructions</h2>
+
+<p>The latest version of Dashboard can be found at <a href="http://github.com/puppetlabs/puppet-dashboard/">github.com</a> along with the latest version of this install documentation.  They are included here as an overview for printed documentation purposes, though we&rsquo;d recommend you read the versions from github instead.</p>
+
+<h2 id="source-community-and-support">Source, community and support</h2>
+
+<ul>
+  <li><a href="http://github.com/puppetlabs/puppet-dashboard">Puppet Dashboard source code</a></li>
+  <li><a href="http://projects.puppetlabs.com/projects/dashboard">Puppet Dashboard issue tracker</a></li>
+  <li><a href="http://groups.google.com/group/puppet-dashboard">Puppet Dashboard mailing list</a></li>
+  <li><a href="http://groups.google.com/group/puppet-users">Puppet users mailing list</a></li>
+</ul>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>The Puppet Dashboard will run on most Unix, Linux and Mac OS X systems once its dependencies are installed from either the operating system&rsquo;s repositories or their respective websites. For installation instructions on specific operating systems, see below. A list of dependencies follows:</p>
+
+<ul>
+  <li><a href="http://www.ruby-lang.org/en/downloads/">Ruby</a> or <a href="http://www.rubyenterpriseedition.com/download.html">Ruby Enterprise Edition</a> programming language interpreter, version 1.8.4 to 1.8.7, but not 1.9.x</li>
+  <li><a href="http://github.com/jimweirich/rake">Rake</a> build tool for Ruby, version 0.8.3 or newer</li>
+  <li><a href="http://www.mysql.com/downloads/mysql/">MySQL</a> database server 5.x</li>
+  <li><a href="http://rubygems.org/gems/mysql">Ruby-MySQL</a> bindings 2.7.x or 2.8.x</li>
+  <li><a href="http://rubygems.org/">Rubygems</a> package manager to easily install Ruby libraries</li>
+</ul>
+
+<h3 id="operating-system-specific-examples-for-installing-dependencies">Operating system-specific examples for installing dependencies</h3>
+
+<p><em>NOTE</em>: The following example instructions assume a fresh install of their respective operating systems. Your actual installation procedure may be different depending on your system&rsquo;s current configuration.</p>
+
+<h4 id="ubuntu-1004-lts">Ubuntu 10.04 LTS</h4>
+
+<ol>
+  <li>
+    <p>Install the operating system packages:</p>
+
+    <pre><code>apt-get install -y build-essential irb libmysql-ruby libmysqlclient-dev libopenssl-ruby libreadline-ruby mysql-server rake rdoc ri ruby ruby-dev
+</code></pre>
+  </li>
+  <li>
+    <p>Install the <code>gem</code> package manager &mdash; do not use the one packaged with the operating system:</p>
+
+    <pre><code>URL="http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz"
+PACKAGE=$(echo $URL | sed "s/\.[^\.]*$//; s/^.*\///")
+pushd "/tmp"
+  CACHE=`mktemp -d install_rubygems.XXXXXXXXXX`
+  pushd "$CACHE"
+    wget -c -t10 -T20 -q "$URL"
+    tar xfz "$PACKAGE.tgz"
+    cd "$PACKAGE"
+    sudo ruby setup.rb
+  popd
+popd
+</code></pre>
+  </li>
+  <li>
+    <p>Create <code>gem</code> as an alternative name for the <code>gem1.8</code> command:</p>
+
+    <pre><code>update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.8 1
+</code></pre>
+  </li>
+</ol>
+
+<h4 id="centos-55">CentOS 5.5</h4>
+
+<ol>
+  <li>
+    <p>Install the <a href="http://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux (EPEL)</a> repository for <code>yum</code>:</p>
+
+    <pre><code>rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noarch.rpm
+</code></pre>
+  </li>
+  <li>
+    <p>Install the operating system packages:</p>
+
+    <pre><code>yum install -y mysql mysql-devel mysql-server ruby ruby-devel ruby-irb ruby-mysql ruby-rdoc ruby-ri
+</code></pre>
+  </li>
+  <li>
+    <p>Start MySQL and make it start automatically at boot:</p>
+
+    <pre><code>service mysqld start
+chkconfig mysqld on
+</code></pre>
+  </li>
+  <li>
+    <p>Install the <code>gem</code> package manager &mdash; do not install RubyGems version 1.3.6 or newer because they are incompatible with the Ruby shipped with CentOS 5.5:</p>
+
+    <pre><code>URL="http://production.cf.rubygems.org/rubygems/rubygems-1.3.5.tgz"
+PACKAGE=$(echo $URL | sed "s/\.[^\.]*$//; s/^.*\///")
+pushd "/tmp"
+  CACHE=`mktemp -d install_rubygems.XXXXXXXXXX`
+  pushd "$CACHE"
+    wget -c -t10 -T20 -q "$URL"
+    tar xfz "$PACKAGE.tgz"
+    cd "$PACKAGE"
+    sudo ruby setup.rb
+  popd
+popd
+</code></pre>
+  </li>
+  <li>
+    <p>Install the <code>rake</code> gem:</p>
+
+    <pre><code>gem install rake
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+  <li>
+    <p>Download the Puppet Dashboard software:</p>
+
+    <ol>
+      <li>
+        <p>Checkout the latest source code using the <a href="http://git-scm.com/">Git</a> revision control system:</p>
+
+        <pre><code>git clone git://github.com/puppetlabs/puppet-dashboard.git
+</code></pre>
+      </li>
+      <li>
+        <p>Or install the software using APT or RPM packages. See <code>README_PACKAGES.markdown</code> for instructions.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Create a <code>config/database.yml</code> file to specify Puppet Dashboard&rsquo;s database configuration. Please see the <code>config/database.yml.example</code> file for further details about database configurations and environments. These files paths are relative to the path of the Puppet Dashboard software containing this <code>README.markdown</code> file.</p>
+  </li>
+  <li>
+    <p>Setup a MySQL database server, create a user and database for use with the Dashboard by either:</p>
+
+    <ol>
+      <li>
+        <p>Using a <code>rake</code> task to create just the database from settings in the <code>config/database.yml</code> file. You must <code>cd</code> into the directory with the Puppet Dashboard software containing this <code>README.markdown</code> file before running these commands:</p>
+
+        <pre><code>rake RAILS_ENV=production db:create
+</code></pre>
+      </li>
+      <li>
+        <p>Or creating the database, user and privileges manually by running <code>mysql</code> as a privileged user (e.g. <code>root</code>) and executing commands like:</p>
+
+        <pre><code>CREATE DATABASE dashboard CHARACTER SET utf8;
+CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'my_password';
+GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost';
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Populate the database with the tables for the Puppet Dashboard.</p>
+
+    <ol>
+      <li>
+        <p>For typical use with the <code>production</code> environment:</p>
+
+        <pre><code>rake RAILS_ENV=production db:migrate
+</code></pre>
+      </li>
+      <li>
+        <p>For developing the software using the <code>development</code> and <code>test</code> environments:</p>
+
+        <pre><code>rake db:migrate db:test:prepare
+</code></pre>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="running">Running</h2>
+
+<p>There are many ways to run a Ruby web application like the Puppet Dashboard, we recommend:</p>
+
+<ol>
+  <li>
+    <p><strong>Built-in webserver</strong>: Ruby includes a built-in webserver that can run a single instance of the Puppet Dashboard application without any additional software. This is great for getting started quickly, but isn&rsquo;t recommended for production use because it&rsquo;s slow and can&rsquo;t handle multiple requests at the same time. You must <code>cd</code> into the directory with the Puppet Dashboard software containing this <code>README.markdown</code> file before running these commands:</p>
+
+    <ol>
+      <li>
+        <p>Start a <code>production</code> server on port 3000:</p>
+
+        <pre><code> ./script/server -e production
+</code></pre>
+      </li>
+      <li>
+        <p>Or start a <code>development</code> server on port 8080, where the <code>development</code> environment is used by default:</p>
+
+        <pre><code> ./script/server -p 8080
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>Passenger</strong>: This plugin for <a href="http://httpd.apache.org/">Apache</a> or <a href="http://nginx.org/">Nginx</a> makes it easy to multile Ruby web apps quickly and efficiently using multiple instances &mdash; it&rsquo;s great for production use. If used along with Ruby Enterprise Edition, it can dramatically reduce the memry required to run Ruby web applications. For further information, please see <a href="http://www.modrails.com/">Passenger/</a> and <a href="http://www.rubyenterpriseedition.com/">Ruby Enterprise Edition</a> and the example apache configuration in <code>ext/passenger/dashboard-vhost.conf</code>.</p>
+  </li>
+  <li>
+    <p><strong>Thin</strong>: This fast and reliable server can run multiple instances of the Puppet Dashboard application behind a proxy like <a href="http://httpd.apache.org/">Apache</a> or <a href="http://nginx.org/">Nginx</a> to appear as a single website &mdash; it&rsquo;s great for production use. For further information, please see <a href="http://code.macournoyer.com/thin/">Thin</a>.</p>
+  </li>
+</ol>
+
+<h2 id="reporting">Reporting</h2>
+
+<h3 id="import-existing-reports">Import existing reports</h3>
+
+<p>To import Puppet reports stored in <code>/var/puppet/lib/reports</code> into your Puppet Dashboard&rsquo;s <code>production</code> environment:</p>
+
+<pre><code>rake RAILS_ENV=production reports:import
+</code></pre>
+
+<p>Or from another report directory:</p>
+
+<pre><code>rake RAILS_ENV=production reports:import REPORT_DIR=/path/to/your/reports
+</code></pre>
+
+<p>You can re-run these commands, the importer will automatically skip existing reports and won&rsquo;t create duplicate entries.</p>
+
+<h3 id="live-report-aggregation">Live report aggregation</h3>
+
+<p>The Puppet Dashboard can collect reports from your Puppet Master as they&rsquo;re created. To do this, you must modify your Puppet Master and all of your Puppet clients. The instructions for configuring this are different depending on what version of Puppet you are using:</p>
+
+<h4 id="puppet-025x-and-earlier">Puppet 0.25.x and earlier</h4>
+
+<h5 id="on-your-clients">On your clients</h5>
+
+<ol>
+  <li>
+    <p>Make your clients send reports by setting <code>report</code> to <code>true</code> in the <code>[puppetd]</code> block of your <code>puppet.conf</code>, e.g.:</p>
+
+    <pre><code> [puppetd]
+     report = true
+</code></pre>
+  </li>
+</ol>
+
+<h5 id="on-your-puppet-master">On your Puppet Master</h5>
+
+<ol>
+  <li>
+    <p>Identify your Puppet Master&rsquo;s <code>libdir</code> by running the following command, it will probably be <code>/var/lib/puppet</code>:</p>
+
+    <pre><code> puppetmasterd --configprint libdir
+</code></pre>
+  </li>
+  <li>
+    <p>Create a directory for custom report libraries, e.g. run the following command, but replace <code>LIBDIR</code> with the path you found in step 1:</p>
+
+    <pre><code> mkdir -p LIBDIR/puppet/reports/
+</code></pre>
+  </li>
+  <li>
+    <p>Create a custom report processor file on your Puppet Master by copying the Puppet Dashboard&rsquo;s <code>ext/puppet/puppet_dashboard.rb</code> file to <code>LIBDIR/puppet/reports</code>. E.g.,</p>
+
+    <pre><code> cp ext/puppet/puppet_dashboard.rb LIBDIR/puppet/reports
+</code></pre>
+
+    <p>This report processor will assume that your Puppet Dashboard server is running at <code>localhost</code> on port <code>3000</code>, which is the default if it was started using <code>script/server</code>. If you need to specify different values, edit the <code>ext/puppet/puppet_dashboard.rb</code> file.</p>
+
+    <p><em>NOTE:</em> In Puppet Dashboard versions prior to 1.0.3, this file was located at <code>lib/puppet/puppet_dashboard.rb</code></p>
+  </li>
+  <li>
+    <p>Add a <code>puppet_dashboard</code> value to the <code>reports</code> setting in the <code>[puppetmasterd]</code> section of your <code>puppet.conf</code> file, e.g.:</p>
+
+    <pre><code> [puppetmasterd]
+     reports = puppet_dashboard
+</code></pre>
+  </li>
+  <li>
+    <p>Restart the <code>puppetmasterd</code> process.</p>
+  </li>
+</ol>
+
+<h4 id="puppet-26x">Puppet 2.6.x</h4>
+
+<h5 id="on-your-clients-1">On your clients</h5>
+
+<ol>
+  <li>
+    <p>Make your clients send reports by setting <code>report</code> to <code>true</code> in the <code>[agent]</code> block of your <code>puppet.conf</code>, e.g.:</p>
+
+    <pre><code> [agent]
+     report = true
+</code></pre>
+
+    <p><em>NOTE:</em> The <code>puppet.conf</code> block name changed in 2.6.x from <code>[puppetd]</code> to <code>[agent]</code></p>
+  </li>
+</ol>
+
+<h5 id="on-your-puppet-master-1">On your Puppet Master</h5>
+
+<ol>
+  <li>
+    <p>Modify your Puppet Master to send reports to the Puppet Dashboard. Do this by adding an <code>http</code> value to the <code>reports</code> setting in the <code>master</code> section of your <code>puppet.conf</code> file. For example, a <code>puppet.conf</code> for sending reports to a Puppet Dashboard server running at <code>localhost</code> on port <code>3000</code> may look like:</p>
+
+    <pre><code> [master]
+     reports = http, store
+</code></pre>
+
+    <p>If your Puppet Dashboard is at a different hostname or port, specify a <code>reporturl</code> setting with its URL, e.g.:</p>
+
+    <pre><code> [master]
+     reports = http, store
+     reporturl = http://mydashboard.server:1234/reports
+</code></pre>
+
+    <p><em>NOTE:</em> The <code>/reports</code> portion of the <code>reporturl</code> is required.</p>
+  </li>
+  <li>
+    <p>Restart the <code>puppetmasterd</code> process.</p>
+  </li>
+</ol>
+
+<h2 id="external-node-classification">External node classification</h2>
+
+<p>The Puppet Dashboard can act as an external node classification tool, which will allow you to manage Puppet classes and parameters for your nodes using a web interface:</p>
+
+<ol>
+  <li>
+    <p>Modify your Puppet Master&rsquo;s <code>puppet.conf</code> file by adding lines like these:</p>
+
+    <pre><code> [puppetmasterd]
+   node_terminus  = exec
+   external_nodes = /opt/dashboard/bin/external_node
+</code></pre>
+
+    <p><em>NOTE:</em> Set the <code>external_nodes</code> value to the absolute path of the Puppet Dashboard&rsquo;s <code>bin/external_node</code> program. If the Puppet Dashboard is running on a different computer, you should copy this file to the Puppet Master to a local directory like <code>/etc/pupppet</code> and specify the path to it.</p>
+
+    <p><em>NOTE:</em> The <code>bin/external_node</code> program connects to the Puppet Dashboard at <code>localhost</code> on port <code>3000</code>. If your Puppet Dashboard is running on a different host or node, please modify this file.</p>
+  </li>
+  <li>
+    <p>Restart the <code>puppetmasterd</code> process.</p>
+  </li>
+</ol>
+
+<h2 id="security">Security</h2>
+
+<p><em>WARNING:</em> The Puppet Dashboard provides access to sensitive information and can make changes to your Puppet-managed infrastructure. You must restrict access to it to protect it!</p>
+
+<p>The Puppet Dashboard does not currently provide authentication, authorization or encryption &mdash; although work on these is in progress.</p>
+
+<p>Third-party tools that can help secure a Puppet Dashboard include:</p>
+
+<ol>
+  <li>
+    <p>Host firewalling (e.g. <code>iptables</code>) can limit what hosts can access to the port that the Puppet Dashboard runs on, for example, only allowing the computer running the Puppet Master to connect.</p>
+  </li>
+  <li>
+    <p>Tunneling (e.g. <code>stunnel</code> or <code>ssh</code>) can provide an encrypted connection between hosts, e.g. if the Puppet Master and Puppet Dashboard are running on separate hosts, or if you want to access the web interface from your workstation.</p>
+  </li>
+  <li>
+    <p>HTTP Basic Authentication proxy (e.g. <code>apache</code> using <code>.htaccess</code>) can require that a username/password is provided when accessing URLs. However, if you use this, you must include the HTTP Basic Authentication username and password in the URLs in the <code>puppet.conf</code>&rsquo;s <code>reporturl</code> setting and in the <code>bin/external_nodes</code> file. A URL with HTTP Basic Authentication has the following format:</p>
+
+    <pre><code>     http://username:password@hostname
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="database-backups">Database backups</h2>
+
+<p>The Puppet Dashboard database can be backed up and restored using your database vendor&rsquo;s tools, or using the included <code>rake</code> tasks which simplify the process. You must <code>cd</code> into the directory with the Puppet Dashboard software containing this <code>README.markdown</code> file before running these commands.</p>
+
+<h3 id="dump">Dump</h3>
+
+<p>To dump the Puppet Dashboard <code>production</code> database to a file called <code>production.sql</code>:</p>
+
+<pre><code>rake RAILS_ENV=production db:raw:dump
+</code></pre>
+
+<p>Or dump it to a specific file:</p>
+
+<pre><code>rake RAILS_ENV=production FILE=/my/backup/file.sql db:raw:dump
+</code></pre>
+
+<h3 id="restore">Restore</h3>
+
+<p>To restore the Puppet Dashboard from a file called <code>production.sql</code> to your <code>production</code> environment:</p>
+
+<pre><code>rake RAILS_ENV=production FILE=production.sql db:raw:restore
+</code></pre>
+
+<h2 id="contributors">Contributors</h2>
+
+<ul>
+  <li>Rein Henrichs <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#114;&#101;&#105;&#110;&#104;&#064;&#114;&#101;&#105;&#110;&#104;&#046;&#099;&#111;&#109;">&#114;&#101;&#105;&#110;&#104;&#064;&#114;&#101;&#105;&#110;&#104;&#046;&#099;&#111;&#109;</a></li>
+  <li>Igal Koshevoy <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#103;&#097;&#108;&#064;&#112;&#114;&#097;&#103;&#109;&#097;&#116;&#105;&#099;&#114;&#097;&#102;&#116;&#046;&#099;&#111;&#109;">&#105;&#103;&#097;&#108;&#064;&#112;&#114;&#097;&#103;&#109;&#097;&#116;&#105;&#099;&#114;&#097;&#102;&#116;&#046;&#099;&#111;&#109;</a></li>
+  <li>Rick Bradley <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#114;&#105;&#099;&#107;&#064;&#114;&#105;&#099;&#107;&#098;&#114;&#097;&#100;&#108;&#101;&#121;&#046;&#099;&#111;&#109;">&#114;&#105;&#099;&#107;&#064;&#114;&#105;&#099;&#107;&#098;&#114;&#097;&#100;&#108;&#101;&#121;&#046;&#099;&#111;&#109;</a></li>
+  <li>Andrew Maier <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#097;&#110;&#100;&#114;&#101;&#119;&#046;&#109;&#097;&#105;&#101;&#114;&#064;&#103;&#097;&#116;&#101;&#099;&#104;&#046;&#101;&#100;&#117;">&#097;&#110;&#100;&#114;&#101;&#119;&#046;&#109;&#097;&#105;&#101;&#114;&#064;&#103;&#097;&#116;&#101;&#099;&#104;&#046;&#101;&#100;&#117;</a></li>
+  <li>Scott Smith <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#099;&#111;&#116;&#116;&#064;&#111;&#104;&#108;&#111;&#108;&#046;&#110;&#101;&#116;">&#115;&#099;&#111;&#116;&#116;&#064;&#111;&#104;&#108;&#111;&#108;&#046;&#110;&#101;&#116;</a></li>
+  <li>Ian Ward Comfort <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#099;&#111;&#109;&#102;&#111;&#114;&#116;&#064;&#115;&#116;&#097;&#110;&#102;&#111;&#114;&#100;&#046;&#101;&#100;&#117;">&#105;&#099;&#111;&#109;&#102;&#111;&#114;&#116;&#064;&#115;&#116;&#097;&#110;&#102;&#111;&#114;&#100;&#046;&#101;&#100;&#117;</a></li>
+</ul>
+
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#latest-version-of-codeinstructions">Latest version of code/instructions</a></li><li><a href="#source-community-and-support">Source, community and support</a></li><li><a href="#dependencies">Dependencies</a></li><li><a href="#operating-system-specific-examples-for-installing-dependencies">Operating system-specific examples for installing dependencies</a></li><li><a href="#installation">Installation</a></li><li><a href="#running">Running</a></li><li><a href="#reporting">Reporting</a></li><li><a href="#import-existing-reports">Import existing reports</a></li><li><a href="#live-report-aggregation">Live report aggregation</a></li><li><a href="#external-node-classification">External node classification</a></li><li><a href="#security">Security</a></li><li><a href="#database-backups">Database backups</a></li><li><a href="#dump">Dump</a></li><li><a href="#restore">Restore</a></li><li><a href="#contributors">Contributors</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

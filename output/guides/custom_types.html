@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Custom Types</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Custom Types</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="custom-types">Custom Types</h1>
+
+<p>Learn how to create your own custom types &amp; providers in Puppet</p>
+
+<hr />
+
+<h1 id="organizational-principles">Organizational Principles</h1>
+
+<p><img src="http://puppetlabs.com/images/ResourceTypesProviders.png" alt="image" /></p>
+
+<p>When creating a new Puppet type, you will be create two things:
+The resource type itself, which we normally just call a
+&lsquo;type&rsquo;, and the provider(s) for that type.  While Puppet does not require
+Ruby experience to use, extending Puppet with new Puppet types and providers does require some knowledge of the Ruby programming language, as is the case with
+new functions and facts.   If you&rsquo;re new to Ruby, what is going on should
+still be somewhat evident from the examples below, and it is easy to learn.</p>
+
+<p>The resource types provide the model for what you can do; they define
+what parameters are present, handle input validation, and they
+determine what features a provider can (or should) provide.</p>
+
+<p>The providers implement support for that type by translating calls
+in the resource type to operations on the system.  As mentioned
+in our <a href="./introduction.html">Introduction</a> and <a href="./language_guide.html">language guide</a>, an example would be
+that &ldquo;yum&rdquo; and &ldquo;apt&rdquo; are both different providers that fulfill
+the &ldquo;package&rdquo; type.</p>
+
+<h1 id="deploying-code">Deploying Code</h1>
+
+<p>Once you have your code, you will need to have it both on the
+server and also distributed to clients.</p>
+
+<p>The best place to put this content is within Puppet&rsquo;s configured <code>libdir</code>. The libdir is special because you can use the <code>pluginsync</code> system to copy all of your plugins from the fileserver to all of your clients (and seperate Puppetmasters, if they exist)). To enable pluginsync, set <code>pluginsync=true</code> in puppet.conf and, if necessary, set the <code>pluginsource</code> setting. The contents of pluginsource
+will be copied directly into <code>libdir</code>, so make sure you make a
+puppet/type directory in your <code>pluginsource</code>, too.</p>
+
+<p>In Puppet 0.24 and later, the &ldquo;old&rdquo; <code>pluginsync</code> function has been
+deprecated and you should see the <a href="./plugins_in_modules.html">Plugins In Modules</a> page for details of distributing custom types and facts via modules.</p>
+
+<p>The internals of how types are created have changed over Puppet&rsquo;s
+lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn&rsquo;t do.</p>
+
+<h1 id="resource-types">Resource Types</h1>
+
+<p>When defining the resource type, focus on what the resource can do,
+not how it does it (that is the job for providers!).</p>
+
+<p>The first thing you have to figure out is what <code>properties</code> the resource has. Properties are the changeable bits, like a file&rsquo;s owner or a user&rsquo;s UID.</p>
+
+<p>After adding properties, Then you need to add any other necessary <code>parameters</code>, which can affect how the resource behaves but do not directly manage the resource itself. Parameters handle things like whether to recurse when managing files or where to look for service init scripts.</p>
+
+<p>Resource types also support special parameters, called <code>MetaParameters</code>, that are supported by all resource types, but you can safely ignore these since they are already defined and you won&rsquo;t normally add more.  You may remember that things like <code>require</code> are metaparameters.</p>
+
+<p>Types are created by calling the <code>newtype</code> method on <code>Puppet::Type</code>,
+with the name of the type as the only required argument.  You can
+optionally specify a parent class; otherwise, <code>Puppet::Type</code> is used
+as the parent class.  You must also provide a block of code
+used to define the type:</p>
+
+<p>You may wish to read up on &ldquo;Ruby blocks&rdquo; to understand more about
+the syntax.  Blocks are a very powerful feature of Ruby and are
+not surfaced in most programming languages.</p>
+
+<pre><code>Puppet::Type.newtype(:database) do
+    @doc = "Create a new database."
+    ... the code ...
+end
+</code></pre>
+
+<p>The above code should be stored in puppet/type/database.rb (within the <code>libpath</code>), because of the name of the type we&rsquo;re creating (&ldquo;database&rdquo;).</p>
+
+<p>A normal type will define multiple properties and possibly
+some parameters. Once these are defined, as long as the type is put into
+lib/puppet/type anywhere in Ruby&rsquo;s search path, Puppet will
+autoload the type when you reference it in the Puppet language.</p>
+
+<p>We have already mentioned Puppet provides a <code>libdir</code> setting where you can copy the files outside the Ruby search path.  See also <a href="./plugins_in_modules.html">Plugins In Modules</a></p>
+
+<p>All types should also provide inline documention in the @doc class
+instance variable. The text format is in Restructured Text.</p>
+
+<h2 id="properties">Properties</h2>
+
+<p>Here&rsquo;s where we define how the resource really works. In most
+cases, it&rsquo;s the properties that interact with your resource&rsquo;s
+providers. If you define a property named owner, then when you are
+retrieving the state of your resource, then the owner property will
+call the owner method on the provider. In turn, when you are
+setting the state (because the resource is out of sync), then the
+owner property will call the owner= method to set the state on
+disk.</p>
+
+<p>There&rsquo;s one common exception to this: The ensure property is
+special because it&rsquo;s used to create and destroy resources. You can
+set this property up on your resource type just by calling the
+ensurable method in your type definition:</p>
+
+<pre><code>Puppet::Type.newtype(:database) do
+    ensurable
+    ...
+end
+</code></pre>
+
+<p>This property uses three methods on the provider: create, destroy,
+and exists?. The last method, somewhat obviously, is a boolean to
+determine if the resource current exists. If a resource&rsquo;s ensure
+property is out of sync, then no other properties will be checked
+or modified.</p>
+
+<p>You can modify how ensure behaves, such as by adding other valid
+values and determining what methods get called as a result; see
+existing types like package for examples.</p>
+
+<p>The rest of the properties are defined a lot like you define the
+types, with the newproperty method, which should be called on the
+type:</p>
+
+<pre><code>Puppet::Type.newtype(:database) do
+    ensurable
+    newproperty(:owner) do
+        desc "The owner of the database."
+        ...
+    end
+end
+</code></pre>
+
+<p>Note the call to desc; this sets the documentation string for this
+property, and for Puppet types that get distributed with Puppet, it
+is extracted as part of the Type reference.</p>
+
+<p>When Puppet was first developed, there would normally be a lot of
+code in this property definition. Now, however, you normally only
+define valid values or set up validation and munging. If you
+specify valid values, then Puppet will only accept those values,
+and it will automatically handle accepting either strings or
+symbols. In most cases, you only define allowed values for ensure,
+but it works for other properties, too:</p>
+
+<pre><code>newproperty(:enable) do
+    newvalue(:true)
+    newvalue(:false)
+end
+</code></pre>
+
+<p>You can attach code to the value definitions (this code would be
+called instead of the property= method), but it&rsquo;s normally
+unnecessary.</p>
+
+<p>For most properties, though, it is sufficient to set up
+validation:</p>
+
+<pre><code>newproperty(:owner) do
+    validate do |value|
+        unless value =~ /^\w+/
+            raise ArgumentError, "%s is not a valid user name" % value
+        end
+    end
+end
+</code></pre>
+
+<p>Note that the order in which you define your properties can be
+important: Puppet keeps track of the definition order, and it
+always checks and fixes properties in the order they are defined.</p>
+
+<h3 id="customizing-behaviour">Customizing Behaviour</h3>
+
+<p>By default, if a property is assigned multiple values in an array,
+it is considered in sync if any of those values matches the current
+value. If, instead, the property should only be in sync if all
+values match the current value (e.g., a list of times in a cron
+job), you can declare this:</p>
+
+<pre><code>newproperty(:minute, :array_matching =&gt; :all) do # defaults to :first
+    ...
+end
+</code></pre>
+
+<p>You can also customize how information about your property gets
+logged. You can create an is_to_s method to change how the
+current values are described, should_to_s to change how the
+desired values are logged, and change_to_s to change the overall
+log message for changes. See current types for examples.</p>
+
+<h3 id="handling-property-values">Handling Property Values</h3>
+
+<p>Handling values set on properties is currently somewhat confusing,
+and will hopefully be fixed in the future. When a resource is
+created with a list of desired values, those values are stored in
+each property in its @should instance variable. You can retrieve
+those values directly by calling should on your resource (although
+note that when array_matching is set to first you get the first
+value in the array, otherwise you get the whole array):</p>
+
+<pre><code>myval = should(:color)
+</code></pre>
+
+<p>When you&rsquo;re not sure (or don&rsquo;t care) whether you&rsquo;re dealing with a
+property or parameter, it&rsquo;s best to use value:</p>
+
+<pre><code>myvalue = value(:color)
+</code></pre>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>Parameters are defined essentially exactly the same as properties;
+the only difference between them is that parameters never result in
+methods being called on providers.</p>
+
+<p>Like ensure, one parameter you will always want to define is the
+one used for naming the resource. This is nearly always called
+name:</p>
+
+<pre><code>newparam(:name) do
+    desc "The name of the database."
+end
+</code></pre>
+
+<p>You can name your naming parameter something else, but you must
+declare it as the namevar:</p>
+
+<pre><code>newparam(:path, :namevar =&gt; true) do
+    ...
+end
+</code></pre>
+
+<p>In this case, path and name are both accepted by Puppet, and it
+treats them equivalently.</p>
+
+<p>If your parameter has a fixed list of valid values, you can declare
+them all at once:</p>
+
+<pre><code>newparam(:color) do
+    newvalues(:red, :green, :blue, :purple)
+end
+</code></pre>
+
+<p>You can specify regexes in addition to literal values; matches
+against regexes always happen after equality comparisons against
+literal values, and those matches are not converted to symbols. For
+instance, given the following definition:</p>
+
+<pre><code>newparam(:color) do
+    desc "Your color, and stuff."
+
+    newvalues(:blue, :red, /.+/)
+end
+</code></pre>
+
+<p>If you provide blue as the value, then your parameter will get set
+to :blue, but if you provide green, then it will get set to
+&ldquo;green&rdquo;.</p>
+
+<h2 id="validation-and-munging">Validation and Munging</h2>
+
+<p>If your parameter does not have a defined list of values, or you
+need to convert the values in some way, you can use the validate
+and munge hooks:</p>
+
+<pre><code>newparam(:color) do
+    desc "Your color, and stuff."
+
+    newvalues(:blue, :red, /.+/)
+
+    validate do |value|
+        if value == "green"
+            raise ArgumentError,
+                "Everyone knows green databases don't have enough RAM"
+        else
+            super
+        end
+    end
+
+    munge do |value|
+        case value
+        when :mauve, :violet # are these colors really any different?
+            :purple
+        else
+            super
+        end
+    end
+end
+</code></pre>
+
+<p>The default validate method looks for values defined using
+newvalues and if there are any values defined it accepts only those
+values (this is exactly how allowed values are validated). The
+default munge method converts any values that are specifically
+allowed into symbols. If you override either of these methods, note
+that you lose this value handling and symbol conversion, which
+you&rsquo;ll have to call super for.</p>
+
+<p>Values are always validated before they&rsquo;re munged.</p>
+
+<p>Lastly, validation and munging <em>only*</em> happen when a value is
+assigned. They have no role to play at all during use of a given
+value, only during assignment.</p>
+
+<h2 id="automatic-relationships">Automatic Relationships</h2>
+
+<p>Your type can specify automatic relationships it can have with
+resources. You use the autorequire hook, which requires a resource
+type as an argument, and your code should return a list of resource
+names that your resource could be related to:</p>
+
+<pre><code>autorequire(:file) do
+  ["/tmp", "/dev"]
+end
+</code></pre>
+
+<p>Note that this won&rsquo;t throw an error if resources with those names
+do not exist; the purpose of this hook is to make sure that if any
+required resources are being managed, they get applied before the
+requiring resource.</p>
+
+<h1 id="providers">Providers</h1>
+
+<p>Look at the <a href="./provider_development.html">Provider Development</a>
+page for intimate detail; this document will only
+cover how the resource types and providers need to interact.Because
+the properties call getter and setter methods on the providers,
+except in the case of ensure, the providers must define getters and
+setters for each property.</p>
+
+<h2 id="provider-features">Provider Features</h2>
+
+<p>A recent development in Puppet (around 0.22.3) is the ability to
+declare what features providers can have. The type declares the
+features and what&rsquo;s required to make them work, and then the
+providers can either be tested for whether they suffice or they can
+declare that they have the features. Additionally, individual
+properties and parameters in the type can declare that they require
+one or more specific features, and Puppet will throw an error if
+those prameters are used with providers missing those features:</p>
+
+<pre><code>newtype(:coloring) do
+    feature :paint, "The ability to paint.", :methods =&gt; [:paint]
+    feature :draw, "The ability to draw."
+
+    newparam(:color, :required_features =&gt; %w{paint}) do
+        ...
+    end
+end
+</code></pre>
+
+<p>The first argument to the feature method is the name of the
+feature, the second argument is its description, and after that is
+a hash of options that help Puppet determine whether the feature is
+available. The only option currently supported is specifying one or
+more methods that must be defined on the provider. If no methods
+are specified, then the provider needs to specifically declare that
+it has that feature:</p>
+
+<pre><code>Puppet::Type.type(:coloring).provide(:drawer) do
+    has_feature :draw
+end
+</code></pre>
+
+<p>The provider can specify multiple available features at once with
+has_features.</p>
+
+<p>When you define features on your type, Puppet automatically defines
+a bunch of class methods on the provider:</p>
+
+<ul>
+  <li>feature?: Passed a feature name, will return true if the
+feature is available or false otherwise.</li>
+  <li>features: Returns a list of all supported features on the
+provider.</li>
+  <li>satisfies?: Passed a list of feature, will return true if they
+are all available, false otherwise.</li>
+</ul>
+
+<p>Additionally, each feature gets a separate boolean method, so the
+above example would result in a paint? method on the provider.</p>
+
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#properties">Properties</a></li><li><a href="#customizing-behaviour">Customizing Behaviour</a></li><li><a href="#handling-property-values">Handling Property Values</a></li><li><a href="#parameters">Parameters</a></li><li><a href="#validation-and-munging">Validation and Munging</a></li><li><a href="#automatic-relationships">Automatic Relationships</a></li><li><a href="#provider-features">Provider Features</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        

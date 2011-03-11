@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - OpenSSL based Security Plugin</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="resources" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Puppet</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+                  <li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Introduction">Introduction</a></li>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/requirements/" title="Requirements">Requirements</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/solutions/" title="Solutions">Solutions</a></li>
+<li class="page_item page-item-1159"><a href="http://www.puppetlabs.com/puppet/users/" title="Users">Users</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/puppet/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <li class="page_item page-item-1977"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-751"><a href="http://www.puppetlabs.com/puppet/related-projects/dashboard/" title="Dashboard">Dashboard</a></li>
+<li class="page_item page-item-753"><a href="http://www.puppetlabs.com/puppet/related-projects/facter/" title="Facter">Facter</a></li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+
+<li class="page_item page-item-2424"><a href="http://www.puppetlabs.com/services/what-customers-are-saying/" title="What Customers are Saying">What Customers are Saying</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-833"><a href="http://www.puppetlabs.com/resources/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">OpenSSL based Security Plugin</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/latest/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/latest/function.html">Functions</a></dd>
+                      <dd><a href="/references/latest/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/latest/configuration.html">Configuration</a></dd>
+                  <dt>References By Version</dt>
+                      <dd><a href="/references/2.6.6/">2.6.6</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd> 
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              
+<h1 id="openssl-based-security-plugin">OpenSSL based Security Plugin</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#openssl-based-security-plugin">OpenSSL based Security Plugin</a>    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#compared-to-the-ssl-plugin">Compared to the SSL plugin</a></li>
+      <li><a href="#deployment-scenarios">Deployment Scenarios</a>        <ul>
+          <li><a href="#manual-key-distribution-with-each-server-and-client-having-unique-keys">Manual key distribution with each server and client having unique keys</a></li>
+          <li><a href="#automatic-public-key-distribution-with-each-server-and-client-having-unique-keys">Automatic public key distribution with each server and client having unique keys</a></li>
+          <li><a href="#manual-public-key-distribution-with-servers-sharing-a-key-pair-and-clients-having-unique-keys">Manual public key distribution with servers sharing a key pair and clients having unique keys</a></li>
+          <li><a href="#automatic-public-key-distribution-with-servers-sharing-a-key-and-client-having-unique-keys">Automatic public key distribution with servers sharing a key and client having unique keys</a></li>
+        </ul>
+      </li>
+      <li><a href="#creating-keys">Creating keys</a></li>
+      <li><a href="#reusing-puppet-keys">Reusing Puppet keys</a></li>
+      <li><a href="#future-roadmap">Future Roadmap</a></li>
+      <li><a href="#configuration-options">Configuration Options</a>        <ul>
+          <li><a href="#common-options">Common Options</a></li>
+          <li><a href="#client-options">Client Options</a></li>
+          <li><a href="#server-options">Server Options</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+<p>This plugin impliments a AES encryption and RSA public / private key based security system
+for The Marionette Collective.</p>
+
+<p>Please review the <a href="../../security.html">Security Overview</a> for a general discussion about security in Marionette Collective.</p>
+
+<p>The design goals of this plugin are:</p>
+
+<ul>
+  <li>Each actor - clients and servers - can have their own set of public and private keys</li>
+  <li>All actors are uniquely and cryptographically identified</li>
+  <li>Requests are encrypted using the clients private key and anyone that has
+the public key can see the request.  Thus an atacker may see the requests
+given access to a public key of the requester.</li>
+  <li>Replies are encrypted using the calling clients public key.  Thus no-one but
+the caller can view the contents of replies.</li>
+  <li>Servers can all have their own SSL keys, or share one, or reuse keys created
+by other PKI using software like Puppet</li>
+  <li>Requests from servers - like registration data - can be secured even to external
+eavesdropping depending on the level of configuration you are prepared to do</li>
+  <li>Given a network where you can ensure third parties are not able to access the
+middleware public key distribution can happen automatically</li>
+</ul>
+
+<p>During the design of this system we considered the replies back to clients to be most
+important piece of information on the network.  This is secured in a way that only
+the client can decrypt the replies he gets.  An attacker will need to gain access
+to every private key of every client to see all the reply data.</p>
+
+<p>Serialization uses Marshal or YAML, which means data types in and out of mcollective
+will be preserved from client to server and reverse.</p>
+
+<p><em>This plugin will only function with MCollective 1.1.1 or newer</em></p>
+
+<h2 id="compared-to-the-ssl-plugin">Compared to the SSL plugin</h2>
+
+<p>The earlier <a href="security_ssl.html">SSLSecurity</a> only provided message signing and identification of clients, this
+new plugin builds on this adding payload encryption, identification of servers and optional
+automatic key distribution.</p>
+
+<p>The <a href="security_ssl.html">SSLSecurity</a> plugin puts less drain on resources, if you do not specifically need encryption
+you should consider using that one instead.</p>
+
+<h2 id="deployment-scenarios">Deployment Scenarios</h2>
+
+<p>There are various modes of deployment, the more secure you wish to be the more work you have
+to do in terms of key exchange and initial setup.</p>
+
+<p>This plugin is designed to allow you to strike a balance between security and setup cost
+the sections below discuss the possible deployment scenarios to help you choose an approach.</p>
+
+<p>In all of the below setups the following components are needed:</p>
+
+<ul>
+  <li>Each user making requests - the client - needs a public and private key pair</li>
+  <li>Each server receiving requests need the public key of each client</li>
+</ul>
+
+<p>In cases where you wish to use <a href="registration.html">Registration</a> or initiate requests from the server for any
+reason the following are needed:</p>
+
+<ul>
+  <li>Each server needs a public and private key pair</li>
+  <li>Each other server that wish to receive these requests need the public key of the sending server</li>
+</ul>
+
+<p>In this scenario each server will act as a client making RPC requests to the collective network
+for any agent called <em>registration</em>.  So in this scenario the server acts as a client and therefore
+need a key-pair to identify it.</p>
+
+<h3 id="manual-key-distribution-with-each-server-and-client-having-unique-keys">Manual key distribution with each server and client having unique keys</h3>
+
+<p>In this setup each client and each server needs a unique set of keys.  You need to
+distribute these keys manually and securely - perhaps using Puppet.</p>
+
+<p>The setup cost is great, to enable registration the nodes receiving registration data
+need to have the public key of every other node stored locally before registration
+data can be received.</p>
+
+<p>If you do not use Puppet or some other PKI system that provide access to keys you need
+create keypairs for each node and client.</p>
+
+<p>This is the most secure setup protecting all replies and registration data.  Rogue people
+on the network who do not compromise a running host cannot make requests on the network.</p>
+
+<p>Attackers who compromise a server can only make registration requests assuming you deployed
+a strictly configured <a href="/mcollective/simplerpc/authorization.html">Authorization</a> system they cannot use those
+machines as starting points to inject requests for the rest of your network.</p>
+
+<p>By gaining access to your Middleware an attacker will not be able to observe the contents of
+requests, replies or registration messages.  Attackers need to compromise servers and gain
+access to private keys before they can start observing parts of the exchange.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature / Capability</th>
+      <th>Supported</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clients are uniquely identified using cryptographic means</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Anyone with the client public key can observe request contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the client public key by just listening on the network</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Replies back to the client are readable only by client that initiated the request</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can create new certificates and start using them to make requests as clients</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Servers are uniquely identified using cryptographic means</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Anyone with the server public key can observe registration contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the server public keys by just listening on the network</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Registration data can be protected from rogue agents posing as registration agents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can create new nodes and inject registration data for those new nodes</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To configure this scenario use the following options and manually copy public keys to the
+<em>plugin.aes.client<code>_</code>cert<code>_</code>dir</em> directory:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Settings</th>
+      <th>Value</th>
+      <th>Descritpion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plugin.aes.send_pubkey</td>
+      <td>0</td>
+      <td>Do not send public keys</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.learn_pubkeys</td>
+      <td>0</td>
+      <td>Do not learn public keys</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="automatic-public-key-distribution-with-each-server-and-client-having-unique-keys">Automatic public key distribution with each server and client having unique keys</h3>
+
+<p>Here we enable the  <em>plugin.aes.learn<code>_</code>pubkeys</em> feature on all servers.  Your public keys
+will now be distributed automatically on demand but you loose some security in that anyone
+with access to your network or middleware can observe the contents of replies and registration
+data</p>
+
+<p>You still need to create keys for every node - or use Puppets.  You still need to create keys
+for every user.</p>
+
+<p>In order to protect against attackers creating new certificates and making requests on your network
+deploy a <a href="/mcollective/simplerpc/authorization.html">Authorization</a> plugin that denies unknown clients.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature / Capability</th>
+      <th>Supported</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clients are uniquely identified using cryptographic means</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Anyone with the client public key can observe request contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the client public key by just listening on the network</td>
+      <td><em>yes</em></td>
+    </tr>
+    <tr>
+      <td>Replies back to the client are readable only by client that initiated the request</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can create new certificates and start using them to make requests as clients</td>
+      <td><em>yes</em></td>
+    </tr>
+    <tr>
+      <td>Servers are uniquely identified using cryptographic means</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Anyone with the server public key can observe registration contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the server public keys by just listening on the network</td>
+      <td><em>yes</em></td>
+    </tr>
+    <tr>
+      <td>Registration data can be protected from rogue agents posing as registration agents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can create new nodes and inject registration data for those new nodes</td>
+      <td><em>yes</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To configure this scenario use the following options and ensure the <em>mcollectived</em> can write
+to the <em>plugin.aes.client<code>_</code>cert<code>_</code>dir</em> directory:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Settings</th>
+      <th>Value</th>
+      <th>Descritpion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plugin.aes.send_pubkey</td>
+      <td>1</td>
+      <td>Send public keys</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.learn_pubkeys</td>
+      <td>1</td>
+      <td>Learn public keys</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="manual-public-key-distribution-with-servers-sharing-a-key-pair-and-clients-having-unique-keys">Manual public key distribution with servers sharing a key pair and clients having unique keys</h3>
+
+<p>This is comparable to the older SSL plugin where all servers shared the same public / private
+pair.  Here anyone who is part of the network can decrypt the traffic related to registration
+but replies to clients are still securely encrypted and visable only to them.</p>
+
+<p>You will not need to create unique keys for every server, you can simply copy the same one out
+everywhere.  You still need to create keys for every user.</p>
+
+<p>If you do not use registration, this is a very secure setup that requires a small configuration
+overhead.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature / Capability</th>
+      <th>Supported</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clients are uniquely identified using cryptographic means</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Anyone with the client public key can observe request contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the client public key by just listening on the network</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Replies back to the client are readable only by client that initiated the request</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can create new certificates and start using them to make requests as clients</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Servers are uniquely identified using cryptographic means</td>
+      <td><em>no</em></td>
+    </tr>
+    <tr>
+      <td>Anyone with the server public key can observe registration contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the server public keys by just listening on the network</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Registration data can be protected from rogue agents posing as registration agents</td>
+      <td><em>no</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To configure this scenario use the following options and ensure the <em>mcollectived</em> can write
+to the <em>plugin.aes.client<code>_</code>cert<code>_</code>dir</em> directory:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Settings</th>
+      <th>Value</th>
+      <th>Descritpion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plugin.aes.send_pubkey</td>
+      <td>0</td>
+      <td>Do not send public keys</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.learn_pubkeys</td>
+      <td>0</td>
+      <td>Do not learn public keys</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="automatic-public-key-distribution-with-servers-sharing-a-key-and-client-having-unique-keys">Automatic public key distribution with servers sharing a key and client having unique keys</h3>
+
+<p>This is comparable to the older SSL plugin where all servers shared the same public / private
+pair.  Here anyone who is part of the network can decrypt the traffic related to registration
+but replies to clients are still securely encrypted and visable only to them.</p>
+
+<p>Here we enable the  <em>plugin.aes.learn<code>_</code>pubkeys</em> feature on all servers.  Your public keys
+will now be distributed automatically on demand but you loose some security in that anyone
+with access to your network or middleware can observe the contents of replies and registration
+data</p>
+
+<p>You will not need to create unique keys for every server, you can simply copy the same one out
+everywhere.  You still need to create keys for every user.</p>
+
+<p>In order to protect against attackers creating new certificates and making requests on your network
+deploy a <a href="/mcollective/simplerpc/authorization.html">Authorization</a> plugin that denies unknown clients.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature / Capability</th>
+      <th>Supported</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clients are uniquely identified using cryptographic means</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Anyone with the client public key can observe request contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the client public key by just listening on the network</td>
+      <td><em>yes</em></td>
+    </tr>
+    <tr>
+      <td>Replies back to the client are readable only by client that initiated the request</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can create new certificates and start using them to make requests as clients</td>
+      <td><em>yes</em></td>
+    </tr>
+    <tr>
+      <td>Servers are uniquely identified using cryptographic means</td>
+      <td><em>no</em></td>
+    </tr>
+    <tr>
+      <td>Anyone with the server public key can observe registration contents</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Attackers can gain access to the server public keys by just listening on the network</td>
+      <td><em>yes</em></td>
+    </tr>
+    <tr>
+      <td>Registration data can be protected from rogue agents posing as registration agents</td>
+      <td><em>no</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To configure this scenario use the following options and ensure the <em>mcollectived</em> can write
+to the <em>plugin.aes.client<code>_</code>cert<code>_</code>dir</em> directory:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Settings</th>
+      <th>Value</th>
+      <th>Descritpion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plugin.aes.send_pubkey</td>
+      <td>1</td>
+      <td>Send public keys</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.learn_pubkeys</td>
+      <td>1</td>
+      <td>Learn public keys</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="creating-keys">Creating keys</h2>
+
+<p>Keys are created using OpenSSL.  The filenames of public keys are significant you should name
+them so that they are unique for your network and they should match on the client and servers.</p>
+
+<div class="highlight"><pre><code class="console"><span class="go"> % openssl genrsa -out server-private.pem 1024</span>
+<span class="go"> % openssl rsa -in server-private.pem -out server-public.pem -outform PEM -pubout</span>
+</code></pre>
+</div>
+
+<p>Client and Server keys are made using the same basic method.</p>
+
+<h2 id="reusing-puppet-keys">Reusing Puppet keys</h2>
+
+<p>Puppet managed nodes will all have keys created by Puppet already, you can reuse these if your
+<em>mcollectived</em> runs as root.</p>
+
+<p>Generally Puppet stores these in <em>/var/lib/puppet/ssl/private<code>_</code>keys/fqdn.pem</em> and <em>/var/lib/puppet/ssl/public<code>_</code>keys/fqdn.pem</em>
+simply configure these paths for your <em>server<code>_</code>private</em> and <em>server<code>_</code>public</em> options.</p>
+
+<p>Clients will still need their own keys made and distributed.</p>
+
+<h2 id="future-roadmap">Future Roadmap</h2>
+
+<ul>
+  <li>Depending on performance of the initial system we might validate request certificates are
+signed by a known CA this will provide an additional level of security preventing attackers
+from creating their own keys and using those on the network without also compromising the CA.</li>
+  <li>Private keys will be secured with a password</li>
+</ul>
+
+<h2 id="configuration-options">Configuration Options</h2>
+
+<h3 id="common-options">Common Options</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Example / Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>securityprovider</td>
+      <td>aes_security</td>
+      <td>Enables this security provider</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.serializer</td>
+      <td>yaml or marshal</td>
+      <td>Serialization to use</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.send_pubkey</td>
+      <td>0 or 1</td>
+      <td>Send the public key with every request</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.learn_pubkeys</td>
+      <td>0 or 1</td>
+      <td>Receive public keys from the network and cache them locally</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="client-options">Client Options</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Example / Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plugin.aes.client_private</td>
+      <td>/home/user/.mcollective.d/user-private.pem</td>
+      <td>The private key path for the user</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.client_public</td>
+      <td>/home/user/.mcollective.d/user.pem</td>
+      <td>The public key path for the user</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="server-options">Server Options</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Example / Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plugin.aes.client_cert_dir</td>
+      <td>/etc/mcollective/ssl/clients</td>
+      <td>Where to store and load client public keys</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.server_private</td>
+      <td>/etc/mcollective/ssl/server-private.pem</td>
+      <td>Server private key</td>
+    </tr>
+    <tr>
+      <td>plugin.aes.server_public</td>
+      <td>/etc/mcollective/ssl/server-public.pem</td>
+      <td>Server public key</td>
+    </tr>
+  </tbody>
+</table>
+
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  <h3 class="chapter">Contents</h3>
+                  <ol class="chapters">
+                  <ol class="toc"><li><a href="#overview">Overview</a></li><li><a href="#compared-to-the-ssl-plugin">Compared to the SSL plugin</a></li><li><a href="#deployment-scenarios">Deployment Scenarios</a></li><li><a href="#manual-key-distribution-with-each-server-and-client-having-unique-keys">Manual key distribution with each server and client having unique keys</a></li><li><a href="#automatic-public-key-distribution-with-each-server-and-client-having-unique-keys">Automatic public key distribution with each server and client having unique keys</a></li><li><a href="#manual-public-key-distribution-with-servers-sharing-a-key-pair-and-clients-having-unique-keys">Manual public key distribution with servers sharing a key pair and clients having unique keys</a></li><li><a href="#automatic-public-key-distribution-with-servers-sharing-a-key-and-client-having-unique-keys">Automatic public key distribution with servers sharing a key and client having unique keys</a></li><li><a href="#creating-keys">Creating keys</a></li><li><a href="#reusing-puppet-keys">Reusing Puppet keys</a></li><li><a href="#future-roadmap">Future Roadmap</a></li><li><a href="#configuration-options">Configuration Options</a></li><li><a href="#common-options">Common Options</a></li><li><a href="#client-options">Client Options</a></li><li><a href="#server-options">Server Options</a></li></ol>
+                  </ol>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus"><li id='myprofiles_1'><a href='/feed/atom/' title='RSS'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png' alt='RSS'/></a></li> <li id='myprofiles_2'><a href='http://www.facebook.com/pages/Puppet-Labs/219089920711' title='FaceBook'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png' alt='FaceBook'/></a></li> <li id='myprofiles_3'><a href='http://www.twitter.com/puppetlabs' title='Twitter'><img border='0' width='22' height='22' src='http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png' alt='Twitter'/></a></li> </ul>
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull, <a href="http://apress.com/book/view/1590599780" rel="nofollow">Pulling Strings with Puppet</a> is the first book to introduce the powerful Puppet system administration tool. </p>
+              <a href="http://apress.com/book/view/1590599780" rel="nofollow"><img src="http://www.puppetlabs.com/images/book.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2010 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Street</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        
