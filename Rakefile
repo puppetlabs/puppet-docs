@@ -47,6 +47,9 @@ end
 desc "Generate docs and serve locally"
 task :run => [:generate, :serve]
 
+desc "Build documentation for a new Puppet version"
+task :build => [ 'references:check_version', 'references:fetch_tags', 'references:stub', 'references:puppetdoc', 'references:update_manpages']
+
 desc "Create tarball of documentation"
 task :tarball do
   FileUtils.cd 'output'
@@ -142,7 +145,12 @@ namespace :references do
   task :check_version do
     abort "No VERSION given (must be a valid repo tag)" unless ENV['VERSION'] 
   end
-  
+
+  task :fetch_tags do
+    Dir.chdir("vendor/puppet")
+    sh "git fetch --tags"
+    Dir.chdir("../..")
+  end
 end
 
 task :default => :spec
