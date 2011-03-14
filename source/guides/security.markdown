@@ -71,7 +71,7 @@ that will be put in place if you don't create an auth.conf.  You'll see these
 settings if you run your puppetmaster in debug mode and then connect with a
 client.
 
-There's also an example auth.conf file in the Puppet source in [conf/auth.conf](http://github.com/reductivelabs/puppet/blob/2.6.x/conf/auth.conf).
+There's also an example auth.conf file in the Puppet source in [conf/auth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/auth.conf).
 
 The ACL's (Access Control Lists) in the auth.conf are checked in order of
 appearance.
@@ -145,7 +145,7 @@ authconfig = $confdir/namespaceauth.conf
 This file controls the http connections to the puppet agent.  It is necessary
 to start the puppet agent with the listen true option.
 
-There's an example namespaceauth.conf file in the puppet source in [conf/namespaceauth.conf](http://github.com/reductivelabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
+There's an example namespaceauth.conf file in the puppet source in [conf/namespaceauth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
 
 Serverless operation
 --------------------

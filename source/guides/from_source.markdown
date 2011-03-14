@@ -39,8 +39,8 @@ Puppet relies on another Puppet Labs library,
     $ SETUP_DIR=~/git
     $ mkdir -p $SETUP_DIR
     $ cd $SETUP_DIR
-    $ git clone git://github.com/reductivelabs/facter
-    $ git clone git://github.com/reductivelabs/puppet
+    $ git clone git://github.com/puppetlabs/facter
+    $ git clone git://github.com/puppetlabs/puppet
 
 You will need to periodically run:
 
