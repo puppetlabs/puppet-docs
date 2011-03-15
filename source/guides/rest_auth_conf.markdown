@@ -1,155 +1,139 @@
 ---
 layout: default
-title: Security Infrastructure
+title: REST Access Control
 ---
 
-Security Infrastructure
-=======================
+REST Access Control
+===================
 
-Learn about Puppet's built in security systems.
+Learn how to configure access to Puppet's REST API using the `rest_authconfig` file, a.k.a. `auth.conf`. **This document is currently being checked for accuracy. If you note any errors, please email them to <faq@puppetlabs.com>.**
 
 * * *
 
-SSL
----
+REST
+----
 
-In centrally managed server context, Puppet uses SSL for security, which is the same thing your
-browser uses.   We find this system is much easier to distribute than relying on SSH keys for
-bi-directional communication, and is better suited to writing applications (as opposed to
-just doing remote scripting).
+Puppet master and puppet agent communicate with each other over a [RESTful network API](./rest_api.html). By default, the usage of this API is limited to the standard types of master/agent communications. However, it can be exposed to other processes and used to build advanced tools on top of Puppet's existing infrastructure and functionality. (REST API calls are formatted as `https://{server}:{port}/{environment}/{resource}/{key}`.)
 
-puppetca
---------
 
-When a node starts up that does not have a certificate, it checks in with the configured
-puppetmaster (central management daemon) and sends a certificate request.  Puppet can
-either be configured to autosign the certificate (generally not recommended for
-production environments), or a list of certificates that need to be signed can be
-shown with:
-
-    puppetca --list
-
-To sign a certificate, use the following:
-
-    puppetca --sign servername.example.org
-
-Puppetca can also be used to revoke certificates, see the puppetca manpage for further information.
-
-Firewall details
-----------------
-
-If a firewall is present, you should open port 8140, both tcp and udp, on the server and client machines.
-
-File Serving Configuration
---------------------------
-
-Puppet's fileserver is used to serve up files (and directories full of files) to the client. It can be configured in /etc/puppet/fileserver.conf (default path location):
-
-    [modulename]
-    path /path/to/files
-    allow *.domain.com
-    deny *.wireless.domain.com
-
-These three options represent the only options currently available in the configuration file. The module name, somewhat obviously, goes in the brackets. The path is the only required option. The default security configuration is to deny all access, so if no allow lines are specified, the module will be configured but available to no one.
-
-The path can contain any or all of %h, %H, and %d, which are dynamically replaced by the client’s hostname, its fully qualified domain name and it’s domain name, respectively. All are taken from the client’s SSL certificate (so be careful if you’ve got hostname/certname mismatches). This is useful in creating modules where files for each client are kept completely separately, e.g. for private ssh host keys. For example, with the configuration
-
-    [private]
-    path /data/private/%h
-    allow *
-
-The request for file /private/file.txt from client client1.example.com will look for a file /data/private/client1/file.txt, while the same request from client2.example.com will try to retrieve the file /data/private/client2/file.txt on the fileserver.
-
-Currently paths cannot contain trailing slashes or an error will result. Also take care that in puppet.conf you are not specifying directory locations that have trailing slashes.
+As you might guess, this can be turned into a security hazard, so access to the REST API is strictly controlled by a special configuration file.
 
 auth.conf
 ---------
 
-    rest_authconfig = $confdir/auth.conf
+The official name of the file controlling REST API access, taken from the [configuration option](/references/latest/configuration.html) that sets its location, is `rest_authconfig`, but it's more frequently known by its default filename of `auth.conf`. If you don't set a different location for it, Puppet will look for the file at `$confdir/auth.conf`.
 
-The auth.conf doesn't exist by default, but Puppet has some default settings
-that will be put in place if you don't create an auth.conf.  You'll see these
-settings if you run your puppetmaster in debug mode and then connect with a
-client.
+Format and Behavior
+-------------------
 
-There's also an example auth.conf file in the Puppet source in [conf/auth.conf](http://github.com/reductivelabs/puppet/blob/2.6.x/conf/auth.conf).
+The auth.conf file consists of a series of ACLs (Access Control Lists), each of which defines: 
 
-The ACL's (Access Control Lists) in the auth.conf are checked in order of
-appearance.
+* A resource path to which it applies
+* An optional list of environments to which it applies
+* An optional list of methods to which it applies
+* Whether the requests it applies to are authenticated with SSL, unauthenticated, or either
+* Whether the request should be allowed or denied, and the hostnames or IP addresses to which that directive applies
 
-Supported syntax:
-auth.conf supports two different syntax depending on how
-you want to express the ACL.
+ACLs are tested in their order of appearance, and the authorization check will stop at the first ACL that matches the request. As such, auth.conf has to be arranged with the most specific paths at the top and the least specific paths at the bottom, lest the whole search get short-circuited and the (usually restrictive) fallback rule applied to every request. The resource path, environment(s), method(s), and authentication type are equal peers in matching a request; if any of them are present in a given ACL and do not match the properties of the request, that ACL will not match. 
 
-### Path syntax
+Each auth.conf ACL is formatted as follows:
 
-    path /path/to/resource
-    [environment envlist]
-    [method methodlist]
+    path [~] {/path/to/resource|regex}
+    [environment {list of environments}]
+    [method {list of methods}]
     [auth[enthicated] {yes|no|on|off|any}]
     allow [host|ip|*]
     deny [host|ip]
 
-The path is matched as a prefix. That is /file matches both /file_metadata and
+Lists of environments, methods, and hosts are comma-separated. Authentication defaults to required if not specified, method defaults to all methods if not specified, and environment defaults to all environments if not specified. If neither allow or deny directives are supplied, the default is to deny. 
+
+Paths are interpreted as either a path prefix (no tilde) or a regular expression (with tilde). 
+
+### Path Prefixes
+
+    path /file
+
+The path listed above will match both /file_metadata and
 /file_content.
 
-Ex:
+### Regular Expression Paths
 
-    path /certificate_revocation_list/ca
-    method find
-    allow *
-
-will allow all nodes to access the certificates services
-
-### Regex syntax:
-
-This is differentiated from the path syntaxby a '~'
-
-    path ~ regex
-    [environment envlist]
-    [method methodlist]
-    [auth[enthicated] {yes|no|on|off|any}]
-    allow [host|ip|*]
-    deny [host|ip]
-
-The regex syntax is the same as ruby ones.
-
-Ex:
-
-    path ~ .pp$
-
-will match every resource ending in .pp (manifests files for instance)
+Regular expression paths don't have to match from the beginning of the resource path, though it's a good practice to use positional anchors. 
 
     path ~ ^/catalog/([^/]+)$
     method find
     allow $1
 
-will allow nodes to retrieve their only their own catalog
+Using a regex in the path makes any captured groups available later in the ACL. The ACL above will allow nodes to retrieve their own catalogs but prevent them from accessing other catalogs.
 
-* environment:: restrict an ACL to a specific set of environments
-* method:: restrict an ACL to a specific set of methods (find, search, save)
-* auth:: restrict an ACL to an authenticated or unauthenticated request the default when unspecified is to restrict the ACL to authenticated requests (i.e. exactly as if `auth yes` was present).
+Default ACLs
+------------
 
-If you want to test the REST API without worrying about ACL permissions, here's
-a completely permissive auth.conf file
+Auth.conf doesn't exist by default, and if it isn't found, Puppet will institute sensible default settings. The following ACLs will be applied if they aren't overridden:
+
+Allow authenticated nodes to retrieve their own catalogs:
+
+    path ~ ^/catalog/([^/]+)$
+    method find
+    allow $1
+
+Allow authenticated nodes to access any file services --- in practice, this results in fileserver.conf being consulted: 
+
+    path /file
+    allow *
+
+Allow authenticated nodes to access certificate services:
+
+    path /certificate_revocation_list/ca
+    method find
+    allow *
+
+Allow authenticated nodes to send reports:
+
+    path /report
+    method save
+    allow *
+
+Allow unauthenticated access to certificates:
+
+    path /certificate/ca
+    auth no
+    method find
+    allow *
+
+    path /certificate/
+    auth no
+    method find
+    allow *
+
+Allow unauthenticated nodes to submit certificate signing requests:
+
+    path /certificate_request
+    auth no
+    method find, save
+    allow *
+
+Deny all other requests:
+
+    path /
+    auth any
+
+An example auth.conf file containing these rules is provided in the Puppet source, in [conf/auth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/auth.conf).
+
+Danger Mode
+-----------
+
+If you want to test the REST API for application prototyping without worrying about specifying your final set of ACLs ahead of time, you can set a completely permissive auth.conf:
 
     path /
     auth no
     allow *
 
-namespaceauth.conf
-------------------
+authconfig / namespaceauth.conf
+-------------------------------
 
-    authconfig = $confdir/namespaceauth.conf
+Older versions of Puppet communicated over an XMLRPC interface instead of the current RESTful interface, and access to these APIs was governed by a file known as `authconfig` (after the configuration option listing its location) or `namespaceauth.conf` (after its default filename). This legacy file will not be fully documented, but an example namespaceauth.conf file can be found in the puppet source in [conf/namespaceauth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
 
-This file controls the http connections to the puppet agent.  It is necessary
-to start the puppet agent with the listen true option.
+A [known bug](http://projects.puppetlabs.com/issues/6442) in the 2.6.x releases of Puppet prevents puppet agent from being started with the `listen = true` option unless namespaceauth.conf is present, even though the file is never consulted. The workaround is to create an empty file:
 
-There's an example namespaceauth.conf file in the puppet source in [conf/namespaceauth.conf](http://github.com/reductivelabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
-
-Serverless operation
---------------------
-
-In maximum security environments, or disconnected setups, it is possible to run puppet without the central management daemon.  In this case, run 'puppet' locally instead of puppetd, and make sure the manifests are transferrred to the managed machine before running puppet, as there is no 'puppetmasterd' to serve up the manifests and source material.
-
-
+    # touch `puppet agent --configprint authconfig`
