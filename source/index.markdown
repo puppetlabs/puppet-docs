@@ -30,42 +30,19 @@ Learn to use Puppet! New users: start here.
 * [Manifests](./learning/manifests.html) --- start writing and applying Puppet code
 * [Ordering](./learning/ordering.html) --- learn to join resources that depend on each other
 
-Getting Started
+Reference Shelf
 ---------------
 
-Guides on getting Puppet up and running.
+Get detailed information about config files, APIs, and the Puppet language.
 
-* [An Introduction to Puppet](./guides/introduction.html)
-* [Supported Platforms](./guides/platforms.html)
-* [Installing Puppet](./guides/installation.html) --- from packages, source, or gems
-* [Configuring Puppet](./guides/configuring.html) --- includes server setup & testing
-
-Components
-----------
-
-Learn more about major working parts of the Puppet system.
-
-* [Puppet commands: master, agent, apply, resource, and more](./guides/tools.html) --- components of the system
-* [Puppet manpages](./man) --- detailed information about each Puppet application
-* [Security Infrastructure / Securing Puppet](./guides/security.html) --- how PKI works
-
-Extended Knowledge
-------------------
-
-Once you've learned the basics, go here next.
-
+* [REST API](./guides/rest_api.html) --- reference of api accessible resources
 * [Puppet Language Guide](./guides/language_guide.html) --- all the language details
-* [Puppet Modules](./guides/modules.html) --- modules make it easy to organize and share content
-* [Puppet File Serving](./guides/file_serving.html) --- serving files with Puppet
-* [Style Guide](./guides/style.html) --- Puppet community conventions
-* [Best Practices](./guides/best_practices.html) --- use Puppet effectively
-* [Tips & Tricks](./guides/techniques.html)
-* [Troubleshooting](./guides/troubleshooting.html)
+* [Puppet Manpages](./man/) --- detailed help for each Puppet application
+* [REST Access Control](./guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 
-References
-----------
+### Automatically Generated References
 
-Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, and more. 
+Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, indirection termini, and reports, served piping hot directly from the source code. 
 
 * [Resource Types](./references/latest/type.html) --- all default types
 * [Functions](./references/latest/function.html) --- all built in functions
@@ -75,48 +52,75 @@ Complete and up-to-date references for Puppet's resource types, functions, metap
 
 These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
 
-* [Versioned References](references/) --- inline docs from Puppet's past and present
+* [Versioned References](references/) --- inline reference docs from Puppet's past and present
 
-Puppet Dashboard (Web GUI)
---------------------------
+Puppet Guides
+-------------
 
-Puppet from a graphical perspective.
+Learn about different areas of Puppet, fix problems, and design solutions. 
 
-* [Installing Dashboard](./guides/installing_dashboard.html)
-* [Using Dashboard](./guides/using_dashboard.html)
+### Components
 
-Advanced Topics
----------------
+Learn more about major working parts of the Puppet system.
 
-Power user features.
+* [Puppet commands: master, agent, apply, resource, and more](./guides/tools.html) --- components of the system
+
+### Installing and Configuring
+
+Get Puppet up and running at your site.
+
+* [An Introduction to Puppet](./guides/introduction.html)
+* [Supported Platforms](./guides/platforms.html)
+* [Installing Puppet](./guides/installation.html) --- from packages, source, or gems
+* [Configuring Puppet](./guides/configuring.html) --- includes server setup & testing
+
+### Tuning and Scaling
+
+Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance. 
+
+* [Scaling Puppet](./guides/scaling.html) --- general tips & tricks
+* [Scaling With Passenger](./guides/passenger.html) --- for Puppet 0.24.6 and later
+* [Scaling With Mongrel](./guides/mongrel.html) --- for older versions of Puppet
+
+### Basic Features and Use
+
+* [Techniques](./guides/techniques.html) --- common design patterns, tips, and tricks
+* [Troubleshooting](./guides/troubleshooting.html) --- avoid common problems and confusions
+* [Puppet Modules](./guides/modules.html) --- modules make it easy to organize and share content
+* [Puppet File Serving](./guides/file_serving.html) --- serving files with Puppet
+* [Style Guide](./guides/style.html) --- Puppet community conventions
+* [Best Practices](./guides/best_practices.html) --- use Puppet effectively
+
+### Advanced Features
+
+Go beyond basic manifests.
 
 * [Templating](./guides/templating.html) --- template out config files using ERB
 * [Virtual Resources](./guides/virtual_resources.html)
 * [Exported Resources](./guides/exported_resources.html) --- share data between hosts
 * [Environments](./guides/environment.html) --- separate dev, stage, & production
 * [Reporting](./guides/reporting.html) --- learn what your nodes are up to
+
+#### Puppet Dashboard
+
+Install and use Puppet's optional web interface. 
+
+* [Installing Dashboard](./guides/installing_dashboard.html)
+* [Using Dashboard](./guides/using_dashboard.html)
+
+### Extending and Hacking
+
+Build your own tools and workflows onto Puppet.
+
 * [External Nodes](./guides/external_nodes.html) --- specify what your machines do using external data sources
-* [Scaling Puppet](./guides/scaling.html) --- general tips & tricks
-* [Scaling With Passenger](./guides/passenger.html) --- for Puppet 0.24.6 and later
-* [Scaling With Mongrel](./guides/mongrel.html) --- for older versions of Puppet
-
-Extending Puppet
-----------------
-
-Adapt Puppet to your specific requirements through extensible code.
-
+* [Plugins In Modules](./guides/plugins_in_modules.html) --- where to put plugins, how to sync to clients
 * [Writing Custom Facts](./guides/custom_facts.html)
 * [Writing Custom Types & Providers](./guides/custom_types.html)
 * [Complete Resource Example](./guides/complete_resource_example.html) --- more information on custom types & providers
 * [Provider Development](./guides/provider_development.html) --- more about providers
 * [Writing Custom Functions](./guides/custom_functions.html)
-* [Plugins In Modules](./guides/plugins_in_modules.html) --- where to put plugins, how to sync to clients
-* [REST API](./guides/rest_api.html) --- reference of api accessible resources
 
-Development Information
------------------------
-
-Learn how to work with Puppet core.
+#### Developing Puppet
 
 * [Running Puppet from Source](./guides/from_source.html) --- preview the leading edge
 * [Development Life Cycle](./guides/development_lifecycle.html) --- learn how to contribute code

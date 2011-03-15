@@ -64,7 +64,8 @@ Currently paths cannot contain trailing slashes or an error will result. Also ta
 
 auth.conf
 ---------
-`rest_authconfig = $confdir/auth.conf`
+
+    rest_authconfig = $confdir/auth.conf
 
 The auth.conf doesn't exist by default, but Puppet has some default settings
 that will be put in place if you don't create an auth.conf.  You'll see these
@@ -125,11 +126,9 @@ will match every resource ending in .pp (manifests files for instance)
 
 will allow nodes to retrieve their only their own catalog
 
-environment:: restrict an ACL to a specific set of environments
-method:: restrict an ACL to a specific set of methods (find, search, save)
-auth:: restrict an ACL to an authenticated or unauthenticated request
-the default when unspecified is to restrict the ACL to authenticated requests
-(ie exactly as if auth yes was present).
+* environment:: restrict an ACL to a specific set of environments
+* method:: restrict an ACL to a specific set of methods (find, search, save)
+* auth:: restrict an ACL to an authenticated or unauthenticated request the default when unspecified is to restrict the ACL to authenticated requests (i.e. exactly as if `auth yes` was present).
 
 If you want to test the REST API without worrying about ACL permissions, here's
 a completely permissive auth.conf file
@@ -140,7 +139,8 @@ a completely permissive auth.conf file
 
 namespaceauth.conf
 ------------------
-authconfig = $confdir/namespaceauth.conf
+
+    authconfig = $confdir/namespaceauth.conf
 
 This file controls the http connections to the puppet agent.  It is necessary
 to start the puppet agent with the listen true option.
