@@ -82,7 +82,7 @@ Allow authenticated nodes to access any file services --- in practice, this resu
     path /file
     allow *
 
-Allow authenticated nodes to access certificate services:
+Allow authenticated nodes to access the certificate revocation list:
 
     path /certificate_revocation_list/ca
     method find

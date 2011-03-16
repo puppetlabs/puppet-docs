@@ -94,7 +94,7 @@ Configuring the backend will ensure that puppet master maintains an inventory, b
 
 For prototyping your API-consuming application, you can simply create an auth.conf file with every [default ACL](./rest_auth_conf.html#default-acls) and modify the final ACL that matches `/` --- either add an `allow *` line, or (more sanely) an `allow {hostname}` line that restricts super-access to one or more development machines. (Creating a complete auth.conf with redundant copies of every default ACL is necessary because of the linear way ACLs are matched --- if you create a stub auth.conf that only includes the ACL matching `/` with `auth any`, it will match every request before any of the default ACLs are given a chance. This won't present any symptoms if you chose to `allow *`, but can cause headaches later.) 
 
-For production deployment, you'll need to come up with ACLs that allows access to your application, allows any other puppet masters at your site to submit their nodes' facts, and denies access to any potential rogue processes or agent nodes. (Since agent nodes submit their facts as part of their request to the `catalog` resource, they don't require access to the `facts` or `facts_search` resources.) One possible ACL set would be:
+For production deployment, you'll need to come up with ACLs that allow access to your application, allow any other puppet masters at your site to submit their nodes' facts, and deny access to any rogue agent nodes. (Since agent nodes submit their facts as part of their request to the `catalog` resource, they don't require access to the `facts` or `facts_search` resources.) One possible ACL set would be:
 
     path /facts
     auth yes
