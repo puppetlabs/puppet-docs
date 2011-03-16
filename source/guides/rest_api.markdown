@@ -93,7 +93,7 @@ Example:
 
 ## The master REST API
 
-A valid and signed certificate is required to retrieve these resourc
+A valid and signed certificate is required to retrieve these resources.
 
 ### Catalogs
 
@@ -111,9 +111,9 @@ Get the certificate revocation list.
 
 GET `/certificate_revocation_list/ca`
 
-Example:
+Example: 
 
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
+    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate_revocation_list/ca
 
 ### Certificate Request
 
@@ -180,7 +180,7 @@ File serving is covered in more depth on the [wiki](http://projects.puppetlabs.c
 
 ### Node
 
-Returns the Facts for the specified node
+Returns the Puppet::Node information (including facts) for the specified node
 
 GET `/{environment}/node/{node certificate name}`
 
@@ -197,6 +197,41 @@ GET `/{environment}/status/{anything}`
 Example:
 
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/status/puppetclient
+
+### Facts
+
+GET `/{environment}/facts/{node certname}`
+
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/facts/{node certname}
+
+PUT `/{environment}/facts/{node certname}`
+
+    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/puppet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node certname}
+
+
+### Facts Search
+
+GET `/{environment}/facts_search/search?{facts search string}`
+
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu
+
+Facts search strings are constructed as a series of terms separated by `&`; if there is more than one term, the search combines the terms with boolean AND. There is currently no API for searching with boolean OR. Each term is composed as follows: 
+
+    facts.{name of fact}.{comparison type}={string for comparison}
+
+If you leave off the `.{comparison type}`, the comparison will default to simple equality. The following comparison types are available: 
+
+#### String/general comparison
+
+* `eq` --- `==` (default)
+* `ne` --- `!=`
+
+#### Numeric comparison
+
+* `lt` --- `<`
+* `le` --- `<=`
+* `gt` --- `>`
+* `ge` --- `>=`
 
 ## The agent REST API
 
@@ -218,7 +253,7 @@ Example:
 
 Cause the client to update like puppetrun or puppet kick
 
-PUT `/{environment}/run/{node certificate name}`
+PUT `/{environment}/run/{anything}`
 
 Example:
 
