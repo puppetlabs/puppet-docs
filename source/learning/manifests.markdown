@@ -64,10 +64,10 @@ Let's start by just declaring a single resource:
     # /root/training-manifests/1.file.pp
     
     file {'testfile':
-        path    => '/tmp/testfile',
-        ensure  => present,
-        mode    => '640',
-        content => "I'm a test file.",
+      path    => '/tmp/testfile',
+      ensure  => present,
+      mode    => '640',
+      content => "I'm a test file.",
     }
 {% endhighlight %}
 
@@ -112,18 +112,18 @@ Okay, you sort of have the idea by now. Let's make a whole wad of totally useles
     # /root/training-manifests/2.file.pp
     
     file {'/tmp/test1':
-        ensure  => present,
-        content => "Hi.",
+      ensure  => present,
+      content => "Hi.",
     }
     
     file {'/tmp/test2':
-        ensure => directory,
-        mode   => 644,
+      ensure => directory,
+      mode   => 644,
     }
     
     file {'/tmp/test3':
-        ensure => link,
-        target => '/tmp/test1',
+      ensure => link,
+      target => '/tmp/test1',
     }
     
     notify {"I'm notifying you.":} # Whitespace is fungible, remember.
@@ -163,16 +163,16 @@ To people who occasionally delve into the Puppet source code, the one attribute 
 This can be a convenient shortcut, but be wary of overusing it; there are several common cases where it makes more sense to give a resource a symbolic title and assign its name (-var) as a normal attribute. In particular, it's a good idea to do so if a resource's name is long or you want to assign the name conditionally depending on the nature of the system.
 
     notify {'bignotify':
-        message => "I'm completely enormous, and will mess up the formatting of your 
-            code! Also, since I need to fire before some other resource, you'll need
-            to refer to me by title later using the Notify['title'] syntax, and you
-            really don't want to have to type this all over again.",
+      message => "I'm completely enormous, and will mess up the formatting of your 
+          code! Also, since I need to fire before some other resource, you'll need
+          to refer to me by title later using the Notify['title'] syntax, and you
+          really don't want to have to type this all over again.",
     }
 
 The upshot is that our `notify {"I'm notifying you.":}` resource above has the exact same effect as:
 
     notify {'other title':
-        message => "I'm notifying you.",
+      message => "I'm notifying you.",
     }
 
 ... because the `message` attribute just steals the resource title if you don't give it anything of its own.

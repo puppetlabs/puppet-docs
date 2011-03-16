@@ -41,12 +41,12 @@ The Puppet language represents a resource like this:
 
 {% highlight ruby %}
     user { 'dave':
-        ensure     => present,
-        uid        => '507',
-        gid        => 'admin',
-        shell      => '/bin/zsh',
-        home       => '/home/dave',
-        managehome => true,
+      ensure     => present,
+      uid        => '507',
+      gid        => 'admin',
+      shell      => '/bin/zsh',
+      home       => '/home/dave',
+      managehome => true,
     }
 {% endhighlight %}
 

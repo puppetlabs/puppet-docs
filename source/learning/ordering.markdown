@@ -25,18 +25,18 @@ Let's look back on one of our manifests from the last page:
     # /root/training-manifests/2.file.pp
     
     file {'/tmp/test1':
-        ensure  => present,
-        content => "Hi.",
+      ensure  => present,
+      content => "Hi.",
     }
     
     file {'/tmp/test2':
-        ensure => directory,
-        mode   => 644,
+      ensure => directory,
+      mode   => 644,
     }
     
     file {'/tmp/test3':
-        ensure => link,
-        target => '/tmp/test1',
+      ensure => link,
+      target => '/tmp/test1',
     }
     
     notify {"I'm notifying you.":}
@@ -52,12 +52,12 @@ Metaparameters, Resource References, and Ordering
 
 {% highlight ruby %}
     file {'/tmp/test1':
-        ensure  => present,
-        content => "Hi.",
+      ensure  => present,
+      content => "Hi.",
     }
     
     notify {'/tmp/test1 has already been synced.':
-        require => File['/tmp/test1'],
+      require => File['/tmp/test1'],
     }
 {% endhighlight %}
 
@@ -79,10 +79,10 @@ These two metaparameters are just different ways of writing the same relationshi
 
 {% highlight ruby %}
     file {'/tmp/test1':
-        ensure  => present,
-        content => "Hi.",
-        before  => Notify['/tmp/test1 has already been synced.'],
-        # (See what I meant about symbolic titles being a good idea?)
+      ensure  => present,
+      content => "Hi.",
+      before  => Notify['/tmp/test1 has already been synced.'],
+      # (See what I meant about symbolic titles being a good idea?)
     }
     
     notify {'/tmp/test1 has already been synced.':}
@@ -103,12 +103,12 @@ The `notify` and `subscribe` metaparameters make dependency relationships the wa
 
 {% highlight ruby %}
     file {'/tmp/test1':
-        ensure  => present,
-        content => "Hi.",
+      ensure  => present,
+      content => "Hi.",
     }
     
     notify {'after':
-        message => '/tmp/test1 has already been synced.',
+      message => '/tmp/test1 has already been synced.',
     }
     
     File['/tmp/test1'] -> Notify['after']
@@ -149,11 +149,11 @@ Next, edit our new copy of the file. There's a line in there that says `Password
 {% highlight ruby %}
     # /root/learning-manifests/break_ssh.pp
     file { '/etc/ssh/sshd_config':
-        ensure => file,
-        mode   => 600, 
-        source => '/root/learning-manifests/sshd_config',
-        # And yes, that's the first time we've seen the "source" attribute.
-        # It accepts absolute paths and puppet:/// URLs, about which more later.
+      ensure => file,
+      mode   => 600, 
+      source => '/root/learning-manifests/sshd_config',
+      # And yes, that's the first time we've seen the "source" attribute.
+      # It accepts absolute paths and puppet:/// URLs, about which more later.
     }
 {% endhighlight %}
 
@@ -166,19 +166,19 @@ If we want the service to change its behavior as soon as we change our policy, w
 {% highlight ruby %}
     # /root/learning-manifests/break_ssh.pp, again
     file { '/etc/ssh/sshd_config':
-        ensure => file,
-        mode   => 600, 
-        source => '/root/learning-manifests/sshd_config',
+      ensure => file,
+      mode   => 600, 
+      source => '/root/learning-manifests/sshd_config',
     }
         
     service { 'sshd':
-        ensure     => running,
-        enable     => true, 
-        hasrestart => true,
-        hasstatus  => true,
-        # FYI, those last two attributes default to false, since
-        # bad init scripts are more or less endemic.
-        subscribe  => File['/etc/ssh/sshd_config'],
+      ensure     => running,
+      enable     => true, 
+      hasrestart => true,
+      hasstatus  => true,
+      # FYI, those last two attributes default to false, since
+      # bad init scripts are more or less endemic.
+      subscribe  => File['/etc/ssh/sshd_config'],
     }
 {% endhighlight %}
 
@@ -194,22 +194,22 @@ The example we just saw was very close to a pattern you'll see constantly in pro
 {% highlight ruby %}
     # /root/learning-manifests/break_ssh.pp
     package { 'openssh-server':
-        ensure => present,
-        before => File['/etc/ssh/sshd_config'],
+      ensure => present,
+      before => File['/etc/ssh/sshd_config'],
     }
     
     file { '/etc/ssh/sshd_config':
-        ensure => file,
-        mode   => 600, 
-        source => '/root/learning-manifests/sshd_config',
+      ensure => file,
+      mode   => 600, 
+      source => '/root/learning-manifests/sshd_config',
     }
         
     service { 'sshd':
-        ensure     => running,
-        enable     => true, 
-        hasrestart => true,
-        hasstatus  => true,
-        subscribe  => File['/etc/ssh/sshd_config'],
+      ensure     => running,
+      enable     => true, 
+      hasrestart => true,
+      hasstatus  => true,
+      subscribe  => File['/etc/ssh/sshd_config'],
     }
 {% endhighlight %}
 
