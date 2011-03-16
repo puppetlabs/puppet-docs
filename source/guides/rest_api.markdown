@@ -206,7 +206,7 @@ GET `/{environment}/facts/{node certname}`
 
 PUT `/{environment}/facts/{node certname}`
 
-    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/pupet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node certname}
+    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/puppet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node certname}
 
 
 ### Facts Search

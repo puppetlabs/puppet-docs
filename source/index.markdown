@@ -108,17 +108,23 @@ Install and use Puppet's optional web interface.
 * [Installing Dashboard](./guides/installing_dashboard.html)
 * [Using Dashboard](./guides/using_dashboard.html)
 
-### Extending and Hacking
+### Hacking and Extending
 
-Build your own tools and workflows onto Puppet.
+Build your own tools and workflows on top of Puppet.
+
+#### Using APIs and Interfaces
 
 * [External Nodes](./guides/external_nodes.html) --- specify what your machines do using external data sources
+* [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
+
+#### Using Ruby Plugins
+
 * [Plugins In Modules](./guides/plugins_in_modules.html) --- where to put plugins, how to sync to clients
 * [Writing Custom Facts](./guides/custom_facts.html)
+* [Writing Custom Functions](./guides/custom_functions.html)
 * [Writing Custom Types & Providers](./guides/custom_types.html)
 * [Complete Resource Example](./guides/complete_resource_example.html) --- more information on custom types & providers
 * [Provider Development](./guides/provider_development.html) --- more about providers
-* [Writing Custom Functions](./guides/custom_functions.html)
 
 #### Developing Puppet
 
