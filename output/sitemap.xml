@@ -54,7 +54,7 @@
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/index.html</loc>
-      <lastmod>2011-03-11</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/external_nodes.html</loc>
@@ -70,7 +70,7 @@
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/from_source.html</loc>
-      <lastmod>2011-01-26</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/installation.html</loc>
@@ -117,12 +117,12 @@
       <lastmod>2011-02-25</lastmod>
   </url>
   <url>
-      <loc>http://docs.puppetlabs.com/guides/security.html</loc>
-      <lastmod>2011-02-20</lastmod>
-  </url>
-  <url>
       <loc>http://docs.puppetlabs.com/guides/techniques.html</loc>
       <lastmod>2011-02-23</lastmod>
+  </url>
+  <url>
+      <loc>http://docs.puppetlabs.com/guides/rest_auth_conf.html</loc>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/custom_functions.html</loc>
@@ -130,7 +130,7 @@
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/rest_api.html</loc>
-      <lastmod>2011-01-26</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/modules.html</loc>
@@ -142,7 +142,7 @@
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/development_lifecycle.html</loc>
-      <lastmod>2010-11-10</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/reporting.html</loc>
@@ -167,6 +167,10 @@
   <url>
       <loc>http://docs.puppetlabs.com/guides/virtual_resources.html</loc>
       <lastmod>2011-02-25</lastmod>
+  </url>
+  <url>
+      <loc>http://docs.puppetlabs.com/guides/inventory_service.html</loc>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/guides/language_tutorial.html</loc>
@@ -1090,7 +1094,7 @@
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/learning/ordering.html</loc>
-      <lastmod>2011-03-10</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/learning/index.html</loc>
@@ -1098,10 +1102,10 @@
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/learning/manifests.html</loc>
-      <lastmod>2011-03-08</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
   <url>
       <loc>http://docs.puppetlabs.com/learning/ral.html</loc>
-      <lastmod>2011-03-04</lastmod>
+      <lastmod>2011-03-19</lastmod>
   </url>
 </urlset>

@@ -832,14 +832,14 @@ header#header li:hover a span.subtitle {
 
 #header #misc-navigation a.gateway{
 	border: none;
-	background: #7f6799;
+	background: #ba5500;
 	color: white;
 	padding: 0.25em 0.5em;
 	line-height: 1.5em;
 }
 
 #header #misc-navigation a.gateway:hover{
-  background-color: #ba5500;
+  background-color: #7f6799;
   text-decoration: none;
 }
 
@@ -1019,6 +1019,19 @@ section#content {
   font-size: 0.85em;
 }
 
+.secondary-content widget {display:block; padding:20px 10px 20px 0;}
+.secondary-content widget .title {display:none;}
+widget .btn {padding:.35em .45em .375em .45em; font-size:.9em; margin-left:auto; margin-right:auto; display:inline-block; text-align:center;}
+
+#sidebar-2 widget {margin:1.5em 0 1em; display:block;}
+#sidebar-2 widget:first-child {margin-top:0;}
+#sidebar-2 widget .title {line-height: 1.1em; font-weight: bold; margin-bottom: 0.75em; color: #555; -webkit-transition: all 0.25s linear; -moz-transition: all 0.25s linear;}
+
+
+
+
+
+
 /* @end */
 
 /* @end */
@@ -1163,6 +1176,59 @@ footer#footer form fieldset legend {
   display: inline-block;
   font-size:0.8125em;
 }
+
+#footer .fbtn {
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	position:relative;
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px !important;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font-size:1.125em;
+	font-weight:bold;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+#footer .fbtn:hover {
+	text-decoration: none;
+}
+#footer .fbtn:active {
+	position: relative;
+	top: 1px;
+}
+
+/* BUTTON COLORS */
+#footer .fbtn {
+	color: #fff !important; 
+	border: solid 1px #954712;
+	background: #C05F1C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#d47b3e), to(#C05F1C));
+	background: -moz-linear-gradient(top,  #d47b3e,  #C05F1C);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#d47b3e', endColorstr='#C05F1C');
+}
+#footer .fbtn:hover {
+	border: solid 1px #954712;
+	background: #C05F1C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#A05617), to(#C05F1C));
+	background: -moz-linear-gradient(top,  #A05617,  #C05F1C);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#A05617', endColorstr='#C05F1C');
+}
+
+
+
+
 
 /* @end */
 
