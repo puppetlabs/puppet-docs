@@ -162,18 +162,22 @@ To people who occasionally delve into the Puppet source code, the one attribute 
 
 This can be a convenient shortcut, but be wary of overusing it; there are several common cases where it makes more sense to give a resource a symbolic title and assign its name (-var) as a normal attribute. In particular, it's a good idea to do so if a resource's name is long or you want to assign the name conditionally depending on the nature of the system.
 
+{% highlight ruby %}
     notify {'bignotify':
       message => "I'm completely enormous, and will mess up the formatting of your 
           code! Also, since I need to fire before some other resource, you'll need
           to refer to me by title later using the Notify['title'] syntax, and you
           really don't want to have to type this all over again.",
     }
+{% endhighlight %}
 
 The upshot is that our `notify {"I'm notifying you.":}` resource above has the exact same effect as:
 
+{% highlight ruby %}
     notify {'other title':
       message => "I'm notifying you.",
     }
+{% endhighlight %}
 
 ... because the `message` attribute just steals the resource title if you don't give it anything of its own.
 

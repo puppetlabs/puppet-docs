@@ -3,7 +3,8 @@ layout: default
 title: REST API
 ---
 
-# REST API
+REST API
+========
 
 Both puppet master and puppet agent have RESTful API's that they use to communicate.
 The basic structure of the url to access this API is
