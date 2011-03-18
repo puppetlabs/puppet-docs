@@ -5,3 +5,5 @@ output
 .#*
 log
 .DS_Store
+pdf_output
+pdf_source
