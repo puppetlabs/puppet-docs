@@ -47,6 +47,30 @@ end
 desc "Generate docs and serve locally"
 task :run => [:generate, :serve]
 
+desc "Generate the documentation in a flat format for later PDF generation"
+task :generate_pdf do
+  system("rm -rf pdf_source")
+  system("cp -rf source pdf_source")
+  system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files 
+  # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page. 
+  Dir.chdir("pdf_source")
+  system("../vendor/gems/jekyll-0.7.0/bin/jekyll --kramdown ../pdf_output")
+  Rake::Task['references:symlink:for_pdf'].invoke
+  Dir.chdir("../pdf_output")
+  system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
+  system("mv index.html original_index.html")
+  system("mv rebuilt_index.html index.html")
+  puts "Remember to run rake serve_pdf"
+  puts "Remember to run wkhtmltopdf cover http://localhost:9292/cover.html http://localhost:9292/ puppet.pdf"
+  Dir.chdir("..")
+end
+
+desc "Serve generated flat-for-PDF output on port 9292"
+task :serve_pdf do
+  system("rackup config_pdf.ru")
+end
+
+
 desc "Build documentation for a new Puppet version"
 task :build => [ 'references:check_version', 'references:fetch_tags', 'references:stub', 'references:puppetdoc', 'references:update_manpages']
 
@@ -92,7 +116,18 @@ namespace :references do
         puts "#{name}: #{version}"
       end
     end
-        
+    
+    desc "Symlink the latest & stable directories when generating a flat page for PDFing"
+    task :for_pdf do
+      require 'puppet_docs'
+      PuppetDocs::Reference.special_versions.each do |name, (version, source)|
+        Dir.chdir '../pdf_output/references' do
+          ln_sf version.to_s, name.to_s
+        end
+      end
+
+    end
+    
   end
 
   desc "Symlink the latest & stable directories"
