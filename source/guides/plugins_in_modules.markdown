@@ -105,7 +105,7 @@ replacing a custom function with a new version will not cause
 Puppet master to automatically reload the function. You must
 restart the Puppet master.
 
-# Legacy 0.24.x and Plugins in Modules
+## Legacy 0.24.x and Plugins in Modules
 
 For older Puppet release the `lib` directory was called `plugins`.
 

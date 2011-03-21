@@ -10,7 +10,8 @@ This document walks through the definition of a very simple resource type and on
 
 * * *
 
-# Resource Creation
+Resource Creation
+-----------------
 
 Nearly every resource needs to be able to be created and
 destroyed, and resources have to have names, so we'll start with
@@ -146,7 +147,8 @@ There are a lot of other options in creating properties,
 parameters, and providers, but this should provide a
 decent starting point.
 
-# See Also
+See Also
+--------
 
 -   [Provider Development](./provider_development.html)
 -   [Creating Custom Types](./custom_types.html)

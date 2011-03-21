@@ -29,7 +29,7 @@ We will use the apt and dpkg package providers as examples
 throughout this document, and the examples used are current as of
 0.23.0.
 
-# Declaration
+## Declaration
 
 Providers are always associated with a single resource type, so
 they are created by calling the provide class method on that
@@ -60,7 +60,7 @@ each provider type. Puppet defaults to creating a new source for
 each provider type, so you have to specify when a provider subclass
 shares a source with its parent class.
 
-# Suitability
+## Suitability
 
 The first question to ask about a new provider is where it will be
 functional, which Puppet describes as suitable. Unsuitable
@@ -107,7 +107,7 @@ whether the values are strings or symbols. It also doesn't matter
 whether you specify an array or a single value --- Puppet does an OR
 on the list of values.
 
-# Default Providers
+## Default Providers
 
 Providers are generally meant to be hidden from the users, allowing
 them to focus on resource specification rather than implementation
@@ -123,7 +123,7 @@ method. For instance, this is the apt provider's declaration:
 The same fact matching functionality is used, so again case does
 not matter.
 
-# Provider/Resource API
+## Provider/Resource API
 
 Providers never do anything on their own; all of their action is
 triggered through an associated resource (or, in special cases,
@@ -163,7 +163,7 @@ returns a list of provider instances, one for each existing
 instance of that provider. For instance, the dpkg provider should
 return a provider instance for every package in the dpkg database.
 
-# Provider Methods
+## Provider Methods
 
 By default, you have to define all of your getter and setter
 methods. For simple cases, this is sufficient --- you just implement
@@ -172,7 +172,7 @@ the code that does the work for that property.
 However, because things are rarely so simple, Puppet attempts to
 help in a few ways.
 
-## Prefetching
+### Prefetching
 
 First, Puppet transactions will prefetch provider information by
 calling prefetch on each used provider type. This calls the
@@ -187,7 +187,7 @@ for every property being managed. Note that it also means that
 providers are often getting replaced, so you cannot maintain state
 in a provider.
 
-## Resource Methods
+### Resource Methods
 
 For providers that directly modify the system when a setter method
 is called, there's no substitute for defining them manually. But
@@ -197,7 +197,7 @@ that creates a getter and setter for each property on the resource.
 These methods just retrieve and set the appropriate value in the
 @property\_hash variable.
 
-## Flushing
+### Flushing
 
 Many providers model files or parts of files, so it makes sense to
 save all of the writes up and do them in one run. Providers in need

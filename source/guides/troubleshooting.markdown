@@ -12,7 +12,9 @@ Basic workflow items are covered in the main section of the documentation.  If y
 
 * * *
 
-## Why hasn't my new node configuration been noticed?
+## General
+
+### Why hasn't my new node configuration been noticed?
 
 If you're using separate node definition files and import them into
 site.pp (with an `import *.node`, for example) you'll find that new
@@ -23,14 +25,14 @@ when the 'parent' file is re-read.
 To make sure your new file is actually read, simply 'touch' the
 site.pp (or importing file) and the glob will be re-evaluated.
 
-## Why don't my certificates show as waiting to be signed on my server when I do a "`puppet cert --list`"?
+### Why don't my certificates show as waiting to be signed on my server when I do a "`puppet cert --list`"?
 
 puppet cert must be run with root privileges. If you are not root, then re-run the
 command with sudo:
 
     sudo puppet cert --list
 
-## I keep getting "certificates were not trusted". What's wrong?
+### I keep getting "certificates were not trusted". What's wrong?
 
 Firstly, if you're re-installing a machine, you probably haven't
 cleared the previous certificate for that machine. To correct the
@@ -58,14 +60,14 @@ problem, the SSL handshake between client and server will fail. In
 this case, either alleviate the SSL handshake problems (debug using
 cURL), or revert to the original Webrick installation.
 
-## I'm getting IPv6 errors; what's wrong?
+### I'm getting IPv6 errors; what's wrong?
 
 This can happen if Ruby is not compiled with IPv6
 support. The only known
 solution is to make sure you're running a version of Ruby compiled
 with IPv6 support.
 
-## I'm getting tlsv1 alert unknown ca errors; what's wrong?
+### I'm getting tlsv1 alert unknown ca errors; what's wrong?
 
 This problem is caused by puppetmasterd not being able to read its
 ca certificate. This problem might occur up to 0.18.4 but has been
@@ -75,7 +77,7 @@ the puppet group, but puppetd may change the group back. Having
 puppetmasterd start as the root user should fix the problem
 permanently until you can upgrade.
 
-## Why does Puppet keep trying to start a running service?
+### Why does Puppet keep trying to start a running service?
 
 The ideal way to check for a service is to use the hasstatus
 attribute, which calls the init script with its `status` command.
@@ -103,7 +105,7 @@ official, published standard they're failing to meet, rather than
 trying to explain how their bug is causing problems in Puppet.
 
 
-## Why is my external node configuration failing? I get no errors by running the script by hand.
+### Why is my external node configuration failing? I get no errors by running the script by hand.
 
 Most of the time, if you get the following error when running you
 client
@@ -115,14 +117,14 @@ it is because of some invalid YAML output from your external node
 script. Check [yaml.org](http://www.yaml.org) if you
 have doubts about validity.
 
-# Puppet Syntax Errors
+## Puppet Syntax Errors
 
 Puppet generates syntax errors when manifests are incorrectly
 written. Sometimes these errors can be a little cryptic. Below is a
 list of common errors and their explanations that should help you
 trouble-shoot your manifests.
 
-## Syntax error at '}'; expected '}' at manifest.pp:nnn
+### Syntax error at '}'; expected '}' at manifest.pp:nnn
 
 This error can occur when:
 
@@ -148,7 +150,7 @@ instance, in this example the comma is missing at the end of line
         path => "/path/to/daemons"
     }
 
-## Syntax error at ':'; expected ']' at manifest.pp:nnn
+### Syntax error at ':'; expected ']' at manifest.pp:nnn
 
 This error can occur when:
 
@@ -164,7 +166,7 @@ this is a reference to a class and a define, the define also needs
 to have a capital letter, so Classname::Other\_define\_name would
 be the correct syntax.
 
-## Syntax error at '.'; expected '}' at manifest.pp:nnn
+### Syntax error at '.'; expected '}' at manifest.pp:nnn
 
 This error happens when you use unquoted comparators with dots in
 them, a'la:
@@ -187,7 +189,7 @@ That 2.6.9 needs to have double quotes around it, like so:
        }
      }
 
-## Could not match '\_define\_name' at manifest.pp:nnn on node nodename
+### Could not match '\_define\_name' at manifest.pp:nnn on node nodename
 
 This error can occur using a manifest like:
 
@@ -203,7 +205,7 @@ This error can occur using a manifest like:
 This one is simple - you cannot begin a function name (define name)
 with an underscore.
 
-## Duplicate definition: Classname::Define\_name[system] is already defined in file manifest.pp at line nnn; cannot redefine at manifest.pp:nnn on node nodename
+### Duplicate definition: Classname::Define\_name[system] is already defined in file manifest.pp at line nnn; cannot redefine at manifest.pp:nnn on node nodename
 
 This error can occur when using a manifest like:
 
@@ -221,7 +223,7 @@ that Puppet supports for a resource definition. In this contrived
 example, the system entry has been defined twice, so one of them
 needs removing.
 
-## Syntax error at '=>'; expected ')'
+### Syntax error at '=>'; expected ')'
 
 This error results from incorrect syntax in a defined resource type:
 
@@ -230,7 +232,7 @@ This error results from incorrect syntax in a defined resource type:
 Default values for parameters are assigned, not defined, therefore
 a '=', not a '=>' operator is needed.
 
-## err: Exported resource Blah[$some\_title] cannot override local resource on node $nodename
+### err: Exported resource Blah[$some\_title] cannot override local resource on node $nodename
 
 While this is not a classic "syntax" error, it is a annoying error
 none-the-less. The actual error tells you that you have a local
@@ -241,9 +243,9 @@ collected first and when trying to collect the second resource,
 this error happens as the first is already converted to a "local"
 resource.
 
-# Common Misconceptions
+## Common Misconceptions
 
-## Node Inheritance and Variable Scope
+### Node Inheritance and Variable Scope
 
 It is generally assumed that the following will result in the
 /tmp/puppet-test.variable file containing the string 'my\_node':
@@ -292,7 +294,7 @@ include classes rather than inheriting them. For example:
 
 /tmp/puppet-test.variable will now contain 'my\_node' as desired.
 
-## Class Inheritance and Variable Scope
+### Class Inheritance and Variable Scope
 
 The following would also not work as generally expected:
 
@@ -381,9 +383,9 @@ In this example the value of the of the $barvariable variable in
 the bar class will be set to foobar the value of the $foovariable
 variable which was set in the foo class.
 
-# Custom Type & Provider development
+## Custom Type & Provider development
 
-## err: Could not retrieve catalog: Invalid parameter 'foo' for type 'bar'
+### err: Could not retrieve catalog: Invalid parameter 'foo' for type 'bar'
 
 When you are developing new custom types, you should restart both
 the puppetmasterd and the puppetd before running the configuration

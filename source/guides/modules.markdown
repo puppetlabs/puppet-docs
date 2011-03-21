@@ -10,7 +10,7 @@ How to organize Puppet content inside of modules.
 
 * * *
 
-# General Information
+## General Information
 
 A Puppet Module is a collection of resources, classes, files, definitions
 and templates. It might be used to configure Apache or a Rails module, or a
@@ -72,7 +72,7 @@ Although some names that violate these restrictions currently work, using them i
 The module name `site` is reserved for local use and should not be
 used in modules meant for distribution.
 
-# Internal Organisation
+## Internal Organisation
 
 A Puppet module contains manifests, distributable files, plugins
 and templates arranged in a specific directory structure:

@@ -10,7 +10,8 @@ Learn how to create your own custom types & providers in Puppet
 
 * * *
 
-# Organizational Principles
+Organizational Principles
+-------------------------
 
 ![image](http://puppetlabs.com/images/ResourceTypesProviders.png)
 
@@ -31,7 +32,8 @@ in our [Introduction](./introduction.html) and [language guide](./language_guide
 that "yum" and "apt" are both different providers that fulfill
 the "package" type.
 
-# Deploying Code
+Deploying Code
+--------------
 
 Once you have your code, you will need to have it both on the
 server and also distributed to clients.
@@ -46,7 +48,8 @@ deprecated and you should see the [Plugins In Modules](./plugins_in_modules.html
 The internals of how types are created have changed over Puppet's
 lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn't do.
 
-# Resource Types
+Resource Types
+--------------
 
 When defining the resource type, focus on what the resource can do,
 not how it does it (that is the job for providers!).
@@ -84,7 +87,7 @@ We have already mentioned Puppet provides a `libdir` setting where you can copy 
 All types should also provide inline documention in the @doc class
 instance variable. The text format is in Restructured Text.
 
-## Properties
+### Properties
 
 Here's where we define how the resource really works. In most
 cases, it's the properties that interact with your resource's
@@ -163,7 +166,7 @@ Note that the order in which you define your properties can be
 important: Puppet keeps track of the definition order, and it
 always checks and fixes properties in the order they are defined.
 
-### Customizing Behaviour
+#### Customizing Behaviour
 
 By default, if a property is assigned multiple values in an array,
 it is considered in sync if any of those values matches the current
@@ -181,7 +184,7 @@ current values are described, should\_to\_s to change how the
 desired values are logged, and change\_to\_s to change the overall
 log message for changes. See current types for examples.
 
-### Handling Property Values
+#### Handling Property Values
 
 Handling values set on properties is currently somewhat confusing,
 and will hopefully be fixed in the future. When a resource is
@@ -198,7 +201,7 @@ property or parameter, it's best to use value:
 
     myvalue = value(:color)
 
-## Parameters
+### Parameters
 
 Parameters are defined essentially exactly the same as properties;
 the only difference between them is that parameters never result in
@@ -244,7 +247,7 @@ If you provide blue as the value, then your parameter will get set
 to :blue, but if you provide green, then it will get set to
 "green".
 
-## Validation and Munging
+#### Validation and Munging
 
 If your parameter does not have a defined list of values, or you
 need to convert the values in some way, you can use the validate
@@ -288,7 +291,7 @@ Lastly, validation and munging *only\** happen when a value is
 assigned. They have no role to play at all during use of a given
 value, only during assignment.
 
-## Automatic Relationships
+### Automatic Relationships
 
 Your type can specify automatic relationships it can have with
 resources. You use the autorequire hook, which requires a resource
@@ -304,7 +307,8 @@ do not exist; the purpose of this hook is to make sure that if any
 required resources are being managed, they get applied before the
 requiring resource.
 
-# Providers
+Providers
+---------
 
 Look at the [Provider Development](./provider_development.html)
 page for intimate detail; this document will only
@@ -313,7 +317,7 @@ the properties call getter and setter methods on the providers,
 except in the case of ensure, the providers must define getters and
 setters for each property.
 
-## Provider Features
+### Provider Features
 
 A recent development in Puppet (around 0.22.3) is the ability to
 declare what features providers can have. The type declares the

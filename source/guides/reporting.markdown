@@ -10,7 +10,7 @@ How to learn more about the activity of your nodes.
 
 * * *
 
-# Reports and Reporting
+## Reports and Reporting
 
 Puppet clients can be configured to send reports at the end of
 every configuration run. Because the Transaction interals of Puppet are
@@ -21,14 +21,14 @@ some basic metrics of what happened on that run.  In Rowlf, more
 detailed reporting information will be available, allowing users
 to see detailed change information regarding what happened on nodes.
 
-## Logs
+### Logs
 
 The bulk of the report is every log message generated during the
 transaction. This is a simple way to send almost all client logs to
 the Puppet server; you can use the log report to send all of these
 client logs to syslog on the server.
 
-## Metrics
+### Metrics
 
 The rest of the report contains some basic metrics describing what
 happened in the transaction. There are three types of metrics in
@@ -61,7 +61,7 @@ each report, and each type of metric has one or more values:
 -   **Changes**: The total number of changes in the transaction.
 
 
-# Setting Up Reporting
+## Setting Up Reporting
 
 By default, the client does not send reports, and the server only
 is only configured to store reports, which just stores recieved YAML-formatted report
@@ -73,7 +73,7 @@ their configurations from, but you can change that by setting
 servers you can keep all of your reports consolidated on a single
 machine.
 
-## Sending Reports
+### Sending Reports
 
 In order to turn on reporting on the client-side (puppetd), the
 `report` argument must be given to the puppetd executable either by
@@ -107,13 +107,13 @@ Note: some explanations of namespaceauth.conf are due in this documentation.
 
 {{MISSINGREFS}}
 
-## Processing Reports
+### Processing Reports
 
 As previously mentioned, by default the server stores incoming YAML reports to
 disk. There are other reports types available that can process each report as it arrives,
 or you can write a separate processor that handles the reports on your own schedule.
 
-### Using Builtin Reports
+#### Using Builtin Reports
 
 As with the rest of Puppet, you can configure the server to use different
 reports with either command-line arguments or configuration file
@@ -142,14 +142,14 @@ Note that in the configuration file, the list of reports should be
 comma-separated and not enclosed in quotes (which is otherwise
 acceptable for a command-line invocation).
 
-### Writing Custom Reports
+#### Writing Custom Reports
 
 You can easily write your own report processor in place of any of
 the built-in reports. Just drop the report into lib/puppet/reports,
 using the existing reports as an example.  This is only necessary on
 the server, as the report reciever does not run on the clients.
 
-### Using External Report Processors
+#### Using External Report Processors
 
 Many people are only using the `store` report and writing an external
 report processor that processes many reports at once and produces
@@ -158,7 +158,7 @@ Ruby, since you can just read the YAML files in and de-serialize
 them into Ruby objects. Then, you can just do whatever you need
 with the report objects.
 
-# Available reports
+## Available reports
 
 Read the [Report Reference](/references/latest/report.html) for a list of available reports and
 how to configure them. It is automatically generated from the reports available
