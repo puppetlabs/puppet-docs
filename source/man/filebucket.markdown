@@ -3,6 +3,9 @@ layout: default
 title: puppet filebucket Manual Page
 ---
 
+puppet filebucket Manual Page
+======
+
 <div class='mp'>
 <h2 id="NAME">NAME</h2>
 <p class="man-name">

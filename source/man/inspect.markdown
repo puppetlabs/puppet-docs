@@ -3,6 +3,9 @@ layout: default
 title: puppet inspect Manual Page
 ---
 
+puppet inspect Manual Page
+======
+
 <div class='mp'>
 <h2 id="NAME">NAME</h2>
 <p class="man-name">

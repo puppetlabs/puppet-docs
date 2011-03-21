@@ -3,6 +3,9 @@ layout: default
 title: puppet agent Manual Page
 ---
 
+puppet agent Manual Page
+======
+
 <div class='mp'>
 <h2 id="NAME">NAME</h2>
 <p class="man-name">
