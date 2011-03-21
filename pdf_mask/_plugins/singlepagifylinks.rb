@@ -23,7 +23,7 @@ module SinglePagifyLinksFilter
     # First, we need to make all the header element IDs unique, which we can do by just prefixing them with a unique ID for this HTML file. (We were passed this ID prefix as an argument to the filter call.) 
     # Actually, we need to catch lis (they're used in footnotes) as well as h\ds, because if we don't do that, we'll have to account for more types of link case than we want. This is harder than just diddling IDs for every element, because some of those are used for styling. we need to only touch the IDs that the stylesheet couldn't be aware of. 
     # We SHOULDN'T have to catch the divs that I'm manually linking to, because they are happening outside this filter. But those ARE going to be another link class, because we'll need to reach them pretty often and those links don't have an anchor attached. 
-    input.gsub!(/<(h\d|li|sup3) id="([^"]+)">/, %Q{<\\1 id="#{id_prefix}-\\2">})
+    input.gsub!(/<(h\d|li|sup) id="([^"]+)">/, %Q{<\\1 id="#{id_prefix}-\\2">})
     # Great, any links from outside this file will now be redirected to the proper unique IDs. Next, we need to make sure our outbound links are actually going to the correct place. We'll need to: 
     # * change ones that are internal to this file to point to the right place
     # * Change ones pointing to other files without a positional anchor to point to the divs I made in default.html
