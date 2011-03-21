@@ -244,10 +244,15 @@ pageTracker._trackPageview();
             </div>
             <div class="secondary-content">
                   <div id="subCol">
-                  <h3 class="chapter">Contents</h3>
-                  <ol class="chapters">
-                  {{ content | toc }}
-                  </ol>
+                  {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
+                  {% if maindir == 'mcollective' %}
+                      {% include mcollective_menu.html %}
+                  {% else %}
+                      <h3 class="chapter">Contents</h3>
+                      <ol class="chapters">
+                      {{ content | toc }}
+                      </ol>
+                  {% endif %}
 		  <div id="bannerImage" style="display:block;">&nbsp;</div>
                   </div>
             </div>
