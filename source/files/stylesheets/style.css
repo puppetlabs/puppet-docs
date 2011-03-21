@@ -55,7 +55,7 @@ body {
   background: white;
 }
 
-code { font-family: monospace }
+code { font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace }
 
 ol, ul {
   list-style: none;
