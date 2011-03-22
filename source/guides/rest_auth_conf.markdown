@@ -26,15 +26,11 @@ The official name of the file controlling REST API access, taken from the [confi
 Format and Behavior
 -------------------
 
-The auth.conf file consists of a series of ACLs (Access Control Lists), each of which defines: 
+The auth.conf file consists of a series of ACLs (Access Control Lists). 
 
-* A resource path to which it applies
-* An optional list of environments to which it applies
-* An optional list of methods to which it applies
-* Whether the requests it applies to are authenticated with SSL, unauthenticated, or either
-* Whether the request should be allowed or denied, and the hostnames or IP addresses to which that directive applies
+Due to a known bug, trailing whitespace is not permitted after any line in auth.conf. 
 
-ACLs are tested in their order of appearance, and the authorization check will stop at the first ACL that matches the request. As such, auth.conf has to be arranged with the most specific paths at the top and the least specific paths at the bottom, lest the whole search get short-circuited and the (usually restrictive) fallback rule applied to every request. The resource path, environment(s), method(s), and authentication type are equal peers in matching a request; if any of them are present in a given ACL and do not match the properties of the request, that ACL will not match. 
+### ACL format
 
 Each auth.conf ACL is formatted as follows:
 
@@ -42,21 +38,23 @@ Each auth.conf ACL is formatted as follows:
     [environment {list of environments}]
     [method {list of methods}]
     [auth[enthicated] {yes|no|on|off|any}]
-    allow [host|ip|*]
-    deny [host|ip]
+    [allow {hostname|certname|*}]
+    [deny {hostname|certname|*}]
 
-Lists of environments, methods, and hosts are comma-separated. Authentication defaults to required if not specified, method defaults to all methods if not specified, and environment defaults to all environments if not specified. If neither allow or deny directives are supplied, the default is to deny. 
+Lists of environments, methods, and hosts are comma-separated, with an optional space after the comma. 
+
+More than one allow or deny directive is allowed; this has the same effect as supplying one such directive with a comma-separated list of hostnames or certnames. The only globbing allowed in allow/deny directives is a single `*` that applies to all hosts; no subdomain globbing is available. Hosts cannot be allowed or denied by IP address. 
 
 Paths are interpreted as either a path prefix (no tilde) or a regular expression (with tilde). 
 
-### Path Prefixes
+#### Path Prefixes
 
     path /file
 
-The path listed above will match both /file_metadata and
-/file_content.
+The path listed above will match both `/file_metadata` and
+`/file_content` resources.
 
-### Regular Expression Paths
+#### Regular Expression Paths
 
 Regular expression paths don't have to match from the beginning of the resource path, though it's a good practice to use positional anchors. 
 
@@ -64,7 +62,19 @@ Regular expression paths don't have to match from the beginning of the resource 
     method find
     allow $1
 
-Using a regex in the path makes any captured groups available later in the ACL. The ACL above will allow nodes to retrieve their own catalogs but prevent them from accessing other catalogs.
+Using a regex in the path makes any captured groups available in the allow or deny directives. The ACL above will allow nodes to retrieve their own catalogs but prevent them from accessing other catalogs.
+
+
+### Matching an ACL
+
+When a request is received, ACLs are tested in their order of appearance in the file, and the authorization check will stop at the first ACL that matches the request. (As such, auth.conf has to be arranged with the _most_ specific paths at the top and the _least_ specific paths at the bottom, lest the whole search get short-circuited and the \[usually restrictive\] fallback rule applied to every request.)
+
+An ACL is considered to match a request if their **resource path,** **environment(s),** **method(s),** and **authentication** match. Any of the latter three properties that are not specified are given a default value: `method` defaults to all methods if not specified, `environment` defaults to all environments if not specified, and `auth` defaults to authentication required if not specified. ACLs without a resource path are not permitted.
+
+Resource path matches are described above; environment and method are both considered to match if the request's environment and method are members of the provided lists thereof. Authentication matching is self-explanatory. 
+
+All four of these properties are equal peers in matching a request to an ACL; if any of them do not match the properties of the request, that ACL will not match. Once an ACL that matches the incoming request has been found, the request will be allowed if its hostname (if the connection is not authenticated) or certname (if the connection IS authenticated) matches an allow directive. Since the default behavior is to deny all hosts with the allow directive specifying exceptions to this rule, since the connection is governed by the first ACL to match it, and since the allow and deny directives play no part in the process of determining whether an ACL matches, **the deny directive is functionally inert and there is no reason to ever explicitly specify it.** If a given ACL allows `*` but denies a specific set of hosts, the `allow *` will be given precedence and all of the explicitly denied hosts will be allowed to connect. 
+
 
 Default ACLs
 ------------
@@ -120,13 +130,15 @@ Deny all other requests:
 
 An example auth.conf file containing these rules is provided in the Puppet source, in [conf/auth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/auth.conf).
 
+These default ACLs are appended to the ACLs found in auth.conf. Because ACL matching procedes linearly, **you must paste these ACLs at the top of your auth.conf if you are specifying _any_ ACLs that are less specific than any of the default ACLs.** Otherwise, incoming requests that must match the default ACLs in order for Puppet to function properly will instead be caught by a more general (and likely more restrictive) ACL. 
+
 Danger Mode
 -----------
 
 If you want to test the REST API for application prototyping without worrying about specifying your final set of ACLs ahead of time, you can set a completely permissive auth.conf:
 
     path /
-    auth no
+    auth any
     allow *
 
 authconfig / namespaceauth.conf
