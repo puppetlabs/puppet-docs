@@ -45,6 +45,8 @@ Lists of environments, methods, and hosts are comma-separated, with an optional 
 
 More than one allow or deny directive is allowed; this has the same effect as supplying one such directive with a comma-separated list of hostnames or certnames. The only globbing allowed in allow/deny directives is a single `*` that applies to all hosts; no subdomain globbing is available. Hosts cannot be allowed or denied by IP address. 
 
+Available methods are `find`, `search`, `save`, and `destroy`. Available environments are governed by your Puppet master's configuration.
+
 Paths are interpreted as either a path prefix (no tilde) or a regular expression (with tilde). 
 
 #### Path Prefixes
