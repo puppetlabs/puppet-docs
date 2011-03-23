@@ -812,7 +812,7 @@ And to access hash members (recursively) from a variable containing a hash (this
 
 {% highlight ruby %}
     $myhash = { key => { subkey => "b" }}
-    notice($myhash[key][subkey]]
+    notice($myhash[key][subkey])
 {% endhighlight %}
 
 You can also use a hash member as a resource title, as a default definition parameter, or potentially as the value of a resource parameter,
