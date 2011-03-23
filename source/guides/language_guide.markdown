@@ -748,8 +748,8 @@ You can access array entries by their index, for example:
 Would return `two`.
 
 Several type members, such as 'alias' in the 'host' definition
-definition accept arrays as their value. A host resource with
-multiple aliases would look like this:
+accept arrays as their value. A host resource with multiple
+aliases would look like this:
 
 {% highlight ruby %}
     host { 'one.example.com':
