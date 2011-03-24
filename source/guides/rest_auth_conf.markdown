@@ -15,7 +15,6 @@ REST
 
 Puppet master and puppet agent communicate with each other over a [RESTful network API](./rest_api.html). By default, the usage of this API is limited to the standard types of master/agent communications. However, it can be exposed to other processes and used to build advanced tools on top of Puppet's existing infrastructure and functionality. (REST API calls are formatted as `https://{server}:{port}/{environment}/{resource}/{key}`.)
 
-
 As you might guess, this can be turned into a security hazard, so access to the REST API is strictly controlled by a special configuration file.
 
 auth.conf
@@ -23,14 +22,27 @@ auth.conf
 
 The official name of the file controlling REST API access, taken from the [configuration option](/references/latest/configuration.html) that sets its location, is `rest_authconfig`, but it's more frequently known by its default filename of `auth.conf`. If you don't set a different location for it, Puppet will look for the file at `$confdir/auth.conf`.
 
-Format and Behavior
--------------------
+You cannot configure different environments to use multiple `rest_authconfig` files.
 
-The auth.conf file consists of a series of ACLs (Access Control Lists). 
+File Format
+-----------
+
+The auth.conf file consists of a series of ACLs (Access Control Lists); ACLs should be separated by double newlines. Lines starting with `#` are interpreted as comments. 
+
+    # This is a comment
+    path /facts
+    method find, search
+    auth yes
+    allow custominventory.site.net, devworkstation.site.net
+    
+    path /
+    auth any
+    allow devworkstation.site.net
 
 Due to a known bug, trailing whitespace is not permitted after any line in auth.conf. 
 
-### ACL format
+ACL format
+----------
 
 Each auth.conf ACL is formatted as follows:
 
@@ -39,74 +51,111 @@ Each auth.conf ACL is formatted as follows:
     [method {list of methods}]
     [auth[enthicated] {yes|no|on|off|any}]
     [allow {hostname|certname|*}]
-    [deny {hostname|certname|*}]
 
-Lists of environments, methods, and hosts are comma-separated, with an optional space after the comma. 
+Lists of values are comma-separated, with an optional space after the comma.
 
-More than one allow or deny directive is allowed; this has the same effect as supplying one such directive with a comma-separated list of hostnames or certnames. The only globbing allowed in allow/deny directives is a single `*` that applies to all hosts; no subdomain globbing is available. Hosts cannot be allowed or denied by IP address. 
+### Path
 
-Available methods are `find`, `search`, `save`, and `destroy`. Available environments are governed by your Puppet master's configuration.
+An ACL's `path` is interpreted as either a regular expression (with tilde) or a path prefix (no tilde). The root of the path in an ACL is AFTER the environment in a REST API call URL; that is, only put the `/{resource}/{key}` portion of the URL in the path. ACLs without a resource path are not permitted.
 
-Paths are interpreted as either a path prefix (no tilde) or a regular expression (with tilde). 
+### Environment
 
-#### Path Prefixes
+The `environment` directive can contain a single [environment](./environment.html) or a list. If environment isn't explicitly specified, it will default to all environments.
+
+### Method
+
+Available methods are `find`, `search`, `save`, and `destroy`; you can specify one method or a list of them. If method isn't explicitly specified, it will default to all methods. 
+
+### Auth
+
+Each REST API call is either unauthenticated or authenticated with an SSL certificate; most communications between puppet agent and puppet master are authenticated. The value of `auth` can't be a list; it must be "yes" (or "on"), "no" (or "off"), or "any."
+
+### Allow
+
+The node or nodes allowed to access this type of request. Can be a hostname, a certificate common name, a list of hostnames/certnames, or `*` (which matches all nodes). If the path for this ACL was a regular expression, `allow` directives may include backreferences to captured groups (e.g. `$1`). 
+
+An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a list. No globbing of hostnames/certnames is available in allow directives. Nodes cannot be allowed by IP address, unless the node's IP address is also its certname.
+
+Any nodes which aren't specifically allowed to access the resource will be denied. 
+
+### Deny
+
+A `deny` directive is syntactically permitted, but has no effect. 
+
+Matching ACLs to Requests
+-------------------------
+
+Puppet composes a full list of ACLs by combining auth.conf with a list of default ACLs. When a request is received, ACLs are tested in their order of appearance, and **matching will stop at the first ACL that matches the request.**
+
+An ACL matches a request only if its path, environment, method, and authentication **all** match that of the request. These four elements are equal peers in determining the match. 
+
+### Matching Paths
+
+If an ACL's `path` does not start with a tilde and a space, it matches the beginning of the resource path; an ACL with the line:
 
     path /file
 
-The path listed above will match both `/file_metadata` and
-`/file_content` resources.
+...will match both `/file_metadata` and `/file_content` resources. 
 
-#### Regular Expression Paths
-
-Regular expression paths don't have to match from the beginning of the resource path, though it's a good practice to use positional anchors. 
+Regular expression paths don't have to match from the beginning of the resource path, but it's good practice to use positional anchors.
 
     path ~ ^/catalog/([^/]+)$
     method find
     allow $1
 
-Using a regex in the path makes any captured groups available in the allow or deny directives. The ACL above will allow nodes to retrieve their own catalogs but prevent them from accessing other catalogs.
+Captured groups from a regex path are available in the allow directive. The ACL above will allow nodes to retrieve their own catalog but prevent them from accessing other catalogs.
 
+### Determining Whether a Request is Allowed
 
-### Matching an ACL
+Once an ACL has been determined to match an incoming request, Puppet consults the `allow` directive(s). If the request was unauthenticated, reverse DNS is used to determine the requesting node's hostname; the request is allowed if that hostname is allowed. If the request was authenticated, the certificate common name is read from the SSL certificate, and the hostname is ignored; the request is allowed if that certname is allowed. 
 
-When a request is received, ACLs are tested in their order of appearance in the file, and the authorization check will stop at the first ACL that matches the request. (As such, auth.conf has to be arranged with the _most_ specific paths at the top and the _least_ specific paths at the bottom, lest the whole search get short-circuited and the \[usually restrictive\] fallback rule applied to every request.)
+Consequences of ACL Matching Behavior
+-------------------------------------
 
-An ACL is considered to match a request if their **resource path,** **environment(s),** **method(s),** and **authentication** match. Any of the latter three properties that are not specified are given a default value: `method` defaults to all methods if not specified, `environment` defaults to all environments if not specified, and `auth` defaults to authentication required if not specified. ACLs without a resource path are not permitted.
-
-Resource path matches are described above; environment and method are both considered to match if the request's environment and method are members of the provided lists thereof. Authentication matching is self-explanatory. 
-
-All four of these properties are equal peers in matching a request to an ACL; if any of them do not match the properties of the request, that ACL will not match. Once an ACL that matches the incoming request has been found, the request will be allowed if its hostname (if the connection is not authenticated) or certname (if the connection IS authenticated) matches an allow directive. Since the default behavior is to deny all hosts with the allow directive specifying exceptions to this rule, since the connection is governed by the first ACL to match it, and since the allow and deny directives play no part in the process of determining whether an ACL matches, **the deny directive is functionally inert and there is no reason to ever explicitly specify it.** If a given ACL allows `*` but denies a specific set of hosts, the `allow *` will be given precedence and all of the explicitly denied hosts will be allowed to connect. 
-
+Since ACLs are matched in linear order, auth.conf has to be manually arranged with the most specific paths at the top and the least specific paths at the bottom, lest the whole search get short-circuited and the (usually restrictive) fallback rule be applied to every request. Furthermore, since the default ACLs required for normal Puppet functionality are appended to the ACLs read from auth.conf, **you must manually paste a copy of the default ACLs at the top of your auth.conf if you are specifying _any_ ACLs that are less specific than any of the default ACLs.** 
 
 Default ACLs
 ------------
 
-Auth.conf doesn't exist by default, and if it isn't found, Puppet will institute sensible default settings. The following ACLs will be applied if they aren't overridden:
+Puppet appends a list of default ACLs to the ACLs read from auth.conf. However, if any custom ACLs have a path identical to that of a default ACL, that default ACL will be omitted when composing the full list of ACLs. **Note that this is not the same criteria for determining whether the two ACLs match the same requests,** as only the paths are compared:
 
-Allow authenticated nodes to retrieve their own catalogs:
+    # A custom ACL
+    path /file
+    auth no
+    allow magpie.lan
+    
+    # This default ACL will not be appended to the rules
+    path /file
+    allow *
+
+These two ACLs match completely disjoint sets of requests (unauthenticated for the custom one, authenticated for the default one), but since the mechanism that appends default ACLs is not examining the authentication/methods/environments of the ACLs, it considers the one to override the other, even though they're effectively unrelated. Puppet agent will break if you only declare the custom ACL, will work if you manually declare the default ACL, and will work if you only declare the custom one but change its path to `/fil`. When in doubt, manually re-declare all default ACLs at the top of your auth.conf file. 
+
+The following is a list of the default ACLs used by Puppet:
+
+    # Allow authenticated nodes to retrieve their own catalogs:
 
     path ~ ^/catalog/([^/]+)$
     method find
     allow $1
 
-Allow authenticated nodes to access any file services --- in practice, this results in fileserver.conf being consulted: 
+    # Allow authenticated nodes to access any file services --- in practice, this results in fileserver.conf being consulted: 
 
     path /file
     allow *
 
-Allow authenticated nodes to access the certificate revocation list:
+    # Allow authenticated nodes to access the certificate revocation list:
 
     path /certificate_revocation_list/ca
     method find
     allow *
 
-Allow authenticated nodes to send reports:
+    # Allow authenticated nodes to send reports:
 
     path /report
     method save
     allow *
 
-Allow unauthenticated access to certificates:
+    # Allow unauthenticated access to certificates:
 
     path /certificate/ca
     auth no
@@ -118,21 +167,19 @@ Allow unauthenticated access to certificates:
     method find
     allow *
 
-Allow unauthenticated nodes to submit certificate signing requests:
+    # Allow unauthenticated nodes to submit certificate signing requests:
 
     path /certificate_request
     auth no
     method find, save
     allow *
 
-Deny all other requests:
+    # Deny all other requests:
 
     path /
     auth any
 
 An example auth.conf file containing these rules is provided in the Puppet source, in [conf/auth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/auth.conf).
-
-These default ACLs are appended to the ACLs found in auth.conf. Because ACL matching procedes linearly, **you must paste these ACLs at the top of your auth.conf if you are specifying _any_ ACLs that are less specific than any of the default ACLs.** Otherwise, incoming requests that must match the default ACLs in order for Puppet to function properly will instead be caught by a more general (and likely more restrictive) ACL. 
 
 Danger Mode
 -----------
