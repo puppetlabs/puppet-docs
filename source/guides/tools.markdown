@@ -39,8 +39,8 @@ puppet master (or puppetmasterd)
 --------------------------------
 
 [Puppet master](/man/master.html) is a central management daemon.  In most installations, you'll have one puppet master
-server and each managed machine will run puppet agent.   By default, puppet master runs a certificate
-authority, which you can read more about in the [security section](./security.html).
+server and each managed machine will run puppet agent.   By default, puppet master operates a certificate
+authority, which can be managed using puppet cert.
 
 Puppet master serves compiled configurations, files, templates, and custom plugins to managed nodes.
 

@@ -17,18 +17,19 @@ below.
 
 ## REST API Security
 
-Puppet usually takes care of [security](./security.html) and SSL certificate
+Puppet usually takes care of security and SSL certificate
 management for you, but if you want to use the RESTful API outside of that
-you'll need to manage certificates yourself when you connect.  The easiest way
-to do this is to have puppet agent already authorized with a certificate that has
-been signed by the puppet master and use that certificate to connect, or for
-testing to set the security policy so that any request from anywhere is
-allowed.
+you'll need to manage certificates yourself when you connect. This can be done by using 
+a pre-existing signed agent certificate, by generating and signing a certificate on the puppet
+master and manually distributing it to the connecting host, or by re-implementing puppet
+agent's generate / submit signing request / received signed certificate behavior in your custom app.
 
-The security policy for the API can be controlled through the 
-[rest_authconfig](./security.html#authconf) file, and specifically for the 
-nodes running puppet agent through the 
-[namespaceauth](./security.html#namespaceauthconf) file.
+The security policy for the REST API can be controlled through the 
+[`rest_authconfig`][authconf] file. For testing purposes, it is also possible to 
+permit unauthenticated connections from all hosts or a subset of hosts; see the 
+[`rest_authconfig` documentation][authconf] for more details. 
+
+[authconf]: ./rest_auth_conf.html
 
 ## Testing the REST API using curl
 
@@ -37,13 +38,12 @@ can be seen using [curl](http://en.wikipedia.org/wiki/CURL).
 
     curl --cert /etc/puppet/ssl/certs/mymachine.pem --key /etc/puppet/ssl/private_keys/mymachine.pem --cacert /etc/puppet/ssl/ca/ca_crt.pem -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
 
-Most of this command is just setting the appropriate ssl certificates, which
-will be different depending on where your ssldir is and your node name.
-For simplicity, lets look at this command without the certificate related
-options, which I'll assume you're either passing in as above or changing the
-[security policy](./security.html) so that you don't need to be authenticated.
-If you are changing the security policy curl will want a -k or `--insecure`
-option to connect to an https address without certificates.
+Most of this command consists of pointing curl to the appropriate SSL certificates, which
+will be different depending on your ssldir location and your node's certname.
+For simplicity and brevity, future invocations of curl will be provided in insecure mode, which 
+is specified with the `-k` or `--insecure` flag. 
+Insecure connections can be enabled for one or more nodes in the [`rest_authconfig`][authconf]
+file. The above curl invocation without certificates would be as follows:
 
     curl --insecure -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
 
@@ -236,11 +236,12 @@ If you leave off the `.{comparison type}`, the comparison will default to simple
 
 ## The agent REST API
 
-The puppet agent is by default set not to listen to HTTP requests.  To enable this you
+By default, puppet agent is set not to listen to HTTP requests.  To enable this you
 must set `listen = true` in the puppet.conf or pass `--listen true` to puppet agent
-when starting.  The [namespaceauth](./security.html#namespaceauthconf) file must
-also exist, and the [rest_authconfig](./security.html#authconf) must allow
-access to these resources, which isn't done by default.
+when starting. Due to a known bug in the 2.6.x releases of Puppet, puppet agent will not start
+with `listen = true` unless a namespaceauth.conf file exists, even though this file
+is not consulted. The node's [rest_authconfig][authconf] file must also allow
+access to the agent's resources, which isn't permitted by default.
 
 ### Facts
 
