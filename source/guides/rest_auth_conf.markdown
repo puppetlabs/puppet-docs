@@ -112,7 +112,7 @@ Once an ACL has been determined to match an incoming request, Puppet consults th
 Consequences of ACL Matching Behavior
 -------------------------------------
 
-Since ACLs are matched in linear order, auth.conf has to be manually arranged with the most specific paths at the top and the least specific paths at the bottom, lest the whole search get short-circuited and the (usually restrictive) fallback rule be applied to every request. Furthermore, since the default ACLs required for normal Puppet functionality are appended to the ACLs read from auth.conf, **you must manually paste a copy of the default ACLs at the top of your auth.conf if you are specifying _any_ ACLs that are less specific than any of the default ACLs.** 
+Since ACLs are matched in linear order, auth.conf has to be manually arranged with the most specific paths at the top and the least specific paths at the bottom, lest the whole search get short-circuited and the (usually restrictive) fallback rule be applied to every request. Furthermore, since the default ACLs required for normal Puppet functionality are appended to the ACLs read from auth.conf, **you must manually interleave copies of the default ACLs into your auth.conf if you are specifying _any_ ACLs that are less specific than any of the default ACLs.** 
 
 Default ACLs
 ------------
@@ -128,7 +128,7 @@ Puppet appends a list of default ACLs to the ACLs read from auth.conf. However, 
     path /file
     allow *
 
-These two ACLs match completely disjoint sets of requests (unauthenticated for the custom one, authenticated for the default one), but since the mechanism that appends default ACLs is not examining the authentication/methods/environments of the ACLs, it considers the one to override the other, even though they're effectively unrelated. Puppet agent will break if you only declare the custom ACL, will work if you manually declare the default ACL, and will work if you only declare the custom one but change its path to `/fil`. When in doubt, manually re-declare all default ACLs at the top of your auth.conf file. 
+These two ACLs match completely disjoint sets of requests (unauthenticated for the custom one, authenticated for the default one), but since the mechanism that appends default ACLs is not examining the authentication/methods/environments of the ACLs, it considers the one to override the other, even though they're effectively unrelated. Puppet agent will break if you only declare the custom ACL, will work if you manually declare the default ACL, and will work if you only declare the custom one but change its path to `/fil`. When in doubt, manually re-declare all default ACLs in your auth.conf file. 
 
 The following is a list of the default ACLs used by Puppet:
 
