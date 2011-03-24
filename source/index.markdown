@@ -6,11 +6,14 @@ title: Puppet Labs Documentation
 Puppet Labs Documentation
 =========================
 
-Welcome to the Puppet Labs documentation site. 
+Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a (very large, and frequently updated) PDF, which can be found on our [downloads page](http://www.puppetlabs.com/resources/downloads/).
 
 * * *
 
-NOTE: You can find the Marionette Collective documentation [here](./mcollective/index.html).
+MCollective
+-----------
+
+The [Marionette Collective documentation](./mcollective/index.html) lives in its own section of the site.
 
 Drive-Thru
 ----------
