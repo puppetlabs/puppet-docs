@@ -4,6 +4,7 @@ Steps for generating a pdf of the docs:
 ------
 
 - Update the pdf_mask/page_order.txt file to include any new pages. 
+    - Best way to do this, near as I can tell, is to do a git log -1 puppet.pdf to get the commit where it was last generated, then do a git diff --summary {commit} HEAD -- source to see all the files created or deleted since then. 
 - Update the cover page with the current date and git commit. 
 - Run rake generate_pdf
 - Open pdf_output/index.html and do a find-and-replace of -latest- for -2-6-6- or whatever the latest version is. 
