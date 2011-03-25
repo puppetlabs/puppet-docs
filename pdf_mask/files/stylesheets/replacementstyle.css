@@ -18,7 +18,11 @@ Tags: minimalist, html5
 
 */
 
-/* As the original file was 4000 lines long and I couldn't debug it, I stripped out the rules I THOUGHT I wanted, and we're taking it from there. */
+/* As the original file was 4000 lines long and I couldn't debug it, I copied over the handful of rules I THOUGHT I wanted and modified it from there. */
+
+/*
+The important differences, as far as I can remember, are that pre blocks have to have white-space set to pre-wrap (lest everything fly off the edge of the page), h1 elements have to have a big dotted line above them (because that way we get proper page boundaries), and I removed the display: none from br elements so we could get psuedo-paragraphs in footnotes. Actually, I think I'm going to remove that from the main stylesheet now. 
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

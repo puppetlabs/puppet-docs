@@ -41,10 +41,6 @@ table, caption, tbody, tfoot, thead, tr, th, td, header, footer, section, articl
   vertical-align: baseline;
 }
 
-br {
-  display: none;
-}
-
 :focus {
   outline: 0;
 }

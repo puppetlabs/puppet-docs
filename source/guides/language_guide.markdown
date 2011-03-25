@@ -274,7 +274,7 @@ There are other ways to use inheritance.  In Puppet 0.23.1 and
 higher, it's possible to add values to resource parameters using
 the '+>' ('plusignment') operator:
 
-{% highlight ruby %}    
+{% highlight ruby %}
     class apache {
         service { 'apache': require => Package['httpd'] }
     }
@@ -1238,7 +1238,7 @@ the [Virtual Resources](./virtual_resources.html) page for more information.
 
 Exported resources are an extension of virtual resources used to
 allow different hosts managed by Puppet to influence each other's
-Puppet configuration.  This is described in detail on the [Exported Resources](./exported_resources.html) page.  
+Puppet configuration.  This is described in detail on the [Exported Resources](./exported_resources.html) page.
 As with virtual resources, new syntax was added to the language for this purpose.
 
 The key syntactical difference between virtual and exported
