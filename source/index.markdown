@@ -91,7 +91,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Troubleshooting](./guides/troubleshooting.html) --- avoid common problems and confusions
 * [Puppet Modules](./guides/modules.html) --- modules make it easy to organize and share content
 * [Puppet File Serving](./guides/file_serving.html) --- serving files with Puppet
-* [Style Guide](./guides/style.html) --- Puppet community conventions
+* [Style Guide](./guides/style_guide.html) --- Puppet community conventions
 * [Best Practices](./guides/best_practices.html) --- use Puppet effectively
 
 ### Advanced Features
