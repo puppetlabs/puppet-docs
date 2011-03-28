@@ -38,27 +38,26 @@ adopted and maintained.
 ## General Philosophies
 
 The following general ideas should be kept in mind when making
-judgement calls about style.  The question “Does this block of
-syntax conform to the style guide?” may very well be answered by
+judgement calls about style.  The question "Does this block of
+syntax conform to the style guide?" may very well be answered by
 the following guidelines.
 
-1.  Readability matters.  
+1.  **Readability matters.**
     There is a strong preference for code that is more readable when
     presented with alternatives that are more difficult to read.  Note,
     this is highly subjective, so this is by no means a hard and fast
-    rule.  Please use your best judgement as to what “readable” means.
-    If you can read your own code 3 months from now, that’s a great start.
-2.  Inheritance should be avoided.
-    In general, inheritance leads to code that is harder to read. 
+    rule.  Please use your best judgement as to what "readable" means.
+    If you can read your own code 3 months from now, that's a great start.
+2.  **Inheritance should be avoided.**
+    In general, inheritance leads to code that is harder to read.
     Most use cases for inheritance can be replaced by exposing class
-    parameters that can be used to configure resource attributes. See 
+    parameters that can be used to configure resource attributes. See
     the Class Inheritance section for more details.
-3.  Modules must not require an ENC.  Modules must operate with
-    ENC’s.  
+3.  **Modules must not require an ENC.  Modules must operate with ENCs.**
     When surveyed, there was near consensus that an ENC should not be
     required.  At the same time, every module we write should work well
     with an ENC.
-4.  Classes should generally not declare other classes.  
+4.  **Classes should generally not declare other classes.**
     There is a strong preference to declare classes as
     close to node scope as possible. Classes which require other
     classes should not directly declare them and should instead allow
@@ -75,11 +74,11 @@ should be provided for all modules.
 
     name 'myuser-mymodule'  
     version '0.0.1'
-    author ‘Author of the module - for shared modules this is Puppet Labs’
-    summary ‘One line description of the module’
-    description ‘Longer description of the module including an example’
-    license ‘The license the module is release under - generally GPLv2 or Apache’
-    project_page ‘The URL where the module source is located’  
+    author 'Author of the module - for shared modules this is Puppet Labs'
+    summary 'One line description of the module'
+    description 'Longer description of the module including an example'
+    license 'The license the module is release under - generally GPLv2 or Apache'
+    project_page 'The URL where the module source is located'  
     dependency 'otheruser-othermodule', '1.2.3'
 
 ### Versioning
@@ -88,7 +87,7 @@ The style guide must be version controlled, so that modules can be
 compliant to a specific version of the style guide.
 
 This meta information must be embedded in the
-Modulefile.  Use the field named ‘style_version’ e.g.
+Modulefile.  Use the field named 'style_version' e.g.
 
     style_version "1.0"
 
@@ -105,12 +104,12 @@ whitespace.  These are:
 
 ## Comments
 
-Generally a \# based comment is more readable using editors such as
+Generally a `#` based comment is more readable using editors such as
 vim.  The hash based comments are strongly preferable to C style
-/\* \*/ and // comments.
+`/* ... */` and `// ...` comments.
 
-1.  Should use \# style comments
-2.  Should not use // or /\* \*/ comments
+1.  Should use `#` style comments
+2.  Should not use `//` or `/*` `*/` comments
 
 ## Quoting
 
@@ -171,7 +170,7 @@ Should use the syntax:
 
 ### Arrow alignment
 
-The arrow (=>) should be aligned at the column one space out from
+The arrow (`=>`) should be aligned at the column one space out from
 the longest parameter. Not obvious in the above example is that the
 arrow is only aligned per resource.
 
@@ -208,7 +207,7 @@ The following is incorrect:
 Ensure should be the first parameter if it is specified in a
 resource declaration.
 
-1.  Ensure is often the most “essential” property and listing it
+1.  Ensure is often the most "essential" property and listing it
     first helps readability.
 2.  Puppet internally does optimizations and always evaluates
     ensure first so that in the event ensure is set to absent it does
@@ -273,7 +272,7 @@ The following examples are RECOMMENDED:
 ### Symbolic Links
 
 To make the intended behavior explicitly clear symbolic links
-should be declared using the ensure => link property value rather
+should be declared using the `ensure => link` property value rather
 than a relative path to the target.  The following example is
 recommended:
 
@@ -314,14 +313,13 @@ Syntax should not resemble:
 
 Resource defaults should only be used in a very controlled manner,
 restricted to the edges of your manifest ecosystem.  This is due to
-the affect dynamic scope has on the default’s definition and our
+the affect dynamic scope has on the default's definition and our
 inability to track which resources it applies to reliably.
 
 Correct:
 
-/etc/puppetlabs/puppet/manifests/site.pp:
-
 {% highlight ruby %}
+    # /etc/puppetlabs/puppet/manifests/site.pp:
     File {
       mode   => '0644',
       owner  => 'root',
@@ -331,9 +329,8 @@ Correct:
 
 Incorrect:
 
-/etc/puppetlabs/puppet/modules/ssh/manifests/server/uk/foo.pp
-
 {% highlight ruby %}
+    # /etc/puppetlabs/puppet/modules/ssh/manifests/server/uk/foo.pp
     File {
       mode   => '0600',
       owner  => 'nobody',
@@ -423,13 +420,13 @@ manifests directory of the given module, for example:
 Classes should be organised with a consistent structure and style.
 In the below list there is an implicit statement of "should be at this relative
 location" for each of these items.  The word "may" should be
-interpreted as "If there are any X’s they should be here".
+interpreted as "If there are any X's they should be here".
 
 1.  Should define the class and parameters
 2.  Should validate any class parameters and fail catalog compilation if any parameters are invalid 
 3.  Should default any validated parameters to the most general case
 4.  May declare local variables
-5.  May declare relationships to other classes Class['foo'] -\> Class['bar']
+5.  May declare relationships to other classes `Class['foo'] -> Class['bar']`
 6.  May override resources
 7.  May declare resource defaults
 8.  May declare defined resource types
@@ -481,10 +478,8 @@ The following example follows the recommended style:
 
 ### Relationship Declarations
 
-Relationship declarations should only be used in the “left to
-right” direction.  For example, the syntax Service[foo] <-
-Package[bar] should not be used, instead the syntax Package[bar]
--\> Service[foo] should be used.
+Relationship declarations should only be used in the "left to
+right" direction.  For example, the syntax `Service[foo] <- Package[bar]` should not be used, instead the syntax `Package[bar] -> Service[foo]` should be used.
 
 Meta-parameters should be used in preference to relationship
 declarations when possible.  An example when it is not possible is
@@ -598,7 +593,7 @@ Master training for managing bluetooth.
     }
 {% endhighlight %}
 
-In the event you cannot avoid inheritance then rhe following example may be used:
+In the event you cannot avoid inheritance then the following example may be used:
 
 {% highlight ruby %}
     class ssh {
