@@ -289,12 +289,10 @@ strings instead of bare word numbers.
 
 ### Resource Defaults
 
-Resource defaults should only be used in a very controlled manner,
-restricted to the edges of your manifest ecosystem.  This is due to
-the affect dynamic scope has on the default's definition and our
-inability to track which resources it applies to reliably.
+Resource defaults should be used in a very controlled manner, and should only be declared at the edges of your manifest ecosystem.  This is due to
+the way resource defaults propagate through dynamic scope, which can have unpredictable effects far away from where the default was declared. 
 
-Correct:
+**Good:**
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/manifests/site.pp:
@@ -305,7 +303,7 @@ Correct:
     }
 {% endhighlight %}
 
-Incorrect:
+**Bad:**
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/modules/ssh/manifests/server/uk/foo.pp
@@ -320,15 +318,17 @@ Incorrect:
 
 ### Keep Resource Declarations Simple
 
-You should not intermingle conditionals with your resource
+You should not intermingle conditionals with resource
 declarations. When using conditionals for data assignment, you
 should separate conditional code from the resource declarations.
 
-The following examples are recommended:
+**Good:**
 
 {% highlight ruby %}
     $foo_mode = $operatingsystem ? {
       debian => '0007',
+      redhat => '0776',
+      fedora => '0007',
     }
 
     file { '/tmp/foo':
@@ -336,7 +336,7 @@ The following examples are recommended:
     }
 {% endhighlight %}
 
-The following examples are not recommended:
+**Bad:**
 
 {% highlight ruby %}
     file { '/tmp/foo':
@@ -350,7 +350,7 @@ The following examples are not recommended:
 
 ### Defaults for Case Statements and Selectors
 
-Case statements should have default statements.
+Case statements should have default cases.
 
 Hence both of these are valid.  In addition, the default case
 should fail the catalog compilation when the resulting behavior
@@ -381,17 +381,21 @@ The following example follows the recommended style:
 
 ### Separate Files
 
-All classes and defines must be in separate files located in the
-manifests directory of the given module, for example:
+All classes and resource type definitions must be in separate files in the
+`manifests` directory of their module. For example:
 
 {% highlight ruby %}
-    init.pp
+    # /etc/puppetlabs/puppet/modules/foo/manifests
+    
+    # init.pp
       class foo { }
-    bar.pp
+    # bar.pp
       class foo::bar { }
-    dostuff.pp
+    # dostuff.pp
       define foo::dostuff () { }
 {% endhighlight %}
+
+This is functionally identical to declaring all classes and defines in init.pp, but highlights the structure of the module and makes everything more legible.
 
 ### Internal Organization of a Class
 
@@ -456,20 +460,28 @@ The following example follows the recommended style:
 
 ### Relationship Declarations
 
-Relationship declarations should only be used in the "left to
-right" direction.  For example, the syntax `Service[foo] <- Package[bar]` should not be used, instead the syntax `Package[bar] -> Service[foo]` should be used.
+Relationship declarations with the chaining syntax should only be used in the "left to
+right" direction. 
 
-Meta-parameters should be used in preference to relationship
-declarations when possible.  An example when it is not possible is
-when meta-parameters would require the use of subclasses to
-override behavior.  In this situation, relationship
+**Good:** 
+
+    Package[bar] -> Service[foo]
+
+**Bad:**
+
+    Service[foo] <- Package[bar]
+
+When possible, you should prefer metaparameters to relationship
+declarations. One example where metaparameters aren't desirable is
+when subclassing would be necessary to
+override behavior; in this situation, relationship
 declarations inside of conditionals should be used.
 
-### Classes Within Classes
+### Classes and Defined Resource Types Within Classes
 
-Classes must not be defined within other classes.
+Classes and defined resource types must not be defined within other classes.
 
-This example shall not be followed:
+**Bad:**
 
 {% highlight ruby %}
     class foo {
@@ -477,11 +489,7 @@ This example shall not be followed:
     }
 {% endhighlight %}
 
-### Defines Within Classes
-
-Resources must not be defined within classes.
-
-The following example shall not be followed:
+**Also bad:**
 
 {% highlight ruby %}
     class foo {
@@ -491,30 +499,35 @@ The following example shall not be followed:
 
 ### Class Inheritance
 
-Inheritance may only be used within a module and must not be used
-across module name spaces. This is a result of:
+Inheritance may be used within a module, but must not be used
+across module namespaces. Cross-module dependencies should be satisfied in a more portable way that doesn't violate the concept of modularity, such as with include statements or relationship declarations. 
 
-1.  Portability - inheriting outside of the module
-    breaks the idea of modules and limits our ability for portability
-2.  inheritance outside of the module is indicative of code
-    that should be refactored. In this instance you probably should be 
-    using includes or parameterized classes
+**Good:**
 
-Inheritance should be avoided when alternatives are viable.  For
-example, if inheritance is being used to override relationships
-when stopping a service by overriding the relationship of a class
-managing a running service, the code should be refactored to use a
-single class with an ensure parameter and relationship declarations
-inside of conditionals. An example of this follows. The example makes 
-several assumptions and is based on an example provided in the Puppet 
-Master training for managing bluetooth.
+{% highlight ruby %}
+    class ssh { ... }
 
-1.  Class inheritance is only useful for overriding resource
-    parameters.
-2.  The most commonly overridden parameters are relationship
-    meta-parameters.
-3.  Other parameters, e.g. ensure and enable may have behavior
-    changed through the use of variables and conditional logic.
+    class ssh::client inherits ssh { ... }
+
+    class ssh::server inherits ssh { ... }
+
+    class ssh::server::solaris { ... }
+{% endhighlight %}
+
+**Bad:**
+
+{% highlight ruby %}
+    class ssh inherits server { ... }
+
+    class ssh:client inherits workstation { ... }
+
+    class wordpress inherits apache { ... }
+{% endhighlight %}
+
+Inheritance in general should be avoided when alternatives are viable.  For
+example, instead of using inheritance to override relationships in an existing class
+when stopping a service, consider using a
+single class with an ensure parameter and conditional relationship declarations:
 
 {% highlight ruby %}
     class bluetooth($ensure=present, $autoupgrade=false) {
@@ -571,67 +584,25 @@ Master training for managing bluetooth.
     }
 {% endhighlight %}
 
-In the event you cannot avoid inheritance then the following example may be used:
+(This example makes 
+several assumptions and is based on an example provided in the Puppet 
+Master training for managing bluetooth.)
 
-{% highlight ruby %}
-    class ssh {
-      ...
-    }
+In summary:
 
-    class ssh::client inherits ssh {
-      ...
-    }
-
-    class ssh::server inherits ssh {
-      ...
-    }
-
-    class ssh::server::solaris {
-      ...
-    }
-{% endhighlight %}
-
-The following examples must not be followed:
-
-{% highlight ruby %}
-    class ssh inherits server {
-      ...
-    }
-
-    class ssh:client inherits workstation {
-      ...
-    }
-
-    class wordpress inherits apache {
-      ...
-    }
-{% endhighlight %}
+* Class inheritance is only useful for overriding resource attributes; any other use case is better accomplished with other methods.
+* The most commonly overridden parameters are relationship metaparameters.
+* Other parameters, e.g. ensure and enable may have behavior changed through the use of variables and conditional logic.
 
 ### Namespacing Variables
 
-When using variables Puppet modules should access top scope
-variables explicitly to prevent scoping issues.
+When using top-scope variables, including facts, Puppet modules should explicitly specify the empty namespace (i.e., `$::operatingsystem`, not `$operatingsystem`) to prevent accidental scoping issues.
 
-{% highlight ruby %}
-    $::operatingsystem, not $operatingsystem
-{% endhighlight %}
+### Display Order of Class Parameters
 
-### Specifying the Order of Class Parameters
+In parameterized class and defined resource type declarations, parameters that are required should be listed before optional parameters (i.e. parameters with defaults).
 
-In parameterized classes, parameters that are required should be
-specified before optional parameters (or parameters with defaults)
-
-Example:
-
-{% highlight ruby %}
-    class foo (
-      $one = 'default',
-      $two,
-      $three = 'default'
-    ) {}
-{% endhighlight %}
-
-should be rewritten as
+**Good:**
 
 {% highlight ruby %}
     class foo (
@@ -641,27 +612,29 @@ should be rewritten as
     ) {}
 {% endhighlight %}
 
+**Bad:**
+
+{% highlight ruby %}
+    class foo (
+      $one = 'default',
+      $two,
+      $three = 'default'
+    ) {}
+{% endhighlight %}
+
 ## Tests
 
-All manifests should have a corresponding tests manifest, for
-example the following manifests:
+All manifests should have a corresponding test manifest in the module's `tests` directory.
 
-{% highlight ruby %}
     modulepath/foo/manifests/{init,foo}.pp
-{% endhighlight %}
-
-Should have matching tests:
-
-{% highlight ruby %}
     modulepath/foo/tests/{init,foo}.pp
-{% endhighlight %}
 
 ## Puppet Doc
 
-For generation of decent looking Puppet documentation the following
-conventions should be used.
+Classes and defined resource types should be documented inline using the following
+conventions:
 
-As class headers:
+For classes:
 
 {% highlight ruby %}
     # Full description of class here.
@@ -728,6 +701,8 @@ For defined resources:
       ...
     }
 {% endhighlight %}
+
+This will allow documentation to be automatically extracted with the puppet doc tool.
 
 ## The extlookup() Function
 
