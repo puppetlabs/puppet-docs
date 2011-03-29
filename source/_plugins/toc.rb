@@ -39,7 +39,7 @@ module TocFilter
         sublist_stack.last.last['sublist'] = []
         sublist_stack.push(sublist_stack.last.last['sublist']) # we just now entered a deeper header level.
       elsif hdepth > hlevel
-        sublist_stack.pop unless sublist_stack.last.object_id == toc.object_id # Protect us from the case where an H3 appeared before the first H2.
+        sublist_stack.pop unless sublist_stack.last.object_id == toc.object_id # Ascend to a shallower header level. The unless protects us from the case where an H3 appeared before the first H2.
       # else we're at the same level as last time and don't need to change course.
       end
       sublist_stack.last.push(
@@ -54,13 +54,13 @@ module TocFilter
     print_toc_sublist(toc)
   end
   def print_toc_sublist(ary)
-    return '' if ary == nil
+    return '' if ary == nil # Most common case.
     sublist_string = ''
-    sublist_string << "\r<ol>\r"
+    sublist_string << %{\n<ol class="toc">\n}
     ary.each {|header|
       sublist_string << %{#{" " * header['hlevel'].to_i}<li class="toc-lv#{header['hlevel']}"><a href="##{header['id']}">#{header['text']}</a>}
       sublist_string << print_toc_sublist(header['sublist'])
-      sublist_string << "</li>\r"
+      sublist_string << "</li>\n"
     }
     
     sublist_string << "</ol>"
