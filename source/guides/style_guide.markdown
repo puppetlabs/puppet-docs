@@ -315,7 +315,12 @@ bare word numbers.
 ### Resource Defaults
 
 Resource defaults should be used in a very controlled manner, and should only
-be declared at the edges of your manifest ecosystem.  This is due to the way
+be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
+
+* At top scope in site.pp
+* In a class which is guaranteed to never declare another class and never be inherited by another class. 
+
+This is due to the way
 resource defaults propagate through dynamic scope, which can have unpredictable
 effects far away from where the default was declared.
 
@@ -338,6 +343,10 @@ effects far away from where the default was declared.
       mode   => '0600',
       owner  => 'nobody',
       group  => 'nogroup',
+    }
+    
+    class {'ssh::client':
+      ensure => present,
     }
 {% endhighlight %}
 
@@ -378,14 +387,12 @@ resource declarations.
 
 ### Defaults for Case Statements and Selectors
 
-Case statements should have default cases.
-
-Hence both of these are valid.  In addition, the default case should fail the
+Case statements should have default cases. Additionally, the default case should fail the
 catalog compilation when the resulting behavior cannot be predicted on the
-majority of platforms the module will be used on.
+majority of platforms the module will be used on. If you want the default case to be "do nothing," include it as an explicit `default: {}` for clarity's sake. 
 
-For selectors, the omission of a default selection should only be used if
-catalog compilation failure is explicitly desired in this case.
+For selectors, default selections should only be omitted if you explicitly want
+catalog compilation to fail when no value matches.
 
 The following example follows the recommended style:
 
@@ -431,18 +438,16 @@ below list there is an implicit statement of "should be at this relative
 location" for each of these items.  The word "may" should be interpreted as "If
 there are any X's they should be here".
 
-1.  Should define the class and parameters
-2.  Should validate any class parameters and fail catalog compilation if any
+1. Should define the class and parameters
+2. Should validate any class parameters and fail catalog compilation if any
     parameters are invalid
-3.  Should default any validated parameters to the most general case
-4.  May declare local variables
-5.  May declare relationships to other classes `Class['apache'] -> Class['local_yum']`
-6.  May override resources
-7.  May declare resource defaults
-8.  May declare defined resource types
-9.  May declare native types (Users, Groups, Services...)
-10. May declare other resources
-11. May declare Resource relationships inside of conditionals
+3. Should default any validated parameters to the most general case
+4. May declare local variables
+5. May declare relationships to other classes `Class['apache'] -> Class['local_yum']`
+6. May override resources
+7. May declare resource defaults
+8. May declare resources; resources of defined and custom types should go before those of core types
+9. May declare resource relationships inside of conditionals
 
 The following example follows the recommended style:
 
@@ -540,7 +545,7 @@ statements or relationship declarations.
 
     class ssh::server inherits ssh { ... }
 
-    class ssh::server::solaris { ... }
+    class ssh::server::solaris inherits ssh::server { ... }
 {% endhighlight %}
 
 **Bad:**
@@ -620,9 +625,8 @@ In summary:
 
 * Class inheritance is only useful for overriding resource attributes; any
   other use case is better accomplished with other methods.
-* The most commonly overridden attributes are relationship metaparameters.
-* Other attributes, e.g. ensure and enable, may have behavior changed through
-  the use of variables and conditional logic.
+* If you just need to override relationship metaparameters, you should use a single class with conditional relationship declarations instead of inheritance. 
+* In many cases, even other attributes (e.g. ensure and enable) may have their behavior changed with variables and conditional logic instead of inheritance.
 
 ### Namespacing Variables
 
