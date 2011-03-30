@@ -1022,7 +1022,9 @@ If you're familiar with programming terms, The selector syntax works like a mult
 Selectors are useful to specify a resource attribute or assign a
 variable based on a fact or another variable. In addition to any
 number of specified values, selectors also allow you to specify a
-default if no value matches.  Here's a simple example:
+default if no value matches; if no default is supplied and a selector fails to match, it will result in a parse error.
+
+Here's a simple example of selector use:
 
 {% highlight ruby %}
     file { '/etc/config':
@@ -1082,7 +1084,7 @@ The variable `$0` will contain the whole match.
 
 `Case` is the other form of Puppet's two conditional statements, which
 can be wrapped around any Puppet code to add decision-making logic
-to your manifests.  Case statements, unlike selectors, do not return a value.   A common use for the `case` statement is to apply different classes to a particular node based on its operating
+to your manifests.  Case statements, unlike selectors, do not return a value. Also unlike selectors, a failed match without a default specified will simply skip the case statement instead of throwing a parse error.  A common use for the `case` statement is to apply different classes to a particular node based on its operating
 system:
 
 {% highlight ruby %}
