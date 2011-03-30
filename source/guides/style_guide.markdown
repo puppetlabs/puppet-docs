@@ -206,7 +206,7 @@ first attribute specified.
 **Good:**
 
 {% highlight ruby %}
-    file { '/tmp/foo':
+    file { '/tmp/readme.txt':
       ensure => file,
       owner  => '0',
       group  => '0',
@@ -333,7 +333,7 @@ effects far away from where the default was declared.
 **Bad:**
 
 {% highlight ruby %}
-    # /etc/puppetlabs/puppet/modules/ssh/manifests/server/uk/foo.pp
+    # /etc/puppetlabs/puppet/modules/ssh/manifests/init.pp
     File {
       mode   => '0600',
       owner  => 'nobody',
@@ -352,21 +352,22 @@ resource declarations.
 **Good:**
 
 {% highlight ruby %}
-    $foo_mode = $operatingsystem ? {
+    $file_mode = $operatingsystem ? {
       debian => '0007',
       redhat => '0776',
       fedora => '0007',
     }
 
-    file { '/tmp/foo':
-       mode => $foo_mode,
+    file { '/tmp/readme.txt':
+       content => "Hello World\n",
+       mode    => $file_mode,
     }
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
-    file { '/tmp/foo':
+    file { '/tmp/readme.txt':
       mode => $operatingsystem ? {
         debian => '0777',
         redhat => '0776',
@@ -410,17 +411,18 @@ All classes and resource type definitions must be in separate files in the
 `manifests` directory of their module. For example:
 
 {% highlight ruby %}
-    # /etc/puppetlabs/puppet/modules/foo/manifests
+    # /etc/puppetlabs/puppet/modules/apache/manifests
     
     # init.pp
-      class foo { }
-    # bar.pp
-      class foo::bar { }
-    # dostuff.pp
-      define foo::dostuff () { }
+      class apache { }
+    # ssl.pp
+      class apache::ssl { }
+    # virtual_host.pp
+      define motd::virtual_host () { }
 {% endhighlight %}
 
-This is functionally identical to declaring all classes and defines in init.pp, but highlights the structure of the module and makes everything more legible.
+This is functionally identical to declaring all classes and defines in init.pp,
+but highlights the structure of the module and makes everything more legible.
 
 ### Internal Organization of a Class
 
@@ -434,7 +436,8 @@ there are any X's they should be here".
     parameters are invalid
 3.  Should default any validated parameters to the most general case
 4.  May declare local variables
-5.  May declare relationships to other classes `Class['foo'] -> Class['bar']`
+5.  May declare relationships to other classes `Class['apache'] ->
+    Class['local_yum']`
 6.  May override resources
 7.  May declare resource defaults
 8.  May declare defined resource types
@@ -491,11 +494,11 @@ Relationship declarations with the chaining syntax should only be used in the
 
 **Good:** 
 
-    Package[bar] -> Service[foo]
+    Package['httpd'] -> Service['httpd']
 
 **Bad:**
 
-    Service[foo] <- Package[bar]
+    Service['httpd'] <- Package['httpd']
 
 When possible, you should prefer metaparameters to relationship declarations.
 One example where metaparameters aren't desirable is when subclassing would be
@@ -509,16 +512,16 @@ Classes and defined resource types must not be defined within other classes.
 **Bad:**
 
 {% highlight ruby %}
-    class foo {
-      class bar { ... }
+    class apache {
+      class ssl { ... }
     }
 {% endhighlight %}
 
 **Also bad:**
 
 {% highlight ruby %}
-    class foo {
-      define bar() { ... }
+    class apache {
+      define config() { ... }
     }
 {% endhighlight %}
 
@@ -637,20 +640,20 @@ defaults).
 **Good:**
 
 {% highlight ruby %}
-    class foo (
-      $two,
-      $one = "default",
-      $three = "default"
+    class ntp (
+      $servers,
+      $options = "iburst",
+      $multicast = false
     ) {}
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
-    class foo (
-      $one = 'default',
-      $two,
-      $three = 'default'
+    class ntp (
+      $options = "iburst",
+      $servers,
+      $multicast = false
     ) {}
 {% endhighlight %}
 
@@ -659,8 +662,13 @@ defaults).
 All manifests should have a corresponding test manifest in the module's `tests`
 directory.
 
-    modulepath/foo/manifests/{init,foo}.pp
-    modulepath/foo/tests/{init,foo}.pp
+    modulepath/apache/manifests/{init,ssl}.pp
+    modulepath/apache/tests/{init,ssl}.pp
+
+The test manifest should provide a clear example of how to declare the class or
+defined resource type.  In addition, the test manifest should also declare any
+classes required by the corresponding class to ensure `puppet apply` works in a
+limited, stand alone manner.
 
 ## Puppet Doc
 
@@ -676,15 +684,19 @@ For classes:
     #
     # Document parameters here
     #
-    # [*sample_bar*]
-    #   Description of this variable.
+    # [*servers*]
+    #   Description of servers class parameter.  e.g. "Specify one or more
+    #   upstream ntp servers as an array."
     #
     # == Variables
     #
     # Here you should define a list of variables that this module would require.
     #
-    # [*$foo_var*]
-    #     Description of this variable
+    # [*$enc_ntp_servers*]
+    #     Description of this variable.  e.g. "The parameter enc_ntp_servers
+    # must be set by the External Node Classifier as a comma separated list of
+    # hostnames."  (Note, global variables should not be used in preference to
+    # class parameters as of Puppet 2.6.)
     #
     # == Examples
     #
@@ -716,10 +728,14 @@ For defined resources:
     # Document parameters here
     #
     # [*namevar*]
-    #   Always document namevar
+    #   Always document namevar.  For example, if a parameter takes on the
+    # value of the title string if it is not explicitly set, this parameter is
+    # equivalent to a namevar of the core resource types.
     #
-    # [*sample_bar*]
-    #   Description of this variable.
+    # [*basedir*]
+    #   Description of this variable.  For example, "This parameter sets the
+    # base directory for this resource type.  It should not contain a trailing
+    # slash."
     #
     # == Examples
     #
