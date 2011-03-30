@@ -418,7 +418,7 @@ All classes and resource type definitions must be in separate files in the
     # ssl.pp
       class apache::ssl { }
     # virtual_host.pp
-      define motd::virtual_host () { }
+      define apache::virtual_host () { }
 {% endhighlight %}
 
 This is functionally identical to declaring all classes and defines in init.pp,
@@ -436,8 +436,7 @@ there are any X's they should be here".
     parameters are invalid
 3.  Should default any validated parameters to the most general case
 4.  May declare local variables
-5.  May declare relationships to other classes `Class['apache'] ->
-    Class['local_yum']`
+5.  May declare relationships to other classes `Class['apache'] -> Class['local_yum']`
 6.  May override resources
 7.  May declare resource defaults
 8.  May declare defined resource types
@@ -621,8 +620,8 @@ In summary:
 
 * Class inheritance is only useful for overriding resource attributes; any
   other use case is better accomplished with other methods.
-* The most commonly overridden parameters are relationship metaparameters.
-* Other parameters, e.g. ensure and enable may have behavior changed through
+* The most commonly overridden attributes are relationship metaparameters.
+* Other attributes, e.g. ensure and enable, may have behavior changed through
   the use of variables and conditional logic.
 
 ### Namespacing Variables
@@ -728,9 +727,10 @@ For defined resources:
     # Document parameters here
     #
     # [*namevar*]
-    #   Always document namevar.  For example, if a parameter takes on the
-    # value of the title string if it is not explicitly set, this parameter is
-    # equivalent to a namevar of the core resource types.
+    #   If there is a parameter that defaults to the value of the title string
+    # when not explicitly set, you must always say so.  This parameter can be
+    # referred to as a "namevar," since it's functionally equivalent to the
+    # namevar of a core resource type.
     #
     # [*basedir*]
     #   Description of this variable.  For example, "This parameter sets the
