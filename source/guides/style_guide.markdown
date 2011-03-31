@@ -149,13 +149,13 @@ hyphens, but you should avoid them in the interest of consistent look-and-feel.)
 **Good:**
 
 {% highlight ruby %}
-    package { openssh: ensure => present }
+    package { 'openssh': ensure => present }
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
-    package { 'openssh': ensure => present }
+    package { openssh: ensure => present }
 {% endhighlight %}
 
 ### Arrow Alignment
