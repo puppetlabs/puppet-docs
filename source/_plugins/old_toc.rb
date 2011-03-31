@@ -15,8 +15,8 @@
 
 require 'jekyll'
 
-module TocFilter
-  def toc(input)
+module OldTocFilter
+  def old_toc(input)
     input.scan(/<(h2|h3)(?:>|\s+(.*?)>)([^<]*)<\/\1\s*>/mi).inject(%{<ol class="toc">}) { |toc, entry|
       id = entry[1][/^id=(['"])(.*)\1$/, 2]
       title = entry[2].gsub(/<(\w*).*?>(.*?)<\/\1\s*>/m, '\2').strip
@@ -24,4 +24,4 @@ module TocFilter
     } << "</ol>"
   end
 end
-Liquid::Template.register_filter(TocFilter)
+Liquid::Template.register_filter(OldTocFilter)
