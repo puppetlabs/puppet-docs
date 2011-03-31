@@ -75,16 +75,10 @@ should be provided for all modules.
 
 ### Style Versioning
 
-This style guide must be version controlled, which will allow modules to comply
+This style guide will be versioned, which will allow modules to comply
 with a specific version of the style guide.
 
-The relevant style guide version must be embedded as metadata in the
-Modulefile.  Use the `style_version` field:
-
-    style_version "1.0"
-
-This style metadata information may be used for automated linting at some later
-date.
+A future version of the puppet-module tool may permit the relevant style guide version to be embedded as metadata in the Modulefile, and the metadata in turn may be used for automated linting.
 
 ## Spacing, Indentation, & Whitespace
 
