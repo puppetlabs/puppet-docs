@@ -16,8 +16,8 @@ Steps for installing the documentation-generating code:
 
     $ git submodule update --init
 
-2.  Use your package manager to install rake, libxml2-dev, and
-    libxslt-dev.  Package names may vary by platform.
+2.  Use your package manager to install rake, libxml2-dev,
+    libxslt-dev, and pygments.  Package names may vary by platform.
 
 3.  Install the ruby dependencies
 
@@ -70,6 +70,6 @@ Contributing Changes
 Copyright
 ---------
 
-Copyright (c) 2009-2010 Puppet Labs. See LICENSE for details.
+Copyright (c) 2009-2011 Puppet Labs. See LICENSE for details.
 
 
