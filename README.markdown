@@ -10,33 +10,55 @@ Steps for installing the documentation-generating code:
 
 1.  Clone the repository:
 
-    $ git clone git://github.com/puppetlabs/puppet-docs.git
+        $ git clone git://github.com/puppetlabs/puppet-docs.git
 
 2.  Add the mcollective documentation:
 
-    $ git submodule update --init
+        $ git submodule update --init
 
 2.  Use your package manager to install rake, libxml2-dev, and
     libxslt-dev.  Package names may vary by platform.
 
-3.  Install the ruby dependencies
+3.  Install the ruby dependencies:
 
-    $ sudo rake install
+        $ sudo rake install
 
-4.  Generate the documentation:
+Building and Viewing
+--------------------
 
-    $ rake generate
+1.  Generate the documentation:
 
-5.  Start a little server to view it at http://localhost:9292:
+        $ rake generate
 
-    $ rake serve
+2.  Start a little server to view it at http://localhost:9292:
 
-    Note: Use `rake run` to combine these last two steps.
+        $ rake serve
+
+    (You can use `rake run` to combine these steps.)
 
 Build Generated Docs For A Given Puppet Version
 -----------------------------------------------
 
-$ VERSION=0.25.0 rake references:puppetdoc
+    $ VERSION=0.25.0 rake references:puppetdoc
+
+Build Updated HTML Manpages
+---------------------------
+
+    $ PUPPETDIR=~/Documents/puppet rake update_manpages
+
+You will need to point the PUPPETDIR environment variable at a git checkout of the Puppet code. Currently, we only maintain a single version of the manpages, and this task will only work cleanly with Puppet 2.7 or higher. Unlike generating references, this task is not currently run on a set schedule. 
+
+Generate a PDF or Other Single-File Documentation
+-------------------------------------------------
+
+    (update page order)
+    $ rake generate_pdf
+    $ rake serve_pdf
+    (replace '-latest-' in index.html with literal
+        latest version, e.g. '-2-6-7-')
+    (point PDF-generating tool at localhost:9292)
+
+See pdf_mask/README.txt for more details.
 
 Errors and Omissions
 --------------------
