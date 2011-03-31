@@ -51,8 +51,8 @@ desc "Generate the documentation in a flat format for later PDF generation"
 task :generate_pdf do
   system("rm -rf pdf_source")
   system("cp -rf source pdf_source")
-  system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files 
-  # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page. 
+  system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
+  # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
   Dir.chdir("pdf_source")
   system("../vendor/gems/jekyll-0.7.0/bin/jekyll --kramdown ../pdf_output")
   Rake::Task['references:symlink:for_pdf'].invoke
@@ -116,7 +116,7 @@ namespace :references do
         puts "#{name}: #{version}"
       end
     end
-    
+
     desc "Symlink the latest & stable directories when generating a flat page for PDFing"
     task :for_pdf do
       require 'puppet_docs'
@@ -127,7 +127,7 @@ namespace :references do
       end
 
     end
-    
+
   end
 
   desc "Symlink the latest & stable directories"
@@ -141,7 +141,7 @@ namespace :references do
   end
 
   namespace :puppetdoc do
-    
+
     references.each do |name|
       desc "Write references/VERSION/#{name}"
       task name => 'references:check_version' do
@@ -156,7 +156,7 @@ namespace :references do
   task :puppetdoc => references.map { |r| "puppetdoc:#{r}" }
 
   namespace :index do
-  
+
     desc "Generate a stub index for VERSION"
     task :stub => 'references:check_version' do
       filename = Pathname.new('source/references') + ENV['VERSION'] + 'index.markdown'
@@ -178,7 +178,7 @@ namespace :references do
   end
 
   task :check_version do
-    abort "No VERSION given (must be a valid repo tag)" unless ENV['VERSION'] 
+    abort "No VERSION given (must be a valid repo tag)" unless ENV['VERSION']
   end
 
   task :fetch_tags do

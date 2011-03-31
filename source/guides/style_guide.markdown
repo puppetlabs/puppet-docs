@@ -167,13 +167,13 @@ attribute name.
 **Good:**
 
 {% highlight ruby %}
-    exec { 'blah':  
-      path => '/usr/bin',  
+    exec { 'blah':
+      path => '/usr/bin',
       cwd  => '/tmp',
     }
 
-    exec { 'test':  
-      subscribe   => File['/etc/test'],  
+    exec { 'test':
+      subscribe   => File['/etc/test'],
       refreshonly => true,
     }
 {% endhighlight %}
@@ -181,13 +181,13 @@ attribute name.
 **Bad:**
 
 {% highlight ruby %}
-    exec { 'blah':  
-     path => '/usr/bin',  
+    exec { 'blah':
+     path => '/usr/bin',
      cwd => '/tmp',
     }
 
-    exec { 'test':  
-      subscribe => File['/etc/test'],  
+    exec { 'test':
+      subscribe => File['/etc/test'],
       refreshonly => true,
     }
 {% endhighlight %}
@@ -312,7 +312,7 @@ Resource defaults should be used in a very controlled manner, and should only
 be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
 
 * At top scope in site.pp
-* In a class which is guaranteed to never declare another class and never be inherited by another class. 
+* In a class which is guaranteed to never declare another class and never be inherited by another class.
 
 This is due to the way
 resource defaults propagate through dynamic scope, which can have unpredictable
@@ -338,7 +338,7 @@ effects far away from where the default was declared.
       owner  => 'nobody',
       group  => 'nogroup',
     }
-    
+
     class {'ssh::client':
       ensure => present,
     }
@@ -377,13 +377,13 @@ resource declarations.
         fedora => '0007',
       }
     }
-{% endhighlight %} 
+{% endhighlight %}
 
 ### Defaults for Case Statements and Selectors
 
 Case statements should have default cases. Additionally, the default case should fail the
 catalog compilation when the resulting behavior cannot be predicted on the
-majority of platforms the module will be used on. If you want the default case to be "do nothing," include it as an explicit `default: {}` for clarity's sake. 
+majority of platforms the module will be used on. If you want the default case to be "do nothing," include it as an explicit `default: {}` for clarity's sake.
 
 For selectors, default selections should only be omitted if you explicitly want
 catalog compilation to fail when no value matches.
@@ -413,7 +413,7 @@ All classes and resource type definitions must be in separate files in the
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/modules/apache/manifests
-    
+
     # init.pp
       class apache { }
     # ssl.pp
@@ -471,7 +471,7 @@ The following example follows the recommended style:
       Package { ensure => present, }
 
       File { owner => '0', group => '0', mode => '0644' }
-  
+
       package { $package_list: }
 
       file { "/tmp/${variable}":
@@ -619,7 +619,7 @@ In summary:
 
 * Class inheritance is only useful for overriding resource attributes; any
   other use case is better accomplished with other methods.
-* If you just need to override relationship metaparameters, you should use a single class with conditional relationship declarations instead of inheritance. 
+* If you just need to override relationship metaparameters, you should use a single class with conditional relationship declarations instead of inheritance.
 * In many cases, even other attributes (e.g. ensure and enable) may have their behavior changed with variables and conditional logic instead of inheritance.
 
 ### Namespacing Variables

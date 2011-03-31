@@ -22,15 +22,15 @@ if you don't already have one.
 
 In your ticket, please give as much information as possible about what's
 missing, what's inaccurate, or what's outdated, including URLs to the affected pages
-and your best understanding of what the documentation _should_ say. 
+and your best understanding of what the documentation _should_ say.
 We'll begin looking into the problem and update the ticket as soon as possible.
 
 Reporting Errors and Typos
 --------------------------
 
 If you spot a typo or other minor error and don't want to go through
-the overhead of filing a ticket or editing the documentation, you can 
-report it via email to <faq@puppetlabs.com>. 
+the overhead of filing a ticket or editing the documentation, you can
+report it via email to <faq@puppetlabs.com>.
 
 Editing the Documentation
 -------------------------

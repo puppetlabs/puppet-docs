@@ -6,7 +6,7 @@ title: Tools
 Tools
 =====
 
-This guide covers the major tools that comprise Puppet. 
+This guide covers the major tools that comprise Puppet.
 
 * * *
 
@@ -29,7 +29,7 @@ List of binary changes:
 * pi &rarr; puppet describe
 
 This also results in a change in the puppet.conf configuration file. The sections, previously things like \[puppetd\], now should be renamed to match the new binary names. So \[puppetd\] becomes \[agent\]. You will be prompted to do this when you start Puppet. A log message will be generated for each section that needs to be renamed. This is merely a warning – existing configuration file will work unchanged.
- 
+
 Manpage documentation
 ---------------------
 
@@ -53,7 +53,7 @@ puppet agent (or puppetd)
 [Puppet agent](/man/agent.html) runs on each managed node.   By default, it will wake up every 30 minutes (configurable),
 check in with puppetmasterd, send puppetmasterd new information about the system (facts), and receive a 'compiled catalog' describing the desired system configuration. Puppet agent is then responsible for making the system match the compiled catalog. If `pluginsync` is enabled in a given node's configuration, custom plugins stored on the Puppet Master server are transferred to it automatically.
 
-The puppet master server determines what information a given managed node should see based on its unique identifier ("certname"); that node will not be able to see configurations intended for other machines. 
+The puppet master server determines what information a given managed node should see based on its unique identifier ("certname"); that node will not be able to see configurations intended for other machines.
 
 puppet apply (or puppet)
 ------------------------

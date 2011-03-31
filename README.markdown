@@ -17,8 +17,9 @@ Steps for installing the documentation-generating code:
         $ git submodule update --init
 
 2.  Use your package manager to install rake, libxml2-dev,
-    libxslt-dev, and pygments.  Package names may vary by platform; for example, using Macports, these packages could be installed with:
-    
+    libxslt-dev, and pygments.  Package names may vary by platform; for example,
+    using Macports, these packages could be installed with:
+
         $ sudo port -d install rb-rake libxml2 libxslt py-pygments
 
 3.  Install the ruby dependencies:
@@ -48,7 +49,10 @@ Build Updated HTML Manpages
 
     $ PUPPETDIR=~/Documents/puppet rake update_manpages
 
-You will need to point the PUPPETDIR environment variable at a git checkout of the Puppet code. Currently, we only maintain a single version of the manpages, and this task will only work cleanly with Puppet 2.7 or higher. Unlike generating references, this task is not currently run on a set schedule. 
+You will need to point the PUPPETDIR environment variable at a git checkout of
+the Puppet code. Currently, we only maintain a single version of the manpages,
+and this task will only work cleanly with Puppet 2.7 or higher. Unlike
+generating references, this task is not currently run on a set schedule.
 
 Generate a PDF or Other Single-File Documentation
 -------------------------------------------------

@@ -6,22 +6,22 @@
 //
 
 
-//Using the ready callback from jQuery to "plant" the 
-//banner add.  Place this on another even hook if you 
+//Using the ready callback from jQuery to "plant" the
+//banner add.  Place this on another even hook if you
 //like, there are no parameters in use here.
-$(document).ready(function() { 
+$(document).ready(function() {
 	//First parameter is the ID of the add element
 	var addEleId = 'content_add';
 	//Grab the add element
 	var addElement = $("#" + addEleId);
-		
+
 	//Grab the current directory (path)
 	var pathName = window.location.pathname;
 	var pathEles = pathName.split('/');
 	var path = '';
 
 	//Get current ads
-	if(pathName != '/') { 
+	if(pathName != '/') {
 	    for(var i in pathEles)
 		{
 		    if(i < pathEles.length) {
@@ -34,22 +34,22 @@ $(document).ready(function() {
 		    }
 		}
 	}
-	else { 
+	else {
 	    path = '/';
 	}
 	//Retreive the appropriate image array
 	ads = getAds();
 	var curImage = '';
 	var theseAds = ads[path];
-	if(theseAds != undefined && theseAds.length > 0) { 
+	if(theseAds != undefined && theseAds.length > 0) {
 	    var curIndex = Math.floor(Math.random() * theseAds.length);
 	    var curImage = theseAds[curIndex];
 	}
 
-	if(curImage != undefined && curImage.length > 0) { 
+	if(curImage != undefined && curImage.length > 0) {
 	    $("#bannerImage").append('<a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs" /><img src="' + curImage + '" border="0" /></a>');
 	}
-	
+
 });
 
 //Image associative array method, simple array instantiation
@@ -59,7 +59,7 @@ function getAds()
     var ads = new Array();
     //These paths must include HTML paths to display an add
     //any pages that are EXCEPT the root path, which is a
-    //single slash 
+    //single slash
     //
     //The image paths can be local or remote, link to any image you like...
     //Seperate each image path with a comma
@@ -69,7 +69,7 @@ function getAds()
     //First line is path
     //single slash value is the root path
     ads['/'] = ['/files/images/doc_easy.jpg'];
-     ads['/index.html'] = [''];   
+     ads['/index.html'] = [''];
     ads['/guides/best_practices.html'] = [''];
    ads['/guides/complete_resource_example.html'] = [''];
    ads['/guides/configuring.html'] = ['/files/images/ad_10mins.jpg'];

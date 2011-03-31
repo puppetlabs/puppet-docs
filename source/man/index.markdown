@@ -8,7 +8,7 @@ Puppet Application Manpages
 
 View documentation for each of the Puppet executables.
 
-* * * 
+* * *
 
 * [puppet agent](./agent.html)
 * [puppet apply](./apply.html)
