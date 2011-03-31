@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Puppet Documentation</title>
+    <title>{{ page.title }}</title>
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/replacementstyle.css" media="screen"> 
 </head>
 <body>
     <img src="images/PuppetLabshorizontal.png" alt="Puppet logo" width="754" height="352" style="display: block; margin-left: auto; margin-right: auto;" />
-    <h1 style="text-align: center;">Puppet Documentation</h1>
-    <p><small>(Generated on {{ 'now' | date: "%B %d, %Y" }} from git revision {% gitrevision %})</small></p>
+    {{ content }}
 </body>
 </html>
