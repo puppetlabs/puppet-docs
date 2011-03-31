@@ -17,7 +17,9 @@ Steps for installing the documentation-generating code:
     $ git submodule update --init
 
 2.  Use your package manager to install rake, libxml2-dev,
-    libxslt-dev, and pygments.  Package names may vary by platform.
+    libxslt-dev, and pygments.  Package names may vary by platform; for example, using Macports, these packages could be installed with:
+    
+    $ sudo port -d install rb-rake libxml2 libxslt py-pygments
 
 3.  Install the ruby dependencies
 
