@@ -423,10 +423,10 @@ syntax as shown rather than the "include" statement.
 
 #### Defined Resource Types
 
-Defined resource types follow the same basic form as classes, but they are introduced with the 
-`define` keyword (not `class`) and they support arguments but no inheritance.  As 
-mentioned previously, defined resource types take parameters and can be reused multiple times on the same system.   Suppose we want to create a resource collection that creates source control 
-repositories.  We probably would want to create multiple repositories on the same 
+Defined resource types follow the same basic form as classes, but they are introduced with the
+`define` keyword (not `class`) and they support arguments but no inheritance.  As
+mentioned previously, defined resource types take parameters and can be reused multiple times on the same system.   Suppose we want to create a resource collection that creates source control
+repositories.  We probably would want to create multiple repositories on the same
 system, so we would use a defined type, not a class.  Here's an example:
 
 {% highlight ruby %}
@@ -440,13 +440,13 @@ system, so we would use a defined type, not a class.  Here's an example:
     svn_repo { other_repo:  path => '/var/svn_other' }
 {% endhighlight %}
 
-Note how parameters specified in the definition (`define svn_repo($path)`) must appear as resource attributes (`path => '/var/svn_puppet'`) whenever a resource of the new type is declared and are available as variables (`unless => "/bin/test -d $path"`) within the definition. Multiple variables (separated by commas) can be specified. Default values can also be specified for any parameter with `=`, and any parameter which has a default becomes non-mandatory when a resource of the new type is declared. 
+Note how parameters specified in the definition (`define svn_repo($path)`) must appear as resource attributes (`path => '/var/svn_puppet'`) whenever a resource of the new type is declared and are available as variables (`unless => "/bin/test -d $path"`) within the definition. Multiple variables (separated by commas) can be specified. Default values can also be specified for any parameter with `=`, and any parameter which has a default becomes non-mandatory when a resource of the new type is declared.
 
 Defined types have a number of built-in variables available, including `$name` and `$title`, which are set to the title of the resource when it is declared. (The reasons for having two identical variables with this information are outside the scope of this document, and these two special variables cannot be used the same way in classes or other resources.) As of Puppet 2.6.5, the `$name` and `$title` variables can also be used as default values for parameters:
 
     define svn_repo($path = "/var/$name") {...}
 
-Any metaparameters used when a defined resource is declared are also made available in the definition as variables: 
+Any metaparameters used when a defined resource is declared are also made available in the definition as variables:
 
 {% highlight ruby %}
     define svn_repo($path) {
@@ -490,8 +490,8 @@ all be gathered, because there will normally be one
 copy of each on a given host.   (This idiom is sometimes
 referred to as "service-package-file").
 
-Defined types would be used to manage resources like virtual hosts, of 
-which you can have many, or to encode some simple information in a reusable 
+Defined types would be used to manage resources like virtual hosts, of
+which you can have many, or to encode some simple information in a reusable
 wrapper to save typing.
 
 #### Modules
@@ -533,7 +533,7 @@ single line:
     Package[ntp] -> File["/etc/ntp.conf"] -> Service[ntpd]
 {% endhighlight %}
 
-Here we first manage the ntp package, second manage the ntp configuration file, 
+Here we first manage the ntp package, second manage the ntp configuration file,
 and third manage the ntpd service.
 
 Note that while it's confusing, you don't have to have all of the arrows be the
@@ -1022,7 +1022,9 @@ If you're familiar with programming terms, The selector syntax works like a mult
 Selectors are useful to specify a resource attribute or assign a
 variable based on a fact or another variable. In addition to any
 number of specified values, selectors also allow you to specify a
-default if no value matches.  Here's a simple example:
+default if no value matches; if no default is supplied and a selector fails to match, it will result in a parse error.
+
+Here's a simple example of selector use:
 
 {% highlight ruby %}
     file { '/etc/config':
@@ -1082,7 +1084,7 @@ The variable `$0` will contain the whole match.
 
 `Case` is the other form of Puppet's two conditional statements, which
 can be wrapped around any Puppet code to add decision-making logic
-to your manifests.  Case statements, unlike selectors, do not return a value.   A common use for the `case` statement is to apply different classes to a particular node based on its operating
+to your manifests.  Case statements, unlike selectors, do not return a value. Also unlike selectors, a failed match without a default specified will simply skip the case statement instead of throwing a parse error.  A common use for the `case` statement is to apply different classes to a particular node based on its operating
 system:
 
 {% highlight ruby %}
@@ -1274,11 +1276,11 @@ Variable names can include alphanumeric characters and underscores, and are case
 
 Class names, module names, and the names of defined and custom resource types should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Although some names that violate these restrictions currently work, using them is not recommended.
 
-Class and defined resource type names can use `::` as a namespace separator, which is both semantically useful and a means of directing the behavior of the module autoloader. The final segment of a [qualified variable](#qualified-variables) name must obey the restrictions on variable names, and the preceding segments must obey the restrictions on class names. 
+Class and defined resource type names can use `::` as a namespace separator, which is both semantically useful and a means of directing the behavior of the module autoloader. The final segment of a [qualified variable](#qualified-variables) name must obey the restrictions on variable names, and the preceding segments must obey the restrictions on class names.
 
 Parameters used in parameterized classes and defined resource types can include alphanumeric characters and underscores, cannot begin with an underscore, and are case-sensitive. In practice, they should be treated as though they were under the same restrictions as class names in order to maximize future compatibility.
 
-There is no practical restriction on resource names. 
+There is no practical restriction on resource names.
 
 Any word that the syntax uses for special meaning is
 a reserved word, meaning you cannot use it for

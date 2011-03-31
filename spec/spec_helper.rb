@@ -10,7 +10,7 @@ module ViewHelper
   def change_layout
     change { PuppetDocs::View.layout }
   end
-  
+
 end
 
 module FixtureHelper
@@ -18,7 +18,7 @@ module FixtureHelper
   def fixtures_root
     @fixtures_root ||= Pathname.new(__FILE__).parent + 'fixtures'
   end
-  
+
   def fixture(name)
     (fixtures_root + name).read
   end

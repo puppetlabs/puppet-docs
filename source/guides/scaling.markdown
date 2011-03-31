@@ -34,5 +34,5 @@ Using a central server offers numerous advantages, particularly in the area of s
 Minimize recursive file serving
 -------------------------------
 
-Puppet's recursive file serving works well for small directories, but it isn't as efficient as rsync or NFS, and using it for larger directories can take a performance toll on both the client and server. 
+Puppet's recursive file serving works well for small directories, but it isn't as efficient as rsync or NFS, and using it for larger directories can take a performance toll on both the client and server.
 

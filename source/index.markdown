@@ -20,7 +20,7 @@ Drive-Thru
 
 Small documents for getting help fast.
 
-* <a href="./puppet_core_types_cheatsheet.pdf"><img src="./images/puppet_core_types_cheatsheet_thumbnail.png" style="float: right; margin: 4px;"></a> Core Types Cheat Sheet --- available in [single-page flavor](./puppet_core_types_cheatsheet.pdf) (double-sided), [extra breathing room flavor](./puppet_core_types_cheatsheet_expanded.pdf) (six pages), and [plain web page](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/) flavor 
+* <a href="./puppet_core_types_cheatsheet.pdf"><img src="./images/puppet_core_types_cheatsheet_thumbnail.png" style="float: right; margin: 4px;"></a> Core Types Cheat Sheet --- available in [single-page flavor](./puppet_core_types_cheatsheet.pdf) (double-sided), [extra breathing room flavor](./puppet_core_types_cheatsheet_expanded.pdf) (six pages), and [plain web page](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/) flavor
 * [Frequently Asked Questions](./guides/faq.html)
 
 Learning Puppet
@@ -45,7 +45,7 @@ Get detailed information about config files, APIs, and the Puppet language.
 
 ### Automatically Generated References
 
-Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, indirection termini, and reports, served piping hot directly from the source code. 
+Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, indirection termini, and reports, served piping hot directly from the source code.
 
 * [Resource Types](./references/latest/type.html) --- all default types
 * [Functions](./references/latest/function.html) --- all built in functions
@@ -60,7 +60,7 @@ These references are automatically generated from the inline documentation in Pu
 Puppet Guides
 -------------
 
-Learn about different areas of Puppet, fix problems, and design solutions. 
+Learn about different areas of Puppet, fix problems, and design solutions.
 
 ### Components
 
@@ -79,7 +79,7 @@ Get Puppet up and running at your site.
 
 ### Tuning and Scaling
 
-Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance. 
+Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
 * [Scaling Puppet](./guides/scaling.html) --- general tips & tricks
 * [Scaling With Passenger](./guides/passenger.html) --- for Puppet 0.24.6 and later
@@ -106,7 +106,7 @@ Go beyond basic manifests.
 
 #### Puppet Dashboard
 
-Install and use Puppet's optional web interface. 
+Install and use Puppet's optional web interface.
 
 * [Installing Dashboard](./guides/installing_dashboard.html)
 * [Using Dashboard](./guides/using_dashboard.html)
@@ -137,7 +137,7 @@ Build your own tools and workflows on top of Puppet.
 Other Resources
 ---------------
 
-* [Puppet Wiki & Bug Tracker](http://projects.puppetlabs.com/) 
+* [Puppet Wiki & Bug Tracker](http://projects.puppetlabs.com/)
 * [Puppet Patterns (Recipes)](http://puppetlabs.com/trac/puppet/wiki/Recipes)
 
 Help Improve This Document
@@ -149,4 +149,8 @@ This document belongs to the community and is licensed under the Creative Common
 
 To contribute ideas, problems, or suggestions, simply use the [Contribute](./contribute.html) link.  If you would like to submit your own content, the process is easy.  You can fork the project on <A HREF="http://github.com/puppetlabs/puppet-docs">github</A>, make changes, and send us a pull request.  See the README files in the project for more information.
 
+Documentation Version
+---------------------
 
+This release of the documentation was generated from revision {% gitrevision 'master' %} of the puppet-docs repo on {{ 'now' | date: "%B %d, %Y" }}.
+<!-- Note that HEAD is unreliable here because the releases branch ends up having orphaned commits. -->

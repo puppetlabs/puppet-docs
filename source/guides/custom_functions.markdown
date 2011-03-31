@@ -20,8 +20,8 @@ do with these functions, the built-in template and include
 functions are implemented in exactly the same way as the functions
 you're learning to write here.
 
-Custom functions are written in Ruby, so you'll need a working 
-understanding of the language before you begin. 
+Custom functions are written in Ruby, so you'll need a working
+understanding of the language before you begin.
 
 ### Gotchas
 
@@ -33,8 +33,8 @@ your functions:
     server, and you can't do anything that requires direct access to
     the client machine.
 -   There are actually two completely different types of functions
-    available --- *rvalues* (which return a value) and *statements* 
-    (which do not). If you are writing an rvalue function, you must pass 
+    available --- *rvalues* (which return a value) and *statements*
+    (which do not). If you are writing an rvalue function, you must pass
     `:type => :rvalue` when creating the function; see the examples below.
 -   The name of the file containing your function must be the
     same as the name of function; otherwise it won't get automatically
@@ -44,7 +44,7 @@ your functions:
 
 ### Where to put your functions
 
-Functions are implemented in individual .rb files (whose filenames must match the names of their respective functions), and should be distributed in modules. Put custom functions in the lib/puppet/parser/functions subdirectory of your module; see [Plugins in Modules](./plugins_in_modules.html) for additional details (including compatibility with versions of Puppet prior to 0.25.0). 
+Functions are implemented in individual .rb files (whose filenames must match the names of their respective functions), and should be distributed in modules. Put custom functions in the lib/puppet/parser/functions subdirectory of your module; see [Plugins in Modules](./plugins_in_modules.html) for additional details (including compatibility with versions of Puppet prior to 0.25.0).
 
 If you are using a version of Puppet prior to 0.24.0, or have some other compelling reason to not use [plugins in modules](./plugins_in_modules.html), functions can also be loaded from .rb files in the following locations:
 
@@ -118,11 +118,11 @@ your cron jobs on different machines?
 The trick is to tie the minute value to something that's invariant
 in time, but different across machines. Perhaps the MD5
 hash of the hostname, modulo 60, or maybe the IP address of the
-host converted to an integer, modulo 60. Neither 
+host converted to an integer, modulo 60. Neither
 guarantees uniqueness, but you can't really expect that with a range
 of no more than 60 anyway.
 
-But given that functions are run on the puppet master, how do you get at 
+But given that functions are run on the puppet master, how do you get at
 the hostname or IP address of the agent node?
 The answer is that facts returned by facter can be used in our
 functions.
@@ -213,10 +213,10 @@ include the array brackets.
 
 In Puppet 2.6.0 and later, functions can access files with the expectation that
 it will just work. In versions prior to 2.6.0, functions that accessed files
-had to explicitly warn the parser to recompile the configuration if the files 
-they relied on changed. 
+had to explicitly warn the parser to recompile the configuration if the files
+they relied on changed.
 
-If you find yourself needing to write custom functions for older versions of Puppet, the relevant instructions are preserved below. 
+If you find yourself needing to write custom functions for older versions of Puppet, the relevant instructions are preserved below.
 
 #### Accessing Files in Puppet 0.23.2 through 0.24.9
 

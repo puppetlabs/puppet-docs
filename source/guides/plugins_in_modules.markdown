@@ -15,7 +15,7 @@ Details
 -------
 
 This page describes the deployment of custom facts and types for
-use by the client via modules. 
+use by the client via modules.
 
 Custom types and facts are stored in modules. These custom types and facts are
 then gathered together and distributed via a file mount on your
@@ -31,13 +31,13 @@ Puppet master and the clients.
 Note: Plugins in modules is supported in 0.24.x onwards
 and modifies the pluginsync model supported in releases prior to
 0.24.x. It is NOT supported in earlier releases of Puppet but may
-be present as a patch in some older Debian Puppet packages. The older 0.24.x 
-configuration for plugins in modules is documented at the end of this 
-page.  
+be present as a patch in some older Debian Puppet packages. The older 0.24.x
+configuration for plugins in modules is documented at the end of this
+page.
 
 ## Module structure for 0.25.x and later
 
-In Puppet version 0.25.x and later plugins are stored in modules in the `lib` directory 
+In Puppet version 0.25.x and later plugins are stored in modules in the `lib` directory
 in a module:
 
     <MODULEPATH>/<module>/lib/puppet/type
@@ -55,10 +55,10 @@ library directory:
 
     <MODULEPATH>/<module>/lib/facter
 
-Most types and facts should be stored in which ever module they are related to, 
-for example a Bind fact might be distributed in your Bind module.  If you wish to centrally 
-deploy types and facts you could create a separate module just for this purpose, for example 
-one called `custom`.  This module needs to be a valid module (with the correct directory structure and 
+Most types and facts should be stored in which ever module they are related to,
+for example a Bind fact might be distributed in your Bind module.  If you wish to centrally
+deploy types and facts you could create a separate module just for this purpose, for example
+one called `custom`.  This module needs to be a valid module (with the correct directory structure and
 an `init.pp` file.
 
 So, if we are using our custom module and our modulepath is
@@ -113,17 +113,17 @@ So for types you would place them in:
 
     <MODULEPATH>/<module>/plugins/puppet/type
 
-For providers you place them in: 
+For providers you place them in:
 
     <MODULEPATH>/<module>/plugins/puppet/provider
 
-Similarly, Facter facts belong in the facter subdirectory of the 
+Similarly, Facter facts belong in the facter subdirectory of the
 library directory:
 
     <MODULEPATH>/<module>/plugins/facter
 
 If we are using our custom module and our modulepath is
-/etc/puppet/modules then types and facts would be stored in the 
+/etc/puppet/modules then types and facts would be stored in the
 following directories:
 
     /etc/puppet/modules/custom/plugins/puppet/type

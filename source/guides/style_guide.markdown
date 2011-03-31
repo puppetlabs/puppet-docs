@@ -10,14 +10,13 @@ Style Guide
 
 ### Style Guide Metadata
 
-Version 1.0
+Version 1.0.2
 
 ## Terminology
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in
-this document are to be interpreted as described in
-[RFC 2119](http://www.google.com/url?q=http://www.faqs.org/rfcs/rfc2119.html&sa=D&sntz=1&usg=AFQjCNHSKK-6ZHOhijUT4-3b9Bhi7FI0Ww).
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [RFC 2119](http://www.faqs.org/rfcs/rfc2119.html).
 
 ## Puppet Version
 
@@ -27,14 +26,20 @@ available in version 2.6.0 and later.
 
 ## Why a Style Guide?
 
-Puppet Labs develops modules for customers and the community, and these modules should represent the best known practice for module design and style. Since these modules are developed by many people across the organisation, a central reference was needed to ensure a consistent pattern, design, and style. 
+Puppet Labs develops modules for customers and the community, and these modules
+should represent the best known practice for module design and style. Since
+these modules are developed by many people across the organisation, a central
+reference was needed to ensure a consistent pattern, design, and style.
 
 ## General Philosophies
 
-No style manual can cover every possible circumstance. When a judgement call becomes necessary, keep in mind the following general ideas:
+No style manual can cover every possible circumstance. When a judgement call
+becomes necessary, keep in mind the following general ideas:
 
 1.  **Readability matters.**
-    If you have to choose between two equally effective alternatives, pick the more readable one. This is, of course, subjective, but if you can read your own code three months from now, that's a great start.
+    If you have to choose between two equally effective alternatives, pick the
+    more readable one. This is, of course, subjective, but if you can read your
+    own code three months from now, that's a great start.
 2.  **Inheritance should be avoided.**
     In general, inheritance leads to code that is harder to read.
     Most use cases for inheritance can be replaced by exposing class
@@ -45,7 +50,13 @@ No style manual can cover every possible circumstance. When a judgement call bec
     required.  At the same time, every module we write should work well
     with an ENC.
 4.  **Classes should generally not declare other classes.**
-    Declare classes as close to node scope as possible. Classes which require other classes should not directly declare them and should instead allow the system to fail if they are not declared by some other means. (Although the include function allows multiple declarations of classes, it can result in non-deterministic scoping issues due to the way parent scopes are assigned. We might revisit this philosophy in the future if class multi-declarations can be made deterministic, but for now, be conservative with declarations.)
+    Declare classes as close to node scope as possible. Classes which require
+    other classes should not directly declare them and should instead allow the
+    system to fail if they are not declared by some other means. (Although the
+    include function allows multiple declarations of classes, it can result in
+    non-deterministic scoping issues due to the way parent scopes are assigned.
+    We might revisit this philosophy in the future if class multi-declarations
+    can be made deterministic, but for now, be conservative with declarations.)
 
 ## Module Metadata
 
@@ -53,25 +64,21 @@ Every module must have Metadata defined in the Modulefile data file
 and outputted as the metadata.json file.  The following Metadata
 should be provided for all modules.
 
-    name 'myuser-mymodule'  
+    name 'myuser-mymodule'
     version '0.0.1'
     author 'Author of the module - for shared modules this is Puppet Labs'
     summary 'One line description of the module'
     description 'Longer description of the module including an example'
     license 'The license the module is release under - generally GPLv2 or Apache'
-    project_page 'The URL where the module source is located'  
+    project_page 'The URL where the module source is located'
     dependency 'otheruser-othermodule', '1.2.3'
 
 ### Style Versioning
 
-This style guide must be version controlled, which will allow modules to comply with a specific version of the style guide.
+This style guide will be versioned, which will allow modules to comply
+with a specific version of the style guide.
 
-The relevant style guide version must be embedded as metadata in the
-Modulefile.  Use the `style_version` field:
-
-    style_version "1.0"
-
-This style metadata information may be used for automated linting at some later date.
+A future version of the puppet-module tool may permit the relevant style guide version to be embedded as metadata in the Modulefile, and the metadata in turn may be used for automated linting.
 
 ## Spacing, Indentation, & Whitespace
 
@@ -85,7 +92,9 @@ Module manifests complying with this style guide:
 
 ## Comments
 
-Although the Puppet language allows multiple comment types, we prefer hash/octothorpe comments (`# This is a comment`) because they're generally the most visible to text editors and other code lexers. 
+Although the Puppet language allows multiple comment types, we prefer
+hash/octothorpe comments (`# This is a comment`) because they're generally the
+most visible to text editors and other code lexers.
 
 1.  Should use `# ...` for comments
 2.  Should not use `// ...` or `/* ... */` for comments
@@ -140,29 +149,31 @@ hyphens, but you should avoid them in the interest of consistent look-and-feel.)
 **Good:**
 
 {% highlight ruby %}
-    package { openssh: ensure => present }
+    package { 'openssh': ensure => present }
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
-    package { 'openssh': ensure => present }
+    package { openssh: ensure => present }
 {% endhighlight %}
 
 ### Arrow Alignment
 
-All of the fat comma arrows (`=>`) in a resource's attribute/value list should be aligned. The arrows should be placed one space ahead of the longest attribute name.
+All of the fat comma arrows (`=>`) in a resource's attribute/value list should
+be aligned. The arrows should be placed one space ahead of the longest
+attribute name.
 
 **Good:**
 
 {% highlight ruby %}
-    exec { 'blah':  
-      path => '/usr/bin',  
+    exec { 'blah':
+      path => '/usr/bin',
       cwd  => '/tmp',
     }
 
-    exec { 'test':  
-      subscribe   => File['/etc/test'],  
+    exec { 'test':
+      subscribe   => File['/etc/test'],
       refreshonly => true,
     }
 {% endhighlight %}
@@ -170,25 +181,26 @@ All of the fat comma arrows (`=>`) in a resource's attribute/value list should b
 **Bad:**
 
 {% highlight ruby %}
-    exec { 'blah':  
-     path => '/usr/bin',  
+    exec { 'blah':
+     path => '/usr/bin',
      cwd => '/tmp',
     }
 
-    exec { 'test':  
-      subscribe => File['/etc/test'],  
+    exec { 'test':
+      subscribe => File['/etc/test'],
       refreshonly => true,
     }
 {% endhighlight %}
 
 ### Attribute Ordering
 
-If a resource declaration includes an `ensure` attribute, it should be the first attribute specified. 
+If a resource declaration includes an `ensure` attribute, it should be the
+first attribute specified.
 
 **Good:**
 
 {% highlight ruby %}
-    file { '/tmp/foo':
+    file { '/tmp/readme.txt':
       ensure => file,
       owner  => '0',
       group  => '0',
@@ -196,11 +208,15 @@ If a resource declaration includes an `ensure` attribute, it should be the first
     }
 {% endhighlight %}
 
-(This recommendation is solely in the interest of readability, as Puppet ignores attribute order when syncing resources.)
+(This recommendation is solely in the interest of readability, as Puppet
+ignores attribute order when syncing resources.)
 
 ### Compression
 
-Within a given manifest, resources should be grouped by logical relationship to each other, rather than by resource type. Use of the semicolon syntax to declare multiple resources within a set of curly braces is not recommended, except in the rare cases where it would improve readability.
+Within a given manifest, resources should be grouped by logical relationship to
+each other, rather than by resource type. Use of the semicolon syntax to
+declare multiple resources within a set of curly braces is not recommended,
+except in the rare cases where it would improve readability.
 
 **Good:**
 
@@ -242,8 +258,10 @@ Within a given manifest, resources should be grouped by logical relationship to 
 
 ### Symbolic Links
 
-In the interest of clarity, symbolic links
-should be declared by using an ensure value of `ensure => link` and explicitly specifying a value for the `target` attribute. Using a path to the target as the ensure value is not recommended.
+In the interest of clarity, symbolic links should be declared by using an
+ensure value of `ensure => link` and explicitly specifying a value for the
+`target` attribute. Using a path to the target as the ensure value is not
+recommended.
 
 **Good:**
 
@@ -264,10 +282,11 @@ should be declared by using an ensure value of `ensure => link` and explicitly s
 
 ### File Modes
 
-File modes should be represented as 4 digits rather than 3, to explicitly show that they are octal values.
+File modes should be represented as 4 digits rather than 3, to explicitly show
+that they are octal values.
 
-In addition, file modes should be specified as single-quoted
-strings instead of bare word numbers.
+In addition, file modes should be specified as single-quoted strings instead of
+bare word numbers.
 
 **Good:**
 
@@ -289,8 +308,15 @@ strings instead of bare word numbers.
 
 ### Resource Defaults
 
-Resource defaults should be used in a very controlled manner, and should only be declared at the edges of your manifest ecosystem.  This is due to
-the way resource defaults propagate through dynamic scope, which can have unpredictable effects far away from where the default was declared. 
+Resource defaults should be used in a very controlled manner, and should only
+be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
+
+* At top scope in site.pp
+* In a class which is guaranteed to never declare another class and never be inherited by another class.
+
+This is due to the way
+resource defaults propagate through dynamic scope, which can have unpredictable
+effects far away from where the default was declared.
 
 **Good:**
 
@@ -306,11 +332,15 @@ the way resource defaults propagate through dynamic scope, which can have unpred
 **Bad:**
 
 {% highlight ruby %}
-    # /etc/puppetlabs/puppet/modules/ssh/manifests/server/uk/foo.pp
+    # /etc/puppetlabs/puppet/modules/ssh/manifests/init.pp
     File {
       mode   => '0600',
       owner  => 'nobody',
       group  => 'nogroup',
+    }
+
+    class {'ssh::client':
+      ensure => present,
     }
 {% endhighlight %}
 
@@ -318,48 +348,45 @@ the way resource defaults propagate through dynamic scope, which can have unpred
 
 ### Keep Resource Declarations Simple
 
-You should not intermingle conditionals with resource
-declarations. When using conditionals for data assignment, you
-should separate conditional code from the resource declarations.
+You should not intermingle conditionals with resource declarations. When using
+conditionals for data assignment, you should separate conditional code from the
+resource declarations.
 
 **Good:**
 
 {% highlight ruby %}
-    $foo_mode = $operatingsystem ? {
+    $file_mode = $operatingsystem ? {
       debian => '0007',
       redhat => '0776',
       fedora => '0007',
     }
 
-    file { '/tmp/foo':
-       mode => $foo_mode,
+    file { '/tmp/readme.txt':
+       content => "Hello World\n",
+       mode    => $file_mode,
     }
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
-    file { '/tmp/foo':
+    file { '/tmp/readme.txt':
       mode => $operatingsystem ? {
         debian => '0777',
         redhat => '0776',
         fedora => '0007',
       }
     }
-{% endhighlight %} 
+{% endhighlight %}
 
 ### Defaults for Case Statements and Selectors
 
-Case statements should have default cases.
+Case statements should have default cases. Additionally, the default case should fail the
+catalog compilation when the resulting behavior cannot be predicted on the
+majority of platforms the module will be used on. If you want the default case to be "do nothing," include it as an explicit `default: {}` for clarity's sake.
 
-Hence both of these are valid.  In addition, the default case
-should fail the catalog compilation when the resulting behavior
-cannot be predicted on the majority of platforms the module will be
-used on.
-
-For selectors, the ommission of a default selection should only be
-used if catalog compilation failure is explicitly desired in this
-case.
+For selectors, default selections should only be omitted if you explicitly want
+catalog compilation to fail when no value matches.
 
 The following example follows the recommended style:
 
@@ -385,36 +412,36 @@ All classes and resource type definitions must be in separate files in the
 `manifests` directory of their module. For example:
 
 {% highlight ruby %}
-    # /etc/puppetlabs/puppet/modules/foo/manifests
-    
+    # /etc/puppetlabs/puppet/modules/apache/manifests
+
     # init.pp
-      class foo { }
-    # bar.pp
-      class foo::bar { }
-    # dostuff.pp
-      define foo::dostuff () { }
+      class apache { }
+    # ssl.pp
+      class apache::ssl { }
+    # virtual_host.pp
+      define apache::virtual_host () { }
 {% endhighlight %}
 
-This is functionally identical to declaring all classes and defines in init.pp, but highlights the structure of the module and makes everything more legible.
+This is functionally identical to declaring all classes and defines in init.pp,
+but highlights the structure of the module and makes everything more legible.
 
 ### Internal Organization of a Class
 
-Classes should be organised with a consistent structure and style.
-In the below list there is an implicit statement of "should be at this relative
-location" for each of these items.  The word "may" should be
-interpreted as "If there are any X's they should be here".
+Classes should be organised with a consistent structure and style.  In the
+below list there is an implicit statement of "should be at this relative
+location" for each of these items.  The word "may" should be interpreted as "If
+there are any X's they should be here".
 
-1.  Should define the class and parameters
-2.  Should validate any class parameters and fail catalog compilation if any parameters are invalid 
-3.  Should default any validated parameters to the most general case
-4.  May declare local variables
-5.  May declare relationships to other classes `Class['foo'] -> Class['bar']`
-6.  May override resources
-7.  May declare resource defaults
-8.  May declare defined resource types
-9.  May declare native types (Users, Groups, Services...)
-10.  May declare other resources
-11.  May declare Resource relationships inside of conditionals
+1. Should define the class and parameters
+2. Should validate any class parameters and fail catalog compilation if any
+    parameters are invalid
+3. Should default any validated parameters to the most general case
+4. May declare local variables
+5. May declare relationships to other classes `Class['apache'] -> Class['local_yum']`
+6. May override resources
+7. May declare resource defaults
+8. May declare resources; resources of defined and custom types should go before those of core types
+9. May declare resource relationships inside of conditionals
 
 The following example follows the recommended style:
 
@@ -444,7 +471,7 @@ The following example follows the recommended style:
       Package { ensure => present, }
 
       File { owner => '0', group => '0', mode => '0644' }
-  
+
       package { $package_list: }
 
       file { "/tmp/${variable}":
@@ -460,22 +487,21 @@ The following example follows the recommended style:
 
 ### Relationship Declarations
 
-Relationship declarations with the chaining syntax should only be used in the "left to
-right" direction. 
+Relationship declarations with the chaining syntax should only be used in the
+"left to right" direction.
 
 **Good:** 
 
-    Package[bar] -> Service[foo]
+    Package['httpd'] -> Service['httpd']
 
 **Bad:**
 
-    Service[foo] <- Package[bar]
+    Service['httpd'] <- Package['httpd']
 
-When possible, you should prefer metaparameters to relationship
-declarations. One example where metaparameters aren't desirable is
-when subclassing would be necessary to
-override behavior; in this situation, relationship
-declarations inside of conditionals should be used.
+When possible, you should prefer metaparameters to relationship declarations.
+One example where metaparameters aren't desirable is when subclassing would be
+necessary to override behavior; in this situation, relationship declarations
+inside of conditionals should be used.
 
 ### Classes and Defined Resource Types Within Classes
 
@@ -484,23 +510,25 @@ Classes and defined resource types must not be defined within other classes.
 **Bad:**
 
 {% highlight ruby %}
-    class foo {
-      class bar { ... }
+    class apache {
+      class ssl { ... }
     }
 {% endhighlight %}
 
 **Also bad:**
 
 {% highlight ruby %}
-    class foo {
-      define bar() { ... }
+    class apache {
+      define config() { ... }
     }
 {% endhighlight %}
 
 ### Class Inheritance
 
-Inheritance may be used within a module, but must not be used
-across module namespaces. Cross-module dependencies should be satisfied in a more portable way that doesn't violate the concept of modularity, such as with include statements or relationship declarations. 
+Inheritance may be used within a module, but must not be used across module
+namespaces. Cross-module dependencies should be satisfied in a more portable
+way that doesn't violate the concept of modularity, such as with include
+statements or relationship declarations.
 
 **Good:**
 
@@ -511,7 +539,7 @@ across module namespaces. Cross-module dependencies should be satisfied in a mor
 
     class ssh::server inherits ssh { ... }
 
-    class ssh::server::solaris { ... }
+    class ssh::server::solaris inherits ssh::server { ... }
 {% endhighlight %}
 
 **Bad:**
@@ -525,9 +553,9 @@ across module namespaces. Cross-module dependencies should be satisfied in a mor
 {% endhighlight %}
 
 Inheritance in general should be avoided when alternatives are viable.  For
-example, instead of using inheritance to override relationships in an existing class
-when stopping a service, consider using a
-single class with an ensure parameter and conditional relationship declarations:
+example, instead of using inheritance to override relationships in an existing
+class when stopping a service, consider using a single class with an ensure
+parameter and conditional relationship declarations:
 
 {% highlight ruby %}
     class bluetooth($ensure=present, $autoupgrade=false) {
@@ -584,55 +612,65 @@ single class with an ensure parameter and conditional relationship declarations:
     }
 {% endhighlight %}
 
-(This example makes 
-several assumptions and is based on an example provided in the Puppet 
-Master training for managing bluetooth.)
+(This example makes several assumptions and is based on an example provided in
+the Puppet Master training for managing bluetooth.)
 
 In summary:
 
-* Class inheritance is only useful for overriding resource attributes; any other use case is better accomplished with other methods.
-* The most commonly overridden parameters are relationship metaparameters.
-* Other parameters, e.g. ensure and enable may have behavior changed through the use of variables and conditional logic.
+* Class inheritance is only useful for overriding resource attributes; any
+  other use case is better accomplished with other methods.
+* If you just need to override relationship metaparameters, you should use a single class with conditional relationship declarations instead of inheritance.
+* In many cases, even other attributes (e.g. ensure and enable) may have their behavior changed with variables and conditional logic instead of inheritance.
 
 ### Namespacing Variables
 
-When using top-scope variables, including facts, Puppet modules should explicitly specify the empty namespace (i.e., `$::operatingsystem`, not `$operatingsystem`) to prevent accidental scoping issues.
+When using top-scope variables, including facts, Puppet modules should
+explicitly specify the empty namespace (i.e., `$::operatingsystem`, not
+`$operatingsystem`) to prevent accidental scoping issues.
 
 ### Display Order of Class Parameters
 
-In parameterized class and defined resource type declarations, parameters that are required should be listed before optional parameters (i.e. parameters with defaults).
+In parameterized class and defined resource type declarations, parameters that
+are required should be listed before optional parameters (i.e. parameters with
+defaults).
 
 **Good:**
 
 {% highlight ruby %}
-    class foo (
-      $two,
-      $one = "default",
-      $three = "default"
+    class ntp (
+      $servers,
+      $options = "iburst",
+      $multicast = false
     ) {}
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
-    class foo (
-      $one = 'default',
-      $two,
-      $three = 'default'
+    class ntp (
+      $options = "iburst",
+      $servers,
+      $multicast = false
     ) {}
 {% endhighlight %}
 
 ## Tests
 
-All manifests should have a corresponding test manifest in the module's `tests` directory.
+All manifests should have a corresponding test manifest in the module's `tests`
+directory.
 
-    modulepath/foo/manifests/{init,foo}.pp
-    modulepath/foo/tests/{init,foo}.pp
+    modulepath/apache/manifests/{init,ssl}.pp
+    modulepath/apache/tests/{init,ssl}.pp
+
+The test manifest should provide a clear example of how to declare the class or
+defined resource type.  In addition, the test manifest should also declare any
+classes required by the corresponding class to ensure `puppet apply` works in a
+limited, stand alone manner.
 
 ## Puppet Doc
 
-Classes and defined resource types should be documented inline using the following
-conventions:
+Classes and defined resource types should be documented inline using the
+following conventions:
 
 For classes:
 
@@ -643,15 +681,19 @@ For classes:
     #
     # Document parameters here
     #
-    # [*sample_bar*]
-    #   Description of this variable.
+    # [*servers*]
+    #   Description of servers class parameter.  e.g. "Specify one or more
+    #   upstream ntp servers as an array."
     #
     # == Variables
     #
     # Here you should define a list of variables that this module would require.
     #
-    # [*$foo_var*]
-    #     Description of this variable
+    # [*$enc_ntp_servers*]
+    #     Description of this variable.  e.g. "The parameter enc_ntp_servers
+    # must be set by the External Node Classifier as a comma separated list of
+    # hostnames."  (Note, global variables should not be used in preference to
+    # class parameters as of Puppet 2.6.)
     #
     # == Examples
     #
@@ -683,10 +725,15 @@ For defined resources:
     # Document parameters here
     #
     # [*namevar*]
-    #   Always document namevar
+    #   If there is a parameter that defaults to the value of the title string
+    # when not explicitly set, you must always say so.  This parameter can be
+    # referred to as a "namevar," since it's functionally equivalent to the
+    # namevar of a core resource type.
     #
-    # [*sample_bar*]
-    #   Description of this variable.
+    # [*basedir*]
+    #   Description of this variable.  For example, "This parameter sets the
+    # base directory for this resource type.  It should not contain a trailing
+    # slash."
     #
     # == Examples
     #
@@ -702,8 +749,10 @@ For defined resources:
     }
 {% endhighlight %}
 
-This will allow documentation to be automatically extracted with the puppet doc tool.
+This will allow documentation to be automatically extracted with the puppet doc
+tool.
 
 ## The extlookup() Function
 
-Modules should avoid the use of extlookup() in favor of ENCs or other alternatives.
+Modules should avoid the use of extlookup() in favor of ENCs or other
+alternatives.

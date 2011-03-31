@@ -25,7 +25,7 @@ section#notice pre,
 .portals .portal,
 ul.products li.product,
 form#contactform div.first-name,
-form#contactform div.last-name 
+form#contactform div.last-name
 div.wp-pagenavi a.page,
 div.wp-pagenavi span.current{
   display: block;
@@ -219,7 +219,7 @@ body.blog #masthead ol li:hover span.drop-down-trigger {
 
 #subscription-section a span.count {
 	position: relative;
-	top: 0.25em;  
+	top: 0.25em; 
 }
 
 #subscription-section a span.label{

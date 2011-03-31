@@ -19,15 +19,15 @@ below.
 
 Puppet usually takes care of security and SSL certificate
 management for you, but if you want to use the RESTful API outside of that
-you'll need to manage certificates yourself when you connect. This can be done by using 
+you'll need to manage certificates yourself when you connect. This can be done by using
 a pre-existing signed agent certificate, by generating and signing a certificate on the puppet
 master and manually distributing it to the connecting host, or by re-implementing puppet
 agent's generate / submit signing request / received signed certificate behavior in your custom app.
 
-The security policy for the REST API can be controlled through the 
-[`rest_authconfig`][authconf] file. For testing purposes, it is also possible to 
-permit unauthenticated connections from all hosts or a subset of hosts; see the 
-[`rest_authconfig` documentation][authconf] for more details. 
+The security policy for the REST API can be controlled through the
+[`rest_authconfig`][authconf] file. For testing purposes, it is also possible to
+permit unauthenticated connections from all hosts or a subset of hosts; see the
+[`rest_authconfig` documentation][authconf] for more details.
 
 [authconf]: ./rest_auth_conf.html
 
@@ -40,8 +40,8 @@ can be seen using [curl](http://en.wikipedia.org/wiki/CURL).
 
 Most of this command consists of pointing curl to the appropriate SSL certificates, which
 will be different depending on your ssldir location and your node's certname.
-For simplicity and brevity, future invocations of curl will be provided in insecure mode, which 
-is specified with the `-k` or `--insecure` flag. 
+For simplicity and brevity, future invocations of curl will be provided in insecure mode, which
+is specified with the `-k` or `--insecure` flag.
 Insecure connections can be enabled for one or more nodes in the [`rest_authconfig`][authconf]
 file. The above curl invocation without certificates would be as follows:
 
@@ -112,7 +112,7 @@ Get the certificate revocation list.
 
 GET `/certificate_revocation_list/ca`
 
-Example: 
+Example:
 
     curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate_revocation_list/ca
 
@@ -216,11 +216,11 @@ GET `/{environment}/facts_search/search?{facts search string}`
 
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu
 
-Facts search strings are constructed as a series of terms separated by `&`; if there is more than one term, the search combines the terms with boolean AND. There is currently no API for searching with boolean OR. Each term is composed as follows: 
+Facts search strings are constructed as a series of terms separated by `&`; if there is more than one term, the search combines the terms with boolean AND. There is currently no API for searching with boolean OR. Each term is composed as follows:
 
     facts.{name of fact}.{comparison type}={string for comparison}
 
-If you leave off the `.{comparison type}`, the comparison will default to simple equality. The following comparison types are available: 
+If you leave off the `.{comparison type}`, the comparison will default to simple equality. The following comparison types are available:
 
 #### String/general comparison
 

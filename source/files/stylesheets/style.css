@@ -210,7 +210,7 @@ h5 {
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-weight: bold;
-  margin-top: 1em; 
+  margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
@@ -410,7 +410,7 @@ span.alternate {
 span.ampersand{
   display: inline-block;
   font-size: 1.33em;
-  margin-top: -0.33em;  
+  margin-top: -0.33em;
 }
 
 code span.ampersand {
@@ -433,7 +433,7 @@ span.alternate {
 sup a:link {
   text-decoration: underline;
 }
-  
+
 sup a:visited {
   text-decoration: underline;
 }
@@ -459,7 +459,7 @@ sup a:visited {
 	font-weight:bold;
 	padding: .5em 2em .55em;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-border-radius: .5em; 
+	-webkit-border-radius: .5em;
 	-moz-border-radius: .5em;
 	border-radius: .5em;
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
@@ -1189,7 +1189,7 @@ footer#footer form fieldset legend {
 	font-weight:bold;
 	padding: .5em 2em .55em;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-border-radius: .5em; 
+	-webkit-border-radius: .5em;
 	-moz-border-radius: .5em;
 	border-radius: .5em;
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
@@ -1207,7 +1207,7 @@ footer#footer form fieldset legend {
 
 /* BUTTON COLORS */
 #footer .fbtn {
-	color: #fff !important; 
+	color: #fff !important;
 	border: solid 1px #954712;
 	background: #C05F1C;
 	background: -webkit-gradient(linear, left top, left bottom, from(#d47b3e), to(#C05F1C));
@@ -1341,7 +1341,7 @@ body#home section#masthead ul li.download a:active {
 /* @end */
 
 body#home #content .primary-secondary-content{
-	padding-right: 420px;  
+	padding-right: 420px;
 }
 
 body#home #content .primary-secondary-content .secondary-content {
@@ -1442,7 +1442,7 @@ body#home #events-section .event{
 	text-overflow: ellipsis;
 	border-bottom: 2px solid #ddd;
 	padding-bottom: 1.5em;
-	margin-bottom: 1em;  
+	margin-bottom: 1em;
   color: #888;
   position: relative;
   border-bottom: 2px solid #eee;
@@ -1661,7 +1661,7 @@ body#resources.docs section#content div.site-width div.primary-secondary-content
 body#resources.docs .primary-content dl dt{
 	font-weight: bold;
 	margin-top: 1.5em;
-	margin-bottom: 1em;  
+	margin-bottom: 1em;
 }
 
 body#resources.docs .primary-content dl dd{
@@ -2169,7 +2169,7 @@ body.search .primary-content article time {
 /* @group comments */
 
 section#comments {
-  
+
 }
 
 article.comment header {
@@ -2354,7 +2354,7 @@ body.blog #masthead h1 {
 }
 
 body.blog #masthead ol li select {
-  
+
 }
 
 .blog .secondary-content h3,
@@ -2406,7 +2406,7 @@ body#company img#logo {
 
 body#company section#jobs{
 	float: right;
-	width: 280px;  
+	width: 280px;
 	margin-right: 80px;
 	line-height: 1.5em;
   border: 3px solid #e0e0e0;
@@ -2688,7 +2688,7 @@ ul.users li.user {
 -moz-transition: 0.5s;
 }
 
-ul.users:hover li.user a.case-study{  
+ul.users:hover li.user a.case-study{
 }
 
 ul.users li.user.with-case-study span.indicator{
@@ -2698,15 +2698,15 @@ ul.users li.user.with-case-study span.indicator{
 	display: block;
 	position: absolute;
 	top: 1em;
-	right: 0;  
+	right: 0;
 	opacity: 0.5;
 	-webkit-transition: 1s ease-in-out;
-	-moz-transition: 1s ease-in-out; 
+	-moz-transition: 1s ease-in-out;
 }
 
 ul.users li.user.with-case-study img{
 	-webkit-transition: 0.75s;
-	-moz-transition: 0.75s; 
+	-moz-transition: 0.75s;
 }
 
 ul.users li.user.with-case-study:hover img{
@@ -2716,7 +2716,7 @@ ul.users li.user.with-case-study:hover img{
 ul.users li.user.with-case-study:hover span.indicator{
 	opacity: 1;
 	-webkit-transition: 1s ease-in-out;
-	-moz-transition: 1s ease-in-out; 
+	-moz-transition: 1s ease-in-out;
 }
 
 ul.users li.user a.gateway{
@@ -2842,7 +2842,7 @@ body#services table th:last-child {
 body#services table th {
   padding: 0.5em 1em;
   background: #888;
-  
+
 
 /*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#412980), to(#472d8c));*/
 color: white;
@@ -3065,7 +3065,7 @@ body#services .services #training-service.service > h4 {
 
 body#services #services-overview.services .quote{
 	display: inline-block;
-	width: 400px;  
+	width: 400px;
 	margin-right: -180px;
 	position: relative;
 	top: 0.6em;
@@ -3491,7 +3491,7 @@ ul.local-navigation li.current_page_parent ul li {
 }
 
 ul.local-navigation li.current_page_parent ul li {
-  
+
 }
 
 /* @end */
@@ -3908,7 +3908,7 @@ label {
 }
 
 input.error{
-	border-color: #ea9b76;  
+	border-color: #ea9b76;
 	background: #ffeedb;
 }
 
@@ -3943,7 +3943,7 @@ label.error {
 div:hover > label.error{
 	opacity: 1;
 	visibility: visible;
-  
+
 }
 
 label span.subtle {

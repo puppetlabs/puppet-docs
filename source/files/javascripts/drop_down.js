@@ -9,10 +9,10 @@ $(document).ready(function() {
      });
      return false;
    });
-   
+
    $('li.with-submenu > a').click(function(){
      if ($(this).attr("href") == "#"){
-       var navElement = $(this).parent().find('.drop-down-trigger').click();       
+       var navElement = $(this).parent().find('.drop-down-trigger').click();
      }
    });
 });
