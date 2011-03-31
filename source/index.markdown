@@ -149,4 +149,8 @@ This document belongs to the community and is licensed under the Creative Common
 
 To contribute ideas, problems, or suggestions, simply use the [Contribute](./contribute.html) link.  If you would like to submit your own content, the process is easy.  You can fork the project on <A HREF="http://github.com/puppetlabs/puppet-docs">github</A>, make changes, and send us a pull request.  See the README files in the project for more information.
 
+Documentation Version
+---------------------
 
+This release of the documentation was generated from revision {% gitrevision 'master' %} of the puppet-docs repo on {{ 'now' | date: "%B %d, %Y" }}. 
+<!-- Note that HEAD is unreliable here because the releases branch ends up having orphaned commits. -->
