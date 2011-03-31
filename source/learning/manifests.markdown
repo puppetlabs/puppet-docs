@@ -8,11 +8,11 @@ Learning — Manifests
 
 You understand the RAL; now learn about manifests and start writing and applying Puppet code.
 
-* * * 
+* * *
 
 &larr; [Resources and the RAL](./ral.html) --- [Index](./) --- [Resource Ordering](./ordering.html) &rarr;
 
-* * * 
+* * *
 
 [2state]: ../images/learning-manifest2defined_state.png
 [cheat]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
@@ -20,15 +20,15 @@ You understand the RAL; now learn about manifests and start writing and applying
 No Strings Attached
 -------------------
 
-You probably already know that Puppet usually runs in an agent/master (that is, client/server) configuration, but ignore that for now. It's not important yet and you can get a lot done without it, so for the time being, we have no strings on us. 
+You probably already know that Puppet usually runs in an agent/master (that is, client/server) configuration, but ignore that for now. It's not important yet and you can get a lot done without it, so for the time being, we have no strings on us.
 
-Instead, we're going to use [puppet apply](../guides/tools.html#puppet-apply-or-puppet), which applies a manifest on the local system. It's the simplest way to run Puppet, and it works like this: 
+Instead, we're going to use [puppet apply](../guides/tools.html#puppet-apply-or-puppet), which applies a manifest on the local system. It's the simplest way to run Puppet, and it works like this:
 
     $ puppet apply my_test_manifest.pp
 
 Yeah, that easy.
 
-You can use `puppet` --- that is, without any subcommand --- as a shortcut for `puppet apply`; it has the rockstar parking in the UI because of how often it runs at an interactive command line. I'll mostly be saying "puppet apply" for clarity's sake. 
+You can use `puppet` --- that is, without any subcommand --- as a shortcut for `puppet apply`; it has the rockstar parking in the UI because of how often it runs at an interactive command line. I'll mostly be saying "puppet apply" for clarity's sake.
 
 The behavior of Puppet's man pages is currently in flux. You can always get help for Puppet's command line tools by running the tool with the `--help` flag; in the Learning Puppet VM, which uses Puppet Enterprise, you can also run `pe-man puppet apply` to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will use Git-style man pages (`man puppet-apply`) with improved formatting.
 
@@ -37,7 +37,7 @@ Manifests
 
 Puppet programs are called "manifests," and they use the .pp file extension.
 
-The core of the Puppet language is the _resource declaration,_ which represents the desired state of one resource. Manifests can also use conditional statements, group resources into collections, generate text with functions, reference code in other manifests, and do many other things, but it all ultimately comes down to making sure the right resources are being managed the right way. 
+The core of the Puppet language is the _resource declaration,_ which represents the desired state of one resource. Manifests can also use conditional statements, group resources into collections, generate text with functions, reference code in other manifests, and do many other things, but it all ultimately comes down to making sure the right resources are being managed the right way.
 
 An Aside: Compilation
 ---------------------
@@ -62,7 +62,7 @@ Let's start by just declaring a single resource:
 
 {% highlight ruby %}
     # /root/training-manifests/1.file.pp
-    
+
     file {'testfile':
       path    => '/tmp/testfile',
       ensure  => present,
@@ -85,21 +85,21 @@ You've seen this syntax before, but let's take a closer look at the language her
 * First, you have the **type** ("file"), followed by...
 * ...a pair of curly braces that encloses everything else about the resource. Inside those, you have...
     * ...the resource **title,** followed by a colon...
-    * ...and then a set of **attribute `=>` value** pairs describing the resource. 
+    * ...and then a set of **attribute `=>` value** pairs describing the resource.
 
 
 A few other notes about syntax:
 
-* Missing commas and colons are the number one syntax error made by learners. If you take out the comma after `ensure => present` in the example above, you'll get an error like this: 
+* Missing commas and colons are the number one syntax error made by learners. If you take out the comma after `ensure => present` in the example above, you'll get an error like this:
 
         Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node barn2.magpie.lan
-    
-    Missing colons do about the same thing. So watch for that. Also, although you don't strictly need the comma after the final attribute `=>` value pair, you should always put it there anyhow. Trust me. 
+
+    Missing colons do about the same thing. So watch for that. Also, although you don't strictly need the comma after the final attribute `=>` value pair, you should always put it there anyhow. Trust me.
 * Capitalization matters! You can't declare a resource with `File {'testfile:'...`, because that does something entirely different. (Specifically, it breaks. But it's _kind_ of similar to what we use to tweak an existing resource, which we'll get to later.)
 * Quoting values matters! Built-in values like `present` shouldn't be quoted, but normal strings should be. For all intents and purposes, everything is a string, including numbers. Puppet uses the same rules for single and double quotes as everyone else:
-    * Single quotes are completely literal, except that you write a literal quote with `\'` and a literal backslash with `\\`. 
+    * Single quotes are completely literal, except that you write a literal quote with `\'` and a literal backslash with `\\`.
     * Double quotes let you interpolate $variables and add newlines with `\n`.
-* Whitespace is fungible for readability. Lining up the `=>` arrows (sometimes called "fat commas") is good practice if you ever expect someone else to read this code --- note that future and mirror universe versions of yourself count as "someone else." 
+* Whitespace is fungible for readability. Lining up the `=>` arrows (sometimes called "fat commas") is good practice if you ever expect someone else to read this code --- note that future and mirror universe versions of yourself count as "someone else."
 
 > **Exercise:** Declare a file resource in a manifest and apply it! Try changing the login message by setting the content of `/etc/motd`.
 
@@ -110,26 +110,26 @@ Okay, you sort of have the idea by now. Let's make a whole wad of totally useles
 
 {% highlight ruby %}
     # /root/training-manifests/2.file.pp
-    
+
     file {'/tmp/test1':
       ensure  => present,
       content => "Hi.",
     }
-    
+
     file {'/tmp/test2':
       ensure => directory,
       mode   => 644,
     }
-    
+
     file {'/tmp/test3':
       ensure => link,
       target => '/tmp/test1',
     }
-    
+
     notify {"I'm notifying you.":} # Whitespace is fungible, remember.
     notify {"So am I!":}
 {% endhighlight %}
-    
+
     # puppet apply 2.file.pp
     notice: /Stage[main]//File[/tmp/test2]/ensure: created
     notice: /Stage[main]//File[/tmp/test3]/ensure: created
@@ -138,17 +138,17 @@ Okay, you sort of have the idea by now. Let's make a whole wad of totally useles
     notice: /Stage[main]//Notify[I'm notifying you.]/message: defined 'message' as 'I'm notifying you.'
     notice: So am I!
     notice: /Stage[main]//Notify[So am I!]/message: defined 'message' as 'So am I!'
-    
+
     # ls -lah /tmp/test*
     -rw-r--r--  1 root root    3 Feb 23 15:54 test1
     lrwxrwxrwx  1 root root   10 Feb 23 15:54 test3 -> /tmp/test1
     -rw-r-----  1 root root   16 Feb 23 15:05 testfile
-    
+
     /tmp/test2:
     total 16K
     drwxr-xr-x 2 root root 4.0K Feb 23 16:02 .
     drwxrwxrwt 5 root root 4.0K Feb 23 16:02 ..
-    
+
     # cat /tmp/test3
     Hi.
 
@@ -156,15 +156,15 @@ That was totally awesome. What just happened?
 
 ### Titles and Namevars
 
-All right, notice how we left out some important attributes there and everything still worked? Almost every resource type has one attribute whose value defaults to the resource's title. For the `file` resource, that's `path`; with `notify`, it's `message`. A lot of the time (`user`, `group`, `package`...), it's plain old `name`. 
+All right, notice how we left out some important attributes there and everything still worked? Almost every resource type has one attribute whose value defaults to the resource's title. For the `file` resource, that's `path`; with `notify`, it's `message`. A lot of the time (`user`, `group`, `package`...), it's plain old `name`.
 
-To people who occasionally delve into the Puppet source code, the one attribute that defaults to the title is called the **"namevar,"** which is a little weird but as good a name as any. It's almost always the attribute that amounts to the resource's _identity,_ the one thing that should always be unique about each instance. 
+To people who occasionally delve into the Puppet source code, the one attribute that defaults to the title is called the **"namevar,"** which is a little weird but as good a name as any. It's almost always the attribute that amounts to the resource's _identity,_ the one thing that should always be unique about each instance.
 
 This can be a convenient shortcut, but be wary of overusing it; there are several common cases where it makes more sense to give a resource a symbolic title and assign its name (-var) as a normal attribute. In particular, it's a good idea to do so if a resource's name is long or you want to assign the name conditionally depending on the nature of the system.
 
 {% highlight ruby %}
     notify {'bignotify':
-      message => "I'm completely enormous, and will mess up the formatting of your 
+      message => "I'm completely enormous, and will mess up the formatting of your
           code! Also, since I need to fire before some other resource, you'll need
           to refer to me by title later using the Notify['title'] syntax, and you
           really don't want to have to type this all over again.",
@@ -191,7 +191,7 @@ We said `/tmp/test2/` should have permissions mode 644, but our `ls -lah` showed
 
 ### New Ensure Values
 
-The `file` type has several different values for its ensure attribute: `present`, `absent`, `file`, `directory`, and `link`. They're listed on the [core types cheat sheet][cheat] whenever you need to refresh your memory, and they're fairly self-explanatory. 
+The `file` type has several different values for its ensure attribute: `present`, `absent`, `file`, `directory`, and `link`. They're listed on the [core types cheat sheet][cheat] whenever you need to refresh your memory, and they're fairly self-explanatory.
 
 The Destination
 ---------------
@@ -223,4 +223,4 @@ The notifies are firing every time, because that's what they're for, but Puppet 
 Next
 ----
 
-Resource declarations: Check! You know how to use the fundamental building blocks of Puppet code, so now it's time to learn [how those blocks fit together](./ordering.html). 
+Resource declarations: Check! You know how to use the fundamental building blocks of Puppet code, so now it's time to learn [how those blocks fit together](./ordering.html).

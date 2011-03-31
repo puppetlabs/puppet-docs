@@ -150,6 +150,6 @@ Here's a working example:
 
         realize( Basket[fruit], Basket[berry] )
 
-Note that the working example will result in two File resources, named `fruit` and `berry`. 
+Note that the working example will result in two File resources, named `fruit` and `berry`.
 
 

@@ -173,7 +173,7 @@ This snippet will print all the defined classes in the catalog:
 
 ## Access to variables and Puppet functions with the scope object
 
-Inside templates you have access to a scope object. All of the functions that you can access in the puppet manifests can be accessed via that scope object, although not via the same name. 
+Inside templates you have access to a scope object. All of the functions that you can access in the puppet manifests can be accessed via that scope object, although not via the same name.
 
 Variables defined in the current scope are available as entries in the hash returned by the scope object's `to_hash` method. This snippet will print all of the variable names defined in the current scope:
 
@@ -181,7 +181,7 @@ Variables defined in the current scope are available as entries in the hash retu
     <%= k %>
     <% end -%>
 
-Puppet functions can be called by prepending "`function_`" to the beginning of the function name. For example, including one template inside another: 
+Puppet functions can be called by prepending "`function_`" to the beginning of the function name. For example, including one template inside another:
 
     <%= scope.function_template("module/template2.erb") %>
 

@@ -27,8 +27,8 @@ library for realizing the configuration.
 The primary design goal of Puppet is to have an expressive
 enough language backed by a powerful enough library that you can
 write your own server automation applications in just a few lines
-of code. Puppet's deep extensibility and open source license lets you 
-add functionality as needed and share your innovations with others. 
+of code. Puppet's deep extensibility and open source license lets you
+add functionality as needed and share your innovations with others.
 
 To learn more about the capabilities of Puppet, start at the [main Puppet documentation](../).
 
@@ -53,7 +53,7 @@ changes as needed to bring the system into compliance.
 The benefits go far beyond just healing the headaches of configuration drift
 and unknown system state: modeling systems as data lets Puppet simulate
 configuration changes, track the history of a system over its lifecycle, and
-prove that refactored manifest code still produces the same system state. 
+prove that refactored manifest code still produces the same system state.
 It also drastically lowers the barrier to entry for hacking and extending
 Puppet: instead of analyzing code and reverse-engineering the effects of each
 step, a user can just parse data, and sysadmins have been able to add
@@ -82,12 +82,12 @@ the full grammar of Ruby is often _too_ much functionality,
 and we believe systems administrators should be
 able to model their datacenters in a higher-level system. Writing manifests in
 the Puppet DSL and separating needed Ruby extensions out into redistributable
-custom functions, facts, types, and providers is usually the best balance of 
-power and maintainability. 
+custom functions, facts, types, and providers is usually the best balance of
+power and maintainability.
 
 ### Why is Puppet written in Ruby?
 
-From Luke Kanies, Puppet's author: 
+From Luke Kanies, Puppet's author:
 
 > I was a sysadmin by trade and
 > had mostly developed in perl, but when I tried to write the
@@ -131,10 +131,10 @@ desktops.
 
 ### Does Puppet run on Windows?
 
-The short answer is "not yet." 
+The short answer is "not yet."
 
 Experimental Windows support was added in Puppet 2.6. Although
-it's not yet ready for deployment, this support will be improved and 
+it's not yet ready for deployment, this support will be improved and
 extended during 2011.
 
 ### What size organizations should use Puppet?
@@ -151,7 +151,7 @@ manual management tasks.
 Yes.
 
 All servers are at least somewhat unique, but very few servers are
-entirely unique; host names and IP addresses (e.g.) will always 
+entirely unique; host names and IP addresses (e.g.) will always
 differ, but nearly every server runs a relatively standard
 operating system. Servers are also often very similar to other
 servers within a single organization --- all Solaris servers might
@@ -205,7 +205,7 @@ about Puppet Labs is available [on our website](http://www.puppetlabs.com/compan
 
 First, join one or both of the mailing lists. There is currently
 a [development list](http://groups.google.com/group/puppet-dev/),
-and a [user discussion list](http://groups.google.com/group/puppet-users/). 
+and a [user discussion list](http://groups.google.com/group/puppet-users/).
 You can also join the IRC channel \#puppet on
 irc.freenode.net, where Puppet's developers will be hanging out
 most days (and nights).
@@ -225,13 +225,13 @@ Installation
 
 ### Where can I get Puppet?
 
-Many operating system vendors offer Puppet in their package repositories, 
+Many operating system vendors offer Puppet in their package repositories,
 which is the most convenient way to install Puppet. Puppet Labs
-also maintains its own public package repositories at <http://yum.puppetlabs.com> and 
-<http://apt.puppetlabs.com>. 
+also maintains its own public package repositories at <http://yum.puppetlabs.com> and
+<http://apt.puppetlabs.com>.
 
 In addition, source tarballs and packages for the latest release of Puppet are available
-in the [downloads](http://puppetlabs.com/resources/downloads) area 
+in the [downloads](http://puppetlabs.com/resources/downloads) area
 of the site, and you can view the current state of development (or start contributing code!)
 at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
@@ -263,8 +263,8 @@ be left in place between installs.
 ### How do I know what's changed when I upgrade?
 
 The best way to find out what's changed in Puppet is to read the release notes,
-which are posted to the 
-[puppet-announce mailing list](http://groups.google.com/group/puppet-announce) and 
+which are posted to the
+[puppet-announce mailing list](http://groups.google.com/group/puppet-announce) and
 [archived on the Puppet wiki](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes).
 
 
@@ -273,7 +273,7 @@ Configuration
 
 ### What is a manifest?
 
-"Manifest" is the word we chose to describe a declarative Puppet program. 
+"Manifest" is the word we chose to describe a declarative Puppet program.
 Since Puppet configurations are idempotent, words like "script" (which implies
 a procedural step-by-step model of execution) seemed misleading.
 
@@ -294,10 +294,10 @@ Guide](./installation.html), just run `puppet apply` against your example:
 
 ### How do I document my manifests?
 
-The puppet language includes a simple documentation syntax, which is currently 
+The puppet language includes a simple documentation syntax, which is currently
 documented on the
-[Puppet Manifest Documentation wiki page](http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Manifest_Documentation). 
-The puppetdoc command uses this inline documentation to automatically generate 
+[Puppet Manifest Documentation wiki page](http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Manifest_Documentation).
+The puppetdoc command uses this inline documentation to automatically generate
 RDoc or HTML documents for your manifests and modules.
 
 ### How do I manage passwords on Red Hat Enterprise Linux, CentOS, and Fedora Core?
@@ -344,7 +344,7 @@ master server by Facter, rather than read from the config files; even if the
 master's certname is set to something other than its fully-qualified domain
 name, this variable will still contain the server's fqdn.)
 * `$serverip` --- Provided by the puppet master; returns the master server's IP address.
-* `$serverversion` --- Provided by the puppet master; returns puppet master's current version. 
+* `$serverversion` --- Provided by the puppet master; returns puppet master's current version.
 
 ### Can I access environment variables with Facter?
 

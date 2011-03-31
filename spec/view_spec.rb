@@ -5,7 +5,7 @@ describe PuppetDocs::View do
   before :each do
     PuppetDocs::View.instance_eval { @layout = nil }
   end
-  
+
   describe ".layout=" do
     before do
       @text = "<p><%= yield %></p>"
@@ -77,9 +77,9 @@ describe PuppetDocs::View do
       end
       it "should call helpers" do
         @view.render(@text).should include('<a ')
-        @view.render(@text).should include('100')        
+        @view.render(@text).should include('100')
       end
     end
   end
-  
+
 end

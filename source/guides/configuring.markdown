@@ -15,7 +15,7 @@ Open Firewall Ports On Server and Agent Node
 
 In order for the puppet master server to centrally manage agent nodes, you
 may need to open port 8140 for incoming tcp connections on the puppet master.
-Consult your firewall documentation for more details. 
+Consult your firewall documentation for more details.
 
 Configuration Files
 -------------------
@@ -92,7 +92,7 @@ appropriate permissions:
     file { "/etc/sudoers":
         owner => root, group => root, mode => 440
     }
-{% endhighlight %} 
+{% endhighlight %}
 
 For more information on how to create the site manifest, see the
 tutorials listed in the
