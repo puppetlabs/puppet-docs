@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+.ad{ display:none; width: 175px; height:215px; }
+.showad{ display:block; }
+#bannerImage{ position:relative; }
+
+/* DEFAULT STYLES */
+widget .advert { margin-left:8px; display:block; border:solid 1px #eee; padding:10px; background:url(images/yellow-argyle.png) top right #FFD77E; text-align:center;}
+widget .advert:hover {text-decoration:none; border:solid 1px #333; cursor:pointer;}
+widget .advert h4 {margin-bottom:.5em; color:#C05F1C; font-size:1.375em; font-family:"CallunaRegular", Georgia, "Times New Roman", Times, serif; font-weight:normal;}
+widget .advert p {margin-bottom:.5em; line-height:1.15; font-size:.95em; text-align:left;}
+widget .advert img {margin:.125em 0 .75em 0;}
+widget .advert .btn {margin-top:1.25em; display:block;}
+
+/* "built-in" styles */
+widget .advert.orange-ad {background:url(images/argyle.png) #A05617; color:#fff;}
+widget .advert.orange-ad h4 {color:#feecc1;}
+
+widget .advert.grey-ad {background:url(images/argyle.png) #232120; color:#fff;}
+widget .advert.grey-ad h4 {color:#feecc1;}
+
+widget .advert.big-img img {margin:-10px -10px 15px -10px;}
+widget .advert.big-ttl h4 {font-size:2em;}
+
+
+/* BASIC BUTTONS */
+.btn {
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	position:relative;
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px !important;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font-size:1.125em;
+	font-weight:bold;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.btn:hover {
+	text-decoration: none;
+}
+.btn:active {
+	position: relative;
+	top: 1px;
+}
+
+/* BUTTON COLORS */
+.btn {
+	color: #fff;
+	border: solid 1px #954712;
+	background: #C05F1C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#d47b3e), to(#C05F1C));
+	background: -moz-linear-gradient(top,  #d47b3e,  #C05F1C);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#d47b3e', endColorstr='#C05F1C');
+}
+.btn:hover {
+	border: solid 1px #954712;
+	background: #C05F1C;
+	background: -webkit-gradient(linear, left top, left bottom, from(#A05617), to(#C05F1C));
+	background: -moz-linear-gradient(top,  #A05617,  #C05F1C);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#A05617', endColorstr='#C05F1C');
+}
+
+.btn-light {
+	color: #C05F1C;
+	text-shadow: 0 1px 1px rgba(0,0,0,.185);
+	border: solid 1px #fae6c0;
+	background: #feecc1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fffaed), to(#feecc1));
+	background: -moz-linear-gradient(top,  #fffaed,  #feecc1);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffaed', endColorstr='#feecc1');
+}
+.btn-light:hover {
+	border: solid 1px #fae6c0;
+	background: #fff7e3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9e3bb), to(#fff7e3));
+	background: -moz-linear-gradient(top,  #f9e3bb,  #fff7e3);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9e3bb', endColorstr='#fff7e3');
+}
+
+.btn-dark {
+	color: #fff;
+	border: solid 1px #9983b0;
+	background: #7f6799;
+	background: -webkit-gradient(linear, left top, left bottom, from(#c1a7dd), to(#7f6799));
+	background: -moz-linear-gradient(top,  #c1a7dd,  #7f6799);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1a7dd', endColorstr='#7f6799');
+}
+.btn-dark:hover {
+	color: #fff;
+	border: solid 1px #9983b0;
+	background: #7f6799;
+	background: -webkit-gradient(linear, left top, left bottom, from(#725d88), to(#7f6799));
+	background: -moz-linear-gradient(top,  #725d88,  #7f6799);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#725d88', endColorstr='#7f6799');
+}
+
+.btn-space {margin-top:3em !important; margin-bottom:3em;}
+
+
+/* @end */
+
+

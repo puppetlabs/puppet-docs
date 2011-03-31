@@ -6,50 +6,66 @@
 //
 
 
-//Using the ready callback from jQuery to "plant" the
-//banner add.  Place this on another even hook if you
+//Using the ready callback from jQuery to "plant" the 
+//banner add.  Place this on another even hook if you 
 //like, there are no parameters in use here.
-$(document).ready(function() {
-	//First parameter is the ID of the add element
-	var addEleId = 'content_add';
-	//Grab the add element
-	var addElement = $("#" + addEleId);
-
-	//Grab the current directory (path)
-	var pathName = window.location.pathname;
-	var pathEles = pathName.split('/');
-	var path = '';
-
-	//Get current ads
-	if(pathName != '/') {
-	    for(var i in pathEles)
-		{
-		    if(i < pathEles.length) {
-		        if(i != 0) {
-			    path += '/' +  pathEles[i];
+$(document).ready(function() { 
+	
+	if (top === self) {  
+		//First parameter is the ID of the add element
+		var addEleId = 'content_add';
+		//Grab the add element
+		var addElement = $("#" + addEleId);
+		
+		//Grab the current directory (path)
+		var pathName = window.location.pathname;
+		var pathEles = pathName.split('/');
+		var path = '';
+	
+		//Get current ads
+		if(pathName != '/') { 
+		    for(var i in pathEles)
+			{
+			    if(i < pathEles.length) {
+			        if(i != 0) {
+				    path += '/' +  pathEles[i];
+				}
+				else {
+				    path += pathEles[i];
+				}
+			    }
 			}
-			else {
-			    path += pathEles[i];
-			}
-		    }
 		}
+		else { 
+		    path = '/';
+		}
+		
+		// short circuit path for every reference page since every reference page will be showing same ad
+		if( path.indexOf('/references') >= 0 ) { path = "/references/"; }
+		
+		//Retreive the appropriate image array
+		ads = getAds();
+		var curImage = '';
+		var ad_src = ads[path];
+		//if(theseAds != undefined && theseAds.length > 0) { 
+		    //var curIndex = Math.floor(Math.random() * theseAds.length);
+		    //var curImage = theseAds[curIndex];
+		    //curSrc = theseAds[curIndex]; 
+		//}
+		//alert(path);
+		if(ad_src.length > 0) { 
+		    //$("#bannerImage").append('<a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs" /><img src="' + curImage + '" border="0" /></a>');
+			//$("#bannerImage").append('<iframe width=175 height=215 scrolling=no src="' + ad_src + '"></iframe>');
+			//alert(ad_src[0]);
+			$("#bannerImage").append(ad_src[0]);
+		}
+	} else { // We're inside the iframe containing the specified bannerad, randomly show a div
+		var ads = $(".ad");
+		var random_ad = Math.floor(Math.random() * ads.length);
+		var el = ads.get(random_ad);
+		el.className = 'showad';
 	}
-	else {
-	    path = '/';
-	}
-	//Retreive the appropriate image array
-	ads = getAds();
-	var curImage = '';
-	var theseAds = ads[path];
-	if(theseAds != undefined && theseAds.length > 0) {
-	    var curIndex = Math.floor(Math.random() * theseAds.length);
-	    var curImage = theseAds[curIndex];
-	}
-
-	if(curImage != undefined && curImage.length > 0) {
-	    $("#bannerImage").append('<a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs" /><img src="' + curImage + '" border="0" /></a>');
-	}
-
+	
 });
 
 //Image associative array method, simple array instantiation
@@ -59,7 +75,7 @@ function getAds()
     var ads = new Array();
     //These paths must include HTML paths to display an add
     //any pages that are EXCEPT the root path, which is a
-    //single slash
+    //single slash 
     //
     //The image paths can be local or remote, link to any image you like...
     //Seperate each image path with a comma
@@ -68,27 +84,27 @@ function getAds()
     //
     //First line is path
     //single slash value is the root path
-    ads['/'] = ['/files/images/doc_easy.jpg'];
-     ads['/index.html'] = [''];
-    ads['/guides/best_practices.html'] = [''];
-   ads['/guides/complete_resource_example.html'] = [''];
-   ads['/guides/configuring.html'] = ['/files/images/ad_10mins.jpg'];
-   ads['/guides/custom_facts.html'] = [''];
-   ads['/guides/custom_functions.html'] = [''];
-   ads['/guides/custom_types.html'] = [''];
-   ads['/guides/development_lifecycle.html'] = [''];
+    var grey_ad_tenmins = '<widget><div class="advert grey-ad big-ttl"><h4>Set up Puppet in 10 Minutes</h4><p><center>Try it FREE<center></p><p><a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs&CID=701A00000005N1C&IA=setup_10mins_grey" class="btn btn-dark">Get Puppet Enterprise</a></div></widget>';
+    var widget_btn_combo = '<p style="text-align:center;"><a class="btn" href="http://info.puppetlabs.com/request-pdf-docs?CR=PDF Docs&CID=701A00000005N1C&IA=makeiteasy_10mins_yellow">PDF Docs</a></p><widget><div class="advert big-ttl"><h4> Make it Easy with Puppet Enterprise</h4><p><center>Set up in 10 Minutes</p><p><a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs&CID=701A00000005N1C&IA=makeiteasy_10mins_yellow" class="btn ">Try it FREE</a></div></widget>';
+    var pdf_btn = '<a class="btn" href="http://info.puppetlabs.com/request-pdf-docs?CR=PDF Docs&CID=701A00000005N1C&IA=request_pdf">PDF Docs</a>';
+    
+    ads['/'] = [widget_btn_combo];         
+    ads['/index.html'] = [widget_btn_combo]; 
+                         
+   ads['/guides/language_guide.html'] = [grey_ad_tenmins];
+   ads['/guides/introduction.html'] = [grey_ad_tenmins];
+   ads['/guides/configuring.html'] = [grey_ad_tenmins];
+   ads['/guides/installation.html'] = [grey_ad_tenmins];
+   ads['/guides/modules.html'] = [grey_ad_tenmins];
+   ads['/guides/types/'] = [grey_ad_tenmins];
+   
    ads['/guides/environment.html'] = [''];
    ads['/guides/exported_resources.html'] = [''];
    ads['/guides/external_nodes.html'] = [''];
    ads['/guides/faq.html'] = [''];
    ads['/guides/file_serving.html'] = [''];
    ads['/guides/from_source.html'] = [''];
-   ads['/guides/installation.html'] = ['/files/images/ad_10mins.jpg'];
    ads['/guides/installing_dashboard.html'] = [''];
-   ads['/guides/language_tutorial.html'] = ['/files/images/ad_10mins.jpg'];
-   ads['/guides/modules.html'] = ['/files/images/ad_10mins.jpg'];
-   ads['/guides/language_guide.html'] = ['/files/images/ad_10mins.jpg'];
-   ads['/guides/introduction.html'] = ['/files/images/ad_10mins.jpg'];
    ads['/guides/passenger.html'] = [''];
    ads['/guides/platforms.html'] = [''];
    ads['/guides/plugins_in_modules.html'] = [''];
@@ -97,15 +113,15 @@ function getAds()
    ads['/guides/rest_api.html'] = [''];
    ads['/guides/scaling.html'] = [''];
    ads['/guides/security.html'] = [''];
-   ads['/guides/style.html'] = [''];
+   ads['/guides/style_guide.html'] = [''];
    ads['/guides/techniques.html'] = [''];
    ads['/guides/templating.html'] = [''];
    ads['/guides/tools.html'] = [''];
    ads['/guides/troubleshooting.html'] = [''];
-   ads['/guides/types/'] = ['/files/images/ad_10mins.jpg'];
    ads['/guides/using_dashboard.html'] = [''];
    ads['/guides/virtual_resources.html'] = [''];
 
+   ads['/references/'] = [pdf_btn];
    ads['/references/0.24.5/configuration.html'] = [''];
    ads['/references/0.24.5/function.html'] = [''];
    ads['/references/0.24.5/'] = [''];
@@ -233,6 +249,23 @@ function getAds()
    ads['/references/2.6.4/network.html'] = [''];
    ads['/references/2.6.4/report.html'] = [''];
    ads['/references/2.6.4/type.html'] = [''];
+
+   ads['/references/2.6.5/configuration.html'] = [''];
+   ads['/references/2.6.5/function.html'] = [''];
+   ads['/references/2.6.5/'] = [''];
+   ads['/references/2.6.5/indirection.html'] = [''];
+   ads['/references/2.6.5/network.html'] = [''];
+   ads['/references/2.6.5/report.html'] = [''];
+   ads['/references/2.6.5/type.html'] = [''];
+ 
+   ads['/references/2.6.6/configuration.html'] = [''];
+   ads['/references/2.6.6/function.html'] = [''];
+   ads['/references/2.6.6/'] = [''];
+   ads['/references/2.6.6/indirection.html'] = [''];
+   ads['/references/2.6.6/network.html'] = [''];
+   ads['/references/2.6.6/report.html'] = [''];
+   ads['/references/2.6.6/type.html'] = [''];
+
     //Return ads
     return ads;
 }
