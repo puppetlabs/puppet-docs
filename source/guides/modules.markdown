@@ -12,7 +12,7 @@ How to organize Puppet content inside of modules.
 
 ## General Information
 
-A Puppet Module is a collection of resources, classes, files, definitions
+A Puppet module is a collection of resources, classes, files, definitions
 and templates. It might be used to configure Apache or a Rails module, or a
 Trac site or a particular Rails application.
 
@@ -78,19 +78,23 @@ A Puppet module contains manifests, distributable files, plugins
 and templates arranged in a specific directory structure:
 
     MODULE_PATH/
-       downcased_module_name/
-          files/
-          manifests/
-             init.pp
-          lib/
-             puppet/
-                parser/
-                   functions
-                provider/
-                type/
-             facter/
-          templates/
-          README
+    └──downcased_module_name/
+       ├──files/
+       ├──manifests/
+       │  ├──init.pp
+       │  └──foo.pp
+       ├──lib/
+       │  ├──puppet/
+       │  │  ├──parser/
+       │  │  │  └──functions/
+       │  │  ├──provider/
+       │  │  └──type/
+       │  └──facter/
+       ├──templates/
+       ├──tests
+       │  ├──init.pp
+       │  └──foo.pp
+       └──README
 
 *NOTE: In Puppet versions prior to 0.25.0 the `lib` directory was named `plugins`. Other directory names are unchanged.*
 
@@ -278,5 +282,4 @@ page.
 Distributing custom facts and types via modules: [Plugins In
 Modules](./plugins_in_modules.html)
 
-
-
+Writing module tests: [Module Smoke Testing](./tests_smoke.html)
