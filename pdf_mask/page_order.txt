@@ -15,8 +15,9 @@ guides/mongrel.html
 guides/techniques.html
 guides/troubleshooting.html
 guides/modules.html
+guides/tests_smoke.html
 guides/file_serving.html
-guides/style.html
+guides/style_guide.html
 guides/best_practices.html
 guides/templating.html
 guides/virtual_resources.html
