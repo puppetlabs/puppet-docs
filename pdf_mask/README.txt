@@ -13,7 +13,6 @@ Steps for generating a pdf of the docs:
 TODO:
 -----
 
-- Automatically update the cover page. We should be able to write a new liquid tag that just calls git rev-parse HEAD, and it looooks like there's something already there that might help dump the current date? 
 - Changing underscores inside <th> elements to spaces using client-side javascript is the fugliest of fugly hacks. This should probably be moved to the main liquid filter, or some other more sane place. 
 - Automatically find out which version is latest and do the find-and-replace somewhere other than my text editor. (We should be able to require the puppet docs module from inside the jekyll plugin and just ask it which version is latest!)
 - Programatically rack up, rack down, and run wkhtmltopdf. 
