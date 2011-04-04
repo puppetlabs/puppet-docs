@@ -68,17 +68,6 @@ that's something you would need before you authenticate.
 
 ## The master and agent shared API
 
-### Certificate
-
-Get a certficate or the master's CA certificate.
-
-GET `/certificate/{ca, other}`
-
-Example:
-
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
-    curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
-
 ### Resources
 
 Returns a list of resources, like executing `puppet resource` (`ralsh`) on the command line.
@@ -91,6 +80,17 @@ Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource/user/puppet
     curl -k -H "Accept: yaml" https://puppetclient:8139/production/resources/user
+
+### Certificate
+
+Get a certficate or the master's CA certificate.
+
+GET `/certificate/{ca, other}`
+
+Example:
+
+    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
+    curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
 
 ## The master REST API
 
@@ -118,7 +118,7 @@ Example:
 
 ### Certificate Request
 
-Get the certificate requests.
+Retrieve or save certificate requests.
 
 GET `/{environment}/certificate_requests/{anything}`
 
@@ -128,6 +128,47 @@ Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/puppetclient
+    curl -k -H "Content-Type: ???" --data=cert_request.pem https://puppetmaster:8140/production/certificate_request/puppetclient
+
+### Certificate Status
+
+Get the status of various hosts connected to the master, sign or revoke
+certificates for given hosts, or discard all information relating to a
+given host.
+
+GET `/{environment}/certificate_status/{hostname}`
+
+This will return a PSON hash containing information about the specified
+host. Similar to `puppet cert --list {hostname}`.
+
+GET `/{environment}/certificate_statuses/{anything}`
+
+This will return a list of PSON hashes containing information about all
+available hosts. Similar to `puppet cert --list --all`.
+
+PUT `/{environment}/certificate_status/{hostname}`
+
+This will either sign or revoke the certificate for the specified host,
+depending on the PSON hash sent with the request, which must be either
+`{"state":"signed"}` or `{"state":"revoked"}` (see examples below for
+more usage information). You may wish to revoke certificates using the
+DELETE command, since this will also clean up other info regarding the
+host.
+
+DELETE `/{environment}/certificate_status/{hostname}`
+
+Cause the master to discard all information regarding a host (including
+any certificates, certificate requests, and keys), also
+revoking the certificate if one is present. Similar to `puppet cert
+--clean`.
+
+Examples:
+
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_statuses/all
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"state":"signed"}' https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"state":"revoked"}' https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -X DELETE -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
 
 ### Reports
 
