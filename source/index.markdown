@@ -6,7 +6,7 @@ title: Puppet Labs Documentation
 Puppet Labs Documentation
 =========================
 
-Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a (very large, and frequently updated) PDF, which can be found on our [downloads page](http://www.puppetlabs.com/resources/downloads/).
+Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a (very large, and frequently updated) PDF, which can be found [here](http://info.puppetlabs.com/request-pdf-docs).
 
 * * *
 
