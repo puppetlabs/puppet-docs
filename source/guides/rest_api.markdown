@@ -120,15 +120,22 @@ Example:
 
 Retrieve or save certificate requests.
 
-GET `/{environment}/certificate_requests/{anything}`
+GET `/{environment}/certificate_requests/no_key`
 
 GET `/{environment}/certificate_request/{node certificate name}`
 
 Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/puppetclient
-    curl -k -H "Content-Type: ???" --data=cert_request.pem https://puppetmaster:8140/production/certificate_request/puppetclient
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/{agent certname}
+    curl -k -X PUT -H "Content-Type: text/plain" --data-binary @cert_request.csr https://puppetmaster:8140/production/certificate_request/no_key
+
+<!-- Note that --data won't work; it has to be --data-binary. -->
+To manually generate a CSR from an existing private key: 
+
+    openssl req -new -key private_key.pem -subj "/CN={node certname}" -out request.csr
+
+The subject can only include a /CN=, nothing else. Puppet master will determine the certname from the body of the cert, so the request can be pointed to any key for this endpoint.
 
 ### Certificate Status
 
@@ -141,7 +148,7 @@ GET `/{environment}/certificate_status/{hostname}`
 This will return a PSON hash containing information about the specified
 host. Similar to `puppet cert --list {hostname}`.
 
-GET `/{environment}/certificate_statuses/{anything}`
+GET `/{environment}/certificate_statuses/no_key
 
 This will return a list of PSON hashes containing information about all
 available hosts. Similar to `puppet cert --list --all`.
@@ -234,7 +241,7 @@ Example:
 
 Just used for testing
 
-GET `/{environment}/status/{anything}`
+GET `/{environment}/status/no_key`
 
 Example:
 
@@ -286,18 +293,18 @@ access to the agent's resources, which isn't permitted by default.
 
 ### Facts
 
-GET `/{environment}/facts/{anything}`
+GET `/{environment}/facts/no_key`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetclient:8139/production/facts/{anything}
+    curl -k -H "Accept: yaml" https://puppetclient:8139/production/facts/no_key
 
 ### Run
 
 Cause the client to update like puppetrun or puppet kick
 
-PUT `/{environment}/run/{anything}`
+PUT `/{environment}/run/no_key`
 
 Example:
 
-    curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/production/run/{anything}
+    curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/production/run/no_key
