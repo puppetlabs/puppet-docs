@@ -62,8 +62,8 @@ caption, th, td {
   background: #888;
 }
 
-table th {background:#888; color:#fff; padding:1em;}
-table td {background:#f0f0f0; padding:1em;}
+table th {background:#888; color:#fff; padding:1em; font-size:75%;}
+table td {background:#f0f0f0; padding:1em; font-size:75%;}
 
 table th:first-child {
   -webkit-border-top-left-radius: 0.5em;
