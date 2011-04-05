@@ -139,42 +139,39 @@ The subject can only include a /CN=, nothing else. Puppet master will determine 
 
 ### Certificate Status
 
-Get the status of various hosts connected to the master, sign or revoke
-certificates for given hosts, or discard all information relating to a
-given host.
+Query and manipulate the puppet master's certificate authority, similar to what is possible with the puppet cert command. Rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA. 
 
-GET `/{environment}/certificate_status/{hostname}`
+GET `/{environment}/certificate_status/{certname}`
 
-This will return a PSON hash containing information about the specified
-host. Similar to `puppet cert --list {hostname}`.
+Retrieve a PSON hash containing information about the specified host's
+certificate. Similar to `puppet cert --list {certname}`.
 
-GET `/{environment}/certificate_statuses/no_key
+GET `/{environment}/certificate_statuses/no_key`
 
-This will return a list of PSON hashes containing information about all
-available hosts. Similar to `puppet cert --list --all`.
+Retrieve a list of PSON hashes containing information about all
+known certificates. Similar to `puppet cert --list --all`.
 
-PUT `/{environment}/certificate_status/{hostname}`
+PUT `/{environment}/certificate_status/{certname}`
 
-This will either sign or revoke the certificate for the specified host,
-depending on the PSON hash sent with the request, which must be either
-`{"state":"signed"}` or `{"state":"revoked"}` (see examples below for
-more usage information). You may wish to revoke certificates using the
-DELETE command, since this will also clean up other info regarding the
+Change the status of the specified host's certificate. The desired state is sent in the body of the PUT request as a one-item PSON hash; the two allowed complete hashes are `{"desired_state":"signed"}` (for signing a certificate signing request) and `{"desired_state":"revoked"}` (for revoking a certificate); see examples below for
+more usage information. 
+
+You may wish to revoke certificates using a
+DELETE request instead, which will also clean up other info about the
 host.
 
 DELETE `/{environment}/certificate_status/{hostname}`
 
-Cause the master to discard all information regarding a host (including
-any certificates, certificate requests, and keys), also
-revoking the certificate if one is present. Similar to `puppet cert
---clean`.
+Cause the certificate authority to discard all information regarding a host (including
+any certificates, certificate requests, and keys), and
+revoke the certificate if one is present. Similar to `puppet cert --clean`.
 
 Examples:
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/testnode.localdomain
     curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_statuses/all
-    curl -k -X PUT -H "Content-Type: text/pson" --data '{"state":"signed"}' https://puppetmaster:8140/production/certificate_status/client.network.address
-    curl -k -X PUT -H "Content-Type: text/pson" --data '{"state":"revoked"}' https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"signed"}' https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' https://puppetmaster:8140/production/certificate_status/client.network.address
     curl -k -X DELETE -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
 
 ### Reports
@@ -210,7 +207,7 @@ PUT `/{environment}/file_bucket_file/md5/{checksum}`
 
 GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files: Puppet 2.6.5 and later)
 
-HEAD /{environment}`/file_bucket_file/md5/{checksum}` (determine if a file is present: Puppet 2.6.5 and later)
+HEAD `/{environment}/file_bucket_file/md5/{checksum}` (determine if a file is present: Puppet 2.6.5 and later)
 
 Examples:
 
