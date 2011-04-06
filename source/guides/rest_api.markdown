@@ -68,17 +68,6 @@ that's something you would need before you authenticate.
 
 ## The master and agent shared API
 
-### Certificate
-
-Get a certficate or the master's CA certificate.
-
-GET `/certificate/{ca, other}`
-
-Example:
-
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
-    curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
-
 ### Resources
 
 Returns a list of resources, like executing `puppet resource` (`ralsh`) on the command line.
@@ -91,6 +80,17 @@ Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource/user/puppet
     curl -k -H "Accept: yaml" https://puppetclient:8139/production/resources/user
+
+### Certificate
+
+Get a certficate or the master's CA certificate.
+
+GET `/certificate/{ca, other}`
+
+Example:
+
+    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
+    curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
 
 ## The master REST API
 
@@ -118,16 +118,62 @@ Example:
 
 ### Certificate Request
 
-Get the certificate requests.
+Retrieve or save certificate requests.
 
-GET `/{environment}/certificate_requests/{anything}`
+GET `/{environment}/certificate_requests/no_key`
 
 GET `/{environment}/certificate_request/{node certificate name}`
 
 Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/puppetclient
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/{agent certname}
+    curl -k -X PUT -H "Content-Type: text/plain" --data-binary @cert_request.csr https://puppetmaster:8140/production/certificate_request/no_key
+
+<!-- Note that --data won't work; it has to be --data-binary. -->
+To manually generate a CSR from an existing private key: 
+
+    openssl req -new -key private_key.pem -subj "/CN={node certname}" -out request.csr
+
+The subject can only include a /CN=, nothing else. Puppet master will determine the certname from the body of the cert, so the request can be pointed to any key for this endpoint.
+
+### Certificate Status
+
+**Puppet 2.7.0 and later.**
+
+Read or alter the status of a certificate or pending certificate request. This endpoint is roughly equivalent to the puppet cert command; rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA. 
+
+GET `/{environment}/certificate_status/{certname}`
+
+Retrieve a PSON hash containing information about the specified host's
+certificate. Similar to `puppet cert --list {certname}`.
+
+GET `/{environment}/certificate_statuses/no_key`
+
+Retrieve a list of PSON hashes containing information about all
+known certificates. Similar to `puppet cert --list --all`.
+
+PUT `/{environment}/certificate_status/{certname}`
+
+Change the status of the specified host's certificate. The desired state is sent in the body of the PUT request as a one-item PSON hash; the two allowed complete hashes are `{"desired_state":"signed"}` (for signing a certificate signing request; similar to `puppet cert --sign`) and `{"desired_state":"revoked"}` (for revoking a certificate; similar to `puppet cert --revoke`); see examples below for details.
+
+When revoking certificates, you may wish to use a
+DELETE request instead, which will also clean up other info about the
+host.
+
+DELETE `/{environment}/certificate_status/{hostname}`
+
+Cause the certificate authority to discard all information regarding a host (including
+any certificates, certificate requests, and keys), and
+revoke the certificate if one is present. Similar to `puppet cert --clean`.
+
+Examples:
+
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/testnode.localdomain
+    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_statuses/all
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"signed"}' https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -X DELETE -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
 
 ### Reports
 
@@ -160,9 +206,9 @@ GET `/{environment}/file_bucket_file/md5/{checksum}`
 
 PUT `/{environment}/file_bucket_file/md5/{checksum}`
 
-GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files: Puppet 2.6.5 and later)
+GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files; **Puppet 2.6.5 and later**)
 
-HEAD /{environment}`/file_bucket_file/md5/{checksum}` (determine if a file is present: Puppet 2.6.5 and later)
+HEAD `/{environment}/file_bucket_file/md5/{checksum}` (determine if a file is present; **Puppet 2.6.5 and later**)
 
 Examples:
 
@@ -193,7 +239,7 @@ Example:
 
 Just used for testing
 
-GET `/{environment}/status/{anything}`
+GET `/{environment}/status/no_key`
 
 Example:
 
@@ -245,18 +291,18 @@ access to the agent's resources, which isn't permitted by default.
 
 ### Facts
 
-GET `/{environment}/facts/{anything}`
+GET `/{environment}/facts/no_key`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetclient:8139/production/facts/{anything}
+    curl -k -H "Accept: yaml" https://puppetclient:8139/production/facts/no_key
 
 ### Run
 
 Cause the client to update like puppetrun or puppet kick
 
-PUT `/{environment}/run/{anything}`
+PUT `/{environment}/run/no_key`
 
 Example:
 
-    curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/production/run/{anything}
+    curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/production/run/no_key
