@@ -139,7 +139,9 @@ The subject can only include a /CN=, nothing else. Puppet master will determine 
 
 ### Certificate Status
 
-Query and manipulate the puppet master's certificate authority, similar to what is possible with the puppet cert command. Rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA. 
+**Puppet 2.7.0 and later.**
+
+Read or alter the status of a certificate or pending certificate request. This endpoint is roughly equivalent to the puppet cert command; rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA. 
 
 GET `/{environment}/certificate_status/{certname}`
 
@@ -153,10 +155,9 @@ known certificates. Similar to `puppet cert --list --all`.
 
 PUT `/{environment}/certificate_status/{certname}`
 
-Change the status of the specified host's certificate. The desired state is sent in the body of the PUT request as a one-item PSON hash; the two allowed complete hashes are `{"desired_state":"signed"}` (for signing a certificate signing request) and `{"desired_state":"revoked"}` (for revoking a certificate); see examples below for
-more usage information. 
+Change the status of the specified host's certificate. The desired state is sent in the body of the PUT request as a one-item PSON hash; the two allowed complete hashes are `{"desired_state":"signed"}` (for signing a certificate signing request; similar to `puppet cert --sign`) and `{"desired_state":"revoked"}` (for revoking a certificate; similar to `puppet cert --revoke`); see examples below for details.
 
-You may wish to revoke certificates using a
+When revoking certificates, you may wish to use a
 DELETE request instead, which will also clean up other info about the
 host.
 
@@ -205,9 +206,9 @@ GET `/{environment}/file_bucket_file/md5/{checksum}`
 
 PUT `/{environment}/file_bucket_file/md5/{checksum}`
 
-GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files: Puppet 2.6.5 and later)
+GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files; **Puppet 2.6.5 and later**)
 
-HEAD `/{environment}/file_bucket_file/md5/{checksum}` (determine if a file is present: Puppet 2.6.5 and later)
+HEAD `/{environment}/file_bucket_file/md5/{checksum}` (determine if a file is present; **Puppet 2.6.5 and later**)
 
 Examples:
 
