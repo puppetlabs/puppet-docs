@@ -124,6 +124,8 @@ GET `/{environment}/certificate_requests/no_key`
 
 GET `/{environment}/certificate_request/{node certificate name}`
 
+PUT `/{environment}/certificate_request/no_key`
+
 Example:
 
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
