@@ -955,30 +955,6 @@ to variables, for example:
 See the Expression section later on this page for further details
 of the expressions that are now available.
 
-#### The "in" syntax
-
-From Puppet 2.6.0 you can also use the "in" syntax.  This operator allows
-you to find if the left operand is in the right one. The left operand must
-be a string, but the right operand can be:
-
-* a string
-* an array
-* a hash (the search is done on the keys)
-
-This syntax can be used in any place where an expression is supported:
-
-{% highlight ruby %}
-    $eatme = 'eat'
-    if $eatme in ['ate', 'eat'] {
-    ...
-    }
-
-    $value = 'beat generation'
-    if 'eat' in $value {
-      notice("on the road")
-    }
-{% endhighlight %}
-
 #### Appending to Variables
 
 In Puppet 0.24.6 and later, values can be appended to array variables:
@@ -1189,8 +1165,8 @@ In the previous example if the value of the variable `$ram` is
 greater than `1024`,  Puppet will set the value of the `$maxclient` variable
 to `500`.
 
-More complex expressions combining arithmetric expressions with the
-Boolean operators `and`, `or`, or `not` are also possible:
+"If" statements also support the use of regular expressions and "in" expressions. More complex expressions can also be made by combining arbitrary expressions with the
+Boolean `and`, `or`, and `not` operators:
 
 {% highlight ruby %}
     if ( $processor_count > 2 ) and (( $ram >= 16 * $gigabyte ) or ( $disksize > 1000 )) {
@@ -1200,7 +1176,7 @@ Boolean operators `and`, `or`, or `not` are also possible:
     }
 {% endhighlight %}
 
-See the Expression section further down for more information on expressions.
+See the Expressions section further down for more information on expressions.
 
 ### Virtual Resources
 
@@ -1327,8 +1303,9 @@ Puppet expressions can be composed of:
 -   arithmetic expressions, which consists of variables, numerical
     operands or other expressions combined with the following
     arithmetic operators: `+`, `-`, `/`, `*`, `<<`, `>>`
--   and in Puppet 0.25.0 and later, regular expression matches with the help of the
+-   in Puppet 0.25.0 and later, regular expression matches with the help of the
     regex match operator: `=~` and `!~`
+-   in Puppet 2.6.0 and later, `in` expressions, which test whether the right operand contains the left operand. 
 
 Expressions can be enclosed in parenthesis, `()`, to group
 expressions and resolve operator ambiguity.
@@ -1403,6 +1380,8 @@ Boolean expressions are also possible using `or`, `and` and `not`:
     $var = ( $one < $two ) and ( $one + 1 == $two )
 {% endhighlight %}
 
+The exclamation mark (`!`) can be used as a synonym for `not.`
+
 #### Regular expressions
 
 In Puppet 0.25.0 and later, Puppet supports regular expression matching
@@ -1419,6 +1398,36 @@ scope variables for each regex capture.  In the previous example,
 `$1` will be replaced by the number following `www` in `$host`.
 Those variables are valid only for the statements inside the
 braces of the if clause.
+
+#### "in" expressions
+
+From Puppet 2.6.0, Puppet supports an "in" syntax.  This operator allows
+you to find if the left operand is in the right one. The left operand must
+be a string, but the right operand can be:
+
+* a string
+* an array
+* a hash (the search is done on the keys)
+
+This syntax can be used in any place where an expression is supported:
+
+{% highlight ruby %}
+    $eatme = 'eat'
+    if $eatme in ['ate', 'eat'] {
+    ...
+    }
+
+    $value = 'beat generation'
+    if 'eat' in $value {
+      notice("on the road")
+    }
+{% endhighlight %}
+
+Like other expressions, "in" expressions can be combined or negated with boolean operators:
+
+{% highlight ruby %}
+    if ! ($eatme in ['ate', 'eat'] { ... }
+{% endhighlight %}
 
 ### Backus Naur Form
 
