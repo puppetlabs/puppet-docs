@@ -84,9 +84,9 @@ function getAds()
     //
     //First line is path
     //single slash value is the root path
-    var grey_ad_tenmins = '<widget><div class="advert grey-ad big-ttl"><h4>Set up Puppet in 10 Minutes</h4><p><center>Try it FREE<center></p><p><a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs&CID=701A00000005N1C&IA=setup_10mins_grey" class="btn btn-dark">Get Puppet Enterprise</a></div></widget>';
-    var widget_btn_combo = '<p style="text-align:center;"><a class="btn" href="http://info.puppetlabs.com/request-pdf-docs?CR=PDF Docs&CID=701A00000005N1C&IA=makeiteasy_10mins_yellow">PDF Docs</a></p><widget><div class="advert big-ttl"><h4> Make it Easy with Puppet Enterprise</h4><p><center>Set up in 10 Minutes</p><p><a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs&CID=701A00000005N1C&IA=makeiteasy_10mins_yellow" class="btn ">Try it FREE</a></div></widget>';
-    var pdf_btn = '<a class="btn" href="http://info.puppetlabs.com/request-pdf-docs?CR=PDF Docs&CID=701A00000005N1C&IA=request_pdf">PDF Docs</a>';
+    var grey_ad_tenmins = '<widget><div class="advert grey-ad big-ttl"><h4>Set up Puppet in 10 Minutes</h4><p><center>Try it FREE<center></p><p><a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs&CID=701A00000005N1C" class="btn btn-dark">Get Puppet Enterprise</a></div></widget>';
+    var widget_btn_combo = '<p style="text-align:center;"><a class="btn" href="http://info.puppetlabs.com/request-pdf-docs?CR=PDF Docs&CID=701A00000005N1C">PDF Docs</a></p><widget><div class="advert big-ttl"><h4> Make it Easy with Puppet Enterprise</h4><p><center>Set up in 10 Minutes</p><p><a href="http://info.puppetlabs.com/puppet-enterprise?utm_source=docs&CID=701A00000005N1C" class="btn ">Try it FREE</a></div></widget>';
+    var pdf_btn = '<a class="btn" href="http://info.puppetlabs.com/request-pdf-docs?CR=PDF Docs&CID=701A00000005N1C">PDF Docs</a>';
     
     ads['/'] = [widget_btn_combo];         
     ads['/index.html'] = [widget_btn_combo]; 
