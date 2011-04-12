@@ -48,8 +48,10 @@ create a script that can take a hostname as an argument and return
 information about that host for puppet to use.
 
 NOTE: You can use node entries in your manifests together with
-External nodes. You cannot however use external nodes and LDAP
+external nodes. You cannot however use external nodes and LDAP
 nodes together. You must use one of the two types.
+
+For external nodes to function, you'll still need a default node defined in your main site manifest; in most cases where external nodes are in use, this default node won't declare any classes or resources.
 
 Limitations of External Nodes
 -----------------------------
