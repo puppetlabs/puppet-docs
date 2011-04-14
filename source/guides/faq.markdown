@@ -35,7 +35,12 @@ To learn more about the capabilities of Puppet, start at the [main Puppet docume
 ### What license is Puppet released under?
 
 Puppet is open source and is released under the
-[GNU Public License](http://www.gnu.org/copyleft/gpl.html) version 2.
+[Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
+
+Versions prior to Puppet 2.7.0 and Facter 1.6.0 were released under 
+the GPL version 2.0 license.
+
+See the Apache Licensing section below for more information.
 
 ### What's special about Puppet's model-driven design?
 
@@ -407,3 +412,80 @@ permissive autosign.conf, please consider doing the following:
     the trusted nodes in that Puppet masters manifest.
 -   Never use a full wildcard such as \*.
 
+Change to Apache License
+------------------------
+
+### When is Puppet switching to the Apache license?
+
+Starting with Puppet 2.7.0, Puppet will use the Apache 2.0 license
+rather than the GPLv2 license used in Puppet 2.6.x and earlier.
+
+### Why was this decision made?
+
+The Apache license will make it easier for third-parties to add
+capabilities to the Puppet platform and ecosystem. Over time, this
+will mean a wider array of solutions that will more perfectly fit
+the needs of any given team or infrastructure.
+
+We put a lot of thought into this decision. We recognize that parts
+of the Puppet community would prefer we stay on a GPLv2 license,
+but we feel this migration is to the benefit of the community as a
+whole.
+
+### What happens if I am on Puppet 2.6x or earlier?
+
+Nothing changes for you.  Puppet 2.6.x remains licensed as GPLv2. 
+The license change is not retrospective.
+
+### Does this change affect all the components of Puppet?
+
+As part of this change, we’re also changing the license of the
+Facter system inventory tool to Apache.  This change will take
+effect with Facter version 1.6.0, and earlier versions of Facter
+will remain licensed under the GPLv2 license.  This change will
+bring the licensing of Puppet’s two key components into alignment.
+
+Our other major product, MCollective, is already licensed under
+the Apache 2.0 license.
+
+### What does this mean if I or my company have or want to contribute code to Puppet?
+
+As part of this license change, Puppet Labs has approached every
+existing contributor to the project and asked them to sign a
+[Contributor License Agreement or CLA](http://www.puppetlabs.com/legal/cla.txt).
+
+Puppet Labs has adapted the standard Apache Foundation’s CLA for
+this purpose.  
+
+Signing this CLA for yourself or your company provides both you and
+Puppet Labs with additional legal protections, and confirms:
+
+1.  That you own and are entitled to the code you are contributing
+    to Puppet
+2.  That you are willing to have it used in distributions
+
+This gives assurance that the origins and ownership of the code
+cannot be disputed in the event of any legal challenge.
+
+### What if I haven’t signed a CLA?
+
+If you haven’t signed a CLA, then we can’t yet accept your code
+contribution into Puppet or Facter.  Signing a CLA is very easy:
+simply sign up for a [Puppet Labs Redmine account](https://projects.puppetlabs.com/account/register)
+and go to the [CLA page to sign the agreement](https://projects.puppetlabs.com/contributor_licenses/sign).
+
+We’ve worked hard to try find to everyone who has contributed code
+to Puppet, but if you have questions or concerns about a previous
+contribution you’ve made to Puppet and you don’t believed you’ve
+signed a CLA, please sign a CLA or
+[contact us](mailto:info@puppetlabs.com) for further information.
+
+### Does signing a CLA change who owns Puppet?
+
+The change in license and the requirement for a CLA doesn’t change
+who owns the code.  This is a pure license agreement and NOT a
+Copyright assignment.  If you sign a CLA, you maintain full
+copyright to your own code and are merely providing a license to
+Puppet Labs to use your code.
+
+All other code remains the copyright of Puppet Labs.
