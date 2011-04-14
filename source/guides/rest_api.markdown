@@ -165,9 +165,8 @@ host.
 
 DELETE `/{environment}/certificate_status/{hostname}`
 
-Cause the certificate authority to discard all information regarding a host (including
-any certificates, certificate requests, and keys), and
-revoke the certificate if one is present. Similar to `puppet cert --clean`.
+Cause the certificate authority to discard all SSL information regarding a host (including
+any certificates, certificate requests, and keys). This **does not** revoke the certificate if one is present; if you wish to emulate the behavior of `puppet cert --clean`, you must PUT a `desired_state` of revoked before deleting the host's SSL information. 
 
 Examples:
 
