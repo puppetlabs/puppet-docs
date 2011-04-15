@@ -8,12 +8,15 @@ Puppet Labs Documentation
 
 Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a (very large, and frequently updated) PDF, which can be found [here](http://info.puppetlabs.com/request-pdf-docs).
 
+### MCollective
+
+For information about MCollective, see the [Marionette Collective documentation](./mcollective/index.html). 
+
+### Puppet Dashboard
+
+For information about Puppet Dashboard, see the [Puppet Dashboard documentation](./dashboard/index.html). 
+
 * * *
-
-MCollective
------------
-
-The [Marionette Collective documentation](./mcollective/index.html) lives in its own section of the site.
 
 Drive-Thru
 ----------
@@ -43,7 +46,7 @@ Get detailed information about config files, APIs, and the Puppet language.
 * [Puppet Manpages](./man/) --- detailed help for each Puppet application
 * [REST Access Control](./guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 
-### Automatically Generated References
+### Generated References
 
 Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, indirection termini, and reports, served piping hot directly from the source code.
 
@@ -104,13 +107,6 @@ Go beyond basic manifests.
 * [Exported Resources](./guides/exported_resources.html) --- share data between hosts
 * [Environments](./guides/environment.html) --- separate dev, stage, & production
 * [Reporting](./guides/reporting.html) --- learn what your nodes are up to
-
-#### Puppet Dashboard
-
-Install and use Puppet's optional web interface.
-
-* [Installing Dashboard](./guides/installing_dashboard.html)
-* [Using Dashboard](./guides/using_dashboard.html)
 
 ### Hacking and Extending
 
