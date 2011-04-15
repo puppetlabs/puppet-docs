@@ -143,7 +143,7 @@ To connect your application securely, you'll need a certificate signed by your s
     * Sign the certificate on the puppet master: `puppet cert --sign {certname}`.
     * Retrieve the certificate: `curl -k -H -o {certname}.pem "Accept: s" https://puppet:8140/production/certificate/{certname}`
 
-For one-off applications, generating it on the master is obviously easier, but if you're building tool for distribution elsewhere, your users will appreciate it if you script the manual method to emulate the way puppet agent gets a cert.
+For one-off applications, generating it on the master is obviously easier, but if you're building a tool for distribution elsewhere, your users will appreciate it if you script the manual method and emulate the way puppet agent gets a cert.
 
 Protect your application's private key appropriately, since it's the gateway to your inventory data. 
 
