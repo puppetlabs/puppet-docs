@@ -90,8 +90,9 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Techniques](./guides/techniques.html) --- common design patterns, tips, and tricks
 * [Troubleshooting](./guides/troubleshooting.html) --- avoid common problems and confusions
 * [Puppet Modules](./guides/modules.html) --- modules make it easy to organize and share content
+* [Parameterized Classes](./guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
 * [Module Smoke Testing](./guides/tests_smoke.html) --- write and run basic smoke tests for your modules
-* [Scope and Parameterized Classes](./scope_and_parameters.html) --- refactor your classes to use parameterized classes instead of dynamic variable lookup
+* [Scope and Puppet](./guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
 * [Puppet File Serving](./guides/file_serving.html) --- serving files with Puppet
 * [Style Guide](./guides/style_guide.html) --- Puppet community conventions
 * [Best Practices](./guides/best_practices.html) --- use Puppet effectively

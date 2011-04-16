@@ -3,8 +3,8 @@ layout: default
 title: Scope and Puppet
 ---
 
-From Dynamic Scope to Parameterized Classes
-===========================================
+Scope and Puppet as of 2.7
+==========================
 
 Puppet 2.7 issues deprecation warnings for dynamic variable and resource defaults lookup. Find out why, and learn how to adapt your Puppet code for the future!
 
@@ -32,6 +32,8 @@ So you've installed Puppet 2.7 and are ready to start going after those deprecat
 ### Qualify Your Variables! 
 
 Whenever you need to refer to a variable in another class, give the variable an explicit namespace: instead of simply referring to `$packagelist`, use `$git::core::packagelist`. This is a win in readability --- any casual observer can tell exactly where the variable is being set, without having to model your code in their head --- and it saves you from accidentally getting the value of some completely unrelated `$packagelist` variable.
+
+If you're referring explicitly to a top-scope variable, use the empty namespace (e.g. `$::packagelist`) for extra clarity. 
 
 ### Declare Resource Defaults Per-File!
 
@@ -97,6 +99,6 @@ These rules seem simple enough, so an example is in order:
     
     } 
 
-When nodes www01 through www10 connect to the puppet master, `$nodetype` will always be set to "base" and main.cf will always be served from files/base/. This is because `postfix::custom`'s chain of parent scopes is `postfix::custom < postfix < base < top scope`; the combination of inheritance and dynamic scope causes lookup of the `$nodetype` variable to bypass `node 01-10` entirely. 
+When nodes www01 through www10 connect to the puppet master, `$nodetype` will always be set to "base" and main.cf will always be served from files/base/. This is because `postfix::custom`'s chain of parent scopes is `postfix::custom < postfix < base < top-scope`; the combination of inheritance and dynamic scope causes lookup of the `$nodetype` variable to bypass `node 01-10` entirely. 
 
 Thanks to Ben Beuchler for contributing this example.
