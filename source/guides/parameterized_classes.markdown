@@ -19,9 +19,9 @@ Most Puppet coders solved this by using dynamic variable lookup to pass paramete
 
 [parent]: ./scope_and_puppet.html#appendix-how-scope-works-in-puppet--27x
 
-This approach did the job and solved some really important problems, but it had some major drawbacks: 
+This approach did the job and solved some really important problems, but it had major drawbacks: 
 
-* **It basically exploded all variables into the global namespace.** Since classes had to look outside their own scope for parameters, they weren't actually local variables. That meant you had to anticipate what every other module author was going to name their variables and try to guess something safe. 
+* **It basically exploded all variables into the global namespace.** Since classes had to look outside their own scope for parameters, parameters were effectively global. That meant you had to anticipate what every other module author was going to name their variables and try to guess something safe. 
 * **Understanding how to declare a class was not exactly straightforward.** There was no built-in way to tell what parameters a class needed to have set, so you were on your own for documenting it and following the rules to the letter. Optional parameters in particular could bite you at exactly the wrong time. 
 * **It was just plain confusing.** The rules for how a parent scope is assigned can fit on a index card, but they can interact in some extraordinarily hairy ways. ([ibid.][parent])
 
