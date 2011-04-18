@@ -46,7 +46,6 @@ the full list of acceptable settings.</p>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC
-Licensed under the GNU General Public License version 2</p>
+<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
 
 </div>

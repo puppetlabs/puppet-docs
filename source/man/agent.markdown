@@ -171,7 +171,6 @@ specifying a time of 0.</p></dd>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2005, 2006 Puppet Labs, LLC Licensed under the GNU Public
-License</p>
+<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
 
 </div>

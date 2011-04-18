@@ -83,7 +83,6 @@ html files produced.</p></dd>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2005-2007 Puppet Labs, LLC Licensed under the GNU Public
-License</p>
+<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
 
 </div>

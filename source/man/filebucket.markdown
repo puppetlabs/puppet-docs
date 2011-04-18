@@ -87,7 +87,6 @@ $ puppet filebucket restore /tmp/passwd 429b225650b912a2ee067b0a4cf1e949
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2005 Puppet Labs, LLC Licensed under the GNU Public
-License</p>
+<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
 
 </div>

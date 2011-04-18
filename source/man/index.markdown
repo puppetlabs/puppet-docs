@@ -14,6 +14,7 @@ View documentation for each of the Puppet executables.
 * [puppet apply](./apply.html)
 * [puppet cert](./cert.html)
 * [puppet describe](./describe.html)
+* [puppet device](./device.html)
 * [puppet doc](./doc.html)
 * [puppet filebucket](./filebucket.html)
 * [puppet inspect](./inspect.html)
