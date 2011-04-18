@@ -82,6 +82,14 @@ If you specified a non-default certname to the puppet master in step one, you'll
 
     cn_name: 'dashboard'
 
+There are also several settings telling Dashboard where to find its SSL information. Unless you wish to use pre-existing keys or store your SSL data somewhere other than the default location, these can be left in their default values, as seen in the `config/settings.yml.example` file:
+
+    ca_crl_path: 'certs/dashboard.ca_crl.pem'
+    ca_certificate_path: 'certs/dashboard.ca_cert.pem'
+    certificate_path: 'certs/dashboard.cert.pem'
+    private_key_path: 'certs/dashboard.private_key.pem'
+    public_key_path: 'certs/dashboard.public_key.pem'
+
 #### Specify the Certificate Authority
 
 This must be the same CA used by the rest of your site, and will usually be your puppet master.
@@ -89,7 +97,6 @@ This must be the same CA used by the rest of your site, and will usually be your
     ca_server: 'puppet'
     ca_port: 8140
 
-There are also several settings telling Dashboard where to find its SSL information: `ca_crl_path, ca_certificate_path, certificate_path, private_key_path,` and `public_key_path`. Unless you wish to use pre-existing keys or store your SSL data somewhere other than the default location, these can be left in their default values. 
 
 #### Enable the Inventory Service
 
@@ -105,15 +112,15 @@ Much like puppet agent, Dashboard can submit certificate signing requests to the
 
 If you already have a keypair for Dashboard to use, you should have configured its location in step two, and can skip the first Rake task; otherwise, in Dashboard's code directory, run:
 
-    rake cert:create_key_pair
+    $ rake cert:create_key_pair
 
 Then, to request a certificate, run:
 
-    rake cert:request
+    $ rake cert:request
 
 This will submit a certificate signing request (CSR) to the puppet master CA. You'll have to log into the puppet master and run `puppet cert sign dashboard`, as with any pending CSR. After you've signed the certificate, you can retrieve it on the Dashboard by running: 
 
-    rake cert:retrieve
+    $ rake cert:retrieve
 
 ### 4: Restart Puppet Dashboard
 
