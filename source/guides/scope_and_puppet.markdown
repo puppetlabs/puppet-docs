@@ -61,7 +61,7 @@ Appendix: How Scope Works in Puppet ≤ 2.7.x
 * Every scope has one and only one "parent scope."
     * If it's a class that inherits from a base class, its parent scope is the base class.
     * Otherwise, its parent scope is the FIRST scope where that class was declared. (If you are declaring classes in multiple places with `include`, this can be unpredictable. Furthermore, declaring a derived class will implicitly declare the base class in that same scope.)
-* If you try to resolve a variable that doesn't exist in the current local scope, lookup proceeds through the chain of parent scopes -- its parent, the parent's parent, and so on, stopping at the first place it finds that variable. 
+* If you try to resolve a variable that doesn't exist in the current local scope, lookup proceeds through the chain of parent scopes --- its parent, the parent's parent, and so on, stopping at the first place it finds that variable. 
 
 These rules seem simple enough, so an example is in order:
 
