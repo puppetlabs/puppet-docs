@@ -195,6 +195,10 @@ authconfig / namespaceauth.conf
 
 Older versions of Puppet communicated over an XMLRPC interface instead of the current RESTful interface, and access to these APIs was governed by a file known as `authconfig` (after the configuration option listing its location) or `namespaceauth.conf` (after its default filename). This legacy file will not be fully documented, but an example namespaceauth.conf file can be found in the puppet source in [conf/namespaceauth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
 
-A [known bug](http://projects.puppetlabs.com/issues/6442) in the 2.6.x releases of Puppet prevents puppet agent from being started with the `listen = true` option unless namespaceauth.conf is present, even though the file is never consulted. The workaround is to create an empty file:
+puppet agent and the REST API
+-----------------------------
 
-    # touch `puppet agent --configprint authconfig`
+If started with the `listen = true` configuration option, puppet agent will accept incoming REST API requests. This is most frequently used to trigger puppet runs with the `run` endpoint. Several caveats apply:
+
+* A [known bug](http://projects.puppetlabs.com/issues/6442) in the 2.6.x releases of Puppet prevents puppet agent from being started with the `listen = true` option unless namespaceauth.conf is present, even though the file is never consulted. The workaround is to create an empty file: `# touch $(puppet agent --configprint authconfig)`
+* Puppet agent uses the same default ACLs as puppet master, which allow access to several useless endpoints while denying access to any agent-specific ones. For best results, you should short-circuit the defaults by denying access to `/` at the end of your auth.conf file.
