@@ -37,29 +37,49 @@ page.
 
 ## Module structure for 0.25.x and later
 
-In Puppet version 0.25.x and later plugins are stored in modules in the `lib` directory
-in a module:
+In Puppet version 0.25.x and later, plugins are stored in the `lib` directory of a module, using an internal directory structure that mirrors that of the Puppet code:
 
-    <MODULEPATH>/<module>/lib/puppet/type
+    {modulepath}
+    └── {module}
+        └── lib
+            ├── facter
+            └── puppet
+                ├── parser
+                │   └── functions
+                ├── provider
+                    ├── exec
+                    ├── package
+                    └── etc... (any resource type)
+                └── type
 
-For providers, place them in:
 
-    <MODULEPATH>/<module>/lib/puppet/provider
+As the directory tree suggests, custom facts should go in `lib/facter/`, custom types should go in `lib/puppet/type/`, custom providers should go in `lib/puppet/provider/{type}/`, and custom functions should go in `lib/puppet/parser/functions/`. 
 
-For functions, place them in:
+For example:
 
-    <MODULEPATH>/<module>/lib/puppet/parser/functions
+A custom user provider:
 
-Similarly, Facter facts belong in the facter subdirectory of the
-library directory:
+    {modulepath}/{module}/lib/puppet/provider/user/custom_user.rb
 
-    <MODULEPATH>/<module>/lib/facter
+A custom package provider: 
 
-Most types and facts should be stored in which ever module they are related to,
-for example a Bind fact might be distributed in your Bind module.  If you wish to centrally
+    {modulepath}/{module}/lib/puppet/provider/package/custom_pkg.rb
+
+A custom type for bare Git repositories:
+
+    {modulepath}/{module}/lib/puppet/type/gitrepo.rb
+
+A custom fact for the root of all home directories (that is, `/home` on Linux, `/Users` on Mac OS X, etc.): 
+
+    {modulepath}/{module}/lib/facter/homeroot.rb
+
+And so on. 
+
+Most types and facts should be stored in which ever module they are related to;
+for example, a Bind fact might be distributed in your Bind module.  If you wish to centrally
 deploy types and facts you could create a separate module just for this purpose, for example
 one called `custom`.  This module needs to be a valid module (with the correct directory structure and
-an `init.pp` file.
+an `init.pp` file).
 
 So, if we are using our custom module and our modulepath is
 /etc/puppet/modules then types and facts would be stored in the
@@ -86,14 +106,14 @@ A module defined in the manifest can include functions in the
 plugins directory. The custom function will need to be placed in
 the proper location within the manifest first:
 
-    <MODULEPATH>/<module>/lib/puppet/parser/functions
+    {modulepath}/{module}/lib/puppet/parser/functions
 
 Note that this location is not within the puppetmaster's $libdir
 path. Placing the custom function within the module plugins
 directory will not result in the puppetmasterd loading the new
 custom function. The puppet client can be used to help deploy the
 custom function by copying it from
-MODULEPATH/module/lib/puppet/parser/functions to the
+modulepath/module/lib/puppet/parser/functions to the
 proper $libdir location. To do so run the puppet client on the
 server. When the client runs it will download the custom function
 from the module's lib directory and deposit it within the
@@ -111,16 +131,16 @@ For older Puppet release the `lib` directory was called `plugins`.
 
 So for types you would place them in:
 
-    <MODULEPATH>/<module>/plugins/puppet/type
+    {modulepath}/{module}/plugins/puppet/type
 
 For providers you place them in:
 
-    <MODULEPATH>/<module>/plugins/puppet/provider
+    {modulepath}/{module}/plugins/puppet/provider
 
 Similarly, Facter facts belong in the facter subdirectory of the
 library directory:
 
-    <MODULEPATH>/<module>/plugins/facter
+    {modulepath}/{module}/plugins/facter
 
 If we are using our custom module and our modulepath is
 /etc/puppet/modules then types and facts would be stored in the
