@@ -23,7 +23,7 @@ This approach did the job and solved some really important problems, but it had 
 
 * **It basically exploded all variables into the global namespace.** Since classes had to look outside their own scope for parameters, parameters were effectively global. That meant you had to anticipate what every other module author was going to name their variables and try to guess something safe. 
 * **Understanding how to declare a class was not exactly straightforward.** There was no built-in way to tell what parameters a class needed to have set, so you were on your own for documenting it and following the rules to the letter. Optional parameters in particular could bite you at exactly the wrong time. 
-* **It was just plain confusing.** The rules for how a parent scope is assigned can fit on a index card, but they can interact in some extraordinarily hairy ways. ([ibid.][parent])
+* **It was just plain confusing.** The rules for how a parent scope is assigned can fit on an index card, but they can interact in some extraordinarily hairy ways. ([ibid.][parent])
 
 So to shorten a long story, Puppet 2.6 introduced a better and more direct way to pass parameters into a class.
  
@@ -175,22 +175,29 @@ This is functionally equivalent to doing the following:
     class webserver( $packages = 'UNSET', $vhost_dir = 'UNSET' ) {
      
      if $packages == 'UNSET' {
-       $packages = $operatingsystem ? {
+       $real_packages = $operatingsystem ? {
          /(?i-mx:ubuntu|debian)/        => 'apache2',
          /(?i-mx:centos|fedora|redhat)/ => 'httpd',
        }
      }
+     else {
+        $real_packages = $packages
+     }
+     
      if $vhost_dir == 'UNSET' {
-       $vhost_dir = $operatingsystem ? {
+       $real_vhost_dir = $operatingsystem ? {
          /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
          /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
        }
      }
+     else {
+        $real_vhost_dir = $vhost_dir
+    }
      
-     packages { $packages: ensure => present }
+     packages { $real_packages: ensure => present }
     
      file { 'vhost_dir'
-       path   => $vhost_dir,
+       path   => $real_vhost_dir,
        ensure => directory,
        mode   => '0750',
        owner  => 'www-data',
