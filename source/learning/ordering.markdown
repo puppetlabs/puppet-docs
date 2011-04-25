@@ -10,7 +10,9 @@ You understand manifests and resource declarations; now learn about metaparamete
 
 * * *
 
-&larr; [Manifests](./manifests.html) --- [Index](./) --- TBA &rarr;
+&larr; [Manifests](./manifests.html) --- [Index](./) --- [Variables][] &rarr;
+
+[variables]: ./variables.html
 
 * * *
 
@@ -70,6 +72,12 @@ There are four metaparameters that let you arrange resources in order: `before`,
 {% endhighlight %}
 
 (Note the square brackets and capitalized resource type!)
+
+#### An Aside: Capitalization
+
+The easy way to remember this is that you _only_ use the lowercase type name when declaring a new resource. Any other situation will always call for a capitalized type name.
+
+This will get more important in another couple lessons, so I'll mention it again later.
 
 ### Before and Require
 
@@ -220,4 +228,4 @@ It's hard to understate the importance of this pattern; if this was all you knew
 Next
 ----
 
-Well, actually we _are_ done for the moment. But not for long! Come back soon to learn about variables, conditionals, and facts; after that, we'll move on to resource collections and modules. Send feedback to <faq@puppetlabs.com>, and thanks for reading.
+Now that you can sync resources in their proper order, it's time to make your manifests aware of the outside world with [variables, facts, and conditionals][variables].
