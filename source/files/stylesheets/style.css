@@ -53,7 +53,7 @@ body {
 
 code { font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace }
 
-ol, ul {
+ul {
   list-style: none;
 }
 
@@ -303,22 +303,9 @@ ul, ol, dl {
   margin-bottom: 1.5em;
 }
 
-ol {
-  counter-reset: section;
-}
-
 ol > li {
-  counter-increment: section;
   position: relative;
   line-height: 1.25em;
-}
-
-ol > li:before {
-  color: #888;
-  content: counter(section) ".";
-  font-weight: bold;
-  margin-right: 0.67em;
-  display: inline-block;
 }
 
 li {
@@ -1670,6 +1657,39 @@ body#resources.docs .primary-content dl dd{
 	padding-left: 20px;
 }
 
+/* @group Docs TOC */
+
+ol.toc {
+  padding: 1em;
+  color: #888;
+  font-weight: bold;
+}
+
+ol.toc a {
+  font-weight: normal;
+}
+
+li > ol.toc {
+  padding-bottom: 0;
+  padding-top: 0.25em;
+  padding-left: 1.4em;
+  margin-bottom: 0;
+  font-size: 0.9em;
+  list-style-type: decimal;
+  color: #aaa;
+}
+
+ol.toc > li {
+  margin-bottom: 0;
+  line-height: 1.5em;
+}
+
+ol.toc > li > ol.toc > li {
+  line-height: 1.25em;
+  padding-bottom: 0.25em;
+}
+
+/* @end */
 
 /* @group #masthead */
 
@@ -3092,66 +3112,6 @@ pre > code{
 
 /* @end */
 
-/* @group ol.chapters */
-
-ol.chapters li {
-  position: relative;
-  line-height: 1.33em;
-}
-
-ol.chapters > li{
-  padding-left: 1em;
-}
-
-ol.chapters > li:before {
-	display: block;
-	left: 0;
-	position: absolute;
-	white-space: nowrap;
-	width: 1.5em;
-	text-align: right;
-	margin-left: -1em;
-}
-
-ol.chapters > li ul {
-  margin-bottom: 0;
-}
-
-ol.chapters > li > ul {
-  counter-reset: subsection;
-  font-size: 0.85em;
-  padding-top: 0.5em;
-  padding-left: .75em;
-}
-
-ol.chapters > li > ul > li {
-  font-weight: normal;
-  counter-increment: subsection;
-}
-
-ol.chapters > li > ul li:before {
-  color: #aaa;
-  content: counter(section) "." counter(subsection);
-  position: absolute;
-  left: 0;
-  top: 0;
-	width: 3em;
-	text-align: right;
-	margin-left: -3.75em;
-}
-ol.chapters > li > ul > li > ul {
-  padding-top: 0.4em;
-  counter-reset: subsubsection;
-  padding-left: 1.75em;
-}
-
-ol.chapters > li > ul > li > ul > li{
-}
-ol.chapters > li > ul > li > ul > li:before {
-  content: counter(section) "." counter(subsection) "." counter(subsubsection);
-}
-
-/* @end */
 
 /* @group div#get-in-touch */
 
