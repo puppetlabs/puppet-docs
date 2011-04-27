@@ -10,7 +10,7 @@ title: Getting Started With CloudPack
 Getting Started With Puppet CloudPack
 =====================================
 
-Learn how to install and start using CloudPack, Puppet's experimental Faces extension for node bootstrapping.
+Learn how to install and start using CloudPack, Puppet's preview Faces extension for node bootstrapping.
 
 * * * 
 
@@ -38,7 +38,7 @@ Puppet CloudPack has several requirements beyond those of Puppet.
 
 ### Software
 
-CloudPack can only be used with **Puppet 2.7 or greater.** Classification of new nodes requires Puppet Dashboard <!--(TK version goes here)--> or greater.
+CloudPack can only be used with **Puppet 2.7 or greater.** Classification of new nodes requires Puppet Dashboard 1.1.2 (unreleased at the time of this writing) or greater.
 
 CloudPack also requires [Fog][], a Ruby cloud services library. You'll need to **ensure that Fog is installed** on the machine running CloudPack:
 
@@ -47,6 +47,8 @@ CloudPack also requires [Fog][], a Ruby cloud services library. You'll need to *
 Depending on your operating system and Ruby environment, you may need to manually install some of Fog's dependencies. 
 
 If you wish to use CloudPack to install Puppet on new nodes, you'll also need **a copy of the [Puppet Enterprise][pe] universal tarball.** As of this writing, the distro-specific tarballs are not supported.
+
+The machine running the CloudPack faces will need a working `/usr/bin/uuidgen` binary.
 
 ### Services
 
@@ -79,7 +81,7 @@ Your puppet master server will also have to be reachable from your newly created
 
 ### Provisioning
 
-In order to use the `install` action, any newly provisioned instances will need to have their root user enabled, or will need a user account configured to `sudo` as root without a password. Additionally, they will need a working `/usr/bin/uuidgen` binary, which is usually present on all supported systems.
+In order to use the `install` action, any newly provisioned instances will need to have their root user enabled, or will need a user account configured to `sudo` as root without a password.
 
 ### puppet master
 
@@ -121,7 +123,7 @@ Puppet CloudPack provides five new actions on the `node` face:
 * `classify`: Add a new node to a Puppet Dashboard node group.
 * `init`: Perform the `install` and `classify` actions, and automatically sign the new agent node's certificate. 
 * `bootstrap`: Create a new EC2 machine instance and perform the `init` action on it.
-
+* `terminate`: Tear down an EC2 machine instance.
 
 ### puppet node create
 
@@ -130,7 +132,7 @@ Argument(s): none.
 Options: 
 
 * `--image, -i` --- The name of the AMI to use when creating the instance. **Required.**
-* `--keypair, -k` --- The Amazon-managed SSH keypair to use for accessing the instance. **Required.** 
+* `--keypair` --- The Amazon-managed SSH keypair to use for accessing the instance. **Required.**
 * `--group, -g, --security-group` --- The security group(s) to apply to the instance. Can be a single group or a path-separator (colon, on *nix systems) separated list of groups. 
 
 Example:
@@ -148,7 +150,7 @@ Argument(s): the hostname of the system to install Puppet on.
 Options: 
 
 * `--login, -l, --username` --- The user to log in as. **Required.**
-* `--keyfile, -k` --- The SSH private key file to use. This key cannot require a passphrase. **Required.**
+* `--keyfile` --- The SSH private key file to use. This key cannot require a passphrase. **Required.**
 * `--installer-payload, --puppet` --- The location of the [Puppet Enterprise][pe] universal tarball. **Required.**
 * `--installer-answers` --- The location of an answers file to use with the PE installer. **Required.**
 
@@ -218,3 +220,15 @@ Example:
     --certname cloud_admin
 
 Create a new EC2 machine instance and pass the new node's hostname to the `init` action.
+
+### puppet node terminate
+
+Argument(s): the hostname of the machine instance to tear down.
+
+Options: none.
+
+Example: 
+
+    puppet node terminate init ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com
+
+Tear down an EC2 machine instance. 
