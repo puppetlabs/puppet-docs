@@ -51,7 +51,7 @@ NOTE: You can use node entries in your manifests together with
 external nodes. You cannot however use external nodes and LDAP
 nodes together. You must use one of the two types.
 
-For external nodes to function, you'll still need a default node defined in your main site manifest; in most cases where external nodes are in use, this default node won't declare any classes or resources.
+For external nodes to function, you must either have no nodes defined in your manifests, or you'll need every node to match a node definition (which can be easily accomplished by setting a default node). In other words, there must be either no manifest nodes or enough for everyone. 
 
 Although the certname is the only information that is passed directly to the ENC, you can also access fact values in your node
 classifier.  In Puppet version 2.6.7 or later, you should query the [inventory service](./inventory_service.html). Prior to 2.6.7, you can read the $vardir/yaml/facts/{node certname}.yaml file, which is populated with fact values before the ENC is called.
