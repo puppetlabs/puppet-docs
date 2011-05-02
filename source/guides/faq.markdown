@@ -341,15 +341,18 @@ facter by itself in a shell.:
 Puppet provides a few in-built variables you can use in your
 manifests:
 
-* `$environment` --- Provided by the puppet agent; returns the agent node's current
+* `$environment` --- Provided by the agent; contains the agent node's current
 environment.
-* `$servername` --- Provided by the puppet master; returns the master server's
+* `$clientcert` --- Provided by the agent; contains the agent node's certname.
+* `$clientversion` --- Provided by the agent; contains the current version of puppet agent. 
+* `$module_name` --- Provided by the parser; contains the name of the module in which the current manifest is located.
+* `$servername` --- Provided by the puppet master; contains the master server's
 fully-qualified domain name. (Note that this information is gathered from the
 master server by Facter, rather than read from the config files; even if the
 master's certname is set to something other than its fully-qualified domain
 name, this variable will still contain the server's fqdn.)
-* `$serverip` --- Provided by the puppet master; returns the master server's IP address.
-* `$serverversion` --- Provided by the puppet master; returns puppet master's current version.
+* `$serverip` --- Provided by the puppet master; contains the master server's IP address.
+* `$serverversion` --- Provided by the puppet master; contains the puppet master's current version.
 
 ### Can I access environment variables with Facter?
 
