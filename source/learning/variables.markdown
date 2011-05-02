@@ -19,19 +19,18 @@ You understand how to write manifests and order resources; now use conditional s
 Variables
 ---------
 
-Just for the sake of moving a little faster, have some bullet points:
+If you've ever scripted anything, a lot of this chapter will be very familiar. So in the interest of moving a little faster, let's do some bullet points:
 
-* `$variables` always start with a dollar sign.
-* They can hold strings, numbers, arrays, and hashes.
+* `$variables` always start with a dollar sign. You assign to variables with the `=` operator. 
+* Variables can hold strings, numbers, arrays, and hashes.
 * You can use variables as a value for any attribute, or even as the title of a resource. 
 * If you use double-quotes, you can interpolate variables inside strings. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
 * Every variable has a short name and a fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless: `$::top_scope_variable`.
-    * (You don't actually need to know that yet! I'm just throwing it in there to get you used to it early.) 
-* You can only declare the same variable **once** in a given scope.[^declarative]
+* You can only assign the same variable **once** in a given scope.[^declarative]
 
-[^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, and you can't currently read a variable anywhere north of its declaration. We're working on that.
+[^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable anywhere north of its assignment. We're working on that.
 
-So, the easiest way to start taking advantage of variables is just to make your code cleaner:
+The easiest way to start taking advantage of variables is just to make your code cleaner:
 
     $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."
     
@@ -42,13 +41,16 @@ So, the easiest way to start taking advantage of variables is just to make your 
 
 But that, of course, is just the beginning. 
 
-True Facts
-----------
+Facts
+-----
 
-Before you even start writing your manifests, Puppet prepares you a huge supply of pre-declared variables. Check it out:
+Before you even start writing your manifests, Puppet builds a stash of pre-assigned variables. Check it out:
 
 {% highlight ruby %}
     # facts-simple.pp
+    
+    # The type reference, as ever, is your friend:
+    # http://docs.puppetlabs.com/references/latest/type.html#host
     
     host {'self':
       ensure => present,
@@ -79,39 +81,71 @@ Before you even start writing your manifests, Puppet prepares you a huge supply 
     ::1	localhost6.localdomain6	localhost6
     172.16.158.137	puppet
 
-Yes. I just taught you a magic spell. We're now starting to write manifests that will do the right thing no matter which machine you apply them to.
+Our manifests are starting to get versatile. 
 
-It's Actually Not Magical At All
---------------------------------
+### Hostname? IPaddress?
 
-So Puppet ships with a tool called Facter, which ferrets out your system information, normalizes it, and passes it off to Puppet. The compiler has access to all of those facts when it's reading a manifest, and exposes them as top-scope variables.
+So where did those helpful variables come from? They're "facts." Puppet ships with a tool called Facter, which ferrets out your system information, normalizes it into a set of variables, and passes them off to Puppet. The compiler then has access to those facts when it's reading a manifest. 
 
-Since the next question is probably "How in the world am I supposed to know what all these variables are," try running:
+The next question is how you're supposed to know what all these facts are. Try running:
 
     # facter
 
-...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. Prepend a dollar sign (and a `::`, because being explicit about scope is a good habit) to a fact name, and you can insert its value anywhere in your manifests. 
+...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. Prepend a dollar sign (and a `::`, because being explicit about namespaces is a good habit) to a fact name, and you can insert its value anywhere in your manifests. 
 
-Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X box), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names. 
+Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names. Getting better documentation for the various facts and their possible values is... well, it's on the list. You know how it is.
 
-Variables
----------
+Conditional Statements
+----------------------
 
-Puppet exposes everything it gets from Facter as global variables.
+### If
 
-In Puppet, all `$variables` start with a dollar sign. They can be referenced bare or in double-quoted strings, but not in single-quoted strings. To distinguish a `${variable}` from the surrounding text, you can optionally wrap its name in curly braces.
+Moving a little faster again, let's get straight to the basic `if` you've been waiting for:
 
-So let's get our `/etc/hosts` file in order without bothering to look up our actual IP address! Memorizing long strings of digits is so last century.
+{% highlight ruby %}
+    if $is_virtual {
+      service {'ntpd':
+        ensure => stopped,
+        enable => false,
+      }
+    }
+    else {
+      TK insert example NTP configuration here
+    }
+{% endhighlight %}
 
+"If" statements are done with the standard `if` / `elsif` / `else` keywords. `if` and `elsif` take a condition, and all of the keywords take {a block of Puppet code}, which can have resource declarations, variable assignments, relationship declarations, collections, and more. 
 
-Assigning Variables
--------------------
+#### What is False?
 
+The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings. The following values will be treated as false by an if statement:
 
+* `undef`
+* `''` (the empty string)
+* `false`
 
+#### Conditions
 
-### An Aside: Scope and Namespaces
+[expression]: http://docs.puppetlabs.com/guides/language_guide.html#expressions
 
-I mentioned that facts are global 
+Conditions can get pretty sophisticated: you can use any valid [expression][] in an if statement. Usually, this is going to mean using one of the standard comparison operators (`==`, `!=`, `<`, `>`, `<=`, `>=`), the regex match operators (`=~` and `!~`), or the `in` operator (which tests whether the right operand contains the left one).
 
-Without going into too much detail, I want to mention that current versions of Puppet 
+### Case
+
+Also probably familiar: the case statement. (Or switch, or whatever it's called in your programming language of choice.) 
+
+    case $operatingsystem {
+      centos: { $apache = "httpd" }
+      redhat: { $apache = "httpd" }
+      debian: { $apache = "apache2" }
+      ubuntu: { $apache = "apache2" }
+      default: { fail("Unrecognized operating system for webserver") }
+      # "fail" is a function. We'll get to those later.
+    }
+    package {'apache':
+      name => $apache,
+      ensure => latest,
+    }
+
+Instead of testing a condition up front, `case` takes a variable to test against; then, inside the curly braces, it takes a list of possible values, each of which has a block of Puppet code. 
+
