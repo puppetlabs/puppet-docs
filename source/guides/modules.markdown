@@ -274,7 +274,7 @@ clear.
 From Puppet version 0.24.7 you can generate automated documentation
 from resources, classes and modules using the puppetdoc tool. You
 can find more detail at the
-[Puppet Manifest Documentation](http://www.puppetlabs.com/trac/puppet/wiki/PuppetManifestDocumentation)
+[Puppet Manifest Documentation](http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_Manifest_Documentation)
 page.
 
 ## See Also

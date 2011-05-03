@@ -732,7 +732,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 ### ldapnodes
 
-<p>Whether to search for node configurations in LDAP.  See <a href="http://reductivelabs.com/trac/puppet/wiki/LDAPNodes">http://reductivelabs.com/trac/puppet/wiki/LDAPNodes</a> for more information.</p>
+<p>Whether to search for node configurations in LDAP.  See <a href="http://projects.puppetlabs.com/projects/puppet/wiki/LDAP_Nodes">http://projects.puppetlabs.com/projects/puppet/wiki/LDAP_Nodes</a> for more information.</p>
 <ul>
 <li><strong>Default</strong>: false</li>
 </ul>
@@ -1312,7 +1312,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 ### ssl_client_header
 
-<p>The header containing an authenticated client's SSL DN.  Only used with Mongrel.  This header must be set by the proxy to the authenticated client's SSL DN (e.g., <code>/CN=puppet.reductivelabs.com</code>). See <a href="http://reductivelabs.com/puppet/trac/wiki/UsingMongrel">http://reductivelabs.com/puppet/trac/wiki/UsingMongrel</a> for more information.</p>
+<p>The header containing an authenticated client's SSL DN.  Only used with Mongrel.  This header must be set by the proxy to the authenticated client's SSL DN (e.g., <code>/CN=puppet.puppetlabs.com</code>). See <a href="http://docs.puppetlabs.com/guides/mongrel.html">http://docs.puppetlabs.com/guides/mongrel.html</a> for more information.</p>
 <ul>
 <li><strong>Default</strong>: HTTP_X_CLIENT_DN</li>
 </ul>
@@ -1320,7 +1320,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 ### ssl_client_verify_header
 
-<p>The header containing the status message of the client verification. Only used with Mongrel.  This header must be set by the proxy to 'SUCCESS' if the client successfully authenticated, and anything else otherwise. See <a href="http://reductivelabs.com/puppet/trac/wiki/UsingMongrel">http://reductivelabs.com/puppet/trac/wiki/UsingMongrel</a> for more information.</p>
+<p>The header containing the status message of the client verification. Only used with Mongrel.  This header must be set by the proxy to 'SUCCESS' if the client successfully authenticated, and anything else otherwise. See <a href="http://docs.puppetlabs.com/guides/mongrel.html">http://docs.puppetlabs.com/guides/mongrel.html</a> for more information.</p>
 <ul>
 <li><strong>Default</strong>: HTTP_X_CLIENT_VERIFY</li>
 </ul>
