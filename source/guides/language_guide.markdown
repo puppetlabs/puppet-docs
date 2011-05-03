@@ -1357,6 +1357,8 @@ In our second example if `$variable` is not equal to a value of `foo`, Puppet wi
 the value of the `$othervariable` variable to `bar`, otherwise it will set the
 `$othervariable` variable to `foobar`.
 
+**Note that comparison of strings is case-insensitive.**
+
 #### Arithmetic expressions
 
 You can also perform a variety of arithmetic expressions, for
@@ -1426,7 +1428,7 @@ This syntax can be used in any place where an expression is supported:
 Like other expressions, "in" expressions can be combined or negated with boolean operators:
 
 {% highlight ruby %}
-    if ! ($eatme in ['ate', 'eat'] { ... }
+    if ! ($eatme in ['ate', 'eat']) { ... }
 {% endhighlight %}
 
 ### Backus Naur Form
