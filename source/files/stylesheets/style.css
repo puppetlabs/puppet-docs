@@ -426,7 +426,8 @@ sup a:visited {
 }
 
 .footnotes {
-  font-size: 8pt
+  font-size: 0.8em;
+  border-top: 1px dotted;
 }
 
 /* BASIC BUTTONS */
