@@ -134,8 +134,10 @@ Conditions can get pretty sophisticated: you can use any valid [expression][] in
 
 Also probably familiar: the case statement. (Or switch, or whatever it's called in your programming language of choice.) 
 
+{% highlight ruby %}
     case $operatingsystem {
       centos: { $apache = "httpd" }
+      # Note that these matches are case-insensitive.
       redhat: { $apache = "httpd" }
       debian: { $apache = "apache2" }
       ubuntu: { $apache = "apache2" }
@@ -143,9 +145,33 @@ Also probably familiar: the case statement. (Or switch, or whatever it's called 
       # "fail" is a function. We'll get to those later.
     }
     package {'apache':
-      name => $apache,
+      name   => $apache,
       ensure => latest,
     }
+{% endhighlight %}
 
-Instead of testing a condition up front, `case` takes a variable to test against; then, inside the curly braces, it takes a list of possible values, each of which has a block of Puppet code. 
+Instead of testing a condition up front, `case` takes a variable to test against and a bunch of possible matches. The `default` you see there is a special match that does exactly what it sounds like. 
 
+Matches can be simple strings, like you see above, or they can be comma-separated lists of strings. The example could (and should!) be rewritten like this: 
+
+{% highlight ruby %}
+    case $operatingsystem {
+      centos, redhat: { $apache = "httpd" }
+      debian, ubuntu: { $apache = "apache2" }
+      default: { fail("Unrecognized operating system for webserver") }
+    }
+{% endhighlight %}
+
+You can also use regular expressions: 
+
+{% highlight ruby %}
+    case $ipaddress_eth0 {
+      /^127\./: { notify {'Possible network misconfiguration!': } }
+    }
+{% endhighlight %}
+
+(And inside the code block for a regex match, you can use `$1`, `$2`, etc. to print captured strings, with `$0` containing the whole match.)
+
+### Selector
+
+Unlike the other two types of conditionals, selectors don't take code blocks. Instead, they simply return a value, for either a resource attribute or a variable assignment. 
