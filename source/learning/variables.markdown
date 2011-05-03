@@ -6,7 +6,7 @@ title: Learning — Variables, Conditionals, and Facts
 Learning — Variables, Conditionals, and Facts
 =============================================
 
-You can write manifests and order resources; now, conditional statements and variables will add logic and flexibility.
+You can write manifests and order resources; now, add logic and flexibility with conditional statements and variables. 
 
 * * *
 
@@ -19,37 +19,39 @@ You can write manifests and order resources; now, conditional statements and var
 Variables
 ---------
 
-If you've ever scripted anything, a lot of this chapter will be very familiar. So in the interest of moving a little faster, let's do some bullet points:
+Variables! I'm going to bet you pretty much know this drill, so let's move a little faster:
 
 * `$variables` always start with a dollar sign. You assign to variables with the `=` operator. 
-* Variables can hold strings, numbers, arrays, and hashes.
-* You can use variables as the value for any resource attribute, or even as the title of a resource. 
+* Variables can hold strings, numbers, special values (false, undef...), arrays, and hashes.
+* You can use variables as the value for any resource attribute, or as the title of a resource. 
 * You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
-* Every variable has a short name and a fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless: `$::top_scope_variable`.
+* Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
 * You can only assign the same variable **once** in a given scope.[^declarative]
 
 [^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable anywhere north of its assignment. We're working on that.
 
-The easiest way to start taking advantage of variables is just to make your code cleaner:
-
+{% highlight ruby %}
     $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."
     
     file {'authorized_keys':
       path    => '/root/.ssh/authorized_keys',
       content => $longthing,
     }
+{% endhighlight %}
 
-But that, of course, is just the beginning. 
+Pretty easy, all told. 
 
 Facts
 -----
 
-Before you even start writing your manifests, Puppet builds a stash of pre-assigned variables. Check it out:
+And now, a small amount of magic. 
+
+Before you even start writing your manifests, Puppet builds you a stash of pre-assigned variables. Check it out:
 
 {% highlight ruby %}
-    # facts-simple.pp
+    # hosts-simple.pp
     
-    # The type reference, as ever, is your friend:
+    # Host type reference:
     # http://docs.puppetlabs.com/references/latest/type.html#host
     
     host {'self':
@@ -81,7 +83,7 @@ Before you even start writing your manifests, Puppet builds a stash of pre-assig
     ::1	localhost6.localdomain6	localhost6
     172.16.158.137	puppet
 
-Our manifests are starting to get versatile. 
+Our manifests are starting to get versatile, with pretty much no real work on our part. 
 
 ### Hostname? IPaddress?
 
@@ -91,16 +93,18 @@ The next question is how you're supposed to know what all these facts are. Try r
 
     # facter
 
-...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. Prepend a dollar sign (and a `::`, because being explicit about namespaces is a good habit) to a fact name, and you can insert its value anywhere in your manifests. 
+...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a `::`, because being explicit about namespaces is a good habit).
 
 Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names. Getting better documentation for the various facts and their possible values is... well, it's on the list. You know how it is.
 
 Conditional Statements
 ----------------------
 
+So you've got a readily-available supply of system info in variables. You can use those values directly, or you can use them to change the flow of your manifests.
+
 ### If
 
-Moving a little faster again, let's get straight to the basic `if` you've been waiting for:
+So yeah, that brings us to your basic `if` statement. Same as it ever was: _**if** condition { block of code } **elsif** condition { block of code } **else** { block of code };_ else and any number of elsif statements are optional.
 
 {% highlight ruby %}
     if $is_virtual {
@@ -110,19 +114,27 @@ Moving a little faster again, let's get straight to the basic `if` you've been w
       }
     }
     else {
-      TK insert example NTP configuration here
+      service { 'ntp':
+        name       => 'ntpd',
+        ensure     => running,
+        enable     => true,
+        hasrestart => true,
+        require => Package['ntp'],
+      }
     }
 {% endhighlight %}
 
-"If" statements are done with the standard `if` / `elsif` / `else` keywords. `if` and `elsif` take a condition, and all of the keywords take {a block of Puppet code}, which can have resource declarations, variable assignments, relationship declarations, collections, and more. 
+The blocks of code for each condition can contain any Puppet code.
 
 #### What is False?
 
-The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings. The following values will be treated as false by an if statement:
+You'll notice I used a naked fact as the condition above. The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth mentioning that the following values will be treated as false by an if statement:
 
 * `undef`
 * `''` (the empty string)
 * `false`
+
+In particular, be aware that 0 is true.
 
 #### Conditions
 
@@ -132,7 +144,7 @@ Conditions can get pretty sophisticated: you can use any valid [expression][] in
 
 ### Case
 
-Also probably familiar: the case statement. (Or switch, or whatever it's called in your programming language of choice.) 
+Also probably familiar: the case statement. (Or switch, or whatever your language of choice calls it.) 
 
 {% highlight ruby %}
     case $operatingsystem {
@@ -150,9 +162,23 @@ Also probably familiar: the case statement. (Or switch, or whatever it's called 
     }
 {% endhighlight %}
 
-Instead of testing a condition up front, `case` takes a variable to test against and a bunch of possible matches. The `default` you see there is a special match that does exactly what it sounds like. 
+Instead of testing a condition up front, `case` matches a variable against a bunch of possible values. `default` is a special value that does exactly what it sounds like. 
 
-Matches can be simple strings, like you see above, or they can be comma-separated lists of strings. The example could (and should!) be rewritten like this: 
+#### Case matching
+
+Matches can be simple strings (like above), regular expressions, or comma-separated lists of either. 
+
+String matching is case-insensitive, like the `==` comparison operator. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they're case-sensitive by default, but you can use the `(?i)` and `(?-i)` switches to turn case-insensitivity on and off inside the pattern. Regex matches also let you use `$1`, `$2`, etc. to print captured strings inside the associated code block, with `$0` containing the whole matching string.
+
+Here's a regex example:
+
+{% highlight ruby %}
+    case $ipaddress_eth0 {
+      /^127\./: { notify {'Possible network misconfiguration!': } }
+    }
+{% endhighlight %}
+
+And here's the example above, rewritten and more readable:
 
 {% highlight ruby %}
     case $operatingsystem {
@@ -162,18 +188,25 @@ Matches can be simple strings, like you see above, or they can be comma-separate
     }
 {% endhighlight %}
 
-You can also use regular expressions: 
+### Selectors
+
+Selectors might be less familiar; they're kind of like the [ternary operator](http://en.wikipedia.org/wiki/%3F:), and kind of like the case statement. 
+
+Instead of choosing between a set of code blocks, selectors choose between a group of possible values. You can't use them on their own; instead, they're usually used to assign a variable. 
 
 {% highlight ruby %}
-    case $ipaddress_eth0 {
-      /^127\./: { notify {'Possible network misconfiguration!': } }
+    $apache = $operatingsystem ? {
+      centos                => 'httpd',
+      redhat                => 'httpd',
+      /(?i)(ubuntu|debian)/ => "apache2-$1",
+        # (Don't actually use that package name.)
+      default               => undef,
     }
 {% endhighlight %}
 
-(And inside the code block for a regex match, you can use `$1`, `$2`, etc. to print captured strings, with `$0` containing the whole match.)
+Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the pivot of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: you can't use lists of values in a match, and it uses hash rockets and line-end commas instead of colons and blocks. If you want to match against a list, you have to do it with a regular expression. 
 
-### Selector
+It can look a little awkward, but there are cases where it's the most concise way to get a value sorted out; if you're ever not comfortable with it, you can just use a case statement to assign the variable instead. 
 
-Selectors might be less familiar; they're kind of like the ternary operator, and kind of like the case statement. 
+Selectors can also be used directly as values for a resource attribute, but try to not do that, because it gets ugly fast. 
 
-Unlike the other two types of conditionals, selectors don't take code blocks. Instead, they simply return a value, for either a resource attribute or a variable assignment. 
