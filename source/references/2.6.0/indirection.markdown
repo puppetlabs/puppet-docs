@@ -239,13 +239,13 @@ A node is composed of its name, its facts, and its environment.</p>
 #### exec
 
 <p>Call an external program to get node information.  See
-the `ExternalNodes`:trac: page for more information.</p>
+the <a href="http://docs.puppetlabs.com/guides/external_nodes.html">External Nodes</a> page for more information.</p>
 
 
 #### ldap
 
 <p>Search in LDAP for node configuration information.  See
-the `LdapNodes`:trac: page for more information.  This will first
+the <a href="http://projects.puppetlabs.com/projects/puppet/wiki/Ldap_Nodes">LDAP Nodes</a> page for more information.  This will first
 search for whatever the certificate name is, then (if that name
 contains a '.') for the short name, then 'default'.</p>
 

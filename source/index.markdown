@@ -138,7 +138,7 @@ Other Resources
 ---------------
 
 * [Puppet Wiki & Bug Tracker](http://projects.puppetlabs.com/)
-* [Puppet Patterns (Recipes)](http://puppetlabs.com/trac/puppet/wiki/Recipes)
+* [Puppet Patterns (Recipes)](http://projects.puppetlabs.com/projects/puppet/wiki/Recipes)
 
 Help Improve This Document
 --------------------------

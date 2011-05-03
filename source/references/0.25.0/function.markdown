@@ -17,7 +17,9 @@ only be used in a statement requiring a value, such as an assignment or a case
 statement.</p>
 <p>Here are the functions available in Puppet:</p>
 
-----------------### alert
+----------------
+
+### alert
 
 <p>Log a message on the server at level
 alert.</p>
@@ -26,7 +28,9 @@ alert.</p>
 </ul>
 
 
-----------------### crit
+----------------
+
+### crit
 
 <p>Log a message on the server at level
 crit.</p>
@@ -35,7 +39,9 @@ crit.</p>
 </ul>
 
 
-----------------### debug
+----------------
+
+### debug
 
 <p>Log a message on the server at level
 debug.</p>
@@ -44,7 +50,9 @@ debug.</p>
 </ul>
 
 
-----------------### defined
+----------------
+
+### defined
 
 <p>Determine whether a given
 type is defined, either as a native type or a defined type, or whether a class is defined.
@@ -57,7 +65,9 @@ dependent on the parse order of the configuration when testing whether a resourc
 </ul>
 
 
-----------------### emerg
+----------------
+
+### emerg
 
 <p>Log a message on the server at level
 emerg.</p>
@@ -66,7 +76,9 @@ emerg.</p>
 </ul>
 
 
-----------------### err
+----------------
+
+### err
 
 <p>Log a message on the server at level
 err.</p>
@@ -75,7 +87,9 @@ err.</p>
 </ul>
 
 
-----------------### fail
+----------------
+
+### fail
 
 <p>Fail with a parse error.</p>
 <ul>
@@ -83,7 +97,9 @@ err.</p>
 </ul>
 
 
-----------------### file
+----------------
+
+### file
 
 <p>Return the contents of a file.  Multiple files
 can be passed, and the first file that exists will be read in.</p>
@@ -92,7 +108,9 @@ can be passed, and the first file that exists will be read in.</p>
 </ul>
 
 
-----------------### fqdn_rand
+----------------
+
+### fqdn_rand
 
 <p>Generates random numbers based on the node's fqdn. The first argument
 sets the range.  The second argument specifies a number to add to the
@@ -102,7 +120,9 @@ seed and is optional.</p>
 </ul>
 
 
-----------------### generate
+----------------
+
+### generate
 
 <p>Calls an external command and returns the results of the
 command.  Any arguments are passed to the external command as
@@ -119,7 +139,9 @@ the generator.</p>
 </ul>
 
 
-----------------### include
+----------------
+
+### include
 
 <p>Evaluate one or more classes.</p>
 <ul>
@@ -127,7 +149,9 @@ the generator.</p>
 </ul>
 
 
-----------------### info
+----------------
+
+### info
 
 <p>Log a message on the server at level
 info.</p>
@@ -136,9 +160,11 @@ info.</p>
 </ul>
 
 
-----------------### inline_template
+----------------
 
-<p>Evaluate a template string and return its value.  See <a href="/trac/puppet/wiki/PuppetTemplating">the templating docs</a> for more information.  Note that
+### inline_template
+
+<p>Evaluate a template string and return its value.  See <a href="http://docs.puppetlabs.com/guides/templating.html">the templating docs</a> for more information.  Note that
 if multiple template strings are specified, their output is all concatenated
 and returned as the output of the function.</p>
 <ul>
@@ -146,7 +172,9 @@ and returned as the output of the function.</p>
 </ul>
 
 
-----------------### notice
+----------------
+
+### notice
 
 <p>Log a message on the server at level
 notice.</p>
@@ -155,7 +183,9 @@ notice.</p>
 </ul>
 
 
-----------------### realize
+----------------
+
+### realize
 
 <p>Make a virtual object real.  This is useful
 when you want to know the name of the virtual object and don't want to
@@ -167,7 +197,9 @@ reference; e.g.: <code>realize User[luke]</code>.</p>
 </ul>
 
 
-----------------### regsubst
+----------------
+
+### regsubst
 
 <p>Perform regexp replacement on a string.</p>
 <ul>
@@ -222,7 +254,9 @@ $x = regsubst($ipaddress, '([0-9]+)', '&lt;\1&gt;', 'G')
 </ul>
 
 
-----------------### require
+----------------
+
+### require
 
 <p>Evaluate one or more classes,  adding the required class as a dependency.</p>
 <p>The relationship metaparameters work well for specifying relationships
@@ -252,7 +286,9 @@ class otherstuff {
 </ul>
 
 
-----------------### search
+----------------
+
+### search
 
 <p>Add another namespace for this class to search.
 This allows you to create classes with sets of definitions and add
@@ -262,7 +298,9 @@ those classes to another class's search path.</p>
 </ul>
 
 
-----------------### sha1
+----------------
+
+### sha1
 
 <p>Returns a SHA1 hash value from a provided string.</p>
 <ul>
@@ -270,7 +308,9 @@ those classes to another class's search path.</p>
 </ul>
 
 
-----------------### shellquote
+----------------
+
+### shellquote
 
 <p>Quote and concatenate arguments for use in Bourne shell.</p>
 <p>Each argument is quoted separately, and then all are concatenated
@@ -284,7 +324,9 @@ individually in the call.</p>
 </ul>
 
 
-----------------### split
+----------------
+
+### split
 
 <p>Split a string variable into an array using the specified split regexp.</p>
 <p>Usage:</p>
@@ -306,7 +348,9 @@ brackets.</p>
 </ul>
 
 
-----------------### sprintf
+----------------
+
+### sprintf
 
 <p>Perform printf-style formatting of text.</p>
 <p>The first parameter is format string describing how the rest of the parameters should be formatted.  See the documentation for the <code>Kernel::sprintf()</code> function in Ruby for all the details.</p>
@@ -315,7 +359,9 @@ brackets.</p>
 </ul>
 
 
-----------------### tag
+----------------
+
+### tag
 
 <p>Add the specified tags to the containing class
 or definition.  All contained objects will then acquire that tag, also.</p>
@@ -324,7 +370,9 @@ or definition.  All contained objects will then acquire that tag, also.</p>
 </ul>
 
 
-----------------### tagged
+----------------
+
+### tagged
 
 <p>A boolean function that
 tells you whether the current container is tagged with the specified tags.
@@ -335,9 +383,11 @@ the function to return true.</p>
 </ul>
 
 
-----------------### template
+----------------
 
-<p>Evaluate a template and return its value.  See <a href="/trac/puppet/wiki/PuppetTemplating">the templating docs</a> for more information.  Note that
+### template
+
+<p>Evaluate a template and return its value.  See <a href="http://docs.puppetlabs.com/guides/templating.html">the templating docs</a> for more information.  Note that
 if multiple templates are specified, their output is all concatenated
 and returned as the output of the function.</p>
 <ul>
@@ -345,7 +395,9 @@ and returned as the output of the function.</p>
 </ul>
 
 
-----------------### versioncmp
+----------------
+
+### versioncmp
 
 <p>Compares two versions</p>
 <p>Prototype:</p>
@@ -371,7 +423,9 @@ if versioncmp('2.6-1', '2.4.5') &gt; 0 {
 </ul>
 
 
-----------------### warning
+----------------
+
+### warning
 
 <p>Log a message on the server at level
 warning.</p>

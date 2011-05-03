@@ -17,7 +17,9 @@ only be used in a statement requiring a value, such as an assignment or a case
 statement.</p>
 <p>Here are the functions available in Puppet:</p>
 
-----------------### alert
+----------------
+
+### alert
 
 <p>Log a message on the server at level alert.</p>
 <ul>
@@ -25,7 +27,9 @@ statement.</p>
 </ul>
 
 
-----------------### crit
+----------------
+
+### crit
 
 <p>Log a message on the server at level crit.</p>
 <ul>
@@ -33,7 +37,9 @@ statement.</p>
 </ul>
 
 
-----------------### debug
+----------------
+
+### debug
 
 <p>Log a message on the server at level debug.</p>
 <ul>
@@ -41,7 +47,9 @@ statement.</p>
 </ul>
 
 
-----------------### defined
+----------------
+
+### defined
 
 <p>Determine whether a given type is defined, either as a native type or a defined type, or whether a class is defined. This is useful for checking whether a class is defined and only including it if it is. This function can also test whether a resource has been defined, using resource references (e.g., <code>if defined(File['/tmp/myfile']) { ... }</code>).  This function is unfortunately dependent on the parse order of the configuration when testing whether a resource is defined.</p>
 <ul>
@@ -49,7 +57,9 @@ statement.</p>
 </ul>
 
 
-----------------### emerg
+----------------
+
+### emerg
 
 <p>Log a message on the server at level emerg.</p>
 <ul>
@@ -57,7 +67,9 @@ statement.</p>
 </ul>
 
 
-----------------### err
+----------------
+
+### err
 
 <p>Log a message on the server at level err.</p>
 <ul>
@@ -65,7 +77,9 @@ statement.</p>
 </ul>
 
 
-----------------### fail
+----------------
+
+### fail
 
 <p>Fail with a parse error.</p>
 <ul>
@@ -73,7 +87,9 @@ statement.</p>
 </ul>
 
 
-----------------### file
+----------------
+
+### file
 
 <p>Return the contents of a file.  Multiple files can be passed, and the first file that exists will be read in.</p>
 <ul>
@@ -81,7 +97,9 @@ statement.</p>
 </ul>
 
 
-----------------### fqdn_rand
+----------------
+
+### fqdn_rand
 
 <p>Generates random numbers based on the node's fqdn. The first argument  sets the range.  The second argument specifies a number to add to the  seed and is optional.</p>
 <ul>
@@ -89,7 +107,9 @@ statement.</p>
 </ul>
 
 
-----------------### generate
+----------------
+
+### generate
 
 <p>Calls an external command and returns the results of the command.  Any arguments are passed to the external command as arguments.  If the generator does not exit with return code of 0, the generator is considered to have failed and a parse error is thrown.  Generators can only have file separators, alphanumerics, dashes, and periods in them.  This function will attempt to protect you from malicious generator calls (e.g., those with '..' in them), but it can never be entirely safe.  No subshell is used to execute generators, so all shell metacharacters are passed directly to the generator.</p>
 <ul>
@@ -97,7 +117,9 @@ statement.</p>
 </ul>
 
 
-----------------### include
+----------------
+
+### include
 
 <p>Evaluate one or more classes.</p>
 <ul>
@@ -105,7 +127,9 @@ statement.</p>
 </ul>
 
 
-----------------### info
+----------------
+
+### info
 
 <p>Log a message on the server at level info.</p>
 <ul>
@@ -113,15 +137,19 @@ statement.</p>
 </ul>
 
 
-----------------### inline_template
+----------------
 
-<p>Evaluate a template string and return its value.  See <a href="/trac/puppet/wiki/PuppetTemplating">the templating docs</a> for more information.  Note that  if multiple template strings are specified, their output is all concatenated  and returned as the output of the function.</p>
+### inline_template
+
+<p>Evaluate a template string and return its value.  See <a href="http://docs.puppetlabs.com/guides/templating.html">the templating docs</a> for more information.  Note that  if multiple template strings are specified, their output is all concatenated  and returned as the output of the function.</p>
 <ul>
 <li><strong>Type</strong>: rvalue</li>
 </ul>
 
 
-----------------### notice
+----------------
+
+### notice
 
 <p>Log a message on the server at level notice.</p>
 <ul>
@@ -129,7 +157,9 @@ statement.</p>
 </ul>
 
 
-----------------### realize
+----------------
+
+### realize
 
 <p>Make a virtual object real.  This is useful when you want to know the name of the virtual object and don't want to bother with a full collection.  It is slightly faster than a collection, and, of course, is a bit shorter.  You must pass the object using a reference; e.g.: <code>realize User[luke]</code>.</p>
 <ul>
@@ -137,7 +167,9 @@ statement.</p>
 </ul>
 
 
-----------------### regsubst
+----------------
+
+### regsubst
 
 <blockquote>
 Perform regexp replacement on a string. Parameters (in order): :str: The string to operate on. :regexp: The regular expression matching the string.  If you want it anchored at the start and/or end of the string, you must do that with ^ and $ yourself. :replacement: Replacement string.  Can contain back references to what was matched using 0, 1, and so on. :flags: Optional.  String of single letter flags for how the regexp is interpreted: - <strong>E</strong> Extended regexps - <strong>I</strong> Ignore case in regexps - <strong>M</strong> Multiline regexps - <strong>G</strong> Global replacement; all occurances of the regexp in the string will be replaced.  Without this, only the first occurance will be replaced. :lang: Optional.  How to handle multibyte characters.  A single-character string with the following values: - <strong>N</strong> None - <strong>E</strong> EUC - <strong>S</strong> SJIS - <strong>U</strong> UTF-8 <strong>Examples</strong> Get the third octet from the node's IP address: :: $i3 = regsubst($ipaddress, '^([0-9]+)[.]([0-9]+)[.]([0-9]+)[.]([0-9]+)$', '\3') Put angle brackets around each octet in the node's IP address: :: $x = regsubst($ipaddress, '([0-9]+)', '&lt;\1&gt;', 'G')</blockquote>
@@ -146,7 +178,9 @@ Perform regexp replacement on a string. Parameters (in order): :str: The string 
 </ul>
 
 
-----------------### search
+----------------
+
+### search
 
 <p>Add another namespace for this class to search. This allows you to create classes with sets of definitions and add those classes to another class's search path.</p>
 <ul>
@@ -154,7 +188,9 @@ Perform regexp replacement on a string. Parameters (in order): :str: The string 
 </ul>
 
 
-----------------### sha1
+----------------
+
+### sha1
 
 <p>Returns a SHA1 hash value from a provided string.</p>
 <ul>
@@ -162,7 +198,9 @@ Perform regexp replacement on a string. Parameters (in order): :str: The string 
 </ul>
 
 
-----------------### sprintf
+----------------
+
+### sprintf
 
 <blockquote>
 Perform printf-style formatting of text. The first parameter is format string describing how the rest of the parameters should be formatted.  See the documentation for the <code>Kernel::sprintf()</code> function in Ruby for all the details.</blockquote>
@@ -171,7 +209,9 @@ Perform printf-style formatting of text. The first parameter is format string de
 </ul>
 
 
-----------------### tag
+----------------
+
+### tag
 
 <p>Add the specified tags to the containing class or definition.  All contained objects will then acquire that tag, also.</p>
 <ul>
@@ -179,7 +219,9 @@ Perform printf-style formatting of text. The first parameter is format string de
 </ul>
 
 
-----------------### tagged
+----------------
+
+### tagged
 
 <p>A boolean function that tells you whether the current container is tagged with the specified tags. The tags are ANDed, so that all of the specified tags must be included for the function to return true.</p>
 <ul>
@@ -187,15 +229,19 @@ Perform printf-style formatting of text. The first parameter is format string de
 </ul>
 
 
-----------------### template
+----------------
 
-<p>Evaluate a template and return its value.  See <a href="/trac/puppet/wiki/PuppetTemplating">the templating docs</a> for more information.  Note that  if multiple templates are specified, their output is all concatenated  and returned as the output of the function.</p>
+### template
+
+<p>Evaluate a template and return its value.  See <a href="http://docs.puppetlabs.com/guides/templating.html">the templating docs</a> for more information.  Note that  if multiple templates are specified, their output is all concatenated  and returned as the output of the function.</p>
 <ul>
 <li><strong>Type</strong>: rvalue</li>
 </ul>
 
 
-----------------### versioncmp
+----------------
+
+### versioncmp
 
 <p>Compares two versions.</p>
 <ul>
@@ -203,7 +249,9 @@ Perform printf-style formatting of text. The first parameter is format string de
 </ul>
 
 
-----------------### warning
+----------------
+
+### warning
 
 <p>Log a message on the server at level warning.</p>
 <ul>

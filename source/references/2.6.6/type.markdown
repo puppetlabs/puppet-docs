@@ -671,7 +671,7 @@ kind of limited templating::
   }
 
 This attribute is especially useful when used with
-`PuppetTemplating templating`:trac:.
+templating.
 
 ##### ctime
 

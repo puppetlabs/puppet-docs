@@ -15,7 +15,9 @@ Indirection Reference
 terminus for most of its indirected classes), but some classes are tunable via normal settings.  These will have <code>terminus setting</code>
 documentation listed with them.</p>
 
-----------------### catalog
+----------------
+
+### catalog
 
 
 #### compiler
@@ -30,7 +32,9 @@ Puppet's compiler</p>
 
 
 
-----------------### checksum
+----------------
+
+### checksum
 
 
 #### file
@@ -39,7 +43,9 @@ Puppet's compiler</p>
 
 
 
-----------------### facts
+----------------
+
+### facts
 
 
 #### facter
@@ -64,7 +70,9 @@ return deserialized facts from disk.</p>
 
 
 
-----------------### file_content
+----------------
+
+### file_content
 
 
 #### file
@@ -88,7 +96,9 @@ return deserialized facts from disk.</p>
 
 
 
-----------------### file_metadata
+----------------
+
+### file_metadata
 
 
 #### file
@@ -112,7 +122,9 @@ return deserialized facts from disk.</p>
 
 
 
-----------------### node
+----------------
+
+### node
 
 <p>Where to find node information.
 A node is composed of its name, its facts, and its environment.</p>
@@ -123,13 +135,13 @@ A node is composed of its name, its facts, and its environment.</p>
 #### exec
 
 <p>Call an external program to get node information.  See
-the `ExternalNodes`:trac: page for more information.</p>
+the <a href="http://docs.puppetlabs.com/guides/external_nodes.html">External Nodes</a> page for more information.</p>
 
 
 #### ldap
 
 <p>Search in LDAP for node configuration information.  See
-the `LdapNodes`:trac: page for more information.  This will first
+the <a href="http://projects.puppetlabs.com/projects/puppet/wiki/Ldap_Nodes">LDAP Nodes</a> page for more information.  This will first
 search for whatever the certificate name is, then (if that name
 contains a '.') for the short name, then 'default'.</p>
 
@@ -165,7 +177,9 @@ or deserialize stored YAML nodes.</p>
 
 
 
-----------------### report
+----------------
+
+### report
 
 
 #### processor
