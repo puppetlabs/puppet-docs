@@ -6,7 +6,7 @@ title: Learning — Variables, Conditionals, and Facts
 Learning — Variables, Conditionals, and Facts
 =============================================
 
-You understand how to write manifests and order resources; now use conditional statements and variables to add logic and flexibility to your resource declarations.
+You can write manifests and order resources; now, conditional statements and variables will add logic and flexibility.
 
 * * *
 
@@ -23,8 +23,8 @@ If you've ever scripted anything, a lot of this chapter will be very familiar. S
 
 * `$variables` always start with a dollar sign. You assign to variables with the `=` operator. 
 * Variables can hold strings, numbers, arrays, and hashes.
-* You can use variables as a value for any attribute, or even as the title of a resource. 
-* If you use double-quotes, you can interpolate variables inside strings. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
+* You can use variables as the value for any resource attribute, or even as the title of a resource. 
+* You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
 * Every variable has a short name and a fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless: `$::top_scope_variable`.
 * You can only assign the same variable **once** in a given scope.[^declarative]
 
@@ -173,5 +173,7 @@ You can also use regular expressions:
 (And inside the code block for a regex match, you can use `$1`, `$2`, etc. to print captured strings, with `$0` containing the whole match.)
 
 ### Selector
+
+Selectors might be less familiar; they're kind of like the ternary operator, and kind of like the case statement. 
 
 Unlike the other two types of conditionals, selectors don't take code blocks. Instead, they simply return a value, for either a resource attribute or a variable assignment. 
