@@ -14,7 +14,8 @@ You can write manifests and order resources; now, add logic and flexibility with
 
 * * * 
 
-[customfacts]: http://docs.puppetlabs.com/guides/custom_facts.html
+[next]: ./modules.html
+[customfacts]: /guides/custom_facts.html
 
 Variables
 ---------
@@ -95,7 +96,7 @@ The next question is how you're supposed to know what all these facts are. Try r
 
 ...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a `::`, because being explicit about namespaces is a good habit).
 
-Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names. Getting better documentation for the various facts and their possible values is... well, it's on the list. You know how it is.
+Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names. Getting better documentation for the various facts and their possible values is... well, it's on our list. You know how it is.
 
 Conditional Statements
 ----------------------
@@ -114,7 +115,7 @@ Which brings us to your basic `if` statement. Same as it ever was: _**if** condi
       }
     }
     else {
-      service { 'ntp':
+      service { 'ntpd':
         name       => 'ntpd',
         ensure     => running,
         enable     => true,
@@ -133,6 +134,7 @@ You'll notice I used a naked fact as the condition above. The Puppet language's 
 * `undef`
 * `''` (the empty string)
 * `false`
+* Any expression that evaluates to false.
 
 In particular, be aware that 0 is true.
 
@@ -162,23 +164,27 @@ Also probably familiar: the case statement. (Or switch, or whatever your languag
     }
 {% endhighlight %}
 
-Instead of testing a condition up front, `case` matches a variable against a bunch of possible values. `default` is a special value that does exactly what it sounds like. 
+Instead of testing a condition up front, `case` matches a variable against a bunch of possible values. **`default` is a special value,** which does exactly what it sounds like. 
 
 #### Case matching
 
 Matches can be simple strings (like above), regular expressions, or comma-separated lists of either. 
 
-String matching is case-insensitive, like the `==` comparison operator. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they're case-sensitive by default, but you can use the `(?i)` and `(?-i)` switches to turn case-insensitivity on and off inside the pattern. Regex matches also let you use `$1`, `$2`, etc. to print captured strings inside the associated code block, with `$0` containing the whole matching string.
+String matching is case-insensitive, like the `==` comparison operator. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they're case-sensitive by default, but you can use the `(?i)` and `(?-i)` switches to turn case-insensitivity on and off inside the pattern. Regex matches also assign captured subpatterns to `$1`, `$2`, etc. inside the associated code block, with `$0` containing the whole matching string.
 
 Here's a regex example:
 
 {% highlight ruby %}
     case $ipaddress_eth0 {
-      /^127\./: { notify {'Possible network misconfiguration!': } }
+      /^127[\d.]+$/: { 
+        notify {'misconfig': 
+          message => "Possible network misconfiguration: IP address of $0",
+        } 
+      }
     }
 {% endhighlight %}
 
-And here's the example above, rewritten and more readable:
+And here's the example from above, rewritten and more readable:
 
 {% highlight ruby %}
     case $operatingsystem {
@@ -210,3 +216,12 @@ It can look a little awkward, but there are cases where it's the most concise wa
 
 Selectors can also be used directly as values for a resource attribute, but try not to do that, because it gets ugly fast. 
 
+Exercises
+---------
+
+TK insert two good exercises for conditionals here. Prefer something that actually mucks with system configuration!
+
+Next
+----
+
+Now that your manifests can adapt to different kinds of systems, it's time to start grouping resources and conditionals into meaningful units. Onward to [classes, defined resource types, and modules][next]!
