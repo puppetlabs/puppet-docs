@@ -66,7 +66,7 @@ Let's start by just declaring a single resource:
     file {'testfile':
       path    => '/tmp/testfile',
       ensure  => present,
-      mode    => '640',
+      mode    => 0640,
       content => "I'm a test file.",
     }
 {% endhighlight %}
@@ -118,7 +118,7 @@ Okay, you sort of have the idea by now. Let's make a whole wad of totally useles
 
     file {'/tmp/test2':
       ensure => directory,
-      mode   => 644,
+      mode   => 0644,
     }
 
     file {'/tmp/test3':
@@ -181,13 +181,13 @@ The upshot is that our `notify {"I'm notifying you.":}` resource above has the e
 
 ... because the `message` attribute just steals the resource title if you don't give it anything of its own.
 
-Puppet will always keep you from making resources with duplicate titles, and will almost always keep you from making resources with duplicate name/namevar values. (`exec` resources are the main exception.)
+You can't declare the same resource twice: Puppet will always keep you from making resources with duplicate titles, and will almost always keep you from making resources with duplicate name/namevar values. (`exec` resources are the main exception.)
 
 And finally, you don't need an encyclopedic memory of what the namevar is for each resource --- when in doubt, just choose a descriptive title and specify the attributes you need.
 
 ### 644 = 755 For Directories
 
-We said `/tmp/test2/` should have permissions mode 644, but our `ls -lah` showed mode 755. That's because Puppet groups the read bit and the traverse bit for directories, which is almost always what you actually want. The idea is to let you recursively manage whole directories as mode 644 without making all their files executable.
+We said `/tmp/test2/` should have permissions mode 0644, but our `ls -lah` showed mode 0755. That's because Puppet groups the read bit and the traverse bit for directories, which is almost always what you actually want. The idea is to let you recursively manage whole directories as mode 0644 without making all their files executable.
 
 ### New Ensure Values
 
