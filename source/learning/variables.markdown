@@ -44,7 +44,7 @@ Pretty easy, all told.
 Facts
 -----
 
-And now, a small amount of magic. 
+And now, a teaspoon of magic. 
 
 Before you even start writing your manifests, Puppet builds you a stash of pre-assigned variables. Check it out:
 
@@ -104,7 +104,7 @@ So you've got a readily-available supply of system info in variables. You can us
 
 ### If
 
-So yeah, that brings us to your basic `if` statement. Same as it ever was: _**if** condition { block of code } **elsif** condition { block of code } **else** { block of code };_ else and any number of elsif statements are optional.
+Which brings us to your basic `if` statement. Same as it ever was: _**if** condition { block of code } **elsif** condition { block of code } **else** { block of code };_ the else and any number of elsif statements are optional.
 
 {% highlight ruby %}
     if $is_virtual {
@@ -208,5 +208,5 @@ Careful of the syntax, there: it looks kind of like we're saying `$apache = $ope
 
 It can look a little awkward, but there are cases where it's the most concise way to get a value sorted out; if you're ever not comfortable with it, you can just use a case statement to assign the variable instead. 
 
-Selectors can also be used directly as values for a resource attribute, but try to not do that, because it gets ugly fast. 
+Selectors can also be used directly as values for a resource attribute, but try not to do that, because it gets ugly fast. 
 
