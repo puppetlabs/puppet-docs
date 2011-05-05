@@ -10,7 +10,7 @@ You can write manifests and order resources; now, add logic and flexibility with
 
 * * *
 
-&larr; [Ordering](./ordering.html) --- [Index](./) --- TBA &rarr;
+&larr; [Ordering](./ordering.html) --- [Index](./) --- [Modules][next] &rarr;
 
 * * * 
 
@@ -40,7 +40,7 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
     }
 {% endhighlight %}
 
-Pretty easy, all told. 
+Pretty easy.
 
 Facts
 -----
@@ -219,7 +219,7 @@ Selectors can also be used directly as values for a resource attribute, but try 
 Exercises
 ---------
 
-TK insert two good exercises for conditionals here. Prefer something that actually mucks with system configuration!
+<!-- TK insert two good exercises for conditionals here. Prefer something that actually mucks with system configuration.  Basically this should be a useful class without the class.  -->
 
 Next
 ----
