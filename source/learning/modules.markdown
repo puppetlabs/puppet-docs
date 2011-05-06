@@ -61,9 +61,9 @@ Notice that applying this manifest doesn't actually _do_ anything:
     # puppet apply first-class.pp
     notice: Finished catalog run in 0.03 seconds
 
-The code inside the class was properly parsed, but the compiler didn't build any of it into the catalog, so none of the resources were synced. For that to happen, the class has to be declared.
+The code inside the class was properly parsed, but the compiler didn't build any of it into the catalog, so none of the resources got synced. For that to happen, the class has to be declared.
 
-Which is easy enough --- each class definition enables a unique instance of the `class` resource type, so you already know the syntax:
+Which is easy enough --- each class definition just enables a unique instance of the `class` resource type, so you already know the syntax:
 
 {% highlight ruby %}
     # first-class.pp
@@ -74,6 +74,7 @@ Which is easy enough --- each class definition enables a unique instance of the 
     
     # Then declare it:
     class {'someclass': }
+    # Note that this class has a title but no attributes. We'll get there later.
 {% endhighlight %}
 
 This time, all those resources will end up in the catalog:
@@ -89,4 +90,55 @@ There's another way to declare classes, but it behaves a little bit differently:
     include someclass
     include someclass
 
-There are two main differences between the include function and the standard class declaration: it's slightly cleaner-looking, and it can be safely used multiple times. 
+The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax will fail if you try that. 
+
+The drawback is that `include` can't currently be used with parameterized classes, but we'll get to that later. 
+
+Modules
+-------
+
+You've probably already guessed that classes aren't enough: even with the code above, you'd still have to paste the `someclass` definition into your other manifests. So it's time to meet the **module autoloader!**
+
+### Printing Config
+
+But first, we'll meet its friend, the `modulepath`.
+
+    # puppet apply --configprint modulepath
+    /etc/puppetlabs/puppet/modules
+
+By the way, Puppet has a lot of configuration options. It ships with various defaults, and all of the site-specific overrides are stored in the puppet.conf file. Or, as the configuration system knows it, `config`[^configfile]:
+
+    # puppet apply --configprint config
+    /etc/puppetlabs/puppet/puppet.conf
+
+Most of the puppet tools will take the `--configprint` flag, which tells them to print a single configuration value (or all of them, if you give it an argument of "all") and exit. Since the various files, directories, and settings can vary pretty wildly from site to site, and since it's not necessarily easy to remember the defaults if the value you're looking for isn't in puppet.conf, `--configprint` is quite useful. 
+
+[^configfile]: Puppet Enterprise and the community release of Puppet keep the file in different places.
+
+### The Autoloader
+
+So anyway, modules are re-usable bundles of functionality. Puppet autoloads modules from the directories in its `modulepath`, which means you can declare a class stored in a module anywhere. Let's convert that last class to a module immediately:
+
+    # cd /etc/puppetlabs/puppet/modules
+    # mkdir someclass; cd someclass; mkdir manifests; cd manifests
+    # vim init.pp
+
+{% highlight ruby %}
+    # init.pp
+    
+    class someclass {
+      TK insert conditional example from the previous chapter
+    }
+{% endhighlight %}
+
+And now, the reveal:
+
+    # cd
+    # puppet apply -e "class {'someclass':}"
+    TK insert actual log output
+
+Awesome.
+
+### Module Structure
+
+A module is a directory with stuff in it, whose title is the name of the module. 
