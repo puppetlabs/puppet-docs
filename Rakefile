@@ -9,7 +9,7 @@ end
 
 begin
   require "vlad"
-  Vlad.load(:app => nil, :scm => "git")
+  Vlad.load :scm => :git
 rescue LoadError
   # do nothing
 end
@@ -186,6 +186,13 @@ namespace :references do
     sh "git fetch --tags"
     Dir.chdir("../..")
   end
+end
+
+task :deploy do
+  sh "rake mirror0 vlad:build"
+  sh "rake mirror0 vlad:release"
+  sh "rake mirror1 vlad:release"
+  sh "rake mirror2 vlad:release"
 end
 
 task :default => :spec
