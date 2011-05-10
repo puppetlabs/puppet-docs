@@ -29,7 +29,7 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 * Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
 * You can only assign the same variable **once** in a given scope.[^declarative]
 
-[^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable anywhere north of its assignment. We're working on that.
+[^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable from anywhere north of its assignment. We're working on that.
 
 {% highlight ruby %}
     $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."
@@ -219,7 +219,11 @@ Selectors can also be used directly as values for a resource attribute, but try 
 Exercises
 ---------
 
-<!-- TK insert two good exercises for conditionals here. Prefer something that actually mucks with system configuration.  Basically this should be a useful class without the class.  -->
+> **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian" and "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
+
+> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you'll be shipping different config files ([Debian version](./files/ntp.conf.debian), [Red Hat version](./files/ntp.conf.el)) and using different service names (`ntp` and `ntpd`, respectively).
+> 
+> (Use a second manifest to disable the NTP service after you've gotten this example working; NTP can behave kind of uselessly in a virtual machine.) 
 
 Next
 ----

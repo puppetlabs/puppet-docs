@@ -16,142 +16,242 @@ You can write some pretty sophisticated manifests at this point, but they're sti
 
 [next]: tba
 [smoke]: http://docs.puppetlabs.com/guides/tests_smoke.html
-[manifestsdir]: not-typed-yet
+[manifestsdir]: #namespacing-and-autoloading
 
-Collecting, Reusing, Teleporting
---------------------------------
+Collecting and Reusing
+----------------------
 
-So let's say you've already gotten your security settings written into a manifest. You have manifests that get all your packages installed and your services up and running. The email server is configured, etcetera, etcetera, etcetera. Let's say it's time to start differentiating your app servers from your load balancers, or really just anything interesting and higher-level.
+At some point, you're going to have Puppet code that fits into a couple of different buckets: really general stuff that applies to all your machines, more specialized stuff that only applies to certain classes of machines, and very specific stuff that's meant for a few nodes at most. 
 
-Now, one approach would be to just paste in all your previous code as boilerplate at the top of each later manifest that includes it. _This would actually work._ But it would be a holy terror to keep up to date, would make things really hard to read, and is basically just a bad idea.
+So... you _could_ just paste in all your more general code as boilerplate atop your more specific code. There are ways to do that and get away with it. But that's the road down into the valley of the 4,000-line manifest. The road to happiness is to separate your code out into meaningful units and then call those units by name as needed. 
 
-It's kind of like that point in an old-school console RPG where you can roll over any enemy in the first 3/4 of the world but still have to slog back and forth every time you've got an errand to run. It'd be much better to have some kind of warp spell, right?
-
-Thus, resource collections. In a few minutes, you'll be able to maintain your manifest code in one place and declare groups of it like this: 
+Thus, resource collections and modules! In a few minutes, you'll be able to maintain your manifest code in one place and declare groups of it like this: 
 
     class {'security_base': }
     class {'webserver_base': }
     class {'appserver': }
+
+And after that, it'll get even better. But first things first:
 
 <!-- note to self: be sure to mention scopes. -->
 
 Classes
 -------
 
-There are a few types of resource collections in Puppet, but we'll start with classes. 
-
 Classes are singleton collections of resources that Puppet can apply selectively. You can think of them as blocks of code that can be turned on or off.
+
+If you know any object-oriented programming, try to ignore it for a little while, because that's not the kind of class we're talking about. Puppet classes could also be called "roles" or "aspects;" they describe one part of what makes up a system's nature.
 
 ### Defining
 
-Before you declare a class, you have to **define** it, with the `class` keyword, a name, and a block of code.
+Before you can use a class, you have to **define** it, which is done with the `class` keyword, a name, and a block of code:`class someclass { ... }`. 
+
+Well, you have a block of code hanging around from last chapter's exercises, right? Let's just wrap _that_ in a class definition!
 
 {% highlight ruby %}
-    # first-class.pp
+    # ntp-class1.pp
     
-    class someclass {
-      TK insert conditional example from the previous chapter
+    class ntp {
+      case $operatingsystem {
+        centos, redhat: { 
+          $service_name = 'ntpd'
+          $conf_file = 'ntp.conf.el'
+        }
+        debian, ubuntu: { 
+          $service_name = 'ntp'
+          $conf_file = 'ntp.conf.debian'
+        }
+      }
+      
+      package { 'ntp':
+        ensure => installed,
+      }
+      
+      service { 'ntp':
+        name => $service_name,
+        ensure => running,
+        enable => true,
+        subscribe => File['ntp.conf'],
+      }
+      
+      file { 'ntp.conf':
+        path => '/etc/ntp.conf',
+        ensure => file,
+        require => Package['ntp'],
+        source => "/root/learning-manifests/${conf_file}",
+      }
     }
 {% endhighlight %}
 
 #### An Aside: Names and Namespaces
 
-Class names have to start with a lowercase letter, and can contain lowercase alphanumeric characters and underscores. It's your standard slightly conservative set of allowed characters. 
+Class names have to start with a lowercase letter, and can contain lowercase alphanumeric characters and underscores. (Just your standard slightly conservative set of allowed characters.)
 
-Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](http://localhost:9292/learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on with `apache::ssl` and `apache::vhost`. 
+Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](http://localhost:9292/learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. 
 
-This is going to get a lot more important about [two feet south of here][manifestsdir]. 
+This will become more important about [two feet south of here][manifestsdir]. 
 
 ### Declaring
 
-Notice that applying this manifest doesn't actually _do_ anything:
+Okay, back to our example. Notice that applying this manifest doesn't actually _do_ anything:
 
-    # puppet apply first-class.pp
+    # puppet apply ntp-class1.pp
     notice: Finished catalog run in 0.03 seconds
 
 The code inside the class was properly parsed, but the compiler didn't build any of it into the catalog, so none of the resources got synced. For that to happen, the class has to be declared.
 
-Which is easy enough --- each class definition just enables a unique instance of the `class` resource type, so you already know the syntax:
+Which is easy enough --- since each class definition just enables an instance of the `class` resource type, you already know the syntax:
 
 {% highlight ruby %}
-    # first-class.pp
+    # ntp-class1.pp
     
-    class someclass {
-      TK insert conditional example from the previous chapter
+    class ntp {
+      case $operatingsystem {
+        centos, redhat: { 
+          $service_name = 'ntpd'
+          $conf_file = 'ntp.conf.el'
+        }
+        debian, ubuntu: { 
+          $service_name = 'ntp'
+          $conf_file = 'ntp.conf.debian'
+        }
+      }
+      
+      package { 'ntp':
+        ensure => installed,
+      }
+      
+      service { 'ntp':
+        name => $service_name,
+        ensure => running,
+        enable => true,
+        subscribe => File['ntp.conf'],
+      }
+      
+      file { 'ntp.conf':
+        path => '/etc/ntp.conf',
+        ensure => file,
+        require => Package['ntp'],
+        source => "/root/learning-manifests/${conf_file}",
+      }
     }
     
-    # Then declare it:
-    class {'someclass': }
-    # Note that this class has a title but no attributes. We'll get there later.
+    # Then, declare it:
+    class {'ntp': }
+    # Note that this class has a title but no attributes. We'll go there later.
 {% endhighlight %}
 
 This time, all those resources will end up in the catalog:
 
-    # puppet apply first-class.pp
-    TK insert actual logging output
+    # puppet apply --verbose ntp-class1.pp
+
+    info: Applying configuration version '1305066883'
+    info: FileBucket adding /etc/ntp.conf as {md5}5baec8bdbf90f877a05f88ba99e63685
+    info: /Stage[main]/Ntp/File[ntp.conf]: Filebucketed /etc/ntp.conf to puppet with sum 5baec8bdbf90f877a05f88ba99e63685
+    notice: /Stage[main]/Ntp/File[ntp.conf]/content: content changed '{md5}5baec8bdbf90f877a05f88ba99e63685' to '{md5}dc20e83b436a358997041a4d8282c1b8'
+    info: /Stage[main]/Ntp/File[ntp.conf]: Scheduling refresh of Service[ntp]
+    notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'running'
+    notice: /Stage[main]/Ntp/Service[ntp]: Triggered 'refresh' from 1 events
 
 #### Include
 
 There's another way to declare classes, but it behaves a little bit differently:
 
-    include someclass
-    include someclass
-    include someclass
+    include ntp
+    include ntp
+    include ntp
 
-The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax will fail if you try that. 
+The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax will fail if you try that. The drawback is that `include` can't currently be used with parameterized classes, on which more later.
 
-The drawback is that `include` can't currently be used with parameterized classes, but we'll get to that later. 
+So which should you choose? Neither, yet: learn to use both, and decide later, after we've covered parameterized classes and site design. 
 
 ### Classes In Situ
 
-You've probably already guessed that classes aren't enough: even with the code above, you'd still have to paste the `someclass` definition into your other manifests. So it's time to meet the **module autoloader!**
+You've probably already guessed that classes aren't enough: even with the code above, you'd still have to paste the `ntp` definition into your other manifests. So it's time to meet the **module autoloader!**
 
-### An Aside: Printing Config
+#### An Aside: Printing Config
 
 But first, we'll need to meet its friend, the `modulepath`.
 
     # puppet apply --configprint modulepath
     /etc/puppetlabs/puppet/modules
 
-By the way, Puppet has a lot of configuration options. It ships with various defaults, and all of the site-specific overrides are stored in the puppet.conf file. Or, as the configuration system knows it, `config`[^configfile]:
-
-    # puppet apply --configprint config
-    /etc/puppetlabs/puppet/puppet.conf
-
-Most of the puppet tools will take the `--configprint` flag, which tells them to print a single configuration value (or all of them, if you give it an argument of "all") and exit. Since the various files, directories, and settings can vary pretty wildly from site to site, and since it's not necessarily easy to remember the defaults if the value you're looking for isn't in puppet.conf, `--configprint` is quite useful. 
-
-[^configfile]: Puppet Enterprise and the community release of Puppet keep the file in different places.
+By the way, `--configprint` is basically my favorite. Puppet has a _lot_ of config options, all of which have default values and site-specific overrides in puppet.conf, and trying to memorize them all is a pain. You can use `--configprint` on  most of the Puppet tools, and they'll print a value (or a bunch, if you use `--configprint all`) and exit.
 
 Modules
 -------
 
-So anyway, modules are re-usable bundles of functionality. Puppet autoloads modules from the directories in its `modulepath`, which means you can declare a class stored in a module anywhere. Let's just convert that last class to a module now, so you can see what we're talking about:
+So anyway, modules are re-usable bundles of code and data. Puppet autoloads manifests from the modules in its `modulepath`, which means you can declare a class stored in a module anywhere. Let's just convert that last class to a module now, so you can see what we're talking about:
 
     # cd /etc/puppetlabs/puppet/modules
-    # mkdir someclass; cd someclass; mkdir manifests; cd manifests
+    # mkdir ntp; cd ntp; mkdir manifests; cd manifests
     # vim init.pp
 
 {% highlight ruby %}
     # init.pp
     
-    class someclass {
-      TK insert conditional example from the previous chapter
+    class ntp {
+      case $operatingsystem {
+        centos, redhat: { 
+          $service_name = 'ntpd'
+          $conf_file = 'ntp.conf.el'
+        }
+        debian, ubuntu: { 
+          $service_name = 'ntp'
+          $conf_file = 'ntp.conf.debian'
+        }
+      }
+      
+      package { 'ntp':
+        ensure => installed,
+      }
+      
+      service { 'ntp':
+        name => $service_name,
+        ensure => running,
+        enable => true,
+        subscribe => File['ntp.conf'],
+      }
+      
+      file { '/etc/ntp.conf':
+        ensure => file,
+        require => Package['ntp'],
+        source => "/root/learning-manifests/${conf_file}",
+      }
     }
 {% endhighlight %}
 
 And now, the reveal:[^dashe]
 
     # cd
-    # puppet apply -e "class {'someclass':}"
-    TK insert actual log output
+    # puppet apply -e "class {'ntp':}"
 
-Right? Awesome.
+It just works. You can do that from any manifest, without having to cut and paste anything. 
+
+But we're not quite done yet. See how the manifest is referring to some files stored outside the module? Let's fix that:
+
+    # mkdir /etc/puppetlabs/modules/ntp/files
+    # mv /root/learning-manifests/ntp.conf.* /etc/puppetlabs/modules/ntp/files/
+    # vim /etc/puppetlabs/modules/ntp/manifests/init.pp
+
+{% highlight ruby %}
+    # ...
+      file { '/etc/ntp.conf':
+        ensure => file,
+        require => Package['ntp'],
+        # source => "/root/learning-manifests/${conf_file}",
+        source => "puppet:///modules/ntp/${conf_file}",
+      }
+    }
+{% endhighlight %}
+
+There: our little example from last chapter has grown up into a self-contained blob of awesome.
 
 [^dashe]: The `-e` flag lets you give puppet apply a line of manifest code instead of a file, same as with Perl or Ruby.
 
 ### Module Structure
 
-A module is just a directory with stuff in it, and the magic comes when the autoloader finds what it's looking for. So here's what it's expecting to see:
+A module is just a directory with stuff in it, and the magic comes from putting that stuff where Puppet expects to find it. Which is to say, arranging the contents like this:
 
 * {module}/
     * files/
@@ -167,9 +267,9 @@ A module is just a directory with stuff in it, and the magic comes when the auto
     * templates/
     * tests/
 
-[^definedtypes]: Patience---those're coming up next lesson.
+[^definedtypes]: They're coming up next lesson.
 
-The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your basic module: module folder, manifests folder, init.pp, just like we used in the someclass module above. 
+The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: module folder, manifests folder, init.pp, just like we used in the ntp module above. 
 
 But if that was all a module was, it'd make more sense to just load your classes from one flat folder. Modules really come into their own with namespacing and grouping of classes. 
 
@@ -200,6 +300,6 @@ The value here is that you can run puppet apply with `--noop` on these manifests
 
 #### Files
 
-Puppet can serve files! More on this once we get into agent/master Puppet. Like with manifests, there's some magical lookup tricks to take advantage of. 
+Puppet can serve files! 
 
 #### Templates
