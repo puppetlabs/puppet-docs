@@ -10,11 +10,11 @@ You can write manifests and order resources; now, add logic and flexibility with
 
 * * *
 
-&larr; [Ordering](./ordering.html) --- [Index](./) --- [Modules][next] &rarr;
+&larr; [Ordering](./ordering.html) --- [Index](./) --- [Modules (Part One)][next] &rarr;
 
 * * * 
 
-[next]: ./modules.html
+[next]: ./modules1.html
 [customfacts]: /guides/custom_facts.html
 
 Variables

@@ -35,6 +35,8 @@ Learn to use Puppet! New users: start here.
 * [Resources and the RAL](./learning/ral.html) --- learn about resources, the molecules of system configuration
 * [Manifests](./learning/manifests.html) --- start writing and applying Puppet code
 * [Ordering](./learning/ordering.html) --- learn to join resources that depend on each other
+* [Variables, Facts, and Conditionals](./learning/variables.html) --- read system information to make versatile manifests
+* [Classes and Modules, Part One](./learning/modules1.html) --- start collecting resources into self-contained modules
 
 Reference Shelf
 ---------------
