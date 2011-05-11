@@ -33,8 +33,6 @@ Thus, resource collections and modules! In a few minutes, you'll be able to main
 
 And after that, it'll get even better. But first things first:
 
-<!-- note to self: be sure to mention scopes. -->
-
 Classes
 -------
 
@@ -83,13 +81,13 @@ Well, you have a block of code hanging around from last chapter's exercises, rig
     }
 {% endhighlight %}
 
-#### An Aside: Names and Namespaces
+#### An Aside: Names, Namespaces, and Scope
 
 Class names have to start with a lowercase letter, and can contain lowercase alphanumeric characters and underscores. (Just your standard slightly conservative set of allowed characters.)
 
-Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](http://localhost:9292/learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. 
+Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](http://localhost:9292/learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
 
-This will become more important about [two feet south of here][manifestsdir]. 
+Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at it from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`). It also means you can localize --- mask --- variable short names in use outside the class; if you assign a `$fqdn` variable in a class, you would get the new value instead of the value of the Facter-supplied variable, unless you used the fully-qualified fact name (`$::fqdn`). 
 
 ### Declaring
 
@@ -161,7 +159,7 @@ There's another way to declare classes, but it behaves a little bit differently:
     include ntp
     include ntp
 
-The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax will fail if you try that. The drawback is that `include` can't currently be used with parameterized classes, on which more later.
+The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax can only be used once. The drawback is that `include` can't currently be used with parameterized classes, on which more later.
 
 So which should you choose? Neither, yet: learn to use both, and decide later, after we've covered parameterized classes and site design. 
 
@@ -224,7 +222,7 @@ So anyway, modules are re-usable bundles of code and data. Puppet autoloads mani
 And now, the reveal:[^dashe]
 
     # cd
-    # puppet apply -e "class {'ntp':}"
+    # puppet apply -e "include ntp"
 
 It just works. You can do that from any manifest, without having to cut and paste anything. 
 
@@ -249,7 +247,8 @@ There: our little example from last chapter has grown up into a self-contained b
 
 [^dashe]: The `-e` flag lets you give puppet apply a line of manifest code instead of a file, same as with Perl or Ruby.
 
-### Module Structure
+Module Structure
+----------------
 
 A module is just a directory with stuff in it, and the magic comes from putting that stuff where Puppet expects to find it. Which is to say, arranging the contents like this:
 
@@ -269,11 +268,11 @@ A module is just a directory with stuff in it, and the magic comes from putting 
 
 [^definedtypes]: They're coming up next lesson.
 
-The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: module folder, manifests folder, init.pp, just like we used in the ntp module above. 
+The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: main folder, manifests folder, init.pp, just like we used in the ntp module above. 
 
 But if that was all a module was, it'd make more sense to just load your classes from one flat folder. Modules really come into their own with namespacing and grouping of classes. 
 
-### Namespacing and Autoloading
+### Manifests, Namespacing, and Autoloading
 
 The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses [namespacing](#an-aside-names-and-namespaces) to find them. Say we have a manifests folder that looks like this: 
 
@@ -284,22 +283,41 @@ The manifests directory can hold any number of other classes and even folders of
         * bar/
             * baz.pp
 
-The init.pp file should contain the class `foo`, bar.pp should contain `foo::bar`, and baz.pp should contain `foo::bar::baz`. 
+The init.pp file should contain `class foo { ... }`, bar.pp should contain `class foo::bar { ... }`, and baz.pp should contain `class foo::bar::baz { ... }`. 
 
-This can be a little disorienting at first, but I promise you'll get used to it. Basically, init.pp is special, and the classes in all of the other manifest files live under the module's namespace. (You have to reiterate this when you're defining the classes, like `class foo::bar { ... }`.) If you add any more levels of directory hierarchy, they get interpreted as more levels of namespace hierarchy. 
+This can be a little disorienting at first, but I promise you'll get used to it. Basically, init.pp is special, and all of the other classes (each in its own manifest) should be under the main class's namespace. If you add more levels of directory hierarchy, they get interpreted as more levels of namespace hierarchy. 
 
-### Other Directories
+### Files
 
-We'll get more detail on all of these in due time, but here's the fast version:
+Puppet can serve files from modules, and it works identically regardless of whether you're doing serverless or agent/master Puppet. Everything in the `files` directory in the ntp module is available under the `puppet:///modules/ntp/` URL. Likewise, a `test.txt` file in the `testing` module could be retrieved as `puppet:///modules/testing/test.txt`. 
 
-#### Tests
+### Tests
 
-The tests directory also holds manifest files, and it should look exactly the same as the manifests directory: one .pp file for each of the classes or defined types the module implements. But instead of defining classes, the tests just declare them.
+Once you start writing modules you plan to keep for more than a day or two, read our brief guide to [module smoke testing][smoke]. It's pretty simple, and can pay off. 
 
-The value here is that you can run puppet apply with `--noop` on these manifests, and if the class definition is broken, it'll tell you so. It'll also generate a list of the sync events that would have occurred, and the tests can even serve as some bare-bones documentation for the class's prerequisites. 
+### Templates
 
-#### Files
+More on [templates](http://docs.puppetlabs.com/guides/templating.html) later.
 
-Puppet can serve files! 
+### Lib
 
-#### Templates
+Puppet modules can also serve executable Ruby code, to extend Puppet and Facter. (Remember how I mentioned that you can extend Facter with custom facts? This is where they live.) It'll be a while before we cover that.
+
+### Module Scaffolding
+
+So anyway, since you'll be dealing with those same five subdirectories so much, may as well add a function for them to your .bashrc file. 
+
+    mkmod() {
+        mkdir "$1"
+        mkdir "$1/files" "$1/lib" "$1/manifests" "$1/templates" "$1/tests"
+    }
+
+Exercises
+---------
+
+TK need exercises
+
+Next
+----
+
+And we've reached another brief pause! Come back next posting, when we'll cover defined resource types, classes with parameters in 'em, and possibly inheritance, templates, functions, and/or resource defaults. Depends on what catches fire between now and then. See you around!
