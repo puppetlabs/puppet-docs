@@ -14,7 +14,6 @@ You can write some pretty sophisticated manifests at this point, but they're sti
 
 * * * 
 
-[next]: tba
 [smoke]: http://docs.puppetlabs.com/guides/tests_smoke.html
 [manifestsdir]: #namespacing-and-autoloading
 
@@ -25,26 +24,30 @@ At some point, you're going to have Puppet code that fits into a couple of diffe
 
 So... you _could_ just paste in all your more general code as boilerplate atop your more specific code. There are ways to do that and get away with it. But that's the road down into the valley of the 4,000-line manifest. The road to happiness is to separate your code out into meaningful units and then call those units by name as needed. 
 
-Thus, resource collections and modules! In a few minutes, you'll be able to maintain your manifest code in one place and declare groups of it like this: 
+Thus, resource collections and modules! In a few minutes, you'll be able to maintain your manifest code in one place and declare whole groups of it like this: 
 
     class {'security_base': }
     class {'webserver_base': }
     class {'appserver': }
 
-And after that, it'll get even better. But first things first:
+And after that, it'll get even better. But first things first.
 
 Classes
 -------
 
 Classes are singleton collections of resources that Puppet can apply selectively. You can think of them as blocks of code that can be turned on or off.
 
-If you know any object-oriented programming, try to ignore it for a little while, because that's not the kind of class we're talking about. Puppet classes could also be called "roles" or "aspects;" they describe one part of what makes up a system's nature.
+If you know any object-oriented programming, try to ignore it for a little while, because that's not the kind of class we're talking about. Puppet classes could also be called "roles" or "aspects;" they describe one part of what makes up a system's identity.
 
 ### Defining
 
-Before you can use a class, you have to **define** it, which is done with the `class` keyword, a name, and a block of code:`class someclass { ... }`. 
+Before you can use a class, you have to **define** it, which is done with the `class` keyword, a name, and a block of code: 
 
-Well, you have a block of code hanging around from last chapter's exercises, right? Let's just wrap _that_ in a class definition!
+    class someclass { 
+      ... 
+    }
+
+Well, hey: you have a block of code hanging around from last chapter's exercises, right? May as well just wrap _that_ in a class definition!
 
 {% highlight ruby %}
     # ntp-class1.pp
@@ -80,6 +83,8 @@ Well, you have a block of code hanging around from last chapter's exercises, rig
       }
     }
 {% endhighlight %}
+
+Go ahead and apply that. In the meantime:
 
 #### An Aside: Names, Namespaces, and Scope
 
@@ -151,6 +156,8 @@ This time, all those resources will end up in the catalog:
     notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'running'
     notice: /Stage[main]/Ntp/Service[ntp]: Triggered 'refresh' from 1 events
 
+**Defining the class makes it available; declaring instantiates it.**
+
 #### Include
 
 There's another way to declare classes, but it behaves a little bit differently:
@@ -161,11 +168,11 @@ There's another way to declare classes, but it behaves a little bit differently:
 
 The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax can only be used once. The drawback is that `include` can't currently be used with parameterized classes, on which more later.
 
-So which should you choose? Neither, yet: learn to use both, and decide later, after we've covered parameterized classes and site design. 
+So which should you choose? Neither, yet: learn to use both, and decide later, after we've covered site design and parameterized classes.
 
 ### Classes In Situ
 
-You've probably already guessed that classes aren't enough: even with the code above, you'd still have to paste the `ntp` definition into your other manifests. So it's time to meet the **module autoloader!**
+You've probably already guessed that classes aren't enough: even with the code above, you'd still have to paste the `ntp` definition into all your other manifests. So it's time to meet the **module autoloader!**
 
 #### An Aside: Printing Config
 
@@ -224,7 +231,7 @@ And now, the reveal:[^dashe]
     # cd
     # puppet apply -e "include ntp"
 
-It just works. You can do that from any manifest, without having to cut and paste anything. 
+It just works. You can now do that from any manifest, without having to cut and paste anything. 
 
 But we're not quite done yet. See how the manifest is referring to some files stored outside the module? Let's fix that:
 
@@ -243,7 +250,7 @@ But we're not quite done yet. See how the manifest is referring to some files st
     }
 {% endhighlight %}
 
-There: our little example from last chapter has grown up into a self-contained blob of awesome.
+There --- our little example from last chapter has grown up into a self-contained blob of awesome.
 
 [^dashe]: The `-e` flag lets you give puppet apply a line of manifest code instead of a file, same as with Perl or Ruby.
 
@@ -257,7 +264,6 @@ A module is just a directory with stuff in it, and the magic comes from putting 
     * lib/
     * manifests/
         * init.pp
-        * {class}.pp
         * {class}.pp
         * {defined type}.pp[^definedtypes]
         * {namespace}/
@@ -289,11 +295,11 @@ This can be a little disorienting at first, but I promise you'll get used to it.
 
 ### Files
 
-Puppet can serve files from modules, and it works identically regardless of whether you're doing serverless or agent/master Puppet. Everything in the `files` directory in the ntp module is available under the `puppet:///modules/ntp/` URL. Likewise, a `test.txt` file in the `testing` module could be retrieved as `puppet:///modules/testing/test.txt`. 
+Puppet can serve files from modules, and it works identically regardless of whether you're doing serverless or agent/master Puppet. Everything in the `files` directory in the ntp module is available under the `puppet:///modules/ntp/` URL. Likewise, a `test.txt` file in the `testing` module's `files` could be retrieved as `puppet:///modules/testing/test.txt`. 
 
 ### Tests
 
-Once you start writing modules you plan to keep for more than a day or two, read our brief guide to [module smoke testing][smoke]. It's pretty simple, and can pay off. 
+Once you start writing modules you plan to keep for more than a day or two, read our brief guide to [module smoke testing][smoke]. It's pretty simple, and will eventually pay off. 
 
 ### Templates
 
@@ -305,7 +311,7 @@ Puppet modules can also serve executable Ruby code, to extend Puppet and Facter.
 
 ### Module Scaffolding
 
-So anyway, since you'll be dealing with those same five subdirectories so much, may as well add a function for them to your .bashrc file. 
+Since you'll be dealing with those same five subdirectories so much, I suggest adding a function for them to your .bashrc file. 
 
     mkmod() {
         mkdir "$1"
@@ -320,4 +326,4 @@ TK need exercises
 Next
 ----
 
-And we've reached another brief pause! Come back next posting, when we'll cover defined resource types, classes with parameters in 'em, and possibly inheritance, templates, functions, and/or resource defaults. Depends on what catches fire between now and then. See you around!
+And we've reached another brief pause! Come back next update, when we'll cover defined resource types, classes with parameters in 'em, and possibly inheritance, templates, functions, and/or resource defaults. See you around!
