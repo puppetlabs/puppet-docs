@@ -21,6 +21,8 @@ Latest: [Ordering][] &rarr;
 [ral]: ./ral.html
 [Manifests]: ./manifests.html
 [Ordering]: ./ordering.html
+[variables]: ./variables.html
+[modules1]: ./modules1.html
 
 Welcome
 -------
@@ -58,5 +60,7 @@ And with that, you're ready to start.
 * Begin with [Resources and the RAL][ral], where you'll learn about the fundamental building blocks of system configuration.
 * After that, move on to [Manifests][] and start controlling your system by writing actual Puppet code.
 * Next, in [Ordering][], learn about dependencies and refresh events, manage the relationships between resources, and discover the most useful Puppet design pattern.
+* In [Variables, Conditionals, and Facts][variables], make your manifests versatile by reading system information.
+* In [Classes and Modules, Part One][modules1], take the first step to a knowable and elegant site design and start turning your manifests into self-contained modules. 
 
 And come back soon, because there are a lot more chapters on the way.
