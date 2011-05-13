@@ -73,9 +73,11 @@ There are four metaparameters that let you arrange resources in order: `before`,
 
 (Note the square brackets and capitalized resource type!)
 
-> **An aside on capitalization:** The easy way to remember this is that you _only_ use the lowercase type name when declaring a new resource. Any other situation will always call for a capitalized type name.
-> 
-> This will get more important in another couple lessons, so I'll mention it again later.
+#### An Aside: Capitalization
+
+The easy way to remember this is that you _only_ use the lowercase type name when declaring a new resource. Any other situation will always call for a capitalized type name.
+
+This will get more important in another couple lessons, so I'll mention it again later.
 
 ### Before and Require
 
