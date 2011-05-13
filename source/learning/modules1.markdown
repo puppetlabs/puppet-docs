@@ -22,7 +22,7 @@ Collecting and Reusing
 
 At some point, you're going to have Puppet code that fits into a couple of different buckets: really general stuff that applies to all your machines, more specialized stuff that only applies to certain classes of machines, and very specific stuff that's meant for a few nodes at most. 
 
-So... you _could_ just paste in all your more general code as boilerplate atop your more specific code. There are ways to do that and get away with it. But that's the road down into the valley of the 4,000-line manifest. The road to happiness is to separate your code out into meaningful units and then call those units by name as needed. 
+So... you _could_ just paste in all your more general code as boilerplate atop your more specific code. There are ways to do that and get away with it. But that's the road down into the valley of the 4,000-line manifest. Better to separate your code out into meaningful units and then call those units by name as needed. 
 
 Thus, resource collections and modules! In a few minutes, you'll be able to maintain your manifest code in one place and declare whole groups of it like this: 
 
@@ -92,18 +92,18 @@ Class names have to start with a lowercase letter, and can contain lowercase alp
 
 Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](http://localhost:9292/learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
 
-Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at it from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`). It also means you can localize --- mask --- variable short names in use outside the class; if you assign a `$fqdn` variable in a class, you would get the new value instead of the value of the Facter-supplied variable, unless you used the fully-qualified fact name (`$::fqdn`). 
+Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`). It also means you can localize --- mask --- variable short names in use outside the class; if you assign a `$fqdn` variable in a class, you would get the new value instead of the value of the Facter-supplied variable, unless you used the fully-qualified fact name (`$::fqdn`). 
 
 ### Declaring
 
-Okay, back to our example. Notice that applying this manifest doesn't actually _do_ anything:
+Okay, back to our example, which was maybe a little bit of a prank: applying that manifest doesn't actually _do_ anything.
 
     # puppet apply ntp-class1.pp
-    notice: Finished catalog run in 0.03 seconds
+    (...silence)
 
 The code inside the class was properly parsed, but the compiler didn't build any of it into the catalog, so none of the resources got synced. For that to happen, the class has to be declared.
 
-Which is easy enough --- since each class definition just enables an instance of the `class` resource type, you already know the syntax:
+You actually already know the syntax to do that. A class definition just enables a unique instance of the `class` resource type, so you can declare it like any other resource:
 
 {% highlight ruby %}
     # ntp-class1.pp
@@ -141,7 +141,6 @@ Which is easy enough --- since each class definition just enables an instance of
     
     # Then, declare it:
     class {'ntp': }
-    # Note that this class has a title but no attributes. We'll go there later.
 {% endhighlight %}
 
 This time, all those resources will end up in the catalog:
@@ -156,7 +155,7 @@ This time, all those resources will end up in the catalog:
     notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'running'
     notice: /Stage[main]/Ntp/Service[ntp]: Triggered 'refresh' from 1 events
 
-**Defining the class makes it available; declaring instantiates it.**
+Defining the class makes it available; declaring instantiates it.
 
 #### Include
 

@@ -96,7 +96,7 @@ The next question is how you're supposed to know what all these facts are. Try r
 
 ...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a `::`, because being explicit about namespaces is a good habit).
 
-Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names. Getting better documentation for the various facts and their possible values is... well, it's on our list. You know how it is.
+Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names.
 
 Conditional Statements
 ----------------------
