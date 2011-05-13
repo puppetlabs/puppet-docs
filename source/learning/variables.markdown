@@ -90,22 +90,18 @@ Our manifests are starting to get versatile, with pretty much no real work on ou
 
 So where did those helpful variables come from? They're "facts." Puppet ships with a tool called Facter, which ferrets out your system information, normalizes it into a set of variables, and passes them off to Puppet. The compiler then has access to those facts when it's reading a manifest. 
 
-The next question is how you're supposed to know what all these facts are. Try running:
-
-    # facter
-
-...at your VM's command line, and you'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a `::`, because being explicit about namespaces is a good habit).
+There are a lot of different facts, and the easiest way to get a list of them is to simply run `facter` at your VM's command line. You'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a `::`, because being explicit about namespaces is a good habit).
 
 Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names.
 
 Conditional Statements
 ----------------------
 
-So you've got a readily-available supply of system info in variables. You can use those values directly, or you can use them to change the flow of your manifests.
+Puppet has a fairly complete complement of conditional syntaxes, and the info available in facts makes it really easy to code different behavior for different systems. 
 
 ### If
 
-Which brings us to your basic `if` statement. Same as it ever was: _**if** condition { block of code } **elsif** condition { block of code } **else** { block of code };_ the else and any number of elsif statements are optional.
+We'll start with your basic `if` statement. Same as it ever was: _**if** condition { block of code } **elsif** condition { block of code } **else** { block of code };_ the else and any number of elsif statements are optional.
 
 {% highlight ruby %}
     if $is_virtual {
@@ -129,7 +125,7 @@ The blocks of code for each condition can contain any Puppet code.
 
 #### What is False?
 
-You'll notice I used a naked fact as the condition above. The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth mentioning that the following values will be treated as false by an if statement:
+You'll notice I used a bare fact as the condition above. The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth mentioning that the following values will be treated as false by an if statement:
 
 * `undef`
 * `''` (the empty string)
@@ -210,9 +206,9 @@ Instead of choosing between a set of code blocks, selectors choose between a gro
     }
 {% endhighlight %}
 
-Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the pivot of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: you can't use lists of values in a match, and it uses hash rockets and line-end commas instead of colons and blocks. If you want to match against a list, you have to do it with a regular expression. 
+Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the pivot of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can't use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)
 
-It can look a little awkward, but there are cases where it's the most concise way to get a value sorted out; if you're ever not comfortable with it, you can just use a case statement to assign the variable instead. 
+It can look a little awkward, but there are plenty of situations where it's the most concise way to get a value sorted out; if you're ever not comfortable with it, you can just use a case statement to assign the variable instead. 
 
 Selectors can also be used directly as values for a resource attribute, but try not to do that, because it gets ugly fast. 
 
@@ -221,7 +217,7 @@ Exercises
 
 > **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian" and "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
 
-> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you'll be shipping different config files ([Debian version](./files/ntp.conf.debian), [Red Hat version](./files/ntp.conf.el)) and using different service names (`ntp` and `ntpd`, respectively).
+> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you'll be shipping different config files ([Debian version](./files/ntp.conf.debian), [Red Hat version](./files/ntp.conf.el) --- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
 > 
 > (Use a second manifest to disable the NTP service after you've gotten this example working; NTP can behave kind of uselessly in a virtual machine.) 
 
