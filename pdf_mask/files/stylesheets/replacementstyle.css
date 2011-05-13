@@ -116,8 +116,12 @@ h1, h2 {
 
 h1 {
   font-size: 2.25em;
-  border-top: 0.2em dashed;
+  page-break-before: always;
   padding-top: 0.5em;
+}
+
+h1:first-child {
+  page-break-before: inherit;
 }
 
 h2 {
@@ -181,24 +185,12 @@ a {
 
 ul, ol, dl {
   margin-bottom: 1.5em;
-}
-
-ol {
-  counter-reset: section;
+  margin-left: 1.4em;
 }
 
 ol > li {
-  counter-increment: section;
   position: relative;
   line-height: 1.25em;
-}
-
-ol > li:before {
-  color: #888;
-  content: counter(section) ".";
-  font-weight: bold;
-  margin-right: 0.67em;
-  display: inline-block;
 }
 
 li {
