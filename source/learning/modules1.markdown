@@ -320,9 +320,13 @@ Since you'll be dealing with those same five subdirectories so much, I suggest a
 Exercises
 ---------
 
-TK need exercises
+> **Exercise:** Build an Apache2 module and class, which ensures Apache is installed and running and manages its config file. While you're at it, make Puppet manage the DocumentRoot and put a custom 404 page and index.html in place. 
+> 
+> Set any files or package/service names that might vary per distro conditionally, failing if we're not on CentOS; this'll let you cleanly shim in support for other distros once you need it.
+> 
+> We'll be using this module some more in future lessons. Oh yes.
 
 Next
 ----
 
-And we've reached another brief pause! Come back next update, when we'll cover defined resource types, classes with parameters in 'em, and possibly inheritance, templates, functions, and/or resource defaults. See you around!
+And we've reached another brief pause! There's some fun stuff ahead: come back next update, where we'll cover defined resource types, classes with parameters in 'em, and possibly inheritance, templates, functions, and/or resource defaults.
