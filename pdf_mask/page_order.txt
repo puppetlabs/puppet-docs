@@ -4,6 +4,8 @@ learning/index.html
 learning/ral.html
 learning/manifests.html
 learning/ordering.html
+learning/variables.html
+learning/modules1.html
 guides/tools.html
 guides/introduction.html
 guides/platforms.html
@@ -15,7 +17,9 @@ guides/mongrel.html
 guides/techniques.html
 guides/troubleshooting.html
 guides/modules.html
+guides/parameterized_classes.html
 guides/tests_smoke.html
+guides/scope_and_puppet.html
 guides/file_serving.html
 guides/style_guide.html
 guides/best_practices.html
@@ -24,8 +28,7 @@ guides/virtual_resources.html
 guides/exported_resources.html
 guides/environment.html
 guides/reporting.html
-guides/installing_dashboard.html
-guides/using_dashboard.html
+guides/cloud_pack_getting_started.html
 guides/external_nodes.html
 guides/inventory_service.html
 guides/plugins_in_modules.html
@@ -43,6 +46,7 @@ man/agent.html
 man/apply.html
 man/cert.html
 man/describe.html
+man/device.html
 man/doc.html
 man/filebucket.html
 man/inspect.html
