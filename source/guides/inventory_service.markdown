@@ -112,6 +112,7 @@ By default, the inventory service is not accessible! This is sane. The inventory
 For prototyping your inventory application on a scratch puppet master, you can just permit all access to the `facts` endpoint:
 
     path /facts
+    auth any
     method find, search
     allow *
 
