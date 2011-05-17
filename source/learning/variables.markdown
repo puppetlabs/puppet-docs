@@ -56,16 +56,17 @@ Before you even start writing your manifests, Puppet builds you a stash of pre-a
     # http://docs.puppetlabs.com/references/latest/type.html#host
     
     host {'self':
-      ensure => present,
-      name   => $::hostname,
-      ip     => $::ipaddress,
+      ensure       => present,
+      name         => $::fqdn,
+      host_aliases => ['puppet', $::hostname],
+      ip           => $::ipaddress,
     }
     
     file {'motd':
       ensure  => file,
       path    => '/etc/motd',
       mode    => 0644,
-      content => "Welcome to ${::hostname},\n a ${::operatingsystem} island in the sea of ${::domain}.\n",
+      content => "Welcome to ${::hostname},\na ${::operatingsystem} island in the sea of ${::domain}.\n",
     }
 {% endhighlight %}
     
@@ -82,7 +83,7 @@ Before you even start writing your manifests, Puppet builds you a stash of pre-a
     # that require network functionality will fail.
     127.0.0.1	localhost.localdomain	localhost
     ::1	localhost6.localdomain6	localhost6
-    172.16.158.137	puppet
+    172.16.158.137	learn.puppet.demo     puppet  learn
 
 Our manifests are starting to get versatile, with pretty much no real work on our part. 
 
