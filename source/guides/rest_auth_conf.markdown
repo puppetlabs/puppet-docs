@@ -20,7 +20,7 @@ As you might guess, this can be turned into a security hazard, so access to the 
 auth.conf
 ---------
 
-The official name of the file controlling REST API access, taken from the [configuration option](/references/latest/configuration.html) that sets its location, is `rest_authconfig`, but it's more frequently known by its default filename of `auth.conf`. If you don't set a different location for it, Puppet will look for the file at `$confdir/auth.conf`.
+The official name of the file controlling REST API access, taken from the [configuration option](/references/stable/configuration.html) that sets its location, is `rest_authconfig`, but it's more frequently known by its default filename of `auth.conf`. If you don't set a different location for it, Puppet will look for the file at `$confdir/auth.conf`.
 
 You cannot configure different environments to use multiple `rest_authconfig` files.
 

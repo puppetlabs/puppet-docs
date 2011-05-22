@@ -53,7 +53,7 @@ Before you even start writing your manifests, Puppet builds you a stash of pre-a
     # hosts-simple.pp
     
     # Host type reference:
-    # http://docs.puppetlabs.com/references/latest/type.html#host
+    # http://docs.puppetlabs.com/references/stable/type.html#host
     
     host {'self':
       ensure       => present,

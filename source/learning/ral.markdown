@@ -102,18 +102,18 @@ Puppet has a number of built-in types, and new native types can be distributed w
 
 <!-- TODO: Change that to a link to the PDF. -->
 
-[notify]: ../references/latest/type.html#notify
-[file]: ../references/latest/type.html#file
-[package]: ../references/latest/type.html#package
-[service]: ../references/latest/type.html#service
-[exec]: ../references/latest/type.html#exec
-[cron]: ../references/latest/type.html#cron
-[user]: ../references/latest/type.html#user-3
-[group]: ../references/latest/type.html#group-2
+[notify]: ../references/stable/type.html#notify
+[file]: ../references/stable/type.html#file
+[package]: ../references/stable/type.html#package
+[service]: ../references/stable/type.html#service
+[exec]: ../references/stable/type.html#exec
+[cron]: ../references/stable/type.html#cron
+[user]: ../references/stable/type.html#user-3
+[group]: ../references/stable/type.html#group-2
 
 Documentation for all of the built-in types [can always be found in the reference section of this site][types], and can be generated on the fly with the puppet describe utility.
 
-[types]: ../references/latest/type.html
+[types]: ../references/stable/type.html
 
 [^doctor]: The core types cheat sheet is not actually doctor-recommended. If you're a sysadmin with an M.D., please email me so I can change this footnote.
 

@@ -160,7 +160,7 @@ with the report objects.
 
 ## Available reports
 
-Read the [Report Reference](/references/latest/report.html) for a list of available reports and
+Read the [Report Reference](/references/stable/report.html) for a list of available reports and
 how to configure them. It is automatically generated from the reports available
 in Puppet, and includes documentation on how to use each report.
 

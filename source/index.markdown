@@ -52,11 +52,11 @@ Get detailed information about config files, APIs, and the Puppet language.
 
 Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, indirection termini, and reports, served piping hot directly from the source code.
 
-* [Resource Types](./references/latest/type.html) --- all default types
-* [Functions](./references/latest/function.html) --- all built in functions
-* [Metaparameters](./references/latest/metaparameter.html) --- all type-independent resource attributes
-* [Configuration](./references/latest/configuration.html) --- all configuration file settings
-* [Report](./references/latest/report.html) --- all available report handlers
+* [Resource Types](./references/stable/type.html) --- all default types
+* [Functions](./references/stable/function.html) --- all built in functions
+* [Metaparameters](./references/stable/metaparameter.html) --- all type-independent resource attributes
+* [Configuration](./references/stable/configuration.html) --- all configuration file settings
+* [Report](./references/stable/report.html) --- all available report handlers
 
 These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
 

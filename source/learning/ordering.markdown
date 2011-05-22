@@ -16,7 +16,7 @@ You understand manifests and resource declarations; now learn about metaparamete
 
 * * *
 
-[metaparameters]: http://docs.puppetlabs.com/references/latest/metaparameter.html
+[metaparameters]: http://docs.puppetlabs.com/references/stable/metaparameter.html
 
 Disorder
 --------

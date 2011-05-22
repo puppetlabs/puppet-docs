@@ -216,9 +216,9 @@ And again!
 
 The notifies are firing every time, because that's what they're for, but Puppet doesn't do anything with the file resources unless they're wrong on disk; if they're wrong, it makes them right. Remember how I said Puppet was declarative? This is how that pays off: You can apply the same configuration every half hour without having to know anything about how the system currently looks. Manifests describe the destination, and Puppet handles the journey.
 
-> **Exercise:** Write and apply a manifest that'll make sure Apache (`httpd`) is running, use a web browser on your host OS to view the Apache welcome page, then modify the manifest to turn Apache back off. (Hint: You'll have to check the [cheat sheet][cheat] or the [types reference](http://docs.puppetlabs.com/references/latest/type.html), because the `service` type's `ensure` values differ from the ones you've seen so far.)
+> **Exercise:** Write and apply a manifest that'll make sure Apache (`httpd`) is running, use a web browser on your host OS to view the Apache welcome page, then modify the manifest to turn Apache back off. (Hint: You'll have to check the [cheat sheet][cheat] or the [types reference](http://docs.puppetlabs.com/references/stable/type.html), because the `service` type's `ensure` values differ from the ones you've seen so far.)
 
-> **Slightly more difficult exercise:** Write and apply a manifest that uses the [`ssh_authorized_key`](http://docs.puppetlabs.com/references/latest/type.html#sshauthorizedkey) type to let you log into the learning VM as root without a password. You'll need to already have an SSH key.
+> **Slightly more difficult exercise:** Write and apply a manifest that uses the [`ssh_authorized_key`](http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey) type to let you log into the learning VM as root without a password. You'll need to already have an SSH key.
 
 Next
 ----
