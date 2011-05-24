@@ -61,7 +61,7 @@ to your own remote host or provide git patches later):
 Read the [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown)
 and [README_WRITING](http://github.com/puppetlabs/puppet-docs/blob/master/README_WRITING.markdown)
 files in the puppet-docs source to learn more about how our documentation works;
-read the [documentation style and usage guide](./guides/style_and_usage.html)
+read the [documentation style and usage guide](http://github.com/puppetlabs/puppet-docs/blob/master/style_and_usage.html)
 for the project's language conventions. 
 
 ### Make Your Edits

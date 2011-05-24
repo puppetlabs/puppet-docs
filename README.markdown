@@ -84,7 +84,7 @@ Contributing Changes
 
 * Fork the project (we recommend [GitHub][3])
 * Make sure you read the writing guide (README_WRITING.markdown) and the 
-[style and usage guide][4]
+style and usage guide, which are both in the root of this project.
 * Make your documentation addition/fix -- preferably in a branch.
 * If you're fixing or adding features to the generation
   infrastructure, add some passing specs.
