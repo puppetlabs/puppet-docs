@@ -72,9 +72,9 @@ where we are describing the permissions and ownership of a file:
 
 {% highlight ruby %}
     file { '/etc/passwd':
-        owner => root,
-        group => root,
-        mode  => 644,
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
 {% endhighlight %}
 
@@ -91,13 +91,13 @@ title:
 
 {% highlight ruby %}
     file { 'sshdconfig':
-        name => $operatingsystem ? {
-            solaris => '/usr/local/etc/ssh/sshd_config',
-            default => '/etc/ssh/sshd_config',
-        },
-        owner => root,
-        group => root,
-        mode  => 644,
+      name => $operatingsystem ? {
+        solaris => '/usr/local/etc/ssh/sshd_config',
+        default => '/etc/ssh/sshd_config',
+      },
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
 {% endhighlight %}
 
@@ -109,7 +109,7 @@ For instance, let's add a service that depends on the file:
 
 {% highlight ruby %}
     service { 'sshd':
-        subscribe => File[sshdconfig],
+      subscribe => File['sshdconfig'],
     }
 {% endhighlight %}
 
@@ -129,7 +129,7 @@ like so:
 
 {% highlight ruby %}
     service { 'sshd':
-        require => File['sshdconfig', 'sshconfig', 'authorized_keys']
+      require => File['sshdconfig', 'sshconfig', 'authorized_keys']
     }
 {% endhighlight %}
 
@@ -141,12 +141,12 @@ sent down to the client.
 
 {% highlight ruby %}
     file { 'sshdconfig':
-        name  => '/usr/local/etc/ssh/sshd_config',
-        owner => 'root',
+      name  => '/usr/local/etc/ssh/sshd_config',
+      owner => 'root',
     }
 
     file { '/usr/local/etc/ssh/sshd_config':
-        owner => 'sshd',
+      owner => 'sshd',
     }
 {% endhighlight %}
 
@@ -201,16 +201,16 @@ are wrapped in curly braces.  The following simple example creates a simple clas
 
 {% highlight ruby %}
     class unix {
-        file {
-            '/etc/passwd':
-                owner => 'root',
-                group => 'root',
-                mode  => 644;
-            '/etc/shadow':
-                owner => 'root',
-                group => 'root',
-                mode  => 440;
-        }
+      file {
+        '/etc/passwd':
+          owner => 'root',
+          group => 'root',
+          mode  => '0644';
+        '/etc/shadow':
+          owner => 'root',
+          group => 'root',
+          mode  => '0440';
+      }
     }
 {% endhighlight %}
 
@@ -219,16 +219,16 @@ as saying:
 
 {% highlight ruby %}
     class unix {
-        file { '/etc/passwd':
-             owner => 'root',
-             group => 'root',
-             mode  => 644;
-        }
-        file { '/etc/shadow':
-             owner => 'root',
-             group => 'root',
-             mode  => 440;
-        }
+      file { '/etc/passwd':
+        owner => 'root',
+        group => 'root',
+        mode  => '0644',
+      }
+      file { '/etc/shadow':
+        owner => 'root',
+        group => 'root',
+        mode  => '0440',
+      }
     }
 {% endhighlight %}
 
@@ -242,8 +242,8 @@ In programming terms, this is called 'single inheritance'.
 
 {% highlight ruby %}
     class freebsd inherits unix {
-        File['/etc/passwd'] { group => wheel }
-        File['/etc/shadow'] { group => wheel }
+      File['/etc/passwd'] { group => 'wheel' }
+      File['/etc/shadow'] { group => 'wheel' }
     }
 {% endhighlight %}
 
@@ -252,7 +252,7 @@ use undef like so:
 
 {% highlight ruby %}
     class freebsd inherits unix {
-        File['/etc/passwd'] { group => undef }
+      File['/etc/passwd'] { group => undef }
     }
 {% endhighlight %}
 
@@ -266,7 +266,7 @@ so:
 
 {% highlight ruby %}
     class freebsd inherits unix {
-        File['/etc/passwd', '/etc/shadow'] { group => wheel }
+      File['/etc/passwd', '/etc/shadow'] { group => 'wheel' }
     }
 {% endhighlight %}
 
@@ -276,12 +276,12 @@ the '+>' ('plusignment') operator:
 
 {% highlight ruby %}
     class apache {
-        service { 'apache': require => Package['httpd'] }
+      service { 'apache': require => Package['httpd'] }
     }
 
     class apache-ssl inherits apache {
-        # host certificate is required for SSL to function
-        Service[apache] { require +> File['apache.pem'] }
+      # host certificate is required for SSL to function
+      Service['apache'] { require +> File['apache.pem'] }
     }
 {% endhighlight %}
 
@@ -292,11 +292,11 @@ To append multiple requires, use array brackets and commas:
 
 {% highlight ruby %}
     class apache {
-        service { 'apache': require => Package['httpd'] }
+      service { 'apache': require => Package['httpd'] }
     }
 
     class apache-ssl inherits apache {
-        Service[apache] { require +> [ File['apache.pem'], File['/etc/httpd/conf/httpd.conf'] ] }
+      Service['apache'] { require +> [ File['apache.pem'], File['/etc/httpd/conf/httpd.conf'] ] }
     }
 {% endhighlight %}
 
@@ -312,7 +312,7 @@ Like resources, you can also create relationships between classes with
 
 {% highlight ruby %}
     class apache {
-        service { 'apache': require => Class['squid'] }
+      service { 'apache': require => Class['squid'] }
     }
 {% endhighlight %}
 
@@ -324,8 +324,9 @@ like so:
 
 {% highlight ruby %}
     class apache {
-        service { 'apache':
-                      require => Class['squid', 'xml', 'jakarta']
+      service { 'apache':
+        require => Class['squid', 'xml', 'jakarta'],
+      }
     }
 {% endhighlight %}
 
@@ -349,14 +350,14 @@ Classes with parameters are not declared using the include function but with an 
 
 {% highlight ruby %}
     node webserver {
-      class { apache: version => "1.3.13" }
+      class { 'apache': version => '1.3.13' }
     }
 {% endhighlight %}
 
 You can also specify default parameter values in your class like so:
 
 {% highlight ruby %}
-    class apache($version="1.3.13",$home="/var/www") {
+    class apache($version = '1.3.13', $home = '/var/www') {
       ... class contents ...
     }
 {% endhighlight %}
@@ -389,8 +390,8 @@ In order to declare additional stage resources, follow the same consistent and
 simple declarative syntax of the puppet language:
 
 {% highlight ruby %}
-    stage { "first": before => Stage[main] }
-    stage { "last": require => Stage[main] }
+    stage { 'first': before => Stage['main'] }
+    stage { 'last': require => Stage['main'] }
 {% endhighlight %}
 
 All classes associated with the first stage are to be managed before the
@@ -403,9 +404,9 @@ than main using the "stage" class parameter.
 
 {% highlight ruby %}
     class {
-      "apt-keys": stage => first;
-      "sendmail": stage => main;
-      "apache":   stage => last;
+      'apt-keys': stage => first;
+      'sendmail': stage => main;
+      'apache':   stage => last;
     }
 {% endhighlight %}
 
@@ -431,39 +432,39 @@ system, so we would use a defined type, not a class.  Here's an example:
 
 {% highlight ruby %}
     define svn_repo($path) {
-        exec { "/usr/bin/svnadmin create $path/$title":
-            unless => "/bin/test -d $path",
-        }
+      exec { "/usr/bin/svnadmin create ${path}/${title}":
+        unless => "/bin/test -d ${path}",
+      }
     }
 
-    svn_repo { puppet_repo: path => '/var/svn_puppet' }
-    svn_repo { other_repo:  path => '/var/svn_other' }
+    svn_repo { 'puppet_repo': path => '/var/svn_puppet' }
+    svn_repo { 'other_repo':  path => '/var/svn_other' }
 {% endhighlight %}
 
-Note how parameters specified in the definition (`define svn_repo($path)`) must appear as resource attributes (`path => '/var/svn_puppet'`) whenever a resource of the new type is declared and are available as variables (`unless => "/bin/test -d $path"`) within the definition. Multiple variables (separated by commas) can be specified. Default values can also be specified for any parameter with `=`, and any parameter which has a default becomes non-mandatory when a resource of the new type is declared.
+Note how parameters specified in the definition (`define svn_repo($path)`) must appear as resource attributes (`path => '/var/svn_puppet'`) whenever a resource of the new type is declared and are available as variables (`unless => "/bin/test -d ${path}"`) within the definition. Multiple variables (separated by commas) can be specified. Default values can also be specified for any parameter with `=`, and any parameter which has a default becomes non-mandatory when a resource of the new type is declared.
 
 Defined types have a number of built-in variables available, including `$name` and `$title`, which are set to the title of the resource when it is declared. (The reasons for having two identical variables with this information are outside the scope of this document, and these two special variables cannot be used the same way in classes or other resources.) As of Puppet 2.6.5, the `$name` and `$title` variables can also be used as default values for parameters:
 
-    define svn_repo($path = "/var/$name") {...}
+    define svn_repo($path = "/var/${name}") {...}
 
 Any metaparameters used when a defined resource is declared are also made available in the definition as variables:
 
 {% highlight ruby %}
     define svn_repo($path) {
-        exec {"create_repo_${name}":
-            command => "/usr/bin/svnadmin create $path/$title",
-            unless => "/bin/test -d $path",
+      exec { "create_repo_${name}":
+        command => "/usr/bin/svnadmin create ${path}/${title}",
+        unless  => "/bin/test -d ${path}",
+      }
+      if $require {
+        Exec["create_repo_${name}"] {
+          require +> $require,
         }
-        if $require {
-            Exec["create_repo_${name}"]{
-                require +> $require,
-            }
-        }
+      }
     }
 
-    svn_repo { puppet:
-       path => '/var/svn',
-       require => Package[subversion],
+    svn_repo { 'puppet':
+      path    => '/var/svn',
+      require => Package['subversion'],
     }
 {% endhighlight %}
 
@@ -511,7 +512,7 @@ You can now specify relationships directly as statements in addition to
 the before and require resource metaparameters of previous versions:
 
 {% highlight ruby %}
-    File["/etc/ntp.conf"] -> Service[ntpd]
+    File['/etc/ntp.conf'] -> Service['ntpd']
 {% endhighlight %}
 
 Manage the ntp configuration file before the ntpd service
@@ -520,7 +521,7 @@ You can specify a "notify" relationship by employing the tilde instead of the
 hyphen:
 
 {% highlight ruby %}
-    File["/etc/ntp.conf"] ~> Service[ntpd]
+    File['/etc/ntp.conf'] ~> Service['ntpd']
 {% endhighlight %}
 
 This manages the ntp configuration file before the ntpd service and notifies the
@@ -530,7 +531,7 @@ You can also do relationship chaining, specifying multiple relationships on a
 single line:
 
 {% highlight ruby %}
-    Package[ntp] -> File["/etc/ntp.conf"] -> Service[ntpd]
+    Package['ntp'] -> File['/etc/ntp.conf'] -> Service['ntpd']
 {% endhighlight %}
 
 Here we first manage the ntp package, second manage the ntp configuration file,
@@ -540,7 +541,7 @@ Note that while it's confusing, you don't have to have all of the arrows be the
 same direction:
 
 {% highlight ruby %}
-    File["/etc/ntp.conf"] -> Service[ntpd] <- Package[ntp]
+    File['/etc/ntp.conf'] -> Service['ntpd'] <- Package['ntp']
 {% endhighlight %}
 
 Here the ntpd service requires /etc/ntp.conf and the ntp package.
@@ -557,7 +558,7 @@ You can also specify relationships when resources are declared, in addition to
 the above resource reference examples:
 
 {% highlight ruby %}
-    package { "ntp": } -> file { "/etc/ntp.conf": }
+    package { 'ntp': } -> file { '/etc/ntp.conf': }
 {% endhighlight %}
 
 Here we manage the ntp package before the ntp configuration file.
@@ -566,8 +567,8 @@ But wait! There's more! You can also specify a collection on either side
 of the relationship marker:
 
 {% highlight ruby %}
-    yumrepo { localyumrepo: .... }
-    package { ntp: provider => yum, ... }
+    yumrepo { 'localyumrepo': .... }
+    package { 'ntp': provider => yum, ... }
     Yumrepo <| |> -> Package <| provider == yum |>
 {% endhighlight %}
 
@@ -600,8 +601,8 @@ Here's an example:
 
 {% highlight ruby %}
     node 'www.testing.com' {
-       include common
-       include apache, squid
+      include common
+      include apache, squid
     }
 {% endhighlight %}
 
@@ -614,8 +615,8 @@ configuration by separating each with a comma:
 
 {% highlight ruby %}
     node 'www.testing.com', 'www2.testing.com', 'www3.testing.com' {
-       include common
-       include apache, squid
+      include common
+      include apache, squid
     }
 {% endhighlight %}
 
@@ -630,7 +631,7 @@ listing them individually, one-by-one:
 
 {% highlight ruby %}
     node /^www\d+$/ {
-        include common
+      include common
     }
 {% endhighlight %}
 
@@ -639,7 +640,7 @@ digits.  Here's another example:
 
 {% highlight ruby %}
     node /^(foo|bar)\.testing\.com$/ {
-        include common
+      include common
     }
 {% endhighlight %}
 
@@ -660,7 +661,7 @@ can only inherit from one other node:
 
 {% highlight ruby %}
     node 'www2.testing.com' inherits 'www.testing.com' {
-        include loadbalancer
+      include loadbalancer
     }
 {% endhighlight %}
 
@@ -715,7 +716,7 @@ not single quotes.   Single-quoted strings will not do any variable interpolatio
 To put a quote character or `$` in a double-quoted string where it would
 normally have a special meaning, precede it with an escaping `\`. For an actual `\`, use `\\`.
 
-We recommend using single quotes for all strings that do not require variable interpolation. Use double quotes for those strings that require variable interpolation.
+We recommend using single quotes for all strings that do not require variable interpolation. Use double quotes for those strings that require variable interpolation.  The [Style Guide](./style_guide.html#quoting) also discusses this with examples.
 
 ### Capitalization
 
@@ -723,7 +724,7 @@ Capitalization of resources is used in three major ways:
 
 -   Referencing: when you want to reference an already declared resource, usually for dependency purposes, you have to capitalize the name of the resource, for example
 {% highlight ruby %}
-    `require => File[sshdconfig]`.
+    require => File['sshdconfig']
 {% endhighlight %}
 
 -   Inheritance.  When overwriting the resource settings of a parent class from a subclass, use the uppercase versions of the resource names.  Using the lowercase versions will result in an error.   See the inheritance section above for an example of this.
@@ -753,9 +754,9 @@ aliases would look like this:
 
 {% highlight ruby %}
     host { 'one.example.com':
-        alias  => [ 'satu', 'dua', 'tiga' ],
-        ip     => '192.168.100.1',
-        ensure => present,
+      ensure => present,
+      alias  => [ 'satu', 'dua', 'tiga' ],
+      ip     => '192.168.100.1',
     }
 {% endhighlight %}
 
@@ -767,7 +768,7 @@ resources, the way to do this would be like this:
 
 {% highlight ruby %}
     resource { 'baz':
-        require  => [ Package['foo'], File['bar'] ],
+      require  => [ Package['foo'], File['bar'] ],
     }
 {% endhighlight %}
 
@@ -776,7 +777,7 @@ resource multiple times, like this:
 
 {% highlight ruby %}
     define php::pear() {
-        package { "`php-${name}": ensure => installed }
+      package { "php-${name}": ensure => installed }
     }
 
     php::pear { ['ldap', 'mysql', 'ps', 'snmp', 'sqlite', 'tidy', 'xmlrpc']: }
@@ -786,9 +787,9 @@ Of course, this can be used for native types as well:
 
 {% highlight ruby %}
     file { [ 'foo', 'bar', 'foobar' ]:
-        owner => root,
-        group => root,
-        mode  => 600,
+      owner => 'root',
+      group => 'root',
+      mode  => '0600',
     }
 {% endhighlight %}
 
@@ -805,13 +806,13 @@ The hash keys are strings, but hash values can be any possible RHS values allowe
 It is possible to assign hashes to a variable like so:
 
 {% highlight ruby %}
-    $myhash = { key1 => "myval", key2 => $b }
+    $myhash = { key1 => 'myval', key2 => $b }
 {% endhighlight %}
 
 And to access hash members (recursively) from a variable containing a hash (this also works for arrays too):
 
 {% highlight ruby %}
-    $myhash = { key => { subkey => "b" }}
+    $myhash = { key => { subkey => 'b' }}
     notice($myhash[key][subkey])
 {% endhighlight %}
 
@@ -837,12 +838,12 @@ does not matter in a declarative language.  Doing so will result in an error:
 {% highlight ruby %}
     $user = root
     file { '/etc/passwd':
-        owner => $user,
+      owner => $user,
     }
     $user = bin
     file { '/bin':
-        owner   => $user,
-        recurse => true,
+      owner   => $user,
+      recurse => true,
     }
 {% endhighlight %}
 
@@ -850,8 +851,8 @@ Rather than reassigning variables, instead use the built in conditionals:
 
 {% highlight ruby %}
     $group = $operatingsystem ? {
-        solaris => 'sysadmin',
-        default => 'wheel',
+      solaris => 'sysadmin',
+      default => 'wheel',
     }
 {% endhighlight %}
 
@@ -860,12 +861,12 @@ configuration values:
 
 {% highlight ruby %}
     node a {
-        $setting = 'this'
-        include class_using_setting
+      $setting = 'this'
+      include class_using_setting
     }
     node b {
-        $setting = 'that'
-        include class_using_setting
+      $setting = 'that'
+      include class_using_setting
     }
 {% endhighlight %}
 
@@ -891,12 +892,12 @@ For example:
 {% highlight ruby %}
     $test = 'top'
     class myclass {
-        exec { "/bin/echo $test": logoutput => true }
+      exec { "/bin/echo ${test}": logoutput => true }
     }
 
     class other {
-        $test = 'other'
-        include myclass
+      $test = 'other'
+      include myclass
     }
 
     include other
@@ -915,11 +916,11 @@ For example:
 
 {% highlight ruby %}
     class myclass {
-        $test = 'content'
+      $test = 'content'
     }
 
     class anotherclass {
-        $other = $myclass::test
+      $other = $myclass::test
     }
 {% endhighlight %}
 
@@ -963,7 +964,7 @@ In Puppet 0.24.6 and later, values can be appended to array variables:
     $ssh_users = [ 'myself', 'someone' ]
 
     class test {
-       $ssh_users += ['someone_else']
+      $ssh_users += ['someone_else']
     }
 {% endhighlight %}
 
@@ -1004,11 +1005,11 @@ Here's a simple example of selector use:
 
 {% highlight ruby %}
     file { '/etc/config':
-        owner => $operatingsystem ? {
-            'sunos'   => 'adm',
-            'redhat'  => 'bin',
-            default => undef,
-        },
+      owner => $operatingsystem ? {
+        'sunos'  => 'adm',
+        'redhat' => 'bin',
+        default  => undef,
+      },
     }
 {% endhighlight %}
 
@@ -1021,9 +1022,9 @@ Selectors can also be used in variable assignment:
 
 {% highlight ruby %}
     $owner = $operatingsystem ? {
-        sunos   => 'adm',
-        redhat  => 'bin',
-        default => undef,
+      'sunos'  => 'adm',
+      'redhat' => 'bin',
+      default  => undef,
     }
 {% endhighlight %}
 
@@ -1032,8 +1033,8 @@ expressions:
 
 {% highlight ruby %}
     $owner = $operatingsystem ? {
-        /(redhat|debian)/   => 'bin',
-        default => undef,
+      /(redhat|debian)/ => 'bin',
+      default           => undef,
     }
 {% endhighlight %}
 
@@ -1046,8 +1047,8 @@ limited scope variables (`$0` to `$n`):
 
 {% highlight ruby %}
     $system = $operatingsystem ? {
-        /(redhat|debian)/   => "our system is $1",
-        default => "our system is unknown",
+      /(redhat|debian)/ => "our system is $1",
+      default           => "our system is unknown",
     }
 {% endhighlight %}
 
@@ -1065,9 +1066,9 @@ system:
 
 {% highlight ruby %}
     case $operatingsystem {
-        sunos:   { include solaris } # apply the solaris class
-        redhat:  { include redhat  } # apply the redhat class
-        default: { include generic } # apply the generic class
+      'sunos':  { include solaris } # apply the solaris class
+      'redhat': { include redhat  } # apply the redhat class
+      default:  { include generic } # apply the generic class
     }
 {% endhighlight %}
 
@@ -1076,9 +1077,9 @@ each with a comma:
 
 {% highlight ruby %}
     case $hostname {
-        jack,jill:      { include hill    } # apply the hill class
-        humpty,dumpty:  { include wall    } # apply the wall class
-        default:        { include generic } # apply the generic class
+      'jack','jill':     { include hill    } # apply the hill class
+      'humpty','dumpty': { include wall    } # apply the wall class
+      default:           { include generic } # apply the generic class
     }
 {% endhighlight %}
 
@@ -1090,9 +1091,9 @@ regular expressions:
 
 {% highlight ruby %}
     case $hostname {
-        /^j(ack|ill)$/:   { include hill    } # apply the hill class
-        /^[hd]umpty$/:    { include wall    } # apply the wall class
-        default:          { include generic } # apply the generic class
+      /^j(ack|ill)$/: { include hill    } # apply the hill class
+      /^[hd]umpty$/:  { include wall    } # apply the wall class
+      default:        { include generic } # apply the generic class
     }
 {% endhighlight %}
 
@@ -1106,8 +1107,8 @@ These create limited scope variables `$0` to `$n`:
 
 {% highlight ruby %}
     case $hostname {
-        /^j(ack|ill)$/:   { notice("Welcome $1!") }
-        default:          { notice("Welcome stranger") }
+      /^j(ack|ill)$/: { notice("Welcome $1!") }
+      default:        { notice("Welcome stranger") }
     }
 {% endhighlight %}
 
@@ -1121,9 +1122,9 @@ The `if/else` provides branching options based on the truth value of a variable:
 
 {% highlight ruby %}
     if $variable {
-        file { '/some/file': ensure => present }
+      file { '/some/file': ensure => present }
     } else {
-        file { '/some/other/file': ensure => present }
+      file { '/some/other/file': ensure => present }
     }
 {% endhighlight %}
 
@@ -1132,9 +1133,9 @@ based on the value of an expression:
 
 {% highlight ruby %}
     if $server == 'mongrel' {
-        include mongrel
+      include mongrel
     } else {
-        include nginx
+      include nginx
     }
 {% endhighlight %}
 
@@ -1145,11 +1146,11 @@ From version 2.6.0 and later an `elsif` construct was introduced into the langua
 
 {% highlight ruby %}
     if $server == 'mongrel' {
-        include mongrel
+      include mongrel
     } elsif $server == 'nginx' {
-        include nginx
+      include nginx
     } else {
-        include thin
+      include thin
     }
 {% endhighlight %}
 
@@ -1157,7 +1158,7 @@ Arithmetic expressions are also possible, for example:
 
 {% highlight ruby %}
     if $ram > 1024 {
-        $maxclient = 500
+      $maxclient = 500
     }
 {% endhighlight %}
 
@@ -1170,9 +1171,9 @@ Boolean `and`, `or`, and `not` operators:
 
 {% highlight ruby %}
     if ( $processor_count > 2 ) and (( $ram >= 16 * $gigabyte ) or ( $disksize > 1000 )) {
-        include for_big_irons
+      include for_big_irons
     } else {
-        include for_small_box
+      include for_small_box
     }
 {% endhighlight %}
 
@@ -1189,7 +1190,7 @@ Virtual resources are resources that are not sent to the client unless `realized
 The syntax for a virtual resource is:
 
 {% highlight ruby %}
-    @user { luke: ensure => present }
+    @user { 'luke': ensure => present }
 {% endhighlight %}
 
 The user luke is now defined virtually. To realize that definition,
@@ -1203,7 +1204,7 @@ This can be read as 'the user whose title is luke'.   This is equivalent to usin
 the `realize` function:
 
 {% highlight ruby %}
-    realize User[luke]
+    realize User['luke']
 {% endhighlight %}
 
 Realization could also use other criteria, such as realizing Users that match
@@ -1228,8 +1229,8 @@ between clients:
 
 {% highlight ruby %}
     class ssh {
-    @@sshkey { $hostname: type => dsa, key => $sshdsakey }
-        Sshkey <<| |>>
+      @@sshkey { $hostname: type => dsa, key => $sshdsakey }
+      Sshkey <<| |>>
     }
 {% endhighlight %}
 
@@ -1333,9 +1334,9 @@ expression:
 
 {% highlight ruby %}
     if $variable == 'foo' {
-        include bar
+      include bar
     } else {
-        include foobar
+      include foobar
     }
 {% endhighlight %}
 
@@ -1347,9 +1348,9 @@ operator:
 
 {% highlight ruby %}
     if $variable != 'foo' {
-        $othervariable = 'bar'
+      $othervariable = 'bar'
     } else {
-        $othervariable = 'foobar'
+      $othervariable = 'foobar'
     }
 {% endhighlight %}
 
@@ -1391,7 +1392,7 @@ using `=~` (match) and `!~` (not-match) for example:
 
 {% highlight ruby %}
     if $host =~ /^www(\d+)\./ {
-        notice('Welcome web server #$1')
+      notice('Welcome web server #$1')
     }
 {% endhighlight %}
 
@@ -1421,7 +1422,7 @@ This syntax can be used in any place where an expression is supported:
 
     $value = 'beat generation'
     if 'eat' in $value {
-      notice("on the road")
+      notice('on the road')
     }
 {% endhighlight %}
 
