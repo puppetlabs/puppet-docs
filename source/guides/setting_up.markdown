@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Configuration Guide
+title: Setting Up Puppet
 ---
 
-Configuration Guide
-===================
+Setting Up Puppet
+=================
 
 Once Puppet is installed, learn how to set it up for initial operation.
 
