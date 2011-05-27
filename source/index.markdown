@@ -50,7 +50,6 @@ Get detailed information about config files, APIs, and the Puppet language.
 * [REST API](./guides/rest_api.html) --- reference of api accessible resources
 * [Puppet Language Guide](./guides/language_guide.html) --- all the language details
 * [Puppet Manpages](./man/) --- detailed help for each Puppet application
-* [REST Access Control](./guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 
 ### Generated References
 
@@ -87,6 +86,7 @@ Get Puppet up and running at your site.
 * [Supported Platforms](./guides/platforms.html)
 * [Installing Puppet](./guides/installation.html) --- from packages, source, or gems
 * [Setting Up Puppet](./guides/setting_up.html) --- includes server setup & testing
+* [Configuring Puppet](./guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
 
 ### Tuning and Scaling
 
@@ -125,6 +125,7 @@ Build your own tools and workflows on top of Puppet.
 
 #### Using APIs and Interfaces
 
+* [REST Access Control](./guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](./guides/external_nodes.html) --- specify what your machines do using external data sources
 * [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
 
