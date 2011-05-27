@@ -57,8 +57,9 @@ executable statement.
 Placeholder Text
 ----------------
 
-Surround placeholder text with curly braces and try to word it such that the
-reader won't try to enter it verbatim. e.g.:
+Surround placeholder text with either curly braces or angle brackets, depending
+on the context. When possible, try to word placeholder text such that the reader
+won't try to enter it verbatim. e.g.:
 "Puppet file server URIs are formatted as
 `puppet://{server hostname (optional)}/{mount point}/{remainder of path}`."
 
