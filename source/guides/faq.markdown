@@ -345,7 +345,8 @@ manifests:
 environment.
 * `$clientcert` --- Provided by the agent; contains the agent node's certname.
 * `$clientversion` --- Provided by the agent; contains the current version of puppet agent. 
-* `$module_name` --- Provided by the parser; contains the name of the module in which the current manifest is located.
+* `$module_name` --- Provided by the parser; contains the name of the module that contains the current resource's definition. 
+* `$caller_module_name` --- Provided by the parser; contains the name of the module that contains the current resource's declaration. 
 * `$servername` --- Provided by the puppet master; contains the master server's
 fully-qualified domain name. (Note that this information is gathered from the
 master server by Facter, rather than read from the config files; even if the
