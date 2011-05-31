@@ -753,8 +753,3 @@ For defined resources:
 
 This will allow documentation to be automatically extracted with the puppet doc
 tool.
-
-## The extlookup() Function
-
-Modules should avoid the use of extlookup() in favor of ENCs or other
-alternatives.
