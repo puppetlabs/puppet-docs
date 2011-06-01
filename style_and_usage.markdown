@@ -35,12 +35,7 @@ downcased; the principle here is that when an utterance is both a proper name
 and part of an executable statement, we should treat it more like code than like
 a name.
     * However, tool names obey sentence case (e.g. "Puppet doc is your new
-    friend."), since the readability implications of capitalization become more
-    important at the sentence level.
-    * Tool names _do not_ obey title case when used in headers. This is
-    inconsistent with the above re: sentence case, but a: headers don't work the
-    same way body text does, and b: this is one of those cases where it was
-    going to look slightly wrong no matter what we chose.
+    friend.") and title case.
 3. When the name of a tool is used as an adjectival noun or is referring to a
 piece of hardware by synecdoche (e.g. "your puppet master server" or "your
 puppet master" or "managing ten puppet agents"), follow rule 2.
