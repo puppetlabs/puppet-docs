@@ -6,156 +6,92 @@ title: Environments
 Environments
 ============
 
-Manage development, stage, and production differences.
+Manage your module releases by dividing your site into environments.
 
 * * *
 
-Using Multiple Environments
----------------------------
+[config]: ./configuring.html
+[auth]: ./rest_auth_conf.html
 
-As of 0.24.0, Puppet has support for multiple environments, along
-the same lines as
-[Ruby on Rails](http://wiki.rubyonrails.org/rails/pages/Environments).
-The idea behind these environments is to provide an easy mechanism
-for managing machines at different levels of SLA --- some machines
-need to be up constantly and thus cannot tolerate disruptions and
-usually use older software, while other machines are more up to
-date and are used for testing upgrades to more important machines.
+Slice and Dice
+--------------
 
-Puppet allows you to define whatever environments you want, but it
-is recommended that you stick to production, testing, and
-development for community consistency.
+Puppet lets you slice your site up into an arbitrary number of "environments" and serve a different set of modules to each one. This is usually used to manage releases of Puppet modules by testing them against scratch nodes before rolling them out completely, but it introduces a lot of other possibilities, like separating a DMZ environment, splitting coding duties among multiple sysadmins, or dividing the site by hardware type. 
 
-Puppet defaults to not using an environment, and if you do not set
-one on either the client or server, then it will behave as though
-environments do not exist at all, so you can safely ignore this
-feature if you do not need it.
+What an Environment Is
+----------------------
 
-**Please note:** Not using environments doesn't mean the client
-doesn't have an environment set. The client's environment is per
-default set to production and will only be changed by changing the
-client's configuration or specifying the environment on the command line.
-You can't set it to a default value on the server side. For a more
-detailed discussion, have a look at:
-[environment default setting](http://groups.google.com/group/puppet-users/browse_thread/thread/f97bfad1e46c83c4?hl=en#) thread on the mailing list.
+Every agent node has an environment, and the puppet master gets informed about it whenever that node makes a request. (If you don't specify an environment, the agent has the default "production" environment.) 
 
-Goal of Environments
---------------------
+The puppet master can then use that environment several ways: 
 
-The main goal of a set-up split by environments could be that
-puppet can have different sources for modules and manifests for
-different environments on the same Puppet master.
+* If the master's [`puppet.conf`][config] file has a `[config block]` for this agent's environment, those settings will override the master's normal settings when serving that agent. 
+* If the values of any settings in `puppet.conf` reference the `$environment` variable (like `modulepath = $confdir/environments/$environment/modules:$confdir/modules`, for example), the agent's environment will be interpolated into them.
+* Depending on how [`auth.conf`][auth] is configured, different requests might be allowed or denied. 
+* The agent's environment will also be accessible in Puppet manifests as the top-scope `$environment` variable. 
 
-For example, you could have a stable and a testing branch of your
-manifests and modules. You could then test changes to your
-configuration in your testing environment without impacting nodes
-in your production environment.
+In short: modules and manifests can already do different things for different nodes, but environments let the master tweak its own configuration on the fly, and offer a way to completely swap out the set of available modules for certain nodes. 
 
-You could also use environments to deploy infrastructure to
-different segments of your network, for example a dmz environment
-and a core environment. You could also use environments to specify
-different physical locations,
+Caveats
+-------
 
-Using Environments on the Puppet Master
----------------------------------------
+Before you start, be aware that environments have some limitations, most of which are known bugs or vagaries of implementation rather than design choices.
 
-The point of the environment is to choose which manifests,
-templates, and files are sent to the client. Thus, Puppet must be
-configured to provide environment-specific sources for this
-information.
+* Puppet will only read the [`modulepath`](/references/stable/configuration.html#modulepath), [`manifest`](/references/stable/configuration.html#manifest), [`manifestdir`](/references/stable/configuration.html#manifestdir), and [`templatedir`](/references/stable/configuration.html#templatedir) settings from environment config blocks; other settings in any of these blocks will be ignored in favor of settings in the `[master]` or `[main]` blocks. ([Issue 7497](http://projects.puppetlabs.com/issues/7497))
+* File serving only works well with environments if you're only serving files from modules; if you've set up custom mount points in `fileserver.conf`, they won't work in your custom environments. (Though hopefully you're only serving files from modules regardless.)
+* You can set an agent node's environment from an external node classifier like Puppet Dashboard, but it isn't well-supported: currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. ([Issue 3910](http://projects.puppetlabs.com/issues/3910))
+* Serving custom types and providers from an environment-specific modulepath sometimes fails. ([Issue 4409](http://projects.puppetlabs.com/issues/4409))
 
-Puppet environments are implemented rather simply: You add
-per-environment sections to the server's puppet.conf configuration
-file, choosing different configuration sources for each
-environment. These per-environment sections are then used in
-preference to the main sections. For instance:
+Configuring Environments on the Puppet Master
+---------------------------------------------
 
-    [main]
-        manifest   = /usr/share/puppet/site.pp
-        modulepath = /usr/share/puppet/modules
+### In `puppet.conf`
 
-    [development]
-        manifest   = /usr/share/puppet/development/site.pp
-        modulepath = /usr/share/puppet/development/modules
+As mentioned above, `puppet.conf` lets you use `$environment` as a variable and create config blocks for environments.
 
-In this case, any clients in the development environment will use
-the `site.pp` file located in the directory
-`/usr/share/puppet/development` and Puppet would search for any
-modules under the `/usr/share/puppet/development/modules` directory.
+    # /etc/puppet/puppet.conf
+    [master]
+      modulepath = $confdir/environments/$environment/modules:$confdir/modules
+      manifest = $confdir/manifests/unknown_environment.pp
+    [production]
+      manifest = $confdir/manifests/site.pp
+    [dev]
+      manifest = $confdir/manifests/site.pp
 
-Running with any other environment or without an environment would
-default to the `site.pp` file and directory specified in the `manifest`
-and `modulepath` values in the `[main]` configuration section.
+In the `[master]` block, this example dynamically sets the modulepath so Puppet will check a per-environment folder for a module before serving it from the main set. Note that this won't complain about missing directories, so you can create the per-environment folders lazily as you need them. 
 
-Only certain settings make sense to be configured
-per-environment, and all of those settings revolve around
-specifying what files to use to compile a client's configuration.
-Those settings are:
+The example also logs errors when a non-existent environment is requested by redirecting to a different site manifest; this can keep typos or forgetfulness from silently causing odd configurations. 
 
--   **modulepath**: Where to look for modules. It's best to have a
-    standard module directory that all environments share and then a
-    per-environment directory where custom modules can be stored.
--   **templatedir**: Where to look for templates. The modulepath
-    should be preferred to this setting, but it allows you to have
-    different versions of a given template in each environment.
--   **manifest**: Which file to use as the main entry point for the
-    configuration. The Puppet parser looks for other files to compile
-    in the same directory as this manifest, so this setting also
-    determines where other per-environment Puppet manifests should be
-    stored. With a separate module path, it should be easy to use the
-    same simple manifest in all environments.
+### In `auth.conf`
 
-Note that using multiple environments works much better if you rely
-largely on modules, and you'll find it easier to migrate changes
-between environments by encapsulating related files into a module.
-It is recommended that you switch as much as possible to modules if
-you plan on using environments.
+    path /
+    auth any
+    environment appdev
+    allow localhost, customapp.puppetlabs.lan
 
-Additionally, the file server uses an environment-specific module
-path; if you do your file serving from modules, instead of
-separately mounted directories, your clients will be able to get
-environment-specific files.
+If you specify an environment in an `auth.conf` ACL, it will only apply to requests in that environment. This can be useful for developing new applications that integrate with Puppet; the example above will leave normal requests functioning normally, but allow an app server to access everything via the REST API. 
 
-Finally, the current environment is also available as the variable
-`$environment` within your manifests, so you can use the same
-manifests everywhere and behave differently internally depending on
-the environment.
+### In Manifests
 
-Setting The Client's Environment
---------------------------------
+The `$environment` variable should only rarely be necessary, but it's there if you need it. 
 
-To specify which environment the Puppet client uses you can specify
-a value for the `environment` configuration variable in the client's
-`puppet.conf` file:
+Configuring Environments for Agent Nodes
+----------------------------------------
 
-    [puppetd]
-        environment = development
+To set an environment agent-side, just specify the `environment` setting in either the `[agent]` or `[main]` block of `puppet.conf`. 
 
-This will inform the server which environment the client is in,
-here `development`.
+    [agent]
+      environment = dev
 
-You can also specify this on the command line:
+As with any config setting, you can also use a command line option: 
 
-    # puppetd --environment=development
+    # puppet agent --environment dev
 
-Alternatively, rather than specifying this statically in the
-configuration file, you could create a custom fact that set the
-client environment based upon some other client attribute or an
-external data source.
+You can also set an environment via your ENC by including an `environment: dev` (or similar) line in the yaml file, but see the caveat above before doing this. 
 
-The preferred way of setting the environment is to use an external
-node configuration tool; these tools can directly specify a node's
-environment and are generally much better at specifying node
-information than Puppet is.
+Eventually, server-side environments will work properly, but if you need to work around this today, you can do so by managing puppet.conf on agent nodes with a [template](./templating.html). This can take multiple runs to reach the desired configuration for the first time, but it will work. 
 
-Puppet Search Path
-------------------
+Compatibility Notes
+-------------------
 
-When determining what configuration to apply, Puppet uses a simple
-search path for picking which value to use:
-
--   Values specified on the command line
--   Values specified in an environment-specific section
--   Values specified in an executable-specific section
--   Values specified in the main section
-
+Environments were introduced in Puppet 0.24.0.
