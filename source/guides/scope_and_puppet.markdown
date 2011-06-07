@@ -81,10 +81,11 @@ These rules seem simple enough, so an example is in order:
     }
     
     # modules/postfix/manifests/init.pp
+    # (Template stored in modules/postfix/templates/main.cf.erb)
     class postfix {
          package {"postfix": ensure => installed}
          file {"/etc/postfix/main.cf":
-              content => template("puppet:///files/main.cf.erb")
+              content => template("postfix/main.cf.erb")
          }
     
     }
@@ -93,8 +94,8 @@ These rules seem simple enough, so an example is in order:
     class postfix::custom inherits postfix {
          File ["/etc/postfix/main.cf"] {
               content => undef,
-              source => ["puppet:///files/$hostname/main.cf",
-                               "puppet:///files/$nodetype/main.cf" ]
+              source => [ "puppet:///files/$hostname/main.cf",
+                          "puppet:///files/$nodetype/main.cf" ]
          }
     
     } 
