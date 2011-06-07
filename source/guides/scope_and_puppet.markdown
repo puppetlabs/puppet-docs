@@ -94,8 +94,8 @@ These rules seem simple enough, so an example is in order:
     class postfix::custom inherits postfix {
          File ["/etc/postfix/main.cf"] {
               content => undef,
-              source => ["puppet:///files/$hostname/main.cf",
-                               "puppet:///files/$nodetype/main.cf" ]
+              source => [ "puppet:///files/$hostname/main.cf",
+                          "puppet:///files/$nodetype/main.cf" ]
          }
     
     } 
