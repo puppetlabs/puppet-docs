@@ -994,7 +994,7 @@ Case statements do not return a value.   Selectors do.  That is the primary diff
 
 #### Selectors
 
-If you're familiar with programming terms, The selector syntax works like a multi-valued trinary operator, similar to C's `foo = bar ? 1 : 0` operator where `foo` will be set to `1` if `bar` evaluates to true and `0` if `bar` is false.
+If you're familiar with programming terms, The selector syntax works like a multi-valued ternary operator, similar to C's `foo = bar ? 1 : 0` operator where `foo` will be set to `1` if `bar` evaluates to true and `0` if `bar` is false.
 
 Selectors are useful to specify a resource attribute or assign a
 variable based on a fact or another variable. In addition to any
