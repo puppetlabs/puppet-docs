@@ -56,11 +56,11 @@ Well, hey: you have a block of code hanging around from last chapter's exercises
       case $operatingsystem {
         centos, redhat: { 
           $service_name = 'ntpd'
-          $conf_file = 'ntp.conf.el'
+          $conf_file    = 'ntp.conf.el'
         }
         debian, ubuntu: { 
           $service_name = 'ntp'
-          $conf_file = 'ntp.conf.debian'
+          $conf_file    = 'ntp.conf.debian'
         }
       }
       
@@ -69,17 +69,17 @@ Well, hey: you have a block of code hanging around from last chapter's exercises
       }
       
       service { 'ntp':
-        name => $service_name,
-        ensure => running,
-        enable => true,
+        name      => $service_name,
+        ensure    => running,
+        enable    => true,
         subscribe => File['ntp.conf'],
       }
       
       file { 'ntp.conf':
-        path => '/etc/ntp.conf',
-        ensure => file,
+        path    => '/etc/ntp.conf',
+        ensure  => file,
         require => Package['ntp'],
-        source => "/root/learning-manifests/${conf_file}",
+        source  => "/root/learning-manifests/${conf_file}",
       }
     }
 {% endhighlight %}
@@ -112,11 +112,11 @@ You actually already know the syntax to do that. A class definition just enables
       case $operatingsystem {
         centos, redhat: { 
           $service_name = 'ntpd'
-          $conf_file = 'ntp.conf.el'
+          $conf_file    = 'ntp.conf.el'
         }
         debian, ubuntu: { 
           $service_name = 'ntp'
-          $conf_file = 'ntp.conf.debian'
+          $conf_file    = 'ntp.conf.debian'
         }
       }
       
@@ -125,17 +125,17 @@ You actually already know the syntax to do that. A class definition just enables
       }
       
       service { 'ntp':
-        name => $service_name,
-        ensure => running,
-        enable => true,
+        name      => $service_name,
+        ensure    => running,
+        enable    => true,
         subscribe => File['ntp.conf'],
       }
       
       file { 'ntp.conf':
-        path => '/etc/ntp.conf',
-        ensure => file,
+        path    => '/etc/ntp.conf',
+        ensure  => file,
         require => Package['ntp'],
-        source => "/root/learning-manifests/${conf_file}",
+        source  => "/root/learning-manifests/${conf_file}",
       }
     }
     
@@ -198,11 +198,11 @@ So anyway, modules are re-usable bundles of code and data. Puppet autoloads mani
       case $operatingsystem {
         centos, redhat: { 
           $service_name = 'ntpd'
-          $conf_file = 'ntp.conf.el'
+          $conf_file    = 'ntp.conf.el'
         }
         debian, ubuntu: { 
           $service_name = 'ntp'
-          $conf_file = 'ntp.conf.debian'
+          $conf_file    = 'ntp.conf.debian'
         }
       }
       
@@ -211,16 +211,17 @@ So anyway, modules are re-usable bundles of code and data. Puppet autoloads mani
       }
       
       service { 'ntp':
-        name => $service_name,
-        ensure => running,
-        enable => true,
+        name      => $service_name,
+        ensure    => running,
+        enable    => true,
         subscribe => File['ntp.conf'],
       }
       
-      file { '/etc/ntp.conf':
-        ensure => file,
+      file { 'ntp.conf':
+        path    => '/etc/ntp.conf'
+        ensure  => file,
         require => Package['ntp'],
-        source => "/root/learning-manifests/${conf_file}",
+        source  => "/root/learning-manifests/${conf_file}",
       }
     }
     
@@ -242,11 +243,12 @@ But we're not quite done yet. See how the manifest is referring to some files st
 
 {% highlight ruby %}
     # ...
-      file { '/etc/ntp.conf':
-        ensure => file,
-        require => Package['ntp'],
+      file { 'ntp.conf':
+        path     => '/etc/ntp.conf'
+        ensure   => file,
+        require  => Package['ntp'],
         # source => "/root/learning-manifests/${conf_file}",
-        source => "puppet:///modules/ntp/${conf_file}",
+        source   => "puppet:///modules/ntp/${conf_file}",
       }
     }
 {% endhighlight %}
