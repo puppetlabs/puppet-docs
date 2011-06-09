@@ -91,11 +91,13 @@ The `[main]` config block is the least specific. Settings here are always effect
 
 These three blocks correspond to Puppet's run modes. Settings in `[agent]` will only be used by puppet agent, settings in `[master]` will be used by puppet master and puppet cert, and settings in `[user]` will be used by puppet apply. The Faces subcommands introduced in Puppet 2.7 default to the `user` run mode, but their mode can be changed at run time with the `--mode` option. Note that not every setting makes sense for every run mode, but specifying a setting in a block where it is irrelevant has no observable effect.
 
-Prior to Puppet 2.6, these blocks were called `[puppetd]`, `[puppetmasterd]`, and `[puppet]`, respectively. Although these names still work, their use is deprecated. 
+##### Notes on Puppet 0.25.5 and Older
+
+Prior to Puppet 2.6, blocks were assigned by application name rather than by run mode; e.g. `[puppetd]`, `[puppetmasterd]`, `[puppet]`, and `[puppetca]`. Although these names still work, their use is deprecated, and they interact poorly with the modern run mode blocks. If you have an older config file and are using Puppet 2.6 or later, you should consider changing `[puppetd]` to `[agent]`, `[puppet]` to `[user]`, and combining `[puppetmasterd]` and `[puppetca]` into `[master]`.
 
 #### Per-environment Blocks
 
-Blocks named for [environments][] are the most specific, and can override settings in the run mode blocks. 
+Blocks named for [environments][] are the most specific, and can override settings in the run mode blocks. Only a small number of settings (specifically: `modulepath, manifest, manifestdir,` and `templatedir`) can be set in a per-environment block; any other settings will be ignored and read from a run mode or main block.
 
 Like with the `$environment` variable, puppet master treats environments differently from the other run modes: instead of using the block corresponding to its own `environment` setting, it will use the block corresponding to each agent node's environment. The puppet master's own environment setting is effectively inert. 
 
