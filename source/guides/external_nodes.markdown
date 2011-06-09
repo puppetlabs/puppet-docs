@@ -6,88 +6,49 @@ title: External Nodes
 External Nodes
 ==============
 
-Do you have an external database (or LDAP? or File?) that lists which of your machines
-should fulfill certain functions?   Puppet's external nodes feature helps you tie that
-data into Puppet, so you have less data to enter and manage.
+Traditionally, puppet master uses the `node` definitions in the main site manifest (`site.pp`) to choose which classes to apply to a node. But you can also classify nodes based on a pre-existing external data source, like an LDAP database or a set of flat files describing your infrastructure. Depending on the data you've collected, building an external node classifier (ENC) can be one of the easiest and most high-value ways to extend Puppet. 
 
-* * *
+* * * 
 
-What's an External Node?
-------------------------
+What Is an ENC?
+---------------
 
-External nodes allow you to store your node definitions in an
-external data source. For example, a database or other similar
-repository. When the Puppet client connects the master queries the
-external node script and asks "Do you have a host called
-insertnamehere" by passing the name of the host as the first
-argument to the external nodes script.
+An external node classifier is an executable that can be called by puppet master; it doesn't have to be written in Ruby. Its only argument is the name of the node to be classified, and it returns a YAML document describing the node. 
 
-This allows you to:
+Inside the ENC, you can reference any data source you want, including some of Puppet's own data sources, but from Puppet's perspective, it just puts in a node name and gets back a hash of information. 
 
-1.  to avoid defining each node in a Puppet manifest and allowing a
-    greater flexibility of maintenance.
-2.  potentially query external data sources (such as LDAP or asset
-    management stores) that already know about your hosts meaning you
-    only maintain said information in one place.
+Considerations and Limitations
+------------------------------
 
-A subtle advantage of using a external nodes tool is that
-parameters assigned to nodes in a an external node tool are set a
-top scope not in the scope created by the node assignment in
-language. This leaves you free to set default parameters for a base
-node assignment and define whatever inheritance model you wish for
-parameters set in the children. In the end, Puppet accepts a list
-of parameters for the node and those parameters when set using an
-External Node tool are set at top scope.
+* The YAML returned by an ENC isn't an exact equivalent of a node definition in `site.pp` --- it can't declare individual resources, declare relationships, or do conditional logic. The only things an ENC can do are **declare classes, assign top-scope variables, and set an environment.** This means an ENC is most effective if you've done a good job of separating your configurations out into classes and modules.
+* Although ENCs can set an [environment](./environment.html) for a node, this is not very well supported --- currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. (See [issue 3910](http://projects.puppetlabs.com/issues/3910) for more details.) We hope to make server-side environments work well in the future, but if you need them right now, the workaround is to use Puppet to manage `puppet.conf` on the agent and set the environment for the next run based on what the ENC thinks it should be.
+* You can optionally combine an ENC with regular node definitions in `site.pp`. This works on the "I hope you brought enough for everybody" rule: things will work correctly if you have an ENC and no node definitions, but if there's at least one node definition, you need to have a default node defined or account for every node with a definition; Puppet will fail compilation with an error if a definition for a given node can't be found. 
+* Even if you aren't using node definitions, you can still use site.pp to do things like set global resource defaults. 
+* If an ENC doesn't produce any output and if the node name resembles a hostname, Puppet may call it again with a shortened version of the node name, successively removing higher-level domains and finally resorting to "default". _(This has not been tested recently, and may need updating.)_ To suppress this behavior, turn on puppet master's `strict_hostname_checking` setting.
 
-How to use External Nodes
--------------------------
 
-To use an external node classifier, in addition to or rather than
-having to define a node entry for each of your hosts, you need to
-create a script that can take a certname as an argument and return
-information about that host for puppet to use.
+Connecting an ENC
+-----------------
 
-NOTE: You can use node entries in your manifests together with
-external nodes. You cannot however use external nodes and LDAP
-nodes together. You must use one of the two types.
+To tell puppet master to use an ENC, you need to set two [configuration](./configuring.html) options: `node_terminus` has to be set to "exec", and `external_nodes` should have the path to the executable. 
 
-For external nodes to function, you must either have no nodes defined in your manifests, or you'll need every node to match a node definition (which can be easily accomplished by setting a default node). In other words, there must be either no manifest nodes or enough for everyone. 
+    [master]
+      node_terminus = exec
+      external_nodes = /usr/local/bin/puppet_node_classifier
 
-Although the certname is the only information that is passed directly to the ENC, you can also access fact values in your node
-classifier.  In Puppet version 2.6.7 or later, you should query the [inventory service](./inventory_service.html). Prior to 2.6.7, you can read the $vardir/yaml/facts/{node certname}.yaml file, which is populated with fact values before the ENC is called.
 
-Limitations of External Nodes
------------------------------
+ENC Output Format
+-----------------
 
-External nodes can't specify resources of any kind - they can only
-specify class membership, environments and attributes. Those
-classes can be in hierarchies however, so inheritance is available.
+There have been three versions of the ENC output format. 
 
-Configuring puppetmasterd
--------------------------
+### Puppet 2.6.5 and Higher
 
-First, configure your puppetmasterd to use an external nodes
-script in your /etc/puppet/puppet.conf:
+ENCs MUST return either a [YAML](http://www.yaml.org) hash or nothing. This hash MAY contain `classes`, `parameters`, and `environment` keys, and MUST contain at least either `classes` or `parameters`. ENCs SHOULD exit with an exit code of 0 when functioning normally, and MAY exit with a non-zero exit code if you wish puppet master to behave as though the requested node was not found. 
 
-    [main]
-    external_nodes = /usr/local/bin/puppet_node_classifier
-    node_terminus = exec
+#### Classes
 
-There are two different versions of External Node support, the
-format of the output required from the script changed drastically
-(and got a lot better) in version 0.23. In both versions, after
-outputting the information about the node, you should exit with
-code 0 to indicate success, if you want a node to not be
-recognized, and to be treated as though it was not included in the
-configuration, your script should exit with a non-zero exit code.
-
-External node scripts for version 0.23 and later
-------------------------------------------------
-
-Starting with version 0.23, the script must produce
-[YAML](http://www.yaml.org/) output of a hash. This hash may contain the keys `classes`, `parameters`, and `environment`, and must contain at least either `classes` or `parameters`.
-
-The value of the `classes` key can be either an array of class names or a hash whose keys are class names. That is, the following are equivalent:
+If present, the value of `classes` MUST be either an array of class names or a hash whose keys are class names. That is, the following are equivalent:
 
     classes:
       - common
@@ -101,7 +62,7 @@ The value of the `classes` key can be either an array of class names or a hash w
       dns:
       ntp:
 
-When using the hash key syntax, standard classes have empty objects for their hash values. The value for a parameterized class must be a hash whose keys and values represent the attributes and values you would use when declaring the class. That is:
+Parameterized classes cannot be used with the array syntax. When using the hash key syntax, the value for a parameterized classe SHOULD be a hash of the class's attributes and values. Each value MAY be a string, number, array, or hash. Non-parameterized classes MAY have empty values.
 
     classes:
         common:
@@ -113,71 +74,62 @@ When using the hash key syntax, standard classes have empty objects for their ha
                 - deb localrepo.magpie.lan/ubuntu lucid production
                 - deb localrepo.magpie.lan/ubuntu lucid vendor
 
-Parameterized classes cannot be used with the array syntax for the classes key.
+#### Parameters
 
-The value of the `parameters` key is a hash of variables to set at top scope.
+If present, the value of `parameters` key MUST be a hash of valid variable names and associated values; these will be exposed to the compiler as top scope variables. Each value MAY be a string, number, array, or hash. 
 
-The value of the `environment` key is a string representing the master's preferred environment for this agent node. The interaction between agent-specified and master-specified environments is currently under active design consideration.
+    parameters: 
+        ntp_servers:
+            - 0.pool.ntp.org
+            - ntp.puppetlabs.lan
+        mail_server: mail.puppetlabs.lan
+        iburst: true
+        
 
-If your script doesn't produce
-any output, it may be called again with a different hostname, in
-testing with an unspecified version of Puppet, the script would be called up to three times, first with
-hostname.example.com as an argument, then just with hostname, and
-finally with default. It will only be called with the shorter
-hostname or with default if the earlier run didn't produce any
-output:
+#### Environment
 
-    #!/bin/sh
-    # Super-simple external_node script for versions 0.23 and later
-    cat <<"END"
-    ---
-    classes:
-      - common
-      - puppet
-      - dns
-      - ntp
+If present, the value of `environment` MUST be a string representing the desired environment for this node. As noted above, ENC-set environments are not currently reliable, although this can be worked around by managing `puppet.conf` as a resource. 
+
     environment: production
-    parameters:
-      puppet_server: puppet.example.com
-      dns_server: ns.example.com
-      mail_server: mail.example.com
-    END
-    exit 0
 
-This example will produce results basically equivalent to this node
-entry:
+#### Complete Example
 
-    node default {
-        $puppet_server = 'puppet.example.com'
-        $dns_server = 'ns.example.com'
-        $mail_server = 'mail.example.com'
-        include common, puppet, dns, ntp
-    }
+    classes:
+        common:
+        puppet:
+        ntp:
+            ntpserver: 0.pool.ntp.org
+        aptsetup:
+            additional_apt_repos:
+                - deb localrepo.magpie.lan/ubuntu lucid production
+                - deb localrepo.magpie.lan/ubuntu lucid vendor
+    parameters: 
+        ntp_servers:
+            - 0.pool.ntp.org
+            - ntp.puppetlabs.lan
+        mail_server: mail.puppetlabs.lan
+        iburst: true
+    environment: production
 
-The resulting node will also be located in the "production" environment.
+### Puppet 0.23.0 through 2.6.4
 
-The script should exit with code 0 after
-producing the desired output. Exit with a non-zero exit code if you
-want the node to be treated as though it was not found in the
-configuration.
+As above, with the following exception: 
 
-External node scripts for versions before 0.23
-----------------------------------------------
+#### Classes
 
-Before 0.23, the script had to output two lines: a
-parent node, and a list of classes.
+If present, the value of `classes` MUST be an array of class names. Parameterized classes cannot be used with an ENC. 
 
-    #!/bin/sh
-    # Super-simple external_node script for versions of puppet prior to 0.23
-    echo "basenode"
-    echo "common puppet dns ntp"
-    exit 0
+### Puppet 0.22.4 and Lower
 
-This sample script is essentially the same as this node
-definition:
+ENCs MUST return two lines of text, separated by a newline (LF). The first line MUST be the name of a parent node defined in the main site manifest. The second line MUST be a space-separated list of classes. ENCs MUST exit with exit code 0; Puppet's behavior when faced with a non-zero ENC exit code is undefined. 
 
-    node default inherits basenode {
-      include common, puppet, dns, ntp
-    }
+#### Complete example
 
-ENC scripts for versions prior to 0.23 should also exit with code 0 after producing the desired output. 
+    basenode
+    common puppet dns ntp
+
+Tricks, Notes, and Further Reading
+----------------------------------
+
+* Although only the node name is directly passed to an ENC, it can make decisions based on other facts about the node by querying the [inventory service](./inventory_service.html) REST API or using the puppet facts subcommand shipped with Puppet 2.7. 
+* Puppet's "exec" `node_terminus` is just one way for Puppet to build node objects, and it's optimized for flexibility and for the simplicity of its API. There are situations where it can make more sense to design a native node terminus instead of an ENC, one example being the "ldap" node terminus that ships with Puppet. See [the LDAP nodes documentation on the wiki](http://projects.puppetlabs.com/projects/puppet/wiki/LDAP_Nodes) for more info. 

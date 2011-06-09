@@ -38,8 +38,8 @@ Caveats
 Before you start, be aware that environments have some limitations, most of which are known bugs or vagaries of implementation rather than design choices.
 
 * Puppet will only read the [`modulepath`](/references/stable/configuration.html#modulepath), [`manifest`](/references/stable/configuration.html#manifest), [`manifestdir`](/references/stable/configuration.html#manifestdir), and [`templatedir`](/references/stable/configuration.html#templatedir) settings from environment config blocks; other settings in any of these blocks will be ignored in favor of settings in the `[master]` or `[main]` blocks. ([Issue 7497](http://projects.puppetlabs.com/issues/7497))
-* File serving only works well with environments if you're only serving files from modules; if you've set up custom mount points in `fileserver.conf`, they won't work in your custom environments. (Though hopefully you're only serving files from modules regardless.)
-* You can set an agent node's environment from an external node classifier like Puppet Dashboard, but it isn't well-supported: currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. ([Issue 3910](http://projects.puppetlabs.com/issues/3910))
+* File serving only works well with environments if you're only serving files from modules; if you've set up custom mount points in `fileserver.conf`, they won't work in your custom environments. (Though hopefully you're only serving files from modules anyway.)
+* You can set an agent node's environment from an [external node classifier](./external_nodes.html) like Puppet Dashboard, but it isn't well-supported: currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. ([Issue 3910](http://projects.puppetlabs.com/issues/3910)) For environments to work reliably, they have to be specified in the agent's configuration. 
 * Serving custom types and providers from an environment-specific modulepath sometimes fails. ([Issue 4409](http://projects.puppetlabs.com/issues/4409))
 
 Configuring Environments on the Puppet Master
@@ -60,7 +60,7 @@ As mentioned above, `puppet.conf` lets you use `$environment` as a variable and 
 
 In the `[master]` block, this example dynamically sets the modulepath so Puppet will check a per-environment folder for a module before serving it from the main set. Note that this won't complain about missing directories, so you can create the per-environment folders lazily as you need them. 
 
-The example also logs errors when a non-existent environment is requested by redirecting to a different site manifest; this can keep typos or forgetfulness from silently causing odd configurations. 
+The example also redirects requests for a non-existent environment to a different site manifest, which will log an error and fail compilation; this can keep typos or forgetfulness from silently causing odd configurations. 
 
 ### In `auth.conf`
 
@@ -69,7 +69,7 @@ The example also logs errors when a non-existent environment is requested by red
     environment appdev
     allow localhost, customapp.puppetlabs.lan
 
-If you specify an environment in an `auth.conf` ACL, it will only apply to requests in that environment. This can be useful for developing new applications that integrate with Puppet; the example above will leave normal requests functioning normally, but allow an app server to access everything via the REST API. 
+If you specify an environment in an [`auth.conf`][auth] ACL, it will only apply to requests in that environment. This can be useful for developing new applications that integrate with Puppet; the example above will leave normal requests functioning normally, but allow an app server to access everything via the REST API. 
 
 ### In Manifests
 
@@ -87,7 +87,7 @@ As with any config setting, you can also use a command line option:
 
     # puppet agent --environment dev
 
-You can also set an environment via your ENC by including an `environment: dev` (or similar) line in the yaml file, but see the caveat above before doing this. 
+You can also set an environment via your ENC by including an `environment: dev` (or similar) line in the yaml it returns, but see [the caveat above](#caveats) before doing this. 
 
 Eventually, server-side environments will work properly, but if you need to work around this today, you can do so by managing puppet.conf on agent nodes with a [template](./templating.html). This can take multiple runs to reach the desired configuration for the first time, but it will work. 
 
