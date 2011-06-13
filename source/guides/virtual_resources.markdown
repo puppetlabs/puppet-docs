@@ -63,10 +63,12 @@ How to Realize Resources
 ------------------------
 
 There are two ways to mark a virtual resource so that it gets sent
-to the client: You can use a special syntax called a collection, or
-you can use the simple function realize. Collections provide a
-simple syntax for marking virtual objects as real, such that they
-should be sent to the client. Collections require the type of
+to the agent: You can use a special syntax called a **collection,** or
+you can use the **realize** function.
+
+Collections provide a
+simple syntax (sometimes referred to as the "spaceship" operator) for marking virtual objects as real, such that they
+should be sent to the agent. Collections require the type of
 resource you are collecting and zero or more attribute comparisons
 to specifically select resources. For instance, to find our
 mythical user, we would use:
@@ -121,6 +123,8 @@ With the above definitions, neither of the msg resources will be
 applied to a node unless it realizes them, e.g.:
 
     realize( Msg[test1], Msg[test2] )
+    
+Remember that when referencing an instance of a namespaced defined type, or when specifying such a defined type for the collection syntax, you have to capitalize all segments of the type's name (e.g. `Apache::Vhost['wordpress']` or `Apache::Vhost <| |>`).
 
 Keep in mind that resources inside virtualized define-based
 resources must have unique names. The following example will

@@ -471,6 +471,7 @@ Any metaparameters used when a defined resource is declared are also made availa
 The above is perhaps not a perfect example, as most likely we would
 know that subversion was always required for svn checkouts, but it illustrates how `require` and other metaparameters can be used in defined types.
 
+Defined resource types can have namespace separators (`::`) in their names, just like classes. When making a resource reference (e.g. `File['/etc/motd']`) to an instance of a defined type, you must capitalize all segments of the type's name (e.g. `Apache::Vhost['wordpress']`). 
 
 #### Classes vs. Defined Resource Types
 
@@ -577,7 +578,9 @@ using the yum provider.
 
 This, finally, provides easy many to many relationships in Puppet, but it also
 opens the door to massive dependency cycles. This last feature is a very
-powerful stick, and you can considerably hurt yourself with it.
+powerful stick, and you can considerably hurt yourself with it. In particular,
+watch out when using virtual resources, as the collection operator realizes
+resources as a side-effect.
 
 ### Nodes
 
@@ -730,6 +733,9 @@ Capitalization of resources is used in three major ways:
 -   Inheritance.  When overwriting the resource settings of a parent class from a subclass, use the uppercase versions of the resource names.  Using the lowercase versions will result in an error.   See the inheritance section above for an example of this.
 
 -   Setting default attribute values: Resource Defaults.  As mentioned previously, using a capitalized resource with no `title` works to set the defaults for that resource.  Our previous example was setting the default path for command executions.
+
+Note that when capitalizing a namespaced defined type, you have to capitalize
+all segments of the type's name, e.g. `Apache::Vhost['wordpress']`.
 
 ### Arrays
 
