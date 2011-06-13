@@ -53,6 +53,13 @@ body {
 
 code { font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace }
 
+/* Make the line numbers in syntax-highlighted text not look like content */
+.lineno {
+  font-size : .8em !important;
+  color : #aaa;
+  padding-right : 1em !important;
+}
+
 ul {
   list-style: none;
 }
