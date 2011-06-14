@@ -76,7 +76,7 @@ Parameterized classes cannot be used with the array syntax. When using the hash 
 
 #### Parameters
 
-If present, the value of `parameters` key MUST be a hash of valid variable names and associated values; these will be exposed to the compiler as top scope variables. Each value MAY be a string, number, array, or hash. 
+If present, the value of the `parameters` key MUST be a hash of valid variable names and associated values; these will be exposed to the compiler as top scope variables. Each value MAY be a string, number, array, or hash. 
 
     parameters: 
         ntp_servers:

@@ -79,19 +79,22 @@ where we are describing the permissions and ownership of a file:
 {% endhighlight %}
 
 Any machine on which this snippet is executed will use it to verify
-that the passwd file is configured as specified. The field before
-the colon is the resource's `title`, which can be used to refer to
-the resource in other parts of the Puppet configuration.
+that the passwd file is configured as specified. 
 
-For simple resources that don't vary much, a single name is
-sufficient.  However, what happens if a filename is different between
-operating systems?   For these cases,
-Puppet allows you to specify a local name in addition to the
-title:
+The field before
+the colon is the resource's _title,_ which must be unique and can be used to refer to
+the resource in other parts of the Puppet configuration. Following the title are
+a series of _attributes_ and their _values_. 
+
+Most resources have an attribute (often called simply `name`) whose value will default to the title if you don't specify it. (Internally, this is called the "namevar.") For the `file` type, the `path` will default to the title. A resource's namevar value almost always has to be unique. (The `exec` and `notify` types are the exceptions.)
+
+For simple resources that don't vary much, leaving out the name or path and falling back to the title is
+sufficient. But for resources with long names, or in cases where filenames differ between
+operating systems, it makes more sense to choose a symbolic title:
 
 {% highlight ruby %}
     file { 'sshdconfig':
-      name => $operatingsystem ? {
+      path => $operatingsystem ? {
         solaris => '/usr/local/etc/ssh/sshd_config',
         default => '/etc/ssh/sshd_config',
       },
@@ -101,9 +104,8 @@ title:
     }
 {% endhighlight %}
 
-By using the title, which is always the same, it's easy to refer
-to the file resource elsewhere in our configuration without having
-to repeat that OS specific logic.
+This makes it easy to refer
+to the file resource elsewhere in our configuration, since the title is always the same.
 
 For instance, let's add a service that depends on the file:
 
