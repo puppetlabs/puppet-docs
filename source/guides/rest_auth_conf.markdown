@@ -74,7 +74,13 @@ Each REST API call is either unauthenticated or authenticated with an SSL certif
 
 The node or nodes allowed to access this type of request. Can be a hostname, a certificate common name, a list of hostnames/certnames, or `*` (which matches all nodes). If the path for this ACL was a regular expression, `allow` directives may include backreferences to captured groups (e.g. `$1`).
 
-An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a list. No globbing of hostnames/certnames is available in allow directives. Nodes cannot be allowed by IP address, unless the node's IP address is also its certname.
+An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a list. 
+
+**Behavior in 0.25.x through 2.7.0:** No fine-grained globbing of hostnames/certnames is available in allow directives; you must specify exact host/certnames, or a single asterisk that matches everything.
+
+**Behavior in 2.7.1 and later:** Hostnames/certnames can also be specified by regular expression. Unlike with path directives, you don't need to use a tilde; just use the slash-quoting used in languages like Perl and Ruby (e.g. `allow /^[\w-]+.magpie.lan$/`). Regular expression allow directives can include backreferences to regex paths with the standard `$1, $2` etc. variables.
+
+Nodes cannot be allowed by IP address, unless the node's IP address is also its certname.
 
 Any nodes which aren't specifically allowed to access the resource will be denied.
 
