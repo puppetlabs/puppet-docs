@@ -218,7 +218,7 @@ So anyway, modules are re-usable bundles of code and data. Puppet autoloads mani
       }
       
       file { 'ntp.conf':
-        path    => '/etc/ntp.conf'
+        path    => '/etc/ntp.conf',
         ensure  => file,
         require => Package['ntp'],
         source  => "/root/learning-manifests/${conf_file}",
@@ -244,7 +244,7 @@ But we're not quite done yet. See how the manifest is referring to some files st
 {% highlight ruby %}
     # ...
       file { 'ntp.conf':
-        path     => '/etc/ntp.conf'
+        path     => '/etc/ntp.conf',
         ensure   => file,
         require  => Package['ntp'],
         # source => "/root/learning-manifests/${conf_file}",
