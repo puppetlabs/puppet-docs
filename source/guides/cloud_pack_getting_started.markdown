@@ -67,9 +67,20 @@ For CloudPack to work, Fog needs to be configured with your AWS access key ID an
 
 To test whether Fog is working, execute the following command:
 
-    $ ruby -rubygems -e 'require "fog"' -e 'puts Fog::Compute.new(:provider => "AWS").servers.length > 0'
+    $ ruby -rubygems -e 'require "fog"' -e 'puts Fog::Compute.new(:provider => "AWS").servers.length >= 0'
 
-This should return "true."
+This should return "true"
+
+If you do not have the ~/.fog configuration file correct, you may receive an
+error such as the following.  In this case, please verify your
+aws\_access\_key\_id and aws\_secret\_access\_key are properly set in the
+~/.fog file
+
+    fog-0.9.0/lib/fog/core/service.rb:155
+    in `validate_options': Missing required arguments: aws_access_key_id, aws_secret_access_key (ArgumentError)
+            from /Users/jeff/.rvm/gems/ruby-1.8.7-p334@puppet/gems/fog-0.9.0/lib/fog/core/service.rb:53:in `new'
+            from /Users/jeff/.rvm/gems/ruby-1.8.7-p334@puppet/gems/fog-0.9.0/lib/fog/compute.rb:13:in `new'
+            from -e:2
 
 ### EC2
 
