@@ -1,4 +1,10 @@
-# Puppet Internals - How It Works
+---
+layout: default
+title: Puppet Internals
+---
+
+Puppet Internals - How It Works
+================================
 
 The goal of this document is to describe how a manifest you write
 in Puppet gets converted to work being done on the system. This
@@ -7,6 +13,8 @@ the details; this document only exists for those who are pushing
 the boundaries of what Puppet can do or who don't understand why
 they are seeing a particular error. It can also help those who are
 hoping to extend Puppet beyond its current abilities.
+
+* * * 
 
 ## High Level
 
