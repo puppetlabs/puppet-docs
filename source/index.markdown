@@ -142,6 +142,8 @@ Build your own tools and workflows on top of Puppet.
 
 * [Running Puppet from Source](./guides/from_source.html) --- preview the leading edge
 * [Development Life Cycle](./guides/development_lifecycle.html) --- learn how to contribute code
+* [Puppet Internals](./guides/puppet_internals.html) --- understand how
+  Puppet works internally
 
 * * * 
 
