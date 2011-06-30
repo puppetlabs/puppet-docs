@@ -3,7 +3,7 @@ layout: default
 title: Dashboard Manual—1—Bootstrapping
 ---
 
-Bootstrapping Dashboard
+Bootstrapping Puppet Dashboard
 =====
 
 This page fully documents how to get Puppet Dashboard installed and operational. 
@@ -18,7 +18,7 @@ This page fully documents how to get Puppet Dashboard installed and operational.
 Overview
 --------
 
-Puppet Dashboard is a locally-hosted Ruby on Rails web app that interfaces with Puppet. It will run on most modern Unix-like OSes, including Mac OS X and most Linux distributions, requires a certain amount of supporting infrastructure, and can be deployed and served in a variety of ways.
+Puppet Dashboard is a locally-hosted Ruby on Rails web app that interfaces with Puppet. It will run on most modern Unix-like OSes (including Mac OS X and most Linux distributions), requires a certain amount of supporting infrastructure, and can be deployed and served in a variety of ways.
 
 In outline, getting Dashboard running is going to consist of:
 
@@ -246,12 +246,12 @@ To use Dashboard's ENC, you'll need to set the puppet master's `node_terminus` a
 
 ### Testing Puppet's Connection to Dashboard
 
-You can now run one of your puppet agents with `puppet agent --test` to test whether the puppet master is able to use Dashboard correctly. The agent should be able to retrieve its catalog and complete its run, and when you reload the Dashboard UI in your web browser, you should see "1 pending reports" under the "Delayed Job Status" heading in the upper left corner. 
+After restarting puppet master, you can run one of your puppet agents with `puppet agent --test` to test whether the configuration is correct. The agent should be able to retrieve its catalog and complete its run, and when you reload the Dashboard UI in your web browser, you should see "1 pending reports" under the "Delayed Job Status" heading in the upper left corner. 
 
 Starting and Managing Delayed Job Workers
 ----------
 
-Some of Dashboard's tasks, particularly report importing, can take a while to complete, so we perform them asynchronously with worker processes. This lets puppet master respond to requests a lot faster, but you'll need to be running at least one delayed job worker (and preferably one per CPU core) to get the full benefit of Dashboard's UI.
+Dashboard uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job/) queue to asynchronously process resource-intensive tasks. Although Dashboard won't lose any data sent by puppet masters if these jobs don't run, you'll need to be running at least one delayed job worker (and preferably one per CPU core) to get the full benefit of Dashboard's UI.
 
 A future version of Dashboard will ship with init scripts which will let you manage the workers with Puppet or your platform's service tools, but in the meantime, you must either use the provided monitor script or start non-daemonized workers individually with the provided rake task.
 
@@ -260,6 +260,10 @@ A future version of Dashboard will ship with init scripts which will let you man
 Dashboard ships a worker process monitor, which can be found at `script/delayed_job`. This tool can launch and babysit any number of worker processes; run it with `--help` for more details on the syntax. `delayed_job` requires that you specify `RAILS_ENV` as an environment variable. To start four worker processes and the monitor process:
 
     # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
+
+#### Monitoring the Monitor
+
+For additional reliability, you might want to use a standard service monitoring tool like [god](http://god.rubyforge.org/), [monit](http://mmonit.com/monit/), or [runit](http://smarden.org/runit/) to supervise the `script/delayed_job` monitor. You can also look into other ways to run `delayed_job` workers, as it's becoming a fairly standard component in the Rails world. 
 
 ### Using the `jobs:work` Rake Task
 
