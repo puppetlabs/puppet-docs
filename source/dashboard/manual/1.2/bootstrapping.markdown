@@ -10,7 +10,7 @@ This page fully documents how to get Puppet Dashboard installed and operational.
 
 <# navigation #>
 
-[pe]: <# puppet enterprise #>
+[pe]: http://www.puppetlabs.com/puppet/puppet-enterprise/
 [upgrading]: <# upgrading #>
 
 * * * 
@@ -48,7 +48,9 @@ On most OSes, you'll be able to install all of these with the OS's package tools
 
 #### Installing Dependencies Under Ubuntu 10.04 LTS
 
-Due to issues with Ubuntu 10.04 LTS's version of Ruby, you can install most dependencies from packages but must manually build `gem`. These instructions assume a fresh install of the OS, and may differ depending on its current configuration. The commands must be run from one of the standard shells, preferably `bash`, `dash`, or `zsh`. 
+Due to issues with Ubuntu 10.04 LTS's version of Ruby, you can install most dependencies from packages but must manually build `gem`. Additionally, if you encounter performance issues, you may wish to manually upgrade your version of Ruby past patch level 299.
+
+These instructions assume a fresh install of the OS, and may differ depending on its current configuration. The commands must be run from one of the standard shells, preferably `bash`, `dash`, or `zsh`. 
 
 1. Install the operating system packages:
 
@@ -162,6 +164,8 @@ Once Dashboard has its database, it can create its tables, but this has to be do
 For developing the software using the `development` and `test` environments:
 
     rake db:migrate db:test:prepare
+
+The `db:migrate` task can be safely run multiple times.
 
 [maxpacket]: http://dev.mysql.com/doc/refman/5.1/en/server-system-variables.html#sysvar_max_allowed_packet
 [^rakedbcreate]: Instead of creating a database manually, you can also use the `db:create` or `db:create:all` tasks, but these require that Dashboard's MySQL user already exist and have the appropriate permissions on the requested database.
