@@ -6,7 +6,14 @@ title: "Baseline Plugin: Internals"
 Puppet Dashboard Baseline Plugin --- Internals
 ====
 
-This chapter contains information about the way the baseline plugin performs its comparisons, and about installing the plugin from source. 
+This chapter describes the baseline plugin's maintenance task in detail and contains instructions for installing the plugin from source. 
+
+#### Navigation
+
+* [Introduction and Workflow](./pb_workflow.html)
+* [Bootstrapping](./pb_bootstrapping.html)
+* [Interface](./pb_interface.html)
+* Internals
 
 * * * 
 
@@ -54,3 +61,12 @@ module name as an environment variable.
     sudo -u puppet-dashboard rake puppet:plugin:install PLUGIN=puppet_baseline RAILS_ENV=production
 
 Run `db:migrate` additional times for any additional environments you're using. Then, establish an at-least-daily cron job for running the `puppet:plugin:baseline:daily` rake task with your preferred `RAILS_ENV` value(s). Use the `ext/baseline_plugin_watchdog.sh` file provided with the plugin source, and modify the `DASHBOARD_ROOT` directory if needed; we recommend that this task be put in `/etc/cron.hourly/`.
+
+* * * 
+
+#### Navigation
+
+* [Introduction and Workflow](./pb_workflow.html)
+* [Bootstrapping](./pb_bootstrapping.html)
+* [Interface](./pb_interface.html)
+* Internals

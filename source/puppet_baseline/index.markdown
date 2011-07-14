@@ -15,7 +15,7 @@ Working with compliance features requires a puppet master server running Puppet 
 Chapters
 --------
 
-1. [Introduction and Workflow](./pb_workflow.html)
-2. [Bootstrapping](./pb_bootstrapping.html)
-3. [Interface](./pb_interface.html)
-4. [Internals](./pb_internals.html)
+* [Introduction and Workflow](./pb_workflow.html)
+* [Bootstrapping](./pb_bootstrapping.html)
+* [Interface](./pb_interface.html)
+* [Internals](./pb_internals.html)

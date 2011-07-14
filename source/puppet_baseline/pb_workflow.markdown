@@ -6,12 +6,21 @@ title: "Baseline Plugin: Intro/Workflow"
 Puppet Dashboard Baseline Compliance Workflow
 ====
 
-The baseline compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. This differs from and isn't fully compatible with Puppet's standard managed resources workflow --- although you can use both models of management at the same site (or even in the same catalog), they should be used on disjunct sets of resources.
+This chapter describes the baseline plugin's expected workflow and explains some key terms and concepts. 
+
+#### Navigation
+
+* Introduction and Workflow
+* [Bootstrapping](./pb_bootstrapping.html)
+* [Interface](./pb_interface.html)
+* [Internals](./pb_internals.html)
 
 * * * 
 
 The Compliance Workflow Cycle
 ----
+
+The baseline compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. This differs from and isn't fully compatible with Puppet's standard managed resources workflow --- although you can use both models of management at the same site (or even in the same catalog), they should be used on disjunct sets of resources.
 
 ![Baseline compliance workflow diagram](./images/baseline_workflow.png)
 
@@ -54,3 +63,11 @@ Although nodes cannot share baselines, nodes in a Dashboard group can have simil
 
 The groups used by the baseline plugin are the same groups Dashboard uses for classifying nodes. 
 
+* * * 
+
+#### Navigation
+
+* Introduction and Workflow
+* [Bootstrapping](./pb_bootstrapping.html)
+* [Interface](./pb_interface.html)
+* [Internals](./pb_internals.html)

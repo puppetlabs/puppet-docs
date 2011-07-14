@@ -8,6 +8,13 @@ Puppet Dashboard Baseline Plugin --- Interface and Usage
 
 This chapter describes the compliance plugin UI and demonstrates its use. 
 
+#### Navigation
+
+* [Introduction and Workflow](./pb_workflow.html)
+* [Bootstrapping](./pb_bootstrapping.html)
+* Interface
+* [Internals](./pb_internals.html)
+
 * * * 
 
 Pages
@@ -32,9 +39,9 @@ The main summary page (`baseline/compliance`) shows a single day's comparison re
 
 ![individual_node][]
 
-Individual node pages (`baseline/compliance/node/{number}?date={date}`) show one node's off-baseline inspection results for a single day. You can accept or reject changes from this page. 
+Individual node pages show one node's off-baseline inspection results for a single day. You can accept or reject changes from this page. 
 
-To see the individual details of a node which is in at least one group, use the "Individual Differences" tab from the group page.
+Links to groupless nodes are displayed on the main summary page. To see the individual details of a node which is in at least one group, use the "Individual Differences" tab from its group page.
 
 ### Group Page
 
@@ -87,7 +94,7 @@ If the same change was made on several nodes in a group, you can accept or rejec
 
 If different changes were made to the same resource on several nodes, the changes will be grouped for easy comparison. You can accept or reject each of these sub-groups of changes individually. <!-- This does not match the text on the page but seems to match the behavior. Investigate. -->
 
-### Convergence of differing baselines
+#### Convergence of differing baselines
 
 ![group_converging][]
 
@@ -112,10 +119,14 @@ On Thursday morning, the admin notices unreviewed changes in a group of three no
 
 ![tutorial_group][]
 
-There, she notices that a user was completely deleted from all three nodes, and something odd happened with a file. She immediately rejects the deletion of the user, and manually SSHes to the affected nodes to re-instate the account. 
+There, she notices that a user was completely deleted from all three nodes, and something odd happened with a file. She immediately rejects the deletion of the user...
 
 ![tutorial_reject_user][]
-![tutorial_group_reject_user_nodes_link][] ![tutorial_group_reject_user_nodes][]
+
+...and manually SSHes to the affected nodes to re-instate the account. 
+![tutorial_group_reject_user_nodes_link][]
+
+![tutorial_group_reject_user_nodes][]
 
     [root@hawk1.magpie.lan ~]# puppet resource group nick ensure=present gid=506
     [root@hawk1.magpie.lan ~]# puppet resource user nick ensure=present uid=506 gid=506
@@ -148,7 +159,7 @@ Yup: same dangerous change. She rejects and reverts, then spends the rest of her
 
 #### Morning, July 15, 2011
 
-The next day, the admin's fixes to the syslog.conf and profile files on the various servers have caused changes to the ctime and mtime of those files. She approves the changes, then decides that she should probably change her manifests so that all but a select handful of file resources use `audit => [ensure, content, owner, group, mode, type]` instead of `audit => all`, in order to suppress otherwise meaningless audit events. 
+The next day, the admin's fixes to the syslog.conf and profile files on the various servers have caused changes to the ctime and mtime of those files. She approves the changes, then decides that she should probably change her manifests so that all but a select handful of file resources use `audit => [ensure, content, owner, group, mode, type]` instead of `audit => all`, in order to suppress otherwise meaningless audit events. It's an otherwise uneventful day.
 
 [accept_and_reject_buttons]: ./images/accept_and_reject_buttons.png
 [compliance_link]: ./images/compliance_link.png
@@ -171,3 +182,12 @@ The next day, the admin's fixes to the syslog.conf and profile files on the vari
 [tutorial_profile_before]: ./images/tutorial_profile_before.png
 [tutorial_reject_user]: ./images/tutorial_reject_user.png
 [tutorial_summary]: ./images/tutorial_summary.png
+
+* * * 
+
+#### Navigation
+
+* [Introduction and Workflow](./pb_workflow.html)
+* [Bootstrapping](./pb_bootstrapping.html)
+* Interface
+* [Internals](./pb_internals.html)

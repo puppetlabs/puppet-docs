@@ -8,6 +8,13 @@ Bootstrapping Puppet Dashboard and the Baseline Plugin
 
 This chapter describes how to install and configure the `puppet_baseline` plugin and its various dependencies. 
 
+#### Navigation
+
+* [Introduction and Workflow](./pb_workflow.html)
+* Bootstrapping
+* [Interface](./pb_interface.html)
+* [Internals](./pb_internals.html)
+
 * * * 
 
 Installation Options
@@ -48,7 +55,7 @@ After all dependencies are installed, the Dashboard and/or baseline packages can
 [dashboard_bootstrap]: /dashboard/manual/1.2/bootstrapping.html#configuring-dashboard
 [dashboard_advanced]: /dashboard/manual/1.2/configuring.html#advanced-features
 
-For detailed information on completing the installation of Puppet Dashboard, [see the relevant chapter of the manual][dashboard_bootstrap]. Although the provided package will install the software and create the puppet-dashboard user, you will need to manually perform the remaining tasks, including configuring a production web server for Dashboard and arranging for a group of `delayed_job` workers.
+To complete the installation of Puppet Dashboard, [see the relevant chapter of the manual][dashboard_bootstrap]. Although the provided package will install the software and create the puppet-dashboard user, you will need to manually perform the remaining tasks, including configuring a production web server for Dashboard and arranging for a group of `delayed_job` workers.
 
 Additionally, if you wish to view file contents from the Dashboard interface, you'll need to enable the filebucket viewer as described in [the section about enabling advanced features][dashboard_advanced]. 
 
@@ -62,7 +69,7 @@ If you are installing the baseline plugin into an already functional Dashboard i
 
 After that, the baseline plugin will be fully installed and ready to use; the package should have set up the additional cron job the plugin requires. (See [internals](./pb_internals.html) for more details.) You may need to restart Dashboard's web server in order to see the new baseline compliance pages.
 
-The baseline plugin accepts one configuration setting in Dashboard's `settings.yml` file: the `baseline_day_end` setting is used to configure the turn-over point for dividing difference reports into days. 
+The baseline plugin accepts one setting in Dashboard's `settings.yml` file: the `baseline_day_end` setting is used to configure the dividing line between adjacent days.
 
     baseline_day_end: 2100
 
@@ -117,4 +124,13 @@ You do not need to create baselines for your nodes.
 Baselines are created automatically for each node that has submitted at least one inspect report during the first run of the baseline plugin's maintenance task. This initial baseline will be identical to the most recent <!-- Check this; it might change. --> inspect report, and the same goes for any new nodes when they submit their first inspections. That is to say, **we operate on the assumption that the infrastructure is in a compliant state when the baseline plugin is bootstrapped, and we expect new nodes to be in a compliant state when they are added to the infrastructure.**
 
 Before baselines are created, there's nothing to compare against, and changes to the audited systems can't be reviewed. When viewing a group or a node in the compliance pages, you can tell whether a baseline has been created by checking whether the summary lists "N/A" or "0" in its categories; nodes and groups with no baselines will be reported as "N/A."
+
+* * * 
+
+#### Navigation
+
+* [Introduction and Workflow](./pb_workflow.html)
+* Bootstrapping
+* [Interface](./pb_interface.html)
+* [Internals](./pb_internals.html)
 
