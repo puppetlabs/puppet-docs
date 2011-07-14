@@ -6,23 +6,27 @@ title: "Baseline Plugin: Intro/Workflow"
 Puppet Dashboard Baseline Compliance Workflow
 ====
 
-This chapter describes the baseline compliance workflow and defines some key terms and concepts.
+The baseline compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. This differs from and isn't fully compatible with Puppet's standard managed resources workflow --- although you can use both models of management at the same site (or even in the same catalog), they should be used on disjunct sets of resources.
 
 * * * 
 
-Overview
---------
+The Compliance Workflow Cycle
+----
 
-The baseline compliance workflow is designed to audit changes to systems that are managed by ad-hoc manual administration. This differs from and is incompatible with Puppet's standard managed resources workflow --- although you can use both models of management at the same site (or even in the same catalog), they should be used on disjunct sets of resources.
+![Baseline compliance workflow diagram](./images/baseline_workflow.png)
+
+**A sysadmin** writes manifests defining which resources to audit on which nodes. **Puppet agent** retrieves and caches a catalog compiled from those manifests. **Puppet inspect** reads that catalog to discover which resources to audit, then submits an inspect report to the **puppet master,** which forwards it to **Puppet Dashboard.** **Dashboard** then calculates a daily report of differences between the inspected system state and the approved baseline state, creating a baseline if one didn't already exist. **A sysadmin** uses the Dashboard interface to approve or reject every difference, then manually reverts any unapproved changes as necessary. **Dashboard** then modifies the baseline to include any approved changes, and awaits the next day's inspect reports.
+
+This summary elides some details regarding daily comparisons and baseline revision; see [the "Internals" chapter](./pb_internals.html) for more details.
 
 Concepts
 ----
 
 ### Auditing
 
-When using this workflow, Puppet audits the state of resources, rather than enforcing a desired state; it does not make changes to any audited resources. Instead, changes are to be made ad-hoc and reviewed for approval after the fact.
+When using this workflow, Puppet audits the state of resources, rather than enforcing a desired state; it does not make changes to any audited resources. Instead, changes are to be made manually and reviewed for approval after the fact.
 
-When reviewing changes in the Dashboard interface, any approved changes will show up as the baseline state in future reports. Rejected changes will continue to be reported as non-baseline states until they are reverted manually on the affected machines. 
+After reviewing changes in the Dashboard interface, any approved changes will be considered the baseline state in future reports. Rejected changes will continue to be reported as non-baseline states until they are reverted manually on the affected machines. 
 
 ### Resources and Attributes
 
@@ -36,27 +40,17 @@ The set of resources to audit is declared in standard Puppet manifests on the ma
 
 ### Inspect Reports
 
-Each node being audited for compliance will routinely report the states of its audited resources. The documents it sends are called _inspect reports_ (to differentiate them from standard Puppet reports). 
+Each node being audited for compliance will routinely report the states of its audited resources. The documents it sends are called _inspect reports,_ and differ from standard Puppet reports.
 
 ### Baselines
 
 Conceptually, a _baseline_ is a blessed inspect report for a single node: it lists the approved states for every audited resource on that node. Each node is associated with one and only one baseline, and nodes cannot share baselines. However, nodes with similar baselines can be grouped for convenience.
 
-Baselines are maintained by the Puppet Dashboard baseline compliance plugin. They change over time as administrators approve changes to audited resources. 
+Baselines are maintained by the baseline compliance plugin. They change over time as administrators approve changes to audited resources. 
 
 ### Groups
 
-Although nodes cannot share baselines, nodes with similar baselines can be grouped for convenience. This can speed up the approval or rejection of similar changes. 
+Although nodes cannot share baselines, nodes in a Dashboard group can have similar changes approved or rejected en masse. 
 
-The Compliance Workflow Cycle
-----
-
-1. Sysadmin: Write manifests defining which resources to audit on which nodes. 
-2. Agent nodes: Retrieve catalog with puppet agent and update list of resources to audit if necessary.
-3. Agent nodes: Audit resources from catalog and submit inspect reports with puppet inspect. 
-4. Dashboard: Calculate daily report of differences between inspected system state and approved baseline state. 
-5. Sysadmin: Use Dashboard interface to approve or reject every difference. Manually revert unapproved changes on affected systems.
-6. Dashboard: Modify baseline to include approved changes.
-
-Repeat steps 3-7 daily and steps 1-2 as needed.
+The groups used by the baseline plugin are the same groups Dashboard uses for classifying nodes. 
 
