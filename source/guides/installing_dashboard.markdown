@@ -6,7 +6,8 @@ title: Puppet Dashboard
 Puppet Dashboard
 ================
 
-Puppet Dashboard is a web front end that keeps you informed and in control of everything going on in your Puppet ecosystem. It currently functions as a [node classification tool](#external_node_classification) and [a reporting dashboard](#reporting) and will soon do much more, including having better marketing copy.
+Puppet Dashboard is a web front end that keeps you informed and in control of everything going on in your Puppet ecosystem. It currently functions as a [node classification tool](#external_node_classification) and [a reporting dashboard](#reporting) and will soon do much more, including having better marketing copy. **This document is deprecated. For up-to-date information, see the [bootstrapping chapter](/dashboard/manual/1.2/bootstrapping.html) of the latest version of the Puppet Dashboard manual.**
+
 
 * * *
 

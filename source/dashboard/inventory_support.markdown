@@ -8,6 +8,8 @@ Inventory Service with Puppet Dashboard
 
 Add detailed system information to each node page in Puppet Dashboard, and run custom queries on fact data!
 
+**This document is deprecated. For up-to-date information, see the [configuring chapter](/dashboard/manual/1.2/configuring.html) of the latest version of the Puppet Dashboard manual.**
+
 * * * 
 
 [inventory]: /guides/inventory_service.html
