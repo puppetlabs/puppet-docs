@@ -20,7 +20,9 @@ This chapter describes how to install and configure the `puppet_baseline` plugin
 Installation Options
 ------
 
-Currently, Puppet Labs only ships baseline plugin packages for use with Red Hat Enterprise Linux 6 (and compatible) systems. 
+Currently, Puppet Labs only ships baseline plugin packages for use with Red Hat Enterprise Linux 6 (and compatible) systems. We do not support installing from source.
+
+Baseline functionality will be included in a future version of Puppet Enterprise.
 
 Dependencies
 -----
