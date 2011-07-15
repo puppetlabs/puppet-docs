@@ -53,7 +53,7 @@ With inventory support, Dashboard can display a complete list of facts on each n
 
 [inventory]: http://docs.puppetlabs.com/guides/inventory_service.html
 
-Once the puppet master is properly configured with a database-backed inventory, edit your puppet master's [`auth.conf`](http://docs.puppetlabs.com/guides/rest_auth_conf.html) file to grant Dashboard find and search access to /facts:
+Once the puppet master is properly configured with a database-backed inventory, edit your puppet master's [`auth.conf`](/guides/rest_auth_conf.html) file to grant Dashboard find and search access to /facts:
 
     path /facts
     auth yes
@@ -125,7 +125,7 @@ Puppet Dashboard slows down as it manages more data. Here are ways to make it ru
     
     ...from your Puppet Dashboard directory. This will reorganize and reanalyze your database for faster queries.
 * Tune the number of processes Dashboard uses to handle more concurrent requests. If you're using Apache with Phusion Passenger to serve Dashboard (as covered in the [bootstrapping chapter](./bootstrapping.html#serving-dashboard-with-passenger-and-apache)), you can modify the appropriate settings in Dashboard's vhost file; in particular, pay attention to the `PassengerHighPerformance`, `PassengerMaxPoolSize`, `PassengerPoolIdleTime`, `PassengerMaxRequests`, and `PassengerStatThrottleRate` settings.
-* Regularly prune your old reports; see ["database cleanup" in the maintenance chapter](./maintaining.html#cleaning-old-reports) for more details.
+* Regularly prune your old reports; see ["cleaning old reports" in the maintenance chapter](./maintaining.html#cleaning-old-reports) for more details.
 * Run on a machine with a fast, local database.
 * Run on a machine with enough processing power and memory.
 * Run on a machine with fast backplane, controllers, and disks.
