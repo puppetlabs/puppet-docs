@@ -1,15 +1,27 @@
 ---
 layout: default
-title: Dashboard Manual—3—Configuring
+title: "Dashboard Manual: Configuring"
 ---
 
 Configuring Puppet Dashboard
 =====
 
+This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
+
+#### Navigation
+
+* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Upgrading Dashboard](./upgrading.html)
+* **Configuring Dashboard**
+* [Maintaining Dashboard](./maintaining.html)
+* [Using Dashboard](./using.html)
+
+* * * 
+
 Overview
 --------
 
-Now that you've bootstrapped Dashboard for basic production-level use, you can configure it to:
+Now that you've [bootstrapped](./bootstrapping.html) Dashboard for basic production-level use, you can configure it to:
 
 * Enable advanced features
 * Increase security
@@ -54,11 +66,22 @@ Then, edit Dashboard's `config/settings.yml` to set `enable_inventory_service` t
 
 With the filebucket viewer, Dashboard can display the contents of different file versions when you click on MD5 checksums in reports. 
 
-**Requirements:** To use the filebucket viewer, you must be using Puppet 2.6.5 or later <!-- TK check accuracy --> and your agent nodes must be configured to back up all files to a remote filebucket; this is done in your puppet master's site.pp manifest, where you must define a filebucket resource named "main" (`filebucket { "main": server => "{your puppet master}", path => false, }`) and set a global resource default of `File { backup => "main" }`. If you are using inspect reports, you must also set `archive_files = true` in each agent's `puppet.conf`. 
+**Requirements:** To use the filebucket viewer, you must be using Puppet 2.6.5 or later <!-- TK check accuracy --> and your agent nodes must be configured to back up all files to a remote filebucket; this is done in your puppet master's `site.pp` manifest, where you must define a filebucket resource named "main"... 
+
+    filebucket { "main":
+      server => "{your puppet master}",
+      path => false,
+    }
+
+...and set a global resource default of...
+
+    File { backup => "main" }
+
+If you are using inspect reports for a compliance workflow, you must also set `archive_files = true` in each agent's `puppet.conf`. 
 
 <!-- Best current info: http://groups.google.com/group/puppet-users/tree/browse_frm/thread/30ea08611484d014/1fcda157a4654e20?rnum=1&_done=%2Fgroup%2Fpuppet-users%2Fbrowse_frm%2Fthread%2F30ea08611484d014%2F1fcda157a4654e20%3Ftvc%3D1%26#doc_524b16680064e610 -- TK check this for accuracy and completeness at some later date. -->
 
-Once the site manifest and any inspect nodes have have been properly configured, edit Dashboard's `config/settings.yml` to set `use_file_bucket_diffs` to `true` and point `file_bucket_server` and `file_bucket_port` to your puppet master. Restart Dashboard, and you should be able to view the contents of any file mentioned in a report by clicking on its MD5 checksum. Diffs are not currently enabled, but will appear in a future version of Dashboard. 
+Once the site manifest has been properly configured, edit Dashboard's `config/settings.yml` to set `use_file_bucket_diffs` to `true` and point `file_bucket_server` and `file_bucket_port` to your puppet master. Restart Dashboard, and you should be able to view the contents of any file mentioned in a report by clicking on its MD5 checksum. Diffs are not currently enabled, but will appear in a future version of Dashboard. 
 
 
 Security
@@ -67,12 +90,12 @@ Security
 As Dashboard provides access to sensitive information and can make changes to your Puppet-managed infrastructure, you'll need some way to restrict access to it. Dashboard does not yet provide authentication or authorization, so you'll need to use external tools to secure it. Some options include:
 
 * **Host firewalling** --- The Dashboard server's firewall (e.g. `iptables`) can be used to limit which hosts can access the port Dashboard runs on.
-* **`stunnel` or `ssh` tunneling** --- You can use tunneling to provide an encrypted connection between hosts, e.g. if the Puppet Master and Puppet Dashboard are running on separate hosts. It can also be useful for accessing the web interface from a workstation once you've restricted access by IP. 
+* **`stunnel` or `ssh` tunneling** --- You can use tunneling to provide an encrypted connection between hosts, e.g. if the Puppet Master and Puppet Dashboard are running on separate hosts. It can also allow you to access the web interface from a workstation once you've restricted access by IP. 
 * **HTTP Basic Authentication** --- When serving Dashboard via Apache, you can require a username and password to access its URLs by setting authentication rules for `/` in Dashboard's vhost configuration:
 
         <Location "/">
           Order allow,deny
-          Allow from 192.168.240.110
+          Allow from 192.168.240.110 # your puppet master's IP
           Satisfy any
           AuthName "Puppet Dashboard"
           AuthType Basic
@@ -80,12 +103,14 @@ As Dashboard provides access to sensitive information and can make changes to yo
           Require valid-user
         </Location>
 
-    Notice that you need to leave an access exception for your puppet master(s). Alternately, you can configure Puppet to use a password when connecting to Dashboard by changing the URL (e.g. `http://username:password@dashboard.local:3000`) used in the `external_nodes` script and Puppet's `reporturl` setting. However, this currently requires patching Puppet's `http` report handler; see [issue 7173](http://projects.puppetlabs.com/issues/7173) for more details. 
-* **HTTPS (SSL) Encryption** --- When serving Dashboard via Apache, you can encrypt traffic between Puppet and the Dashboard. Using this requires a set of signed certificates from the puppet master --- see [generating certs and connecting to the puppet master](<# in-page anchor #>) for how to obtain them. The example configuration in `ext/passenger/dashboard-vhost.conf` includes a commented-out vhost configured to use SSL. You may need to change the Apache directives `SSLCertificateFile`, `SSLCertificateKeyFile`, `SSLCACertificateFile`, and `SSLCARevocationFile` to the paths of the files created by the `cert` rake tasks. 
+    Notice that you need to leave an access exception for your puppet master(s). Although it's possible to configure Puppet to use a password when connecting to Dashboard (by [adding a username and password](http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax) to Puppet's `reporturl` and the URL used by the `external_nodes` script), this currently requires patching Puppet's `http` report handler; see [issue 7173](http://projects.puppetlabs.com/issues/7173) for more details. 
+* **HTTPS (SSL) Encryption** --- When serving Dashboard via Apache, you can encrypt traffic between Puppet and the Dashboard. Using this requires a set of signed certificates from the puppet master --- see [generating certs and connecting to the puppet master](#generating-certs-and-connecting-to-the-puppet-master) for how to obtain them. The example configuration in `ext/passenger/dashboard-vhost.conf` includes a commented-out vhost configured to use SSL. You may need to change the Apache directives `SSLCertificateFile`, `SSLCertificateKeyFile`, `SSLCACertificateFile`, and `SSLCARevocationFile` to the paths of the files created by the `cert` rake tasks. 
 
     If you have Dashboard set up to use HTTPS, you'll need to add an `https` prefix to the `DASHBOARD_URL` in the `external_node` script and potentially correct the port number (443, by default). You may also need to change the `CERT_PATH`, `PKEY_PATH`, and `CA_PATH` variables if your puppet master's hostname is not `puppet` or if your ssldir is not `/etc/puppet/ssl`.
     
     In order for reporting to work correctly via SSL, you will have to be running puppet master via Passenger or some other app server/webserver combination that can handle SSL; reporting to an SSL Dashboard is not supported when running puppet master under WEBrick. You'll also have to change the `reporturl` setting in `puppet.conf` to start with "https" instead of "http". 
+    
+    **This information may be outdated, and is currently being checked for accuracy.**
 
 Performance
 -----------
@@ -94,9 +119,13 @@ Puppet Dashboard slows down as it manages more data. Here are ways to make it ru
 
 * Run exactly one `delayed_job` worker per CPU core.
 * Make sure Dashboard is running in the production environment. The default development environment is significantly slower because it doesn't cache and logs more details. Passenger runs Rails apps in production mode by default.
-* Optimize your database by running `rake RAILS_ENV=production db:raw:optimize` from your Puppet Dashboard directory; this will reorganize and reanalyze your database for faster queries.
-* Run the application using multiple processes to handle more concurrent requests. You can use Apache with Phusion Passenger (as covered in the [bootstrapping chapter](<# anchor to production-grade server section #>)), or clusters of Thin or Unicorn servers to serve multiple concurrent requests.
-* Regularly prune your old reports; see ["database cleanup" in the maintenance chapter](<# anchor to db prune section #>) for more details.
+* Periodically optimize your database; run:
+
+        rake RAILS_ENV=production db:raw:optimize
+    
+    ...from your Puppet Dashboard directory. This will reorganize and reanalyze your database for faster queries.
+* Tune the number of processes Dashboard uses to handle more concurrent requests. If you're using Apache with Phusion Passenger to serve Dashboard (as covered in the [bootstrapping chapter](./bootstrapping.html#serving-dashboard-with-passenger-and-apache)), you can modify the appropriate settings in Dashboard's vhost file; in particular, pay attention to the `PassengerHighPerformance`, `PassengerMaxPoolSize`, `PassengerPoolIdleTime`, `PassengerMaxRequests`, and `PassengerStatThrottleRate` settings.
+* Regularly prune your old reports; see ["database cleanup" in the maintenance chapter](./maintaining.html#cleaning-old-reports) for more details.
 * Run on a machine with a fast, local database.
 * Run on a machine with enough processing power and memory.
 * Run on a machine with fast backplane, controllers, and disks.
@@ -105,16 +134,29 @@ Puppet Dashboard slows down as it manages more data. Here are ways to make it ru
 Installing Plugins
 ----------
 
-Puppet Labs will soon be shipping a variety of free or commercial plugins for Dashboard, which will add new features to support specific workflows. The plugin you're trying to install probably came with official packages and its own installation instructions, but some general guidelines follow.
+Puppet Labs plans to ship a variety of free and commercial plugins for Dashboard, which will add new features to support specific workflows. If you are installing a plugin, it probably came with official packages and its own installation instructions, but some general guidelines follow:
 
-To install a plugin from source, rather than a package, you'll have to know the hardcoded internal name of the plugin. This should be listed in its documentation. Copy the plugin's directory to `vendor/plugins`, rename it to its proper internal name, and transfer ownership of the directory and its files to the Dashboard user. Then, run the `puppet:plugin:install` task, passing the environment you're using[^pluginenv] and the name of the plugin as variables:
+When installing a plugin from an official package, its files should be moved into the proper place with the proper ownership. However, you will probably have to run the `db:migrate` rake task after the installation is complete.
+
+To install a plugin from source, rather than a package, you'll have to know the hardcoded internal name of the plugin. This should be listed in its documentation. Copy the plugin's directory to `vendor/plugins`, rename it to its proper internal name, and chown the directory and its files to the Dashboard user. Then, run the `puppet:plugin:install` task, passing the environment you're using[^pluginenv] and the name of the plugin as variables:
 
     # sudo -u puppet-dashboard rake puppet:plugin:install PLUGIN=name RAILS_ENV=production
 
-[^pluginenv]: `Puppet:plugin:install` runs `db:migrate` at the end. If you run in multiple environments regularly, you'll need to run `rake db:migrate` for each additional one. 
+[^pluginenv]: `Puppet:plugin:install` runs `db:migrate` at the end. If you run in multiple environments regularly, you'll need to run `rake db:migrate` again for each additional one. 
 
 After this, the plugin should be available and functioning. If you've been using Git to install and upgrade Dashboard, it should leave all plugin files untouched the next time you upgrade. 
 
 ### Uninstalling Plugins
 
 This section will be filled in at a later date. <!-- TK -->
+
+* * * 
+
+#### Navigation
+
+* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Upgrading Dashboard](./upgrading.html)
+* **Configuring Dashboard**
+* [Maintaining Dashboard](./maintaining.html)
+* [Using Dashboard](./using.html)
+
