@@ -10,9 +10,16 @@ Puppet Dashboard is an optional web app that lets you inspect and control your P
 
 * * * 
 
-Dashboard Guides
-----------------
+Puppet Dashboard Manual
+-----------------------
 
-* [Installing Dashboard](/guides/installing_dashboard.html) --- Get Puppet Dashboard up and running. <!-- TODO: Move this and lay down a 302. -->
-* [Inventory Service](./inventory_support.html) --- Put detailed system info for every node right at your fingertips, and run queries on any fact known to Puppet. 
-* [Dashboard with Passenger](./passenger.html) --- Improve Dashboard's reliability and performance by running it under Apache with Passenger. 
+New versions of the Dashboard manual are released for each major version of Dashboard, starting with version 1.2.
+
+* [Dashboard 1.2 Manual](./manual/1.2/)
+    * [Bootstrapping Dashboard](./manual/1.2/bootstrapping.html)
+    * [Upgrading Dashboard](./manual/1.2/upgrading.html)
+    * [Configuring Dashboard](./manual/1.2/configuring.html)
+    * [Maintaining Dashboard](./manual/1.2/maintaining.html)
+    * [Using Dashboard](./manual/1.2/using.html)
+
+For documentation of previous versions of Dashboard, see the README.markdown file in the root of Dashboard's installation directory. 

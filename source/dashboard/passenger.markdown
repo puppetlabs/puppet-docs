@@ -6,7 +6,7 @@ title: Dashboard Under Passenger
 Running Puppet Dashboard With Apache and Passenger
 ======
 
-Although Dashboard can serve itself using Ruby's built-in WEBrick server, it performs more reliably under Apache with [Phusion Passenger][passenger]. 
+Although Dashboard can serve itself using Ruby's built-in WEBrick server, it performs more reliably under Apache with [Phusion Passenger][passenger]. **This document is deprecated. For up-to-date information, see the [bootstrapping chapter](/dashboard/manual/1.2/bootstrapping.html#running-dashboard-in-a-production-quality-server) of the latest version of the Puppet Dashboard manual.**
 
 [passenger]: http://www.modrails.com/
 [pass-guide]: http://www.modrails.com/documentation/Users%20guide%20Apache.html
