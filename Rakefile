@@ -83,7 +83,7 @@ task :tarball do
   FileUtils.ln_sf 'files', 'guides/types/selinux/files'
   FileUtils.ln_sf 'files', 'guides/types/ssh/files'
   FileUtils.ln_sf 'files', 'references/files'
-  sh "tar --ignore-failed-read -czf puppetdocs-latest.tar.gz *"
+  sh "tar -czf puppetdocs-latest.tar.gz *"
   FileUtils.mv 'puppetdocs-latest.tar.gz', '..'
   FileUtils.cd '..'
 end
