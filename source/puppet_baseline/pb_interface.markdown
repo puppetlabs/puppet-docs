@@ -17,7 +17,7 @@ This chapter describes the compliance plugin UI and demonstrates its use.
 
 * * * 
 
-Pages
+Compliance Pages
 -----
 
 The baseline compliance pages are all reached from the "Compliance" link in Dashboard's header menu. 
@@ -51,7 +51,18 @@ Links to groupless nodes are displayed on the main summary page. To see the indi
 
 Group pages show the collected differences for a group of nodes. Two tabs are available: You can use the "Common Differences" tab to approve and reject aggregate changes en masse, or you can use the "Individual Differences" tab to access node pages and act individually. 
 
-Groups aren't a compliance-specific construct, and nodes can be added to and removed from groups with Dashboard's standard node view.
+Groups are one of Dashboard's core constructs, and nodes can be added to and removed from groups with Dashboard's standard node view.
+
+Changes to Core Dashboard Pages
+-----
+
+The compliance plugin also adds new content and controls to Dashboard's core group pages.
+
+![core_group_page][]
+
+Each group page will now have a compliance summary in its node information section. Additionally, the core group pages will have a control for generating [custom reports](#<# customreports #>). 
+
+![core_group_custom_report][]
 
 Reviewing Changes
 -----
@@ -99,6 +110,27 @@ If different changes were made to the same resource on several nodes, the change
 ![group_converging][]
 
 If several nodes in a group had a different baseline value for one resource but were recently brought into an identical state, you can click through to examine the previous baselines, and can approve or reject the new state for all affected nodes.
+
+Comparing a Group to a Single Baseline
+-----
+
+The compliance plugin can also generate custom reports which compare an entire group to a single member node's baseline. Custom reports only examine the most recent inspection report for each group member, and unlike the normal compliance controls, custom reports do not allow you to approve or reject changes. Dashboard will maintain one cached custom report for each group, but generating a new report for that group will erase the old one.
+
+![core_group_custom_report][]
+
+Custom reports can only <!-- Is this design or happenstance? --> be generated from Dashboard's core group pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static HTML rather than AJAX, so reload the page periodically until the report is finished.) 
+
+Once generated, custom reports can be viewed from Dashboard's core group pages, the main compliance page, and the compliance group pages. 
+
+![custom_report_core_group_link][]
+
+![custom_report_compliance_group_link][]
+
+![custom_report_compliance_main_link][]
+
+A custom report is split into a "Common Differences" tab and an "Individual Differences" tab. This is very similar to the layout of the group compliance review pages, and should  be read in the same fashion; the only difference is that all comparisons are to a single baseline instead of per-node baselines. 
+
+![custom_report_common][]
 
 Tutorial
 --------
@@ -163,6 +195,12 @@ The next day, the admin's fixes to the syslog.conf and profile files on the vari
 
 [accept_and_reject_buttons]: ./images/accept_and_reject_buttons.png
 [compliance_link]: ./images/compliance_link.png
+[core_group_page]: ./images/core_group_page.png
+[core_group_custom_report]: ./images/core_group_custom_report.png
+[custom_report_core_group_link]: ./images/custom_report_core_group_link.png
+[custom_report_compliance_group_link]: ./images/custom_report_compliance_group_link.png
+[custom_report_compliance_main_link]: ./images/custom_report_compliance_main_link.png
+[custom_report_common]: ./images/custom_report_common.png
 [date_changer_with_unreviewed]: ./images/date_changer_with_unreviewed.png
 [group_common]: ./images/group_common.png
 [group_converging]: ./images/group_converging.png
