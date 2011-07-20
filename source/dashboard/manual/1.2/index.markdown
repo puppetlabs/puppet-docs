@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "Puppet Dashboard Manual: Index"
+title: "Puppet Dashboard 1.2 Manual: Index"
 ---
 
-Puppet Dashboard Manual
+Puppet Dashboard 1.2 Manual
 =====
 
 This is the manual for Puppet Dashboard 1.2.
@@ -11,7 +11,7 @@ This is the manual for Puppet Dashboard 1.2.
 Overview
 --------
 
-Puppet Dashboard is a Ruby on Rails application that extends Puppet. It can view and analyze Puppet reports, serve as an external node classifier, and view inventory data and backed-up file contents. 
+Puppet Dashboard is a web interface for Puppet. It can view and analyze Puppet reports, assign Puppet classes and parameters to nodes, and view inventory data and backed-up file contents. 
 
 Chapters
 --------
