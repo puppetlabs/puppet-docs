@@ -30,7 +30,7 @@ When naming classes, a class that disables ssh should be inherited from the ssh 
 Style
 -----
 
-For recommendations on syntax and formatting, follow the [Style Guide](./style.html)
+For recommendations on syntax and formatting, follow the [Style Guide](./style_guide.html)
 
 Classes Vs Defined Types
 ------------------------

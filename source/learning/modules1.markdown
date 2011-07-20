@@ -47,7 +47,7 @@ Before you can use a class, you have to **define** it, which is done with the `c
       ... 
     }
 
-Well, hey: you have a block of code hanging around from last chapter's exercises, right? May as well just wrap _that_ in a class definition!
+Well, hey: you have a block of code hanging around from last chapter's exercises, right? Chuck it in!
 
 {% highlight ruby %}
     # ntp-class1.pp
@@ -103,7 +103,7 @@ Okay, back to our example, which you'll have noticed by now doesn't actually _do
 
 The code inside the class was properly parsed, but the compiler didn't build any of it into the catalog, so none of the resources got synced. For that to happen, the class has to be declared.
 
-You actually already know the syntax to do that. A class definition just enables a unique instance of the `class` resource type, so you can declare it like any other resource:
+You actually already know the syntax to do that. A class definition just enables a unique instance of the `class` resource type; once it's defined, you can declare it like any other resource:
 
 {% highlight ruby %}
     # ntp-class1.pp
@@ -180,7 +180,7 @@ But first, we'll need to meet its friend, the `modulepath`.
     # puppet apply --configprint modulepath
     /etc/puppetlabs/puppet/modules
 
-By the way, `--configprint` is basically my favorite. Puppet has a _lot_ of config options, all of which have default values and site-specific overrides in puppet.conf, and trying to memorize them all is a pain. You can use `--configprint` on  most of the Puppet tools, and they'll print a value (or a bunch, if you use `--configprint all`) and exit.
+By the way, `--configprint` is wonderful. Puppet has a _lot_ of [config options](http://docs.puppetlabs.com/references/stable/configuration.html), all of which have default values and site-specific overrides in puppet.conf, and trying to memorize them all is a pain. You can use `--configprint` on  most of the Puppet tools, and they'll print a value (or a bunch, if you use `--configprint all`) and exit.
 
 Modules
 -------
@@ -233,13 +233,13 @@ And now, the reveal:[^dashe]
     # cd ~
     # puppet apply -e "include ntp"
 
-It just works. You can now do that from any manifest, without having to cut and paste anything. 
+Which works! You can now include the class from any manifest, without having to cut and paste anything. 
 
 But we're not quite done yet. See how the manifest is referring to some files stored outside the module? Let's fix that:
 
-    # mkdir /etc/puppetlabs/modules/ntp/files
-    # mv /root/learning-manifests/ntp.conf.* /etc/puppetlabs/modules/ntp/files/
-    # vim /etc/puppetlabs/modules/ntp/manifests/init.pp
+    # mkdir /etc/puppetlabs/puppet/modules/ntp/files
+    # mv /root/learning-manifests/ntp.conf.* /etc/puppetlabs/puppet/modules/ntp/files/
+    # vim /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
 
 {% highlight ruby %}
     # ...
@@ -292,7 +292,7 @@ The manifests directory can hold any number of other classes and even folders of
 
 The init.pp file should contain `class foo { ... }`, bar.pp should contain `class foo::bar { ... }`, and baz.pp should contain `class foo::bar::baz { ... }`. 
 
-This can be a little disorienting at first, but I promise you'll get used to it. Basically, init.pp is special, and all of the other classes (each in its own manifest) should be under the main class's namespace. If you add more levels of directory hierarchy, they get interpreted as more levels of namespace hierarchy. 
+This can be a little disorienting at first, but I promise you'll get used to it. Basically, init.pp is special, and all of the other classes (each in its own manifest) should be under the main class's namespace. If you add more levels of directory hierarchy, they get interpreted as more levels of namespace hierarchy. This lets you group related classes together, or split the implementation of a complex resource collection out into conceptually separate bits. 
 
 ### Files
 
@@ -312,7 +312,7 @@ Puppet modules can also serve executable Ruby code from their `lib` directories,
 
 ### Module Scaffolding
 
-Since you'll be dealing with those same five subdirectories so much, I suggest adding a function for them to your .bashrc file. 
+Since you'll be dealing with those same five subdirectories so much, consider adding a function for them to your ~/.bashrc file. 
 
     mkmod() {
         mkdir "$1"
@@ -322,11 +322,11 @@ Since you'll be dealing with those same five subdirectories so much, I suggest a
 Exercises
 ---------
 
-> **Exercise:** Build an Apache2 module and class, which ensures Apache is installed and running and manages its config file. While you're at it, make Puppet manage the DocumentRoot and put a custom 404 page and index.html in place. 
+> **Exercise:** Build an Apache2 module and class, which ensures Apache is installed and running and manages its config file. While you're at it, make Puppet manage the DocumentRoot and put a custom 404 page and default index.html in place. 
 > 
 > Set any files or package/service names that might vary per distro conditionally, failing if we're not on CentOS; this'll let you cleanly shim in support for other distros once you need it.
 > 
-> We'll be using this module some more in future lessons. Oh yes.
+> We'll be using this module some more in future lessons.
 
 Next
 ----

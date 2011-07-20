@@ -50,7 +50,11 @@ Additionally, you'll need to install the following library using Ruby's `gem` pa
 Installing
 -----
 
-After all dependencies are installed, the Dashboard and/or baseline packages can be installed by running `rpm -Uvh puppet-dashboard*.rpm` in the directory where they were downloaded. 
+After all dependencies are installed, the Dashboard and/or baseline packages can be installed by running:
+
+    rpm -Uvh puppet-dashboard*.rpm
+
+...in the directory where they were downloaded. 
 
 ### Configuring Puppet Dashboard
 
