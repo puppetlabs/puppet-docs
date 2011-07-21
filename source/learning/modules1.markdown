@@ -10,7 +10,7 @@ You can write some pretty sophisticated manifests at this point, but they're sti
 
 * * *
 
-&larr; [Variables, etc.](./variables.html) --- [Index](./) --- TBA &rarr;
+&larr; [Variables, etc.](./variables.html) --- [Index](./) --- [Templates](./templates.html) &rarr;
 
 * * * 
 
@@ -90,7 +90,7 @@ Go ahead and apply that. In the meantime:
 
 Class names have to start with a lowercase letter, and can contain lowercase alphanumeric characters and underscores. (Just your standard slightly conservative set of allowed characters.)
 
-Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](http://localhost:9292/learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
+Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](./learning/variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
 
 Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`). It also means you can localize --- mask --- variable short names in use outside the class; if you assign a `$fqdn` variable in a class, you would get the new value instead of the value of the Facter-supplied variable, unless you used the fully-qualified fact name (`$::fqdn`). 
 
@@ -335,4 +335,4 @@ Exercises
 Next
 ----
 
-And we've reached another brief pause! There's some fun stuff ahead: come back next update, where we'll cover defined resource types, classes with parameters in 'em, and possibly inheritance, templates, functions, and/or resource defaults.
+So what's with those static config files we're shipping around? If our classes can do different things on different systems, shouldn't our `ntp.conf` and `httpd.conf` files be able to do the same? [Yes. Yes they should.](./templates.html)
