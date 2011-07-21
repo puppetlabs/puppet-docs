@@ -29,29 +29,6 @@ tasks:
 * Remotely sign a node's certificate
 * Do all of the above with a single `puppet node bootstrap` invocation
 
-Installing
-----------
-
-Puppet Cloud Provisioner should be installed with the puppet-module tool. First
-make sure that the tool is installed:
-
-    # gem install puppet-module
-
-Now install Cloud Provisioner with the puppet-module tool on your control node:
-
-    # puppet-module install puppetlabs/cloud_provisioner
-
-Add its lib directory to your `$RUBYLIB` or Ruby load path:
-
-    # export RUBYLIB=$(pwd)/puppetlabs-cloud_provisioner/lib:$RUBYLIB
-
-You can verify that it is installed correctly by running:
-
-    # puppet help node
-
-Verifying that you see the Cloud Provisioner specific commands (create,
-install, ...) in the output.
-
 Prerequisites
 -------------
 
@@ -66,19 +43,46 @@ to **ensure that Fog is installed** on the machine running Cloud Provisioner:
 
     # gem install fog -v 0.7.2
 
+Depending on your operating system and Ruby environment, you may need to
+manually install some of Fog's dependencies.
+
 Cloud Provisier also requires the GUID library for generating unique
 identifiers.
 
     # gem install guid
-
-Depending on your operating system and Ruby environment, you may need to
-manually install some of Fog's dependencies.
 
 ### Services
 
 Currently, Amazon EC2 is the only supported cloud platform for creating new
 machine instances; you'll need a pre-existing **Amazon EC2 account** to use
 this feature.
+
+Installing
+----------
+
+Puppet Cloud Provisioner should be installed with the puppet-module tool. First
+make sure that the tool is installed:
+
+    # gem install puppet-module
+
+Then cd to the directory where you wish to install Cloud Provisioner:
+
+    # cd $(puppet --configprint confdir)/modules
+
+Now use puppet-module to install Cloud Provisioner on your control node:
+
+    # puppet-module install puppetlabs/cloud_provisioner
+
+Add its lib directory to your `$RUBYLIB` or Ruby load path:
+
+    # export RUBYLIB=$(pwd)/puppetlabs-cloud_provisioner/lib:$RUBYLIB
+
+You can verify that it is installed correctly by running:
+
+    # puppet help node
+
+Verifying that you see the Cloud Provisioner specific commands (create,
+install, ...) in the output.
 
 Configuration
 -------------
@@ -99,15 +103,15 @@ To test whether Fog is working, execute the following command:
 This should return "true"
 
 If you do not have the ~/.fog configuration file correct, you may receive an
-error such as the following.  In this case, please verify your
-aws\_access\_key\_id and aws\_secret\_access\_key are properly set in the
-~/.fog file
+error such as the following:
 
     fog-0.9.0/lib/fog/core/service.rb:155
     in `validate_options': Missing required arguments: aws_access_key_id, aws_secret_access_key (ArgumentError)
             from /Users/jeff/.rvm/gems/ruby-1.8.7-p334@puppet/gems/fog-0.9.0/lib/fog/core/service.rb:53:in `new'
             from /Users/jeff/.rvm/gems/ruby-1.8.7-p334@puppet/gems/fog-0.9.0/lib/fog/compute.rb:13:in `new'
             from -e:2
+
+In this case, please verify your `aws_access_key_id` and `aws_secret_access_key` are properly set in the ~/.fog file.
 
 ### EC2
 
@@ -172,7 +176,7 @@ the instance. If you are working with non-EC2 nodes, please note that the
 Usage
 -----
 
-Puppet Cloud Provisioner provides five new actions on the `node` face:
+Puppet Cloud Provisioner provides seven new actions on the `node` face:
 
 * `create`: Creates a new EC2 machine instance.
 * `install`: Install's Puppet on an arbitrary machine, including non-cloud
@@ -200,7 +204,7 @@ instance. **Required.**
 instance. Can be a single group or a path-separator (colon, on *nix systems)
 separated list of groups.
 * `--region` --- The geographic region of the instance. Defaults to us-east-1.
-* `--type --- Type of instance to be launched.
+* `--type` --- Type of instance to be launched.
 
 Example:
 
@@ -220,7 +224,7 @@ Options:
 * `--keyfile` --- The SSH private key file to use. This key cannot require a
 passphrase. **Required.**
 * `--install-script` --- The install script that should be used to install
-Puppet. Current supported options are: gems, puppet-enterprise, puppet-enterprise-s3
+Puppet. Currently supported options are: gems (**default**), puppet-enterprise, and puppet-enterprise-s3
 * `--installer-payload, --puppet` --- The location of the [Puppet
 Enterprise][pe] universal tarball. (Used with puppet-enterprise install script)
 * `--installer-answers` --- The location of an answers file to use with the PE
@@ -231,7 +235,7 @@ script.
 * `--facter-version` --- The version of facter to install with the gems install
 script.
 * `--pe-version` --- The version of PE to install with the puppet-enterprise
-script.  e.g. `1.1`
+script (e.g. `1.1`). Defaults to `1.1`.
 
 Example:
 
@@ -239,14 +243,14 @@ Example:
     --login root --keyfile ~/.ssh/puppetlabs-ec2_rsa \
     --install-script gems --puppet-version 2.6.9
 
-Installs Puppet on an arbitrary system and return the new agent
+Installs Puppet on an arbitrary system and returns the new agent
 node's certname.
 
 Interactive installation of PE is not supported, so you'll need an answers
 file. See the PE manual for complete documentation of the answers file format.
-A reasonable default has been supplied in the ext directory.
+A reasonable default has been supplied in Cloud Provisioner's `ext` directory.
 
-This action is not restricted to cloud machine instances, and will install PE
+This action is not restricted to cloud machine instances, and will install Puppet
 on any machine accessible by SSH.
 
 ### puppet node init
@@ -305,3 +309,4 @@ Example:
 
     puppet node list --region us-west-1
 
+List the Amazon EC2 instances in the specified region and report on their status (pending, running, shutting down, or terminated). This is not limited to instances created by Cloud Provisioner. 
