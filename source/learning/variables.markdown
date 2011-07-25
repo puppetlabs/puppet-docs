@@ -24,6 +24,7 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 
 * `$variables` always start with a dollar sign. You assign to variables with the `=` operator. 
 * Variables can hold strings, numbers, special values (false, undef...), arrays, and hashes.
+* If you've never assigned a variable, you can actually still use it --- its value will be `undef`. (You can also explicitly assign `undef` as a value, although the use case for that is somewhat advanced.)
 * You can use variables as the value for any resource attribute, or as the title of a resource. 
 * You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
 * Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
@@ -102,7 +103,19 @@ Puppet has a fairly complete complement of conditional syntaxes, and the info av
 
 ### If
 
-We'll start with your basic `if` statement. Same as it ever was: _**if** condition { block of code } **elsif** condition { block of code } **else** { block of code };_ the else and any number of elsif statements are optional.
+We'll start with your basic `if` statement. Same as it ever was: 
+
+    if condition {
+      block of code
+    }
+    elsif condition {
+      block of code
+    }
+    else {
+      block of code
+    }
+
+The else and any number of elsif statements are optional.
 
 {% highlight ruby %}
     if $is_virtual {
@@ -128,7 +141,7 @@ The blocks of code for each condition can contain any Puppet code.
 
 You'll notice I used a bare fact as the condition above. The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth mentioning that the following values will be treated as false by an if statement:
 
-* `undef`
+* `undef` (the value of an unassigned variable)
 * `''` (the empty string)
 * `false`
 * Any expression that evaluates to false.
