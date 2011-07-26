@@ -86,7 +86,7 @@ the colon is the resource's _title,_ which must be unique and can be used to ref
 the resource in other parts of the Puppet configuration. Following the title are
 a series of _attributes_ and their _values_. 
 
-Most resources have an attribute (often called simply `name`) whose value will default to the title if you don't specify it. (Internally, this is called the "namevar.") For the `file` type, the `path` will default to the title. A resource's namevar value almost always has to be unique. (The `exec` and `notify` types are the exceptions.)
+Most resources have an attribute (often called simply `name`) whose value will default to the title if you don't specify it. (Internally, this is called the "namevar.") For the `file` type, the `path` will default to the title. **A resource's namevar value almost always has to be unique.** (The `exec` and `notify` types are the exceptions.)
 
 For simple resources that don't vary much, leaving out the name or path and falling back to the title is
 sufficient. But for resources with long names, or in cases where filenames differ between
@@ -132,23 +132,6 @@ like so:
 {% highlight ruby %}
     service { 'sshd':
       require => File['sshdconfig', 'sshconfig', 'authorized_keys']
-    }
-{% endhighlight %}
-
-It's important to note here that the title alone identifies the resource.
-Even if the resource seems to conceptually point to the same entity,
-it's the title that matters.  The following is possible in Puppet,
-but is to be avoided as it can lead to errors once things get
-sent down to the client.
-
-{% highlight ruby %}
-    file { 'sshdconfig':
-      name  => '/usr/local/etc/ssh/sshd_config',
-      owner => 'root',
-    }
-
-    file { '/usr/local/etc/ssh/sshd_config':
-      owner => 'sshd',
     }
 {% endhighlight %}
 
