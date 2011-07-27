@@ -129,8 +129,11 @@ First, we'll change the `init.pp` manifest:
         }
       }
       
-      if $ntp_servers == undef {
-        $ntp_servers = $default_servers
+      if $servers == undef {
+        $servers_real = $default_servers
+      }
+      else {
+        $servers_real = $servers
       }
       
       package { 'ntp':
@@ -157,15 +160,15 @@ There are several things going on, here:
 
 * We changed the `File['ntp.conf']` resource, as advertised.
 * We're storing the servers in an array, mostly so I can demonstrate how to iterate over an array once we get to the template. If you wanted to, you could store them as a string with line breaks and per-line `server` statements instead; it comes down to a combination of personal style and the problem at hand.
-* We'll be using that `$ntp_servers` variable in the actual template, which will make more sense during the next chapter; for now, just take my word for it. Also, notice how we're using the special value `undef` to  test whether the variable has been assigned. You could alternately say `if !$ntp_servers {...}`, but I find the former easier to read; YMMV.
+* We'll be using that `$servers_real` variable in the actual template, which will make more sense during the next chapter; for now, just take my word for it. Also, notice how we're using the special value `undef` to test whether the `$servers` variable has been assigned. You could alternately say `if !$servers {...}`, but I find the former easier to read; YMMV.
 
 Next, copy the config files to the templates directory, add the `.erb` extension to their names, and replace the blocks of servers with some choice ERB code:
 
 {% highlight erb %}
     # ...
     
-    # Managed by Puppet; search manifests for $ntp_servers.
-    <% ntp_servers.each do |server| -%>
+    # Managed by Class['ntp']
+    <% servers_real.each do |server| -%>
     server <%= server %>
     <% end -%>
     
@@ -174,7 +177,7 @@ Next, copy the config files to the templates directory, add the `.erb` extension
 
 This snippet will iterate over each entry in the array and print it after a `server` statement, so, for example, the string generated from the Debian template will end up with a block like this: 
 
-    # Managed by Puppet; search manifests for $ntp_servers.
+    # Managed by Class['ntp']
     server 0.debian.pool.ntp.org iburst
     server 1.debian.pool.ntp.org iburst
     server 2.debian.pool.ntp.org iburst

@@ -15,8 +15,8 @@ restrict -6 ::1
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 
-# Managed by puppet class { "ntp": servers => [ ... ] }
-<% servers_real.each do |server| -%>
+# Managed by Puppet; search manifests for $ntp_servers.
+<% ntp_servers.each do |server| -%>
 server <%= server %>
 <% end -%>
 
