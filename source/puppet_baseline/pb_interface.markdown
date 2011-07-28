@@ -53,6 +53,8 @@ Group pages show the collected differences for a group of nodes. Two tabs are av
 
 Groups are one of Dashboard's core constructs, and nodes can be added to and removed from groups with Dashboard's standard node view.
 
+Although Dashboard allows groups to contain other groups, a compliance group page will only list nodes that are direct children of that group. 
+
 Changes to Core Dashboard Pages
 -----
 
