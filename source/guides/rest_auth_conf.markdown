@@ -39,7 +39,7 @@ The auth.conf file consists of a series of ACLs (Access Control Lists); ACLs sho
     auth any
     allow devworkstation.site.net
 
-Due to a known bug, trailing whitespace is not permitted after any line in auth.conf.
+Due to a known bug, trailing whitespace is not permitted after any line in auth.conf in versions prior to 2.7.3.
 
 ACL format
 ----------

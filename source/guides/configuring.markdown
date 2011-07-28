@@ -50,7 +50,7 @@ Puppet's main config file is `puppet.conf`, which is located in Puppet's `confdi
 
 ### File Format
 
-`puppet.conf` uses an INI-like format, with `[config blocks]` containing indented groups of `setting = value` lines. Comment lines `# start with an octothorpe`; partial-line comments are not allowed. 
+`puppet.conf` uses an INI-like format, with `[config blocks]` containing indented groups of `setting = value` lines. Comment lines `# start with an octothorpe`; partial-line comments are not allowed in versions prior to 2.7.3, due to a known bug. 
 
 You can interpolate the value of a setting by using its name as a `$variable`. (Note that `$environment` has special behavior: most of the Puppet applications will interpolate their own environment, but puppet master will use the environment of the agent node it is serving.)
 
