@@ -160,7 +160,7 @@ There are several things going on, here:
 
 * We changed the `File['ntp.conf']` resource, as advertised.
 * We're storing the servers in an array, mostly so I can demonstrate how to iterate over an array once we get to the template. If you wanted to, you could store them as a string with line breaks and per-line `server` statements instead; it comes down to a combination of personal style and the problem at hand.
-* We'll be using that `$servers_real` variable in the actual template, which will make more sense during the next chapter; for now, just take my word for it. Also, notice how we're using the special value `undef` to test whether the `$servers` variable has been assigned. You could alternately say `if !$servers {...}`, but I find the former easier to read; YMMV.
+* We'll be using that `$servers_real` variable in the actual template, which might seem odd now but will make more sense during the next chapter. Likewise with testing whether `$servers` is `undef`. 
 
 Next, copy the config files to the templates directory, add the `.erb` extension to their names, and replace the blocks of servers with some choice ERB code:
 
