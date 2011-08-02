@@ -8,30 +8,30 @@ Style Guide
 
 * * *
 
-### Style Guide Metadata
+**Style Guide Metadata**
 
 Version 1.0.2
 
-## Terminology
+## 1. Terminology
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC 2119](http://www.faqs.org/rfcs/rfc2119.html).
 
-## Puppet Version
+## 2. Puppet Version
 
 This style guide is largely specific to Puppet versions 2.6.x; some of its
 recommendations are based on some language features that became
 available in version 2.6.0 and later.
 
-## Why a Style Guide?
+## 3. Why a Style Guide?
 
 Puppet Labs develops modules for customers and the community, and these modules
 should represent the best known practice for module design and style. Since
 these modules are developed by many people across the organisation, a central
 reference was needed to ensure a consistent pattern, design, and style.
 
-## General Philosophies
+## 4. General Philosophies
 
 No style manual can cover every possible circumstance. When a judgement call
 becomes necessary, keep in mind the following general ideas:
@@ -58,7 +58,7 @@ becomes necessary, keep in mind the following general ideas:
     We might revisit this philosophy in the future if class multi-declarations
     can be made deterministic, but for now, be conservative with declarations.)
 
-## Module Metadata
+## 5. Module Metadata
 
 Every module must have Metadata defined in the Modulefile data file
 and outputted as the metadata.json file.  The following Metadata
@@ -75,14 +75,14 @@ should be provided for all modules:
 
 A more complete guide to the Modulefile format can be found in the [puppet-module-tool README](https://github.com/puppetlabs/puppet-module-tool/blob/master/README.markdown).
 
-### Style Versioning
+### 5.1. Style Versioning
 
 This style guide will be versioned, which will allow modules to comply
 with a specific version of the style guide.
 
 A future version of the puppet-module tool may permit the relevant style guide version to be embedded as metadata in the Modulefile, and the metadata in turn may be used for automated linting.
 
-## Spacing, Indentation, & Whitespace
+## 6. Spacing, Indentation, & Whitespace
 
 Module manifests complying with this style guide:
 
@@ -92,7 +92,7 @@ Module manifests complying with this style guide:
 * Should not exceed an 80 character line width
 * Should align fat comma arrows (`=>`) within blocks of attributes
 
-## Comments
+## 7. Comments
 
 Although the Puppet language allows multiple comment types, we prefer
 hash/octothorpe comments (`# This is a comment`) because they're generally the
@@ -101,7 +101,7 @@ most visible to text editors and other code lexers.
 1.  Should use `# ...` for comments
 2.  Should not use `// ...` or `/* ... */` for comments
 
-## Quoting
+## 8. Quoting
 
 All strings that do not contain variables should be enclosed in
 single quotes.  Double quotes should be used when variable interpolation is
@@ -140,9 +140,9 @@ Variables standing by themselves should not be quoted.  For example:
     mode => "${my_mode}"
 {% endhighlight %}
 
-## Resources
+## 9. Resources
 
-### Resource Names
+### 9.1. Resource Names
 
 All resource titles should be quoted. (Puppet
 supports unquoted resource titles if they do not contain spaces or
@@ -160,7 +160,7 @@ hyphens, but you should avoid them in the interest of consistent look-and-feel.)
     package { openssh: ensure => present }
 {% endhighlight %}
 
-### Arrow Alignment
+### 9.2. Arrow Alignment
 
 All of the fat comma arrows (`=>`) in a resource's attribute/value list should
 be aligned. The arrows should be placed one space ahead of the longest
@@ -194,7 +194,7 @@ attribute name.
     }
 {% endhighlight %}
 
-### Attribute Ordering
+### 9.3. Attribute Ordering
 
 If a resource declaration includes an `ensure` attribute, it should be the
 first attribute specified.
@@ -213,7 +213,7 @@ first attribute specified.
 (This recommendation is solely in the interest of readability, as Puppet
 ignores attribute order when syncing resources.)
 
-### Compression
+### 9.4. Compression
 
 Within a given manifest, resources should be grouped by logical relationship to
 each other, rather than by resource type. Use of the semicolon syntax to
@@ -258,7 +258,7 @@ except in the rare cases where it would improve readability.
     }
 {% endhighlight %}
 
-### Symbolic Links
+### 9.5. Symbolic Links
 
 In the interest of clarity, symbolic links should be declared by using an
 ensure value of `ensure => link` and explicitly specifying a value for the
@@ -282,7 +282,7 @@ recommended.
     }
 {% endhighlight %}
 
-### File Modes
+### 9.6. File Modes
 
 File modes should be represented as 4 digits rather than 3, to explicitly show
 that they are octal values.
@@ -308,7 +308,7 @@ bare word numbers.
     }
 {% endhighlight %}
 
-### Resource Defaults
+### 9.7. Resource Defaults
 
 Resource defaults should be used in a very controlled manner, and should only
 be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
@@ -346,9 +346,9 @@ effects far away from where the default was declared.
     }
 {% endhighlight %}
 
-## Conditionals
+## 10. Conditionals
 
-### Keep Resource Declarations Simple
+### 10.1. Keep Resource Declarations Simple
 
 You should not intermingle conditionals with resource declarations. When using
 conditionals for data assignment, you should separate conditional code from the
@@ -381,7 +381,7 @@ resource declarations.
     }
 {% endhighlight %}
 
-### Defaults for Case Statements and Selectors
+### 10.2. Defaults for Case Statements and Selectors
 
 Case statements should have default cases. Additionally, the default case should fail the
 catalog compilation when the resulting behavior cannot be predicted on the
@@ -406,9 +406,9 @@ The following example follows the recommended style:
     }
 {% endhighlight %}
 
-## Classes
+## 11. Classes
 
-### Separate Files
+### 11.1. Separate Files
 
 All classes and resource type definitions must be in separate files in the
 `manifests` directory of their module. For example:
@@ -427,7 +427,7 @@ All classes and resource type definitions must be in separate files in the
 This is functionally identical to declaring all classes and defines in init.pp,
 but highlights the structure of the module and makes everything more legible.
 
-### Internal Organization of a Class
+### 11.2. Internal Organization of a Class
 
 Classes should be organised with a consistent structure and style.  In the
 below list there is an implicit statement of "should be at this relative
@@ -487,7 +487,7 @@ The following example follows the recommended style:
     }
 {% endhighlight %}
 
-### Relationship Declarations
+### 11.3. Relationship Declarations
 
 Relationship declarations with the chaining syntax should only be used in the
 "left to right" direction.
@@ -505,7 +505,7 @@ One example where metaparameters aren't desirable is when subclassing would be
 necessary to override behavior; in this situation, relationship declarations
 inside of conditionals should be used.
 
-### Classes and Defined Resource Types Within Classes
+### 11.4. Classes and Defined Resource Types Within Classes
 
 Classes and defined resource types must not be defined within other classes.
 
@@ -525,7 +525,7 @@ Classes and defined resource types must not be defined within other classes.
     }
 {% endhighlight %}
 
-### Class Inheritance
+### 11.5. Class Inheritance
 
 Inheritance may be used within a module, but must not be used across module
 namespaces. Cross-module dependencies should be satisfied in a more portable
@@ -624,13 +624,13 @@ In summary:
 * If you just need to override relationship metaparameters, you should use a single class with conditional relationship declarations instead of inheritance.
 * In many cases, even other attributes (e.g. ensure and enable) may have their behavior changed with variables and conditional logic instead of inheritance.
 
-### Namespacing Variables
+### 11.6. Namespacing Variables
 
 When using top-scope variables, including facts, Puppet modules should
 explicitly specify the empty namespace (i.e., `$::operatingsystem`, not
 `$operatingsystem`) to prevent accidental scoping issues.
 
-### Display Order of Class Parameters
+### 11.7. Display Order of Class Parameters
 
 In parameterized class and defined resource type declarations, parameters that
 are required should be listed before optional parameters (i.e. parameters with
@@ -656,7 +656,7 @@ defaults).
     ) {}
 {% endhighlight %}
 
-## Tests
+## 12. Tests
 
 All manifests should have a corresponding test manifest in the module's `tests`
 directory.
@@ -669,7 +669,7 @@ defined resource type.  In addition, the test manifest should also declare any
 classes required by the corresponding class to ensure `puppet apply` works in a
 limited, stand alone manner.
 
-## Puppet Doc
+## 13. Puppet Doc
 
 Classes and defined resource types should be documented inline using the
 following conventions:
