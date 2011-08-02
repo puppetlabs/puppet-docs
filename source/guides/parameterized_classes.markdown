@@ -133,7 +133,7 @@ Appendix: Smart Parameter Defaults
 This design pattern can make for significantly cleaner code while enabling some really sophisticated behavior around default values.
 
 {% highlight ruby %}
-    # /etc/modules/webserver/manifests/params.pp
+    # /etc/puppet/modules/webserver/manifests/params.pp
     
     class webserver::params {
      $packages = $operatingsystem ? {
@@ -146,7 +146,7 @@ This design pattern can make for significantly cleaner code while enabling some 
      }
     }
     
-    # /etc/modules/webserver/manifests/init.pp
+    # /etc/puppet/modules/webserver/manifests/init.pp
     
     class webserver(
      $packages  = $webserver::params::packages,
@@ -170,7 +170,7 @@ To summarize what's happening here: When a class inherits from another class, it
 This is functionally equivalent to doing the following:
 
 {% highlight ruby %}
-    # /etc/modules/webserver/manifests/init.pp
+    # /etc/puppet/modules/webserver/manifests/init.pp
     
     class webserver( $packages = 'UNSET', $vhost_dir = 'UNSET' ) {
      
