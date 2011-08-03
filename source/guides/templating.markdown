@@ -140,12 +140,23 @@ If you need to test to see if a variable is defined before using it, the followi
     myvar has <%= myvar %> value
     <% end %>
 
-## Out of scope variables
+## Out of scope variables and facts
 
 You can access out of scope variables explicitly with the lookupvar
 function:
 
     <%= scope.lookupvar('apache::user') %>
+
+Same goes for client-specific variables (facts). For instance, in order to
+access the "`domain`" fact use the following:
+
+    <%= scope.lookupvar('::domain') %>
+
+Support for dynamic lookup of referenced variables i.e.
+
+    <%= domain %>
+
+will be removed in Puppet 2.8.
 
 ## Access to defined tags and classes
 
