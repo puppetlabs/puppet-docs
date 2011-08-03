@@ -96,6 +96,24 @@ key ID and secret access key. Create a `~/.fog` file as follows:
       :aws_access_key_id:     XXXXXXXXXXXXXXXXXXXXX
       :aws_secret_access_key: Xx+xxXX+XxxXXXXXXxxXxxXXXXxxxXXxXXxxxxXX
 
+You may obtain your AWS Access key id and secret access key using the following information:
+<pre>
+To view your AWS Secret access key, go to http://aws.amazon.com and click on
+Account > Security Credentials. From their, under the "Access Credentials"
+section of the page, click on the "Access Keys" tab to view your Access Keys.
+To see your Secret Access Key, just click on the "Show" link under "Secret
+Access Key".
+
+From here, you can create new access keys or delete old ones. Just click on
+"Create a new Access Key" and confirm that you'd like to generate a new pair.
+This will generate both access and secret access keys. But, keep in mind that
+your account is only able to have two sets of keys at any given time. If you
+already have two sets created, you will not see the option to create a new set
+until one has been made inactive and then deleted.
+</pre>
+Information from [AWS Discussion
+Forums](https://forums.aws.amazon.com/thread.jspa?threadID=49738)
+
 To test whether Fog is working, execute the following command:
 
     $ ruby -rubygems -e 'require "fog"' -e 'puts Fog::Compute.new(:provider => "AWS").servers.length >= 0'
