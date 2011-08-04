@@ -14,7 +14,7 @@ Now that you have basic classes and modules under control, it's time for some mo
 
 * * * 
 
-Investigators
+Investigators and Their Limits
 -------------
 
 Most classes have to do slightly different things on different systems. You already know some ways to do that --- all of the modules you've written so far have switched their behaviors by looking up system facts. Let's say that they "investigate:" they expect some information to be in a specific place (in the case of facts, a top-scope variable), and go looking for it when they need it. 
@@ -42,16 +42,28 @@ This is a doorway for passing information into the class. When you declare the c
       notify {"Value 1 is ${value1}.":}
       notify {"Value 2 is ${value2}.":}
     }
+    
+    # ~/learning-manifests/paramclass1.pp
+    class {'paramclassexample':
+      value1 => 'Something',
+      value2 => 'Something else',
+    }
+    
+    # ~/learning-manifests/paramclass2.pp
+    class {'paramclassexample':
+      value1 => 'Something',
+    }
 {% endhighlight %}
 
-    # puppet apply -e "class {'paramclassexample': value1 => 'Something', value2 => 'Something else',}"
+    # puppet apply ~/learning-manifests/paramclass1.pp
     notice: Value 2 is Something else.
     notice: /Stage[main]/Paramclassexample/Notify[Value 2 is Something else.]/message: defined 'message' as 'Value 2 is Something else.'
     notice: Value 1 is Something.
     notice: /Stage[main]/Paramclassexample/Notify[Value 1 is Something.]/message: defined 'message' as 'Value 1 is Something.'
     notice: Finished catalog run in 0.05 seconds
     
-    # puppet apply -e "class {'paramclassexample': value1 => 'Something',}"notice: Value 1 is Something.
+    # puppet apply ~/learning-manifests/paramclass2.pp
+    notice: Value 1 is Something.
     notice: /Stage[main]/Paramclassexample/Notify[Value 1 is Something.]/message: defined 'message' as 'Value 1 is Something.'
     notice: Value 2 is Default value.
     notice: /Stage[main]/Paramclassexample/Notify[Value 2 is Default value.]/message: defined 'message' as 'Value 2 is Default value.'
@@ -68,7 +80,7 @@ But! This is probably going to be more clear with a more legit example.
 Example: NTP (Again)
 --------------------
 
-So let's get back to our NTP module. The first thing we talked about wanting to vary was the set of servers, and we already did the heavy lifting back in the [templates](./templates.html) chapter, so that's the place to start: 
+So let's get back to our NTP module. The first thing we talked about wanting to vary was the set of servers, and we already did the heavy lifting back in the [templates](./templates.html) chapter, so that's a good place to start: 
 
 {% highlight ruby %}
     class ntp ($servers = undef) {
@@ -89,7 +101,11 @@ And... that's all it takes, actually. This will work. If you declare the class w
     }
 {% endhighlight %}
 
-...it'll override the servers in the `ntp.conf` file. Nice. There _is_ a bit of trickery to notice: setting a variable or parameter to `undef` might seem odd, and we're only doing it because we want to be able to get the default servers without asking for them. (Remember, parameters can't be optional without an explicit default value.) Also, remember the business with the `$servers_real` variable? That was because the Puppet language won't let us re-assign the `$servers` variable within a given scope. If the default value we wanted was the same regardless of OS, we could just use it as the parameter default, but the extra logic means we have to make a copy.
+...it'll override the servers in the `ntp.conf` file. Nice.
+
+There _is_ a bit of trickery to notice: setting a variable or parameter to `undef` might seem odd, and we're only doing it because we want to be able to get the default servers without asking for them. (Remember, parameters can't be optional without an explicit default value.) 
+
+Also, remember the business with the `$servers_real` variable? That was because the Puppet language won't let us re-assign the `$servers` variable within a given scope. If the default value we wanted was the same regardless of OS, we could just use it as the parameter default, but the extra logic to accomodate the per-OS defaults means we have to make a copy.
 
 While we're in the NTP module, what else could we make into a parameter? Well, let's say you have a mixed environment of physical and virtual machines, and some of them occasionally make the transition between VM and metal. Since NTP behaves weirdly under virtualization, you'd want it turned off on your virtual machines --- and you would have to manage the service as a resource to do that, because if you just didn't say anything about NTP (by not declaring the class, e.g.), it might actually still be running. So you could make a separate `ntp_disabled` class and declare it whenever you aren't declaring the `ntp` class... but it makes more sense to expose the service's attributes as class parameters. That way, when you move a formerly physical server into the cloud, you could just change that part of its manifests from this:
 
@@ -156,7 +172,7 @@ And making that work right is almost as easy as the last edit. Here's the comple
     }
 {% endhighlight %}
 
-Is there anything else we could do to this class? Well, yes: its behavior under anything but Debian, Ubuntu, CentOS, or RHEL is currently undefined, so it'd be nice to, say, come up with some config templates to use under the BSDs and OS X and then fail gracefully on unrecognized OSes. And it might make sense to unify our two current templates; they're just based on the system defaults, and once you decide how NTP should be configured at your site, chances are it's going to look similar on any Linux. But as it stands, the module is pretty serviceable. 
+Is there anything else we could do to this class? Well, yes: its behavior under anything but Debian, Ubuntu, CentOS, or RHEL is currently undefined, so it'd be nice to, say, come up with some config templates to use under the BSDs and OS X and then fail gracefully on unrecognized OSes. And it might make sense to unify our two current templates; they were just based on the system defaults, and once you decide how NTP should be configured at your site, chances are it's going to look similar on any Linux. But as it stands, the module is pretty serviceable. 
 
 So hey, let's throw on some documentation and be done with it! 
 
@@ -199,7 +215,7 @@ Module Documentation
       ...
 {% endhighlight %}
 
-This doesn't have to be Tolstoy, but seriously, write down what the parameters are and what kind of data they have to take. Your future self will thank you. And if you do it in a comment block butted up directly against the start of the class definition, you can later automatically generate a browsable Rdoc-style site with info for all your modules. You can test it now, actually: 
+This doesn't have to be Tolstoy, but seriously, at least write down what the parameters are and what kind of data they have to take. Your future self will thank you. And if you do it in a comment block butted up directly against the start of the class definition, you can later automatically generate a browsable Rdoc-style site with info for all your modules. You can test it now, actually: 
 
     # puppet doc --mode rdoc --outputdir ~/moduledocs --modulepath /etc/puppetlabs/puppet/modules
 
@@ -210,4 +226,4 @@ Next
 
 Okay, we can pass parameters into classes now and change their behavior. Great! But classes are still always singletons; you can't declare more than one copy and get two different sets of behavior simultaneously. And you'll eventually want to do that! What if you had a collection of resources that created a vhost definition for a web server, or cloned a Git repository, or managed a user account complete with group, SSH key, home directory contents, sudoers entry, and .bashrc/.vimrc/etc. files?
 
-Well, you'd whip up a [defined resource type](./modules3.html). 
+Well, you'd whip up a defined resource type. Come back soon for Modules (part three)!

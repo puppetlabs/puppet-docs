@@ -30,13 +30,15 @@ Yes, Ruby --- unfortunately you can't use the Puppet language in templates. But 
 Some Simple ERB
 -----
 
-First, keep in mind that **facts** and **variables defined in the current scope** are available to a template as standard Ruby local variables, which are plain words without a `$` sigil in front of them. Variables from other scopes are reachable, but to read them, you have to call the `lookupvar` method on the `scope` object. (For example, `scope.lookupvar('apache::user')`.) 
+First, keep in mind that **facts, global variables,** and **variables defined in the current scope** are available to a template as standard Ruby local variables, which are plain words without a `$` sigil in front of them. Variables from other scopes are reachable, but to read them, you have to call the `lookupvar` method on the `scope` object. (For example, `scope.lookupvar('apache::user')`.) 
 
 ### Tags
 
-ERB tags are angle brackets with percent signs just inside. (There isn't any HTML-like concept of opening or closing tags.)
+ERB tags are delimited by angle brackets with percent signs just inside. (There isn't any HTML-like concept of opening or closing tags.)
 
+{% highlight erb %}
     <% document = "" %>
+{% endhighlight %}
 
 Tags contain one or more lines of Ruby code, which can set variables, munge data, implement control flow, or... actually, pretty much anything, except for print text in the rendered output.
 
@@ -82,7 +84,13 @@ To render output from a template, use Puppet's built-in `template` function:
 
 This evaluates the template and turns it into a string. Here, we're using that string as the `content`[^timing] of a file resource, but like I said above, we could be using it for pretty much anything. **Note that the path to the template doesn't use the same semantics as the path in a `puppet:///` URL**[^paths] --- it should be in the form `<module name>/<path relative to module's templates directory>`. (That is, `template('foo/foo.conf.erb')` points to `/etc/puppetlabs/puppet/modules/foo/templates/foo.conf.erb`.)
 
-As a sidenote: if you give more than one argument to the template function (`template('foo/one.erb', 'foo/two.erb')`, for example), it will concatenate the outputs and return a single string. 
+As a sidenote: if you give more than one argument to the template function...
+
+{% highlight ruby %}
+    template('foo/one.erb', 'foo/two.erb')
+{% endhighlight %}
+
+...it will evaluate each of the templates, then concatenate their outputs and return a single string. 
 
 [4885]: http://projects.puppetlabs.com/issues/4885
 [^timing]: This is a good time to remind you that filling a `content` attribute  happens during catalog compilation, and serving a file with a `puppet:///` URL happens during catalog application. Again, this doesn't matter right now, but it may make some things clearer later.
@@ -96,7 +104,7 @@ Most of the Puppet language consists of ways to say "Here is a thing, and this i
 
 Puppet's functions are run during catalog compilation,[^agent] and they're pretty intuitive to call; it's basically just `function(argument, argument, argument)`, and you can optionally leave off the parentheses. (Remember that `include` is also a function.) Some functions (like `template`) get replaced with a return value, and others (like `include`) take effect silently. 
 
-You can read the full list of available functions at the [function reference](http://docs.puppetlabs.com/references/stable/function.html). We won't be covering most of these for a while, but you might find `inline_template` and `regsubst` useful at some point. 
+You can read the full list of available functions at the [function reference](http://docs.puppetlabs.com/references/stable/function.html). We won't be covering most of these for a while, but you might find `inline_template` and `regsubst` useful in the short term.
 
 [^agent]: To jump ahead a bit, this means the agent never sees them.
 
@@ -113,15 +121,15 @@ First, we'll change the `init.pp` manifest:
     class ntp {
       case $operatingsystem {
         centos, redhat: { 
-          $service_name  = 'ntpd'
-          $conf_template = 'ntp.conf.el.erb'
+          $service_name    = 'ntpd'
+          $conf_template   = 'ntp.conf.el.erb'
           $default_servers = [ "0.centos.pool.ntp.org",
                                "1.centos.pool.ntp.org",
                                "2.centos.pool.ntp.org", ]
         }
         debian, ubuntu: { 
-          $service_name  = 'ntp'
-          $conf_template = 'ntp.conf.debian.erb'
+          $service_name    = 'ntp'
+          $conf_template   = 'ntp.conf.debian.erb'
           $default_servers = [ "0.debian.pool.ntp.org iburst",
                                "1.debian.pool.ntp.org iburst",
                                "2.debian.pool.ntp.org iburst",
@@ -159,8 +167,8 @@ First, we'll change the `init.pp` manifest:
 There are several things going on, here: 
 
 * We changed the `File['ntp.conf']` resource, as advertised.
-* We're storing the servers in an array, mostly so I can demonstrate how to iterate over an array once we get to the template. If you wanted to, you could store them as a string with line breaks and per-line `server` statements instead; it comes down to a combination of personal style and the problem at hand.
-* We'll be using that `$servers_real` variable in the actual template, which might seem odd now but will make more sense during the next chapter. Likewise with testing whether `$servers` is `undef`. 
+* We're storing the servers in an array, mostly so I can demonstrate how to iterate over an array once we get to the template. If you wanted to, you could store them as a string with line breaks and per-line `server` statements instead; it comes down to a combination of personal style and the nature of the problem at hand.
+* We'll be using that `$servers_real` variable in the actual template, which might seem odd now but will make more sense during the next chapter. Likewise with testing whether `$servers` is `undef`. (For now, it will always be `undef`, as are all variables that haven't been assigned yet.)
 
 Next, copy the config files to the templates directory, add the `.erb` extension to their names, and replace the blocks of servers with some choice ERB code:
 
