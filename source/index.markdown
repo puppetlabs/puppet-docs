@@ -38,7 +38,9 @@ Learn to use Puppet! New users: start here.
 * [Manifests](./learning/manifests.html) --- start writing and applying Puppet code
 * [Ordering](./learning/ordering.html) --- learn to join resources that depend on each other
 * [Variables, Facts, and Conditionals](./learning/variables.html) --- read system information to make versatile manifests
-* [Classes and Modules, Part One](./learning/modules1.html) --- start collecting resources into self-contained modules
+* [Modules and Classes (Part One)](./learning/modules1.html) --- start collecting resources into self-contained modules
+* [Templates](./learning/templates.html) --- use ERB to extend your config files
+* [Modules and (Parameterized) Classes (Part Two)](./learning/modules2.html) --- pass parameters to classes for more advanced code re-use
 
 * * * 
 

@@ -3,7 +3,7 @@ layout: default
 title: Learning — Modules 2
 ---
 
-Learning — Modules, Classes, and Defined Types (Part Two)
+Learning — Modules and (Parameterized) Classes (Part Two)
 =========================================
 
 Now that you have basic classes and modules under control, it's time for some more advanced code re-use. 

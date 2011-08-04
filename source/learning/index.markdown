@@ -12,7 +12,7 @@ The web (including this site) is full of guides for how to solve specific proble
 
 Start: [Resources and the RAL][ral] &rarr;
 
-Latest: [Modules (Part One)][modules1] &rarr;
+Latest: [Templates][] and [Modules (Part Two)][modules2] &rarr;
 
 * * *
 
@@ -23,6 +23,8 @@ Latest: [Modules (Part One)][modules1] &rarr;
 [Ordering]: ./ordering.html
 [variables]: ./variables.html
 [modules1]: ./modules1.html
+[templates]: ./templates.html
+[modules2]: ./modules2.html
 
 Welcome
 -------
@@ -74,6 +76,8 @@ And with that, you're ready to start.
 * After that, move on to [Manifests][] and start controlling your system by writing actual Puppet code.
 * Next, in [Ordering][], learn about dependencies and refresh events, manage the relationships between resources, and discover the most useful Puppet design pattern.
 * In [Variables, Conditionals, and Facts][variables], make your manifests versatile by reading system information.
-* In [Classes and Modules, Part One][modules1], take the first step to a knowable and elegant site design and start turning your manifests into self-contained modules. 
+* In [Modules and Classes (Part One)][modules1], take the first step to a knowable and elegant site design and start turning your manifests into self-contained modules. 
+* In [Templates][], use ERB to make your config files as flexible as your Puppet manifests.
+* In [Modules and (Parameterized) Classes (Part Two)][modules2], learn how to pass parameters to classes and make your modules more adaptable.
 
 And come back soon, because there are more chapters on the way.
