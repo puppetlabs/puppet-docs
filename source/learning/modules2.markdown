@@ -89,9 +89,15 @@ And... that's all it takes, actually. This will work. If you declare the class w
     }
 {% endhighlight %}
 
-...it'll override the servers in the `ntp.conf` file. Nice. There _is_ a bit of trickery to notice: setting a variable or parameter to `undef` might seem odd, and we're only doing it because we want to be able to get the default servers without asking for them. (Remember, parameters can't be optional without an explicit default value.) Also, remember the business with the `$servers_real` variable? That was because the Puppet language won't let you re-assign a variable within a given scope. Since `$servers` is always going to be assigned before we can do anything in the class, we have to make a copy of it if we want to smartly handle default values like this.
+...it'll override the servers in the `ntp.conf` file. Nice. There _is_ a bit of trickery to notice: setting a variable or parameter to `undef` might seem odd, and we're only doing it because we want to be able to get the default servers without asking for them. (Remember, parameters can't be optional without an explicit default value.) Also, remember the business with the `$servers_real` variable? That was because the Puppet language won't let us re-assign the `$servers` variable within a given scope. If the default value we wanted was the same regardless of OS, we could just use it as the parameter default, but the extra logic means we have to make a copy.
 
-What else could we make into a parameter? Well, let's say you have a mixed environment of physical and virtual machines, and some of them occasionally make the transition between VM and metal. Since NTP behaves weirdly under virtualization, you'd want it turned off on your virtual machines --- and you would have to manage it as a service resource to do that, because if you just didn't say anything about NTP (by not declaring the class, e.g.), it might actually still be running. So you could make an `ntp_disabled` class and declare that whenever you aren't declaring the `ntp` class... but it makes more sense to expose the service's attributes as class parameters. That way, when you move a formerly physical server into the cloud, you could just change its manifests to declare the class like this:
+While we're in the NTP module, what else could we make into a parameter? Well, let's say you have a mixed environment of physical and virtual machines, and some of them occasionally make the transition between VM and metal. Since NTP behaves weirdly under virtualization, you'd want it turned off on your virtual machines --- and you would have to manage the service as a resource to do that, because if you just didn't say anything about NTP (by not declaring the class, e.g.), it might actually still be running. So you could make a separate `ntp_disabled` class and declare it whenever you aren't declaring the `ntp` class... but it makes more sense to expose the service's attributes as class parameters. That way, when you move a formerly physical server into the cloud, you could just change that part of its manifests from this:
+
+{% highlight ruby %}
+    class {'ntp':}
+{% endhighlight %}
+
+...to this:
 
 {% highlight ruby %}
     class {'ntp':
@@ -100,22 +106,22 @@ What else could we make into a parameter? Well, let's say you have a mixed envir
     }
 {% endhighlight %}
 
-And you've probably already guessed how easy that is. Here's the complete class, with all of our modifications thus far: <!-- TODO: add puppetdoc to this. -->
+And making that work right is almost as easy as the last edit. Here's the complete class, with all of our modifications thus far: 
 
 {% highlight ruby %}
     #/etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
     class ntp ($servers = undef, $enable = true, $ensure = running) {
       case $operatingsystem {
         centos, redhat: { 
-          $service_name  = 'ntpd'
-          $conf_template = 'ntp.conf.el.erb'
+          $service_name    = 'ntpd'
+          $conf_template   = 'ntp.conf.el.erb'
           $default_servers = [ "0.centos.pool.ntp.org",
                                "1.centos.pool.ntp.org",
                                "2.centos.pool.ntp.org", ]
         }
         debian, ubuntu: { 
-          $service_name  = 'ntp'
-          $conf_template = 'ntp.conf.debian.erb'
+          $service_name    = 'ntp'
+          $conf_template   = 'ntp.conf.debian.erb'
           $default_servers = [ "0.debian.pool.ntp.org iburst",
                                "1.debian.pool.ntp.org iburst",
                                "2.debian.pool.ntp.org iburst",
@@ -150,4 +156,58 @@ And you've probably already guessed how easy that is. Here's the complete class,
     }
 {% endhighlight %}
 
-Is there anything else we could do to this class? Well, yes: its behavior under anything but Debian, Ubuntu, CentOS, or RHEL is currently undefined, so it'd be nice to either fail gracefully or come up with some config templates we wouldn't mind being used under OS X or a BSD. And it might make sense to unify our two current templates; they're just based on the system defaults, and once you decide how NTP should be configured at your site, chances are it's going to look similar on any Linux. But as it stands, the module is pretty serviceable. 
+Is there anything else we could do to this class? Well, yes: its behavior under anything but Debian, Ubuntu, CentOS, or RHEL is currently undefined, so it'd be nice to, say, come up with some config templates to use under the BSDs and OS X and then fail gracefully on unrecognized OSes. And it might make sense to unify our two current templates; they're just based on the system defaults, and once you decide how NTP should be configured at your site, chances are it's going to look similar on any Linux. But as it stands, the module is pretty serviceable. 
+
+So hey, let's throw on some documentation and be done with it! 
+
+Module Documentation
+--------------------
+
+{% highlight ruby %}
+    # Class: ntp
+    # 
+    # This class installs and configures NTP and manages the NTP service. 
+    # It can optionally disable NTP on virtual machines. Only supported on
+    # Debian- and Red Hat-derived operating systems.
+    # 
+    # Parameters: 
+    #   - $servers:
+    #         An array of NTP servers, with or without appended +iburst+ and 
+    #         +dynamic+ statements. Defaults to OS defaults.
+    #   - $enable:
+    #         Whether to start the NTP service on boot. Defaults to true. Valid
+    #         values: true and false. 
+    #   - $ensure:
+    #         Whether to run the NTP service. Defaults to running. Valid values:
+    #         running and stopped. 
+    # 
+    # Requires: 
+    #   Nothing.
+    # 
+    # Sample Usage:
+    #   class {'ntp':
+    #     servers => [ "ntp1.puppetlabs.lan dynamic",
+    #                  "ntp2.puppetlabs.lan dynamic", ],
+    #   }
+    #   class {'ntp':
+    #     enable => false,
+    #     ensure => stopped,
+    #   }
+    #
+    class ntp ($servers = undef, $enable = true, $ensure = running) {
+      case $operatingsystem { ...
+      ...
+{% endhighlight %}
+
+This doesn't have to be Tolstoy, but seriously, write down what the parameters are and what kind of data they have to take. Your future self will thank you. And if you do it in a comment block butted up directly against the start of the class definition, you can later automatically generate a browsable Rdoc-style site with info for all your modules. You can test it now, actually: 
+
+    # puppet doc --mode rdoc --outputdir ~/moduledocs --modulepath /etc/puppetlabs/puppet/modules
+
+(Then just upload that `~/moduledocs` folder to some webspace you control, or grab it onto your desktop with SFTP.)
+
+Next
+----
+
+Okay, we can pass parameters into classes now and change their behavior. Great! But classes are still always singletons; you can't declare more than one copy and get two different sets of behavior simultaneously. And you'll eventually want to do that! What if you had a collection of resources that created a vhost definition for a web server, or cloned a Git repository, or managed a user account complete with group, SSH key, home directory contents, sudoers entry, and .bashrc/.vimrc/etc. files?
+
+Well, you'd whip up a [defined resource type](./modules3.html). 
