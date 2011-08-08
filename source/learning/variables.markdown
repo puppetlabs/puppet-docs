@@ -28,9 +28,11 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 * You can use variables as the value for any resource attribute, or as the title of a resource. 
 * You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
 * Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
+* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the top scope;[^dynamic] this means you can effectively leave off the leading `::` on top scope variables and treat them as globals. 
 * You can only assign the same variable **once** in a given scope.[^declarative]
 
 [^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable from anywhere north of its assignment. We're working on that.
+[^dynamic]: It's actually a little more complicated than that, but don't worry about it for now. You can [read up on it](/guides/scope_and_puppet.html) later.
 
 {% highlight ruby %}
     $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."
