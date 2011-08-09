@@ -15,6 +15,7 @@ This document describes how Puppet's configuration settings work, and describes 
 [environments]: ./environment.html
 [configref]: /references/stable/configuration.html
 [versioned]: /references/
+[reports]: /references/stable/configuration.html#reports
 
 Puppet's Settings
 -----------------
@@ -40,7 +41,7 @@ The settings you'll have to interact with will vary a lot, depending on what you
 * [`node_terminus`](/references/stable/configuration.html#nodeterminus) --- How puppet master should get node definitions; if you use an ENC, you'll need to set it to "exec."
 * [`external_nodes`](/references/stable/configuration.html#externalnodes) --- The script to run for node definitions (if you chose a `node_terminus` of "exec"). 
 * [`report`](/references/stable/configuration.html#report) --- Whether to send reports to the puppet master.
-* [`reports`](/references/stable/configuration.html#reports) --- On the puppet master, which report handler(s) to use. 
+* [`reports`][reports] --- On the puppet master, which report handler(s) to use. 
 
 `puppet.conf`
 ------------
@@ -192,16 +193,35 @@ Note that certname globs do not function as normal globs: an asterisk can only r
 Your puppet master server can send targeted emails to different admin users whenever certain resources are changed. This requires that you:
 
 * Set `report = true` on your agent nodes
-* Set `reports = tagmail` on the puppet master (`reports` accepts a list, so you can enable any number of reports)
-* Set the `reportfrom` email address and either the `smtpserver` or `sendmail` setting on the puppet master
+* Set `reports = tagmail` on the puppet master ([`reports`] accepts a list, so you can enable any number of reports)
+* Set the [`reportfrom`][reportfrom] email address and either the [`smtpserver`][smtpserver] or [`sendmail`][sendmail] setting on the puppet master
 * Create a `tagmail.conf` file at the location specified in the `tagmap` setting
 
 More details are available at the [tagmail report reference](http://docs.puppetlabs.com/references/stable/report.html#tagmail). 
 
-The `tagmail.conf` file is list of lines, each of which consists of a tag, a colon, and an email address. The tag portion of a line can also be a !negated tag, a list of tags, or the word "all," which does exactly what it sounds like.
+[reportfrom]: /references/latest/configuration.html#reportfrom
+[smtpserver]: /references/latest/configuration.html#smtpserver
+[sendmail]: /references/latest/configuration.html#sendmail
 
-    all: zach@puppetlabs.com
+The `tagmail.conf` file (located at `/etc/puppet/tagmail.conf` by default, and configurable with the `tagmap` setting) is list of lines, each of which consists of: 
+
+* A comma-separated list of tags and !negated tags; valid tags include:
+    * Explicit tags
+    * Class names
+    * "`all`"
+    * Any valid Puppet log level (`debug`, `info`, `notice`, `warning`, `err`, `alert`, `emerg`, `crit`, or `verbose`)
+* A colon
+* A comma-separated list of email addresses
+
+The list of tags on a line builds the set of resources whose messages will be included in the mailing; each additional tag adds to the set, and each !negated tag subtracts from the set. 
+
+So, for example:
+
+    all: log-archive@domain.com
     webserver, !mailserver: httpadmins@domain.com
+    emerg, crit: james@domain.com, zach@domain.com, ben@domain.com
+
+This `tagmail.conf` file will mail any resource events tagged with `webserver` but _not_ with `mailserver` to the httpadmins group, any emergency or critical events to to James, Zach, and Ben, and all events to the log-archive group.
 
 ### `autosign.conf`
 
