@@ -443,7 +443,7 @@ whole.
 ### What happens if I am on Puppet 2.6x or earlier?
 
 Nothing changes for you.  Puppet 2.6.x remains licensed as GPLv2. 
-The license change is not retrospective.
+The license change is not retroactive.
 
 ### Does this change affect all the components of Puppet?
 
