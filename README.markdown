@@ -1,12 +1,15 @@
 Puppet Docs
 ===========
 
-Curated documentation for Puppet.
+Curated documentation for Puppet, and tools for generating a deployable copy
+of the docs site.
 
 Installation
 ------------
 
-Steps for installing the documentation-generating code:
+The tools and rake tasks for generating the puppet-docs site require Ruby 1.8.7.
+
+To install the documentation-generating code:
 
 1.  Clone the repository:
 
