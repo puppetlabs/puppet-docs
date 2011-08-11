@@ -152,13 +152,14 @@ Basically, to get a fact's or variable's value, you just call
 
 ## Calling Functions from Functions
 
-Functions can be accessed from other functions by prefixing them
-with `function_`.
+Functions can be accessed from other functions by 
+calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.
 
 ### Example
 
     module Puppet::Parser::Functions
       newfunction(:myfunc2, :type => :rvalue) do |args|
+        Puppet::Parser::Functions.autoloader.loadall
         function_myfunc1(...)
       end
     end
