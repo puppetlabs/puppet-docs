@@ -1477,21 +1477,31 @@ All functions run on the Puppet master, so you only have access to the file syst
 Importing Manifests
 -------------------
 
-Puppet has an `import` keyword for importing other manifests. Code
-in those external manifests should always be stored in a class or
-defined resource type, or else it will be imported into the main scope and applied
-to all nodes. Currently files are only searched for within the same
-directory as the file doing the importing.
+Puppet has an `import` keyword for importing other manifests. **You should almost never use it,** as almost every use case for it has been replaced by the [module autoloader](./modules.html#module-autoloading). In particular, you should never use any import statements inside a module, as the behavior of import within autoloaded manifests is undefined. 
 
-Files can also be imported using globbing, as implemented by Ruby's
-`Dir.glob` method:
+The `import` keyword does not insert Puppet code inline like a C preprocessor #include directive; instead, it adds all code in the requested file to the main scope. This means any code in these external manifests must be in a class, node statement, or defined type, or else it will be applied to all nodes:
 
 {% highlight ruby %}
-    import 'classes/*.pp'
+    # site.pp
+    node kestrel.puppetlabs.lan {
+        # Wrong wrong wrong!
+        import nodes/kestrel.pp
+    }
+    
+    # kestrel.pp
+    include ntp
+    include apache2
+    # These two classes are outside any node statement, and will always be applied.
+{% endhighlight %}
+
+Files are only searched for within the same directory as the file doing the importing. Files can also be imported using globbing, as implemented by Ruby's `Dir.glob` method:
+
+{% highlight ruby %}
+    import 'nodes/*.pp'
     import 'packages/[a-z]*.pp'
 {% endhighlight %}
 
-Best practices calls for organizing manifests into [Modules](./modules.html)
+Instead of importing manifests, you should organize all class manifests into [Modules](./modules.html). The one case where `import` is still useful is for maintaining a `nodes/` directory with one manifest per node and then placing an `import 'nodes/*.pp'` statement in `site.pp`. However, note that doing this can cause puppet master to [not notice edits to your node definitions](./troubleshooting.html#why-hasnt-my-new-node-configuration-been-noticed). 
 
 Handling Compilation Errors
 ---------------------------
