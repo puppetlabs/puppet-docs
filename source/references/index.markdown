@@ -10,11 +10,13 @@ Puppet generated references are available for a wide range of versions.
 * [Latest Version](latest/)
 * [Stable Version](stable/)
 
+Note that the "latest" and "stable" links currently both point to the latest version.
 
 Available Versions
 ------------------
 
 * [2.7.0](2.7.0/)
+* [2.6.9](2.6.9/)
 * [2.6.8](2.6.8/)
 * [2.6.7](2.6.7/)
 * [2.6.6](2.6.6/)
