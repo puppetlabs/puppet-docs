@@ -185,11 +185,11 @@ attribute name.
 {% highlight ruby %}
     exec { 'blah':
      path => '/usr/bin',
-     cwd => '/tmp',
+     cwd  => '/tmp',
     }
 
     exec { 'test':
-      subscribe => File['/etc/test'],
+      subscribe   => File['/etc/test'],
       refreshonly => true,
     }
 {% endhighlight %}
@@ -641,7 +641,7 @@ defaults).
 {% highlight ruby %}
     class ntp (
       $servers,
-      $options = "iburst",
+      $options   = "iburst",
       $multicast = false
     ) {}
 {% endhighlight %}
@@ -650,7 +650,7 @@ defaults).
 
 {% highlight ruby %}
     class ntp (
-      $options = "iburst",
+      $options   = "iburst",
       $servers,
       $multicast = false
     ) {}
