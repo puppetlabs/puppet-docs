@@ -1,3 +1,12 @@
+Before You Install
+------------------
+
+Puppet Enterprise is designed to support the most common structure of Puppet deployment, with a large number of agent nodes receiving configurations from a single puppet master. When installing Puppet at your site, you will need to decide in advance which server will serve as puppet master and ensure that its address can be resolved by name. 
+
+The configuration of your site can be further simplified by ensuring (usually by adding a CNAME record to your site's DNS configuration) that the puppet master server can also be reached at the hostname `puppet`.
+
+
+
 Installing Puppet Enterprise 
 ============================
 
