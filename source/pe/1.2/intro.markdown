@@ -77,7 +77,6 @@ How to Get Help and Support
 
 <!-- TK I'm not sure what goes here. -->
 
-Other Documentation
--------
+### Other Documentation
 
 For help with features not specific to Puppet Enterprise, please see the [main Puppet documentation][docs] and the [MCollective documentation][mco].
