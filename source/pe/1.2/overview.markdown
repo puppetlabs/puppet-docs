@@ -18,7 +18,13 @@ To get maximum compatibility and performance on your existing systems, PE bundle
 PE Roles
 -----
 
-Puppet Enterprise's features are divided into three main **roles,** any or all of which can be enabled on a single computer:
+Puppet Enterprise's features are divided into three main **roles,** any or all of which can be installed on a single computer:
 
-- The **Puppet Agent** role should be installed on every node Puppet will be managing: it installs Puppet, and enables the puppet agent service (`pe-puppet`) that checks in with the puppet master every half-hour and applies the node's catalog. This role also installs (but doesn't automatically enable) the MCollective server, which listens and responds to messages on the ActiveMQ Stomp bus.
-- The **Puppet Master** role should be installed on exactly one server at your site. (A future release of PE may add support for multi-master ecosystems.)
+- The **puppet agent** role should be installed on every node Puppet will be managing; it installs Puppet, and enables the puppet agent service (`pe-puppet`) that checks in with the puppet master every half-hour and applies the node's catalog. This role also installs (but doesn't automatically enable) the MCollective server, which listens and responds to messages on the ActiveMQ Stomp bus; to enable MCollective on a node, use Puppet to assign the `mcollectivepe` class to it.
+- The **puppet master** role should be installed on exactly one server at your site[^multi]; it installs Puppet, Apache, the ActiveMQ server, and the MCollective control client. Servers with this role will respond to catalog requests from puppet agent nodes (using instances of puppet master managed by the `pe-httpd` Apache service), and will act as the hub for all MCollective traffic at the site. Puppet master can be configured during installation to submit reports to and request node classifications from Puppet Dashboard.
+- The **Puppet Dashboard** role should be installed on exactly one server at your site; it installs Puppet Dashboard (with the Puppet Compliance extension), Puppet, and Apache, and configures them to respond to requests from the puppet master, serve a web interface to your site's administrators, and act as a machine inventory browser and file content viewer. The Dashboard role should usually be installed on the same machine as the puppet master role; splitting the two roles between different machines can increase performance in some situations, but will require some additional configuration.
+
+
+[^multi]: A future release of PE may add support for multi-master ecosystems, but for the time being, they require significant extra configuration which won't be covered in this manual.
+
+<!-- TK don't know what else goes here. -->
