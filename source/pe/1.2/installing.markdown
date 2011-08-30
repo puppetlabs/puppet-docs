@@ -111,10 +111,7 @@ If you choose not to install a new database server, you'll need to have already 
 * The database server's hostname
 * The database server's port (default: 3306)
 
-[^createdb]: The SQL commands to do so will likely resemble the following: <br><br>
-`CREATE DATABASE dashboard CHARACTER SET utf8;`<br>
-`CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'password';`<br>
-`GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost';`
+[^createdb]: The SQL commands to do so will likely resemble the following: <br><br>`CREATE DATABASE dashboard CHARACTER SET utf8;`<br>`CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'password';`<br>`GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost';`
 
 
 ### Puppet Agent Options
