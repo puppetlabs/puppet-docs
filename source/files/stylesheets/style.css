@@ -437,6 +437,10 @@ sup a:visited {
   border-top: 1px dotted;
 }
 
+.footnotes li:target {
+  background: #ff9;
+}
+
 /* BASIC BUTTONS */
 .btn {
 	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
