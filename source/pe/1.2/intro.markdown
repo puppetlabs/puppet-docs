@@ -3,6 +3,8 @@ layout: default
 title: "PE Manual: Introduction"
 ---
 
+{% include pe_nav.markdown %}
+
 Welcome to Puppet Enterprise!
 =============================
 
@@ -22,7 +24,7 @@ System Requirements
 
 Puppet Enterprise 1.2 supports the following operating system versions:
 
-|     Operating system         |  Version                  |       Arch        |   Support    |
+|       Operating system       |          Version          |       Arch        |   Support    |
 |------------------------------|---------------------------|-------------------|--------------|
 | Red Hat Enterprise Linux     | 5 and 6                   | x86 and x86\_64   | master/agent |
 | Red Hat Enterprise Linux     | 4                         | x86 and x86\_64   | agent        |
@@ -35,31 +37,24 @@ Puppet Enterprise 1.2 supports the following operating system versions:
 | SUSE Linux Enterprise Server | 11                        | x86 and x86\_864  | master/agent |
 | Solaris                      | 10                        | SPARC and x86\_64 | agent        |
 
-Puppet's hardware requirements will depend heavily on the number of resources you are managing, but in general, you can expect a 2-4 CPU puppet master with 4GB of RAM to manage approximately 1,000 agent nodes. <!-- TK get this vetted -->
-
-Licensing
-------
-
-Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master serving as the certificate authority will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master. 
-
-To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>. 
+Puppet's hardware requirements will depend heavily on the number of resources you are managing, but in general, you can expect a 2-4 CPU puppet master with 4 GB of RAM to manage approximately 1,000 agent nodes. The ActiveMQ server, which runs on the puppet master, will require at least 512 MB of RAM for its Java VM instance.
 
 What's New in PE 1.2
 ----------
 
-Version 1.2 is a major release of Puppet Enterprise, which adds the following high-level features:
+Version 1.2 is a major release of Puppet Enterprise, which adds the following new features:
 
 ### MCollective integration
 
-Puppet Enterprise now bundles Marionette Collective, Puppet Labs' server orchestration framework.  <!-- TK what version are we using? -->
+Puppet Enterprise now bundles version 1.2.1 of Marionette Collective, Puppet Labs' server orchestration framework. 
 
 ### Puppet 2.6.9
 
-This release updates Puppet to version 2.6.9, the latest release in the stable 2.6 series. <!--tk vet this -->
+This release updates Puppet to version 2.6.9, the latest release in the stable 2.6 series.
 
 ### Accounts 1.0 Module
 
-PE now includes a ready-to-use Puppet module for managing user accounts. This module provides both a standard defined type, and a class that lets you store all account data in an external YAML file. 
+PE now includes a ready-to-use Puppet module for managing user accounts. This module provides an account defined type and an optional wrapper class that lets you store all account data in an external YAML file. 
 
 ### Stdlib 2.0 Module 
 
@@ -75,8 +70,13 @@ This helper module extends Puppet with:
 How to Get Help and Support
 --------------
 
-<!-- TK I'm not sure what goes here. -->
+If you run into trouble, you can take advantage of Puppet Labs' enterprise technical support.
 
-### Other Documentation
+* To file a support ticket, go to [support.puppetlabs.com](http://support.puppetlabs.com). 
+* To reach our support staff via email, contact <support@puppetlabs.com>.
+* To speak directly to our support staff, call 1-877-575-9775.
+
+Other Documentation
+-----
 
 For help with features not specific to Puppet Enterprise, please see the [main Puppet documentation][docs] and the [MCollective documentation][mco].

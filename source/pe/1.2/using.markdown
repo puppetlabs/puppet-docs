@@ -1,96 +1,115 @@
+---
+layout: default
+title: "PE Manual: Using Puppet Enterprise"
+---
+
+{% include pe_nav.markdown %}
+
 Using Puppet Enterprise
 =======================
 
-If you're an experienced Puppet user, we'll be brief: dive in! Dashboard works as expected, and the directory frequently known as `/etc/puppet` can be found at `/etc/puppetlabs/puppet`. 
 
-If you're new to Puppet, here are a few quick walkthroughs to introduce you to its capabilities:
+Puppet Enterprise is Puppet
+------
 
-## Installing a Public Module
+If you're an experienced Puppet or MCollective user, Puppet Enterprise will work almost exactly as you expect. 
 
-The Puppet platform enables sharing and reuse of modules, which can help you deploy common functionality and design patterns with a fraction of the usual time and effort. Modules can come from anywhere, but the canonical gathering place for module authors is the [Puppet Forge][forge]. In this walkthrough, you will install a simple module from the Forge. 
+### Directories and Locations
 
-The first step is to find a module that suits your needs; in this case, we'll be using [puppetlabs/motd][motd], a demonstration module that sets a node's message-of-the-day file. 
+All of Puppet Enterprise's components are installed in the `/opt/puppet` directory.
 
-Modules can be downloaded from the Forge by name and automatically untarred using the [puppet-module tool][moduletool], which ships with Puppet Enterprise:
+* **The Puppet and MCollective library files** are installed in `/opt/puppet/lib/ruby/site_ruby/1.8`.
+* **Executables** are installed in `/opt/puppet/bin` and `/opt/puppet/sbin`.
+* **Puppet Dashboard** is installed in `/opt/puppet/share/puppet-dashboard`.
+* **The bundled Puppet modules** are installed in `/opt/puppet/share/puppet/modules`, which is included in Puppet's `modulepath`. 
 
-    # puppet-module install puppetlabs-motd
+Similarly, PE's configuration files are kept in the `/etc/puppetlabs` directory.
 
-(Alternately, you can download the same tarball from [the module's Forge page][motd] and manually untar it; either method will prepare the module in a new directory under your current working directory.)
+* **Puppet's `confdir`** is `/etc/puppetlabs/puppet`, and its user modules directory is `/etc/puppetlabs/puppet/modules`.
+* **PE's license key** should be placed at `/etc/puppetlabs/license.key`.
+* **MCollective's config files** are in `/etc/puppetlabs/mcollective`. 
+* **Puppet Dashboard's settings.yml and database.yml files** are in `/etc/puppetlabs/puppet-dashboard`. 
 
-Next, you must:
+### Services
 
-* Move the new module into puppet master's `modulepath` (Puppet Enterprise's default `modulepath` is located at `/etc/puppetlabs/puppet/modules`; if you ever need to discover your master's modulepath, you can do so with `puppet master --configprint modulepath`)
-* Rename the module to remove the `username-` prefix
+Puppet Enterprise uses the following services, which can be managed with your OS's system tools:
 
-In our case, that amounts to:
+- **`pe-puppet`** --- The puppet agent daemon. Runs on every agent node.
+- **`pe-mcollective`** --- The MCollective server. Runs on agent nodes where [MCollective has been enabled][enablemco].
+- **`pe-httpd`** --- Apache with Passenger, which manages instances of puppet master and Puppet Dashboard and responds to HTTP requests. Runs on servers with the puppet master and/or Puppet Dashboard roles.
+- **`pe-puppet-dashboard-workers`** --- Puppet Dashboard's background worker manager. Runs on servers with the Puppet Dashboard role.
+- **`pe-activemq`** --- The ActiveMQ message server, which the MCollective servers on agent nodes communicate with. Runs on servers with the puppet master role.
 
-    # mv puppetlabs-motd /etc/puppetlabs/puppet/modules/motd
+### Reading Man Pages
 
-And you're done! Your new module is installed and ready to use. Any of the module's classes and defined types can now be declared in manifests, any custom functions it offers are now available on the puppet master, and any custom facts it provides will be synced to agent nodes via pluginsync. 
+For this version of PE, you should access the Puppet man pages using the `pe-man` tool, which accepts the complete name of a puppet command:
 
-[forge]: http://forge.puppetlabs.com/
-[motd]: http://forge.puppetlabs.com/users/puppetlabs/modules/motd/
-[moduletool]: https://github.com/puppetlabs/puppet-module-tool
+    # pe-man puppet agent
 
-## Classifying Nodes With Puppet Dashboard
+### Using Puppet and MCollective
 
-Since the module we just installed provides a class, we can now declare that class in any node. If we were defining nodes individually in puppet master's main manifest (default: `/etc/puppetlabs/puppet/manifests/site.pp`), we could use a simple class declaration or `include` statement:
+Teaching the use of Puppet and MCollective is currently outside the scope of this document. We recommend the following resources:
 
-    node 'agent1.mysite.org', 'agent2.mysite.org', 'agent3.mysite.org' {
-        class {"motd": }
-        # or:
-        # include motd
-    }
+* For new users learning Puppet from scratch, we recommend the [Learning Puppet][lp] series, which explains the theory of Puppet and guides you through its basic use with practical exercises. 
+* For advanced users looking to jump in feet-first, we recommend reading the [language guide][lg], the [guide to module layout][modules], and the [core types cheat sheet][coretypes] (PDF link).
+* To learn how to use MCollective, we recommend starting with the [MCollective documentation][mco].
+* To learn how to use Puppet Dashboard, please see the [Puppet Dashboard 1.2 Manual][dashboard].
 
-However, we can also use Puppet Dashboard to declare module classes for a group of nodes. If you selected and configured Puppet Dashboard during installation, open a web browser and navigate to http://{your dashboard server}:3000. In the sidebar, you'll see an empty list of classes, along with an "Add class" button:
+[dashboard]: http://docs.puppetlabs.com/dashboard/manual/1.2
+[modules]: http://docs.puppetlabs.com/guides/modules.html
+[coretypes]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
+[lg]: http://docs.puppetlabs.com/guides/language_guide.html
+[lp]: http://docs.puppetlabs.com/learning/
+[mco]: http://docs.puppetlabs.com/mcollective/index.html
+[docs]: http://docs.puppetlabs.com
 
-![Add class button][1]
+Enabling MCollective
+-----
 
-Use this button to tell Dashboard about the class; simply refer to the class by name as you would in a Puppet manifest.
+[enablemco]: #enabling-mcollective
 
-![Class name][2]
+Puppet Enterprise uses a Puppet class called `mcollectivepe` to manage MCollective. To enable MCollective on an agent node, you must apply this class to the node.
 
-Next, let's add a group of classes. We could apply the new class directly to nodes, but since groups offer a convenient way to apply a set of clases at once, let's go ahead and start building a set of classes for machines which offer shell access to users. 
+If you are managing node classes in Puppet Dashboard, you should first add the `mcollectivepe` class to its list of known Puppet classes...
 
-![Add group button][3]
+![Add class button](./images/general/dashboard-addclass.png)
 
-Note that, when we're choosing which classes to add to a group, Dashboard will offer suggestions based on the classes you have entered:
+...then add that class to each node or group where you want MCollective enabled:
 
-![Adding a group][4]
+![Edit node screen](./images/general/dashboard-class-for-node1.png)
 
-![A class successfully added to the group][5]
+![Typing a class name](./images/general/dashboard-class-for-node2.png) ![Selecting a known class](./images/general/dashboard-class-for-node3.png)
 
-Then we click "Create," and can view our completed group:
 
-![Group status page][6]
+Maintaining and Tweaking Puppet Enterprise
+-----
 
-It's not doing anything right now, so let's assign a node to the group. Go to the list of currently successful nodes, and choose a node to edit:
+### Manually Installing the Ruby Development Libraries
 
-![Currently successful nodes][7]
+If you find that you need the Ruby development libraries but skipped them during installation, you can install the packages manually rather than re-running the installer. The method for this will depend on your operating system's package management tools, but in each case, you must first navigate in your shell to the directory containing the packages for your operating system and architecture, which will be inside the `packages` subdirectory of the Puppet Enterprise distribution tarball. (If you deleted the installation files, you will need to re-download them.)
 
-![The edit button on a node's status page][8]
+For systems using apt and dpkg (Ubuntu and Debian), run the following commands: 
 
-As with classes, Dashboard will offer group name suggestions while you type:
+	dpkg -i *ruby*dev* 
 
-![Typing a group name][9]
+	apt-get install --fix-broken
 
-![A group successfully added to the node][10]
+For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Enterprise Linux), run the following commands: 
 
-Then we click "Save changes," and our node will be a member of the "shell" group, inheriting all of the group's classes.
+	yum localinstall --nogpgcheck *ruby*dev* 
 
-![A node status page with a group and inherited class][11]
+### Enabling Reporting on Non-PE Agent Nodes
 
-The next time this node's puppet agent contacts the master, its `/etc/motd` file will be populated from the motd module's template. Whenever we install new modules and specify that classes they provide should be included in the "shell" group, all nodes in the group will make the necessary changes. 
+If you are integrating puppet agent nodes running a non-supported operating system into your Puppet Enterprise site, you'll need to enable reporting on these nodes in order for them to appear in Puppet Dashboard. In each such agent node's `puppet.conf` file, ensure that the `[agent]` or `[puppetd]` section contains `report = true`. 
 
-[1]: ./images/dashboard/01.addclass.png
-[2]: ./images/dashboard/02.classname.png
-[3]: ./images/dashboard/03.addgroup.png
-[4]: ./images/dashboard/04.addinggroup.png
-[5]: ./images/dashboard/05.classaddedtogroup.png
-[6]: ./images/dashboard/06.groupadded.png
-[7]: ./images/dashboard/07.choosenode.png
-[8]: ./images/dashboard/08.edit.png
-[9]: ./images/dashboard/09.typinggroup.png
-[10]: ./images/dashboard/10.groupaddedtonode.png
-[11]: ./images/dashboard/11.nodewithgroup.png
+### Maintaining Puppet Dashboard in Puppet Enterprise
+
+[dashmaint]: http://docs.puppetlabs.com/dashboard/manual/1.2/maintaining.html
+
+Puppet Dashboard can require periodic maintenance; most notably, old reports should be cleaned occasionally. All of these tasks are done via rake tasks, and in Puppet Enterprise, they must be done with PE's copy of rake. 
+
+Before running any of the rake tasks described in the [maintenance chapter of the Dashboard manual][dashmaint], you should navigate to `/opt/puppet/share/puppet-dashboard` in your shell and alter your `$PATH` to ensure that the proper copy of rake will be called:
+
+    # cd /opt/puppet/share/puppet-dashboard
+    # export $PATH=/opt/puppet/bin:/opt/puppet/sbin:$PATH
 

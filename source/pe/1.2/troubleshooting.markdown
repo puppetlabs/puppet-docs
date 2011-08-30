@@ -1,9 +1,23 @@
-Configuring and Troubleshooting
-===============================
+---
+layout: default
+title: "PE Manual: Troubleshooting"
+---
 
-What follows is a short list of common problems that can prevent a Puppet site from working as expected. Additional troubleshooting information can be found at the [main Puppet documentation site](http://docs.puppetlabs.com), on the [Puppet Users mailing list](https://groups.google.com/group/puppet-users), and in `#puppet` on freenode.net. 
+{% include pe_nav.markdown %}
 
-Furthermore, please feel free to contact Puppet Labs' enterprise technical support. When reporting issues with the installer itself, please run the installer using the `-D` debugging flag and provide a transcript of the installer's output along with your description of the problem. 
+Troubleshooting
+===============
+
+
+This document explains several common problems that can prevent a Puppet Enterprise site from working as expected. Additional troubleshooting information can be found at the [main Puppet documentation site](http://docs.puppetlabs.com), on the [Puppet Users mailing list](https://groups.google.com/group/puppet-users), and in `#puppet` on freenode.net. 
+
+Furthermore, please feel free to contact Puppet Labs' enterprise technical support:
+
+* To file a support ticket, go to [support.puppetlabs.com](http://support.puppetlabs.com). 
+* To reach our support staff via email, contact <support@puppetlabs.com>.
+* To speak directly to our support staff, call 1-877-575-9775.
+
+When reporting issues with the installer itself, please run the installer using the `-D` debugging flag and provide a transcript of the installer's output along with your description of the problem. 
 
 ## Firewall Issues
 
@@ -17,7 +31,17 @@ If you use the REST API and have configured puppet agent to listen for incoming 
 
 The learning curve of SSL certificate management can lead to a variety of problems. Watch out for the following common scenarios: 
 
-### Agent nodes are contacting their master server using a hostname not listed in the master's certificate
+### Agent Node Was Installed Before the Puppet Master
+
+If you install the puppet agent role on a node before getting the puppet master up and running, the installer won't be able to request a certificate during installation, and you won't immediately see a pending certificate request when you run `puppet cert list`. To request a certificate manually, you can log into the agent node and run:
+
+    # puppet agent --test
+
+...after which you should be able to sign the certificate on the puppet master. Alternately, you can simply wait 30 minutes, as the puppet agent service will request a certificate on its next run.
+
+### Agent Nodes Refuse to Trust the Master's Certificate
+
+<!-- TK  this needs a revision -->
 
 Agent nodes determine the validity of the master's certificate based on hostname; if they're contacting it using a hostname that wasn't included when the certificate was signed, they'll reject the certificate. 
 
@@ -37,11 +61,24 @@ Puppet Enterprise always writes a node's unique identifier to `puppet.conf` duri
 
 **Solution:** If the new certname is permanent, simply delete the node's `/etc/puppetlabs/puppet/ssl` directory, and the node will generate a new certificate and send a new signing request to the master. You can also clean the previous certificate on the master if you expect to re-use the old unique identifier for a new agent node. 
 
-### The master server has been replaced, and is not recognized by any existing agent nodes
+### Dashboard Was Installed Before the Puppet Master
+
+[dashboardsplit]: ./installing.html#configuring-a-stand-alone-dashboard-server
+
+If you're splitting the Dashboard and puppet master servers and you installed Dashboard first, you'll need to modify the post-installation certificate exchange. On the Dashboard server, run the following commands:
+
+    # puppet agent --test
+    # cd /opt/puppet/share/puppet-dashboard
+    # export PATH=/opt/puppet/sbin:/opt/puppet/bin:$PATH
+    # rake RAILS_ENV=production cert:generate
+
+After that, you should be able to follow [the normal post-install instructions for a stand-alone Dashboard server][dashboardsplit]. 
+
+### Puppet Master Server Was Replaced
 
 All nodes in a given domain must be using certificates signed by the same CA certificate. Since puppet master generates a new CA cert during installation, a new master node will, in its default state, be rejected by any agent nodes which were aware of the previous master. 
 
-**Solution:** There are two main options: either delete the `/etc/puppetlabs/puppet/ssl` directory from each agent node (thereby forcing each node to re-generate certificates and issue new signing requests), or recover the CA certificate and private key from the previous master server and re-generate and re-sign the new master's certificate. The short version of how to do the latter is as follows:
+You have two main options: either delete the `/etc/puppetlabs/puppet/ssl` directory from each agent node (thereby forcing each node to re-generate certificates and issue new signing requests), or recover the CA certificate and private key from the previous master server and re-generate and re-sign the new master's certificate. The short version of how to do the latter is as follows:
 
 * Stop puppet master using your system's service utilities (e.g., on CentOS: `service pe-httpd stop`)
 * Run `puppet cert --clean {master's certname}`
@@ -53,31 +90,13 @@ All nodes in a given domain must be using certificates signed by the same CA cer
 
 ## Miscellaneous Issues and Additional Tasks
 
-### Manual installation of the Ruby development libraries
+### Import Existing Reports Into Puppet Dashboard
 
-If you find that you need the Ruby development libraries but skipped them during installation, Puppet Labs currently recommends installing the packages manually rather than re-running the installer. The method for this will depend on your operating system's package management tools, but in each case, you must first navigate to the directory containing the packages for your operating system and architecture, which will be inside the `packages` subdirectory of the Puppet Enterprise distribution tarball. 
+If you are upgrading to PE from a self-maintained Puppet environment, you can add value to your older reports by importing the reports into Puppet Dashboard. To run the report importer, first locate the reports directory on your previous puppet master (`puppet master --configprint reportdir`) and copy it to the server running Puppet Dashboard. Then, on the Dashboard server, run the following commands with root privileges: 
 
-For systems using apt and dpkg (Ubuntu and Debian), execute the following commands: 
 
-	dpkg -i *ruby*dev* 
+included stored reports on the puppet master (that is, if agent nodes were configured with `report = true` and the master was configured with `reports = store`),  can add value to this existing knowledge. 
 
-	apt-get install --fix-broken
-
-For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Enterprise Linux), execute the following commands: 
-
-	yum localinstall --nogpgcheck *ruby*dev* 
-
-### Configuring older agent nodes to work with Puppet Dashboard
-
-Puppet Dashboard learns about your site's agent nodes from report data sent by the puppet master. If you view the Dashboard immediately after installing it, you'll notice that it has no nodes listed; a full list of nodes will be built over the course of the following check-in cycle, and Dashboard will begin to track each node's history. 
-
-This requires that your site's agent nodes be configured to send report data. Agent nodes running Puppet Enterprise will report by default, but if you are installing PE into an existing Puppet site, it's possible that some pre-existing agent nodes are not sending report data and will not appear in the Dashboard. If you suspect this to be the case, check the missing nodes' `puppet.conf` file and ensure that the `[agent]` or `[puppetd]` section contains `report = true`. 
-
-### Importing existing node information into Puppet Dashboard
-
-If your previous Puppet architecture included stored reports on the puppet master (that is, if agent nodes were configured with `report = true` and the master was configured with `reports = store`), importing the reports into Puppet Dashboard can add value to this existing knowledge. 
-
-To run the report importer, first locate the reports directory on your previous puppet master and copy it to the server running Puppet Dashboard. (N.B.: If invoked with `--configprint reportdir`, puppet master will return its reports directory and exit.) Then, on the Puppet Dashboard server, run the following commands with root privileges: 
 
 	cd /opt/puppet/share/puppet-dashboard
 	PATH=/opt/puppet/bin:$PATH REPORT_DIR={old reports directory} rake reports:import

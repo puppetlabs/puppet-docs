@@ -1,5 +1,12 @@
-Appendix A: Answer File Reference
-=================================
+---
+layout: default
+title: "PE Manual: Answer File Reference"
+---
+
+{% include pe_nav.markdown %}
+
+Answer File Reference
+=====================
 
 When run with the `-a` or `-A` flag and a filename argument, the Puppet Enterprise installer will read its installation instructions from an answer file. `-a` will use the provided answer file to perform a non-interactive installation (which will fail if any required variables are not set), and `-A` will perform a partially-interactive installation, prompting the user for any missing answers. 
 
