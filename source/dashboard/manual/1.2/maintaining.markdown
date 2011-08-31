@@ -23,6 +23,8 @@ Overview
 
 Puppet Dashboard exposes most of its functionality through its web UI, but it has a number of routine tasks that have to be performed on the command line by an admin. This chapter is a brief tour of some of these tasks.
 
+Note that **all rake tasks should be performed from a shell in the directory that contains Dashboard's code.** Any relative paths mentioned below refer to locations within this directory. If you are running Dashboard in the recommended "production" environment, note that **Rails does not consider production its default environment,** and you **must specify it manually** when running any rake tasks.
+
 Importing Pre-existing Reports
 -----
 
@@ -36,6 +38,15 @@ Alternately, you can copy the reports to your Dashboard server and run:
 
 **Note that this task can take a very long time,** depending on the number of reports to be imported. You can, however, safely interrupt and re-run the task, as the importer will automatically skip reports that Dashboard has already imported. 
 
+Optimizing the Database
+-----
+
+Since Dashboard turns over a lot of data, its MySQL database should be periodically optimized for speed and disk space. Dashboard has a rake task for doing this:
+
+    rake RAILS_ENV=production db:raw:optimize
+
+You should **optimize Dashboard's database monthly,** and we recommend creating a cron job to do so.
+
 Cleaning Old Reports
 ----------------
 
@@ -45,7 +56,10 @@ For example, to delete reports older than 1 month:
 
     rake RAILS_ENV=production reports:prune upto=1 unit=mon
 
+Although this task **should be run regularly as a cron job,** the frequency with which it should be run will depend on your site's policies.
+
 If you run 'rake reports:prune' without any arguments, it will display further usage instructions.
+
 
 Reading Logs
 ---------

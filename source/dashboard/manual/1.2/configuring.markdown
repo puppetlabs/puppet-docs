@@ -118,8 +118,9 @@ Performance
 Puppet Dashboard slows down as it manages more data. Here are ways to make it run faster, from easiest to hardest:
 
 * Run exactly one `delayed_job` worker per CPU core.
-* Make sure Dashboard is running in the production environment. The default development environment is significantly slower because it doesn't cache and logs more details. Passenger runs Rails apps in production mode by default.
-* Periodically optimize your database; run:
+* [Make sure Dashboard is running in a production-quality web server](./bootstrapping.html#running-dashboard-in-a-production-quality-server), like Apache with Passenger.
+* Make sure Dashboard is running in the production environment. Although Passenger runs Rails apps in production mode by default, other Rails tools may default to the much slower development environment.
+* Optimize your database once a month; create a cron job that runs:
 
         rake RAILS_ENV=production db:raw:optimize
     

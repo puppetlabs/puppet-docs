@@ -127,7 +127,9 @@ DB migrations are done with a rake task, and should be simple and painless when 
 
     # rake db:migrate RAILS_ENV=production 
 
-You'll need to run `db:migrate` once for each environment you use. (And the `db:migrate` task can be safely run multiple times in the same environment, so don't worry about accidentally doing it twice in production.)
+Remember that Rails does not consider "production" its default environment, so you must specify it manually for all rake tasks unless your `RAILS_ENV` environment variable is set or you are using the same database in the production and development environments. 
+
+You'll need to run `db:migrate` once for each environment you use. The `db:migrate` task can be safely run multiple times in the same environment.
 
 After upgrading the code and the database, be sure to restart Dashboard's webserver.
 
