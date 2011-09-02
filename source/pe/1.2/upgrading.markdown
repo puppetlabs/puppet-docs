@@ -71,6 +71,8 @@ If you chose a different MySQL user name for Puppet Dashboard when you originall
 
         [main]
             modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+
+    Note that if you were previously using an older version of the `stdlib` module, or any modules with the same name as the `accounts, mcollectivepe,` or `baselines` modules, you will have to delete them in order to use the modules included with PE 1.2.
 * To support the inventory service, you must configure Puppet to save facts to a MySQL database.
 
         [master]
