@@ -153,16 +153,20 @@ Next, navigate to Dashboard's installation directory:
 
 Next, create a keypair and request a certificate:
 
-    # sudo -u puppet-dashboard rake cert:create_key_pair
+    # rake cert:create_key_pair
     # rake cert:request
 
 Next, sign the certificate request: 
 
     # puppet cert sign dashboard
 
-Finally, retrieve the signed certificate:
+Next, retrieve the signed certificate:
 
-    # sudo -u puppet-dashboard rake cert:retrieve
+    # rake cert:retrieve
+
+And finally, make `puppet-dashboard` the owner of the certificates directory:
+
+    # chown -R puppet-dashboard:puppet-dashboard certs
 
 ### Restart `pe-httpd`
 
