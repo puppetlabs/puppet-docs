@@ -16,7 +16,7 @@ Puppet Enterprise is a fully supported software distribution of the Puppet famil
 - **Puppet** (version 2.6.9) is an industry-leading configuration management platform that lets you describe a desired system state as code and enforce that state on any number of machines. 
 - **MCollective** (version 1.2.1) is a message-based server orchestration framework for fast parallel command execution.
 - **Puppet Dashboard** (version 1.2) is a web interface to Puppet. It can view and analyze Puppet's reports, and can simplify the process of assigning your existing Puppet classes to nodes.
-- **Puppet Compliance** is an enterprise-only extension to Puppet Dashboard that enables a new auditing workflow for unmanaged resources.
+- **Puppet Compliance** is an enterprise-only extension to Puppet Dashboard that enables a new workflow for auditing changes to resources.
 - **Facter** (version 1.6.0) is a system data discovery utility used by both Puppet and MCollective. 
 - **Accounts** (version 1.0.0) is a ready-to-use Puppet module for managing user accounts. 
 

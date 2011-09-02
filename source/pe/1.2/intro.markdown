@@ -48,9 +48,13 @@ Version 1.2 is a major release of Puppet Enterprise, which adds the following ne
 
 Puppet Enterprise now bundles version 1.2.1 of Marionette Collective, Puppet Labs' server orchestration framework. 
 
+### Puppet Compliance
+
+Puppet Compliance is a new auditing workflow that uses Puppet Dashboard to track changes to resources.
+
 ### Puppet 2.6.9
 
-This release updates Puppet to version 2.6.9, the latest release in the stable 2.6 series.
+This release updates Puppet to version 2.6.9, the latest release in the stable 2.6 series. <!-- TK link to release notes or something -->
 
 ### Accounts 1.0 Module
 

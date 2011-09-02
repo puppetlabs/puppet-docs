@@ -84,7 +84,7 @@ Puppet Dashboard is usually run on the same server as the puppet master, but can
 
 #### Port
 
-By default, Dashboard will run on port 3000. If the server you install it on is not running any other webserver instances, you may wish to use the standard HTTP port of 80 instead. (If so, remember to configure the puppet master appropriately.) 
+By default, Dashboard will run on port 3000. If the server you install it on is not running any other webserver instances, you may wish to use the standard HTTP port of 80 instead; if so, remember to [point puppet master to the correct port during installation](#integration-with-puppet-dashboard). If you need to change puppet's settings later, edit the `reporturl` setting  in [puppet.conf](/guides/configuring.markdown) and the `BASE=` line in `/etc/puppetlabs/puppet-dashboard/external_node`. 
 
 #### Inventory Certname/Certified Hostnames
 
@@ -106,7 +106,7 @@ Dashboard needs a MySQL server, user, and database to operate. If MySQL isn't al
 * Dashboard's database user (default: "dashboard")
 * A password for Dashboard's user
 
-If you choose not to install a new database server, you'll need to have already created a database and DB user[^createdb] for Dashboard prior to installation, and to have granted that user all privileges on the database. If the database server is on a remote machine, you'll also need to provide the installer with:
+If you choose not to install a new database server, you'll need to have already created a database and MySQL user[^createdb] for Dashboard prior to installation, and to have granted that user all privileges on the database. If the database server is on a remote machine, you'll also need to provide the installer with:
 
 * The database server's hostname
 * The database server's port (default: 3306)
