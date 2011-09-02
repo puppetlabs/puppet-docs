@@ -1,15 +1,15 @@
 <!-- 
 #### PE Manual
 
-- {{ "[Introduction](./intro.html)" | maybelink:page.url }}
-- {{ "[Overview](./overview.html)" | maybelink:page.url }}
-- {{ "[Installing](./installing.html)" | maybelink:page.url }}
-- {{ "[Upgrading](./upgrading.html)" | maybelink:page.url }}
-- {{ "[Using Puppet Enterprise](./using.html)" | maybelink:page.url }}
-- {{ "[Using the Accounts Module](./using_accounts.html)" | maybelink:page.url }}
-- {{ "[Using the Compliance Workflow](./using_compliance.html)" | maybelink:page.url }}
-- {{ "[Troubleshooting](./troubleshooting.html)" | maybelink:page.url }}
-- {{ "[Answer File Reference](./answer_file_reference.html)" | maybelink:page.url }}
+- [Introduction](./intro.html)
+- [Overview](./overview.html)
+- [Installing](./installing.html)
+- [Upgrading](./upgrading.html)
+- [Using Puppet Enterprise](./using.html)
+- [Using the Accounts Module](./using_accounts.html)
+- [Using the Compliance Workflow](./using_compliance.html)
+- [Troubleshooting](./troubleshooting.html)
+- [Answer File Reference](./answer_file_reference.html)
 
  -->
 
@@ -20,7 +20,7 @@
 <li><a href="./intro.html">Introduction</a></li>
 <li><a href="./overview.html">Overview</a></li>
 <li><a href="./installing.html">Installing</a></li>
-<li>Upgrading (coming soon!)</li>
+<li><a href="./upgrading.html">Upgrading</a></li>
 <li><a href="./using.html">Using Puppet Enterprise</a></li>
 <li>Using the Accounts Module (coming soon!)</li>
 <li>Using the Compliance Workflow (coming soon!)</li>
