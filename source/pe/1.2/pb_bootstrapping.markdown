@@ -100,7 +100,8 @@ If you want to be able to view and diff file contents, you'll also need to ensur
 With this, the baseline plugin should be fully operational and ready for normal use; the first compliance reports should appear the next day.
 <!-- Verify the timing on this. -->
 
-### Writing Compliance Manifests
+Writing Compliance Manifests
+-----
 
 Once all prerequisites are in place, a sysadmin (or group of sysadmins) familiar with the Puppet language should write a collection of manifests defining the resources to be audited on the site's various computers. 
 

@@ -195,33 +195,33 @@ Yup: same dangerous change. She rejects and reverts, then spends the rest of her
 
 The next day, the admin's fixes to the syslog.conf and profile files on the various servers have caused changes to the ctime and mtime of those files. She approves the changes, then decides that she should probably change her manifests so that all but a select handful of file resources use `audit => [ensure, content, owner, group, mode, type]` instead of `audit => all`, in order to suppress otherwise meaningless audit events. It's an otherwise uneventful day.
 
-[accept_and_reject_buttons]: ./images/accept_and_reject_buttons.png
-[compliance_link]: ./images/compliance_link.png
-[core_group_page]: ./images/core_group_page.png
-[core_group_custom_report]: ./images/core_group_custom_report.png
-[custom_report_core_group_link]: ./images/custom_report_core_group_link.png
-[custom_report_compliance_group_link]: ./images/custom_report_compliance_group_link.png
-[custom_report_compliance_main_link]: ./images/custom_report_compliance_main_link.png
-[custom_report_common]: ./images/custom_report_common.png
-[date_changer_with_unreviewed]: ./images/date_changer_with_unreviewed.png
-[group_common]: ./images/group_common.png
-[group_converging]: ./images/group_converging.png
-[group_different_changes]: ./images/group_different_changes.png
-[group_individual]: ./images/group_individual.png
-[group_same_change]: ./images/group_same_change.png
-[individual_node]: ./images/individual_node.png
-[main_summary]: ./images/main_summary.png
-[summary_with_differences]: ./images/summary_with_differences.png
-[tutorial_eagle_diff]: ./images/tutorial_eagle_diff.png
-[tutorial_eagle]: ./images/tutorial_eagle.png
-[tutorial_group_reject_user_nodes_link]: ./images/tutorial_group_reject_user_nodes_link.png
-[tutorial_group_reject_user_nodes]: ./images/tutorial_group_reject_user_nodes.png
-[tutorial_group]: ./images/tutorial_group.png
-[tutorial_osprey]: ./images/tutorial_osprey.png
-[tutorial_profile_after]: ./images/tutorial_profile_after.png
-[tutorial_profile_before]: ./images/tutorial_profile_before.png
-[tutorial_reject_user]: ./images/tutorial_reject_user.png
-[tutorial_summary]: ./images/tutorial_summary.png
+[accept_and_reject_buttons]: ./images/baseline/accept_and_reject_buttons.png
+[compliance_link]: ./images/baseline/compliance_link.png
+[core_group_page]: ./images/baseline/core_group_page.png
+[core_group_custom_report]: ./images/baseline/core_group_custom_report.png
+[custom_report_core_group_link]: ./images/baseline/custom_report_core_group_link.png
+[custom_report_compliance_group_link]: ./images/baseline/custom_report_compliance_group_link.png
+[custom_report_compliance_main_link]: ./images/baseline/custom_report_compliance_main_link.png
+[custom_report_common]: ./images/baseline/custom_report_common.png
+[date_changer_with_unreviewed]: ./images/baseline/date_changer_with_unreviewed.png
+[group_common]: ./images/baseline/group_common.png
+[group_converging]: ./images/baseline/group_converging.png
+[group_different_changes]: ./images/baseline/group_different_changes.png
+[group_individual]: ./images/baseline/group_individual.png
+[group_same_change]: ./images/baseline/group_same_change.png
+[individual_node]: ./images/baseline/individual_node.png
+[main_summary]: ./images/baseline/main_summary.png
+[summary_with_differences]: ./images/baseline/summary_with_differences.png
+[tutorial_eagle_diff]: ./images/baseline/tutorial_eagle_diff.png
+[tutorial_eagle]: ./images/baseline/tutorial_eagle.png
+[tutorial_group_reject_user_nodes_link]: ./images/baseline/tutorial_group_reject_user_nodes_link.png
+[tutorial_group_reject_user_nodes]: ./images/baseline/tutorial_group_reject_user_nodes.png
+[tutorial_group]: ./images/baseline/tutorial_group.png
+[tutorial_osprey]: ./images/baseline/tutorial_osprey.png
+[tutorial_profile_after]: ./images/baseline/tutorial_profile_after.png
+[tutorial_profile_before]: ./images/baseline/tutorial_profile_before.png
+[tutorial_reject_user]: ./images/baseline/tutorial_reject_user.png
+[tutorial_summary]: ./images/baseline/tutorial_summary.png
 
 * * * 
 

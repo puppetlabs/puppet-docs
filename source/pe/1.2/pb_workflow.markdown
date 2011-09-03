@@ -20,9 +20,9 @@ This chapter describes the baseline plugin's expected workflow and explains some
 The Compliance Workflow Cycle
 ----
 
-The baseline compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. This differs from and isn't fully compatible with Puppet's standard managed resources workflow --- although you can use both models of management at the same site (or even in the same catalog), they should be used on disjunct sets of resources.
+The puppet compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. It can also be used to audit changes to resources already managed by Puppet. 
 
-![Baseline compliance workflow diagram](./images/baseline_workflow.png)
+![Baseline compliance workflow diagram](./images/baseline/baseline_workflow.png)
 
 **A sysadmin** writes manifests defining which resources to audit on which nodes. **Puppet agent** retrieves and caches a catalog compiled from those manifests. **Puppet inspect** reads that catalog to discover which resources to audit, then submits an inspect report to the **puppet master,** which forwards it to **Puppet Dashboard.** **Dashboard** then calculates a daily report of differences between the inspected system state and the approved baseline state, creating a baseline if one didn't already exist. **A sysadmin** uses the Dashboard interface to approve or reject every difference, then manually reverts any unapproved changes as necessary. **Dashboard** then modifies the baseline to include any approved changes, and awaits the next day's inspect reports.
 
