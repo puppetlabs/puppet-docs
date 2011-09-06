@@ -306,7 +306,8 @@ a.gateway:hover {
   text-decoration: none;
 }
 
-ul, ol, dl {
+/* We want this to apply to lists standing by themselves, but not to lists within lists, because that just makes a mess. */
+p > ul, ol, dl {
   margin-bottom: 1.5em;
 }
 
