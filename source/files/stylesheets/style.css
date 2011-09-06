@@ -1278,6 +1278,13 @@ div.primary-secondary-content div.primary-content p img {
   box-shadow: 0px 0px 8px #999;
 }
 
+/* NF: Also, images that are the only thing in their paragraph should be centered. */
+div.primary-secondary-content div.primary-content p > img:only-child, div.primary-secondary-content div.primary-content p > a:only-child > img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 body#puppetlabsdocs.docs .primary-content dl dt{
 	font-weight: bold;
 	margin-top: 1.5em;
