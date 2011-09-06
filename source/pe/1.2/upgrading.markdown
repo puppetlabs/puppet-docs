@@ -86,7 +86,7 @@ If you chose a different MySQL user name for Puppet Dashboard when you originall
     If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost". 
 * To support filebucket viewing when using the Puppet Compliance workflow, you must set `archive_files` to true for puppet inspect:
 
-        [agent]
+        [main]
             archive_files = true
 
 ### Edit `/etc/puppetlabs/puppet/auth.conf`
@@ -125,7 +125,7 @@ Even if you don't use `site.pp` to classify nodes, you must add the following re
 
     # specify remote filebucket
     filebucket { 'main':
-      server => 'screech.magpie.lan',
+      server => '<puppet master's hostname>',
       path => false,
     }
     
@@ -135,46 +135,47 @@ This will cause all agent nodes to back up their file contents to the puppet mas
 
 ### Edit `/etc/puppetlabs/puppet-dashboard/settings.yml`
 
-To support Dashboard's inventory and filebucket viewing capabilities, you must find and alter the following three settings in `settings.yml` to point to one of the puppet master's certified hostnames:
+To turn on inventory and filebucket viewing, you must ensure that the following two options in `settings.yml` are set to true:
 
-    ca_server: 'puppet'
-    inventory_server: 'puppet'
-    file_bucket_server: 'puppet'
+    enable_inventory_service: true
+    use_file_bucket_diffs: true
+
+You'll also need to ensure that the following three settings point to one of the puppet master's certified hostnames:
+
+    ca_server: '<puppet master's hostname>'
+    inventory_server: '<puppet master's hostname>'
+    file_bucket_server: '<puppet master's hostname>'
 
 ### Generate and Sign Certificates for Puppet Dashboard
 
 To support Dashboard's inventory and filebucket viewing capabilities, you must generate and sign certificates to allow it to request data from the puppet master.
 
-First, you must modify your shell's `$PATH`:
+First, navigate to Dashboard's installation directory:
 
-    # export PATH=/opt/puppet/bin:/opt/puppet/sbin:$PATH
-
-Next, navigate to Dashboard's installation directory:
-
-    # cd /opt/puppet/share/puppet-dashboard
+    $ cd /opt/puppet/share/puppet-dashboard
 
 Next, create a keypair and request a certificate:
 
-    # rake cert:create_key_pair
-    # rake cert:request
+    $ sudo /opt/puppet/bin/rake cert:create_key_pair
+    $ sudo /opt/puppet/bin/rake cert:request
 
 Next, sign the certificate request: 
 
-    # puppet cert sign dashboard
+    $ sudo /opt/puppet/bin/puppet cert sign dashboard
 
 Next, retrieve the signed certificate:
 
-    # rake cert:retrieve
+    $ sudo /opt/puppet/bin/rake cert:retrieve
 
 And finally, make `puppet-dashboard` the owner of the certificates directory:
 
-    # chown -R puppet-dashboard:puppet-dashboard certs
+    $ sudo chown -R puppet-dashboard:puppet-dashboard certs
 
 ### Restart `pe-httpd`
 
 To reload all of the relevant puppet master and Dashboard config files, restart Apache:
 
-    # service pe-httpd restart
+    $ sudo service pe-httpd restart
 
 And you're done!
 
