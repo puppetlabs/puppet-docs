@@ -5,7 +5,7 @@ title: "PE Manual: Puppet Compliance Workflow Tutorial"
 
 {% include pe_nav.markdown %}
 
-Tutorial
+Compliance Workflow Tutorial
 --------
 
 This brief walkthrough shows a compliance workflow auditing the state of the following resources:
@@ -16,7 +16,8 @@ This brief walkthrough shows a compliance workflow auditing the state of the fol
 * `Service['sshd']`
 * `User['nick']`
 
-#### Morning, July 14, 2011
+Morning, July 14, 2011
+-----
 
 ![tutorial_summary][]
 
@@ -29,6 +30,7 @@ There, she notices that a user was completely deleted from all three nodes, and 
 ![tutorial_reject_user][]
 
 ...and manually SSHes to the affected nodes to re-instate the account. 
+
 ![tutorial_group_reject_user_nodes_link][]
 
 ![tutorial_group_reject_user_nodes][]
@@ -39,7 +41,9 @@ There, she notices that a user was completely deleted from all three nodes, and 
 
 Then she takes a look at the file. It looks like two nodes had the ctime and mtime of the `/etc/profile` file changed, but no edits were made. This was probably nothing, but it piques her interest and she'll ask around about it later; in the meantime, she approves the change, since there's no functional difference. The other node, however, had its content changed. She drills down into the node view and checks the contents before and after:
 
-![tutorial_profile_before][] ![tutorial_profile_after][]
+![tutorial_profile_before][]
+
+![tutorial_profile_after][]
 
 That's not OK. It looks like someone was trying to resolve a DNS problem or something, but that's definitely not how she wants this machine configured. She rejects and manually reverts, and makes a note to find out what the problem they were trying to fix was. 
 
@@ -62,9 +66,12 @@ That looks actively malicious. She rejects and reverts, then moves on to the eag
 
 Yup: same dangerous change. She rejects and reverts, then spends the rest of her day figuring out how the servers got vandalized.
 
-#### Morning, July 15, 2011
+Morning, July 15, 2011
+-----
 
-The next day, the admin's fixes to the syslog.conf and profile files on the various servers have caused changes to the ctime and mtime of those files. She approves the changes, then decides that she should probably change her manifests so that all but a select handful of file resources use `audit => [ensure, content, owner, group, mode, type]` instead of `audit => all`, in order to suppress otherwise meaningless audit events. It's an otherwise uneventful day.
+The next day, the admin's previous fixes to the syslog.conf and profile files on the various servers have caused changes to the ctime and mtime of those files. She approves her own changes, then decides that she should probably edit her manifests so that all but a select handful of file resources use `audit => [ensure, content, owner, group, mode, type]` instead of `audit => all`, in order to suppress otherwise meaningless audit events.
+
+It's an otherwise uneventful day.
 
 [tutorial_eagle_diff]: ./images/baseline/tutorial_eagle_diff.png
 [tutorial_eagle]: ./images/baseline/tutorial_eagle.png

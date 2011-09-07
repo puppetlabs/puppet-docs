@@ -8,68 +8,26 @@ title: "PE Manual: Using the Puppet Compliance Workflow"
 Using the Puppet Compliance Workflow
 =====
 
-The Compliance Workflow Cycle
-----
+The Puppet Compliance workflow consists of the following routine tasks:
 
-The puppet compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. It can also be used to audit changes to resources already managed by Puppet. 
-
-![Baseline compliance workflow diagram](./images/baseline/baseline_workflow.png)
-
-- **A sysadmin** writes manifests defining which resources to audit on which nodes. 
-- **Puppet agent** retrieves and caches a catalog compiled from those manifests. 
-- **Puppet inspect** reads that catalog to discover which resources to audit, then submits an inspect report to the **puppet master...**
-- ...which forwards it to **Puppet Dashboard.** 
-- **Dashboard** then calculates a daily report of differences between the inspected system state and the approved baseline state, creating a baseline if one didn't already exist. 
-- **A sysadmin** uses the Dashboard interface to approve or reject every difference, then manually reverts any unapproved changes as necessary. 
-- **Dashboard** then modifies the baseline to include any approved changes, and awaits the next day's inspect reports.
-
-This summary elides some details regarding daily comparisons and baseline revision; see [the "Internals" chapter](./pb_internals.html) for more details. <!-- TK is this going to point to the same page? -->
-
-Concepts
-----
-
-### Auditing
-
-When using this workflow, Puppet audits the state of resources, rather than enforcing a desired state; it does not make changes to any audited resources. Instead, changes are to be made manually (or by some out-of-band process) and reviewed for approval after the fact.
-
-After changes have been reviewed in Puppet Dashboard, any approved changes will be considered the baseline state in future reports. Rejected changes will continue to be reported as non-baseline states until they are reverted manually on the affected machines. 
-
-### Resources and Attributes
-
-Any native Puppet resource type can be used in the baseline compliance workflow. As with similar compliance products, you can audit the content and metadata of files, but you can also audit user accounts, services, cron jobs, and anything for which a custom native type can be written. 
-
-**Resources are audited by attribute** --- you can choose one or more attributes you wish to audit, or audit all attributes of that resource. 
-
-### Manifests
-
-The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](http://docs.puppetlabs.com/references/latest/metaparameter.html#audit) metaparameter. 
-
-### Inspect Reports
-
-Each node being audited for compliance will routinely report the states of its audited resources. The documents it sends are called _inspect reports,_ and differ from standard Puppet reports.
-
-### Baselines
-
-Conceptually, a _baseline_ is a blessed inspect report for a single node: it lists the approved states for every audited resource on that node. Each node is associated with one and only one baseline, and nodes cannot share baselines. However, nodes with similar baselines can be grouped for convenience.
-
-Baselines are maintained by Puppet Dashboard. They change over time as administrators approve changes to audited resources. **Nodes reporting for the first time are assumed to be in a compliant state,** and their first inspect report will become the baseline against which future changes are compared. 
-
-### Groups
-
-Although nodes cannot share baselines, nodes in a Dashboard group can have similar changes approved or rejected en masse. 
-
+- Preparing new agent nodes for compliance reporting
+- Writing compliance manifests
+- Reviewing changes
+- Comparing whole groups against a single baseline
 
 Preparing Agent Nodes For Compliance Reporting
 -----
 
-Since agent nodes under compliance auditing need to submit a slightly different type of report, **you will need to apply the `baselines::agent` class to any node whose resources you want to audit.** 
+Since agent nodes under compliance auditing need to submit a slightly different type of report, **you will need to apply the `baselines::agent` Puppet class to any node whose resources you want to audit.** This class installs a cron job that runs puppet inspect every day at 8pm. 
+
+You can apply this class in Puppet Dashboard. Refer to the [instructions for enabling MCollective](./using.html#enabling-mcollective) for instructions on how to apply a Puppet class with Dashboard.
 
 Writing Compliance Manifests
 -----
 
 Once compliance reporting has been enabled on your agent nodes, a sysadmin familiar with the Puppet language should write a collection of manifests defining the resources to be audited on the site's various computers. 
 
-In the simplest case, where you want to audit an identical set of resources on every computer, this can be done directly in the site manifest (`/etc/puppetlabs/puppet/manifests/site.pp`). More likely, you'll need to create a set of classes and modules that can be composed to describe the different kinds of computers at your site, then assign those classes using Puppet Dashboard or some other method.
+In the simplest case, where you want to audit an identical set of resources on every computer, this can be done directly in the site manifest (`/etc/puppetlabs/puppet/manifests/site.pp`). More likely, you'll need to create a set of classes and modules that can be composed to describe the different kinds of computers at your site, then assign those classes using Puppet Dashboard or `site.pp`.
 
 **To mark a resource for auditing, declare its `audit` metaparameter.** The value of `audit` can be one attribute, an array of attributes, or `all`. You can also have Puppet manage some attributes of an audited resource. 
 
@@ -84,6 +42,7 @@ In the simplest case, where you want to audit an identical set of resources on e
     user {'httpd':
       audit => 'all',
     }
+    # Allow a user to change their password, but notify Puppet Compliance when they do:
     user {'admin':
       ensure => present,
       gid    => 'wheel',
@@ -94,3 +53,96 @@ In the simplest case, where you want to audit an identical set of resources on e
 {% endhighlight %}
 
 
+Reviewing Changes
+-----
+
+To audit changes, first scan the day's node and group summaries to see which nodes have unreviewed changes. 
+
+![summary_with_differences][]
+
+Once you've seen the overview, you can navigate to any pages with unreviewed changes. If there are any unreviewed changes on previous days, there will be a warning next to the date changer drop-down, and the drop-down will note which days aren't fully reviewed. 
+
+![date_changer_with_unreviewed][]
+
+Changes can be **accepted** or **rejected.** Accepted changes will become part of the baseline for the next day's comparisons. Rejecting a change does nothing, and if an admin doesn't manually revert the change, it will appear as a difference again on the next day's comparisons. 
+
+When accepting multiple days' changes to the same resource, the most recently accepted change will win. 
+
+### Reviewing Individual Nodes
+
+Changes to individual nodes are straightforward to review: navigate to the node's page, view each change, and use the green plus and red minus buttons when you've decided whether the change was legitimate. 
+
+![accept_and_reject_buttons][]
+
+Each change is displayed in a table of attributes, with the previously approved ("baseline") state on the left and the inspected state on the right. You will also see links for viewing the original and modified contents of any changed files, as well as a "differences" link for showing the exact changes. 
+
+You can also accept or reject all of the day's changes to this node at once with the controls below the node's summary. **Note that rejecting all changes is "safe," since it makes no edits to the node's baseline;** if you reject all changes without manually reverting them, you're effectively deferring a decision on them to the next day. 
+
+### Reviewing Groups
+
+If you've collected similar nodes into Dashboard groups, you can greatly speed up the review of similar changes with the "Common Differences" tab. You can also use the "Individual Differences" tab to navigate to the individual nodes.
+
+#### Same Change on Multiple Nodes
+
+![group_same_change][]
+
+If the same change was made on several nodes in a group, you can:
+
+- Accept or reject the change for **all** affected nodes
+- View the individual node pages to approve or reject the change selectively
+
+#### Different Changes to the Same Resource
+
+![group_different_changes][]
+
+If **different** changes were made to the **same resource** on several nodes, the changes will be grouped for easy comparison. You can:
+
+- Accept or reject **each cluster** of changes
+- View the individual node pages to approve or reject the changes selectively <!-- TK This does not match the text on the page but seems to match the behavior. Investigate. -->
+
+#### Convergence of differing baselines
+
+![group_converging][]
+
+If several nodes in a group had a different baseline value for one resource but were recently brought into an identical state, you can click through to examine the previous baselines, and can:
+
+- Approve or reject the single new state for **all** affected nodes
+- View the individual node pages to approve or reject the changes selectively
+
+Comparing Groups Against a Single Baseline
+-----
+
+Puppet Compliance can also generate custom reports which **compare an entire group to a single member node's baseline.** While the day-to-day compliance views are meant for tracking changes to a node or group of nodes over time, custom reports are meant for tracking how far a group of nodes have drifted away from each other. 
+
+- Custom reports only examine the most recent inspection report for each group member
+- Custom reports **do not** allow you to approve or reject changes
+
+Dashboard will maintain **one** cached custom report for **each group;** generating a new report for that group will erase the old one.
+
+![core_group_custom_report][]
+
+Custom reports are generated from Dashboard's **core group pages** --- **not** from the compliance group pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static markup that does not automatically poll for updates; you will need to reload the page periodically for updated status on the report.) 
+
+Once generated, custom reports can be viewed from Dashboard's **core group pages,** the **main compliance page,** and the **compliance group pages.** 
+
+![custom_report_core_group_link][]
+
+![custom_report_compliance_group_link][]
+
+![custom_report_compliance_main_link][]
+
+A custom report is split into a "Common Differences" tab and an "Individual Differences" tab. This is very similar to the layout of the group compliance review pages, and should  be read in the same fashion; the only difference is that all comparisons are to a single baseline instead of per-node baselines. 
+
+![custom_report_common][]
+
+[accept_and_reject_buttons]: ./images/baseline/accept_and_reject_buttons.png
+[core_group_custom_report]: ./images/baseline/core_group_custom_report.png
+[custom_report_core_group_link]: ./images/baseline/custom_report_core_group_link.png
+[custom_report_compliance_group_link]: ./images/baseline/custom_report_compliance_group_link.png
+[custom_report_compliance_main_link]: ./images/baseline/custom_report_compliance_main_link.png
+[custom_report_common]: ./images/baseline/custom_report_common.png
+[date_changer_with_unreviewed]: ./images/baseline/date_changer_with_unreviewed.png
+[group_converging]: ./images/baseline/group_converging.png
+[group_different_changes]: ./images/baseline/group_different_changes.png
+[group_same_change]: ./images/baseline/group_same_change.png
+[summary_with_differences]: ./images/baseline/summary_with_differences.png
