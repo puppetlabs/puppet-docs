@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Puppet Dashboard Documentation
+title: "Puppet Dashboard Documentation"
 ---
 
-Puppet Dashboard Documentation Index
+Puppet Dashboard Documentation
 ======
 
 Puppet Dashboard is an optional web app that lets you inspect and control your Puppet infrastructure.

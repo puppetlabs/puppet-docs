@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE Manual: Puppet Compliance Basics and UI"
+title: "PE 1.2 Manual: Puppet Compliance Basics and UI"
 ---
 
 {% include pe_1.2_nav.markdown %}

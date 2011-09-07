@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE Manual: Troubleshooting"
+title: "PE 1.2 Manual: Troubleshooting"
 ---
 
 {% include pe_1.2_nav.markdown %}

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE Manual: Answer File Reference"
+title: "PE 1.2 Manual: Answer File Reference"
 ---
 
 {% include pe_1.2_nav.markdown %}

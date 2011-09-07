@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE Manual: Installing Puppet Enterprise"
+title: "PE 1.2 Manual: Installing Puppet Enterprise"
 ---
 
 {% include pe_1.2_nav.markdown %}

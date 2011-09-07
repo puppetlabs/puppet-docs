@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE Manual: Upgrading Puppet Enterprise
+title: "PE 1.2 Manual: Upgrading Puppet Enterprise
 ---
 
 {% include pe_1.2_nav.markdown %}
