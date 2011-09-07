@@ -83,11 +83,11 @@ Each group page will now have:
 
 ![core_group_custom_report][]
 
-### Compliance Summary
+### Compliance Overview
 
-![main_summary][]
+![main_overview][]
 
-The main compliance summary page shows a single day's comparison results, with aggregate summaries for grouped nodes and individual summaries for groupless nodes. 
+The main compliance overview page shows a single day's comparison results, with aggregate summaries for grouped nodes and individual summaries for groupless nodes. 
 
 ### Compliance Node Page
 
@@ -95,7 +95,7 @@ The main compliance summary page shows a single day's comparison results, with a
 
 Individual node pages show one node's off-baseline inspection results for a single day. You can accept or reject changes from this page. 
 
-Links to the node pages of groupless nodes are displayed on the main summary page. To see the details of a node which is in at least one group, navigate to its group page and use the "Individual Differences" tab.
+Links to the node pages of groupless nodes are displayed on the main compliance overview page. To see the details of a node which is in at least one group, navigate to its group page and use the "Individual Differences" tab.
 
 ### Compliance Group Page
 
@@ -114,7 +114,7 @@ Although Dashboard allows groups to contain other groups, a compliance group pag
 
 [compliance_link]: ./images/baseline/compliance_link.png
 [date_changer_with_unreviewed]: ./images/baseline/date_changer_with_unreviewed.png
-[main_summary]: ./images/baseline/main_summary.png
+[main_overview]: ./images/baseline/main_overview.png
 [individual_node]: ./images/baseline/individual_node.png
 [group_common]: ./images/baseline/group_common.png
 [group_individual]: ./images/baseline/group_individual.png

@@ -19,7 +19,7 @@ This brief walkthrough shows a compliance workflow auditing the state of the fol
 Morning, July 14, 2011
 -----
 
-![tutorial_summary][]
+![tutorial_overview][]
 
 On Thursday morning, the admin notices unreviewed changes in a group of three nodes and a pair of ungrouped nodes. She checks the group first. 
 
@@ -82,5 +82,5 @@ It's an otherwise uneventful day.
 [tutorial_profile_after]: ./images/baseline/tutorial_profile_after.png
 [tutorial_profile_before]: ./images/baseline/tutorial_profile_before.png
 [tutorial_reject_user]: ./images/baseline/tutorial_reject_user.png
-[tutorial_summary]: ./images/baseline/tutorial_summary.png
+[tutorial_overview]: ./images/baseline/tutorial_overview.png
 

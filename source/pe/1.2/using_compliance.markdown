@@ -123,7 +123,7 @@ Dashboard will maintain **one** cached custom report for **each group;** generat
 
 Custom reports are generated from Dashboard's **core group pages** --- **not** from the compliance group pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static markup that does not automatically poll for updates; you will need to reload the page periodically for updated status on the report.) 
 
-Once generated, custom reports can be viewed from Dashboard's **core group pages,** the **main compliance page,** and the **compliance group pages.** 
+Once generated, custom reports can be viewed from Dashboard's **core group pages,** the **main compliance overview page,** and the **compliance group pages.** 
 
 ![custom_report_core_group_link][]
 
