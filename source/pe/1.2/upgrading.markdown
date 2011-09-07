@@ -175,7 +175,7 @@ And finally, make `puppet-dashboard` the owner of the certificates directory:
 
 To reload all of the relevant puppet master and Dashboard config files, restart Apache:
 
-    $ sudo service pe-httpd restart
+    $ sudo /etc/init.d/pe-httpd restart
 
 And you're done!
 
