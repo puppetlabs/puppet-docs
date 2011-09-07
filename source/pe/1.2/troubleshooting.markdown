@@ -35,21 +35,65 @@ The learning curve of SSL certificate management can lead to a variety of proble
 
 If you install the puppet agent role on a node before getting the puppet master up and running, the installer won't be able to request a certificate during installation, and you won't immediately see a pending certificate request when you run `puppet cert list`. To request a certificate manually, you can log into the agent node and run:
 
-    # puppet agent --test
+    # sudo puppet agent --test
 
-...after which you should be able to sign the certificate on the puppet master. Alternately, you can simply wait 30 minutes, as the puppet agent service will request a certificate on its next run.
+...after which you should be able to sign the certificate on the puppet master. **Alternately,** you can simply wait 30 minutes, as the puppet agent service will request a certificate on its next run.
 
 ### Agent Nodes Refuse to Trust the Master's Certificate
 
-<!-- TK  this needs a revision -->
+**Symptom:** Puppet agent is unable to retrieve a configuration, and logs a series of errors ending in **"hostname was not match with the server certificate."**
 
 Agent nodes determine the validity of the master's certificate based on hostname; if they're contacting it using a hostname that wasn't included when the certificate was signed, they'll reject the certificate. 
 
-**Solution:** Either modify your agent nodes' settings (and your site's DNS, if applicable) to point to one of the master's certified hostnames, or re-generate and re-sign the master's certificate.
+**Solution:** Either:
+
+Modify your agent nodes' settings to point to one of the master's certified hostnames. (This may also require adjusting your site's DNS.) To see the puppet master's certified hostnames, run:
+
+    # sudo puppet master --configprint certname,certdnsnames
+
+...on the puppet master server.
+
+**Or:**
+
+Re-generate the puppet master's certificate: 
+
+- Stop the `pe-httpd` service:
+
+        # sudo /etc/init.d/pe-httpd stop
+- Delete the puppet master's certificate, private key, and public key:
+
+        # sudo find /etc/puppetlabs/puppet/ssl -name $(puppet master --configprint certname) -delete
+- Edit the `certname` and `certdnsnames` settings in the puppet master's `/etc/puppetlabs/puppet/puppet.conf` file to match the puppet master's actual hostnames.
+- Start a non-daemonized WEBrick puppet master instance, and wait for it to generate and sign a new certificate:
+
+        # sudo puppet master --no-daemonize --verbose
+        
+    You should stop the temporary puppet master with ctrl-C after you see the "notice: Starting Puppet master version 2.6.9" message.
+- Start the `pe-httpd` service: 
+
+        # sudo /etc/init.d/pe-httpd start
+
+### Puppet master is rejecting an agent node with a valid certificate
+
+**Symptom:** Puppet agent logs a series of errors that end with "`SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed`" or "`SSL_connect returned=1 errno=0 state=SSLv3 read finished A: sslv3 alert bad certificate`."
+
+The most common cause of this error is time drift in a virtual machine --- if either the puppet master's or the agent's system time have been reset to _before_ the master or agent certificates were signed, or if the certificates were accidentally signed while the puppet master's clock was set to the future, the certificates will be rejected as invalid. 
+
+**Solution:**
+
+To avoid this error, maintain accurate timekeeping on the agent nodes and puppet masters; keep in mind that NTP can behave unreliably in virtual machines. 
+
+To repair this error, you will need to re-generate the affected certificates. Use `puppet cert print <certname>` on the puppet master to examine the valid dates of a certificate, and when you have confirmed that an agent certificate needs to be regenerated, run:
+
+- `puppet cert clean <certname>` on the puppet master 
+- `rm -rf $(puppet agent --configprint ssldir); puppet agent --test` on the affected agent node. 
+- `puppet cert sign <certname>` on the puppet master
+
+If you need to re-generate the puppet master's certificate, see [the instructions in the previous question](#agent-nodes-refuse-to-trust-the-master's-certificate)
 
 ### An agent node's OS has been re-installed, and the master will no longer communicate with it
 
-The puppet master stores signed agent certificates based on nodes' certnames (unique IDs), which are usually fully-qualified domain names. If a node loses its certificates but retains its unique ID, as would happen if the OS and Puppet were re-installed from scratch, it will re-generate its certificate and send a signing request to the master. However, since the master already has a signed certificate cached for that node, it will ignore the signing request and expect the node to contact it using the old (and now lost) certificate. 
+The puppet master stores signed agent certificates based on nodes' certnames (unique IDs), which are usually fully-qualified domain names. If a node loses its certificates but retains its unique ID (certname) --- as would happen if the OS and Puppet were re-installed from scratch --- it will re-generate its certificate and send a signing request to the master. However, since the master already has a signed certificate cached for that node, it will ignore the signing request and expect the node to connect using the old (and now lost) certificate. 
 
 A similar situation can arise if an agent node is rebuilt while a previous signing request is still pending. 
 
@@ -57,9 +101,9 @@ A similar situation can arise if an agent node is rebuilt while a previous signi
 
 ### An agent's hostname has changed, and it can no longer contact its master
 
-Puppet Enterprise always writes a node's unique identifier to `puppet.conf` during installation, which provides some resilience against hostname changes that might otherwise change the node's "certname." However, if a node's `puppet.conf` is modified with a new certname, or if the certname is overridden on the command line at runtime, it is possible to wind up with a mismatch that will result in the master rejecting the certificate. 
+Normally, a hostname change will not affect a node's certname. However, if the certname is changed in `puppet.conf` or at the command line, the node's previously signed certificate won't be used when contacting the puppet master. 
 
-**Solution:** If the new certname is permanent, simply delete the node's `/etc/puppetlabs/puppet/ssl` directory, and the node will generate a new certificate and send a new signing request to the master. You can also clean the previous certificate on the master if you expect to re-use the old unique identifier for a new agent node. 
+**Solution:** The agent will have submitted a new certificate signing request during the first attempted agent run with the new certname. Simply run `sudo puppet cert sign <new certname>` on the puppet master to allow the agent to connect under its new name. You can also run `puppet cert clean` on the previous certificate if you expect to re-use the old certname for a new agent node. 
 
 ### Dashboard Was Installed Before the Puppet Master
 
