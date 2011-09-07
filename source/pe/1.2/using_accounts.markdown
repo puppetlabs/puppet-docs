@@ -3,4 +3,4 @@ layout: default
 title: "PE Manual: Using the Accounts Module"
 ---
 
-{% include pe_nav.markdown %}
+{% include pe_1.2_nav.markdown %}

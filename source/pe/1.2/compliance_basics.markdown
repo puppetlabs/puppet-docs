@@ -3,7 +3,7 @@ layout: default
 title: "PE Manual: Puppet Compliance Basics and UI"
 ---
 
-{% include pe_nav.markdown %}
+{% include pe_1.2_nav.markdown %}
 
 Puppet Compliance Basics and UI
 =====
