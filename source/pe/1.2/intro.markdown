@@ -52,6 +52,10 @@ Puppet Enterprise now bundles version 1.2.1 of Marionette Collective, Puppet Lab
 
 Puppet Compliance is a new auditing workflow that uses Puppet Dashboard to track changes to resources.
 
+### Puppet Dashboard 1.2
+
+This release upgrades Puppet Dashboard to version 1.2, which boasts vastly improved performance and can export most node views to CSV. 
+
 ### Puppet 2.6.9
 
 This release updates Puppet to version 2.6.9, the latest release in the stable 2.6 series. <!-- TK link to release notes or something -->
