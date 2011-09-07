@@ -8,7 +8,7 @@ title: "PE Manual: Installing Puppet Enterprise"
 Installing Puppet Enterprise 
 ============================
 
-Puppet Enterprise's is the absolute easiest way to install Puppet in a production-ready state --- after some quick pre-install sanity checks, simply run the interactive installer and get started immediately.
+Puppet Enterprise is the easiest way to install Puppet in a production-ready state --- after some quick pre-install sanity checks, simply run the interactive installer and get started immediately.
 
 Preparing to Install
 ------------------
