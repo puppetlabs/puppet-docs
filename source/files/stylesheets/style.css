@@ -171,6 +171,7 @@ h1, h2, h3 {
 h1, h2 {
   font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
   font-size: 1.75em;
+  font-weight: bold;
   line-height: 1.125em;
   margin-top: 1em;
   margin-bottom: 0.5em;
@@ -194,29 +195,25 @@ h3, h4 {
   font-weight: bold;
   margin-top: 1.5em;
   margin-bottom: 0.75em;
+  color: #3F3D65;
 }
 
 h3 {
-  color: #333;
-  font-size: 1.125em;
+  font-size: 1.25em;
 }
 
 h4 {
-  color: #444;
-  font-size: 0.9em;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
+  font-size: 1.1em;
+  font-style: italic;
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
 h5 {
-  color: #444;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-weight: bold;
+  color: #888;
+  font-size: 1.1em;
+  font-style: italic;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
@@ -879,9 +876,10 @@ section#masthead p {
 }
 
 section#masthead h1 {
-	display: inline;
+    display: inline;
   font-size: 3em;
   letter-spacing: -0.05em;
+  font-weight: inherit;
   margin: 0;
   color: #ffd77e;
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.125);
