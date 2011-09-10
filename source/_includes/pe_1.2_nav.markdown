@@ -6,16 +6,19 @@
 - [Installing](./installing.html)
 - [Upgrading](./upgrading.html)
 - [Using Puppet Enterprise](./using.html)
-- [Using the Accounts Module](./using_accounts.html)
+- The Accounts Module
+    - [The `accounts::user` Type](./accounts_user_type.html)
+    - [The `accounts` Class](./accounts_class.html)
 - Puppet Compliance
     - [Puppet Compliance Basics and UI](./compliance_basics.html)
     - [Using the Puppet Compliance Workflow](./using_compliance.html)
     - [Compliance Workflow Tutorial](./compliance_tutorial.html)
+- [Known Issues](./known_issues.html)
 - [Troubleshooting](./troubleshooting.html)
 - [Answer File Reference](./answer_file_reference.html)
 
 find:
-(?<=^<li>)(<a href="\./([\w_]+\.html)">([^<]+)</a>)(?=</li>)
+(?<=^<li>)(<a href="\./([\w_]+\.html)">(.+?)</a>)(?=</li>)
 replace:
 {% if page.url contains '\2' %}<strong>\3</strong>{% else %}\1{% endif %}
 
@@ -35,13 +38,19 @@ replace:
 <li>{% if page.url contains 'installing.html' %}<strong>Installing</strong>{% else %}<a href="./installing.html">Installing</a>{% endif %}</li>
 <li>{% if page.url contains 'upgrading.html' %}<strong>Upgrading</strong>{% else %}<a href="./upgrading.html">Upgrading</a>{% endif %}</li>
 <li>{% if page.url contains 'using.html' %}<strong>Using Puppet Enterprise</strong>{% else %}<a href="./using.html">Using Puppet Enterprise</a>{% endif %}</li>
-<li>Using the Accounts Module (coming soon!)</li>
+<li>The Accounts Module
+<ul>
+<li>{% if page.url contains 'accounts_user_type.html' %}<strong>The <code>accounts::user</code> Type</strong>{% else %}<a href="./accounts_user_type.html">The <code>accounts::user</code> Type</a>{% endif %}</li>
+<li>{% if page.url contains 'accounts_class.html' %}<strong>The <code>accounts</code> Class</strong>{% else %}<a href="./accounts_class.html">The <code>accounts</code> Class</a>{% endif %}
+</li>
+</ul></li>
 <li>Puppet Compliance
 <ul>
 <li>{% if page.url contains 'compliance_basics.html' %}<strong>Puppet Compliance Basics and UI</strong>{% else %}<a href="./compliance_basics.html">Puppet Compliance Basics and UI</a>{% endif %}</li>
 <li>{% if page.url contains 'using_compliance.html' %}<strong>Using the Puppet Compliance Workflow</strong>{% else %}<a href="./using_compliance.html">Using the Puppet Compliance Workflow</a>{% endif %}</li>
 <li>{% if page.url contains 'compliance_tutorial.html' %}<strong>Compliance Workflow Tutorial</strong>{% else %}<a href="./compliance_tutorial.html">Compliance Workflow Tutorial</a>{% endif %}</li>
 </ul></li>
+<li>Known Issues (coming soon)</li>
 <li>{% if page.url contains 'troubleshooting.html' %}<strong>Troubleshooting</strong>{% else %}<a href="./troubleshooting.html">Troubleshooting</a>{% endif %}</li>
 <li>{% if page.url contains 'answer_file_reference.html' %}<strong>Answer File Reference</strong>{% else %}<a href="./answer_file_reference.html">Answer File Reference</a>{% endif %}</li>
 </ul>
