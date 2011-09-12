@@ -90,7 +90,7 @@ And... that's all it takes, actually. This will work. If you declare the class w
     class {'ntp':}
 {% endhighlight %}
 
-...it'll work the same way it used to. If you declare it with a `server` attribute containing an array of servers (with or without appended `iburst` and `dynamic` statements)...
+...it'll work the same way it used to. If you declare it with a `servers` attribute containing an array of servers (with or without appended `iburst` and `dynamic` statements)...
 
 {% highlight ruby %}
     class {'ntp':
