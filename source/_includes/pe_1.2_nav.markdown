@@ -50,7 +50,7 @@ replace:
 <li>{% if page.url contains 'using_compliance.html' %}<strong>Using the Puppet Compliance Workflow</strong>{% else %}<a href="./using_compliance.html">Using the Puppet Compliance Workflow</a>{% endif %}</li>
 <li>{% if page.url contains 'compliance_tutorial.html' %}<strong>Compliance Workflow Tutorial</strong>{% else %}<a href="./compliance_tutorial.html">Compliance Workflow Tutorial</a>{% endif %}</li>
 </ul></li>
-<li>Known Issues (coming soon)</li>
+<li>{% if page.url contains 'known_issues.html' %}<strong>Known Issues</strong>{% else %}<a href="./known_issues.html">Known Issues</a>{% endif %}</li>
 <li>{% if page.url contains 'troubleshooting.html' %}<strong>Troubleshooting</strong>{% else %}<a href="./troubleshooting.html">Troubleshooting</a>{% endif %}</li>
 <li>{% if page.url contains 'answer_file_reference.html' %}<strong>Answer File Reference</strong>{% else %}<a href="./answer_file_reference.html">Answer File Reference</a>{% endif %}</li>
 </ul>

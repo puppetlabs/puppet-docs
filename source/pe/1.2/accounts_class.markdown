@@ -5,7 +5,7 @@ title: "PE 1.2 Manual: The accounts Class"
 
 {% include pe_1.2_nav.markdown %}
 
-[knownissues]: ./known_issues.html
+[knownissues]: ./known_issues.html#accounts-class-requires-an-inert-variablefile
 
 The `accounts` Class
 =====
