@@ -37,7 +37,11 @@ Puppet Enterprise 1.2 supports the following operating system versions:
 | SUSE Linux Enterprise Server | 11                        | x86 and x86\_864  | master/agent |
 | Solaris                      | 10                        | SPARC and x86\_64 | agent        |
 
-Puppet's hardware requirements will depend heavily on the number of resources you are managing, but in general, you can expect a 2-4 CPU puppet master with 4 GB of RAM to manage approximately 1,000 agent nodes. The ActiveMQ server, which runs on the puppet master, will require at least 512 MB of RAM for its Java VM instance.
+**Puppet's hardware requirements will vary widely** depending on the number of resources you are managing, but in general, you can expect a 2-4 CPU puppet master with 4 GB of RAM to manage approximately 1,000 agent nodes. 
+
+The ActiveMQ server, which runs on the puppet master, will require **at least 512 MB of RAM** for its Java VM instance. It also requires **very accurate timekeeping,** which can potentially present problems when running the puppet master role under some virtualization platforms. For this reason, **we recommend running the puppet master role on a Xen, KVM, or physical server** if you plan to use MCollective.
+
+The puppet agent role has very modest requirements, and should run without problems on nearly any physical or virtualized hardware.
 
 What's New in PE 1.2
 ----------
