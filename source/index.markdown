@@ -119,7 +119,7 @@ Go beyond basic manifests.
 * [Exported Resources](./guides/exported_resources.html) --- share data between hosts
 * [Environments](./guides/environment.html) --- separate dev, stage, & production
 * [Reporting](./guides/reporting.html) --- learn what your nodes are up to
-* [Getting Started With CloudPack](./guides/cloud_pack_getting_started.html) --- create and bootstrap new nodes with the experimental CloudPack extension
+* [Getting Started With Cloud Provisioner](./guides/cloud_pack_getting_started.html) --- create and bootstrap new nodes with the experimental cloud provisioner extension
 
 ### Hacking and Extending
 
