@@ -13,6 +13,8 @@ In PE ≤ 1.2.1
 
 ### Upgrading From PE 1.1 Breaks Node Classification on Debian and Ubuntu Systems
 
+([Issue #9444](https://projects.puppetlabs.com/issues/9444))
+
 When upgrading a puppet master with Dashboard from PE 1.1 to 1.2 on Debian and Ubuntu systems, a permissions change to `/etc/puppetlabs/puppet-dashboard` and `/etc/puppetlabs/puppet-dashboard/external_node` breaks Dashboard's node classification abilities. The symptom of this issue is that classes that applied properly to agents on PE 1.1 will no longer be applied. 
 
 The workaround for this issue is to ensure that the permissions of `/etc/puppetlabs/puppet-dashboard` are 755 and that the permissions of `/etc/puppetlabs/puppet-dashboard/external_node` are 755. Running the following command should be sufficient:
@@ -34,7 +36,6 @@ In PE 1.2.0
 
 ### Puppet Inspect Does Not Archive Files
 
-([Issue #9444](https://projects.puppetlabs.com/issues/9444))
 In `puppet.conf`, the `archive_files = true` setting was incorrectly placed in an inert `[inspect]` block. This caused puppet inspect to not upload files when submitting compliance reports. 
 
 To repair this issue, edit your `puppet.conf` file to include `archive_files = true` under the `[main]` block. **This will not happen automatically when upgrading from PE 1.2.0 to 1.2.1,** but is fixed in new installations of PE 1.2.1.
