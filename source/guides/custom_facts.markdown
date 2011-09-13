@@ -146,10 +146,10 @@ master:
 
 ### Caching Ruby Facts
 
-Since Facter 1.7.0 you can now specify that the contents of the 'setcode'
-part of a Fact will be cached for faster retrieval each time it is requested.
+Starting with Facter 1.7.0, you can now specify that the contents of a fact's "setcode"
+block should be cached for faster retrieval.
 
-The mechanism for doing this is trivial. Simply supply a 'ttl' option during
+The mechanism for doing this is trivial --- simply supply a "`:ttl`" option during
 fact creation. The value is specified in seconds:
 
     Facter.add("mylongoperation", :ttl => 600) do
@@ -160,8 +160,8 @@ fact creation. The value is specified in seconds:
 
 The ttl value can also be one of:
 
-* 0 - this means never cache. This is the default behaviour.
-* -1 - this means cache forever. Useful for one-off operations that should never need to run again.
+* `0` --- never cache. This is the default behaviour.
+* `-1` --- cache forever. Useful for one-off operations that should never need to run again.
 
 ### Legacy Fact Distribution
 
@@ -212,149 +212,156 @@ Remember the approach described above for `factsync` is now deprecated and repla
 External Facts
 --------------
 
-External facts are available only in Facter 1.7.0.
+**External facts are available only in Facter 1.7.0 and later.**
 
 ### What are external facts?
 
-External facts provide a way for a user to write a fact as either an 
-executable, a script or structured data.
-
-Extecutable facts allow you to write a fact using any programming language 
-(even compiled languages such as C). Structured data plugins allow you to drop 
-structured data formats and have them parsed as facts.
+External facts provide a way to use arbitrary executables or scripts as facts, or set facts statically with structured data. If you've ever wanted to write a custom fact in Perl, C, or a one-line text file, this is how.
 
 ### Fact Locations
 
-Unix/Linux:
+On Unix/Linux:
 
     /etc/facter/facts.d
 
-Windows 2003:
+On Windows 2003:
 
     C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\facts.d
 
-Windows 2008:
+On Windows 2008:
 
     C:\ProgramData\Puppetlabs\facter\facts.d
 
-### Executable facts - Unix
+### Executable facts --- Unix
 
 Executable facts on Unix work by dropping an executable file into the standard 
 external fact path above.
 
-You must ensure the script itself has its execute bit set:
+You must ensure that the script has its execute bit set:
 
     chmod +x /etc/facter/facts.d/myscript
 
-For facter to parse the output, the script must return key value pairs via 
+For Facter to parse the output, the script must return key/value pairs on 
 STDOUT in the format:
 
     key1=value1
     key2=value2
     key3=value3
 
-Using this method, a single script can return multiple facts in one return.
+Using this format, a single script can return multiple facts in one return.
 
-### Executable facts - Windows
+### Executable facts --- Windows
 
-Executable facts on Windows work by dropping an executable file into the 
-standard external fact path above for Windows. Unlike Unix, the external facter
-plugin expects scripts to end with a known extension. At the moment the 
+Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts
+interface expects Windows scripts to end with a known extension. At the moment the 
 following extensions are supported:
 
--   com, exe: for binary executables.
--   bat: batch scripts
--   ps1: PowerShell Scripts
+-   `.com` and `exe`: binary executables
+-   `.bat`: batch scripts
+-   `.ps1`: PowerShell scripts
 
-As with Unix facts; for facter to parse the output the script must return key 
-value pairs via STDOUT in the format:
+As with Unix facts, each script must return key/value pairs on STDOUT in the format:
 
     key1=value1
     key2=value2
     key3=value3
 
-Using this method, a single script can return multiple facts in one return.
+Using this format, a single script can return multiple facts in one return.
 
-### PowerShell Scripts
+#### Enabling PowerShell Scripts
 
-For PowerShell scripts (scripts with a ps1 extension) to work you need to make
+For PowerShell scripts (scripts with a ps1 extension) to work, you need to make
 sure you have the correct execution policy set.
 
-You can [read an article][executionpolicy] about this to gain more detail about
-the impact of changing execution policy. Its best to understand any security
-implications first before making a global change to execution policy.
+[See this Microsoft TechNet article][executionpolicy] for more detail about
+the impact of changing execution policy. We recommend understanding any security
+implications before making a global change to execution policy.
 
 The simplest and safest mechanism we have found is to change the execution 
 policy so that only remotely downloaded scripts need to be signed. You can
-change this with:
+set this policy with:
 
     Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
 
-Here is a sample PowerShell script which outputs facts using the required format that you
-can try:
+Here is a sample PowerShell script which outputs facts using the required format:
 
     Write-Host "key1=val1"
     Write-Host "key2=val2"
     Write-Host "key3=val3"
 
-You should be able to execute this PowerShell script on the command line yourself 
-after changing execution policy.
+You should be able to save and execute this PowerShell script on the command line after changing the execution policy.
 
 ### Structured Data Facts
 
-Facter can parse the contents of files for structured content. This can be 
-achieved by creating a file using an extension which matches the internal 
-content type.
+Facter can parse structured data files stored in the external facts directory and set facts based on their contents.
 
-At the moment we have support for the following extensions:
+Structured data files must use one of the supported data types and must have the correct file extension. At the moment, Facter supports the following extensions and data types:
 
-* yaml: YAML data
-* json: JSON data
-* txt: Key value pairs
+* `.yaml`: YAML data, in the following format:
+
+        ---
+        key1: val1
+        key2: val2
+        key3: val3
+* `.json`: JSON data, in the following format:
+
+        {
+            "key1": "val1",
+            "key2": "val2",
+            "key3": "val3",
+        }
+* `.txt`: Key value pairs, in the following format: 
+
+        key1=value1
+        key2=value2
+        key3=value3
+
+As with executable facts, structured data files can set multiple facts at once.
 
 ### Caching External facts
 
-Just like with Ruby facts, you can cache external facts by providing a 
-corresponding file with the extension 'ttl' next to the original external fact 
-file. For example if your script is:
+Just like with Ruby facts, you can cache external facts for better performance. This is done by creating a text file in the facts directory with the same file name as the fact (including extension) and the `.ttl` extension. For example, if your script is:
 
     /etc/facter/facts.d/myfacts.sh
 
-You simply create the file:
+The `.ttl` file should be:
 
     /etc/facter/facts.d/myfacts.sh.ttl
 
-Containing the number of second you wish to cache the results for. You can also 
-provide the special values 0 and -1 as with Ruby facts.
+TTL files should contain the number of seconds for which to cache the results. You can also provide the following special TTL values:
+
+* `0` --- never cache. This is the default behaviour.
+* `-1` --- cache forever. Useful for one-off operations that should never need to run again.
+
+The TTL value will apply to all of the facts set by the script. 
 
 ### Troubleshooting
 
-Generally if your external fact is not being parsed for some reason you can run
-facter with debug mode, and it should give you a meaningful reason as to why:
+If your external fact is not appearing in Facter's output, running
+Facter in debug mode should give you a meaningful reason and tell you which file is causing the problem:
 
-    facter --debug
+    # facter --debug
 
-An example would be in cases where you had invalid characters being returned.
-Let say you used a hyphen instead of an equals sign in your script test.sh:
+An example would be in cases where a fact returns invalid characters.
+Let say you used a hyphen instead of an equals sign in your script `test.sh`:
 
     #!/bin/bash
 
     echo "key1-value1"
 
-Running facter --debug you should get a reasonable error message:    
+Running `facter --debug` should yield a useful error message:    
 
     ...
     Fact file /etc/facter/facts.d/test.sh was parsed but returned an empty data set
     ...
 
 If you are interested in finding out where any bottlenecks are, you can run 
-facter in timing mode and it will reflect how long it takes to parse your 
+Facter in timing mode and it will reflect how long it takes to parse your 
 external facts:
 
     facter --timing
 
-The output should look similar to Ruby facts, but will provide full paths to 
-external facts for your reference. For example:
+The output should look similar to the timing for Ruby facts, but will name external facts with their full paths. For example:
 
     $ facter --timing
     kernel: 14.81ms
@@ -366,10 +373,9 @@ external facts for your reference. For example:
 
 ### Drawbacks
 
-While external facts provide the same capability for variable creation in 
-Puppet they have a few drawbacks:
+While external facts provide a mostly-equal way to create variables for Puppet, they have a few drawbacks:
 
-* An external fact cannot internally reference another fact. However due to parse order, you can reference an external fact from a ruby fact.
-* External executable facts are forked instead of executed within the same process
-* At the moment external facts cannot be synchronised, although there is a desire to solve this. (TODO: supply ticket number).
+* An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
+* External executable facts are forked instead of executed within the same process.
+* Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. <!-- TODO: supply ticket number -->
 
