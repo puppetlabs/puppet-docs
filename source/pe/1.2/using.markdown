@@ -14,6 +14,15 @@ Puppet Enterprise is Puppet
 
 If you're an experienced Puppet or MCollective user, Puppet Enterprise will work almost exactly as you expect. 
 
+### Users
+
+Puppet Enterprise creates and uses the following users for services and interaction:
+
+- **`mco`** --- The Mcollective client user, which exists on the puppet master server. **To issue MCollective commands, you must be acting as the `mco` user** using `sudo -H -u mco <command>`, `sudo -H -s -u mco`, or `su mco` --- `root` cannot send MCollective messages.
+- **`pe-puppet`** --- The Puppet user, which runs the puppet agent service (`pe-puppet`).
+- **`pe-apache`** --- The PE web server user, which runs the copy of Apache (`pe-httpd`) that manages puppet master and Puppet Dashboard.
+- **`pe-activemq`** --- The ActiveMQ user, which exists on the puppet master server and runs the message bus used by MCollective.
+
 ### Directories and Locations
 
 All of Puppet Enterprise's components are installed in the `/opt/puppet` directory.
