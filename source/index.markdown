@@ -8,6 +8,10 @@ Puppet Labs Documentation
 
 Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a (very large, and frequently updated) PDF, which can be found [here](http://info.puppetlabs.com/request-pdf-docs).
 
+### Puppet Enterprise
+
+For information about Puppet Enterprise, see the [Puppet Enterprise documentation](/pe/index.html). The current version of the manual is for [Puppet Enterprise 1.2](/pe/1.2/index.html). 
+
 ### MCollective
 
 For information about MCollective, see the [Marionette Collective documentation](./mcollective/index.html). 
