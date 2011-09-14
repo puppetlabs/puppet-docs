@@ -28,6 +28,7 @@ Now that you've [bootstrapped](./bootstrapping.html) Dashboard for basic product
 * Improve performance
 * Install plugins
 
+Note that **all rake tasks should be performed from a shell in the directory that contains Dashboard's code.** Any relative paths mentioned below refer to locations within this directory. If you are running Dashboard in the recommended "production" environment, note that **Rails does not consider production its default environment,** and you **must specify it manually** when running any rake tasks.
 
 Advanced Features
 ---------

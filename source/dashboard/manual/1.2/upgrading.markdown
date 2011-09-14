@@ -35,6 +35,8 @@ In addition, there are several tasks you must take into account when upgrading f
 * [Upgrading from pre-1.2 versions](#upgrading-from-versions-prior-to-120)
 * [Upgrading from pre-1.1 versions](#upgrading-from-versions-prior-to-110)
 
+Note that **all rake tasks should be performed from a shell in the directory that contains Dashboard's code.** Any relative paths mentioned below refer to locations within this directory. If you are running Dashboard in the recommended "production" environment, note that **Rails does not consider production its default environment,** and you **must specify it manually** when running any rake tasks.
+
 Upgrading Code
 --------------
 
