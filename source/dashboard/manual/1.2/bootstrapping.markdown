@@ -182,15 +182,15 @@ Dashboard needs a `config/database.yml` file and a `config/settings.yml` file. I
 
 ### `database.yml`
 
-The database settings file should be a YAML hash with one key for each environment: production, development, and test. 
+The database settings file is located at `config/database.yml`, and an example file can be found at `config/database.yml.example`. This file should be a YAML hash with one key for each of the standard Rails environments: production, development, and test. 
 
-* The "production" environment gives the best performance, and should be used most of the time by most users. **Rails does not consider production its default environment,** and you **must specify it manually** when running any rake tasks or starting a WEBrick server.
+* The "production" environment gives the best performance, and should be used most of the time by most users. **Rails does not consider production its default environment,** and you **must specify it manually** with the `RAILS_ENV` environment variable when running any rake tasks or starting a WEBrick server.
 * The "development" environment gives worse performance, but yields better logging and error reporting when something goes wrong. 
-* The "test" environment is only used for running Dashboard's tests, and should never be used by most users.
+* The "test" environment is only used for running Dashboard's automated tests, and should never be used by most users.
 
 You will likely only ever be using the production environment. **You may wish to use the same database for the production and development environments,** as this can remove the pain of having to specify `RAILS_ENV=production` for every rake task and gives you the option of running a temporary instance with the same data in the development environment (if you ever need to collect detailed error messages, for example). **You should not use the same database for the test environment,** as it gets destroyed every time the tests are run.
 
-Each environment is a hash with keys for `database`, `username`, `password`, `encoding`, and `adapter`. At the moment, `adapter` can only be `mysql`, and `encoding` should always be `utf8`. 
+Each environment in the `database.yml` file should be a hash with keys for `database`, `username`, `password`, `encoding`, and `adapter`. At the moment, `adapter` can only be `mysql`, and `encoding` should always be `utf8`. 
 
 Do not give Dashboard the keys to MySQL's `root` user account --- [create a new database user](#creating-and-configuring-a-mysql-database) for it (preferably named "dashboard") and choose a secure password. 
 
