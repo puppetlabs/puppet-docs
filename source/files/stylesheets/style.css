@@ -1295,6 +1295,10 @@ body#puppetlabsdocs.docs .primary-content dl dd{
 	padding-left: 20px;
 }
 
+dd > p {
+    margin-top: 1em; /* This is necessary for setting off the second paragraph in any dd element, since the first "paragraph" of any dd isn't inside a <p> element. */
+}
+
 /* @group Docs TOC */
 
 ol.toc {
