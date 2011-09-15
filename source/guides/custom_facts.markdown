@@ -222,15 +222,15 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 On Unix/Linux:
 
-    /etc/facter/facts.d
+    /usr/lib/facter/ext
 
 On Windows 2003:
 
-    C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\facts.d
+    C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\ext
 
 On Windows 2008:
 
-    C:\ProgramData\Puppetlabs\facter\facts.d
+    C:\ProgramData\Puppetlabs\facter\ext
 
 ### Executable facts --- Unix
 
@@ -239,7 +239,7 @@ external fact path above.
 
 You must ensure that the script has its execute bit set:
 
-    chmod +x /etc/facter/facts.d/myscript
+    chmod +x /usr/lib/facter/ext/myscript
 
 For Facter to parse the output, the script must return key/value pairs on 
 STDOUT in the format:
@@ -322,11 +322,11 @@ As with executable facts, structured data files can set multiple facts at once.
 
 Just like with Ruby facts, you can cache external facts for better performance. This is done by creating a text file in the facts directory with the same file name as the fact (including extension) and the `.ttl` extension. For example, if your script is:
 
-    /etc/facter/facts.d/myfacts.sh
+    /usr/lib/facter/ext/myfacts.sh
 
 The `.ttl` file should be:
 
-    /etc/facter/facts.d/myfacts.sh.ttl
+    /usr/lib/facter/ext/myfacts.sh.ttl
 
 TTL files should contain the number of seconds for which to cache the results. You can also provide the following special TTL values:
 
@@ -352,7 +352,7 @@ Let say you used a hyphen instead of an equals sign in your script `test.sh`:
 Running `facter --debug` should yield a useful error message:    
 
     ...
-    Fact file /etc/facter/facts.d/test.sh was parsed but returned an empty data set
+    Fact file /usr/lib/facter/ext/test.sh was parsed but returned an empty data set
     ...
 
 If you are interested in finding out where any bottlenecks are, you can run 
@@ -365,10 +365,10 @@ The output should look similar to the timing for Ruby facts, but will name exter
 
     $ facter --timing
     kernel: 14.81ms
-    /etc/facter/facts.d/abc.sh: 48.72ms
-    /etc/facter/facts.d/foo.sh: 32.69ms
-    /etc/facter/facts.d/full.json: 104.71ms
-    /etc/facter/facts.d/sample.txt: 0.65ms
+    /usr/lib/facter/ext/abc.sh: 48.72ms
+    /usr/lib/facter/ext/foo.sh: 32.69ms
+    /usr/lib/facter/ext/full.json: 104.71ms
+    /usr/lib/facter/ext/sample.txt: 0.65ms
     ....
 
 ### Drawbacks
