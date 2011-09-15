@@ -108,8 +108,8 @@ Puppet has a number of built-in types, and new native types can be distributed w
 [service]: ../references/stable/type.html#service
 [exec]: ../references/stable/type.html#exec
 [cron]: ../references/stable/type.html#cron
-[user]: ../references/stable/type.html#user-3
-[group]: ../references/stable/type.html#group-2
+[user]: ../references/stable/type.html#user
+[group]: ../references/stable/type.html#group
 
 Documentation for all of the built-in types [can always be found in the reference section of this site][types], and can be generated on the fly with the puppet describe utility.
 

@@ -8,7 +8,7 @@ title: "PE 1.2 Manual: The accounts::user Type"
 The `accounts::user` Type
 =====
 
-This defined type manages a single user account. Many of its parameters echo those of the standard [`user` type](/references/2.6.9/type.html#user-3). Unlike the `user` type, it will also create and manage the user's home directory, create and manage a primary group with the same name as the user, manage a set of SSH public keys for the user, and optionally lock the user's account. 
+This defined type manages a single user account. Many of its parameters echo those of the standard [`user` type](/references/2.6.9/type.html#user). Unlike the `user` type, it will also create and manage the user's home directory, create and manage a primary group with the same name as the user, manage a set of SSH public keys for the user, and optionally lock the user's account. 
 
 The `accounts::user` type can be used on all of the platforms supported by Puppet Enterprise.
 
