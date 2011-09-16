@@ -66,7 +66,7 @@ task :generate_pdf do
 #   system("mv index.html original_index.html")
 #   system("mv rebuilt_index.html index.html")
   puts "Remember to run rake serve_pdf"
-  puts "Remember to run wkhtmltopdf cover http://localhost:9292/cover.html http://localhost:9292/ puppet.pdf"
+  puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
   Dir.chdir("..")
 end
 
