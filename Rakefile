@@ -81,6 +81,7 @@ task :compile_pdf do
   fail("wkhtmltopdf doesn't appear to be installed") unless File.executable?(%x{which wkhtmltopdf}.chomp)
   pdf_targets = YAML.load(File.open("pdf_mask/pdf_targets.yaml"))
   pdf_targets.keys.each do |target|
+    puts "Generating #{target}..."
     system(%Q^wkhtmltopdf --margin-bottom 17mm --margin-top 17mm --margin-left 15mm --footer-left "[doctitle] • [section]" --footer-right "[page]/[topage]" --footer-line --footer-font-name "Lucida Grande" --footer-font-size 10 --footer-spacing 2 cover http://localhost:9292/cover_#{target} http://localhost:9292/#{target} #{target.gsub('.html', '')}.pdf^)
   end
 end
