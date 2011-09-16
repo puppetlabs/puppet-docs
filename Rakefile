@@ -49,6 +49,7 @@ task :run => [:generate, :serve]
 
 desc "Generate the documentation in a flat format for later PDF generation"
 task :generate_pdf do
+  require 'yaml'
   system("rm -rf pdf_source")
   system("cp -rf source pdf_source")
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
@@ -57,9 +58,13 @@ task :generate_pdf do
   system("../vendor/gems/jekyll-0.7.0/bin/jekyll --kramdown ../pdf_output")
   Rake::Task['references:symlink:for_pdf'].invoke
   Dir.chdir("../pdf_output")
-  system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
-  system("mv index.html original_index.html")
-  system("mv rebuilt_index.html index.html")
+  pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
+  pdf_targets.each do |target, pages|
+    system("cat #{pages.join(' ')} > #{target}")
+  end
+#   system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
+#   system("mv index.html original_index.html")
+#   system("mv rebuilt_index.html index.html")
   puts "Remember to run rake serve_pdf"
   puts "Remember to run wkhtmltopdf cover http://localhost:9292/cover.html http://localhost:9292/ puppet.pdf"
   Dir.chdir("..")
@@ -122,7 +127,7 @@ namespace :references do
       require 'puppet_docs'
       PuppetDocs::Reference.special_versions.each do |name, (version, source)|
         Dir.chdir '../pdf_output/references' do
-          ln_sf version.to_s, name.to_s
+          FileUtils.ln_sf version.to_s, name.to_s
         end
       end
 
@@ -135,7 +140,7 @@ namespace :references do
     require 'puppet_docs'
     PuppetDocs::Reference.special_versions.each do |name, (version, source)|
       Dir.chdir '../output/references' do
-        ln_sf version.to_s, name.to_s
+        FileUtils.ln_sf version.to_s, name.to_s
       end
     end
   end
