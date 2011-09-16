@@ -25,6 +25,15 @@ module SinglePagifyLinksFilter
     # Receive the URL, make an ID prefix.
     id_prefix = url.gsub(/[\/\.]/, '-')
     path_array = url.split(/\//)
+    
+    # REWRITING IMAGES: 
+    # This is fairly simple: I don't expect any ../ urls for links, so I only need to handle the standard relative case.
+    # The complicated part is stolen from below, because apparently shit gets screwy up at the root directory.
+    input.gsub!(/<img src="\.\//, 
+      path_array.length > 2 ? '<img src="/' + path_array[1 .. -2].join('/') + '/' : '<img src="/'
+    )
+
+    # REWRITING LINKS:
     # First, we need to make all the header element IDs unique, which we can do by just prefixing them with a unique ID for this HTML file. (We were passed this ID prefix as an argument to the filter call.) 
     # Actually, we need to catch lis (they're used in footnotes) as well as h\ds, because if we don't do that, we'll have to account for more types of link case than we want. This is harder than just diddling IDs for every element, because some of those are used for styling. we need to only touch the IDs that the stylesheet couldn't be aware of. 
     # We SHOULDN'T have to catch the divs that I'm manually linking to, because they are happening outside this filter. But those ARE going to be another link class, because we'll need to reach them pretty often and those links don't have an anchor attached. 
