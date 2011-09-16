@@ -6,10 +6,13 @@ learning/manifests.html
 learning/ordering.html
 learning/variables.html
 learning/modules1.html
+learning/templates.html
+learning/modules2.html
 guides/tools.html
 guides/introduction.html
 guides/platforms.html
 guides/installation.html
+guides/setting_up.html
 guides/configuring.html
 guides/scaling.html
 guides/passenger.html
@@ -39,6 +42,7 @@ guides/complete_resource_example.html
 guides/provider_development.html
 guides/from_source.html
 guides/development_lifecycle.html
+guides/puppet_internals.html
 guides/rest_api.html
 guides/language_guide.html
 man/index.html
