@@ -75,6 +75,15 @@ task :serve_pdf do
   system("rackup config_pdf.ru")
 end
 
+desc "Use a series of wkhtmltopdf commands to compile PDF targets"
+task :compile_pdf do
+  require 'yaml'
+  fail("wkhtmltopdf doesn't appear to be installed") unless File.executable?(%x{which wkhtmltopdf}.chomp)
+  pdf_targets = YAML.load(File.open("pdf_mask/pdf_targets.yaml"))
+  pdf_targets.keys.each do |target|
+    system(%Q^wkhtmltopdf --margin-bottom 17mm --margin-top 17mm --margin-left 15mm --footer-left "[doctitle] • [section]" --footer-right "[page]/[topage]" --footer-line --footer-font-name "Lucida Grande" --footer-font-size 10 --footer-spacing 2 cover http://localhost:9292/cover_#{target} http://localhost:9292/#{target} #{target.gsub('.html', '')}.pdf^)
+  end
+end
 
 desc "Build documentation for a new Puppet version"
 task :build => [ 'references:check_version', 'references:fetch_tags', 'references:stub', 'references:puppetdoc', 'references:update_manpages']
