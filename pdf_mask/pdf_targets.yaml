@@ -19,7 +19,7 @@ dashboardmanual.html:
     - dashboard/manual/1.2/maintaining.html
     - dashboard/manual/1.2/using.html
     - bottom.html
-pemanual.html:
+usingpe.html:
     - top.html
     - pe/1.2/intro.html
     - pe/1.2/overview.html
