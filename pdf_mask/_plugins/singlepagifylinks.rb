@@ -13,13 +13,27 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
+$LOAD_PATH.unshift('../lib') # To get access to puppet_docs.
+
 require 'jekyll'
+require 'puppet_docs'
 
 module SinglePagifyLinksFilter
   def singlepagifylinks(input, url)
+    # Retrieve our special reference versions for later: 
+    referenceversions = PuppetDocs::Reference.special_versions
     # Receive the URL, make an ID prefix.
     id_prefix = url.gsub(/[\/\.]/, '-')
     path_array = url.split(/\//)
+    
+    # REWRITING IMAGES: 
+    # This is fairly simple: I don't expect any ../ urls for links, so I only need to handle the standard relative case.
+    # The complicated part is stolen from below, because apparently shit gets screwy up at the root directory.
+    input.gsub!(/<img src="\.\//, 
+      path_array.length > 2 ? '<img src="/' + path_array[1 .. -2].join('/') + '/' : '<img src="/'
+    )
+
+    # REWRITING LINKS:
     # First, we need to make all the header element IDs unique, which we can do by just prefixing them with a unique ID for this HTML file. (We were passed this ID prefix as an argument to the filter call.) 
     # Actually, we need to catch lis (they're used in footnotes) as well as h\ds, because if we don't do that, we'll have to account for more types of link case than we want. This is harder than just diddling IDs for every element, because some of those are used for styling. we need to only touch the IDs that the stylesheet couldn't be aware of. 
     # We SHOULDN'T have to catch the divs that I'm manually linking to, because they are happening outside this filter. But those ARE going to be another link class, because we'll need to reach them pretty often and those links don't have an anchor attached. 
@@ -36,27 +50,31 @@ module SinglePagifyLinksFilter
       else
         footnotish = ''
       end
+      # Catch any special reference version links:
+      referenceversions.each do |refname, (refversion, refsource)|
+        href.gsub!("references/#{refname.to_s}", "references/#{refversion.to_s}")
+      end
       case href
         when /^#/
           # internal to this page. we'll do a gsub to take care of the # at the same time, but to be honest this is kind of brittle and depends on kramdown never putting a / or a . or a literal # in any of the header or footnote IDs. But eh, I feel like it's probably a safe assumption. 
-          newhref = id_prefix + href.gsub(/[\/\.#]/, '-')
+          newhref = id_prefix + href.gsub(/[\/.#]/, '-')
           %Q{<a href="##{newhref}"#{footnotish}>}
           # We have an extra requirement to preserve the footnote extras if it's a natively internal link.
         when /^(http:\/\/docs\.puppetlabs\.com\/|\/)/
           # complete path, easy. And we can treat anchors the same way as slashes and periods, because of the way we constructed the IDs!
-          newhref = href.split('.com')[-1].gsub(/\/$/, '-index-html').gsub(/[\/\.#]/, '-')
+          newhref = href.split('.com')[-1].gsub(/\/$/, '-index-html').gsub(/[\/.#]/, '-')
           # Oh and there's one case I'm not accounting for with that pair of chained gsubs, which are links that go places like ../#learning-puppet, reason being that you just shouldn't make those. 
           %Q{<a href="##{newhref}">}
         when /^\.\//
           # Relative to our current path. Prepend the entire path except for our own filename.
-          path_from_root = path_array.length > 2 ? '-' + path_array[1 .. -2].join('-') : ''
+          path_from_root = path_array.length > 2 ? '-' + path_array[1 .. -2].join('-').gsub('.', '-') : ''
           # That last bit is necessary to have links from /index.html to ./learning/ral.html or whatever not EXPLODE. 
-          newhref = path_from_root + href.gsub(/^\./, '').gsub(/\/$/, '-index-html').gsub(/[\/\.#]/, '-')
+          newhref = path_from_root + href.gsub(/^\./, '').gsub(/\/$/, '-index-html').gsub(/[\/.#]/, '-')
           # This looks like an indexing error and is worth explaining. Basically I wanted to do path_array[0..-2].join('-') and be done with it, but if our current file is in the root path, that subarray is actually just a string and the join won't work. So I do the first join manually just in case. Sorry. :/
           %Q{<a href="##{newhref}">}
         when /^\.\.\//
           # Relative to the path above our current path. Very similar to the last one. 
-          newhref = '-' + path_array[1 .. -3].join('-') + href.gsub(/^\.\./, '').gsub(/\/$/, '-index-html').gsub(/[\/\.#]/, '-')
+          newhref = '-' + path_array[1 .. -3].join('-').gsub('.', '-') + href.gsub(/^\.\./, '').gsub(/\/$/, '-index-html').gsub(/[\/.#]/, '-')
           %Q{<a href="##{newhref}">}
         else
           # It's probably an external link, so just leave it the hell alone. 

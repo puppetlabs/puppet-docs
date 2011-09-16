@@ -21,7 +21,7 @@ module PuppetDocs
 
     # The valid, non-symlinked version paths
     def self.generated_version_directories #:nodoc:
-      children = (PuppetDocs.root + "output/references").children
+      children = (PuppetDocs.root + "source/references").children
       possibles = children.select do |child|
         child.directory? && !child.symlink?
       end
