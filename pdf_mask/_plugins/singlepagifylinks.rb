@@ -13,10 +13,15 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
+$LOAD_PATH.unshift('../lib') # To get access to puppet_docs.
+
 require 'jekyll'
+require 'puppet_docs'
 
 module SinglePagifyLinksFilter
   def singlepagifylinks(input, url)
+    # Retrieve our special reference versions for later: 
+    referenceversions = PuppetDocs::Reference.special_versions
     # Receive the URL, make an ID prefix.
     id_prefix = url.gsub(/[\/\.]/, '-')
     path_array = url.split(/\//)
@@ -35,6 +40,10 @@ module SinglePagifyLinksFilter
         footnotish = $2
       else
         footnotish = ''
+      end
+      # Catch any special reference version links:
+      referenceversions.each do |refname, (refversion, refsource)|
+        href.gsub!("references/#{refname.to_s}", "references/#{refversion.to_s}")
       end
       case href
         when /^#/
