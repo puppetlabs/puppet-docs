@@ -75,7 +75,7 @@ Now use puppet-module to install Cloud Provisioner on your control node:
 
 Add its lib directory to your `$RUBYLIB` or Ruby load path:
 
-    # export RUBYLIB=$(pwd)/puppetlabs-cloud_provisioner/lib:$RUBYLIB
+    # export RUBYLIB=$(pwd)/cloud_provisioner/lib:$RUBYLIB
 
 You can verify that it is installed correctly by running:
 
