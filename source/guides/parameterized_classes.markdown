@@ -49,9 +49,9 @@ The parameters you name can be used as normal local variables throughout the cla
 
 {% highlight ruby %}
     class webserver( $vhost_dir, $packages ) {
-      packages { $packages: ensure => present }
+      package { $packages: ensure => present }
      
-      file { 'vhost_dir'
+      file { 'vhost_dir':
         path   => $vhost_dir,
         ensure => directory,
         mode   => '0750',
@@ -153,9 +153,9 @@ This design pattern can make for significantly cleaner code while enabling some 
      $vhost_dir = $webserver::params::vhost_dir
     ) inherits $webserver::params {
     
-     packages { $packages: ensure => present }
+     package { $packages: ensure => present }
     
-     file { 'vhost_dir'
+     file { 'vhost_dir':
        path   => $vhost_dir,
        ensure => directory,
        mode   => '0750',
@@ -194,9 +194,9 @@ This is functionally equivalent to doing the following:
         $real_vhost_dir = $vhost_dir
     }
      
-     packages { $real_packages: ensure => present }
+     package { $real_packages: ensure => present }
     
-     file { 'vhost_dir'
+     file { 'vhost_dir':
        path   => $real_vhost_dir,
        ensure => directory,
        mode   => '0750',
