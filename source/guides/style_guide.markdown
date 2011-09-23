@@ -184,12 +184,12 @@ attribute name.
 
 {% highlight ruby %}
     exec { 'blah':
-     path => '/usr/bin',
-     cwd  => '/tmp',
+      path  => '/usr/bin',
+      cwd   => '/tmp',
     }
 
     exec { 'test':
-      subscribe   => File['/etc/test'],
+      subscribe => File['/etc/test'],
       refreshonly => true,
     }
 {% endhighlight %}
@@ -325,9 +325,9 @@ effects far away from where the default was declared.
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/manifests/site.pp:
     File {
-      mode   => '0644',
-      owner  => 'root',
-      group  => 'root',
+      mode  => '0644',
+      owner => 'root',
+      group => 'root',
     }
 {% endhighlight %}
 
@@ -336,9 +336,9 @@ effects far away from where the default was declared.
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/modules/ssh/manifests/init.pp
     File {
-      mode   => '0600',
-      owner  => 'nobody',
-      group  => 'nogroup',
+      mode  => '0600',
+      owner => 'nobody',
+      group => 'nogroup',
     }
 
     class {'ssh::client':
@@ -401,7 +401,7 @@ The following example follows the recommended style:
         $version = '3.2.1'
       }
       default: {
-        fail("Module $module_name is not supported on $operatingsystem")
+        fail("Module ${module_name} is not supported on ${operatingsystem}")
       }
     }
 {% endhighlight %}
@@ -461,10 +461,10 @@ The following example follows the recommended style:
           $package_list = 'openssh-server'
         }
         solaris: {
-          $pacakge_list = [ SUNWsshr, SUNWsshu ]
+          $package_list = [ SUNWsshr, SUNWsshu ]
         }
         default: {
-          fail("module $module_name does not support $operatingsystem")
+          fail("Module ${module_name} does not support ${operatingsystem}")
         }
       }
 
@@ -549,7 +549,7 @@ statements or relationship declarations.
 {% highlight ruby %}
     class ssh inherits server { ... }
 
-    class ssh:client inherits workstation { ... }
+    class ssh::client inherits workstation { ... }
 
     class wordpress inherits apache { ... }
 {% endhighlight %}
