@@ -14,3 +14,4 @@ Puppet Enterprise Manuals
 Please select your version of Puppet Enterprise:
 
 * [Puppet Enterprise 1.2](./1.2)
+* [Puppet Enterprise 1.1 and 1.0](./1.1)
