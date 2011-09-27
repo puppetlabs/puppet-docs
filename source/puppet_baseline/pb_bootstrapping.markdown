@@ -87,10 +87,11 @@ Each puppet agent node will need to be configured to run puppet inspect at least
 
 {% highlight ruby %}
     cron { 'puppet-inspect':
-      ensure => present,
+      ensure  => present,
       command => '/usr/local/bin/puppet inspect',
-      user => 'root',
-      hour => [2, 15],
+      user    => 'root',
+      hour    => [2, 15],
+      minute  => 0,
     }
 {% endhighlight %}
 <!-- Check that this is right. -->
