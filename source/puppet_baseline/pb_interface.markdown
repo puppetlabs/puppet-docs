@@ -6,6 +6,10 @@ title: "Baseline Plugin: Interface"
 Puppet Dashboard Baseline Plugin --- Interface and Usage
 =========
 
+<span style="font-size: 2em; font-weight: bold; color: red; background-color: #ff9;">This documentation does not refer to a released product.</span> 
+
+<span style="background-color: #ff9;">For documentation of the compliance features released in Puppet Enterprise 1.2, please see [the Puppet Enterprise manual](/pe/).</span>
+
 This chapter describes the compliance plugin UI and demonstrates its use. 
 
 #### Navigation

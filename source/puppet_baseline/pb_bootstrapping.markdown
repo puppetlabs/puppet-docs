@@ -6,6 +6,10 @@ title: "Baseline Plugin: Bootstrapping
 Bootstrapping Puppet Dashboard and the Baseline Plugin
 ====
 
+<span style="font-size: 2em; font-weight: bold; color: red; background-color: #ff9;">This documentation does not refer to a released product.</span> 
+
+<span style="background-color: #ff9;">For documentation of the compliance features released in Puppet Enterprise 1.2, please see [the Puppet Enterprise manual](/pe/).</span>
+
 This chapter describes how to install and configure the `puppet_baseline` plugin and its various dependencies. 
 
 #### Navigation

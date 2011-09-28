@@ -6,6 +6,10 @@ title: "Baseline Plugin: Internals"
 Puppet Dashboard Baseline Plugin --- Internals
 ====
 
+<span style="font-size: 2em; font-weight: bold; color: red; background-color: #ff9;">This documentation does not refer to a released product.</span> 
+
+<span style="background-color: #ff9;">For documentation of the compliance features released in Puppet Enterprise 1.2, please see [the Puppet Enterprise manual](/pe/).</span>
+
 This chapter describes the baseline plugin's maintenance task in detail and contains instructions for installing the plugin from source. 
 
 #### Navigation
