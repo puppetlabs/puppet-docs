@@ -25,7 +25,11 @@ You should plan to install PE on the puppet master (and the Dashboard server, if
 Choosing Your Installer Tarball
 ------
 
-Puppet Enterprise can be downloaded in tarballs specific to your OS and version, or as a universal tarball. Although the universal archive can be more convenient, it is roughly ten times the size of the version-specific archives.
+Before installing Puppet Enterprise, you must [download it from the Puppet Labs website][downloadpe].
+
+[downloadpe]: http://puppetlabs.com/misc/pe-files/
+
+Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball. Although the universal tarball can be more convenient, it is roughly ten times the size of the version-specific tarball.
 
 |      Filename ends with...        |                     Will install...                           |
 |-----------------------------------|---------------------------------------------------------------|
