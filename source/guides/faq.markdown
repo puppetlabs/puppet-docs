@@ -188,17 +188,16 @@ We handle all security problems brought to our attention and ensure
 that they are corrected within a reasonable time frame.
 
 If you have identified an issue then please send an email to the
-Security mailbox (<security@puppetlabs.net>) with the details.
+Security mailbox (<security@puppetlabs.net>) with the details. If you wish to contact us via phone to report a security issue, please call 1-877-575-9775.
 
-#### Recent Security Notifications
+### Where can I learn about current security issues in Puppet?
 
-Public disclosure makes our users safer, by allowing better
-and more rapid solutions to security problems. The following is a list of
-Puppet's known security holes and their status:
+[security]: http://puppetlabs.com/security/
+[hotfixes]: http://puppetlabs.com/security/hotfixes/
 
-- [Authorization vulnerability in Puppet 2.6.x](https://groups.google.com/group/puppet-announce/browse_thread/thread/df661158e175e117) --- Resolved in 2.6.4
-- [CVE-2009-3564 (Failure to reset supplementary groups)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3564) --- Resolved in 0.25.2
-- [CVE-2010-0156 (Symlink attack allowing local users to overwrite arbitrary files)](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0156) --- Resolved in 0.25.2 and 0.24.9
+To find out about recently patched vulnerabilities, go to [puppetlabs.com/security][security]. **Puppet Enterprise users can download hotfix packages at [puppetlabs.com/security/hotfixes](hotfixes).**
+
+Puppet Labs publicly discloses security issues once patched code is available, and we work with downstream packagers to get security fixes deployed quickly and safely.
 
 ### Who is Puppet Labs?
 
