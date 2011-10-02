@@ -52,6 +52,18 @@ If you'd rather cook up your own VM than download one from the web, you can imit
 
 To begin with, you won't need separate agent and master VMs; you'll be running Puppet in its serverless mode on a single machine. When we get to agent/master Puppet, we'll walk through turning on the puppet master and duplicating this system into a new agent node.
 
+Get Equipped (for users of vagrantup.com)
+-----------------------------------------
+
+centos5_64.box is a CentOS 5.5 64 bit vagrant box with Puppet 2.6.6 installed and ready to provision using the Puppet provisioner in Vagrant.
+
+<pre>
+$ gem install vagrant
+$ vagrant box add puppet-centos-55-64 http://puppetlabs.s3.amazonaws.com/pub/centos5_64.box
+$ vagrant init puppet-centos-55-64
+$ vagrant up
+</pre>
+
 ### Compatibility Notes
 
 The Learning Puppet VM is available in VMWare .vmx format and the cross-platform OVF format, and has been tested with VMWare Fusion and VirtualBox. 
