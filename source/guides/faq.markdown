@@ -346,10 +346,10 @@ manifests:
 
 * `$environment` --- Provided by the agent; contains the agent node's current
 environment.
-* `$clientcert` --- Provided by the agent; contains the agent node's certname.
+* `$clientcert` --- Provided by the agent; contains the agent node's certname. Added in Puppet 2.6.0.
 * `$clientversion` --- Provided by the agent; contains the current version of puppet agent. 
-* `$module_name` --- Provided by the parser; contains the name of the module that contains the current resource's definition. 
-* `$caller_module_name` --- Provided by the parser; contains the name of the module that contains the current resource's declaration. 
+* `$module_name` --- Provided by the parser; contains the name of the module that contains the current resource's definition. Added in Puppet 2.6.0.
+* `$caller_module_name` --- Provided by the parser; contains the name of the module that contains the current resource's declaration. Added in Puppet 2.6.0.
 * `$servername` --- Provided by the puppet master; contains the master server's
 fully-qualified domain name. (Note that this information is gathered from the
 master server by Facter, rather than read from the config files; even if the
@@ -357,6 +357,7 @@ master's certname is set to something other than its fully-qualified domain
 name, this variable will still contain the server's fqdn.)
 * `$serverip` --- Provided by the puppet master; contains the master server's IP address.
 * `$serverversion` --- Provided by the puppet master; contains the puppet master's current version.
+* `$settings::<name of setting>` --- Provided by the puppet master; exposes all of the master's [configuration settings](./configuring.html) as variables in the `settings` namespace. Note that other than `$environment`, the agent's settings aren't available in manifests. Added in Puppet 2.6.0.
 
 ### Can I access environment variables with Facter?
 
