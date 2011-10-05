@@ -38,13 +38,8 @@ Learning Puppet
 Learn to use Puppet! New users: start here.
 
 * [Introduction and Index](./learning/)
-* [Resources and the RAL](./learning/ral.html) --- learn about resources, the molecules of system configuration
-* [Manifests](./learning/manifests.html) --- start writing and applying Puppet code
-* [Ordering](./learning/ordering.html) --- learn to join resources that depend on each other
-* [Variables, Facts, and Conditionals](./learning/variables.html) --- read system information to make versatile manifests
-* [Modules and Classes (Part One)](./learning/modules1.html) --- start collecting resources into self-contained modules
-* [Templates](./learning/templates.html) --- use ERB to extend your config files
-* [Modules and (Parameterized) Classes (Part Two)](./learning/modules2.html) --- pass parameters to classes for more advanced code re-use
+
+{% include learning_nav.markdown %}
 
 * * * 
 

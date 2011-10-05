@@ -28,20 +28,7 @@ Latest: [Defined Types][definedtypes] &rarr;
 Contents
 --------
 
-### Part one: Serverless Puppet
-
-* [Resources and the RAL][ral] --- Learn about the fundamental building blocks of system configuration.
-* [Manifests][] --- Start controlling your system by writing actual Puppet code.
-* [Ordering][] --- Learn about dependencies and refresh events, manage the relationships between resources, and discover the fundamental Puppet design pattern.
-* [Variables, Conditionals, and Facts][variables] --- Make your manifests versatile by reading system information.
-* [Modules and Classes (Part One)][modules1] --- Start building your manifests into self-contained modules. 
-* [Templates][] --- Use ERB to make your config files as flexible as your Puppet manifests.
-* [Parameterized Classes (Modules, Part Two)][modules2] --- Learn how to pass parameters to classes and make your modules more adaptable.
-* [Defined Types][definedtypes] --- Model repeatable chunks of configuration by grouping basic resources into super-resources.
-
-### Part two: Master/Agent Puppet
-
-Coming soon!
+{% include learning_nav.markdown %}
 
 Welcome
 -------
