@@ -10,7 +10,7 @@ Now that you have basic classes and modules under control, it's time for some mo
 
 * * *
 
-&larr; [Templates](./templates.html) --- [Index](./) --- TBA &rarr;
+&larr; [Templates](./templates.html) --- [Index](./) --- [Defined Types](./definedtypes.html) &rarr;
 
 * * * 
 
@@ -241,4 +241,4 @@ Next
 
 Okay, we can pass parameters into classes now and change their behavior. Great! But classes are still always singletons; you can't declare more than one copy and get two different sets of behavior simultaneously. And you'll eventually want to do that! What if you had a collection of resources that created a vhost definition for a web server, or cloned a Git repository, or managed a user account complete with group, SSH key, home directory contents, sudoers entry, and .bashrc/.vimrc/etc. files? What if you wanted more than one Git repo, user account, or vhost on a single machine?
 
-Well, you'd whip up a defined resource type. Come back soon for Modules (part three)!
+Well, you'd [whip up a defined resource type](./definedtypes.html). 

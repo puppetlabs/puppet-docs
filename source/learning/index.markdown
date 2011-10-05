@@ -10,9 +10,7 @@ The web (including this site) is full of guides for how to solve specific proble
 
 * * *
 
-Start: [Resources and the RAL][ral] &rarr;
-
-Latest: [Templates][] and [Modules (Part Two)][modules2] &rarr;
+Latest: [Defined Types][definedtypes] &rarr;
 
 * * *
 
@@ -25,11 +23,30 @@ Latest: [Templates][] and [Modules (Part Two)][modules2] &rarr;
 [modules1]: ./modules1.html
 [templates]: ./templates.html
 [modules2]: ./modules2.html
+[definedtypes]: ./definedtypes.html
+
+Contents
+--------
+
+### Part one: Serverless Puppet
+
+* [Resources and the RAL][ral] --- Learn about the fundamental building blocks of system configuration.
+* [Manifests][] --- Start controlling your system by writing actual Puppet code.
+* [Ordering][] --- Learn about dependencies and refresh events, manage the relationships between resources, and discover the fundamental Puppet design pattern.
+* [Variables, Conditionals, and Facts][variables] --- Make your manifests versatile by reading system information.
+* [Modules and Classes (Part One)][modules1] --- Start building your manifests into self-contained modules. 
+* [Templates][] --- Use ERB to make your config files as flexible as your Puppet manifests.
+* [Parameterized Classes (Modules, Part Two)][modules2] --- Learn how to pass parameters to classes and make your modules more adaptable.
+* [Defined Types][definedtypes] --- Model repeatable chunks of configuration by grouping basic resources into super-resources.
+
+### Part two: Master/Agent Puppet
+
+Coming soon!
 
 Welcome
 -------
 
-This is **Learning Puppet,** and it's part of the Puppet documentation. Specifically, it's the first part.
+This is **Learning Puppet.** and it's part of the Puppet documentation. Specifically, it's the first part.
 
 By which I don't mean it's about getting Puppet installed, or making sure your SSL certificates got issued correctly; that's the _other_ first part. To be a little gnomic about it --- because why not --- this series is less about how to use Puppet than it is about how to become a Puppet user. If you've heard good things about Puppet but don't know where to start, this, hopefully, is it.
 
@@ -68,16 +85,5 @@ Beyond this, teaching the use of virtualization software is outside the scope of
 Hit the Gas
 -----------
 
-And with that, you're ready to start.
+And with that, [you're ready to start][ral].
 
-### Part one: Serverless Puppet
-
-* Begin with [Resources and the RAL][ral], where you'll learn about the fundamental building blocks of system configuration.
-* After that, move on to [Manifests][] and start controlling your system by writing actual Puppet code.
-* Next, in [Ordering][], learn about dependencies and refresh events, manage the relationships between resources, and discover the most useful Puppet design pattern.
-* In [Variables, Conditionals, and Facts][variables], make your manifests versatile by reading system information.
-* In [Modules and Classes (Part One)][modules1], take the first step to a knowable and elegant site design and start turning your manifests into self-contained modules. 
-* In [Templates][], use ERB to make your config files as flexible as your Puppet manifests.
-* In [Modules and (Parameterized) Classes (Part Two)][modules2], learn how to pass parameters to classes and make your modules more adaptable.
-
-And come back soon, because there are more chapters on the way.
