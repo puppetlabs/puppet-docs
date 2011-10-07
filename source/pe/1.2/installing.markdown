@@ -18,7 +18,12 @@ Before installing Puppet Enterprise at your site, you should:
 * Decide in advance which server will fill the role of puppet master, and decide whether it will also run Puppet Dashboard. **If you are splitting these two roles, you must perform some [extra configuration][dashboardconfig] after installation.**
 * Ensure that the puppet master server can be reached via domain name lookup by all of the future puppet agent nodes at the site.
 * Optionally, add a CNAME record to your site's DNS configuration (or an alias in the relevant `/etc/hosts` files) to ensure that your puppet master can also be reached at the hostname `puppet` --- since this is the default puppet master hostname, using it can simplify installation on your agent nodes. 
-* Configure your firewalls to allow network traffic on ports 8140 (for Puppet), 61613 (for MCollective's Stomp messages), and 3000 (for Puppet Dashboard).
+* Configure your firewalls to accomodate Puppet Enterprise's network traffic.
+    * All agent nodes must be able to send send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for MCollective).
+    * The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for MCollective).
+    * Any hosts you will be using to access Puppet Dashboard must be able to communicate with the Dashboard server on port **3000.**
+    * If you will be invoking MCollective client commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.**
+    * If you will be running Puppet Dashboard and puppet master on separate servers, the Dashboard server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **3000** and **8140.** The Dashboard server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 
 You should plan to install PE on the puppet master (and the Dashboard server, if you have chosen to separate the two) **before** installing on any agent nodes.
 
