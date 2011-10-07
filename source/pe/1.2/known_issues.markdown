@@ -5,10 +5,14 @@ title: "PE 1.2 Manual: Known Issues"
 
 {% include pe_1.2_nav.markdown %}
 
+{% capture security_info %}Information about security issues is always available at <http://puppetlabs.com/security>, and security hotfixes for all supported versions of Puppet Enterprise are always available at <http://puppetlabs.com/security/hotfixes>. For email notification of security issues, make sure you're on the [PE-Users](http://groups.google.com/group/puppet-users) mailing list.{% endcapture %}
+
 Known Issues in Puppet Enterprise 1.2
 =====
 
-In PE ≤ 1.2.1
+The following is a list of known issues in each maintenance release of Puppet Enterprise 1.2. To find out which issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.6.9 (Puppet Enterprise 1.2.3)`.
+
+In PE 1.2.3 and Earlier
 -----
 
 ### Upgrading From PE 1.1 Breaks Node Classification on Debian and Ubuntu Systems
@@ -30,6 +34,29 @@ The `accounts` class --- a data-separation wrapper that uses external data to de
 
 The workaround is to ensure that this variable/file is present in the namespace or data directory.
 
+In PE 1.2.2 and Earlier
+-----
+
+### Three Security Issues: CVE-2011-3869, CVE-2011-3870, and CVE-2011-3871
+
+[Three security vulnerabilities in Puppet (CVE-2011-3869, CVE-2011-3870, and CVE-2011-3871)][3869announce], which allowed local privilege escalation, were fixed in Puppet Enterprise 1.2.3. **If you are running Puppet Enterprise 1.2.2 or earlier, you must [upgrade](./upgrading.html) to version 1.2.3 or [install the security hotfix for this issue][3869hot].** 
+
+[3869hot]: http://puppetlabs.com/security/hotfixes/cve-2011-3869-hotfixes/
+[3869announce]: http://groups.google.com/group/puppet-announce/browse_thread/thread/91e3b46d2328a1cb
+
+{{ security_info }}
+
+In PE 1.2.1 and Earlier
+-----
+
+### Security Issue: CVE-2011-3848
+
+[A security vulnerability in Puppet (CVE-2011-3848)][3848announce], which allowed unsafe directory traversal when saving certificate signing requests, was fixed in Puppet Enterprise 1.2.2. **If you are running Puppet Enterprise 1.2.1 or earlier, you must [upgrade](./upgrading.html) to version 1.2.3 or [install the security hotfix for this issue][3848hot].** 
+
+[3848announce]: http://groups.google.com/group/puppet-users/browse_thread/thread/e57ce2740feb9406
+[3848hot]: http://puppetlabs.com/security/hotfixes/cve-2011-3848-hotfixes/
+
+{{ security_info }}
 
 In PE 1.2.0
 -----
