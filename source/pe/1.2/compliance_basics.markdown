@@ -53,6 +53,10 @@ Conceptually, a **baseline** is a blessed inspect report for a single node: it l
 
 Baselines are maintained by Puppet Dashboard. They change over time as administrators approve changes to audited resources. **Nodes reporting for the first time are assumed to be in a compliant state,** and their first inspect report will become the baseline against which future changes are compared. 
 
+### Daily Comparisons
+
+Dashboard makes one comparison against the baseline per day for each node. The hour and minute at which one day ends and the next starts can be configured with the `baseline_day_end` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml`.
+
 ### Groups
 
 Although nodes cannot share baselines, nodes in a Dashboard group can have similar changes approved or rejected en masse. 

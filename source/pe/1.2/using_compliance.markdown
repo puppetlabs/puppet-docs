@@ -22,6 +22,14 @@ Since agent nodes under compliance auditing need to submit a slightly different 
 
 You can apply this class in Puppet Dashboard. Refer to the [instructions for enabling MCollective](./using.html#enabling-mcollective) for instructions on how to apply a Puppet class with Dashboard.
 
+### Configuring the Day Boundary
+
+You can change the time at which one day ends and the next starts with the `baseline_day_end` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml`. The value of this setting should be a 24-hour time:
+
+    baseline_day_end: 2300
+
+By default, days end at 9PM (2100). 
+
 Writing Compliance Manifests
 -----
 
