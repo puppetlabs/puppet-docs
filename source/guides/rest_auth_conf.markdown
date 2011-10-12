@@ -68,7 +68,15 @@ Available methods are `find`, `search`, `save`, and `destroy`; you can specify o
 
 ### Auth
 
-Each REST API call is either unauthenticated or authenticated with an SSL certificate; most communications between puppet agent and puppet master are authenticated. The value of `auth` can't be a list; it must be "yes" (or "on"), "no" (or "off"), or "any."
+Whether the ACL matches authenticated requests. 
+
+- **`auth yes`** (or `on`) means this ACL will **only** match requests authenticated with an agent certificate.
+- **`auth any`** means this ACL will match **both** authenticated and unauthenticated requests.
+- **`auth no`** (or `off`) means this ACL will **only** match requests that are **not** authenticated with an agent certificate. Authenticated requests (like from puppet agent) will skip this ACL.
+
+Most communications between puppet agent and the puppet master are authenticated, so you will usually be using `auth yes`.
+
+The value of `auth` must be **one** of the above options; it cannot be a list.
 
 ### Allow
 
