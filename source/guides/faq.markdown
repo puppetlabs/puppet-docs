@@ -188,7 +188,7 @@ We handle all security problems brought to our attention and ensure
 that they are corrected within a reasonable time frame.
 
 If you have identified an issue then please send an email to the
-Security mailbox (<security@puppetlabs.net>) with the details. If you wish to contact us via phone to report a security issue, please call 1-877-575-9775.
+Security mailbox (<security@puppetlabs.com>) with the details. If you wish to contact us via phone to report a security issue, please call 1-877-575-9775.
 
 ### Where can I learn about current security issues in Puppet?
 
