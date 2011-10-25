@@ -24,7 +24,7 @@ This chapter describes the baseline plugin's maintenance task in detail and cont
 The Baseline Maintenance Task
 --------
 
-The baseline plugin ships with a rake task (`plugin:puppet:baseline:daily`) that should be run at least daily and preferably closer to hourly. This task:
+The baseline plugin ships with a rake task (`puppet:plugin:baseline:daily`) that should be run at least daily and preferably closer to hourly. This task:
 
 * Constructs and queues daily comparison jobs, for consumption by Dashboard's `delayed_job` workers (see "Daily Comparisons" below). 
 * Modifies node baselines to include any changes that were approved by an admin.
