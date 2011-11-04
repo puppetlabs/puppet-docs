@@ -132,19 +132,84 @@ It is important to note that to use the facts on your clients you
 will still need to distribute them using the [Plugins In Modules](./plugins_in_modules.html)
 method.
 
-### Viewing Fact Values
+### Configuring Facts
 
-You can also determine what facts (and their values) your clients
-return by checking the contents of the client's yaml output. To do
-this we check the `$yamldir` (by default `$vardir/yaml/`) on the Puppet
-master:
+Facts have a few properties that you can use to customize how facts are evaluated.
 
-    # grep kernel /var/lib/puppet/yaml/node/puppetslave.example.org.yaml
-      kernel: Linux
-      kernelrelease: 2.6.18-92.el5
-      kernelversion: 2.6.18
+#### Confining Facts
 
-### Caching Ruby Facts
+One of the more commonly used properties is the `confine` statement, which
+restricts the fact to only run on systems that matches another given fact.
+
+An example of the confine statement would be something like the following:
+
+    Facter.add(:powerstates) do
+      confine :kernel => "Linux"
+      setcode do
+        Facter::Util::Resolution.exec('cat /sys/power/states')
+      end
+    end
+
+This fact uses sysfs on linux to get a list of the power states that are
+available on the given system. Since this is only available on Linux systems,
+we use the confine statement to ensure that this fact isn't needlessly run on
+systems that don't support this type of enumeration.
+
+#### Fact precedence
+
+Another property of facts is the `weight` property. Facts with a higher weight
+are run earlier, which allows you to either override or provide fallbacks to
+existing facts, or ensure that facts are evaluated in a specific order.
+By default, the weight of a fact is the number of confines for that fact, so
+that more specific facts are evaluated first.
+
+    # Check to see if this server has been marked as a postgres server
+    Facter.add(:role) do
+      has_weight 100
+      setcode do
+        if File.exist? "/etc/postgres_server"
+          "postgres_server"
+        end
+      end
+    end
+
+    # Guess if this is a server by the presence of the pg_create binary
+    Facter.add(:role) do
+      has_weight 50
+      setcode do
+        if File.exist? "/usr/sbin/pg_create"
+          "postgres_server"
+        end
+      end
+    end
+
+    # If this server doesn't look like a server, it must be a desktop
+    Facter.add(:role) do
+      setcode do
+        "desktop"
+      end
+    end
+
+#### Timing out
+
+If you have facts that are unreliable and may not finish running, you can use
+the `timeout` property. If a fact is defined with a timeout and the evaluation
+of the setcode block exceeds the timeout, Facter will halt the resolution of
+that fact and move on.
+
+    # Randomly sleep
+    Facter.add(:sleep) do
+      timeout = 10
+      setcode do
+        if Random.rand(6) == 0
+          sleep 999999
+        else
+          "awake"
+        end
+      end
+    end
+
+#### Caching Ruby Facts
 
 Starting with Facter 1.7.0, you can now specify that the contents of a fact's "setcode"
 block should be cached for faster retrieval.
@@ -162,6 +227,19 @@ The ttl value can also be one of:
 
 * `0` --- never cache. This is the default behaviour.
 * `-1` --- cache forever. Useful for one-off operations that should never need to run again.
+
+
+### Viewing Fact Values
+
+You can also determine what facts (and their values) your clients
+return by checking the contents of the client's yaml output. To do
+this we check the `$yamldir` (by default `$vardir/yaml/`) on the Puppet
+master:
+
+    # grep kernel /var/lib/puppet/yaml/node/puppetslave.example.org.yaml
+      kernel: Linux
+      kernelrelease: 2.6.18-92.el5
+      kernelversion: 2.6.18
 
 ### Legacy Fact Distribution
 
