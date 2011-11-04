@@ -84,7 +84,7 @@ An example:
     end
 
 To still test your custom puppet facts, which are usually only
-loaded by puppetd, there is a small hack:
+loaded by puppet agent, there is a small hack:
 
           mkdir rubylib
           cd rubylib
@@ -108,9 +108,9 @@ your code:
 
 Adding this path to your `$RUBYLIB` also means you can see this fact
 when you run Puppet. Hence, you should now see the following when
-running puppetd:
+running puppet agent:
 
-    # puppetd -vt --factsync
+    # puppet agent -tv
     info: Retrieving facts
     info: Loading fact hardware_platform
     ...
@@ -174,7 +174,7 @@ If $factsource was unset, the `--factsync` option is equivalent to:
 After the facts were downloaded, they were loaded (or reloaded)
 into memory.
 
-Some additional options were avaialble to configure this legacy
+Some additional options were available to configure this legacy
 method:
 
 The following command line or config file options are available
