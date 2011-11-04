@@ -41,9 +41,9 @@ Puppet master server:
     # hardware_platform.rb
 
     Facter.add("hardware_platform") do
-            setcode do
-                    %x{/bin/uname -i}.chomp
-            end
+      setcode do
+        Facter::Util::Resolution.exec('/bin/uname -i').chomp
+      end
     end
 
 Note that the `chomp` is required to provide clean data.
@@ -70,28 +70,18 @@ return nil for unknown facts, the latter will raise an exception.
 An example:
 
     Facter.add("osfamily") do
-        setcode do
-            begin
-                Facter.lsbdistid
-            rescue
-                Facter.loadfacts()
-            end
-            distid = Facter.value('lsbdistid')
-            if distid.match(/RedHatEnterprise|CentOS|Fedora/)
-                family = "redhat"
-            elsif distid == "ubuntu"
-                family = "debian"
-            else
-                family = distid
-            end
-            family
+      setcode do
+        distid = Facter.value('lsbdistid')
+        case distid
+        when /RedHatEnterprise|CentOS|Fedora/
+          "redhat"
+        when "ubuntu"
+          "debian"
+        else
+          distid
         end
+      end
     end
-
-Here it is important to note that running facter myfact on the
-command line will not load other facts, hence the above code calls
-Facter.loadfacts to work in this mode, too. loadfacts will only
-load the default facts.
 
 To still test your custom puppet facts, which are usually only
 loaded by puppetd, there is a small hack:
