@@ -122,6 +122,78 @@ It is important to note that to use the facts on your clients you
 will still need to distribute them using the [Plugins In Modules](./plugins_in_modules.html)
 method.
 
+### Configuring facts
+
+Facts have a few properties that you can use to customize the evaluation how
+facts are evaluated.
+
+One of the more commonly used properties is the confine statement, which
+restricts the fact to only run on systems that matches another given fact.
+
+An example of the confine statement would be something like the following:
+
+    Facter.add(:powerstates) do
+      confine :kernel => "Linux"
+      setcode do
+        Facter::Util::Resolution.exec('cat /sys/power/states')
+      end
+    end
+
+This fact uses sysfs on linux to get a list of the power states that are
+available on the given system. Since this is only available on Linux systems,
+we use the confine statement to ensure that this fact isn't needlessly run on
+systems that don't support this type of enumeration.
+
+Another property of facts is the `weight` property. Facts with a higher weight
+are run earlier, which allows you to either override or provide fallbacks to
+existing facts, or ensure that facts are evaluated in a specific order.
+By default, the weight of a fact is the number of confines for that fact, so
+that more specific facts are evaluated first.
+
+    # Check to see if this server has been marked as a postgres server
+    Facter.add(:role) do
+      has_weight 100
+      setcode do
+        if File.exist? "/etc/postgres_server"
+          "postgres_server"
+        end
+      end
+    end
+
+    # Guess if this is a server by the presence of the pg_create binary
+    Facter.add(:role) do
+      has_weight 50
+      setcode do
+        if File.exist? "/usr/sbin/pg_create"
+          "postgres_server"
+        end
+      end
+    end
+
+    # If this server doesn't look like a server, it must be a desktop
+    Facter.add(:role) do
+      setcode do
+        "desktop"
+      end
+    end
+
+If you have facts that are unreliable and may not finish running, you can use
+the `timeout` property. If a fact is defined with a timeout and the evaluation
+of the setcode block exceeds the timeout, facter will halt the resolution of
+that fact and move on.
+
+    # Randomly sleep
+    Facter.add(:sleep) do
+      timeout = 10
+      setcode do
+        if Random.rand(6) == 0
+          sleep 999999
+        else
+          "awake"
+        end
+      end
+    end
+
 ### Viewing Fact Values
 
 You can also determine what facts (and their values) your clients
