@@ -1441,24 +1441,6 @@ body#puppetlabsdocs.docs #masthead li.with-submenu dl a:hover {
 
 /* @end */
 
-body#puppetlabsdocs section#content div.site-width div.primary-secondary-content {
-  padding-left: 180px;
-  padding-right: 260px;
-}
-
-body#puppetlabsdocs section#content div.site-width div.primary-secondary-content .primary-content {
-  float: right;
-}
-
-body#puppetlabsdocs section#content div.site-width div.primary-secondary-content .secondary-content {
-  width: 158px;
-  position: relative;
-  margin-left: -180px;
-  border-right: 2px solid #eee;
-  float: left;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-}
 
 section#masthead h1 h1:before {
   content: ": ";
