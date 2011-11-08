@@ -1,9 +1,8 @@
 ---
-layout: default
+layout: pe2experimental
 title: "PE 2.0 » Installing » Preparing to Install"
 ---
 
-{% include pe_2.0_nav.markdown %}
 
 Preparing to Install
 =====

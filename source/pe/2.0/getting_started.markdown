@@ -1,9 +1,7 @@
 ---
-layout: default
+layout: pe2experimental
 title: "PE 2.0 » Welcome » Getting Started"
 ---
-
-{% include pe_2.0_nav.markdown %}
 
 
 Getting Started
