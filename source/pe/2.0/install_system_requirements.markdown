@@ -31,8 +31,8 @@ Hardware
 Puppet Enterprise's hardware requirements depend on the roles a machine performs. 
 
 * The **puppet master** role should be installed on a robust, dedicated server.
-    * Minimum requirements: 1 GB RAM and very accurate timekeeping.
-    * Recommended requirements: Physical, Xen, or KVM server with 2-4 processor cores and 4 GB RAM; performance will vary, but this configuration can generally manage approximately 1,000 agent nodes. 
+    * Minimum requirements: 2 processor cores, 1 GB RAM, and very accurate timekeeping.
+    * Recommended requirements: Physical hardware or Xen or KVM virtual server, with 2-4 processor cores and 4 GB RAM. Performance will vary, but this configuration can generally manage approximately 1,000 agent nodes. 
 * The **console** role should usually be installed on the same server as the puppet master, but can optionally be separated.
     * Minimum requirements: A machine able to handle moderate web traffic and perform processor-intensive background tasks.<!-- TODO better requirements for lone console. -->
 * The **cloud provisioner** role has very modest requirements.

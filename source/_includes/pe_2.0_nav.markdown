@@ -2,7 +2,7 @@
 THE TEXT:
 
 - **Welcome to Puppet Enterprise**
-    - [Getting Started](./getting_started.html)
+    - [Getting Started](./welcome_getting_started.html)
     - What Can Puppet Enterprise Do?
     - Components and Roles
     - What's New
@@ -15,6 +15,7 @@ THE TEXT:
     - [Upgrading](./install_upgrading.html)
     - Non-interactive Installation
     - Advanced Installation
+    - Navigating PE's Configuration Directories
     - [Answer File Reference](./install_answer_file_reference.html)
 - **The Console**
     - Navigating the Console
@@ -33,6 +34,10 @@ THE TEXT:
     - Using the MCollective Client
     - Managing MCollective with Puppet <!-- What's this entail now that we use PSK? -->
     - Next Steps
+- **The Cloud Provisioner**
+    - Overview <!-- The node face, general capabilities... -->
+    - Provisioning VMWare Nodes
+    - Provisioning Amazon EC2 Nodes
 - **The Compliance Workflow**
     - [Puppet Compliance Basics and UI](./compliance_basics.html)
     - [Using the Puppet Compliance Workflow](./using_compliance.html)
