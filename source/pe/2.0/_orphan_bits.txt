@@ -1,0 +1,28 @@
+Maintaining and Tweaking Puppet Enterprise
+-----
+
+### Manually Installing the Ruby Development Libraries
+
+If you find that you need the Ruby development libraries but skipped them during installation, you can install the packages manually rather than re-running the installer. The method for this will depend on your operating system's package management tools, but in each case, you must first navigate in your shell to the directory containing the packages for your operating system and architecture, which will be inside the `packages` subdirectory of the Puppet Enterprise distribution tarball. (If you deleted the installation files, you will need to re-download them.)
+
+For systems using apt and dpkg (Ubuntu and Debian), run the following commands: 
+
+	dpkg -i *ruby*dev* 
+
+	apt-get install --fix-broken
+
+For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Enterprise Linux), run the following commands: 
+
+	yum localinstall --nogpgcheck *ruby*dev* 
+
+### Maintaining Puppet Dashboard in Puppet Enterprise
+
+[dashmaint]: http://docs.puppetlabs.com/dashboard/manual/1.2/maintaining.html
+
+Puppet Dashboard can require periodic maintenance; most notably, old reports should be cleaned occasionally. All of these tasks are done via rake tasks, and in Puppet Enterprise, they must be done with PE's copy of rake. 
+
+Before running any of the rake tasks described in the [maintenance chapter of the Dashboard manual][dashmaint], you should navigate to `/opt/puppet/share/puppet-dashboard` in your shell and alter your `$PATH` to ensure that the proper copy of rake will be called:
+
+    # cd /opt/puppet/share/puppet-dashboard
+    # export $PATH=/opt/puppet/bin:/opt/puppet/sbin:$PATH
+

@@ -12,11 +12,9 @@ Planning
 
 Before anything else, decide in advance which server will fill the role of puppet master. This should be a robust dedicated server with accurate timekeeping and at least 1 GB of RAM. 
 
-You must also decide whether the puppet master server will also be filling the console role. In general, we recommend installing the master and the console together. **If you are splitting these two roles, you must perform some [extra configuration][consoleconfig] after installing.** 
+You must also decide whether the puppet master server will also be filling the console role. In general, we recommend installing the master and the console together.
 
-Plan to install PE on the puppet master **before** installing on any agent nodes. If you will be splitting the master and console roles, you should install the console role immediately after the master role.
-
-[consoleconfig]: ./install_basic.html#exchanging-consolepuppet-master-certificates
+Plan to install PE on the puppet master **before** installing on any agent nodes. If you will be splitting the master and console roles, you should install the console role **immediately after** the master role.
 
 Configuring Your Site
 -----

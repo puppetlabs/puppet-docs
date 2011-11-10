@@ -1,26 +1,24 @@
 ---
-layout: default
-title: "PE 2.0 Manual: Puppet Compliance Basics and UI"
+layout: pe2experimental
+title: "PE 2.0 » Compliance » Basics and UI"
 ---
 
-{% include pe_2.0_nav.markdown %}
-
-Puppet Compliance Basics and UI
+Compliance Basics and UI
 =====
 
 The Compliance Workflow Cycle
 -----
 
-The puppet compliance workflow is designed to audit changes to systems managed by ad-hoc manual administration. It can also be used to audit changes to resources already managed by Puppet. 
+PE's compliance workflow is designed to audit changes in systems that are managed manually. It can also audit changes to resources being actively managed by Puppet. 
 
 ![Baseline compliance workflow diagram](./images/baseline/baseline_workflow.png)
 
 - **A sysadmin** writes manifests defining which resources to audit on which nodes. 
 - **Puppet agent** retrieves and caches a catalog compiled from those manifests. 
-- **Puppet inspect** reads that catalog to discover which resources to audit, then submits an inspect report, which the puppet master forwards to **Puppet Dashboard.** 
-- **Dashboard** then calculates a daily report of differences between the inspected system state and the approved baseline state, creating a baseline if one didn't already exist. 
-- **A sysadmin** uses the Dashboard interface to approve or reject every difference, then manually reverts any unapproved changes as necessary. 
-- **Dashboard** then modifies the baseline to include any approved changes, and awaits the next day's inspect reports.
+- **Puppet inspect** reads that catalog to discover which resources to audit, then submits an inspect report.
+- **The console** analyzes inspect reports, then calculates a daily report of differences between the inspected system state and the approved baseline state. (Or, if this is the node's first inspect report, it will create an initial baseline for it.)
+- **A sysadmin** uses the console's compliance pages to approve or reject every difference, then manually reverts any unapproved changes as necessary. 
+- **The console** then modifies the baseline to include any approved changes, and awaits the next day's inspect reports.
 
 Concepts
 -----
@@ -29,7 +27,7 @@ Concepts
 
 When using this workflow, Puppet audits the state of resources, rather than enforcing a desired state; it does not make changes to any audited resources. Instead, changes are to be made manually (or by some out-of-band process) and reviewed for approval after the fact.
 
-After changes have been reviewed in Puppet Dashboard, any approved changes will be considered the baseline state in future reports. Rejected changes will continue to be reported as non-baseline states until they are reverted manually on the affected machines. 
+After changes have been reviewed in the console, any approved changes will be considered the baseline state in future reports. Rejected changes will continue to be reported as non-baseline states until they are reverted manually on the affected machines. 
 
 ### Resources and Attributes
 
@@ -39,32 +37,32 @@ Any native Puppet resource type can be used in the baseline compliance workflow.
 
 ### Compliance Manifests
 
-The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](http://docs.puppetlabs.com/references/latest/metaparameter.html#audit) metaparameter. 
+The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](/references/2.7.6/metaparameter.html#audit) metaparameter. 
 
 ### Inspect Reports
 
-Each node being audited for compliance will routinely report the states of its audited resources. The documents it sends are called _inspect reports,_ and differ from standard Puppet reports.
+Each node being audited will routinely report the states of its audited resources. The documents it sends are called _inspect reports,_ and differ from standard Puppet reports.
 
-To enable puppet inspect, which sends these reports, you will need to apply the `baselines::agent` class to each node you are auditing.
+By default, every PE agent node sends daily inspect reports, regardless of whether it is auditing any resources.
 
 ### Baselines
 
 Conceptually, a **baseline** is a blessed inspect report for a single node: it lists the approved states for every audited resource on that node. Each node is associated with one and only one baseline, and nodes cannot share baselines. However, nodes with similar baselines can be grouped for convenience.
 
-Baselines are maintained by Puppet Dashboard. They change over time as administrators approve changes to audited resources. **Nodes reporting for the first time are assumed to be in a compliant state,** and their first inspect report will become the baseline against which future changes are compared. 
+Baselines are maintained by the console. They change over time as administrators approve changes to audited resources. **Nodes reporting for the first time are assumed to be in a compliant state,** and their first inspect report will become the baseline against which future changes are compared. 
 
 ### Groups
 
-Although nodes cannot share baselines, nodes in a Dashboard group can have similar changes approved or rejected en masse. 
+Although nodes cannot share baselines, nodes in groups can have similar changes approved or rejected en masse. 
 
 
-The Compliance Dashboard UI
+The Console's Compliance UI
 -----
 
-Puppet Compliance's UI lives in Puppet Dashboard, and consists of:
+Puppet's compliance UI lives in the console, and consists of:
 
 - A new summary and custom report control on each group's page
-- A set of dedicated compliance pages, accessible from the "Compliance" link in Dashboard's header menu
+- A set of dedicated compliance pages, accessible from the "Compliance" link in the console's header menu
 
 ![compliance_link][]
 
@@ -95,7 +93,7 @@ The main compliance overview page shows a single day's comparison results, with 
 
 Individual node pages show one node's off-baseline inspection results for a single day. You can accept or reject changes from this page. 
 
-Links to the node pages of groupless nodes are displayed on the main compliance overview page. To see the details of a node which is in at least one group, navigate to its group page and use the "Individual Differences" tab.
+Links to the node pages of ungrouped nodes are displayed on the main compliance overview page. To see the details of a node which is in at least one group, navigate to its group page and use the "Individual Differences" tab.
 
 ### Compliance Group Page
 
@@ -108,9 +106,9 @@ Compliance group pages show the collected differences for a group of nodes. Two 
 - Use the **"Common Differences"** tab to approve and reject aggregate changes en masse
 - Use the **"Individual Differences"** tab to access node pages and act individually
 
-Groups are one of Dashboard's core constructs, and nodes can be added to or removed from groups in Dashboard's main node pages.
+Groups are one of the console's core constructs, and nodes can be added to or removed from groups in the console's main node pages.
 
-Although Dashboard allows groups to contain other groups, a compliance group page will only list nodes that are direct children of that group. 
+Although the console allows groups to contain other groups, a compliance group page will only list nodes that are direct children of that group. 
 
 [compliance_link]: ./images/baseline/compliance_link.png
 [date_changer_with_unreviewed]: ./images/baseline/date_changer_with_unreviewed.png

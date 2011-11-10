@@ -1,12 +1,10 @@
 ---
-layout: default
-title: "PE 2.0 Manual: Puppet Compliance Workflow Tutorial"
+layout: pe2experimental
+title: "PE 2.0 » Compliance » Tutorial"
 ---
 
-{% include pe_2.0_nav.markdown %}
-
-Compliance Workflow Tutorial
---------
+Compliance Tutorial
+=====
 
 This brief walkthrough shows a compliance workflow auditing the state of the following resources:
 

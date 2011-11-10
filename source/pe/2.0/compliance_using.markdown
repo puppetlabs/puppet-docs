@@ -1,35 +1,35 @@
 ---
-layout: default
-title: "PE 2.0 Manual: Using the Puppet Compliance Workflow"
+layout: pe2experimental
+title: "PE 2.0 » Compliance » Using the Workflow"
 ---
 
-{% include pe_2.0_nav.markdown %}
-
-Using the Puppet Compliance Workflow
+Using the Compliance Workflow
 =====
 
-The Puppet Compliance workflow consists of the following routine tasks:
+Prerequisites
+-----
 
-- Preparing new agent nodes for compliance reporting
+Before using the compliance workflow, check to make sure that the `pe_compliance` Puppet class has been assigned to all of your agent nodes. 
+
+This probably does not require any action on your part; by default, `pe_compliance` is assigned to the default group, <!-- TODO link to default group explanation --> which all agent nodes are assigned to a few minutes after their first report. 
+
+Compliance Tasks
+-----
+
+PE's compliance workflow consists of the following routine tasks:
+
 - Writing compliance manifests
 - Reviewing changes
 - Comparing whole groups against a single baseline
 
-Preparing Agent Nodes For Compliance Reporting
------
-
-Since agent nodes under compliance auditing need to submit a slightly different type of report, **you will need to apply the `baselines::agent` Puppet class to any node whose resources you want to audit.** This class installs a cron job that runs puppet inspect every day at 8pm. 
-
-You can apply this class in Puppet Dashboard. Refer to the [instructions for enabling MCollective](./using.html#enabling-mcollective) for instructions on how to apply a Puppet class with Dashboard.
+See below for detailed explanations of these tasks.
 
 Writing Compliance Manifests
 -----
 
-Once compliance reporting has been enabled on your agent nodes, a sysadmin familiar with the Puppet language should write a collection of manifests defining the resources to be audited on the site's various computers. 
+To tell Puppet which resources to audit, you must write a collection of modules in the Puppet language and assign them to your nodes. See this manual's [introduction to Puppet](./puppet_overview.html) for a quick tutorial on creating a module and applying its classes. 
 
-In the simplest case, where you want to audit an identical set of resources on every computer, this can be done directly in the site manifest (`/etc/puppetlabs/puppet/manifests/site.pp`). More likely, you'll need to create a set of classes and modules that can be composed to describe the different kinds of computers at your site, then assign those classes using Puppet Dashboard or `site.pp`.
-
-**To mark a resource for auditing, declare its `audit` metaparameter.** The value of `audit` can be one attribute, an array of attributes, or `all`. You can also have Puppet manage some attributes of an audited resource. 
+When writing compliance classes in Puppet, you should **declare [the `audit` metaparameter](/references/2.7.6/metaparameter.html#audit)** for each resource. The value of `audit` can be one attribute name, an array of attribute names, or `all`. Puppet can also actively manage attributes of an audited resource. 
 
 {% highlight ruby %}
     file {'hosts':
@@ -42,7 +42,7 @@ In the simplest case, where you want to audit an identical set of resources on e
     user {'httpd':
       audit => 'all',
     }
-    # Allow a user to change their password, but notify Puppet Compliance when they do:
+    # Allow this user to change their password, but trigger an audit event when they do:
     user {'admin':
       ensure => present,
       gid    => 'wheel',
@@ -80,7 +80,7 @@ You can also accept or reject all of the day's changes to this node at once with
 
 ### Reviewing Groups
 
-If you've collected similar nodes into Dashboard groups, you can greatly speed up the review of similar changes with the "Common Differences" tab. You can also use the "Individual Differences" tab to navigate to the individual nodes.
+If you've collected similar nodes into groups in the console, you can greatly speed up the review of similar changes with the "Common Differences" tab. You can also use the "Individual Differences" tab to navigate to the individual nodes.
 
 #### Same Change on Multiple Nodes
 
@@ -98,7 +98,7 @@ If the same change was made on several nodes in a group, you can:
 If **different** changes were made to the **same resource** on several nodes, the changes will be grouped for easy comparison. You can:
 
 - Accept or reject **each cluster** of changes
-- View the individual node pages to approve or reject the changes selectively <!-- TK This does not match the text on the page but seems to match the behavior. Investigate. -->
+- View the individual node pages to approve or reject the changes selectively
 
 #### Convergence of differing baselines
 
@@ -112,18 +112,18 @@ If several nodes in a group had a different baseline value for one resource but 
 Comparing Groups Against a Single Baseline
 -----
 
-Puppet Compliance can also generate custom reports which **compare an entire group to a single member node's baseline.** While the day-to-day compliance views are meant for tracking changes to a node or group of nodes over time, custom reports are meant for tracking how far a group of nodes have drifted away from each other. 
+The console can also generate custom reports which **compare an entire group to a single member node's baseline.** While the day-to-day compliance views are meant for tracking changes to a node or group of nodes over time, custom reports are meant for tracking how far a group of nodes have drifted away from each other. 
 
 - Custom reports only examine the most recent inspection report for each group member
 - Custom reports **do not** allow you to approve or reject changes
 
-Dashboard will maintain **one** cached custom report for **each group;** generating a new report for that group will erase the old one.
+The console will maintain **one** cached custom report for **each group;** generating a new report for that group will erase the old one.
 
 ![core_group_custom_report][]
 
-Custom reports are generated from Dashboard's **core group pages** --- **not** from the compliance group pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static markup that does not automatically poll for updates; you will need to reload the page periodically for updated status on the report.) 
+Custom reports are generated from the console's **group pages** --- **not** from the group views in the compliance pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static markup that does not automatically poll for updates; you will need to reload the page periodically for updated status on the report.) 
 
-Once generated, custom reports can be viewed from Dashboard's **core group pages,** the **main compliance overview page,** and the **compliance group pages.** 
+Once generated, custom reports can be viewed from **the console's page for that group,** the **main compliance overview page,** and the **compliance group pages.** 
 
 ![custom_report_core_group_link][]
 

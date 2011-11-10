@@ -7,10 +7,7 @@ title: "PE 2.0 » Installing » Answer File Reference"
 Answer File Reference
 =====================
 
-When run with the `-a` or `-A` options and a filename argument, the Puppet Enterprise installer will read its installation instructions from an answer file and run in non-interactive or partially-interactive mode. 
-
-* Installing with the `-a` option will fail if any required variables are not set.
-* Installing with the `-A` option will prompt the user for any missing answers. 
+Answer files are used when doing an automated installation of PE. See [the chapter on automated installation](./install_automated.html) for more details.
 
 Answer File Syntax
 ------------------
@@ -41,6 +38,8 @@ List of Answers
 
 ### Global Answers
 
+These answers are always needed.
+
 `q_install`
 : **Y or N** --- Whether to install. Answer files must set this to Y.
 
@@ -52,6 +51,8 @@ List of Answers
 
 
 ### Roles
+
+These answers are always needed.
 
 `q_puppetmaster_install`
 : **Y or N** --- Whether to install the puppet master role.
@@ -66,7 +67,20 @@ List of Answers
 : **Y or N** --- Whether to install the cloud provisioner role.
 
 
+### Puppet Agent Answers
+
+These answers are always needed.
+
+`q_puppetagent_certname`
+: **String** --- A site-unique identifier for this agent node.
+
+`q_puppetagent_server`
+: **String** --- The hostname of the puppet master server. For the agent to trust the master's certificate, this must be one of the valid DNS names you chose when installing the puppet master.
+
+
 ### Puppet Master Answers
+
+These answers are only needed if you are installing the puppet master role. 
 
 `q_puppetmaster_certname`
 : **String** --- A site-unique identifier for the puppet master.
@@ -82,6 +96,8 @@ List of Answers
 
 
 ### Console Answers
+
+These answers are only needed if you are installing the console role. 
 
 `q_puppet_enterpriseconsole_httpd_port`
 : **Integer** --- The port on which to serve the console. If this is set to 443, you can access the console from a web browser without manually specifying a port. 
@@ -122,12 +138,4 @@ List of Answers
 `q_puppet_enterpriseconsole_database_password`
 : **String** --- The password for the console's MySQL user.
 
-
-### Puppet Agent Answers
-
-`q_puppetagent_certname`
-: **String** --- A site-unique identifier for this agent node.
-
-`q_puppetagent_server`
-: **String** --- The hostname of the puppet master server. For the agent to trust the master's certificate, this must be one of the valid DNS names you chose when installing the puppet master.
 

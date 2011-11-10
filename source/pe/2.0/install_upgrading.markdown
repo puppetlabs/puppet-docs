@@ -1,14 +1,27 @@
 ---
-layout: default
-title: "PE 2.0 Manual: Upgrading Puppet Enterprise
+layout: pe2experimental
+title: "PE 2.0 » Installing » Upgrading From Previous Versions
 ---
 
-{% include pe_2.0_nav.markdown %}
+Upgrading Puppet Enterprise
+=====
+
+Upgrading an existing installation of Puppet Enterprise 
+
+
+
+
+
+
+, use the `puppet-enterprise-upgrader` script instead of the `puppet-enterprise-installer` script. 
+
+Depending on the version you are upgrading from, you may need to 
 
 Upgrading From Puppet Enterprise 1.x
-======
+-----
 
-Puppet Enterprise ships with an upgrade script that will do a large part of the work of upgrading your installation. However, you will have to finish the configuration of PE 2.0 Manually. 
+
+Puppet Enterprise ships with an upgrade script that will do a large part of the work of upgrading your installation. However, you will have to finish the configuration of PE 2.0 manually. 
 
 To upgrade to PE 1.2, you must:
 

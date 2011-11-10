@@ -1,16 +1,26 @@
 ---
-layout: default
-title: "PE 2.0 Manual: The accounts::user Type"
+layout: pe2experimental
+title: "PE 2.0 » Accounts Module » The pe_accounts::user Type"
 ---
 
-{% include pe_2.0_nav.markdown %}
 
-The `accounts::user` Type
+The `pe_accounts::user` Type
 =====
 
-This defined type manages a single user account. Many of its parameters echo those of the standard [`user` type](/references/2.6.9/type.html#user). Unlike the `user` type, it will also create and manage the user's home directory, create and manage a primary group with the same name as the user, manage a set of SSH public keys for the user, and optionally lock the user's account. 
+This defined type is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise. It is available for use in your own manifests.
 
-The `accounts::user` type can be used on all of the platforms supported by Puppet Enterprise.
+The `pe_accounts::user` type declares a user account. It offers several benefits over Puppet's core `user` type: 
+
+* It can create and manage the user's home directory as a Puppet resource.
+* It creates and manages a primary group with the same name as the user, even on platforms where this is not the default.
+* It can manage a set of SSH public keys for the user.
+* It can easily lock the user's account, preventing all logins.
+
+Puppet Enterprise uses this type internally to manage some of its own system users, but also exposes it as a public interface. 
+
+The `pe_accounts::user` type can be used on all of the platforms supported by Puppet Enterprise.
+
+**Note:** In Puppet Enterprise 1.2, this type was called `accounts::user`; it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details. 
 
 ## Usage Example
 
@@ -21,12 +31,12 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
       Class[site::groups] -> Class[site::users]
       
       # Setting resource defaults for user accounts: 
-      Accounts::User {
+      Pe_accounts::User {
         shell => '/bin/zsh',
       }
       
-      # Declaring our accounts::user resources:
-      accounts::user {'puppet':
+      # Declaring our pe_accounts::user resources:
+      pe_accounts::user {'puppet':
         locked  => true,
         comment => 'Puppet Service Account',
         home    => '/var/lib/puppet',
@@ -41,7 +51,7 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
         groups  => ['admin', 'sudonopw'],
         sshkeys => ['ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwLBhQefRiXHSbVNZYKu2o8VWJjZJ/B4LqICXuxhiiNSCmL8j+5zE/VLPIMeDqNQt8LjKJVOQGZtNutW4OhsLKxdgjzlYnfTsQHp8+JMAOFE3BD1spVnGdmJ33JdMsQ/fjrVMacaHyHK0jW4pHDeUU3kRgaGHtX4TnC0A175BNTH9yJliDvddRzdKR4WtokNzqJU3VPtHaGmJfXEYSfun/wFfc46+hP6u0WcSS7jZ2WElBZ7gNO4u2Z+eJjFWS9rjQ/gNE8HHlvmN0IUuvdpKdBlJjzSiKZR+r/Bo9ujQmGY4cmvlvgmcdajM/X1TqP6p3OuouAk5QSPUlDRV91oEHw== sysop+moduledevkey@puppetlabs.com'],
       }
-      accounts::user {'villain':
+      pe_accounts::user {'villain':
         locked  => true,
         comment => 'Test Locked Account',
         uid     => '701',
@@ -49,7 +59,7 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
         groups  => ['admin', 'sudonopw'],
         sshkeys => ['ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwLBhQefRiXHSbVNZYKu2o8VWJjZJ/B4LqICXuxhiiNSCmL8j+5zE/VLPIMeDqNQt8LjKJVOQGZtNutW4OhsLKxdgjzlYnfTsQHp8+JMAOFE3BD1spVnGdmJ33JdMsQ/fjrVMacaHyHK0jW4pHDeUU3kRgaGHtX4TnC0A175BNTH9yJliDvddRzdKR4WtokNzqJU3VPtHaGmJfXEYSfun/wFfc46+hP6u0WcSS7jZ2WElBZ7gNO4u2Z+eJjFWS9rjQ/gNE8HHlvmN0IUuvdpKdBlJjzSiKZR+r/Bo9ujQmGY4cmvlvgmcdajM/X1TqP6p3OuouAk5QSPUlDRV91oEHw== villain+moduledevkey@puppetlabs.com'],
       }
-      accounts::user {'jeff':
+      pe_accounts::user {'jeff':
         comment => 'Jeff McCune',
         groups => ['admin', 'sudonopw'],
         uid => '1112',
@@ -61,13 +71,13 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
                       'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwLBhQefRiXHSbVNZYKu2o8VWJjZJ/B4LqICXuxhiiNSCmL8j+5zE/VLPIMeDqNQt8LjKJVOQGZtNutW4OhsLKxdgjzlYnfTsQHp8+JMAOFE3BD1spVnGdmJ33JdMsQ/fjrVMacaHyHK0jW4pHDeUU3kRgaGHtX4TnC0A175BNTH9yJliDvddRzdKR4WtokNzqJU3VPtHaGmJfXEYSfun/wFfc46+hP6u0WcSS7jZ2WElBZ7gNO4u2Z+eJjFWS9rjQ/gNE8HHlvmN0IUuvdpKdBlJjzSiKZR+r/Bo9ujQmGY4cmvlvgmcdajM/X1TqP6p3OuouAk5QSPUlDRV91oEHw== jeff+moduledevkey4@puppetlabs.com'
                   ],
       }
-      accounts::user {'dan':
+      pe_accounts::user {'dan':
         comment => 'Dan Bode',
         uid => '1109',
         gid => '1109',
         sshkeys => ['ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwLBhQefRiXHSbVNZYKu2o8VWJjZJ/B4LqICXuxhiiNSCmL8j+5zE/VLPIMeDqNQt8LjKJVOQGZtNutW4OhsLKxdgjzlYnfTsQHp8+JMAOFE3BD1spVnGdmJ33JdMsQ/fjrVMacaHyHK0jW4pHDeUU3kRgaGHtX4TnC0A175BNTH9yJliDvddRzdKR4WtokNzqJU3VPtHaGmJfXEYSfun/wFfc46+hP6u0WcSS7jZ2WElBZ7gNO4u2Z+eJjFWS9rjQ/gNE8HHlvmN0IUuvdpKdBlJjzSiKZR+r/Bo9ujQmGY4cmvlvgmcdajM/X1TqP6p3OuouAk5QSPUlDRV91oEHw== dan+moduledevkey@puppetlabs.com'],
       }
-      accounts::user {'nigel':
+      pe_accounts::user {'nigel':
         comment => 'Nigel Kersten',
         uid => '2001',
         gid => '2001',
@@ -77,6 +87,8 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
     
     # /etc/puppetlabs/puppet/modules/site/manifests/groups.pp
     class site::groups {
+      # Shared groups:
+
       Group { ensure => present, }
       group {'developer':
         gid => '3003',
@@ -95,6 +107,8 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
 
 
 ## Parameters
+
+Many of the type's parameters echo those of the standard [`user` type](/references/2.7.6/type.html#user).
 
 ### `name`
 
@@ -122,7 +136,7 @@ The user's uid number.  Must be specified numerically; defaults to being automat
 
 ### `gid`
 
-The gid of the primary group with the same name as the user; the `accounts::user` type will create and manage this group. Must be specified numerically; defaults to being automatically determined (`undef`). 
+The gid of the primary group with the same name as the user; the `pe_accounts::user` type will create and manage this group. Must be specified numerically; defaults to being automatically determined (`undef`). 
 
 ### `groups`
 

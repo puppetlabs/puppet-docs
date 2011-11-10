@@ -10,13 +10,30 @@ Basic Installation
 Starting the Installer
 -----
 
-To install PE, unarchive the tarball, navigate to the resulting directory, and run the `./puppet-enterprise-installer` script in your shell with root privileges. 
+To install PE:
 
-This will start the installer in interactive mode and guide you through customizing your installation. After you've finished, it will save your answers in a file called `answers.lastrun`, install the selected software, and configure and enable all of the necessary services. 
+* Unarchive the installer tarball, usually with `tar -xzf <INSTALLER TARBALL>`
+* Navigate to the resulting directory in your shell
+* Run the `./puppet-enterprise-installer` script with root privileges
 
-The installer can also be run non-interactively; [see the next chapter][automated] for details.
+This will start the installer in interactive mode and guide you through customizing your installation. After you've finished, it will install the selected software, configure and enable all of the necessary services, and save your installation answers to a file called `answers.lastrun`. 
+
+The installer can also be run non-interactively; [see the chapter on automated installation][automated] for details.
 
 [automated]: ./install_automated.html
+
+### Installer Options
+
+The installer will accept the following command-line flags:
+
+* `-h` -- Display a brief help message.
+* `-s <ANSWER FILE>` -- Save answers to file and quit without installing.
+* `-a <ANSWER FILE>` -- Read answers from file and fail if an answer is missing.
+* `-A <ANSWER FILE>` -- Read answers from file and prompt for input if an answer is missing.
+* `-D` -- Display debugging information.
+* `-l <LOG FILE>` -- Log commands and results to file.
+* `-n` -- Run in 'noop' mode; show commands that would have been run during installation without running them.
+
 
 Customizing Your Installation
 -----
@@ -28,6 +45,8 @@ The PE installer configures Puppet by asking a series of questions. Most questio
 First, the installer will ask which of PE's <!-- TODO replace this link -->[roles](./overview.html#roles) (puppet master, console, cloud provisioner, and puppet agent) to install. The roles you apply will determine which other questions the installer will ask. 
 
 If you choose the puppet master or console roles, the puppet agent role will be installed automatically.
+
+The puppet master and console roles should each be installed on **only one** system.
 
 ### Puppet Master Options
 
@@ -47,7 +66,7 @@ If you are splitting the puppet master and console roles across different machin
 
 ### Console Options
 
-The console is usually run on the same server as the puppet master, but can also be installed on a separate machine. **If you choose to do so, you will need to do some [additional configuration][consoleconfig] after installing.**
+The console is usually run on the same server as the puppet master, but can also be installed on a separate machine. **If you are splitting the console and puppet master roles, install the console _after_ the puppet master.**
 
 #### Port
 
@@ -62,8 +81,6 @@ As the console's web interface is a major point of control for your infrastructu
 #### Inventory Certname and DNS Names (Optional)
 
 If you are splitting the master and the console roles, the console will maintain an inventory service to collect facts from the puppet master. Like the master, the inventory service needs a unique certname and a list of valid DNS names. 
-
-**Note:** you will need to [exchange certificates between the console and the puppet master after installation][consoleconfig] if you are splitting the roles.
 
 #### Database
 
@@ -124,6 +141,10 @@ PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren
 Finishing Up
 -----
 
+### Verifying Your License
+
+When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
+
 <!-- todo FUTURE: Add links to docs on puppet security model or getting started info -->
 
 ### Signing Agent Certificates
@@ -137,46 +158,4 @@ on a new node, the installer will automatically submit a certificate request to 
 To sign one of the pending requests, run:
 
     puppet cert sign <name>
-
-
-[consoleconfig]: #exchanging-consolepuppet-master-certificates
-
-### Exchanging Console/Puppet Master Certificates
-
-If you chose to split the console and puppet master roles, you need to run the following extra commands after installing them both:
-<!-- TODO: This busted when I tried. Find out why. -->
-
-**On the console server:**
-
-    # cd /opt/puppet/share/puppet-dashboard
-    # sudo env PATH=/opt/puppet/sbin:/opt/puppet/bin:$PATH RAILS_ENV=production \
-    rake cert:request
-
-**On the puppet master server:**
-
-    # sudo puppet cert sign pe-internal-dashboard
-    # sudo puppet cert sign <inventory service's certname>
-
-**On the Dashboard server (in the same shell as before, with the modified PATH):**
-
-    # rake RAILS_ENV=production cert:retrieve
-    # receive_signed_cert.rb <inventory service's certname> <puppet master's hostname>
-    # service pe-httpd start
-
-[noninteractive]: #non-interactive-installation
-
-Advanced Installation
-----
-
-### Installer Options
-
-The Puppet Enterprise installer will accept the following command-line flags:
-
-* `-a ANSWER_FILE` -- Read answers from file and quit with error if an answer is missing.
-* `-A ANSWER_FILE` -- Read answers from file and prompt for input if an answer is missing.
-* `-D` -- Display debugging information.
-* `-h` -- Display a brief help message.
-* `-l LOG_FILE` -- Log commands and results to file.
-* `-n` -- Run in 'noop' mode; show commands that would have been run during installation without running them.
-* `-s ANSWER_FILE` -- Save answers to file and quit without installing.
 

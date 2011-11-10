@@ -12,7 +12,11 @@ Thank you for choosing Puppet Enterprise, the best-of-breed distribution for the
 About This Guide
 -----
 
-This guide will help you install and use Puppet Enterprise 2.0, with a focus on PE-specific features. If you've never used Puppet or MCollective before, you can start using PE today with the console's live management features; to get even more out of PE, we recommend the [Learning Puppet][lp] series and the [MCollective documentation][mco]. 
+This guide will help you start using Puppet Enterprise 2.0, and will serve as a reference as you gain more experience with it. It covers PE-specific features, and offers brief introductions to Puppet and MCollective. Use the **navigation to the right** to move between the guide's sections and chapters.
+
+### New Users
+
+If you've never used Puppet before and have just installed Puppet Enterprise, you should [read about](./console_live_resources.html) and experiment with the console's no-code-needed live management features, then follow the tutorial in the "[Puppet For New PE Users](./puppet_overview.html)" section to build your first Puppet module. To get even more out of PE, we recommend the [Learning Puppet][lp] series and the [MCollective documentation][mco]. 
 
 [lp]: http://docs.puppetlabs.com/learning/
 [mco]: http://docs.puppetlabs.com/mcollective/index.html
@@ -21,6 +25,12 @@ About Puppet Enterprise
 -----
 
 Puppet Enterprise starts with a full-featured, production-scale Puppet stack, then enhances it with the MCollective orchestration framework; a web-based console UI for managing Puppet and editing your systems on the fly; and a cloud provisioning tool for creating and configuring new VM instances.
+
+### Licensing
+
+Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master. 
+
+To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>. 
 
 About Puppet
 -----
@@ -49,4 +59,4 @@ Puppet Enterprise's console is the web front-end for managing your systems. The 
 About the Cloud Provisioner
 -----
 
-<!-- TODO something about cloud provisioner. -->
+The cloud provisioner is a command line tool for building new nodes. It can create new VMware and Amazon EC2 instances, install Puppet Enterprise on any virtual or physical machine, and classify newly provisioned nodes within your Puppet infrastructure. 
