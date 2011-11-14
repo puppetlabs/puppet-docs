@@ -1,3 +1,11 @@
+---
+layout: pe2experimental
+title: "deleteme"
+---
+
+something
+=====
+
 ## Classifying Nodes With Puppet Dashboard
 
 Since the module we just installed provides a class, we can now declare that class in any node. If we were defining nodes individually in puppet master's main manifest (default: `/etc/puppetlabs/puppet/manifests/site.pp`), we could use a simple class declaration or `include` statement:
