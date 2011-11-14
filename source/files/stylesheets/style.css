@@ -1239,7 +1239,7 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .secondary-content {
-  width: 178px;
+  width: 250px;
   position: relative;
   margin: 0;
   margin-right: -280px;
@@ -1311,7 +1311,9 @@ ol.toc a {
   font-weight: normal;
 }
 
-li > ol.toc {
+/* Second-level TOCs should have lighter text and be smaller */
+
+ol.toc > li > ol.toc {
   padding-bottom: 0;
   padding-top: 0.25em;
   padding-left: 1.4em;
@@ -1332,6 +1334,56 @@ ol.toc > li > ol.toc > li {
 }
 
 /* @end */
+
+/* New nav ULs for experimental navigation sidebar style (NF 2011.11.07) */
+/* This is prototype work for the PE 2.0 manual only. */
+
+div#subCol ul {
+  /*padding: 1em;*/
+  /*color: #888;*/
+  font-weight: bold;
+}
+
+div#subCol ul > li > ol.toc {
+  /*padding: 0;*/ /* Okay, fine, you can keep your padding. >:| */
+  margin-bottom: 0;
+}
+
+div#subCol ul > li:before {
+  content: "♦";
+  font-size: 0.75em;
+  padding-right: 0.85em;
+  color: #888;
+  /*position: absolute;*/
+  left: -1px;
+  top: 0.125em;
+}
+
+div#subCol ul > li {
+  font-weight: normal;
+  color: #444;
+  margin-bottom: 0;
+  line-height: 1.5em;
+}
+
+div#subCol ul > li > ul {
+  padding-bottom: 0;
+  padding-top: 0.25em;
+  padding-left: 1.4em;
+  margin-bottom: 0;
+  /*font-size: 0.9em;*/
+  /*list-style-type: decimal;*/
+  /*color: #aaa;*/
+}
+
+li.currentpage > ol.toc {
+  background-color: #faf5f3;
+  border-left: 2px solid #c05f1c;
+  margin-left: -41px;
+  padding-left: 74px;
+}
+
+/* end prototype nav work. (NF 2011.11.07) */
 
 /* @group #masthead */
 
@@ -1441,24 +1493,6 @@ body#puppetlabsdocs.docs #masthead li.with-submenu dl a:hover {
 
 /* @end */
 
-body#puppetlabsdocs section#content div.site-width div.primary-secondary-content {
-  padding-left: 180px;
-  padding-right: 260px;
-}
-
-body#puppetlabsdocs section#content div.site-width div.primary-secondary-content .primary-content {
-  float: right;
-}
-
-body#puppetlabsdocs section#content div.site-width div.primary-secondary-content .secondary-content {
-  width: 158px;
-  position: relative;
-  margin-left: -180px;
-  border-right: 2px solid #eee;
-  float: left;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-}
 
 section#masthead h1 h1:before {
   content: ": ";

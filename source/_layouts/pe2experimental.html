@@ -231,8 +231,10 @@ pageTracker._trackPageview();
                   {% if maindir == 'mcollective' %}
                       {% include mcollective_menu.html %}
                   {% else %}
-                      <h3 class="chapter">Contents</h3>
+                      <!-- 
+<h3 class="chapter">Contents</h3>
                       {{ content | toc }}
+ --> {% include pe_2.0_nav.markdown %}
                   {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
