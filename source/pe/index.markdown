@@ -1,14 +1,19 @@
 ---
 layout: default
-title: "Puppet Enterprise Documentation"
+title: "Puppet Enterprise User's Guides"
 ---
 
-Puppet Enterprise Documentation
+Puppet Enterprise User's Guides
 =====
 
-Puppet Enterprise is a software distribution that bundles Puppet, Puppet Dashboard, MCollective, Puppet Compliance, and the new ready-to-use Accounts module. 
+Puppet Enterprise is the best-of-breed distribution for the Puppet family of systems automation tools.
 
-Puppet Enterprise Manuals
+Puppet Enterprise 2.0
+-----
+
+* [Puppet Enterprise User's Guide](./2.0)
+
+Previous Versions
 -----
 
 Please select your version of Puppet Enterprise:
