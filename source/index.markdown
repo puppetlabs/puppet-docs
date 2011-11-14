@@ -10,9 +10,7 @@ Welcome to the Puppet Labs documentation site. The documentation posted here is 
 
 ### Puppet Enterprise
 
-For information about Puppet Enterprise 2.0, see the [Puppet Enterprise User's Guide](/pe/2.0/index.html). 
-
-Documentation for previous versions of Puppet Enterprise can be found [here](/pe/index.html). 
+For information about Puppet Enterprise, see the [Puppet Enterprise documentation](/pe/index.html). The current version of the manual is for [Puppet Enterprise 1.2](/pe/1.2/index.html). 
 
 ### MCollective
 
