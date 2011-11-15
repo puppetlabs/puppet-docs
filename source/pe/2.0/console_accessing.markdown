@@ -13,7 +13,7 @@ The console is Puppet Enterprise's web GUI. Use it to:
 * View inventory data
 * Track compliance audits
 
-Browser Support
+Browser Requirements
 -----
 
 Puppet Labs supports the following browsers for use with the console:
@@ -23,7 +23,7 @@ Puppet Labs supports the following browsers for use with the console:
 - Safari 4 and higher
 - Internet Explorer 9 and higher
 
-Other browsers may work fine, but older and odder browsers are more likely to have problems with the live management pages. 
+Internet Explorer 8 and Firefox 2 are known to be unable to load the console's live management page, although they can access other parts of the console. Other browsers may or may not work and have not been intensively tested with the console. 
 
 Reaching the Console
 -----
