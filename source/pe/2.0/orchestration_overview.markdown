@@ -1,9 +1,9 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » MCollective"
+title: "PE 2.0 » Orchestration"
 ---
 
-MCollective for New PE Users
+Orchestration for New PE Users
 =====
 
 **Coming soon. Thank you for your patience.**

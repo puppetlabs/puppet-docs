@@ -20,9 +20,9 @@ This is the user's guide for Puppet Enterprise 2.0. Use the **navigation to the 
 - [**Puppet For New PE Users**](./puppet_overview.html)
 
     A whirlwind introduction to Puppet; after reading this section, you will be able to create simple Puppet modules and apply them to your nodes. Also contains links to more detailed resources.
-- [**MCollective For New PE Users**](./mcollective_overview.html)
+- [**Orchestration For New PE Users**](./orchestration_overview.html)
 
-    A whirlwind introduction to MCollective; after reading this section, you will be able to invoke MCollective agents from the command-line client, add new MCollective agents, and enable the MCollective client on nodes other than the puppet master. Also contains links to more detailed resources.
+    A whirlwind introduction to Orchestration; after reading this section, you will be able to invoke Orchestration agents from the command-line client, add new Orchestration agents, and enable the Orchestration client on nodes other than the puppet master. Also contains links to more detailed resources.
 - [**The Cloud Provisioner**](./cloudprovisioner_overview.html)
 
     Documentation for PE's cloud provisioner tool, which can create and provision new nodes from the command line.
