@@ -23,7 +23,7 @@ Puppet Labs supports the following browsers for use with the console:
 - Safari 4 and higher
 - Internet Explorer 9 and higher
 
-Internet Explorer 8 and Firefox 2 are known to be unable to load the console's live management page, although they can access other parts of the console. Other browsers may or may not work and have not been intensively tested with the console. 
+Internet Explorer 8 and Firefox 2 can't use the console's live management page, and will stall indefinitely when trying to load it. Other browsers may or may not work, and have not been intensively tested with the console. 
 
 Reaching the Console
 -----
