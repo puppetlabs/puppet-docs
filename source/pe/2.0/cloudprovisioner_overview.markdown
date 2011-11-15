@@ -81,6 +81,14 @@ To connect to a VMware vSphere server you will need the following information:
 - Your vCenter password
 - A public key hash (we'll get this when we first connect to the vCenter below)
 
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=06Er_8dHbOM"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=06Er_8dHbOM"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
+
 ### Amazon Web Services
 
 To connect to Amazon Web Services you will need the following information:
@@ -108,6 +116,14 @@ You need to record two pieces of information:
 
 To see your Secret Access Key, just click on the "Show" link under "Secret
 Access Key".
+
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/embed/pc-LFM2-nwQ"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/embed/pc-LFM2-nwQ"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
 
 #### Amazon Web Service keys
 
@@ -264,6 +280,14 @@ earlier when we listed all the resources available on our vSphere server).  The
 virtual machine is now created and will be powered on. Powering on may take
 several minutes to complete.
 
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=dIVOS53ZPFc"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=dIVOS53ZPFc"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
+
 ### Starting, stopping and terminating VMware virtual machines
 
 We've created our virtual machine and it's started. We can also start and stop
@@ -290,6 +314,14 @@ Lastly, we can terminate a VMware instance.  Be aware this will:
 
 **This is a destructive action that should only be taken when you wish to delete
 the virtual machine!**
+
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=-o0h83LYSA0"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=-o0h83LYSA0"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
 
 ### Getting more help
 
@@ -341,7 +373,7 @@ Puppet Enterprise can also work with Amazon Web Services to create and manage ne
 If you are new to Amazon Web Services we recommend reading the [Getting Started
 documentation](http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGuide/).
 
-### Starting a new Amazon EC2 instance
+### Listing Amazon EC2 instances
 
 Let's start by listing our running EC2 instances.  Do do this we're going to
 use the `puppet node_aws list` command.
@@ -411,6 +443,14 @@ using the `puppet help node_aws create` command.
 
 After the instance has been created, the public DNS name of the instance will be returned: `ec2-50-18-93-82.us-east-1.compute.amazonaws.com`.
 
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=dAqbLwYzMVk"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=dAqbLwYzMVk"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
+
 ### Connecting to an EC2 instance
 
 Once you've created an EC2 instance you can then connect to it using SSH. To do
@@ -439,6 +479,14 @@ terminate an instance we use the `puppet node_aws terminate` command.
     $ puppet node_aws terminate ec2-50-18-93-82.us-east-1.compute.amazonaws.com
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ...
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ... Done
+
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=NKisTfXuJlw"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=NKisTfXuJlw"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
 
 ### Getting more help
 
@@ -523,6 +571,14 @@ now navigate to the console we can see this host is added to the
 To see additional help for node classification you can use the `puppet
 help node classify` command.
 
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=LG6WQPVsBNg"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=LG6WQPVsBNg"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
+
 Installing Puppet
 -----------------
 
@@ -558,6 +614,14 @@ certificate name of the agent to be install and a variety of other options. To
 see a full list of the available options use the `puppet help node install`
 command.
 
+<object width="640" height="385"><param name="movie"
+value="http://www.youtube.com/watch?v=F0hU94bBrQo"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/watch?v=F0hU94bBrQo"
+type="application/x-shockwave-flash" allowscriptaccess="always"
+allowfullscreen="true" width="640" height="385"></object>
+
 Classifying and Installing Puppet in one command
 ------------------------------------------------
 
@@ -565,7 +629,21 @@ Rather than using multiple commands to classify and install Puppet on a
 node we can run the `init` command which performs both actions in a
 single command. Let's look at an example of that:
 
-    $ puppet node init
+    $ puppet node init \
+    --node-group=default \
+    --enc-server=localhost \
+    --enc-port=443 \
+    --enc-ssl \
+    --enc-auth-user=console \
+    --enc-auth-passwd=password \
+    --keyfile=~/.ssh/mykey.pem \
+    --login=root \
+    ec2-50-19-207-181.compute-1.amazonaws.com
+
+Here we've combined the options for the `puppet node classify` and
+`puppet node install` commands. This will connect to the Puppet
+Enterprise console, classify the node in the `default` group and then
+install Puppet Enterprise on this node.
 
 Troubleshooting
 ---------------
