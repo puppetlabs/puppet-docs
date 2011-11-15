@@ -7,7 +7,7 @@ Getting Started With Puppet Enterprise Cloud Provisioning
 =====================================
 
 Puppet Enterprise provides you with the capability to provision,
-manage and configure VMWare virtual machines and Amazon Web Services
+configure and manage VMware virtual machines and Amazon Web Services
 EC2 instances.  It allows you to create and bootstrap virtual machines,
 classify those machines in your Puppet Enterprise environment,
 install Puppet Enterprise on them and automatically add them to your
@@ -19,12 +19,12 @@ Overview
 --------
 
 Puppet Enterprise cloud provisioning extends Puppet by adding new actions for
-creating and puppetizing new machines using VMWare vSphere and Amazon
+creating and puppetizing new machines using VMware vSphere and Amazon
 Web Service's EC2.
 
 It provides you with an easy command line interface to:
 
-* Create a new VMWare virtual machine or Amazon EC2 instance
+* Create a new VMware virtual machine or Amazon EC2 instance
 * Classify the new virtual machine or instance in the Puppet Enterprise
   console
 * Automatically install Puppet Enterprise and integrate with your
@@ -42,10 +42,10 @@ Cloud provisioning ships with Puppet Enterprise 2.0 and later.
 
 The following services and credentials are required:
 
-For VMWare you will need:
+For VMware you will need:
 
-- VMWare vSphere 4.0 and later
-- VMWare vCenter
+- VMware vSphere 4.0 and later
+- VMware vCenter
 
 For Amazon Web Services you will need:
 
@@ -72,9 +72,9 @@ Configuration
 To use cloud provisioning, we need to do some initial configuration to tell it
 about the services we wish to connect to and manage. 
 
-### VMWare
+### VMware
 
-To connect to a VMWare vSphere server you will need the following information:
+To connect to a VMware vSphere server you will need the following information:
 
 - The name of your vCenter host, for example `vc1.example.com`
 - Your vCenter username
@@ -147,7 +147,7 @@ Firstly, create a file called `.fog` in your home directory, for example:
 
     $ touch ~/.fog
 
-Populate this file with the credentials we've just recorded for VMWare vSphere or Amazon Web
+Populate this file with the credentials we've just recorded for VMware vSphere or Amazon Web
 Services (or both).  Your `.fog` file should look something like this:
 
     :default:
@@ -161,16 +161,16 @@ Replace `:vsphere_server` with the host name or IP address of your
 vSphere server and populate the other options with the appropriate
 credentials.
 
-Provisioning with VMWare
+Provisioning with VMware
 -----------------------------------
 
-Puppet Enteprise can help with creating and managing VMWare virtual machines on your
+Puppet Enteprise can help with creating and managing VMware virtual machines on your
 vSphere server using vCenter.
 
-If you're new to VMWare vSphere then we recommend looking at the [vSphere
+If you're new to VMware vSphere then we recommend looking at the [vSphere
 documentation](http://www.vmware.com/support/pubs/vs_pages/vsp_pubs_esx40_vc40.html).
 
-### Listing VMWare vSphere instances
+### Listing VMware vSphere instances
 
 Let's get started by listing the machines currently on our vSphere
 server.  We do this by running the `puppet node_vmware list` command.
@@ -221,8 +221,8 @@ our existing virtual machines:
     ipaddress:  192.168.100.218
     template:   false
 
-We can see that we've connected to our vSphere server and returned a VMWare
-template and a virtual machine. VMWare templates contain the information needed
+We can see that we've connected to our vSphere server and returned a VMware
+template and a virtual machine. VMware templates contain the information needed
 to build new virtual machines, for example the operating system, hardware
 configuration and other details needed to provision a machine. A virtual
 machine is an existing machine that has already been provisioned on the vSphere
@@ -236,11 +236,11 @@ The following information is returned:
 - The host name of the machine
 - The instanceid of the machine
 - The IP address of the machine (templates don't have IP addresses)
-- The type of entry - either a VMWare template or a virtual machine
+- The type of entry - either a VMware template or a virtual machine
 
-### Creating a new VMWare virtual machine
+### Creating a new VMware virtual machine
 
-Puppet Enterprise can also create and manage virtual machines from VMWare
+Puppet Enterprise can also create and manage virtual machines from VMware
 templates. To do this we can run the `puppet node_vmware` command with the `create` option.
 
     $ puppet node_vmware create --name=newpuppetmaster --template="/Datacenters/Solutions/vm/master_template"
@@ -264,7 +264,7 @@ earlier when we listed all the resources available on our vSphere server).  The
 virtual machine is now created and will be powered on. Powering on may take
 several minutes to complete.
 
-### Starting, stopping and terminating VMWare virtual machines
+### Starting, stopping and terminating VMware virtual machines
 
 We've created our virtual machine and it's started. We can also start and stop
 virtual machines using the command `puppet node_vmware start` and `puppet
@@ -283,7 +283,7 @@ We can also stop this virtual machine:
 
 This will stop the running virtual machine (it may take a few minutes).
 
-Lastly, we can terminate a VMWare instance.  Be aware this will:
+Lastly, we can terminate a VMware instance.  Be aware this will:
 
 - Force-shutdown the virtual machine
 - Delete the virtual machine AND it's hard disk images
@@ -539,7 +539,7 @@ install` command.
 
 The `puppet node install` command uses SSH to connect to the host and install
 Puppet Enterprise. By default it needs an SSH key, here specified using the
-`--keyfile` option. For VMWare this key should be loaded onto the template you
+`--keyfile` option. For VMware this key should be loaded onto the template you
 used to create your virtual machine. For Amazon EC2 it should be the key file
 you used to create the instance. You also need to specify the account to login
 as using the `--login` option. Lastly, we need to specify the specific host you
@@ -575,7 +575,7 @@ Troubleshooting
 If you attempt to provision without creating a `.fog` file or without
 populating the file with appropriate credentials:
 
-For VMWare you'll see the following error:
+For VMware you'll see the following error:
 
     $ puppet node_vmware list
     notice: Connecting ...
