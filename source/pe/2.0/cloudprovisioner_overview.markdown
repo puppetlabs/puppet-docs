@@ -81,13 +81,13 @@ To connect to a VMware vSphere server you will need the following information:
 - Your vCenter password
 - A public key hash (we'll get this when we first connect to the vCenter below)
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=06Er_8dHbOM"></param><param
+<object width="560" height="315"><param name="movie"
+value="http://www.youtube.com/v/06Er_8dHbOM?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param
 name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=06Er_8dHbOM"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+src="http://www.youtube.com/v/06Er_8dHbOM?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="560" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ### Amazon Web Services
 
@@ -117,13 +117,13 @@ You need to record two pieces of information:
 To see your Secret Access Key, just click on the "Show" link under "Secret
 Access Key".
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/embed/pc-LFM2-nwQ"></param><param
+<object width="560" height="315"><param name="movie"
+value="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param
 name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/embed/pc-LFM2-nwQ"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+src="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="560" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 #### Amazon Web Service keys
 
@@ -280,13 +280,13 @@ earlier when we listed all the resources available on our vSphere server).  The
 virtual machine is now created and will be powered on. Powering on may take
 several minutes to complete.
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=dIVOS53ZPFc"></param><param
+<object width="420" height="315"><param name="movie"
+value="http://www.youtube.com/v/dIVOS53ZPFc?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param
 name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=dIVOS53ZPFc"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+src="http://www.youtube.com/v/dIVOS53ZPFc?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="420" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ### Starting, stopping and terminating VMware virtual machines
 
@@ -315,13 +315,13 @@ Lastly, we can terminate a VMware instance.  Be aware this will:
 **This is a destructive action that should only be taken when you wish to delete
 the virtual machine!**
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=-o0h83LYSA0"></param><param
+<object width="560" height="315"><param name="movie"
+value="http://www.youtube.com/v/-o0h83LYSA0?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param
 name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=-o0h83LYSA0"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+src="http://www.youtube.com/v/-o0h83LYSA0?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="560" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ### Getting more help
 
@@ -443,13 +443,13 @@ using the `puppet help node_aws create` command.
 
 After the instance has been created, the public DNS name of the instance will be returned: `ec2-50-18-93-82.us-east-1.compute.amazonaws.com`.
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=dAqbLwYzMVk"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=dAqbLwYzMVk"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+<object width="560" height="315"><param name="movie"
+value="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"></param><param
+name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
+value="always"></param><embed
+src="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="560" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ### Connecting to an EC2 instance
 
@@ -480,13 +480,13 @@ terminate an instance we use the `puppet node_aws terminate` command.
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ...
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ... Done
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=NKisTfXuJlw"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=NKisTfXuJlw"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+<object width="560" height="315"><param name="movie"
+value="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"></param><param
+name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
+value="always"></param><embed
+src="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="560" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ### Getting more help
 
@@ -571,13 +571,13 @@ now navigate to the console we can see this host is added to the
 To see additional help for node classification you can use the `puppet
 help node classify` command.
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=LG6WQPVsBNg"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=LG6WQPVsBNg"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+<object width="420" height="315"><param name="movie"
+value="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US"></param><param
+name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
+value="always"></param><embed
+src="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="420" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 Installing Puppet
 -----------------
@@ -614,13 +614,13 @@ certificate name of the agent to be install and a variety of other options. To
 see a full list of the available options use the `puppet help node install`
 command.
 
-<object width="640" height="385"><param name="movie"
-value="http://www.youtube.com/watch?v=F0hU94bBrQo"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/watch?v=F0hU94bBrQo"
-type="application/x-shockwave-flash" allowscriptaccess="always"
-allowfullscreen="true" width="640" height="385"></object>
+<object width="420" height="315"><param name="movie"
+value="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"></param><param
+name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
+value="always"></param><embed
+src="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="420" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 Classifying and Installing Puppet in one command
 ------------------------------------------------
