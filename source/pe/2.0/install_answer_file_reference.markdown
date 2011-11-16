@@ -139,3 +139,4 @@ These answers are only needed if you are installing the console role.
 : **String** --- The password for the console's MySQL user.
 
 
+<!-- TODO: answers for the upgrader. -->

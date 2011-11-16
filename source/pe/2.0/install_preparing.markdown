@@ -31,9 +31,9 @@ Optionally, you can add a CNAME record to your site's DNS configuration (or an a
 
 Configure your firewalls to accomodate Puppet Enterprise's network traffic. The short version is that you should open up ports **8140, 61613, and 3000.** The more detailed version is:
 
-* All agent nodes must be able to send send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for MCollective).
+* All agent nodes must be able to send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for MCollective).
 * The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for MCollective).
-* Any hosts you will will use to access the console must be able to reach the console server on port **3000,** or the port you will specify during installation. (Many users will run the console on port 443 for easier browser access and firewall configuration.)
+* Any hosts you will use to access the console must be able to reach the console server on port **3000,** or the port you will specify during installation. (Many users will run the console on port 443 for easier browser access and firewall configuration.)
 * If you will be invoking MCollective client commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.**
 * If you will be running the console and puppet master on separate servers, the Dashboard server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **3000** and **8140.** The Dashboard server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 
@@ -42,7 +42,7 @@ Downloading PE
 
 Before installing Puppet Enterprise, you must [download it from the Puppet Labs website][downloadpe].
 
-[downloadpe]: http://puppetlabs.com/misc/pe-files/
+[downloadpe]: http://info.puppetlabs.com/puppet-enterprise
 
 ### Choosing Your Installer Tarball
 

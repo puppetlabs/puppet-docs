@@ -375,7 +375,7 @@ documentation](http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGui
 
 ### Listing Amazon EC2 instances
 
-Let's start by listing our running EC2 instances.  Do do this we're going to
+Let's start by listing our running EC2 instances.  To do this we're going to
 use the `puppet node_aws list` command.
 
     $ puppet node_aws list

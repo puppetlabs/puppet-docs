@@ -11,7 +11,7 @@ Prerequisites
 
 Before using the compliance workflow, check to make sure that the `pe_compliance` Puppet class has been assigned to all of your agent nodes. 
 
-This probably does not require any action on your part; by default, `pe_compliance` is assigned to the default group, <!-- TODO link to default group explanation --> which all agent nodes are assigned to a few minutes after their first report. 
+This probably does not require any action on your part; by default, `pe_compliance` is assigned to the [default group](./console_classes_groups.html#the-default-group), which all agent nodes are assigned to a few minutes after their first report. 
 
 Compliance Tasks
 -----

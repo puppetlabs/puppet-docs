@@ -59,9 +59,9 @@ Each node's page has a section called inventory. This section contains all of th
 
 Facts include things like the operating system (`operatingsystem`), the amount of memory (`memorytotal`), and the primary IP address (`ipaddress`). You can also [add arbitrary custom facts][customfacts] to your Puppet modules, and they too will show up in the inventory. 
 
-[customfacts]: http://docs.puppetlabs.com/guides/custom_facts.html
+[customfacts]: /guides/custom_facts.html
 
-The facts you see in the inventory can be useful when filtering nodes in the live management page. <!-- TODO link to that section of LM. -->
+The facts you see in the inventory can be useful when [filtering nodes in the live management page](./console_live.html#advanced-search).
 
 ### Searching by Fact
 

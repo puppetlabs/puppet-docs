@@ -25,4 +25,3 @@ For more complete details about the Puppet language, see the [language guide](/g
 
 For more on Puppet Enterprise's console, see [the console section](./console_navigating.html) of this user's guide. 
 
-<!-- TODO links to how to get help -->

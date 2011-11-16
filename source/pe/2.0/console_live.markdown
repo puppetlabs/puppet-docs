@@ -66,7 +66,7 @@ You can select from some of the more useful fact names with the "common fact nam
 
 ![The common fact names popover][live_nav_factlist]
 
-The inventory data in the console's node views is another good source of facts to search with. <!-- TODO links to inventory docs -->
+The [inventory data](./console_reports.html#viewing-inventory-data) in the console's node views is another good source of facts to search with.
 
 Filtering by Puppet class can be the most powerful filtering tool on this page, but it requires you to have already sorted your nodes by assigning distinctive classes to them. See the chapter on [grouping and classifying nodes](./console_classes_groups.html) for more details.
 

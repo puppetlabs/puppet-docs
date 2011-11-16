@@ -16,10 +16,10 @@ This guide will help you start using Puppet Enterprise 2.0, and will serve as a 
 
 ### New Users
 
-If you've never used Puppet before and have just installed Puppet Enterprise, you should [read about](./console_live_resources.html) and experiment with the console's no-code-needed live management features, then follow the tutorial in the "[Puppet For New PE Users](./puppet_overview.html)" section to build your first Puppet module. To get even more out of PE, we recommend the [Learning Puppet][lp] series and the [MCollective documentation][mco]. 
+If you've never used Puppet before and have just installed Puppet Enterprise, you should [read about](./console_live.html) and experiment with the console's no-code-needed live management features, then follow the tutorial in the "[Puppet For New PE Users](./puppet_overview.html)" section to build your first Puppet module. To get even more out of PE, we recommend the [Learning Puppet][lp] series and the [MCollective documentation][mco]. 
 
-[lp]: http://docs.puppetlabs.com/learning/
-[mco]: http://docs.puppetlabs.com/mcollective/index.html
+[lp]: /learning/
+[mco]: /mcollective/index.html
 
 About Puppet Enterprise
 -----
@@ -42,7 +42,7 @@ About MCollective
 
 MCollective is a distributed task-running framework. It allows nodes to listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory. 
 
-Puppet Enterprise configures MCollective with the enterprise-grade ActiveMQ message server, and enables authorized admins to to issue MCollective commands from the puppet master server. MCollective is the backbone of the web console's live management features.
+Puppet Enterprise configures MCollective with the enterprise-grade ActiveMQ message server, and enables authorized admins to issue MCollective commands from the puppet master server. MCollective is the backbone of the web console's live management features.
 
 About the Console
 -----

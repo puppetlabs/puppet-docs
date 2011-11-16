@@ -44,7 +44,7 @@ The PE installer configures Puppet by asking a series of questions. Most questio
 
 ### Roles
 
-First, the installer will ask which of PE's <!-- TODO replace this link -->[roles](./overview.html#roles) (puppet master, console, cloud provisioner, and puppet agent) to install. The roles you apply will determine which other questions the installer will ask. 
+First, the installer will ask which of PE's [roles](./welcome_roles.html) (puppet master, console, cloud provisioner, and puppet agent) to install. The roles you apply will determine which other questions the installer will ask. 
 
 If you choose the puppet master or console roles, the puppet agent role will be installed automatically.
 
@@ -146,8 +146,6 @@ Finishing Up
 ### Verifying Your License
 
 When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
-
-<!-- todo FUTURE: Add links to docs on puppet security model or getting started info -->
 
 ### Signing Agent Certificates
 

@@ -46,7 +46,7 @@ Editing Answer Files
 
 Although you can use literal strings in an answer file for one-off installations, you should fill certain variables dynamically with bash subshells if you want your answer files to be reusable. 
 
-To run a subshell that will return the output of its command, use either the the `$()` notation...
+To run a subshell that will return the output of its command, use either the `$()` notation...
 
     q_puppetagent_certname=$(hostname -f)
 

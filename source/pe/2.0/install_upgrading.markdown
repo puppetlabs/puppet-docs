@@ -150,7 +150,7 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
 
 ### Edit `/etc/puppetlabs/puppet/auth.conf`
 
-To support the inventory service, you must add the following stanzas to your [`auth.conf`](http://docs.puppetlabs.com/guides/rest_auth_conf.html) file:
+To support the inventory service, you must add the following stanzas to your [`auth.conf`](/guides/rest_auth_conf.html) file:
 
     # Allow the console to retrieve inventory facts:
     

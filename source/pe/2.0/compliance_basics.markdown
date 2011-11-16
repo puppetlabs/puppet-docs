@@ -77,7 +77,7 @@ Each of these pages shows compliance information for a single day, and contains 
 Each group page will now have:
 
 - A compliance summary in its node information section
-- A control for generating [custom reports](./using_compliance.html#comparing-groups-against-a-single-baseline)
+- A control for generating [custom reports](./compliance_using.html#comparing-groups-against-a-single-baseline)
 
 ![core_group_custom_report][]
 

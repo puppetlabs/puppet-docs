@@ -19,7 +19,6 @@ PE's web console now lets you edit and command your infrastructure in real time.
 
 Live management works out of the box, without writing any Puppet code.
 
-<!-- TODO add a screenshot -->
 
 The Cloud Provisioner
 -----
