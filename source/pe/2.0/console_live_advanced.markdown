@@ -18,7 +18,7 @@ This tab is a direct interface to your nodes' MCollective agents. It automatical
 Puppet Enterprise ships with the following MCollective agents:
 
 * **package** --- installs and uninstalls software packages.
-* **rpcutil** --- performs miscellaneous meta-tasks
+* **rpcutil** --- performs miscellaneous meta-tasks.
 * **service** --- starts and stops services.
 * **puppetral** --- the agent used to implement the manage resources tab. When used from the advanced tasks tab, it can only inspect resources, not clone them.
 
