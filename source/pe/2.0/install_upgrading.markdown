@@ -132,6 +132,7 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
 * To support the inventory service, you must configure Puppet to save facts to a MySQL database. 
 
         [master]
+            # ...
             facts_terminus = inventory_active_record
             dbadapter = mysql
             dbname = dashboard_inventory_service
@@ -140,6 +141,12 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
             dbserver = localhost
 
     If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost". 
+* If you configured the puppet master to not send reports to the Dashboard, you must configure it to report to the console now:
+
+        [master]
+            # ...
+            reports = https, store
+            reporturl = https://<CONSOLE HOSTNAME>:<PORT>/reports/upload
 * Puppet agent on this node also has some new requirements:
 
         [agent]
@@ -252,7 +259,7 @@ You can now start PE's web server again.
 
     $ sudo /etc/init.d/pe-httpd start
 
-### On Each Agent Node
+### Edit `puppet.conf` on Each Agent Node
 
 On each agent node you upgrade to PE 2.0, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
 
