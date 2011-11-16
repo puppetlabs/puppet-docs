@@ -27,6 +27,12 @@ To manage users and groups with the `pe_accounts` class, you **must** prepare a 
 
 **Note:** In Puppet Enterprise 1.2, this class was called `accounts`; it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details. 
 
+**Note:** In Puppet Enterprise 2.0.0, this class is assigned to the console's default group with no parameters, which will prevent it from being redeclared with any configuration. To use the class, you must:
+
+* Unassign it from the default group in the console
+* Create a wrapper module that declares this class with the necessary parameters
+* Re-assign the wrapper class to whichever nodes need it
+
 Usage Example
 -----
 
