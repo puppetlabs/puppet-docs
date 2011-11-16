@@ -5,7 +5,13 @@ title: "PE 1.2 Manual: Upgrading Puppet Enterprise
 
 {% include pe_1.2_nav.markdown %}
 
-Upgrading From Puppet Enterprise 1.x
+[altnamespage]: http://puppetlabs.com/security/cve/cve-2011-3872/
+[altnamesmodule]: https://github.com/puppetlabs/puppetlabs-cve20113872/
+{% capture altnames %}### Remediate the AltNames Vulnerability
+
+PE versions prior to 1.2.4 are vulnerable to the [CVE-2011-3872 AltNames vulnerability][altnamespage]. If you haven't already neutralized any dangerous certificates at your site, you should download and use [the remediation toolkit module][altnamesmodule] to do so. See the README files included in the module for full documentation.{% endcapture %}
+
+Upgrading to Puppet Enterprise 1.2
 ======
 
 Puppet Enterprise ships with an upgrade script that will do a large part of the work of upgrading your installation. However, you will have to finish the configuration of PE 1.2 manually. 
@@ -14,10 +20,7 @@ To upgrade to PE 1.2, you must:
 
 * Download and unarchive the PE tarball.
 * Run the `puppet-enterprise-upgrader` script.
-* Create a new database for the inventory service and grant all permissions on it to the dashboard MySQL user. 
-* Manually edit the `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files on your puppet master. 
-* Generate and sign certificates for Puppet Dashboard to enable inventory and filebucket viewing. 
-* Restart `pe-httpd`.
+* Check the notes below to find the version you're upgrading from, and perform any manual tasks required.
 
 Choosing Your Installer Tarball
 ------
@@ -44,19 +47,36 @@ Once you've retrieved a PE tarball, you should unarchive it, navigate to the res
 
 After receiving confirmation, the upgrader will update existing packages, install new packages added in this version of PE, and run additional scripts or puppet manifests to make the system similar (though not necessarily identical) to a new installation of PE 1.2. 
 
-Upgrading Puppet Agent
+Upgrading From PE 1.2.1 Through 1.2.3
 -----
 
-The puppet agent role requires no additional upgrade steps. For machines running only the agent role, you don't need to do anything beyond run the upgrader script. 
+{{ altnames }}
 
-As with a new installation, you need to [assign the `mcollectivepe` class][enablemco] to an agent node in order to enable MCollective.
-
-[enablemco]: ./using.html#enabling-mcollective
-
-Upgrading Puppet Master and Puppet Dashboard
+Upgrading From PE 1.2.0
 -----
 
-If you are running the puppet master and Puppet Dashboard roles on the same machine, you will need to perform some additional steps to complete the upgrade. **Puppet and Puppet Dashboard will continue to perform properly even if you skip these steps,** but they are necessary to enable new features added in version 1.2. 
+### Enable File Archiving
+
+The PE 1.2.0 installer incorrectly placed `puppet.conf`'s `archive_files = true` setting in an inert `[inspect]` block. This caused puppet inspect to not upload files when submitting compliance reports.
+
+If you haven't already, you should edit your puppet.conf file to include `archive_files = true` under the `[main]` block when upgrading from 1.2.0.
+
+{{ altnames }}
+
+Upgrading From PE 1.1 and Earlier
+-----
+
+When upgrading from PE 1.1 and 1.0, you must:
+
+* Create a new database for the inventory service and grant all permissions on it to the dashboard MySQL user. 
+* Manually edit the `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files on your puppet master. 
+* Generate and sign certificates for Puppet Dashboard to enable inventory and filebucket viewing. 
+* Restart `pe-httpd`.
+* Remediate the AltNames vulnerability, if you have not already done so.
+
+Puppet and Puppet Dashboard will continue to perform their pre-existing tasks properly if you skip the first four steps, but they are necessary to enable new features added in version 1.2. 
+
+Upgrades to sites which run the master and Dashboard on different servers can be significantly more complicated, and are supported on a case-by-case basis. Contact Puppet Labs support for more details. 
 
 ### Create a New Inventory Database
 
@@ -181,23 +201,5 @@ To reload all of the relevant puppet master and Dashboard config files, restart 
 
     $ sudo /etc/init.d/pe-httpd restart
 
-And you're done!
+{{ altnames }}
 
-Upgrading Puppet Master Without Dashboard
------
-
-If you are not using Puppet Dashboard at your site, upgrading puppet master is significantly simpler.
-
-### Edit `/etc/puppetlabs/puppet/puppet.conf`
-
-* To use the new `accounts, mcollectivepe, stdlib,` and `baselines` modules, you must add the the `/opt/puppet/share/puppet/modules` directory to Puppet's `modulepath`: 
-
-        [main]
-            modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
-
-Upgrading Separated Puppet Master and Puppet Dashboard Servers
------
-
-### Coming Soon
-
-Upgrading to PE 1.2 in cases where puppet master and Puppet Dashboard are being run on different servers is significantly more complicated. This upgrade procedure is not yet documented, and will be added to the manual at a later date. 
