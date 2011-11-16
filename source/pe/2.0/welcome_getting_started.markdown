@@ -37,12 +37,12 @@ About Puppet
 
 Puppet is the leading open source configuration management tool. It allows system configuration "manifests" to be written in a high-level <abbr title="Domain-Specific Language">DSL</abbr>, and can compose modular chunks of configuration to create a machine's unique catalog. Puppet Enterprise implements a client/server Puppet environment, where agent nodes request catalogs from a central puppet master.
 
-About MCollective
+About Orchestration
 -----
 
-MCollective is a distributed task-running framework. It allows nodes to listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory. 
+Puppet Enterprise now ships with distributed task orchestration features. Nodes managed by PE will listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory. 
 
-Puppet Enterprise configures MCollective with the enterprise-grade ActiveMQ message server, and enables authorized admins to issue MCollective commands from the puppet master server. MCollective is the backbone of the web console's live management features.
+PE's orchestration features are driven by the MCollective framework and the ActiveMQ message server, and are the backbone of the web console's live management features.
 
 About the Console
 -----
