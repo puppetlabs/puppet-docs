@@ -656,6 +656,90 @@ defaults).
     ) {}
 {% endhighlight %}
 
+### 11.8 Class parameter defaults
+
+When writing a module that accepts class parameters sane defaults SHOULD be
+provided for optional parameters to allow the end user the option of not
+explicitly specifying the parameter when declaring the class.
+
+For example:
+
+{% highlight ruby %}
+    class ntp(
+      $server = 'UNSET'
+    ) {
+
+      include ntp::params
+
+      $server\_real = $server ? {
+        'UNSET' => $::ntp::params::server,
+        default => $server,
+      }
+
+      notify { 'ntp':
+        message => "server=[$server_real]",
+      }
+
+    }
+{% endhighlight %}
+
+The reason this class is declared in this manner is to be fully compatible with
+all Puppet 2.6.x versions.  The following alternative method SHOULD NOT be used
+because it is not compatible with Puppet 2.6.2 and earlier.
+
+{% highlight ruby %}
+class ntp(
+  $server = $ntp::params::server
+) inherits ntp::params {
+
+    notify { 'ntp':
+      message => "server=[$server]",
+    }
+
+}
+{% endhighlight %}
+
+Other SHOULD recommendations:
+
+ * SHOULD use the \_real suffix to indicate a scope local variable for
+   maintainability over time.
+ * SHOULD use fully qualified namespace variables when pulling the value
+   from the module params class to avoid namespace collisions.
+ * SHOULD declare the params class so the end user does not have to for the
+   module to function properly.
+
+This recommended pattern may be relaxed when Puppet 2.7 is more widely adopted
+and module compatibility with as many versions of 2.6.x is no longer a primary
+concern.
+
+This diff illustrates the changes between these two commonly used patterns and
+how to switch from one to the other.
+
+{% highlight diff %}
+    diff --git a/manifests/init.pp b/manifests/init.pp
+    index c16c3a0..7923ccb 100644
+    --- a/manifests/init.pp
+    +++ b/manifests/init.pp
+    @@ -12,9 +12,14 @@
+     #
+     class paramstest (
+       $mandatory,
+    -  $param = $paramstest::params::param
+    -) inherits paramstest::params {
+    +  $param = 'UNSET'
+    +) {
+    +  include paramstest::params
+    +  $param\_real = $param ? {
+    +    'UNSET' => $::paramstest::params::param,
+    +    default => $param,
+    +  }
+       notify { 'TEST':
+    -    message => " param=[$param] mandatory=[$mandatory]",
+    +    message => " param=[$param\_real] mandatory=[$mandatory]",
+       }
+     }
+{% endhighlight %}
+
 ## 12. Tests
 
 All manifests should have a corresponding test manifest in the module's `tests`
