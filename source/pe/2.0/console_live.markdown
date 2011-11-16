@@ -13,6 +13,13 @@ The console's live management page contains tools for inspecting and editing you
 
 Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console. 
 
+Show Me!
+-----
+
+Puppet Labs' own Randall Hansen demonstrates the power of live management:
+
+<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/_MMzUsZ2jjo?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/_MMzUsZ2jjo?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+
 Tabs
 -----
 
