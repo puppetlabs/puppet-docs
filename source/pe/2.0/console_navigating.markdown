@@ -45,3 +45,8 @@ Groups contain nodes. Any classes applied to a group will also be applied to all
 ### Classes
 
 Classes aren't automatically detected or validated; you have to enter a class's name yourself before you can apply it to a node or group. Once you do, though, you're good to go; Puppet will apply it as needed, and you can click the class in the console for a view of which nodes it's been assigned to. 
+
+[nav_group]: ./images/console/nav_group.png
+[nav_navbar]: ./images/console/nav_navbar.png
+[nav_node]: ./images/console/nav_node.png
+[nav_nodestatus]: ./images/console/nav_nodestatus.png

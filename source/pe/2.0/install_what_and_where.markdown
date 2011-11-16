@@ -58,7 +58,7 @@ User Accounts
 
 PE creates the following users:
 
-- **`peadmin`** --- An administrative account which can issue MCollective client commands. This is the only PE user account intended for use in a login shell. See the chapter on MCollective for more about this user. <!-- TODO add link to mcollective chapter. --> This user exists on servers with the puppet master role.
+- **`peadmin`** --- An administrative account which can issue MCollective client commands. This is the only PE user account intended for use in a login shell. See the chapter on MCollective for more about this user. <!-- TODO add link to mcollective chapter. --> This user exists on servers with the puppet master role, and replaces the `mco` user that was present in PE 1.2.
 - **`pe-puppet`**  --- A system user which runs the puppet master processes spawned by Passenger.
 - **`pe-apache`** --- A system user which runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.

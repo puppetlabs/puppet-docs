@@ -73,3 +73,14 @@ Use the "inventory search" page to find a list of nodes with a certain fact valu
 
 You can add more facts to filter the search results further, and can change the comparison criteria for each one.
 
+[reports_eventstab]: ./images/console/reports_eventstab.png
+[reports_graphs]: ./images/console/reports_graphs.png
+[reports_inventory_location]: ./images/console/reports_inventory_location.png
+[reports_inventory]: ./images/console/reports_inventory.png
+[reports_inventorysearch]: ./images/console/reports_inventorysearch.png
+[reports_logtab]: ./images/console/reports_logtab.png
+[reports_metricstab]: ./images/console/reports_metricstab.png
+[reports_point]: ./images/console/reports_point.png
+[reports_recent]: ./images/console/reports_recent.png
+[reports_runcount]: ./images/console/reports_runcount.png
+[reports_searchresults]: ./images/console/reports_searchresults.png

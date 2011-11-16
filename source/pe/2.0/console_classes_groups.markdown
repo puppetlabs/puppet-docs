@@ -90,3 +90,13 @@ You can change the membership of a group from both node views and group views. C
 ### Assigning Classes and Parameters to a Group
 
 This works identically to assigning classes and parameters to a single node. Use the edit button and the classes or key/value fields.
+
+[classes_add_group]: ./images/console/classes_add_group.png
+[classes_add_parameter]: ./images/console/classes_add_parameter.png
+[classes_addclass]: ./images/console/classes_addclass.png
+[classes_editbutton]: ./images/console/classes_editbutton.png
+[classes_group_button]: ./images/console/classes_group_button.png
+[classes_groups_to_node]: ./images/console/classes_groups_to_node.png
+[classes_nodes_to_group]: ./images/console/classes_nodes_to_group.png
+[classes_typing_class]: ./images/console/classes_typing_class.png
+[classes_typingclass]: ./images/console/classes_typingclass.png
