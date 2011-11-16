@@ -22,7 +22,7 @@ This is the user's guide for Puppet Enterprise 2.0. Use the **navigation to the 
     A whirlwind introduction to Puppet; after reading this section, you will be able to create simple Puppet modules and apply them to your nodes. Also contains links to more detailed resources.
 - [**Orchestration For New PE Users**](./orchestration_overview.html)
 
-    A whirlwind introduction to orchestration; after reading this section, you will be able to invoke orchestration agents from the command-line client, add new orchestration agents, and enable the orchestration client on nodes other than the puppet master. Also contains links to more detailed resources.
+    A whirlwind introduction to orchestration; after reading this section, you will be able to invoke orchestration agents from the command-line client.
 - [**The Cloud Provisioner**](./cloudprovisioner_overview.html)
 
     Documentation for PE's cloud provisioner tool, which can create and provision new nodes from the command line.
