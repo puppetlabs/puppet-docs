@@ -12,7 +12,7 @@ Known Issues in Puppet Enterprise 1.2
 
 The following is a list of known issues in each maintenance release of Puppet Enterprise 1.2. To find out which issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.6.9 (Puppet Enterprise 1.2.3)`.
 
-In PE 1.2.3 and Earlier
+In PE 1.2.4 and Earlier
 -----
 
 ### Upgrading From PE 1.1 Breaks Node Classification on Debian and Ubuntu Systems
@@ -33,6 +33,19 @@ This issue only affects Debian/Ubuntu systems being upgraded from PE 1.1 to 1.2.
 The `accounts` class --- a data-separation wrapper that uses external data to declare a set of `accounts::user` resources --- will not function unless a `$users_hash_default` variable (if using the `namespace` data store) or `accounts_users_default_hash.yaml` file (if using the `yaml` data store) is present, even though this variable/file is never used when creating resources. 
 
 The workaround is to ensure that this variable/file is present in the namespace or data directory.
+
+
+In PE 1.2.3 and Earlier
+-----
+
+### Major Security Issue: AltNames Vulnerability (CVE-2011-3872)
+
+The [CVE-2011-3872 AltNames vulnerability][altnamespage], patched in PE 1.2.4, affects all prior PE installations. If your site has **ever** had any version of PE prior to 1.2.4 installed, your node population contains dangerous certificates which can be used to impersonate the puppet master and gain control of nodes. 
+
+**Upgrading PE is insufficient to protect your site** --- you must also specifically mitigate the vulnerability. You should download and use Puppet Labs' [remediation toolkit module][altnamesmodule]; see the README files included with the module for full documentation. 
+
+[altnamespage]: http://puppetlabs.com/security/cve/cve-2011-3872/
+[altnamesmodule]: https://github.com/puppetlabs/puppetlabs-cve20113872/
 
 In PE 1.2.2 and Earlier
 -----
