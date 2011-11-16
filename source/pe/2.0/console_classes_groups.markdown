@@ -91,6 +91,39 @@ You can change the membership of a group from both node views and group views. C
 
 This works identically to assigning classes and parameters to a single node. Use the edit button and the classes or key/value fields.
 
+### The Default Group
+
+The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node. 
+
+
+Rake API
+-----
+
+The console provides rake tasks that can group nodes, create classes, and assign classes to groups. You can use these as an API to automate large tasks or avoid the console's GUI.
+
+All of these tasks should be run as follows, replacing `<TASK>` with the task and its arguments:
+
+    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile <TASK>
+
+### Tasks
+
+`nodeclass:add name=<NAME>`
+: Add a new class.
+
+`nodeclass:del name=<NAME>`
+: Delete a class.
+
+`nodegroup:add name=<NAME>`
+: Create a new group.
+
+`nodegroup:addclass name=<GROUP> class=<CLASS>`
+: Assign a class to a group.
+
+`node:groups name=<NODE> groups=<GROUP, GROUP, GROUP>`
+: Remove a node from any current groups and add it to the specified list of groups.
+
+Other tasks are available; run rake with the `-T` option for a more complete list.
+
 [classes_add_group]: ./images/console/classes_add_group.png
 [classes_add_parameter]: ./images/console/classes_add_parameter.png
 [classes_addclass]: ./images/console/classes_addclass.png
