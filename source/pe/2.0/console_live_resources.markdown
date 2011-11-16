@@ -94,6 +94,13 @@ After the resource has been cloned, you can see a summary of the results and the
 
 ![After cloning][live_resources_cloning_after]
 
+
+### Special Behavior When Cloning Users
+
+When you clone a user, any groups it belongs to are also automatically cloned. 
+
+Note also that the UID of a user and the GIDs of its groups aren't cloned across nodes; this means a cloned user's UID will likely differ across nodes. We hope to support UID/GID cloning in a future release.
+
 [live_resources_browse_users]: ./images/console/live_resources_browse_users.png
 [live_resources_clone_before]: ./images/console/live_resources_clone_before.png
 [live_resources_clone_previewing]: ./images/console/live_resources_clone_previewing.png
