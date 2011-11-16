@@ -32,13 +32,13 @@ Using "Inspect All" at the start of a session will pre-load a lot of information
 Finding Resources
 -----
 
-When you select a type for the first time in a session, it won't automatically contain any resources:
+To find a resource to work with, you must first select a resource type. Then, either search for your resource by name or load all resources of the type and browse them. 
+
+When you select a type for the first time in a session, it won't automatically display any resources:
 
 ![An empty list of user resources][live_resources_none]
 
-To find a resource to work with, you must first select a resource type. Then, either search for your resource by name or load all resources of the type and browse them. 
-
-Searching and browsing only scan the current selection of nodes. 
+Searching and browsing only use the current selection of nodes. 
 
 ### Browsing a Type
 
@@ -64,7 +64,7 @@ To see which nodes have each variant, click the "on N nodes" labels to expand th
 
 ### Searching by Name
 
-To search, enter a resource name in the search field, and confirm with enter or the "search" button. 
+To search, enter a resource name in the search field, and confirm with the enter key or the "search" button. 
 
 ![A search in progress][live_resources_searching]
 
@@ -78,7 +78,7 @@ Once you've located a resource, the inspect view is the same as that used when b
 Cloning Resources
 -----
 
-You can use the "clone resource" links on a resource's inspect view to make it identical on all of the selected nodes. This lets you make your systems more alike without having to write any Puppet code. 
+You can use the "clone resource" links on a resource's inspect view to make it identical on all of the selected nodes. This lets you make your population of nodes more alike without having to write any Puppet code. 
 
 Clicking the clone link for one of the variants will raise a confirmation dialog. You can change the set of selected nodes before clicking the "preview" button.
 

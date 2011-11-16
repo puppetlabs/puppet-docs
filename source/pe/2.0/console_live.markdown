@@ -29,7 +29,7 @@ The following chapters of this section cover the use of each tab.
 The Node List
 -----
 
-Every task in live management inspects or modifies a **set of nodes.** Use the node list in the live management sidebar to choose the nodes for your next action. 
+Every task in live management inspects or modifies a **selection of nodes.** Use the node list in the live management sidebar to choose the nodes for your next action. 
 
 ![The node list][live_nav_nodelist]
 
@@ -68,7 +68,7 @@ You can select from some of the more useful fact names with the "common fact nam
 
 The inventory data in the console's node views is another good source of facts to search with. <!-- TODO links to inventory docs -->
 
-Filtering by Puppet class can be the most powerful filtering tool on this page, but it requires you to have already sorted your nodes by assigning distinctive classes to them. 
+Filtering by Puppet class can be the most powerful filtering tool on this page, but it requires you to have already sorted your nodes by assigning distinctive classes to them. See the chapter on [grouping and classifying nodes](./console_classes_groups.html) for more details.
 
 [live_nav_advancedsearch]: ./images/console/live_nav_advancedsearch.png
 [live_nav_factlist]: ./images/console/live_nav_factlist.png

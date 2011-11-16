@@ -14,7 +14,9 @@ To install PE:
 
 * Unarchive the installer tarball, usually with `tar -xzf <INSTALLER TARBALL>`
 * Navigate to the resulting directory in your shell
-* Run the `./puppet-enterprise-installer` script with root privileges
+* Run the `puppet-enterprise-installer` script with root privileges:
+
+        # sudo ./puppet-enterprise-installer
 
 This will start the installer in interactive mode and guide you through customizing your installation. After you've finished, it will install the selected software, configure and enable all of the necessary services, and save your installation answers to a file called `answers.lastrun`. 
 

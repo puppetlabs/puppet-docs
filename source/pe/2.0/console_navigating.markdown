@@ -19,7 +19,7 @@ What's in the Console?
 The console deals with three main objects:
 
 - A **node** represents a single system being managed by Puppet. It can have classes applied to it, and can be a member of groups.
-- A **group** is an arbitrary collection of nodes. It can have classes applied to it, and can contain nodes.
+- A **group** is an arbitrary set of nodes. It can have classes applied to it, and can contain nodes.
 - A **class** represents a Puppet class available in your puppet master's collection of modules. It can be applied to nodes or to groups. 
 
 ### Nodes
@@ -28,11 +28,11 @@ The console deals with three main objects:
 
 After a node completes its first Puppet run, it will appear in the console, and can be added to groups and have classes applied to it. 
 
-Since the console receives a report every time Puppet runs on a node, it keeps a running status count in the sidebar:
+Since the console receives a report every time Puppet runs on a node, it keeps a running count in the sidebar of what state your nodes are in:
 
-![The node status display][nav_nodestatus]
+![The node state display][nav_nodestatus]
 
-This can tell you at a glance whether your nodes have suddenly started failing their Puppet runs, whether any nodes have stopped responding, and whether Puppet is making many changes to your systems. You can click through these status totals to see complete lists of nodes in each status. 
+This can tell you at a glance whether your nodes have suddenly started failing their Puppet runs, whether any nodes have stopped responding, and whether Puppet is making many changes to your systems. You can click through these state totals to see complete lists of nodes in each state. 
 
 Individual node pages contain graphs of recent runs, lists of reports, inventory data, compliance data, and any classes the node has or groups it's a part of.
 

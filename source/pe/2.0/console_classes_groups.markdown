@@ -11,7 +11,7 @@ Use groups, classes, and parameters to control which Puppet configurations your 
 Parameters
 -----
 
-Parameters are simple: they're top-scope variables that your Puppet manifests can use. Use them to configure the behavior of classes.
+Parameters are simple: they're top-scope [variables](/learning/variables.html) that your Puppet manifests can use. Use them to configure the behavior of classes.
 
 Add parameters by clicking the edit button in a node view (or group view) and typing a key and value under the "parameters" heading. Use the "add parameter" button below to make additional key/value fields. Be sure to save your changes when done.
 
@@ -57,7 +57,7 @@ Most Puppet modules are written so each class manages a logical chunk of configu
 
 There are many ways to compose these classes, and you'll have to decide based on how your own collection of modules works. Some possibilities:
 
-* Create many non-overlapping classes such that any node will only have one class assigned to it
+* Create many non-overlapping classes, such that any node will only have one class assigned to it.
 * Create several separated "levels" of classes --- a "base" layer, a layer for role-specific packages and services, a layer for application data, etc. This way, each node can get the base class for its own OS or machine type, but use the same application classes as some other quite different node.
 
 Wrapper classes are also necessary for working with [parameterized classes][paramclass] --- you can declare parameters in nodes and groups, then have your wrapper classes pass them through when they declare each smaller class.

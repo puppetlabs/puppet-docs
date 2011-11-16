@@ -8,10 +8,13 @@ Accessing the Console
 
 The console is Puppet Enterprise's web GUI. Use it to:
 
+* Browse and edit resources on your nodes
+* Trigger Puppet runs at will
 * View reports and activity graphs
 * Assign Puppet classes to nodes
 * View inventory data
 * Track compliance audits
+* Invoke MCollective agents on your nodes
 
 Browser Requirements
 -----
@@ -23,7 +26,7 @@ Puppet Labs supports the following browsers for use with the console:
 - Safari 4 and higher
 - Internet Explorer 9 and higher
 
-Internet Explorer 8 and Firefox 2 can't use the console's live management page, and will stall indefinitely when trying to load it. Other browsers may or may not work, and have not been intensively tested with the console. 
+Internet Explorer 8 and Firefox 2 can't use the console's live management page, and will stall indefinitely when trying to load it; we hope to fix this issue soon. Other browsers may or may not work, and have not been intensively tested with the console. 
 
 Reaching the Console
 -----
