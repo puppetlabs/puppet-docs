@@ -1,9 +1,263 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Installing » Upgrading From Previous Versions
+title: "PE 2.0 » Installing » Upgrading"
 ---
 
 Upgrading Puppet Enterprise
 =====
 
-**Coming soon. Thank you for your patience.**
+To upgrade from a previous version of Puppet Enterprise, use the same installer tarball as in a basic installation, but **don't** run the `puppet-enterprise-installer` script. Instead, run `puppet-enterprise-upgrader`. 
+
+Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version. 
+
+Starting the Upgrader
+-----
+
+The upgrader must be run with root privileges:
+
+    # ./puppet-enterprise-upgrader
+
+This will start the upgrader in interactive mode. If the puppet master role and the console (previously dashboard) role are installed on different servers, **you must upgrade the puppet master first.**
+
+### Upgrader Options
+
+Like the installer, the upgrade will accept some command-line options:
+
+* `-h` -- Display a brief help message.
+* `-s <ANSWER FILE>` -- Save answers to file and quit without installing.
+* `-a <ANSWER FILE>` -- Read answers from file and fail if an answer is missing.
+* `-A <ANSWER FILE>` -- Read answers from file and prompt for input if an answer is missing.
+* `-D` -- Display debugging information.
+* `-l <LOG FILE>` -- Log commands and results to file.
+* `-n` -- Run in 'noop' mode; show commands that would have been run during installation without running them.
+
+Non-interactive upgrades work identically to non-interactive installs, albeit with different answers available.
+
+
+Configuring the Upgrade
+-----
+
+The upgrader will ask you the following questions:
+
+### Cloud Provisioner
+
+PE 2 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On every node you upgrade, you'll be asked whether to install the cloud provisioner role. 
+
+### Vendor Packages
+
+If PE 2.0 needs any packages from your OS's repositories, it will ask permission to install them. 
+
+### Puppet Master Options
+
+#### Removing `mco`'s home directory
+
+The `mco` user from PE 1.2 gets deleted during the upgrade, and is replaced with the `peadmin` user.
+
+If the `mco` user had any preference files or documents you need, you should tell the upgrader to preserve the `mco` user's home directory; otherwise, it will be deleted. 
+
+#### Installing Wrapper Modules
+
+In PE 2.0, the `mcollectivepe`, `accounts`, and `baselines` modules were renamed to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively. If you have used any of these modules by their previous names, you should install the wrapper modules so your site will continue to work while you switch over.
+
+### Console Options
+
+#### User Name and Password
+
+The console, which replaces Puppet Dashboard, now requires a user name and a password for web access. The upgrader will ask you to choose this name and password.
+
+
+Final Steps: From an Earlier PE 2.0 Release
+-----
+
+**No extra steps** are needed when upgrading between maintenance releases of PE 2.0.
+
+Final Steps: From PE 1.2
+
+### Edit `passenger-extra.conf`
+
+You must edit the `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf` file, **on both the puppet master and the console server,** so that it looks like this:
+
+    # /etc/puppetlabs/httpd/conf.d/passenger-extra.conf
+    PassengerHighPerformance on
+    PassengerUseGlobalQueue on
+    PassengerMaxRequests 40
+    PassengerPoolIdleTime 15
+    PassengerMaxPoolSize 8
+    PassengerMaxInstancesPerApp 4
+
+You can tune some of these settings:
+
+* `PassengerMaxPoolSize` should be four times the number of CPU cores in the server.
+* `PassengerMaxInstancesPerApp` should be one half the `PassengerMaxPoolSize`.
+
+After editing the file, you should restart the `pe-httpd` service. 
+
+Final Steps: From PE 1.1 or 1.0
+-----
+
+**Important note: Upgrades from some configurations of PE 1.1 and 1.0 aren't fully supported.** To upgrade from PE 1.1 or 1.0, **you must have originally installed the puppet master and Puppet Dashboard roles on the same node.** Contact Puppet Labs support for help with other configurations on a case-by-case basis, and see [issue #10872](http://projects.puppetlabs.com/issues/10872) for more information. 
+
+After running the upgrader on the puppet master/Dashboard (now console) node, you must:
+
+* Stop the `pe-httpd` service
+* Create a new database for the inventory service and grant all permissions on it to the console's MySQL user.
+* Manually edit the puppet master's `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files
+* Generate and sign certificates for the console, to enable inventory and filebucket viewing. 
+* Edit `passenger-extra.conf`
+* Restart the `pe-httpd` service.
+
+You can upgrade agent nodes after upgrading the puppet master and console. After upgrading an agent node, you must:
+
+* Manually edit `puppet.conf`.
+
+### Stop `pe-httpd`
+
+For the duration of these manual steps, Puppet Enterprise's web server should be stopped. 
+
+    $ sudo /etc/init.d/pe-httpd stop
+
+### Create a New Inventory Database
+
+To support the inventory service, you must manually create a new database for puppet master to store node facts in. To do this, use the `mysql` client on the node running the database server. (This will almost always be the same server running the puppet master and console.) 
+
+    # mysql -uroot -p
+    Enter password: 
+    mysql> CREATE DATABASE console_inventory_service;
+    mysql> GRANT ALL PRIVILEGES ON console_inventory_service.* TO '<USER>'@'localhost';
+
+Replace `<USER>` with the MySQL user name you gave Dashboard during your original installation.
+
+### Edit Puppet Master's `/etc/puppetlabs/puppet/puppet.conf`
+
+* To support the inventory service, you must configure Puppet to save facts to a MySQL database. 
+
+        [master]
+            facts_terminus = inventory_active_record
+            dbadapter = mysql
+            dbname = dashboard_inventory_service
+            dbuser = dashboard
+            dbpassword = <MySQL password for dashboard user>
+            dbserver = localhost
+
+    If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost". 
+* Puppet agent on this node also has some new requirements:
+
+        [agent]
+            # support filebucket viewing when using compliance features:
+            archive_files = true
+            # if you didn't originally enable pluginsync, enable it now:
+            pluginsync = true
+
+### Edit `/etc/puppetlabs/puppet/auth.conf`
+
+To support the inventory service, you must add the following stanzas to your [`auth.conf`](http://docs.puppetlabs.com/guides/rest_auth_conf.html) file:
+
+    # Allow the console to retrieve inventory facts:
+    
+    path /facts
+    auth yes
+    method find, search
+    allow pe-internal-dashboard
+    
+    # Allow puppet master to save facts to the inventory:
+    
+    path /facts
+    auth yes
+    method save
+    allow <PUPPET MASTER CERTNAME>
+
+These stanzas **must** be inserted **before** the final stanza:
+
+    ...method save
+    allow <puppet master's certname>
+    
+    # final auth.conf stanza:
+    
+    path /
+    auth any
+
+If you paste these stanzas after the final stanza, they will have no effect.
+
+### Edit `/etc/puppetlabs/puppet/manifests/site.pp`
+
+You must add the following lines to site.pp in order to view file contents in the console:
+
+    # specify remote filebucket
+    filebucket { 'main':
+      server => '<puppet master's hostname>',
+      path => false,
+    }
+    
+    File { backup => 'main' }
+
+### Edit `/etc/puppetlabs/puppet-dashboard/settings.yml`
+
+Change the following three settings to point to one of the puppet master's valid DNS names:
+
+    ca_server: '<PUPPET MASTER HOSTNAME>'
+    inventory_server: '<PUPPET MASTER HOSTNAME>'
+    file_bucket_server: '<PUPPET MASTER HOSTNAME>'
+
+### Generate and Sign Console Certificates
+
+First, navigate to the console's installation directory:
+
+    $ cd /opt/puppet/share/puppet-dashboard
+
+Next, start a temporary WEBrick puppet master:
+
+    $ sudo /opt/puppet/bin/puppet master
+
+Next, create a keypair and request a certificate:
+
+    $ sudo /opt/puppet/bin/rake cert:create_key_pair
+    $ sudo /opt/puppet/bin/rake cert:request
+
+Next, sign the certificate request: 
+
+    $ sudo /opt/puppet/bin/puppet cert sign dashboard
+
+Next, retrieve the signed certificate:
+
+    $ sudo /opt/puppet/bin/rake cert:retrieve
+
+Next, stop the temporary puppet master:
+
+    $ sudo kill $(cat $(puppet master --configprint pidfile) )
+
+Finally, chown the certificates directory to `puppet-dashboard`:
+
+    $ sudo chown -R puppet-dashboard:puppet-dashboard certs
+
+### Edit `passenger-extra.conf`
+
+You must edit the `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf` file, **on both the puppet master and the console server,** so that it looks like this:
+
+    # /etc/puppetlabs/httpd/conf.d/passenger-extra.conf
+    PassengerHighPerformance on
+    PassengerUseGlobalQueue on
+    PassengerMaxRequests 40
+    PassengerPoolIdleTime 15
+    PassengerMaxPoolSize 8
+    PassengerMaxInstancesPerApp 4
+
+You can tune some of these settings:
+
+* `PassengerMaxPoolSize` should be four times the number of CPU cores in the server.
+* `PassengerMaxInstancesPerApp` should be one half the `PassengerMaxPoolSize`.
+
+### Start `pe-httpd`
+
+You can now start PE's web server again.
+
+    $ sudo /etc/init.d/pe-httpd start
+
+### On Each Agent Node
+
+On each agent node you upgrade to PE 2.0, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
+
+    [agent]
+        # support filebucket viewing when using compliance features:
+        archive_files = true
+        # if you didn't originally enable pluginsync, enable it now:
+        pluginsync = true
