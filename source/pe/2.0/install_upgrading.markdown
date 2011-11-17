@@ -10,6 +10,21 @@ To upgrade from a previous version of Puppet Enterprise, use the same installer 
 
 Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version. 
 
+Checking For Updates
+-----
+
+[Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
+
+{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+[updateslink]: http://links.puppetlabs.com/puppet_enterprise_console_2.0_information
+
+Downloading PE
+-----
+
+See the [Preparing to Install chapter][downloading] of this guide for information on downloading PE.
+
+[downloading]: http://docs.puppetlabs.com/pe/2.0/install_preparing.html#downloading-pe
+
 Starting the Upgrader
 -----
 
