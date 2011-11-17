@@ -9,7 +9,7 @@ Puppet For New Users: Your First Module
 Where Modules Live
 -----
 
-All of your modules belong in `/etc/puppetlabs/puppet/modules`.
+All of your modules belong in `/etc/puppetlabs/puppet/modules`. Puppet Enterprise's built-in modules are stored in `/opt/puppet/share/puppet/modules`.
 
 Module Structure
 -----
