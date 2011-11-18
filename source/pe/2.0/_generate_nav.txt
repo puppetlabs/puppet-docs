@@ -29,9 +29,9 @@ SUBSTITUTION 2
 
 FIND: 
 
-(?<=<li>)<strong>(.*?)</strong>\s*<!--\s*(\w+)\s*-->(?s:\s*<ul>(.*?{% else %}<li>(<a href="[^"]+">)))
+<li><strong>(.*?)</strong>\s*<!--\s*(\w+)\s*-->(?s:\s*<ul>(.*?{% else %}<li>(<a href="[^"]+">)))
 
 REPLACE: 
 
-{% if page.url contains '/\2_' %}<strong>\1</strong><ul>{% else %}<strong>\4\1</a></strong><ul style="display: none;">{% endif %}\3
+{% if page.url contains '/\2_' %}<li class="currentsection"><strong>\1</strong><ul>{% else %}<li><strong>\4\1</a></strong><ul style="display: none;">{% endif %}\3
 
