@@ -86,22 +86,20 @@ command line will not load other facts, hence the above code calls
 Facter.loadfacts to work in this mode, too. loadfacts will only
 load the default facts.
 
-To still test your custom puppet facts, which are usually only
-loaded by puppetd, there is a small hack:
-
-          mkdir rubylib
-          cd rubylib
-          ln -s /path/to/puppet/facts facter
-          RUBYLIB=. facter
-
 ### Loading Custom Facts
 
-Facter offers a few methods of loading facts, so you can do things like
-testng facts locally before distributing them or having a specific copy of
-facts available to a single user.
+Facter offers a few methods of loading facts:
+
+ * $LOAD\_PATH, or the ruby library load path
+ * The environment variable 'FACTERLIB'
+ * Facts distributed using pluginsync
+
+You can use these methods of loading facts do to things like test files locally
+before distributing them, or have a specific set of facts available on certain
+machines.
 
 Facter will search all directories in the ruby $LOAD\_PATH variable for
-subdirectories named facter, and will load all ruby files in those directories.
+subdirectories named 'facter', and will load all ruby files in those directories.
 If you had some directory in your $LOAD\_PATH like ~/lib/ruby, set up like
 this:
 
@@ -111,7 +109,8 @@ this:
         ├── system_load.rb
         └── users.rb
 
-Facter would try to load system\_load.rb, users.rb, and rackspace.rb.
+Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
+'facter/rackspace.rb'.
 
 Facter also will check the environment variable FACTERLIB for a colon delimited
 set of directories, and will try to load all ruby files in those directories.
@@ -126,9 +125,12 @@ This allows you to do something like this:
     system_load => 0.25
     users => thomas,pat
 
-It is important to note that to use the facts on your clients you
-will still need to distribute them using the [Plugins In Modules](./plugins_in_modules.html)
-method.
+Facter can also easily load fact files distributed using pluginsync. Running
+`facter -p` will load all the facts that have been distributed via pluginsync,
+so if you're using a lot of custom facts inside puppet, you can easily use
+these facts with standalone facter.
+
+Custom facts can be distributed to clients using the [Plugins In Modules](./plugins_in_modules.html) method.
 
 ### Viewing Fact Values
 
