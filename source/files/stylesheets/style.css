@@ -1376,11 +1376,24 @@ div#subCol ul > li > ul {
   /*color: #aaa;*/
 }
 
-li.currentpage > ol.toc {
+li.currentsection {
   background-color: #faf5f3;
   border-left: 2px solid #c05f1c;
+  margin-left: -22px;
+  padding-left: 20px;
+}
+li.currentpage {
+  border-bottom: 1px solid #888;
+  margin-bottom: 10px !important;
+}
+li.currentpage > ol.toc {
   margin-left: -41px;
-  padding-left: 74px;
+  padding-left: 76px;
+  padding-top : 0;
+}
+
+li.currentpage > ol.toc a {
+  color: #888;
 }
 
 /* end prototype nav work. (NF 2011.11.07) */

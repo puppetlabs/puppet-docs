@@ -65,7 +65,7 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
 {% endcomment %}
 
 <ul>
-  <li>{% if page.url contains '/welcome_' %}<strong>Welcome to Puppet Enterprise</strong><ul>{% else %}<strong><a href="./welcome_getting_started.html">Welcome to Puppet Enterprise</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/welcome_' %}<li class="currentsection"><strong>Welcome to Puppet Enterprise</strong><ul>{% else %}<li><strong><a href="./welcome_getting_started.html">Welcome to Puppet Enterprise</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'welcome_getting_started.html' %}<li class="currentpage"><strong><em>Getting Started:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_getting_started.html">Getting Started</a>{% endif %}</li>
       {% if page.url contains 'welcome_roles.html' %}<li class="currentpage"><strong><em>Components and Roles:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_roles.html">Components and Roles</a>{% endif %}</li>
       {% if page.url contains 'welcome_whats_new.html' %}<li class="currentpage"><strong><em>What&rsquo;s New:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_whats_new.html">What&rsquo;s New</a>{% endif %}</li>
@@ -73,7 +73,7 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
       {% if page.url contains 'welcome_getting_support.html' %}<li class="currentpage"><strong><em>Getting Support:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_getting_support.html">Getting Support</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/install_' %}<strong>Installing Puppet Enterprise</strong><ul>{% else %}<strong><a href="./install_system_requirements.html">Installing Puppet Enterprise</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/install_' %}<li class="currentsection"><strong>Installing Puppet Enterprise</strong><ul>{% else %}<li><strong><a href="./install_system_requirements.html">Installing Puppet Enterprise</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'install_system_requirements.html' %}<li class="currentpage"><strong><em>System Requirements:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_system_requirements.html">System Requirements</a>{% endif %}</li>
       {% if page.url contains 'install_preparing.html' %}<li class="currentpage"><strong><em>Preparing to Install:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_preparing.html">Preparing to Install</a>{% endif %}</li>
       {% if page.url contains 'install_basic.html' %}<li class="currentpage"><strong><em>Basic Installation:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_basic.html">Basic Installation</a>{% endif %}</li>
@@ -83,7 +83,7 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
       {% if page.url contains 'install_what_and_where.html' %}<li class="currentpage"><strong><em>What gets installed where?:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_what_and_where.html">What gets installed where?</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/console_' %}<strong>The Console</strong><ul>{% else %}<strong><a href="./console_accessing.html">The Console</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/console_' %}<li class="currentsection"><strong>The Console</strong><ul>{% else %}<li><strong><a href="./console_accessing.html">The Console</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'console_accessing.html' %}<li class="currentpage"><strong><em>Accessing the Console:</em></strong>{{ content | toc }}{% else %}<li><a href="./console_accessing.html">Accessing the Console</a>{% endif %}</li>
       {% if page.url contains 'console_navigating.html' %}<li class="currentpage"><strong><em>Navigating the Console:</em></strong>{{ content | toc }}{% else %}<li><a href="./console_navigating.html">Navigating the Console</a>{% endif %}</li>
       {% if page.url contains 'console_reports.html' %}<li class="currentpage"><strong><em>Viewing Reports and Inventory Data:</em></strong>{{ content | toc }}{% else %}<li><a href="./console_reports.html">Viewing Reports and Inventory Data</a>{% endif %}</li>
@@ -94,33 +94,33 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
       {% if page.url contains 'console_live_advanced.html' %}<li class="currentpage"><strong><em>Live Management: Advanced Tasks:</em></strong>{{ content | toc }}{% else %}<li><a href="./console_live_advanced.html">Live Management: Advanced Tasks</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/puppet_' %}<strong>Puppet For New PE Users</strong><ul>{% else %}<strong><a href="./puppet_overview.html">Puppet For New PE Users</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/puppet_' %}<li class="currentsection"><strong>Puppet For New PE Users</strong><ul>{% else %}<li><strong><a href="./puppet_overview.html">Puppet For New PE Users</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'puppet_overview.html' %}<li class="currentpage"><strong><em>Overview:</em></strong>{{ content | toc }}{% else %}<li><a href="./puppet_overview.html">Overview</a>{% endif %}</li>
       {% if page.url contains 'puppet_first_module.html' %}<li class="currentpage"><strong><em>Your First Module:</em></strong>{{ content | toc }}{% else %}<li><a href="./puppet_first_module.html">Your First Module</a>{% endif %}</li>
       {% if page.url contains 'puppet_classifying.html' %}<li class="currentpage"><strong><em>Assigning a Class to a Node:</em></strong>{{ content | toc }}{% else %}<li><a href="./puppet_classifying.html">Assigning a Class to a Node</a>{% endif %}</li>
       {% if page.url contains 'puppet_next_steps.html' %}<li class="currentpage"><strong><em>Next Steps:</em></strong>{{ content | toc }}{% else %}<li><a href="./puppet_next_steps.html">Next Steps</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/orchestration_' %}<strong>Orchestration For New PE Users</strong><ul>{% else %}<strong><a href="./orchestration_overview.html">Orchestration For New PE Users</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/orchestration_' %}<li class="currentsection"><strong>Orchestration For New PE Users</strong><ul>{% else %}<li><strong><a href="./orchestration_overview.html">Orchestration For New PE Users</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'orchestration_overview.html' %}<li class="currentpage"><strong><em>Overview:</em></strong>{{ content | toc }}{% else %}<li><a href="./orchestration_overview.html">Overview</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/cloudprovisioner_' %}<strong>The Cloud Provisioner</strong><ul>{% else %}<strong><a href="./cloudprovisioner_overview.html">The Cloud Provisioner</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/cloudprovisioner_' %}<li class="currentsection"><strong>Cloud Provisioning</strong><ul>{% else %}<li><strong><a href="./cloudprovisioner_overview.html">Cloud Provisioning</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'cloudprovisioner_overview.html' %}<li class="currentpage"><strong><em>Overview:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_overview.html">Overview</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/compliance_' %}<strong>The Compliance Workflow</strong><ul>{% else %}<strong><a href="./compliance_basics.html">The Compliance Workflow</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/compliance_' %}<li class="currentsection"><strong>The Compliance Workflow</strong><ul>{% else %}<li><strong><a href="./compliance_basics.html">The Compliance Workflow</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'compliance_basics.html' %}<li class="currentpage"><strong><em>Basics and UI:</em></strong>{{ content | toc }}{% else %}<li><a href="./compliance_basics.html">Basics and UI</a>{% endif %}</li>
       {% if page.url contains 'compliance_using.html' %}<li class="currentpage"><strong><em>Using the Compliance Workflow:</em></strong>{{ content | toc }}{% else %}<li><a href="./compliance_using.html">Using the Compliance Workflow</a>{% endif %}</li>
       {% if page.url contains 'compliance_tutorial.html' %}<li class="currentpage"><strong><em>Tutorial:</em></strong>{{ content | toc }}{% else %}<li><a href="./compliance_tutorial.html">Tutorial</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/accounts_' %}<strong>The PE Accounts Module</strong><ul>{% else %}<strong><a href="./accounts_user_type.html">The PE Accounts Module</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/accounts_' %}<li class="currentsection"><strong>The PE Accounts Module</strong><ul>{% else %}<li><strong><a href="./accounts_user_type.html">The PE Accounts Module</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'accounts_user_type.html' %}<li class="currentpage"><strong><em>The <code>pe_accounts::user</code> Type:</em></strong>{{ content | toc }}{% else %}<li><a href="./accounts_user_type.html">The <code>pe_accounts::user</code> Type</a>{% endif %}</li>
       {% if page.url contains 'accounts_class.html' %}<li class="currentpage"><strong><em>The <code>pe_accounts</code> Class:</em></strong>{{ content | toc }}{% else %}<li><a href="./accounts_class.html">The <code>pe_accounts</code> Class</a>{% endif %}</li>
     </ul>
   </li>
-  <li>{% if page.url contains '/maint_' %}<strong>Maintenance and Troubleshooting</strong><ul>{% else %}<strong><a href="./maint_common_config_errors.html">Maintenance and Troubleshooting</a></strong><ul style="display: none;">{% endif %}
+  {% if page.url contains '/maint_' %}<li class="currentsection"><strong>Maintenance and Troubleshooting</strong><ul>{% else %}<li><strong><a href="./maint_common_config_errors.html">Maintenance and Troubleshooting</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'maint_common_config_errors.html' %}<li class="currentpage"><strong><em>Common Configuration Errors:</em></strong>{{ content | toc }}{% else %}<li><a href="./maint_common_config_errors.html">Common Configuration Errors</a>{% endif %}</li>
     </ul>
   </li>
