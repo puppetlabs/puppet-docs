@@ -7,8 +7,10 @@ title: "PE 2.0 » Welcome » What's New"
 What's New in Puppet Enterprise 2.0?
 ========
 
-Live Management
+New Features
 -----
+
+### Live Management!
 
 PE's web console now lets you edit and command your infrastructure in real time. Visit the console's live management tab to:
 
@@ -19,14 +21,15 @@ PE's web console now lets you edit and command your infrastructure in real time.
 
 Live management works out of the box, without writing any Puppet code.
 
+### Cloud Provisioning!
 
-The Cloud Provisioner
------
+PE 2 ships with new command-line tools for building new nodes. From the comfort of your terminal, you can create new machine instances, install PE on any node, and assign new nodes to your existing console groups.
 
-The cloud provisioner is a new command-line tool for building new nodes. Among other things, it can create a new machine instance, install PE on it, and assign it to a node group in a single command.
+### More Secure Console!
 
-New Version of Puppet
------
+PE's web console is now served over SSL, and requires a login for access. 
+
+### New Version of Puppet!
 
 Puppet Enterprise is now built around Puppet 2.7, which made several significant improvements and changes to the Puppet core:
 
@@ -41,8 +44,28 @@ See the [Puppet release notes][releasenotes] for more details.
 [releasenotes]: http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes
 
 
-Some Renaming and Renovation
+Renaming, Refactoring, and Renovation
 -----
 
-What was Puppet Dashboard is now just "the console." We've also moved around some implementation details, which might affect you if you've written scripts to extend Puppet Enterprise 1.2; see the [upgrading guide](./install_upgrading.html) for more details. 
+### Dashboard is Now Console
+
+What was Puppet Dashboard is now just "the console."
+
+### Changes to Orchestration Features
+
+* Orchestration is enabled by default for all PE nodes. 
+* Orchestration tasks can now be invoked directly from the console, with the "advanced tasks" section of the live management page. PE's orchestration framework also powers the other live management features.
+* The `mco` user account on the puppet master is gone, in favor of a new `peadmin` user. This user can still invoke orchestration tasks across your nodes, but it will also gain more general purpose capabilities in future versions.
+* PE now includes the `puppetral` plugin, which lets you use Puppet's Resource Abstraction Layer (RAL) in orchestration tasks.
+* For performance reasons, the default message security scheme has changed from AES to PSK.
+* The network connection over which messages are sent is now encrypted using SSL.
+
+### Improved and Simplified Install Experience
+
+The installer asks fewer and smarter questions. 
+
+### Built-in Puppet Modules Have Been Renamed
+
+The `mcollectivepe`, `accounts`, and `baselines` modules from PE 1.2 were renamed (to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively) to avoid namespace conflicts and make their origin more clear. The PE upgrader can install wrapper modules to preserve functionality if you used any of these modules by their previous names.
+
 
