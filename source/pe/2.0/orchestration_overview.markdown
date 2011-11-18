@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0   Orchestration"
+title: "PE 2.0 » Orchestration"
 ---
 
 Orchestration for New PE Users
@@ -10,8 +10,8 @@ Orchestration for New PE Users
 
 This document introduces the command-line orchestration
 capabilities of Puppet Enterprise 2.0. MCollective provides the
-scriptable API on top of which the Live Management feature in
-Puppet Enterprise Console is built.  Whereas Live Management offers
+scriptable API on which the console's live management page
+is built.  Whereas live management offers
 a convenient graphical interface to orchestration tasks, such as
 browsing and cloning Puppet resources, the orchestration
 command-line tools themselves can be used to fully automate these
@@ -19,7 +19,7 @@ tasks within a deployment.
 
 ### Changes in Orchestration Capability between PE 2.0 and 1.x
 
-* The Live Management feature of Puppet Enterprise Console provides a web-based interface to underlying command-line orchestration tools.
+* The console's live management page provides a web-based interface to underlying command-line orchestration tools.
 * The mco local account has been renamed to peadmin in order to reflect the general use nature of this account.
 * The puppetral plugin has been added as an interface to the Puppet Resource Abstraction Layer (RAL).
 * The default message security scheme has changed from AES to PSK.
@@ -38,28 +38,23 @@ both authentication and encryption.
 #### How Can the Password be Changed?
 
 The password used to authenticate orchestration messages is
-randomly generated and stored in
-`/etc/puppetlabs/mcollective/credentials` on the Puppet Enterprise
-Master during installation. The password can be changed by editing
+randomly generated during installation and is stored in
+`/etc/puppetlabs/mcollective/credentials` on the puppet master server. The password can be changed by editing
 the contents of this file. For the password change to take effect,
-the Puppet Agent on the Puppet Master must be run, followed by
-running all other Puppet Agents. The password change can be
-verified in the Puppet Enterprise Agent reports available in the
-Puppet Enterprise Console.
+puppet agent must run once on the puppet master, then run once on every other agent node. The password change can be
+verified by checking node reports in the console.
 
 #### What Ports Must be Opened in the Firewall?
 
-Puppet Enterprise nodes send orchestration messages over TCP
-connections to the orchestration server, which by default is on the
-same machine as the Puppet Enterprise Master.  The default port for
-orchestration messages is TCP 61613, though this can be configured
-during the Puppet Enterprise installation process.
+Nodes send orchestration messages over TCP port 61613
+to the ActiveMQ server, which PE 2.0 installs on the
+same machine as the puppet master. This is how nodes receive commands and return results.
 
 ### Orchestration Actions Available in Puppet Enterprise 2.0
 
 Orchestration actions are grouped and distributed as MCollective
 plugins. In the default installation of Puppet Enterprise, the
-mco command using the peadmin local account on the Puppet Master
+mco command using the peadmin local account on the puppet master node
 can run any of the orchestration actions from any of the plugins,
 an abbreviated selection of which includes:
 
@@ -77,10 +72,10 @@ an abbreviated selection of which includes:
     - creating an exec resource allows for arbitrary management of nodes
 
 * `puppetd` plugin
-  - `enable` and `disable` actions start and stop puppetd on all Puppet Agents
-  - `runonce` action initiates a Puppet run on all Puppet Agents in such a way as to spread out the load on the Puppet Master
-  - `last_run_summary` action retrieves the most recent run summary from all Puppet Agents
-  - `status` action returns the run status of all Puppet Agents
+  - `enable` and `disable` actions enable and disable puppet agent on a node or nodes
+  - `runonce` action initiates a puppet agent run on all nodes
+  - `last_run_summary` action retrieves the most recent Puppet run summary from all nodes
+  - `status` action returns puppet agent's run status on all nodes
 
 * `service` plugin
   - `start, stop, restart,` and `status` actions allow direct management of services across the deployment
@@ -186,7 +181,7 @@ particularly noteworthy as it allows the execution of a
 configuration run on all nodes in the population, but sets an upper
 limit on the number of nodes that are performing their run at any
 given time, thus mitigating the network load and resource demands
-on the Puppet Master. This example performs a configuration run on
+on the puppet master. This example performs a configuration run on
 all nodes, but only one node at a time:
 
     peadmin@puppetmaster:~$ mco puppetd runall 1
@@ -295,15 +290,14 @@ That this file was created can be verified with the find action:
 
 The puppetral plugin can manage any resource Puppet itself is
 capable of managing. In particular, user, group, host, and
-package resources are exposed directly in the Live Management
-feature of Puppet Enterprise Console.
+package resources are exposed directly in the console's live management page.
 
 #### Service
 
-While the Puppet Agent automatically restarts services when related
-resources are changed, the mco service command can be used in cases
-in which services need to be restarted outside of a normal Puppet
-configuration run. This example restarts the SSH daemon on all
+Puppet agent will automatically restart a service it manages when related
+resources are changed, but sometimes services need to be restarted outside of a normal Puppet
+configuration run. The mco service command can be used in these cases.
+This example restarts the SSH daemon on all
 nodes running RedHat:
 
     peadmin@puppetmaster:~$ mco service sshd restart -W osfamily=RedHat
@@ -375,6 +369,5 @@ deployment:
 Puppet Enterprise 2.0 offers enhanced orchestration capability for
 direct control of a deployment in real-time. These tools work both
 in parallel and directly with Puppet and are available both from
-the command-line and in the Live Management feature of Puppet
-Enterprise Console.
+the command-line and in the console's live management page.
 
