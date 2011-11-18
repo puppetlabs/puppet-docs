@@ -150,9 +150,9 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
             # ...
             facts_terminus = inventory_active_record
             dbadapter = mysql
-            dbname = dashboard_inventory_service
-            dbuser = dashboard
-            dbpassword = <MySQL password for dashboard user>
+            dbname = console_inventory_service
+            dbuser = <CONSOLE/DASHBOARD'S MYSQL USER>
+            dbpassword = <PASSWORD FOR CONSOLE'S MYSQL USER>
             dbserver = localhost
 
     If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost". 
