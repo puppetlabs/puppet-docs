@@ -31,6 +31,7 @@ THE TEXT:
     - [Next Steps](./puppet_next_steps.html)
 - **Orchestration For New PE Users** <!-- orchestration -->
     - [Overview](./orchestration_overview.html)
+    - [Usage and Examples](./orchestration_usage.html)
 - **Cloud Provisioning** <!-- cloudprovisioner -->
     - [Overview](./cloudprovisioner_overview.html)
 - **The Compliance Workflow** <!-- compliance -->
