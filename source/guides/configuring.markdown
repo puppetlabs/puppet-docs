@@ -247,8 +247,3 @@ Puppet device, added in Puppet 2.7, configures network hardware using a catalog 
     [router6.puppetlabs.lan]
         type cisco
         url ssh://admin:password@ef03c87a.local
-
-Setting Up Puppet
-=================
-
-Now that Puppet is installed and configured, let's get to [Setting Up Puppet](./guides/setting_up.html).
