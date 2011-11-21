@@ -34,6 +34,10 @@ THE TEXT:
     - [Usage and Examples](./orchestration_usage.html)
 - **Cloud Provisioning** <!-- cloudprovisioner -->
     - [Overview](./cloudprovisioner_overview.html)
+    - [Configuring and Troubleshooting](./cloudprovisioner_configuring.html)
+    - [Provisioning with VMware](./cloudprovisioner_vmware.html)
+    - [Provisioning with AWS](./cloudprovisioner_aws.html)
+    - [Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html)
 - **The Compliance Workflow** <!-- compliance -->
     - [Basics and UI](./compliance_basics.html)
     - [Using the Compliance Workflow](./compliance_using.html)
@@ -104,10 +108,15 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
   </li>
   {% if page.url contains '/orchestration_' %}<li class="currentsection"><strong>Orchestration For New PE Users</strong><ul>{% else %}<li><strong><a href="./orchestration_overview.html">Orchestration For New PE Users</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'orchestration_overview.html' %}<li class="currentpage"><strong><em>Overview:</em></strong>{{ content | toc }}{% else %}<li><a href="./orchestration_overview.html">Overview</a>{% endif %}</li>
+      {% if page.url contains 'orchestration_usage.html' %}<li class="currentpage"><strong><em>Usage and Examples:</em></strong>{{ content | toc }}{% else %}<li><a href="./orchestration_usage.html">Usage and Examples</a>{% endif %}</li>
     </ul>
   </li>
   {% if page.url contains '/cloudprovisioner_' %}<li class="currentsection"><strong>Cloud Provisioning</strong><ul>{% else %}<li><strong><a href="./cloudprovisioner_overview.html">Cloud Provisioning</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'cloudprovisioner_overview.html' %}<li class="currentpage"><strong><em>Overview:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_overview.html">Overview</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_configuring.html' %}<li class="currentpage"><strong><em>Configuring and Troubleshooting:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_configuring.html">Configuring and Troubleshooting</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_vmware.html' %}<li class="currentpage"><strong><em>Provisioning with VMware:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_vmware.html">Provisioning with VMware</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_aws.html' %}<li class="currentpage"><strong><em>Provisioning with AWS:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_aws.html">Provisioning with AWS</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_classifying_installing.html' %}<li class="currentpage"><strong><em>Classifying Nodes and Remotely Installing PE:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_classifying_installing.html">Classifying Nodes and Remotely Installing PE</a>{% endif %}</li>
     </ul>
   </li>
   {% if page.url contains '/compliance_' %}<li class="currentsection"><strong>The Compliance Workflow</strong><ul>{% else %}<li><strong><a href="./compliance_basics.html">The Compliance Workflow</a></strong><ul style="display: none;">{% endif %}
