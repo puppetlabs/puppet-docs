@@ -76,7 +76,7 @@ Whether the ACL matches authenticated requests.
 
 Most communications between puppet agent and the puppet master are authenticated, so you will usually be using `auth yes`.
 
-The value of `auth` must be **one** of the above options; it cannot be a list.
+The value of `auth` must be **one** of the above options; it cannot be a list. If auth isn't explicitly specified, it will default to `yes`.
 
 ### Allow
 
