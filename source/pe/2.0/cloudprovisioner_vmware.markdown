@@ -3,24 +3,24 @@ layout: pe2experimental
 title: "PE 2.0 » Cloud Provisioning » VMware Provisioning"
 ---
 
-Provisioning with VMware
+Provisioning With VMware
 =====
 
-Puppet Enteprise can help with creating and managing VMware virtual machines on your
+Puppet Enterprise can create and manage VMware virtual machines on your
 vSphere server using vCenter.
 
 If you're new to VMware vSphere then we recommend looking at the [vSphere
 documentation](http://www.vmware.com/support/pubs/vs_pages/vsp_pubs_esx40_vc40.html).
 
-### Listing VMware vSphere instances
+Listing VMware vSphere Instances
+-----
 
 Let's get started by listing the machines currently on our vSphere
 server.  We do this by running the `puppet node_vmware list` command.
 
     $ puppet node_vmware list
 
-The first time we run this command, we be asked to
-confirm we're communicating with a trusted vSphere server:
+If you haven't yet [confirmed your vSphere server's public key hash in your `~/.fog` file](./cloudprovisioner_configuring.html#adding-vmware-credentials), you'll receive an error message containing said hash: 
 
     $ puppet node_vmware list
     notice: Connecting ...·
@@ -31,11 +31,10 @@ confirm we're communicating with a trusted vSphere server:
     message> in ~/.fog
     err: Try 'puppet help node_vmware list' for usage
 
-Confirm you've specified the right vSphere host in your `.fog`
-configuration file and then add the following option with the public key
-hash that is returned to your `.fog` file:
+Confirm that you are communicating with a trusted vSphere server by checking the hostname in your `~/.fog`
+file, then add the hash to your `.fog` file as follows:
 
-    :vsphere_expected_pubkey_hash:431dd5d0412aab11b14178290d9fcc5acb041d37f90f36f888de0cebfffff0a8
+    :vsphere_expected_pubkey_hash: 431dd5d0412aab11b14178290d9fcc5acb041d37f90f36f888de0cebfffff0a8
 
 Now we can run the `puppet node_vmware list` command and see a list of
 our existing virtual machines:
@@ -65,25 +64,26 @@ our existing virtual machines:
 
 We can see that we've connected to our vSphere server and returned a VMware
 template and a virtual machine. VMware templates contain the information needed
-to build new virtual machines, for example the operating system, hardware
-configuration and other details needed to provision a machine. A virtual
+to build new virtual machines, such as the operating system, hardware
+configuration, and other details. A virtual
 machine is an existing machine that has already been provisioned on the vSphere
 server.
 
 The following information is returned:
 
 - The location of the template or machine
-- The status of the machine, for example poweredOff or poweredOn
+- The status of the machine (for example, poweredOff or poweredOn)
 - The name of the template or machine on the vSphere server
 - The host name of the machine
 - The instanceid of the machine
-- The IP address of the machine (templates don't have IP addresses)
+- The IP address of the machine (note that templates don't have IP addresses)
 - The type of entry - either a VMware template or a virtual machine
 
-### Creating a new VMware virtual machine
+Creating a New VMware Virtual Machine
+-----
 
-Puppet Enterprise can also create and manage virtual machines from VMware
-templates. To do this we can run the `puppet node_vmware` command with the `create` option.
+Puppet Enterprise can create and manage virtual machines from VMware
+templates. This is done with the `node_vmware create` action.
 
     $ puppet node_vmware create --name=newpuppetmaster --template="/Datacenters/Solutions/vm/master_template"
     notice: Connecting ...
@@ -101,8 +101,8 @@ templates. To do this we can run the `puppet node_vmware` command with the `crea
     status: success
 
 Here we've created a new virtual machine named `newpuppetmaster` with a
-template of `/Datacenters/Solutions/vm/master_template` (we saw this template
-earlier when we listed all the resources available on our vSphere server).  The
+template of `/Datacenters/Solutions/vm/master_template`. (We saw this template
+earlier when we listed all the resources available on our vSphere server.)  The
 virtual machine is now created and will be powered on. Powering on may take
 several minutes to complete.
 
@@ -114,20 +114,19 @@ src="http://www.youtube.com/v/dIVOS53ZPFc?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="420" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
-### Starting, stopping and terminating VMware virtual machines
+Starting, Stopping and Terminating VMware Virtual Machines
+-----
 
-We've created our virtual machine and it's started. We can also start and stop
-virtual machines using the command `puppet node_vmware start` and `puppet
-node_vmware stop` respectively:
+You can start, stop, and terminate virtual machines with the `start`, `stop`, and `terminate` actions.
 
-The `start` and `stop` commands can be used like so:
+To start a virtual machine:
 
     $ puppet node_vmware start /Datacenters/Solutions/vm/newpuppetmaster
 
-You can see we've specified the path to the virtual machine we wish to start,
+You can see we've specified the path to the virtual machine we wish to start;
 in this case `/Datacenters/Solutions/vm/newpuppetmaster`.  
 
-We can also stop this virtual machine:
+To stop a virtual machine:
 
     $ puppet node_vmware stop /Datacenters/Solutions/vm/newpuppetmaster
 
@@ -136,7 +135,7 @@ This will stop the running virtual machine (it may take a few minutes).
 Lastly, we can terminate a VMware instance.  Be aware this will:
 
 - Force-shutdown the virtual machine
-- Delete the virtual machine AND it's hard disk images
+- Delete the virtual machine AND its hard disk images
 
 **This is a destructive action that should only be taken when you wish to delete
 the virtual machine!**
@@ -149,11 +148,12 @@ src="http://www.youtube.com/v/-o0h83LYSA0?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="560" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
-### Getting more help
+Getting more help
+-----
 
 The `puppet node_vmware` command has extensive in-line help documentation and a man page.
 
-To see the available command line options run:
+To see the available actions and command line options, run:
 
     $ puppet help node_vmware
     USAGE: puppet node_vmware <action> 
@@ -183,9 +183,9 @@ You can also view the man page for more detailed help.
 
     $ puppet man node_vmware
 
-You can get help on individual commands by running:
+You can get help on individual actions by running:
 
-    $ puppet help node_vmware commandname
+    $ puppet help node_vmware <ACTION>
 
 For example:
 

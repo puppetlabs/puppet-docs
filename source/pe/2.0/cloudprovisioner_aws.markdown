@@ -6,15 +6,15 @@ title: "PE 2.0 » Cloud Provisioning » AWS Provisioning"
 Provisioning With Amazon Web Services
 =====
 
-Puppet Enterprise can also work with Amazon Web Services to create and manage new EC2 instances. 
+Puppet Enterprise can create and manage EC2 machine instances using Amazon Web Services.
 
-If you are new to Amazon Web Services we recommend reading the [Getting Started
+If you are new to Amazon Web Services, we recommend reading the [Getting Started
 documentation](http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGuide/).
 
-### Listing Amazon EC2 instances
+Listing Amazon EC2 instances
+-----
 
-Let's start by listing our running EC2 instances.  To do this we're going to
-use the `puppet node_aws list` command.
+Let's start by listing our running EC2 instances.  We do this by running the `puppet node_aws list` command.
 
     $ puppet node_aws list
     i-013eb462:
@@ -41,18 +41,18 @@ Here we can see we've got three running EC2 instances and the following informat
 - The ID of the instance
 - The state of the instance, for example running or terminated
 
-**If you have no instances running then nothing will be returned**
+**If you have no instances running, then nothing will be returned.**
 
-### Creating a new Amazon EC2 instance
+Creating a new Amazon EC2 instance
+-----
 
-Let's next try to create a new instance.  Again we use the `puppet
-node_aws` command this time adding the `create` option:
+You can create a new instance with the `node_aws create` action.
 
 To create a new EC2 instance we need to add three required options:
 
-- The AMI image we wish to start
-- The name of the key pair to start the image with (in the section about credentials above we mentioned creating key pairs and making note of their name)
-- The type of instance we wish to create. You can see a list of types [here](http://aws.amazon.com/ec2/instance-types/)
+- The AMI image we wish to start.
+- The name of the SSH key pair to start the image with ([see here](./cloudprovisioner_configuring.html#additional-aws-configuration) for more about creating Amazon-managed key pairs).
+- The type of instance we wish to create. You can see a list of types [here](http://aws.amazon.com/ec2/instance-types/).
 
 Let's provide this information and run the command:
 
@@ -67,19 +67,18 @@ Let's provide this information and run the command:
     notice: Server i-df7ee898 public dns name: ec2-50-18-93-82.us-east-1.compute.amazonaws.com
     ec2-50-18-93-82.us-east-1.compute.amazonaws.com
 
-We're we've created a new instance using an AMI of `ami-edae6384`, a key named
+We've created a new instance using an AMI of `ami-edae6384`, a key named
 `cloudprovisioner` and of the type `m1.small`. If you've forgotten the
-available key names on your account you can get a list using the `puppet
-node_aws list_keynames` command:
+available key names on your account, you can get a list with the `node_aws list_keynames` action:
 
     $ puppet node_aws list_keynames
     cloudprovisioner (ad:d4:04:9f:b0:8d:e5:4e:4c:46:00:bf:88:4f:b6:c2:a1:b4:af:56)
 
-You can also specify a variety of other options, including specifying the
+You can also specify a variety of other options, including the
 region to start the instance in, and you can see a full list of these options
-using the `puppet help node_aws create` command.
+by running `puppet help node_aws create`.
 
-After the instance has been created, the public DNS name of the instance will be returned: `ec2-50-18-93-82.us-east-1.compute.amazonaws.com`.
+After the instance has been created, the public DNS name of the instance will be returned. In this case: `ec2-50-18-93-82.us-east-1.compute.amazonaws.com`.
 
 <object width="560" height="315"><param name="movie"
 value="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"></param><param
@@ -89,7 +88,8 @@ src="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="560" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
-### Connecting to an EC2 instance
+Connecting to an EC2 instance
+-----
 
 Once you've created an EC2 instance you can then connect to it using SSH. To do
 this we need the private key we downloaded earlier from the Amazon Web Services
@@ -107,12 +107,13 @@ We can now use this key to connect to our new instance.
 
     $ ssh -i ~/.ssh/mykey.pem root@ec2-50-18-93-82.us-east-1.compute.amazonaws.com
 
-### Terminating an EC2 instance
+Terminating an EC2 instance
+-----
 
 Once you've finished with an EC2 instance you can easily terminate it.
 Terminating an instance destroys the instance entirely and is a destructive
 action that should only be performed when you've finished with the instance. To
-terminate an instance we use the `puppet node_aws terminate` command.
+terminate an instance, use the `node_aws terminate` action.
 
     $ puppet node_aws terminate ec2-50-18-93-82.us-east-1.compute.amazonaws.com
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ...
@@ -126,11 +127,12 @@ src="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="560" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
-### Getting more help
+Getting more help
+-----
 
 The `puppet node_aws` command has extensive in-line help documentation and a man page.
 
-To see the available command line options run:
+To see the available actions and command line options, run:
 
     $ puppet help node_aws
     USAGE: puppet node_aws <action>
@@ -161,9 +163,9 @@ You can also view the man page for more detailed help.
 
     $ puppet man node_aws
 
-You can get help on individual commands by running:
+You can get help on individual actions by running:
 
-    $ puppet help node_aws commandname
+    $ puppet help node_aws <ACTION>
 
 For example,
 
