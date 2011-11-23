@@ -9,7 +9,7 @@ Orchestration for New PE Users: Overview
 What is Orchestration?
 -----
 
-Orchestration means invoking actions in parallel across any number of nodes at once. This introduces the
+Orchestration means invoking actions in parallel across any number of nodes at once.
 
 PE's orchestration features are built on the MCollective framework, which consists of the following components: 
 
