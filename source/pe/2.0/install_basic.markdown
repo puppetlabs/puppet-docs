@@ -60,7 +60,7 @@ The certname is the puppet master's site-unique identifier. This defaults to its
 
 The master's certificate contains a static list of valid DNS names, and agents won't trust the master if they contact it at an unlisted address. You should make sure that this list contains the DNS name or alias you'll be configuring your agents to contact.
 
-The valid DNS names setting should be a comma-separated list of hostnames, and will default to the server's short hostname, its fully-qualified domain name, `puppet`, and `puppet.<your domain>`.
+The valid DNS names setting should be a comma-separated list of hostnames. The default set of DNS names will be derived from the certname you chose, and will include the default puppet master name of "puppet."
 
 #### Location of the Console Server
 

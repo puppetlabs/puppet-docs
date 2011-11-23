@@ -18,8 +18,8 @@ Here are the main problems that can cause an install to blow up.
 If name resolution at your site isn't quite behaving right, PE's installer can go haywire.
 
 * Puppet agent has to be able to reach the puppet master server at one of its valid DNS names. (Specifically, the name you identified as the master's hostname during the installer interview.)
+* The puppet master also has to be able to reach **itself** at the puppet master hostname you chose during installation.
 * If you've split the master and console roles onto different servers, they have to be able to talk to each other as well. 
-* The puppet master has to be able to reach **itself** at the specific DNS name you chose for its **certname** --- its "extra" valid DNS names won't do. This is because puppet agent's "server" setting is automatically detected when installing on the puppet master node.
 
 ### Are the Security Settings Wrong?
 
@@ -34,7 +34,7 @@ If you are installing the console and the puppet master on separate servers and 
 
 ### How Do I Recover From a Failed Install?
 
-To recover from a wedged install of PE 2.0.0, you should:
+To recover from a wedged install of PE 2.0, you should:
 
 * Fix whatever configuration problem caused the install to fail (see above). 
 * Use your OS's tools to uninstall every package whose name is prefixed with `pe-`. 

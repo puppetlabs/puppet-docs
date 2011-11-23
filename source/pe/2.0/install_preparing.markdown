@@ -23,9 +23,10 @@ Before installing Puppet Enterprise at your site, you should make sure that your
 
 ### Name Resolution
 
-Ensure that the puppet master server can be reached via domain name lookup by all of the future puppet agent nodes at the site, and decide on a preferred name or set of names at which to reach it. 
+* Decide on a preferred name or set of names at which agent nodes should contact the puppet master server.
+* Ensure that the puppet master server can be reached via domain name lookup by all of the future puppet agent nodes at the site.
 
-Optionally, you can add a CNAME record to your site's DNS configuration (or an alias in the relevant `/etc/hosts` files) to ensure that your puppet master can also be reached at the hostname `puppet` --- since this is the default puppet master hostname, using it can simplify installation for your agent nodes. 
+You can also simplify configuration of agent nodes by using a CNAME record to make the puppet master reachable at the hostname `puppet`. (This is the default puppet master hostname that is automatically suggested when installing an agent node.)
 
 ### Firewall Configuration
 
