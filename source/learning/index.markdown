@@ -54,17 +54,28 @@ The root user's password is `puppet`, and for your convenience, the system is co
 
 If you'd rather cook up your own VM than download one from the web, you can imitate it fairly easily: this is a stripped-down CentOS 5.5 system with a hostname of "learn.puppet.demo," [Puppet Enterprise](http://info.puppetlabs.com/puppet-enterprise) installed using all default answers, iptables turned off, and the `pe-puppet` and `pe-httpd` services stopped and disabled. (It also has Puppet language modes installed for Vim and Emacs, but that's not strictly necessary.)
 
-To begin with, you won't need separate agent and master VMs; you'll be running Puppet in its serverless mode on a single machine. When we get to agent/master Puppet, we'll walk through turning on the puppet master and duplicating this system into a new agent node.
+To begin with, you won't need separate agent and master VMs; you'll be running Puppet in its serverless mode on a single node. When we get to agent/master Puppet, we'll walk through turning on the puppet master and duplicating this system into a new agent node.
 
 ### Compatibility Notes
 
 The Learning Puppet VM is available in VMWare .vmx format and the cross-platform OVF format, and has been tested with VMWare Fusion and VirtualBox. 
 
-Getting the VM working with VMWare is fairly simple, but some extra effort is necessary on VirtualBox --- the IP address it prints isn't externally reachable, and by default you'll be unable to SSH to the VM. You can enable SSH by turning on port forwarding, but since several examples (and the eventual agent/master exercises) will require more network access than simply port 22, it's wiser to configure two network interfaces: 
+Getting the VM working with VMWare is fairly simple, but some extra effort is necessary on VirtualBox --- the IP address it prints isn't externally reachable, and by default you'll be unable to SSH to the VM. You can enable SSH by turning on port forwarding, but since several examples (and the eventual agent/master exercises) will require more network access than simply port 22, it's wiser to configure two network interfaces.
+
+#### Method 1
+
+If you're on a network with working DHCP, you can simply expose the VM on that network and let it obtain an IP address like any other computer:
+
+* Before starting the VM, modify its network settings to add a "Bridged Adapter" on adapter 2. 
+* Once the VM is running, log in on its console and run `ifconfig`. Your host system should be able to ping and SSH to the VM at its eth1 IP address.
+
+#### Method 2
+
+If you aren't connected to a network with working DHCP, or you don't want to expose the VM to your local network (or take up one of its IP address slots), you can instead do the following:
 
 * Before starting the VM, modify its network settings to add "Host Only" network access on adapter 2.
-* Next, run `ifconfig` on your host machine and confirm the subnet assigned to the `vboxnet0` interface. (By default, this is 192.168.56.x, and your host machine's IP address is 192.168.56.1.) 
-* Once the VM is running, log in on its console and run `ifconfig eth1 192.168.56.2` (or some other IP address compatible with the relevant subnet); this should let you ping and SSH the box from your host machine, and you can add an entry to your host machine's `/etc/hosts` file to make things more convenient. 
+* Next, run `ifconfig` on your host system and confirm the subnet assigned to the `vboxnet0` interface. (By default, this is 192.168.56.x, and your host system's IP address is 192.168.56.1.) 
+* Once the VM is running, log in on its console and run `ifconfig eth1 192.168.56.2` (or some other IP address within the relevant subnet); this should let you ping and SSH the box from your host system, and you can add an entry to your host system's `/etc/hosts` file to make things more convenient. 
 
 Beyond this, teaching the use of virtualization software is outside the scope of this introduction, but [let me know](mailto:nick.fagerlund@puppetlabs.com) if you run into trouble, and we'll try to refine our approach over time.
 
