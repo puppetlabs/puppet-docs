@@ -13,7 +13,7 @@ To streamline deployment, the PE installer can run non-interactively. To do this
 
 Instead of interviewing a user to customize the installation, the installer will read your choices from the answer file and act on them immediately.
 
-Automated installation can greatly speed up large deployments, and is crucial when installing PE with the cloud provisioner. 
+Automated installation can greatly speed up large deployments, and is crucial when [installing PE with the cloud provisioning tools](./cloudprovisioner_classifying_installing.html#installing-puppet). 
 
 Obtaining an Answer File
 -----
