@@ -17,7 +17,21 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
+Installer Cannot Prevent or Recover From DNS/Firewall Errors
+-----
+
+The installer in PE 2.0 does not currently check for DNS misconfiguration or overly-restrictive firewall settings. Such problems can cause the installer to fail, leaving the system in an unknown state. To work around this, you should:
+
+* Be sure to read this guide's [Preparing to Install chapter](./install_preparing.html) before installing, and make sure DNS and firewalls at your site are configured appropriately.
+* If the installer has failed, follow [the instructions in the troubleshooting section of this guide](./maint_common_config_errors.html#how-do-i-recover-from-a-failed-install). 
+
+Internet Explorer 8 Can't Access Live Management Features
+-----
+
+The console's [live management](./console_live.html) page doesn't load in Internet Explorer 8. Although we are working on supporting IE8, you should currently use another browser (such as Internet Explorer 9 or Google Chrome) to access PE's live management features. 
+
 Dynamic Man Pages are Incorrectly Formatted
 -----
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
+
