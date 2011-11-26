@@ -55,13 +55,6 @@ manifests.
 
 The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code. You will find lots of examples of how to interpret different types of system data and return useful facts.
 
-You may not be able to view your custom fact when running
-facter on the client node. If you are unable to view the custom
-fact, try adding the "factpath" to the FACTERLIB environmental
-variable:
-
-    export FACTERLIB=/var/lib/puppet/lib/facter
-
 ### Using other facts
 
 You can write a fact which uses other facts by accessing
@@ -93,44 +86,51 @@ command line will not load other facts, hence the above code calls
 Facter.loadfacts to work in this mode, too. loadfacts will only
 load the default facts.
 
-To still test your custom puppet facts, which are usually only
-loaded by puppetd, there is a small hack:
+### Loading Custom Facts
 
-          mkdir rubylib
-          cd rubylib
-          ln -s /path/to/puppet/facts facter
-          RUBYLIB=. facter
+Facter offers a few methods of loading facts:
 
-### Testing
+ * $LOAD\_PATH, or the ruby library load path
+ * The environment variable 'FACTERLIB'
+ * Facts distributed using pluginsync
 
-Of course, we can test that our code works before adding it to
-Puppet.
+You can use these methods of loading facts do to things like test files locally
+before distributing them, or have a specific set of facts available on certain
+machines.
 
-Create a directory called facter/ somewhere (we often use
-`~/lib/ruby/facter`), and set the environment variable `$RUBYLIB` to
-its parent directory. You can then run facter, and it will import
-your code:
+Facter will search all directories in the ruby $LOAD\_PATH variable for
+subdirectories named 'facter', and will load all ruby files in those directories.
+If you had some directory in your $LOAD\_PATH like ~/lib/ruby, set up like
+this:
 
-    $ mkdir -p ~/lib/ruby/facter ; export RUBYLIB=~/lib/ruby
-    $ cp /path/to/hardware_platform.rb $RUBYLIB/facter
-    $ facter hardware_platform
-    SUNW,Sun-Blade-1500
+    {~/lib/ruby}
+    └── facter
+        ├── rackspace.rb
+        ├── system_load.rb
+        └── users.rb
 
-Adding this path to your `$RUBYLIB` also means you can see this fact
-when you run Puppet. Hence, you should now see the following when
-running puppetd:
+Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
+'facter/rackspace.rb'.
 
-    # puppetd -vt --factsync
-    info: Retrieving facts
-    info: Loading fact hardware_platform
-    ...
+Facter also will check the environment variable FACTERLIB for a colon delimited
+set of directories, and will try to load all ruby files in those directories.
+This allows you to do something like this:
 
-Alternatively, you can set `$FACTERLIB` to a directory with your new
-facts in, and they will be recognised on the Puppet master.
+    $ ls my_facts
+    system_load.rb
+    $ ls my_other_facts
+    users.rb
+    $ export FACTERLIB="./my_facts:./my_other_facts"
+    $ facter system_load users
+    system_load => 0.25
+    users => thomas,pat
 
-It is important to note that to use the facts on your clients you
-will still need to distribute them using the [Plugins In Modules](./plugins_in_modules.html)
-method.
+Facter can also easily load fact files distributed using pluginsync. Running
+`facter -p` will load all the facts that have been distributed via pluginsync,
+so if you're using a lot of custom facts inside puppet, you can easily use
+these facts with standalone facter.
+
+Custom facts can be distributed to clients using the [Plugins In Modules](./plugins_in_modules.html) method.
 
 ### Viewing Fact Values
 
