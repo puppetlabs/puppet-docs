@@ -48,6 +48,8 @@ THE TEXT:
 - **Maintenance and Troubleshooting** <!-- maint -->
     - [Common Configuration Errors](./maint_common_config_errors.html)
     - [Console Maintenance Tasks](./maint_maintaining_console.html)
+    - [Installing Additional Components](./maint_installing_additional.html)
+    - [Reconfiguring Complex Settings](./maint_reconfiguring.html)
 
 
 
@@ -125,6 +127,8 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
   {% if page.url contains '/maint_' %}<li class="currentsection"><strong>Maintenance and Troubleshooting</strong><ul>{% else %}<li><strong><a href="./maint_common_config_errors.html">Maintenance and Troubleshooting</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'maint_common_config_errors.html' %}<li class="currentpage"><strong><em>Common Configuration Errors:</em></strong>{{ content | toc }}{% else %}<li><a href="./maint_common_config_errors.html">Common Configuration Errors</a>{% endif %}</li>
       {% if page.url contains 'maint_maintaining_console.html' %}<li class="currentpage"><strong><em>Console Maintenance Tasks:</em></strong>{{ content | toc }}{% else %}<li><a href="./maint_maintaining_console.html">Console Maintenance Tasks</a>{% endif %}</li>
+      {% if page.url contains 'maint_installing_additional.html' %}<li class="currentpage"><strong><em>Installing Additional Components:</em></strong>{{ content | toc }}{% else %}<li><a href="./maint_installing_additional.html">Installing Additional Components</a>{% endif %}</li>
+      {% if page.url contains 'maint_reconfiguring.html' %}<li class="currentpage"><strong><em>Reconfiguring Complex Settings:</em></strong>{{ content | toc }}{% else %}<li><a href="./maint_reconfiguring.html">Reconfiguring Complex Settings</a>{% endif %}</li>
     </ul>
   </li>
 </ul>
