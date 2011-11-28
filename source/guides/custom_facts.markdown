@@ -41,9 +41,9 @@ Puppet master server:
     # hardware_platform.rb
 
     Facter.add("hardware_platform") do
-            setcode do
-                    %x{/bin/uname -i}.chomp
-            end
+      setcode do
+        Facter::Util::Resolution.exec('/bin/uname -i').chomp
+      end
     end
 
 Note that the `chomp` is required to provide clean data.
@@ -63,34 +63,20 @@ return nil for unknown facts, the latter will raise an exception.
 An example:
 
     Facter.add("osfamily") do
-        setcode do
-            begin
-                Facter.lsbdistid
-            rescue
-                Facter.loadfacts()
-            end
-            distid = Facter.value('lsbdistid')
-            if distid.match(/RedHatEnterprise|CentOS|Fedora/)
-                family = "redhat"
-            elsif distid == "ubuntu"
-                family = "debian"
-            else
-                family = distid
-            end
-            family
+      setcode do
+        distid = Facter.value('lsbdistid')
+        case distid
+        when /RedHatEnterprise|CentOS|Fedora/
+          "redhat"
+        when "ubuntu"
+          "debian"
+        else
+          distid
         end
+      end
     end
 
-Here it is important to note that running facter myfact on the
-command line will not load other facts, hence the above code calls
-Facter.loadfacts to work in this mode, too. loadfacts will only
-load the default facts.
-
 ### Loading Custom Facts
-
-Facter offers a few methods of loading facts:
-
- * $LOAD\_PATH, or the ruby library load path
  * The environment variable 'FACTERLIB'
  * Facts distributed using pluginsync
 
@@ -112,7 +98,7 @@ this:
 Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
 'facter/rackspace.rb'.
 
-Facter also will check the environment variable FACTERLIB for a colon delimited
+Facter also will check the environment variable `FACTERLIB` for a colon delimited
 set of directories, and will try to load all ruby files in those directories.
 This allows you to do something like this:
 
@@ -262,7 +248,7 @@ If $factsource was unset, the `--factsync` option is equivalent to:
 After the facts were downloaded, they were loaded (or reloaded)
 into memory.
 
-Some additional options were avaialble to configure this legacy
+Some additional options were available to configure this legacy
 method:
 
 The following command line or config file options are available
