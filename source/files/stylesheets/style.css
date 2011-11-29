@@ -52,6 +52,11 @@ body {
 }
 
 code { font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace }
+var  { 
+  font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
+  font-weight: bold;
+}
+
 
 /* Make the line numbers in syntax-highlighted text not look like content */
 .lineno {
