@@ -38,6 +38,9 @@ THE TEXT:
     - [Provisioning with VMware](./cloudprovisioner_vmware.html)
     - [Provisioning with AWS](./cloudprovisioner_aws.html)
     - [Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html)
+    - [Man Page: node_vmware](./cloudprovisioner_man_node_vmware.html)
+    - [Man Page: node_aws](./cloudprovisioner_man_node_aws.html)
+    - [Man Page: node](./cloudprovisioner_man_node.html)
 - **The Compliance Workflow** <!-- compliance -->
     - [Basics and UI](./compliance_basics.html)
     - [Using the Compliance Workflow](./compliance_using.html)
@@ -111,6 +114,9 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
       {% if page.url contains 'cloudprovisioner_vmware.html' %}<li class="currentpage"><strong><em>Provisioning with VMware:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_vmware.html">Provisioning with VMware</a>{% endif %}</li>
       {% if page.url contains 'cloudprovisioner_aws.html' %}<li class="currentpage"><strong><em>Provisioning with AWS:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_aws.html">Provisioning with AWS</a>{% endif %}</li>
       {% if page.url contains 'cloudprovisioner_classifying_installing.html' %}<li class="currentpage"><strong><em>Classifying Nodes and Remotely Installing PE:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_classifying_installing.html">Classifying Nodes and Remotely Installing PE</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_man_node_vmware.html' %}<li class="currentpage"><strong><em>Man Page: node_vmware:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_man_node_vmware.html">Man Page: node_vmware</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_man_node_aws.html' %}<li class="currentpage"><strong><em>Man Page: node_aws:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_man_node_aws.html">Man Page: node_aws</a>{% endif %}</li>
+      {% if page.url contains 'cloudprovisioner_man_node.html' %}<li class="currentpage"><strong><em>Man Page: node:</em></strong>{{ content | toc }}{% else %}<li><a href="./cloudprovisioner_man_node.html">Man Page: node</a>{% endif %}</li>
     </ul>
   </li>
   {% if page.url contains '/compliance_' %}<li class="currentsection"><strong>The Compliance Workflow</strong><ul>{% else %}<li><strong><a href="./compliance_basics.html">The Compliance Workflow</a></strong><ul style="display: none;">{% endif %}
