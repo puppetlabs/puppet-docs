@@ -63,3 +63,49 @@ PE creates the following users:
 - **`pe-apache`** --- A system user which runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system user which runs the console processes spawned by Passenger.
+
+Log Files
+-----
+
+The software distributed with Puppet Enterprise generates the following log files: 
+
+### Puppet Master
+
+- `/var/log/pe-httpd/access.log`
+- `/var/log/pe-httpd/error.log`
+
+These logs are solely for HTTP activity; the puppet master service logs most of its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+
+### Puppet Agent
+
+The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+
+### ActiveMQ 
+
+- `/var/log/pe-activemq/wrapper.log`
+- `/var/log/pe-activemq/activemq.log`
+- `/var/opt/puppet/activemq/data/kahadb/db-1.log`
+- `/var/opt/puppet/activemq/data/audit.log`
+
+### Orchestration Service
+
+This log is maintained by the orchestration service, which is installed on all nodes.
+
+- `/var/log/pe-mcollective/mcollective.log`
+
+### Console
+
+- `/var/log/pe-httpd/puppetdashboard.access.log`
+- `/var/log/pe-httpd/puppetdashboard.error.log`
+- `/var/log/pe-puppet-dashboard/delayed_job.log`
+- `/var/log/pe-puppet-dashboard/mcollective_client.log`
+- `/var/log/pe-puppet-dashboard/production.log`
+
+### Miscellaneous
+
+These files may or may not be present.
+
+- `/var/log/pe-httpd/other_vhosts_access.log`
+- `/var/log/pe-puppet/masterhttp.log`
+- `/var/log/pe-puppet/rails.log`
+
