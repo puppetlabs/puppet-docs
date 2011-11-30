@@ -77,6 +77,10 @@ An example:
     end
 
 ### Loading Custom Facts
+
+Facter offers a few methods of loading facts:
+
+ * $LOAD\_PATH, or the ruby library load path
  * The environment variable 'FACTERLIB'
  * Facts distributed using pluginsync
 
