@@ -72,7 +72,7 @@ These answers are always needed.
 These answers are always needed.
 
 `q_puppetagent_certname`
-: **String** --- A site-unique identifier for this agent node.
+: **String** --- An identifying string for this agent node. This per-node ID must be unique across your entire site. Fully qualified domain names are often used as agent certnames.
 
 `q_puppetagent_server`
 : **String** --- The hostname of the puppet master server. For the agent to trust the master's certificate, this must be one of the valid DNS names you chose when installing the puppet master.
@@ -83,7 +83,7 @@ These answers are always needed.
 These answers are only needed if you are installing the puppet master role. 
 
 `q_puppetmaster_certname`
-: **String** --- A site-unique identifier for the puppet master.
+: **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server's fully qualified domain name is often used as the puppet master's certname.
 
 `q_puppetmaster_dnsaltnames`
 : **String** --- Valid DNS names at which the puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppet,puppet.<domain>`.
@@ -109,7 +109,7 @@ These answers are only needed if you are installing the console role.
 : **String** --- The password for accessing the console's web interface. Must be longer than four characters.
 
 `q_puppet_enterpriseconsole_inventory_certname`
-: **String** --- A site-unique identifier for the inventory service. Only needed if you are _not_ installing the puppet master role on the console server. Must be a working DNS name for the console server.
+: **String** --- An identifying string for the inventory service. This ID must be unique across your entire site. Only needed if you are _not_ installing the puppet master role on the console server.
 
 `q_puppet_enterpriseconsole_inventory_dnsaltnames`
 : **String** --- Valid DNS names at which the console server can be reached. Only needed if you are _not_ installing the puppet master role on the console server. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppetinventory,puppetinventory.<domain>`.

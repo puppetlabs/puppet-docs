@@ -54,7 +54,7 @@ The puppet master and console roles should each be installed on **only one** sys
 
 #### Certname
 
-The certname is the puppet master's site-unique identifier. This defaults to its fully-qualified domain name, which is usually the best choice, but any arbitrary string can be used.
+The certname is the puppet master's unique identifier. This defaults to its fully-qualified domain name, which is usually the best choice, but any arbitrary string can be used.
 
 #### Valid DNS Names
 
@@ -113,7 +113,7 @@ A local database is best, but you can also create a database on a remote server.
 
 #### Certname
 
-The certname is the agent node's site-unique identifier.
+The certname is the agent node's unique identifier.
 
 This defaults to the node's fully-qualified domain name, but any arbitrary string can be used. If hostnames change frequently at your site or are otherwise unreliable, you may wish to use UUIDs or hashed firmware attributes for your agent certnames.
 
