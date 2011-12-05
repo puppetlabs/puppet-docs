@@ -132,8 +132,7 @@ WARNING: If you get the error, in `require: no such file to load`, define the RU
 [post-install instructions](http://docs.rubygems.org/read/chapter/3#page70)
 of the RubyGems User Guide.
 
-Configuring Puppet
+Learning and Configuring Puppet
 ------------------
 
-Now that the packages are installed, see [Configuring Puppet](./configuring.html) for setup instructions.
-
+Now that the packages are installed, start [Learning Puppet](../learning/) or see [Configuring Puppet](./configuring.html) for setup instructions.
