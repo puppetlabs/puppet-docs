@@ -14,8 +14,11 @@ a wide-range of operating systems.
 Before Starting
 ---------------
 
-You will need to install Puppet on all machines on both clients
-and the central Puppet master server(s).
+You will need to install Puppet on both [managed nodes](./tools.html#puppet-agent-or-puppetd)
+and the central [Puppet master server(s)](./tools.html#puppet-master-or-puppetmasterd)
+in order to run puppet in client server mode.
+If you will just be running [Puppet standalone](./tools.html#puppet-apply-or-puppet)
+you don't need a Puppet master server and installation on just one machine will suffice.
 
 For most platforms, you can install 'puppet' via your package
 manager of choice.  For a few platforms, you will need to install
