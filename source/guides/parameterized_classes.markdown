@@ -151,7 +151,7 @@ This design pattern can make for significantly cleaner code while enabling some 
     class webserver(
      $packages  = $webserver::params::packages,
      $vhost_dir = $webserver::params::vhost_dir
-    ) inherits $webserver::params {
+    ) inherits webserver::params {
     
      package { $packages: ensure => present }
     
