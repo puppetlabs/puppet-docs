@@ -37,7 +37,7 @@ To learn more about the capabilities of Puppet, start at the [main Puppet docume
 Puppet is open source and is released under the
 [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-Versions prior to Puppet 2.7.0 and Facter 1.6.0 were released under 
+Versions prior to Puppet 2.7.0 and Facter 1.6.0 were released under
 the GPL version 2.0 license.
 
 See the Apache Licensing section below for more information.
@@ -136,11 +136,12 @@ desktops.
 
 ### Does Puppet run on Windows?
 
-The short answer is "not yet."
-
-Experimental Windows support was added in Puppet 2.6. Although
-it's not yet ready for deployment, this support will be improved and
-extended during 2011.
+Yes.  As of Puppet 2.7.6 basic types and providers do run on Windows, and the test
+suite is being run on Windows to ensure future compatibility.  More information
+can be found on the
+[Puppet Windows wiki](http://projects.puppetlabs.com/projects/1/wiki/Puppet_Windows), and
+[bug reports](http://projects.puppetlabs.com/projects/puppet/issues/new) and
+[patches](./development_lifecycle.html) are welcome.
 
 ### What size organizations should use Puppet?
 
@@ -245,7 +246,7 @@ Ruby 1.8.5 and 1.8.7 work with all Puppet versions, and are supported with full 
 
 Ruby 1.8.1 is supported for agent use only on a best-effort basis under Puppet 2.6 and 2.7; we do not cover 1.8.1 with our automated testing.
 
-Although Puppet has been known to work with other Ruby versions, Puppet Labs does not test these versions. Puppet has significant known compatibility issues under Ruby 1.8.6, 1.9.0, and 1.9.1; these versions are not recommended. 
+Although Puppet has been known to work with other Ruby versions, Puppet Labs does not test these versions. Puppet has significant known compatibility issues under Ruby 1.8.6, 1.9.0, and 1.9.1; these versions are not recommended.
 
 Upgrading
 ---------
@@ -347,7 +348,7 @@ manifests:
 * `$environment` --- Provided by the agent; contains the agent node's current
 environment.
 * `$clientcert` --- Provided by the agent; contains the agent node's certname. Added in Puppet 2.6.0.
-* `$clientversion` --- Provided by the agent; contains the current version of puppet agent. 
+* `$clientversion` --- Provided by the agent; contains the current version of puppet agent.
 * `$module_name` --- Provided by the parser; contains the name of the module that contains the current resource's definition. Added in Puppet 2.6.0.
 * `$caller_module_name` --- Provided by the parser; contains the name of the module that contains the current resource's declaration. Added in Puppet 2.6.0.
 * `$servername` --- Provided by the puppet master; contains the master server's
@@ -442,7 +443,7 @@ whole.
 
 ### What happens if I am on Puppet 2.6x or earlier?
 
-Nothing changes for you.  Puppet 2.6.x remains licensed as GPLv2. 
+Nothing changes for you.  Puppet 2.6.x remains licensed as GPLv2.
 The license change is not retroactive.
 
 ### Does this change affect all the components of Puppet?
