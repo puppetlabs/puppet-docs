@@ -534,8 +534,9 @@ Here the ntpd service requires /etc/ntp.conf and the ntp package.
 
 Please note, relationships declared in this manner are between adjacent
 resources.  In this example, the ntp package and the ntp configuration file are
-related to each other and puppet may try to manage the configuration file
-before the package is even installed, which may not be the desired behavior.
+not directly related to each other, and puppet may try to manage the
+configuration file before the package is even installed, which may not be the
+desired behavior.
 
 Chaining in this manner can provide some succinctness at the cost of
 readability.
