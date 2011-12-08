@@ -755,8 +755,12 @@ limited, stand alone manner.
 
 ## 13. Puppet Doc
 
-Classes and defined resource types should be documented inline using the
-following conventions:
+Classes and defined resource types should be documented inline using
+[RDoc markup](http://links.puppetlabs.com/rdoc_markup).  These inline
+documentation comments are important because online documentation can then be
+easily generated using the
+[puppet doc](http://links.puppetlabs.com/puppet_manifest_documentation)
+command.
 
 For classes:
 
