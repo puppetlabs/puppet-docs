@@ -37,7 +37,7 @@ Using Parameterized Classes
 
 ### Writing a Parameterized Class
 
-Parameterized classes are declared just like classical classes, but with a list of parameters (in parentheses) between the class name and the opening bracket: 
+Parameterized classes are defined just like classical classes, but with a list of parameters (in parentheses) between the class name and the opening bracket: 
 
 {% highlight ruby %}
     class webserver( $vhost_dir, $packages ) {
