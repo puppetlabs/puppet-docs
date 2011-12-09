@@ -189,7 +189,7 @@ By the way, `--configprint` is wonderful. Puppet has a _lot_ of [config options]
 Modules
 -------
 
-So anyway, modules are re-usable bundles of code and data. Puppet autoloads manifests from the modules in its `modulepath`, which means you can declare a class stored in a module from anywhere. Let's just convert that last class to a module immediately, so you can see what I'm talking about:
+Modules are re-usable bundles of code and data. Puppet autoloads manifests from the modules in its `modulepath`, which means you can declare a class stored in a module from anywhere. Let's just convert that last class to a module immediately, so you can see what I'm talking about:
 
     # cd /etc/puppetlabs/puppet/modules
     # mkdir ntp; cd ntp; mkdir manifests; cd manifests
