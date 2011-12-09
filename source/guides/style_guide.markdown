@@ -765,77 +765,88 @@ command.
 For classes:
 
 {% highlight ruby %}
-    # Full description of class here.
+    # == Class: example_class
     #
-    # == Parameters
+    # Full description of class example_class here.
     #
-    # Document parameters here
+    # === Parameters
     #
-    # [*servers*]
-    #   Description of servers class parameter.  e.g. "Specify one or more
-    #   upstream ntp servers as an array."
+    # Document parameters here.
     #
-    # == Variables
+    # [*ntp_servers*]
+    #   Explanation of what this parameter affects and what it defaults to.
+    #   e.g. "Specify one or more upstream ntp servers as an array."
+    #
+    # === Variables
     #
     # Here you should define a list of variables that this module would require.
     #
-    # [*$enc_ntp_servers*]
-    #     Description of this variable.  e.g. "The parameter enc_ntp_servers
-    # must be set by the External Node Classifier as a comma separated list of
-    # hostnames."  (Note, global variables should not be used in preference to
-    # class parameters as of Puppet 2.6.)
+    # [*enc_ntp_servers*]
+    #   Explanation of how this variable affects the funtion of this class and if it
+    #   has a default. e.g. "The parameter enc_ntp_servers must be set by the
+    #   External Node Classifier as a comma separated list of hostnames." (Note,
+    #   global variables should not be used in preference to class parameters  as of
+    #   Puppet 2.6.)
     #
-    # == Examples
+    # === Examples
     #
-    # Put some examples on how to use your class here.
+    #  class { 'example_class':
+    #    ntp_servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+    #  }
     #
-    #   $example_var = "blah"
-    #   include example_class
+    # === Authors
     #
-    # == Authors
+    # Author Name <author@domain.com>
     #
-    # Author Name <author@domain.com\>
+    # === Copyright
     #
-    # == Copyright
-    #
-    # Copyright 2011 Company Name Inc, unless otherwise noted.
+    # Copyright 2011 Your name here, unless otherwise noted.
     #
     class example_class {
-      ...
+
     }
 {% endhighlight %}
 
 For defined resources:
 
 {% highlight ruby %}
-    # Description of resource here
+    # == Define: example_resource
     #
-    # == Parameters
+    # Full description of defined resource type example_resource here.
+    #
+    # === Parameters
     #
     # Document parameters here
     #
     # [*namevar*]
     #   If there is a parameter that defaults to the value of the title string
-    # when not explicitly set, you must always say so.  This parameter can be
-    # referred to as a "namevar," since it's functionally equivalent to the
-    # namevar of a core resource type.
+    #   when not explicitly set, you must always say so.  This parameter can be
+    #   referred to as a "namevar," since it's functionally equivalent to the
+    #   namevar of a core resource type.
     #
     # [*basedir*]
     #   Description of this variable.  For example, "This parameter sets the
-    # base directory for this resource type.  It should not contain a trailing
-    # slash."
+    #   base directory for this resource type.  It should not contain a trailing
+    #   slash."
     #
-    # == Examples
+    # === Examples
     #
     # Provide some examples on how to use this type:
     #
-    #   example_class::example_resource{
-    #     "namevar":
-    #       sample_param => "value",
+    #   example_class::example_resource { 'namevar':
+    #     basedir => '/tmp/src',
     #   }
     #
-    define example_class::example_resource($example_var) {
-      ...
+    # === Authors
+    #
+    # Author Name <author@domain.com>
+    #
+    # === Copyright
+    #
+    # Copyright 2011 Your name here, unless otherwise noted.
+    #
+    define example_class::example_resource($basedir) {
+
     }
 {% endhighlight %}
 
