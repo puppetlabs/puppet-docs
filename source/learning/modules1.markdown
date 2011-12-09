@@ -263,7 +263,7 @@ There --- our little example from last chapter has grown up into a self-containe
 
 ### Obtaining Modules
 
-Puppet Labs hosts [Puppet Forge](http://forge.puppetlabs.com) for users to contribute modules for other puppet users to use.  It is recommended to start here before writing your own module for common management tasks. Many modules on the forge allow others to contribute to the module through third party repositories such as [Github](http://github.com). Users are encouraged to contribute back to these modules for any changes they make.
+Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. The Puppet Forge is a great place to start looking for modules that you can use or adapt for your environment. Most of these modules are open source and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
 
 
 Module Structure
