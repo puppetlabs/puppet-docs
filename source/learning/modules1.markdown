@@ -261,6 +261,11 @@ There --- our little example from last chapter has grown up into a self-containe
 
 [^dashe]: The `-e` flag lets you give puppet apply a line of manifest code instead of a file, same as with Perl or Ruby.
 
+### Obtaining Modules
+
+Puppet Labs hosts [Puppet Forge](http://forge.puppetlabs.com) for users to contribute modules for other puppet users to use.  It is recommended to start here before writing your own module for common management tasks. Many modules on the forge allow others to contribute to the module through third party repositories such as [Github](http://github.com). Users are encouraged to contribute back to these modules for any changes they make.
+
+
 Module Structure
 ----------------
 
