@@ -52,6 +52,10 @@ Although this task **should be run regularly as a cron job,** the frequency with
 
 If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `mon`, `yr`, `day`, `min`, `wk`, and `hr`.
 
+**Note:** [A known issue][orphaned] currently leaves orphaned records in the database after running the `reports:prune` task. These records will be cleaned up by a future maintenance release of PE, but if you are short on disk space, you can also [manually delete them][orphaned].
+
+[orphaned]: ./welcome_known_issues.html#consoles-reportsprune-task-leaves-orphaned-data
+
 Database backups
 ----------------
 
