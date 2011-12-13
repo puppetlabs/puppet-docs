@@ -1,7 +1,7 @@
 Style and Usage Guide
 =====================
 
-The documentation project's conventions for writing about Puppet.
+The documentation project's conventions, best practices, and general habits.
 
 * * *
 
@@ -16,13 +16,19 @@ and terminology exclusively.
 Eventually, we may need a more prominent "decoder" document; in the meantime,
 the [Tools](./tools.html) reference will do.
 
+Dialect and Spelling
+-------
+
+The docs project favors (but never favours) American spellings.
+
 Agent and Master Systems
 ------------------------
 
-Systems running puppet master should be usually called "puppet master servers"
-or "puppet masters." Systems running puppet agent should usually be called
-"agent nodes." We're avoiding "server" and "client" because agent nodes are
-almost always servers themselves.
+Systems running puppet master should be usually called "puppet master
+servers," "puppet master nodes," or "puppet masters." Systems running puppet
+agent should usually be called "agent nodes." In general we should avoid using
+"server" and "client" alone to describe these roles, because agent nodes
+(clients) are almost always servers themselves.
 
 "Puppet"
 --------
@@ -63,9 +69,17 @@ Quoting Commands and Responses
 
 If you're quoting a shell command inline, context should keep it from being
 confusing. If quoting a group of commands and responses as a code block, prefix
-the commands with $ or #, depending on whether they're to be run with user or
-root privileges. For clarity, you can choose to prefix shorter responses with >,
-but longer responses are usually visually distinctive enough to be obvious.
+the commands with $ or #. For clarity, you can choose to prefix shorter
+responses with >, but longer responses are usually visually distinctive enough
+to be obvious.
+
+Sudo
+----
+
+Per feedback from Product (Nigel), the docs (especially those dealing with PE)
+should generally prefix example commands that need superuser privileges with
+`sudo`, rather than explaining the privileges needed (too much) or expecting
+readers to pick up on the distinction between $ and # (not enough).
 
 Define/Declare
 --------------
