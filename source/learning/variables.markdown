@@ -120,7 +120,7 @@ We'll start with your basic `if` statement. Same as it ever was:
 The else and any number of elsif statements are optional.
 
 {% highlight ruby %}
-    if $is_virtual {
+    if $is_virtual == 'true' {
       service {'ntpd':
         ensure => stopped,
         enable => false,
@@ -141,14 +141,14 @@ The blocks of code for each condition can contain any Puppet code.
 
 #### What is False?
 
-You'll notice I used a bare fact as the condition above. The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth mentioning that the following values will be treated as false by an if statement:
+The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth calling out what exactly will be treated as false by an `if` statement:
 
 * `undef` (the value of an unassigned variable)
 * `''` (the empty string)
 * `false`
 * Any expression that evaluates to false.
 
-In particular, be aware that 0 is true.
+**In particular, be aware that the numeral 0 and the string "false" are both true.** This means that while you can use some variables alone as an if-condition, you can't use facts that way. Facts are always read into Puppet as strings, so you need to test conceptually-boolean facts for their string value instead of their literal truth or falsehood.
 
 #### Conditions
 
