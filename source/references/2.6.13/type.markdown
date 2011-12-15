@@ -97,87 +97,75 @@ augeas   | *X*             | *X*          | *X*            |
 #### Parameters
 
 
-##### changes
+changes
+: The changes which should be applied to the filesystem. This
+    can be either a string which contains a command or an array of commands.
+    Commands supported are:
 
-The changes which should be applied to the filesystem. This
-can be either a string which contains a command or an array of commands.
-Commands supported are:
+        set [PATH] [VALUE]            Sets the value VALUE at loction PATH
+        rm [PATH]                     Removes the node at location PATH
+        remove [PATH]                 Synonym for rm
+        clear [PATH]                  Keeps the node at PATH, but removes the value.
+        ins [LABEL] [WHERE] [PATH]    Inserts an empty node LABEL either [WHERE={before|after}] PATH.
+        insert [LABEL] [WHERE] [PATH] Synonym for ins
 
-    set [PATH] [VALUE]            Sets the value VALUE at loction PATH
-    rm [PATH]                     Removes the node at location PATH
-    remove [PATH]                 Synonym for rm
-    clear [PATH]                  Keeps the node at PATH, but removes the value.
-    ins [LABEL] [WHERE] [PATH]    Inserts an empty node LABEL either [WHERE={before|after}] PATH.
-    insert [LABEL] [WHERE] [PATH] Synonym for ins
+    If the parameter 'context' is set that value is prepended to PATH
 
-If the parameter 'context' is set that value is prepended to PATH
+context
+: Optional context path. This value is prepended to the paths of all changes if the path is relative. If INCL is set, defaults to '/files' + INCL, otherwise the empty string
 
-##### context
+force
+: Optional command to force the augeas type to execute even if it thinks changes
+    will not be made. This does not overide the only setting. If onlyif is set, then the
+    foce setting will not override that result
 
-Optional context path. This value is prepended to the paths of all changes if the path is relative. If INCL is set, defaults to '/files' + INCL, otherwise the empty string
+incl
+: Load only a specific file, e.g. `/etc/hosts`.  When this parameter is set, you must also set the lens parameter to indicate which lens to use.
 
-##### force
+lens
+: Use a specific lens, e.g. `Hosts.lns`. When this parameter is set, you must also set the incl parameter to indicate which file to load. Only that file will be loaded, which greatly speeds up execution of the type
 
-Optional command to force the augeas type to execute even if it thinks changes
-will not be made. This does not overide the only setting. If onlyif is set, then the
-foce setting will not override that result
+load_path
+: Optional colon separated list of directories; these directories are searched for schema definitions
 
-##### incl
+name
+: The name of this task. Used for uniqueness
 
-Load only a specific file, e.g. `/etc/hosts`.  When this parameter is set, you must also set the lens parameter to indicate which lens to use.
+onlyif
+: Optional augeas command and comparisons to control the execution of this type.
+    Supported onlyif syntax:
 
-##### lens
+        get [AUGEAS_PATH] [COMPARATOR] [STRING]
+        match [MATCH_PATH] size [COMPARATOR] [INT]
+        match [MATCH_PATH] include [STRING]
+        match [MATCH_PATH] not_include [STRING]
+        match [MATCH_PATH] == [AN_ARRAY]
+        match [MATCH_PATH] != [AN_ARRAY]
 
-Use a specific lens, e.g. `Hosts.lns`. When this parameter is set, you must also set the incl parameter to indicate which file to load. Only that file will be loaded, which greatly speeds up execution of the type
+    where:
 
-##### load_path
+        AUGEAS_PATH is a valid path scoped by the context
+        MATCH_PATH is a valid match synatx scoped by the context
+        COMPARATOR is in the set [> >= != == <= <]
+        STRING is a string
+        INT is a number
+        AN_ARRAY is in the form ['a string', 'another']
 
-Optional colon separated list of directories; these directories are searched for schema definitions
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### name
+    * **augeas**:       Supported features: `execute_changes`, `need_to_run?`, `parse_commands`.
 
-The name of this task. Used for uniqueness
+returns
+: The expected return code from the augeas command. Should not be set
 
-##### onlyif
+root
+: A file system path; all files loaded by Augeas are loaded underneath ROOT
 
-Optional augeas command and comparisons to control the execution of this type.
-Supported onlyif syntax:
-
-    get [AUGEAS_PATH] [COMPARATOR] [STRING]
-    match [MATCH_PATH] size [COMPARATOR] [INT]
-    match [MATCH_PATH] include [STRING]
-    match [MATCH_PATH] not_include [STRING]
-    match [MATCH_PATH] == [AN_ARRAY]
-    match [MATCH_PATH] != [AN_ARRAY]
-
-where:
-
-    AUGEAS_PATH is a valid path scoped by the context
-    MATCH_PATH is a valid match synatx scoped by the context
-    COMPARATOR is in the set [> >= != == <= <]
-    STRING is a string
-    INT is a number
-    AN_ARRAY is in the form ['a string', 'another']
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **augeas**:       Supported features: `execute_changes`, `need_to_run?`, `parse_commands`.
-
-##### returns
-
-The expected return code from the augeas command. Should not be set
-
-##### root
-
-A file system path; all files loaded by Augeas are loaded underneath ROOT
-
-##### type_check
-
-Set to true if augeas should perform typechecking. Optional, defaults to false  Valid values are `true`, `false`.
+type_check
+: Set to true if augeas should perform typechecking. Optional, defaults to false  Valid values are `true`, `false`.
 
 
 
@@ -209,44 +197,38 @@ the Computer resource will autorequire it.
 #### Parameters
 
 
-##### en_address
+en_address
+: The MAC address of the primary network interface. Must match en0.
 
-The MAC address of the primary network interface. Must match en0.
+ensure
+: Control the existences of this computer record. Set this attribute to
+    `present` to ensure the computer record exists.  Set it to `absent`
+    to delete any computer records with this name  Valid values are `present`, `absent`.
 
-##### ensure
+ip_address
+: The IP Address of the Computer object.
 
-Control the existences of this computer record. Set this attribute to
-`present` to ensure the computer record exists.  Set it to `absent`
-to delete any computer records with this name  Valid values are `present`, `absent`.
+name
+: The authoritative 'short' name of the computer record.
 
-##### ip_address
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The IP Address of the Computer object.
+    * **directoryservice**: Computer object management using DirectoryService on OS X.
+      Note that these are distinctly different kinds of objects to 'hosts',
+      as they require a MAC address and can have all sorts of policy attached to
+      them.
 
-##### name
+      This provider only manages Computer objects in the local directory service
+      domain, not in remote directories.
 
-The authoritative 'short' name of the computer record.
+      If you wish to manage /etc/hosts on Mac OS X, then simply use the host
+      type as per other platforms.    Default for `operatingsystem` == `darwin`.  
 
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **directoryservice**: Computer object management using DirectoryService on OS X.
-  Note that these are distinctly different kinds of objects to 'hosts',
-  as they require a MAC address and can have all sorts of policy attached to
-  them.
-
-  This provider only manages Computer objects in the local directory service
-  domain, not in remote directories.
-
-  If you wish to manage /etc/hosts on Mac OS X, then simply use the host
-  type as per other platforms.    Default for `operatingsystem` == `darwin`.  
-
-##### realname
-
-The 'long' name of the computer record.
+realname
+: The 'long' name of the computer record.
 
 
 
@@ -298,101 +280,88 @@ that your `cron` daemon supports these):
 #### Parameters
 
 
-##### command
+command
+: The command to execute in the cron job.  The environment
+    provided to the command varies by local system rules, and it is
+    best to always provide a fully qualified command.  The user's
+    profile is not sourced when the command is run, so if the
+    user's environment is desired it should be sourced manually.
 
-The command to execute in the cron job.  The environment
-provided to the command varies by local system rules, and it is
-best to always provide a fully qualified command.  The user's
-profile is not sourced when the command is run, so if the
-user's environment is desired it should be sourced manually.
+    All cron parameters support `absent` as a value; this will
+    remove any existing values for that field.
 
-All cron parameters support `absent` as a value; this will
-remove any existing values for that field.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### ensure
-
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
-
-##### environment
-
-Any environment settings associated with this cron job.  They
-will be stored between the header and the job in the crontab.  There
-can be no guarantees that other, earlier settings will not also
-affect a given cron job.
+environment
+: Any environment settings associated with this cron job.  They
+    will be stored between the header and the job in the crontab.  There
+    can be no guarantees that other, earlier settings will not also
+    affect a given cron job.
 
 
-Also, Puppet cannot automatically determine whether an existing,
-unmanaged environment setting is associated with a given cron
-job.  If you already have cron jobs with environment settings,
-then Puppet will keep those settings in the same place in the file,
-but will not associate them with a specific job.
+    Also, Puppet cannot automatically determine whether an existing,
+    unmanaged environment setting is associated with a given cron
+    job.  If you already have cron jobs with environment settings,
+    then Puppet will keep those settings in the same place in the file,
+    but will not associate them with a specific job.
 
-Settings should be specified exactly as they should appear in
-the crontab, e.g., `PATH=/bin:/usr/bin:/usr/sbin`.
+    Settings should be specified exactly as they should appear in
+    the crontab, e.g., `PATH=/bin:/usr/bin:/usr/sbin`.
 
-##### hour
+hour
+: The hour at which to run the cron job. Optional;
+    if specified, must be between 0 and 23, inclusive.
 
-The hour at which to run the cron job. Optional;
-if specified, must be between 0 and 23, inclusive.
+minute
+: The minute at which to run the cron job.
+    Optional; if specified, must be between 0 and 59, inclusive.
 
-##### minute
+month
+: The month of the year.  Optional; if specified
+    must be between 1 and 12 or the month name (e.g., December).
 
-The minute at which to run the cron job.
-Optional; if specified, must be between 0 and 59, inclusive.
+monthday
+: The day of the month on which to run the
+    command.  Optional; if specified, must be between 1 and 31.
 
-##### month
+name
+: The symbolic name of the cron job.  This name
+    is used for human reference only and is generated automatically
+    for cron jobs found on the system.  This generally won't
+    matter, as Puppet will do its best to match existing cron jobs
+    against specified jobs (and Puppet adds a comment to cron jobs it adds), but it is at least possible that converting from
+    unmanaged jobs to managed jobs might require manual
+    intervention.
 
-The month of the year.  Optional; if specified
-must be between 1 and 12 or the month name (e.g., December).
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### monthday
+    * **crontab**:   Required binaries: `crontab`.    
 
-The day of the month on which to run the
-command.  Optional; if specified, must be between 1 and 31.
+special
+: A special value such as 'reboot' or 'annually'.
+    Only available on supported systems such as Vixie Cron.
+    Overrides more specific time of day/week settings.
 
-##### name
+target
+: Where the cron job should be stored.  For crontab-style
+    entries this is the same as the user and defaults that way.
+    Other providers default accordingly.
 
-The symbolic name of the cron job.  This name
-is used for human reference only and is generated automatically
-for cron jobs found on the system.  This generally won't
-matter, as Puppet will do its best to match existing cron jobs
-against specified jobs (and Puppet adds a comment to cron jobs it adds), but it is at least possible that converting from
-unmanaged jobs to managed jobs might require manual
-intervention.
+user
+: The user to run the command as.  This user must
+    be allowed to run cron jobs, which is not currently checked by
+    Puppet.
 
-##### provider
+    The user defaults to whomever Puppet is running as.
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **crontab**:   Required binaries: `crontab`.    
-
-##### special
-
-A special value such as 'reboot' or 'annually'.
-Only available on supported systems such as Vixie Cron.
-Overrides more specific time of day/week settings.
-
-##### target
-
-Where the cron job should be stored.  For crontab-style
-entries this is the same as the user and defaults that way.
-Other providers default accordingly.
-
-##### user
-
-The user to run the command as.  This user must
-be allowed to run cron jobs, which is not currently checked by
-Puppet.
-
-The user defaults to whomever Puppet is running as.
-
-##### weekday
-
-The weekday on which to run the command.
-Optional; if specified, must be between 0 and 7, inclusive, with
-0 (or 7) being Sunday, or must be the name of the day (e.g., Tuesday).
+weekday
+: The weekday on which to run the command.
+    Optional; if specified, must be between 0 and 7, inclusive, with
+    0 (or 7) being Sunday, or must be the name of the day (e.g., Tuesday).
 
 
 
@@ -427,189 +396,171 @@ you to get a native resource type for the work you are doing.
 #### Parameters
 
 
-##### command
+command
+: - **namevar**
 
-- **namevar**
+    The actual command to execute.  Must either be fully qualified
+    or a search path for the command must be provided.  If the command
+    succeeds, any output produced will be logged at the instance's
+    normal log level (usually `notice`), but if the command fails
+    (meaning its return code does not match the specified code) then
+    any output is logged at the `err` log level.
 
-The actual command to execute.  Must either be fully qualified
-or a search path for the command must be provided.  If the command
-succeeds, any output produced will be logged at the instance's
-normal log level (usually `notice`), but if the command fails
-(meaning its return code does not match the specified code) then
-any output is logged at the `err` log level.
+creates
+: A file that this command creates.  If this
+    parameter is provided, then the command will only be run
+    if the specified file does not exist:
 
-##### creates
-
-A file that this command creates.  If this
-parameter is provided, then the command will only be run
-if the specified file does not exist:
-
-    exec { "tar xf /my/tar/file.tar":
-      cwd => "/var/tmp",
-      creates => "/var/tmp/myfile",
-      path => ["/usr/bin", "/usr/sbin"]
-    }
+        exec { "tar xf /my/tar/file.tar":
+          cwd => "/var/tmp",
+          creates => "/var/tmp/myfile",
+          path => ["/usr/bin", "/usr/sbin"]
+        }
 
 
 
-##### cwd
+cwd
+: The directory from which to run the command.  If
+    this directory does not exist, the command will fail.
 
-The directory from which to run the command.  If
-this directory does not exist, the command will fail.
+env
+: This parameter is deprecated. Use 'environment' instead.
 
-##### env
+environment
+: Any additional environment variables you want to set for a
+    command.  Note that if you use this to set PATH, it will override
+    the `path` attribute.  Multiple environment variables should be
+    specified as an array.
 
-This parameter is deprecated. Use 'environment' instead.
+group
+: The group to run the command as.  This seems to work quite
+    haphazardly on different platforms -- it is a platform issue
+    not a Ruby or Puppet one, since the same variety exists when
+    running commnands as different users in the shell.
 
-##### environment
+logoutput
+: Whether to log output.  Defaults to logging output at the
+    loglevel for the `exec` resource. Use *on_failure* to only
+    log the output when the command reports an error.  Values are
+    **true**, *false*, *on_failure*, and any legal log level.  Valid values are `true`, `false`, `on_failure`.
 
-Any additional environment variables you want to set for a
-command.  Note that if you use this to set PATH, it will override
-the `path` attribute.  Multiple environment variables should be
-specified as an array.
+onlyif
+: If this parameter is set, then this `exec` will only run if
+    the command returns 0.  For example:
 
-##### group
+        exec { "logrotate":
+          path => "/usr/bin:/usr/sbin:/bin",
+          onlyif => "test `du /var/log/messages | cut -f1` -gt 100000"
+        }
 
-The group to run the command as.  This seems to work quite
-haphazardly on different platforms -- it is a platform issue
-not a Ruby or Puppet one, since the same variety exists when
-running commnands as different users in the shell.
+    This would run `logrotate` only if that test returned true.
 
-##### logoutput
+    Note that this command follows the same rules as the main command,
+    which is to say that it must be fully qualified if the path is not set.
 
-Whether to log output.  Defaults to logging output at the
-loglevel for the `exec` resource. Use *on_failure* to only
-log the output when the command reports an error.  Values are
-**true**, *false*, *on_failure*, and any legal log level.  Valid values are `true`, `false`, `on_failure`.
+    Also note that onlyif can take an array as its value, e.g.:
 
-##### onlyif
+        onlyif => ["test -f /tmp/file1", "test -f /tmp/file2"]
 
-If this parameter is set, then this `exec` will only run if
-the command returns 0.  For example:
-
-    exec { "logrotate":
-      path => "/usr/bin:/usr/sbin:/bin",
-      onlyif => "test `du /var/log/messages | cut -f1` -gt 100000"
-    }
-
-This would run `logrotate` only if that test returned true.
-
-Note that this command follows the same rules as the main command,
-which is to say that it must be fully qualified if the path is not set.
-
-Also note that onlyif can take an array as its value, e.g.:
-
-    onlyif => ["test -f /tmp/file1", "test -f /tmp/file2"]
-
-This will only run the exec if /all/ conditions in the array return true.
+    This will only run the exec if /all/ conditions in the array return true.
 
 
-##### path
+path
+: The search path used for command execution.
+    Commands must be fully qualified if no path is specified.  Paths
+    can be specified as an array or as a colon separated list.
 
-The search path used for command execution.
-Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a colon separated list.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### provider
+    * **posix**:     Executes external binaries directly, without passing through a shell or
+        performing any interpolation. This is a safer and more predictable way
+        to execute most commands, but prevents the use of globbing and shell
+        built-ins (including control logic like "for" and "if" statements).
+        Default for `feature` == `posix`.  
+    * **shell**:     Passes the provided command through `/bin/sh`; only available on
+        POSIX systems. This allows the use of shell globbing and built-ins, and
+        does not require that the path to a command be fully-qualified. Although
+        this can be more convenient than the `posix` provider, it also means that
+        you need to be more careful with escaping; as ever, with great power comes
+        etc. etc.
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **posix**:     Executes external binaries directly, without passing through a shell or
-    performing any interpolation. This is a safer and more predictable way
-    to execute most commands, but prevents the use of globbing and shell
-    built-ins (including control logic like "for" and "if" statements).
-    Default for `feature` == `posix`.  
-* **shell**:     Passes the provided command through `/bin/sh`; only available on
-    POSIX systems. This allows the use of shell globbing and built-ins, and
-    does not require that the path to a command be fully-qualified. Although
-    this can be more convenient than the `posix` provider, it also means that
-    you need to be more careful with escaping; as ever, with great power comes
-    etc. etc.
-
-    This provider closely resembles the behavior of the `exec` type
-    in Puppet 0.25.x.
+        This provider closely resembles the behavior of the `exec` type
+        in Puppet 0.25.x.
     
 
-##### refresh
+refresh
+: How to refresh this command.  By default, the exec is just
+    called again when it receives an event from another resource,
+    but this parameter allows you to define a different command
+    for refreshing.
 
-How to refresh this command.  By default, the exec is just
-called again when it receives an event from another resource,
-but this parameter allows you to define a different command
-for refreshing.
+refreshonly
+: The command should only be run as a
+    refresh mechanism for when a dependent object is changed.  It only
+    makes sense to use this option when this command depends on some
+    other object; it is useful for triggering an action:
 
-##### refreshonly
+        # Pull down the main aliases file
+        file { "/etc/aliases":
+          source => "puppet://server/module/aliases"
+        }
 
-The command should only be run as a
-refresh mechanism for when a dependent object is changed.  It only
-makes sense to use this option when this command depends on some
-other object; it is useful for triggering an action:
+        # Rebuild the database, but only when the file changes
+        exec { newaliases:
+          path => ["/usr/bin", "/usr/sbin"],
+          subscribe => File["/etc/aliases"],
+          refreshonly => true
+        }
 
-    # Pull down the main aliases file
-    file { "/etc/aliases":
-      source => "puppet://server/module/aliases"
-    }
+    Note that only `subscribe` and `notify` can trigger actions, not `require`,
+    so it only makes sense to use `refreshonly` with `subscribe` or `notify`.  Valid values are `true`, `false`.
 
-    # Rebuild the database, but only when the file changes
-    exec { newaliases:
-      path => ["/usr/bin", "/usr/sbin"],
-      subscribe => File["/etc/aliases"],
-      refreshonly => true
-    }
+returns
+: The expected return code(s).  An error will be returned if the
+    executed command returns something else.  Defaults to 0. Can be
+    specified as an array of acceptable return codes or a single value.
 
-Note that only `subscribe` and `notify` can trigger actions, not `require`,
-so it only makes sense to use `refreshonly` with `subscribe` or `notify`.  Valid values are `true`, `false`.
+timeout
+: The maximum time the command should take.  If the command takes
+    longer than the timeout, the command is considered to have failed
+    and will be stopped.  Use 0 to disable the timeout.
+    The time is specified in seconds.
 
-##### returns
+tries
+: The number of times execution of the command should be tried.
+    Defaults to '1'. This many attempts will be made to execute
+    the command until an acceptable return code is returned.
+    Note that the timeout paramater applies to each try rather than
+    to the complete set of tries.
 
-The expected return code(s).  An error will be returned if the
-executed command returns something else.  Defaults to 0. Can be
-specified as an array of acceptable return codes or a single value.
+try_sleep
+: The time to sleep in seconds between 'tries'.
 
-##### timeout
+unless
+: If this parameter is set, then this `exec` will run unless
+    the command returns 0.  For example:
 
-The maximum time the command should take.  If the command takes
-longer than the timeout, the command is considered to have failed
-and will be stopped.  Use 0 to disable the timeout.
-The time is specified in seconds.
+        exec { "/bin/echo root >> /usr/lib/cron/cron.allow":
+          path => "/usr/bin:/usr/sbin:/bin",
+          unless => "grep root /usr/lib/cron/cron.allow 2>/dev/null"
+        }
 
-##### tries
+    This would add `root` to the cron.allow file (on Solaris) unless
+    `grep` determines it's already there.
 
-The number of times execution of the command should be tried.
-Defaults to '1'. This many attempts will be made to execute
-the command until an acceptable return code is returned.
-Note that the timeout paramater applies to each try rather than
-to the complete set of tries.
-
-##### try_sleep
-
-The time to sleep in seconds between 'tries'.
-
-##### unless
-
-If this parameter is set, then this `exec` will run unless
-the command returns 0.  For example:
-
-    exec { "/bin/echo root >> /usr/lib/cron/cron.allow":
-      path => "/usr/bin:/usr/sbin:/bin",
-      unless => "grep root /usr/lib/cron/cron.allow 2>/dev/null"
-    }
-
-This would add `root` to the cron.allow file (on Solaris) unless
-`grep` determines it's already there.
-
-Note that this command follows the same rules as the main command,
-which is to say that it must be fully qualified if the path is not set.
+    Note that this command follows the same rules as the main command,
+    which is to say that it must be fully qualified if the path is not set.
 
 
-##### user
-
-The user to run the command as.  Note that if you
-use this then any error output is not currently captured.  This
-is because of a bug within Ruby.  If you are using Puppet to
-create this user, the exec will automatically require the user,
-as long as it is specified by name.
+user
+: The user to run the command as.  Note that if you
+    use this then any error output is not currently captured.  This
+    is because of a bug within Ruby.  If you are using Puppet to
+    create this user, the exec will automatically require the user,
+    as long as it is specified by name.
 
 
 
@@ -634,337 +585,310 @@ native resource to support what you are doing.
 #### Parameters
 
 
-##### backup
+backup
+: Whether files should be backed up before
+    being replaced.  The preferred method of backing files up is via
+    a `filebucket`, which stores files by their MD5 sums and allows
+    easy retrieval without littering directories with backups.  You
+    can specify a local filebucket or a network-accessible
+    server-based filebucket by setting `backup => bucket-name`.
+    Alternatively, if you specify any value that begins with a `.`
+    (e.g., `.puppet-bak`), then Puppet will use copy the file in
+    the same directory with that value as the extension of the
+    backup. Setting `backup => false` disables all backups of the
+    file in question.
 
-Whether files should be backed up before
-being replaced.  The preferred method of backing files up is via
-a `filebucket`, which stores files by their MD5 sums and allows
-easy retrieval without littering directories with backups.  You
-can specify a local filebucket or a network-accessible
-server-based filebucket by setting `backup => bucket-name`.
-Alternatively, if you specify any value that begins with a `.`
-(e.g., `.puppet-bak`), then Puppet will use copy the file in
-the same directory with that value as the extension of the
-backup. Setting `backup => false` disables all backups of the
-file in question.
+    Puppet automatically creates a local filebucket named `puppet` and
+    defaults to backing up there.  To use a server-based filebucket,
+    you must specify one in your configuration
 
-Puppet automatically creates a local filebucket named `puppet` and
-defaults to backing up there.  To use a server-based filebucket,
-you must specify one in your configuration
+          filebucket { main:
+            server => puppet
+          }
 
-      filebucket { main:
-        server => puppet
-      }
+    The `puppet master` daemon creates a filebucket by default,
+    so you can usually back up to your main server with this
+    configuration.  Once you've described the bucket in your
+    configuration, you can use it in any file
 
-The `puppet master` daemon creates a filebucket by default,
-so you can usually back up to your main server with this
-configuration.  Once you've described the bucket in your
-configuration, you can use it in any file
+          file { "/my/file":
+            source => "/path/in/nfs/or/something",
+            backup => main
+          }
 
-      file { "/my/file":
-        source => "/path/in/nfs/or/something",
-        backup => main
-      }
+    This will back the file up to the central server.
 
-This will back the file up to the central server.
-
-At this point, the benefits of using a filebucket are that you do not
-have backup files lying around on each of your machines, a given
-version of a file is only backed up once, and you can restore
-any given file manually, no matter how old.  Eventually,
-transactional support will be able to automatically restore
-filebucketed files.
+    At this point, the benefits of using a filebucket are that you do not
+    have backup files lying around on each of your machines, a given
+    version of a file is only backed up once, and you can restore
+    any given file manually, no matter how old.  Eventually,
+    transactional support will be able to automatically restore
+    filebucketed files.
 
 
-##### checksum
+checksum
+: The checksum type to use when checksumming a file.
 
-The checksum type to use when checksumming a file.
+    The default checksum parameter, if checksums are enabled, is md5.  Valid values are `md5`, `md5lite`, `mtime`, `ctime`, `none`.
 
-The default checksum parameter, if checksums are enabled, is md5.  Valid values are `md5`, `md5lite`, `mtime`, `ctime`, `none`.
+content
+: Specify the contents of a file as a string.  Newlines, tabs, and
+    spaces can be specified using the escaped syntax (e.g., \n for a newline).  The primary purpose of this parameter is to provide a
+    kind of limited templating:
 
-##### content
+        define resolve(nameserver1, nameserver2, domain, search) {
+            $str = "search $search
+                domain $domain
+                nameserver $nameserver1
+                nameserver $nameserver2
+                "
 
-Specify the contents of a file as a string.  Newlines, tabs, and
-spaces can be specified using the escaped syntax (e.g., \n for a newline).  The primary purpose of this parameter is to provide a
-kind of limited templating:
-
-    define resolve(nameserver1, nameserver2, domain, search) {
-        $str = "search $search
-            domain $domain
-            nameserver $nameserver1
-            nameserver $nameserver2
-            "
-
-        file { "/etc/resolv.conf":
-          content => $str
+            file { "/etc/resolv.conf":
+              content => $str
+            }
         }
-    }
 
-This attribute is especially useful when used with templating.
-
-##### ctime
-
-A read-only state to check the file ctime.
-
-##### ensure
-
-Whether to create files that don't currently exist.
-Possible values are *absent*, *present*, *file*, and *directory*.
-Specifying `present` will match any form of file existence, and
-if the file is missing will create an empty file. Specifying
-`absent` will delete the file (and directory if recurse => true).
-
-Anything other than those values will create a symlink. In the interest of readability and clarity, you should use `ensure => link` and explicitly specify a
-target; however, if a `target` attribute isn't provided, the value of the `ensure`
-attribute will be used as the symlink target:
-
-    # (Useful on Solaris)
-    # Less maintainable: 
-    file { "/etc/inetd.conf":
-      ensure => "/etc/inet/inetd.conf",
-    }
-
-    # More maintainable:
-    file { "/etc/inetd.conf":
-      ensure => link,
-      target => "/etc/inet/inetd.conf",
-    }
-
-These two declarations are equivalent.  Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`.  Values can match `/./`.
-
-##### force
-
-Force the file operation.  Currently only used when replacing
-directories with links.  Valid values are `true`, `false`.
-
-##### group
-
-Which group should own the file.  Argument can be either group
-name or group ID.
-
-##### ignore
-
-A parameter which omits action on files matching
-specified patterns during recursion.  Uses Ruby's builtin globbing
-engine, so shell metacharacters are fully supported, e.g. `[a-z]*`.
-Matches that would descend into the directory structure are ignored,
-e.g., `*/*`.
-
-##### links
-
-How to handle links during file actions.  During file copying,
-`follow` will copy the target file instead of the link, `manage`
-will copy the link itself, and `ignore` will just pass it by.
-When not copying, `manage` and `ignore` behave equivalently
-(because you cannot really ignore links entirely during local recursion), and `follow` will manage the file to which the
-link points.  Valid values are `follow`, `manage`.
-
-##### mode
-
-Mode the file should be.  Currently relatively limited:
-you must specify the exact mode the file should be.
-
-Note that when you set the mode of a directory, Puppet always
-sets the search/traverse (1) bit anywhere the read (4) bit is set.
-This is almost always what you want: read allows you to list the
-entries in a directory, and search/traverse allows you to access
-(read/write/execute) those entries.)  Because of this feature, you
-can recursively make a directory and all of the files in it
-world-readable by setting e.g.:
-
-    file { '/some/dir':
-      mode => 644,
-      recurse => true,
-    }
-
-In this case all of the files underneath `/some/dir` will have
-mode 644, and all of the directories will have mode 755.
-
-##### mtime
-
-A read-only state to check the file mtime.
-
-##### owner
-
-To whom the file should belong.  Argument can be user name or
-user ID.
-
-##### path
-
-- **namevar**
-
-The path to the file to manage.  Must be fully qualified.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **microsoft_windows**: Uses Microsoft Windows functionality to manage file's users and rights.    
-* **posix**: Uses POSIX functionality to manage file's users and rights.    
-
-##### purge
-
-Whether unmanaged files should be purged.  If you have a filebucket
-configured the purged files will be uploaded, but if you do not,
-this will destroy data.  Only use this option for generated
-files unless you really know what you are doing.  This option only
-makes sense when recursively managing directories.
-
-Note that when using `purge` with `source`, Puppet will purge any files
-that are not on the remote system.  Valid values are `true`, `false`.
-
-##### recurse
-
-Whether and how deeply to do recursive
-management. Options are:
-
-* `inf,true` --- Regular style recursion on both remote and local
-  directory structure.
-* `remote` --- Descends recursively into the remote directory
-  but not the local directory. Allows copying of
-  a few files into a directory containing many
-  unmanaged files without scanning all the local files.
-* `false` --- Default of no recursion.
-* `[0-9]+` --- Same as true, but limit recursion. Warning: this syntax
-  has been deprecated in favor of the `recurselimit` attribute.
-Valid values are `true`, `false`, `inf`, `remote`.  Values can match `/^[0-9]+$/`.
-
-##### recurselimit
-
-How deeply to do recursive management.  Values can match `/^[0-9]+$/`.
-
-##### replace
-
-Whether or not to replace a file that is
-sourced but exists.  This is useful for using file sources
-purely for initialization.  Valid values are `true` (also called `yes`), `false` (also called `no`).
-
-##### selinux_ignore_defaults
-
-If this is set then Puppet will not ask SELinux (via matchpathcon) to
-supply defaults for the SELinux attributes (seluser, selrole,
-seltype, and selrange). In general, you should leave this set at its
-default and only set it to true when you need Puppet to not try to fix
-SELinux labels automatically.  Valid values are `true`, `false`.
-
-##### selrange
-
-What the SELinux range component of the context of the file should be.
-Any valid SELinux range component is accepted.  For example `s0` or
-`SystemHigh`.  If not specified it defaults to the value returned by
-matchpathcon for the file, if any exists.  Only valid on systems with
-SELinux support enabled and that have support for MCS (Multi-Category
-Security).
-
-##### selrole
-
-What the SELinux role component of the context of the file should be.
-Any valid SELinux role component is accepted.  For example `role_r`.
-If not specified it defaults to the value returned by matchpathcon for
-the file, if any exists.  Only valid on systems with SELinux support
-enabled.
-
-##### seltype
-
-What the SELinux type component of the context of the file should be.
-Any valid SELinux type component is accepted.  For example `tmp_t`.
-If not specified it defaults to the value returned by matchpathcon for
-the file, if any exists.  Only valid on systems with SELinux support
-enabled.
-
-##### seluser
-
-What the SELinux user component of the context of the file should be.
-Any valid SELinux user component is accepted.  For example `user_u`.
-If not specified it defaults to the value returned by matchpathcon for
-the file, if any exists.  Only valid on systems with SELinux support
-enabled.
-
-##### source
-
-Copy a file over the current file.  Uses `checksum` to
-determine when a file should be copied.  Valid values are either
-fully qualified paths to files, or URIs.  Currently supported URI
-types are *puppet* and *file*.
-
-This is one of the primary mechanisms for getting content into
-applications that Puppet does not directly support and is very
-useful for those configuration files that don't change much across
-sytems.  For instance:
-
-    class sendmail {
-      file { "/etc/mail/sendmail.cf":
-        source => "puppet://server/modules/module_name/sendmail.cf"
-      }
-    }
-
-You can also leave out the server name, in which case `puppet agent`
-will fill in the name of its configuration server and `puppet apply`
-will use the local filesystem.  This makes it easy to use the same
-configuration in both local and centralized forms.
-
-Currently, only the `puppet` scheme is supported for source
-URL's. Puppet will connect to the file server running on
-`server` to retrieve the contents of the file. If the
-`server` part is empty, the behavior of the command-line
-interpreter (`puppet apply`) and the client demon (`puppet agent`) differs
-slightly: `apply` will look such a file up on the module path
-on the local host, whereas `agent` will connect to the
-puppet server that it received the manifest from.
-
-See the [fileserver configuration documentation](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration) for information on how to configure
-and use file services within Puppet.
-
-If you specify multiple file sources for a file, then the first
-source that exists will be used.  This allows you to specify
-what amount to search paths for files:
-
-    file { "/path/to/my/file":
-      source => [
-        "/modules/nfs/files/file.$host",
-        "/modules/nfs/files/file.$operatingsystem",
-        "/modules/nfs/files/file"
-      ]
-    }
-
-This will use the first found file as the source.
-
-You cannot currently copy links using this mechanism; set `links`
-to `follow` if any remote sources are links.
-
-
-##### sourceselect
-
-Whether to copy all valid sources, or just the first one.  This parameter
-is only used in recursive copies; by default, the first valid source is the
-only one used as a recursive source, but if this parameter is set to `all`,
-then all valid sources will have all of their contents copied to the local host,
-and for sources that have the same file, the source earlier in the list will
-be used.  Valid values are `first`, `all`.
-
-##### target
-
-The target for creating a link.  Currently, symlinks are the
-only type supported.
-
-You can make relative links:
-
-    # (Useful on Solaris)
-    file { "/etc/inetd.conf":
-      ensure => link,
-      target => "inet/inetd.conf",
-    }
+    This attribute is especially useful when used with templating.
+
+ctime
+: A read-only state to check the file ctime.
+
+ensure
+: Whether to create files that don't currently exist.
+    Possible values are *absent*, *present*, *file*, and *directory*.
+    Specifying `present` will match any form of file existence, and
+    if the file is missing will create an empty file. Specifying
+    `absent` will delete the file (and directory if recurse => true).
+
+    Anything other than those values will create a symlink. In the interest of readability and clarity, you should use `ensure => link` and explicitly specify a
+    target; however, if a `target` attribute isn't provided, the value of the `ensure`
+    attribute will be used as the symlink target:
+
+        # (Useful on Solaris)
+        # Less maintainable: 
+        file { "/etc/inetd.conf":
+          ensure => "/etc/inet/inetd.conf",
+        }
+
+        # More maintainable:
+        file { "/etc/inetd.conf":
+          ensure => link,
+          target => "/etc/inet/inetd.conf",
+        }
+
+    These two declarations are equivalent.  Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`.  Values can match `/./`.
+
+force
+: Force the file operation.  Currently only used when replacing
+    directories with links.  Valid values are `true`, `false`.
+
+group
+: Which group should own the file.  Argument can be either group
+    name or group ID.
+
+ignore
+: A parameter which omits action on files matching
+    specified patterns during recursion.  Uses Ruby's builtin globbing
+    engine, so shell metacharacters are fully supported, e.g. `[a-z]*`.
+    Matches that would descend into the directory structure are ignored,
+    e.g., `*/*`.
+
+links
+: How to handle links during file actions.  During file copying,
+    `follow` will copy the target file instead of the link, `manage`
+    will copy the link itself, and `ignore` will just pass it by.
+    When not copying, `manage` and `ignore` behave equivalently
+    (because you cannot really ignore links entirely during local recursion), and `follow` will manage the file to which the
+    link points.  Valid values are `follow`, `manage`.
+
+mode
+: Mode the file should be.  Currently relatively limited:
+    you must specify the exact mode the file should be.
+
+    Note that when you set the mode of a directory, Puppet always
+    sets the search/traverse (1) bit anywhere the read (4) bit is set.
+    This is almost always what you want: read allows you to list the
+    entries in a directory, and search/traverse allows you to access
+    (read/write/execute) those entries.)  Because of this feature, you
+    can recursively make a directory and all of the files in it
+    world-readable by setting e.g.:
+
+        file { '/some/dir':
+          mode => 644,
+          recurse => true,
+        }
+
+    In this case all of the files underneath `/some/dir` will have
+    mode 644, and all of the directories will have mode 755.
+
+mtime
+: A read-only state to check the file mtime.
+
+owner
+: To whom the file should belong.  Argument can be user name or
+    user ID.
+
+path
+: - **namevar**
+
+    The path to the file to manage.  Must be fully qualified.
+
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
+
+    * **microsoft_windows**: Uses Microsoft Windows functionality to manage file's users and rights.    
+    * **posix**: Uses POSIX functionality to manage file's users and rights.    
+
+purge
+: Whether unmanaged files should be purged.  If you have a filebucket
+    configured the purged files will be uploaded, but if you do not,
+    this will destroy data.  Only use this option for generated
+    files unless you really know what you are doing.  This option only
+    makes sense when recursively managing directories.
+
+    Note that when using `purge` with `source`, Puppet will purge any files
+    that are not on the remote system.  Valid values are `true`, `false`.
+
+recurse
+: Whether and how deeply to do recursive
+    management. Options are:
+
+    * `inf,true` --- Regular style recursion on both remote and local
+      directory structure.
+    * `remote` --- Descends recursively into the remote directory
+      but not the local directory. Allows copying of
+      a few files into a directory containing many
+      unmanaged files without scanning all the local files.
+    * `false` --- Default of no recursion.
+    * `[0-9]+` --- Same as true, but limit recursion. Warning: this syntax
+      has been deprecated in favor of the `recurselimit` attribute.
+    Valid values are `true`, `false`, `inf`, `remote`.  Values can match `/^[0-9]+$/`.
+
+recurselimit
+: How deeply to do recursive management.  Values can match `/^[0-9]+$/`.
+
+replace
+: Whether or not to replace a file that is
+    sourced but exists.  This is useful for using file sources
+    purely for initialization.  Valid values are `true` (also called `yes`), `false` (also called `no`).
+
+selinux_ignore_defaults
+: If this is set then Puppet will not ask SELinux (via matchpathcon) to
+    supply defaults for the SELinux attributes (seluser, selrole,
+    seltype, and selrange). In general, you should leave this set at its
+    default and only set it to true when you need Puppet to not try to fix
+    SELinux labels automatically.  Valid values are `true`, `false`.
+
+selrange
+: What the SELinux range component of the context of the file should be.
+    Any valid SELinux range component is accepted.  For example `s0` or
+    `SystemHigh`.  If not specified it defaults to the value returned by
+    matchpathcon for the file, if any exists.  Only valid on systems with
+    SELinux support enabled and that have support for MCS (Multi-Category
+    Security).
+
+selrole
+: What the SELinux role component of the context of the file should be.
+    Any valid SELinux role component is accepted.  For example `role_r`.
+    If not specified it defaults to the value returned by matchpathcon for
+    the file, if any exists.  Only valid on systems with SELinux support
+    enabled.
+
+seltype
+: What the SELinux type component of the context of the file should be.
+    Any valid SELinux type component is accepted.  For example `tmp_t`.
+    If not specified it defaults to the value returned by matchpathcon for
+    the file, if any exists.  Only valid on systems with SELinux support
+    enabled.
+
+seluser
+: What the SELinux user component of the context of the file should be.
+    Any valid SELinux user component is accepted.  For example `user_u`.
+    If not specified it defaults to the value returned by matchpathcon for
+    the file, if any exists.  Only valid on systems with SELinux support
+    enabled.
+
+source
+: Copy a file over the current file.  Uses `checksum` to
+    determine when a file should be copied.  Valid values are either
+    fully qualified paths to files, or URIs.  Currently supported URI
+    types are *puppet* and *file*.
+
+    This is one of the primary mechanisms for getting content into
+    applications that Puppet does not directly support and is very
+    useful for those configuration files that don't change much across
+    sytems.  For instance:
+
+        class sendmail {
+          file { "/etc/mail/sendmail.cf":
+            source => "puppet://server/modules/module_name/sendmail.cf"
+          }
+        }
+
+    You can also leave out the server name, in which case `puppet agent`
+    will fill in the name of its configuration server and `puppet apply`
+    will use the local filesystem.  This makes it easy to use the same
+    configuration in both local and centralized forms.
+
+    Currently, only the `puppet` scheme is supported for source
+    URL's. Puppet will connect to the file server running on
+    `server` to retrieve the contents of the file. If the
+    `server` part is empty, the behavior of the command-line
+    interpreter (`puppet apply`) and the client demon (`puppet agent`) differs
+    slightly: `apply` will look such a file up on the module path
+    on the local host, whereas `agent` will connect to the
+    puppet server that it received the manifest from.
+
+    See the [fileserver configuration documentation](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration) for information on how to configure
+    and use file services within Puppet.
+
+    If you specify multiple file sources for a file, then the first
+    source that exists will be used.  This allows you to specify
+    what amount to search paths for files:
+
+        file { "/path/to/my/file":
+          source => [
+            "/modules/nfs/files/file.$host",
+            "/modules/nfs/files/file.$operatingsystem",
+            "/modules/nfs/files/file"
+          ]
+        }
+
+    This will use the first found file as the source.
+
+    You cannot currently copy links using this mechanism; set `links`
+    to `follow` if any remote sources are links.
+
+
+sourceselect
+: Whether to copy all valid sources, or just the first one.  This parameter
+    is only used in recursive copies; by default, the first valid source is the
+    only one used as a recursive source, but if this parameter is set to `all`,
+    then all valid sources will have all of their contents copied to the local host,
+    and for sources that have the same file, the source earlier in the list will
+    be used.  Valid values are `first`, `all`.
+
+target
+: The target for creating a link.  Currently, symlinks are the
+    only type supported.
+
+    You can make relative links:
+
+        # (Useful on Solaris)
+        file { "/etc/inetd.conf":
+          ensure => link,
+          target => "inet/inetd.conf",
+        }
     
-You can also make recursive symlinks, which will create a
-directory structure that maps to the target directory,
-with directories corresponding to each directory
-and links corresponding to each file.  Valid values are `notlink`.  Values can match `/./`.
+    You can also make recursive symlinks, which will create a
+    directory structure that maps to the target directory,
+    with directories corresponding to each directory
+    and links corresponding to each file.  Valid values are `notlink`.  Values can match `/./`.
 
-##### type
-
-A read-only state to check the file type.
+type
+: A read-only state to check the file type.
 
 
 
@@ -1001,27 +925,23 @@ work in a default configuration.
 #### Parameters
 
 
-##### name
+name
+: The name of the filebucket.
 
-The name of the filebucket.
+path
+: The path to the local filebucket.  If this is
+    unset, then the bucket is remote.  The parameter *server* must
+    can be specified to set the remote server.
 
-##### path
+port
+: The port on which the remote server is listening.
+    Defaults to the normal Puppet port, 8140.
 
-The path to the local filebucket.  If this is
-unset, then the bucket is remote.  The parameter *server* must
-can be specified to set the remote server.
-
-##### port
-
-The port on which the remote server is listening.
-Defaults to the normal Puppet port, 8140.
-
-##### server
-
-The server providing the remote filebucket.  If this is not
-specified then *path* is checked. If it is set, then the
-bucket is local.  Otherwise the puppetmaster server specified
-in the config or at the commandline is used.
+server
+: The server providing the remote filebucket.  If this is not
+    specified then *path* is checked. If it is set, then the
+    bucket is local.  Otherwise the puppetmaster server specified
+    in the config or at the commandline is used.
 
 
 
@@ -1054,73 +974,65 @@ pw               |                 |               |
 #### Parameters
 
 
-##### allowdupe
+allowdupe
+: Whether to allow duplicate GIDs.  This option does not work on
+    FreeBSD (contract to the `pw` man page).  Valid values are `true`, `false`.
 
-Whether to allow duplicate GIDs.  This option does not work on
-FreeBSD (contract to the `pw` man page).  Valid values are `true`, `false`.
+auth_membership
+: whether the provider is authoritative for group membership.
 
-##### auth_membership
+ensure
+: Create or remove the group.  Valid values are `present`, `absent`.
 
-whether the provider is authoritative for group membership.
+gid
+: The group ID.  Must be specified numerically.  If not
+    specified, a number will be picked, which can result in ID
+    differences across systems and thus is not recommended.  The
+    GID is picked according to local system standards.
 
-##### ensure
+members
+: The members of the group. For directory services where group
+    membership is stored in the group objects, not the users.  Requires features manages_members.
 
-Create or remove the group.  Valid values are `present`, `absent`.
+name
+: The group name.  While naming limitations vary by
+    system, it is advisable to keep the name to the degenerate
+    limitations, which is a maximum of 8 characters beginning with
+    a letter.
 
-##### gid
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The group ID.  Must be specified numerically.  If not
-specified, a number will be picked, which can result in ID
-differences across systems and thus is not recommended.  The
-GID is picked according to local system standards.
+    * **directoryservice**: Group management using DirectoryService on OS X.
 
-##### members
+        Required binaries: `/usr/bin/dscl`.    Default for `operatingsystem` == `darwin`.    Supported features: `manages_members`.
+    * **groupadd**: Group management via `groupadd` and its ilk.
 
-The members of the group. For directory services where group
-membership is stored in the group objects, not the users.  Requires features manages_members.
+      The default for most platforms
 
-##### name
+        Required binaries: `groupmod`, `groupdel`, `groupadd`.      Supported features: `system_groups`.
+    * **ldap**: Group management via `ldap`.
 
-The group name.  While naming limitations vary by
-system, it is advisable to keep the name to the degenerate
-limitations, which is a maximum of 8 characters beginning with
-a letter.
+      This provider requires that you have valid values for all of the
+      ldap-related settings, including `ldapbase`.  You will also almost
+      definitely need settings for `ldapuser` and `ldappassword`, so that
+      your clients can write to ldap.
 
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **directoryservice**: Group management using DirectoryService on OS X.
-
-    Required binaries: `/usr/bin/dscl`.    Default for `operatingsystem` == `darwin`.    Supported features: `manages_members`.
-* **groupadd**: Group management via `groupadd` and its ilk.
-
-  The default for most platforms
-
-    Required binaries: `groupmod`, `groupdel`, `groupadd`.      Supported features: `system_groups`.
-* **ldap**: Group management via `ldap`.
-
-  This provider requires that you have valid values for all of the
-  ldap-related settings, including `ldapbase`.  You will also almost
-  definitely need settings for `ldapuser` and `ldappassword`, so that
-  your clients can write to ldap.
-
-  Note that this provider will automatically generate a GID for you if you do
-  not specify one, but it is a potentially expensive operation, as it
-  iterates across all existing groups to pick the appropriate next one.
+      Note that this provider will automatically generate a GID for you if you do
+      not specify one, but it is a potentially expensive operation, as it
+      iterates across all existing groups to pick the appropriate next one.
 
       
-* **pw**: Group management via `pw`.
+    * **pw**: Group management via `pw`.
 
-  Only works on FreeBSD.
+      Only works on FreeBSD.
 
-    Required binaries: `/usr/sbin/pw`.    Default for `operatingsystem` == `freebsd`.  
+        Required binaries: `/usr/sbin/pw`.    Default for `operatingsystem` == `freebsd`.  
 
-##### system
-
-Whether the group is a system group with lower GID.  Valid values are `true`, `false`.
+system
+: Whether the group is a system group with lower GID.  Valid values are `true`, `false`.
 
 
 
@@ -1136,35 +1048,29 @@ will have different solutions.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+host_aliases
+: Any aliases the host might have.  Multiple values must be
+    specified as an array.
 
-##### host_aliases
+ip
+: The host's IP address, IPv4 or IPv6.
 
-Any aliases the host might have.  Multiple values must be
-specified as an array.
+name
+: The host name.
 
-##### ip
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The host's IP address, IPv4 or IPv6.
+    * **parsed**:     
 
-##### name
-
-The host name.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **parsed**:     
-
-##### target
-
-The file in which to store service information.  Only used by
-those providers that write to disk. On most systems this defaults to `/etc/hosts`.
+target
+: The file in which to store service information.  Only used by
+    those providers that write to disk. On most systems this defaults to `/etc/hosts`.
 
 
 
@@ -1180,32 +1086,27 @@ property principals.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+mode
+: Manage the k5login file's mode
 
-##### mode
+path
+: - **namevar**
 
-Manage the k5login file's mode
+    The path to the file to manage.  Must be fully qualified.
 
-##### path
+principals
+: The principals present in the `.k5login` file.
 
-- **namevar**
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The path to the file to manage.  Must be fully qualified.
-
-##### principals
-
-The principals present in the `.k5login` file.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **k5login**: The k5login provider is the only provider for the k5login
-      type.    
+    * **k5login**: The k5login provider is the only provider for the k5login
+          type.    
 
 
 
@@ -1223,102 +1124,86 @@ macauthorization resource will autorequire it.
 #### Parameters
 
 
-##### allow_root
+allow_root
+: Corresponds to 'allow-root' in the authorization store, renamed
+    due to hyphens being problematic. Specifies whether a right should be
+    allowed automatically if the requesting process is running with
+    uid == 0.  AuthorizationServices defaults this attribute to false if
+    not specified  Valid values are `true`, `false`.
 
-Corresponds to 'allow-root' in the authorization store, renamed
-due to hyphens being problematic. Specifies whether a right should be
-allowed automatically if the requesting process is running with
-uid == 0.  AuthorizationServices defaults this attribute to false if
-not specified  Valid values are `true`, `false`.
+auth_class
+: Corresponds to 'class' in the authorization store, renamed due
+    to 'class' being a reserved word.  Valid values are `user`, `evaluate-mechanisms`, `allow`, `deny`, `rule`.
 
-##### auth_class
+auth_type
+: type - can be a 'right' or a 'rule'. 'comment' has not yet been
+    implemented.  Valid values are `right`, `rule`.
 
-Corresponds to 'class' in the authorization store, renamed due
-to 'class' being a reserved word.  Valid values are `user`, `evaluate-mechanisms`, `allow`, `deny`, `rule`.
+authenticate_user
+: Corresponds to 'authenticate-user' in the authorization store,
+    renamed due to hyphens being problematic.  Valid values are `true`, `false`.
 
-##### auth_type
+comment
+: The 'comment' attribute for authorization resources.
 
-type - can be a 'right' or a 'rule'. 'comment' has not yet been
-implemented.  Valid values are `right`, `rule`.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### authenticate_user
+group
+: The user must authenticate as a member of this group. This
+    attribute can be set to any one group.
 
-Corresponds to 'authenticate-user' in the authorization store,
-renamed due to hyphens being problematic.  Valid values are `true`, `false`.
+k_of_n
+: k-of-n describes how large a subset of rule mechanisms must
+    succeed for successful authentication. If there are 'n' mechanisms,
+    then 'k' (the integer value of this parameter) mechanisms must succeed.
+    The most common setting for this parameter is '1'. If k-of-n is not
+    set, then 'n-of-n' mechanisms must succeed.
 
-##### comment
+mechanisms
+: an array of suitable mechanisms.
 
-The 'comment' attribute for authorization resources.
+name
+: The name of the right or rule to be managed.
+    Corresponds to 'key' in Authorization Services. The key is the name
+    of a rule. A key uses the same naming conventions as a right. The
+    Security Server uses a rule’s key to match the rule with a right.
+    Wildcard keys end with a ‘.’. The generic rule has an empty key value.
+    Any rights that do not match a specific rule use the generic rule.
 
-##### ensure
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+    * **macauthorization**: Manage Mac OS X authorization database rules and rights.
 
-##### group
+        Required binaries: `/usr/bin/sw_vers`, `/usr/bin/security`.    Default for `operatingsystem` == `darwin`.  
 
-The user must authenticate as a member of this group. This
-attribute can be set to any one group.
+rule
+: The rule(s) that this right refers to.
 
-##### k_of_n
+session_owner
+: Corresponds to 'session-owner' in the authorization store,
+    renamed due to hyphens being problematic.  Whether the session owner
+    automatically matches this rule or right.  Valid values are `true`, `false`.
 
-k-of-n describes how large a subset of rule mechanisms must
-succeed for successful authentication. If there are 'n' mechanisms,
-then 'k' (the integer value of this parameter) mechanisms must succeed.
-The most common setting for this parameter is '1'. If k-of-n is not
-set, then 'n-of-n' mechanisms must succeed.
+shared
+: If this is set to true, then the Security Server marks the
+    credentials used to gain this right as shared. The Security Server
+    may use any shared credentials to authorize this right. For maximum
+    security, set sharing to false so credentials stored by the Security
+    Server for one application may not be used by another application.  Valid values are `true`, `false`.
 
-##### mechanisms
+timeout
+: The credential used by this rule expires in the specified
+    number of seconds. For maximum security where the user must
+    authenticate every time, set the timeout to 0. For minimum security,
+    remove the timeout attribute so the user authenticates only once per
+    session.
 
-an array of suitable mechanisms.
-
-##### name
-
-The name of the right or rule to be managed.
-Corresponds to 'key' in Authorization Services. The key is the name
-of a rule. A key uses the same naming conventions as a right. The
-Security Server uses a rule’s key to match the rule with a right.
-Wildcard keys end with a ‘.’. The generic rule has an empty key value.
-Any rights that do not match a specific rule use the generic rule.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **macauthorization**: Manage Mac OS X authorization database rules and rights.
-
-    Required binaries: `/usr/bin/sw_vers`, `/usr/bin/security`.    Default for `operatingsystem` == `darwin`.  
-
-##### rule
-
-The rule(s) that this right refers to.
-
-##### session_owner
-
-Corresponds to 'session-owner' in the authorization store,
-renamed due to hyphens being problematic.  Whether the session owner
-automatically matches this rule or right.  Valid values are `true`, `false`.
-
-##### shared
-
-If this is set to true, then the Security Server marks the
-credentials used to gain this right as shared. The Security Server
-may use any shared credentials to authorize this right. For maximum
-security, set sharing to false so credentials stored by the Security
-Server for one application may not be used by another application.  Valid values are `true`, `false`.
-
-##### timeout
-
-The credential used by this rule expires in the specified
-number of seconds. For maximum security where the user must
-authenticate every time, set the timeout to 0. For minimum security,
-remove the timeout attribute so the user authenticates only once per
-session.
-
-##### tries
-
-The number of tries allowed.
+tries
+: The number of tries allowed.
 
 
 
@@ -1332,31 +1217,26 @@ Creates an email alias in the local alias database.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+name
+: The alias name.
 
-##### name
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The alias name.
+    * **aliases**:     
 
-##### provider
+recipient
+: Where email should be sent.  Multiple values
+    should be specified as an array.
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **aliases**:     
-
-##### recipient
-
-Where email should be sent.  Multiple values
-should be specified as an array.
-
-##### target
-
-The file in which to store the aliases.  Only used by
-those providers that write to disk.
+target
+: The file in which to store the aliases.  Only used by
+    those providers that write to disk.
 
 
 
@@ -1371,41 +1251,33 @@ and remove lists, it cannot reconfigure them.
 #### Parameters
 
 
-##### admin
+admin
+: The email address of the administrator.
 
-The email address of the administrator.
+description
+: The description of the mailing list.
 
-##### description
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`, `purged`.
 
-The description of the mailing list.
+mailserver
+: The name of the host handling email for the list.
 
-##### ensure
+name
+: The name of the email list.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`, `purged`.
+password
+: The admin password.
 
-##### mailserver
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The name of the host handling email for the list.
+    * **mailman**:   Required binaries: `/var/lib/mailman/mail/mailman`, `newlist`, `list_lists`, `rmlist`.    
 
-##### name
-
-The name of the email list.
-
-##### password
-
-The admin password.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **mailman**:   Required binaries: `/var/lib/mailman/mail/mailman`, `newlist`, `list_lists`, `rmlist`.    
-
-##### webserver
-
-The name of the host providing web archives and the administrative interface.
+webserver
+: The name of the host providing web archives and the administrative interface.
 
 
 
@@ -1441,62 +1313,56 @@ mcxcontent | *X*             |
 #### Parameters
 
 
-##### content
-
-The XML Plist.  The value of MCXSettings in DirectoryService.
-This is the standard output from the system command:
+content
+: The XML Plist.  The value of MCXSettings in DirectoryService.
+    This is the standard output from the system command:
     
-    dscl localhost -mcxexport /Local/Default/<ds_type>/ds_name
+        dscl localhost -mcxexport /Local/Default/<ds_type>/ds_name
 
-Note that `ds_type` is capitalized and plural in the dscl command.  Requires features manages_content.
+    Note that `ds_type` is capitalized and plural in the dscl command.  Requires features manages_content.
 
-##### ds_name
+ds_name
+: The name to attach the MCX Setting to.
+    e.g. 'localhost' when ds_type => computer. This setting is not
+    required, as it may be parsed so long as the resource name is
+    parseable.  e.g. /Groups/admin where 'group' is the dstype.
 
-The name to attach the MCX Setting to.
-e.g. 'localhost' when ds_type => computer. This setting is not
-required, as it may be parsed so long as the resource name is
-parseable.  e.g. /Groups/admin where 'group' is the dstype.
+ds_type
+: The DirectoryService type this MCX setting attaches to.  Valid values are `user`, `group`, `computer`, `computerlist`.
 
-##### ds_type
+ensure
+: Create or remove the MCX setting.  Valid values are `present`, `absent`.
 
-The DirectoryService type this MCX setting attaches to.  Valid values are `user`, `group`, `computer`, `computerlist`.
+name
+: The name of the resource being managed.
+    The default naming convention follows Directory Service paths:
 
-##### ensure
+        /Computers/localhost
+        /Groups/admin
+        /Users/localadmin
 
-Create or remove the MCX setting.  Valid values are `present`, `absent`.
+    The `ds_type` and `ds_name` type parameters are not necessary if the
+    default naming convention is followed.
 
-##### name
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The name of the resource being managed.
-The default naming convention follows Directory Service paths:
+    * **mcxcontent**: MCX Settings management using DirectoryService on OS X.
 
-    /Computers/localhost
-    /Groups/admin
-    /Users/localadmin
+      This provider manages the entire MCXSettings attribute available
+      to some directory services nodes.  This management is 'all or nothing'
+      in that discrete application domain key value pairs are not managed
+      by this provider.
 
-The `ds_type` and `ds_name` type parameters are not necessary if the
-default naming convention is followed.
+      It is recommended to use WorkGroup Manager to configure Users, Groups,
+      Computers, or ComputerLists, then use 'ralsh mcx' to generate a puppet
+      manifest from the resulting configuration.
 
-##### provider
+      Original Author: Jeff McCune (mccune.jeff@gmail.com)
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **mcxcontent**: MCX Settings management using DirectoryService on OS X.
-
-  This provider manages the entire MCXSettings attribute available
-  to some directory services nodes.  This management is 'all or nothing'
-  in that discrete application domain key value pairs are not managed
-  by this provider.
-
-  It is recommended to use WorkGroup Manager to configure Users, Groups,
-  Computers, or ComputerLists, then use 'ralsh mcx' to generate a puppet
-  manifest from the resulting configuration.
-
-  Original Author: Jeff McCune (mccune.jeff@gmail.com)
-
-  Required binaries: `/usr/bin/dscl`.    Default for `operatingsystem` == `darwin`.    Supported features: `manages_content`.
+      Required binaries: `/usr/bin/dscl`.    Default for `operatingsystem` == `darwin`.    Supported features: `manages_content`.
 
 
 
@@ -1524,78 +1390,65 @@ parsed   | *X*         |
 #### Parameters
 
 
-##### atboot
+atboot
+: Whether to mount the mount at boot.  Not all platforms
+    support this.
 
-Whether to mount the mount at boot.  Not all platforms
-support this.
+blockdevice
+: The device to fsck.  This is property is only valid
+    on Solaris, and in most cases will default to the correct
+    value.
 
-##### blockdevice
+device
+: The device providing the mount.  This can be whatever
+    device is supporting by the mount, including network
+    devices or devices specified by UUID rather than device
+    path, depending on the operating system.
 
-The device to fsck.  This is property is only valid
-on Solaris, and in most cases will default to the correct
-value.
+dump
+: Whether to dump the mount.  Not all platform support this.
+    Valid values are `1` or `0`. or `2` on FreeBSD, Default is `0`.  Values can match `/(0|1)/`, `/(0|1)/`.
 
-##### device
+ensure
+: Control what to do with this mount. Set this attribute to
+    `umounted` to make sure the filesystem is in the filesystem table
+    but not mounted (if the filesystem is currently mounted, it will be unmounted).  Set it to `absent` to unmount (if necessary) and remove
+    the filesystem from the fstab.  Set to `mounted` to add it to the
+    fstab and mount it. Set to `present` to add to fstab but not change
+    mount/unmount status  Valid values are `defined` (also called `present`), `unmounted`, `absent`, `mounted`.
 
-The device providing the mount.  This can be whatever
-device is supporting by the mount, including network
-devices or devices specified by UUID rather than device
-path, depending on the operating system.
+fstype
+: The mount type.  Valid values depend on the
+    operating system.  This is a required option.
 
-##### dump
+name
+: The mount path for the mount.
 
-Whether to dump the mount.  Not all platform support this.
-Valid values are `1` or `0`. or `2` on FreeBSD, Default is `0`.  Values can match `/(0|1)/`, `/(0|1)/`.
+options
+: Mount options for the mounts, as they would
+    appear in the fstab.
 
-##### ensure
+pass
+: The pass in which the mount is checked.
 
-Control what to do with this mount. Set this attribute to
-`umounted` to make sure the filesystem is in the filesystem table
-but not mounted (if the filesystem is currently mounted, it will be unmounted).  Set it to `absent` to unmount (if necessary) and remove
-the filesystem from the fstab.  Set to `mounted` to add it to the
-fstab and mount it. Set to `present` to add to fstab but not change
-mount/unmount status  Valid values are `defined` (also called `present`), `unmounted`, `absent`, `mounted`.
+path
+: The deprecated name for the mount point.  Please use `name` now.
 
-##### fstype
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The mount type.  Valid values depend on the
-operating system.  This is a required option.
+    * **parsed**:   Required binaries: `mount`, `umount`.      Supported features: `refreshable`.
 
-##### name
+remounts
+: Whether the mount can be remounted  `mount -o remount`.  If
+    this is false, then the filesystem will be unmounted and remounted
+    manually, which is prone to failure.  Valid values are `true`, `false`.
 
-The mount path for the mount.
-
-##### options
-
-Mount options for the mounts, as they would
-appear in the fstab.
-
-##### pass
-
-The pass in which the mount is checked.
-
-##### path
-
-The deprecated name for the mount point.  Please use `name` now.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **parsed**:   Required binaries: `mount`, `umount`.      Supported features: `refreshable`.
-
-##### remounts
-
-Whether the mount can be remounted  `mount -o remount`.  If
-this is false, then the filesystem will be unmounted and remounted
-manually, which is prone to failure.  Valid values are `true`, `false`.
-
-##### target
-
-The file in which to store the mount table.  Only used by
-those providers that write to disk.
+target
+: The file in which to store the mount table.  Only used by
+    those providers that write to disk.
 
 
 
@@ -1620,35 +1473,29 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### command_line
+command_line
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+command_name
+: - **namevar**
 
-##### command_name
+    The name parameter for Nagios type command
 
-- **namevar**
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The name parameter for Nagios type command
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### ensure
-
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### target
+    * **naginator**:     
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -1673,119 +1520,92 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### address1
+address1
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+address2
+: Nagios configuration file parameter.
 
-##### address2
+address3
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+address4
+: Nagios configuration file parameter.
 
-##### address3
+address5
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+address6
+: Nagios configuration file parameter.
 
-##### address4
+alias
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+can_submit_commands
+: Nagios configuration file parameter.
 
-##### address5
+contact_name
+: - **namevar**
 
-Nagios configuration file parameter.
+    The name parameter for Nagios type contact
 
-##### address6
+contactgroups
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+email
+: Nagios configuration file parameter.
 
-##### alias
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-Nagios configuration file parameter.
+host_notification_commands
+: Nagios configuration file parameter.
 
-##### can_submit_commands
+host_notification_options
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+host_notification_period
+: Nagios configuration file parameter.
 
-##### contact_name
+host_notifications_enabled
+: Nagios configuration file parameter.
 
-- **namevar**
+pager
+: Nagios configuration file parameter.
 
-The name parameter for Nagios type contact
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### contactgroups
+    * **naginator**:     
 
-Nagios configuration file parameter.
+register
+: Nagios configuration file parameter.
 
-##### email
+retain_nonstatus_information
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+retain_status_information
+: Nagios configuration file parameter.
 
-##### ensure
+service_notification_commands
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+service_notification_options
+: Nagios configuration file parameter.
 
-##### host_notification_commands
+service_notification_period
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### host_notification_options
-
-Nagios configuration file parameter.
-
-##### host_notification_period
-
-Nagios configuration file parameter.
-
-##### host_notifications_enabled
-
-Nagios configuration file parameter.
-
-##### pager
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### retain_nonstatus_information
-
-Nagios configuration file parameter.
-
-##### retain_status_information
-
-Nagios configuration file parameter.
-
-##### service_notification_commands
-
-Nagios configuration file parameter.
-
-##### service_notification_options
-
-Nagios configuration file parameter.
-
-##### service_notification_period
-
-Nagios configuration file parameter.
-
-##### service_notifications_enabled
-
-Nagios configuration file parameter.
-
-##### target
+service_notifications_enabled
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -1810,47 +1630,38 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### alias
+alias
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+contactgroup_members
+: Nagios configuration file parameter.
 
-##### contactgroup_members
+contactgroup_name
+: - **namevar**
 
-Nagios configuration file parameter.
+    The name parameter for Nagios type contactgroup
 
-##### contactgroup_name
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-- **namevar**
+members
+: Nagios configuration file parameter.
 
-The name parameter for Nagios type contactgroup
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### ensure
+    * **naginator**:     
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
-
-##### members
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### target
+register
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -1875,199 +1686,152 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### action_url
+action_url
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+active_checks_enabled
+: Nagios configuration file parameter.
 
-##### active_checks_enabled
+address
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+alias
+: Nagios configuration file parameter.
 
-##### address
+check_command
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+check_freshness
+: Nagios configuration file parameter.
 
-##### alias
+check_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+check_period
+: Nagios configuration file parameter.
 
-##### check_command
+contact_groups
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+contacts
+: Nagios configuration file parameter.
 
-##### check_freshness
+display_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### check_interval
+event_handler
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+event_handler_enabled
+: Nagios configuration file parameter.
 
-##### check_period
+failure_prediction_enabled
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+first_notification_delay
+: Nagios configuration file parameter.
 
-##### contact_groups
+flap_detection_enabled
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+flap_detection_options
+: Nagios configuration file parameter.
 
-##### contacts
+freshness_threshold
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+high_flap_threshold
+: Nagios configuration file parameter.
 
-##### display_name
+host_name
+: - **namevar**
 
-Nagios configuration file parameter.
+    The name parameter for Nagios type host
 
-##### ensure
+hostgroups
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+icon_image
+: Nagios configuration file parameter.
 
-##### event_handler
+icon_image_alt
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+initial_state
+: Nagios configuration file parameter.
 
-##### event_handler_enabled
+low_flap_threshold
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+max_check_attempts
+: Nagios configuration file parameter.
 
-##### failure_prediction_enabled
+notes
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notes_url
+: Nagios configuration file parameter.
 
-##### first_notification_delay
+notification_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notification_options
+: Nagios configuration file parameter.
 
-##### flap_detection_enabled
+notification_period
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notifications_enabled
+: Nagios configuration file parameter.
 
-##### flap_detection_options
+obsess_over_host
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+parents
+: Nagios configuration file parameter.
 
-##### freshness_threshold
+passive_checks_enabled
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+process_perf_data
+: Nagios configuration file parameter.
 
-##### high_flap_threshold
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Nagios configuration file parameter.
+    * **naginator**:     
 
-##### host_name
+register
+: Nagios configuration file parameter.
 
-- **namevar**
+retain_nonstatus_information
+: Nagios configuration file parameter.
 
-The name parameter for Nagios type host
+retain_status_information
+: Nagios configuration file parameter.
 
-##### hostgroups
+retry_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+stalking_options
+: Nagios configuration file parameter.
 
-##### icon_image
-
-Nagios configuration file parameter.
-
-##### icon_image_alt
-
-Nagios configuration file parameter.
-
-##### initial_state
-
-Nagios configuration file parameter.
-
-##### low_flap_threshold
-
-Nagios configuration file parameter.
-
-##### max_check_attempts
-
-Nagios configuration file parameter.
-
-##### notes
-
-Nagios configuration file parameter.
-
-##### notes_url
-
-Nagios configuration file parameter.
-
-##### notification_interval
-
-Nagios configuration file parameter.
-
-##### notification_options
-
-Nagios configuration file parameter.
-
-##### notification_period
-
-Nagios configuration file parameter.
-
-##### notifications_enabled
-
-Nagios configuration file parameter.
-
-##### obsess_over_host
-
-Nagios configuration file parameter.
-
-##### parents
-
-Nagios configuration file parameter.
-
-##### passive_checks_enabled
-
-Nagios configuration file parameter.
-
-##### process_perf_data
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### retain_nonstatus_information
-
-Nagios configuration file parameter.
-
-##### retain_status_information
-
-Nagios configuration file parameter.
-
-##### retry_interval
-
-Nagios configuration file parameter.
-
-##### stalking_options
-
-Nagios configuration file parameter.
-
-##### statusmap_image
-
-Nagios configuration file parameter.
-
-##### target
+statusmap_image
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
+use
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### vrml_image
-
-Nagios configuration file parameter.
+vrml_image
+: Nagios configuration file parameter.
 
 
 
@@ -2092,67 +1856,53 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### _naginator_name
+_naginator_name
+: - **namevar**
 
-- **namevar**
+    The name parameter for Nagios type hostdependency
 
-The name parameter for Nagios type hostdependency
+dependency_period
+: Nagios configuration file parameter.
 
-##### dependency_period
+dependent_host_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+dependent_hostgroup_name
+: Nagios configuration file parameter.
 
-##### dependent_host_name
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-Nagios configuration file parameter.
+execution_failure_criteria
+: Nagios configuration file parameter.
 
-##### dependent_hostgroup_name
+host_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+hostgroup_name
+: Nagios configuration file parameter.
 
-##### ensure
+inherits_parent
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+notification_failure_criteria
+: Nagios configuration file parameter.
 
-##### execution_failure_criteria
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Nagios configuration file parameter.
+    * **naginator**:     
 
-##### host_name
-
-Nagios configuration file parameter.
-
-##### hostgroup_name
-
-Nagios configuration file parameter.
-
-##### inherits_parent
-
-Nagios configuration file parameter.
-
-##### notification_failure_criteria
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### target
+register
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2177,71 +1927,56 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### _naginator_name
+_naginator_name
+: - **namevar**
 
-- **namevar**
+    The name parameter for Nagios type hostescalation
 
-The name parameter for Nagios type hostescalation
+contact_groups
+: Nagios configuration file parameter.
 
-##### contact_groups
+contacts
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### contacts
+escalation_options
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+escalation_period
+: Nagios configuration file parameter.
 
-##### ensure
+first_notification
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+host_name
+: Nagios configuration file parameter.
 
-##### escalation_options
+hostgroup_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+last_notification
+: Nagios configuration file parameter.
 
-##### escalation_period
+notification_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### first_notification
+    * **naginator**:     
 
-Nagios configuration file parameter.
-
-##### host_name
-
-Nagios configuration file parameter.
-
-##### hostgroup_name
-
-Nagios configuration file parameter.
-
-##### last_notification
-
-Nagios configuration file parameter.
-
-##### notification_interval
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### target
+register
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2266,59 +2001,47 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+host_name
+: - **namevar**
 
-##### host_name
+    The name parameter for Nagios type hostextinfo
 
-- **namevar**
+icon_image
+: Nagios configuration file parameter.
 
-The name parameter for Nagios type hostextinfo
+icon_image_alt
+: Nagios configuration file parameter.
 
-##### icon_image
+notes
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notes_url
+: Nagios configuration file parameter.
 
-##### icon_image_alt
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Nagios configuration file parameter.
+    * **naginator**:     
 
-##### notes
+register
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### notes_url
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### statusmap_image
-
-Nagios configuration file parameter.
-
-##### target
+statusmap_image
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
+use
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### vrml_image
-
-Nagios configuration file parameter.
+vrml_image
+: Nagios configuration file parameter.
 
 
 
@@ -2343,59 +2066,47 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### action_url
+action_url
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+alias
+: Nagios configuration file parameter.
 
-##### alias
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-Nagios configuration file parameter.
+hostgroup_members
+: Nagios configuration file parameter.
 
-##### ensure
+hostgroup_name
+: - **namevar**
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+    The name parameter for Nagios type hostgroup
 
-##### hostgroup_members
+members
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notes
+: Nagios configuration file parameter.
 
-##### hostgroup_name
+notes_url
+: Nagios configuration file parameter.
 
-- **namevar**
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The name parameter for Nagios type hostgroup
+    * **naginator**:     
 
-##### members
-
-Nagios configuration file parameter.
-
-##### notes
-
-Nagios configuration file parameter.
-
-##### notes_url
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### target
+register
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2420,207 +2131,158 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### _naginator_name
+_naginator_name
+: - **namevar**
 
-- **namevar**
+    The name parameter for Nagios type service
 
-The name parameter for Nagios type service
+action_url
+: Nagios configuration file parameter.
 
-##### action_url
+active_checks_enabled
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+check_command
+: Nagios configuration file parameter.
 
-##### active_checks_enabled
+check_freshness
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+check_interval
+: Nagios configuration file parameter.
 
-##### check_command
+check_period
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+contact_groups
+: Nagios configuration file parameter.
 
-##### check_freshness
+contacts
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+display_name
+: Nagios configuration file parameter.
 
-##### check_interval
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-Nagios configuration file parameter.
+event_handler
+: Nagios configuration file parameter.
 
-##### check_period
+event_handler_enabled
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+failure_prediction_enabled
+: Nagios configuration file parameter.
 
-##### contact_groups
+first_notification_delay
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+flap_detection_enabled
+: Nagios configuration file parameter.
 
-##### contacts
+flap_detection_options
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+freshness_threshold
+: Nagios configuration file parameter.
 
-##### display_name
+high_flap_threshold
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+host_name
+: Nagios configuration file parameter.
 
-##### ensure
+hostgroup_name
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+icon_image
+: Nagios configuration file parameter.
 
-##### event_handler
+icon_image_alt
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+initial_state
+: Nagios configuration file parameter.
 
-##### event_handler_enabled
+is_volatile
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+low_flap_threshold
+: Nagios configuration file parameter.
 
-##### failure_prediction_enabled
+max_check_attempts
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+normal_check_interval
+: Nagios configuration file parameter.
 
-##### first_notification_delay
+notes
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notes_url
+: Nagios configuration file parameter.
 
-##### flap_detection_enabled
+notification_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notification_options
+: Nagios configuration file parameter.
 
-##### flap_detection_options
+notification_period
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notifications_enabled
+: Nagios configuration file parameter.
 
-##### freshness_threshold
+obsess_over_service
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+parallelize_check
+: Nagios configuration file parameter.
 
-##### high_flap_threshold
+passive_checks_enabled
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+process_perf_data
+: Nagios configuration file parameter.
 
-##### host_name
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Nagios configuration file parameter.
+    * **naginator**:     
 
-##### hostgroup_name
+register
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+retain_nonstatus_information
+: Nagios configuration file parameter.
 
-##### icon_image
+retain_status_information
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+retry_check_interval
+: Nagios configuration file parameter.
 
-##### icon_image_alt
+retry_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+service_description
+: Nagios configuration file parameter.
 
-##### initial_state
+servicegroups
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### is_volatile
-
-Nagios configuration file parameter.
-
-##### low_flap_threshold
-
-Nagios configuration file parameter.
-
-##### max_check_attempts
-
-Nagios configuration file parameter.
-
-##### normal_check_interval
-
-Nagios configuration file parameter.
-
-##### notes
-
-Nagios configuration file parameter.
-
-##### notes_url
-
-Nagios configuration file parameter.
-
-##### notification_interval
-
-Nagios configuration file parameter.
-
-##### notification_options
-
-Nagios configuration file parameter.
-
-##### notification_period
-
-Nagios configuration file parameter.
-
-##### notifications_enabled
-
-Nagios configuration file parameter.
-
-##### obsess_over_service
-
-Nagios configuration file parameter.
-
-##### parallelize_check
-
-Nagios configuration file parameter.
-
-##### passive_checks_enabled
-
-Nagios configuration file parameter.
-
-##### process_perf_data
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### retain_nonstatus_information
-
-Nagios configuration file parameter.
-
-##### retain_status_information
-
-Nagios configuration file parameter.
-
-##### retry_check_interval
-
-Nagios configuration file parameter.
-
-##### retry_interval
-
-Nagios configuration file parameter.
-
-##### service_description
-
-Nagios configuration file parameter.
-
-##### servicegroups
-
-Nagios configuration file parameter.
-
-##### stalking_options
-
-Nagios configuration file parameter.
-
-##### target
+stalking_options
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2645,75 +2307,59 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### _naginator_name
+_naginator_name
+: - **namevar**
 
-- **namevar**
+    The name parameter for Nagios type servicedependency
 
-The name parameter for Nagios type servicedependency
+dependency_period
+: Nagios configuration file parameter.
 
-##### dependency_period
+dependent_host_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+dependent_hostgroup_name
+: Nagios configuration file parameter.
 
-##### dependent_host_name
+dependent_service_description
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### dependent_hostgroup_name
+execution_failure_criteria
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+host_name
+: Nagios configuration file parameter.
 
-##### dependent_service_description
+hostgroup_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+inherits_parent
+: Nagios configuration file parameter.
 
-##### ensure
+notification_failure_criteria
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### execution_failure_criteria
+    * **naginator**:     
 
-Nagios configuration file parameter.
+register
+: Nagios configuration file parameter.
 
-##### host_name
-
-Nagios configuration file parameter.
-
-##### hostgroup_name
-
-Nagios configuration file parameter.
-
-##### inherits_parent
-
-Nagios configuration file parameter.
-
-##### notification_failure_criteria
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### service_description
-
-Nagios configuration file parameter.
-
-##### target
+service_description
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2738,79 +2384,62 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### _naginator_name
+_naginator_name
+: - **namevar**
 
-- **namevar**
+    The name parameter for Nagios type serviceescalation
 
-The name parameter for Nagios type serviceescalation
+contact_groups
+: Nagios configuration file parameter.
 
-##### contact_groups
+contacts
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### contacts
+escalation_options
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+escalation_period
+: Nagios configuration file parameter.
 
-##### ensure
+first_notification
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+host_name
+: Nagios configuration file parameter.
 
-##### escalation_options
+hostgroup_name
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+last_notification
+: Nagios configuration file parameter.
 
-##### escalation_period
+notification_interval
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### first_notification
+    * **naginator**:     
 
-Nagios configuration file parameter.
+register
+: Nagios configuration file parameter.
 
-##### host_name
+service_description
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### hostgroup_name
-
-Nagios configuration file parameter.
-
-##### last_notification
-
-Nagios configuration file parameter.
-
-##### notification_interval
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### service_description
-
-Nagios configuration file parameter.
-
-##### servicegroup_name
-
-Nagios configuration file parameter.
-
-##### target
+servicegroup_name
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2835,63 +2464,50 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### _naginator_name
+_naginator_name
+: - **namevar**
 
-- **namevar**
+    The name parameter for Nagios type serviceextinfo
 
-The name parameter for Nagios type serviceextinfo
+action_url
+: Nagios configuration file parameter.
 
-##### action_url
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-Nagios configuration file parameter.
+host_name
+: Nagios configuration file parameter.
 
-##### ensure
+icon_image
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+icon_image_alt
+: Nagios configuration file parameter.
 
-##### host_name
+notes
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+notes_url
+: Nagios configuration file parameter.
 
-##### icon_image
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Nagios configuration file parameter.
+    * **naginator**:     
 
-##### icon_image_alt
+register
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### notes
-
-Nagios configuration file parameter.
-
-##### notes_url
-
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### service_description
-
-Nagios configuration file parameter.
-
-##### target
+service_description
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2916,59 +2532,47 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### action_url
+action_url
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+alias
+: Nagios configuration file parameter.
 
-##### alias
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-Nagios configuration file parameter.
+members
+: Nagios configuration file parameter.
 
-##### ensure
+notes
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+notes_url
+: Nagios configuration file parameter.
 
-##### members
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Nagios configuration file parameter.
+    * **naginator**:     
 
-##### notes
+register
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+servicegroup_members
+: Nagios configuration file parameter.
 
-##### notes_url
+servicegroup_name
+: - **namevar**
 
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### servicegroup_members
-
-Nagios configuration file parameter.
-
-##### servicegroup_name
-
-- **namevar**
-
-The name parameter for Nagios type servicegroup
-
-##### target
+    The name parameter for Nagios type servicegroup
 
 target
+: target
 
-##### use
-
-Nagios configuration file parameter.
+use
+: Nagios configuration file parameter.
 
 
 
@@ -2993,71 +2597,56 @@ in the default file locations.  This is an architectural limitation.
 #### Parameters
 
 
-##### alias
+alias
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### ensure
+exclude
+: Nagios configuration file parameter.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+friday
+: Nagios configuration file parameter.
 
-##### exclude
+monday
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### friday
+    * **naginator**:     
 
-Nagios configuration file parameter.
+register
+: Nagios configuration file parameter.
 
-##### monday
+saturday
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **naginator**:     
-
-##### register
-
-Nagios configuration file parameter.
-
-##### saturday
-
-Nagios configuration file parameter.
-
-##### sunday
-
-Nagios configuration file parameter.
-
-##### target
+sunday
+: Nagios configuration file parameter.
 
 target
+: target
 
-##### thursday
+thursday
+: Nagios configuration file parameter.
 
-Nagios configuration file parameter.
+timeperiod_name
+: - **namevar**
 
-##### timeperiod_name
+    The name parameter for Nagios type timeperiod
 
-- **namevar**
+tuesday
+: Nagios configuration file parameter.
 
-The name parameter for Nagios type timeperiod
+use
+: Nagios configuration file parameter.
 
-##### tuesday
-
-Nagios configuration file parameter.
-
-##### use
-
-Nagios configuration file parameter.
-
-##### wednesday
-
-Nagios configuration file parameter.
+wednesday
+: Nagios configuration file parameter.
 
 
 
@@ -3071,17 +2660,14 @@ Sends an arbitrary message to the agent run-time log.
 #### Parameters
 
 
-##### message
+message
+: The message to be sent to the log.
 
-The message to be sent to the log.
+name
+: An arbitrary tag for your own reference; the name of the message.
 
-##### name
-
-An arbitrary tag for your own reference; the name of the message.
-
-##### withpath
-
-Whether to not to show the full object path.  Valid values are `true`, `false`.
+withpath
+: Whether to not to show the full object path.  Valid values are `true`, `false`.
 
 
 
@@ -3150,185 +2736,168 @@ zypper      |          | *X*         |           | *X*           | *X*         |
 #### Parameters
 
 
-##### adminfile
+adminfile
+: A file containing package defaults for installing packages.
+    This is currently only used on Solaris.  The value will be
+    validated according to system rules, which in the case of
+    Solaris means that it should either be a fully qualified path
+    or it should be in `/var/sadm/install/admin`.
 
-A file containing package defaults for installing packages.
-This is currently only used on Solaris.  The value will be
-validated according to system rules, which in the case of
-Solaris means that it should either be a fully qualified path
-or it should be in `/var/sadm/install/admin`.
+allowcdrom
+: Tells apt to allow cdrom sources in the sources.list file.
+    Normally apt will bail if you try this.  Valid values are `true`, `false`.
 
-##### allowcdrom
+category
+: A read-only parameter set by the package.
 
-Tells apt to allow cdrom sources in the sources.list file.
-Normally apt will bail if you try this.  Valid values are `true`, `false`.
+configfiles
+: Whether configfiles should be kept or replaced.  Most packages
+    types do not support this parameter.  Valid values are `keep`, `replace`.
 
-##### category
+description
+: A read-only parameter set by the package.
 
-A read-only parameter set by the package.
+ensure
+: What state the package should be in.
+    *latest* only makes sense for those packaging formats that can
+    retrieve new packages on their own and will throw an error on
+    those that cannot.  For those packaging systems that allow you
+    to specify package versions, specify them here.  Similarly,
+    *purged* is only useful for packaging systems that support
+    the notion of managing configuration files separately from
+    'normal' system files.  Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`.  Values can match `/./`.
 
-##### configfiles
+flavor
+: Newer versions of OpenBSD support 'flavors', which are
+    further specifications for which type of package you want.
 
-Whether configfiles should be kept or replaced.  Most packages
-types do not support this parameter.  Valid values are `keep`, `replace`.
+instance
+: A read-only parameter set by the package.
 
-##### description
+name
+: The package name.  This is the name that the packaging
+    system uses internally, which is sometimes (especially on Solaris)
+    a name that is basically useless to humans.  If you want to
+    abstract package installation, then you can use aliases to provide
+    a common name to packages:
 
-A read-only parameter set by the package.
+        # In the 'openssl' class
+        $ssl = $operatingsystem ? {
+          solaris => SMCossl,
+          default => openssl
+        }
 
-##### ensure
+        # It is not an error to set an alias to the same value as the
+        # object name.
+        package { $ssl:
+          ensure => installed,
+          alias => openssl
+        }
 
-What state the package should be in.
-*latest* only makes sense for those packaging formats that can
-retrieve new packages on their own and will throw an error on
-those that cannot.  For those packaging systems that allow you
-to specify package versions, specify them here.  Similarly,
-*purged* is only useful for packaging systems that support
-the notion of managing configuration files separately from
-'normal' system files.  Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`.  Values can match `/./`.
+        . etc. .
 
-##### flavor
+        $ssh = $operatingsystem ? {
+          solaris => SMCossh,
+          default => openssh
+        }
 
-Newer versions of OpenBSD support 'flavors', which are
-further specifications for which type of package you want.
-
-##### instance
-
-A read-only parameter set by the package.
-
-##### name
-
-The package name.  This is the name that the packaging
-system uses internally, which is sometimes (especially on Solaris)
-a name that is basically useless to humans.  If you want to
-abstract package installation, then you can use aliases to provide
-a common name to packages:
-
-    # In the 'openssl' class
-    $ssl = $operatingsystem ? {
-      solaris => SMCossl,
-      default => openssl
-    }
-
-    # It is not an error to set an alias to the same value as the
-    # object name.
-    package { $ssl:
-      ensure => installed,
-      alias => openssl
-    }
-
-    . etc. .
-
-    $ssh = $operatingsystem ? {
-      solaris => SMCossh,
-      default => openssh
-    }
-
-    # Use the alias to specify a dependency, rather than
-    # having another selector to figure it out again.
-    package { $ssh:
-      ensure => installed,
-      alias => openssh,
-      require => Package[openssl]
-    }
+        # Use the alias to specify a dependency, rather than
+        # having another selector to figure it out again.
+        package { $ssh:
+          ensure => installed,
+          alias => openssh,
+          require => Package[openssl]
+        }
 
 
 
-##### platform
+platform
+: A read-only parameter set by the package.
 
-A read-only parameter set by the package.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### provider
+    * **aix**: Installation from AIX Software directory  Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`.    Default for `operatingsystem` == `aix`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **appdmg**: Package management which copies application bundles to a target.  Required binaries: `/usr/bin/ditto`, `/usr/bin/hdiutil`, `/usr/bin/curl`.      Supported features: `installable`.
+    * **apple**: Package management based on OS X's builtin packaging system.  This is
+        essentially the simplest and least functional package system in existence --
+        it only supports installation; no deletion or upgrades.  The provider will
+        automatically add the `.pkg` extension, so leave that off when specifying
+        the package name.  Required binaries: `/usr/sbin/installer`.      Supported features: `installable`.
+    * **apt**: Package management via `apt-get`.  Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`.    Default for `operatingsystem` == `debianubuntu`.    Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **aptitude**: Package management via `aptitude`.  Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`.      Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **aptrpm**: Package management via `apt-get` ported to `rpm`.  Required binaries: `apt-get`, `apt-cache`, `rpm`.      Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **blastwave**: Package management using Blastwave.org's `pkg-get` command on Solaris.  Required binaries: `pkg-get`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **dpkg**: Package management via `dpkg`.  Because this only uses `dpkg`
+        and not `apt`, you must specify the source of any packages you want
+        to manage.  Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg`, `/usr/bin/dpkg-query`.      Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
+    * **fink**: Package management via `fink`.  Required binaries: `/sw/bin/fink`, `/sw/bin/dpkg-query`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`.      Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **freebsd**: The specific form of package management on FreeBSD.  This is an
+        extremely quirky packaging system, in that it freely mixes between
+        ports and packages.  Apparently all of the tools are written in Ruby,
+        so there are plans to rewrite this support to directly use those
+        libraries.  Required binaries: `/usr/sbin/pkg_delete`, `/usr/sbin/pkg_info`, `/usr/sbin/pkg_add`.      Supported features: `installable`, `uninstallable`.
+    * **gem**: Ruby Gem support.  If a URL is passed via `source`, then that URL is used as the
+        remote gem repository; if a source is present but is not a valid URL, it will be
+        interpreted as the path to a local gem file.  If source is not present at all,
+        the gem will be installed from the default gem repositories.  Required binaries: `gem`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **hpux**: HP-UX's packaging system.  Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`.    Default for `operatingsystem` == `hp-ux`.    Supported features: `installable`, `uninstallable`.
+    * **macports**: Package management using MacPorts on OS X.
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
+        Supports MacPorts versions and revisions, but not variants.
+        Variant preferences may be specified using the MacPorts variants.conf file
+        http://guide.macports.org/chunked/internals.configuration-files.html#internals.configuration-files.variants-conf
 
-* **aix**: Installation from AIX Software directory  Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`.    Default for `operatingsystem` == `aix`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **appdmg**: Package management which copies application bundles to a target.  Required binaries: `/usr/bin/ditto`, `/usr/bin/hdiutil`, `/usr/bin/curl`.      Supported features: `installable`.
-* **apple**: Package management based on OS X's builtin packaging system.  This is
-    essentially the simplest and least functional package system in existence --
-    it only supports installation; no deletion or upgrades.  The provider will
-    automatically add the `.pkg` extension, so leave that off when specifying
-    the package name.  Required binaries: `/usr/sbin/installer`.      Supported features: `installable`.
-* **apt**: Package management via `apt-get`.  Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`.    Default for `operatingsystem` == `debianubuntu`.    Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
-* **aptitude**: Package management via `aptitude`.  Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`.      Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
-* **aptrpm**: Package management via `apt-get` ported to `rpm`.  Required binaries: `apt-get`, `apt-cache`, `rpm`.      Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
-* **blastwave**: Package management using Blastwave.org's `pkg-get` command on Solaris.  Required binaries: `pkg-get`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **dpkg**: Package management via `dpkg`.  Because this only uses `dpkg`
-    and not `apt`, you must specify the source of any packages you want
-    to manage.  Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg`, `/usr/bin/dpkg-query`.      Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
-* **fink**: Package management via `fink`.  Required binaries: `/sw/bin/fink`, `/sw/bin/dpkg-query`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`.      Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
-* **freebsd**: The specific form of package management on FreeBSD.  This is an
-    extremely quirky packaging system, in that it freely mixes between
-    ports and packages.  Apparently all of the tools are written in Ruby,
-    so there are plans to rewrite this support to directly use those
-    libraries.  Required binaries: `/usr/sbin/pkg_delete`, `/usr/sbin/pkg_info`, `/usr/sbin/pkg_add`.      Supported features: `installable`, `uninstallable`.
-* **gem**: Ruby Gem support.  If a URL is passed via `source`, then that URL is used as the
-    remote gem repository; if a source is present but is not a valid URL, it will be
-    interpreted as the path to a local gem file.  If source is not present at all,
-    the gem will be installed from the default gem repositories.  Required binaries: `gem`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **hpux**: HP-UX's packaging system.  Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`.    Default for `operatingsystem` == `hp-ux`.    Supported features: `installable`, `uninstallable`.
-* **macports**: Package management using MacPorts on OS X.
+        When specifying a version in the Puppet DSL, only specify the version, not the revision
+        Revisions are only used internally for ensuring the latest version/revision of a port.
+        Required binaries: `/opt/local/bin/port`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **nim**: Installation from NIM LPP source  Required binaries: `/usr/sbin/nimclient`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **openbsd**: OpenBSD's form of `pkg_add` support.  Required binaries: `pkg_delete`, `pkg_info`, `pkg_add`.    Default for `operatingsystem` == `openbsd`.    Supported features: `installable`, `uninstallable`, `versionable`.
+    * **pkg**: OpenSolaris image packaging system. See pkg(5) for more information  Required binaries: `/usr/bin/pkg`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **pkgdmg**: Package management based on Apple's Installer.app and DiskUtility.app.  This package works by checking the contents of a DMG image for Apple pkg or mpkg files. Any number of pkg or mpkg files may exist in the root directory of the DMG file system. Sub directories are not checked for packages.  See `the wiki docs <http://projects.puppetlabs.com/projects/puppet/wiki/Package_Management_With_Dmg_Patterns>` for more detail.  Required binaries: `/usr/sbin/installer`, `/usr/bin/hdiutil`, `/usr/bin/curl`.    Default for `operatingsystem` == `darwin`.    Supported features: `installable`.
+    * **portage**: Provides packaging support for Gentoo's portage system.  Required binaries: `/usr/bin/emerge`, `/usr/bin/eix`, `/usr/bin/eix-update`.    Default for `operatingsystem` == `gentoo`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **ports**: Support for FreeBSD's ports.  Again, this still mixes packages and ports.  Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`.    Default for `operatingsystem` == `freebsd`.    Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **portupgrade**: Support for FreeBSD's ports using the portupgrade ports management software.
+        Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
+        for the portupgrade port.  Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **rpm**: RPM packaging support; should work anywhere with a working `rpm`
+        binary.  Required binaries: `rpm`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **rug**: Support for suse `rug` package manager.  Required binaries: `/usr/bin/rug`, `rpm`.    Default for `operatingsystem` == `susesles`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **sun**: Sun's packaging system.  Requires that you specify the source for
+        the packages you're managing.  Required binaries: `/usr/sbin/pkgrm`, `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`.    Default for `operatingsystem` == `solaris`.    Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **sunfreeware**: Package management using sunfreeware.com's `pkg-get` command on Solaris.
+        At this point, support is exactly the same as `blastwave` support and
+        has not actually been tested.  Required binaries: `pkg-get`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **up2date**: Support for Red Hat's proprietary `up2date` package update
+        mechanism.  Required binaries: `/usr/sbin/up2date-nox`.    Default for `operatingsystem` == `redhatoelovm` and `lsbdistrelease` == `2.134`.    Supported features: `installable`, `uninstallable`, `upgradeable`.
+    * **urpmi**: Support via `urpmi`.  Required binaries: `urpmi`, `urpmq`, `rpm`.    Default for `operatingsystem` == `mandrivamandrake`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **yum**: Support via `yum`.  Required binaries: `yum`, `python`, `rpm`.    Default for `operatingsystem` == `fedoracentosredhat`.    Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+    * **zypper**: Support for SuSE `zypper` package manager. Found in SLES10sp2+ and SLES11  Required binaries: `/usr/bin/zypper`, `rpm`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
-    Supports MacPorts versions and revisions, but not variants.
-    Variant preferences may be specified using the MacPorts variants.conf file
-    http://guide.macports.org/chunked/internals.configuration-files.html#internals.configuration-files.variants-conf
+responsefile
+: A file containing any necessary answers to questions asked by
+    the package.  This is currently used on Solaris and Debian.  The
+    value will be validated according to system rules, but it should
+    generally be a fully qualified path.
 
-    When specifying a version in the Puppet DSL, only specify the version, not the revision
-    Revisions are only used internally for ensuring the latest version/revision of a port.
-    Required binaries: `/opt/local/bin/port`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **nim**: Installation from NIM LPP source  Required binaries: `/usr/sbin/nimclient`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **openbsd**: OpenBSD's form of `pkg_add` support.  Required binaries: `pkg_delete`, `pkg_info`, `pkg_add`.    Default for `operatingsystem` == `openbsd`.    Supported features: `installable`, `uninstallable`, `versionable`.
-* **pkg**: OpenSolaris image packaging system. See pkg(5) for more information  Required binaries: `/usr/bin/pkg`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **pkgdmg**: Package management based on Apple's Installer.app and DiskUtility.app.  This package works by checking the contents of a DMG image for Apple pkg or mpkg files. Any number of pkg or mpkg files may exist in the root directory of the DMG file system. Sub directories are not checked for packages.  See `the wiki docs <http://projects.puppetlabs.com/projects/puppet/wiki/Package_Management_With_Dmg_Patterns>` for more detail.  Required binaries: `/usr/sbin/installer`, `/usr/bin/hdiutil`, `/usr/bin/curl`.    Default for `operatingsystem` == `darwin`.    Supported features: `installable`.
-* **portage**: Provides packaging support for Gentoo's portage system.  Required binaries: `/usr/bin/emerge`, `/usr/bin/eix`, `/usr/bin/eix-update`.    Default for `operatingsystem` == `gentoo`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **ports**: Support for FreeBSD's ports.  Again, this still mixes packages and ports.  Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`.    Default for `operatingsystem` == `freebsd`.    Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **portupgrade**: Support for FreeBSD's ports using the portupgrade ports management software.
-    Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
-    for the portupgrade port.  Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **rpm**: RPM packaging support; should work anywhere with a working `rpm`
-    binary.  Required binaries: `rpm`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **rug**: Support for suse `rug` package manager.  Required binaries: `/usr/bin/rug`, `rpm`.    Default for `operatingsystem` == `susesles`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **sun**: Sun's packaging system.  Requires that you specify the source for
-    the packages you're managing.  Required binaries: `/usr/sbin/pkgrm`, `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`.    Default for `operatingsystem` == `solaris`.    Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **sunfreeware**: Package management using sunfreeware.com's `pkg-get` command on Solaris.
-    At this point, support is exactly the same as `blastwave` support and
-    has not actually been tested.  Required binaries: `pkg-get`.      Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **up2date**: Support for Red Hat's proprietary `up2date` package update
-    mechanism.  Required binaries: `/usr/sbin/up2date-nox`.    Default for `operatingsystem` == `redhatoelovm` and `lsbdistrelease` == `2.134`.    Supported features: `installable`, `uninstallable`, `upgradeable`.
-* **urpmi**: Support via `urpmi`.  Required binaries: `urpmi`, `urpmq`, `rpm`.    Default for `operatingsystem` == `mandrivamandrake`.    Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
-* **yum**: Support via `yum`.  Required binaries: `yum`, `python`, `rpm`.    Default for `operatingsystem` == `fedoracentosredhat`.    Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
-* **zypper**: Support for SuSE `zypper` package manager. Found in SLES10sp2+ and SLES11  Required binaries: `/usr/bin/zypper`, `rpm`.      Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+root
+: A read-only parameter set by the package.
 
-##### responsefile
+source
+: Where to find the actual package.  This must be a local file
+    (or on a network file system) or a URL that your specific
+    packaging type understands; Puppet will not retrieve files for you.
 
-A file containing any necessary answers to questions asked by
-the package.  This is currently used on Solaris and Debian.  The
-value will be validated according to system rules, but it should
-generally be a fully qualified path.
+status
+: A read-only parameter set by the package.
 
-##### root
+type
+: Deprecated form of `provider`.
 
-A read-only parameter set by the package.
-
-##### source
-
-Where to find the actual package.  This must be a local file
-(or on a network file system) or a URL that your specific
-packaging type understands; Puppet will not retrieve files for you.
-
-##### status
-
-A read-only parameter set by the package.
-
-##### type
-
-Deprecated form of `provider`.
-
-##### vendor
-
-A read-only parameter set by the package.
+vendor
+: A read-only parameter set by the package.
 
 
 
@@ -3345,21 +2914,18 @@ purging is only logged and does not actually happen.
 #### Parameters
 
 
-##### name
+name
+: The name of the type to be managed.
 
-The name of the type to be managed.
+purge
+: Purge unmanaged resources.  This will delete any resource
+    that is not specified in your configuration
+    and is not required by any specified resources.  Valid values are `true`, `false`.
 
-##### purge
-
-Purge unmanaged resources.  This will delete any resource
-that is not specified in your configuration
-and is not required by any specified resources.  Valid values are `true`, `false`.
-
-##### unless_system_user
-
-This keeps system users from being purged.  By default, it
-does not purge users whose UIDs are less than or equal to 500, but you can specify
-a different UID as the inclusive limit.  Valid values are `true`, `false`.  Values can match `/^\d+$/`.
+unless_system_user
+: This keeps system users from being purged.  By default, it
+    does not purge users whose UIDs are less than or equal to 500, but you can specify
+    a different UID as the inclusive limit.  Valid values are `true`, `false`.  Values can match `/^\d+$/`.
 
 
 
@@ -3414,79 +2980,74 @@ This will cause resources to be applied every 30 minutes by default.
 #### Parameters
 
 
-##### name
+name
+: The name of the schedule.  This name is used to retrieve the
+    schedule when assigning it to an object:
 
-The name of the schedule.  This name is used to retrieve the
-schedule when assigning it to an object:
-
-    schedule { daily:
-      period => daily,
-      range => "2 - 4",
-    }
+        schedule { daily:
+          period => daily,
+          range => "2 - 4",
+        }
   
-    exec { "/usr/bin/apt-get update":
-      schedule => daily
-    }
+        exec { "/usr/bin/apt-get update":
+          schedule => daily
+        }
 
 
 
-##### period
+period
+: The period of repetition for a resource.  Choose from among
+    a fixed list of *hourly*, *daily*, *weekly*, and *monthly*.
+    The default is for a resource to get applied every time that
+    Puppet runs, whatever that period is.
 
-The period of repetition for a resource.  Choose from among
-a fixed list of *hourly*, *daily*, *weekly*, and *monthly*.
-The default is for a resource to get applied every time that
-Puppet runs, whatever that period is.
+    Note that the period defines how often a given resource will get
+    applied but not when; if you would like to restrict the hours
+    that a given resource can be applied (e.g., only at night during
+    a maintenance window) then use the `range` attribute.
 
-Note that the period defines how often a given resource will get
-applied but not when; if you would like to restrict the hours
-that a given resource can be applied (e.g., only at night during
-a maintenance window) then use the `range` attribute.
+    If the provided periods are not sufficient, you can provide a
+    value to the *repeat* attribute, which will cause Puppet to
+    schedule the affected resources evenly in the period the
+    specified number of times.  Take this schedule:
 
-If the provided periods are not sufficient, you can provide a
-value to the *repeat* attribute, which will cause Puppet to
-schedule the affected resources evenly in the period the
-specified number of times.  Take this schedule:
+        schedule { veryoften:
+          period => hourly,
+          repeat => 6
+        }
 
-    schedule { veryoften:
-      period => hourly,
-      repeat => 6
-    }
+    This can cause Puppet to apply that resource up to every 10 minutes.
 
-This can cause Puppet to apply that resource up to every 10 minutes.
+    At the moment, Puppet cannot guarantee that level of
+    repetition; that is, it can run up to every 10 minutes, but
+    internal factors might prevent it from actually running that
+    often (e.g., long-running Puppet runs will squash conflictingly scheduled runs).
 
-At the moment, Puppet cannot guarantee that level of
-repetition; that is, it can run up to every 10 minutes, but
-internal factors might prevent it from actually running that
-often (e.g., long-running Puppet runs will squash conflictingly scheduled runs).
+    See the `periodmatch` attribute for tuning whether to match
+    times by their distance apart or by their specific value.  Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
 
-See the `periodmatch` attribute for tuning whether to match
-times by their distance apart or by their specific value.  Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
+periodmatch
+: Whether periods should be matched by number (e.g., the two times
+    are in the same hour) or by distance (e.g., the two times are
+    60 minutes apart).  Valid values are `number`, `distance`.
 
-##### periodmatch
+range
+: The earliest and latest that a resource can be applied.  This
+    is always a range within a 24 hour period, and hours must be
+    specified in numbers between 0 and 23, inclusive.  Minutes and
+    seconds can be provided, using the normal colon as a separator.
+    For instance:
 
-Whether periods should be matched by number (e.g., the two times
-are in the same hour) or by distance (e.g., the two times are
-60 minutes apart).  Valid values are `number`, `distance`.
+        schedule { maintenance:
+          range => "1:30 - 4:30"
+        }
 
-##### range
+    This is mostly useful for restricting certain resources to being
+    applied in maintenance windows or during off-peak hours.
 
-The earliest and latest that a resource can be applied.  This
-is always a range within a 24 hour period, and hours must be
-specified in numbers between 0 and 23, inclusive.  Minutes and
-seconds can be provided, using the normal colon as a separator.
-For instance:
-
-    schedule { maintenance:
-      range => "1:30 - 4:30"
-    }
-
-This is mostly useful for restricting certain resources to being
-applied in maintenance windows or during off-peak hours.
-
-##### repeat
-
-How often the application gets repeated in a given period.
-Defaults to 1. Must be an integer.
+repeat
+: How often the application gets repeated in a given period.
+    Defaults to 1. Must be an integer.
 
 
 
@@ -3501,26 +3062,22 @@ are any of the ones found in `/selinux/booleans/`.
 #### Parameters
 
 
-##### name
+name
+: The name of the SELinux boolean to be managed.
 
-The name of the SELinux boolean to be managed.
+persistent
+: If set true, SELinux booleans will be written to disk and persist accross reboots.
+    The default is `false`.  Valid values are `true`, `false`.
 
-##### persistent
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-If set true, SELinux booleans will be written to disk and persist accross reboots.
-The default is `false`.  Valid values are `true`, `false`.
+    * **getsetsebool**: Manage SELinux booleans using the getsebool and setsebool binaries.  Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`.    
 
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **getsetsebool**: Manage SELinux booleans using the getsebool and setsebool binaries.  Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`.    
-
-##### value
-
-Whether the the SELinux boolean should be enabled or disabled.  Valid values are `on`, `off`.
+value
+: Whether the the SELinux boolean should be enabled or disabled.  Valid values are `on`, `off`.
 
 
 
@@ -3538,41 +3095,35 @@ for more information on SELinux policy modules.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+name
+: The name of the SELinux policy to be managed.  You should not
+    include the customary trailing .pp extension.
 
-##### name
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The name of the SELinux policy to be managed.  You should not
-include the customary trailing .pp extension.
+    * **semodule**: Manage SELinux policy modules using the semodule binary.  Required binaries: `/usr/sbin/semodule`.    
 
-##### provider
+selmoduledir
+: The directory to look for the compiled pp module file in.
+    Currently defaults to `/usr/share/selinux/targeted`.  If selmodulepath
+    is not specified the module will be looked for in this directory in a
+    in a file called NAME.pp, where NAME is the value of the name parameter.
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
+selmodulepath
+: The full path to the compiled .pp policy module.  You only need to use
+    this if the module file is not in the directory pointed at by selmoduledir.
 
-* **semodule**: Manage SELinux policy modules using the semodule binary.  Required binaries: `/usr/sbin/semodule`.    
-
-##### selmoduledir
-
-The directory to look for the compiled pp module file in.
-Currently defaults to `/usr/share/selinux/targeted`.  If selmodulepath
-is not specified the module will be looked for in this directory in a
-in a file called NAME.pp, where NAME is the value of the name parameter.
-
-##### selmodulepath
-
-The full path to the compiled .pp policy module.  You only need to use
-this if the module file is not in the directory pointed at by selmoduledir.
-
-##### syncversion
-
-If set to `true`, the policy will be reloaded if the
-version found in the on-disk file differs from the loaded
-version.  If set to `false` (the default) the the only check
-that will be made is if the policy is loaded at all or not.  Valid values are `true`, `false`.
+syncversion
+: If set to `true`, the policy will be reloaded if the
+    version found in the on-disk file differs from the loaded
+    version.  If set to `false` (the default) the the only check
+    that will be made is if the policy is loaded at all or not.  Valid values are `true`, `false`.
 
 
 
@@ -3626,274 +3177,259 @@ src         |              |            | *X*         |
 #### Parameters
 
 
-##### binary
+binary
+: The path to the daemon.  This is only used for
+    systems that do not support init scripts.  This binary will be
+    used to start the service if no `start` parameter is
+    provided.
 
-The path to the daemon.  This is only used for
-systems that do not support init scripts.  This binary will be
-used to start the service if no `start` parameter is
-provided.
+control
+: The control variable used to manage services (originally for HP-UX).
+    Defaults to the upcased service name plus `START` replacing dots with
+    underscores, for those providers that support the `controllable` feature.
 
-##### control
+enable
+: Whether a service should be enabled to start at boot.
+    This property behaves quite differently depending on the platform;
+    wherever possible, it relies on local tools to enable or disable
+    a given service.  Valid values are `true`, `false`.  Requires features enableable.
 
-The control variable used to manage services (originally for HP-UX).
-Defaults to the upcased service name plus `START` replacing dots with
-underscores, for those providers that support the `controllable` feature.
+ensure
+: Whether a service should be running.  Valid values are `stopped` (also called `false`), `running` (also called `true`).
 
-##### enable
+hasrestart
+: Specify that an init script has a `restart` option.  Otherwise,
+    the init script's `stop` and `start` methods are used.  Valid values are `true`, `false`.
 
-Whether a service should be enabled to start at boot.
-This property behaves quite differently depending on the platform;
-wherever possible, it relies on local tools to enable or disable
-a given service.  Valid values are `true`, `false`.  Requires features enableable.
+hasstatus
+: Declare the the service's init script has a
+    functional status command.  Based on testing, it was found
+    that a large number of init scripts on different platforms do
+    not support any kind of status command; thus, you must specify
+    manually whether the service you are running has such a
+    command. Alternately, you can provide a specific command using the
+    `status` attribute.
 
-##### ensure
+    If you specify neither of these, then Puppet will look for the
+    service name in the process table. Be aware that 'virtual' init
+    scripts such as networking will respond poorly to refresh events
+    (via notify and subscribe relationships) if you don't override
+    this default behavior.  Valid values are `true`, `false`.
 
-Whether a service should be running.  Valid values are `stopped` (also called `false`), `running` (also called `true`).
+manifest
+: Specify a command to config a service, or a path to a manifest to do so.
 
-##### hasrestart
+name
+: The name of the service to run.  This name is used to find
+    the service in whatever service subsystem it is in.
 
-Specify that an init script has a `restart` option.  Otherwise,
-the init script's `stop` and `start` methods are used.  Valid values are `true`, `false`.
+path
+: The search path for finding init scripts.  Multiple values should
+    be separated by colons or provided as an array.
 
-##### hasstatus
+pattern
+: The pattern to search for in the process table.
+    This is used for stopping services on platforms that do not
+    support init scripts, and is also used for determining service
+    status on those service whose init scripts do not include a status
+    command.
 
-Declare the the service's init script has a
-functional status command.  Based on testing, it was found
-that a large number of init scripts on different platforms do
-not support any kind of status command; thus, you must specify
-manually whether the service you are running has such a
-command. Alternately, you can provide a specific command using the
-`status` attribute.
+    If this is left unspecified and is needed to check the status
+    of a service, then the service name will be used instead.
 
-If you specify neither of these, then Puppet will look for the
-service name in the process table. Be aware that 'virtual' init
-scripts such as networking will respond poorly to refresh events
-(via notify and subscribe relationships) if you don't override
-this default behavior.  Valid values are `true`, `false`.
+    The pattern can be a simple string or any legal Ruby pattern.
 
-##### manifest
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Specify a command to config a service, or a path to a manifest to do so.
+    * **base**: The simplest form of service support.
 
-##### name
+      You have to specify enough about your service for this to work; the
+      minimum you can specify is a binary for starting the process, and this
+      same binary will be searched for in the process table to stop the
+      service.  It is preferable to specify start, stop, and status commands,
+      akin to how you would do so using `init`.
 
-The name of the service to run.  This name is used to find
-the service in whatever service subsystem it is in.
+        Required binaries: `kill`.      Supported features: `refreshable`.
+    * **bsd**: FreeBSD's (and probably NetBSD?) form of `init`-style service management.
 
-##### path
+      Uses `rc.conf.d` for service enabling and disabling.
 
-The search path for finding init scripts.  Multiple values should
-be separated by colons or provided as an array.
+          Supported features: `enableable`, `refreshable`.
+    * **daemontools**: Daemontools service management.
 
-##### pattern
+      This provider manages daemons running supervised by D.J.Bernstein daemontools.
+      It tries to detect the service directory, with by order of preference:
 
-The pattern to search for in the process table.
-This is used for stopping services on platforms that do not
-support init scripts, and is also used for determining service
-status on those service whose init scripts do not include a status
-command.
+      * /service
+      * /etc/service
+      * /var/lib/svscan
 
-If this is left unspecified and is needed to check the status
-of a service, then the service name will be used instead.
+      The daemon directory should be placed in a directory that can be
+      by default in:
 
-The pattern can be a simple string or any legal Ruby pattern.
+      * /var/lib/service
+      * /etc
 
-##### provider
+      or this can be overriden in the service resource parameters::
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
+          service { "myservice":
+    provider => "daemontools",
+    path => "/path/to/daemons",
+          }
 
-* **base**: The simplest form of service support.
+      This provider supports out of the box:
 
-  You have to specify enough about your service for this to work; the
-  minimum you can specify is a binary for starting the process, and this
-  same binary will be searched for in the process table to stop the
-  service.  It is preferable to specify start, stop, and status commands,
-  akin to how you would do so using `init`.
+      * start/stop (mapped to enable/disable)
+      * enable/disable
+      * restart
+      * status
 
-    Required binaries: `kill`.      Supported features: `refreshable`.
-* **bsd**: FreeBSD's (and probably NetBSD?) form of `init`-style service management.
+      If a service has `ensure => "running"`, it will link /path/to/daemon to
+      /path/to/service, which will automatically enable the service.
 
-  Uses `rc.conf.d` for service enabling and disabling.
+      If a service has `ensure => "stopped"`, it will only down the service, not
+      remove the /path/to/service link.
 
-      Supported features: `enableable`, `refreshable`.
-* **daemontools**: Daemontools service management.
+        Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`.      Supported features: `enableable`, `refreshable`.
+    * **debian**: Debian's form of `init`-style management.
 
-  This provider manages daemons running supervised by D.J.Bernstein daemontools.
-  It tries to detect the service directory, with by order of preference:
+      The only difference is that this supports service enabling and disabling
+      via `update-rc.d` and determines enabled status via `invoke-rc.d`.
 
-  * /service
-  * /etc/service
-  * /var/lib/svscan
+        Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`.    Default for `operatingsystem` == `debianubuntu`.    Supported features: `enableable`, `refreshable`.
+    * **freebsd**: Provider for FreeBSD. Makes use of rcvar argument of init scripts and parses/edits rc files.    Default for `operatingsystem` == `freebsd`.    Supported features: `enableable`, `refreshable`.
+    * **gentoo**: Gentoo's form of `init`-style service management.
 
-  The daemon directory should be placed in a directory that can be
-  by default in:
+      Uses `rc-update` for service enabling and disabling.
 
-  * /var/lib/service
-  * /etc
+        Required binaries: `/sbin/rc-update`.    Default for `operatingsystem` == `gentoo`.    Supported features: `enableable`, `refreshable`.
+    * **init**: Standard init service management.
 
-  or this can be overriden in the service resource parameters::
+      This provider assumes that the init script has no `status` command,
+      because so few scripts do, so you need to either provide a status
+      command or specify via `hasstatus` that one already exists in the
+      init script.
 
-      service { "myservice":
-provider => "daemontools",
-path => "/path/to/daemons",
-      }
+          Supported features: `refreshable`.
+    * **launchd**: launchd service management framework.
 
-  This provider supports out of the box:
+      This provider manages jobs with launchd, which is the default service framework for
+      Mac OS X and is potentially available for use on other platforms.
 
-  * start/stop (mapped to enable/disable)
-  * enable/disable
-  * restart
-  * status
-
-  If a service has `ensure => "running"`, it will link /path/to/daemon to
-  /path/to/service, which will automatically enable the service.
-
-  If a service has `ensure => "stopped"`, it will only down the service, not
-  remove the /path/to/service link.
-
-    Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`.      Supported features: `enableable`, `refreshable`.
-* **debian**: Debian's form of `init`-style management.
-
-  The only difference is that this supports service enabling and disabling
-  via `update-rc.d` and determines enabled status via `invoke-rc.d`.
-
-    Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`.    Default for `operatingsystem` == `debianubuntu`.    Supported features: `enableable`, `refreshable`.
-* **freebsd**: Provider for FreeBSD. Makes use of rcvar argument of init scripts and parses/edits rc files.    Default for `operatingsystem` == `freebsd`.    Supported features: `enableable`, `refreshable`.
-* **gentoo**: Gentoo's form of `init`-style service management.
-
-  Uses `rc-update` for service enabling and disabling.
-
-    Required binaries: `/sbin/rc-update`.    Default for `operatingsystem` == `gentoo`.    Supported features: `enableable`, `refreshable`.
-* **init**: Standard init service management.
-
-  This provider assumes that the init script has no `status` command,
-  because so few scripts do, so you need to either provide a status
-  command or specify via `hasstatus` that one already exists in the
-  init script.
-
-      Supported features: `refreshable`.
-* **launchd**: launchd service management framework.
-
-  This provider manages jobs with launchd, which is the default service framework for
-  Mac OS X and is potentially available for use on other platforms.
-
-  See:
+      See:
   
-  * http://developer.apple.com/macosx/launchd.html
-  * http://launchd.macosforge.org/
+      * http://developer.apple.com/macosx/launchd.html
+      * http://launchd.macosforge.org/
 
-  This provider reads plists out of the following directories:
+      This provider reads plists out of the following directories:
   
-  * /System/Library/LaunchDaemons
-  * /System/Library/LaunchAgents
-  * /Library/LaunchDaemons
-  * /Library/LaunchAgents
+      * /System/Library/LaunchDaemons
+      * /System/Library/LaunchAgents
+      * /Library/LaunchDaemons
+      * /Library/LaunchAgents
 
-  ...and builds up a list of services based upon each plist's "Label" entry.
+      ...and builds up a list of services based upon each plist's "Label" entry.
 
-  This provider supports:
+      This provider supports:
   
-  * ensure => running/stopped,
-  * enable => true/false
-  * status
-  * restart
+      * ensure => running/stopped,
+      * enable => true/false
+      * status
+      * restart
 
-  Here is how the Puppet states correspond to launchd states:
+      Here is how the Puppet states correspond to launchd states:
   
-  * stopped --- job unloaded
-  * started --- job loaded
-  * enabled --- 'Disable' removed from job plist file
-  * disabled --- 'Disable' added to job plist file
+      * stopped --- job unloaded
+      * started --- job loaded
+      * enabled --- 'Disable' removed from job plist file
+      * disabled --- 'Disable' added to job plist file
 
-  Note that this allows you to do something launchctl can't do, which is to
-  be in a state of "stopped/enabled or "running/disabled".
+      Note that this allows you to do something launchctl can't do, which is to
+      be in a state of "stopped/enabled or "running/disabled".
 
-    Required binaries: `/usr/bin/sw_vers`, `/bin/launchctl`, `/usr/bin/plutil`.    Default for `operatingsystem` == `darwin`.    Supported features: `enableable`, `refreshable`.
-* **redhat**: Red Hat's (and probably many others) form of `init`-style service management:
+        Required binaries: `/usr/bin/sw_vers`, `/bin/launchctl`, `/usr/bin/plutil`.    Default for `operatingsystem` == `darwin`.    Supported features: `enableable`, `refreshable`.
+    * **redhat**: Red Hat's (and probably many others) form of `init`-style service management:
 
-  Uses `chkconfig` for service enabling and disabling.
+      Uses `chkconfig` for service enabling and disabling.
 
-    Required binaries: `/sbin/service`, `/sbin/chkconfig`.    Default for `operatingsystem` == `redhatfedorasusecentosslesoelovm`.    Supported features: `enableable`, `refreshable`.
-* **runit**: Runit service management.
+        Required binaries: `/sbin/service`, `/sbin/chkconfig`.    Default for `operatingsystem` == `redhatfedorasusecentosslesoelovm`.    Supported features: `enableable`, `refreshable`.
+    * **runit**: Runit service management.
 
-  This provider manages daemons running supervised by Runit.
-  It tries to detect the service directory, with by order of preference:
+      This provider manages daemons running supervised by Runit.
+      It tries to detect the service directory, with by order of preference:
 
-  * /service
-  * /var/service
-  * /etc/service
+      * /service
+      * /var/service
+      * /etc/service
 
-  The daemon directory should be placed in a directory that can be
-  by default in:
+      The daemon directory should be placed in a directory that can be
+      by default in:
 
-  * /etc/sv
+      * /etc/sv
 
-  or this can be overriden in the service resource parameters::
+      or this can be overriden in the service resource parameters::
 
-      service { "myservice":
-provider => "runit",
-path => "/path/to/daemons",
-      }
+          service { "myservice":
+    provider => "runit",
+    path => "/path/to/daemons",
+          }
 
-  This provider supports out of the box:
+      This provider supports out of the box:
 
-  * start/stop
-  * enable/disable
-  * restart
-  * status
+      * start/stop
+      * enable/disable
+      * restart
+      * status
 
 
-  Required binaries: `/usr/bin/sv`.      Supported features: `enableable`, `refreshable`.
-* **smf**: Support for Sun's new Service Management Framework.
+      Required binaries: `/usr/bin/sv`.      Supported features: `enableable`, `refreshable`.
+    * **smf**: Support for Sun's new Service Management Framework.
 
-  Starting a service is effectively equivalent to enabling it, so there is
-  only support for starting and stopping services, which also enables and
-  disables them, respectively.
+      Starting a service is effectively equivalent to enabling it, so there is
+      only support for starting and stopping services, which also enables and
+      disables them, respectively.
 
-  By specifying manifest => "/path/to/service.xml", the SMF manifest will
-  be imported if it does not exist.
+      By specifying manifest => "/path/to/service.xml", the SMF manifest will
+      be imported if it does not exist.
 
-    Required binaries: `/usr/bin/svcs`, `/usr/sbin/svccfg`, `/usr/sbin/svcadm`.    Default for `operatingsystem` == `solaris`.    Supported features: `enableable`, `refreshable`.
-* **src**: Support for AIX's System Resource controller.
+        Required binaries: `/usr/bin/svcs`, `/usr/sbin/svccfg`, `/usr/sbin/svcadm`.    Default for `operatingsystem` == `solaris`.    Supported features: `enableable`, `refreshable`.
+    * **src**: Support for AIX's System Resource controller.
 
-  Services are started/stopped based on the stopsrc and startsrc
-  commands, and some services can be refreshed with refresh command.
+      Services are started/stopped based on the stopsrc and startsrc
+      commands, and some services can be refreshed with refresh command.
 
-  * Enabling and disableing services is not supported, as it requires
-  modifications to /etc/inittab.
+      * Enabling and disableing services is not supported, as it requires
+      modifications to /etc/inittab.
 
-  * Starting and stopping groups of subsystems is not yet supported
-    Required binaries: `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/lssrc`, `/usr/bin/stopsrc`.    Default for `operatingsystem` == `aix`.    Supported features: `refreshable`.
+      * Starting and stopping groups of subsystems is not yet supported
+        Required binaries: `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/lssrc`, `/usr/bin/stopsrc`.    Default for `operatingsystem` == `aix`.    Supported features: `refreshable`.
 
-##### restart
+restart
+: Specify a *restart* command manually.  If left
+    unspecified, the service will be stopped and then started.
 
-Specify a *restart* command manually.  If left
-unspecified, the service will be stopped and then started.
+start
+: Specify a *start* command manually.  Most service subsystems
+    support a `start` command, so this will not need to be
+    specified.
 
-##### start
+status
+: Specify a *status* command manually.  This command must
+    return 0 if the service is running and a nonzero value otherwise.
+    Ideally, these return codes should conform to
+    [the LSB's specification for init script status actions](http://refspecs.freestandards.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html),
+    but puppet only considers the difference between 0 and nonzero
+    to be relevant.
 
-Specify a *start* command manually.  Most service subsystems
-support a `start` command, so this will not need to be
-specified.
+    If left unspecified, the status method will be determined
+    automatically, usually by looking for the service in the process
+    table.
 
-##### status
-
-Specify a *status* command manually.  This command must
-return 0 if the service is running and a nonzero value otherwise.
-Ideally, these return codes should conform to
-[the LSB's specification for init script status actions](http://refspecs.freestandards.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html),
-but puppet only considers the difference between 0 and nonzero
-to be relevant.
-
-If left unspecified, the status method will be determined
-automatically, usually by looking for the service in the process
-table.
-
-##### stop
-
-Specify a *stop* command manually.
+stop
+: Specify a *stop* command manually.
 
 
 
@@ -3912,47 +3448,39 @@ that user.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+key
+: The key itself; generally a long string of hex digits.
 
-##### key
+name
+: The SSH key comment. This attribute is currently used as a
+    system-wide primary key and therefore has to be unique.
 
-The key itself; generally a long string of hex digits.
+options
+: Key options, see sshd(8) for possible values. Multiple values
+    should be specified as an array.
 
-##### name
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The SSH key comment. This attribute is currently used as a
-system-wide primary key and therefore has to be unique.
+    * **parsed**: Parse and generate authorized_keys files for SSH.    
 
-##### options
+target
+: The absolute filename in which to store the SSH key. This
+    property is optional and should only be used in cases where keys
+    are stored in a non-standard location (i.e.` not in
+    `~user/.ssh/authorized_keys`).
 
-Key options, see sshd(8) for possible values. Multiple values
-should be specified as an array.
+type
+: The encryption type used: ssh-dss or ssh-rsa.  Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`).
 
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **parsed**: Parse and generate authorized_keys files for SSH.    
-
-##### target
-
-The absolute filename in which to store the SSH key. This
-property is optional and should only be used in cases where keys
-are stored in a non-standard location (i.e.` not in
-`~user/.ssh/authorized_keys`).
-
-##### type
-
-The encryption type used: ssh-dss or ssh-rsa.  Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`).
-
-##### user
-
-The user account in which the SSH key should be installed.
-The resource will automatically depend on this user.
+user
+: The user account in which the SSH key should be installed.
+    The resource will automatically depend on this user.
 
 
 
@@ -3968,39 +3496,32 @@ the `ssh_authorized_key` type to manage authorized keys.
 #### Parameters
 
 
-##### ensure
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+host_aliases
+: Any aliases the host might have.  Multiple values must be
+    specified as an array.
 
-##### host_aliases
+key
+: The key itself; generally a long string of hex digits.
 
-Any aliases the host might have.  Multiple values must be
-specified as an array.
+name
+: The host name that the key is associated with.
 
-##### key
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-The key itself; generally a long string of hex digits.
+    * **parsed**: Parse and generate host-wide known hosts files for SSH.    
 
-##### name
+target
+: The file in which to store the ssh key.  Only used by
+    the `parsed` provider.
 
-The host name that the key is associated with.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **parsed**: Parse and generate host-wide known hosts files for SSH.    
-
-##### target
-
-The file in which to store the ssh key.  Only used by
-the `parsed` provider.
-
-##### type
-
-The encryption type used.  Probably ssh-dss or ssh-rsa.  Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`).
+type
+: The encryption type used.  Probably ssh-dss or ssh-rsa.  Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`).
 
 
 
@@ -4026,9 +3547,8 @@ You can only set stages on class resources, not normal builtin resources.
 #### Parameters
 
 
-##### name
-
-The name of the stage. This will be used as the 'stage' for each resource.
+name
+: The name of the stage. This will be used as the 'stage' for each resource.
 
 
 
@@ -4052,80 +3572,72 @@ actual deletion.
 #### Parameters
 
 
-##### age
+age
+: Tidy files whose age is equal to or greater than
+    the specified time.  You can choose seconds, minutes,
+    hours, days, or weeks by specifying the first letter of any
+    of those words (e.g., '1w').
 
-Tidy files whose age is equal to or greater than
-the specified time.  You can choose seconds, minutes,
-hours, days, or weeks by specifying the first letter of any
-of those words (e.g., '1w').
+    Specifying 0 will remove all files.
 
-Specifying 0 will remove all files.
+backup
+: Whether tidied files should be backed up.  Any values are passed
+    directly to the file resources used for actual file deletion, so use
+    its backup documentation to determine valid values.
 
-##### backup
+matches
+: One or more (shell type) file glob patterns, which restrict
+    the list of files to be tidied to those whose basenames match
+    at least one of the patterns specified. Multiple patterns can
+    be specified using an array.
 
-Whether tidied files should be backed up.  Any values are passed
-directly to the file resources used for actual file deletion, so use
-its backup documentation to determine valid values.
+    Example:
 
-##### matches
+        tidy { "/tmp":
+          age => "1w",
+          recurse => 1,
+          matches => [ "[0-9]pub*.tmp", "*.temp", "tmpfile?" ]
+        }
 
-One or more (shell type) file glob patterns, which restrict
-the list of files to be tidied to those whose basenames match
-at least one of the patterns specified. Multiple patterns can
-be specified using an array.
+    This removes files from `/tmp` if they are one week old or older,
+    are not in a subdirectory and match one of the shell globs given.
 
-Example:
+    Note that the patterns are matched against the basename of each
+    file -- that is, your glob patterns should not have any '/'
+    characters in them, since you are only specifying against the last
+    bit of the file.
 
-    tidy { "/tmp":
-      age => "1w",
-      recurse => 1,
-      matches => [ "[0-9]pub*.tmp", "*.temp", "tmpfile?" ]
-    }
+    Finally, note that you must now specify a non-zero/non-false value
+    for recurse if matches is used, as matches only apply to files found
+    by recursion (there's no reason to use static patterns match against
+    a statically determined path).  Requiering explicit recursion clears
+    up a common source of confusion.
 
-This removes files from `/tmp` if they are one week old or older,
-are not in a subdirectory and match one of the shell globs given.
+path
+: - **namevar**
 
-Note that the patterns are matched against the basename of each
-file -- that is, your glob patterns should not have any '/'
-characters in them, since you are only specifying against the last
-bit of the file.
+    The path to the file or directory to manage.  Must be fully
+    qualified.
 
-Finally, note that you must now specify a non-zero/non-false value
-for recurse if matches is used, as matches only apply to files found
-by recursion (there's no reason to use static patterns match against
-a statically determined path).  Requiering explicit recursion clears
-up a common source of confusion.
+recurse
+: If target is a directory, recursively descend
+    into the directory looking for files to tidy.  Valid values are `true`, `false`, `inf`.  Values can match `/^[0-9]+$/`.
 
-##### path
+rmdirs
+: Tidy directories in addition to files; that is, remove
+    directories whose age is older than the specified criteria.
+    This will only remove empty directories, so all contained
+    files must also be tidied before a directory gets removed.  Valid values are `true`, `false`.
 
-- **namevar**
+size
+: Tidy files whose size is equal to or greater than
+    the specified size.  Unqualified values are in kilobytes, but
+    *b*, *k*, and *m* can be appended to specify *bytes*, *kilobytes*,
+    and *megabytes*, respectively.  Only the first character is
+    significant, so the full word can also be used.
 
-The path to the file or directory to manage.  Must be fully
-qualified.
-
-##### recurse
-
-If target is a directory, recursively descend
-into the directory looking for files to tidy.  Valid values are `true`, `false`, `inf`.  Values can match `/^[0-9]+$/`.
-
-##### rmdirs
-
-Tidy directories in addition to files; that is, remove
-directories whose age is older than the specified criteria.
-This will only remove empty directories, so all contained
-files must also be tidied before a directory gets removed.  Valid values are `true`, `false`.
-
-##### size
-
-Tidy files whose size is equal to or greater than
-the specified size.  Unqualified values are in kilobytes, but
-*b*, *k*, and *m* can be appended to specify *bytes*, *kilobytes*,
-and *megabytes*, respectively.  Only the first character is
-significant, so the full word can also be used.
-
-##### type
-
-Set the mechanism for determining age.  Valid values are `atime`, `mtime`, `ctime`.
+type
+: Set the mechanism for determining age.  Valid values are `atime`, `mtime`, `ctime`.
 
 
 
@@ -4167,155 +3679,129 @@ useradd          | *X*               | *X*            | *X*             |       
 #### Parameters
 
 
-##### allowdupe
+allowdupe
+: Whether to allow duplicate UIDs.  Valid values are `true`, `false`.
 
-Whether to allow duplicate UIDs.  Valid values are `true`, `false`.
+auth_membership
+: Whether specified auths should be treated as the only auths
+    of which the user is a member or whether they should merely
+    be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
 
-##### auth_membership
+auths
+: The auths the user has.  Multiple auths should be
+    specified as an array.  Requires features manages_solaris_rbac.
 
-Whether specified auths should be treated as the only auths
-of which the user is a member or whether they should merely
-be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
+comment
+: A description of the user.  Generally is a user's full name.
 
-##### auths
+ensure
+: The basic state that the object should be in.  Valid values are `present`, `absent`, `role`.
 
-The auths the user has.  Multiple auths should be
-specified as an array.  Requires features manages_solaris_rbac.
+expiry
+: The expiry date for this user. Must be provided in
+    a zero padded YYYY-MM-DD format - e.g 2010-02-19.  Requires features manages_expiry.
 
-##### comment
+gid
+: The user's primary group.  Can be specified numerically or
+    by name.
 
-A description of the user.  Generally is a user's full name.
+groups
+: The groups of which the user is a member.  The primary
+    group should not be listed.  Multiple groups should be
+    specified as an array.
 
-##### ensure
+home
+: The home directory of the user.  The directory must be created
+    separately and is not currently checked for existence.
 
-The basic state that the object should be in.  Valid values are `present`, `absent`, `role`.
+key_membership
+: Whether specified key value pairs should be treated as the only attributes
+    of the user or whether they should merely
+    be treated as the minimum list.  Valid values are `inclusive`, `minimum`.
 
-##### expiry
+keys
+: Specify user attributes in an array of keyvalue pairs  Requires features manages_solaris_rbac.
 
-The expiry date for this user. Must be provided in
-a zero padded YYYY-MM-DD format - e.g 2010-02-19.  Requires features manages_expiry.
+managehome
+: Whether to manage the home directory when managing the user.  Valid values are `true`, `false`.
 
-##### gid
+membership
+: Whether specified groups should be treated as the only groups
+    of which the user is a member or whether they should merely
+    be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
 
-The user's primary group.  Can be specified numerically or
-by name.
+name
+: User name.  While limitations are determined for
+    each operating system, it is generally a good idea to keep to
+    the degenerate 8 characters, beginning with a letter.
 
-##### groups
+password
+: The user's password, in whatever encrypted format the local machine requires. Be sure to enclose any value that includes a dollar sign ($) in single quotes (').  Requires features manages_passwords.
 
-The groups of which the user is a member.  The primary
-group should not be listed.  Multiple groups should be
-specified as an array.
+password_max_age
+: The maximum amount of time in days a password may be used before it must be changed  Requires features manages_password_age.
 
-##### home
+password_min_age
+: The minimum amount of time in days a password must be used before it may be changed  Requires features manages_password_age.
 
-The home directory of the user.  The directory must be created
-separately and is not currently checked for existence.
+profile_membership
+: Whether specified roles should be treated as the only roles
+    of which the user is a member or whether they should merely
+    be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
 
-##### key_membership
+profiles
+: The profiles the user has.  Multiple profiles should be
+    specified as an array.  Requires features manages_solaris_rbac.
 
-Whether specified key value pairs should be treated as the only attributes
-of the user or whether they should merely
-be treated as the minimum list.  Valid values are `inclusive`, `minimum`.
+project
+: The name of the project associated with a user  Requires features manages_solaris_rbac.
 
-##### keys
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Specify user attributes in an array of keyvalue pairs  Requires features manages_solaris_rbac.
+    * **directoryservice**: User management using DirectoryService on OS X.  Required binaries: `/usr/bin/dscl`.    Default for `operatingsystem` == `darwin`.    Supported features: `manages_passwords`.
+    * **hpuxuseradd**: User management for hp-ux! Undocumented switch to special usermod because HP-UX regular usermod is TOO STUPID to change stuff while the user is logged in.  Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sbin/useradd`.    Default for `operatingsystem` == `hp-ux`.    Supported features: `allows_duplicates`, `manages_homedir`.
+    * **ldap**: User management via `ldap`.  This provider requires that you
+        have valid values for all of the ldap-related settings,
+        including `ldapbase`.  You will also almost definitely need settings
+        for `ldapuser` and `ldappassword`, so that your clients can write
+        to ldap.
 
-##### managehome
+        Note that this provider will automatically generate a UID for you if
+        you do not specify one, but it is a potentially expensive operation,
+        as it iterates across all existing users to pick the appropriate next
+        one.      Supported features: `manages_passwords`.
+    * **pw**: User management via `pw` on FreeBSD.  Required binaries: `pw`.    Default for `operatingsystem` == `freebsd`.    Supported features: `allows_duplicates`, `manages_homedir`.
+    * **user_role_add**: User management inherits `useradd` and adds logic to manage roles on Solaris using roleadd.  Required binaries: `rolemod`, `usermod`, `userdel`, `passwd`, `roleadd`, `useradd`, `roledel`.    Default for `operatingsystem` == `solaris`.    Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_solaris_rbac`.
+    * **useradd**: User management via `useradd` and its ilk.  Note that you will need to install the `Shadow Password` Ruby library often known as ruby-libshadow to manage user passwords.  Required binaries: `usermod`, `userdel`, `chage`, `useradd`.      Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `system_users`.
 
-Whether to manage the home directory when managing the user.  Valid values are `true`, `false`.
+role_membership
+: Whether specified roles should be treated as the only roles
+    of which the user is a member or whether they should merely
+    be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
 
-##### membership
+roles
+: The roles the user has.  Multiple roles should be
+    specified as an array.  Requires features manages_solaris_rbac.
 
-Whether specified groups should be treated as the only groups
-of which the user is a member or whether they should merely
-be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
+shell
+: The user's login shell.  The shell must exist and be
+    executable.
 
-##### name
+system
+: Whether the user is a system user with lower UID.  Valid values are `true`, `false`.
 
-User name.  While limitations are determined for
-each operating system, it is generally a good idea to keep to
-the degenerate 8 characters, beginning with a letter.
-
-##### password
-
-The user's password, in whatever encrypted format the local machine requires. Be sure to enclose any value that includes a dollar sign ($) in single quotes (').  Requires features manages_passwords.
-
-##### password_max_age
-
-The maximum amount of time in days a password may be used before it must be changed  Requires features manages_password_age.
-
-##### password_min_age
-
-The minimum amount of time in days a password must be used before it may be changed  Requires features manages_password_age.
-
-##### profile_membership
-
-Whether specified roles should be treated as the only roles
-of which the user is a member or whether they should merely
-be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
-
-##### profiles
-
-The profiles the user has.  Multiple profiles should be
-specified as an array.  Requires features manages_solaris_rbac.
-
-##### project
-
-The name of the project associated with a user  Requires features manages_solaris_rbac.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **directoryservice**: User management using DirectoryService on OS X.  Required binaries: `/usr/bin/dscl`.    Default for `operatingsystem` == `darwin`.    Supported features: `manages_passwords`.
-* **hpuxuseradd**: User management for hp-ux! Undocumented switch to special usermod because HP-UX regular usermod is TOO STUPID to change stuff while the user is logged in.  Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sbin/useradd`.    Default for `operatingsystem` == `hp-ux`.    Supported features: `allows_duplicates`, `manages_homedir`.
-* **ldap**: User management via `ldap`.  This provider requires that you
-    have valid values for all of the ldap-related settings,
-    including `ldapbase`.  You will also almost definitely need settings
-    for `ldapuser` and `ldappassword`, so that your clients can write
-    to ldap.
-
-    Note that this provider will automatically generate a UID for you if
-    you do not specify one, but it is a potentially expensive operation,
-    as it iterates across all existing users to pick the appropriate next
-    one.      Supported features: `manages_passwords`.
-* **pw**: User management via `pw` on FreeBSD.  Required binaries: `pw`.    Default for `operatingsystem` == `freebsd`.    Supported features: `allows_duplicates`, `manages_homedir`.
-* **user_role_add**: User management inherits `useradd` and adds logic to manage roles on Solaris using roleadd.  Required binaries: `rolemod`, `usermod`, `userdel`, `passwd`, `roleadd`, `useradd`, `roledel`.    Default for `operatingsystem` == `solaris`.    Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_solaris_rbac`.
-* **useradd**: User management via `useradd` and its ilk.  Note that you will need to install the `Shadow Password` Ruby library often known as ruby-libshadow to manage user passwords.  Required binaries: `usermod`, `userdel`, `chage`, `useradd`.      Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `system_users`.
-
-##### role_membership
-
-Whether specified roles should be treated as the only roles
-of which the user is a member or whether they should merely
-be treated as the minimum membership list.  Valid values are `inclusive`, `minimum`.
-
-##### roles
-
-The roles the user has.  Multiple roles should be
-specified as an array.  Requires features manages_solaris_rbac.
-
-##### shell
-
-The user's login shell.  The shell must exist and be
-executable.
-
-##### system
-
-Whether the user is a system user with lower UID.  Valid values are `true`, `false`.
-
-##### uid
-
-The user ID.  Must be specified numerically.  For new users
-being created, if no user ID is specified then one will be
-chosen automatically, which will likely result in the same user
-having different IDs on different systems, which is not
-recommended.  This is especially noteworthy if you use Puppet
-to manage the same user on both Darwin and other platforms,
-since Puppet does the ID generation for you on Darwin, but the
-tools do so on other platforms.
+uid
+: The user ID.  Must be specified numerically.  For new users
+    being created, if no user ID is specified then one will be
+    chosen automatically, which will likely result in the same user
+    having different IDs on different systems, which is not
+    recommended.  This is especially noteworthy if you use Puppet
+    to manage the same user on both Darwin and other platforms,
+    since Puppet does the ID generation for you on Darwin, but the
+    tools do so on other platforms.
 
 
 
@@ -4339,129 +3825,107 @@ files included with the **include** directive
 #### Parameters
 
 
-##### baseurl
+baseurl
+: The URL for this repository.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-The URL for this repository.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
+cost
+: Cost of this repository.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/\d+/`.
 
-##### cost
+descr
+: A human readable description of the repository.
+    This corresponds to the name parameter in yum.conf(5).
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-Cost of this repository.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/\d+/`.
+enabled
+: Whether this repository is enabled or disabled. Possible
+    values are '0', and '1'.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
 
-##### descr
+enablegroups
+: Determines whether yum will allow the use of
+    package groups for this  repository. Possible
+    values are '0', and '1'.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
 
-A human readable description of the repository.
-This corresponds to the name parameter in yum.conf(5).
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
+exclude
+: List of shell globs. Matching packages will never be
+    considered in updates or installs for this repo.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-##### enabled
+failovermethod
+: Either 'roundrobin' or 'priority'.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/roundrobin|priority/`.
 
-Whether this repository is enabled or disabled. Possible
-values are '0', and '1'.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
+gpgcheck
+: Whether to check the GPG signature on packages installed
+    from this repository. Possible values are '0', and '1'.
 
-##### enablegroups
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
 
-Determines whether yum will allow the use of
-package groups for this  repository. Possible
-values are '0', and '1'.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
+gpgkey
+: The URL for the GPG key with which packages from this
+    repository are signed.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-##### exclude
+http_caching
+: Either 'packages' or 'all' or 'none'.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/packages|all|none/`.
 
-List of shell globs. Matching packages will never be
-considered in updates or installs for this repo.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
+include
+: A URL from which to include the config.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-##### failovermethod
+includepkgs
+: List of shell globs. If this is set, only packages
+    matching one of the globs will be considered for
+    update or install.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-Either 'roundrobin' or 'priority'.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/roundrobin|priority/`.
+keepalive
+: Either '1' or '0'. This tells yum whether or not HTTP/1.1
+    keepalive  should  be  used with this repository.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
 
-##### gpgcheck
+metadata_expire
+: Number of seconds after which the metadata will expire.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/[0-9]+/`.
 
-Whether to check the GPG signature on packages installed
-from this repository. Possible values are '0', and '1'.
+mirrorlist
+: The URL that holds the list of mirrors for this repository.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
+name
+: The name of the repository.  This corresponds to the
+    repositoryid parameter in yum.conf(5).
 
-##### gpgkey
+priority
+: Priority of this repository from 1-99. Requires that
+    the priorities plugin is installed and enabled.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/[1-9][0-9]?/`.
 
-The URL for the GPG key with which packages from this
-repository are signed.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
+protect
+: Enable or disable protection for this repository. Requires
+    that the protectbase plugin is installed and enabled.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
 
-##### http_caching
+proxy
+: URL to the proxy server for this repository.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-Either 'packages' or 'all' or 'none'.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/packages|all|none/`.
+proxy_password
+: Password for this proxy.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-##### include
+proxy_username
+: Username for this proxy.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
 
-A URL from which to include the config.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
-
-##### includepkgs
-
-List of shell globs. If this is set, only packages
-matching one of the globs will be considered for
-update or install.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
-
-##### keepalive
-
-Either '1' or '0'. This tells yum whether or not HTTP/1.1
-keepalive  should  be  used with this repository.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
-
-##### metadata_expire
-
-Number of seconds after which the metadata will expire.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/[0-9]+/`.
-
-##### mirrorlist
-
-The URL that holds the list of mirrors for this repository.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
-
-##### name
-
-The name of the repository.  This corresponds to the
-repositoryid parameter in yum.conf(5).
-
-##### priority
-
-Priority of this repository from 1-99. Requires that
-the priorities plugin is installed and enabled.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/[1-9][0-9]?/`.
-
-##### protect
-
-Enable or disable protection for this repository. Requires
-that the protectbase plugin is installed and enabled.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/(0|1)/`.
-
-##### proxy
-
-URL to the proxy server for this repository.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
-
-##### proxy_password
-
-Password for this proxy.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
-
-##### proxy_username
-
-Username for this proxy.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/.*/`.
-
-##### timeout
-
-Number of seconds to wait for a connection before timing
-out.
-Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/[0-9]+/`.
+timeout
+: Number of seconds to wait for a connection before timing
+    out.
+    Set this to 'absent' to remove it from the file completely  Valid values are `absent`.  Values can match `/[0-9]+/`.
 
 
 
@@ -4477,49 +3941,39 @@ Manage zfs. Create destroy and set properties on zfs instances.
 #### Parameters
 
 
-##### compression
+compression
+: The compression property.
 
-The compression property.
+copies
+: The copies property.
 
-##### copies
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-The copies property.
+mountpoint
+: The mountpoint property.
 
-##### ensure
+name
+: The full name for this filesystem. (including the zpool)
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### mountpoint
+    * **solaris**: Provider for Solaris zfs.  Required binaries: `/usr/sbin/zfs`.    Default for `operatingsystem` == `solaris`.  
 
-The mountpoint property.
+quota
+: The quota property.
 
-##### name
+reservation
+: The reservation property.
 
-The full name for this filesystem. (including the zpool)
+sharenfs
+: The sharenfs property.
 
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **solaris**: Provider for Solaris zfs.  Required binaries: `/usr/sbin/zfs`.    Default for `operatingsystem` == `solaris`.  
-
-##### quota
-
-The quota property.
-
-##### reservation
-
-The reservation property.
-
-##### sharenfs
-
-The sharenfs property.
-
-##### snapdir
-
-The snapdir property.
+snapdir
+: The snapdir property.
 
 
 
@@ -4535,115 +3989,99 @@ Solaris zones.
 #### Parameters
 
 
-##### autoboot
+autoboot
+: Whether the zone should automatically boot.  Valid values are `true`, `false`.
 
-Whether the zone should automatically boot.  Valid values are `true`, `false`.
+clone
+: Instead of installing the zone, clone it from another zone.
+    If the zone root resides on a zfs file system, a snapshot will be
+    used to create the clone, is it redisides on ufs, a copy of the zone
+    will be used. The zone you clone from must not be running.
 
-##### clone
+create_args
+: Arguments to the zonecfg create command.  This can be used to create branded zones.
 
-Instead of installing the zone, clone it from another zone.
-If the zone root resides on a zfs file system, a snapshot will be
-used to create the clone, is it redisides on ufs, a copy of the zone
-will be used. The zone you clone from must not be running.
+ensure
+: The running state of the zone.  The valid states directly reflect
+    the states that `zoneadm` provides.  The states are linear,
+    in that a zone must be `configured` then `installed`, and
+    only then can be `running`.  Note also that `halt` is currently
+    used to stop zones.
 
-##### create_args
+id
+: The numerical ID of the zone.  This number is autogenerated
+    and cannot be changed.
 
-Arguments to the zonecfg create command.  This can be used to create branded zones.
+inherit
+: The list of directories that the zone inherits from the global
+    zone.  All directories must be fully qualified.
 
-##### ensure
+install_args
+: Arguments to the zoneadm install command.  This can be used to create branded zones.
 
-The running state of the zone.  The valid states directly reflect
-the states that `zoneadm` provides.  The states are linear,
-in that a zone must be `configured` then `installed`, and
-only then can be `running`.  Note also that `halt` is currently
-used to stop zones.
+ip
+: The IP address of the zone.  IP addresses must be specified
+    with the interface, separated by a colon, e.g.: bge0:192.168.0.1.
+    For multiple interfaces, specify them in an array.
 
-##### id
+iptype
+: The IP stack type of the zone. Can either be 'shared' or 'exclusive'.  Valid values are `shared`, `exclusive`.
 
-The numerical ID of the zone.  This number is autogenerated
-and cannot be changed.
+name
+: The name of the zone.
 
-##### inherit
+path
+: The root of the zone's filesystem.  Must be a fully qualified
+    file name.  If you include '%s' in the path, then it will be
+    replaced with the zone's name.  At this point, you cannot use
+    Puppet to move a zone.
 
-The list of directories that the zone inherits from the global
-zone.  All directories must be fully qualified.
+pool
+: The resource pool for this zone.
 
-##### install_args
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-Arguments to the zoneadm install command.  This can be used to create branded zones.
+    * **solaris**: Provider for Solaris Zones.  Required binaries: `/usr/sbin/zonecfg`, `/usr/sbin/zoneadm`.    Default for `operatingsystem` == `solaris`.  
 
-##### ip
+realhostname
+: The actual hostname of the zone.
 
-The IP address of the zone.  IP addresses must be specified
-with the interface, separated by a colon, e.g.: bge0:192.168.0.1.
-For multiple interfaces, specify them in an array.
+shares
+: Number of FSS CPU shares allocated to the zone.
 
-##### iptype
+sysidcfg
+: The text to go into the sysidcfg file when the zone is first
+    booted.  The best way is to use a template:
 
-The IP stack type of the zone. Can either be 'shared' or 'exclusive'.  Valid values are `shared`, `exclusive`.
+        # $templatedir/sysidcfg
+        system_locale=en_US
+        timezone=GMT
+        terminal=xterms
+        security_policy=NONE
+        root_password=<%= password %>
+        timeserver=localhost
+        name_service=DNS {domain_name=<%= domain %> name_server=<%= nameserver %>}
+        network_interface=primary {hostname=<%= realhostname %>
+          ip_address=<%= ip %>
+          netmask=<%= netmask %>
+          protocol_ipv6=no
+          default_route=<%= defaultroute %>}
+        nfs4_domain=dynamic
 
-##### name
+    And then call that:
 
-The name of the zone.
+        zone { myzone:
+          ip => "bge0:192.168.0.23",
+          sysidcfg => template(sysidcfg),
+          path => "/opt/zones/myzone",
+          realhostname => "fully.qualified.domain.name"
+        }
 
-##### path
-
-The root of the zone's filesystem.  Must be a fully qualified
-file name.  If you include '%s' in the path, then it will be
-replaced with the zone's name.  At this point, you cannot use
-Puppet to move a zone.
-
-##### pool
-
-The resource pool for this zone.
-
-##### provider
-
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
-
-* **solaris**: Provider for Solaris Zones.  Required binaries: `/usr/sbin/zonecfg`, `/usr/sbin/zoneadm`.    Default for `operatingsystem` == `solaris`.  
-
-##### realhostname
-
-The actual hostname of the zone.
-
-##### shares
-
-Number of FSS CPU shares allocated to the zone.
-
-##### sysidcfg
-
-The text to go into the sysidcfg file when the zone is first
-booted.  The best way is to use a template:
-
-    # $templatedir/sysidcfg
-    system_locale=en_US
-    timezone=GMT
-    terminal=xterms
-    security_policy=NONE
-    root_password=<%= password %>
-    timeserver=localhost
-    name_service=DNS {domain_name=<%= domain %> name_server=<%= nameserver %>}
-    network_interface=primary {hostname=<%= realhostname %>
-      ip_address=<%= ip %>
-      netmask=<%= netmask %>
-      protocol_ipv6=no
-      default_route=<%= defaultroute %>}
-    nfs4_domain=dynamic
-
-And then call that:
-
-    zone { myzone:
-      ip => "bge0:192.168.0.23",
-      sysidcfg => template(sysidcfg),
-      path => "/opt/zones/myzone",
-      realhostname => "fully.qualified.domain.name"
-    }
-
-The sysidcfg only matters on the first booting of the zone,
-so Puppet only checks for it at that time.
+    The sysidcfg only matters on the first booting of the zone,
+    so Puppet only checks for it at that time.
 
 
 
@@ -4659,57 +4097,48 @@ Supports vdevs with mirrors, raidz, logs and spares.
 #### Parameters
 
 
-##### disk
+disk
+: The disk(s) for this pool. Can be an array or space separated string
 
-The disk(s) for this pool. Can be an array or space separated string
+ensure
+: The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
-##### ensure
+log
+: Log disks for this pool. (doesn't support mirroring yet)
 
-The basic property that the resource should be in.  Valid values are `present`, `absent`.
+mirror
+: List of all the devices to mirror for this pool. Each mirror should be a
+    space separated string:
 
-##### log
-
-Log disks for this pool. (doesn't support mirroring yet)
-
-##### mirror
-
-List of all the devices to mirror for this pool. Each mirror should be a
-space separated string:
-
-    mirror => ["disk1 disk2", "disk3 disk4"],
+        mirror => ["disk1 disk2", "disk3 disk4"],
 
 
 
-##### pool
+pool
+: - **namevar**
 
-- **namevar**
+    The name for this pool.
 
-The name for this pool.
+provider
+: The specific backend for provider to use. You will
+    seldom need to specify this -- Puppet will usually discover the
+    appropriate provider for your platform.  Available providers are:
 
-##### provider
+    * **solaris**: Provider for Solaris zpool.  Required binaries: `/usr/sbin/zpool`.    Default for `operatingsystem` == `solaris`.  
 
-The specific backend for provider to use. You will
-seldom need to specify this -- Puppet will usually discover the
-appropriate provider for your platform.  Available providers are:
+raid_parity
+: Determines parity when using raidz property.
 
-* **solaris**: Provider for Solaris zpool.  Required binaries: `/usr/sbin/zpool`.    Default for `operatingsystem` == `solaris`.  
+raidz
+: List of all the devices to raid for this pool. Should be an array of
+    space separated strings:
 
-##### raid_parity
-
-Determines parity when using raidz property.
-
-##### raidz
-
-List of all the devices to raid for this pool. Should be an array of
-space separated strings:
-
-    raidz => ["disk1 disk2", "disk3 disk4"],
+        raidz => ["disk1 disk2", "disk3 disk4"],
 
 
 
-##### spare
-
-Spare disk(s) for this pool.
+spare
+: Spare disk(s) for this pool.
 
 
 
