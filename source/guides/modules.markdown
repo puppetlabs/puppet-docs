@@ -22,7 +22,13 @@ enable you to have the default site configuration under
 `/usr/share/puppet/`.  You could also have other directories containing a happy mix-and-match
 of version control checkouts in various states of development and production readiness.
 
-Modules are available in Puppet version 0.22.2 and later.
+Modules can be used with Puppet version 0.22.2 and later.
+
+### Obtaining Modules
+
+[The Puppet Forge](http://forge.puppetlabs.com) is a repository of pre-existing modules written by Puppet Labs and by many community members.
+
+We recommend checking the Forge first before sitting down to write a module of your own --- it's possible that someone has already created a module that does what you need, or which comes very close and can be easily modified. 
 
 ## Configuration
 
