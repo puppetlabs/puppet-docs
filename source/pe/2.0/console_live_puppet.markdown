@@ -10,6 +10,10 @@ Use the control puppet tab to immediately trigger a puppet agent run on any of y
 
 ![The control puppet tab][live_puppet_main]
 
+Note that the control puppet tab cannot trigger a node's _first_ puppet agent run; a node's first run will happen automatically within 30 minutes after you [sign its certificate][certsign]. 
+
+[certsign]: ./install_basic.html#signing-agent-certificates
+
 Invoking an Action
 -----
 

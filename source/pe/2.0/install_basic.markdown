@@ -12,15 +12,18 @@ Starting the Installer
 
 To install PE:
 
-* Unarchive the installer tarball, usually with `tar -xzf <INSTALLER TARBALL>`
-* Navigate to the resulting directory in your shell
+* Unarchive the installer tarball, usually with `tar -xzf <INSTALLER TARBALL>`.
+* Navigate to the resulting directory in your shell.
 * Run the `puppet-enterprise-installer` script with root privileges:
 
         # sudo ./puppet-enterprise-installer
-
-This will start the installer in interactive mode and guide you through customizing your installation. After you've finished, it will install the selected software, configure and enable all of the necessary services, and save your installation answers to a file called `answers.lastrun`. 
+* Answer the interview questions to [customize your installation](#customizing-your-installation). 
+* Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
+* If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
 
 The installer can also be run non-interactively; [see the chapter on automated installation][automated] for details.
+
+Note that after the installer has finished installing and configuring PE, it will save your interview answers to a file called `answers.lastrun`.
 
 [automated]: ./install_automated.html
 
@@ -143,19 +146,23 @@ PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren
 Finishing Up
 -----
 
-### Verifying Your License
-
-When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
-
 ### Signing Agent Certificates
 
-Before nodes with the puppet agent role can fetch configurations, an administrator has to sign their certificate requests. This helps prevent unauthorized nodes from reading arbitrary configuration information from your site. 
+Before nodes with the puppet agent role can fetch configurations or appear in the console, an administrator has to sign their certificate requests. This helps prevent unauthorized nodes from intercepting sensitive configuration data.
 
-on a new node, the installer will automatically submit a certificate request to the puppet master. Before the agent will be able to receive any configurations, a user will have to sign the certificate from the puppet master. To view the list of pending certificate signing requests, run:
+During installation, PE will automatically submit a certificate request to the puppet master. Before the agent can retrieve any configurations, a user will have to sign a certificate for it.
 
-    puppet cert list
+**Certificate signing is done on the puppet master node.** To view the list of pending certificate requests, run:
+
+    $ sudo puppet cert list
 
 To sign one of the pending requests, run:
 
-    puppet cert sign <name>
+    $ sudo puppet cert sign <name>
+
+After signing a new node's certificate, it may take up to 30 minutes before that node appears in the console and begins retrieving configurations. 
+
+### Verifying Your License
+
+When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 

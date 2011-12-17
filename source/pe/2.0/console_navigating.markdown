@@ -26,7 +26,9 @@ The console deals with three main objects:
 
 ![A node page][nav_node]
 
-After a node completes its first Puppet run, it will appear in the console, and can be added to groups and have classes applied to it. 
+After a node completes its first Puppet run (which may take up to 30 minutes after you've [signed its certificate][certsign]), it will appear in the console, and can be added to groups and have classes applied to it.
+
+[certsign]: ./install_basic.html#signing-agent-certificates
 
 Since the console receives a report every time Puppet runs on a node, it keeps a running count in the sidebar of what state your nodes are in:
 

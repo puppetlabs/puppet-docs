@@ -36,7 +36,10 @@ The following chapters of this section cover the use of each tab.
 The Node List
 -----
 
-Every task in live management inspects or modifies a **selection of nodes.** Use the node list in the live management sidebar to choose the nodes for your next action. 
+Every task in live management inspects or modifies a **selection of nodes.** Use the node list in the live management sidebar to choose the nodes for your next action. (This list will only contain nodes that have completed at least one Puppet run, which may take up to 30 minutes after you've [signed its certificate][certsign].)
+
+[certsign]: ./install_basic.html#signing-agent-certificates
+
 
 ![The node list][live_nav_nodelist]
 
