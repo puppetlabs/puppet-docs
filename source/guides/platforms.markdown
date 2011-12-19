@@ -18,13 +18,13 @@ Linux
 -   Red Hat Enterprise Linux, version 4 and higher
 -   CentOS, version 4 and higher
 -   Scientific Linux, version 4 and higher
+-   Oracle Enterprise Linux, version 4 and higher
 -   Debian, version 5 (Lenny) and higher
 -   Ubuntu, version 8.04 LTS and higher
--   Fedora, version 7 and higher <!-- Version not checked recently -->
+-   Fedora, version 15 and higher
+-   SUSE Linux Enterprise Server, version 11 and higher
 -   Gentoo Linux
 -   Mandriva Corporate Server 4 <!-- Version not checked recently -->
--   Oracle Enterprise Linux
--   SuSE Linux 8 and later <!-- Version not checked recently -->
 -   ArchLinux
 
 BSD
@@ -36,9 +36,9 @@ BSD
 Other Unix
 ----------
 
--   Mac OS X
--   Sun Solaris 7 and later <!-- Version not checked recently -->
--   AIX
+-   Mac OS X, version 10.4 (Tiger) and higher
+-   Solaris, version 10 and higher
+-   AIX, version 5.3 and higher
 -   HP-UX
 
 Windows
