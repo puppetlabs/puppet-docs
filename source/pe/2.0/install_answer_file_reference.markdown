@@ -118,7 +118,7 @@ These answers are only needed if you are installing the console role.
 : **Y or N** --- Whether to install and configure a new MySQL database from the OS's package repositories. If set to Y, the installer will also create a new database and user with the `..._name, ..._user,` and `..._password` answers below.
 
 `q_puppet_enterpriseconsole_database_root_password`
-: **Y or N** --- A new password to use for MySQL's root user. Only used when `q_puppet_enterpriseconsole_database_install` is Y.
+: **String** --- A new password to use for MySQL's root user. Only used when `q_puppet_enterpriseconsole_database_install` is Y.
 
 `q_puppet_enterpriseconsole_database_remote`
 : **Y or N** --- Whether the pre-existing database is on a remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_install` is N.
