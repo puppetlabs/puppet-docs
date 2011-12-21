@@ -10,7 +10,7 @@ Style Guide
 
 **Style Guide Metadata**
 
-Version 1.1.1
+Version 1.1.2
 
 ## 1. Terminology
 
