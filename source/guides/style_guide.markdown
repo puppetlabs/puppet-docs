@@ -630,7 +630,24 @@ When using top-scope variables, including facts, Puppet modules should
 explicitly specify the empty namespace (i.e., `$::operatingsystem`, not
 `$operatingsystem`) to prevent accidental scoping issues.
 
-### 11.7. Display Order of Class Parameters
+### 11.7. Variable format
+
+When defining variables you should only use letters, numbers and
+underscores. You should specifically not make use of dashes.
+
+**Good:**
+
+{% highlight ruby %}
+    $foo_bar123
+{% endhighlight %}
+
+**Bad:**
+
+{% highlight ruby %}
+    $foo-bar123
+{% endhighlight %}
+
+### 11.8. Display Order of Class Parameters
 
 In parameterized class and defined resource type declarations, parameters that
 are required should be listed before optional parameters (i.e. parameters with
@@ -656,7 +673,7 @@ defaults).
     ) {}
 {% endhighlight %}
 
-### 11.8 Class parameter defaults
+### 11.9 Class parameter defaults
 
 When writing a module that accepts class parameters sane defaults SHOULD be
 provided for optional parameters to allow the end user the option of not
