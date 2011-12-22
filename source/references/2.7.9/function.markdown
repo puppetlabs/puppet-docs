@@ -45,7 +45,7 @@ a set of resources. The hash should be in the form `{title => {parameters} }`:
                   groups => ['developers', 'prosvc', 'release'], }
     }
 
-    create_resource(user, $myusers)
+    create_resources(user, $myusers)
 
 This function can be used to create defined resources and classes, as well
 as native resources.

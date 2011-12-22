@@ -32,7 +32,7 @@ create_resources
 ----------------
 Converts a hash into a set of resources and adds them to the catalog.
 Takes two parameters:
-  create_resource($type, $resources)
+  create_resources($type, $resources)
     Creates resources of type $type from the $resources hash. Assumes that
     hash is in the following form:
      {title=>{parameters}}
