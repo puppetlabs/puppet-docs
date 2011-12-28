@@ -63,38 +63,25 @@ The Puppet Dashboard will run on most Unix, Linux and Mac OS X systems once its 
 
        update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.8 1
 
-#### CentOS 5.5
+#### Enterprise Linux 6
 
 1. Install the [Extra Packages for Enterprise Linux (EPEL)](http://fedoraproject.org/wiki/EPEL) repository for `yum`:
 
-       rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noarch.rpm
+       rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-5.noarch.rpm
 
-2. Install the operating system packages:
+2. Install the puppetlabs-release package:
 
-       yum install -y mysql mysql-devel mysql-server ruby ruby-devel ruby-irb ruby-mysql ruby-rdoc ruby-ri
+    rpm -Uvh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-1.noarch.rpm
+
+3. Install packages:
+
+       yum install -y ruby-devel
+       yum install -y mysql mysql-devel mysql-server  puppet-dashboard
 
 3. Start MySQL and make it start automatically at boot:
 
        service mysqld start
        chkconfig mysqld on
-
-4. Install the `gem` package manager --- do not install RubyGems version 1.3.6 or newer because they are incompatible with the Ruby shipped with CentOS 5.5:
-
-       URL="http://production.cf.rubygems.org/rubygems/rubygems-1.3.5.tgz"
-       PACKAGE=$(echo $URL | sed "s/\.[^\.]*$//; s/^.*\///")
-       pushd "/tmp"
-         CACHE=`mktemp -d install_rubygems.XXXXXXXXXX`
-         pushd "$CACHE"
-           wget -c -t10 -T20 -q "$URL"
-           tar xfz "$PACKAGE.tgz"
-           cd "$PACKAGE"
-           sudo ruby setup.rb
-         popd
-       popd
-
-5. Install the `rake` gem:
-
-       gem install rake
 
 Installation
 ------------
