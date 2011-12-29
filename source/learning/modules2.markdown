@@ -177,26 +177,26 @@ Module Documentation
 --------------------
 
 {% highlight ruby %}
-    # Class: ntp
+    # = Class: ntp
     # 
     # This class installs/configures/manages NTP. It can optionally disable NTP
     # on virtual machines. Only supported on Debian-derived and Red Hat-derived OSes.
     # 
-    # Parameters: 
-    #   - $servers:
-    #         An array of NTP servers, with or without +iburst+ and 
-    #         +dynamic+ statements appended. Defaults to the OS's defaults.
-    #   - $enable:
-    #         Whether to start the NTP service on boot. Defaults to true. Valid
-    #         values: true and false. 
-    #   - $ensure:
-    #         Whether to run the NTP service. Defaults to running. Valid values:
-    #         running and stopped. 
+    # == Parameters: 
+    #
+    # $servers:: An array of NTP servers, with or without +iburst+ and 
+    #            +dynamic+ statements appended. Defaults to the OS's defaults.
+    # $enable::  Whether to start the NTP service on boot. Defaults to true. Valid
+    #            values: true and false. 
+    # $ensure::  Whether to run the NTP service. Defaults to running. Valid values:
+    #            running and stopped. 
     # 
-    # Requires: 
-    #   Nothing.
+    # == Requires: 
     # 
-    # Sample Usage:
+    # Nothing.
+    # 
+    # == Sample Usage:
+    #
     #   class {'ntp':
     #     servers => [ "ntp1.puppetlabs.lan dynamic",
     #                  "ntp2.puppetlabs.lan dynamic", ],
@@ -211,7 +211,9 @@ Module Documentation
       ...
 {% endhighlight %}
 
-This doesn't have to be Tolstoy, but seriously, at least write down what the parameters are and what kind of data they take. Your future self will thank you. Also! If you put it in a comment block butted up directly against the start of the class definition, you can automatically generate a browsable Rdoc-style site with info for all your modules. You can test it now, actually: 
+[rdoc]: http://links.puppetlabs.com/rdoc_markup
+
+This doesn't have to be Tolstoy, but seriously, at least write down what the parameters are and what kind of data they take. Your future self will thank you. Also! If you write your documentation in [RDoc][] format and put it in a comment block butted up directly against the start of the class definition, you can automatically generate a browsable Rdoc-style site with info for all your modules. You can test it now, actually: 
 
     # puppet doc --mode rdoc --outputdir ~/moduledocs --modulepath /etc/puppetlabs/puppet/modules
 
