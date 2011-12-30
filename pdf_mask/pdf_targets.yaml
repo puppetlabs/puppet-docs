@@ -9,6 +9,7 @@ learningpuppet.html:
     - learning/modules1.html
     - learning/templates.html
     - learning/modules2.html
+    - learning/definedtypes.html
     - bottom.html
 dashboardmanual.html:
     - top.html
