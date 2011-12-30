@@ -9,6 +9,7 @@ learningpuppet.html:
     - learning/modules1.html
     - learning/templates.html
     - learning/modules2.html
+    - learning/definedtypes.html
     - bottom.html
 dashboardmanual.html:
     - top.html
@@ -19,7 +20,54 @@ dashboardmanual.html:
     - dashboard/manual/1.2/maintaining.html
     - dashboard/manual/1.2/using.html
     - bottom.html
-usingpe.html:
+pe2_0usersguide.html:
+    - top.html
+    - pe/2.0/index.html
+    - pe/2.0/welcome_getting_started.html
+    - pe/2.0/welcome_roles.html
+    - pe/2.0/welcome_whats_new.html
+    - pe/2.0/welcome_known_issues.html
+    - pe/2.0/welcome_getting_support.html
+    - pe/2.0/install_system_requirements.html
+    - pe/2.0/install_preparing.html
+    - pe/2.0/install_basic.html
+    - pe/2.0/install_upgrading.html
+    - pe/2.0/install_automated.html
+    - pe/2.0/install_answer_file_reference.html
+    - pe/2.0/install_what_and_where.html
+    - pe/2.0/console_accessing.html
+    - pe/2.0/console_navigating.html
+    - pe/2.0/console_reports.html
+    - pe/2.0/console_classes_groups.html
+    - pe/2.0/console_live.html
+    - pe/2.0/console_live_resources.html
+    - pe/2.0/console_live_puppet.html
+    - pe/2.0/console_live_advanced.html
+    - pe/2.0/puppet_overview.html
+    - pe/2.0/puppet_first_module.html
+    - pe/2.0/puppet_classifying.html
+    - pe/2.0/puppet_next_steps.html
+    - pe/2.0/orchestration_overview.html
+    - pe/2.0/orchestration_usage.html
+    - pe/2.0/cloudprovisioner_overview.html
+    - pe/2.0/cloudprovisioner_configuring.html
+    - pe/2.0/cloudprovisioner_vmware.html
+    - pe/2.0/cloudprovisioner_aws.html
+    - pe/2.0/cloudprovisioner_classifying_installing.html
+    - pe/2.0/cloudprovisioner_man_node_vmware.html
+    - pe/2.0/cloudprovisioner_man_node_aws.html
+    - pe/2.0/cloudprovisioner_man_node.html
+    - pe/2.0/compliance_basics.html
+    - pe/2.0/compliance_using.html
+    - pe/2.0/compliance_tutorial.html
+    - pe/2.0/accounts_user_type.html
+    - pe/2.0/accounts_class.html
+    - pe/2.0/maint_common_config_errors.html
+    - pe/2.0/maint_maintaining_console.html
+    - pe/2.0/maint_installing_additional.html
+    - pe/2.0/maint_reconfiguring.html
+    - bottom.html
+pe1_2usersguide.html:
     - top.html
     - pe/1.2/intro.html
     - pe/1.2/overview.html

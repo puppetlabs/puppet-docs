@@ -5,6 +5,10 @@ Steps for generating a pdf of the docs:
 
 - Update the pdf_mask/pdf_targets.yaml file to include any new pages or targets.
     - It may be helpful to do a git log -1 <name of PDF> to get the commit where it was last generated, then do a git diff --summary <commit> HEAD -- source to see all the files created or deleted since then. 
+    - To add a target, you must:
+        - Create a new key and array for it in the yaml file.
+        - Create a pdf_mask/cover_<target>.markdown file for it.
+        - If you're using any funky layouts in the source files, create a ringer layout in pdf_mask/_layouts identical to default.html.
 - Run rake generate_pdf
 - Run rake serve_pdf
 - Run rake compile_pdf in a different tab
