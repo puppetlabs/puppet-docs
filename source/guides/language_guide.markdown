@@ -221,7 +221,7 @@ Classes also support a simple form of object inheritance.  For those
 not acquainted with programming terms, this means that we can extend
 the functionality of the previous class without copy/pasting
 the entire class.  Inheritance allows
-subclasses to override resource settings defined in parent classes. A
+subclasses to override resource settings declared in parent classes. A
 class can only inherit from one other class, not more than one.
 In programming terms, this is called 'single inheritance'.
 
@@ -270,8 +270,8 @@ the '+>' ('plusignment') operator:
     }
 {% endhighlight %}
 
-The above example makes the second class require all the packages in the first,
-with the addition of 'apache.pem'.
+The above example makes the service resource in the second class require all the packages in the first,
+as well as the `apache.pem` file.
 
 To append multiple requires, use array brackets and commas:
 
@@ -315,9 +315,9 @@ like so:
     }
 {% endhighlight %}
 
-It's not dangerous to reference a class with a require more than once.
-Classes are evaluated using the `include` function (which we will
-mention later). If a class has already been evaluated once, then `include` essentially does nothing.
+The `require` metaparameter does not implicitly declare a class; this means it can be used multiple times and is compatible with parameterized classes, but you must make sure you actually declare the class you're requiring at some point. 
+
+Puppet also has [a `require` function](/references/latest/function.html#require), which can be used inside class definitions and which _does_ implicitly declare a class, in the same way that the `include` function does. This function doesn't play well with parameterized classes. The `require` function is largely unnecessary, as class-level dependencies can be managed in other ways.
 
 #### Parameterised Classes
 
