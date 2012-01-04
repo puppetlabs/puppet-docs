@@ -24,7 +24,7 @@ Considerations and Limitations
 * Although ENCs can set an [environment](./environment.html) for a node, this is not very well supported --- currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. (See [issue 3910](http://projects.puppetlabs.com/issues/3910) for more details.) We hope to make server-side environments work well in the future, but if you need them right now, the workaround is to use Puppet to manage `puppet.conf` on the agent and set the environment for the next run based on what the ENC thinks it should be.
 * You can optionally combine an ENC with regular node definitions in `site.pp`. This works on the "I hope you brought enough for everybody" rule: things will work correctly if you have an ENC and no node definitions, but if there's at least one node definition, you need to have a default node defined or account for every node with a definition; Puppet will fail compilation with an error if a definition for a given node can't be found. 
 * Even if you aren't using node definitions, you can still use site.pp to do things like set global resource defaults. 
-* If an ENC doesn't produce any output and if the node name resembles a hostname, Puppet may call it again with a shortened version of the node name, successively removing higher-level domains and finally resorting to "default". _(This has not been tested recently, and may need updating.)_ To suppress this behavior, turn on puppet master's `strict_hostname_checking` setting.
+* Unlike regular node definitions, where a node may match a less specific definition if an exactly matching one isn't found (depending on the puppet master's `strict_hostname_checking` setting), an ENC is called only once, with the node's full name. 
 
 
 Connecting an ENC
@@ -45,6 +45,8 @@ There have been three versions of the ENC output format.
 ### Puppet 2.6.5 and Higher
 
 ENCs MUST return either a [YAML](http://www.yaml.org) hash or nothing. This hash MAY contain `classes`, `parameters`, and `environment` keys, and MUST contain at least either `classes` or `parameters`. ENCs SHOULD exit with an exit code of 0 when functioning normally, and MAY exit with a non-zero exit code if you wish puppet master to behave as though the requested node was not found. 
+
+If an ENC returns nothing or exits with a non-zero exit code, the catalog compilation will fail with a "could not find node" error, and the node will be unable to retrieve configurations.
 
 #### Classes
 
@@ -94,6 +96,7 @@ If present, the value of `environment` MUST be a string representing the desired
 
 #### Complete Example
 
+    ---
     classes:
         common:
         puppet:
