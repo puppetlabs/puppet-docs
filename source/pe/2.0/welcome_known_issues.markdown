@@ -17,6 +17,18 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
+The Uninstaller Script is Not Shipped With PE
+-----
+
+[uninstaller]: ./files/puppet-enterprise-uninstaller
+
+The Puppet Enterprise uninstaller script was not included with PE 2.0. Although it will be included in future PE releases, you can [download it here][uninstaller]. 
+
+Before you can use it, you must move the uninstaller script into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory. Once it is in place, you can make the uninstaller executable and run it:
+
+    # sudo chmod +x puppet-enterprise-uninstaller
+    # sudo ./puppet-enterprise-uninstaller
+
 Installer Cannot Prevent or Recover From DNS/Firewall Errors
 -----
 

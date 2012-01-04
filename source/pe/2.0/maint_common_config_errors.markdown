@@ -6,8 +6,6 @@ title: "PE 2.0 » Maintenance and Troubleshooting » Common Config Errors"
 Troubleshooting Common Configuration Errors
 =====
 
-Sometimes, bad things happen to good people. 
-
 The Installer is Failing!
 -----
 
@@ -23,7 +21,7 @@ If name resolution at your site isn't quite behaving right, PE's installer can g
 
 ### Are the Security Settings Wrong?
 
-The installer fails in a similar way when the firewall or security group is restricting the ports Puppet uses.
+The installer fails in a similar way when the system's firewall or security group is restricting the ports Puppet uses.
 
 * Puppet communicates on **ports 8140, 61613, and 443.** If you are installing the puppet master and the console on the same server, it must accept inbound traffic on all three ports. If you've split the two roles, the master must accept inbound traffic on 8140 and 61613, and the console must accept inbound traffic on 8140 and 443.
 * If your puppet master has multiple network interfaces, make sure it is allowing traffic via the IP address that its valid DNS names resolve to, not just via an internal interface. 
@@ -34,12 +32,20 @@ If you are installing the console and the puppet master on separate servers and 
 
 ### How Do I Recover From a Failed Install?
 
-To recover from a wedged install of PE 2.0, you should:
+[uninstaller]: ./files/puppet-enterprise-uninstaller
 
-* Fix whatever configuration problem caused the install to fail (see above). 
-* Use your OS's tools to uninstall every package whose name is prefixed with `pe-`. 
-* Remove the `/opt/puppet` directory.
-* Remove the `/etc/puppetlabs` directory.
+First, fix any configuration problem that may have caused the install to fail; see above for a list of the most common errors. 
+
+Next, download, move, and run the uninstaller script. (This script was not included in Puppet Enterprise 2.0, but will be included in all future releases.)
+
+* [Click here to download the uninstaller][uninstaller], or use `curl` or `wget` to download it directly to the target machine.
+* Copy the uninstaller to the target machine, and move it into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory.
+* Make the uninstaller executable, then run it:
+
+        # sudo chmod +x puppet-enterprise-uninstaller
+        # sudo ./puppet-enterprise-uninstaller
+
+After you have run the uninstaller, you can safely run the installer again.
 
 Agent Nodes Can't Retrieve Their Configurations!
 -----
