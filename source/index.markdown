@@ -48,6 +48,8 @@ Learn to use Puppet! New users: start here.
 Reference Shelf
 ---------------
 
+### Curated Guides
+
 Get detailed information about config files, APIs, and the Puppet language.
 
 * [REST API](./guides/rest_api.html) --- reference of api accessible resources
