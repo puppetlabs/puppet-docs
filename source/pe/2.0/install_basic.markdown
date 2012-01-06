@@ -31,13 +31,26 @@ Note that after the installer has finished installing and configuring PE, it wil
 
 The installer will accept the following command-line flags:
 
-* `-h` -- Display a brief help message.
-* `-s <ANSWER FILE>` -- Save answers to file and quit without installing.
-* `-a <ANSWER FILE>` -- Read answers from file and fail if an answer is missing.
-* `-A <ANSWER FILE>` -- Read answers from file and prompt for input if an answer is missing.
-* `-D` -- Display debugging information.
-* `-l <LOG FILE>` -- Log commands and results to file.
-* `-n` -- Run in 'noop' mode; show commands that would have been run during installation without running them.
+`-h`
+: Display a brief help message.
+
+`-s <ANSWER FILE>`
+: Save answers to file and quit without installing.
+
+`-a <ANSWER FILE>`
+: Read answers from file and fail if an answer is missing.
+
+`-A <ANSWER FILE>`
+: Read answers from file and prompt for input if an answer is missing.
+
+`-D`
+: Display debugging information.
+
+`-l <LOG FILE>`
+: Log commands and results to file.
+
+`-n`
+: Run in 'noop' mode; show commands that would have been run during installation without running them.
 
 
 Customizing Your Installation
@@ -167,18 +180,3 @@ After signing a new node's certificate, it may take up to 30 minutes before that
 When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 
 
-Uninstalling
------
-
-[uninstaller]: ./files/puppet-enterprise-uninstaller
-
-The Puppet Enterprise uninstaller script was not included in the PE 2.0 tarball. To uninstall PE, you must first download the uninstaller script. and move it into place.
-
-* [Click here to download the uninstaller][uninstaller], or use `curl` or `wget` to download it directly to the target machine.
-* Copy the uninstaller to the target machine, and move it into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory.
-* Make the uninstaller executable, then run it:
-
-        # sudo chmod +x puppet-enterprise-uninstaller
-        # sudo ./puppet-enterprise-uninstaller
-
-This script will fully uninstall Puppet Enterprise, but will leave your modules, manifests, certificates, and configuration files in place. 

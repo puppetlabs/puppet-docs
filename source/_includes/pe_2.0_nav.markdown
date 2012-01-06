@@ -12,6 +12,7 @@ THE TEXT:
     - [Preparing to Install](./install_preparing.html)
     - [Basic Installation](./install_basic.html)
     - [Upgrading](./install_upgrading.html)
+    - [Uninstalling](./install_uninstalling.html)
     - [Automated Installation](./install_automated.html)
     - [Answer File Reference](./install_answer_file_reference.html)
     - [What gets installed where?](./install_what_and_where.html)
@@ -80,6 +81,7 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
       {% if page.url contains 'install_preparing.html' %}<li class="currentpage"><strong><em>Preparing to Install:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_preparing.html">Preparing to Install</a>{% endif %}</li>
       {% if page.url contains 'install_basic.html' %}<li class="currentpage"><strong><em>Basic Installation:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_basic.html">Basic Installation</a>{% endif %}</li>
       {% if page.url contains 'install_upgrading.html' %}<li class="currentpage"><strong><em>Upgrading:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_upgrading.html">Upgrading</a>{% endif %}</li>
+      {% if page.url contains 'install_uninstalling.html' %}<li class="currentpage"><strong><em>Uninstalling:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_uninstalling.html">Uninstalling</a>{% endif %}</li>
       {% if page.url contains 'install_automated.html' %}<li class="currentpage"><strong><em>Automated Installation:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_automated.html">Automated Installation</a>{% endif %}</li>
       {% if page.url contains 'install_answer_file_reference.html' %}<li class="currentpage"><strong><em>Answer File Reference:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_answer_file_reference.html">Answer File Reference</a>{% endif %}</li>
       {% if page.url contains 'install_what_and_where.html' %}<li class="currentpage"><strong><em>What gets installed where?:</em></strong>{{ content | toc }}{% else %}<li><a href="./install_what_and_where.html">What gets installed where?</a>{% endif %}</li>
