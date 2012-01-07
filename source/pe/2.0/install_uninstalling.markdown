@@ -31,7 +31,7 @@ To run the uninstaller, ensure that it is in the same directory as the installer
 
 The uninstaller will ask you to confirm that you want to uninstall.
 
-By default, the uninstaller will remove the Puppet Enterprise software, users, logs, and caches, but it will leave your modules, manifests, certificates, databases, and configuration files in place, as well as the home directories of any users it removes.
+By default, the uninstaller will remove the Puppet Enterprise software, users, logs, cron jobs, and caches, but it will leave your modules, manifests, certificates, databases, and configuration files in place, as well as the home directories of any users it removes.
 
 You can use the following command-line flags to change the installer's behavior:
 
@@ -39,11 +39,14 @@ You can use the following command-line flags to change the installer's behavior:
 
 `-p`
 : Purge additional files; with this flag, the uninstaller will also remove all
-  configuration files, modules, manifests, and certificates, as well as the
+  configuration files, modules, manifests, certificates, and the
   home directories of any users created by the PE installer.
 
 `-d`
 : Also remove any databases during the uninstall. 
+
+`-h`
+: Display a help message.
 
 `-n`
 : Run in 'noop' mode; show commands that would have been run
@@ -51,6 +54,11 @@ You can use the following command-line flags to change the installer's behavior:
 
 `-y`
 : Don't ask to confirm uninstallation, assuming an answer of yes.
+
+`-s, -a,` and `-A`
+: Save or use an [answer file][answerfile]. The only answer available is `q_pe_uninstall`, which can be `y` or `n`.
+
+[answerfile]: ./install_automated.html
 
 Thus, to remove every trace of PE from a system, you would run:
 
