@@ -14,7 +14,7 @@ You understand the RAL; now learn about manifests and start writing and applying
 
 * * *
 
-[2state]: /images/learning-manifest2defined_state.png
+[2state]: ./images/manifest_to_defined_state_unified.png
 [cheat]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
 
 No Strings Attached
