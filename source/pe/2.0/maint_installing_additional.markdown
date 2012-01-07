@@ -28,7 +28,7 @@ For systems using apt and dpkg (Ubuntu and Debian), run the following commands:
 
 	$ sudo apt-get install --fix-broken
 
-For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Enterprise Linux), run the following commands: 
+For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), run the following commands: 
 
 	$ sudo yum localinstall --nogpgcheck *ruby*dev* 
 
