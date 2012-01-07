@@ -20,7 +20,7 @@ Puppet Enterprise 2.0 supports the following systems:
 | CentOS                       | 4                         | x86 and x86\_64   | agent     |
 | Ubuntu LTS                   | 10.04                     | 32- and 64-bit    | all roles |
 | Debian                       | Lenny (5) and Squeeze (6) | i386 and amd64    | all roles |
-| Oracle Enterprise Linux      | 5 and 6                   | x86 and x86\_64   | all roles |
+| Oracle Linux                 | 5 and 6                   | x86 and x86\_64   | all roles |
 | Scientific Linux             | 5 and 6                   | x86 and x86\_864  | all roles |
 | SUSE Linux Enterprise Server | 11                        | x86 and x86\_864  | all roles |
 | Solaris                      | 10                        | SPARC and x86\_64 | agent     |

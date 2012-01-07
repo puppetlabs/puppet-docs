@@ -18,7 +18,7 @@ Linux
 -   Red Hat Enterprise Linux, version 4 and higher
 -   CentOS, version 4 and higher
 -   Scientific Linux, version 4 and higher
--   Oracle Enterprise Linux, version 4 and higher
+-   Oracle Linux, version 4 and higher
 -   Debian, version 5 (Lenny) and higher
 -   Ubuntu, version 8.04 LTS and higher
 -   Fedora, version 15 and higher
@@ -37,7 +37,7 @@ Other Unix
 ----------
 
 -   Mac OS X, version 10.4 (Tiger) and higher
--   Solaris, version 10 and higher
+-   Oracle Solaris, version 10 and higher
 -   AIX, version 5.3 and higher
 -   HP-UX
 

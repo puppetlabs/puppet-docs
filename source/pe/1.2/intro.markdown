@@ -32,7 +32,7 @@ Puppet Enterprise 1.2 supports the following operating system versions:
 | CentOS                       | 4                         | x86 and x86\_64   | agent        |
 | Ubuntu LTS                   | 10.04                     | 32- and 64-bit    | master/agent |
 | Debian                       | Lenny (5) and Squeeze (6) | i386 and amd64    | master/agent |
-| Oracle Enterprise Linux      | 5 and 6                   | x86 and x86\_64   | master/agent |
+| Oracle Linux                 | 5 and 6                   | x86 and x86\_64   | master/agent |
 | Scientific Linux             | 5 and 6                   | x86 and x86\_864  | master/agent |
 | SUSE Linux Enterprise Server | 11                        | x86 and x86\_864  | master/agent |
 | Solaris                      | 10                        | SPARC and x86\_64 | agent        |

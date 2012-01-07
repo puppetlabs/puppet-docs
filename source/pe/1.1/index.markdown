@@ -24,7 +24,7 @@ This release of Puppet Enterprise supports the following operating system versio
 | CentOS                       | 4                         | x86 and x86\_64   | agent        |
 | Ubuntu LTS                   | 10.04                     | 32- and 64-bit    | master/agent |
 | Debian                       | Lenny (5) and Squeeze (6) | i386 and amd64    | master/agent |
-| Oracle Enterprise Linux      | 5                         | x86 and x86\_64   | master/agent |
+| Oracle Linux                 | 5                         | x86 and x86\_64   | master/agent |
 | SUSE Linux Enterprise Server | 11                        | x86 and x86\_864  | master/agent |
 | Solaris                      | 10                        | SPARC and x86\_64 | agent        |
 
@@ -372,7 +372,7 @@ For systems using apt and dpkg (Ubuntu and Debian), execute the following comman
 
 	apt-get install --fix-broken
 
-For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Enterprise Linux), execute the following commands: 
+For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), execute the following commands: 
 
 	yum localinstall --nogpgcheck *ruby*dev* 
 
