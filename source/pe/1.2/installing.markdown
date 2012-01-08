@@ -40,9 +40,9 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 |-----------------------------------|---------------------------------------------------------------|
 | `-all.tar`                        | anywhere                                                      |
 | `-debian-<version and arch>.tar`  | on Debian                                                     |
-| `-el-<version and arch>.tar`      | on RHEL, CentOS, Scientific Linux, or Oracle Enterprise Linux |
+| `-el-<version and arch>.tar`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux            |
 | `-sles-<version and arch>.tar`    | on SUSE Linux Enterprise Server                               |
-| `-solaris-<version and arch>.tar` | on Solaris                                                    | 
+| `-solaris-<version and arch>.tar` | on Solaris                                                    |
 | `-ubuntu-<version and arch>.tar`  | on Ubuntu LTS                                                 |
 
 Installing PE
