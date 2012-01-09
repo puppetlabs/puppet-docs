@@ -512,7 +512,7 @@ specified as an array.</p>
 <p>The group to run the command as.  This seems to work quite
 haphazardly on different platforms -- it is a platform issue
 not a Ruby or Puppet one, since the same variety exists when
-running commnands as different users in the shell.</p>
+running commands as different users in the shell.</p>
 
 
 ##### logoutput
