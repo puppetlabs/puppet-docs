@@ -233,7 +233,7 @@ Exercises
 
 > **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian" and "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
 
-> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you'll be shipping different config files ([Debian version](./files/ntp.conf.debian), [Red Hat version](./files/ntp.conf.el) --- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
+> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you'll be shipping different config files ([Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el) --- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
 > 
 > (Use a second manifest to disable the NTP service after you've gotten this example working; NTP can behave kind of uselessly in a virtual machine.) 
 
