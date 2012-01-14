@@ -189,6 +189,8 @@ And finally, you don't need an encyclopedic memory of what the namevar is for ea
 
 We said `/tmp/test2/` should have permissions mode 0644, but our `ls -lah` showed mode 0755. That's because Puppet groups the read bit and the traverse bit for directories, which is almost always what you actually want. The idea is to let you recursively manage whole directories as mode 0644 without making all their files executable.
 
+**Note:** Unless you're using Puppet Enterprise 2.0.0 with Puppet 2.7.6, which had a [known bug](http://projects.puppetlabs.com/issues/10269) that broke that behavior. 2.7.6 was the only Puppet version with this bug. 
+
 ### New Ensure Values
 
 The `file` type has several different values for its ensure attribute: `present`, `absent`, `file`, `directory`, and `link`. They're listed on the [core types cheat sheet][cheat] whenever you need to refresh your memory, and they're fairly self-explanatory.
