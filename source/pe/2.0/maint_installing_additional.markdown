@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Maintenance and Troubleshooting » Installing Additional Components"
 ---
 
+* * *
+
+&larr; [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) --- [Index](./) --- [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;
+
+* * *
+
 Installing Additional Components
 =====
 
@@ -31,4 +37,10 @@ For systems using apt and dpkg (Ubuntu and Debian), run the following commands:
 For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), run the following commands: 
 
 	$ sudo yum localinstall --nogpgcheck *ruby*dev* 
+
+* * *
+
+&larr; [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) --- [Index](./) --- [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;
+
+* * *
 

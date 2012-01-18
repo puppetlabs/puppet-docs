@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » What Gets Installed Where?"
 ---
 
+* * *
+
+&larr; [Installing: Answer File Reference](./install_answer_file_reference.html) --- [Index](./) --- [Console: Accessing the Console](./console_accessing.html) &rarr;
+
+* * *
+
 What Gets Installed Where?
 =====
 
@@ -108,4 +114,10 @@ These files may or may not be present.
 - `/var/log/pe-httpd/other_vhosts_access.log`
 - `/var/log/pe-puppet/masterhttp.log`
 - `/var/log/pe-puppet/rails.log`
+
+* * *
+
+&larr; [Installing: Answer File Reference](./install_answer_file_reference.html) --- [Index](./) --- [Console: Accessing the Console](./console_accessing.html) &rarr;
+
+* * *
 

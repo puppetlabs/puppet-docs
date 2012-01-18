@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Viewing Reports"
 ---
 
+* * *
+
+&larr; [Console: Navigating the Console](./console_navigating.html) --- [Index](./) --- [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
+
+* * *
+
 Viewing Reports and Inventory Data
 =====
 
@@ -84,3 +90,10 @@ You can add more facts to filter the search results further, and can change the 
 [reports_recent]: ./images/console/reports_recent.png
 [reports_runcount]: ./images/console/reports_runcount.png
 [reports_searchresults]: ./images/console/reports_searchresults.png
+
+* * *
+
+&larr; [Console: Navigating the Console](./console_navigating.html) --- [Index](./) --- [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
+
+* * *
+

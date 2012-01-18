@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Puppet » Next Steps"
 ---
 
+* * *
+
+&larr; [Puppet: Assigning a Class to a Node](./puppet_classifying.html) --- [Index](./) --- [Orchestration: Overview](./orchestration_overview.html) &rarr;
+
+* * *
+
 Puppet For New Users: Next Steps
 =====
 
@@ -24,4 +30,10 @@ For more complete details about the Puppet language, see the [language guide](/g
 ### More About the Console
 
 For more on Puppet Enterprise's console, see [the console section](./console_navigating.html) of this user's guide. 
+
+* * *
+
+&larr; [Puppet: Assigning a Class to a Node](./puppet_classifying.html) --- [Index](./) --- [Orchestration: Overview](./orchestration_overview.html) &rarr;
+
+* * *
 

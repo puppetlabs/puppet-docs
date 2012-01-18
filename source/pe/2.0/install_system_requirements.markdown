@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » System Requirements"
 ---
 
+* * *
+
+&larr; [Welcome: Getting Support](./welcome_getting_support.html) --- [Index](./) --- [Installing: Preparing to Install](./install_preparing.html) &rarr;
+
+* * *
+
 
 System Requirements
 ===================
@@ -39,4 +45,10 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
     * Minimum requirements: A system which provides interactive shell access for trusted users.
 * The **puppet agent** role has very modest requirements.
     * Minimum requirements: Any hardware able to comfortably run a supported operating system.
+
+* * *
+
+&larr; [Welcome: Getting Support](./welcome_getting_support.html) --- [Index](./) --- [Installing: Preparing to Install](./install_preparing.html) &rarr;
+
+* * *
 

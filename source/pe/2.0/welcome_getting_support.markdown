@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Welcome » Getting Support"
 ---
 
+* * *
+
+&larr; [Welcome: Known Issues](./welcome_known_issues.html) --- [Index](./) --- [Installing: System Requirements](./install_system_requirements.html) &rarr;
+
+* * *
+
 
 Getting Support for Puppet Enterprise
 =====
@@ -55,3 +61,10 @@ As a Puppet Enterprise customer you are more than welcome to participate in our 
 - Report issues with the open source Puppet project:
 
     <http://projects.puppetlabs.com/projects/puppet>
+
+* * *
+
+&larr; [Welcome: Known Issues](./welcome_known_issues.html) --- [Index](./) --- [Installing: System Requirements](./install_system_requirements.html) &rarr;
+
+* * *
+

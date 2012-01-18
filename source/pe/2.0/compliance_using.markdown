@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Compliance » Using the Workflow"
 ---
 
+* * *
+
+&larr; [Compliance: Basics and UI](./compliance_basics.html) --- [Index](./) --- [Compliance: Tutorial](./compliance_tutorial.html) &rarr;
+
+* * *
+
 Using the Compliance Workflow
 =====
 
@@ -146,3 +152,10 @@ A custom report is split into a "Common Differences" tab and an "Individual Diff
 [group_different_changes]: ./images/baseline/group_different_changes.png
 [group_same_change]: ./images/baseline/group_same_change.png
 [summary_with_differences]: ./images/baseline/summary_with_differences.png
+
+* * *
+
+&larr; [Compliance: Basics and UI](./compliance_basics.html) --- [Index](./) --- [Compliance: Tutorial](./compliance_tutorial.html) &rarr;
+
+* * *
+

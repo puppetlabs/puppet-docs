@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » Basic Installation"
 ---
 
+* * *
+
+&larr; [Installing: Preparing to Install](./install_preparing.html) --- [Index](./) --- [Installing: Upgrading](./install_upgrading.html) &rarr;
+
+* * *
+
 
 Basic Installation
 ======
@@ -179,4 +185,10 @@ After signing a new node's certificate, it may take up to 30 minutes before that
 
 When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 
+
+* * *
+
+&larr; [Installing: Preparing to Install](./install_preparing.html) --- [Index](./) --- [Installing: Upgrading](./install_upgrading.html) &rarr;
+
+* * *
 

@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Cloud Provisioning » Configuring and Troubleshooting"
 ---
 
+* * *
+
+&larr; [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
+
+* * *
+
 Configuring and Troubleshooting Cloud Provisioning
 =====
 
@@ -158,4 +164,10 @@ For Amazon Web Services you'll see the following error:
 
 Add the appropriate file or missing credentials to the file to resolve
 this issue.
+
+* * *
+
+&larr; [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
+
+* * *
 

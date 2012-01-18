@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Cloud Provisioning » VMware Provisioning"
 ---
 
+* * *
+
+&larr; [Cloud Provisioning: Configuring and Troubleshooting](./cloudprovisioner_configuring.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) &rarr;
+
+* * *
+
 Provisioning With VMware
 =====
 
@@ -190,4 +196,10 @@ You can get help on individual actions by running:
 For example:
 
     $ puppet help node_vmware start
+
+* * *
+
+&larr; [Cloud Provisioning: Configuring and Troubleshooting](./cloudprovisioner_configuring.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) &rarr;
+
+* * *
 

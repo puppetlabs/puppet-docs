@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Live Mgmt: Advanced Tasks"
 ---
 
+* * *
+
+&larr; [Console: Live Management: Controlling Puppet](./console_live_puppet.html) --- [Index](./) --- [Puppet: Overview](./puppet_overview.html) &rarr;
+
+* * *
+
 Live Management: Advanced Tasks
 =====
 
@@ -50,3 +56,10 @@ Results:
 [live_advanced_noargs]: ./images/console/live_advanced_noargs.png
 [live_advanced_results]: ./images/console/live_advanced_results.png
 [live_advanced_running]: ./images/console/live_advanced_running.png
+
+* * *
+
+&larr; [Console: Live Management: Controlling Puppet](./console_live_puppet.html) --- [Index](./) --- [Puppet: Overview](./puppet_overview.html) &rarr;
+
+* * *
+

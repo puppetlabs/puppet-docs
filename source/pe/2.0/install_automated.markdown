@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » Automated Installation
 ---
 
+* * *
+
+&larr; [Installing: Uninstalling](./install_uninstalling.html) --- [Index](./) --- [Installing: Answer File Reference](./install_answer_file_reference.html) &rarr;
+
+* * *
+
 Automated Installation
 =======
 
@@ -69,4 +75,10 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
 
 * Installing with the `-a` option will fail if any required variables are not set.
 * Installing with the `-A` option will prompt the user for any missing answers. 
+
+* * *
+
+&larr; [Installing: Uninstalling](./install_uninstalling.html) --- [Index](./) --- [Installing: Answer File Reference](./install_answer_file_reference.html) &rarr;
+
+* * *
 

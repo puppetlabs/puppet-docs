@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Live Mgmt: Managing Resources"
 ---
 
+* * *
+
+&larr; [Console: Live Management](./console_live.html) --- [Index](./) --- [Console: Live Management: Controlling Puppet](./console_live_puppet.html) &rarr;
+
+* * *
+
 Live Management: Managing Resources
 =====
 
@@ -113,3 +119,10 @@ Note also that the UID of a user and the GIDs of its groups aren't cloned across
 [live_resources_searching]: ./images/console/live_resources_searching.png
 [live_resources_sshd_withnodes]: ./images/console/live_resources_sshd_withnodes.png
 [live_resources_sshd]: ./images/console/live_resources_sshd.png
+
+* * *
+
+&larr; [Console: Live Management](./console_live.html) --- [Index](./) --- [Console: Live Management: Controlling Puppet](./console_live_puppet.html) &rarr;
+
+* * *
+

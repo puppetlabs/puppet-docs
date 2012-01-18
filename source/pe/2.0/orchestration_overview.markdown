@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Orchestration » Overview"
 ---
 
+* * *
+
+&larr; [Puppet: Next Steps](./puppet_next_steps.html) --- [Index](./) --- [Orchestration: Usage and Examples](./orchestration_usage.html) &rarr;
+
+* * *
+
 Orchestration for New PE Users: Overview
 =====
 
@@ -62,4 +68,10 @@ Network Traffic
 
 Nodes send orchestration messages over TCP port 61613
 to the ActiveMQ server, which runs on the puppet master node. See the [notes on firewall configuration in the "Preparing to Install" chapter of this guide](./install_preparing.html#firewall-configuration) for more details about PE's network traffic.
+
+* * *
+
+&larr; [Puppet: Next Steps](./puppet_next_steps.html) --- [Index](./) --- [Orchestration: Usage and Examples](./orchestration_usage.html) &rarr;
+
+* * *
 

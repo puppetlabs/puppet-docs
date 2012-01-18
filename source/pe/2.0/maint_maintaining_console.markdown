@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Maintenance and Troubleshooting » Console Maintenance Tasks"
 ---
 
+* * *
+
+&larr; [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) --- [Index](./) --- [Maintenance: Installing Additional Components](./maint_installing_additional.html) &rarr;
+
+* * *
+
 Console Maintenance Tasks
 =====
 
@@ -85,4 +91,10 @@ To restore the console's database from a file called `production.sql` to your `p
     -f /opt/puppet/share/puppet-dashboard/Rakefile \
     RAILS_ENV=production \
     FILE=production.sql db:raw:restore
+
+* * *
+
+&larr; [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) --- [Index](./) --- [Maintenance: Installing Additional Components](./maint_installing_additional.html) &rarr;
+
+* * *
 

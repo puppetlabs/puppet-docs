@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Maintenance and Troubleshooting » Reconfiguring PE"
 ---
 
+* * *
+
+&larr; [Maintenance: Installing Additional Components](./maint_installing_additional.html) --- [Index](./)
+
+* * *
+
 Reconfiguring Complex Settings
 =====
 
@@ -121,4 +127,10 @@ If this password is compromised, or if it just needs to be changed periodically 
 After changing the password, **you cannot issue orchestration messages to a given node until it has run Puppet at least once.** This means changing the orchestration password requires a 30 minute maintenance window during which orchestration will not be used. You can check whether a given node has changed its orchestration settings by [checking its recent reports in the console][reports] and ensuring that its `/etc/puppetlabs/mcollective/server.cfg` file was modified. 
 
 [reports]: ./console_reports.html
+
+* * *
+
+&larr; [Maintenance: Installing Additional Components](./maint_installing_additional.html) --- [Index](./)
+
+* * *
 

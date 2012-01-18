@@ -4,6 +4,12 @@ title: "PE 2.0 » Accounts Module » The pe_accounts::user Type"
 ---
 
 
+* * *
+
+&larr; [Compliance: Tutorial](./compliance_tutorial.html) --- [Index](./) --- [PE Accounts Module: The `pe_accounts` Class](./accounts_class.html) &rarr;
+
+* * *
+
 The `pe_accounts::user` Type
 =====
 
@@ -157,4 +163,10 @@ Whether the user should be prevented from logging in; set this to `true` for sys
 ### `sshkeys`
 
 An array of SSH public keys associated with the user. Unlike with the [`ssh_authorized_key`](/references/2.6.9/type.html#sshauthorizedkey) type, these should be **complete public key strings** that include the type and name of the key, exactly as the key would appear in its `id_rsa.pub` or `id_dsa.pub` file. Defaults to an empty array.
+
+* * *
+
+&larr; [Compliance: Tutorial](./compliance_tutorial.html) --- [Index](./) --- [PE Accounts Module: The `pe_accounts` Class](./accounts_class.html) &rarr;
+
+* * *
 

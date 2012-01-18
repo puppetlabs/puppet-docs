@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Puppet » Assigning a Class to a Node"
 ---
 
+* * *
+
+&larr; [Puppet: Your First Module](./puppet_first_module.html) --- [Index](./) --- [Puppet: Next Steps](./puppet_next_steps.html) &rarr;
+
+* * *
+
 Puppet For New Users: Assigning a Class to a Node
 =====
 
@@ -110,3 +116,10 @@ For some reason, `/etc/passwd` had a permissions mode of 0666, which meant anyon
 [view_lastreport]: ./images/puppet_classifying/view_lastreport.png
 [view_log]: ./images/puppet_classifying/view_log.png
 [view_onechanged]: ./images/puppet_classifying/view_onechanged.png
+
+* * *
+
+&larr; [Puppet: Your First Module](./puppet_first_module.html) --- [Index](./) --- [Puppet: Next Steps](./puppet_next_steps.html) &rarr;
+
+* * *
+

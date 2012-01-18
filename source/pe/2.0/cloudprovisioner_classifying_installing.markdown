@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Cloud Provisioning » Classifying and Installing"
 ---
 
+* * *
+
+&larr; [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) --- [Index](./) --- [Cloud Provisioning: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) &rarr;
+
+* * *
+
 Classifying New Nodes and Remotely Installing PE
 =====
 
@@ -113,4 +119,10 @@ single command. For example:
 
 The `init` action combines the options for the `classify` and
 `install` actions. The invocation above will connect to the console, classify the node in the `appserver_pool` group, and then install Puppet Enterprise on this node.
+
+* * *
+
+&larr; [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) --- [Index](./) --- [Cloud Provisioning: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) &rarr;
+
+* * *
 

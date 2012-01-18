@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Compliance » Basics and UI"
 ---
 
+* * *
+
+&larr; [Cloud Provisioning: Man Page: puppet node](./cloudprovisioner_man_node.html) --- [Index](./) --- [Compliance: Using the Compliance Workflow](./compliance_using.html) &rarr;
+
+* * *
+
 Compliance Basics and UI
 =====
 
@@ -118,3 +124,10 @@ Although the console allows groups to contain other groups, a compliance group p
 [group_individual]: ./images/baseline/group_individual.png
 [core_group_page]: ./images/baseline/core_group_page.png
 [core_group_custom_report]: ./images/baseline/core_group_custom_report.png
+
+* * *
+
+&larr; [Cloud Provisioning: Man Page: puppet node](./cloudprovisioner_man_node.html) --- [Index](./) --- [Compliance: Using the Compliance Workflow](./compliance_using.html) &rarr;
+
+* * *
+

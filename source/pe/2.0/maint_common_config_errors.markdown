@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Maintenance and Troubleshooting » Common Config Errors"
 ---
 
+* * *
+
+&larr; [PE Accounts Module: The `pe_accounts` Class](./accounts_class.html) --- [Index](./) --- [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) &rarr;
+
+* * *
+
 Troubleshooting Common Configuration Errors
 =====
 
@@ -143,4 +149,10 @@ This should properly generate a new signing request.
 -----
 
 If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failing with an "err: Missing required arguments" message, you need to [create a `~/.fog` file and populate it with the appropriate credentials](./cloudprovisioner_configuring.html). 
+
+* * *
+
+&larr; [PE Accounts Module: The `pe_accounts` Class](./accounts_class.html) --- [Index](./) --- [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) &rarr;
+
+* * *
 

@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » Answer File Reference"
 ---
 
+* * *
+
+&larr; [Installing: Automated Installation](./install_automated.html) --- [Index](./) --- [Installing: What gets installed where?](./install_what_and_where.html) &rarr;
+
+* * *
+
 
 Answer File Reference
 =====================
@@ -140,3 +146,10 @@ These answers are only needed if you are installing the console role.
 
 
 <!-- TODO: answers for the upgrader. -->
+
+* * *
+
+&larr; [Installing: Automated Installation](./install_automated.html) --- [Index](./) --- [Installing: What gets installed where?](./install_what_and_where.html) &rarr;
+
+* * *
+

@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Puppet » Your First Module"
 ---
 
+* * *
+
+&larr; [Puppet: Overview](./puppet_overview.html) --- [Index](./) --- [Puppet: Assigning a Class to a Node](./puppet_classifying.html) &rarr;
+
+* * *
+
 Puppet For New Users: Your First Module
 =====
 
@@ -104,3 +110,10 @@ Paste the following code into the `init.pp` file:
 This creates a class called `core_permissions`, which manages the ownership and mode of three important files. On any that node that has this class applied to it, an accidental or malicious change in these files' permissions would be **reverted to the specified state within the next half-hour,** and a report of the change would appear on that node's page in the console.
 
 Remember that creating the module won't automatically assign the class to any nodes --- it just makes the class available.
+
+* * *
+
+&larr; [Puppet: Overview](./puppet_overview.html) --- [Index](./) --- [Puppet: Assigning a Class to a Node](./puppet_classifying.html) &rarr;
+
+* * *
+

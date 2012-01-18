@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » Uninstalling"
 ---
 
+* * *
+
+&larr; [Installing: Upgrading](./install_upgrading.html) --- [Index](./) --- [Installing: Automated Installation](./install_automated.html) &rarr;
+
+* * *
+
 Uninstalling Puppet Enterprise
 =====
 
@@ -63,4 +69,10 @@ You can use the following command-line flags to change the installer's behavior:
 Thus, to remove every trace of PE from a system, you would run:
 
     # sudo ./puppet-enterprise-uninstaller -d -p
+
+* * *
+
+&larr; [Installing: Upgrading](./install_upgrading.html) --- [Index](./) --- [Installing: Automated Installation](./install_automated.html) &rarr;
+
+* * *
 

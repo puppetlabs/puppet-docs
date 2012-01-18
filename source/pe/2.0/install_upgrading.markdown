@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » Upgrading"
 ---
 
+* * *
+
+&larr; [Installing: Basic Installation](./install_basic.html) --- [Index](./) --- [Installing: Uninstalling](./install_uninstalling.html) &rarr;
+
+* * *
+
 Upgrading Puppet Enterprise
 =====
 
@@ -283,3 +289,10 @@ On each agent node you upgrade to PE 2.0, make the following edits to `/etc/pupp
         archive_files = true
         # if you didn't originally enable pluginsync, enable it now:
         pluginsync = true
+
+* * *
+
+&larr; [Installing: Basic Installation](./install_basic.html) --- [Index](./) --- [Installing: Uninstalling](./install_uninstalling.html) &rarr;
+
+* * *
+

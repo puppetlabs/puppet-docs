@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Installing » Preparing to Install"
 ---
 
+* * *
+
+&larr; [Installing: System Requirements](./install_system_requirements.html) --- [Index](./) --- [Installing: Basic Installation](./install_basic.html) &rarr;
+
+* * *
+
 
 Preparing to Install
 =====
@@ -59,4 +65,10 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 | `-sles-<version and arch>.tar`    | on SUSE Linux Enterprise Server                               |
 | `-solaris-<version and arch>.tar` | on Solaris                                                    |
 | `-ubuntu-<version and arch>.tar`  | on Ubuntu LTS                                                 |
+
+* * *
+
+&larr; [Installing: System Requirements](./install_system_requirements.html) --- [Index](./) --- [Installing: Basic Installation](./install_basic.html) &rarr;
+
+* * *
 

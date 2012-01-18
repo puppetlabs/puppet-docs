@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Welcome » Getting Started"
 ---
 
+* * *
+
+[Index](./) --- [Welcome: Components and Roles](./welcome_roles.html) &rarr;
+
+* * *
+
 
 Getting Started
 ===============
@@ -60,3 +66,10 @@ About the Cloud Provisioner
 -----
 
 The cloud provisioner is a command line tool for building new nodes. It can create new VMware and Amazon EC2 instances, install Puppet Enterprise on any virtual or physical machine, and classify newly provisioned nodes within your Puppet infrastructure. 
+
+* * *
+
+[Index](./) --- [Welcome: Components and Roles](./welcome_roles.html) &rarr;
+
+* * *
+

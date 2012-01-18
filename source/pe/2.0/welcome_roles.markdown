@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Welcome » Components and Roles"
 ---
 
+* * *
+
+&larr; [Welcome: Getting Started](./welcome_getting_started.html) --- [Index](./) --- [Welcome: What's New](./welcome_whats_new.html) &rarr;
+
+* * *
+
 Components and Roles
 ========
 
@@ -44,4 +50,10 @@ This role should be installed on a secure node to which administrators have shel
 * Create new VMware and Amazon EC2 virtual machine instances.
 * Install Puppet Enterprise on any virtual or physical system.
 * Add newly provisioned nodes to a group in the console. 
+
+* * *
+
+&larr; [Welcome: Getting Started](./welcome_getting_started.html) --- [Index](./) --- [Welcome: What's New](./welcome_whats_new.html) &rarr;
+
+* * *
 

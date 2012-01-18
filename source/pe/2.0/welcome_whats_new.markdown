@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Welcome » What's New"
 ---
 
+* * *
+
+&larr; [Welcome: Components and Roles](./welcome_roles.html) --- [Index](./) --- [Welcome: Known Issues](./welcome_known_issues.html) &rarr;
+
+* * *
+
 
 What's New in Puppet Enterprise 2.0?
 ========
@@ -68,4 +74,10 @@ The installer asks fewer and smarter questions.
 
 The `mcollectivepe`, `accounts`, and `baselines` modules from PE 1.2 were renamed (to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively) to avoid namespace conflicts and make their origin more clear. The PE upgrader can install wrapper modules to preserve functionality if you used any of these modules by their previous names.
 
+
+* * *
+
+&larr; [Welcome: Components and Roles](./welcome_roles.html) --- [Index](./) --- [Welcome: Known Issues](./welcome_known_issues.html) &rarr;
+
+* * *
 

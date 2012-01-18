@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Compliance » Tutorial"
 ---
 
+* * *
+
+&larr; [Compliance: Using the Compliance Workflow](./compliance_using.html) --- [Index](./) --- [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) &rarr;
+
+* * *
+
 Compliance Tutorial
 =====
 
@@ -81,4 +87,10 @@ It's an otherwise uneventful day.
 [tutorial_profile_before]: ./images/baseline/tutorial_profile_before.png
 [tutorial_reject_user]: ./images/baseline/tutorial_reject_user.png
 [tutorial_overview]: ./images/baseline/tutorial_overview.png
+
+* * *
+
+&larr; [Compliance: Using the Compliance Workflow](./compliance_using.html) --- [Index](./) --- [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) &rarr;
+
+* * *
 

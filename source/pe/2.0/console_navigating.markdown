@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Navigating"
 ---
 
+* * *
+
+&larr; [Console: Accessing the Console](./console_accessing.html) --- [Index](./) --- [Console: Viewing Reports and Inventory Data](./console_reports.html) &rarr;
+
+* * *
+
 Navigating the Console
 =====
 
@@ -52,3 +58,10 @@ Classes aren't automatically detected or validated; you have to enter a class's 
 [nav_navbar]: ./images/console/nav_navbar.png
 [nav_node]: ./images/console/nav_node.png
 [nav_nodestatus]: ./images/console/nav_nodestatus.png
+
+* * *
+
+&larr; [Console: Accessing the Console](./console_accessing.html) --- [Index](./) --- [Console: Viewing Reports and Inventory Data](./console_reports.html) &rarr;
+
+* * *
+

@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Live Mgmt: Controlling Puppet"
 ---
 
+* * *
+
+&larr; [Console: Live Management: Managing Resources](./console_live_resources.html) --- [Index](./) --- [Console: Live Management: Advanced Tasks](./console_live_advanced.html) &rarr;
+
+* * *
+
 Live Management: Controlling Puppet
 =====
 
@@ -108,3 +114,10 @@ Part of a last run summary results view:
 [live_puppet_runbutton]: ./images/console/live_puppet_runbutton.png
 [live_puppet_status]: ./images/console/live_puppet_status.png
 [live_puppet_unresponsive]: ./images/console/live_puppet_unresponsive.png
+
+* * *
+
+&larr; [Console: Live Management: Managing Resources](./console_live_resources.html) --- [Index](./) --- [Console: Live Management: Advanced Tasks](./console_live_advanced.html) &rarr;
+
+* * *
+

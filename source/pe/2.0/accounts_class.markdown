@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Accounts Module » The pe_accounts Class"
 ---
 
+* * *
+
+&larr; [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) --- [Index](./) --- [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) &rarr;
+
+* * *
+
 
 The `pe_accounts` Class
 =====
@@ -239,4 +245,10 @@ Defaults to `pe_accounts::data`.
 ### `sudoers_path`
 
 The path to the `sudoers` file on this system. Defaults to `/etc/sudoers`.
+
+* * *
+
+&larr; [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) --- [Index](./) --- [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) &rarr;
+
+* * *
 

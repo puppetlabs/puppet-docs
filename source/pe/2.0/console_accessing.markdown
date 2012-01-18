@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Accessing"
 ---
 
+* * *
+
+&larr; [Installing: What gets installed where?](./install_what_and_where.html) --- [Index](./) --- [Console: Navigating the Console](./console_navigating.html) &rarr;
+
+* * *
+
 Accessing the Console
 =====
 
@@ -97,3 +103,10 @@ For security, the console requires a user name and password for access. Use the 
 ![Screenshot: a login dialog asking for credentials][login]
 
 Since the console is the main point of control for your infrastructure, you will probably want to decline your browser's offer to remember its password. 
+
+* * *
+
+&larr; [Installing: What gets installed where?](./install_what_and_where.html) --- [Index](./) --- [Console: Navigating the Console](./console_navigating.html) &rarr;
+
+* * *
+

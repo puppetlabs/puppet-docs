@@ -3,6 +3,12 @@ layout: pe2experimental
 title: "PE 2.0 » Console » Grouping and Classifying Nodes"
 ---
 
+* * *
+
+&larr; [Console: Viewing Reports and Inventory Data](./console_reports.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
+
+* * *
+
 Grouping and Classifying Nodes
 =====
 
@@ -133,3 +139,10 @@ Other tasks are available; run rake with the `-T` option for a more complete lis
 [classes_nodes_to_group]: ./images/console/classes_nodes_to_group.png
 [classes_typing_class]: ./images/console/classes_typing_class.png
 [classes_typingclass]: ./images/console/classes_typingclass.png
+
+* * *
+
+&larr; [Console: Viewing Reports and Inventory Data](./console_reports.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
+
+* * *
+
