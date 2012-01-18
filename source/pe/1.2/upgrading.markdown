@@ -165,6 +165,16 @@ You'll also need to ensure that the following three settings point to one of the
     inventory_server: '<puppet master's hostname>'
     file_bucket_server: '<puppet master's hostname>'
 
+Also, make sure the following settings exist and are set to the suggested values; if any are missing, you will need to add them to settings.yml yourself:
+
+    private_key_path: 'certs/pe-internal-dashboard.private_key.pem'
+    public_key_path: 'certs/pe-internal-dashboard.public_key.pem'
+    ca_crl_path: 'certs/pe-internal-dashboard.ca_crl.pem'
+    ca_certificate_path: 'certs/pe-internal-dashboard.ca_cert.pem'
+    certificate_path: 'certs/pe-internal-dashboard.cert.pem'
+    key_length: 1024
+    cn_name: 'pe-internal-dashboard'
+
 ### Generate and Sign Certificates for Puppet Dashboard
 
 To support Dashboard's inventory and filebucket viewing capabilities, you must generate and sign certificates to allow it to request data from the puppet master.
@@ -189,6 +199,10 @@ Next, retrieve the signed certificate:
 And finally, make `puppet-dashboard` the owner of the certificates directory:
 
     $ sudo chown -R puppet-dashboard:puppet-dashboard certs
+
+#### Troubleshooting
+
+If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist. 
 
 ### Restart `pe-httpd`
 

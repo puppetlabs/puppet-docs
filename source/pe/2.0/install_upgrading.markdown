@@ -221,6 +221,21 @@ Change the following three settings to point to one of the puppet master's valid
     inventory_server: '<PUPPET MASTER HOSTNAME>'
     file_bucket_server: '<PUPPET MASTER HOSTNAME>'
 
+Change the following two settings to true:
+
+    enable_inventory_service: true
+    use_file_bucket_diffs: true
+
+Ensure that the following settings exist and are set to the suggested values; if any are missing, you will need to add them to settings.yml yourself:
+
+    private_key_path: 'certs/pe-internal-dashboard.private_key.pem'
+    public_key_path: 'certs/pe-internal-dashboard.public_key.pem'
+    ca_crl_path: 'certs/pe-internal-dashboard.ca_crl.pem'
+    ca_certificate_path: 'certs/pe-internal-dashboard.ca_cert.pem'
+    certificate_path: 'certs/pe-internal-dashboard.cert.pem'
+    key_length: 1024
+    cn_name: 'pe-internal-dashboard'
+
 ### Generate and Sign Console Certificates
 
 First, navigate to the console's installation directory:
@@ -251,6 +266,10 @@ Next, stop the temporary puppet master:
 Finally, chown the certificates directory to `puppet-dashboard`:
 
     $ sudo chown -R puppet-dashboard:puppet-dashboard certs
+
+#### Troubleshooting
+
+If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist. 
 
 ### Edit `passenger-extra.conf`
 
