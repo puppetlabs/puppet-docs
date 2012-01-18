@@ -176,9 +176,9 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
             # if you didn't originally enable pluginsync, enable it now:
             pluginsync = true
 
-### Edit `/etc/puppetlabs/puppet/auth.conf`
+### Edit Puppet Master's `/etc/puppetlabs/puppet/auth.conf`
 
-To support the inventory service, you must add the following stanzas to your [`auth.conf`](/guides/rest_auth_conf.html) file:
+To support the inventory service, you must add the following two stanzas to your puppet master's [`auth.conf`](/guides/rest_auth_conf.html) file:
 
     # Allow the console to retrieve inventory facts:
     
@@ -192,19 +192,14 @@ To support the inventory service, you must add the following stanzas to your [`a
     path /facts
     auth yes
     method save
-    allow <PUPPET MASTER CERTNAME>
+    allow <PUPPET MASTER'S CERTNAME>
 
-These stanzas **must** be inserted **before** the final stanza:
-
-    ...method save
-    allow <puppet master's certname>
-    
-    # final auth.conf stanza:
+These stanzas **must** be inserted **before** the final stanza, which looks like this:
     
     path /
     auth any
-
-If you paste these stanzas after the final stanza, they will have no effect.
+    
+If you paste the new stanzas after this final stanza, they will not take effect.
 
 ### Edit `/etc/puppetlabs/puppet/manifests/site.pp`
 

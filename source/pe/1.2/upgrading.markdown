@@ -131,17 +131,12 @@ To support the inventory service, you must add the following stanzas to your [`a
     method save
     allow <puppet master's certname>
 
-These stanzas **must** be inserted **before** the final stanza:
-
-    ...method save
-    allow <puppet master's certname>
-    
-    # final auth.conf stanza:
+These stanzas **must** be inserted **before** the final stanza, which looks like this:
     
     path /
     auth any
-
-If you paste these stanzas at the end of `auth.conf`, they will have no effect.
+    
+If you paste the new stanzas after this final stanza, they will not take effect.
 
 ### Edit `/etc/puppetlabs/puppet/manifests/site.pp`
 
