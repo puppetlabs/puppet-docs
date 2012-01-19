@@ -271,23 +271,6 @@ Finally, chown the certificates directory to `puppet-dashboard`:
 
 If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist. 
 
-### Edit `passenger-extra.conf`
-
-You must edit the `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf` file, **on both the puppet master and the console server,** so that it looks like this:
-
-    # /etc/puppetlabs/httpd/conf.d/passenger-extra.conf
-    PassengerHighPerformance on
-    PassengerUseGlobalQueue on
-    PassengerMaxRequests 40
-    PassengerPoolIdleTime 15
-    PassengerMaxPoolSize 8
-    PassengerMaxInstancesPerApp 4
-
-You can tune some of these settings:
-
-* `PassengerMaxPoolSize` should be four times the number of CPU cores in the server.
-* `PassengerMaxInstancesPerApp` should be one half the `PassengerMaxPoolSize`.
-
 ### Start `pe-httpd`
 
 You can now start PE's web server again.

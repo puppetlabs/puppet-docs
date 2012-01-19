@@ -90,10 +90,29 @@ This issue was fixed in PE 2.0.1, which includes the uninstaller.
 
 [uninstaller]: ./files/puppet-enterprise-uninstaller
 
-The Puppet Enterprise uninstaller script was not included with PE 2.0. Although it will be included in future PE releases, you can [download it here][uninstaller]. 
+The Puppet Enterprise uninstaller script was not included with PE 2.0. Although it is included in subsequent PE releases, you can [download it here][uninstaller]. 
 
 Before you can use it, you must move the uninstaller script into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory. Once it is in place, you can make the uninstaller executable and run it:
 
     # sudo chmod +x puppet-enterprise-uninstaller
     # sudo ./puppet-enterprise-uninstaller
+
+### When Upgrading, `passenger-extra.conf` Requires Manual Edits
+
+This issue was fixed in PE 2.0.1, and the upgrader script now automatically tunes the `passenger-extra.conf` file.
+
+Upgrading to PE 2.0.0 requires you to edit the `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf` file, **on both the puppet master and the console server,** so that it looks like this:
+
+    # /etc/puppetlabs/httpd/conf.d/passenger-extra.conf
+    PassengerHighPerformance on
+    PassengerUseGlobalQueue on
+    PassengerMaxRequests 40
+    PassengerPoolIdleTime 15
+    PassengerMaxPoolSize 8
+    PassengerMaxInstancesPerApp 4
+
+Some of these settings can be tuned:
+
+* `PassengerMaxPoolSize` should be four times the number of CPU cores in the server.
+* `PassengerMaxInstancesPerApp` should be one half the `PassengerMaxPoolSize`.
 
