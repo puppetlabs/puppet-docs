@@ -7,7 +7,7 @@ title: "PE 2.0 » Welcome » Known Issues"
 
 * * *
 
-&larr; [Welcome: What's New](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
+&larr; [Welcome: New Features and Release Notes](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
 
 * * *
 
@@ -78,7 +78,7 @@ Man pages generated with the `puppet man` subcommand are not formatted as proper
 
 * * *
 
-&larr; [Welcome: What's New](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
+&larr; [Welcome: New Features and Release Notes](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
 
 * * *
 

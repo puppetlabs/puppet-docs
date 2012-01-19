@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Welcome » What's New"
+title: "PE 2.0 » Welcome » New Features and Release Notes"
 ---
 
 * * *

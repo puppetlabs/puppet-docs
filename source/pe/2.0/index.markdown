@@ -14,7 +14,7 @@ This is the user's guide for Puppet Enterprise 2.0. Use the **navigation to the 
     
     - [Getting Started](./welcome_getting_started.html)
     - [Components and Roles](./welcome_roles.html)
-    - [What's New](./welcome_whats_new.html)
+    - [New Features and Release Notes](./welcome_whats_new.html)
     - [Known Issues](./welcome_known_issues.html)
     - [Getting Support](./welcome_getting_support.html)
 - **Installing Puppet Enterprise**

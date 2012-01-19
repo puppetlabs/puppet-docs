@@ -4,7 +4,7 @@ THE TEXT:
 - **Welcome to Puppet Enterprise** <!-- welcome -->
     - [Getting Started](./welcome_getting_started.html)
     - [Components and Roles](./welcome_roles.html)
-    - [What's New](./welcome_whats_new.html)
+    - [New Features and Release Notes](./welcome_whats_new.html)
     - [Known Issues](./welcome_known_issues.html)
     - [Getting Support](./welcome_getting_support.html)
 - **Installing Puppet Enterprise** <!-- install -->
@@ -71,7 +71,7 @@ And BTW, those comments ARE crucial, and must contain the prefix word that will 
   {% if page.url contains '/welcome_' %}<li class="currentsection"><strong>Welcome to Puppet Enterprise</strong><ul>{% else %}<li><strong><a href="./welcome_getting_started.html">Welcome to Puppet Enterprise</a></strong><ul style="display: none;">{% endif %}
       {% if page.url contains 'welcome_getting_started.html' %}<li class="currentpage"><strong><em>Getting Started:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_getting_started.html">Getting Started</a>{% endif %}</li>
       {% if page.url contains 'welcome_roles.html' %}<li class="currentpage"><strong><em>Components and Roles:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_roles.html">Components and Roles</a>{% endif %}</li>
-      {% if page.url contains 'welcome_whats_new.html' %}<li class="currentpage"><strong><em>What&rsquo;s New:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_whats_new.html">What&rsquo;s New</a>{% endif %}</li>
+      {% if page.url contains 'welcome_whats_new.html' %}<li class="currentpage"><strong><em>New Features and Release Notes:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_whats_new.html">New Features and Release Notes</a>{% endif %}</li>
       {% if page.url contains 'welcome_known_issues.html' %}<li class="currentpage"><strong><em>Known Issues:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_known_issues.html">Known Issues</a>{% endif %}</li>
       {% if page.url contains 'welcome_getting_support.html' %}<li class="currentpage"><strong><em>Getting Support:</em></strong>{{ content | toc }}{% else %}<li><a href="./welcome_getting_support.html">Getting Support</a>{% endif %}</li>
     </ul>
