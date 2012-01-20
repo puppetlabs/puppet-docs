@@ -14,7 +14,7 @@ Latest: [Defined Types][definedtypes] &rarr;
 
 * * *
 
-[learningvm]: http://info.puppetlabs.com/learning-puppet-vm.html
+[learningvm]: http://info.puppetlabs.com/download-learning-puppet-VM.html.html
 <!-- Chapters: -->
 [ral]: ./ral.html
 [Manifests]: ./manifests.html
@@ -48,7 +48,7 @@ So to learn Puppet effectively, you need a virtual machine you can experiment on
 
 In short, you want _this_ virtual machine:
 
-<a href="http://info.puppetlabs.com/learning-puppet-vm" class="btn">Get the Learning Puppet VM</a>
+<a href="http://info.puppetlabs.com/download-learning-puppet-VM.html" class="btn">Get the Learning Puppet VM</a>
 
 The root user's password is `puppet`, and for your convenience, the system is configured to write its current IP address to the login screen about ten seconds after it boots.
 
