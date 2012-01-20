@@ -89,7 +89,7 @@ We've fixed a lot of glitches in PE's installer and upgrader, and done some thin
 
 * PE now ships with an uninstaller script.
 * The installer will now warn you if you attempt to install a puppet master or console server with less than the required 1GB of memory.
-* More secure console and MySQL passwords can be chosen, as the installer will accept a wider array of non-alphanumeric characters. 
+* More secure console and MySQL passwords can be chosen, as the installer will accept a wider array of non-alphanumeric characters. You can also use non-alphanumeric characters in database names.
 * We've eliminated a possible source of file permission errors by explicitly setting the umask used by the installer. (This would occasionally cause mysterious installation failures.)
 * Upgrading from PE 1.x no longer requires manual edits to `passenger-extra.conf`.
 * Answer files created during installation are handled more securely, and are no longer saved as world- or group-readable. 
