@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: frontpage
 title: Puppet Labs Documentation
 ---
 
