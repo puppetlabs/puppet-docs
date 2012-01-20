@@ -44,12 +44,6 @@ The console's [live management](./console_live.html) page doesn't load in Intern
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
 
-* * *
-
-&larr; [Welcome: New Features and Release Notes](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
-
-* * *
-
 
 Issues Affecting PE 2.0.0
 -----
@@ -156,3 +150,8 @@ This issue was fixed in PE 2.0.1.
 
 On RPM-based systems, some of the libraries provided by PE 2.0.0's packages are not namespaced. This can block proper dependency resolution when installing software that expects the system-provided versions of those libraries. 
 
+* * *
+
+&larr; [Welcome: New Features and Release Notes](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
+
+* * *
