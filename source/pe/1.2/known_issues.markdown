@@ -12,7 +12,7 @@ Known Issues in Puppet Enterprise 1.2
 
 The following is a list of known issues in each maintenance release of Puppet Enterprise 1.2. To find out which issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.6.9 (Puppet Enterprise 1.2.3)`.
 
-In PE 1.2.4 and Earlier
+In PE 1.2.5 and Earlier
 -----
 
 ### Upgrading From PE 1.1 Breaks Node Classification on Debian and Ubuntu Systems
@@ -34,6 +34,19 @@ The `accounts` class --- a data-separation wrapper that uses external data to de
 
 The workaround is to ensure that this variable/file is present in the namespace or data directory.
 
+In PE 1.2.4 and Earlier
+-----
+
+### Security Issue: XSS Vulnerability in Puppet Dashboard (CVE-2012-0891)
+
+This issue was fixed in PE 1.2.5 and 2.0.1.
+
+Puppet Dashboard was found to be vulnerable to cross-site scripting attacks due to insufficient sanitization of user input. [See here][dashboard_xss] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-0891][dashxss_cve]. 
+
+[dashboard_xss]: http://puppetlabs.com/security/cve/cve-2012-0891/
+[dashxss_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-0891
 
 In PE 1.2.3 and Earlier
 -----

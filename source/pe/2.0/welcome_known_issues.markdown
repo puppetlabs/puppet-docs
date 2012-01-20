@@ -70,6 +70,17 @@ The version of Apache used by PE 2.0.0 is vulnerable to the following CVE issues
 * [CVE-2011-3348](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3348)
 * [CVE-2011-3368](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3368)
 
+### Security Issue: XSS Vulnerability in Puppet Dashboard (CVE-2012-0891)
+
+This issue was fixed in PE 2.0.1.
+
+The upstream Puppet Dashboard code used in PE's web console was found to be vulnerable to cross-site scripting attacks due to insufficient sanitization of user input. [See here][dashboard_xss] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-0891][dashxss_cve]. 
+
+[dashboard_xss]: http://puppetlabs.com/security/cve/cve-2012-0891/
+[dashxss_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-0891
+
 ### Installer Cannot Detect or Recover From a Misconfigured Firewall
 
 This issue was fixed in PE 2.0.1, which will detect and warn of firewall misconfigurations. 

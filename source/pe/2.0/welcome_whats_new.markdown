@@ -83,6 +83,15 @@ Puppet Enterprise 2.0.1
 
 PE 2.0 would often fail during installation on enterprise Linux 6.1 and 6.2 systems (RHEL, CentOS, Oracle Linux, and Scientific Linux). This was due to memory corruption issues with our version of Apache and OpenSSL. The problem has been fixed, and EL > 6.0 systems can now be used as puppet masters and console servers. 
 
+### Fixed Security Issue: XSS Vulnerability in Console (CVE-2012-0891)
+
+The upstream Puppet Dashboard code used in PE's web console was found to be vulnerable to cross-site scripting attacks due to insufficient sanitization of user input. [See here][dashboard_xss] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-0891][dashxss_cve]. 
+
+[dashboard_xss]: http://puppetlabs.com/security/cve/cve-2012-0891/
+[dashxss_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-0891
+
 ### Install and Upgrade Improvements
 
 We've fixed a lot of glitches in PE's installer and upgrader, and done some things to make the experience more user-friendly. Highlights include: 
