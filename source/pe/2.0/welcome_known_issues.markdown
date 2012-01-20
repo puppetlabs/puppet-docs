@@ -54,6 +54,28 @@ Man pages generated with the `puppet man` subcommand are not formatted as proper
 Issues Affecting PE 2.0.0
 -----
 
+### Puppet Master and Console Roles Break Under EL 6.1 and 6.2
+
+This issue was fixed in PE 2.0.1.
+
+The versions of Apache and OpenSSL used in PE 2.0.0 suffer from memory corruption under any enterprise Linux 6 system (RHEL, CentOS, Oracle Linux, and Scientific Linux) later than version 6.0. This would cause dramatic failures during installation on these OS versions. 
+
+### Ruby 1.8.7 Patchlevel 302 is Vulnerable to a Denial of Service Attack
+
+This issue was fixed in PE 2.0.1 by upgrading Ruby and Rack.
+
+The version of Ruby used by PE 2.0.0 is vulnerable to a denial of service attack via a predictable hashbucket algorithm. See [here](http://www.ocert.org/advisories/ocert-2011-003.html) and [here](http://www.ruby-lang.org/en/news/2011/12/28/denial-of-service-attack-was-found-for-rubys-hash-algorithm-cve-2011-4815/) for more details.
+
+### Apache Contains Several Security Vulnerabilities
+
+Apache was upgraded to address these issues in PE 2.0.1.
+
+The version of Apache used by PE 2.0.0 is vulnerable to the following CVE issues:
+
+* [CVE-2011-3192](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192)
+* [CVE-2011-3348](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3348)
+* [CVE-2011-3368](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3368)
+
 ### Installer Cannot Detect or Recover From a Misconfigured Firewall
 
 This issue was fixed in PE 2.0.1, which will detect and warn of firewall misconfigurations. 
@@ -83,6 +105,12 @@ If you _are_ about to run out of disk, and cannot immediately upgrade PE on your
 
 [updated_task]: https://raw.github.com/puppetlabs/puppet-dashboard/3652aca542671059cdb88e1408efff64cc3cb878/lib/tasks/prune_reports.rake
 [resource_statuses]: http://projects.puppetlabs.com/issues/6717
+
+### Answer Files Created During Installation are Saved as World-Readable
+
+This issue was fixed in PE 2.0.1.
+
+Answer files created when installing PE 2.0.0 are saved as world- and group-readable. These files may contain sensitive information, and should be either deleted or given more restrictive permissions.
 
 ### The Uninstaller Script is Not Shipped With PE
 
@@ -115,4 +143,16 @@ Some of these settings can be tuned:
 
 * `PassengerMaxPoolSize` should be four times the number of CPU cores in the server.
 * `PassengerMaxInstancesPerApp` should be one half the `PassengerMaxPoolSize`.
+
+### Compliance Features Don't Work with Solaris Agents
+
+This issue was fixed in PE 2.0.1.
+
+A quirk in Solaris's cron implementation prevents the compliance reporting job from running on PE 2.0.0. This means resources cannot be audited on Solaris agents without manually repairing the cron job or upgrading to PE 2.0.1.
+
+### Libraries Provided by PE Aren't Namespaced on RPM-based Systems
+
+This issue was fixed in PE 2.0.1. 
+
+On RPM-based systems, some of the libraries provided by PE 2.0.0's packages are not namespaced. This can block proper dependency resolution when installing software that expects the system-provided versions of those libraries. 
 
