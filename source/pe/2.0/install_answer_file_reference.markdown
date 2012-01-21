@@ -123,8 +123,11 @@ These answers are only needed if you are installing the console role.
 `q_puppet_enterpriseconsole_database_install`
 : **Y or N** --- Whether to install and configure a new MySQL database from the OS's package repositories. If set to Y, the installer will also create a new database and user with the `..._name, ..._user,` and `..._password` answers below.
 
+`q_puppet_enterpriseconsole_setup_db`
+: **Y or N** --- Whether to automatically configure the console and inventory service databases. Only used when `q_puppet_enterpriseconsole_database_install` is N.
+
 `q_puppet_enterpriseconsole_database_root_password`
-: **String** --- A new password to use for MySQL's root user. Only used when `q_puppet_enterpriseconsole_database_install` is Y.
+: **String** --- The password for MySQL's root user. When `q_puppet_enterpriseconsole_database_install` is Y, this will set the root user's password; when `q_puppet_enterpriseconsole_setup_db` is Y, it will be used to log in and automatically configure the necessary databases. If neither of these answers is Y, this answer is not used. 
 
 `q_puppet_enterpriseconsole_database_remote`
 : **Y or N** --- Whether the pre-existing database is on a remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_install` is N.
@@ -136,10 +139,10 @@ These answers are only needed if you are installing the console role.
 : **String** --- The port used by the remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_remote` is Y. In a normal installation, defaults to `3306`.
 
 `q_puppet_enterpriseconsole_database_name`
-: **String** --- The database the console will use. If you are not installing a new MySQL server, this database must already exist on the MySQL server.
+: **String** --- The database the console will use, if you are not automatically configuring the databases. This database must already exist on the MySQL server.
 
 `q_puppet_enterpriseconsole_database_user`
-: **String** --- The MySQL user the console will use. If you are not installing a new MySQL server, this user must already exist on the MySQL server and must be able to edit the console's database.
+: **String** --- The MySQL user the console will use, if you are not automatically configuring the databases. This user must already exist on the MySQL server and must be able to edit the console's database.
 
 `q_puppet_enterpriseconsole_database_password`
 : **String** --- The password for the console's MySQL user.
