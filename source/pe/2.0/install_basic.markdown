@@ -108,20 +108,29 @@ If you are splitting the master and the console roles, the console will maintain
 
 #### Database
 
-The console needs a MySQL database and user in order to operate. If a MySQL server isn't already present on this server, the installer can automatically configure everything the console needs; just confirm that you want to install a new database server, and configure the following settings:
+The console needs a pair of MySQL databases and a MySQL user in order to operate. If a MySQL server isn't already present on this system, the installer can automatically configure everything the console needs; just confirm that you want to install a new database server, and configure the following settings:
 
 * A password for MySQL's root user
-* A name for the console's database
+* A name for the console's primary database
 * A MySQL user name for the console
 * A password for the console's user
 
-If you don't install a new database server, you must manually create a database and MySQL user for the console and configure the settings above with the correct information.
+If you don't install a new database server, you can either manually create a database and MySQL user for the console and configure the settings above with the correct information, or allow the installer to log into the MySQL server as root and automatically configure the databases.
 
-You can create the necessary MySQL resources in a secondary shell session while the installer is waiting for input. The SQL commands you need will resemble the following:
+Note that if you want to automatically configure databases on a remote database server, you must make sure the root MySQL user is allowed to log in remotely. 
+
+If you are not automatically configuring the databases, you can create the necessary MySQL resources in a secondary shell session while the installer is waiting for input. The SQL commands you need will resemble the following:
 
     CREATE DATABASE console CHARACTER SET utf8;
+    CREATE DATABASE console_inventory_service CHARACTER SET utf8;
     CREATE USER 'console'@'localhost' IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON console.* TO 'console'@'localhost';
+    GRANT ALL PRIVILEGES ON console_inventory_service.* TO 'console'@'localhost';
+    FLUSH PRIVILEGES;
+
+**Note that the names of the two databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`. 
+
+**Note also that the hostname for the console user will differ if you are using a remote database server.**
 
 Consult the MySQL documentation for more info.
 
