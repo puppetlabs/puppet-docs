@@ -705,6 +705,9 @@ not single quotes.   Single-quoted strings will not do any variable interpolatio
 To put a quote character or `$` in a double-quoted string where it would
 normally have a special meaning, precede it with an escaping `\`. For an actual `\`, use `\\`.
 
+In single-quoted strings only two escape sequences are supported, `\'`
+for single quote and `\\` for single backslash. Except for these two escape sequences, everything else between single quotes is treated literally.
+
 We recommend using single quotes for all strings that do not require variable interpolation. Use double quotes for those strings that require variable interpolation.  The [Style Guide](./style_guide.html#quoting) also discusses this with examples.
 
 ### Capitalization
