@@ -39,8 +39,8 @@ Sample Answer Files
 
 PE includes a collection of sample answer files in the `answers` directory of your distribution tarball. A successful installation will also save an answer file called `answers.lastrun`, which can be used as a foundation for later installations. Finally, you can generate a new answer file without installing by running the installer with the `-s` option and a filename argument.
 
-List of Answers
----------------
+Installer Answers
+-----
 
 ### Global Answers
 
@@ -145,7 +145,47 @@ These answers are only needed if you are installing the console role.
 : **String** --- The password for the console's MySQL user.
 
 
-<!-- TODO: answers for the upgrader. -->
+Upgrader Answers
+-----
+
+`q_upgrade_installation`
+: **Y or N** --- Whether to upgrade. Answer files must set this to Y.
+
+`q_puppet_cloud_install`
+: **Y or N** --- Whether to install the cloud provisioner tools on this node during the upgrade. Previous versions of PE did not include the cloud provisioner tools.
+
+`q_puppet_enterpriseconsole_auth_user`
+: **String** --- A user name for accessing the console. Previous versions of Puppet Enterprise did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
+
+`q_puppet_enterpriseconsole_auth_password`
+: **String** --- A password for accessing the console. Previous versions of Puppet Enterprise did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
+
+`q_vendor_packages_install`
+: **Y or N** --- Whether to install additional packages from your OS vendor's repository, if the upgrader determines any are needed. 
+
+`q_upgrade_remove_mco_homedir`
+: **Y or N** --- Whether to delete the mco user's home directory. (The mco user from PE 1.2 was replaced with the peadmin user in PE 2.0.)
+
+`q_upgrade_install_wrapper_modules`
+: **Y or N** --- Whether to install wrapper modules, so that you can continue to use the Puppet modules provided with PE 1.2 under their previous names as well as their new names. (The `accounts, baselines,` and `mcollectivepe` modules from PE 1.2 were renamed to `pe_accounts, pe_compliance,` and `pe_mcollective` in PE 2.0.)
+
+Uninstaller Answers
+-----
+
+`q_pe_uninstall`
+: **Y or N** --- Whether to uninstall. Answer files must set this to Y.
+
+`q_pe_purge`
+: **Y or N** --- Whether to purge additional files when uninstalling, including all
+  configuration files, modules, manifests, certificates, and the
+  home directories of any users created by the PE installer.
+
+`q_pe_remove_db`
+: **Y or N** --- Whether to remove any PE-specific databases when uninstalling.
+
+`q_pe_db_root_pass`
+: **String** --- The MySQL root user's password, to be used when deleting
+  databases. Only used when `q_pe_remove_db` is Y.
 
 * * *
 

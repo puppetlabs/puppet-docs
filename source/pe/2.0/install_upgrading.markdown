@@ -44,15 +44,30 @@ This will start the upgrader in interactive mode. If the puppet master role and 
 
 Like the installer, the upgrade will accept some command-line options:
 
-* `-h` -- Display a brief help message.
-* `-s <ANSWER FILE>` -- Save answers to file and quit without installing.
-* `-a <ANSWER FILE>` -- Read answers from file and fail if an answer is missing.
-* `-A <ANSWER FILE>` -- Read answers from file and prompt for input if an answer is missing.
-* `-D` -- Display debugging information.
-* `-l <LOG FILE>` -- Log commands and results to file.
-* `-n` -- Run in 'noop' mode; show commands that would have been run during installation without running them.
+`-h`
+: Display a brief help message.
+
+`-s <ANSWER FILE>`
+: Save answers to file and quit without installing.
+
+`-a <ANSWER FILE>`
+: Read answers from file and fail if an answer is missing. See the [upgrader answers section][upgrader_answers] of the answer file reference for a list of available answers.
+
+`-A <ANSWER FILE>`
+: Read answers from file and prompt for input if an answer is missing. See the [upgrader answers section][upgrader_answers] of the answer file reference for a list of available answers.
+
+`-D`
+: Display debugging information.
+
+`-l <LOG FILE>`
+: Log commands and results to file.
+
+`-n`
+: Run in 'noop' mode; show commands that would have been run during installation without running them.
 
 Non-interactive upgrades work identically to non-interactive installs, albeit with different answers available.
+
+[upgrader_answers]: ./install_answer_file_reference.html#upgrader-answers
 
 
 Configuring the Upgrade
