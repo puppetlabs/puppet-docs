@@ -139,10 +139,10 @@ These answers are only needed if you are installing the console role.
 : **String** --- The port used by the remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_remote` is Y. In a normal installation, defaults to `3306`.
 
 `q_puppet_enterpriseconsole_database_name`
-: **String** --- The database the console will use, if you are not automatically configuring the databases. This database must already exist on the MySQL server.
+: **String** --- The database the console will use. Note that if you are not automatically configuring the databases, this database must already exist on the MySQL server.
 
 `q_puppet_enterpriseconsole_database_user`
-: **String** --- The MySQL user the console will use, if you are not automatically configuring the databases. This user must already exist on the MySQL server and must be able to edit the console's database.
+: **String** --- The MySQL user the console will use. Note that if you are not automatically configuring the databases, this user must already exist on the MySQL server and must be able to edit the console's database.
 
 `q_puppet_enterpriseconsole_database_password`
 : **String** --- The password for the console's MySQL user.
