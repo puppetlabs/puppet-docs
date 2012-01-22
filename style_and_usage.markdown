@@ -30,6 +30,20 @@ agent should usually be called "agent nodes." In general we should avoid using
 "server" and "client" alone to describe these roles, because agent nodes
 (clients) are almost always servers themselves.
 
+### Node, Agent, Server, Host, System
+
+* Node: Any computer; all other info must be gleaned from context. When using
+  this term, you shouldn't expect that it necessarily means agent node.
+* System: Synonym for node. 
+* Agent or agent node: a computer running puppet agent on a regular basis.
+* Server: Cannot be assumed to mean puppet master server, since most systems
+  running Puppet are servers in some capacity. If you mean puppet master
+  server, say so, or just call it the puppet master. By contrast, the `server`
+  setting in puppet.conf's `[agent]` block has sufficient context that it's
+  obviously referring to the puppet master.
+* Host: Since we have a "host" resource type, the term "host" should not be used
+  to refer to a computer.
+
 "Puppet"
 --------
 
@@ -108,3 +122,4 @@ When defining a resource type or a parameterized class, you specify a list of
 
 Thus, parameters are relevant to the implementation, and attributes are relevant
 to the interface.
+
