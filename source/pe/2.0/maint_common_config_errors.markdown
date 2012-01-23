@@ -145,6 +145,27 @@ Then, run the following on the agent node:
 
 This should properly generate a new signing request.
 
+### Can Agents Reach the Filebucket Server?
+
+Agents attempt to back up files to the puppet master, but they get the filebucket hostname from the site manifest instead of their configuration file. If puppet agent is logging "could not back up" errors, your nodes are probably trying to back up files to the wrong hostname. These errors look like this: 
+
+    err: /Stage[main]/Pe_mcollective/File[/etc/puppetlabs/mcollective/server.cfg]/content:
+    change from {md5}778087871f76ce08be02a672b1c48bdc to
+    {md5}e33a27e4b9a87bb17a2bdff115c4b080 failed: Could not back up
+    /etc/puppetlabs/mcollective/server.cfg: getaddrinfo: Name or service not known
+
+This usually happens when puppet master is installed with a certname that isn't its hostname. To fix these errors, edit `/etc/puppetlabs/puppet/manifests/site.pp` **on the puppet master** so that the following resource's `server` attribute points to the correct hostname:
+
+{% highlight ruby %}
+    # Define filebucket 'main':
+    filebucket { 'main':
+      server => '<PUPPET MASTER'S DNS NAME>',
+      path   => false,
+    }
+{% endhighlight %}
+
+Changing this on the puppet master will fix the error on all agent nodes.
+
 `node_vmware` and `node_aws` Aren't Working!
 -----
 
