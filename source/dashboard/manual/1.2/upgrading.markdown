@@ -10,7 +10,7 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 
 #### Navigation
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * **Upgrading Dashboard**
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)
@@ -145,7 +145,7 @@ Currently, the best way to manage these processes is with the `script/delayed_jo
 
     # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
 
-See [the delayed jobs section](./bootstrapping.html#starting-and-managing-delayed-job-workers) of the bootstrapping chapter for more information.
+See [the delayed jobs section](./bootstrapping.html#starting-and-managing-delayed-job-workers) of the installation chapter for more information.
 
 Upgrading From Versions Prior to 1.1.0
 --------------------------------------
@@ -162,7 +162,7 @@ This task will convert the most recent reports first, and if it is interrupted, 
 
 #### Navigation
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * **Upgrading Dashboard**
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)

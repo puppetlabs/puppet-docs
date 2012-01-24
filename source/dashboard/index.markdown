@@ -16,7 +16,7 @@ Puppet Dashboard Manual
 New versions of the Dashboard manual are released for each major version of Dashboard, starting with version 1.2.
 
 * [Dashboard 1.2 Manual](./manual/1.2/)
-    * [Bootstrapping Dashboard](./manual/1.2/bootstrapping.html)
+    * [Installing Dashboard](./manual/1.2/bootstrapping.html)
     * [Upgrading Dashboard](./manual/1.2/upgrading.html)
     * [Configuring Dashboard](./manual/1.2/configuring.html)
     * [Maintaining Dashboard](./manual/1.2/maintaining.html)

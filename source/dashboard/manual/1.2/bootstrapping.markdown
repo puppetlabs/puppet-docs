@@ -1,16 +1,16 @@
 ---
 layout: default
-title: "Dashboard Manual: Bootstrapping"
+title: "Dashboard Manual: Installing"
 ---
 
-Bootstrapping Puppet Dashboard
+Installing Puppet Dashboard
 =====
 
 This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 
 #### Navigation
 
-* **Bootstrapping Dashboard**
+* **Installing Dashboard**
 * [Upgrading Dashboard](./upgrading.html)
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)
@@ -389,7 +389,7 @@ Once Dashboard's vhost config is properly configured, simply restart Apache and 
 
 #### Navigation
 
-* **Bootstrapping Dashboard**
+* **Installing Dashboard**
 * [Upgrading Dashboard](./upgrading.html)
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)

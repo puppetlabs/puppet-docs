@@ -16,7 +16,7 @@ Puppet Dashboard is a web interface for Puppet. It can view and analyze Puppet r
 Chapters
 --------
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * [Upgrading Dashboard](./upgrading.html)
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)

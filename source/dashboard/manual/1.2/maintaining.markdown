@@ -10,7 +10,7 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 
 #### Navigation
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * [Upgrading Dashboard](./upgrading.html)
 * [Configuring Dashboard](./configuring.html)
 * **Maintaining Dashboard**
@@ -96,7 +96,7 @@ To restore the Puppet Dashboard from a file called `production.sql` to your `pro
 
 #### Navigation
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * [Upgrading Dashboard](./upgrading.html)
 * [Configuring Dashboard](./configuring.html)
 * **Maintaining Dashboard**

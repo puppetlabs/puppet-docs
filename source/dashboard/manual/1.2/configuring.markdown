@@ -10,7 +10,7 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 
 #### Navigation
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * [Upgrading Dashboard](./upgrading.html)
 * **Configuring Dashboard**
 * [Maintaining Dashboard](./maintaining.html)
@@ -21,7 +21,7 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 Overview
 --------
 
-Now that you've [bootstrapped](./bootstrapping.html) Dashboard for basic production-level use, you can configure it to:
+Now that you've [installed](./bootstrapping.html) Dashboard and prepared it for basic production-level use, you can configure it to:
 
 * Enable advanced features
 * Increase security
@@ -126,7 +126,7 @@ Puppet Dashboard slows down as it manages more data. Here are ways to make it ru
         rake RAILS_ENV=production db:raw:optimize
     
     ...from your Puppet Dashboard directory. This will reorganize and reanalyze your database for faster queries.
-* Tune the number of processes Dashboard uses to handle more concurrent requests. If you're using Apache with Phusion Passenger to serve Dashboard (as covered in the [bootstrapping chapter](./bootstrapping.html#serving-dashboard-with-passenger-and-apache)), you can modify the appropriate settings in Dashboard's vhost file; in particular, pay attention to the `PassengerHighPerformance`, `PassengerMaxPoolSize`, `PassengerPoolIdleTime`, `PassengerMaxRequests`, and `PassengerStatThrottleRate` settings.
+* Tune the number of processes Dashboard uses to handle more concurrent requests. If you're using Apache with Phusion Passenger to serve Dashboard (as covered in the [Installing chapter](./bootstrapping.html#serving-dashboard-with-passenger-and-apache)), you can modify the appropriate settings in Dashboard's vhost file; in particular, pay attention to the `PassengerHighPerformance`, `PassengerMaxPoolSize`, `PassengerPoolIdleTime`, `PassengerMaxRequests`, and `PassengerStatThrottleRate` settings.
 * Regularly prune your old reports; see ["cleaning old reports" in the maintenance chapter](./maintaining.html#cleaning-old-reports) for more details.
 * Run on a machine with a fast, local database.
 * Run on a machine with enough processing power and memory.
@@ -156,7 +156,7 @@ This section will be filled in at a later date. <!-- TK -->
 
 #### Navigation
 
-* [Bootstrapping Dashboard](./bootstrapping.html)
+* [Installing Dashboard](./bootstrapping.html)
 * [Upgrading Dashboard](./upgrading.html)
 * **Configuring Dashboard**
 * [Maintaining Dashboard](./maintaining.html)
