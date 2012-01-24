@@ -93,6 +93,7 @@ Final Steps: From an Earlier PE 2.0 Release
 **No extra steps** are needed when upgrading between maintenance releases of PE 2.0.
 
 Final Steps: From PE 1.2
+-----
 
 ### Edit `passenger-extra.conf`
 
