@@ -26,9 +26,17 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 Overview
 --------
 
-Puppet Dashboard is a Ruby on Rails web app that interfaces with Puppet. It will run on most modern Unix-like OSes (including Mac OS X and most Linux distributions), requires a certain amount of supporting infrastructure, and can be deployed and served in a variety of ways.
+Puppet Dashboard is a Ruby on Rails web app that interfaces with Puppet. It will run on most modern Unix-like OSes (including Mac OS X and most Linux distributions), requires a certain amount of supporting infrastructure, and can be deployed and served in a variety of ways. Dashboard's web interface supports the following browsers:
 
-In outline, getting Dashboard running is going to consist of:
+* Chrome (current versions)
+* Firefox 3.5 and higher
+* Safari 4 and higher
+* Internet Explorer 7 and higher
+
+Installing, in Summary
+-----
+
+In outline, the steps to get Dashboard running are:
 
 * [Installing the external dependencies](#installing-dependencies)
 * [Installing the Dashboard code](#installing-puppet-dashboard)
@@ -39,7 +47,9 @@ In outline, getting Dashboard running is going to consist of:
 * [Starting the delayed job worker processes](#starting-and-managing-delayed-job-workers)
 * [Running Dashboard in a production-quality server](#running-dashboard-in-a-production-quality-server)
 
-...after which you can [configure](./configuring.html) Dashboard further and enable optional features, but the main functionality will be on-line and working smoothly. If you are trying to upgrade Puppet Dashboard instead of installing it from scratch, [see the chapter of this manual on upgrading][upgrading]. If you're looking for a vastly simplified install and maintenance process, download a free trial of [Puppet Enterprise][pe].
+After completing these tasks, Dashboard's main functionality will be on-line and working smoothly. You can then [configure](./configuring.html) Dashboard further and enable optional features
+
+If you are trying to upgrade Puppet Dashboard instead of installing it from scratch, [see the chapter of this manual on upgrading][upgrading] instead of reading further in this chapter. If you're looking for a vastly simplified installation and maintenance process, download a free trial of [Puppet Enterprise][pe] and try its improved and extended web console.
 
 Installing Dependencies
 ------------
