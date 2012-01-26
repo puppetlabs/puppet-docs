@@ -7,11 +7,6 @@ task :mirror0 do
     set :deploy_to, "/var/www/#{application}"
 end
 
-task :mirror1 do
-    set :domain,    "#{user}@docs.mirror1.puppetlabs.com"
-    set :deploy_to, "/srv/www/docs.mirror1.puppetlabs.com/html"
-end
-
 task :mirror2 do
       set :domain,    "#{user}@docs.mirror2.puppetlabs.com"
       set :deploy_to, "/var/www/#{application}"

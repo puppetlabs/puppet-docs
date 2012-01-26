@@ -206,7 +206,6 @@ end
 task :deploy do
   sh "rake mirror0 vlad:build"
   sh "rake mirror0 vlad:release"
-  sh "rake mirror1 vlad:release"
   sh "rake mirror2 vlad:release"
 end
 
