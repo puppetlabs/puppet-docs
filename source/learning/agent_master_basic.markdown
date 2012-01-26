@@ -12,10 +12,20 @@ Basic Agent/Master Puppet
 
 This guide assumes that you've followed [the previous walkthrough][agentprep], and have a fresh agent VM that can reach your original master VM over the network. Both VMs should be running right now, and you'll need to be logged in to both of them as root.
 
-Concepts
+* * * 
+
+&larr; [Preparing an Agent VM](./agentprep.html) --- [Index](./) --- TBA &rarr;
+
+* * * 
+
+Introduction
 -----
 
-### What Happens Where?
+### How Do Agents Get Configurations?
+
+Puppet's agent/master mode is **pull-based.** Usually, agents are configured to periodically fetch a catalog and apply it, and the master controls what goes into that catalog. (For the next few exercises, though, you'll be triggering runs manually.) 
+
+### What Do Agents Do, and What Do Masters Do?
 
 [unified]: ./images/manifest_to_defined_state_unified.png
 [split]: ./images/manifest_to_defined_state_split.png
@@ -27,10 +37,6 @@ Concepts
 Running Puppet in agent/master mode works much the same way --- the main difference is that it moves the manifests and compilation to the puppet master server. Agents don't have to have see any manifest files at all, and have no access to configuration information that isn't in their own catalog. 
 
 ![Diagram of an agent requesting a catalog, which gets compiled and served by a puppet master and applied by the agent][split]
-
-### How Do Agents Get Configurations?
-
-Puppet's agent/master mode is **pull-based.** Usually, agents are configured to periodically fetch a catalog and apply it, and the master controls what goes into that catalog. (For the next few exercises, though, you'll be triggering runs manually.) 
 
 The Agent Subcommand
 -----
@@ -123,13 +129,15 @@ We'll cover SSL in more detail later.
 Serving a Real Configuration
 -----
 
-So how can we make the agent do something interesting? Well, we already built some useful classes, and they're all available on the puppet master, so we'll use them. But how do classes end up in an agent's catalog?
+So how can we make the agent do something interesting? Well, we already built some useful classes, and they're all available on the puppet master, so we'll use them. (If you haven't already copied the modules from your old VM into your puppet master's `/etc/puppetlabs/puppet/modules` directory, do so now.)
+
+But how do we choose which classes go into an agent's catalog?
 
 ### Site.pp
 
 When we were using puppet apply, we would usually specify a manifest file, which declared all of the classes or resources we wanted to apply. 
 
-The puppet master works the same way, except that it always loads the same manifest file, which we usually refer to as site.pp. On Puppet Enterprise, it's located at `/etc/puppetlabs/puppet/manifests/site.pp`, but you can configure its location with [the `manifest` setting](/references/latest/configuration.html#manifest).
+The puppet master works the same way, except that it **always loads the same manifest file,** which we usually refer to as site.pp. With Puppet Enterprise, it's located by default at `/etc/puppetlabs/puppet/manifests/site.pp`, but you can configure its location with [the `manifest` setting](/references/latest/configuration.html#manifest).
 
 You could declare classes and resources directly in site.pp, but that would make every node get the same resources in its catalog, which is of limited use. Instead, we'll hide the classes we want to declare in a **node definition.**
 
@@ -200,14 +208,13 @@ Success! We've pulled a configuration that actually does something.
 
 If you change this node's definition in site.pp, it will fetch that new configuration on its next run (which, in a normal environment, would happen less than 30 minutes after you make the change). 
 
-Summary
------
+Next
+----
 
 You now know how to: 
 
 * Run puppet agent interactively with `--test`
 * Authorize a new agent node to pull configurations from the puppet master
-* Use node definitions in site.pp to chose the classes a given node will receive in its catalog
+* Use node definitions in site.pp to choose which classes go into a given node's catalog
 
-Next, we'll learn a bit more about what just happened above, including how to manage certificates, more advanced ways to classify nodes, and how to manage a Puppet site.
-
+But in the process of getting there, we glossed over some details. Next, <!-- [Next](./agent_master_explained.html), --> we'll talk more about certificates and node classification.

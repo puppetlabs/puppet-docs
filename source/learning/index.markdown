@@ -10,7 +10,7 @@ The web (including this site) is full of guides for how to solve specific proble
 
 * * *
 
-Latest: [Defined Types][definedtypes] &rarr;
+Latest: [Preparing an Agent VM](./agentprep.html) and [Basic Agent/Master Puppet](./agent_master_basic.html) &rarr;
 
 * * *
 
@@ -87,5 +87,5 @@ To manually assign an IP address to a host-only adapter:
 Hit the Gas
 -----------
 
-And with that, [you're ready to start][ral].
+And with that, [you're ready to start](./ral.html).
 

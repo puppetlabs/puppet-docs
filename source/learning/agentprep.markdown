@@ -11,10 +11,16 @@ title: "Learning — Preparing an Agent VM"
 
 {% capture lpmoduleurl %}./files/learningpuppet.tar.gz{% endcapture %}
 
-Preparing for Agent/Master Puppet
+Learning --- Preparing an Agent VM for Agent/Master Exercises
 =====
 
-We're now moving into exercises that involve both a puppet master and one or more agent nodes, and to get the most out of this section, you'll need to be running more than one node at a time. This in-between chapter will help you get two nodes running and configured so that you're ready for the next few chapters. 
+We're now moving into exercises that involve both a puppet master and one or more agent nodes, and to get the most out of this section, you'll need to be running more than one node at a time. This interlude will help you get two nodes running and configured so that you're ready for the next few chapters. 
+
+* * * 
+
+&larr; [Defined Types](./definedtypes.html) --- [Index](./) --- [Basic Agent/Master Puppet](./agent_master_basic.html) &rarr;
+
+* * * 
 
 Step 0: Get the Latest VM
 -----
@@ -45,20 +51,15 @@ This is more advanced than just downloading the current VM, especially if you're
 Step 1: Duplicate Your Existing VM
 -----
 
-In general, you duplicate a virtual machine by:
+There are any number of ways you could make an agent VM for the next steps, but the fastest and easiest is to simply copy your existing VM and reconfigure it. (The reconfiguring could be difficult, but there's a module for that.)
 
-* Finding where it's stored on disk
-* Copying the folder that contains all of its files
-* Importing the main VM file in the copy into your virtualization software, as if it were a new VM.
-
-Below, we give instructions for doing this with VMware Fusion and with VirtualBox.
-
+Below, we give instructions for copying the VM with VMware Fusion and with VirtualBox.
 
 ### With VMware Fusion
 
-(Note: although we don't provide a full walkthrough for VMware Workstation, the process should be similar.)
+_(Note: although we don't provide a full walkthrough for VMware Workstation, the process should be similar.)_
 
-1. If you still have the zipped archive you originally downloaded, you can extract it again for a fresh copy. 
+1. If you still have the zipped VM archive you originally downloaded, you can extract it again for a fresh copy. 
 
     Otherwise, shut down the VM by running `shutdown -h now` while logged in as root. Once the system is stopped, locate the folder or bundle that contains the VMX file --- you can right-click its entry in the Virtual Machine Library window and choose "Show in Finder" --- and duplicate that entire directory.
 
@@ -150,3 +151,7 @@ We shipped the VM with iptables turned off, but it's worth checking to make sure
 
 Run `date -u` on both VMs, and compare the output. They should be within about a minute of each other.
 
+Next
+----
+
+Your VMs are ready --- now [continue reading](./agent_master_basic.html) for a tour of the agent/master Puppet workflow.
