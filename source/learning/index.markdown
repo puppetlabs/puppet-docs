@@ -56,28 +56,32 @@ If you'd rather cook up your own VM than download one from the web, you can imit
 
 To begin with, you won't need separate agent and master VMs; you'll be running Puppet in its serverless mode on a single node. When we get to agent/master Puppet, we'll walk through turning on the puppet master and duplicating this system into a new agent node.
 
-### Compatibility Notes
-
 The Learning Puppet VM is available in VMWare .vmx format and the cross-platform OVF format, and has been tested with VMWare Fusion and VirtualBox. 
 
-Getting the VM working with VMWare is fairly simple, but some extra effort is necessary on VirtualBox --- the IP address it prints isn't externally reachable, and by default you'll be unable to SSH to the VM. You can enable SSH by turning on port forwarding, but since several examples (and the eventual agent/master exercises) will require more network access than simply port 22, it's wiser to configure two network interfaces.
+Although teaching the use of virtualization software is outside the scope of this introduction, [let me know](mailto:nick.fagerlund@puppetlabs.com) if you run into trouble, and we'll try to refine our approach over time.
 
-#### Method 1
+### Configuring Virtual Networking
 
-If you're on a network with working DHCP, you can simply expose the VM on that network and let it obtain an IP address like any other computer:
+### With VMware
 
-* Before starting the VM, modify its network settings to add a "Bridged Adapter" on adapter 2. 
-* Once the VM is running, log in on its console and run `ifconfig`. Your host system should be able to ping and SSH to the VM at its eth1 IP address.
+If you are using a VMware virtualization product, you can leave the VM's networking in its default NAT mode. This will let it contact your host computer, any other VMs being run in NAT mode, the local network, and the outside internet; the only restriction is that computers outside your host computer can't initiate connections with it. If you eventually need other computers to be able to contact your VM, you can change its networking mode to Bridged.
 
-#### Method 2
+### With VirtualBox
 
-If you aren't connected to a network with working DHCP, or you don't want to expose the VM to your local network (or take up one of its IP address slots), you can instead do the following:
+VirtualBox's NAT mode is severely limited, and will not work with the later agent/master lessons. **You should change the VM's network mode to Bridged Adapter before starting the VM for the first time.** 
 
-* Before starting the VM, modify its network settings to add "Host Only" network access on adapter 2.
-* Next, run `ifconfig` on your host system and confirm the subnet assigned to the `vboxnet0` interface. (By default, this is 192.168.56.x, and your host system's IP address is 192.168.56.1.) 
-* Once the VM is running, log in on its console and run `ifconfig eth1 192.168.56.2` (or some other IP address within the relevant subnet); this should let you ping and SSH the box from your host system, and you can add an entry to your host system's `/etc/hosts` file to make things more convenient. 
+If for some reason you cannot expose the VM as a peer on your local network, or you are not on a network with working DHCP, you must configure the VM to have **two** network adapters: one in NAT mode (for accessing the local network and the internet) and one in Host Only Adapter mode (for accessing the host computer and other VMs). You will also have to either assign an IP address to the host-only adapter manually, or configure VirtualBox's DHCP server.
 
-Beyond this, teaching the use of virtualization software is outside the scope of this introduction, but [let me know](mailto:nick.fagerlund@puppetlabs.com) if you run into trouble, and we'll try to refine our approach over time.
+[See here for more information about VirtualBox's networking modes][vbnetworking], and [see here for more about VirtualBox's DHCP server][vbdhcp].
+
+[vbnetworking]: http://www.virtualbox.org/manual/ch06.html
+[vbdhcp]: http://www.virtualbox.org/manual/ch08.html#vboxmanage-dhcpserver
+
+To manually assign an IP address to a host-only adapter:
+
+* Find the host computer's IP address by looking in VirtualBox's preferences --- go to the "Network" section, double-click on the host-only network you're using, go to the "Adapter" tab, and note the IP address in the "IPv4 Address" field.
+* Once your VM is running, log in on its console and run `ifconfig eth1 <NEW IP ADDRESS>`, where `<NEW IP ADDRESS>` is an unclaimed IP address on the host-only network's subnet. 
+
 
 
 Hit the Gas
