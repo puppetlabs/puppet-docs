@@ -26,9 +26,46 @@ There are three primary ways to get support for Puppet Enterprise:
 Reporting Issues to the customer support portal
 -----
 
+### Paid Support
+
 Puppet Labs provides two levels of [commercial support offerings for Puppet Enterprise](http://puppetlabs.com/services/support/): Standard and Premium.  Both offerings allow you to report your support issues to our confidential [customer support portal][portal].  You will receive an account and log-on for this portal when you purchase Puppet Enterprise.
 
 **Customer support portal: [https://support.puppetlabs.com][portal]**
+
+#### The PE Support Script
+
+When seeking support, you may be asked to run the information-gathering support script included with in the Puppet Enterprise installer tarball. This script is located in the root of the unzipped tarball and is named simply "`support`."
+
+This script will collect a large amount of system information, compress it, and print the location of the zipped tarball when it finishes running; an uncompressed directory (named `support`) containing the same data will be left in the same directory the compressed copy. We recommend that you examine the collected data before forwarding it to Puppet Labs, as it may contain sensitive information that you will wish to redact. 
+
+The information collected by the support script includes: 
+
+- iptables info (is it loaded? what are the inbound and outbound rules?) (both ipv4 and ipv6)
+- a full run of facter (if installed)
+- selinux status
+- the amount of free disk and memory on the system
+- hostname info (`/etc/hosts` and the output of `hostname --fqdn`)
+- the umask of the system
+- ntp configuration (what servers are available, the offset from them)
+- a listing (no content) of the files in `/opt/puppet`,
+`/var/opt/lib/pe-puppet` and `/var/opt/lib/pe-puppetmaster`
+- the os and kernel
+- a list of installed packages
+- the current process list
+- a listing of puppet certs
+- a listing of all services (except on Debian, which lacks the equivalent command)
+- current environment variables
+- whether the puppet master is reachable
+- the output of `mco ping` and `mco inventory`
+
+It also copies the following files:
+
+- system logs
+- the contents of `/etc/puppetlabs`
+- the contents of `/var/log/pe-*`
+
+
+### Free Support
 
 If you are evaluating Puppet Enterprise, we also offer support during your evaluation period.  During this period you can report issues with Puppet Enterprise to our public support portal. Please be aware that all issues filed here are viewable by all other users.
 

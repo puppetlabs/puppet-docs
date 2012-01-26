@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Welcome » What's New"
+title: "PE 2.0 » Welcome » New Features and Release Notes"
 ---
 
 * * *
@@ -10,13 +10,15 @@ title: "PE 2.0 » Welcome » What's New"
 * * *
 
 
-What's New in Puppet Enterprise 2.0?
+New Features and Release Notes
 ========
 
-New Features
+Puppet Enterprise 2.0
 -----
 
-### Live Management!
+2.0 was a major new release of Puppet Enterprise, which introduced the following new features:
+
+### Live Management
 
 PE's web console now lets you edit and command your infrastructure in real time. Visit the console's live management tab to:
 
@@ -27,15 +29,15 @@ PE's web console now lets you edit and command your infrastructure in real time.
 
 Live management works out of the box, without writing any Puppet code.
 
-### Cloud Provisioning!
+### Cloud Provisioning
 
 PE 2 ships with new command-line tools for building new nodes. From the comfort of your terminal, you can create new machine instances, install PE on any node, and assign new nodes to your existing console groups.
 
-### More Secure Console!
+### More Secure Console
 
-PE's web console is now served over SSL, and requires a login for access. 
+PE's web console is now served over SSL, and requires a login for access. This lets you control access to the console without having to restrict access by host.
 
-### New Version of Puppet!
+### Puppet 2.7
 
 Puppet Enterprise is now built around Puppet 2.7, which made several significant improvements and changes to the Puppet core:
 
@@ -50,14 +52,13 @@ See the [Puppet release notes][releasenotes] for more details.
 [releasenotes]: http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes
 
 
-Renaming, Refactoring, and Renovation
------
+### Other Changes
 
-### Dashboard is Now Console
+#### Dashboard is Now Console
 
 What was Puppet Dashboard is now just "the console."
 
-### Changes to Orchestration Features
+#### Changes to Orchestration Features
 
 * Orchestration is enabled by default for all PE nodes. 
 * Orchestration tasks can now be invoked directly from the console, with the "advanced tasks" section of the live management page. PE's orchestration framework also powers the other live management features.
@@ -66,13 +67,73 @@ What was Puppet Dashboard is now just "the console."
 * For performance reasons, the default message security scheme has changed from AES to PSK.
 * The network connection over which messages are sent is now encrypted using SSL.
 
-### Improved and Simplified Install Experience
+#### Improved and Simplified Install Experience
 
 The installer asks fewer and smarter questions. 
 
-### Built-in Puppet Modules Have Been Renamed
+#### Built-in Puppet Modules Have Been Renamed
 
 The `mcollectivepe`, `accounts`, and `baselines` modules from PE 1.2 were renamed (to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively) to avoid namespace conflicts and make their origin more clear. The PE upgrader can install wrapper modules to preserve functionality if you used any of these modules by their previous names.
+
+
+Puppet Enterprise 2.0.1
+----
+
+### Fixed Breakage on Enterprise Linux 6.1 and 6.2
+
+PE 2.0 would often fail during installation on enterprise Linux 6.1 and 6.2 systems (RHEL, CentOS, Oracle Linux, and Scientific Linux). This was due to memory corruption issues with our version of Apache and OpenSSL. The problem has been fixed, and EL > 6.0 systems can now be used as puppet masters and console servers. 
+
+### Install and Upgrade Improvements
+
+We've fixed a lot of glitches in PE's installer and upgrader, and done some things to make the experience more user-friendly. Highlights include: 
+
+* PE now ships with an uninstaller script.
+* The installer will now warn you if you attempt to install a puppet master or console server with less than the required 1GB of memory.
+* More secure console and MySQL passwords can be chosen, as the installer will accept a wider array of non-alphanumeric characters. You can also use non-alphanumeric characters in database names.
+* We've eliminated a possible source of file permission errors by explicitly setting the umask used by the installer. (This would occasionally cause mysterious installation failures.)
+* Upgrading from PE 1.x no longer requires manual edits to `passenger-extra.conf`.
+* Answer files created during installation are handled more securely, and are no longer saved as world- or group-readable. 
+* Handling of remote MySQL databases for the console has been greatly improved. The installer now aborts safely if it isn't able to verify the database credentials, and fixes an issue where the inventory service couldn't use a remote DB.
+
+### Support Script
+
+PE now includes an information-gathering script, which can help Puppet Labs support to resolve issues faster. The script is simply called "`support`," and is in the root of the installation tarball, alongside the installer, uninstaller, and upgrader scripts. 
+
+When it finishes running, the support script will print the location of its results, which can be sent to Puppet Labs for inspection. This may include sensitive information about your site, so we advise you to examine the collected data before sending it. 
+
+### Updated Software Versions
+
+We've updated the following software in the PE distribution:
+
+* Puppet has been updated to 2.7.9 (from 2.7.6). See the [Puppet release notes][releasenotes] for more details. The major improvements include:
+    * Faster recursive directory traversal
+    * Types and providers can be used during the run in which they are first delivered
+* Facter has been updated to 1.6.4, which fixes several Solaris issues.
+* PE's web console is now built atop Puppet Dashboard 1.2.4, which fixes an issue with orphaned database records and improves navigation and accessibility. 
+* Ruby has been updated to 1.8.7 patch level 357. This is due to a security vulnerability found in Ruby. (See [here](http://www.ocert.org/advisories/ocert-2011-003.html) and [here](http://www.ruby-lang.org/en/news/2011/12/28/denial-of-service-attack-was-found-for-rubys-hash-algorithm-cve-2011-4815/).)
+* The Rack middleware has been updated to 1.1.3 to respond to the same security vulnerability.
+* Apache has been updated to address the following security vulnerabilities: 
+    * [CVE-2011-3192](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192)
+    * [CVE-2011-3348](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3348)
+    * [CVE-2011-3368](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3368)
+* Augeas has been updated to the latest upstream version (0.10.0) and modified to handle the correct locations of PE's config files.
+
+
+### All PE Libraries Are Now Namespaced
+
+On RPM-based systems, some of the libraries provided by PE's packages weren't being namespaced, and would cause problems when other software tried to reference system packages that provide those libraries. This has been fixed. 
+
+### Other Changes
+
+#### Compliance Features Now Work with Solaris Agents
+
+A quirk in Solaris's cron implementation was preventing the compliance reporting job from running. This has been fixed. 
+
+#### The ActiveMQ Heap Size is Now Tunable
+
+This is an advanced feature, and should be ignored by most users. 
+
+Use the `activemq_heap_mb` parameter to configure this, and see the internal documentation of the `pe_mcollective` module for more details. 
 
 
 * * *

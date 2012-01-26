@@ -61,9 +61,16 @@ You can use the following command-line flags to change the installer's behavior:
 `-y`
 : Don't ask to confirm uninstallation, assuming an answer of yes.
 
-`-s, -a,` and `-A`
-: Save or use an [answer file][answerfile]. The only answer available is `q_pe_uninstall`, which can be `y` or `n`.
+`-s`
+: Save an [answer file][answerfile] and quit without uninstalling.
 
+`-a`
+: Read answers from file and fail if an answer is missing. See the [uninstaller answers section][uninstaller_answers] of the answer file reference for a list of available answers.
+
+`-A`
+: Read answers from file and prompt for input if an answer is missing. See the [uninstaller answers section][uninstaller_answers] of the answer file reference for a list of available answers.
+
+[uninstaller_answers]: ./install_answer_file_reference.html#uninstaller-answers
 [answerfile]: ./install_automated.html
 
 Thus, to remove every trace of PE from a system, you would run:
