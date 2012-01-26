@@ -110,24 +110,9 @@ Final Steps: From an Earlier PE 2.0 Release
 Final Steps: From PE 1.2
 -----
 
-### Edit `passenger-extra.conf`
+**No extra steps** are needed when upgrading from PE 1.2.x to PE 2.0.1 or later. 
 
-You must edit the `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf` file, **on both the puppet master and the console server,** so that it looks like this:
-
-    # /etc/puppetlabs/httpd/conf.d/passenger-extra.conf
-    PassengerHighPerformance on
-    PassengerUseGlobalQueue on
-    PassengerMaxRequests 40
-    PassengerPoolIdleTime 15
-    PassengerMaxPoolSize 8
-    PassengerMaxInstancesPerApp 4
-
-You can tune some of these settings:
-
-* `PassengerMaxPoolSize` should be four times the number of CPU cores in the server.
-* `PassengerMaxInstancesPerApp` should be one half the `PassengerMaxPoolSize`.
-
-After editing the file, you should restart the `pe-httpd` service. 
+**Note that some features may not be available until puppet agent has run once on every node.** In normal installations, this means all features will be available within 30 minutes after upgrading all nodes. 
 
 Final Steps: From PE 1.1 or 1.0
 -----
