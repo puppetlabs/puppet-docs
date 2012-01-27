@@ -16,6 +16,8 @@ To upgrade from a previous version of Puppet Enterprise, use the same installer 
 
 Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version. 
 
+{% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
+
 Checking For Updates
 -----
 
@@ -39,6 +41,8 @@ The upgrader must be run with root privileges:
     # ./puppet-enterprise-upgrader
 
 This will start the upgrader in interactive mode. If the puppet master role and the console (previously dashboard) role are installed on different servers, **you must upgrade the puppet master first.**
+
+{{ slowbigdatabase }}
 
 ### Upgrader Options
 
