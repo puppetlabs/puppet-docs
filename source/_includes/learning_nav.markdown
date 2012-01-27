@@ -11,4 +11,6 @@
 
 ### Part two: Master/Agent Puppet
 
-Coming soon!
+* [Preparing an Agent VM](/learning/agentprep.html) --- Prepare your tools for the next few chapters with our step-by-step walkthrough. 
+* [Basic Agent/Master Puppet](/learning/agent_master_basic.html) --- Tour the agent/master workflow: sign an agent node's certificate, pick which classes a node will get, and pull and apply a catalog. 
+* More coming soon!

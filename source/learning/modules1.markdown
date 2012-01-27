@@ -178,11 +178,11 @@ You've probably already guessed that classes aren't enough: even with the code a
 But first, we'll need to meet its friend, the `modulepath`.
 
     # puppet apply --configprint modulepath
-    /etc/puppetlabs/puppet/modules
+    /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+
+The [modulepath](http://docs.puppetlabs.com/references/stable/configuration.html#modulepath) is a colon-separated[^pathseparator] list of directories; Puppet will check these directories in order when looking for a module.
 
 By the way, `--configprint` is wonderful. Puppet has a _lot_ of [config options](http://docs.puppetlabs.com/references/stable/configuration.html), all of which have default values and site-specific overrides in puppet.conf, and trying to memorize them all is a pain. You can use `--configprint` on  most of the Puppet tools, and they'll print a value (or a bunch, if you use `--configprint all`) and exit.
-
-(As for the [modulepath](http://docs.puppetlabs.com/references/stable/configuration.html#modulepath), it looks like a single directory at the moment but is actually a colon-separated[^pathseparator] list of directories.)
 
 [^pathseparator]: Well, system path separator-separated. On POSIX systems, that's a colon; on Windows, it's a semicolon. 
 

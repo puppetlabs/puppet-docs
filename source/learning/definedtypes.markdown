@@ -12,7 +12,7 @@ Use defined resource types to group basic resources into super-resources.
 
 * * * 
 
-&larr; [Parameterized Classes](./modules2.html) --- [Index](./) --- TBA &rarr;
+&larr; [Parameterized Classes](./modules2.html) --- [Index](./) --- [Preparing an Agent VM](./agentprep.html) &rarr;
 
 * * * 
 
@@ -290,4 +290,4 @@ You can learn how to use these by running `puppet doc --reference function | les
 Next
 ----
 
-Okay. There's more to say about modules --- we still haven't covered data separation, patterns for making your modules more readable, or module composition yet --- but there's more important business afoot. Come back next time for master/agent Puppet!
+There's more to say about modules --- we still haven't covered data separation, patterns for making your modules more readable, or module composition yet --- but there's more important business afoot. [Continue reading](./agentprep.html) to prepare your VMs (yes, plural) for agent/master Puppet. 
