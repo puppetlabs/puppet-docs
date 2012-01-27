@@ -62,8 +62,10 @@ _(Note: although we don't provide a full walkthrough for VMware Workstation, the
 1. If you still have the zipped VM archive you originally downloaded, you can extract it again for a fresh copy. 
 
     Otherwise, shut down the VM by running `shutdown -h now` while logged in as root. Once the system is stopped, locate the folder or bundle that contains the VMX file --- you can right-click its entry in the Virtual Machine Library window and choose "Show in Finder" --- and duplicate that entire directory.
+    
+    ![Show in finder menu item](./images/dupe_vmware_show.png) ![Duplicate folder menu item](./images/dupe_vmware_duplicate.png)
 
-2. Your second copy of the files (whether from re-extracting or duplicating) contains a VMX file; **drag it and drop it** onto Fusion's Virtual Machine Library window. (If this window isn't displayed, the menu item to display it is in Fusion's "Window" menu.) This will import the virtual machine _without_ automatically starting it up. 
+2. Your second copy of the files (whether from re-extracting or duplicating) contains a VMX file; **drag it and drop it** onto Fusion's Virtual Machine Library window. (If this window isn't displayed, the menu item to display it is in Fusion's "Window" menu.) This will import the virtual machine _without_ automatically starting it up, which will give you a chance to change its RAM. (If you accidentally start it anyway, you can always change the RAM later or leave it as is.)
 
 3. Once Fusion has the VM, you can right-click its entry in the Library window and choose "Settings" to change the amount of memory it will consume. (Use the "Processors & RAM" section of the settings window.) Although the original (puppet master) VM will need at least 512 MB of RAM, you can safely dial the agent VM down to 256 MB. 
 
@@ -76,11 +78,18 @@ _(Note: although we don't provide a full walkthrough for VMware Workstation, the
 1. If you still have the folder with the original OVF file, you can re-import it into VirtualBox for a new VM. 
 
     Otherwise, shut down the VM by running `shutdown -h now` while logged in as root. Once the system is stopped, right-click on the VM's entry in the VirtualBox Manager window, and select Clone. You will be presented with a series of dialog boxes.
+
+    ![Clone menu item](./images/dupe_vbox_clone.png)
     
     1. In the first one, choose a new name for the VM and make sure the "Reinitialize the MAC address of all network cards" box is **checked.**
+    
+        ![Reinitialize checkbox](./images/dupe_vbox_reinit.png)
+
     2. In the second one, choose "Full Clone."
 
-2. Once VirtualBox has the new VM ready, change its network adapter to Bridged Adapter mode; otherwise, it will be unable to communicate with the puppet master. (You can also configure two network adapters instead of using bridged mode, but this is advanced and should not be done by most users.)
+        ![Full clone radio button](./images/dupe_vbox_fullclone.png)
+
+2. Once VirtualBox has the new VM ready, [change its network adapter to Bridged Adapter mode](./index.html#with-virtualbox); otherwise, it will be unable to communicate with the puppet master. (You can also configure two network adapters instead of using bridged mode, but this is advanced and should not be done by most users.)
 
 3. You can also click on the "System" settings to reduce the amount of memory the VM will consume. An agent node should only need 256 MB of RAM.
 

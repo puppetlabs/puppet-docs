@@ -70,6 +70,10 @@ If you are using a VMware virtualization product, you can leave the VM's network
 
 VirtualBox's NAT mode is severely limited, and will not work with the later agent/master lessons. **You should change the VM's network mode to Bridged Adapter before starting the VM for the first time.** 
 
+![How to open a VirtualBox VM's network settings](./images/vbox_network.png)
+
+![A VirtualBox VM's network settings being changed to bridged](./images/vbox_network_bridged.png)
+
 If for some reason you cannot expose the VM as a peer on your local network, or you are not on a network with working DHCP, you must configure the VM to have **two** network adapters: one in NAT mode (for accessing the local network and the internet) and one in Host Only Adapter mode (for accessing the host computer and other VMs). You will also have to either assign an IP address to the host-only adapter manually, or configure VirtualBox's DHCP server.
 
 [See here for more information about VirtualBox's networking modes][vbnetworking], and [see here for more about VirtualBox's DHCP server][vbdhcp].
