@@ -27,6 +27,19 @@ Issues Still Outstanding
 
 The following issues affect the currently shipped version of PE (and all prior releases in the 2.0.x series, unless otherwise stated). 
 
+### Puppet Help is Broken on Debian/Ubuntu Systems
+
+This issue affects only PE 2.0.1.
+
+Due to a packaging error, the puppet help subcommand malfunctions on Debian and Ubuntu systems, resulting in errors like the following:
+
+    puppet help cert list
+    err: RubyGem version error: excon(0.6.5 not ~> 0.7.3)
+    
+    err: Try 'puppet help help help' for usage
+
+This regression will be fixed in PE 2.0.2.
+
 ### Installer Cannot Prevent or Recover From DNS Errors
 
 The installer in PE 2.0 does not currently check for DNS misconfiguration. Such problems can cause the installer to fail, leaving the PE software in an undefined state. To work around this, you should:
