@@ -27,6 +27,14 @@ Issues Still Outstanding
 
 The following issues affect the currently shipped version of PE (and all prior releases in the 2.0.x series, unless otherwise stated). 
 
+### EL 4 Agent Nodes Cannot Upgrade from 2.0.0 to 2.0.1
+
+This issue affects only PE 2.0.1.
+
+Due to a packaging error, Enterprise Linux 4 agent nodes running PE 2.0.0 cannot be upgraded to PE 2.0.1.
+
+This issue will be fixed in PE 2.0.2.
+
 ### Puppet Help is Broken on Debian/Ubuntu Systems
 
 This issue affects only PE 2.0.1.
