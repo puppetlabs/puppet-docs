@@ -15,6 +15,7 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)
 * [Using Dashboard](./using.html)
+* [Rake API](./rake_api.html)
 
 
 [pe]: http://www.puppetlabs.com/puppet/puppet-enterprise/
