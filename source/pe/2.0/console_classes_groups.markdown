@@ -105,30 +105,60 @@ The console automatically adds every node to a group called `default`. Use this 
 Rake API
 -----
 
-The console provides rake tasks that can group nodes, create classes, and assign classes to groups. You can use these as an API to automate large tasks or avoid the console's GUI.
+The console provides rake tasks that can group nodes, create classes, and assign classes to groups. You can use these as an API to automate workflows or bypass the console's GUI when performing large tasks.
 
-All of these tasks should be run as follows, replacing `<TASK>` with the task and its arguments:
+All of these tasks should be run as follows, replacing `<TASK>` with the task name and any arguments it requires:
 
     # sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile <TASK>
 
-### Tasks
+### Node Tasks
 
-`nodeclass:add name=<NAME>`
-: Add a new class.
+`rake node:list [match=<REGULAR EXPRESSION>]`
+: List nodes. Can optionally match nodes by regex.
 
-`nodeclass:del name=<NAME>`
-: Delete a class.
+`rake node:add name=<NAME> [groups=<GROUPS>] [classes=<CLASSES>]`
+: Add a new node. Classes and groups can be specified as comma-separated lists.
 
-`nodegroup:add name=<NAME>`
-: Create a new group.
+`rake node:del name=<NAME>`
+: Delete a node.
 
-`nodegroup:addclass name=<GROUP> class=<CLASS>`
-: Assign a class to a group.
+`rake node:classes name=<NAME> classes=<CLASSES>`
+: Replace the list of classes assigned to a node. Classes must be specified as a comma-separated list.
 
-`node:groups name=<NODE> groups=<GROUP, GROUP, GROUP>`
-: Remove a node from any current groups and add it to the specified list of groups.
+`rake node:groups name=<NAME> groups=<GROUPS>`
+: Replace the list of groups a node belongs to. Groups must be specified as a comma-separated list.
 
-Other tasks are available; run rake with the `-T` option for a more complete list.
+### Class Tasks
+
+`rake nodeclass:list [match=<REGULAR EXPRESSION>]`
+: List node classes. Can optionally match classes by regex.
+
+`rake nodeclass:add name=<NAME>`
+: Add a new class. This must be a class available to the Puppet autoloader via a module.
+
+`rake nodeclass:del name=<NAME>`
+: Delete a node class.
+
+### Group Tasks
+
+`rake nodegroup:list [match=<REGULAR EXPRESSION>]`
+: List node groups. Can optionally match gorups by regex.
+
+`rake nodegroup:add name=<NAME> [classes=<CLASSES>]`
+: Create a new node group. Classes can be specified as a comma-separated list.
+
+`rake nodegroup:del name=<NAME>`
+: Delete a node group.
+
+`rake nodegroup:add_all_nodes name=<NAME>`
+: Add every known node to a group.
+
+`rake nodegroup:addclass name=<NAME> class=<CLASS>`
+: Assign a class to a group without overwriting its existing classes.
+
+`rake nodegroup:edit name=<NAME> classes=<CLASSES>`
+: Replace the classes assigned to a node group. Classes must be specified as a comma-separated list.
+
 
 [classes_add_group]: ./images/console/classes_add_group.png
 [classes_add_parameter]: ./images/console/classes_add_parameter.png

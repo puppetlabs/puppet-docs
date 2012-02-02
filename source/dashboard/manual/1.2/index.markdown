@@ -21,3 +21,4 @@ Chapters
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)
 * [Using Dashboard](./using.html)
+* [Rake API](./rake_api.html)
