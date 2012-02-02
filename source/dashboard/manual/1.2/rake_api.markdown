@@ -33,50 +33,50 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 ### Node Tasks
 
-`rake node:list [match=<REGULAR EXPRESSION>]`
+`node:list [match=<REGULAR EXPRESSION>]`
 : List nodes. Can optionally match nodes by regex.
 
-`rake node:add name=<NAME> [groups=<GROUPS>] [classes=<CLASSES>]`
+`node:add name=<NAME> [groups=<GROUPS>] [classes=<CLASSES>]`
 : Add a new node. Classes and groups can be specified as comma-separated lists.
 
-`rake node:del name=<NAME>`
+`node:del name=<NAME>`
 : Delete a node.
 
-`rake node:classes name=<NAME> classes=<CLASSES>`
+`node:classes name=<NAME> classes=<CLASSES>`
 : Replace the list of classes assigned to a node. Classes must be specified as a comma-separated list.
 
-`rake node:groups name=<NAME> groups=<GROUPS>`
+`node:groups name=<NAME> groups=<GROUPS>`
 : Replace the list of groups a node belongs to. Groups must be specified as a comma-separated list.
 
 ### Class Tasks
 
-`rake nodeclass:list [match=<REGULAR EXPRESSION>]`
+`nodeclass:list [match=<REGULAR EXPRESSION>]`
 : List node classes. Can optionally match classes by regex.
 
-`rake nodeclass:add name=<NAME>`
+`nodeclass:add name=<NAME>`
 : Add a new class. This must be a class available to the Puppet autoloader via a module.
 
-`rake nodeclass:del name=<NAME>`
+`nodeclass:del name=<NAME>`
 : Delete a node class.
 
 ### Group Tasks
 
-`rake nodegroup:list [match=<REGULAR EXPRESSION>]`
+`nodegroup:list [match=<REGULAR EXPRESSION>]`
 : List node groups. Can optionally match gorups by regex.
 
-`rake nodegroup:add name=<NAME> [classes=<CLASSES>]`
+`nodegroup:add name=<NAME> [classes=<CLASSES>]`
 : Create a new node group. Classes can be specified as a comma-separated list.
 
-`rake nodegroup:del name=<NAME>`
+`nodegroup:del name=<NAME>`
 : Delete a node group.
 
-`rake nodegroup:add_all_nodes name=<NAME>`
+`nodegroup:add_all_nodes name=<NAME>`
 : Add every known node to a group.
 
-`rake nodegroup:addclass name=<NAME> class=<CLASS>`
+`nodegroup:addclass name=<NAME> class=<CLASS>`
 : Assign a class to a group without overwriting its existing classes.
 
-`rake nodegroup:edit name=<NAME> classes=<CLASSES>`
+`nodegroup:edit name=<NAME> classes=<CLASSES>`
 : Replace the classes assigned to a node group. Classes must be specified as a comma-separated list.
 
 
