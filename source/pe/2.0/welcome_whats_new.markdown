@@ -79,6 +79,8 @@ The `mcollectivepe`, `accounts`, and `baselines` modules from PE 1.2 were rename
 Puppet Enterprise 2.0.1
 ----
 
+This is a maintenance release in the Puppet Enterprise 2.0 series.
+
 ### Fixed Breakage on Enterprise Linux 6.1 and 6.2
 
 PE 2.0 would often fail during installation on enterprise Linux 6.1 and 6.2 systems (RHEL, CentOS, Oracle Linux, and Scientific Linux). This was due to memory corruption issues with our version of Apache and OpenSSL. The problem has been fixed, and EL > 6.0 systems can now be used as puppet masters and console servers. 
@@ -143,6 +145,20 @@ A quirk in Solaris's cron implementation was preventing the compliance reporting
 This is an advanced feature, and should be ignored by most users. 
 
 Use the `activemq_heap_mb` parameter to configure this, and see the internal documentation of the `pe_mcollective` module for more details. 
+
+
+Puppet Enterprise 2.0.2
+----
+
+This is a regression-fix release that fixes two issues introduced in PE 2.0.1. Only Debian/Ubuntu and Enterprise Linux 4 systems are affected by this release; in all other respects, it is identical to PE 2.0.1.
+
+### Fix Puppet Help Breakage on Debian/Ubuntu Systems
+
+The puppet help subcommand was malfunctioning on Debian and Ubuntu systems. This problem has been fixed.
+
+### Fix Upgrade Failures on Enterprise Linux 4 Systems
+
+Agent nodes running RHEL 4 and CentOS 4 were unable to upgrade to PE 2.0.1 due to a packaging error. These nodes can instead upgrade to PE 2.0.2.
 
 
 * * *

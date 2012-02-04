@@ -25,28 +25,7 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 Issues Still Outstanding
 -----
 
-The following issues affect the currently shipped version of PE (and all prior releases in the 2.0.x series, unless otherwise stated). 
-
-### EL 4 Agent Nodes Cannot Upgrade from 2.0.0 to 2.0.1
-
-This issue affects only PE 2.0.1.
-
-Due to a packaging error, Enterprise Linux 4 agent nodes running PE 2.0.0 cannot be upgraded to PE 2.0.1.
-
-This issue will be fixed in PE 2.0.2.
-
-### Puppet Help is Broken on Debian/Ubuntu Systems
-
-This issue affects only PE 2.0.1.
-
-Due to a packaging error, the puppet help subcommand malfunctions on Debian and Ubuntu systems, resulting in errors like the following:
-
-    puppet help cert list
-    err: RubyGem version error: excon(0.6.5 not ~> 0.7.3)
-    
-    err: Try 'puppet help help help' for usage
-
-This regression will be fixed in PE 2.0.2.
+The following issues affect the currently shipped version of PE and all prior releases in the 2.0.x series, unless otherwise stated. 
 
 ### Installer Cannot Prevent or Recover From DNS Errors
 
@@ -64,6 +43,27 @@ The console's [live management](./console_live.html) page doesn't load in Intern
 ### Dynamic Man Pages are Incorrectly Formatted
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
+
+
+Issues Affecting PE 2.0.1
+-----
+
+### EL 4 Agent Nodes Cannot Upgrade from 2.0.0 to 2.0.1
+
+This issue was fixed in PE 2.0.2.
+
+Due to a packaging error, Enterprise Linux 4 agent nodes running PE 2.0.0 cannot be upgraded to PE 2.0.1.
+
+### Puppet Help Broken on Debian/Ubuntu Systems
+
+This issue was fixed in PE 2.0.2.
+
+Due to a packaging error, the puppet help subcommand malfunctions on Debian and Ubuntu systems, resulting in errors like the following:
+
+    puppet help cert list
+    err: RubyGem version error: excon(0.6.5 not ~> 0.7.3)
+    
+    err: Try 'puppet help help help' for usage
 
 
 Issues Affecting PE 2.0.0
