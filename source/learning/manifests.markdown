@@ -61,7 +61,7 @@ Resource Declarations
 Let's start by just declaring a single resource:
 
 {% highlight ruby %}
-    # /root/training-manifests/1.file.pp
+    # /root/learning-manifests/1.file.pp
 
     file {'testfile':
       path    => '/tmp/testfile',
@@ -109,7 +109,7 @@ Once More, With Feeling!
 Okay, you sort of have the idea by now. Let's make a whole wad of totally useless files! (And throw in some `notify` resources for good measure.)
 
 {% highlight ruby %}
-    # /root/training-manifests/2.file.pp
+    # /root/learning-manifests/2.file.pp
 
     file {'/tmp/test1':
       ensure  => present,

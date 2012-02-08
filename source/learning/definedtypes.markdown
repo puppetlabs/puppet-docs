@@ -273,7 +273,7 @@ One Last Tip
 
 Defined types take input, and input can get a little dirty --- you might want to check your parameters to make sure they're the correct data type, and fail early if they're garbage instead of writing undefined stuff to the system.
 
-If you're going to make a practice of validating your inputs (hint: DO), you can save yourself a lot of effort by using the validation functions in Puppet Labs' `stdlib` module. We ship a version of `stdlib` with PE 1.2, and you can also download it for free at either [GitHub][stdgit] and [the module forge][stdforge]. The functions are:
+If you're going to make a practice of validating your inputs (hint: DO), you can save yourself a lot of effort by using the validation functions in Puppet Labs' `stdlib` module. We ship a version of `stdlib` with PE 2.0, and you can also download it for free at either [GitHub][stdgit] or [the module forge][stdforge]. The functions are:
 
 - `validate_array`
 - `validate_bool`
