@@ -102,6 +102,8 @@ If the installer detects another web server on the node, it will suggest the fir
 
 As the console's web interface is a major point of control for your infrastructure, access is restricted with a user name and password. Additional users and passwords can be added later with Apache's standard authentication tools. 
 
+The only forbidden characters for a console password are `\` (backslash), `'` (single quote), and `$$` (two dollar signs in a row). 
+
 #### Inventory Certname and DNS Names (Optional)
 
 If you are splitting the master and the console roles, the console will maintain an inventory service to collect facts from the puppet master. Like the master, the inventory service needs a unique certname and a list of valid DNS names. 
@@ -114,6 +116,8 @@ The console needs a pair of MySQL databases and a MySQL user in order to operate
 * A name for the console's primary database
 * A MySQL user name for the console
 * A password for the console's user
+
+The only forbidden characters for a database password are `\` (backslash), `'` (single quote), and `$$` (two dollar signs in a row). 
 
 If you don't install a new database server, you can either manually create a database and MySQL user for the console and configure the settings above with the correct information, or allow the installer to log into the MySQL server as root and automatically configure the databases.
 

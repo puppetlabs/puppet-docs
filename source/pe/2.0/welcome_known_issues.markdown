@@ -44,6 +44,9 @@ The console's [live management](./console_live.html) page doesn't load in Intern
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
 
+### Uninstaller Cannot Remove Databases if MySQL's Root Password Has Special Characters
+
+If your database server's root password contains certain non-alphanumeric characters, the uninstaller may not be able to log in and delete PE's databases, and you will have to remove them manually. This issue was present when the uninstaller was introduced in PE 2.0.1, and a fix will be released in PE 2.0.3.
 
 Issues Affecting PE 2.0.1
 -----
