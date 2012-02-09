@@ -32,6 +32,8 @@ Some Simple ERB
 
 First, keep in mind that **facts, global variables,** and **variables defined in the current scope** are available to a template as standard Ruby local variables, which are plain words without a `$` sigil in front of them. Variables from other scopes are reachable, but to read them, you have to call the `lookupvar` method on the `scope` object. (For example, `scope.lookupvar('apache::user')`.) 
 
+Facts and global or local variables are also available in templates as instance variables --- that is, `@fqdn, @memoryfree, @operatingsystem`, etc.
+
 ### Tags
 
 ERB tags are delimited by angle brackets with percent signs just inside. (There isn't any HTML-like concept of opening or closing tags.)

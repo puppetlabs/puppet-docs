@@ -9,63 +9,62 @@ Using Puppet Templates
 Learn how to template out configuration files with Puppet, filling in variables
 from the client system from facter.
 
+[lptemplates]: http://docs.puppetlabs.com/learning/templates.html
+[modules]: http://docs.puppetlabs.com/guides/modules.html
+
 * * *
 
-Puppet supports templates and templating via
-[ERB](http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/), which is
-part of the Ruby standard library and is used for many other
-projects including Ruby on Rails.  While it is a Ruby templating
-system, you do not need to understand much Ruby to use ERB.
+Puppet supports templates written in the
+[ERB](http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/) templating language, which is
+part of the Ruby standard library.
 
-Templates allow you to manage the content of template files, for example configuration files that
-cannot yet be managed directly by a built-in Puppet type.   This might include
-an Apache configuration file, Samba configuration file, etc.
+Templates can be used to specify the contents of files. 
+
+**For a full introduction to using templates with Puppet, see [the templates chapter of Learning Puppet][lptemplates].**
 
 ## Evaluating templates
 
 Templates are evaluated via a simple function:
 
-    $value = template("mytemplate.erb")
+    $value = template("my_module/mytemplate.erb")
 
-You can specify the full path to your template, or you can put all
-your templates in Puppet's templatedir, which usually defaults to
-`/var/puppet/templates` (you can find out what it is on your system
-by running `puppet --configprint templatedir`).  Best practices indicates
-including the template in the `templates` directory inside your [module](./modules.html).
+**Template files should be stored in the `templates` directory of a [Puppet module][modules],** which allows the `template` function to locate them with the simplified path format shown above. For example, the file referenced by `template("my_module/mytemplate.erb")` would be found on disk at `/etc/puppet/modules/my_module/templates/mytemplate.erb` (assuming the common [`modulepath`](/references/latest/configuration.html#modulepath) of `/etc/puppet/modules`).
+
+(The `template` function can also locate files stored in Puppet's [`templatedir`](/references/latest/configuration.html#templatedir), but this is no longer recommended.) 
 
 Templates are always evaluated by the parser, not by the client.
-This means that if you are using puppetmasterd, then the templates
+This means that if you are using a puppet master server, then the templates
 only need to be on the server, and you never need to download them
 to the client. There's no difference that the client sees between using a
-template and specifying all of the text of the file as a string. This also
-means that any client-specific variables (facts) are learned first
-by puppetmasterd during the client start-up phase, then those
-variables are available for substitution within templates.
+template and specifying all of the text of the file as a string. 
 
 ## Using templates
 
 Here is an example for generating the Apache configuration for
 [Trac](http://trac.edgewall.org/) sites:
 
-    define tracsite($cgidir, $tracdir) {
-        file { "trac-$name":
-            path => "/etc/apache2/trac/$name.conf",
-            owner => root,
-            group => root,
-            mode => 644,
-            require => File[apacheconf],
-            content => template("tracsite.erb"),
-            notify => Service[apache2]
-        }
+    # /etc/puppet/modules/trac/manifests/tracsite.pp
+    define trac::tracsite($cgidir, $tracdir) {
+      file { "trac-$name":
+        path    => "/etc/apache2/trac/$name.conf",
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        require => File[apacheconf],
+        content => template("trac/tracsite.erb"),
+        notify  => Service[apache2]
+      }
 
-        symlink { "tracsym-$name":
-            path => "$cgidir/$name.cgi",
-            ensure => "/usr/share/trac/cgi-bin/trac.cgi"
-        }
+      file { "tracsym-$name":
+        ensure => symlink,
+        path   => "$cgidir/$name.cgi",
+        target => "/usr/share/trac/cgi-bin/trac.cgi"
+      }
     }
 
 And then here's the template:
 
+    # /etc/puppet/modules/trac/templates/tracsite.erb
     <Location "/cgi-bin/ <%= name %>.cgi">
         SetEnv TRAC_ENV "/export/svn/trac/<%= name %>"
     </Location>
@@ -81,13 +80,16 @@ And then here's the template:
 This puts each Trac configuration into a separate
 file, and then we just tell Apache to load all of these files:
 
+    # /etc/httpd/httpd.conf
     Include /etc/apache2/trac/[^.#]*
 
 ## Combining templates
 
 You can also concatentate several templates together as follows:
 
-     template('/path/to/template1','/path/to/template2')
+     template('my_module/template1.erb','my_module/template2.erb')
+
+This would be rendered as a single string with the content of both templates, in order.
 
 ## Iteration
 
@@ -130,7 +132,7 @@ a quick and easy way to conditionally put content into a file:
 You can also use templates to fill in variables in addition to filling
 out file contents.
 
-    myvariable = template('/var/puppet/template/myvar')
+    $myvariable = template('my_module/myvariable.erb')
 
 ## Undefined variables
 
@@ -146,6 +148,10 @@ You can access out of scope variables explicitly with the lookupvar
 function:
 
     <%= scope.lookupvar('apache::user') %>
+
+## Facts
+
+A node's facts can be easily accessed in a template as instance variables; that is, as `@fqdn, @memoryfree, @operatingsystem` etc.
 
 ## Access to defined tags and classes
 
@@ -183,7 +189,7 @@ Variables defined in the current scope are available as entries in the hash retu
 
 Puppet functions can be called by prepending "`function_`" to the beginning of the function name. For example, including one template inside another:
 
-    <%= scope.function_template("module/template2.erb") %>
+    <%= scope.function_template("my_module/template2.erb") %>
 
 ## Syntax Checking
 
