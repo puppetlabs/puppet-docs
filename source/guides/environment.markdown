@@ -21,7 +21,7 @@ Puppet lets you slice your site up into an arbitrary number of "environments" an
 What an Environment Is
 ----------------------
 
-Every agent node has an environment, and the puppet master gets informed about it whenever that node makes a request. (If you don't specify an environment, the agent has the default "production" environment.) 
+Every agent node is configured to have an environment, which is simply a short label specified in puppet.conf's [`environment` setting](/references/latest/configuration.html#environment). Whenever that node makes a request, the puppet master gets informed of its environment. (If you don't specify an environment, the agent has the default "production" environment.) 
 
 The puppet master can then use that environment several ways: 
 
@@ -30,7 +30,12 @@ The puppet master can then use that environment several ways:
 * Depending on how [`auth.conf`][auth] is configured, different requests might be allowed or denied. 
 * The agent's environment will also be accessible in Puppet manifests as the top-scope `$environment` variable. 
 
-In short: modules and manifests can already do different things for different nodes, but environments let the master tweak its own configuration on the fly, and offer a way to completely swap out the set of available modules for certain nodes. 
+In short: **environments let the master tweak its own configuration on the fly, and offer a way to completely swap out the set of available modules for certain nodes.**
+
+Naming Environments
+-----
+
+Environment names should only contain alphanumeric characters and underscores, and are case-sensitive.
 
 Caveats
 -------
