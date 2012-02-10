@@ -143,8 +143,8 @@ installation process.
 Add the following to your `/etc/apt/sources.list` file:
 
     # /etc/apt/sources.list
-    deb http://apt.puppetlabs.com/ubuntu lucid main
-    deb-src http://apt.puppetlabs.com/ubuntu lucid main
+    deb http://apt.puppetlabs.com lucid main
+    deb-src http://apt.puppetlabs.com lucid main
 
 Add the Puppet Labs repository key to Apt by running:
 
