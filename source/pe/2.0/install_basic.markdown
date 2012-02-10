@@ -76,7 +76,11 @@ The puppet master and console roles should each be installed on **only one** sys
 
 #### Certname
 
-The certname is the puppet master's unique identifier. This defaults to its fully-qualified domain name, which is usually the best choice, but any arbitrary string can be used.
+The certname is the puppet master's unique identifier. It should be a DNS name at which the master server can be reliably reached, and defaults to its fully-qualified domain name. 
+
+(If the master's certname is not one of its DNS names, you [may need to edit puppet.conf after installation][bucket-troubleshooting].)
+
+[bucket-troubleshooting]: ./maint_common_config_errors.html#can-agents-reach-the-filebucket-server
 
 #### Valid DNS Names
 
