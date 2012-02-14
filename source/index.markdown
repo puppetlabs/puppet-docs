@@ -29,7 +29,10 @@ Drive-Thru
 
 Small documents for getting help fast.
 
-* <a href="./puppet_core_types_cheatsheet.pdf"><img src="./images/puppet_core_types_cheatsheet_thumbnail.png" style="float: right; margin: 4px;"></a> Core Types Cheat Sheet --- available in [single-page flavor](./puppet_core_types_cheatsheet.pdf) (double-sided), [extra breathing room flavor](./puppet_core_types_cheatsheet_expanded.pdf) (six pages), and [plain web page](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/) flavor
+<a href="./puppet_core_types_cheatsheet.pdf"><img src="./images/puppet_core_types_cheatsheet_thumbnail.png" alt="Thumbnail preview of the core types cheat sheet."></a> <a href="./module_cheat_sheet.pdf"><img src="./images/module_cheat_sheet_thumbnail.png" alt="Thumbnail preview of the module cheat sheet."></a>
+
+* [Core Types Cheat Sheet](./puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types. ([HTML version](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/))
+* [Module Cheat Sheet](./module_cheat_sheet.pdf) --- A one-page reference to Puppet module layout, covering classes and defined types, files, templates, and plugins. ([HTML version](./module_cheat_sheet.html))
 * [Frequently Asked Questions](./guides/faq.html)
 
 * * * 
