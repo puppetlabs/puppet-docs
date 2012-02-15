@@ -6,7 +6,7 @@ module Jekyll
 			  @linktext = $1
 			  @linkdestination = $2
       else
-        raise SyntaxError.new("Syntax Error in 'highlight' - Valid syntax: highlight <lang> [linenos]")
+        raise SyntaxError.new(%q{Syntax Error in 'iflink' - Valid syntax: iflink "Link text", "/path/to/page.html"})
       end
 		end
     
