@@ -11,7 +11,7 @@ module Jekyll
 		end
 
 		def render(context)
-			nav_fragment = context.environments.first['page']['nav']
+			nav_fragment = context.environments.first['page']['nav'] || context.environments.first['site']['nav']
       if nav_fragment !~ /^[a-zA-Z0-9_\/\.-]+$/ || nav_fragment =~ /\.\// || nav_fragment =~ /\/\./
         return "Include file '#{nav_fragment}' contains invalid characters or sequences"
       end
