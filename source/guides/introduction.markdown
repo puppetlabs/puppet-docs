@@ -146,7 +146,7 @@ wherever mount information is kept.
 
 Resources have attributes called 'properties' which change
 the way a resource is managed.  For instance, users have an
-attribute that specicies whether the home directory should
+attribute that specifies whether the home directory should
 be created.
 
 'Metaparams' are another special kind of attribute, those exist on
