@@ -72,7 +72,7 @@ Puppet assumes that you will have one
 central manifest capable of configuring an entire site, which
 we call the *site manifest*. You could have multiple, separate site
 manifests if you wanted, though if doing this each of them would need
-their own puppet servers.  Individual system differences can be seperated
+their own puppet servers.  Individual system differences can be separated
 out, node by node, in the site manifest.
 
 Puppet will start with `/etc/puppet/manifests/site.pp` as the primary
@@ -142,11 +142,7 @@ agent in verbose mode the first time and with the `--waitforcert` flag enabled:
 
     # puppet agent --server myserver.domain.com --waitforcert 60 --test
 
-Adding the `--test` flag causes puppet agent to stay in the foreground,
-print extra output, only run once and then exit, and to just exit
-if the remote configuration fails to compile (by default, puppet agent
-will use a cached configuration if there is a problem with the
-remote manifests).
+Adding the --test flag causes the puppet agent to stay in the foreground; print extra output; only run once, then exit; and to exit immediately if the puppet master fails to compile the configuration catalog (by default, puppet agent will use a cached configuration if there is a problem with the remote manifests).
 
 In running the agent, you should see the message:
 
