@@ -688,7 +688,7 @@ For example:
 
       include ntp::params
 
-      $server\_real = $server ? {
+      $server_real = $server ? {
         'UNSET' => $::ntp::params::server,
         default => $server,
       }
