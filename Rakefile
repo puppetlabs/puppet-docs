@@ -33,6 +33,7 @@ task :install => dependencies.map { |d| "install:#{d}" }
 
 desc "Generate the documentation"
 task :generate do
+  system("rm -rf output")
   Dir.chdir("source")
   system("../vendor/gems/jekyll-0.7.0/bin/jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
@@ -51,6 +52,7 @@ desc "Generate the documentation in a flat format for later PDF generation"
 task :generate_pdf do
   require 'yaml'
   system("rm -rf pdf_source")
+  system("rm -rf pdf_output")
   system("cp -rf source pdf_source")
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
   # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
