@@ -44,9 +44,51 @@ The console's [live management](./console_live.html) page doesn't load in Intern
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
 
+Issues Affecting PE 2.0.2
+-----
+
+### Incorrect Hardware Facts
+
+This issue also affected PE releases prior to 2.0.0, and was fixed in PE 2.0.3.
+
+On Linux systems where the pciutils, pmtools, or dmidecode packages are not installed, the `virtual`, `is_virtual`, `manufacturer`, `productname`, and `serialnumber` facts are frequently inaccurate. In PE 2.0.3 and later, these facts are kept accurate by requiring the necessary packages from the OS's repository. 
+
+### Security Issue: Group IDs Leak to Forked Processes (CVE-2012-1053)
+
+This issue also affected PE releases prior to 2.0.0, and was fixed in PE 2.0.3.
+
+When executing commands as a different user, Puppet leaves the forked process with Puppet's own group permissions. Specifically: 
+
+* Puppet's primary group (usually root) is always present in a process's supplementary groups.
+* When an exec resource is assigned a user to run as but not a group, Puppet will set its effective GID to Puppet's own GID (usually root).
+* Permanently changing a process's UID and GID won't clear the supplementary groups, leaving the process with Puppet's own supplementary groups (usually including root).
+
+This causes any untrusted code executed by a Puppet exec resource to be given unexpectedly high permissions. [See here][gid_release] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-1053][gid_cve]. 
+
+[gid_release]: http://puppetlabs.com/security/cve/cve-2012-1053/
+[gid_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-1053
+
+### Security Issue: k5login Type Writes Through Symlinks (CVE-2012-1054)
+
+This issue also affected PE releases prior to 2.0.0, and was fixed in PE 2.0.3.
+
+If a user's `.k5login` file is a symlink, Puppet will overwrite the link's target when managing that user's login file with the k5login resource type. This allows local privilege escalation by linking a user's `.k5login` file to root's `.k5login` file. 
+
+[See here][k5login_release] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-1054][k5login_cve]. 
+
+[k5login_release]: http://puppetlabs.com/security/cve/cve-2012-1054/
+[k5login_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-1054
+
+
 ### Uninstaller Cannot Remove Databases if MySQL's Root Password Has Special Characters
 
-If your database server's root password contains certain non-alphanumeric characters, the uninstaller may not be able to log in and delete PE's databases, and you will have to remove them manually. This issue was present when the uninstaller was introduced in PE 2.0.1, and a fix will be released in PE 2.0.3.
+This issue was fixed in PE 2.0.3.
+
+If your database server's root password contains certain non-alphanumeric characters, the uninstaller may not be able to log in and delete PE's databases, and you will have to remove them manually. This issue was present when the uninstaller was introduced in PE 2.0.1.
 
 Issues Affecting PE 2.0.1
 -----

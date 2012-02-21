@@ -161,6 +161,53 @@ The puppet help subcommand was malfunctioning on Debian and Ubuntu systems. This
 Agent nodes running RHEL 4 and CentOS 4 were unable to upgrade to PE 2.0.1 due to a packaging error. These nodes can instead upgrade to PE 2.0.2.
 
 
+Puppet Enterprise 2.0.3
+-----
+
+This is a security and bug-fix release in the PE 2.0 series. It patches two security vulnerabilities and fixes a handful of inaccurate hardware facts on Linux.
+
+### Security Fix: Group IDs Leak to Forked Processes (CVE-2012-1053)
+
+When executing commands as a different user, Puppet was leaving the forked process with Puppet's own group permissions. Specifically: 
+
+* Puppet's primary group (usually root) was always present in a process's supplementary groups.
+* When an exec resource was assigned a user to run as but not a group, Puppet would set its effective GID to Puppet's own GID (usually root).
+* Permanently changing a process's UID and GID wouldn't clear the supplementary groups, leaving the process with Puppet's own supplementary groups (usually including root).
+
+This caused any untrusted code executed by a Puppet exec resource to be given unexpectedly high permissions. [See here][gid_release] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-1053][gid_cve]. 
+
+[gid_release]: http://puppetlabs.com/security/cve/cve-2012-1053/
+[gid_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-1053
+
+### Security Fix: k5login Type Writes Through Symlinks (CVE-2012-1054)
+
+If a user's `.k5login` file was a symlink, Puppet would overwrite the link's target when managing that user's login file with the k5login resource type. This allowed local privilege escalation by linking a user's `.k5login` file to root's `.k5login` file. 
+
+[See here][k5login_release] for more details, including hotfixes for previous versions of PE.
+
+This vulnerability has a CVE identifier of [CVE-2012-1054][k5login_cve]. 
+
+[k5login_release]: http://puppetlabs.com/security/cve/cve-2012-1054/
+[k5login_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-1054
+
+### Bug Fix: Inaccurate Hardware Facts
+
+In previous versions of PE, the following facts were often inaccurate on Linux systems that lacked the pciutils/pmtools and dmidecode packages:
+
+* `virtual`
+* `is_virtual`
+* `manufacturer`
+* `productname`
+* `serialnumber`
+
+PE now lists the necessary packages as prerequisites for Facter, which makes these facts more reliable.
+
+### Upgrader Improvements
+
+The upgrader now skips unnecessary steps for upgrades from 2.0.x versions. 
+
 * * *
 
 &larr; [Welcome: Components and Roles](./welcome_roles.html) --- [Index](./) --- [Welcome: Known Issues](./welcome_known_issues.html) &rarr;
