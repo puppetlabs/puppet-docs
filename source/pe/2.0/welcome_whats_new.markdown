@@ -208,6 +208,10 @@ PE now lists the necessary packages as prerequisites for Facter, which makes the
 
 The upgrader now skips unnecessary steps for upgrades from 2.0.x versions. 
 
+### Apache Now Discards X-Forwarded-For Headers
+
+Puppet Enterprise's Apache configuration now discards any X-Forwarded-For header from requests before passing them to Puppet. In rare configurations, Ruby and Rack's handling of this header could allow agents to impersonate each other when making unauthenticated requests. 
+
 * * *
 
 &larr; [Welcome: Components and Roles](./welcome_roles.html) --- [Index](./) --- [Welcome: Known Issues](./welcome_known_issues.html) &rarr;

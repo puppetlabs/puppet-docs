@@ -49,13 +49,13 @@ Issues Affecting PE 2.0.2
 
 ### Incorrect Hardware Facts
 
-This issue also affected PE releases prior to 2.0.0, and was fixed in PE 2.0.3.
+This issue was fixed in PE 2.0.3.
 
 On Linux systems where the pciutils, pmtools, or dmidecode packages are not installed, the `virtual`, `is_virtual`, `manufacturer`, `productname`, and `serialnumber` facts are frequently inaccurate. In PE 2.0.3 and later, these facts are kept accurate by requiring the necessary packages from the OS's repository. 
 
 ### Security Issue: Group IDs Leak to Forked Processes (CVE-2012-1053)
 
-This issue also affected PE releases prior to 2.0.0, and was fixed in PE 2.0.3.
+This issue was fixed in PE 2.0.3. It affected PE versions between 1.0 and 2.0.2.
 
 When executing commands as a different user, Puppet leaves the forked process with Puppet's own group permissions. Specifically: 
 
@@ -72,7 +72,7 @@ This vulnerability has a CVE identifier of [CVE-2012-1053][gid_cve].
 
 ### Security Issue: k5login Type Writes Through Symlinks (CVE-2012-1054)
 
-This issue also affected PE releases prior to 2.0.0, and was fixed in PE 2.0.3.
+This issue was fixed in PE 2.0.3. It affected PE versions between 1.0 and 2.0.2.
 
 If a user's `.k5login` file is a symlink, Puppet will overwrite the link's target when managing that user's login file with the k5login resource type. This allows local privilege escalation by linking a user's `.k5login` file to root's `.k5login` file. 
 
@@ -83,12 +83,19 @@ This vulnerability has a CVE identifier of [CVE-2012-1054][k5login_cve].
 [k5login_release]: http://puppetlabs.com/security/cve/cve-2012-1054/
 [k5login_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-1054
 
-
 ### Uninstaller Cannot Remove Databases if MySQL's Root Password Has Special Characters
 
 This issue was fixed in PE 2.0.3.
 
 If your database server's root password contains certain non-alphanumeric characters, the uninstaller may not be able to log in and delete PE's databases, and you will have to remove them manually. This issue was present when the uninstaller was introduced in PE 2.0.1.
+
+### X-Forwarded-For Headers Are Respected for Unauthenticated Requests
+
+This issue was fixed in PE 2.0.3. It affected PE versions between 1.0 and 2.0.2.
+
+By default, Puppet's unauthenticated services (certificate requests, fetching the CA certificate...) are not restricted by hostname, but `auth.conf` makes it possible to open extra services to unauthenticated connections and restrict those connections by hostname. If the puppet master were configured like this, it would be possible for nodes to impersonate other nodes simply by modifying the X-Forwarded-For header in their request.
+
+This rare possibility was removed in PE 2.0.3 by changing the Apache configuration to discard any X-Forwarded-For headers from requests before passing them to Puppet.
 
 Issues Affecting PE 2.0.1
 -----
