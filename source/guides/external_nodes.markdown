@@ -64,7 +64,7 @@ If present, the value of `classes` MUST be either an array of class names or a h
       dns:
       ntp:
 
-Parameterized classes cannot be used with the array syntax. When using the hash key syntax, the value for a parameterized classe SHOULD be a hash of the class's attributes and values. Each value MAY be a string, number, array, or hash. Non-parameterized classes MAY have empty values.
+Parameterized classes cannot be used with the array syntax. When using the hash key syntax, the value for a parameterized classe SHOULD be a hash of the class's attributes and values. Each value MAY be a string, number, array, or hash. String values SHOULD be quoted, as un-quoted strings like "on" may be interpreted as booleans. Non-parameterized classes MAY have empty values.
 
     classes:
         common:
