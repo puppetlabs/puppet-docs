@@ -30,23 +30,24 @@ page for more information and some links to list of community developed Puppet c
 Language Feature by Release
 ---------------------------
 
-Feature                         | 0.23.1 | 0.24.6 | 0.24.7 | 0.25.0 | 2.6.0 |
---------------------------------|:------:|:------:|:------:|:------:|:-----:|
-Plusignment operator (+>)       |    X   |   X    |   X    |   X    |   X   |
-Multiple Resource relationships |        |   X    |   X    |   X    |   X   |
-Class Inheritance Overrides     |        |   X    |   X    |   X    |   X   |
-Appending to Variables (+=)     |        |   X    |   X    |   X    |   X   |
-Class names starting with 0-9   |        |   X    |   X    |   X    |   X   |
-Multi-line C-style comments     |        |        |   X    |   X    |   X   |
-Node regular expressions        |        |        |        |   X    |   X   |
-Expressions in Variables        |        |        |        |   X    |   X   |
-RegExes in conditionals         |        |        |        |   X    |   X   |
-Elsif in conditionals           |        |        |        |        |   X   |
-Chaining Resources              |        |        |        |        |   X   |
-Hashes                          |        |        |        |        |   X   |
-Parameterised Class             |        |        |        |        |   X   |
-Run Stages                      |        |        |        |        |   X   |
-The "in" syntax                 |        |        |        |        |   X   |
+Feature                         | 0.24.x | 0.25.x | 2.6.x | 2.7.x | 2.8.x |
+--------------------------------|:------:|:------:|:-----:|:-----:|:-----:|
+Plusignment operator (+>)       |    X   |   X    |   X   |   X   |   X   |
+Multiple Resource relationships |    X   |   X    |   X   |   X   |   X   |
+Class Inheritance Overrides     |    X   |   X    |   X   |   X   |   X   |
+Appending to Variables (+=)     |    X   |   X    |   X   |   X   |   X   |
+Class names starting with 0-9   |    X   |   X    |   X   |   X   |   X   |
+Multi-line C-style comments     |    X   |   X    |   X   |   X   |   X   |
+Node regular expressions        |        |   X    |   X   |   X   |   X   |
+Expressions in Variables        |        |   X    |   X   |   X   |   X   |
+RegExes in conditionals         |        |   X    |   X   |   X   |   X   |
+Elsif in conditionals           |        |        |   X   |   X   |   X   |
+Chaining Resources              |        |        |   X   |   X   |   X   |
+Hashes                          |        |        |   X   |   X   |   X   |
+Parameterised Class             |        |        |   X   |   X   |   X   |
+Run Stages                      |        |        |   X   |   X   |   X   |
+The "in" syntax                 |        |        |   X   |   X   |   X   |
+The "unless" syntax             |        |        |       |       |   X   |
 
 Resources
 ---------
@@ -985,7 +986,7 @@ Puppet currently supports two types of conditionals:
     manifests to include additional classes, define distinct sets of
     resources within a class, or make other structural decisions.
 
-Case statements do not return a value.   Selectors do.  That is the primary difference between them and why you would use one and not the other.
+Case statements do not return a value. Selectors do. That is the primary difference between them and why you would use one and not the other.
 
 #### Selectors
 
@@ -1113,7 +1114,7 @@ message will be logged with `$1` replaced by either `ack` or
 
 #### If/Else Statement
 
-The `if/else` provides branching options based on the truth value of a variable:
+The `if/else` statement provides branching options based on the truth value of a variable:
 
 {% highlight ruby %}
     if $variable {
@@ -1172,7 +1173,15 @@ Boolean `and`, `or`, and `not` operators:
     }
 {% endhighlight %}
 
-See the Expressions section further down for more information on expressions.
+#### Unless Statement
+
+The `unless` statement, introduced in 2.8.0, is an optional replacement for the `if !` or "if not" syntax.
+
+{% highlight ruby %}
+    unless $ram > 1024 {
+       $maxclient = 500
+    }
+{% endhighlight %}
 
 ### Virtual Resources
 
