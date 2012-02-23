@@ -102,6 +102,12 @@ task :tarball do
   FileUtils.cd '..'
 end
 
+desc "Build the documentation site and tar it for deployment"
+task :build do
+  Rake::Task['generate'].invoke
+  Rake::Task['tarball'].invoke
+end
+
 desc "Build all references and man pages for a new Puppet version"
 task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc', 'references:update_manpages']
 
@@ -207,7 +213,7 @@ namespace :references do
 end
 
 task :deploy do
-  sh "rake mirror0 vlad:build"
+  Rake::Task['build'].invoke
   sh "rake mirror0 vlad:release"
   sh "rake mirror2 vlad:release"
 end

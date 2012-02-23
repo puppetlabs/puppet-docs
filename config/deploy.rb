@@ -13,11 +13,6 @@ task :mirror2 do
 end
 
 namespace :vlad do
-desc "Build the documentation site"
-remote_task :build do
-  Rake::Task['generate'].invoke
-  Rake::Task['tarball'].invoke
-end
 
 desc "Release the documentation site"
 remote_task :release do
@@ -29,8 +24,5 @@ remote_task :release do
   run "cd #{staging_dir} && tar -xzf puppetdocs-latest.tar.gz"
   run "rsync -av --delete #{staging_dir}/ #{deploy_to}/" # This is strictly local, so we can't use vlad's rsync helper.
 end
-
-desc "Build and release the documentation site"
-task :deploy => ['vlad:build', 'vlad:release']
 
 end
