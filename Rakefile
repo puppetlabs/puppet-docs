@@ -88,39 +88,24 @@ task :compile_pdf do
   end
 end
 
-desc "Build documentation for a new Puppet version"
-task :build => [ 'references:check_version', 'references:fetch_tags', 'references:stub', 'references:puppetdoc', 'references:update_manpages']
-
 desc "Create tarball of documentation"
 task :tarball do
+  tarball_name = "puppetdocs-latest.tar.gz"
   FileUtils.cd 'output'
-  FileUtils.ln_sf 'files', 'guides/files'
-  FileUtils.ln_sf 'files', 'guides/types/files'
-  FileUtils.ln_sf 'files', 'guides/types/nagios/files'
-  FileUtils.ln_sf 'files', 'guides/types/selinux/files'
-  FileUtils.ln_sf 'files', 'guides/types/ssh/files'
-  FileUtils.ln_sf 'files', 'references/files'
-  sh "tar -czf puppetdocs-latest.tar.gz *"
-  FileUtils.mv 'puppetdocs-latest.tar.gz', '..'
+  sh "tar -czf #{tarball_name} *"
+  FileUtils.mv tarball_name, '..'
   FileUtils.cd '..'
+  sh "git rev-parse HEAD > #{tarball_name}.version" if File.directory?('.git') # Record the version of this tarball, but only if we're in a git repo.
 end
 
-desc "Update the contents of source/man/{app}.markdown" # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
-task :update_manpages do
-  puppet = ENV['PUPPETDIR']
-  applications  = Dir.glob(%Q{#{puppet}/lib/puppet/application/*})
-  ronn = %x{which ronn}.chomp
-  unless File.executable?(ronn) then fail("Ronn does not appear to be installed.") end
-  applications.each do |app|
-    app.gsub!( /^#{puppet}\/lib\/puppet\/application\/(.*?)\.rb/, '\1')
-    headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\npuppet #{app} Manual Page\n======\n\n"
-    manstring = %x{RUBYLIB=#{puppet}/lib:$RUBYLIB #{puppet}/bin/puppet #{app} --help | #{ronn} --pipe -f}
-    File.open(%Q{./source/man/#{app}.markdown}, 'w') do |file|
-      file.puts("#{headerstring}#{manstring}")
-    end
-  end
-
+desc "Build the documentation site and tar it for deployment"
+task :build do
+  Rake::Task['generate'].invoke
+  Rake::Task['tarball'].invoke
 end
+
+desc "Build all references and man pages for a new Puppet version"
+task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc', 'references:update_manpages']
 
 namespace :references do
 
@@ -203,12 +188,34 @@ namespace :references do
     sh "git fetch --tags"
     Dir.chdir("../..")
   end
+
+  desc "Update the contents of source/man/{app}.markdown" # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
+  task :update_manpages do
+    puppet = ENV['PUPPETDIR']
+    applications  = Dir.glob(%Q{#{puppet}/lib/puppet/application/*})
+    ronn = %x{which ronn}.chomp
+    unless File.executable?(ronn) then fail("Ronn does not appear to be installed.") end
+    applications.each do |app|
+      app.gsub!( /^#{puppet}\/lib\/puppet\/application\/(.*?)\.rb/, '\1')
+      headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\npuppet #{app} Manual Page\n======\n\n"
+      manstring = %x{RUBYLIB=#{puppet}/lib:$RUBYLIB #{puppet}/bin/puppet #{app} --help | #{ronn} --pipe -f}
+      File.open(%Q{./source/man/#{app}.markdown}, 'w') do |file|
+        file.puts("#{headerstring}#{manstring}")
+      end
+    end
+
+  end
+
 end
 
 task :deploy do
-  sh "rake mirror0 vlad:build"
-  sh "rake mirror0 vlad:release"
-  sh "rake mirror2 vlad:release"
+  mirrors = ['mirror0', 'mirror2']
+  Rake::Task['build'].invoke
+  mirrors.each do |mirror|
+    Rake::Task[mirror].invoke
+    Rake::Task['vlad:release'].invoke
+    Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
+  end
 end
 
 task :default => :spec
