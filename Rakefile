@@ -90,16 +90,12 @@ end
 
 desc "Create tarball of documentation"
 task :tarball do
+  tarball_name = "puppetdocs-latest.tar.gz"
   FileUtils.cd 'output'
-  FileUtils.ln_sf 'files', 'guides/files'
-  FileUtils.ln_sf 'files', 'guides/types/files'
-  FileUtils.ln_sf 'files', 'guides/types/nagios/files'
-  FileUtils.ln_sf 'files', 'guides/types/selinux/files'
-  FileUtils.ln_sf 'files', 'guides/types/ssh/files'
-  FileUtils.ln_sf 'files', 'references/files'
-  sh "tar -czf puppetdocs-latest.tar.gz *"
-  FileUtils.mv 'puppetdocs-latest.tar.gz', '..'
+  sh "tar -czf #{tarball_name} *"
+  FileUtils.mv tarball_name, '..'
   FileUtils.cd '..'
+  sh "git rev-parse HEAD > #{tarball_name}.version" if File.directory?('.git') # Record the version of this tarball, but only if we're in a git repo.
 end
 
 desc "Build the documentation site and tar it for deployment"
