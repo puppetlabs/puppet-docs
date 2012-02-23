@@ -15,26 +15,19 @@ end
 namespace :vlad do
 desc "Build the documentation site"
 remote_task :build do
-  sh "git checkout -b release"
   Rake::Task['generate'].invoke
   Rake::Task['tarball'].invoke
-  sh "git add -f output puppetdocs-latest.tar.gz"
-  sh "git commit -a -m 'Release dated #{Time.now}'"
-  sh "git push --force origin release"
-  sh "git checkout master"
-  sh "git branch -D release"
 end
 
 desc "Release the documentation site"
 remote_task :release do
-  repo = "#{deploy_to}/repo"
-  run "rm -fr #{repo}; mkdir -p #{repo}"
-  run "git clone #{repository} #{repo}"
-  run "cd #{repo} && git pull origin release"
-  run "cd #{repo} && git checkout release"
-  run "cd #{repo} && cp puppetdocs-latest.tar.gz #{deploy_to}"
-  run "cd #{repo}/output && cp -R * #{deploy_to}"
-  run "rm -fr #{repo}"
+  staging_dir = "~/puppetdocs_deploy"
+  rsync "puppetdocs-latest.tar.gz", "~/"
+  run "rm -rf #{staging_dir}"
+  run "mkdir -p #{staging_dir}"
+  run "cp ~/puppetdocs-latest.tar.gz #{staging_dir}/"
+  run "cd #{staging_dir} && tar -xzf puppetdocs-latest.tar.gz"
+  run "rsync -av --delete #{staging_dir}/ #{deploy_to}/" # This is strictly local, so we can't use vlad's rsync helper.
 end
 
 desc "Build and release the documentation site"
