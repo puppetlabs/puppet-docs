@@ -209,9 +209,13 @@ namespace :references do
 end
 
 task :deploy do
+  mirrors = ['mirror0', 'mirror2']
   Rake::Task['build'].invoke
-  sh "rake mirror0 vlad:release"
-  sh "rake mirror2 vlad:release"
+  mirrors.each do |mirror|
+    Rake::Task[mirror].invoke
+    Rake::Task['vlad:release'].invoke
+    Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
+  end
 end
 
 task :default => :spec

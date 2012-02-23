@@ -34,7 +34,8 @@ end
 
 desc "Release the documentation site"
 remote_task :release do
-  Rake::Task['vlad:check_tarball'].invoke # The invoke method should ensure this only runs once when deploying to multiple mirrors in a single command.
+  Rake::Task['vlad:check_tarball'].invoke # When deploying to multiple mirrors in a single wrapper rake task, this will only run once.
+  puts "DEPLOYING TO: #{domain}"
   tarball_name = "puppetdocs-latest.tar.gz"
   staging_dir = "~/puppetdocs_deploy"
   rsync tarball_name, "~/"
