@@ -208,6 +208,10 @@ PE now lists the necessary packages as prerequisites for Facter, which makes the
 
 The upgrader now skips unnecessary steps for upgrades from 2.0.x versions. 
 
+### Puppet.conf is No Longer World-Readable By Default
+
+The `/etc/puppetlabs/puppet/puppet.conf` file on the puppet master is now created with default permissions of `0600`, to improve security in cases where the puppet master is a multi-purpose server with untrusted user accounts.
+
 ### Apache Now Discards X-Forwarded-For Headers
 
 Puppet Enterprise's Apache configuration now discards any X-Forwarded-For header from requests before passing them to Puppet. In rare configurations, Ruby and Rack's handling of this header could allow agents to impersonate each other when making unauthenticated requests. 

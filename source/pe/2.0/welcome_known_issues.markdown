@@ -83,19 +83,25 @@ This vulnerability has a CVE identifier of [CVE-2012-1054][k5login_cve].
 [k5login_release]: http://puppetlabs.com/security/cve/cve-2012-1054/
 [k5login_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-1054
 
-### Uninstaller Cannot Remove Databases if MySQL's Root Password Has Special Characters
+### Security Issue: Puppet.conf on Puppet Master is World-Readable
 
 This issue was fixed in PE 2.0.3.
 
-If your database server's root password contains certain non-alphanumeric characters, the uninstaller may not be able to log in and delete PE's databases, and you will have to remove them manually. This issue was present when the uninstaller was introduced in PE 2.0.1.
+The `/etc/puppetlabs/puppet/puppet.conf` file on the puppet master is world-readable by default (permissions mode `0644`), which can expose the console's database password to unauthorized users.
 
-### X-Forwarded-For Headers Are Respected for Unauthenticated Requests
+### Security Issue: X-Forwarded-For Headers Are Respected for Unauthenticated Requests
 
 This issue was fixed in PE 2.0.3. It affected PE versions between 1.0 and 2.0.2.
 
 By default, Puppet's unauthenticated services (certificate requests, fetching the CA certificate...) are not restricted by hostname, but `auth.conf` makes it possible to open extra services to unauthenticated connections and restrict those connections by hostname. If the puppet master were configured like this, it would be possible for nodes to impersonate other nodes simply by modifying the X-Forwarded-For header in their request.
 
 This rare possibility was removed in PE 2.0.3 by changing the Apache configuration to discard any X-Forwarded-For headers from requests before passing them to Puppet.
+
+### Uninstaller Cannot Remove Databases if MySQL's Root Password Has Special Characters
+
+This issue was fixed in PE 2.0.3.
+
+If your database server's root password contains certain non-alphanumeric characters, the uninstaller may not be able to log in and delete PE's databases, and you will have to remove them manually. This issue was present when the uninstaller was introduced in PE 2.0.1.
 
 Issues Affecting PE 2.0.1
 -----
