@@ -27,6 +27,16 @@ Issues Still Outstanding
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.0.x series, unless otherwise stated. 
 
+### `pe-httpd` Must Be Restarted After Revoking Certificates
+
+([Issue #8421](http://projects.puppetlabs.com/issues/8421))
+
+Due to [an upstream bug in Apache](https://issues.apache.org/bugzilla/show_bug.cgi?id=14104), the `pe-httpd` service on the puppet master must be restarted after revoking any node's certificate.
+
+After using `puppet cert revoke` or `puppet cert clean` to revoke a certificate, restart the service by running:
+
+    # sudo /etc/init.d/pe-httpd restart
+
 ### Installer Cannot Prevent or Recover From DNS Errors
 
 The installer in PE 2.0 does not currently check for DNS misconfiguration. Such problems can cause the installer to fail, leaving the PE software in an undefined state. To work around this, you should:
