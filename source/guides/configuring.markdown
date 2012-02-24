@@ -147,7 +147,9 @@ In addition to the main configuration file, there are five special-purpose confi
 
 ### `auth.conf`
 
-Access to Puppet's REST API is configured in `auth.conf`, the location of which is determined by the `rest_authconfig` setting. (Default: `/etc/puppet/auth.conf`.) It consists of a series of ACL stanzas, and behaves quite differently from `puppet.conf`; for full details, see the [REST access control documentation](./rest_auth_conf.html). 
+**[See the `auth.conf` documentation for more details about this file](./rest_auth_conf.html).**
+
+Access to Puppet's REST API is configured in `auth.conf`, the location of which is determined by the `rest_authconfig` setting. (Default: `/etc/puppet/auth.conf`.) It consists of a series of ACL stanzas, and behaves quite differently from `puppet.conf`.
 
     # Example auth.conf:
     
