@@ -41,19 +41,24 @@ puppet doc will output a single manifest's documentation on stdout.</p>
 <h2 id="OPTIONS">OPTIONS</h2>
 
 <dl>
-<dt class="flush">--all</dt><dd><p>Output the docs for all of the reference types. In 'rdoc'
-modes, this also outputs documentation for all resources</p></dd>
+<dt class="flush">--all</dt><dd><p>Output the docs for all of the reference types. In 'rdoc' mode, this also
+outputs documentation for all resources.</p></dd>
 <dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
-<dt>--outputdir</dt><dd><p>Specifies the directory where to output the rdoc
-documentation in 'rdoc' mode.</p></dd>
-<dt class="flush">--mode</dt><dd><p>Determine the output mode. Valid modes are 'text', 'pdf' and
-'rdoc'. The 'pdf' mode creates PDF formatted files in the
-/tmp directory. The default mode is 'text'. In 'rdoc' mode
-you must provide 'manifests-path'</p></dd>
-<dt>--reference</dt><dd><p>Build a particular reference. Get a list of references by
-running 'puppet doc --list'.</p></dd>
-<dt>--charset</dt><dd><p>Used only in 'rdoc' mode. It sets the charset used in the
-html files produced.</p></dd>
+<dt>--outputdir</dt><dd><p>Used only in 'rdoc' mode. The directory to which the rdoc output should
+be written.</p></dd>
+<dt class="flush">--mode</dt><dd><p>Determine the output mode. Valid modes are 'text', 'pdf' and 'rdoc'. The 'pdf'
+mode creates PDF formatted files in the /tmp directory. The default mode is
+'text'. In 'rdoc' mode you must provide 'manifests-path'</p></dd>
+<dt>--reference</dt><dd><p>Build a particular reference. Get a list of references by running
+'puppet doc --list'.</p></dd>
+<dt>--charset</dt><dd><p>Used only in 'rdoc' mode. It sets the charset used in the html files produced.</p></dd>
+<dt>--manifestdir</dt><dd><p>Used only in 'rdoc' mode. The directory to scan for stand-alone manifests.
+If not supplied, puppet doc will use the manifestdir from puppet.conf.</p></dd>
+<dt>--modulepath</dt><dd><p>Used only in 'rdoc' mode. The directory or directories to scan for modules.
+If not supplied, puppet doc will use the modulepath from puppet.conf.</p></dd>
+<dt>--environment</dt><dd><p>Used only in 'rdoc' mode. The configuration environment from which
+to read the modulepath and manifestdir settings, when reading said settings
+from puppet.conf. Due to a known bug, this option is not currently effective.</p></dd>
 </dl>
 
 

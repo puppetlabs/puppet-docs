@@ -62,10 +62,10 @@ parameter, so you can specify '--server <var>servername</var>' as an argument.</
 
 <dl>
 <dt class="flush">--debug</dt><dd><p>Enable full debugging.</p></dd>
-<dt>--detailed-exitcodes</dt><dd><p>Provide transaction information via exit codes.  If this is enabled, an
-exit code of '2' means there were changes, and an exit code of '4' means
-that there were failures during the transaction. This option only makes
-sense in conjunction with --onetime.</p></dd>
+<dt>--detailed-exitcodes</dt><dd><p>Provide transaction information via exit codes. If this is enabled, an exit
+code of '2' means there were changes, an exit code of '4' means there were
+failures during the transaction, and an exit code of '6' means there were both
+changes and failures.</p></dd>
 <dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
 <dt>--logdest</dt><dd><p>Where to send messages.  Choose between syslog, the console, and a log file.
 Defaults to sending messages to syslog, or the console if debugging or

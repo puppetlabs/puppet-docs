@@ -18,7 +18,7 @@ puppet inspect Manual Page
 
 <h2 id="USAGE">USAGE</h2>
 
-<p>puppet inspect</p>
+<p>puppet inspect [--archive_files] [--archive_file_server]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -39,6 +39,14 @@ also a valid long argument, e.g. '--server=master.domain.com'. See the
 configuration file documentation at
 http://docs.puppetlabs.com/references/latest/configuration.html for
 the full list of acceptable settings.</p>
+
+<dl>
+<dt>--archive_files</dt><dd><p>During an inspect run, whether to archive files whose contents are audited to
+a file bucket.</p></dd>
+<dt>--archive_file_server</dt><dd><p>During an inspect run, the file bucket server to archive files to if
+archive_files is set.  The default value is '$server'.</p></dd>
+</dl>
+
 
 <h2 id="AUTHOR">AUTHOR</h2>
 

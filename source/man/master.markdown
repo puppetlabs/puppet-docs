@@ -62,6 +62,17 @@ facts contained in the $vardir/yaml/ directory to compile the catalog.</p></dd>
 
 <p>  puppet master</p>
 
+<h2 id="DIAGNOSTICS">DIAGNOSTICS</h2>
+
+<p>When running as a standalone daemon, puppet master accepts the
+following signals:</p>
+
+<dl>
+<dt class="flush">SIGHUP</dt><dd>Restart the puppet master server.</dd>
+<dt>SIGINT and SIGTERM</dt><dd>Shut down the puppet master server.</dd>
+</dl>
+
+
 <h2 id="AUTHOR">AUTHOR</h2>
 
 <p>Luke Kanies</p>
