@@ -27,6 +27,33 @@ Issues Still Outstanding
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.0.x series, unless otherwise stated. 
 
+### On Linode/Xen Instances, Facter Always Prints Error Messages
+
+([Issue #12813](https://projects.puppetlabs.com/issues/12813))
+
+This issue was introduced in PE 2.0.3. 
+
+On Linode instances, and possibly other Xen platforms, Facter prints the following harmless but annoying messages to STDERR every time Puppet runs:
+
+    pcilib: Cannot open /proc/bus/pci
+    lspci: Cannot find any working access method.
+
+This will be fixed in the next patch release of PE 2.0. For now, the noise can be suppressed by directly patching the `/opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb` file, as shown below:
+
+    diff --git lib/facter/virtual.rb lib/facter/virtual.rb
+    index e617359..94b10c5 100644
+    --- /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
+    +++ /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
+    @@ -89,7 +89,7 @@ Facter.add("virtual") do
+         end
+     
+         if result == "physical"
+    -      output = Facter::Util::Resolution.exec('lspci')
+    +      output = Facter::Util::Resolution.exec('lspci 2>/dev/null')
+           if not output.nil?
+             output.each_line do |p|
+               # --- look for the vmware video card to determine if it is virtual => vmware.
+
 ### `pe-httpd` Must Be Restarted After Revoking Certificates
 
 ([Issue #8421](http://projects.puppetlabs.com/issues/8421))
