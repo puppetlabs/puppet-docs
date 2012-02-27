@@ -99,7 +99,9 @@ This works identically to assigning classes and parameters to a single node. Use
 
 ### The Default Group
 
-The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node. 
+The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node. **This differs from the open source Dashboard,** which doesn't currently implement a default group. 
+
+Nodes are added to the default group by a periodic background task, so it may take several minutes after a node first checks in before it joins the group.
 
 
 Rake API

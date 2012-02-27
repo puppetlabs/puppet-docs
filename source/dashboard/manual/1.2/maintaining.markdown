@@ -102,3 +102,4 @@ To restore the Puppet Dashboard from a file called `production.sql` to your `pro
 * [Configuring Dashboard](./configuring.html)
 * **Maintaining Dashboard**
 * [Using Dashboard](./using.html)
+* [Rake API](./rake_api.html)

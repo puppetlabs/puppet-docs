@@ -168,3 +168,4 @@ This task will convert the most recent reports first, and if it is interrupted, 
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)
 * [Using Dashboard](./using.html)
+* [Rake API](./rake_api.html)

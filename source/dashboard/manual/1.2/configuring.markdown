@@ -162,4 +162,5 @@ This section will be filled in at a later date. <!-- TK -->
 * **Configuring Dashboard**
 * [Maintaining Dashboard](./maintaining.html)
 * [Using Dashboard](./using.html)
+* [Rake API](./rake_api.html)
 

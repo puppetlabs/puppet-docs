@@ -19,9 +19,18 @@ This is a chapter of the [Puppet Dashboard 1.2 manual](./index.html).
 
 * * * 
 
-This chapter has not yet been written.
+This chapter has not been written. However, similar documentation has been written for the Puppet Enterprise 2.0 console. The PE console is built on Puppet Dashboard and adds functionality, but the features they have in common are largely identical save for branding and cosmetic changes. 
 
-<!-- content -->
+The three chapters below document the features that Dashboard and the PE console have in common:
+
+* [Navigating the Console][c_nav]
+* [Viewing Reports and Inventory Data][c_reports]
+* [Grouping and Classifying Nodes][c_class]
+
+[c_nav]: http://docs.puppetlabs.com/pe/2.0/console_navigating.html
+[c_reports]: http://docs.puppetlabs.com/pe/2.0/console_reports.html
+[c_class]: http://docs.puppetlabs.com/pe/2.0/console_classes_groups.html
+
 
 * * * 
 
@@ -32,3 +41,4 @@ This chapter has not yet been written.
 * [Configuring Dashboard](./configuring.html)
 * [Maintaining Dashboard](./maintaining.html)
 * **Using Dashboard**
+* [Rake API](./rake_api.html)
