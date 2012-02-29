@@ -171,7 +171,7 @@ This is a security and bug-fix release in the PE 2.0 series. It patches two secu
 When executing commands as a different user, Puppet was leaving the forked process with Puppet's own group permissions. Specifically: 
 
 * Puppet's primary group (usually root) was always present in a process's supplementary groups.
-* When an exec resource was assigned a user to run as but not a group, Puppet would set its effective GID to Puppet's own GID (usually root).
+* When an `exec` resource had a specified `user` attribute but not a `group` attribute, Puppet would set its effective GID to Puppet's own GID (usually root).
 * Permanently changing a process's UID and GID wouldn't clear the supplementary groups, leaving the process with Puppet's own supplementary groups (usually including root).
 
 This caused any untrusted code executed by a Puppet exec resource to be given unexpectedly high permissions. [See here][gid_release] for more details, including hotfixes for previous versions of PE.

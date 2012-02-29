@@ -40,19 +40,21 @@ On Linode instances, and possibly other Xen platforms, Facter prints the followi
 
 This will be fixed in the next patch release of PE 2.0. For now, the noise can be suppressed by directly patching the `/opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb` file, as shown below:
 
-    diff --git lib/facter/virtual.rb lib/facter/virtual.rb
-    index e617359..94b10c5 100644
-    --- /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
-    +++ /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
-    @@ -89,7 +89,7 @@ Facter.add("virtual") do
-         end
-     
-         if result == "physical"
-    -      output = Facter::Util::Resolution.exec('lspci')
-    +      output = Facter::Util::Resolution.exec('lspci 2>/dev/null')
-           if not output.nil?
-             output.each_line do |p|
-               # --- look for the vmware video card to determine if it is virtual => vmware.
+{% highlight diff %}
+diff --git lib/facter/virtual.rb lib/facter/virtual.rb
+index e617359..94b10c5 100644
+--- /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
++++ /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
+@@ -89,7 +89,7 @@ Facter.add("virtual") do
+     end
+ 
+     if result == "physical"
+-      output = Facter::Util::Resolution.exec('lspci')
++      output = Facter::Util::Resolution.exec('lspci 2>/dev/null')
+       if not output.nil?
+         output.each_line do |p|
+           # --- look for the vmware video card to determine if it is virtual => vmware.
+{% endhighlight %}
 
 ### `pe-httpd` Must Be Restarted After Revoking Certificates
 
@@ -97,7 +99,7 @@ This issue was fixed in PE 2.0.3. It affected PE versions between 1.0 and 2.0.2.
 When executing commands as a different user, Puppet leaves the forked process with Puppet's own group permissions. Specifically: 
 
 * Puppet's primary group (usually root) is always present in a process's supplementary groups.
-* When an exec resource is assigned a user to run as but not a group, Puppet will set its effective GID to Puppet's own GID (usually root).
+* When an `exec` resource has a specified `user` attribute but not a `group` attribute, Puppet will set its effective GID to Puppet's own GID (usually root).
 * Permanently changing a process's UID and GID won't clear the supplementary groups, leaving the process with Puppet's own supplementary groups (usually including root).
 
 This causes any untrusted code executed by a Puppet exec resource to be given unexpectedly high permissions. [See here][gid_release] for more details, including hotfixes for previous versions of PE.
