@@ -57,7 +57,10 @@ An ENC provides an alternate method to using the main site manifest (`site.pp`) 
 :   Idempotence refers to the ability of Puppet's transaction layer to repeatedly apply a configuration to a host. A configuration can be said to be idempotent when it can be safely run multiple times with the same outcome on the host. 
 
 **inheritance (class)**
-:   foo. 
+:  <!-- 
+ Class inheritance in Puppet works differently than it traditionally does in other languages. Because Puppet is declarative, a given resource can only be declared once. This means a child class will replace the parent class.  
+Puppet uses  "single inheritance," which means that a class can inherit from one and only one other class.
+ -->
 
 **inheritance (node)**
 :   foo. 
@@ -85,7 +88,7 @@ An ENC provides an alternate method to using the main site manifest (`site.pp`) 
 :   A manifest component consisting of a collection of classes and/or resources to be applied to an agent node. The target agent node is specified with a unique identifier ("certname") that matches the specified node name. Nodes defined in manifests allow inheritance, although this should be used with care due to the behavior of dynamic variable scoping. 
 
 **noop**
-:   foo.
+:   Noop mode (short for "No Operations" mode) lets you simulate your configuration without making any actual changes. Basically, noop allows you to do a dry run with all logging working normally, but with no effect on any hosts. To run in noop mode, add the argument `--noop` to `puppet agent` or `apply`.
 
 **parameter** (custom type and provider development)
 :   A value which does not call a method on a provider. Eventually exposed as an attribute in instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
