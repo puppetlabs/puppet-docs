@@ -23,14 +23,14 @@ An accurate, shared vocabulary goes a long way to ensure the success of a projec
 :   "Declare" directs Puppet to include a class or a resource in a given configuration. To add classes, use the `include` keyword or the `class {"foo":}` syntax. To add resources,  use the lowercase `file {"/tmp/bar":}` syntax.
 
 **define**
-:   "Define" is used to specify the contents and behavior of a class or a defined resource type. 
+:   To specify the contents and/or behavior of a class or a defined resource type. Sometimes, define is used as shorthand for "defined resource type".
 
-**defined resource type** or **defined type** (older usage: **definition**)
-:   Defined types are created using the Puppet language and are analogous to macros in some other languages. A defined resource type allows you to group basic resources into a "super resource" which you can use to model a logical chunk of configuration resources. For example, you could use a defined resource type to perform all the steps needed to set up and populate a Git repository.
-Contrast with **native type.** For more information, see [Defined Types](http://docs.puppetlabs.com/learning/definedtypes.html)
+**define (keyword)**
+The language keyword used to create a <a id="defined type">defined type </a>
+
 
 **environment**
-:   Puppet lets you seperate your <a id="site>site</a> into distinct environments, each of which can be served a different set of modules. For example, environments can be used to set up scratch nodes for testing before roll-out, or to divide a site by types of hardware.
+:   Puppet lets you seperate your <a id="site">site</a> into distinct environments, each of which can be served a different set of modules. For example, environments can be used to set up scratch nodes for testing before roll-out, or to divide a site by types of hardware.
 
 **expression**
 :   The Puppet language supports several types of expressions for comparison and evaluation purposes. Amongst others, Puppet supports boolean expressions, comparision expressions, arithmetic expressions. See the [Language Guide](http://docs.puppetlabs.com/guides/language_guide.html#expressions) for more information.
@@ -66,29 +66,32 @@ Puppet uses  "single inheritance," which means that a class can inherit from one
 :   foo. 
 
 **master**
-:   foo.
+:   In a standard Puppet client-server deployment, the server is known as the Master. The Master runs as a daemon on the host server and provides the configuration data for your environment to the Puppet <a id="agent">Agents</a> running on the clients.
 
 **manifest**
-:   A configuration file written in the Puppet language. These files should have the .pp extension.
+:   A "manifest" is a configuration file written in the Puppet language. Manifest files use the .pp suffix (e.g. `site.pp`). By default, manifest files are stored in `etc/puppet/manifests`. Puppet manifests consist of the following major components:
+ <a id="resource">Resources</a>
+Files
+<a id="template">Templates</a>
+<a id="node">Nodes</a>
+<a id="class">Classes</a>
+<a id="defined resource type">Definitions</a>
 
 **metaparameter**
-:   foo.
+:   A metaparameter is a resource attribute that is part of Puppet's framework rather than part of the implementation of a specific instance. Metaparameters perform actions on resources and can be specified for any type of resource. For examples of metaparameters and their usage, see the [Metaparameter Reference](http://docs.puppetlabs.com/references/stable/metaparameter.html)
 
 **module**
-:   A collection of classes, resource types, files, and templates, organized around a particular purpose. See also [[Module Organisation]].
+:   A collection of classes, resource types, files, and templates, organized around a particular purpose. For example, a module could be used to completely configure an Apache instance or to set-up a Rails application. There are many pre-built modules available for download in the [Puppet Forge](http://forge.puppetlabs.com/). For more information see [Module Organisation](http://docs.puppetlabs.com/guides/modules.html).
 
 **namevar**
-:   foo. 
-
-**native type**
-:   A type written purely in Ruby and distributed with Puppet. Puppet can be extended with additional native types, which can be distributed to agent nodes via the pluginsync system. See the documentation for list of native types.
+:   The "name variable" or "namevar" is an attribute of a resource used to determine the name of that resource. Typically, namevar is not specified since it is synonomous with the title of the resource. However, in some cases (such as when referring to a file whose location varies), it is useful to specify namevar as a kind of short-hand.  
 
 
 **node (definition)**
 :   A manifest component consisting of a collection of classes and/or resources to be applied to an agent node. The target agent node is specified with a unique identifier ("certname") that matches the specified node name. Nodes defined in manifests allow inheritance, although this should be used with care due to the behavior of dynamic variable scoping. 
 
 **noop**
-:   Noop mode (short for "No Operations" mode) lets you simulate your configuration without making any actual changes. Basically, noop allows you to do a dry run with all logging working normally, but with no effect on any hosts. To run in noop mode, add the argument `--noop` to `puppet agent` or `apply`.
+:   Noop mode (short for "No Operations" mode) lets you simulate your configuration without making any actual changes. Basically, noop allows you to do a dry run with all logging working normally, but with no effect on any hosts. To run in noop mode, add the argument `--noop` to `puppet agent` or `puppet apply`.
 
 **parameter** (custom type and provider development)
 :   A value which does not call a method on a provider. Eventually exposed as an attribute in instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
@@ -101,9 +104,6 @@ Puppet uses  "single inheritance," which means that a class can inherit from one
 
 **pattern**
 :   An ocassionally used colloquial community expression for a collection of manifests designed to solve an issue or manage a particular configuration item, for example an Apache pattern.
-
-**plugin, plugin types**
-:   a Puppet term for custom types created for Puppet at the Ruby level. These types are written entirely in Ruby and must correspond to the Puppet standards for custom-types.
 
 **plusignment operator**
 :   An operator that allows you to add values to resource parameters using the +> ('plusignment') syntax:
@@ -122,6 +122,9 @@ Puppet uses  "single inheritance," which means that a class can inherit from one
 
 **provider**
 :   A simple implementation of a type; examples of package providers are dpkg and rpm, and examples of user providers are useradd and netinfo. Most often, providers are just Ruby wrappers around shell commands, and they are usually very short and thus easy to create.
+
+**plugin**
+: See <a id="type(plugin)">type (plugin)</a>
 
 **realize**
 :   a Puppet term meaning to declare a virtual resource should be part of a system's catalog. See also virtual resources.
@@ -175,7 +178,17 @@ This structure maps directly to a [[External Nodes|external node classifier]] an
 :   foo. 
 
 **type**
-:   abstract description of a type of resource. Can be implemented as a native type, plug-in type, or defined type. The [complete list](http://docs.puppetlabs.com/references/stable/type.html) of the types Puppet can manage is available online.
+:   An abstract description of a kind of resource. Can be implemented as a native type, plug-in type, or defined type. See [type reference](http://docs.puppetlabs.com/references/stable/type.html) for a complete list of the types Puppet can manage is available online.
+
+ **type (defined)** aka **defined resource type** (older usage: **definition**)
+:   Defined types are user-created with the Puppet language and are analogous to macros in some other languages. A defined resource type allows you to group basic resources into a "super resource" which you can use to model a logical chunk of configuration resources. For example, you could use a defined resource type to perform all the steps needed to set up and populate a Git repository.
+Contrast with **native type.** For more information, see [Defined Types](http://docs.puppetlabs.com/learning/definedtypes.html)
+
+**type (native)**
+:   A built-in type written purely in Ruby and distributed with Puppet. Puppet can be extended with additional native types, which can be distributed to agent nodes via the pluginsync system. For more information, see the [list of native types](http://docs.puppetlabs.com/references/2.7.0/type.html).
+
+**type (plug-in)** aka **plugin**
+:   a Puppet term for custom types created for Puppet at the Ruby level. These types are written entirely in Ruby and must correspond to the Puppet standards for custom-types.
 
 **variable**
 :   variables in Puppet are similar to variables in other programming languages. Once assigned, variables cannot be reassigned within the same scope. However, within a sub-scope a new assignment can be made for a variable name for that sub-scope and any further scopes created within it:
