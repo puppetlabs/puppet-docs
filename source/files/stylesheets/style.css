@@ -98,9 +98,12 @@ q:before, q:after {
   content: "";
 }
 
+/* Commented out because I don't think we use this. -NF feb 29 2012 */
+/*
 blockquote, q {
   quotes: "" "";
 }
+*/
 
 header, footer, section, article, aside, nav {
   display: block;
@@ -329,10 +332,10 @@ li ul {
 
 blockquote {
   position: relative;
-  overflow: hidden;
+/* overflow: hidden; */ /* I don't know why this was here. -NF 2/2012 */
   padding: 1em 20px;
-  border-top: none;
-  border-left: 3px solid #e0e0e0;
+/*   border-top: none; */
+  border: 3px solid #e0e0e0;
   margin-top: 0;
   margin-bottom: 0.5em;
 }
@@ -358,6 +361,8 @@ div.left.quote {
   position: relative;
 }
 
+/* Commenting out because I want to use blockquote elements as asides. This is semantically sketchy (this should properly be done with <aside> elements), but because Markdown has a native representation of blockquotes, and because most Markdown implementations won't recursively process Markdown syntax contained within non-native block elements, it's the easiest way to get what we want. -NF Feb 29 2012 */
+/* 
 blockquote:before {
   content: "“";
   position: absolute;
@@ -379,6 +384,7 @@ blockquote p{
   z-index: 2;
   position: relative;
 }
+ */
 
 cite {
   font-size: 0.85em;
