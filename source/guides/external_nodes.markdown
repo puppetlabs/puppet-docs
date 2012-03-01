@@ -17,12 +17,25 @@ An external node classifier is an executable that can be called by puppet master
 
 Inside the ENC, you can reference any data source you want, including some of Puppet's own data sources, but from Puppet's perspective, it just puts in a node name and gets back a hash of information. 
 
+ENCs can co-exist with standard node definitions in `site.pp`, and the classes declared in each source are effectively merged. 
+
+> ### Aside: Under the Hood
+> 
+> Every node always gets a node object from the configured `node_terminus`. (This setting takes effect where the catalog is compiled; on the master server when using puppet agent, and on the node itself when using puppet apply). The default node terminus is `plain`, which returns an empty node object, and the `exec` terminus calls an ENC script to determine what should go in the node object. Thus, the ENC interface is really a plugin within a plugin; there are more direct termini available, like the `ldap` terminus, which looks up information in an LDAP directory to create nodes. 
+> 
+> When compiling a node's catalog, Puppet will include ALL of the following:
+> 
+> * Any classes specified in the node object from the node terminus
+> * Any classes or resources which are in the site manifest but outside any node definitions
+> * Any classes or resources in the most specific node definition in site.pp that matches the current node (if site.pp contains any node definitions)
+>     * Note that if site.pp contains at least one node definition, there **must** be a node definition that matches the current node; compilation will fail if a match can't be found. Note also that `node default` can match any node if no more specific node definitions match it.
+
+
 Considerations and Limitations
 ------------------------------
 
 * The YAML returned by an ENC isn't an exact equivalent of a node definition in `site.pp` --- it can't declare individual resources, declare relationships, or do conditional logic. The only things an ENC can do are **declare classes, assign top-scope variables, and set an environment.** This means an ENC is most effective if you've done a good job of separating your configurations out into classes and modules.
 * Although ENCs can set an [environment](./environment.html) for a node, this is not very well supported --- currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. (See [issue 3910](http://projects.puppetlabs.com/issues/3910) for more details.) We hope to make server-side environments work well in the future, but if you need them right now, the workaround is to use Puppet to manage `puppet.conf` on the agent and set the environment for the next run based on what the ENC thinks it should be.
-* You can optionally combine an ENC with regular node definitions in `site.pp`. This works on the "I hope you brought enough for everybody" rule: things will work correctly if you have an ENC and no node definitions, but if there's at least one node definition, you need to have a default node defined or account for every node with a definition; Puppet will fail compilation with an error if a definition for a given node can't be found. 
 * Even if you aren't using node definitions, you can still use site.pp to do things like set global resource defaults. 
 * Unlike regular node definitions, where a node may match a less specific definition if an exactly matching one isn't found (depending on the puppet master's `strict_hostname_checking` setting), an ENC is called only once, with the node's full name. 
 
