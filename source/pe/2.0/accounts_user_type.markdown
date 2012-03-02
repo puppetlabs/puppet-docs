@@ -49,7 +49,7 @@ The `pe_accounts::user` type can be used on all of the platforms supported by Pu
         uid     => '52',
         gid     => '52',
       }
-      accounts:: user {'sysop':
+      pe_accounts::user {'sysop':
         locked  => false,
         comment => 'System Operator',
         uid     => '700',
