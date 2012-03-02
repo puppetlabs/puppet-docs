@@ -123,3 +123,70 @@ When defining a resource type or a parameterized class, you specify a list of
 Thus, parameters are relevant to the implementation, and attributes are relevant
 to the interface.
 
+Troubleshooting Doc Guidelines
+-----
+
+Documents meant to help troubleshoot problems should follow these principles:
+
+* Be action-oriented
+* If users can pick and choose from a number of options, use bulleted lists.
+  If users should do EVERY step in a series, use numbered lists. The latter
+  should be more common.
+* Steps should be accompanied by actual copy-and-pasteable commands that test
+  whatever the step asks you to check.
+
+Markup
+-----
+
+Documents in this repo are in Markdown format with several extensions.
+
+* Each file should begin with YAML frontmatter, per Jekyll's requirements. See
+  any file for an example.
+* The Markdown processor we use (Kramdown) supports the definition list and
+  table markup extensions from PHP Markdown Extra. The docs use these in various
+  places.
+* We also use several Jekyll-specific Liquid tags. If we ever switch backends,
+  the behavior of these will have to be re-implemented. The tags we're using
+  include:
+    * {% include <file name relative to the _includes directory> %} --- Insert
+      a snippet from the `_includes` directory. If you're including into body
+      text, the snippet can contain Markdown and what-have-you, but if you're
+      including directly into a template, it must be mostly normal HTML
+      (although it can contain more Liquid tags).
+    * {% highlight <language> %}... some code ...{% endhighlight %} --- This
+      uses the `pygmentize` command to color up code examples. See `pygmentize
+      -L lexers` to see a list of what's allowed. Note that this automatically
+      puts everything within into a `<pre><code>` block, so indenting it is
+      superfluous, but as long as the language is something like ruby where
+      indentation is non-semantic, indenting reduntantly can make your text
+      editor's Markdown highlighting behave better, especially if the example is
+      full of underscores or something. To highlight Puppet code, use {%
+      highlight ruby %}. There's a Puppet lexer available, but it doesn't ship
+      with pygments by default, and much of our puppet code actually blows it
+      up, so we should turn it on in a dev branch at some point and submit bug
+      requests. <https://github.com/rodjek/puppet-pygments-lexer/>
+    * {% capture <name> %} ... {% endcapture %} --- Capture some text so you
+      can render it elsewhere in the page with {{ <name> }}.
+    * {% iflink "Link text", "/link/destination.html" %} --- Custom to our
+      site. Renders a normal link, unless it would point to the current page, in
+      which case it renders `<span class="currentpage">Link text</span>`.
+    * `{% render_nav %}` --- If the YAML frontmatter specifies a filename in
+      its "nav" key, this tag renders that file, which it will find in the
+      `_includes` directory. Otherwise it renders the default nav snippet from
+      `_config.yml`. This should really only be called from templates.
+
+There is also at least one case where we abuse Markdown:
+
+* Asides in an article should be styled as Markdown blockquotes. We should
+  properly be using <aside> elements, but:
+
+    * It's really convenient to make a Markdown blockquote.
+    * We don't use blockquotes for actual QUOTES anywhere in the docs, which
+      effectively makes it an abandoned element.
+    * The Markdown spec, such as it is, says processors should ignore any
+      further Markdown formatting inside an explicit HTML block element (like
+      <aside>), so using the proper tag would entail spewing raw HTML around our
+      documents. This can be turned off in some processors, but we would
+      prefer to not rely that heavily on implementation details, plus turning it
+      on might wreck something else.
+
