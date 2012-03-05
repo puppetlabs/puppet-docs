@@ -86,8 +86,8 @@ Parameterized classes cannot be used with the array syntax. When using the hash 
             ntpserver: 0.pool.ntp.org
         aptsetup:
             additional_apt_repos:
-                - deb localrepo.magpie.lan/ubuntu lucid production
-                - deb localrepo.magpie.lan/ubuntu lucid vendor
+                - deb localrepo.example.com/ubuntu lucid production
+                - deb localrepo.example.com/ubuntu lucid vendor
 
 #### Parameters
 
@@ -96,8 +96,8 @@ If present, the value of the `parameters` key MUST be a hash of valid variable n
     parameters: 
         ntp_servers:
             - 0.pool.ntp.org
-            - ntp.puppetlabs.lan
-        mail_server: mail.puppetlabs.lan
+            - ntp.example.com
+        mail_server: mail.example.com
         iburst: true
         
 
@@ -117,13 +117,13 @@ If present, the value of `environment` MUST be a string representing the desired
             ntpserver: 0.pool.ntp.org
         aptsetup:
             additional_apt_repos:
-                - deb localrepo.magpie.lan/ubuntu lucid production
-                - deb localrepo.magpie.lan/ubuntu lucid vendor
+                - deb localrepo.example.com/ubuntu lucid production
+                - deb localrepo.example.com/ubuntu lucid vendor
     parameters: 
         ntp_servers:
             - 0.pool.ntp.org
-            - ntp.puppetlabs.lan
-        mail_server: mail.puppetlabs.lan
+            - ntp.example.com
+        mail_server: mail.example.com
         iburst: true
     environment: production
 

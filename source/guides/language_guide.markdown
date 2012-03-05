@@ -1496,7 +1496,7 @@ The `import` keyword does not insert Puppet code inline like a C preprocessor #i
 
 {% highlight ruby %}
     # site.pp
-    node kestrel.puppetlabs.lan {
+    node kestrel.example.com {
         # Wrong wrong wrong!
         import nodes/kestrel.pp
     }

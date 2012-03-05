@@ -293,7 +293,7 @@ For Dashboard to receive reports, there are two requirements:
         # puppet.conf (on puppet master)
         [master]
           reports = store, http
-          reporturl = http://dashboard.puppetlabs.lan:3000/reports/upload
+          reporturl = http://dashboard.example.com:3000/reports/upload
 
 #### Configuring Reports on Puppet 0.25.x
 

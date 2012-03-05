@@ -123,12 +123,12 @@ For production deployment, you'll need to allow find and search access for your 
     path /facts
     auth yes
     method find, search
-    allow custominventorybrowser.puppetlabs.lan
+    allow custominventorybrowser.example.com
 
     path /facts
     auth yes
     method save
-    allow puppetmaster1.puppetlabs.lan, puppetmaster2.puppetlabs.lan, puppetmaster3.puppetlabs.lan
+    allow puppetmaster1.example.com, puppetmaster2.example.com, puppetmaster3.example.com
 
 ### Configuring Certificates
 

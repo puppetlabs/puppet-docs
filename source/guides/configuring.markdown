@@ -64,8 +64,8 @@ Putting that all together:
     # a block:
     [main]
       # setting = value pairs:
-      server = master.puppetlabs.lan
-      certname = 005056c00008.localcloud.puppetlabs.lan
+      server = master.example.com
+      certname = 005056c00008.localcloud.example.com
       
       # variable interpolation:
       rundir = $vardir/run
@@ -116,9 +116,9 @@ Boolean settings are handled a little differently: use a bare option for a true 
 
 For non-boolean settings, just follow the option with the desired value: 
 
-    $ puppet agent --certname magpie.puppetlabs.lan
+    $ puppet agent --certname magpie.example.com
     # An equals sign is optional:
-    $ puppet agent --certname=magpie.puppetlabs.lan
+    $ puppet agent --certname=magpie.example.com
 
 Inspecting Settings
 -------------------
@@ -156,22 +156,22 @@ Access to Puppet's REST API is configured in `auth.conf`, the location of which 
     path /
     auth any
     environment override
-    allow magpie.lan
+    allow magpie.example.com
     
     path /certificate_status
     auth any
     environment production
-    allow magpie.lan
+    allow magpie.example.com
     
     path /facts
     method save
     auth any
-    allow magpie.lan
+    allow magpie.example.com
     
     path /facts
     auth yes
     method find, search
-    allow magpie.lan, dashboard, redmaster.magpie.lan
+    allow magpie.example.com, dashboard.example.com, finch.example.com
 
 ### `fileserver.conf`
 
@@ -229,8 +229,8 @@ This `tagmail.conf` file will mail any resource events tagged with `webserver` b
 
 The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or certname globs (one per line) whose certificate requests will automatically be signed. 
 
-    rebuilt.puppetlabs.lan
-    *.magpie.puppetlabs.lan
+    rebuilt.example.com
+    *.scratch.example.com
     *.local
 
 Note that certname globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
@@ -246,6 +246,6 @@ Puppet device, added in Puppet 2.7, configures network hardware using a catalog 
     [device certname]
         type <type>
         url <url>
-    [router6.puppetlabs.lan]
+    [router6.example.com]
         type cisco
         url ssh://admin:password@ef03c87a.local

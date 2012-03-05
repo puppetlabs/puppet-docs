@@ -65,7 +65,7 @@ Although this would probably have caused a problem during installation, it's wor
 If the puppet master is alive and reachable, you'll get something like: 
 
     Trying 172.16.158.132...
-    Connected to screech.magpie.lan.
+    Connected to screech.example.com.
     Escape character is '^]'.
 
 Otherwise, it will return something like "nodename nor servname provided, or not known."

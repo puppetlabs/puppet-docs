@@ -72,7 +72,7 @@ The example also redirects requests for a non-existent environment to a differen
     path /
     auth any
     environment appdev
-    allow localhost, customapp.puppetlabs.lan
+    allow localhost, customapp.example.com
 
 If you specify an environment in an [`auth.conf`][auth] ACL, it will only apply to requests in that environment. This can be useful for developing new applications that integrate with Puppet; the example above will leave normal requests functioning normally, but allow an app server to access everything via the REST API. 
 
