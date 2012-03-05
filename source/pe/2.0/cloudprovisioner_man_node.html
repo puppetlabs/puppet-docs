@@ -448,15 +448,15 @@ Puppet Dashboard) when the agent checks in for the first time.</p></li>
 <p>Retrieve an "empty" (no classes, no ENC-imposed parameters, and an
 environment of "production") node:</p>
 
-<p>$ puppet node find somenode.puppetlabs.lan --terminus plain --render-as yaml</p>
+<p>$ puppet node find somenode.example.com --terminus plain --render-as yaml</p>
 
 <p>Retrieve a node using the puppet master's configured ENC:</p>
 
-<p>$ puppet node find somenode.puppetlabs.lan --terminus exec --mode master --render-as yaml</p>
+<p>$ puppet node find somenode.example.com --terminus exec --mode master --render-as yaml</p>
 
 <p>Retrieve the same node from the puppet master:</p>
 
-<p>$ puppet node find somenode.puppetlabs.lan --terminus rest --render-as yaml</p>
+<p>$ puppet node find somenode.example.com --terminus rest --render-as yaml</p>
 
 <h2 id="NOTES">NOTES</h2>
 

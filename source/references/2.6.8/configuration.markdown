@@ -276,7 +276,7 @@ Whether certificate revocation should be supported by downloading a Certificate 
 
 The name to use when handling certificates.  Defaults to the fully qualified domain name.
 
-- *Default*: pelin.lovedthanlost.net
+- *Default*: (the system's fully qualified domain name)
 
 ### classfile
 
@@ -997,7 +997,7 @@ The directory in which to store reports received from the client.  Each client g
 
 The 'from' email address for the reports.
 
-- *Default*: report@pelin.lovedthanlost.net
+- *Default*: report@(the system's fully qualified domain name)
 
 ### reports
 

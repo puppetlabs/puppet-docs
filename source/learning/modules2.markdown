@@ -94,7 +94,7 @@ And... that's all it takes, actually. This will work. If you declare the class w
 
 {% highlight ruby %}
     class {'ntp':
-      servers => [ "ntp1.puppetlabs.lan dynamic", "ntp2.puppetlabs.lan dynamic", ],
+      servers => [ "ntp1.example.com dynamic", "ntp2.example.com dynamic", ],
     }
 {% endhighlight %}
 
@@ -198,8 +198,8 @@ Module Documentation
     # == Sample Usage:
     #
     #   class {'ntp':
-    #     servers => [ "ntp1.puppetlabs.lan dynamic",
-    #                  "ntp2.puppetlabs.lan dynamic", ],
+    #     servers => [ "ntp1.example.com dynamic",
+    #                  "ntp2.example.com dynamic", ],
     #   }
     #   class {'ntp':
     #     enable => false,

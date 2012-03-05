@@ -41,6 +41,18 @@ module PuppetDocs
         puts "Generating #{@name} reference for #{version}."
         content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppetdoc -m text -r #{@name}`
         if content
+          if @name == "configuration" # then get any references to the laptop's hostname out of there
+            require 'facter'
+            hostname = Facter["hostname"].value
+            domain = Facter["domain"].value
+            if domain and domain != ""
+              fqdn = [hostname, domain].join(".")
+            else
+              fqdn = hostname
+            end
+            content.gsub!(fqdn.downcase, "(the system's fully qualified domain name)")
+          end
+
           setup_destination!
           File.open(destination_filename, 'w') { |f| f.write content }
           header = "---\nlayout: default\ntitle: "

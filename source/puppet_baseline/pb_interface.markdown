@@ -166,8 +166,8 @@ There, she notices that a user was completely deleted from all three nodes, and 
 
 ![tutorial_group_reject_user_nodes][]
 
-    [root@hawk1.magpie.lan ~]# puppet resource group nick ensure=present gid=506
-    [root@hawk1.magpie.lan ~]# puppet resource user nick ensure=present uid=506 gid=506
+    [root@hawk1.example.com ~]# puppet resource group nick ensure=present gid=506
+    [root@hawk1.example.com ~]# puppet resource user nick ensure=present uid=506 gid=506
     ...
 
 Then she takes a look at the file. It looks like two nodes had the ctime and mtime of the `/etc/profile` file changed, but no edits were made. This was probably nothing, but it piques her interest and she'll ask around about it later; in the meantime, she approves the change, since there's no functional difference. The other node, however, had its content changed. She drills down into the node view and checks the contents before and after:

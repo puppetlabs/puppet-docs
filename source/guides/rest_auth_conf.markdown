@@ -86,7 +86,7 @@ An ACL may include multiple `allow` directives, which has the same effect as a s
 
 **Behavior in 0.25.x through 2.7.0:** No fine-grained globbing of hostnames/certnames is available in allow directives; you must specify exact host/certnames, or a single asterisk that matches everything.
 
-**Behavior in 2.7.1 and later:** Hostnames/certnames can also be specified by regular expression. Unlike with path directives, you don't need to use a tilde; just use the slash-quoting used in languages like Perl and Ruby (e.g. `allow /^[\w-]+.magpie.lan$/`). Regular expression allow directives can include backreferences to regex paths with the standard `$1, $2` etc. variables.
+**Behavior in 2.7.1 and later:** Hostnames/certnames can also be specified by regular expression. Unlike with path directives, you don't need to use a tilde; just use the slash-quoting used in languages like Perl and Ruby (e.g. `allow /^[\w-]+.example.com$/`). Regular expression allow directives can include backreferences to regex paths with the standard `$1, $2` etc. variables.
 
 Nodes cannot be allowed by IP address, unless the node's IP address is also its certname.
 
@@ -136,7 +136,7 @@ Puppet appends a list of default ACLs to the ACLs read from auth.conf. However, 
     # A custom ACL
     path /file
     auth no
-    allow magpie.lan
+    allow magpie.example.com
 
     # This default ACL will not be appended to the rules
     path /file

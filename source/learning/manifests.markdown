@@ -92,7 +92,7 @@ A few other notes about syntax:
 
 * Missing commas and colons are the number one syntax error made by learners. If you take out the comma after `ensure => present` in the example above, you'll get an error like this:
 
-        Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node barn2.magpie.lan
+        Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node barnowl.example.com
 
     Missing colons do about the same thing. So watch for that. Also, although you don't strictly need the comma after the final attribute `=>` value pair, you should always put it there anyhow. Trust me.
 * Capitalization matters! You can't declare a resource with `File {'testfile:'...`, because that does something entirely different. (Specifically, it breaks. But it's _kind_ of similar to what we use to tweak an existing resource, which we'll get to later.)
