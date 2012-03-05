@@ -13,7 +13,7 @@ Learn how to create your own custom types & providers in Puppet
 Organizational Principles
 -------------------------
 
-When creating a new Puppet type, you will be create two things:
+When making a new Puppet type, you will create two things:
 The resource type itself, which we normally just call a
 'type', and the provider(s) for that type.  While Puppet does not require
 Ruby experience to use, extending Puppet with new Puppet types and providers does require some knowledge of the Ruby programming language, as is the case with
