@@ -296,7 +296,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 <p>The name to use when handling certificates.  Defaults to the fully qualified domain name.</p>
 <ul>
-<li><strong>Default</strong>: magpie.puppetlabs.lan</li>
+<li><strong>Default</strong>: (the system's fully qualified domain name)</li>
 </ul>
 
 
@@ -1088,7 +1088,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 <p>The 'from' email address for the reports.</p>
 <ul>
-<li><strong>Default</strong>: <a href="mailto:report&#64;magpie.puppetlabs.lan">report&#64;magpie.puppetlabs.lan</a></li>
+<li><strong>Default</strong>: <a href="mailto:report&#64;(the system's fully qualified domain name)">report&#64;(the system's fully qualified domain name)</a></li>
 </ul>
 
 
