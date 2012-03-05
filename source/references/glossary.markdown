@@ -86,36 +86,35 @@ Files
 **namevar**
 :   The "name variable" or "namevar" is an attribute of a resource used to determine the name of that resource. Typically, namevar is not specified since it is synonomous with the title of the resource. However, in some cases (such as when referring to a file whose location varies), it is useful to specify namevar as a kind of short-hand.  
 
-
 **node (definition)**
 :   A manifest component consisting of a collection of classes and/or resources to be applied to an agent node. The target agent node is specified with a unique identifier ("certname") that matches the specified node name. Nodes defined in manifests allow inheritance, although this should be used with care due to the behavior of dynamic variable scoping. 
+
+**node scope**
+When nodes are defined in manifests (either directly or via a regular expression), they create their own local scope. Variables declared in this local "node scope" will override top-scope variables. (Note that <a id="External Node Classifier">ENCs</a> assign variables at top scope, and do not introduce node scopes.)
 
 **noop**
 :   Noop mode (short for "No Operations" mode) lets you simulate your configuration without making any actual changes. Basically, noop allows you to do a dry run with all logging working normally, but with no effect on any hosts. To run in noop mode, add the argument `--noop` to `puppet agent` or `puppet apply`.
 
 **parameter** (custom type and provider development)
-:   A value which does not call a method on a provider. Eventually exposed as an attribute in instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
+:   A value which does not call a method on a provider. Eventually expressed as an attribute in instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
 
 **parameter** (defined types and parameterized classes)
-:   One of the values which can be passed to this class or instances of this resource type upon declaration. Parameters are exposed as resource or class attributes. 
+:   Parameters let you declare resource or class attributes more easily than setting variables by wrangling scope.  Parameters can be passed to classes or instances of this resource type upon declaration. Parameters are expressed as resource or class attributes. 
 
 **parameter** (external nodes)
-: A global variable returned by the external node classifier.
+:   (see other definitions of "parameter").
+
+**parameter**
+Generally speaking, a parameter refers to information that a class or resource can accept. More specifically, there are three areas in Puppet where the concept of parameters is used:
+1. When developing a custom type, parameters provide the same function as properties except they never result in methods being called on providers. 
+2. When writing a parameterized class, parameters describe all the variables found within the outer scope of the class being parameterized.
+3. In the case of External Node Classifiers, a parameter can be thought of as a global variable set by an <a id="external node classifier">external node classifier</a>. Although these are called "parameters," they are just normal variables; the name refers to the fact that they are usually used to configure the behavior of classes 
 
 **pattern**
-:   An ocassionally used colloquial community expression for a collection of manifests designed to solve an issue or manage a particular configuration item, for example an Apache pattern.
+:   A colloquial community expression sometimes used to describe a collection of related manifests which are designed to solve an issue or manage a particular configuration item, as in, an Apache pattern.
 
 **plusignment operator**
-:   An operator that allows you to add values to resource parameters using the +> ('plusignment') syntax:
-
-    class apache {
-        service { "apache": require => Package["httpd"] }
-    }
-        
-    class apache-ssl inherits apache {
-        # host certificate is required for SSL to function
-        Service[apache] { require +> File["apache.pem"] }
-    }
+:   An operator that allows you to add values to resource parameters using the +> ('plusignment') syntax. Useful when you need to over-ride resource parameters without having to respecify already declared values.
 
 **property** (custom type and provider development)
 :   A value which calls a method on a provider. Eventually exposed as an attribute in instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
