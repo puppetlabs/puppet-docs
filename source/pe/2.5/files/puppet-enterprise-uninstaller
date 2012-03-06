@@ -1,0 +1,560 @@
+#!/bin/bash
+
+# Source: commit 39d70cd5311e3e6d769affc52035a94ca728a1cc
+
+#===[ Variables ]=======================================================
+
+# Variables that hold lists of dirs, files, users, services to kill/remove
+t_pe_uninstall_dirs="/opt/puppet /var/opt/lib/pe-puppet /var/opt/lib/pe-puppetmaster /var/opt/cache/pe-puppet-dashboard /var/opt/puppet /var/log/pe-*"
+t_pe_purge_dirs="/etc/puppetlabs"
+t_pe_files="/etc/init.d/pe-* /var/run/pe-*/* /var/run/pe-* /var/lock/subsys/pe-* /var/lock/pe-*"
+t_pe_processes="puppetagent pe-puppet pe-puppet-agent pe-mcollective pe-httpd pe-activemq pe-memcached pe-dashboard-workers"
+t_pe_users_and_groups="pe-memcached pe-apache pe-puppet puppet-dashboard pe-activemq peadmin pe-mco"
+t_pe_packages_to_check='^pe-.*$'
+t_pe_symlinks="puppet facter puppet-module mco pe-man"
+t_pe_cronjobs="report_baseline pe-mcollective-metadata"
+t_pe_crond_files="default-add-all-nodes"
+
+#===[ Functions ]=======================================================
+
+# Display uninstaller usage information, optionally display error message.
+#
+# Arguments:
+# 1. Error message to display. Optional.
+display_uninstall_usage() {
+    t_display_usage__error="${1:-""}"
+
+    display "
+USAGE: $(basename "${0?}") [-a ANSWER_FILE] [-A ANSWER_FILE] [-d] [-h] [-n] [-p] [-s ANSWER_FILE] [-y]
+
+OPTIONS:
+    -a ANSWER_FILE
+        Read answers from file and quit with error if an answer is missing.
+    -A ANSWER_FILE
+        Read answers from file and prompt for input if an answer is missing.
+    -d
+        Also remove any databases during the uninstall.
+    -h
+        Display this help screen
+    -n
+        Run in 'noop' mode; show commands that would have been run
+        during installation without running them.
+    -p
+        Perform a 'purge', a full uninstall of Puppet Enterprise. Remove
+        all configuration files and user home directories in addition
+        to the standard uninstall.
+    -s ANSWER_FILE
+        Save answers to file and quit without uninstalling.
+    -y
+        Assume yes to 'Are you sure?'
+"
+
+    if [ -n "${t_display_usage__error?}" ]; then
+        display_newline
+        display_failure "${t_display_usage__error?}"
+    else
+        display_footer
+        quit
+    fi
+}
+
+#...[ Handle process ]..................................................
+
+handle_process() {
+  case "${1?}" in
+    pe-puppet)
+      if [ "$PLATFORM_NAME" = "debian" ] || [ "$PLATFORM_NAME" = "ubuntu" ]; then
+        PROC="-f /opt/puppet/bin/puppet"
+      else
+        return 0
+      fi
+    ;;
+    pe-puppet-agent)
+      if [ "$PLATFORM_NAME" = "el" ] || [ "$PLATFORM_NAME" = "sles" ]; then
+        PROC="-f /opt/puppet/bin/puppet"
+      else
+        return 0
+      fi
+    ;;
+    puppetagent)
+      if [ "$PLATFORM_NAME" = "solaris" ]; then
+        PROC="-f /opt/puppet/bin/puppet"
+      else
+        return 0
+      fi
+    ;;
+
+    pe-httpd)
+      PROC="-f /opt/puppet/sbin/pe-httpd"
+    ;;
+
+    pe-activemq)
+      PROC="-f /opt/puppet/sbin/tanukiwrapper"
+    ;;
+
+    pe-memcached)
+      PROC="-f /opt/puppet/bin/memcached"
+    ;;
+
+    pe-mcollective)
+      PROC="-f /opt/puppet/sbin/mcollectived"
+    ;;
+
+    pe-dashboard-workers)
+      PROC="delayed_job"
+    ;;
+
+    *)
+      # Unknown process
+      fail "Don't know how to kill process ${1?}"
+    ;;
+  esac
+
+  if [ "${1?}" = "pe-dashboard-workers" ]; then
+    # delayed_job is known to not respond well to service commands, so we'll try
+    # using the init script, but we'll probably need to kill them.
+    # delayed_job also doesn't appear in pgrep listings so `ps -ef` is also checked for delayed_job
+    if (! stop_process ${1?}) || (pgrep $PROC &> /dev/null) || (ps -ef | $PLATFORM_EGREP 'delayed_job\.[[:digit:]]*_monitor' &> /dev/null); then
+      PID="$(pgrep $PROC) $(ps -ef | $PLATFORM_EGREP 'delayed_job\.[[:digit:]]*_monitor' | awk '{ print $2 }' | xargs)"
+      PIDS=$(echo ${PID} | tr -d "\n")
+      if [ -n "${PIDS}" ]; then
+        for sig in "TERM" "KILL"; do
+          run "kill -${sig} ${PIDS?}"
+          sleep 3
+          PID="$(pgrep $PROC) $(ps -ef | $PLATFORM_EGREP 'delayed_job\.[[:digit:]]*_monitor' | awk '{ print $2 }' | xargs)"
+          PIDS=$(echo ${PID} | tr -d "\n")
+          # Break out if there are no PIDs remaining to kill or if they are gone (aren't responding to signals, via kill -0)
+          # kill -0 means do the processes respond to signals. this is linux specific but delayed_job and pe-puppet-dashboard
+          # won't be on solaris, as solaris is agent only.
+          if [ -z "$PIDS" ] || ! (run "kill -0 ${PIDS} &> /dev/null"); then
+            break
+          fi
+        done
+      fi
+    fi
+  else
+    # If the process didn't stop successfully or if the pgrep reports processes still alive
+    # then it gets killed, either via TERM or KILL depending.
+    if (! stop_process ${1?}) || (pgrep $PROC &> /dev/null); then
+      kill_process "$PROC"
+    fi
+  fi
+
+}
+
+#...[ Stop process ]..................................................
+# Platform specific: stops the given service using init.d for linux or svcadm for solaris
+# Passes the exit status for the stop up to the calling function
+
+stop_process() {
+  case "${PLATFORM_NAME?}" in
+    debian|ubuntu|sles|rhel|centos)
+      if [ -f /etc/init.d/$1 ]; then
+        run "/etc/init.d/${1?} stop"
+        return $?
+      fi
+    ;;
+    solaris)
+      if /usr/bin/svcs -a | grep "${1?}" | grep "online"  2>&1 /dev/null; then
+        run "/usr/bin/svcadm disable svc:/network/${1?}"
+        return $?
+      fi
+    ;;
+    *)
+      # Unsupported platform
+      fail "Don't know how to stop process ${1?}"
+    ;;
+  esac
+}
+
+#...[ Kill process ]..................................................
+# Kills the process(es) found by the given pgrep arguments first by
+# signaling TERM and then by KILL. It bails out after term if the
+# processes have died.
+
+kill_process() {
+  PID=$(pgrep ${1?} | xargs)
+  PIDS=$(echo ${PID} | tr -d "\n")
+  if [ -n "$PIDS" ]; then
+    for sig in "TERM" "KILL"; do
+      run "kill -${sig} ${PIDS?}"
+      sleep 5
+      PID=$(pgrep ${1?} | xargs)
+      PIDS=$(echo ${PID} | tr -d "\n")
+      if [ -z "$PIDS" ]; then
+        break
+      fi
+    done
+  fi
+}
+
+#...[ Remove user ]....................................................
+# Removes the given user if it exists. If 'y' is passed as the second argument,
+# it also removes the homedir for the user if it exists.
+
+remove_user() {
+  if getent passwd "${1?}" > /dev/null 2>&1; then
+    case "${PLATFORM_NAME?}" in
+      rhel | centos | ubuntu | debian | sles | solaris )
+        if [ "${2:-'n'}" = "y" ] && [ -d $(getent passwd ${1?} | awk -F: '{ print $6 }') ]; then
+          run "userdel -r ${1?}"
+        else
+          run "userdel ${1?}"
+        fi
+      ;;
+      *)
+        fail "Unknown platform name, can't remove user"
+      ;;
+    esac
+  fi
+}
+
+#...[ Remove groups ]....................................................
+# Removes the given group if it exists.
+
+remove_group() {
+  if getent group "${1?}" > /dev/null 2>&1; then
+    case "${PLATFORM_NAME?}" in
+      rhel | centos | ubuntu | debian | sles | solaris )
+        run "groupdel ${1?}"
+      ;;
+      *)
+        fail "Unknown platform name, can't remove user"
+      ;;
+    esac
+  fi
+}
+
+#...[ Remove packages ]..................................................
+# Removes all of the pe-specific packages for each of the three package managers.
+
+remove_pe_packages() {
+  # NONPORTABLE
+  case "${PLATFORM_PACKAGING?}" in
+    rpm)
+      packages_to_remove="$(rpm -qa | ${PLATFORM_EGREP?} ${t_pe_packages_to_check?} | xargs)"
+      command_to_remove_packages="rpm -e --allmatches ${packages_to_remove?}"
+      if [ -n "${packages_to_remove?}" ]; then
+        run "${command_to_remove_packages?}"
+      fi
+    ;;
+    dpkg)
+      packages_to_remove="$(dpkg-query --show --showformat '${Package}\n' | ${PLATFORM_EGREP?} ${t_pe_packages_to_check?} | xargs)"
+      if is_purge; then
+        command_to_remove_packages="dpkg -P ${packages_to_remove?}"
+      else
+        command_to_remove_packages="dpkg -r ${packages_to_remove?}"
+      fi
+
+      if [ -n "${packages_to_remove?}" ]; then
+        run "${command_to_remove_packages?}"
+      fi
+    ;;
+    pkgadd)
+      for pkg in "PUPopenssl PUPfacter PUPpuppet PUPruby PUPrubygems PUPstomp PUPmcollective PUPmoduletool"; do
+        if pkginfo | ${PLATFORM_EGREP?} -i "${pkg}"; then
+          run "pkgrm -A -n ${pkg}"
+        fi
+      done
+    ;;
+    *)
+      fail "Unknown platform packaging system, can't remove packages"
+    ;;
+  esac
+}
+
+#...[ Remove crons ]..........................................................
+
+remove_cron() {
+  # First remove the cron resources if they exist
+  for cron in $t_pe_cronjobs; do
+    if run "/opt/puppet/bin/puppet resource cron | ${PLATFORM_EGREP?} ${cron?}" &> /dev/null; then
+      run "/opt/puppet/bin/puppet resource cron '${cron?}' ensure=absent"
+    fi
+  done
+
+  # Next remove our job(s) in /etc/cron.d if it exists
+  for cron in $t_pe_crond_files; do
+    [ -f /etc/cron.d/${cron?} ] && run "rm -rf '/etc/cron.d/${cron?}'"
+  done
+}
+
+get_db_field() {
+  # Grabs the passed field out of the database config file for the console, if the field exists.
+  sed -n "s/^\s*${1?}:\s*\(.*\)\s*$/\1/p" /etc/puppetlabs/puppet-dashboard/database.yml | head -n 1
+}
+
+fail() {
+  echo "!! ERROR: ${1?}"
+  exit 1
+}
+
+status() {
+  echo "## ${1?}"
+}
+
+stop_pe_processes() {
+  # Abstraction layer. This calls down to stop or kill each of the PE services.
+  for process in $t_pe_processes; do
+    handle_process "${process?}"
+  done
+}
+
+is_purge() {
+  if [ y = "${q_pe_purge:-""}" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+is_remove_db() {
+  if [ y = "${q_pe_remove_db:-""}" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+#===[ Setup ]===========================================================
+
+# Source the installer script. Fail hard if not present.
+
+UNINSTALLER_DIR="$(dirname "${0?}")"
+[ -f "${UNINSTALLER_DIR?}/puppet-enterprise-installer" ] || \
+  {
+    echo "Could not find puppet-enterprise-installer. Please run from the puppet-enterprise installer directory."
+    exit 1
+  }
+. "${UNINSTALLER_DIR}/puppet-enterprise-installer"
+
+register_exception_handler
+prepare_platform
+prepare_user
+
+IS_DEBUG=n
+IS_NOOP=n
+IS_PURGE=n
+ANSWER_FILE_TO_LOAD=
+ANSWER_FILE_TO_SAVE=
+IS_ANSWER_REQUIRED=n
+
+if [ -z "$PLATFORM_EGREP" ]; then
+  if [ ${PLATFORM_NAME?} = "solaris" ]; then
+    PLATFORM_EGREP='egrep'
+  else
+    PLATFORM_EGREP='grep -E'
+  fi
+fi
+
+while getopts a:A:dhnps:y option; do
+  case "$option" in
+    a)
+      ANSWER_FILE_TO_LOAD="${OPTARG?}"
+      IS_ANSWER_REQUIRED=y
+    ;;
+    A)
+      ANSWER_FILE_TO_LOAD="${OPTARG?}"
+      IS_ANSWER_REQUIRED=n
+    ;;
+    d)
+      q_pe_remove_db=y
+    ;;
+    h)
+      display_header
+      display_uninstall_usage
+    ;;
+    n)
+      IS_NOOP=y
+      IS_DEBUG=y
+    ;;
+    p)
+      q_pe_purge=y
+    ;;
+    s)
+      ANSWER_FILE_TO_SAVE="${OPTARG?}"
+    ;;
+    y)
+      q_pe_uninstall=y
+    ;;
+    ?)
+      display_header
+      display_uninstall_usage "Illegal option specified"
+    ;;
+  esac
+done
+
+# Load answers if specified:
+if [ -n "${ANSWER_FILE_TO_LOAD?}" ]; then
+  load_answers "${ANSWER_FILE_TO_LOAD?}"
+fi
+
+# Setup
+display_major_separator
+display_newline
+display "Puppet Enterprise v$(cat "$(installer_dir)/VERSION") uninstaller"
+display_newline
+
+if is_remove_db; then
+  if [ -z "$q_pe_db_root_pass" ]; then
+    display "In order to remove your console database user, we need to know the root password for mysql."
+    ask q_pe_db_root_pass "What password does the 'root' user have on the database server?" StringOrBlank ""
+  fi
+fi
+
+# Display the flags passed
+display "Options selected:"
+if is_purge; then
+  display '* Purge: Full uninstall'
+else
+  display '* Partial uninstall (leave most configuration files and homedirs)'
+fi
+
+if is_remove_db; then
+  display '* Database(s) will be removed'
+fi
+
+if is_noop; then
+  display '* Noop Mode: Actions will be displayed instead of performed'
+fi
+
+display_newline
+display_major_separator
+display_newline
+
+# Make sure this is what they want.
+if is_package_installed 'pe-puppet-dashboard' && ! is_remove_db; then
+  display "*** Warning: The uninstall will remove your console database configuration files and you have selected to not remove the console databases."
+  display_newline
+  display_major_separator
+  display_newline
+fi
+
+ask q_pe_uninstall 'Uninstall Puppet Enterprise?' yN
+
+if [ -n "${ANSWER_FILE_TO_SAVE?}" ]; then
+  set | ${PLATFORM_EGREP?} '^q_pe_' > ${ANSWER_FILE_TO_SAVE?}
+  quit
+fi
+
+if [ ! y = "${q_pe_uninstall?}" ]; then
+  display_newline
+  display_major_separator
+  display_newline
+  display "Exiting uninstaller"
+  display_newline
+  display_major_separator
+  quit
+fi
+
+display_newline
+display_major_separator
+display_newline
+
+# Remove PE cronjobs
+status "Removing PE cronjobs..."
+remove_cron
+
+# Remove PE packages
+# First stop the processes
+status "Stopping PE processes..."
+stop_pe_processes
+
+# Remove Console DB
+if is_remove_db; then
+  status "Removing PE database(s)..."
+  if ! which mysql &> /dev/null; then
+    fail "Could not drop databases, could not find mysql."
+  else
+    t_mysql=$(which mysql)
+  fi
+
+  if [ -e /etc/puppetlabs/puppet-dashboard/database.yml ]; then
+    # Get the DB name, user, passwd
+    t_pe_db_name=$(get_db_field database)
+    t_pe_db_user=$(get_db_field username)
+    t_pe_db_passwd=$(get_db_field password)
+  else
+    fail "Could not drop databases, there is no database information available for the console."
+  fi
+
+  if [ -z "$t_pe_db_name" -o -z "$t_pe_db_user" ]; then
+    fail "Could not drop databases, bad credentials in /etc/puppetlabs/puppet-dashboard/database.yml"
+  else
+    if [ -n "$t_pe_db_passwd" ]; then
+      t_pass_string="-p${t_pe_db_passwd}"
+    fi
+
+    if eval "${t_mysql?} -u ${t_pe_db_user?} ${t_pass_string} ${t_pe_db_name?} -e 'SHOW TABLES'" &> /dev/null; then
+      run "${t_mysql?} -u ${t_pe_db_user?} ${t_pass_string} -e 'DROP DATABASE ${t_pe_db_name}'"
+    fi
+
+    if eval "${t_mysql?} -u ${t_pe_db_user?} ${t_pass_string} ${t_pe_db_name?}_inventory_service -e 'SHOW TABLES'" &> /dev/null; then
+      run "${t_mysql?} -u ${t_pe_db_user?} ${t_pass_string} -e 'DROP DATABASE ${t_pe_db_name}_inventory_service'"
+    fi
+
+    if [ -n "$q_pe_db_root_pass" ]; then
+      t_root_pass_string="-p${q_pe_db_root_pass}"
+    fi
+
+    if eval "${t_mysql?} -u root ${t_root_pass_string} mysql -e \"SELECT * FROM user WHERE User='${t_pe_db_user?}' AND Host='localhost'\"" &> /dev/null; then
+      run "${t_mysql?} -u root ${t_root_pass_string} -e 'DROP USER \"${t_pe_db_user?}\"@\"localhost\"'"
+    fi
+  fi
+fi
+
+# Then remove the packages
+status "Removing PE packages..."
+remove_pe_packages
+
+# Remove PE users and groups
+
+status "Removing PE users and groups..."
+# First users
+for user in $t_pe_users_and_groups; do
+  remove_user "${user?}" $IS_PURGE
+done
+
+# Then groups
+for group in $t_pe_users_and_groups; do
+  remove_group "${group?}"
+done
+
+# Remove PE dirs and files
+
+status "Removing PE directories and files..."
+if is_purge; then
+  t_dirs_files_to_delete="$t_pe_uninstall_dirs $t_pe_purge_dirs $t_pe_files"
+else
+  t_dirs_files_to_delete="$t_pe_uninstall_dirs $t_pe_files"
+fi
+
+for entry in $t_dirs_files_to_delete; do
+  if [ -n "$entry" -a -e "$entry" ]; then
+    run "rm -rf '${entry}'"
+  fi
+done
+
+# Remove PE symlinks
+
+status "Removing PE symlinks..."
+for link in $t_pe_symlinks; do
+  run "rm -f /usr/local/bin/$link"
+done
+
+# Some package cleanup
+
+case "${PLATFORM_NAME?}" in
+  ubuntu)
+    status "Removing stale dpkg state overrides..."
+    sed -i '/^pe-puppet[[:space:]]/d' /var/lib/dpkg/statoverride
+  ;;
+esac
+
+#===[ Teardown ]========================================================
+
+unregister_exception_handler
+remove_workdir
+status "Done!"
+
+#===[ Fin ]=============================================================
