@@ -185,7 +185,7 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
       } else {
         $srvname = $servername
       }
-      case $operatingsystem {
+      case $::operatingsystem {
         'centos', 'redhat', 'fedora': { $vdir   = '/etc/httpd/conf.d'
                                         $logdir = '/var/log/httpd'}
         'ubuntu', 'debian':           { $vdir   = '/etc/apache2/sites-enabled'

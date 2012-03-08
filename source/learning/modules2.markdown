@@ -124,7 +124,7 @@ And making that work right is almost as easy as the last edit. Here's the comple
 {% highlight ruby %}
     #/etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
     class ntp ($servers = undef, $enable = true, $ensure = running) {
-      case $operatingsystem {
+      case $::operatingsystem {
         centos, redhat: { 
           $service_name    = 'ntpd'
           $conf_template   = 'ntp.conf.el.erb'
@@ -207,7 +207,7 @@ Module Documentation
     #   }
     #
     class ntp ($servers = undef, $enable = true, $ensure = running) {
-      case $operatingsystem { ...
+      case $::operatingsystem { ...
       ...
 {% endhighlight %}
 

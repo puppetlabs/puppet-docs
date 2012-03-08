@@ -121,7 +121,7 @@ First, we'll change the `init.pp` manifest:
     # init.pp
     
     class ntp {
-      case $operatingsystem {
+      case $::operatingsystem {
         centos, redhat: { 
           $service_name    = 'ntpd'
           $conf_template   = 'ntp.conf.el.erb'
