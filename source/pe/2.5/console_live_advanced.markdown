@@ -16,6 +16,8 @@ Use the advanced tasks tab to invoke actions from any MCollective agent installe
 
 ![The advanced tasks page][live_advanced_main]
 
+**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+
 Agents and Actions
 -----
 

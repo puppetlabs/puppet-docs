@@ -12,6 +12,8 @@ title: "PE 2.0 » Orchestration » Usage"
 Orchestration for New PE Users: Usage and Examples
 =====
 
+**NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
+
 Running Actions
 -----
 

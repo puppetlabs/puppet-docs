@@ -22,6 +22,8 @@ The console is Puppet Enterprise's web GUI. Use it to:
 * Track compliance audits
 * Invoke MCollective agents on your nodes
 
+**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+
 Browser Requirements
 -----
 
@@ -32,7 +34,7 @@ Puppet Labs supports the following browsers for use with the console:
 - Safari 4 and higher
 - Internet Explorer 9 and higher
 
-Although we plan to fully support Internet Explorer 8 in the near future, it currently stalls indefinitely when trying to load the console's live management page. Other browsers may or may not work, and have not been intensively tested with the console. 
+**NOTE** Although we plan to fully support Internet Explorer 8 in the near future, it currently stalls indefinitely when trying to load the console's live management page. Other browsers may or may not work, and have not been intensively tested with the console. 
 
 Reaching the Console
 -----

@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Welcome » Getting Started"
+title: "PE 2.5 » Welcome » Getting Started"
 ---
 
 * * *
@@ -18,7 +18,7 @@ Thank you for choosing Puppet Enterprise, the best-of-breed distribution for the
 About This Guide
 -----
 
-This guide will help you start using Puppet Enterprise 2.0, and will serve as a reference as you gain more experience with it. It covers PE-specific features, and offers brief introductions to Puppet and MCollective. Use the **navigation to the right** to move between the guide's sections and chapters.
+This guide will help you start using Puppet Enterprise 2.5, and will serve as a reference as you gain more experience with it. It covers PE-specific features, and offers brief introductions to Puppet and MCollective. Use the **navigation to the right** to move between the guide's sections and chapters.
 
 ### New Users
 
@@ -49,6 +49,8 @@ About Orchestration
 Puppet Enterprise now ships with distributed task orchestration features. Nodes managed by PE will listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory. 
 
 PE's orchestration features are driven by the MCollective framework and the ActiveMQ message server, and are the backbone of the web console's live management features.
+
+**NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
 
 About the Console
 -----

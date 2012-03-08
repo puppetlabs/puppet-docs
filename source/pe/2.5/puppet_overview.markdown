@@ -42,7 +42,9 @@ When New Configurations Take Effect
 
 By default, puppet agent will pull a catalog and run it every 30 minutes (counted from when the agent service started, rather than on the half-hour). You can change this by setting the [`runinterval`](/references/2.7.6/configuration.html#runinterval) option in an agent's [`/etc/puppetlabs/puppet/puppet.conf`](/guides/configuring.html) file to a new value. (The `runinterval` is measured in seconds.)
 
-If you need a node or group of nodes to retrieve a new configuration _now,_ use the "Control Puppet" section of the console's live management page. <!-- TK add a link to that -->
+If you need a node or group of nodes to retrieve a new configuration _now,_ use the "Control Puppet" tab of the console's live management page. <!-- TK add a link to that -->
+
+**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 * * *
 

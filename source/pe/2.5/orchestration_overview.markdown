@@ -24,6 +24,8 @@ PE's orchestration features are built on the MCollective framework, which consis
 * The **MCollective service** runs on every agent node and listens for orchestration commands. If a command is legit, relevant to the node, and for a supported action, the service will trigger the action and send back results.
 * The **message broker** is a central server that routes orchestration messages between client interfaces and nodes running the MCollective service. (PE's ActiveMQ message server runs on the puppet master node.)
 
+**NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
+
 ### Orchestration isn't SSH
 
 Orchestration isn't for running arbitrary code on nodes. Instead, each node has a collection of **actions** available. Actions are distributed in plugins, and you can extend PE's orchestration features by downloading or writing new orchestration agents and distributing them with Puppet. 

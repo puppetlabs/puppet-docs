@@ -15,9 +15,11 @@ Live Management
 What's Live Management?
 -----
 
-The console's live management page contains tools for inspecting and editing your nodes in real time. It is powered by MCollective.
+Live management is a part of the console that provides tools for inspecting and editing your nodes in real time. It is powered by MCollective.
 
 Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console. 
+
+**NOTE:** Live Management and MCollective are not yet supported on Windows nodes.
 
 Show Me!
 -----

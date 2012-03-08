@@ -15,6 +15,8 @@ The `pe_accounts` Class
 
 This class is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise.
 
+**NOTE:** The `pe_accounts` not yet supported on Windows nodes.
+
 The `pe_accounts` class can do any or all of the following:
 
 - Create and manage a set of `pe_accounts::user` resources
