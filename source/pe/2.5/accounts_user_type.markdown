@@ -15,7 +15,7 @@ The `pe_accounts::user` Type
 
 This defined type is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise. It is available for use in your own manifests.
 
-**NOTE:** The `pe_accounts` module is not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** The `pe_accounts` module is not yet supported on Windows nodes.
 
 The `pe_accounts::user` type declares a user account. It offers several benefits over Puppet's core `user` type: 
 
