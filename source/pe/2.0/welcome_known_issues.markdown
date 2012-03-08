@@ -27,6 +27,95 @@ Issues Still Outstanding
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.0.x series, unless otherwise stated. 
 
+### Upgrades May Fail With MySQL Errors
+
+Several users have encountered failures when upgrading to PE 2.0.3, and there have been reports of similar failures when running previous upgrades. These failures:
+
+* Are limited to the console server
+* Usually affect sites with a very large console database
+* Are triggered by a MySQL error when running database migrations
+
+The upgrader's output in these cases resembles the following:
+
+    (in /opt/puppet/share/puppet-dashboard) 
+    == AddReportForeignKeyConstraints: migrating ================================= 
+    Going to delete orphaned records from metrics, report_logs, resource_statuses, resource_events 
+    Preparing to delete from metrics 
+    2012-01-27 17:51:31: Deleting 0 orphaned records from metrics 
+    Deleting 100% |###################################################################| Time: 00:00:00
+    Preparing to delete from report_logs 
+    2012-01-27 17:51:31: Deleting 0 orphaned records from report_logs 
+    Deleting 100% |###################################################################| Time: 00:00:00
+    Preparing to delete from resource_statuses 
+    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_statuses 
+    Deleting 100% |###################################################################| Time: 00:00:00
+    Preparing to delete from resource_events 
+    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_events 
+    Deleting 100% |###################################################################| Time: 00:00:00
+    -- execute("ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;") 
+    rake aborted! 
+    An error has occurred, all later migrations canceled:
+    Mysql::Error: Can't create table 'console.#sql-328_ff6' (errno: 121): ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;
+    (See full trace by running task with --trace)
+    ===================================================================================
+    !! ERROR: Cancelling installation
+    ===================================================================================
+
+The cause of these failures is still under investigation, but it appears to involve a too-small lock table, which is governed by the `innodb_buffer_pool_size` setting in the MySQL server configuration. 
+
+#### Workaround
+
+Until the upgrader can handle these cases by itself, we recommend the following:
+
+**If you haven't yet upgraded PE on your console server:**
+
+* Edit the MySQL config file on your database server (usually located at `/etc/my.cnf`, but your system may differ) and set the value of `innodb_buffer_pool_size` to at least `80M`. (Its default value is 8 MB, or 8388608 bytes.)
+
+    **Example diff:**
+
+{% highlight diff %}
+ [mysqld]
+ datadir=/var/lib/mysql
+ socket=/var/lib/mysql/mysql.sock
+ user=mysql
+ # Default to using old password format for compatibility with mysql 3.x
+ # clients (those using the mysqlclient10 compatibility package).
+ old_passwords=1
++innodb_buffer_pool_size = 80M
+ 
+ # Disabling symbolic-links is recommended to prevent assorted security risks;
+ # to do so, uncomment this line:
+ # symbolic-links=0
+ 
+ [mysqld_safe]
+ log-error=/var/log/mysqld.log
+ pid-file=/var/run/mysqld/mysqld.pid
+{% endhighlight %}
+
+* Restart the MySQL server:
+
+        # sudo /etc/init.d/mysqld restart
+* Perform a normal upgrade of Puppet Enterprise on the console server.
+
+**If you have already suffered a failed upgrade:** 
+
+* On your database server, log into the MySQL client as either the root user or the console user:
+
+        # mysql -u console -p
+        Enter password: <password>
+* Execute the following SQL statements:
+
+        USE console 
+        ALTER TABLE reports DROP FOREIGN KEY fk_reports_node_id; 
+        ALTER TABLE resource_events DROP FOREIGN KEY fk_resource_events_resource_status_id; 
+        ALTER TABLE resource_statuses DROP FOREIGN KEY fk_resource_statuses_report_id; 
+        ALTER TABLE report_logs DROP FOREIGN KEY fk_report_logs_report_id; 
+        ALTER TABLE metrics DROP FOREIGN KEY fk_metrics_report_id;
+* Edit the MySQL config file and restart the MySQL server, as described above.
+* Re-run the upgrader, which should now finish successfully. 
+
+For more information about the lock table size, [see this MySQL bug report](http://bugs.mysql.com/bug.php?id=15667).
+
 ### On Linode/Xen Instances, Facter Always Prints Error Messages
 
 ([Issue #12813](https://projects.puppetlabs.com/issues/12813))
