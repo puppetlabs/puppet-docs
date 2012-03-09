@@ -117,10 +117,10 @@ Generally speaking, a parameter refers to information that a class or resource c
 :   An operator that allows you to add values to resource parameters using the +> ('plusignment') syntax. Useful when you need to over-ride resource parameters without having to respecify already declared values.
 
 **property** (custom type and provider development)
-:   Properties define how a resource really works. When retrieving the state of a resource, a property will call the specified method on the provider. A value which calls a method on a provider. Properties will appear as attributes to the user when working with instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
+:   Properties define how a resource really works. When retrieving the state of a resource, a property will call the specified method on the provider. Properties will appear as attributes to the user when working with instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
 
 **provider**
-:   A simple implementation of a type; examples of package providers are dpkg and rpm, and examples of user providers are useradd and netinfo. Most often, providers are just Ruby wrappers around shell commands, and they are usually very short and thus easy to create.
+:   "Providers" implement types by providing the information needed to manage resources. For example, for package types, there are providers that cover tools such as `yum, dpkg,` and `ports.` Similarly, for user types there are providers for `useradd` and `netinfo.`  Typically, providers are simple Ruby wrappers around shell commands, so they are usually  short and easy to create.
 
 **plugin**
 : See <a id="type(plugin)">type (plugin)</a>
