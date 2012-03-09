@@ -16,7 +16,7 @@ Use the manage resources tab to browse the resources on your nodes and clone any
 
 ![The manage resources tab][live_resources_main]
 
-**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 Resource Types
 -----

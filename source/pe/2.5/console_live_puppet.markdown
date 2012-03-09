@@ -16,7 +16,7 @@ Use the control puppet tab to immediately trigger a puppet agent run on any of y
 
 ![The control puppet tab][live_puppet_main]
 
-**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 Be aware that the control puppet tab cannot trigger a node's _first_ puppet agent run. A node's first run will happen automatically within 30 minutes after you [sign its certificate][certsign]. 
 

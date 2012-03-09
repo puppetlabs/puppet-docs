@@ -22,7 +22,7 @@ The console is Puppet Enterprise's web GUI. Use it to:
 * Track compliance audits
 * Invoke MCollective agents on your nodes
 
-**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 Browser Requirements
 -----

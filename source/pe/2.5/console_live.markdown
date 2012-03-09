@@ -19,7 +19,7 @@ Live management is a part of the console that provides tools for inspecting and 
 
 Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console. 
 
-**NOTE:** Live Management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live Management and MCollective are not yet supported on Windows nodes.
 
 Show Me!
 -----

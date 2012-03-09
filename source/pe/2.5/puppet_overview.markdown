@@ -44,7 +44,7 @@ By default, puppet agent will pull a catalog and run it every 30 minutes (counte
 
 If you need a node or group of nodes to retrieve a new configuration _now,_ use the "Control Puppet" tab of the console's live management page. <!-- TK add a link to that -->
 
-**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 * * *
 

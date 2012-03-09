@@ -83,7 +83,7 @@ Making a Node Pull its Configuration
 
 Nodes with your class will pull and apply their configurations within the next half hour. But if you want to make them run immediately, you can use the console's live management tab to control puppet agent. 
 
-**NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 * Navigate to the live management page, then navigate to the "Control Puppet" section
 * In the sidebar, click "select none" and then re-select the handful of nodes that need to run

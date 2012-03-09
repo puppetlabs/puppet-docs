@@ -50,7 +50,7 @@ Puppet Enterprise now ships with distributed task orchestration features. Nodes 
 
 PE's orchestration features are driven by the MCollective framework and the ActiveMQ message server, and are the backbone of the web console's live management features.
 
-**NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
 
 About the Console
 -----
