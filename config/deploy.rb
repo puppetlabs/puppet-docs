@@ -12,6 +12,21 @@ task :mirror2 do
       set :deploy_to, "/var/www/#{application}"
 end
 
+task :preview1 do
+    set :domain,    "#{user}@docspreview1.puppetlabs.lan"
+    set :deploy_to, "/opt/docspreview1"
+end
+
+task :preview2 do
+    set :domain,    "#{user}@docspreview2.puppetlabs.lan"
+    set :deploy_to, "/opt/docspreview2"
+end
+
+task :preview3 do
+    set :domain,    "#{user}@docspreview3.puppetlabs.lan"
+    set :deploy_to, "/opt/docspreview3"
+end
+
 namespace :vlad do
 
 task :check_tarball do
