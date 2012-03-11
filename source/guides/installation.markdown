@@ -121,10 +121,10 @@ To install into a different location you can use:
 
 You can also install Facter and Puppet via gems:
 
-      $ wget http://puppetlabs.com/downloads/gems/facter-1.5.7.gem
-      $ sudo gem install facter-1.5.7.gem
-      $ wget http://puppetlabs.com/downloads/gems/puppet-0.25.1.gem
-      $ sudo gem install puppet-0.25.1.gem
+      $ wget http://puppetlabs.com/downloads/gems/facter-1.6.0.gem
+      $ sudo gem install facter-1.6.0.gem
+      $ wget http://puppetlabs.com/downloads/gems/puppet-2.7.6.gem
+      $ sudo gem install puppet-2.7.6.gem
 {:shell}
 
 Find the latest gems
