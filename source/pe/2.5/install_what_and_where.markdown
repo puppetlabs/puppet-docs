@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Installing » What Gets Installed Where?"
+title: "PE 2.5 » Installing » What Gets Installed Where?"
 ---
 
 * * *
@@ -34,7 +34,6 @@ All PE software (excluding config files) is installed under `/opt/puppet`.
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
 ##Configuration Files
-
 
 ###<i>What</i>
  Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
@@ -98,18 +97,16 @@ These files may or may not be present.
 
 Puppet Enterprise installs several suites of command line tools to help you work with the major components of the software. These include:
 
-1. Puppet Tools:
-	* `puppet`
-	* `puppet apply`
-	<!-- See the ? chapter for more information. -->
-2. Cloud Provisioning Tools
-3. Orchestration Tools
-4. Module Tools
-5. Console Tools
+- **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.` 
+	See the [Tools Section](http://docs.puppetlabs.com/guides/tools.html) of the Puppet Manual for more information.
+- **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning Section](http://docs.puppetlabs.com/pe/2.0/cloudprovisioner_overview.html) of the Puppet Manual for more information.
+- **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the Live Management tab of the PE console.See the [Orchestration Section](http://docs.puppetlabs.com/pe/2.0/orchestration_overview.html) of the Puppet Manual for more information.
+- **Module Tools:** The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).
+- **Console:** The Console is Puppet Enterprise's GUI web interface. The Console provides tools to view and edit resources on your nodes, view reports and activity graphs, trigger Puppet runs, etc. See the [Console Section](http://docs.puppetlabs.com/pe/2.0/console_accessing.html) of the Puppet Manual for more information.
 
+For more details, you can also refer to the man page for a given command or subcommand.
 
 ### Services
-
 
 PE uses the following services:
 
