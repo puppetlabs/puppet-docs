@@ -9,11 +9,10 @@ title: "PE 2.0 » Installing » What Gets Installed Where?"
 
 * * *
 
-What Gets Installed Where?
-=====
+#What Gets Installed Where?
 
-License File
------
+##License File
+
 
 Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed at `/etc/puppetlabs/license.key`.
 
@@ -21,35 +20,96 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>. 
 
+##Software
 
-Configuration Files
------
+###<i>What</i>
+All working components of PE, excluding configuration files. These are files you are not likely to need to change.
 
-Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components. 
-
-* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
-* MCollective's config files are in `/etc/puppetlabs/mcollective`.
-* The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
-
-Documentation
------
-
-Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
-
-The `pe-man` command from previous versions of Puppet Enterprise is still functional, but it is deprecated and is slated for removal in a future release. 
-
-Software
------
-
-All PE software is installed under `/opt/puppet`.
+###<i>Where</i>
+All PE software (excluding config files) is installed under `/opt/puppet`.
 
 * Executable binaries are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * Optionally, you can choose at install time to symlink the most common binaries into `/usr/local/bin`.
 * The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own; instead, install them in `/etc/puppetlabs/puppet/modules`. 
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
-Services
------
+##Configuration Files
+
+
+###<i>What</i>
+ Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
+
+###<i>Where</i>
+Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components.
+* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
+* [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`.
+* The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
+
+##Log Files
+
+###<i>What</i>
+The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
+
+###<i>Where</i> 
+### Puppet Master Logs
+
+- `/var/log/pe-httpd/access.log`
+- `/var/log/pe-httpd/error.log`
+
+These logs are solely for HTTP activity; the puppet master service logs most of its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+
+### Puppet Agent Logs
+
+The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+
+### ActiveMQ Logs
+
+- `/var/log/pe-activemq/wrapper.log`
+- `/var/log/pe-activemq/activemq.log`
+- `/var/opt/puppet/activemq/data/kahadb/db-1.log`
+- `/var/opt/puppet/activemq/data/audit.log`
+
+### Orchestration Service Log
+
+This log is maintained by the orchestration service, which is installed on all nodes.
+
+- `/var/log/pe-mcollective/mcollective.log`
+
+### Console Log
+
+- `/var/log/pe-httpd/puppetdashboard.access.log`
+- `/var/log/pe-httpd/puppetdashboard.error.log`
+- `/var/log/pe-puppet-dashboard/delayed_job.log`
+- `/var/log/pe-puppet-dashboard/mcollective_client.log`
+- `/var/log/pe-puppet-dashboard/production.log`
+
+### Miscellaneous Logs
+
+These files may or may not be present.
+
+- `/var/log/pe-httpd/other_vhosts_access.log`
+- `/var/log/pe-puppet/masterhttp.log`
+- `/var/log/pe-puppet/rails.log`
+
+
+## Puppet Enterprise Components
+
+### Tools
+
+Puppet Enterprise installs several suites of command line tools to help you work with the major components of the software. These include:
+
+1. Puppet Tools:
+	* `puppet`
+	* `puppet apply`
+	<!-- See the ? chapter for more information. -->
+2. Cloud Provisioning Tools
+3. Orchestration Tools
+4. Module Tools
+5. Console Tools
+
+
+### Services
+
 
 PE uses the following services:
 
@@ -59,8 +119,7 @@ PE uses the following services:
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console role.
 - **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master role.
 
-User Accounts
------
+###User Accounts
 
 PE creates the following users:
 
@@ -70,50 +129,12 @@ PE creates the following users:
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system user which runs the console processes spawned by Passenger.
 
-Log Files
------
+###Documentation
 
-The software distributed with Puppet Enterprise generates the following log files: 
+Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
 
-### Puppet Master
+The `pe-man` command from previous versions of Puppet Enterprise is still functional, but it is deprecated and is slated for removal in a future release. 
 
-- `/var/log/pe-httpd/access.log`
-- `/var/log/pe-httpd/error.log`
-
-These logs are solely for HTTP activity; the puppet master service logs most of its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
-
-### Puppet Agent
-
-The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
-
-### ActiveMQ 
-
-- `/var/log/pe-activemq/wrapper.log`
-- `/var/log/pe-activemq/activemq.log`
-- `/var/opt/puppet/activemq/data/kahadb/db-1.log`
-- `/var/opt/puppet/activemq/data/audit.log`
-
-### Orchestration Service
-
-This log is maintained by the orchestration service, which is installed on all nodes.
-
-- `/var/log/pe-mcollective/mcollective.log`
-
-### Console
-
-- `/var/log/pe-httpd/puppetdashboard.access.log`
-- `/var/log/pe-httpd/puppetdashboard.error.log`
-- `/var/log/pe-puppet-dashboard/delayed_job.log`
-- `/var/log/pe-puppet-dashboard/mcollective_client.log`
-- `/var/log/pe-puppet-dashboard/production.log`
-
-### Miscellaneous
-
-These files may or may not be present.
-
-- `/var/log/pe-httpd/other_vhosts_access.log`
-- `/var/log/pe-puppet/masterhttp.log`
-- `/var/log/pe-puppet/rails.log`
 
 * * *
 
