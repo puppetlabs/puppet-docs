@@ -213,8 +213,8 @@ task :deploy do
   Rake::Task['build'].invoke
   mirrors.each do |mirror|
     Rake::Task[mirror].invoke
-    Rake::Task['vlad:release'].invoke
     Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
+    Rake::Task['vlad:release'].invoke
   end
 end
 
