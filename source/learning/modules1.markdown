@@ -263,7 +263,7 @@ There --- our little example from last chapter has grown up into a self-containe
 
 ### Obtaining Modules
 
-Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. The Puppet Forge is a great place to start looking for modules that you can use or adapt for your environment. Most of these modules are open source and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
+Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. For more information, see [About the Puppet Forge](#forge) below.
 
 
 Module Structure
@@ -319,14 +319,25 @@ More on [templates](http://docs.puppetlabs.com/guides/templating.html) later.
 
 Puppet modules can also serve executable Ruby code from their `lib` directories, to extend Puppet and Facter. (Remember how I mentioned extending Facter with custom facts? This is where they live.) It'll be a while before we cover any of that.
 
-### Module Scaffolding
 
-Since you'll be dealing with those same five subdirectories so much, consider adding a function for them to your ~/.bashrc file. 
+##<a id="forge">About the Puppet Forge</a>
+The [Puppet Forge](http://forge.puppetlabs.com/) is a great place to start looking for modules that you can use or adapt for your environment. The Forge contains modules written by Puppet employees and community members which can be freely downloaded and reused in your own infrastructure. Most of these modules are open source and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
 
-    mkmod() {
-        mkdir "$1"
-        mkdir "$1/files" "$1/lib" "$1/manifests" "$1/templates" "$1/tests"
-    }
+### Puppet Module Tool
+
+The Puppet Module Tool (PMT) is part of Puppet's core and is accessed using a [puppet face](http://puppetlabs.com/blog/puppet-faces-what-the-heck-are-faces/). The tool is used to create, install and search for modules on the Puppet Forge. 
+
+For example, let's say you are interested in one of the [Modules of the Week](http://puppetlabs.com/category/blog/module-of-the-week-blog/), Benoit Cattie's nginx module. Start by the downloading the [module's tarball](http://forge.puppetlabs.com/system/releases/B/BenoitCattie/BenoitCattie-nginx-0.2.tar.gz) from the website to your default directory. Alternatively, you can search the repository using `puppet-module search nginx -r http://forge.puppetlabs.com`. 
+
+Next, run `puppet-module install BenoitCattie-nginx` which will unpack the archive file into a new _module directory_. You can then add this directory to your Puppet configuration files so you can use it.
+
+For more information, see the puppet module tool [readme](https://github.com/puppetlabs/puppet-module-tool/blob/master/README.markdown).
+
+### Puppet Module Generator
+
+When working with modules, you'll be dealing with the above subdirectories and files so much, you can automate most of their creation and pre-population with the `puppet-module generate` command. This command will automatically generate a directory under your current directory which is prepopulated with the directory structure and files Puppet Labs recommends for modules.
+
+
 
 Exercises
 ---------
