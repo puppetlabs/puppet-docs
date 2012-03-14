@@ -5,7 +5,7 @@ title: "PE 2.0 » Console » Grouping and Classifying Nodes"
 
 * * *
 
-&larr; [Console: Viewing Reports and Inventory Data](./console_reports.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
+&larr; [Console: Managing Users](./console_auth.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
 
 * * *
 
@@ -174,7 +174,7 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 * * *
 
-&larr; [Console: Viewing Reports and Inventory Data](./console_reports.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
+&larr; [Console: Managing Users](./console_auth.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
 
 * * *
 

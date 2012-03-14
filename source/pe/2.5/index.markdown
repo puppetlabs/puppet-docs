@@ -31,7 +31,7 @@ This is the user's guide for Puppet Enterprise 2.0. Use the **navigation to the 
     - [What gets installed where?](./install_what_and_where.html)
 - **The Console**
 
-    A tour of PE's web console and its new live management features.
+    A tour the web console, PE's GUI management tool.
 
     - [Accessing the Console](./console_accessing.html)
     - [Navigating the Console](./console_navigating.html)

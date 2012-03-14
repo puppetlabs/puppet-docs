@@ -1,11 +1,11 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Console » Viewing Reports"
+title: "PE 2.5 » Console » Viewing Reports"
 ---
 
 * * *
 
-&larr; [Console: Navigating the Console](./console_navigating.html) --- [Index](./) --- [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
+&larr; [Console: Navigating the Console](./console_navigating.html) --- [Index](./) --- [Console: Managing Users](./console_auth.html) &rarr;
 
 * * *
 
@@ -93,7 +93,7 @@ You can add more facts to filter the search results further, and can change the 
 
 * * *
 
-&larr; [Console: Navigating the Console](./console_navigating.html) --- [Index](./) --- [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
+&larr; [Console: Navigating the Console](./console_navigating.html) --- [Index](./) --- [Console: Managing Users](./console_auth.html) &rarr;
 
 * * *
 

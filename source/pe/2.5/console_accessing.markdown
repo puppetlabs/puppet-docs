@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Console » Accessing"
+title: "PE 2.5 » Console » Accessing"
 ---
 
 * * *
@@ -21,6 +21,7 @@ The console is Puppet Enterprise's web GUI. Use it to:
 * View inventory data
 * Track compliance audits
 * Invoke MCollective agents on your nodes
+* Manage console users and their access privileges
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
@@ -34,7 +35,7 @@ Puppet Labs supports the following browsers for use with the console:
 - Safari 4 and higher
 - Internet Explorer 9 and higher
 
-**NOTE** Although we plan to fully support Internet Explorer 8 in the near future, it currently stalls indefinitely when trying to load the console's live management page. Other browsers may or may not work, and have not been intensively tested with the console. 
+**NOTE** Internet Explorer 8 fails to load the console's live management page. Support for IE 8 live management may be added in the future. All other console features should function correctly in IE 8. Other browsers may or may not work, and have not been intensively tested with the console. 
 
 Reaching the Console
 -----
@@ -100,7 +101,7 @@ Click the "Continue to this website (not recommended)" link on the warning page.
 Logging In
 -----
 
-For security, the console requires a user name and password for access. Use the user and password you chose when you installed the console role, or get credentials from your site's lead administrator.
+For security, accessing the console requires a user name and password. In PE 2.5, there are three different levels of user access, read, read-write and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [User Management page](./console_auth.html) for more information on managing console user accounts.
 
 ![Screenshot: a login dialog asking for credentials][login]
 
