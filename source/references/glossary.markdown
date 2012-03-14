@@ -126,10 +126,16 @@ Generally speaking, a parameter refers to information that a class or resource c
 : See <a id="type(plugin)">type (plugin)</a>
 
 **realize**
-:   a Puppet term meaning to declare a virtual resource should be part of a system's catalog. See also virtual resources.
+: in Puppet terms, a resource is "realized" when it has been declared and subsequently instantiated. Once a resource has been declared, there are two methods for "realizing" it: 
+
+1. use the "spaceship" syntax `<||>`
+2. Use the `realize` function
+
+A virtually declared resource will not be managed until it is realized.
 
 **resource**
-:   an instantiation of a native type, plugin type, or definition such as a user, file, or package. Resources do not always directly map to simple details on the client -- they might sometimes involve spreading information across multiple files, or even involve modifying devices.
+:   broadly speaking, a "resource" is a defined configuration item. Resources are made up of a _type_ (the sort of resource being managed: packages, services, etc.), a _title_ (the name of the resource), and one or more _attributes_ (values specifying the state of the resource: running, present, etc.)
+Resources do not always directly map to simple details on the client -- they might sometimes involve spreading information across multiple files, or even involve modifying devices.
 
 **resource object**
 :   A Puppet object in memory meant to manage a resource on disk. Resource specifications get converted to these, and then they are used to perform any necessary work.
