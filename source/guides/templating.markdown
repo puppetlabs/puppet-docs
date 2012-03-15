@@ -9,8 +9,8 @@ Using Puppet Templates
 Learn how to template out configuration files with Puppet, filling in variables
 from the client system from facter.
 
-[lptemplates]: http://docs.puppetlabs.com/learning/templates.html
-[modules]: http://docs.puppetlabs.com/guides/modules.html
+[lptemplates]: /learning/templates.html
+[modules]: /puppet/2.7/reference/modules_fundamentals.html
 
 * * *
 

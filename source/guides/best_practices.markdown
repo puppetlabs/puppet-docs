@@ -13,7 +13,7 @@ This guide includes some tips to getting the most out of Puppet.  It is derived 
 Use Modules When Possible
 -------------------------
 
-[Puppet modules](./modules.html) are something everyone should use.   If you have an application you are managing, add a module for it, so that you can keep the manifests, plugins (if any), source files, and templates together.
+[Puppet modules](/puppet/2.7/reference/modules_fundamentals.html) are something everyone should use.   If you have an application you are managing, add a module for it, so that you can keep the manifests, plugins (if any), source files, and templates together.
 
 Keep Your Puppet Content In Version Control
 -------------------------------------------
