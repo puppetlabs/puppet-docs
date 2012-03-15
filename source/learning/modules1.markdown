@@ -271,20 +271,22 @@ Module Structure
 
 A module is just a directory with stuff in it, and the magic comes from putting that stuff where Puppet expects to find it. Which is to say, arranging the contents like this:
 
-* {module}/
-    * files/
-    * lib/
-    * manifests/
-        * init.pp
-        * {class}.pp
-        * {defined type}.pp
-        * {namespace}/
-            * {class}.pp
-            * {class}.pp
-    * templates/
-    * tests/
+* `my_module` --- This outermost directory's name matches the name of the module.
+    * `manifests/` --- Contains all of the manifests in the module.
+        * `init.pp` --- Contains a class definition. **This class's name must match the module's name.**
+        * `other_class.pp` --- Contains a class named **`my_module::other_class`.**
+        * `my_defined_type.pp` --- Contains a defined type named **`my_module::my_defined_type`.**
+        * `implementation/` --- This directory's name affects the class names beneath it.
+            * `foo.pp` --- Contains a class named **`my_module::implementation::foo`.**
+            * `bar.pp` --- Contains a class named **`my_module::implementation::bar`.**
+    * `files/` --- Contains static files, which managed nodes can download.
+    * `lib/` --- Contains plugins, like custom facts and custom resource types.
+    * `templates/` --- Contains templates, which can be referenced from the module's manifests.
+    * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
 
 The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: main folder, manifests folder, init.pp, just like we used in the ntp module above. 
+
+> **Note:** Our printable [Module Cheat Sheet](/module_cheat_sheet.pdf) shows how to lay out a module and explains how in-manifest names map to the underlying files.
 
 But if that was all a module was, it'd make more sense to just load your classes from one flat folder. Modules really come into their own with namespacing and grouping of classes. 
 

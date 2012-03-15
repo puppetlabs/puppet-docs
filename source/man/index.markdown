@@ -22,3 +22,4 @@ View documentation for each of the Puppet executables.
 * [puppet master](./master.html)
 * [puppet queue](./queue.html)
 * [puppet resource](./resource.html)
+* [puppet module](./module.html)

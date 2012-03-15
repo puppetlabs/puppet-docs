@@ -1346,6 +1346,17 @@ ol.toc > li > ol.toc > li {
 
 /* @end */
 
+/* Classes for spans that warn about version incompatibilities */
+.versionnote {
+  background-color: #ff9;
+}
+.versionwarning {
+  background-color: #ff9;
+  color: #f00;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 /* New nav ULs for experimental navigation sidebar style (NF 2011.11.07) */
 /* This is prototype work for the PE 2.0 manual only. */
 

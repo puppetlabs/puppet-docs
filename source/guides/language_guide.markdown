@@ -23,7 +23,7 @@ Puppet language is really relatively simple compared to many
 programming languages.  As you are reading over this guide,
 it may also be helpful to look over various Puppet modules
 people have already written.   Complete real world examples
-can serve as a great introduction to Puppet.  See the [Modules](/guides/modules.html)
+can serve as a great introduction to Puppet.  See the [Modules](/puppet/2.7/reference/modules_fundamentals.html)
 page for more information and some links to list of community developed Puppet content.
 
 
@@ -488,7 +488,7 @@ You can (and should!) combine collections of classes, defined types, and resourc
 into modules. Modules are portable collections of configuration,
 for example a module might contain all the resources required to
 configure Postfix or Apache. You can find out more on the
-[Modules Page](./modules.html)
+[Modules Page](/puppet/2.7/reference/modules_fundamentals.html)
 
 ### Chaining resources
 
@@ -1490,7 +1490,7 @@ All functions run on the Puppet master, so you only have access to the file syst
 Importing Manifests
 -------------------
 
-Puppet has an `import` keyword for importing other manifests. **You should almost never use it,** as almost every use case for it has been replaced by the [module autoloader](./modules.html#module-autoloading). In particular, you should never use any import statements inside a module, as the behavior of import within autoloaded manifests is undefined. 
+Puppet has an `import` keyword for importing other manifests. **You should almost never use it,** as almost every use case for it has been replaced by the [module autoloader](/puppet/2.7/reference/modules_fundamentals.html#using-modules). In particular, you should never use any import statements inside a module, as the behavior of import within autoloaded manifests is undefined. 
 
 The `import` keyword does not insert Puppet code inline like a C preprocessor #include directive; instead, it adds all code in the requested file to the main scope. This means any code in these external manifests must be in a class, node statement, or defined type, or else it will be applied to all nodes:
 
@@ -1514,7 +1514,7 @@ Files are only searched for within the same directory as the file doing the impo
     import 'packages/[a-z]*.pp'
 {% endhighlight %}
 
-Instead of importing manifests, you should organize all class manifests into [Modules](./modules.html). The one case where `import` is still useful is for maintaining a `nodes/` directory with one manifest per node and then placing an `import 'nodes/*.pp'` statement in `site.pp`. However, note that doing this can cause puppet master to [not notice edits to your node definitions](./troubleshooting.html#why-hasnt-my-new-node-configuration-been-noticed). 
+Instead of importing manifests, you should organize all class manifests into [Modules](/puppet/2.7/reference/modules_fundamentals.html). The one case where `import` is still useful is for maintaining a `nodes/` directory with one manifest per node and then placing an `import 'nodes/*.pp'` statement in `site.pp`. However, note that doing this can cause puppet master to [not notice edits to your node definitions](./troubleshooting.html#why-hasnt-my-new-node-configuration-been-noticed). 
 
 Handling Compilation Errors
 ---------------------------
