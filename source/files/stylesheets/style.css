@@ -51,7 +51,11 @@ body {
   background: white;
 }
 
-code { font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace }
+code {
+  font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
 var  { 
   font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
   font-weight: bold;

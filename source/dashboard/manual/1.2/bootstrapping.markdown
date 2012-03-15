@@ -126,7 +126,7 @@ Create a Yum repo entry for Puppet Labs in `/etc/yum.repos.d/puppetlabs.repo`:
     # /etc/yum.repos.d/puppetlabs.repo
     [puppetlabs]
     name=Puppet Labs Packages
-    baseurl=http://yum.puppetlabs.com/base/
+    baseurl=http://yum.puppetlabs.com/el/6/products/
     enabled=1
     gpgcheck=1
     gpgkey=http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs

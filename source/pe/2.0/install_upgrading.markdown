@@ -18,6 +18,15 @@ Depending on the version you upgrade from, **you may need to take extra steps** 
 
 {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
+{% capture locktableissue %}
+
+> ### IMPORTANT NOTE
+> 
+> Due to [a known issue](./welcome_known_issues.html#upgrades-may-fail-with-mysql-errors) that can potentially cause upgrade failures, all users should increase the size of their MySQL server's `innodb_buffer_pool_size` before upgrading the console server node. [See here for details and instructions](./welcome_known_issues.html#upgrades-may-fail-with-mysql-errors), including how to recover from a failed upgrade. 
+
+{% endcapture %}{{ locktableissue }}
+
+
 Checking For Updates
 -----
 
@@ -43,6 +52,8 @@ The upgrader must be run with root privileges:
 This will start the upgrader in interactive mode. If the puppet master role and the console (previously dashboard) role are installed on different servers, **you must upgrade the puppet master first.**
 
 {{ slowbigdatabase }}
+
+{{ locktableissue }}
 
 ### Upgrader Options
 

@@ -30,24 +30,24 @@ page for more information and some links to list of community developed Puppet c
 Language Feature by Release
 ---------------------------
 
-Feature                         | 0.24.x | 0.25.x | 2.6.x | 2.7.x | 2.8.x |
---------------------------------|:------:|:------:|:-----:|:-----:|:-----:|
-Plusignment operator (+>)       |    X   |   X    |   X   |   X   |   X   |
-Multiple Resource relationships |    X   |   X    |   X   |   X   |   X   |
-Class Inheritance Overrides     |    X   |   X    |   X   |   X   |   X   |
-Appending to Variables (+=)     |    X   |   X    |   X   |   X   |   X   |
-Class names starting with 0-9   |    X   |   X    |   X   |   X   |   X   |
-Multi-line C-style comments     |    X   |   X    |   X   |   X   |   X   |
-Node regular expressions        |        |   X    |   X   |   X   |   X   |
-Expressions in Variables        |        |   X    |   X   |   X   |   X   |
-RegExes in conditionals         |        |   X    |   X   |   X   |   X   |
-Elsif in conditionals           |        |        |   X   |   X   |   X   |
-Chaining Resources              |        |        |   X   |   X   |   X   |
-Hashes                          |        |        |   X   |   X   |   X   |
-Parameterised Class             |        |        |   X   |   X   |   X   |
-Run Stages                      |        |        |   X   |   X   |   X   |
-The "in" syntax                 |        |        |   X   |   X   |   X   |
-The "unless" syntax             |        |        |       |       |   X   |
+Feature                         | 0.24.x | 0.25.x | 2.6.x | 2.7.x | Upcoming |
+--------------------------------|:------:|:------:|:-----:|:-----:|:--------:|
+Plusignment operator (+>)       |    X   |   X    |   X   |   X   |     X    |
+Multiple Resource relationships |    X   |   X    |   X   |   X   |     X    |
+Class Inheritance Overrides     |    X   |   X    |   X   |   X   |     X    |
+Appending to Variables (+=)     |    X   |   X    |   X   |   X   |     X    |
+Class names starting with 0-9   |    X   |   X    |   X   |   X   |     X    |
+Multi-line C-style comments     |    X   |   X    |   X   |   X   |     X    |
+Node regular expressions        |        |   X    |   X   |   X   |     X    |
+Expressions in Variables        |        |   X    |   X   |   X   |     X    |
+RegExes in conditionals         |        |   X    |   X   |   X   |     X    |
+Elsif in conditionals           |        |        |   X   |   X   |     X    |
+Chaining Resources              |        |        |   X   |   X   |     X    |
+Hashes                          |        |        |   X   |   X   |     X    |
+Parameterised Class             |        |        |   X   |   X   |     X    |
+Run Stages                      |        |        |   X   |   X   |     X    |
+The "in" syntax                 |        |        |   X   |   X   |     X    |
+The "unless" syntax             |        |        |       |       |     X    |
 
 Resources
 ---------
@@ -1175,10 +1175,10 @@ Boolean `and`, `or`, and `not` operators:
 
 #### Unless Statement
 
-The `unless` statement, introduced in 2.8.0, is an optional replacement for the `if !` or "if not" syntax.
+The `unless` statement, which will be introduced in an upcoming (post-2.7) version of Puppet, is an optional replacement for the `if !` or "if not" syntax.
 
 {% highlight ruby %}
-    unless $ram > 1024 {
+    unless $memorysize > 1024 {
        $maxclient = 500
     }
 {% endhighlight %}
