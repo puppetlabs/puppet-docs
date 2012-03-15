@@ -11,6 +11,7 @@ title: "PE 2.0 » Console » Grouping and Classifying Nodes"
 
 Grouping and Classifying Nodes
 =====
+**NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
 
 Use groups, classes, and parameters to control which Puppet configurations your nodes receive. 
 
@@ -144,7 +145,7 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 ### Group Tasks
 
 `nodegroup:list [match=<REGULAR EXPRESSION>]`
-: List node groups. Can optionally match gorups by regex.
+: List node groups. Can optionally match groups by regex.
 
 `nodegroup:add name=<NAME> [classes=<CLASSES>]`
 : Create a new node group. Classes can be specified as a comma-separated list.

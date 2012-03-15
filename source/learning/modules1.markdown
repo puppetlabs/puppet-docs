@@ -92,7 +92,7 @@ Class names have to start with a lowercase letter, and can contain lowercase alp
 
 Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](./variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
 
-Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`). It also means you can localize --- mask --- variable short names in use outside the class; if you assign a `$fqdn` variable in a class, you would get the new value instead of the value of the Facter-supplied variable, unless you used the fully-qualified fact name (`$::fqdn`). 
+Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`).
 
 ### Declaring
 
@@ -165,7 +165,7 @@ There's another way to declare classes, but it behaves a little bit differently:
     include ntp
     include ntp
 
-The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax can only be used once. The drawback is that `include` can't currently be used with parameterized classes, on which more later.
+The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax can only be used once. The drawback is that `include` can't currently be used with parameterized classes. More on that later.
 
 So which should you choose? Neither, yet: learn to use both, and decide later, after we've covered site design and parameterized classes.
 
@@ -259,7 +259,7 @@ But we're not quite done yet. See how the manifest is referring to some files st
 
 There --- our little example from last chapter has grown up into a self-contained blob of awesome.
 
-[^dashe]: The `-e` flag lets you give puppet apply a line of manifest code instead of a file, same as with Perl or Ruby.
+[^dashe]: The `-e` flag lets you give `puppet apply` a line of manifest code instead of a file, same as with Perl or Ruby.
 
 ### Obtaining Modules
 

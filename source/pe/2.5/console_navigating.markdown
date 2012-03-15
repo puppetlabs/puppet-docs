@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "PE 2.0 » Console » Navigating"
+title: "PE 2.5 » Console » Navigating"
 ---
 
 * * *
@@ -15,9 +15,14 @@ Navigating the Console
 Getting Around
 -----
 
-Navigate between sections of the console using the navigation bar at the top. 
+Navigate between sections of the console using the menu bar at the top. 
 
 ![The navigation bar][nav_navbar]
+
+All of the menu items deal with aspects of your nodes and their configuration except:
+
+*Help which provides help, obviously.
+<!-- *[your username] which provides access to your account information and, if you are an admin user, also provides access to user management tools. -->
 
 What's in the Console?
 -----

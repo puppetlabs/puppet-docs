@@ -12,8 +12,10 @@ title: "PE 2.0 » Console » Live Management"
 Live Management
 =====
 
-What's Live Management?
+What is Live Management?
 -----
+
+**NOTE** To use live management, you must be logged in as a read-write or admin level user. Read-only users cannot access the live management page.
 
 Live management is a part of the console that provides tools for inspecting and editing your nodes in real time. It is powered by MCollective.
 
