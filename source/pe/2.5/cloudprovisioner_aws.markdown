@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Cloud Provisioning » AWS Provisioning"
+title: "PE 2.5 » Cloud Provisioning » AWS Provisioning"
 ---
 
 * * *

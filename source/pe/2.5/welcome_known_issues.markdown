@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Welcome » Known Issues"
+title: "PE 2.5 » Welcome » Known Issues"
 ---
 
 {% capture security_info %}Detailed info about security issues lives at <http://puppetlabs.com/security>, and security hotfixes for supported versions of PE are always available at <http://puppetlabs.com/security/hotfixes>. For security notifications by email, make sure you're on the [PE-Users](http://groups.google.com/group/puppet-users) mailing list.{% endcapture %}

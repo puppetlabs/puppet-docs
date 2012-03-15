@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Maintenance and Troubleshooting » Console Maintenance Tasks"
+title: "PE 2.5 » Maintenance and Troubleshooting » Console Maintenance Tasks"
 ---
 
 * * *

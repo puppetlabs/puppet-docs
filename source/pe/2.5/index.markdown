@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Index"
+title: "PE 2.5 » Index"
 ---
 
 Puppet Enterprise User's Guide

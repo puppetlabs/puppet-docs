@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Installing » Answer File Reference"
+title: "PE 2.5 » Installing » Answer File Reference"
 ---
 
 * * *

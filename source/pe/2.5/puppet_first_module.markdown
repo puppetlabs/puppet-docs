@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Puppet » Your First Module"
+title: "PE 2.5 » Puppet » Your First Module"
 ---
 
 * * *

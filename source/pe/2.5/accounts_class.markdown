@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Accounts Module » The pe_accounts Class"
+title: "PE 2.5 » Accounts Module » The pe_accounts Class"
 ---
 
 * * *

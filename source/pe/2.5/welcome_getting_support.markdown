@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Welcome » Getting Support"
+title: "PE 2.5 » Welcome » Getting Support"
 ---
 
 * * *

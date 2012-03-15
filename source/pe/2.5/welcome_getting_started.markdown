@@ -1,4 +1,5 @@
 ---
+nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Welcome » Getting Started"
 ---

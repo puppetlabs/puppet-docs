@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Installing » Preparing to Install"
+title: "PE 2.5 » Installing » Preparing to Install"
 ---
 
 * * *

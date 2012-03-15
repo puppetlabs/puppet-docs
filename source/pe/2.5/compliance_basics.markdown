@@ -1,6 +1,7 @@
 ---
+nav: pe25.html
 layout: pe2experimental
-title: "PE 2.0 » Compliance » Basics and UI"
+title: "PE 2.5 » Compliance » Basics and UI"
 ---
 
 * * *
