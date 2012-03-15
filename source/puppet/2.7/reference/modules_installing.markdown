@@ -17,7 +17,10 @@ Installing Modules
 
 <span class="versionnote">This reference applies to Puppet 2.7.12 and later and Puppet Enterprise 2.5 and later. Earlier versions will not behave identically.</span>
 
-> ![Windows note](/images/windows-logo-small.jpg) The puppet module tool does not currently work on Windows. To install a pre-existing module on Windows, simply download and extract the module's release tarball, rename the module directory to remove the user name prefix, and move it into place in the [modulepath][].
+> ![Windows note](/images/windows-logo-small.jpg) The puppet module tool does not currently work on Windows.
+> 
+> * Windows nodes which pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
+> * On Windows nodes which compile their own catalogs, you can install a Forge module by downloading and extracting the module's release tarball, renaming the module directory to remove the user name prefix, and moving it into place in Puppet's [modulepath][].
 
 The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems, and using them can save you time and effort. 
 
