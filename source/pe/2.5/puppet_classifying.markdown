@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Assigning a Class to a Node"
+subtitle: "Puppet For New Users: Assigning a Class to a Node"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Puppet » Assigning a Class to a Node"
 
 * * *
 
-Puppet For New Users: Assigning a Class to a Node
-=====
+
 
 In Puppet Enterprise, you assign classes to nodes using the console. 
 

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Accounts Module » The pe_accounts Class"
+subtitle: "The pe_accounts Class"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Accounts Module » The pe_accounts Class"
 * * *
 
 
-The `pe_accounts` Class
-=====
+
 
 This class is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise.
 

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Accessing"
+subtitle: "Accessing the Console"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Accessing"
 
 * * *
 
-Accessing the Console
-=====
+
 
 The console is Puppet Enterprise's web GUI. Use it to:
 

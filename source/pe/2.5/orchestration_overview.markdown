@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Orchestration » Overview"
+subtitle: "Orchestration for New PE Users: Overview"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Orchestration » Overview"
 
 * * *
 
-Orchestration for New PE Users: Overview
-=====
+
 
 What is Orchestration?
 -----

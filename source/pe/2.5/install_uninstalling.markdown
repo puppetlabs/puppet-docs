@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Uninstalling"
+subtitle: "Uninstalling Puppet Enterprise"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Installing » Uninstalling"
 
 * * *
 
-Uninstalling Puppet Enterprise
-=====
+
 
 [uninstaller]: ./files/puppet-enterprise-uninstaller
 

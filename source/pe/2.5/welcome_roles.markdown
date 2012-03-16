@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Welcome » Components and Roles"
+subtitle: "Components and Roles"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Welcome » Components and Roles"
 
 * * *
 
-Components and Roles
-========
+
 
 Puppet Enterprise's features are divided into four main **roles,** any or all of which can be installed on a single system:
 

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Role-Based Access Control"
+subtitle: "About Console Access Control"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Role-Based Access Control"
 
 * * *
 
-About Console Access Control
-=====
+
 
 Starting with PE 2.5, the Console supports role-based access control. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows individual user accounts. Moreover, these accounts now allow the assignment of one of three user roles: read-only, read-write, or admin.
 

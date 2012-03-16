@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Reconfiguring PE"
+subtitle: "Reconfiguring Complex Settings"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Maintenance and Troubleshooting » Reconfiguring PE"
 
 * * *
 
-Reconfiguring Complex Settings
-=====
+
 
 During installation, you make several major decisions that affect the way Puppet Enterprise works. Several of these decisions can be changed after the fact. 
 

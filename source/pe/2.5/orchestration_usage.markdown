@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Orchestration » Usage"
+subtitle: "Orchestration for New PE Users: Usage and Examples"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Orchestration » Usage"
 
 * * *
 
-Orchestration for New PE Users: Usage and Examples
-=====
+
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
 

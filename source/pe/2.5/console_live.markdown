@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Live Management"
+subtitle: "Live Management"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Live Management"
 
 * * *
 
-Live Management
-=====
+
 
 What is Live Management?
 -----

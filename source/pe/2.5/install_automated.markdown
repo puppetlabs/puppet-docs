@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Automated Installation"
+subtitle: "Automated Installation"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Installing » Automated Installation"
 
 * * *
 
-Automated Installation
-=======
+
 
 To streamline deployment, the PE installer can run non-interactively. To do this, you must: 
 

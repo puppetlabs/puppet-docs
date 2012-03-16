@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Answer File Reference"
+subtitle: "Answer File Reference"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Installing » Answer File Reference"
 * * *
 
 
-Answer File Reference
-=====================
+
 
 Answer files are used when doing an automated installation of PE. See [the chapter on automated installation](./install_automated.html) for more details.
 

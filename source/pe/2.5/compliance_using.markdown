@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Compliance » Using the Workflow"
+subtitle: "Using the Compliance Workflow"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Compliance » Using the Workflow"
 
 * * *
 
-Using the Compliance Workflow
-=====
+
 
 Prerequisites
 -----

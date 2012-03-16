@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Compliance » Basics and UI"
+subtitle: "Compliance Basics and UI"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Compliance » Basics and UI"
 
 * * *
 
-Compliance Basics and UI
-=====
+
 
 The Compliance Workflow Cycle
 -----

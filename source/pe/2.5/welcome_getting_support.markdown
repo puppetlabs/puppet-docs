@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Welcome » Getting Support"
+subtitle: "Getting Support for Puppet Enterprise"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Welcome » Getting Support"
 * * *
 
 
-Getting Support for Puppet Enterprise
-=====
+
 
 Getting support for Puppet Enterprise is easy, both from Puppet Labs and the community of Puppet Enterprise users. We provide responsive, dependable, quality support to resolve any issues regarding the installation, operation and use of Puppet.
 

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Common Config Errors"
+subtitle: "Troubleshooting Common Configuration Errors"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Maintenance and Troubleshooting » Common Config Errors"
 
 * * *
 
-Troubleshooting Common Configuration Errors
-=====
+
 
 The Installer is Failing!
 -----

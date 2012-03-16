@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Basic Installation"
+subtitle: "Basic Installation"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Installing » Basic Installation"
 * * *
 
 
-Basic Installation
-======
+
 
 Starting the Installer
 -----

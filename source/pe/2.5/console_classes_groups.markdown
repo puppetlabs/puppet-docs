@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Grouping and Classifying Nodes"
+subtitle: "Grouping and Classifying Nodes"
 ---
 
 * * *
@@ -10,8 +11,6 @@ title: "PE 2.5 » Console » Grouping and Classifying Nodes"
 
 * * *
 
-Grouping and Classifying Nodes
-=====
 **NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
 
 Use groups, classes, and parameters to control which Puppet configurations your nodes receive. 

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Live Mgmt: Managing Resources"
+subtitle: "Live Management: Managing Resources"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Live Mgmt: Managing Resources"
 
 * * *
 
-Live Management: Managing Resources
-=====
+
 
 Use the manage resources tab to browse the resources on your nodes and clone any of them across your infrastructure.
 

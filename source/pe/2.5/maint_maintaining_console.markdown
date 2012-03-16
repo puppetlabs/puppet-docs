@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Console Maintenance Tasks"
+subtitle: "Console Maintenance Tasks"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Maintenance and Troubleshooting » Console Maintenance Tasks"
 
 * * *
 
-Console Maintenance Tasks
-=====
+
 
 If PE's console becomes sluggish or begins taking up too much space on disk, there are several maintenance tasks that can improve its performance. 
 

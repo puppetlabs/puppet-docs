@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Live Mgmt: Controlling Puppet"
+subtitle: "Live Management: Controlling Puppet"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Live Mgmt: Controlling Puppet"
 
 * * *
 
-Live Management: Controlling Puppet
-=====
+
 
 Use the control puppet tab to immediately trigger a puppet agent run on any of your nodes. You can also check puppet agent's status, and enable or disable it to control the spread of new configurations.
 

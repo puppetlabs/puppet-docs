@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » System Requirements"
+subtitle: "System Requirements"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Installing » System Requirements"
 * * *
 
 
-System Requirements
-===================
+
 
 Operating System
 -----

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Next Steps"
+subtitle: "Puppet For New Users: Next Steps"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Puppet » Next Steps"
 
 * * *
 
-Puppet For New Users: Next Steps
-=====
+
 
 More Resources
 -----

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Accounts Module » The pe_accounts::user Type"
+subtitle: "The pe_accounts::user Type"
 ---
 
 
@@ -11,8 +12,7 @@ title: "PE 2.5 » Accounts Module » The pe_accounts::user Type"
 
 * * *
 
-The `pe_accounts::user` Type
-=====
+
 
 This defined type is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise. It is available for use in your own manifests.
 

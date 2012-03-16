@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » Overview"
+subtitle: "A Cloud Provisioning Overview"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Cloud Provisioning » Overview"
 
 * * *
 
-A Cloud Provisioning Overview
-=============================
+
 
 Puppet Enterprise ships with command-line tools for provisioning new nodes. You can use these tools to:
 

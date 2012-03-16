@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Welcome » What's New"
+subtitle: "New Features"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Welcome » What's New"
 * * *
 
 
-New Features
-========
+
 
 Puppet Enterprise 2.5
 -----

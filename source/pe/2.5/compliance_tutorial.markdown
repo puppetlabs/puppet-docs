@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Compliance » Tutorial"
+subtitle: "Compliance Tutorial"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Compliance » Tutorial"
 
 * * *
 
-Compliance Tutorial
-=====
+
 
 This brief walkthrough shows a compliance workflow auditing the state of the following resources:
 

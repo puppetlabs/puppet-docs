@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Viewing Reports"
+subtitle: "Viewing Reports and Inventory Data"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Viewing Reports"
 
 * * *
 
-Viewing Reports and Inventory Data
-=====
+
 
 When nodes fetch their configurations from the puppet master, they send back inventory data and a report of their run. These end up in the console, where you can view them in that node's page. 
 

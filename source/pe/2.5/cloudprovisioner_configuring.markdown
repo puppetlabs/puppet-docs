@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » Configuring and Troubleshooting"
+subtitle: "Configuring and Troubleshooting Cloud Provisioning"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Cloud Provisioning » Configuring and Troubleshooting"
 
 * * *
 
-Configuring and Troubleshooting Cloud Provisioning
-=====
+
 
 Configuring
 -----------

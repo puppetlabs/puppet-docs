@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » Classifying and Installing"
+subtitle: "Classifying New Nodes and Remotely Installing PE"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Cloud Provisioning » Classifying and Installing"
 
 * * *
 
-Classifying New Nodes and Remotely Installing PE
-=====
+
 
 In addition to the provisioning actions described in the prior chapters, Puppet Enterprise includes actions for adding nodes to a pre-existing console group and remotely installing Puppet Enterprise on new nodes. 
 

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Upgrading"
+subtitle: "Upgrading Puppet Enterprise"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Installing » Upgrading"
 
 * * *
 
-Upgrading Puppet Enterprise
-=====
+
 
 To upgrade from a previous version of Puppet Enterprise, use the same installer tarball as in a basic installation, but **don't** run the `puppet-enterprise-installer` script. Instead, run `puppet-enterprise-upgrader`. 
 

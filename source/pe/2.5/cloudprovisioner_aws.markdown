@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » AWS Provisioning"
+subtitle: "Provisioning With Amazon Web Services"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Cloud Provisioning » AWS Provisioning"
 
 * * *
 
-Provisioning With Amazon Web Services
-=====
+
 
 Puppet Enterprise can create and manage EC2 machine instances using Amazon Web Services.
 

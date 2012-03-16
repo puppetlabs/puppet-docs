@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Installing Additional Components"
+subtitle: "Installing Additional Components"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Maintenance and Troubleshooting » Installing Additional Compo
 
 * * *
 
-Installing Additional Components
-=====
+
 
 Several components of PE can be installed when needed instead of up-front.
 

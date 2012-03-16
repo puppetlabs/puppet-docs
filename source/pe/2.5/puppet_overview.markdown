@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Overview"
+subtitle: "Puppet For New Users: Overview"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Puppet » Overview"
 
 * * *
 
-Puppet For New Users: Overview
-=====
+
 
 Puppet is divided into two main components:
 

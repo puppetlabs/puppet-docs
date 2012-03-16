@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Your First Module"
+subtitle: "Puppet For New Users: Your First Module"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Puppet » Your First Module"
 
 * * *
 
-Puppet For New Users: Your First Module
-=====
+
 
 Where Modules Live
 -----

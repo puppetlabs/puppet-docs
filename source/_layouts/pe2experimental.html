@@ -226,6 +226,7 @@
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
+              <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
               <nav class="in-page">{{ content | toc }}</nav>
               {{ content }}
             </div>

@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Live Mgmt: Advanced Tasks"
+subtitle: "Live Management: Advanced Tasks"
 ---
 
 * * *
@@ -10,8 +11,7 @@ title: "PE 2.5 » Console » Live Mgmt: Advanced Tasks"
 
 * * *
 
-Live Management: Advanced Tasks
-=====
+
 
 Use the advanced tasks tab to invoke actions from any MCollective agent installed on your nodes. 
 
