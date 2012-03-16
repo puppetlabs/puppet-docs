@@ -228,7 +228,7 @@
             <div class="primary-content">
               {{ content }}
             </div>
-            <div class="secondary-content">
+            <nav class="main">
                   <div id="subCol">
                   {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
                   {% if maindir == 'mcollective' %}
@@ -237,12 +237,12 @@
                       <!-- 
 <h3 class="chapter">Contents</h3>
                       {{ content | toc }}
- --> {% include pe_2.0_nav.markdown %}
+ --> {% render_nav %} <!-- Currently, this loses us our within-the-page TOC. Will have to replace somehow. -->
                   {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
                   </div>
-            </div>
+            </nav>
           </div>
         </div>
       </section>
