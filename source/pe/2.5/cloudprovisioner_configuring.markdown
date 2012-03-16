@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » Configuring and Troubleshooting"
+subtitle: "Configuring and Troubleshooting Cloud Provisioning"
 ---
-
-* * *
-
-&larr; [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
-
-* * *
-
-Configuring and Troubleshooting Cloud Provisioning
-=====
 
 Configuring
 -----------
@@ -168,7 +160,4 @@ this issue.
 
 * * *
 
-&larr; [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
-
-* * *
-
+Next: [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;

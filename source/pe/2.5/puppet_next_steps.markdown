@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Next Steps"
+subtitle: "Puppet For New Users: Next Steps"
 ---
-
-* * *
-
-&larr; [Puppet: Assigning a Class to a Node](./puppet_classifying.html) --- [Index](./) --- [Orchestration: Overview](./orchestration_overview.html) &rarr;
-
-* * *
-
-Puppet For New Users: Next Steps
-=====
 
 More Resources
 -----
@@ -34,7 +26,4 @@ For more on Puppet Enterprise's console, see [the console section](./console_nav
 
 * * *
 
-&larr; [Puppet: Assigning a Class to a Node](./puppet_classifying.html) --- [Index](./) --- [Orchestration: Overview](./orchestration_overview.html) &rarr;
-
-* * *
-
+Next: [Orchestration: Overview](./orchestration_overview.html) &rarr;

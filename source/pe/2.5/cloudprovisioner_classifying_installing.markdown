@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » Classifying and Installing"
+subtitle: "Classifying New Nodes and Remotely Installing PE"
 ---
-
-* * *
-
-&larr; [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) --- [Index](./) --- [Cloud Provisioning: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) &rarr;
-
-* * *
-
-Classifying New Nodes and Remotely Installing PE
-=====
 
 In addition to the provisioning actions described in the prior chapters, Puppet Enterprise includes actions for adding nodes to a pre-existing console group and remotely installing Puppet Enterprise on new nodes. 
 
@@ -123,7 +115,4 @@ The `init` action combines the options for the `classify` and
 
 * * *
 
-&larr; [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) --- [Index](./) --- [Cloud Provisioning: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) &rarr;
-
-* * *
-
+Next: [Cloud Provisioning: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) &rarr;

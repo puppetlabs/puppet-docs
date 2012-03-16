@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Compliance » Tutorial"
+subtitle: "Compliance Tutorial"
 ---
-
-* * *
-
-&larr; [Compliance: Using the Compliance Workflow](./compliance_using.html) --- [Index](./) --- [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) &rarr;
-
-* * *
-
-Compliance Tutorial
-=====
 
 This brief walkthrough shows a compliance workflow auditing the state of the following resources:
 
@@ -91,7 +83,4 @@ It's an otherwise uneventful day.
 
 * * *
 
-&larr; [Compliance: Using the Compliance Workflow](./compliance_using.html) --- [Index](./) --- [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) &rarr;
-
-* * *
-
+Next: [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) &rarr;

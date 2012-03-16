@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Upgrading"
+subtitle: "Upgrading Puppet Enterprise"
 ---
-
-* * *
-
-&larr; [Installing: Basic Installation](./install_basic.html) --- [Index](./) --- [Installing: Uninstalling](./install_uninstalling.html) &rarr;
-
-* * *
-
-Upgrading Puppet Enterprise
-=====
 
 To upgrade from a previous version of Puppet Enterprise, use the same installer tarball as in a basic installation, but **don't** run the `puppet-enterprise-installer` script. Instead, run `puppet-enterprise-upgrader`. 
 
@@ -295,7 +287,4 @@ On each agent node you upgrade to PE 2.0, make the following edits to `/etc/pupp
 
 * * *
 
-&larr; [Installing: Basic Installation](./install_basic.html) --- [Index](./) --- [Installing: Uninstalling](./install_uninstalling.html) &rarr;
-
-* * *
-
+Next: [Installing: Uninstalling](./install_uninstalling.html) &rarr;

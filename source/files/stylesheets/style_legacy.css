@@ -1245,25 +1245,24 @@ footer#footer form fieldset legend {
 /* @group Docs */
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content {
-  padding-left: 320px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 320px;
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content {
-  float: right;
+  float: left;
 }
 
-/* body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .secondary-content */ 
-nav.main {
+body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .secondary-content {
   width: 250px;
   position: relative;
   margin: 0;
-  margin-left: -340px;
-  border-left: none;
-  /* border-right: 2px solid #eee; */
-  padding-right: 20px;
-  /* left: 40px; */
-  float: left !important;
+  margin-right: -280px;
+  border-right: none;
+  border-left: 2px solid #eee;
+  padding-left: 20px;
+  left: 40px;
+  float: right !important;
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul {
@@ -1626,8 +1625,7 @@ div.primary-secondary-content .secondary-content {
 	margin-top: 0;
 }
 
-/* .secondary-content */
-nav.main h3:first-child {
+.secondary-content h3:first-child {
   margin-top: 0.67em;
 }
 

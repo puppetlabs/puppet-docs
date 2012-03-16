@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Accessing"
+subtitle: "Accessing the Console"
 ---
-
-* * *
-
-&larr; [Installing: What gets installed where?](./install_what_and_where.html) --- [Index](./) --- [Console: Navigating the Console](./console_navigating.html) &rarr;
-
-* * *
-
-Accessing the Console
-=====
 
 The console is Puppet Enterprise's web GUI. Use it to:
 
@@ -110,7 +102,4 @@ Since the console is the main point of control for your infrastructure, you will
 
 * * *
 
-&larr; [Installing: What gets installed where?](./install_what_and_where.html) --- [Index](./) --- [Console: Navigating the Console](./console_navigating.html) &rarr;
-
-* * *
-
+Next: [Console: Navigating the Console](./console_navigating.html) &rarr;

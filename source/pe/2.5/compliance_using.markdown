@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Compliance » Using the Workflow"
+subtitle: "Using the Compliance Workflow"
 ---
-
-* * *
-
-&larr; [Compliance: Basics and UI](./compliance_basics.html) --- [Index](./) --- [Compliance: Tutorial](./compliance_tutorial.html) &rarr;
-
-* * *
-
-Using the Compliance Workflow
-=====
 
 Prerequisites
 -----
@@ -156,7 +148,4 @@ A custom report is split into a "Common Differences" tab and an "Individual Diff
 
 * * *
 
-&larr; [Compliance: Basics and UI](./compliance_basics.html) --- [Index](./) --- [Compliance: Tutorial](./compliance_tutorial.html) &rarr;
-
-* * *
-
+Next: [Compliance: Tutorial](./compliance_tutorial.html) &rarr;

@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Compliance » Basics and UI"
+subtitle: "Compliance Basics and UI"
 ---
-
-* * *
-
-&larr; [Cloud Provisioning: Man Page: puppet node](./cloudprovisioner_man_node.html) --- [Index](./) --- [Compliance: Using the Compliance Workflow](./compliance_using.html) &rarr;
-
-* * *
-
-Compliance Basics and UI
-=====
 
 The Compliance Workflow Cycle
 -----
@@ -128,7 +120,4 @@ Although the console allows groups to contain other groups, a compliance group p
 
 * * *
 
-&larr; [Cloud Provisioning: Man Page: puppet node](./cloudprovisioner_man_node.html) --- [Index](./) --- [Compliance: Using the Compliance Workflow](./compliance_using.html) &rarr;
-
-* * *
-
+Next: [Compliance: Using the Compliance Workflow](./compliance_using.html) &rarr;

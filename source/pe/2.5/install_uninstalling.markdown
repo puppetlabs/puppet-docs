@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Installing » Uninstalling"
+subtitle: "Uninstalling Puppet Enterprise"
 ---
-
-* * *
-
-&larr; [Installing: Upgrading](./install_upgrading.html) --- [Index](./) --- [Installing: Automated Installation](./install_automated.html) &rarr;
-
-* * *
-
-Uninstalling Puppet Enterprise
-=====
 
 [uninstaller]: ./files/puppet-enterprise-uninstaller
 
@@ -80,7 +72,4 @@ Thus, to remove every trace of PE from a system, you would run:
 
 * * *
 
-&larr; [Installing: Upgrading](./install_upgrading.html) --- [Index](./) --- [Installing: Automated Installation](./install_automated.html) &rarr;
-
-* * *
-
+Next: [Installing: Automated Installation](./install_automated.html) &rarr;

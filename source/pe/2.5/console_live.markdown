@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Live Management"
+subtitle: "Live Management"
 ---
-
-* * *
-
-&larr; [Console: Grouping and Classifying Nodes](./console_classes_groups.html) --- [Index](./) --- [Console: Live Management: Managing Resources](./console_live_resources.html) &rarr;
-
-* * *
-
-Live Management
-=====
 
 What is Live Management?
 -----
@@ -99,7 +91,4 @@ Filtering by Puppet class can be the most powerful filtering tool on this page, 
 
 * * *
 
-&larr; [Console: Grouping and Classifying Nodes](./console_classes_groups.html) --- [Index](./) --- [Console: Live Management: Managing Resources](./console_live_resources.html) &rarr;
-
-* * *
-
+Next: [Console: Live Management: Managing Resources](./console_live_resources.html) &rarr;

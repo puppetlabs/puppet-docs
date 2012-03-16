@@ -4,11 +4,6 @@ layout: pe2experimental
 title: "PE 2.5 » Installing » What Gets Installed Where?"
 ---
 
-* * *
-
-&larr; [Installing: Answer File Reference](./install_answer_file_reference.html) --- [Index](./) --- [Console: Accessing the Console](./console_accessing.html) &rarr;
-
-* * *
 
 #What Gets Installed Where?
 
@@ -136,7 +131,4 @@ The `pe-man` command from previous versions of Puppet Enterprise is still functi
 
 * * *
 
-&larr; [Installing: Answer File Reference](./install_answer_file_reference.html) --- [Index](./) --- [Console: Accessing the Console](./console_accessing.html) &rarr;
-
-* * *
-
+Next: [Console: Accessing the Console](./console_accessing.html) &rarr;

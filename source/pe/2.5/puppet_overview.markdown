@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Overview"
+subtitle: "Puppet For New Users: Overview"
 ---
-
-* * *
-
-&larr; [Console: Live Management: Advanced Tasks](./console_live_advanced.html) --- [Index](./) --- [Puppet: Your First Module](./puppet_first_module.html) &rarr;
-
-* * *
-
-Puppet For New Users: Overview
-=====
 
 Puppet is divided into two main components:
 
@@ -49,7 +41,4 @@ If you need a node or group of nodes to retrieve a new configuration _now,_ use 
 
 * * *
 
-&larr; [Console: Live Management: Advanced Tasks](./console_live_advanced.html) --- [Index](./) --- [Puppet: Your First Module](./puppet_first_module.html) &rarr;
-
-* * *
-
+Next: [Puppet: Your First Module](./puppet_first_module.html) &rarr;

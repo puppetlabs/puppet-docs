@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » Navigating"
+subtitle: "Navigating the Console"
 ---
-
-* * *
-
-&larr; [Console: Accessing the Console](./console_accessing.html) --- [Index](./) --- [Console: Viewing Reports and Inventory Data](./console_reports.html) &rarr;
-
-* * *
-
-Navigating the Console
-=====
 
 Getting Around
 -----
@@ -67,7 +59,4 @@ Classes aren't automatically detected or validated; you have to enter a class's 
 
 * * *
 
-&larr; [Console: Accessing the Console](./console_accessing.html) --- [Index](./) --- [Console: Viewing Reports and Inventory Data](./console_reports.html) &rarr;
-
-* * *
-
+Next: [Console: Viewing Reports and Inventory Data](./console_reports.html) &rarr;

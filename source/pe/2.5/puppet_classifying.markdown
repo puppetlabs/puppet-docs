@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Assigning a Class to a Node"
+subtitle: "Puppet For New Users: Assigning a Class to a Node"
 ---
-
-* * *
-
-&larr; [Puppet: Your First Module](./puppet_first_module.html) --- [Index](./) --- [Puppet: Next Steps](./puppet_next_steps.html) &rarr;
-
-* * *
-
-Puppet For New Users: Assigning a Class to a Node
-=====
 
 In Puppet Enterprise, you assign classes to nodes using the console. 
 
@@ -122,7 +114,4 @@ For some reason, `/etc/passwd` had a permissions mode of 0666, which meant anyon
 
 * * *
 
-&larr; [Puppet: Your First Module](./puppet_first_module.html) --- [Index](./) --- [Puppet: Next Steps](./puppet_next_steps.html) &rarr;
-
-* * *
-
+Next: [Puppet: Next Steps](./puppet_next_steps.html) &rarr;

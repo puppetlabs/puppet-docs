@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Installing Additional Components"
+subtitle: "Installing Additional Components"
 ---
-
-* * *
-
-&larr; [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) --- [Index](./) --- [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;
-
-* * *
-
-Installing Additional Components
-=====
 
 Several components of PE can be installed when needed instead of up-front.
 
@@ -41,7 +33,4 @@ For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linu
 
 * * *
 
-&larr; [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) --- [Index](./) --- [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;
-
-* * *
-
+Next: [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;

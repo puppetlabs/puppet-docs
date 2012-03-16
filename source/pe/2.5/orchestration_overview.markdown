@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Orchestration » Overview"
+subtitle: "Orchestration for New PE Users: Overview"
 ---
-
-* * *
-
-&larr; [Puppet: Next Steps](./puppet_next_steps.html) --- [Index](./) --- [Orchestration: Usage and Examples](./orchestration_usage.html) &rarr;
-
-* * *
-
-Orchestration for New PE Users: Overview
-=====
 
 What is Orchestration?
 -----
@@ -74,7 +66,4 @@ to the ActiveMQ server, which runs on the puppet master node. See the [notes on 
 
 * * *
 
-&larr; [Puppet: Next Steps](./puppet_next_steps.html) --- [Index](./) --- [Orchestration: Usage and Examples](./orchestration_usage.html) &rarr;
-
-* * *
-
+Next: [Orchestration: Usage and Examples](./orchestration_usage.html) &rarr;

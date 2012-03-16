@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Console Maintenance Tasks"
+subtitle: "Console Maintenance Tasks"
 ---
-
-* * *
-
-&larr; [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) --- [Index](./) --- [Maintenance: Installing Additional Components](./maint_installing_additional.html) &rarr;
-
-* * *
-
-Console Maintenance Tasks
-=====
 
 If PE's console becomes sluggish or begins taking up too much space on disk, there are several maintenance tasks that can improve its performance. 
 
@@ -92,7 +84,4 @@ To restore the console's database from a file called `production.sql` to your `p
 
 * * *
 
-&larr; [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) --- [Index](./) --- [Maintenance: Installing Additional Components](./maint_installing_additional.html) &rarr;
-
-* * *
-
+Next: [Maintenance: Installing Additional Components](./maint_installing_additional.html) &rarr;

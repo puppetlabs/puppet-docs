@@ -2,6 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Welcome » Getting Started"
+subtitle: "Getting Started"
 ---
 
 * * *
@@ -11,8 +12,7 @@ title: "PE 2.5 » Welcome » Getting Started"
 * * *
 
 
-Getting Started
-===============
+
 
 Thank you for choosing Puppet Enterprise, the best-of-breed distribution for the Puppet family of systems automation tools.
 

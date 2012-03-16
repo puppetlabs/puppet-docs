@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Maintenance and Troubleshooting » Common Config Errors"
+subtitle: "Troubleshooting Common Configuration Errors"
 ---
-
-* * *
-
-&larr; [PE Accounts Module: The `pe_accounts` Class](./accounts_class.html) --- [Index](./) --- [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) &rarr;
-
-* * *
-
-Troubleshooting Common Configuration Errors
-=====
 
 The Installer is Failing!
 -----
@@ -174,7 +166,4 @@ If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failin
 
 * * *
 
-&larr; [PE Accounts Module: The `pe_accounts` Class](./accounts_class.html) --- [Index](./) --- [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) &rarr;
-
-* * *
-
+Next: [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) &rarr;

@@ -2,16 +2,8 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Cloud Provisioning » VMware Provisioning"
+subtitle: "Provisioning With VMware"
 ---
-
-* * *
-
-&larr; [Cloud Provisioning: Configuring and Troubleshooting](./cloudprovisioner_configuring.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) &rarr;
-
-* * *
-
-Provisioning With VMware
-=====
 
 Puppet Enterprise can create and manage VMware virtual machines on your
 vSphere server using vCenter.
@@ -200,7 +192,4 @@ For example:
 
 * * *
 
-&larr; [Cloud Provisioning: Configuring and Troubleshooting](./cloudprovisioner_configuring.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) &rarr;
-
-* * *
-
+Next: [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) &rarr;
