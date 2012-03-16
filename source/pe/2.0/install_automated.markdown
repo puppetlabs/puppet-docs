@@ -1,7 +1,7 @@
 ---
 nav: pe_2.0_nav.markdown
 layout: pe2experimental
-title: "PE 2.0 » Installing » Automated Installation
+title: "PE 2.0 » Installing » Automated Installation"
 ---
 
 * * *
