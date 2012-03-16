@@ -1286,9 +1286,11 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 }
 
 /* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
-div.primary-secondary-content div.primary-content p img {
+section#content div.primary-secondary-content div.primary-content p img {
   border: solid 1px #ccc;
   box-shadow: 0px 0px 8px #999;
+  /* Also, images should be limited to 640px wide so they don't blow up the page layout. */
+  max-width: 640px;
 }
 
 /* NF: Also, images that are the only thing in their paragraph should be centered. */
