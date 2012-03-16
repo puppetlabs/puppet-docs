@@ -5,14 +5,6 @@ title: "PE 2.5 » Maintenance and Troubleshooting » Installing Additional Compo
 subtitle: "Installing Additional Components"
 ---
 
-* * *
-
-&larr; [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) --- [Index](./) --- [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;
-
-* * *
-
-
-
 Several components of PE can be installed when needed instead of up-front.
 
 Note that you cannot currently change which machines have the console and puppet master [roles](./welcome_roles.html).
@@ -41,7 +33,4 @@ For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linu
 
 * * *
 
-&larr; [Maintenance: Console Maintenance Tasks](./maint_maintaining_console.html) --- [Index](./) --- [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;
-
-* * *
-
+Next: [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;

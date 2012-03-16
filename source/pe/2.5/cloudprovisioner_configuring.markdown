@@ -5,14 +5,6 @@ title: "PE 2.5 » Cloud Provisioning » Configuring and Troubleshooting"
 subtitle: "Configuring and Troubleshooting Cloud Provisioning"
 ---
 
-* * *
-
-&larr; [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
-
-* * *
-
-
-
 Configuring
 -----------
 
@@ -168,7 +160,4 @@ this issue.
 
 * * *
 
-&larr; [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) --- [Index](./) --- [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
-
-* * *
-
+Next: [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;

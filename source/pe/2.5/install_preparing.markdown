@@ -5,15 +5,6 @@ title: "PE 2.5 » Installing » Preparing to Install"
 subtitle: "Preparing to Install"
 ---
 
-* * *
-
-&larr; [Installing: System Requirements](./install_system_requirements.html) --- [Index](./) --- [Installing: Basic Installation](./install_basic.html) &rarr;
-
-* * *
-
-
-
-
 Planning
 -----
 
@@ -69,7 +60,4 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 
 * * *
 
-&larr; [Installing: System Requirements](./install_system_requirements.html) --- [Index](./) --- [Installing: Basic Installation](./install_basic.html) &rarr;
-
-* * *
-
+Next: [Installing: Basic Installation](./install_basic.html) &rarr;

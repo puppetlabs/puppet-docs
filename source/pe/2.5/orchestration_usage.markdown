@@ -5,14 +5,6 @@ title: "PE 2.5 » Orchestration » Usage"
 subtitle: "Orchestration for New PE Users: Usage and Examples"
 ---
 
-* * *
-
-&larr; [Orchestration: Overview](./orchestration_overview.html) --- [Index](./) --- [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) &rarr;
-
-* * *
-
-
-
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
 
 Running Actions
@@ -338,7 +330,4 @@ deployment:
 
 * * *
 
-&larr; [Orchestration: Overview](./orchestration_overview.html) --- [Index](./) --- [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) &rarr;
-
-* * *
-
+Next: [Cloud Provisioning: Overview](./cloudprovisioner_overview.html) &rarr;

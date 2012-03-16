@@ -9,10 +9,7 @@ subtitle: "Known Issues in Puppet Enterprise 2.0"
 
 * * *
 
-&larr; [Welcome: New Features and Release Notes](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
-
-* * *
-
+Next: [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
 
 
 As we discover them, this page will be updated with known issues in each maintenance release of Puppet Enterprise 2.0. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
@@ -282,6 +279,4 @@ On RPM-based systems, some of the libraries provided by PE 2.0.0's packages are 
 
 * * *
 
-&larr; [Welcome: New Features and Release Notes](./welcome_whats_new.html) --- [Index](./) --- [Welcome: Getting Support](./welcome_getting_support.html) &rarr;
-
-* * *
+Next: [Welcome: Getting Support](./welcome_getting_support.html) &rarr;

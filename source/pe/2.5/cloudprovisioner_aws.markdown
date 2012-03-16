@@ -5,14 +5,6 @@ title: "PE 2.5 » Cloud Provisioning » AWS Provisioning"
 subtitle: "Provisioning With Amazon Web Services"
 ---
 
-* * *
-
-&larr; [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) --- [Index](./) --- [Cloud Provisioning: Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html) &rarr;
-
-* * *
-
-
-
 Puppet Enterprise can create and manage EC2 machine instances using Amazon Web Services.
 
 If you are new to Amazon Web Services, we recommend reading the [Getting Started
@@ -180,7 +172,4 @@ For example,
 
 * * *
 
-&larr; [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) --- [Index](./) --- [Cloud Provisioning: Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html) &rarr;
-
-* * *
-
+Next: [Cloud Provisioning: Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html) &rarr;

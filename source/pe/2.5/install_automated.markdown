@@ -5,14 +5,6 @@ title: "PE 2.5 » Installing » Automated Installation"
 subtitle: "Automated Installation"
 ---
 
-* * *
-
-&larr; [Installing: Uninstalling](./install_uninstalling.html) --- [Index](./) --- [Installing: Answer File Reference](./install_answer_file_reference.html) &rarr;
-
-* * *
-
-
-
 To streamline deployment, the PE installer can run non-interactively. To do this, you must: 
 
 * Create an answer file
@@ -79,7 +71,4 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
 
 * * *
 
-&larr; [Installing: Uninstalling](./install_uninstalling.html) --- [Index](./) --- [Installing: Answer File Reference](./install_answer_file_reference.html) &rarr;
-
-* * *
-
+Next: [Installing: Answer File Reference](./install_answer_file_reference.html) &rarr;

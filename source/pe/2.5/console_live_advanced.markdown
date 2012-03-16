@@ -5,14 +5,6 @@ title: "PE 2.5 » Console » Live Mgmt: Advanced Tasks"
 subtitle: "Live Management: Advanced Tasks"
 ---
 
-* * *
-
-&larr; [Console: Live Management: Controlling Puppet](./console_live_puppet.html) --- [Index](./) --- [Puppet: Overview](./puppet_overview.html) &rarr;
-
-* * *
-
-
-
 Use the advanced tasks tab to invoke actions from any MCollective agent installed on your nodes. 
 
 ![The advanced tasks page][live_advanced_main]
@@ -62,7 +54,4 @@ Results:
 
 * * *
 
-&larr; [Console: Live Management: Controlling Puppet](./console_live_puppet.html) --- [Index](./) --- [Puppet: Overview](./puppet_overview.html) &rarr;
-
-* * *
-
+Next: [Puppet: Overview](./puppet_overview.html) &rarr;

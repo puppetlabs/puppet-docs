@@ -5,11 +5,6 @@ title: "PE 2.5 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 
-* * *
-
-&larr; [Console: Managing Users](./console_auth.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
-
-* * *
 
 **NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
 
@@ -175,7 +170,4 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 * * *
 
-&larr; [Console: Managing Users](./console_auth.html) --- [Index](./) --- [Console: Live Management](./console_live.html) &rarr;
-
-* * *
-
+Next: [Console: Live Management](./console_live.html) &rarr;

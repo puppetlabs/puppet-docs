@@ -5,15 +5,6 @@ title: "PE 2.5 » Installing » Basic Installation"
 subtitle: "Basic Installation"
 ---
 
-* * *
-
-&larr; [Installing: Preparing to Install](./install_preparing.html) --- [Index](./) --- [Installing: Upgrading](./install_upgrading.html) &rarr;
-
-* * *
-
-
-
-
 Starting the Installer
 -----
 
@@ -206,7 +197,4 @@ When you purchased Puppet Enterprise, you should have been sent a `license.key` 
 
 * * *
 
-&larr; [Installing: Preparing to Install](./install_preparing.html) --- [Index](./) --- [Installing: Upgrading](./install_upgrading.html) &rarr;
-
-* * *
-
+Next: [Installing: Upgrading](./install_upgrading.html) &rarr;

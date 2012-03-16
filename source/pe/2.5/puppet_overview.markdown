@@ -5,14 +5,6 @@ title: "PE 2.5 » Puppet » Overview"
 subtitle: "Puppet For New Users: Overview"
 ---
 
-* * *
-
-&larr; [Console: Live Management: Advanced Tasks](./console_live_advanced.html) --- [Index](./) --- [Puppet: Your First Module](./puppet_first_module.html) &rarr;
-
-* * *
-
-
-
 Puppet is divided into two main components:
 
 * The puppet agent daemon runs on every agent node. At regular intervals, it pulls configuration "catalogs" from the puppet master and applies them to the local system. (Puppet catalogs are idempotent: they can be run any number of times and will always converge to the same state.) 
@@ -49,7 +41,4 @@ If you need a node or group of nodes to retrieve a new configuration _now,_ use 
 
 * * *
 
-&larr; [Console: Live Management: Advanced Tasks](./console_live_advanced.html) --- [Index](./) --- [Puppet: Your First Module](./puppet_first_module.html) &rarr;
-
-* * *
-
+Next: [Puppet: Your First Module](./puppet_first_module.html) &rarr;

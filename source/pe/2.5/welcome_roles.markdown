@@ -5,14 +5,6 @@ title: "PE 2.5 » Welcome » Components and Roles"
 subtitle: "Components and Roles"
 ---
 
-* * *
-
-&larr; [Welcome: Getting Started](./welcome_getting_started.html) --- [Index](./) --- [Welcome: New Features and Release Notes](./welcome_whats_new.html) &rarr;
-
-* * *
-
-
-
 Puppet Enterprise's features are divided into four main **roles,** any or all of which can be installed on a single system:
 
 The Puppet Agent Role
@@ -54,7 +46,4 @@ This role should be installed on a secure node to which administrators have shel
 
 * * *
 
-&larr; [Welcome: Getting Started](./welcome_getting_started.html) --- [Index](./) --- [Welcome: New Features and Release Notes](./welcome_whats_new.html) &rarr;
-
-* * *
-
+Next: [Welcome: New Features and Release Notes](./welcome_whats_new.html) &rarr;

@@ -5,15 +5,6 @@ title: "PE 2.5 » Installing » Answer File Reference"
 subtitle: "Answer File Reference"
 ---
 
-* * *
-
-&larr; [Installing: Automated Installation](./install_automated.html) --- [Index](./) --- [Installing: What gets installed where?](./install_what_and_where.html) &rarr;
-
-* * *
-
-
-
-
 Answer files are used when doing an automated installation of PE. See [the chapter on automated installation](./install_automated.html) for more details.
 
 Answer File Syntax
@@ -193,7 +184,4 @@ Uninstaller Answers
 
 * * *
 
-&larr; [Installing: Automated Installation](./install_automated.html) --- [Index](./) --- [Installing: What gets installed where?](./install_what_and_where.html) &rarr;
-
-* * *
-
+Next: [Installing: What gets installed where?](./install_what_and_where.html) &rarr;

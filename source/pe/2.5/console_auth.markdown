@@ -5,14 +5,6 @@ title: "PE 2.5 » Console » Role-Based Access Control"
 subtitle: "About Console Access Control"
 ---
 
-* * *
-
-&larr; [Console: Viewing Reports and Inventory Data](./console_reports.html) --- [Index](./) --- [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
-
-* * *
-
-
-
 Starting with PE 2.5, the Console supports role-based access control. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows individual user accounts. Moreover, these accounts now allow the assignment of one of three user roles: read-only, read-write, or admin.
 
 Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol.
@@ -62,7 +54,4 @@ Users with admin level access can view information about users and manage their 
 #### Bulk Editing
 * * *
 
-&larr; [Console: Viewing Reports and Inventory Data](./console_reports.html) --- [Index](./) --- [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
-
-* * *
-
+Next: [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;

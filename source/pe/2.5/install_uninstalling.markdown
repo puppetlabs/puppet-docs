@@ -5,14 +5,6 @@ title: "PE 2.5 » Installing » Uninstalling"
 subtitle: "Uninstalling Puppet Enterprise"
 ---
 
-* * *
-
-&larr; [Installing: Upgrading](./install_upgrading.html) --- [Index](./) --- [Installing: Automated Installation](./install_automated.html) &rarr;
-
-* * *
-
-
-
 [uninstaller]: ./files/puppet-enterprise-uninstaller
 
 Use the `puppet-enterprise-uninstaller` script to uninstall PE. This script can remove a working PE installation, or undo a partially failed installation to prepare for a re-install.
@@ -80,7 +72,4 @@ Thus, to remove every trace of PE from a system, you would run:
 
 * * *
 
-&larr; [Installing: Upgrading](./install_upgrading.html) --- [Index](./) --- [Installing: Automated Installation](./install_automated.html) &rarr;
-
-* * *
-
+Next: [Installing: Automated Installation](./install_automated.html) &rarr;

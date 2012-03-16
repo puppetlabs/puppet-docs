@@ -5,15 +5,6 @@ title: "PE 2.5 » Installing » System Requirements"
 subtitle: "System Requirements"
 ---
 
-* * *
-
-&larr; [Welcome: Getting Support](./welcome_getting_support.html) --- [Index](./) --- [Installing: Preparing to Install](./install_preparing.html) &rarr;
-
-* * *
-
-
-
-
 Operating System
 -----
 
@@ -49,7 +40,4 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
 
 * * *
 
-&larr; [Welcome: Getting Support](./welcome_getting_support.html) --- [Index](./) --- [Installing: Preparing to Install](./install_preparing.html) &rarr;
-
-* * *
-
+Next: [Installing: Preparing to Install](./install_preparing.html) &rarr;

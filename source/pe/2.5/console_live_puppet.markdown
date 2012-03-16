@@ -5,14 +5,6 @@ title: "PE 2.5 » Console » Live Mgmt: Controlling Puppet"
 subtitle: "Live Management: Controlling Puppet"
 ---
 
-* * *
-
-&larr; [Console: Live Management: Managing Resources](./console_live_resources.html) --- [Index](./) --- [Console: Live Management: Advanced Tasks](./console_live_advanced.html) &rarr;
-
-* * *
-
-
-
 Use the control puppet tab to immediately trigger a puppet agent run on any of your nodes. You can also check puppet agent's status, and enable or disable it to control the spread of new configurations.
 
 ![The control puppet tab][live_puppet_main]
@@ -120,7 +112,4 @@ Part of a last run summary results view:
 
 * * *
 
-&larr; [Console: Live Management: Managing Resources](./console_live_resources.html) --- [Index](./) --- [Console: Live Management: Advanced Tasks](./console_live_advanced.html) &rarr;
-
-* * *
-
+Next: [Console: Live Management: Advanced Tasks](./console_live_advanced.html) &rarr;

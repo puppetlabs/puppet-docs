@@ -5,15 +5,6 @@ title: "PE 2.5 » Accounts Module » The pe_accounts Class"
 subtitle: "The pe_accounts Class"
 ---
 
-* * *
-
-&larr; [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) --- [Index](./) --- [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) &rarr;
-
-* * *
-
-
-
-
 This class is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise.
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** The `pe_accounts` not yet supported on Windows nodes.
@@ -251,7 +242,4 @@ The path to the `sudoers` file on this system. Defaults to `/etc/sudoers`.
 
 * * *
 
-&larr; [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) --- [Index](./) --- [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) &rarr;
-
-* * *
-
+Next: [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) &rarr;

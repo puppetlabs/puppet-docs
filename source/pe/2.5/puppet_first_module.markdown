@@ -5,14 +5,6 @@ title: "PE 2.5 » Puppet » Your First Module"
 subtitle: "Puppet For New Users: Your First Module"
 ---
 
-* * *
-
-&larr; [Puppet: Overview](./puppet_overview.html) --- [Index](./) --- [Puppet: Assigning a Class to a Node](./puppet_classifying.html) &rarr;
-
-* * *
-
-
-
 Where Modules Live
 -----
 
@@ -114,7 +106,4 @@ Remember that creating the module won't automatically assign the class to any no
 
 * * *
 
-&larr; [Puppet: Overview](./puppet_overview.html) --- [Index](./) --- [Puppet: Assigning a Class to a Node](./puppet_classifying.html) &rarr;
-
-* * *
-
+Next: [Puppet: Assigning a Class to a Node](./puppet_classifying.html) &rarr;

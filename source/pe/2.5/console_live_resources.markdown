@@ -5,14 +5,6 @@ title: "PE 2.5 » Console » Live Mgmt: Managing Resources"
 subtitle: "Live Management: Managing Resources"
 ---
 
-* * *
-
-&larr; [Console: Live Management](./console_live.html) --- [Index](./) --- [Console: Live Management: Controlling Puppet](./console_live_puppet.html) &rarr;
-
-* * *
-
-
-
 Use the manage resources tab to browse the resources on your nodes and clone any of them across your infrastructure.
 
 ![The manage resources tab][live_resources_main]
@@ -125,7 +117,4 @@ Note also that the UID of a user and the GIDs of its groups aren't cloned across
 
 * * *
 
-&larr; [Console: Live Management](./console_live.html) --- [Index](./) --- [Console: Live Management: Controlling Puppet](./console_live_puppet.html) &rarr;
-
-* * *
-
+Next: [Console: Live Management: Controlling Puppet](./console_live_puppet.html) &rarr;

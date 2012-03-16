@@ -5,15 +5,6 @@ title: "PE 2.5 » Welcome » What's New"
 subtitle: "New Features"
 ---
 
-* * *
-
-&larr; [Welcome: Components and Roles](./welcome_roles.html) --- [Index](./) --- [Welcome: Known Issues](./welcome_known_issues.html) &rarr;
-
-* * *
-
-
-
-
 Puppet Enterprise 2.5
 -----
 
@@ -43,7 +34,4 @@ See the [Puppet release notes][releasenotes] for more details.
 
 * * *
 
-&larr; [Welcome: Components and Roles](./welcome_roles.html) --- [Index](./) --- [Welcome: Known Issues](./welcome_known_issues.html) &rarr;
-
-* * *
-
+Next: [Welcome: Known Issues](./welcome_known_issues.html) &rarr;
