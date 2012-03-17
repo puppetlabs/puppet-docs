@@ -54,4 +54,4 @@ Results:
 
 * * *
 
-Next: [Puppet: Overview](./puppet_overview.html) &rarr;
+Next: [Console Maintenance](./console_maintenance.html) &rarr;
