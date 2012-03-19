@@ -1,13 +1,13 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Maintenance and Troubleshooting » Reconfiguring PE"
-subtitle: "Reconfiguring Complex Settings"
+title: "PE 2.5 »Configuring Puppet Enterprise » Advanced Configuration"
+subtitle: "Working with Complex Settings"
 ---
 
 * * *
 
-&larr; [Maintenance: Installing Additional Components](./maint_installing_additional.html) --- [Index](./)
+&larr; [Advanced Configuration: Installing Additional Components](./config_installing_additional.html) --- [Index](./)
 
 * * *
 
@@ -129,9 +129,24 @@ After changing the password, **you cannot issue orchestration messages to a give
 
 [reports]: ./console_reports.html
 
+### Fine-tuning the  `delayed_job` Queue
+----------
+
+The console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job/) queue to asynchronously process resource-intensive tasks such as report generation. Although the console won't lose any data sent by puppet masters if these jobs don't run, you'll need to be running at least one delayed job worker (and preferably one per CPU core) to get the full benefit of the console's UI.
+
+Currently, to manage the `delayed_job` workers, you must either use the provided monitor script or start non-daemonized workers individually with the provided rake task.
+
+#### Using the monitor script
+
+The console ships with a worker process manager, which can be found at `script/delayed_job`. This tool's interface resembles an init script, but it can launch any number of worker processes as well as a monitor process to babysit these workers; run it with `--help` for more details. `delayed_job` requires that you specify `RAILS_ENV` as an environment variable. To start four worker processes and the monitor process:
+
+    # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
+
+In most configurations, you should run exactly as many workers as the machine has CPU cores.
+
 * * *
 
-&larr; [Maintenance: Installing Additional Components](./maint_installing_additional.html) --- [Index](./)
+Next: [Advanced Configuration: Installing Additional Components](./config_installing_additional.html) &rarr;
 
 * * *
 

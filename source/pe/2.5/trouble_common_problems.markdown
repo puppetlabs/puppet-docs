@@ -1,8 +1,8 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Maintenance and Troubleshooting » Common Config Errors"
-subtitle: "Troubleshooting Common Configuration Errors"
+title: "PE 2.5 » Troubleshooting » Common Problems & Solutions"
+subtitle: "Troubleshooting Common Errors"
 ---
 
 The Installer is Failing!
@@ -61,7 +61,7 @@ If the puppet master is alive and reachable, you'll get something like:
     Connected to screech.example.com.
     Escape character is '^]'.
 
-Otherwise, it will return something like "nodename nor servname provided, or not known."
+Otherwise, it will return something like "name or service not known."
 
 To fix this, make sure the puppet master server is reachable at the DNS name your agents know it by, and make sure that the `pe-httpd` service is running. 
 
@@ -163,6 +163,8 @@ Changing this on the puppet master will fix the error on all agent nodes.
 -----
 
 If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failing with an "err: Missing required arguments" message, you need to [create a `~/.fog` file and populate it with the appropriate credentials](./cloudprovisioner_configuring.html). 
+
+<!-- to do I have a ton of pending tasks! how do I tune the delayed_job queue? -->
 
 * * *
 

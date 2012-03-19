@@ -1,7 +1,7 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Maintenance and Troubleshooting » Installing Additional Components"
+title: "PE 2.5 » Advanced Configuration » Installing Additional Components"
 subtitle: "Installing Additional Components"
 ---
 
@@ -33,4 +33,3 @@ For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linu
 
 * * *
 
-Next: [Maintenance: Reconfiguring Complex Settings](./maint_reconfiguring.html) &rarr;

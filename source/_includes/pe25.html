@@ -31,6 +31,9 @@ THE TEXT:
     - [Your First Module](./puppet_first_module.html)
     - [Assigning a Class to a Node](./puppet_classifying.html)
     - [Next Steps](./puppet_next_steps.html)
+**Advanced Configuration** <!-- config -->  
+	-[Advanced Configuration](./config_advanced.html)
+	-[Installing Additional Components](./config_installing_additional.html)  
 - **Orchestration For New PE Users** <!-- orchestration -->
     - [Overview](./orchestration_overview.html)
     - [Usage and Examples](./orchestration_usage.html)
@@ -50,11 +53,8 @@ THE TEXT:
 - **The PE Accounts Module** <!-- accounts -->
     - [The `pe_accounts::user` Type](./accounts_user_type.html)
     - [The `pe_accounts` Class](./accounts_class.html)
-- **Maintenance and Troubleshooting** <!-- maint -->
-    - [Common Configuration Errors](./maint_common_config_errors.html)
-    - [Console Maintenance Tasks](./maint_maintaining_console.html)
-    - [Installing Additional Components](./maint_installing_additional.html)
-    - [Reconfiguring Complex Settings](./maint_reconfiguring.html)
+- **Troubleshooting** <!-- trouble -->
+    - [Common Problems & Solutions](./_trouble_common_problems_errors.html)
 
 
 
@@ -110,6 +110,12 @@ Pending.
       <li>{% iflink "Next Steps", "./puppet_next_steps.html" %}</li>
     </ul>
   </li>
+   <li><strong>Advanced Configuration</strong> <!-- config -->
+    <ul>
+     <li>{% iflink "Advanced Configuration", "config_advanced.html" %}</li>
+     <li>{% iflink "Installing Additional Components", "config_installing_additional.html" %}</li>
+    </ul>
+  </li>
   <li><strong>Orchestration For New PE Users</strong> <!-- orchestration -->
     <ul>
       <li>{% iflink "Overview", "./orchestration_overview.html" %}</li>
@@ -141,12 +147,9 @@ Pending.
       <li>{% iflink "The pe_accounts Class", "./accounts_class.html" %}</li>
     </ul>
   </li>
-  <li><strong>Maintenance and Troubleshooting</strong> <!-- maint -->
+  <li><strong>Troubleshooting</strong> <!-- trouble -->
     <ul>
-      <li>{% iflink "Common Configuration Errors", "./maint_common_config_errors.html" %}</li>
-      <li>{% iflink "Console Maintenance Tasks", "./maint_maintaining_console.html" %}</li>
-      <li>{% iflink "Installing Additional Components", "./maint_installing_additional.html" %}</li>
-      <li>{% iflink "Reconfiguring Complex Settings", "./maint_reconfiguring.html" %}</li>
+     <li> {% iflink "Common Problems & Solutions", "trouble_common_problems.html" %}</li>
     </ul>
   </li>
 </ul>

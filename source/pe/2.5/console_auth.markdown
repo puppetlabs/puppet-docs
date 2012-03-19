@@ -52,11 +52,11 @@ When you're done working in the console, choose *Logout* from the user account m
 ![login screen](./images/console/login.jpg)
 
 ### Viewing Your User Account
-To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar. Choose *My account* to open a pane where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
+To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar. Choose *My account* to open a page where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
 
 ![account menu](./images/console/user_account_menu.jpg)
 
-![user account screen](./images/console/user_account_signin.jpg)
+<!-- ![user account screen](./images/console/user_account_signin.jpg) to do -->
 
 ### User Administration Tools
 Users with admin level access can view information about users and manage their access, including adding and deleting users as needed. Admin level users will see an additional menu choice in the user account menu: *Admin Tools*. Users with read-write or read-only accounts will NOT see the *Admin Tools* menu item.
