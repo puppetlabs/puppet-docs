@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: pe2experimental
 title: "Writing Puppet Manifests for Windows"
 nav: windows.html
 ---

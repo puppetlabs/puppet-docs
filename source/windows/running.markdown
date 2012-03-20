@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: pe2experimental
 title: "Running Puppet on Windows"
 nav: windows.html
 ---
-## Running Puppet
+
+
 ### Configuration
 The installer will create a puppet.conf within puppet's data directory. Additional properties can be specified. Run `puppet configprint all` to see the list of possible properties. Note unlike Unix, the puppet service must be restarted when configuration changes are made.
 

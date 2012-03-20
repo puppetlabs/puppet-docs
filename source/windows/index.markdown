@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: pe2experimental
 title: "Puppet on Windows"
 nav: windows.html
 ---
 
-Puppet on Windows
-=====
 
 Summary
 -----

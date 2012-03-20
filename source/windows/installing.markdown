@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: pe2experimental
 title: "Installing Puppet on Windows"
 nav: windows.html
 ---
