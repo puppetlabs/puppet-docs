@@ -10,23 +10,31 @@ Puppet on Windows
 Summary
 -----
 
-**Puppet can manage Microsoft Windows systems alongside Unix-like systems,** as of Puppet 2.7.6 and Puppet Enterprise 2.5. Windows nodes can apply manifests locally, and can fetch and apply compiled configurations from a puppet master server. 
+## Overview
+### Supported Platforms
+Puppet agent functionality is supported on the following Windows&#174; systems:
 
-Puppet on Windows is mostly similar to Puppet on other systems, with **several important differences:**
+    * Windows Server 2003 and 2003 R2
+    * Windows Server 2008 and 2008 R2
+    * Windows 7
 
-* Windows nodes can't serve as puppet masters, so Windows agent nodes have to contact a Unix-like puppet master server.
-* The resource types are slightly different: Not all of the Unix types work on Windows, and there are some Windows-specific types.
-* The backslashes used in Windows file paths have to be handled carefully when writing manifests.
-* Windows's user and group permissions don't match the Unix model. This affects the steps to take when triggering a Puppet run manually. 
-* Puppet's configuration directories and working directories are in different places on Windows.
+## Overview
 
+The 2.7.6 release of puppet adds support for running puppet agents on Microsoft Windows platforms. The scope of work completed includes the following:
 
-still Puppet, but several things are different
+* The following puppet applications:
+    * apply
+    * agent
+    * resource
+    * inspect
+* Managing the following resource types: 
+    * file
+    * user
+    * group
+    * scheduled_task (new type; not cron)
+    * package (MSI)
+    * service
+    * exec
+    * host
 
-This set of references covers how to 
-
-There are several differences from managing 
-
-
-Since Windows is such a different environment from the POSIX systems Puppet has always supported, 
-was originally released for Unix-like systems, but as of version 2.7.6, it can also
+Running a puppet master on Windows is not supported, nor are there plans to support it.
