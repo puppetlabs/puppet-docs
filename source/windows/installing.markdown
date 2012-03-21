@@ -160,19 +160,23 @@ sys       | Ruby and other tools
 
 ### Data Directory
 
-Puppet stores its settings (`puppet.conf`) and data (logs, catalogs, etc) in its **data directory.**
+Puppet stores its settings (`puppet.conf`) and data (logs, catalogs, etc) in its **data directory.** 
 
 When run with elevated privileges --- Puppet's intended state --- the data directory is located in the [`COMMON_APPDATA`](http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494\(v=vs.85\).aspx) folder. This folder's location varies by Windows version:
 
 OS Version| Path                                            | Default
 ----------|-------------------------------------------------|---------
-2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs`
-7, 2008   | `%PROGRAMDATA%\PuppetLabs`                      | `C:\ProgramData\PuppetLabs`
+2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet`
+7, 2008   | `%PROGRAMDATA%\PuppetLabs`                      | `C:\ProgramData\PuppetLabs\puppet`
 
 Since CommonAppData directory is a system folder, it is hidden by default. See <http://support.microsoft.com/kb/812003> for steps to show system and hidden files and folders.
 
 If Puppet is run without elevated privileges, it will use a `.puppet` directory in the current user's home folder as its data directory. This may result in Puppet having unexpected settings. 
 
+Puppet's data directory contains two subdirectories: 
+
+* `etc` contains configuration files, manifests, certificates, and other important files
+* `var` contains generated data and logs
 
 ### More
 
