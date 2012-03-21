@@ -1,6 +1,6 @@
 ---
 layout: pe2experimental
-title: "Writing Puppet Manifests for Windows"
+title: "Writing Manifests for Windows"
 nav: windows.html
 ---
 

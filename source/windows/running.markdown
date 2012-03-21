@@ -5,6 +5,9 @@ nav: windows.html
 ---
 
 
+
+
+
 ### Configuration
 The installer will create a puppet.conf within puppet's data directory. Additional properties can be specified. Run `puppet configprint all` to see the list of possible properties. Note unlike Unix, the puppet service must be restarted when configuration changes are made.
 
@@ -45,37 +48,21 @@ Puppet redistributes the 32-bit ruby application from rubyinstaller.org. During 
 
 For FOSS, the default installation path is:
 
-<table>
-<tr>
-<th>OS</th>
-<th>Default Install Path</th>
-</tr>
-<tr>
-<td>32-bit</td>
-<td>C:\Program Files\Puppet Labs\Puppet</td>
-</tr>
-<tr>
-<td>64-bit</td>
-<td>C:\Program Files (x86)\Puppet Labs\Puppet</td>
-</tr>
-</table>
+
+  OS   | Default Install Path
+-------|---------------------
+32-bit | `C:\Program Files\Puppet Labs\Puppet`
+64-bit | `C:\Program Files (x86)\Puppet Labs\Puppet`
+
 
 For PE, the default installation path is:
 
-<table>
-<tr>
-<th>OS</th>
-<th>Default Install Path</th>
-</tr>
-<tr>
-<td>32-bit</td>
-<td>C:\Program Files\Puppet Labs\Puppet Enterprise</td>
-</tr>
-<tr>
-<td>64-bit</td>
-<td>C:\Program Files (x86)\Puppet Labs\Puppet Enterprise</td>
-</tr>
-</table>
+
+  OS   | Default Install Path
+-------|--------------------
+32-bit | `C:\Program Files\Puppet Labs\Puppet Enterprise`
+64-bit | `C:\Program Files (x86)\Puppet Labs\Puppet Enterprise`
+
 
 These directories can be resolved using the `PROGRAMFILES` environment variable on 32-bit versions of Windows, or using `PROGRAMFILES(X86)` on 64-bit.
 

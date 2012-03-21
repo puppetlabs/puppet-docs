@@ -46,7 +46,26 @@ The settings you'll have to interact with will vary a lot, depending on what you
 `puppet.conf`
 ------------
 
-Puppet's main config file is `puppet.conf`, which is located in Puppet's `confdir`. Under Puppet Enterprise, the confdir is `/etc/puppetlabs/puppet`; on most other systems, the confdir is `/etc/puppet` when running as root or the Puppet user and `~/.puppet` when running as a normal user. 
+Puppet's main config file is `puppet.conf`, which is **located in Puppet's `confdir`.**
+
+### Finding puppet.conf
+
+#### Personal Confdirs
+
+* When Puppet is not running as root (\*nix) or not running with elevated privileges (Windows), it will read its config files from the `.puppet` directory in the current user's home directory.
+
+#### \*nix Systems
+
+* Puppet Enterprise's confdir is `/etc/puppetlabs/puppet`.
+* Most open source Puppet distributions use `/etc/puppet` as Puppet's confdir.
+* If you are unsure where the confdir is, run `sudo puppet --configprint confdir` to locate it.
+
+#### Windows Systems
+
+On Windows, Puppet Enterprise and open source Puppet use the same confdir.
+
+* On Windows 2003, Puppet's confdir is `%ALLUSERSPROFILE%\PuppetLabs\puppet\etc`. This is usually located on disk at `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet\etc`.
+* On Windows 7 and Windows 2008, Puppet's confdir is `%PROGRAMDATA%\PuppetLabs\puppet\etc`. This is usually located on disk at `C:\ProgramData\PuppetLabs\puppet\etc`. 
 
 
 ### File Format
