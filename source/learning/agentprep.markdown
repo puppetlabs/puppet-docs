@@ -9,7 +9,7 @@ title: "Learning — Preparing an Agent VM"
 [upgrade_pe]: /pe/2.0/install_upgrading.html
 [lp_module]: ./files/learningpuppet.tar.gz
 
-{% capture lpmoduleurl %}./files/learningpuppet.tar.gz{% endcapture %}
+{% capture lpmoduleurl %}http://docs.puppetlabs.com/learning/files/learningpuppet.tar.gz{% endcapture %}
 
 Learning --- Preparing an Agent VM for Agent/Master Exercises
 =====
