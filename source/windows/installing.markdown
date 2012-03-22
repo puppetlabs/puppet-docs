@@ -19,6 +19,8 @@ Download the Puppet installer for Windows here:
 * [For Puppet Enterprise][pedownloads]
 * [For open source Puppet][downloads]
 
+Currently, these two packages are identical except for the directory they install into. They may diverge further at a later date. 
+
 ### Supported Platforms
 
 
@@ -65,7 +67,7 @@ The only information you need to specify during installation is **the hostname o
 Once the installer finishes:
 
 * Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes; you can now assign classes to the node on your puppet master or console server. Puppet agent can be started and stopped with the Service Control Manager or the `sc.exe` utility; see [Running Puppet on Windows][running] for more details. <!-- todo link to anchor -->
-* The Start Menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details.
+* The Start Menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details. The Start Menu folder also contains documentation links, which may have brought you here. 
 
     ![Start Menu icons][startmenu]
 
@@ -160,7 +162,7 @@ sys       | Ruby and other tools
 
 ### Data Directory
 
-Puppet stores its settings (`puppet.conf`) and data (logs, catalogs, etc) in its **data directory.** 
+Puppet stores its settings (`puppet.conf`), manifests, and generated data (like logs and catalogs) in its **data directory.** 
 
 When run with elevated privileges --- Puppet's intended state --- the data directory is located in the [`COMMON_APPDATA`](http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494\(v=vs.85\).aspx) folder. This folder's location varies by Windows version:
 
