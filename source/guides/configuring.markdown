@@ -67,6 +67,7 @@ On Windows, Puppet Enterprise and open source Puppet use the same confdir.
 * On Windows 2003, Puppet's confdir is `%ALLUSERSPROFILE%\PuppetLabs\puppet\etc`. This is usually located on disk at `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet\etc`.
 * On Windows 7 and Windows 2008, Puppet's confdir is `%PROGRAMDATA%\PuppetLabs\puppet\etc`. This is usually located on disk at `C:\ProgramData\PuppetLabs\puppet\etc`. 
 
+> Note: On Windows systems, the puppet.conf file is allowed to use Windows-style CRLF line endings as well as \*nix-style LF line endings. 
 
 ### File Format
 
