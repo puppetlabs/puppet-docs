@@ -137,17 +137,11 @@ A virtually declared resource will not be managed until it is realized.
 :   broadly speaking, a "resource" is a defined configuration item. Resources are made up of a _type_ (the sort of resource being managed: packages, services, etc.), a _title_ (the name of the resource), and one or more _attributes_ (values specifying the state of the resource: running, present, etc.)
 Resources do not always directly map to simple details on the client -- they might sometimes involve spreading information across multiple files, or even involve modifying devices.
 
-**resource object**
-:   A Puppet object in memory meant to manage a resource on disk. Resource specifications get converted to these, and then they are used to perform any necessary work.
-
 **resource specification**
-:   The details of how to manage a resource as specified in Puppet code. When speaking about resources, it is sometimes important to differentiate between the literal resource on disk and the specification for how to manage that resource; most often, these are just referred to as resources.
-
-**REST**
-:   foo. 
+:   A resource specification details how to manage a resource as specified in Puppet code. This term helps to differentiate between the literal resource on disk and the specification for how to manage that resource. However, most often, these are just referred to as resources.
 
 **scope**
-:   foo.
+:   foo (dominion? domain?).
 
 **site**
 :   In Puppet, "site" refers to the entire IT ecosystem being managed by Puppet . That is, a site includes all the Masters and all the Clients they manage.
