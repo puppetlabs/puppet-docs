@@ -9,6 +9,8 @@ Starting with PE 2.5, the console supports individual user management, access an
 
 Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol.
 
+**Note:** By default, CAS authentication for the console runs over port 443. If your console needs to access CAS on a different host/port, you can configure that in `/etc/puppetlabs/dmv/cas_client_config_yml`.
+
 User Access and Privileges
 -----
 Depending on the access privileges assigned to them, users will be able to see and access different parts of the console. Specifically:
