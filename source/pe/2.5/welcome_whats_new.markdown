@@ -12,7 +12,7 @@ Version 2.5 is a major new release of Puppet Enterprise (PE). In addition to man
 
 ### ConsoleAuth
 
-The Puppet Console now has support for multiple user access and management. User accounts can now be created with access to the Console with read-only, read-write, or admin privileges. Puppet admins now have more information and options for managing Puppet users and controlling access. For more information, see the [Console Access page](./console_auth.html).
+The Puppet Console now has support for user authorization and management. User accounts can now be created that provide access to the Console with read-only, read-write, or admin privileges. Puppet admins now have more information and options for managing Puppet users and controlling access. For more information, see the [Console Access page](./console_auth.html).
 
 ### Windows Support
 

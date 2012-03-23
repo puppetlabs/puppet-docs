@@ -1,11 +1,11 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Console » User Authentication and Authorization"
+title: "PE 2.5 » Console » User Management and Authorization"
 subtitle: "About Console Access Control"
 ---
 
-Starting with PE 2.5, the console supports user authentication and authorization. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows individual user accounts with different access privileges. Specifically user accounts now allow the assignment of one of three access levels: read-only, read-write, or admin.
+Starting with PE 2.5, the console supports individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows individual user accounts with different access privileges. Specifically user accounts now allow the assignment of one of three access levels: read-only, read-write, or admin.
 
 Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol.
 
@@ -52,11 +52,13 @@ When you're done working in the console, choose *Logout* from the user account m
 ![login screen](./images/console/login.jpg)
 
 ### Viewing Your User Account
-To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar. Choose *My account* to open a page where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
+To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar. 
 
 ![account menu](./images/console/user_account_menu.jpg)
 
-<!-- ![user account screen](./images/console/user_account_signin.jpg) to do -->
+Choose *My account* to open a page where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
+
+![user account screen](./images/console/user_account_signin.jpg) to do
 
 ### User Administration Tools
 Users with admin level access can view information about users and manage their access, including adding and deleting users as needed. Admin level users will see an additional menu choice in the user account menu: *Admin Tools*. Users with read-write or read-only accounts will NOT see the *Admin Tools* menu item.

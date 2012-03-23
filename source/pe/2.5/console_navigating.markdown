@@ -14,8 +14,10 @@ Navigate between sections of the console using the menu bar at the top.
 
 All of the menu items deal with aspects of your nodes and their configuration except:
 
-*Help which provides help, obviously.
-<!-- *[your username] which provides access to your account information and, if you are an admin user, also provides access to user management tools. -->
+- ***Help*** which provides help, obviously.
+- Your ***username*** which provides access to your account information and, if you are an admin user, also provides access to user management tools. For information on the user management tools, see the [User Management and Authentication page](./console_auth.html).
+
+**Note:** For users limited to read-only access, some elements of the console shown here will not be visible.
 
 What's in the Console?
 -----
@@ -28,7 +30,7 @@ The console deals with three main objects:
 
 ### Nodes
 
-![A node page][nav_node]
+![The nodes page][nav_node]
 
 After a node completes its first Puppet run (which may take up to 30 minutes after you've [signed its certificate][certsign]), it will appear in the console, and can be added to groups and have classes applied to it.
 
