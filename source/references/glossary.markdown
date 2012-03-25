@@ -87,7 +87,7 @@ Files
 :   The "name variable" or "namevar" is an attribute of a resource used to determine the name of that resource. Typically, namevar is not specified since it is synonomous with the title of the resource. However, in some cases (such as when referring to a file whose location varies), it is useful to specify namevar as a kind of short-hand.  
 
 **node (definition)**
-:   A manifest component consisting of a collection of classes and/or resources to be applied to an agent node. The target agent node is specified with a unique identifier ("certname") that matches the specified node name. Nodes defined in manifests allow inheritance, although this should be used with care due to the behavior of dynamic variable scoping. 
+:   A manifest component consisting of a collection of classes and/or resources to be applied to an agent node. The target agent node is specified with a unique identifier ("certname") that matches the specified node name. Nodes defined in manifests allow inheritance, although this should be used with care due to the behavior of dynamic variable scoping. Sometimes called a "node statement."
 
 **node scope**
 When nodes are defined in manifests (either directly or via a regular expression), they create their own local scope. Variables declared in this local "node scope" will override top-scope variables. (Note that <a id="External Node Classifier">ENCs</a> assign variables at top scope, and do not introduce node scopes.)
@@ -138,19 +138,18 @@ A virtually declared resource will not be managed until it is realized.
 Resources do not always directly map to simple details on the client -- they might sometimes involve spreading information across multiple files, or even involve modifying devices.
 
 **resource specification**
-:   A resource specification details how to manage a resource as specified in Puppet code. This term helps to differentiate between the literal resource on disk and the specification for how to manage that resource. However, most often, these are just referred to as resources.
+:   A resource specification details how to manage a resource as specified in Puppet code. This term helps to differentiate between the literal resource on disk and the specification for how to manage that resource. However, most often, these are just referred to as "resources".
 
 **scope**
-:   foo (dominion? domain?).
+:   As elsewhere, "scope" in Puppet refers to the context in which a variable's identifier (e.g. its name) is valid and usable. Prior to Puppet 2.7, scope in Puppet and Puppet Enterprise was dynamic. Starting with 2.7, dynamic scope is being deprecated (similar functionality can be obtained by using parameterized classes). From 2.7, scope in Puppet is closer to lexical scope insofar as Puppet will only examine local scope and top scope when resolving an unqualified variable. This means that in effect, all variables are either strictly local or strictly global. For more information, see [Scope and Puppet](http://docs.puppetlabs.com/guides/scope_and_puppet.html).
 
 **site**
 :   In Puppet, "site" refers to the entire IT ecosystem being managed by Puppet . That is, a site includes all the Masters and all the Clients they manage.
 
-**statement**
-:   foo. 
-
 **subclass**
-:   a class that inherits from another class. Subclasses are useful for expanding one logical group of resources into another similar or related group of resources. Subclasses are also useful to override values of resources. For instance, a base class might specify a particular file as the source of a configuration file to be placed on the server, but a subclass might override that source file parameter to specify an alternate file to be used. A subclass is created by using the keyword inherits:
+:   a class that inherits from another class. Subclasses are useful for expanding one logical group of resources into another similar or related group of resources. Subclasses are also useful to override values of resources. For instance, a base class might specify a particular file be placed on the server as a configuration file. But a subclass might override that source file parameter to specify an alternate file. 
+
+A subclass is created by using the keyword `inherits`:
 
     class ClassB inherits ClassA { ... }
 
