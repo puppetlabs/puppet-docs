@@ -8,16 +8,16 @@ title: "Running Puppet From Source on Windows"
 [datadirectory]: ./installing.html#data-directory
 
 
-<span class="versionnote">This documentation applies to Puppet ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
+<span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
-> Note: **Nearly all users should install Puppet from Puppet Labs's installer packages,** which are provided free of charge. [See here for download links and more information](./installing.html). The following page is only for advanced users involved in Puppet's development. 
+> Note: **Nearly all users should install Puppet from Puppet Labs' installer packages,** which are provided free of charge. [See here for download links and more information](./installing.html). The following procedures are only for advanced users involved in Puppet's development. 
 
 
 ## Prerequisites
 
 ### Platforms
 
-Windows 7, Server 2008, 2008 R2, Server 2003, and 2003 R2 are all supported.
+Puppet Enterprise supports Windows 7, Server 2008, 2008 R2, Server 2003, and 2003 R2.
 
 ### Ruby
 
@@ -27,7 +27,7 @@ Puppet does not require Cygwin, Powershell, or any other non-standard shells; it
 
 ### Required Gems
 
-Puppet on Windows requires that the following gems be installed:
+Puppet on Windows requires the following gems be installed:
 
 * sys-admin
 * win32-process
@@ -40,7 +40,7 @@ To install them all in two commands:
     C:\>gem install sys-admin win32-process win32-dir win32-taskscheduler --no-rdoc --no-ri
     C:\>gem install win32-service --platform=mswin32 --no-rdoc --no-ri --version 0.7.1
 
-(Since win32-service includes native code, you should install it with the `--platform=mswin32` option. Otherwise, gem will need to compile the extensions at install time, which has additional dependencies and can be time-consuming.)
+(Since win32-service includes native code, you should install it with the `--platform=mswin32` option. Otherwise, `gem` will need to compile the extensions at install time, which has additional dependencies and can be time-consuming.)
 
 ## Installation
 
@@ -57,11 +57,11 @@ Then, unzip each archive into a temporary directory and run their `install.rb` s
 
 > Note: The location of Puppet's data directory varies depending on the Windows version. [See this explanation from the installer documentation][datadirectory] to find the data directory on your version. 
 
-> Note: When installed from source, Puppet does not change the system's `PATH` or `RUBYLIB` variables, nor does it provide Start Menu shortcuts for opening a terminal with these variables set. You will need to set them yourself before running Puppet. <!-- todo double check this -->
+> Note: When installed from source, Puppet does not change the system's `PATH` or `RUBYLIB` variables, nor does it provide Start menu shortcuts for opening a terminal with these variables set. You will need to set them yourself before running Puppet. <!-- todo double check this -->
 
 ### User Account Control ###
 
-In general, puppet must be running in an account that is a member of the local Administrators group in order to make changes to the system, e.g. change file ownership, modify `/etc/hosts`, etc. On systems where User Account Control (UAC) is enabled, such as Windows 7 and 2008, Puppet must be running with explicitly elevated privileges. **It will not ask for elevation automatically; you must specifically start your `cmd.exe` terminal window with elevated privileges on these platforms.** See [this blog post (unaffiliated with Puppet Labs)](http://blog.didierstevens.com/2008/05/26/quickpost-restricted-tokens-and-uac/) for more information about UAC.
+In general, puppet must be running in an account that is a member of the local Administrators group in order to make changes to the system, (e.g., change file ownership, modify `/etc/hosts`, etc.). On systems where User Account Control (UAC) is enabled, such as Windows 7 and 2008, Puppet must be running with explicitly elevated privileges. **It will not ask for elevation automatically; you must specifically start your `cmd.exe` terminal window with elevated privileges on these platforms.** See [this blog post (unaffiliated with Puppet Labs)](http://blog.didierstevens.com/2008/05/26/quickpost-restricted-tokens-and-uac/) for more information about UAC.
 
 ## Development Tools and Tasks
 
@@ -73,7 +73,7 @@ If you're developing Puppet, you'll need to install the rspec, rake, and mocha g
 
 ### Git
 
-You will likely also need the current version of [MSYS GIT](http://code.google.com/p/msysgit/downloads/list). You will also want to set the following in your git config so that you don't create unnecessary mode bit changes when editing files on Windows:
+In addtion, you will likely need the current version of [MSYS GIT](http://code.google.com/p/msysgit/downloads/list). You will also want to set the following in your git config so that you don't create unnecessary mode bit changes when editing files on Windows:
 
     git config core.filemode false
 

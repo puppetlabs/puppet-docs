@@ -4,7 +4,7 @@ title: "Installing Puppet on Windows"
 nav: windows.html
 ---
 
-<span class="versionnote">This documentation applies to Puppet ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
+<span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
 [downloads]: <!-- TODO -->
 [pedownloads]: <!-- todo -->
@@ -24,20 +24,20 @@ Currently, these two packages are identical except for the directory they instal
 ### Supported Platforms
 
 
-Puppet runs on the following Windows versions:
+Puppet runs on the following versions of Windows:
 
 * Windows Server 2003 and 2003 R2
 * Windows Server 2008 and 2008 R2
 * Windows 7
 
-The Puppet installer bundles all of Puppet's prerequisites, and there are no additional software requirements. 
+The Puppet installer bundles all of Puppet's prerequisites. There are no additional software requirements. 
 
 
 ### Puppet Master Requirements
 
 Windows nodes cannot serve as puppet master servers.
 
-* If your Windows nodes will be fetching configurations from a puppet master server, you need a \*nix puppet master server at your site. 
+* If your Windows nodes will be fetching configurations from a puppet master, you will need a \*nix server to run as puppet master at your site. 
 * If your Windows nodes will be compiling and applying configurations locally with puppet apply, you should disable the puppet agent service on them after installing Puppet.
 
 
@@ -58,7 +58,7 @@ To install Puppet, simply download and run the installer, which is a standard Wi
 
 The installer must be run with elevated privileges. Installing Puppet **does not** require a system reboot.
 
-The only information you need to specify during installation is **the hostname of your puppet master server:**
+The only information you need to specify during installation is **the hostname of your puppet master server:** (If you are using puppet apply for node configuration instead of a puppet master, you can just enter some dummy text here.)
 
 ![Puppet master hostname selection][server]
 
@@ -66,8 +66,8 @@ The only information you need to specify during installation is **the hostname o
 
 Once the installer finishes:
 
-* Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes; you can now assign classes to the node on your puppet master or console server. Puppet agent can be started and stopped with the Service Control Manager or the `sc.exe` utility; see [Running Puppet on Windows][running] for more details. <!-- todo link to anchor -->
-* The Start Menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details. The Start Menu folder also contains documentation links, which may have brought you here. 
+* Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes. You can now assign classes to the node on your puppet master or console server. Puppet agent can be started and stopped with the Service Control Manager or the `sc.exe` utility; see [Running Puppet on Windows][running] for more details. <!-- todo link to anchor -->
+* The Start menu will contain a Puppet folder, with shortcuts for running puppet agent manually, for running Facter, and for opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details. The Start menu folder also contains documentation links, which may have brought you here. 
 
     ![Start Menu icons][startmenu]
 
@@ -85,7 +85,7 @@ The following public MSI properties can also be specified:
 
 MSI Property            | Puppet Setting | Default Value
 ------------------------|----------------|--------------
-`INSTALLDIR`            | n/a            | Version-dependent; see below <!-- todo link to anchor -->
+`INSTALLDIR`            | n/a            | Version-dependent, see below <!-- todo link to anchor -->
 `PUPPET_MASTER_SERVER`  | `server`       | `puppet`
 `PUPPET_CA_SERVER`      | `ca_server`    | Value of `PUPPET_MASTER_SERVER`
 `PUPPET_AGENT_CERTNAME` | `certname`     | Value of `facter fdqn` (must be lowercase)
@@ -106,7 +106,7 @@ Uninstalling
 
 Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface, or from the command line. 
 
-To uninstall from the command line, you must have the original MSI file or know the [ProductCode](http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85\).aspx) of the installed MSI:
+To uninstall from the command line, you must have the original MSI file or know the <a href="(http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx)">ProductCode</a> of the installed MSI:
 
     msiexec /qn /x [puppet.msi|product-code]
 
@@ -118,9 +118,9 @@ Installation Details
 
 ### What Gets Installed
 
-In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter. (Puppet redistributes the 32-bit Ruby application from rubyinstaller.org as its runtime.)
+In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter. (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org).
 
-These prerequisites are used only for Puppet, and do not interfere with other local copies of Ruby. 
+These prerequisites are used only for Puppet and do not interfere with other local copies of Ruby. 
 
 
 ### Program Directory
@@ -145,7 +145,7 @@ OS type  | Default Install Path
 64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
 
 
-The program files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows, or the `PROGRAMFILES(X86)` variable on 64-bit versions.
+The program files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
 
 Puppet's program directory contains the following subdirectories:
 
@@ -164,7 +164,7 @@ sys       | Ruby and other tools
 
 Puppet stores its settings (`puppet.conf`), manifests, and generated data (like logs and catalogs) in its **data directory.** 
 
-When run with elevated privileges --- Puppet's intended state --- the data directory is located in the [`COMMON_APPDATA`](http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494\(v=vs.85\).aspx) folder. This folder's location varies by Windows version:
+When run with elevated privileges --- Puppet's intended state --- the data directory is located in the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494(v=vs.85).aspx">`COMMON_APPDATA`</a> folder. This folder's location varies by Windows version:
 
 OS Version| Path                                            | Default
 ----------|-------------------------------------------------|---------
