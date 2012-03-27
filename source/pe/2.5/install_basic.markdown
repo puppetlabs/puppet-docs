@@ -25,6 +25,12 @@ Note that after the installer has finished installing and configuring PE, it wil
 
 [automated]: ./install_automated.html
 
+Using the Installer
+-----
+
+The PE installer configures Puppet by asking a series of questions. Most questions have a default answer (displayed in brackets), which you can accept by pressing enter without typing a replacement. For questions with a yes or no answer, the default answer is capitalized (e.g. "`[y/N]`").
+
+
 ### Installer Options
 
 The installer will accept the following command-line flags:
@@ -51,61 +57,49 @@ The installer will accept the following command-line flags:
 : Run in 'noop' mode; show commands that would have been run during installation without running them.
 
 
-Customizing Your Installation
+Selecting Roles
 -----
 
-The PE installer configures Puppet by asking a series of questions. Most questions have a default answer (displayed in brackets), which you can accept by pressing enter without typing a replacement. For questions with a yes or no answer, the default answer is capitalized (e.g. "`[y/N]`").
+First, the installer will ask which of PE's **roles** to install; the roles you choose will determine which other questions the installer will ask.
 
-### Roles
+### The Puppet Agent Role
 
-Puppet Enterprise's features are divided into four main **roles,** any or all of which can be installed on a single system:
-
-The Puppet Agent Role
------
-
-This role should be installed on **every node** you plan to manage with Puppet Enterprise. Nodes with the puppet agent role:
+This role should be installed on **every node** in your deployment, including the master and console nodes. (If you choose the puppet master or console roles, the puppet agent role will be installed automatically.) Nodes with the puppet agent role:
 
 * Run the puppet agent daemon, which pulls configurations from the puppet master and applies them.
 * Listen for MCollective messages, and invoke MCollective agent actions when they receive a valid command.
 * Report changes to any resources being audited for PE's compliance workflow.
 
-The Puppet Master Role
------
+### The Puppet Master Role
 
-This role should be installed on **one node,** which should be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for more detail. The puppet master server:
+In most deployments, this role should be installed on **one node;** installing multiple puppet masters requires additional configuration. The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for more detail. The puppet master server:
 
-* Serves configuration catalogs on demand to puppet agent nodes.
+* Compiles and serves configuration catalogs to puppet agent nodes.
 * Routes MCollective messages through its ActiveMQ server.
 * Can issue valid MCollective commands (from an administrator logged in as the `peadmin` user). 
 
+### The Console Role
 
-The Console Role
------
-
-This role should be installed on **one node.** The console can be installed on the same server as the puppet master, or they can run on separate servers. The console server: 
+This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server: 
 
 * Serves the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, approve and reject audited changes, and invoke MCollective agent actions. 
-* Collects reports from and serves node definitions to the puppet master
+* Collects reports from and serves node information to the puppet master.
 
+### The Cloud Provisioner Role
 
-The Cloud Provisioner Role
------
-
-This role should be installed on a secure node to which administrators have shell access. It installs the cloud provisioner tool, which allows a user to:
+This optional role can be installed on a computer where administrators have shell access. Since it requires confidential information about your cloud accounts to function, it should be installed on a secure system. Administrators can use the cloud provisioner tools to:
 
 * Create new VMware and Amazon EC2 virtual machine instances.
 * Install Puppet Enterprise on any virtual or physical system.
 * Add newly provisioned nodes to a group in the console. 
 
-Selecting Roles for Installation
+
+Customizing Your Installation
 -----
-First, the installer will ask which of PE's [roles](./welcome_roles.html) (puppet master, console, cloud provisioner, and puppet agent) you'd like to install. The roles you apply will determine which other questions the installer will ask. 
 
-If you choose the puppet master or console roles, the puppet agent role will be installed automatically.
+After you choose this system's roles, the installer will ask questions to configure those roles.
 
-The puppet master and console roles should each be installed on **only one** system.
-
-### Puppet Master Options
+### Puppet Master Questions
 
 #### Certname
 
@@ -125,7 +119,7 @@ The valid DNS names setting should be a comma-separated list of hostnames. The d
 
 If you are splitting the puppet master and console roles across different machines, the installer will ask you for the hostname and port of the console server.
 
-### Console Options
+### Console Questions
 
 The console is usually run on the same server as the puppet master, but can also be installed on a separate machine. **If you are splitting the console and puppet master roles, install the console _after_ the puppet master.**
 
@@ -181,7 +175,7 @@ A local database is best, but you can also create a database on a remote server.
 * The database server's port (default: 3306)
 
 
-### Puppet Agent Options
+### Puppet Agent Questions
 
 #### Certname
 
@@ -195,6 +189,8 @@ Agent nodes need the hostname of a puppet master server. This must be one of the
 
 This setting defaults to `puppet`.
 
+Final Questions
+-----
 
 ### Vendor Packages
 
@@ -211,8 +207,11 @@ Find these in the installer's `packages/` directory. Note that these packages ma
 
 PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. If you want to make the Puppet tools more visible to all users, the installer can make symlinks in `/usr/local/bin` for the `facter, puppet, puppet-module, pe-man`, and `mco` binaries. 
 
+### Confirming Installation
 
-Finishing Up
+The installer will offer a final chance to confirm your answers before installing. 
+
+After Installing
 -----
 
 ### Signing Agent Certificates

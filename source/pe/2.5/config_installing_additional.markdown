@@ -5,9 +5,7 @@ title: "PE 2.5 » Advanced Configuration » Installing Additional Components"
 subtitle: "Installing Additional Components"
 ---
 
-Several components of PE can be installed when needed instead of up-front.
-
-Note that you cannot currently change which machines have the console and puppet master [roles](./welcome_roles.html).
+Several optional components of PE can be installed manually.
 
 Installing Cloud Provisioner
 -----
