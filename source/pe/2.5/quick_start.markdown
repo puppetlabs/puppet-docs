@@ -45,7 +45,7 @@ For this deployment, the puppet master and the console will be the same machine,
 >     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com`, the first agent node as `agent1.example.com`, and the Windows node as `windows.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.
 >     * All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the hostname command and one or more configuration files, and the exact method varies by platform.
 >     * All nodes must be able to **reach each other by name.** This can be done with a local DNS server, or by editing the `/etc/hosts` file on each node to point to the proper IP addresses. Test this by running `ping master.example.com` and `ping agent1.example.com` on every node, including the Windows node if present.
->     * All nodes should also be able to **reach the puppet master node at the hostname `puppet`.** This can be done with DNS or with hosts files. Test this by running `ping puppet` on every node.
+>     * Optionally, for simpler configuration later, all nodes should also be able to **reach the puppet master node at the hostname `puppet`.** This can be done with DNS or with hosts files. Test this by running `ping puppet` on every node.
 >     * The **control workstation** from which you are carrying out these instructions must be able to **reach every node in the deployment by name.** 
 
 ### Installing the Puppet Master
@@ -132,9 +132,9 @@ You can now log into the console and see all agent nodes, including the puppet m
 
 > You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last Puppet run.
 
-### Being Impatient
+### Avoiding the Wait
 
-Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. **This is because Puppet Enterprise uses puppet to configure itself.**
+Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. **This is because Puppet Enterprise uses Puppet to configure itself.**
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following: 
 
@@ -181,13 +181,13 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 ![the mysql user details][mysql_user]
 
-* Click the "clone" button, then click the new "preview" button. This will prepare the console to duplicate the mysql user across all of the nodes selected in the sidebar. 
+* Click the "Clone resource" link, then click the blue "Preview" button that appears. This will prepare the console to duplicate the mysql user across all of the nodes selected in the sidebar. 
 
 ![the preview button][clone_first]
     
 ![the preview][clone_preview]
 
-* Click the "clone" button to finish.
+* Click the red "Clone" button to finish.
 
 ![the completed clone operation][clone_done]
 
@@ -203,23 +203,25 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 ### Triggering Puppet Runs
 
 * **On the console, in the live management page,** click the "control puppet" tab.
-* Click the "runonce" action to reveal the "run" button, then click the "run" button.
+* Click the "runonce" action to reveal the red "Run" button, then click the "Run" button.
 
 ![the run button revealed](./images/quick/control_puppet.png)
 
-> You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
+> You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar. 
+>
+> In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server.
 
 Installing a Puppet Module
 -----
 
-Puppet **configures nodes by applying classes to them.** Classes are **chunks of Puppet code that configure a specific aspect or feature of machine.**
+Puppet **configures nodes by applying classes to them.** Classes are **chunks of Puppet code that configure a specific aspect or feature of a machine.**
 
 Puppet classes are **distributed in the form of modules.** You can save time by **using pre-existing modules.** Pre-existing modules are distributed on the [Puppet Forge](http://forge.puppet.com), and **can be installed with the `puppet module` subcommand.** Any module installed on the puppet master can be used to configure agent nodes.
 
 ### Installing two Forge Modules
 
-* **On your control workstation,** navigate to <http://forge.puppetlabs.com/puppetlabs/motd>. This is the Forge listing for a simple example module that sets the message of the day file (`/etc/motd`), which is displayed to users when the log in.
-* Navigate to <https://forge.puppetlabs.com/puppetlabs/win_desktop_shortcut>. This is the Forge listing for a simple example module that manages a desktop shortcut on Windows.
+* **On your control workstation,** navigate to <http://forge.puppetlabs.com/puppetlabs/motd>. This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
+* Navigate to <https://forge.puppetlabs.com/puppetlabs/win_desktop_shortcut>. This is the Forge listing for an example module that manages a desktop shortcut on Windows.
 * **On the puppet master,** run `puppet module search motd`. This is an alternate way to find the same information as a Forge listing contains:
 
         Searching http://forge.puppetlabs.com ...
@@ -239,13 +241,13 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 > You have just installed multiple Puppet modules. All of the classes in them are now available to be added to the console and assigned to nodes.
 
-### Using a Module in the Console
+### Using Modules in the Console
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_motd]: ./images/quick/add_motd.png
 [assign_motd]: ./images/quick/assign_motd.png
 
-Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **apply it to one or more nodes.**
+Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
 
 * **On the console,** click the "add class" button in the sidebar:
 
@@ -284,7 +286,7 @@ Summary
 This walkthrough has introduced you to the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
 * Deploy new nodes, install PE on them, and add them to their deployment by approving their certificate requests.
-* Use **pre-built modules from the Forge** to save time and effort.
+* Use pre-built modules from the Forge to save time and effort.
 * Assign classes to nodes in the console.
 * Use live management for ad-hoc edits to nodes, and for triggering puppet agent runs when necessary.
 
@@ -293,7 +295,9 @@ This walkthrough has introduced you to the core features and workflows of Puppet
 In addition to what this walkthrough has covered, most users will also:
 
 * Edit modules from the Forge to make them better suit the deployment.
-* Create new modules from scratch by writing **classes** that manage **resources.**
+* Create new modules from scratch by writing classes that manage resources.
+* Examine reports in the console.
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
+* Assign classes to groups in the console instead of individual nodes.
 
 To learn about these workflows, continue to the [writing modules quick start guide](./quick_writing.html).
