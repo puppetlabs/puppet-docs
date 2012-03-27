@@ -1,3 +1,6 @@
+{% include warnings/old_pe_version.html %}
+
+
 <ul>
   <li><strong>Welcome to Puppet Enterprise</strong> <!-- welcome -->
     <ul>
