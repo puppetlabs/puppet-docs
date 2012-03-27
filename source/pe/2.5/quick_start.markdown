@@ -90,7 +90,7 @@ After installing, the agent nodes are **not yet allowed** to fetch configuration
 
 ### Approving the Certificate Request
 
-During installation, the agent node contacted the puppet master and requested a certificate. **To add the agent node to the deployment, approve its request on the puppet master.**
+During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, **approve its request on the puppet master.**
 
 * **On the puppet master node,** run `puppet cert list` to view all outstanding certificate requests.
 * Note that nodes called `agent1.example.com` and `windows.example.com` (or whichever names you chose) have requested certificates, and fingerprints for the requests are shown. 
@@ -101,8 +101,6 @@ During installation, the agent node contacted the puppet master and requested a 
 ### Testing the Agent Nodes
 
 During this walkthrough, we will be running puppet agent interactively. Normally, puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.)
-
-Puppet agent can also be run interactively. Now that the node is approved, run puppet agent and watch it in action. 
 
 * **On the first agent node,** run `puppet agent --test`; this will trigger a single puppet agent run with verbose logging. 
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
@@ -120,11 +118,11 @@ You can now log into the console and see all agent nodes, including the puppet m
 
 * **On your control workstation,** open a web browser and point it to https://master.example.com. 
 * You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers. 
-* Next, you will see a login screen for the console. **Log in with the email address and password you provided when installing the puppet master.**
+* Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
 
 ![The console login screen](./images/quick/login.jpg            )
     
-* Next, you will see the front page of the console, which shows a summary of your deployment's recent puppet runs. **Notice that the master and any agent nodes appear in the list of nodes:**
+* Next, you will see the front page of the console, which shows a summary of your deployment's recent puppet runs. Notice that the master and any agent nodes appear in the list of nodes:
 
 ![The console front page](./images/quick/front.png)
 
@@ -134,7 +132,7 @@ You can now log into the console and see all agent nodes, including the puppet m
 
 ### Avoiding the Wait
 
-Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. **This is because Puppet Enterprise uses Puppet to configure itself.**
+Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. This is because Puppet Enterprise **uses Puppet to configure itself.**
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following: 
 
@@ -214,7 +212,7 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 Installing a Puppet Module
 -----
 
-Puppet **configures nodes by applying classes to them.** Classes are **chunks of Puppet code that configure a specific aspect or feature of a machine.**
+Puppet configures nodes by applying classes to them. Classes are chunks of Puppet code that configure a specific aspect or feature of a machine.
 
 Puppet classes are **distributed in the form of modules.** You can save time by **using pre-existing modules.** Pre-existing modules are distributed on the [Puppet Forge](http://forge.puppet.com), and **can be installed with the `puppet module` subcommand.** Any module installed on the puppet master can be used to configure agent nodes.
 

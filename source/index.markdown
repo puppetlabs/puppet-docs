@@ -134,11 +134,15 @@ Go beyond basic manifests.
 
 Build your own tools and workflows on top of Puppet.
 
+#### Using Puppet's Data Library
+
+* [Puppet Data Library: Overview](./guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
+* [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
+
 #### Using APIs and Interfaces
 
 * [REST Access Control](./guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](./guides/external_nodes.html) --- specify what your machines do using external data sources
-* [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
 
 #### Using Ruby Plugins
 

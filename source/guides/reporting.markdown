@@ -13,13 +13,8 @@ How to learn more about the activity of your nodes.
 ## Reports and Reporting
 
 Puppet clients can be configured to send reports at the end of
-every configuration run. Because the Transaction interals of Puppet are
-responsible for creating and sending the reports, these are called
-transaction reports. Currently, these reports include all of the
-log messages generated during the configuration run, along with
-some basic metrics of what happened on that run.  In Rowlf, more
-detailed reporting information will be available, allowing users
-to see detailed change information regarding what happened on nodes.
+every configuration run. These reports include all of the
+log messages generated during the configuration run and metrics related to what happened on that run.
 
 ### Logs
 
@@ -34,31 +29,27 @@ The rest of the report contains some basic metrics describing what
 happened in the transaction. There are three types of metrics in
 each report, and each type of metric has one or more values:
 
--   **Time**: Keeps track of how long things took.
-    :   -   *Total*: Total time for the configuration run
-        -   *File*:
-        -   *Exec*:
-        -   *User*:
-        -   *Group*:
-        -   *Config Retrieval*: How long the configuration took to retrieve
-        -   *Service*:
-        -   *Package*:
-
-
--   **Resources**: Keeps track of the following stats:
-    :   -   *Total*: The total number of resources being managed
-        -   *Skipped*: How many resources were skipped, because of either
-            tagging or scheduling restrictions
-        -   *Scheduled*: How many resources met any scheduling restrictions
-        -   *Out of Sync*: How many resources were out of sync
-        -   *Applied*: How many resources were attempted to be fixed
-        -   *Failed*: How many resources were not successfully fixed
-        -   *Restarted*: How many resources were restarted because their
-            dependencies changed
-        -   *Failed Restarts*: How many resources could not be restarted
-
-
--   **Changes**: The total number of changes in the transaction.
+- **Time**: Keeps track of how long things took.
+    - *Total*: Total time for the configuration run
+    - *File*:
+    - *Exec*:
+    - *User*:
+    - *Group*:
+    - *Config Retrieval*: How long the configuration took to retrieve
+    - *Service*:
+    - *Package*:
+- **Resources**: Keeps track of the following stats:
+    - *Total*: The total number of resources being managed
+    - *Skipped*: How many resources were skipped, because of either
+      tagging or scheduling restrictions
+    - *Scheduled*: How many resources met any scheduling restrictions
+    - *Out of Sync*: How many resources were out of sync
+    - *Applied*: How many resources were attempted to be fixed
+    - *Failed*: How many resources were not successfully fixed
+    - *Restarted*: How many resources were restarted because their
+      dependencies changed
+    - *Failed Restarts*: How many resources could not be restarted
+- **Changes**: The total number of changes in the transaction.
 
 
 ## Setting Up Reporting
@@ -75,96 +66,58 @@ machine.
 
 ### Sending Reports
 
-In order to turn on reporting on the client-side (puppetd), the
-`report` argument must be given to the puppetd executable either by
-passing the argument to the executable on the command line, like
-this:
+In order to turn on reporting on puppet agent nodes, the
+[`report`](/references/latest/configuration.html#report) setting must be set to true. This should be done in the [`puppet.conf` file][conf]:
 
-    $ puppetd --report
-
-or by including the configuration parameter in the Puppet
-configuration file, usually located in /etc/puppet/puppet.conf:
+[conf]: ./configuring.html
 
     #
     #  /etc/puppet/puppet.conf
     #
-    [puppetd]
+    [agent]
         report = true
 
-With this setting enabled, the client will then send the report to
-the puppetmasterd server at the end of every transaction.
-
-If you are using namespaceauth.conf, you must allow the clients to
-access the name space:
-
-    #
-    # /etc//puppet/namespaceauth.conf
-    #
-    [puppetreports.report]
-        allow *
-
-Note: some explanations of namespaceauth.conf are due in this documentation.
-
-{{MISSINGREFS}}
+With this setting enabled, the agent will then send the report to
+the puppet master server at the end of every transaction.
 
 ### Processing Reports
 
-As previously mentioned, by default the server stores incoming YAML reports to
-disk. There are other reports types available that can process each report as it arrives,
-or you can write a separate processor that handles the reports on your own schedule.
+By default, the puppet master server stores incoming YAML reports to
+disk in the [`reportdir`](/references/latest/configuration.html#reportdir). There are other report types available that can process each report as it arrives; you can use Puppet's built-in report processors, write custom report processor plugins, or write an out-of-band report analyzer task that consumes the stored YAML reports on your own schedule.
 
-#### Using Builtin Reports
+#### Using Built-In Reports
 
-As with the rest of Puppet, you can configure the server to use different
-reports with either command-line arguments or configuration file
-changes.   The value you need to change is called `reports`, and it must be a
-comma-separated list of the reports you want to use. Here's how
-you'd configure extra reports on the command line:
+Select the report processors to use with the [`reports`](/references/latest/configuration.html#reports) setting in the puppet master's [`puppet.conf`][conf] file. This setting should be a comma-separated list of available report processors.
 
-    $ puppetmasterd --reports tagmail,store,log
-
-Note that we're still specifying `store` here; any reports you
-specify replace the default, so you must still manually specify
-`store` if you want it. You can also specify `none` if you want the
-reports to just be thrown away.
-
-Or we can include these configuration parameters in the
-configuration file, typically /etc/puppet/puppet.conf. For
-example:
-
-    #
-    #  /etc/puppet/puppet.conf
-    #
-    [puppetmasterd]
-        reports = tagmail,store,log
-
-Note that in the configuration file, the list of reports should be
-comma-separated and not enclosed in quotes (which is otherwise
-acceptable for a command-line invocation).
+A list of the available built-in report processors [is available here](/references/latest/report.html).
 
 #### Writing Custom Reports
 
 You can easily write your own report processor in place of any of
-the built-in reports. Just drop the report into lib/puppet/reports,
-using the existing reports as an example.  This is only necessary on
-the server, as the report reciever does not run on the clients.
+the built-in reports. Put the report into the puppet master's `lib/puppet/reports` directory to make it available.
+
+Documentation of the report plugin API is forthcoming; however, you can use the built-in reports as a guide, or use and/or hack one of these simple custom reports:
+
+
+* [Report failed runs to an IRC channel](https://github.com/jamtur01/puppet-irc)
+* [Report failed runs and logs to PagerDuty](https://github.com/jamtur01/puppet-pagerduty)
+* [Report failed runs to Jabber/XMPP](https://github.com/jamtur01/puppet-xmpp)
+* [Report failed runs to Twitter](https://github.com/jamtur01/puppet-twitter)
+* [Report failed runs and logs to Campfire](https://github.com/jamtur01/puppet-campfire)
+* [Report failed runs to Twilio](https://github.com/jamtur01/puppet-twilio)
+* [Report failed runs to Boxcar](https://github.com/jamtur01/puppet-boxcar)
+* [Report failed runs to HipChat](https://github.com/jamtur01/puppet-hipchat)
+* [Send metrics to a Ganglia server via gmetric](https://github.com/jamtur01/puppet-ganglia)
+* [Report failed runs to Growl](https://github.com/jamtur01/puppet-growl)
+
+These example reports were [posted to the Puppet users group by a Puppet Labs employee][jamesreports], and are linked here for educational purposes.
+
+[jamesreports]: http://groups.google.com/group/puppet-users/browse_thread/thread/939cfc2e714544df/6d5aa6ae2ce51831
+
+
 
 #### Using External Report Processors
 
-Many people are only using the `store` report and writing an external
-report processor that processes many reports at once and produces
-summary pages.  This is easiest if these processors are written in
-Ruby, since you can just read the YAML files in and de-serialize
-them into Ruby objects. Then, you can just do whatever you need
-with the report objects.
-
-## Available reports
-
-Read the [Report Reference](/references/stable/report.html) for a list of available reports and
-how to configure them. It is automatically generated from the reports available
-in Puppet, and includes documentation on how to use each report.
-
-
-
-
+Alternately, you can use the default `store` report and write an external
+report processor that reads in and analyzes the saved YAML files. This is ideal for analyzing large amounts of reports on demand, and allows the report processor to be written in any common scripting language. 
 
