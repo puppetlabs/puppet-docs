@@ -32,7 +32,7 @@ The console deals with three main objects:
 
 ![The nodes page][nav_node]
 
-After a node completes its first Puppet run (which may take up to 30 minutes after you've [signed its certificate][certsign]), it will appear in the console, and can be added to groups and have classes applied to it.
+After a node completes its first Puppet run (which may take up to 30 minutes after you've [signed its certificate][certsign]), it will appear in the console and can be added to groups and have classes applied to it.
 
 [certsign]: ./install_basic.html#signing-agent-certificates
 
@@ -40,7 +40,7 @@ Since the console receives a report every time Puppet runs on a node, it keeps a
 
 ![The node state display][nav_nodestatus]
 
-This can tell you at a glance whether your nodes have suddenly started failing their Puppet runs, whether any nodes have stopped responding, and whether Puppet is making many changes to your systems. You can click through these state totals to see complete lists of nodes in each state. 
+This can tell you at a glance whether your nodes have suddenly started failing their Puppet runs, whether any nodes have stopped responding, and whether Puppet is making many changes to your systems. Click these state totals to see complete lists of nodes in each state. 
 
 Individual node pages contain graphs of recent runs, lists of reports, inventory data, compliance data, and any classes the node has or groups it's a part of.
 
@@ -52,7 +52,7 @@ Groups contain nodes. Any classes applied to a group will also be applied to all
 
 ### Classes
 
-Classes aren't automatically detected or validated; you have to enter a class's name yourself before you can apply it to a node or group. Once you do, though, you're good to go; Puppet will apply it as needed, and you can click the class in the console for a view of which nodes it's been assigned to. 
+Classes aren't automatically detected or validated; you have to enter a class's name yourself before you can apply it to a node or group. Once you do, though, you're all set; Puppet will apply it as needed, and you can click the class in the console to see which nodes it's been assigned to. 
 
 [nav_group]: ./images/console/nav_group.png
 [nav_navbar]: ./images/console/nav_navbar.png

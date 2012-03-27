@@ -12,8 +12,8 @@ Orchestration means invoking actions in parallel across any number of nodes at o
 
 PE's orchestration features are built on the MCollective framework, which consists of the following components: 
 
-* **Client interfaces** can issue orchestration commands to some or all of your nodes. The console's live management tools are one client interface, and the `mco` command line tool is another. 
-* **Orchestration agents** <!-- TODO: decide whether we want to expose "agent" --> are plugins that live on agent nodes and provide orchestration actions.
+* **Client interfaces** can issue orchestration commands to some or all of your nodes. The console's live management tools are one client interface and the `mco` command line tool is another. 
+* **Orchestration agents** <!-- TODO: decide whether we want to expose "agent" --> are plugins installed on agent nodes that provide orchestration actions.
 * The **MCollective service** runs on every agent node and listens for orchestration commands. If a command is legit, relevant to the node, and for a supported action, the service will trigger the action and send back results.
 * The **message broker** is a central server that routes orchestration messages between client interfaces and nodes running the MCollective service. (PE's ActiveMQ message server runs on the puppet master node.)
 
@@ -40,8 +40,8 @@ Changes Since PE 1.2
 PE's orchestration features have been changed and improved since they were introduced in version 1.2. 
 
 * Orchestration is enabled by default for all PE nodes. 
-* Orchestration tasks can now be invoked directly from the console, with the "advanced tasks" tab of the live management page. PE's orchestration framework also powers the other live management features.
-* The `mco` user account on the puppet master is gone, in favor of a new `peadmin` user. This user can still invoke orchestration tasks across your nodes, but it will also gain more general purpose capabilities in future versions.
+* Orchestration tasks can now be invoked directly from the console, using the "advanced tasks" tab of the live management page. PE's orchestration framework also powers the other live management features.
+* The `mco` user account on the puppet master is gone, in favor of a new `peadmin` user. This user can still invoke orchestration tasks across your nodes, but will also gain more general purpose capabilities in future versions.
 * PE now includes the `puppetral` plugin, which lets you use Puppet's Resource Abstraction Layer (RAL) in orchestration tasks.
 * For performance reasons, the default message security scheme has changed from AES to PSK.
 * The network connection over which messages are sent is now encrypted using SSL.
@@ -54,8 +54,8 @@ All network traffic for orchestration is encrypted with SSL (without host verifi
 * If necessary, you can [change the password][mco_password] used as the pre-shared key.
 * You can also [change the authentication method][mco_aes] to use an AES key pair instead of a pre-shared key. (Note that this can potentially affect performance with large numbers of nodes.)
 
-[mco_password]: ./maint_reconfiguring.html#changing-the-pre-shared-key
-[mco_aes]: ./maint_reconfiguring.html#changing-the-authentication-method
+[mco_password]: ./config_advanced.html#changing-the-pre-shared-key
+[mco_aes]: ./config_advanced.html#changing-the-authentication-method
 
 
 Network Traffic

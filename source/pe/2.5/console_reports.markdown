@@ -16,19 +16,19 @@ Each node page has a pair of graphs: a histogram showing the number of runs per 
 
 ![The pair of graphs on a node page][reports_graphs]
 
-The daily run status histogram is broken down with the same colors that indicate run statuses in the console's sidebar: red for failed runs, orange for pending runs (where a change would have been made, but the resource to be changed was marked as no-op), blue for successful runs where changes were made, and green for successful runs that did nothing. You can hover over a block of color for a tooltip showing how many runs of that type occurred:
+The daily run status histogram is broken down with the same colors that indicate run status in the console's sidebar: red for failed runs, orange for pending runs (where a change would have been made, but the resource to be changed was marked as no-op), blue for successful runs where changes were made, and green for successful runs that did nothing. You can hover over a block of color for a tooltip showing how many runs of that type occurred:
 
 ![Tooltip showing two changed runs][reports_runcount]
 
 **Note:** Run status histograms also appear on group pages, class pages, and run status pages. 
 
-The run time chart graphs how long each of the last 30 Puppet runs took to complete. A longer run usually means changes were made, but could also indicate heavy server load or some other circumstance. You can hover over a point on the line for a tooltip showing the number of seconds it represents:
+The run-time chart graphs how long each of the last 30 Puppet runs took to complete. A longer run usually means changes were made, but could also indicate heavy server load or some other circumstance. You can hover over a point on the line for a tooltip showing the number of seconds it represents:
 
 ![Tooltip showing how long a run took][reports_point]
 
 ### Normal Reports
 
-Each node page has a short list of recent reports, with a "more" button at the bottom for viewing older reports:
+Each node page has a short list of recent reports, with a "More" button at the bottom for viewing older reports:
 
 ![The list of recent reports][reports_recent]
 
@@ -70,7 +70,7 @@ Use the "inventory search" page to find a list of nodes with a certain fact valu
 
 ![Results of a search][reports_searchresults]
 
-You can add more facts to filter the search results further, and can change the comparison criteria for each one.
+You can add more facts to further filter the search results , and you can change the comparison criteria for each one.
 
 [reports_eventstab]: ./images/console/reports_eventstab.png
 [reports_graphs]: ./images/console/reports_graphs.png

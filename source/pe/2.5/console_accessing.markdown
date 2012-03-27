@@ -21,7 +21,7 @@ The console is Puppet Enterprise's web GUI. Use it to:
 Browser Requirements
 -----
 
-Puppet Labs supports the following browsers for use with the console:
+ The following browsers are supported for use with the console:
 
 - Chrome (current versions)
 - Firefox 3.5 and higher
@@ -35,11 +35,11 @@ Reaching the Console
 
 The console will be served as a website over SSL, on whichever port you chose when installing the console role. 
 
-Let's say your console server is `console.domain.com`. If you chose to use the default port of 443, you can omit the port from the URL and would reach the console by navigating to:
+Let's say your console server is `console.domain.com`. If you chose to use the default port of 443, you can omit the port from the URL and can reach the console by navigating to:
 
 <big><strong><code>https://console.domain.com</code></strong></big>
 
-If you chose to use port 3000, you would reach it at:
+If you chose to use port 3000, you would reach the console at:
 
 <big><strong><code>https://console.domain.com:3000</code></strong></big>
 
@@ -50,7 +50,7 @@ Accepting the Console's Certificate
 
 The console uses an SSL certificate created by your own local Puppet certificate authority. Since this authority is specific to your site, web browsers won't know it or trust it, and you'll have to add a security exception in order to access the console. 
 
-**This is safe to do.** Your web browser will warn you that the console's identity hasn't been verified by one of the external authorities it knows of, but that doesn't mean it's untrustworthy: since you or another administrator at your site is in full control of which certificates the Puppet certificate authority signs, the authority verifying the site is _you._ 
+**This is safe to do.** Your web browser will warn you that the console's identity hasn't been verified by one of the external authorities it knows of, but that doesn't mean it's untrustworthy. Since you or another administrator at your site is in full control of which certificates the Puppet certificate authority signs, the authority verifying the site is _you._ 
 
 ### Accepting the Certificate in Google Chrome or Chromium
 
@@ -94,7 +94,7 @@ Click the "Continue to this website (not recommended)" link on the warning page.
 Logging In
 -----
 
-For security, accessing the console requires a user name and password. In PE 2.5, there are three different levels of user access, read, read-write and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [User Management page](./console_auth.html) for more information on managing console user accounts.
+For security, accessing the console requires a user name and password. In PE 2.5, there are three different levels of user access: read, read-write, and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [User Management page](./console_auth.html) for more information on managing console user accounts.
 
 ![Screenshot: a login dialog asking for credentials][login]
 

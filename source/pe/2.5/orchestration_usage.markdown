@@ -30,14 +30,14 @@ The following orchestration actions are available in PE 2.0:
   - `find` action returns a list of all nodes matching a search filter
   - `ping` action returns a list of all nodes and their latencies
   - `inventory` action returns a list of Facts, Classes, and other information from all nodes
-  - this plugin's actions are exposed via higher-level wrappers, such as the mco ping command
+  - this plugin's actions are exposed via higher-level wrappers, such as the `mco ping` command
 * `puppetral` plugin
   - `find` action returns a Puppet resource of a given type and title and its variations across all nodes
   - `search` action returns all Puppet resources of a given type across all nodes
   - `create` action creates a given resource across all nodes
     - creating an exec resource allows for arbitrary management of nodes
 * `puppetd` plugin
-  - `enable` and `disable` actions enable and disable puppet agent on a node or nodes
+  - `enable` and `disable` actions will enable and disable puppet agent on a node or nodes
   - `runonce` action initiates a puppet agent run on all nodes
   - `last_run_summary` action retrieves the most recent Puppet run summary from all nodes
   - `status` action returns puppet agent's run status on all nodes
@@ -54,18 +54,18 @@ The following orchestration actions are available in PE 2.0:
 Filtering Nodes
 -----
 
-Most orchestration actions in Puppet Enterprise 2.0 can be executed
+Most orchestration actions in Puppet Enterprise 2.5 can be executed
 on a set of nodes determined by meta-data about the deployment.
 This filtering provides a much more convenient way to manage nodes
 than the traditional approach of using host names or fully
-qualified domain names to identify and access machines.  Node sets
+qualified domain names to identify and access machines. Node sets
 can be created by filtering based on Facter facts, Puppet classes,
 and host names. Filters can be specified by passing options to the
-mco command. For example:
+`mco` command. For example:
 
     $ mco find --with-fact osfamily=RedHat
 
-This command limits the find action to only return nodes who have a
+This command forces the find action to only return nodes which have a
 fact named osfamily with a value of RedHat.  Filter options are
 case sensitive and support regular expression syntax.
 
@@ -74,8 +74,8 @@ Examples
 
 ### Ping
 
-The ping action of the rpcutil plugin is wrapped to be available at
-a higher level as the mco ping command. This command returns a list
+The `ping` action of the rpcutil plugin is wrapped to be available at
+a higher level than the `mco ping` command. This command returns a list
 of all the nodes and their network latencies.  In a typical Puppet
 Enterprise deployment, latencies for issuing an orchestration
 action are less than half a second:
@@ -88,8 +88,8 @@ action are less than half a second:
 
 ### Find
 
-The find action of the rpcutil plugin is wrapped to be available at
-a higher level as the mco find command. This command returns a list
+The `find` action of the rpcutil plugin is wrapped to be available at
+a higher level than the `mco find` command. This command returns a list
 of all the nodes in the network:
 
     peadmin@puppetmaster:~$ mco find
@@ -98,8 +98,8 @@ of all the nodes in the network:
 
 ### Inventory
 
-The inventory action of the rpcutil plugin is wrapped to be
-available at a higher level as the mco inventory command. This
+The `inventory` action of the rpcutil plugin is wrapped to be
+available at a higher level than the `mco inventory` command. This
 command returns facts and classes, among other information:
 
     peadmin@puppetmaster:~$ mco inventory agent.example.com
@@ -165,7 +165,7 @@ does not mean only one host in the deployment performed the
 configuration run.  The message "Found 2 hosts" indicates that two
 nodes carried out this action.
 
-Once finished with the Puppet configuration run, the status action
+Once finished with the Puppet configuration run, the `status` action
 can be used to see the last Puppet configuration run for each node
 in the deployment.
 
@@ -210,7 +210,7 @@ nodes in the deployment:
 
      Finished processing 2 / 2 hosts in 249.21 ms
 
-That this file was created can be verified with the find action:
+The creation of this file can be verified with the `find` action:
 
      peadmin@puppetmaster:~$ mco rpc puppetral find type=file title=/tmp/hello
 
@@ -260,7 +260,7 @@ package resources are exposed directly in the console's live management page.
 
 Puppet agent will automatically restart a service it manages when related
 resources are changed, but sometimes services need to be restarted outside of a normal Puppet
-configuration run. The mco service command can be used in these cases.
+configuration run. The `mco service` command can be used in these cases.
 This example restarts the SSH daemon on all
 nodes running RedHat:
 
@@ -271,7 +271,7 @@ nodes running RedHat:
     Statuses: started=2
     Elapsed Time: 1.45 s
 
-The status of the restarted services can be found with:
+The status of the restarted services can be shown with:
 
     peadmin@puppetmaster:~$ mco service sshd status -W osfamily=RedHat
     [ ==================================================> ] 2 / 2
@@ -284,10 +284,10 @@ The status of the restarted services can be found with:
 
 ### Package
 
-Similar to the service plugin, the package manages software
+Similar to the service plugin, the `package` plugin manages software
 packages outside of a normal Puppet configuration run. The
-following is the trimmed output of running the
-checkupdates action:
+following is the trimmed output from running the
+`checkupdates` action:
 
     peadmin@puppetmaster:~$ mco rpc package checkupdates
     Determining the amount of hosts matching filter for 2 seconds .... 2
@@ -316,7 +316,7 @@ checkupdates action:
 
 ### Controller
 
-The mco controller command manages the underlying MCollective
+The `mco controller` command manages the underlying MCollective
 infrastructure. This can be used to load plugins obtained outside
 of Puppet Enterprise or custom written for the deployment. This
 example reloads all plugins across the Puppet Enterprise
