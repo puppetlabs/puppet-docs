@@ -13,13 +13,8 @@ How to learn more about the activity of your nodes.
 ## Reports and Reporting
 
 Puppet clients can be configured to send reports at the end of
-every configuration run. Because the Transaction interals of Puppet are
-responsible for creating and sending the reports, these are called
-transaction reports. Currently, these reports include all of the
-log messages generated during the configuration run, along with
-some basic metrics of what happened on that run.  In Rowlf, more
-detailed reporting information will be available, allowing users
-to see detailed change information regarding what happened on nodes.
+every configuration run. These reports include all of the
+log messages generated during the configuration run and metrics related to what happened on that run.
 
 ### Logs
 
@@ -34,31 +29,27 @@ The rest of the report contains some basic metrics describing what
 happened in the transaction. There are three types of metrics in
 each report, and each type of metric has one or more values:
 
--   **Time**: Keeps track of how long things took.
-    :   -   *Total*: Total time for the configuration run
-        -   *File*:
-        -   *Exec*:
-        -   *User*:
-        -   *Group*:
-        -   *Config Retrieval*: How long the configuration took to retrieve
-        -   *Service*:
-        -   *Package*:
-
-
--   **Resources**: Keeps track of the following stats:
-    :   -   *Total*: The total number of resources being managed
-        -   *Skipped*: How many resources were skipped, because of either
-            tagging or scheduling restrictions
-        -   *Scheduled*: How many resources met any scheduling restrictions
-        -   *Out of Sync*: How many resources were out of sync
-        -   *Applied*: How many resources were attempted to be fixed
-        -   *Failed*: How many resources were not successfully fixed
-        -   *Restarted*: How many resources were restarted because their
-            dependencies changed
-        -   *Failed Restarts*: How many resources could not be restarted
-
-
--   **Changes**: The total number of changes in the transaction.
+- **Time**: Keeps track of how long things took.
+    - *Total*: Total time for the configuration run
+    - *File*:
+    - *Exec*:
+    - *User*:
+    - *Group*:
+    - *Config Retrieval*: How long the configuration took to retrieve
+    - *Service*:
+    - *Package*:
+- **Resources**: Keeps track of the following stats:
+    - *Total*: The total number of resources being managed
+    - *Skipped*: How many resources were skipped, because of either
+      tagging or scheduling restrictions
+    - *Scheduled*: How many resources met any scheduling restrictions
+    - *Out of Sync*: How many resources were out of sync
+    - *Applied*: How many resources were attempted to be fixed
+    - *Failed*: How many resources were not successfully fixed
+    - *Restarted*: How many resources were restarted because their
+      dependencies changed
+    - *Failed Restarts*: How many resources could not be restarted
+- **Changes**: The total number of changes in the transaction.
 
 
 ## Setting Up Reporting
