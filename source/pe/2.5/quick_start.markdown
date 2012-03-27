@@ -7,7 +7,7 @@ subtitle: "Quick Start: Using PE 2.5"
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the PE 2.5 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. By following along, you will do the following:
+Welcome to the PE 2.5 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
@@ -43,9 +43,9 @@ For this deployment, the puppet master and the console will be the same machine,
 >     * For demonstration purposes, all nodes should allow **all traffic on ports 8140, 61613, and 443.** (Production deployments can and should partially restrict this traffic.)
 > * [Properly configured name resolution](./install_preparing.html#name-resolution).
 >     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com`, the first agent node as `agent1.example.com`, and the Windows node as `windows.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.
->     * All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the hostname command and one or more configuration files, and the exact method varies by platform.
+>     * All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the hostname command and one or more configuration files, while the exact method varies by platform.
 >     * All nodes must be able to **reach each other by name.** This can be done with a local DNS server, or by editing the `/etc/hosts` file on each node to point to the proper IP addresses. Test this by running `ping master.example.com` and `ping agent1.example.com` on every node, including the Windows node if present.
->     * Optionally, for simpler configuration later, all nodes should also be able to **reach the puppet master node at the hostname `puppet`.** This can be done with DNS or with hosts files. Test this by running `ping puppet` on every node.
+>     * Optionally, to simplify configuration later, all nodes should also be able to **reach the puppet master node at the hostname `puppet`.** This can be done with DNS or with hosts files. Test this by running `ping puppet` on every node.
 >     * The **control workstation** from which you are carrying out these instructions must be able to **reach every node in the deployment by name.** 
 
 ### Installing the Puppet Master
@@ -102,7 +102,7 @@ During installation, the agent node contacted the puppet master and requested a 
 
 During this walkthrough, we will be running puppet agent interactively. Normally, puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.)
 
-* **On the first agent node,** run `puppet agent --test`; this will trigger a single puppet agent run with verbose logging. 
+* **On the first agent node,** run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging. 
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 * **On the Windows node,** choose "Run Puppet Agent" from the start menu, elevating privileges if necessary.
 * Note the similar string of log messages.
@@ -159,7 +159,7 @@ Using Live Management to Control Agent Nodes
 
 Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger Puppet runs and orchestration tasks.
 
-* **On the console,** click the "live management" tab in the top navigation.
+* **On the console,** click the "Live Management" tab in the top navigation.
 
 ![live management](./images/quick/live_mgmt.png)
 
@@ -256,7 +256,7 @@ Every module contains one or more **classes.** The modules you just installed co
 ![the add class field][add_motd]
 
 * Do the same for the `win_desktop_shortcut` class.
-* Navigate to `agent1.example.com` (by clicking the all nodes link in the sidebar and clicking `agent1`'s name), click the edit button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "save changes" button after you have selected it. 
+* Navigate to `agent1.example.com` (by clicking the all nodes link in the sidebar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "Save changes" button after you have selected it. 
 
 ![assigning the motd class][assign_motd]
 

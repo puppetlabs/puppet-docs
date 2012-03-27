@@ -22,7 +22,7 @@ Access to Puppet's online library of pre-built, freely downloadable configuratio
 
 ### Big Data
 
-With PE 2.5, system administrators can access detailed information about their infrastructure through the Puppet Data Library. The Puppet Data Library provides comprehensive and volumninous information about the who, what, where, when and why of infrastructure changes. This data gives sysadmins insight into how infrastructure changes effect service levels and can be used to generate automatic IT compliance audits. In addition, third-party vendors such as Boundary and Nodeable have built innovative tools based on Data Library information that provide powerful tools for analysis and management. <!-- todo For more information, see the Data Library pages. -->
+With PE 2.5, system administrators can access detailed information about their infrastructure through the Puppet Data Library. The Puppet Data Library provides comprehensive and volumninous information about the who, what, where, when and why of infrastructure changes. This data gives sysadmins insight into how infrastructure changes effect service levels and can be used to generate automatic IT compliance audits. In addition, third-party vendors such as Boundary and Nodeable have built innovative tools based on Data Library information that provide powerful tools for analysis and management. For more information, see the [Puppet Data Library page](./puppet_data_library.html). 
 
 See the [Puppet Enterprise 2.5 release notes](./appendix.html#release-notes) for more details.
 

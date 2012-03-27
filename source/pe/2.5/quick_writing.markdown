@@ -5,7 +5,7 @@ title: "PE 2.5 » Quick Start » Writing Modules"
 subtitle: "Quick Start: Writing Modules for PE 2.5"
 ---
 
-Welcome to the PE 2.5 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. By following along, you will do the following:
+Welcome to the PE 2.5 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
 
 * Modify modules obtained from the Forge
 * Write your own Puppet module
@@ -184,7 +184,7 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 > 
 > * Uses an "if" [conditional][] to only manage \*nix systems.
 > * Uses a selector [conditional][] and a variable to change the name of the root user's primary group on Solaris.
-> * Uses three [`file` resources][file_type] to manage the `fstab`, `passwd`, and `crontab` files on \*nix systems. These resources do not manage the content of the files; only their ownership and permissions.
+> * Uses three [`file` resources][file_type] to manage the `fstab`, `passwd`, and `crontab` files on \*nix systems. These resources do not manage the content of the files, only their ownership and permissions.
 
 [file_type]: /references/latest/type.html#file
 [conditional]: /guides/language_guide.html#conditionals
@@ -276,7 +276,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OSes using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
-* **On the console,** remove all of the previous example classes from your nodes and groups, using the edit button in each node or group page. Be sure to leave the `pe_*` classes in place.
+* **On the console,** remove all of the previous example classes from your nodes and groups, using the "edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
 * Add the `site::basic` class to the console with the "add class" button in the sidebar.
 * Assign the `site::basic` class to the default group.
 
