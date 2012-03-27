@@ -66,6 +66,11 @@ The console uses a database user account to access its MySQL database. If this u
 5. Start the `pe-httpd` service back up:
 
         $ sudo /etc/init.d/pe-httpd start
+        
+Allowing Anonymous Console Access
+-----
+To allow anonymous, read-only access to the console, do the following:
+
 
 Changing Orchestration Security
 -----

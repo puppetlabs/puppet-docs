@@ -5,16 +5,16 @@ title: "PE 2.5 » Console » Live Mgmt: Advanced Tasks"
 subtitle: "Live Management: Advanced Tasks"
 ---
 
-Use the advanced tasks tab to invoke actions from any MCollective agent installed on your nodes. 
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+
+Use the "Advanced Tasks" tab to invoke actions from any MCollective agent installed on your nodes. 
 
 ![The advanced tasks page][live_advanced_main]
-
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 Agents and Actions
 -----
 
-This tab is a direct interface to your nodes' MCollective agents. It automatically generates a GUI for every agent installed on your systems, exposing all of their actions through the console. If you install any custom MCollective agents, they'll appear in the advanced tasks tab.
+This tab is a direct interface to your nodes' MCollective agents. It automatically generates a GUI for every agent installed on your systems, exposing all of their actions through the console. If you install any custom MCollective agents, they'll appear in the "Advanced Tasks" tab.
 
 Puppet Enterprise ships with the following MCollective agents:
 
@@ -28,7 +28,7 @@ Each agent view includes explanatory text for each action.
 Invoking Actions
 -----
 
-Navigate to an agent to see a list of actions. To invoke an action, click its name, enter any required arguments, and confirm with the red "run" button.
+Navigate to an agent to see a list of actions. To invoke an action, click its name, enter any required arguments, and confirm with the red "Run" button.
 
 Invoking an action with no arguments:
 

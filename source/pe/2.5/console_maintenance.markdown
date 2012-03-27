@@ -16,7 +16,7 @@ The console uses several worker processes to process reports in the background, 
 
 [maint_pending_task]: ./images/console/maint_pending_task.png
 
-If the number of pending tasks appears to be growing linearly, it is possible the background task processes died and left invalid PID files. To restart the worker tasks, run:
+If the number of pending tasks appears to be growing linearly, the background task processes may have died and left invalid PID files. To restart the worker tasks, run:
 
     $ sudo /etc/init.d/pe-puppet-dashboard-workers restart
 

@@ -5,10 +5,9 @@ title: "PE 2.5 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 
+Groups, classes, and parameters are used to control which Puppet configurations your nodes receive. 
 
 **NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
-
-Use groups, classes, and parameters to control which Puppet configurations your nodes receive. 
 
 Parameters
 -----
@@ -57,7 +56,7 @@ Defining wrapper classes in a "site" module can help you use the console more ef
 
 Most Puppet modules are written so each class manages a logical chunk of configuration. This means any node's configuration could be composed of dozens of Puppet classes. Although you can add these dozens of classes to the console, it's often better to create a module called `site` and populate it with super-classes, which declare all of the smaller classes a given _type_ of machine will need. 
 
-There are many ways to compose these classes, and you'll have to decide based on how your own collection of modules works. Some possibilities:
+There are many ways to compose these classes; which one you choose depends on how your own collection of modules works. Some possibilities:
 
 * Create many non-overlapping classes, such that any node will only have one class assigned to it.
 * Create several separated "levels" of classes --- a "base" layer, a layer for role-specific packages and services, a layer for application data, etc. This way, each node can get the base class for its own OS or machine type, but use the same application classes as some other quite different node.
@@ -95,7 +94,7 @@ This works identically to assigning classes and parameters to a single node. Use
 
 ### The Default Group
 
-The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node. **This differs from the open source Dashboard,** which doesn't currently implement a default group. 
+The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node. 
 
 Nodes are added to the default group by a periodic background task, so it may take several minutes after a node first checks in before it joins the group.
 
@@ -103,7 +102,7 @@ Nodes are added to the default group by a periodic background task, so it may ta
 Rake API
 -----
 
-The console provides rake tasks that can group nodes, create classes, and assign classes to groups. You can use these as an API to automate workflows or bypass the console's GUI when performing large tasks.
+The console provides rake tasks that can group nodes, create classes, and assign classes to groups. You can use these tasks as an API to automate workflows or bypass the console's GUI when performing large tasks.
 
 All of these tasks should be run as follows, replacing `<TASK>` with the task name and any arguments it requires:
 

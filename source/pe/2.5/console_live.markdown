@@ -8,13 +8,13 @@ subtitle: "Live Management"
 What is Live Management?
 -----
 
-**NOTE** To use live management, you must be logged in as a read-write or admin level user. Read-only users cannot access the live management page and will not see the associated UI elements.
+**NOTE:** To use live management, you must be logged in as a read-write or admin level user. Read-only users cannot access the live management page and will not see the associated UI elements.
 
 Live management is a part of the console that provides tools for inspecting and editing your nodes in real time. It is powered by MCollective.
 
 Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console. 
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live Management and MCollective are not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 Show Me!
 -----
@@ -31,10 +31,10 @@ The live management page is split into three **tabs,** one for each of its tools
 ![The live management tabs][live_nav_tabs]
 
 - The **manage resources** tab lets you browse the resources on your nodes and clone any of them across your infrastructure. 
-- The **control Puppet** tab lets you tell any node to immediately pull and apply its configuration. It can also temporarily disable puppet agent on some of your nodes to control the rollout speed of new configurations.
+- The **control Puppet** tab lets you tell any node to immediately pull and apply its configuration. You can also temporarily disable puppet agent on some of your nodes to control the rollout speed of new configurations.
 - The **advanced tasks** tab is a direct interface to the MCollective agents on your systems, and will auto-generate a GUI for any new agents you install.
 
-The following chapters of this section cover the use of each tab. 
+Subsequent chapters of this section cover the use of each tab. 
 
 The Node List
 -----
@@ -46,7 +46,7 @@ Every task in live management inspects or modifies a **selection of nodes.** Use
 
 ![The node list][live_nav_nodelist]
 
-Nodes are listed by their **hostnames** in the live management pages. A node's hostname may match the name Puppet knows it by, but this isn't necessarily the case, especially under cloud environments like EC2.
+Nodes are listed by their **hostnames** in the live management pages. A node's hostname may match the name Puppet knows it by, but this isn't always the case, especially in cloud environments like EC2.
 
 As long as you stay within the live management page, your selection and filtering in the node list will persist across all three tabs. The node list gets reset once you navigate to a different area of the console.
 
@@ -54,7 +54,7 @@ As long as you stay within the live management page, your selection and filterin
 
 Clicking a node selects it or deselects it. Use the "select all" and "select none" controls to select and deselect all nodes that match the current filter. 
 
-Only nodes that match the current filter can be selected; you don't have to worry about acidentally modifying "invisibly" selected nodes. 
+Only nodes that match the current filter can be selected. You don't have to worry about acidentally modifying "invisibly" selected nodes. 
 
 ### Filtering by Name
 
