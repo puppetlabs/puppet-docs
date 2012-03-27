@@ -4,12 +4,12 @@ layout: pe2experimental
 title: "PE 2.5 » Console » Live Mgmt: Managing Resources"
 subtitle: "Live Management: Managing Resources"
 ---
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
-Use the manage resources tab to browse the resources on your nodes and clone any of them across your infrastructure.
+Use the "Manage Resources" tab to browse the resources on your nodes and clone any of them across your infrastructure.
 
 ![The manage resources tab][live_resources_main]
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
 Resource Types
 -----
@@ -26,7 +26,7 @@ For an introduction to resources and types, please see [the Resources chapter of
 The Summary View
 -----
 
-The summary view has an "Inspect All" button, which scans all resources of all types and reports on their similarity. This is mostly useful when you think you've selected a group of identical nodes but want to make sure.
+The summary view "Inspect All" button scans all resources of all types and reports on their similarity. This is mostly useful when you think you've selected a group of identical nodes but want to make sure.
 
 Using "Inspect All" at the start of a session will pre-load a lot of information into memory, which can speed up later operations.
 
@@ -35,13 +35,13 @@ Finding Resources
 
 To find a resource to work with, you must first select a resource type. Then, either search for your resource by name or load all resources of the type and browse them. 
 
-When you select a type for the first time in a session, it won't automatically display any resources:
-
-![An empty list of user resources][live_resources_none]
-
 Searching and browsing only use the current selection of nodes. 
 
 ### Browsing a Type
+
+When you select a type for the first time in a session, it won't automatically display any resources:
+
+![An empty list of user resources][live_resources_none]
 
 To browse a list of all resources, use the "find resources" button.
 
@@ -65,7 +65,7 @@ To see which nodes have each variant, click the "on N nodes" labels to expand th
 
 ### Searching by Name
 
-To search, enter a resource name in the search field, and confirm with the enter key or the "search" button. 
+To search, enter a resource name in the search field and confirm with the enter key or the "search" button. 
 
 ![A search in progress][live_resources_searching]
 
@@ -100,7 +100,7 @@ After the resource has been cloned, you can see a summary of the results and the
 
 When you clone a user, any groups it belongs to are also automatically cloned. 
 
-Note also that the UID of a user and the GIDs of its groups aren't cloned across nodes; this means a cloned user's UID will likely differ across nodes. We hope to support UID/GID cloning in a future release.
+Note also that the UID of a user and the GIDs of its groups aren't cloned across nodes. This means a cloned user's UID will likely differ across nodes. We hope to support UID/GID cloning in a future release.
 
 [live_resources_browse_users]: ./images/console/live_resources_browse_users.png
 [live_resources_clone_before]: ./images/console/live_resources_clone_before.png

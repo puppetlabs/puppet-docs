@@ -5,20 +5,20 @@ title: "PE 2.5 » Console » Live Mgmt: Controlling Puppet"
 subtitle: "Live Management: Controlling Puppet"
 ---
 
-Use the control puppet tab to immediately trigger a puppet agent run on any of your nodes. You can also check puppet agent's status, and enable or disable it to control the spread of new configurations.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
+
+Use the "Control Puppet" tab to immediately trigger a puppet agent run on any of your nodes. You can also check puppet agent's status, and enable or disable it to control the spread of new configurations.
 
 ![The control puppet tab][live_puppet_main]
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
-
-Be aware that the control puppet tab cannot trigger a node's _first_ puppet agent run. A node's first run will happen automatically within 30 minutes after you [sign its certificate][certsign]. 
+Be aware that the "Control Puppet" tab cannot trigger a node's _first_ puppet agent run. A node's first run will happen automatically within 30 minutes after you [sign its certificate][certsign]. 
 
 [certsign]: ./install_basic.html#signing-agent-certificates
 
 Invoking an Action
 -----
 
-The control puppet tab can perform five actions:
+The "Control Puppet" tab can perform five actions:
 
 - Disable     
 - Enable     
@@ -55,7 +55,7 @@ Nodes where puppet agent is disabled will ignore this action.
 
 Use the "enable" and "disable" actions to control whether puppet agent _does_ anything. When you disable Puppet on a node, the agent daemon will continue running, but it will not pull configurations from the master. 
 
-After a node has been disabled for an hour, it will appear as "unresponsive" in the console's node views, and will stay that way until it is re-enabled. Disabled nodes will ignore runonce commands from the control puppet tab. 
+After a node has been disabled for an hour, it will appear as "unresponsive" in the console's node views, and will stay that way until it is re-enabled. Disabled nodes will ignore runonce commands from the "Control Puppet" tab. 
 
 Disabling nodes is great for hedging your bets when you've made major changes to an existing Puppet module: 
 
@@ -64,7 +64,7 @@ Disabling nodes is great for hedging your bets when you've made major changes to
 * Run Puppet on the test nodes, and carefully examine the reports to make sure the changes worked
 * Re-enable Puppet on the rest of your nodes (or a subset thereof, if you think you need more testing)
 
-A confirmation screen after disabling some nodes:
+A confirmation screen will appear after disabling some nodes:
 
 ![The disable confirmation, with four nodes revealed][live_puppet_disable_results]
 
@@ -92,7 +92,7 @@ The results of the status action, with a mix of enabled and disabled nodes:
 
 ### Last Run Summary
 
-Use the "last\_run\_summary" action for a quick view of what the last Puppet run did. 
+Use the "last\_run\_summary" action for a quick view of what the most recent Puppet run did. 
 
 Usually, you should use the graphs and reports on the console's node views to investigate previous Puppet runs; they are more detailed, and provide more historical context. However, the overview provided by this action can be useful when combined with live management's class and fact filtering. 
 
