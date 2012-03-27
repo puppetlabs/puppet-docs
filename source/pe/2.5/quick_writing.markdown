@@ -141,7 +141,7 @@ Third-party modules save time, but **most users will also write their own module
 This exercise will create a class that manages the permissions of the `fstab`, `passwd`, and `crontab` files. 
 
 * Run `mkdir -p core_permissions/manifests` to create the module directory and manifests directory.
-* Create and begin editing the `core_permissions/manifests/init.pp` file, 
+* Create and begin editing the `core_permissions/manifests/init.pp` file.
 * Edit the init.pp file so it contains the following, then save it and exit the editor: 
 
 {% highlight ruby %}
@@ -178,7 +178,7 @@ This exercise will create a class that manages the permissions of the `fstab`, `
     }
 {% endhighlight %}
 
-> You have created a new module containing a single class. Puppet now knows about this class, and it can added to the console and assigned to nodes.
+> You have created a new module containing a single class. Puppet now knows about this class, and it can be added to the console and assigned to nodes.
 > 
 > This new class:
 > 
