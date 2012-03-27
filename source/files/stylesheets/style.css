@@ -1392,10 +1392,12 @@ div#subCol ul > li:before {
 
 div#subCol ul > li.expanded-nav:before {
   content: "-";
+  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
 }
 
 div#subCol ul > li.hidden-nav:before {
   content: "+";
+  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
 }
 
 div#subCol ul > li {
