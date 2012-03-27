@@ -15,8 +15,6 @@ Welcome to the PE 2.5 advanced quick start guide. This document is a continuatio
 
 > Before starting this walkthrough, you should have completed the [previous quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
-<!-- todo time estimate -->
-
 
 Editing a Forge Module
 -----
@@ -286,7 +284,7 @@ This class **declares** other classes with the `include` function. Note the "if"
 Summary
 -----
 
-This walkthrough has introduced you to the core workflows of an intermediate Puppet user. In the course of their normal work, these users will:
+You have now performed the core workflows of an intermediate Puppet user. In the course of their normal work, an intermediate user will:
 
 * Download and hack Forge modules that almost (but not quite) fit their deployment's needs.
 * Create new modules and write new classes to manage many types of resources, including files, services, packages, user accounts, and more. 

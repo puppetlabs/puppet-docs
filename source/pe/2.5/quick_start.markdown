@@ -15,7 +15,7 @@ Welcome to the PE 2.5 quick start guide. This document is a short walkthrough to
 * Install a third-party Puppet module
 * Apply Puppet classes to nodes with the console
 
-<!-- todo time estimate -->
+> Following this walkthrough will take approximately 30 minutes.
 
 Creating a Deployment
 -----
@@ -54,7 +54,7 @@ For this deployment, the puppet master and the console will be the same machine,
 * [Download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates. 
 * Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them. 
     * **Install** the puppet master and console roles; the cloud provisioner role is not required, but may be useful if you later promote this machine to production. 
-    * Make sure that the unique "certname" is **`master.example.com`**.
+    * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `master.example.com`.)
     * You will need the **email address and console password** it requests in order to use the console; **choose something memorable.**
     * None of the **other passwords** are relevant to this quick start guide. **Choose something random.**
     * **Accept the default responses for every other question** by hitting enter. 
@@ -67,8 +67,8 @@ For this deployment, the puppet master and the console will be the same machine,
 * **On the agent node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled.)
 * [Download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates. 
 * Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them. 
-    * **Skip** the puppet master, cloud provisioner, and console roles; **install** the puppet agent role.
-    * Make sure that the unique "certname" is **`agent1.example.com`**.
+    * **Skip** the puppet master and console roles; **install** the puppet agent role. The  cloud provisioner role is optional and is not used in this exercise.
+    * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `agent1.example.com`.)
     * Set the puppet master hostname as **`master.example.com`**. If you configured the master to be reachable at `puppet`, you can alternately accept the default. 
     * **Accept the default responses for every other question** by hitting enter. 
 * The installer will then install and configure Puppet Enterprise.
@@ -104,7 +104,7 @@ During this walkthrough, we will be running puppet agent interactively. Normally
 
 * **On the first agent node,** run `puppet agent --test`; this will trigger a single puppet agent run with verbose logging. 
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
-* **On the Windows node,** choose "Run Puppet Agent" from the start menu, elevating privileges if necessary.
+* **On the Windows node,** open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
 * Note the similar string of log messages.
 
 > You are now fully managing these nodes. They have checked in with the puppet master for the first time, and will continue to check in and fetch new configurations every 30 minutes. They will also appear in the console, where you can make changes to them by assigning classes.
@@ -247,7 +247,7 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
 
-* **On the console,** click the "add class" button in the sidebar:
+* **On the console,** click the "Classes" link in the top navigation bar, then click the "Add class" button in the sidebar:
 
 ![The console's add class button][classbutton]
 
@@ -256,7 +256,7 @@ Every module contains one or more **classes.** The modules you just installed co
 ![the add class field][add_motd]
 
 * Do the same for the `win_desktop_shortcut` class.
-* Navigate to `agent1.example.com` (by clicking the all nodes link in the sidebar and clicking `agent1`'s name), click the edit button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "save changes" button after you have selected it. 
+* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the edit button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "save changes" button after you have selected it. 
 
 ![assigning the motd class][assign_motd]
 
@@ -281,7 +281,7 @@ Every module contains one or more **classes.** The modules you just installed co
 Summary
 -----
 
-This walkthrough has introduced you to the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
+You have now experienced the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
 * Deploy new nodes, install PE on them, and add them to their deployment by approving their certificate requests.
 * Use pre-built modules from the Forge to save time and effort.
@@ -299,3 +299,5 @@ In addition to what this walkthrough has covered, most users will also:
 * Assign classes to groups in the console instead of individual nodes.
 
 To learn about these workflows, continue to the [writing modules quick start guide](./quick_writing.html).
+
+To explore the rest of the PE 2.5 user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
