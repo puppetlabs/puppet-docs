@@ -1381,6 +1381,8 @@ div#subCol ul > li > ol.toc {
 div#subCol ul > li:before {
   content: "♦";
   font-size: 0.75em;
+  width: 5px;
+  display: inline-block;
   padding-right: 0.85em;
   color: #888;
   /*position: absolute;*/
@@ -1388,11 +1390,23 @@ div#subCol ul > li:before {
   top: 0.125em;
 }
 
+div#subCol ul > li.expanded-nav:before {
+  content: "-";
+}
+
+div#subCol ul > li.hidden-nav:before {
+  content: "+";
+}
+
 div#subCol ul > li {
   font-weight: normal;
   color: #444;
   margin-bottom: 0;
   line-height: 1.5em;
+}
+
+div#subCol ul > li strong:hover {
+  color: #999;
 }
 
 div#subCol ul > li > ul {
