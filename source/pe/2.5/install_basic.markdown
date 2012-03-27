@@ -1,16 +1,45 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Installing » Basic Installation"
-subtitle: "Basic Installation"
+title: "PE 2.5 » Installing » Installing PE"
+subtitle: "Installing Puppet Enterprise"
 ---
+
+
+[downloadpe]: http://info.puppetlabs.com/download-pe.html
+
+> ![windows logo](./images/windows-logo-small.jpg) This chapter covers \*nix operating systems. To install PE on Windows, see [Installing Windows Agents](./install_windows.html).
+
+Downloading PE
+-----
+
+Before installing Puppet Enterprise, you must [download it from the Puppet Labs website][downloadpe].
+
+
+### Choosing an Installer Tarball
+
+Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball. 
+
+> Note: The universal tarball is simpler to use, but is roughly ten times the size of a version-specific tarball.
+
+Puppet Enterprise for Windows is available as a single .msi installer package. 
+
+#### Available \*nix Tarballs
+
+|      Filename ends with...        |                     Will install...                 |
+|-----------------------------------|-----------------------------------------------------|
+| `-all.tar`                        | anywhere                                            |
+| `-debian-<version and arch>.tar`  | on Debian                                           |
+| `-el-<version and arch>.tar`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux  |
+| `-sles-<version and arch>.tar`    | on SUSE Linux Enterprise Server                     |
+| `-solaris-<version and arch>.tar` | on Solaris                                          |
+| `-ubuntu-<version and arch>.tar`  | on Ubuntu LTS                                       |
+
 
 Starting the Installer
 -----
 
-To install PE:
-
-* Unarchive the installer tarball, usually with `tar -xzf <INSTALLER TARBALL>`.
+* Unarchive the installer tarball, usually with `tar -xzf <TARBALL FILE>`.
 * Navigate to the resulting directory in your shell.
 * Run the `puppet-enterprise-installer` script with root privileges:
 

@@ -36,6 +36,8 @@ replace:
 
 {% endcomment %}
 
+{% include warnings/old_pe_version.html %}
+
 #### Navigation
 
 - {% if page.url contains 'intro.html' %}**Introduction**{% else %}[Introduction](./intro.html){% endif %}
