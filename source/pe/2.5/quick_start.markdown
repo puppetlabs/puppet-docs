@@ -120,14 +120,14 @@ You can now log into the console and see all agent nodes, including the puppet m
 
 * **On your control workstation,** open a web browser and point it to https://master.example.com. 
 * You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers. 
-* Next, you will see a login screen for the console:
+* Next, you will see a login screen for the console. **Log in with the email address and password you provided when installing the puppet master.**
 
-    ![The console login screen](./images/quick/login.png)
+![The console login screen](./images/quick/login.jpg            )
     
-    **Log in with the email address and password you provided when installing the puppet master.**
 * Next, you will see the front page of the console, which shows a summary of your deployment's recent puppet runs. **Notice that the master and any agent nodes appear in the list of nodes:**
 
-    ![The console front page](./images/quick/front.png)
+![The console front page](./images/quick/front.png)
+
 * **Explore the console.** Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
 
 > You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last Puppet run.
@@ -140,14 +140,17 @@ Puppet Enterprise does this automatically within 30 minutes of a node's first ch
 
 * **On the console,** use the sidebar to navigate to the default group:
 
-    ![the default group link](./images/quick/default_link.png)
+![the default group link](./images/quick/default_link.png)
+
 * Check the list of nodes at the bottom of the page for `agent1.example.com` --- depending on your timing, it may already be present. If so, skip the next two steps and go directly to the agent node.
 * If `agent1` is not a member of the group already, click the "edit" button:
 
-    ![the edit button](./images/quick/default_edit.png)
+![the edit button](./images/quick/default_edit.png)
+
 * In the "nodes" field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the update button after you have selected it.
 
-    ![the nodes field](./images/quick/default_nodes.png)
+![the nodes field](./images/quick/default_nodes.png)
+
 * **On the first agent node,** run `puppet agent --test` again. Note the long string of log messages related to the `pe_mcollective` class. 
 * **You do not need to repeat this for the Windows node.** Orchestration is not supported on Windows for this release of Puppet Enterprise.
 
@@ -160,28 +163,33 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 * **On the console,** click the "live management" tab in the top navigation.
 
-    ![live management](./images/quick/live_mgmt.png)
+![live management](./images/quick/live_mgmt.png)
+
 * Note that the master and the first agent node are visible in the sidebar, but the Windows node is not. Live management is not supported on Windows nodes for this release of Puppet Enterprise.
 
 ### Discovering and Cloning Resources
 
 * Note that you are currently in the "manage resources" tab. Click the "user resources" link, then click the "find resources" button:
 
-    ![the find resources button](./images/quick/find_resources.png)
+![the find resources button](./images/quick/find_resources.png)
+
 * Examine the **complete list of user accounts** found on all of the nodes currently selected in the sidebar node list. (In this case, both the master and the first agent node are selected.) Most of the users will be identical, as these machines are very close to a default OS install, but some users related to the puppet master's functionality are only on one node:
 
-    ![different users](./images/quick/different_users.png)
+![different users](./images/quick/different_users.png)
+
 * Click the MySQL user, which is only present on the puppet master. (If the MySQL server was installed on both nodes, you can use a different user like `peadmin`.)
 
-    ![the mysql user details][mysql_user]
+![the mysql user details][mysql_user]
+
 * Click the "clone" button, then click the new "preview" button. This will prepare the console to duplicate the mysql user across all of the nodes selected in the sidebar. 
 
-    ![the preview button][clone_first]
+![the preview button][clone_first]
     
-    ![the preview][clone_preview]
+![the preview][clone_preview]
+
 * Click the "clone" button to finish.
 
-    ![the completed clone operation][clone_done]
+![the completed clone operation][clone_done]
 
 > The `mysql` user is now present on both the master and the first agent node.
 > 
@@ -197,7 +205,7 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 * **On the console, in the live management page,** click the "control puppet" tab.
 * Click the "runonce" action to reveal the "run" button, then click the "run" button.
 
-    ![the run button revealed](./images/quick/control_puppet.png)
+![the run button revealed](./images/quick/control_puppet.png)
 
 > You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
 
@@ -241,14 +249,17 @@ Every module contains one or more **classes.** The modules you just installed co
 
 * **On the console,** click the "add class" button in the sidebar:
 
-    ![The console's add class button][classbutton]
+![The console's add class button][classbutton]
+
 * Type the name of the `motd` class, and click the "create" button:
 
-    ![the add class field][add_motd]
+![the add class field][add_motd]
+
 * Do the same for the `win_desktop_shortcut` class.
 * Navigate to `agent1.example.com` (by clicking the all nodes link in the sidebar and clicking `agent1`'s name), click the edit button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "save changes" button after you have selected it. 
 
-    ![assigning the motd class][assign_motd]
+![assigning the motd class][assign_motd]
+
 * Note that the `motd` class now appears in the list of `agent1`'s classes.
 * Navigate to `windows.example.com`, click the edit button, and begin typing "`win_desktop_shortcut`" in the "classes" field; select the class and click the "save changes" button.
 * Note that the `win_desktop_shortcut` class now appears in the list of `windows.example.com`'s classes.
