@@ -13,7 +13,7 @@ module Jekyll
 		def render(context)
       pageurl = context.environments.first['page']['url']
       pagedir = pageurl.split('/')[0..-2].join('/') + '/'
-      linkpath = @linkdestination.split(/:\/\/[^\/]*/).last # take off any protocol or hostname
+      linkpath = @linkdestination.split(/:\/\/[^\/]*/).last.split('#').first # take off any protocol or hostname, then take off any in-page anchor.
       absolutelinkpath = linkpath.sub(/^\.\//, pagedir) # so we can compare apples to apples -- note that if you use ../ in here, you probably won't get a very useful final link.
       
       # Debugging code, because I don't trust my memory enough to delete it:
