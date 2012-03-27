@@ -1,7 +1,7 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Welcome » Getting Support"
+title: "PE 2.5 » Overview » Getting Support"
 subtitle: "Getting Support for Puppet Enterprise"
 ---
 

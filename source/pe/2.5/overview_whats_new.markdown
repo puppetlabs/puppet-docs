@@ -1,12 +1,10 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Welcome » What's New"
-subtitle: "New Features"
+title: "PE 2.5 » Overview » What's New"
+subtitle: "New Features in PE 2.5"
 ---
 
-Puppet Enterprise 2.5
------
 
 Version 2.5 is a major new release of Puppet Enterprise (PE). In addition to many fixes and refinements, PE 2.5 introduces the following new major features:
 
@@ -28,7 +26,3 @@ With PE 2.5, there is a new emphasis on the Puppet Data Library. The Data Librar
 See the [Puppet Enterprise 2.5 release notes](./appendix.html#release-notes) for more details.
 
 
-
-* * *
-
-Next: [Welcome: Known Issues](./welcome_known_issues.html) &rarr;

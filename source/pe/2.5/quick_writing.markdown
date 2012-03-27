@@ -58,7 +58,7 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
       if $osfamily == "windows" {
         if $win_common_desktop_directory {
     
-          file { "${win_common_desktop_directory}\PuppetLabs.URL":
+          file { "${win_common_desktop_directory}\\PuppetLabs.URL":
             ensure  => present,
             content => "[InternetShortcut]\nURL=http://puppetlabs.com",
           }
@@ -69,19 +69,19 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
     }
 {% endhighlight %}
 
-For more on resource declarations, [see the manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources section of the language guide](/guides/language_guide.html#resources).
+For more on resource declarations, [see the manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources section of the language guide](/guides/language_guide.html#resources). For more about how file paths with backslashes work in manifests for Windows, [see the page on writing manifests for Windows](/windows/writing.html).
 
 * Change the `ensure` attribute of the `file` resource to `absent`.
 * Delete the `content` line of the `file` resource.
-* Create two new `file` resources to manage other files on the desktop:
+* Create two new `file` resources to manage other files on the desktop, mimicking the structure of the first resource:
 
 {% highlight ruby %}
-    file { "${win_common_desktop_directory}\RunningPuppet.URL":
+    file { "${win_common_desktop_directory}\\RunningPuppet.URL":
       ensure  => present,
       content => "[InternetShortcut]\nURL=http://docs.puppetlabs.com/windows/running.html",
     }
 
-    file { "${win_common_desktop_directory}\Readme.txt":
+    file { "${win_common_desktop_directory}\\Readme.txt":
       ensure  => present,
       content => "This node is managed by Puppet. Some files and services cannot be edited locally; contact your sysadmin for details.",
     }
@@ -105,9 +105,12 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
 
 {% highlight ruby %}
     class motd {
-      file { '/etc/motd':
-        ensure  => file,
-        content => template("motd/motd.erb"),
+      if $kernel == "Linux" {
+        file { '/etc/motd':
+          ensure  => file,
+          backup  => false,
+          content => template("motd/motd.erb"),
+        }
       }
     }
 {% endhighlight %}

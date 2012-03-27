@@ -1,80 +1,25 @@
 {% comment %}
-THE TEXT:
 
-- **Overview** <!-- overview -->
-    - [About Puppet Enterprise](./welcome_getting_started.html)
-    - [New Features](./welcome_whats_new.html)
-    - [Known Issues](./welcome_known_issues.html)
-    - [Getting Support](./welcome_getting_support.html)
-- **Installing Puppet Enterprise** <!-- install -->
-    - [System Requirements](./install_system_requirements.html)
-    - [Preparing to Install](./install_preparing.html)
-    - [Basic Installation](./install_basic.html)
-    - [Upgrading](./install_upgrading.html)
-    - [Uninstalling](./install_uninstalling.html)
-    - [Automated Installation](./install_automated.html)
-    - [Answer File Reference](./install_answer_file_reference.html)
-    - [What gets installed where?](./install_what_and_where.html)
-- **The Console** <!-- console -->
-    - [Accessing the Console](./console_accessing.html)
-    - [Navigating the Console](./console_navigating.html)
-    - [Viewing Reports and Inventory Data](./console_reports.html)
-    - [Managing Users](./console_auth.html)
-    - [Grouping and Classifying Nodes](./console_classes_groups.html)
-    - [Live Management](./console_live.html)
-    - [Live Management: Managing Resources](./console_live_resources.html)
-    - [Live Management: Controlling Puppet](./console_live_puppet.html)
-    - [Live Management: Advanced Tasks](./console_live_advanced.html)
-- **Puppet For New PE Users** <!-- puppet -->
-    - [Overview](./puppet_overview.html)
-    - [Your First Module](./puppet_first_module.html)
-    - [Assigning a Class to a Node](./puppet_classifying.html)
-    - [Next Steps](./puppet_next_steps.html)
-**Advanced Configuration** <!-- config -->  
-	-[Advanced Configuration](./config_advanced.html)
-	-[Installing Additional Components](./config_installing_additional.html)  
-- **Orchestration For New PE Users** <!-- orchestration -->
-    - [Overview](./orchestration_overview.html)
-    - [Usage and Examples](./orchestration_usage.html)
-- **Cloud Provisioning** <!-- cloudprovisioner -->
-    - [Overview](./cloudprovisioner_overview.html)
-    - [Configuring and Troubleshooting](./cloudprovisioner_configuring.html)
-    - [Provisioning with VMware](./cloudprovisioner_vmware.html)
-    - [Provisioning with AWS](./cloudprovisioner_aws.html)
-    - [Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html)
-    - [Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html)
-    - [Man Page: puppet node_aws](./cloudprovisioner_man_node_aws.html)
-    - [Man Page: puppet node](./cloudprovisioner_man_node.html)
-- **The Compliance Workflow** <!-- compliance -->
-    - [Basics and UI](./compliance_basics.html)
-    - [Using the Compliance Workflow](./compliance_using.html)
-    - [Tutorial](./compliance_tutorial.html)
-- **The PE Accounts Module** <!-- accounts -->
-    - [The `pe_accounts::user` Type](./accounts_user_type.html)
-    - [The `pe_accounts` Class](./accounts_class.html)
-- **Troubleshooting** <!-- trouble -->
-    - [Common Problems & Solutions](./_trouble_common_problems_errors.html)
-- **Appendix** <!-- appendix -->
-    - [Release Notes](./appendix.html#release notes)
-    - [Known Issues](./appendix.html#known issues)
-    - [Glossary](./appendix.html#glossary)
+Format: 
+<ul>
+  <li><strong>section label</strong>
+    <ul>
+      <li>page if-links...</li>
+    </ul>
+  </li>
+<ul>
 
-
-
--------
-
-THE PROCESS:
-
-Pending. 
+Use the 
 
 {% endcomment %}
 
+<h3>Puppet Enterprise 2.5</h3>
+
 <ul>
-  <li><strong>Overview</strong> <!-- overview -->
+  <li><strong>Overview</strong>
     <ul>
       <li>{% iflink "About Puppet Enterprise", "./welcome_getting_started.html" %}</li>
       <li>{% iflink "New Features", "./welcome_whats_new.html" %}</li>
-      <li>{% iflink "Known Issues", "./welcome_known_issues.html" %}</li>
       <li>{% iflink "Getting Support", "./welcome_getting_support.html" %}</li>
     </ul>
   </li>
@@ -84,7 +29,7 @@ Pending.
         <li>{% iflink "Quick Start: Writing Modules", "./quick_writing.html" %}</li>
     </ul>
   </li>
-  <li><strong>Installing Puppet Enterprise</strong> <!-- install -->
+  <li><strong>Installing Puppet Enterprise</strong>
     <ul>
       <li>{% iflink "System Requirements", "./install_system_requirements.html" %}</li>
       <li>{% iflink "Preparing to Install", "./install_preparing.html" %}</li>
@@ -96,7 +41,7 @@ Pending.
       <li>{% iflink "What gets installed where?", "./install_what_and_where.html" %}</li>
     </ul>
   </li>
-  <li><strong>The Console</strong> <!-- console -->
+  <li><strong>The Console</strong>
     <ul>
       <li>{% iflink "Accessing the Console", "./console_accessing.html" %}</li>
       <li>{% iflink "Navigating the Console", "./console_navigating.html" %}</li>
@@ -110,27 +55,25 @@ Pending.
       <li>{% iflink "Console Maintenance", "./console_maintenance.html" %}</li>
     </ul>
   </li>
-  <li><strong>Puppet For New PE Users</strong> <!-- puppet -->
+  <li><strong>Puppet</strong>
     <ul>
       <li>{% iflink "Overview", "./puppet_overview.html" %}</li>
-      <li>{% iflink "Your First Module", "./puppet_first_module.html" %}</li>
-      <li>{% iflink "Assigning a Class to a Node", "./puppet_classifying.html" %}</li>
       <li>{% iflink "Next Steps", "./puppet_next_steps.html" %}</li>
     </ul>
   </li>
-   <li><strong>Advanced Configuration</strong> <!-- config -->
+   <li><strong>Configuring Puppet Enterprise</strong>
     <ul>
-     <li>{% iflink "Advanced Configuration", "config_advanced.html" %}</li>
-     <li>{% iflink "Installing Additional Components", "config_installing_additional.html" %}</li>
+     <li>{% iflink "Advanced Configuration", "./config_advanced.html" %}</li>
+     <li>{% iflink "Installing Additional Components", "./config_installing_additional.html" %}</li>
     </ul>
   </li>
-  <li><strong>Orchestration For New PE Users</strong> <!-- orchestration -->
+  <li><strong>Orchestration</strong>
     <ul>
       <li>{% iflink "Overview", "./orchestration_overview.html" %}</li>
       <li>{% iflink "Usage and Examples", "./orchestration_usage.html" %}</li>
     </ul>
   </li>
-  <li><strong>Cloud Provisioning</strong> <!-- cloudprovisioner -->
+  <li><strong>Cloud Provisioning</strong>
     <ul>
       <li>{% iflink "Overview", "./cloudprovisioner_overview.html" %}</li>
       <li>{% iflink "Configuring and Troubleshooting", "./cloudprovisioner_configuring.html" %}</li>
@@ -142,29 +85,29 @@ Pending.
       <li>{% iflink "Man Page: puppet node", "./cloudprovisioner_man_node.html" %}</li>
     </ul>
   </li>
-  <li><strong>The Compliance Workflow</strong> <!-- compliance -->
+  <li><strong>The Compliance Workflow</strong>
     <ul>
       <li>{% iflink "Basics and UI", "./compliance_basics.html" %}</li>
       <li>{% iflink "Using the Compliance Workflow", "./compliance_using.html" %}</li>
       <li>{% iflink "Tutorial", "./compliance_tutorial.html" %}</li>
     </ul>
   </li>
-  <li><strong>The PE Accounts Module</strong> <!-- accounts -->
+  <li><strong>The PE Accounts Module</strong>
     <ul>
       <li>{% iflink "The pe_accounts::user Type", "./accounts_user_type.html" %}</li>
       <li>{% iflink "The pe_accounts Class", "./accounts_class.html" %}</li>
     </ul>
   </li>
-  <li><strong>Troubleshooting</strong> <!-- trouble -->
+  <li><strong>Troubleshooting</strong>
     <ul>
-     <li> {% iflink "Common Problems & Solutions", "trouble_common_problems.html" %}</li>
+     <li> {% iflink "Common Problems & Solutions", "./trouble_common_problems.html" %}</li>
     </ul>
   </li>
-  <li><strong>Appendix</strong> <!-- appendix -->
+  <li><strong>Appendix</strong>
     <ul>
-      <li>{% iflink "Release Notes", "appendix.html#release-notes" %}</li>
-      <li>{% iflink "Known Issues", "appendix.html#known-issues" %}</li>
-      <li>{% iflink "Glossary", "appendix.html#glossary" %}</li>
+      <li>{% iflink "Release Notes", "./appendix.html#release-notes" %}</li>
+      <li>{% iflink "Known Issues", "./appendix.html#known-issues" %}</li>
+      <li>{% iflink "Glossary", "./appendix.html#glossary" %}</li>
     </ul>
   </li>
 </ul>
