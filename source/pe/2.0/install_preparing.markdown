@@ -50,7 +50,7 @@ Downloading PE
 
 Before installing Puppet Enterprise, you must [download it from the Puppet Labs website][downloadpe].
 
-[downloadpe]: http://info.puppetlabs.com/puppet-enterprise
+[downloadpe]: http://info.puppetlabs.com/download-pe2.html
 
 ### Choosing Your Installer Tarball
 
