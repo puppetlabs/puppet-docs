@@ -5,7 +5,7 @@ title: "PE 2.5 » Index"
 subtitle: "Puppet Enterprise User's Guide"
 ---
 
-This is the user's guide for Puppet Enterprise 2.0. Use the **navigation to the right** to move between this guide's sections and chapters, or pick a section below.
+This is the user's guide for Puppet Enterprise 2.5. Use the **navigation to the left** to move between this guide's sections and chapters, or pick a section below.
 
 - **Welcome to Puppet Enterprise**
 
