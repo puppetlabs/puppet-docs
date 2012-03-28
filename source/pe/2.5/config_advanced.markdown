@@ -69,8 +69,8 @@ The console uses a database user account to access its MySQL database. If this u
         
 Allowing Anonymous Console Access
 -----
-To allow anonymous, read-only access to the console, do the following:
 
+To allow anonymous, read-only access to the console, edit the cas client config file `etc/puppetlabs/console-auth/cas_client_config.yml` by adding the line `global_unauthenticated_access:  true`. This will grant unauthenticated users access to read-only pages.
 
 Changing Orchestration Security
 -----
