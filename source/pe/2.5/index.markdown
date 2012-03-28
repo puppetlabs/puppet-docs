@@ -11,7 +11,7 @@ Welcome! This is the user's guide for Puppet Enterprise 2.5.
 * To install Puppet Enterprise, see the following pages:
     * [System Requirements](./install_system_requirements.html)
     * [Installing PE](./install_basic.html)
-    * [Installing Windows Agents](./intstall_windows.html)
+    * [Installing Windows Agents](./install_windows.html)
     * [Puppet Enterprise Downloads](http://info.puppetlabs.com/download-pe.html)
 * To see what's new since the last release, see [New Features](./overview_whats_new.html).
 
