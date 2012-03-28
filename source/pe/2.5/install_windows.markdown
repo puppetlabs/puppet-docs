@@ -59,7 +59,7 @@ The following public MSI properties can also be specified:
 
 MSI Property            | Puppet Setting   | Default Value
 ------------------------|------------------|--------------
-`INSTALLDIR`            | n/a              | Version-dependent, see below <!-- todo link to anchor -->
+`INSTALLDIR`            | n/a              | Version-dependent, [see below](#program-directory)
 `PUPPET_MASTER_SERVER`  | [`server`][s]    | `puppet`
 `PUPPET_CA_SERVER`      | [`ca_server`][c] | Value of `PUPPET_MASTER_SERVER`
 `PUPPET_AGENT_CERTNAME` | [`certname`][r]  | Value of `facter fdqn` (must be lowercase)
@@ -88,7 +88,7 @@ To uninstall from the command line, you must have the original MSI file or know 
 
     msiexec /qn /x [puppet.msi|product-code]
 
-Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the data directory intact, including any SSL keys. <!-- todo link those to explanations --> To completely remove Puppet from the system, the data directory can be manually deleted.
+Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [data directory](#data-directory) intact, including any SSL keys. To completely remove Puppet from the system, the data directory can be manually deleted.
 
 
 Installation Details
