@@ -8,7 +8,7 @@ nav: windows.html
 
 ### Process Explorer
 
-Install [Process Explorer](http://en.wikipedia.org/wiki/Process_Explorer) and configure it to replace Task Manager, you'll be glad you did.
+We recommend installing [Process Explorer](http://en.wikipedia.org/wiki/Process_Explorer) and configuring it to replace Task Manager. This will make debugging significantly easier.
 
 ### Logging
 
@@ -32,21 +32,17 @@ Note, however, that using the [createLine](https://github.com/puppetlabs/puppet_
 
 Puppet may fail to install when trying to perform an unattended install from the command line, e.g.
 
-<pre>
-msiexec /qn /i puppet.msi
-</pre>
+    msiexec /qn /i puppet.msi
 
 To get troubleshooting data, specify an installation log, e.g. /l*v install.txt. Look in teh log for entries like the following:
 
-<pre>
-MSI (s) (7C:D0) [17:24:15:870]: Rejecting product '{D07C45E2-A53E-4D7B-844F-F8F608AFF7C8}': Non-assigned apps are disabled for non-admin users.
-MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708 
-MSI (s) (7C:D0) [17:24:15:870]: Product: Puppet -- Installation failed.
-MSI (s) (7C:D0) [17:24:15:870]: Windows Installer installed the product. Product Name: Puppet. Product Version: 2.7.12. Product Language: 1033. Manufacturer: Puppet Labs. Installation success or error status: 1625.
-MSI (s) (7C:D0) [17:24:15:870]: MainEngineThread is returning 1625
-MSI (s) (7C:08) [17:24:15:870]: No System Restore sequence number for this installation.
-Info 1625.This installation is forbidden by system policy. Contact your system administrator.
-</pre>
+    MSI (s) (7C:D0) [17:24:15:870]: Rejecting product '{D07C45E2-A53E-4D7B-844F-F8F608AFF7C8}': Non-assigned apps are disabled for non-admin users.
+    MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708 
+    MSI (s) (7C:D0) [17:24:15:870]: Product: Puppet -- Installation failed.
+    MSI (s) (7C:D0) [17:24:15:870]: Windows Installer installed the product. Product Name: Puppet. Product Version: 2.7.12. Product Language: 1033. Manufacturer: Puppet Labs. Installation success or error status: 1625.
+    MSI (s) (7C:D0) [17:24:15:870]: MainEngineThread is returning 1625
+    MSI (s) (7C:08) [17:24:15:870]: No System Restore sequence number for this installation.
+    Info 1625.This installation is forbidden by system policy. Contact your system administrator.
 
 If you see entries like this you know you don't have sufficient privileges to install puppet. Make sure to launch `cmd.exe` with the `Run as Administrator` option selected, and try again.
 
@@ -58,29 +54,21 @@ Make sure to use a semi-colon (;) as the path separator on Windows, e.g., `modul
 
 ### File Separator
 
-Ruby accepts either forward- or backslashes as the file separator. However, it's best to consistently use <b>backslashes</b>. This is especially true for exec and package resources, because certain Windows applications (`msiexec.exe`) and shell built-ins (type, mkdir, etc) will fail with forward slashes. For example, this will fail:
-<pre>
-cmd.exe /c type c:/autoexec.bat
-</pre>
+[backslashes]: ./writing.html#file-paths-on-windows
 
-But this will succeed:
-<pre>
-cmd.exe /c type c:\autoexec.bat
-</pre>
+In most resource attributes, the Puppet language accepts either forward- or backslashes as the file separator. However, some attributes absolutely require forward slashes, and some attributes absolutely require backslashes. [See the relevant section of Writing Manifests for Windows][backslashes] for more information.
 
 ### Backslashes
 
-When backslashes are double-quoted("), they <b>must</b> be escaped. When single-quoted ('), they <b>may</b> be escaped. For example, these are valid file resources:
-<pre>
-file { 'c:\path\to\file.txt': }
-file { 'c:\\path\\to\\file.txt': }
-file { "c:\\path\\to\\file.txt": }
-</pre>
+When backslashes are double-quoted("), they **must** be escaped. When single-quoted ('), they **may** be escaped. For example, these are valid file resources:
+
+    file { 'c:\path\to\file.txt': }
+    file { 'c:\\path\\to\\file.txt': }
+    file { "c:\\path\\to\\file.txt": }
 
 But this is an invalid path, because \p, \t, \f will be interpreted as escape sequences:
-<pre>
-file { "c:\path\to\file.txt": }
-</pre>
+
+    file { "c:\path\to\file.txt": }
 
 ### UNC Paths
 
@@ -89,70 +77,86 @@ UNC paths are not currently supported. However, the path can be mapped as a netw
 ### Case-insensitivity
 
 Several resources are case-insensitive on Windows (file, user, group). When establishing dependencies among resources, make sure to specify the case consistently. Otherwise, puppet may not be able to resolve dependencies correctly. For example, applying the following manifest will fail, because puppet does not recognize that FOOBAR and foobar are the same user:
-<pre>
-file { 'c:\foo\bar':
-  ensure => directory, 
-  owner => 'FOOBAR'
-}
-user { 'foobar':
-  ensure => present
-}
-...
-err: /Stage[main]//File[c:\foo\bar]: Could not evaluate: Could not find user FOOBAR
-</pre>
+
+    file { 'c:\foo\bar':
+      ensure => directory, 
+      owner => 'FOOBAR'
+    }
+    user { 'foobar':
+      ensure => present
+    }
+    ...
+    err: /Stage[main]//File[c:\foo\bar]: Could not evaluate: Could not find user FOOBAR
 
 ### Diffs
 
 Puppet does not show diffs on Windows (e.g., `puppet agent --show_diffs`) unless a third-party diff utility has been installed (e.g., msys, gnudiff, cygwin, etc) and the `diff` property has been set appropriately.
 
-## Providers
+## Resource Errors and Quirks
+
+### File
+
+If the owner and/or group are specified in a file resource on Windows, the mode must also be specified. So this is okay:
+
+    file { 'c:/path/to/file.bat':
+      ensure => present,
+      owner => 'Administrator',
+      group => 'Administrators',
+      mode => 0770
+    }
+
+But this is not:
+
+    file { 'c:/path/to/file.bat':
+      ensure => present,
+      owner => 'Administrator',
+      group => 'Adminstrators',
+    }
+
+The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!
+
+To get out of this state, have Puppet execute the following (with an exec resource) to reset the file permissions:
+
+    takeown /f c:/path/to/file.bat && icacls c:/path/to/file.bat /reset
 
 ### Exec
 
 When declaring a Windows exec resource, the path to the resource typically depends on the %WINDIR% environment variable. Since this may vary from system to system, you can use the `path` fact in the exec resource:
 
-<pre>
-exec { 'cmd.exe /c echo hello world':
-  path => $::path
-}
-</pre>
+    exec { 'cmd.exe /c echo hello world':
+      path => $::path
+    }
 
 ### Shell Built-ins
 
 Puppet does not currently support a shell provider on Windows, so executing shell built-ins directly will fail:
-<pre>
-exec { 'echo foo': 
-  path => 'c:\windows\system32;c:\windows'
-}
-...
-err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could not find command 'echo'
-</pre>
+
+    exec { 'echo foo': 
+      path => 'c:\windows\system32;c:\windows'
+    }
+    ...
+    err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could not find command 'echo'
 
 Instead, wrap the built-in in `cmd.exe`:
 
-<pre>
-exec { 'cmd.exe /c echo foo': 
-  path => 'c:\windows\system32;c:\windows'
-}
-</pre>
+    exec { 'cmd.exe /c echo foo': 
+      path => 'c:\windows\system32;c:\windows'
+    }
 
 Or, better still, use the tip from above:
-<pre>
-exec { 'cmd.exe /c echo foo': 
-  path => $::path
-}
-</pre>
+
+    exec { 'cmd.exe /c echo foo': 
+      path => $::path
+    }
 
 ### Powershell
 
 By default, powershell enforces a restricted execution policy which prevents the execution of scripts. Consequently, make sure to specify the appropriate execution policy in the powershell command:
 
-<pre>
-exec { 'test':
-  command => 'powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
-  path => $::path
-}
-</pre>
+    exec { 'test':
+      command => 'powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
+      path => $::path
+    }
 
 ### Package
 
@@ -164,58 +168,59 @@ Windows services support a short name and a display name. Make sure to use the s
 
 ## Error Messages
 
-* "Cannot run on Microsoft Windows without the sys-admin, win32-process, win32-dir, win32-service and win32-taskscheduler gems."
+* "`Service 'Puppet Agent' (puppet) failed to start. Verify that you have sufficient privileges to start system services.`"
+
+    This can occur when installing puppet on a UAC system from a non-elevated account. Although the installer displays the UAC prompt to install puppet, it does not elevate when trying to start the service. Make sure to run from an elevated `cmd.exe` process when installing the MSI.
+
+* "`Cannot run on Microsoft Windows without the sys-admin, win32-process, win32-dir, win32-service and win32-taskscheduler gems.`"
 
     Puppet requires the indicated Windows-specific gems, which can be installed using `gem install <gem>`
 
-* "err: /Stage[main]//Scheduled_task[task_system]: Could not evaluate: The operation completed successfully."
+* "`err: /Stage[main]//Scheduled_task[task_system]: Could not evaluate: The operation completed successfully.`"
 
     This error can occur when using version < 0.2.1 of the win32-taskscheduler gem. Run `gem update win32-taskscheduler`
 
-* "err: /Stage[main]//Exec[C:/tmp/foo.exe]/returns: change from notrun to 0 failed: CreateProcess() failed: Access is denied."
+* "`err: /Stage[main]//Exec[C:/tmp/foo.exe]/returns: change from notrun to 0 failed: CreateProcess() failed: Access is denied.`"
 
     This error can occur when requesting an executable from a remote puppet master that cannot be executed. For a file to be executable on Windows, set the user/group executable bits accordingly on the puppet master (or alternatively, specify the mode of the file as it should exist on the Windows host):
 
-    <pre>
-    file { "C:/tmp/foo.exe":
-      source => "puppet:///modules/foo/foo.exe",
-    }
+        file { "C:/tmp/foo.exe":
+          source => "puppet:///modules/foo/foo.exe",
+        }
+    
+        exec { 'C:/tmp/foo.exe':
+          logoutput => true
+        }
 
-    exec { 'C:/tmp/foo.exe':
-      logoutput => true
-    }
-    </pre>
-
-* "err: getaddrinfo: The storage control blocks were destroyed."
+* "`err: getaddrinfo: The storage control blocks were destroyed.`"
 
     This error can occur when the agent cannot resolve a DNS name into an IP address (for example the `server`, `ca_server`, etc properties). To verify that there is a DNS issue, check that you can run `nslookup <dns>`. If this fails, there is a problem with the DNS settings on the Windows agent (for example, the primary dns suffix is not set). See <http://technet.microsoft.com/en-us/library/cc959322.aspx>
     
-* "err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred."
+* "`err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred.`"
 
     This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups. Although Active Directory supports <a href="http://msdn.microsoft.com/en-us/library/cc246068(v=prot.13).aspx">nested groups</a> for certain types of domain group accounts, Windows does not support nesting of local group accounts. As a result, you must only specify user accounts as members of a group.
 
-* "err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e ."
+* "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 
     This error can occur when attempting to install a non-MSI package. Puppet only supports MSI packages. To install non-MSI packages, use an exec resource with an onlyif parameter.
 
-* "err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key."
+* "`err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.`"
 
     This error is usually a sign that the master has already issued a certificate to the agent. This can occur if the agent's SSL directory is deleted after it has retrieved a certificate from the master, or when running the agent in two different security contexts. For example, if puppet agent is running as a service, and then trying to run `puppet agent` from the command line in a non-elevated security context. Specifically, this would happen if you've selected `Start Command Prompt with Puppet` but did not elevate privileges using `Run as Administrator`.
 
-* "err: Could not evaluate: Could not retrieve information from environment production source(s) puppet://puppet.domain.com/plugins."
+* "`err: Could not evaluate: Could not retrieve information from environment production source(s) puppet://puppet.domain.com/plugins.`"
 
     This error will be generated when a Windows agent does a pluginsync from the Puppet master server, when the latter does not contain any plugins. Note that pluginsync is enabled by default on Windows. This is a known bug in 2.7.x, see <https://projects.puppetlabs.com/issues/2244>.
 
-* "err: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed. This is often because the time is out of sync on the server or client."
+* "`err: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed. This is often because the time is out of sync on the server or client.`"
 
     Windows agents that are part of an Active Directory domain should automatically have their time synchronized with AD. For agents that are not part of an Active Directory domain, you may need to enable and add the Windows time service manually:
     
-    <pre>
-    w32tm /register
-    net start w32time
-    w32tm /config /manualpeerlist:<ntpserver> /syncfromflags:manual /update
-    </pre>
+        w32tm /register
+        net start w32time
+        w32tm /config /manualpeerlist:<ntpserver> /syncfromflags:manual /update
+        w32tm /resync
 
-* "err: You cannot service a running 64-bit operating system with a 32-bit version of DISM. Please use the version of DISM that corresponds to your computer's architecture."
+* "`err: You cannot service a running 64-bit operating system with a 32-bit version of DISM. Please use the version of DISM that corresponds to your computer's architecture.`"
 
     As described in the Installation Guide, 64-bit versions of windows will redirect all file system access from `%windir%\system32` to `%windir%\SysWOW64` instead. When attempting to configure Windows roles and features using `dism.exe`, make sure to use the 64-bit version. This can be done by executing `c:\windows\sysnative\dism.exe`, which will prevent file system redirection. See <https://projects.puppetlabs.com/issues/12980>

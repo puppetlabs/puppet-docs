@@ -139,6 +139,7 @@ Puppet can manage the following resource types on Windows nodes:
 
 Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported. 
 
+* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file).
 * Windows NTFS filesystems are case-preserving, but case-insensitive; Puppet is case-sensitive. Thus, you should be consistent in the case you use when referring to a file resource in multiple places in a manifest. 
 * In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
 * Permissions modes are set as though they were \*nix-like octal modes; Puppet translates these to the equivalent access controls on Windows.
@@ -148,11 +149,12 @@ Puppet can manage files and directories, including owner, group, permissions, an
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
 * The source of a file can be a puppet URL, a local path, or a path to a file on a mapped drive. 
+* When downloading a file from a puppet master with a `puppet:///` URI, Puppet will set the permissions mode to match that of the remote file. Be sure to set the proper mode on any remote files.
 
 
 ### [`user`][user]
 
-Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts. 
+Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups.
 
 * The `comment`, `home`, and `password` attributes can be managed, as well as groups to which the user belongs.
 * Passwords can only be specified in cleartext. Windows does not provide an API for setting the password hash.
@@ -166,7 +168,7 @@ On Windows, user and group account names can take multiple forms, e.g. `Administ
 
 ### [`group`][group]
 
-Puppet can create, edit, and delete local groups, and can manage a group's members. Puppet does not support managing domain group accounts.
+Puppet can create, edit, and delete local groups, and can manage a group's members. Puppet does not support managing domain group accounts, but a local group can include both local and domain users as members.
 
 * The group SID is available as a read-only parameter. Attempting to set the parameter will fail.
 * Group names are case-sensitive in puppet manifests, but insensitive on Windows (#9506). Make sure to consistently use the same case in manifests.
@@ -224,6 +226,7 @@ Puppet can install and remove MSI packages, including specifying package-specifi
 Puppet can start, stop, enable, disable, list, query and configure services. It does not support configuring service dependencies, account to run as, or desktop interaction.
 
 * Use the short service name (e.g. `wuauserv`) in Puppet, not the display name (e.g. `Automatic Updates`).
+* Setting the `enable` attribute to `true` will assign a service the "Automatic" startup type; setting `enable` to `manual` will assign the "Manual" startup type.
 
 ### [`exec`][exec]
 
