@@ -5,15 +5,43 @@ title: "PE 2.5 »Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"
 ---
 
-* * *
 
-&larr; [Advanced Configuration: Installing Additional Components](./config_installing_additional.html) --- [Index](./)
-
-* * *
+Many behaviors of Puppet Enterprise can be configured after installation.
 
 
+Increasing the MySQL Buffer Pool Size
+-----
 
-During installation, you make several major decisions that affect the way Puppet Enterprise works. Several of these decisions can be changed after the fact. 
+The default MySQL configuration uses an unreasonably small `innodb_buffer_pool_size` setting, which can interfere with the console's ability to function. 
+
+If you are installing a new PE 2.5 console server and allowing the installer to configure your databases, it will set the better value for the buffer pool size. However, PE cannot automatically manage this setting for upgraded console servers and manually configured databases. 
+
+To change this setting, edit the MySQL config file on your database server (usually located at `/etc/my.cnf`, but your system may differ) and set the value of `innodb_buffer_pool_size` to at least `80M` and possibly as high as `256M`. (Its default value is `8M`, or 8388608 bytes.)
+
+The example diff below illustrates the change to a default MySQL config file:
+
+{% highlight diff %}
+ [mysqld]
+ datadir=/var/lib/mysql
+ socket=/var/lib/mysql/mysql.sock
+ user=mysql
+ # Default to using old password format for compatibility with mysql 3.x
+ # clients (those using the mysqlclient10 compatibility package).
+ old_passwords=1
++innodb_buffer_pool_size = 80M
+ 
+ # Disabling symbolic-links is recommended to prevent assorted security risks;
+ # to do so, uncomment this line:
+ # symbolic-links=0
+ 
+ [mysqld_safe]
+ log-error=/var/log/mysqld.log
+ pid-file=/var/run/mysqld/mysqld.pid
+{% endhighlight %}
+
+After changing the setting, restart the MySQL server:
+
+    # sudo /etc/init.d/mysqld restart
 
 Changing the Console's Port
 -----

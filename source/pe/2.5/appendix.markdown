@@ -2,27 +2,28 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Appendix"
-subtitle: 
+subtitle: "User's Guide Appendix"
 ---
 
-Puppet Enterprise 2.5
+
+This document contains additional miscellaneous information about Puppet Enterprise 2.5.
+
+
+Release Notes
 -----
-*Release Notes
-*Known Issues
-*Glossary
 
+Changes to Puppet's core are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.10). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
 
-### Release Notes
+### Puppet Enterprise 2.5.0
 
-Changes to Puppet (FOSS) are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.9). Relevant changes start with Puppet version 2.7.9.
-
-####Puppet Enterprise 2.5.0
 * Added support for console user access roles and authentication
 * Added basic support for Windows agents
 * Improved integration with the Forge and module support
 
 
-### Known Issues
+Known Issues
+-----
+
 As we discover them, this page will be updated with known issues in each maintenance release of Puppet Enterprise 2.5. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
 
 To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.12 (Puppet Enterprise 2.5.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
@@ -31,20 +32,21 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
 
-Issues Still Outstanding
------
-
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
 
-### Upgrades May Fail With MySQL Errors
+### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
-Some users may experience failure when upgrading to PE 2.5, and there have been reports of similar failures when running previous upgrades. These failures:
+An inadequate default MySQL server setting can interfere with upgrades to Puppet Enterprise console servers.
 
-* Are limited to the console server
-* Usually affect sites with a very large console database
-* Are triggered by a MySQL error when running database migrations
+**The PE 2.5 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade. 
 
-The upgrader's output in these cases resembles the following:
+If you see this warning, you should:
+
+* Abort the upgrade.
+* [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the value of the `innodb_buffer_pool_size` setting.
+* Re-run the upgrade.
+
+If you have attempted to upgrade your console server without following these instructions, it is possible for the upgrade to fail. The upgrader's output in these cases resembles the following:
 
     (in /opt/puppet/share/puppet-dashboard) 
     == AddReportForeignKeyConstraints: migrating ================================= 
@@ -70,43 +72,7 @@ The upgrader's output in these cases resembles the following:
     !! ERROR: Cancelling installation
     ===================================================================================
 
-The cause of these failures is still under investigation, but it appears to involve a too-small lock table, which is governed by the `innodb_buffer_pool_size` setting in the MySQL server configuration. 
-
-#### Workaround
-
-Until the upgrader can handle these cases by itself, we recommend the following:
-
-**If you haven't yet upgraded PE on your console server:**
-
-* Edit the MySQL config file on your database server (usually located at `/etc/my.cnf`, but your system may differ) and set the value of `innodb_buffer_pool_size` to at least `80M`. (Its default value is 8 MB, or 8388608 bytes.)
-
-    **Example diff:**
-
-{% highlight diff %}
- [mysqld]
- datadir=/var/lib/mysql
- socket=/var/lib/mysql/mysql.sock
- user=mysql
- # Default to using old password format for compatibility with mysql 3.x
- # clients (those using the mysqlclient10 compatibility package).
- old_passwords=1
-+innodb_buffer_pool_size = 80M
- 
- # Disabling symbolic-links is recommended to prevent assorted security risks;
- # to do so, uncomment this line:
- # symbolic-links=0
- 
- [mysqld_safe]
- log-error=/var/log/mysqld.log
- pid-file=/var/run/mysqld/mysqld.pid
-{% endhighlight %}
-
-* Restart the MySQL server:
-
-        # sudo /etc/init.d/mysqld restart
-* Perform a normal upgrade of Puppet Enterprise on the console server.
-
-**If you have already suffered a failed upgrade:** 
+If you have suffered a failed upgrade, you can fix it by doing the following:
 
 * On your database server, log into the MySQL client as either the root user or the console user:
 
@@ -120,7 +86,7 @@ Until the upgrader can handle these cases by itself, we recommend the following:
         ALTER TABLE resource_statuses DROP FOREIGN KEY fk_resource_statuses_report_id; 
         ALTER TABLE report_logs DROP FOREIGN KEY fk_report_logs_report_id; 
         ALTER TABLE metrics DROP FOREIGN KEY fk_metrics_report_id;
-* Edit the MySQL config file and restart the MySQL server, as described above.
+* [Follow the instructions for increasing the `innodb_buffer_pool_size`](./config_advanced.html#increasing-the-mysql-buffer-pool-size) and restart the MySQL server.
 * Re-run the upgrader, which should now finish successfully. 
 
 For more information about the lock table size, [see this MySQL bug report](http://bugs.mysql.com/bug.php?id=15667).
@@ -143,11 +109,9 @@ The console's [live management](./console_live.html) page doesn't load in Intern
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
 
-### Glossary
-For help with vocabulary, check out the [glossary of common Puppet terms and concepts](http://projects.puppetlabs.com/projects/1/wiki/Glossary_Of_Terms) <!-- to do -->.
+To improve the display of Puppet man pages, you can use your system `gem` command to install the `ronn` gem:
+
+    # sudo gem install ronn
 
 
-
-
-* * *
 
