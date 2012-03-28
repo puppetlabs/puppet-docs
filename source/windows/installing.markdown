@@ -123,7 +123,7 @@ Installation Details
 
 ### What Gets Installed
 
-In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter. (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org).
+In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter. (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org)).
 
 These prerequisites are used only for Puppet and do not interfere with other local copies of Ruby. 
 
