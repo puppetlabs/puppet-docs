@@ -30,8 +30,6 @@ To fully clean out a system make sure to delete the [`<data directory>`][datadir
 
 Similarly, the MSI will not overwrite the custom facts written to the `PuppetLabs\facter\facts.d` directory.
 
-Note, however, that using the [createLine](https://github.com/puppetlabs/puppet_for_the_win/blob/master/wix/puppet.wxs#L184) attribute implements the behavior of not replacing existing keys.
-
 ### Unattended installation
 
 Puppet may fail to install when trying to perform an unattended install from the command line, e.g.
