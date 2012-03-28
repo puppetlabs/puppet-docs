@@ -110,6 +110,12 @@ Get Puppet up and running at your site.
 * [Style Guide](./guides/style_guide.html) --- Puppet community conventions
 * [Best Practices](./guides/best_practices.html) --- use Puppet effectively
 
+### Puppet on Windows
+
+Manage Windows nodes side by side with your \*nix infrastructure, with Puppet Enterprise 2.5 and Puppet 2.7.
+
+{% include windows.html %}
+
 ### Tuning and Scaling
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
