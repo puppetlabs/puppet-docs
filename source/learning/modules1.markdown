@@ -92,7 +92,7 @@ Class names have to start with a lowercase letter, and can contain lowercase alp
 
 Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](./variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
 
-Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`). It also means you can localize --- mask --- variable short names in use outside the class; if you assign a `$fqdn` variable in a class, you would get the new value instead of the value of the Facter-supplied variable, unless you used the fully-qualified fact name (`$::fqdn`). 
+Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`).
 
 ### Declaring
 
@@ -165,7 +165,7 @@ There's another way to declare classes, but it behaves a little bit differently:
     include ntp
     include ntp
 
-The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax can only be used once. The drawback is that `include` can't currently be used with parameterized classes, on which more later.
+The `include` function will declare a class if it hasn't already been declared, and will do nothing if it has. This means you can safely use it multiple times, whereas the resource syntax can only be used once. The drawback is that `include` can't currently be used with parameterized classes. More on that later.
 
 So which should you choose? Neither, yet: learn to use both, and decide later, after we've covered site design and parameterized classes.
 
@@ -259,11 +259,11 @@ But we're not quite done yet. See how the manifest is referring to some files st
 
 There --- our little example from last chapter has grown up into a self-contained blob of awesome.
 
-[^dashe]: The `-e` flag lets you give puppet apply a line of manifest code instead of a file, same as with Perl or Ruby.
+[^dashe]: The `-e` flag lets you give `puppet apply` a line of manifest code instead of a file, same as with Perl or Ruby.
 
 ### Obtaining Modules
 
-Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. The Puppet Forge is a great place to start looking for modules that you can use or adapt for your environment. Most of these modules are open source and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
+Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. For more information, see [About the Puppet Forge](#forge) below.
 
 
 Module Structure
@@ -271,20 +271,22 @@ Module Structure
 
 A module is just a directory with stuff in it, and the magic comes from putting that stuff where Puppet expects to find it. Which is to say, arranging the contents like this:
 
-* {module}/
-    * files/
-    * lib/
-    * manifests/
-        * init.pp
-        * {class}.pp
-        * {defined type}.pp
-        * {namespace}/
-            * {class}.pp
-            * {class}.pp
-    * templates/
-    * tests/
+* `my_module` --- This outermost directory's name matches the name of the module.
+    * `manifests/` --- Contains all of the manifests in the module.
+        * `init.pp` --- Contains a class definition. **This class's name must match the module's name.**
+        * `other_class.pp` --- Contains a class named **`my_module::other_class`.**
+        * `my_defined_type.pp` --- Contains a defined type named **`my_module::my_defined_type`.**
+        * `implementation/` --- This directory's name affects the class names beneath it.
+            * `foo.pp` --- Contains a class named **`my_module::implementation::foo`.**
+            * `bar.pp` --- Contains a class named **`my_module::implementation::bar`.**
+    * `files/` --- Contains static files, which managed nodes can download.
+    * `lib/` --- Contains plugins, like custom facts and custom resource types.
+    * `templates/` --- Contains templates, which can be referenced from the module's manifests.
+    * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
 
 The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: main folder, manifests folder, init.pp, just like we used in the ntp module above. 
+
+> **Note:** Our printable [Module Cheat Sheet](/module_cheat_sheet.pdf) shows how to lay out a module and explains how in-manifest names map to the underlying files.
 
 But if that was all a module was, it'd make more sense to just load your classes from one flat folder. Modules really come into their own with namespacing and grouping of classes. 
 
@@ -319,14 +321,25 @@ More on [templates](http://docs.puppetlabs.com/guides/templating.html) later.
 
 Puppet modules can also serve executable Ruby code from their `lib` directories, to extend Puppet and Facter. (Remember how I mentioned extending Facter with custom facts? This is where they live.) It'll be a while before we cover any of that.
 
-### Module Scaffolding
 
-Since you'll be dealing with those same five subdirectories so much, consider adding a function for them to your ~/.bashrc file. 
+##<a id="forge">About the Puppet Forge</a>
+The [Puppet Forge](http://forge.puppetlabs.com/) is a great place to start looking for modules that you can use or adapt for your environment. The Forge contains modules written by Puppet employees and community members which can be freely downloaded and reused in your own infrastructure. Most of these modules are open source and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
 
-    mkmod() {
-        mkdir "$1"
-        mkdir "$1/files" "$1/lib" "$1/manifests" "$1/templates" "$1/tests"
-    }
+### Puppet Module Tool
+
+The Puppet Module Tool (PMT) is part of Puppet's core and is accessed using a [puppet face](http://puppetlabs.com/blog/puppet-faces-what-the-heck-are-faces/). The tool is used to create, install and search for modules on the Puppet Forge. 
+
+For example, let's say you are interested in one of the [Modules of the Week](http://puppetlabs.com/category/blog/module-of-the-week-blog/), Benoit Cattie's nginx module. Start by the downloading the [module's tarball](http://forge.puppetlabs.com/system/releases/B/BenoitCattie/BenoitCattie-nginx-0.2.tar.gz) from the website to your default directory. Alternatively, you can search the repository using `puppet-module search nginx -r http://forge.puppetlabs.com`. 
+
+Next, run `puppet-module install BenoitCattie-nginx` which will unpack the archive file into a new _module directory_. You can then add this directory to your Puppet configuration files so you can use it.
+
+For more information, see the puppet module tool [readme](https://github.com/puppetlabs/puppet-module-tool/blob/master/README.markdown).
+
+### Puppet Module Generator
+
+When working with modules, you'll be dealing with the above subdirectories and files so much, you can automate most of their creation and pre-population with the `puppet-module generate` command. This command will automatically generate a directory under your current directory which is prepopulated with the directory structure and files Puppet Labs recommends for modules.
+
+
 
 Exercises
 ---------

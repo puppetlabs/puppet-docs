@@ -1,4 +1,5 @@
 ---
+nav: pe_2.0_nav.markdown
 layout: pe2experimental
 title: "PE 2.0 » Installing » Preparing to Install"
 ---
@@ -49,7 +50,7 @@ Downloading PE
 
 Before installing Puppet Enterprise, you must [download it from the Puppet Labs website][downloadpe].
 
-[downloadpe]: http://info.puppetlabs.com/puppet-enterprise
+[downloadpe]: http://info.puppetlabs.com/download-pe.html
 
 ### Choosing Your Installer Tarball
 

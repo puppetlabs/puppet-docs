@@ -65,7 +65,7 @@ Teaching the use of Puppet and MCollective is currently outside the scope of thi
 * To learn how to use Puppet Dashboard, please see the [Puppet Dashboard 1.2 Manual][dashboard].
 
 [dashboard]: http://docs.puppetlabs.com/dashboard/manual/1.2
-[modules]: http://docs.puppetlabs.com/guides/modules.html
+[modules]: http://docs.puppetlabs.com/puppet/2.7/reference/modules_fundamentals.html
 [coretypes]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
 [lg]: http://docs.puppetlabs.com/guides/language_guide.html
 [lp]: http://docs.puppetlabs.com/learning/

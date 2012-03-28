@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en-US">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title>Documentation | Puppet Labs - {{page.title}}</title>
+  	<title>{{page.title}} — Documentation — Puppet Labs</title>
   	<meta name="description" content="The open source leader in data center automation">
   	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
   	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
@@ -36,6 +36,8 @@
     <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
     <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
     <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    
     <script type="text/javascript" src="http://puppetlabs.com/wp-content/themes/puppetlabs/javascripts/leadcapture.js"></script>
      <!--Add rotation jQuery Script -->
 	 	
@@ -226,23 +228,22 @@
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
+              <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
+              <nav class="in-page">{{ content | toc }}</nav>
               {{ content }}
             </div>
-            <div class="secondary-content">
+            <nav class="main">
                   <div id="subCol">
                   {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
                   {% if maindir == 'mcollective' %}
                       {% include mcollective_menu.html %}
                   {% else %}
-                      <!-- 
-<h3 class="chapter">Contents</h3>
-                      {{ content | toc }}
- --> {% include pe_2.0_nav.markdown %}
+                      {% render_nav %} 
                   {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
                   </div>
-            </div>
+            </nav>
           </div>
         </div>
       </section>

@@ -32,7 +32,7 @@ Puppet Dashboard is a Ruby on Rails web app that interfaces with Puppet. It will
 * Chrome (current versions)
 * Firefox 3.5 and higher
 * Safari 4 and higher
-* Internet Explorer 7 and higher
+* Internet Explorer 8 and higher
 
 Installing, in Summary
 -----

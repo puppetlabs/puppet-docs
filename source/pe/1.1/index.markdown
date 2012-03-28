@@ -3,6 +3,8 @@ layout: default
 title: "PE 1.1 Manual"
 ---
 
+{% include warnings/old_pe_version.html %}
+
 Puppet Enterprise 1.1 Manual
 ========
 

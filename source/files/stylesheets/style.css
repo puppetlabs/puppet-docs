@@ -875,8 +875,7 @@ section#masthead .site-width {
 
 section#masthead {
   padding: 0.75em 0 0.9em;
-  background: #ad6738 url(images/orange-argyle.png);
-  border-top: 1px solid #ab5b4b;
+  background: none repeat scroll 0 0 #E1E2E3;
   -webkit-box-shadow: 0 -2px 0 rgba(0,0,0,0.25);
   -moz-box-shadow: 0 -2px 0 rgba(0,0,0,0.25);
   z-index: 2;
@@ -891,12 +890,11 @@ section#masthead p {
 }
 
 section#masthead h1 {
-    display: inline;
+  display: inline;
   font-size: 3em;
   letter-spacing: -0.05em;
   font-weight: inherit;
   margin: 0;
-  color: #ffd77e;
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.125);
 }
 
@@ -962,10 +960,6 @@ section#masthead a.back:hover span {
 section#masthead a.back:active {
   background-color: rgba(0,0,0,0.75);
   -webkit-animation: none;
-}
-
-section#masthead a {
-  color: #ffd77e;
 }
 
 span.edit a {
@@ -1245,24 +1239,25 @@ footer#footer form fieldset legend {
 /* @group Docs */
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content {
-  padding-left: 0;
-  padding-right: 320px;
+  padding-left: 320px;
+  padding-right: 0px;
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content {
-  float: left;
+  float: right;
 }
 
-body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .secondary-content {
+/* body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .secondary-content */ 
+nav.main {
   width: 250px;
   position: relative;
   margin: 0;
-  margin-right: -280px;
-  border-right: none;
-  border-left: 2px solid #eee;
-  padding-left: 20px;
-  left: 40px;
-  float: right !important;
+  margin-left: -340px;
+  border-left: none;
+  /* border-right: 2px solid #eee; */
+  padding-right: 20px;
+  /* left: 40px; */
+  float: left !important;
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul {
@@ -1286,9 +1281,11 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 }
 
 /* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
-div.primary-secondary-content div.primary-content p img {
+section#content div.primary-secondary-content div.primary-content p img {
   border: solid 1px #ccc;
   box-shadow: 0px 0px 8px #999;
+  /* Also, images should be limited to 640px wide so they don't blow up the page layout. */
+  max-width: 640px;
 }
 
 /* NF: Also, images that are the only thing in their paragraph should be centered. */
@@ -1350,6 +1347,17 @@ ol.toc > li > ol.toc > li {
 
 /* @end */
 
+/* Classes for spans that warn about version incompatibilities */
+.versionnote {
+  background-color: #ff9;
+}
+.versionwarning {
+  background-color: #ff9;
+  color: #f00;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 /* New nav ULs for experimental navigation sidebar style (NF 2011.11.07) */
 /* This is prototype work for the PE 2.0 manual only. */
 
@@ -1367,6 +1375,8 @@ div#subCol ul > li > ol.toc {
 div#subCol ul > li:before {
   content: "♦";
   font-size: 0.75em;
+  width: 5px;
+  display: inline-block;
   padding-right: 0.85em;
   color: #888;
   /*position: absolute;*/
@@ -1374,11 +1384,25 @@ div#subCol ul > li:before {
   top: 0.125em;
 }
 
+div#subCol ul > li.expanded-nav:before {
+  content: "-";
+  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
+}
+
+div#subCol ul > li.hidden-nav:before {
+  content: "+";
+  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
+}
+
 div#subCol ul > li {
   font-weight: normal;
   color: #444;
   margin-bottom: 0;
   line-height: 1.5em;
+}
+
+div#subCol ul > li strong:hover {
+  color: #999;
 }
 
 div#subCol ul > li > ul {
@@ -1612,7 +1636,8 @@ div.primary-secondary-content .secondary-content {
 	margin-top: 0;
 }
 
-.secondary-content h3:first-child {
+/* .secondary-content */
+nav.main h3:first-child {
   margin-top: 0.67em;
 }
 

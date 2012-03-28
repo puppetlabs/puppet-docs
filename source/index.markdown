@@ -10,7 +10,7 @@ Welcome to the Puppet Labs documentation site. The documentation posted here is 
 
 ### Puppet Enterprise
 
-For information about Puppet Enterprise 2.0, see the [Puppet Enterprise User's Guide](/pe/2.0/index.html). 
+For information about Puppet Enterprise 2.5, see the [Puppet Enterprise User's Guide](/pe/2.5/index.html). 
 
 Documentation for previous versions of Puppet Enterprise can be found [here](/pe/index.html). 
 
@@ -96,6 +96,26 @@ Get Puppet up and running at your site.
 * [Configuring Puppet](./guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
 * [Setting Up Puppet](./guides/setting_up.html) --- includes server setup & testing
 
+### Basic Features and Use
+
+* [Puppet Language Guide](./guides/language_guide.html) --- all the language details
+* [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html) --- nearly all Puppet code should be in modules.
+* [Installing Modules from the Puppet Forge](/puppet/2.7/reference/modules_installing.html) --- save time by using pre-existing modules
+* [Techniques](./guides/techniques.html) --- common design patterns, tips, and tricks
+* [Troubleshooting](./guides/troubleshooting.html) --- avoid common problems and confusions
+* [Parameterized Classes](./guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
+* [Module Smoke Testing](./guides/tests_smoke.html) --- write and run basic smoke tests for your modules
+* [Scope and Puppet](./guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
+* [Puppet File Serving](./guides/file_serving.html) --- serving files with Puppet
+* [Style Guide](./guides/style_guide.html) --- Puppet community conventions
+* [Best Practices](./guides/best_practices.html) --- use Puppet effectively
+
+### Puppet on Windows
+
+Manage Windows nodes side by side with your \*nix infrastructure, with Puppet Enterprise 2.5 and Puppet 2.7.
+
+{% include windows.html %}
+
 ### Tuning and Scaling
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
@@ -103,18 +123,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Scaling Puppet](./guides/scaling.html) --- general tips & tricks
 * [Scaling With Passenger](./guides/passenger.html) --- for Puppet 0.24.6 and later
 * [Scaling With Mongrel](./guides/mongrel.html) --- for older versions of Puppet
-
-### Basic Features and Use
-
-* [Techniques](./guides/techniques.html) --- common design patterns, tips, and tricks
-* [Troubleshooting](./guides/troubleshooting.html) --- avoid common problems and confusions
-* [Puppet Modules](./guides/modules.html) --- modules make it easy to organize and share content
-* [Parameterized Classes](./guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
-* [Module Smoke Testing](./guides/tests_smoke.html) --- write and run basic smoke tests for your modules
-* [Scope and Puppet](./guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
-* [Puppet File Serving](./guides/file_serving.html) --- serving files with Puppet
-* [Style Guide](./guides/style_guide.html) --- Puppet community conventions
-* [Best Practices](./guides/best_practices.html) --- use Puppet effectively
 
 ### Advanced Features
 
@@ -126,16 +134,21 @@ Go beyond basic manifests.
 * [Environments](./guides/environment.html) --- separate dev, stage, & production
 * [Reporting](./guides/reporting.html) --- learn what your nodes are up to
 * [Getting Started With Cloud Provisioner](./guides/cloud_pack_getting_started.html) --- create and bootstrap new nodes with the experimental cloud provisioner extension
+* [Publishing Modules on the Puppet Forge](/puppet/2.7/reference/modules_publishing.html) --- preparing your best modules to go public
 
 ### Hacking and Extending
 
 Build your own tools and workflows on top of Puppet.
 
+#### Using the Puppet Data Library
+
+* [Puppet Data Library: Overview](./guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
+* [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
+
 #### Using APIs and Interfaces
 
 * [REST Access Control](./guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](./guides/external_nodes.html) --- specify what your machines do using external data sources
-* [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
 
 #### Using Ruby Plugins
 

@@ -95,7 +95,7 @@ function getAds()
    ads['/guides/introduction.html'] = [grey_ad_tenmins];
    ads['/guides/configuring.html'] = [grey_ad_tenmins];
    ads['/guides/installation.html'] = [grey_ad_tenmins];
-   ads['/guides/modules.html'] = [grey_ad_tenmins];
+   ads['/puppet/2.7/reference/modules_fundamentals.html'] = [grey_ad_tenmins];
    ads['/guides/types/'] = [grey_ad_tenmins];
    
    ads['/guides/environment.html'] = [''];
