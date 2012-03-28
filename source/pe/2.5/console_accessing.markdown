@@ -87,7 +87,7 @@ Click the "Continue to this website (not recommended)" link on the warning page.
 [cert_firefox2]: ./images/console/accessing_cert_firefox2.png
 [cert_safari]: ./images/console/accessing_cert_safari.png
 [cert_ie]: ./images/console/accessing_cert_ie.png
-[login]: ./images/console/accessing_login.png
+[login]: ./images/console/accessing_login.jpg
 
 
 

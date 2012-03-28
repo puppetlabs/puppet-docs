@@ -5,11 +5,7 @@ title: "PE 2.5 » Puppet » Overview"
 subtitle: "An Overview of Puppet"
 ---
 
-Puppet is divided into three main components:
-
-* The puppet agent daemon runs on every agent node. At regular intervals, it pulls configuration "catalogs" from the puppet master and applies them to the local system. (Puppet catalogs are idempotent: they can be run any number of times and will always converge to the same state.) 
-* The puppet master service runs on a central server. It decides what configurations each agent node should receive, and compiles nodes' catalogs from "manifests" written by a user. 
-* The puppet apply tool can compile and apply configurations locally, without needing to contact a puppet master server. 
+<!-- todo we could use something talking about what declarative configuration management is. -->
 
 Where Configurations Come From
 -----

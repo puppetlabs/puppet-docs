@@ -41,6 +41,7 @@ _Anonymous Users_ In addition to authenticated, per-user access, the console can
 
 Managing Accounts and Users
 ------
+
 ### Signing Up
 
 In order to sign up as a console user at any access level, an account must be created for you by an admin. Upon account creation, you will receive an email containing an activation link. You must follow this link in order to set your password and activate your account. The link will take you to a screen where you can enter and confirm your password, thereby completing account activation. Once you have completed activation you will be taken to the Login screen where you can enter your new credentials.
@@ -63,7 +64,7 @@ To view your user information, access the user account menu by clicking on your 
 
 Choose *My account* to open a page where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
 
-![user account screen](./images/console/user_account_signin.jpg) to do
+![user account screen](./images/console/user_account_signin.jpg)
 
 ### User Administration Tools
 
