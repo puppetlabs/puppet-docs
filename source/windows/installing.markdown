@@ -6,8 +6,8 @@ nav: windows.html
 
 <span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
-[downloads]: <!-- TODO -->
-[pedownloads]: <!-- todo -->
+[downloads]: http://downloads.puppetlabs.com/windows
+[pedownloads]: http://info.puppetlabs.com/download-pe.html
 
 Before Installing
 -----
@@ -19,7 +19,7 @@ Download the Puppet installer for Windows here:
 * [For Puppet Enterprise][pedownloads]
 * [For open source Puppet][downloads]
 
-Currently, these two packages are identical except for the directory they install into. They may diverge further at a later date. 
+Currently, these two packages are identical except for the directory they install into. They may diverge significantly in future versions.
 
 ### Supported Platforms
 
@@ -32,13 +32,18 @@ Puppet runs on the following versions of Windows:
 
 The Puppet installer bundles all of Puppet's prerequisites. There are no additional software requirements. 
 
-
 ### Puppet Master Requirements
 
 Windows nodes cannot serve as puppet master servers.
 
 * If your Windows nodes will be fetching configurations from a puppet master, you will need a \*nix server to run as puppet master at your site. 
 * If your Windows nodes will be compiling and applying configurations locally with puppet apply, you should disable the puppet agent service on them after installing Puppet.
+
+> Note for PE 2.0: The `pe_mcollective` and `pe_accounts` modules do not work with Windows nodes on a Puppet Enterprise 2.0 puppet master. You should:
+>
+> * [Upgrade your master to PE 2.5](/pe/2.5/install_upgrading.html), or...
+> * Remove those modules from the console's default group, or...
+> * Manually hack those modules to be inert on Windows. 
 
 
 

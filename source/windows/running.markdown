@@ -70,7 +70,9 @@ To use `puppet apply`, you must use the **"Start Command Prompt with Puppet"** i
 
 To use `puppet apply` effectively, you should distribute your Puppet modules to each agent node and copy them into the [`modulepath`](/references/latest/configuration.html#modulepath). This allows the small manifests written for `puppet apply` to easily assign complicated pre-existing classes to the node. 
 
-> Note: The `modulepath` on Windows is [`<data directory>`][datadirectory]`\etc\modules`.
+> Note: The default `modulepath` on Windows is [`<data directory>`][datadirectory]`\etc\modules`.
+
+> Note: When using a multi-directory modulepath, remember to separate the directories with `;`, rather than `:`.
 
 To learn more about using modules, see [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html) or [Learning Puppet](/learning/modules1.html).
 
