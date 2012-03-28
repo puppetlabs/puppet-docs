@@ -9,18 +9,6 @@ subtitle: "Uninstalling Puppet Enterprise"
 
 Use the `puppet-enterprise-uninstaller` script to uninstall PE. This script can remove a working PE installation, or undo a partially failed installation to prepare for a re-install.
 
-Note For PE 2.0.0
------
-
-The uninstaller script was not included in the PE 2.0.0 tarball. If the tarball you downloaded does not have the uninstaller, you must first download it:
-
-* [Click here to download the uninstaller][uninstaller], or use `curl` or `wget` to download it directly to the target machine.
-* Copy the uninstaller to the target machine, and move it into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory.
-* Make the uninstaller executable, then run it:
-
-        # sudo chmod +x puppet-enterprise-uninstaller
-        # sudo ./puppet-enterprise-uninstaller
-
 Using the Uninstaller
 -----
 
@@ -37,7 +25,7 @@ You can use the following command-line flags to change the installer's behavior:
 ### Uninstaller Options
 
 `-p`
-: Purge additional files; with this flag, the uninstaller will also remove all
+: Purge additional files. With this flag, the uninstaller will also remove all
   configuration files, modules, manifests, certificates, and the
   home directories of any users created by the PE installer.
 
@@ -49,7 +37,7 @@ You can use the following command-line flags to change the installer's behavior:
 
 `-n`
 : Run in 'noop' mode; show commands that would have been run
-  during installation without running them.
+  during uninstallation without running them.
 
 `-y`
 : Don't ask to confirm uninstallation, assuming an answer of yes.

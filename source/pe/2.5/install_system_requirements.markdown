@@ -15,7 +15,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 2.0 supports the following systems:
+Puppet Enterprise 2.5 supports the following systems:
 
 |       Operating system       |  Version          |       Arch        |   Roles   |
 |------------------------------|-------------------|-------------------|-----------|
@@ -52,7 +52,7 @@ Before installing Puppet Enterprise at your site, you should make sure that your
 
 ### Name Resolution
 
-* Decide on a preferred name or set of names at which agent nodes should contact the puppet master server.
+* Decide on a preferred name or set of names agent nodes can use to contact the puppet master server.
 * Ensure that the puppet master server can be reached via domain name lookup by all of the future puppet agent nodes at the site.
 
 You can also simplify configuration of agent nodes by using a CNAME record to make the puppet master reachable at the hostname `puppet`. (This is the default puppet master hostname that is automatically suggested when installing an agent node.)

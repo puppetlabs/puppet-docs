@@ -89,11 +89,11 @@ The installer will accept the following command-line flags:
 Selecting Roles
 -----
 
-First, the installer will ask which of PE's **roles** to install; the roles you choose will determine which other questions the installer will ask.
+First, the installer will ask which of PE's **roles** to install. The roles you choose will determine which other questions the installer will ask.
 
 ### The Puppet Agent Role
 
-This role should be installed on **every node** in your deployment, including the master and console nodes. (If you choose the puppet master or console roles, the puppet agent role will be installed automatically.) Nodes with the puppet agent role:
+This role should be installed on **every node** in your deployment, including the master and console nodes. (If you choose the puppet master or console roles, the puppet agent role will be installed automatically.) Nodes with the puppet agent role can:
 
 * Run the puppet agent daemon, which pulls configurations from the puppet master and applies them.
 * Listen for MCollective messages, and invoke MCollective agent actions when they receive a valid command.
@@ -101,18 +101,18 @@ This role should be installed on **every node** in your deployment, including th
 
 ### The Puppet Master Role
 
-In most deployments, this role should be installed on **one node;** installing multiple puppet masters requires additional configuration. The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for more detail. The puppet master server:
+In most deployments, this role should be installed on **one node;** installing multiple puppet masters requires additional configuration. The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for more detail. The puppet master server can:
 
-* Compiles and serves configuration catalogs to puppet agent nodes.
-* Routes MCollective messages through its ActiveMQ server.
-* Can issue valid MCollective commands (from an administrator logged in as the `peadmin` user). 
+* Compile and serve configuration catalogs to puppet agent nodes.
+* Route MCollective messages through its ActiveMQ server.
+* Issue valid MCollective commands (from an administrator logged in as the `peadmin` user). 
 
 ### The Console Role
 
-This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server: 
+This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server can: 
 
-* Serves the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, approve and reject audited changes, and invoke MCollective agent actions. 
-* Collects reports from and serves node information to the puppet master.
+* Serve the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, approve and reject audited changes, and invoke MCollective agent actions. 
+* Collect reports from, and serve node information to the puppet master.
 
 ### The Cloud Provisioner Role
 
@@ -126,7 +126,7 @@ This optional role can be installed on a computer where administrators have shel
 Customizing Your Installation
 -----
 
-After you choose this system's roles, the installer will ask questions to configure those roles.
+After you choose the roles for the system you're installing onto, the installer will ask questions to configure those roles.
 
 ### Puppet Master Questions
 
@@ -136,7 +136,7 @@ The certname is the puppet master's unique identifier. It should be a DNS name a
 
 (If the master's certname is not one of its DNS names, you [may need to edit puppet.conf after installation][bucket-troubleshooting].)
 
-[bucket-troubleshooting]: ./maint_common_config_errors.html#can-agents-reach-the-filebucket-server
+[bucket-troubleshooting]: ./trouble_common_problems.html#can-agents-reach-the-filebucket-server
 
 #### Valid DNS Names
 

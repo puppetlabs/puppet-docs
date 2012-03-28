@@ -17,14 +17,14 @@ Checking For Updates
 [Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
 
 {% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
-[updateslink]: http://links.puppetlabs.com/puppet_enterprise_console_2.0_information
+[updateslink]: http://info.puppetlabs.com/download-pe.html
 
 Downloading PE
 -----
 
 See the [Preparing to Install chapter][downloading] of this guide for information on downloading PE.
 
-[downloading]: http://docs.puppetlabs.com/pe/2.0/install_preparing.html#downloading-pe
+[downloading]: ./install_basic.html#downloading-pe
 
 Starting the Upgrader
 -----
@@ -33,7 +33,7 @@ The upgrader must be run with root privileges:
 
     # ./puppet-enterprise-upgrader
 
-This will start the upgrader in interactive mode. If the puppet master role and the console (previously dashboard) role are installed on different servers, **you must upgrade the puppet master first.**
+This will start the upgrader in interactive mode. If the puppet master role and the console role are installed on different servers, **you must upgrade the puppet master first.**
 
 {{ slowbigdatabase }}
 
@@ -74,11 +74,11 @@ The upgrader will ask you the following questions:
 
 ### Cloud Provisioner
 
-PE 2 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On every node you upgrade, you'll be asked whether to install the cloud provisioner role. 
+PE 2.5 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On every node you upgrade, you'll be asked whether to install the cloud provisioner role. 
 
 ### Vendor Packages
 
-If PE 2.0 needs any packages from your OS's repositories, it will ask permission to install them. 
+If PE 2.5 needs any packages from your OS's repositories, it will ask permission to install them. 
 
 ### Puppet Master Options
 
@@ -96,7 +96,7 @@ In PE 2.0, the `mcollectivepe`, `accounts`, and `baselines` modules were renamed
 
 #### User Name and Password
 
-The console, which replaces Puppet Dashboard, now requires a user name and a password for web access. The upgrader will ask you to choose this name and password.
+The console now requires a user name and a password for web access. The upgrader will ask you to choose this name and password.
 
 
 Final Steps: From an Earlier PE 2.0 Release
@@ -224,7 +224,7 @@ Change the following two settings to true:
     enable_inventory_service: true
     use_file_bucket_diffs: true
 
-Ensure that the following settings exist and are set to the suggested values; if any are missing, you will need to add them to settings.yml yourself:
+Ensure that the following settings exist and are set to the suggested values; if any are missing, you will need to add them to `settings.yml` yourself:
 
     private_key_path: 'certs/pe-internal-dashboard.private_key.pem'
     public_key_path: 'certs/pe-internal-dashboard.public_key.pem'
@@ -267,7 +267,7 @@ Finally, chown the certificates directory to `puppet-dashboard`:
 
 #### Troubleshooting
 
-If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist. 
+If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the `settings.yml` file. Go back to the previous section and make sure all of the required settings exist. 
 
 ### Start `pe-httpd`
 
@@ -277,7 +277,7 @@ You can now start PE's web server again.
 
 ### Edit `puppet.conf` on Each Agent Node
 
-On each agent node you upgrade to PE 2.0, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
+On each agent node you upgrade to PE 2.5, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
 
     [agent]
         # support filebucket viewing when using compliance features:

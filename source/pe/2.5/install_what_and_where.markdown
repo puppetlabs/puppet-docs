@@ -19,23 +19,28 @@ To purchase a license, please see the [Puppet Enterprise pricing page](http://ww
 ##Software
 
 ###<i>What</i>
+
 All working components of PE, excluding configuration files. These are files you are not likely to need to change.
 
 ###<i>Where</i>
+
 All PE software (excluding config files) is installed under `/opt/puppet`.
 
 * Executable binaries are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * Optionally, you can choose at install time to symlink the most common binaries into `/usr/local/bin`.
-* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own; instead, install them in `/etc/puppetlabs/puppet/modules`. 
+* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`. 
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
 ##Configuration Files
 
 ###<i>What</i>
+
  Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
 
 ###<i>Where</i>
+
 Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components.
+
 * Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 * [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`.
 * The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
@@ -46,6 +51,7 @@ Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with s
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
 
 ###<i>Where</i> 
+
 ### Puppet Master Logs
 
 - `/var/log/pe-httpd/access.log`
@@ -95,10 +101,10 @@ Puppet Enterprise installs several suites of command line tools to help you work
 
 - **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.` 
 	See the [Tools Section](http://docs.puppetlabs.com/guides/tools.html) of the Puppet Manual for more information.
-- **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning Section](http://docs.puppetlabs.com/pe/2.0/cloudprovisioner_overview.html) of the Puppet Manual for more information.
-- **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the Live Management tab of the PE console.See the [Orchestration Section](http://docs.puppetlabs.com/pe/2.0/orchestration_overview.html) of the Puppet Manual for more information.
+- **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning Section](./cloudprovisioner_overview.html)  for more information.
+- **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the Live Management tab of the PE console. See the [Orchestration Section](./orchestration_overview.html) for more information.
 - **Module Tools:** The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).
-- **Console:** The Console is Puppet Enterprise's GUI web interface. The Console provides tools to view and edit resources on your nodes, view reports and activity graphs, trigger Puppet runs, etc. See the [Console Section](http://docs.puppetlabs.com/pe/2.0/console_accessing.html) of the Puppet Manual for more information.
+- **Console:** The console is Puppet Enterprise's GUI web interface. The console provides tools to view and edit resources on your nodes, view reports and activity graphs, trigger Puppet runs, etc. See the [Console Section](./console_accessing.html) of the Puppet Manual for more information.
 
 For more details, you can also refer to the man page for a given command or subcommand.
 
@@ -116,7 +122,7 @@ PE uses the following services:
 
 PE creates the following users:
 
-- **`peadmin`** --- An administrative account which can issue MCollective client commands. This is the only PE user account intended for use in a login shell. See [the chapter on orchestration](./orchestration_overview.html) for more about this user. This user exists on servers with the puppet master role, and replaces the `mco` user that was present in PE 1.2.
+- **`peadmin`** --- An administrative account which can issue MCollective client commands. This is the only PE user account intended for use in a login shell. See [the section on orchestration](./orchestration_overview.html) for more about this user. This user exists on servers with the puppet master role, and replaces the `mco` user that was present in PE 1.2.
 - **`pe-puppet`**  --- A system user which runs the puppet master processes spawned by Passenger.
 - **`pe-apache`** --- A system user which runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.

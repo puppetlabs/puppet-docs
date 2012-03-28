@@ -5,7 +5,7 @@ title: "PE 2.5 » Installing » Answer File Reference"
 subtitle: "Answer File Reference"
 ---
 
-Answer files are used when doing an automated installation of PE. See [the chapter on automated installation](./install_automated.html) for more details.
+Answer files are used for automated installations of PE. See [the chapter on automated installation](./install_automated.html) for more details.
 
 Answer File Syntax
 ------------------
@@ -150,10 +150,10 @@ Upgrader Answers
 : **Y or N** --- Whether to install the cloud provisioner tools on this node during the upgrade. Previous versions of PE did not include the cloud provisioner tools.
 
 `q_puppet_enterpriseconsole_auth_user`
-: **String** --- A user name for accessing the console. Previous versions of Puppet Enterprise did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
+: **String** --- A user name for accessing the console. Previous versions of PE did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
 
 `q_puppet_enterpriseconsole_auth_password`
-: **String** --- A password for accessing the console. Previous versions of Puppet Enterprise did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
+: **String** --- A password for accessing the console. Previous versions of PE did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
 
 `q_vendor_packages_install`
 : **Y or N** --- Whether to install additional packages from your OS vendor's repository, if the upgrader determines any are needed. 

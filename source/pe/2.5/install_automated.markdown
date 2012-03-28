@@ -38,7 +38,7 @@ To obtain an answer file, you can:
 * Run the installer with the `-s <FILE>` flag, which saves  an answer file without installing
 * Write one by hand
 
-**You must hand-edit any pre-made answer file before using it,** as new nodes will need, at a minimum, a unique agent certname.
+**You must hand edit any pre-made answer file before using it,** as new nodes will need, at a minimum, a unique agent certname.
 
 Editing Answer Files
 -----
