@@ -238,10 +238,7 @@
                   {% if maindir == 'mcollective' %}
                       {% include mcollective_menu.html %}
                   {% else %}
-                      <!-- 
-<h3 class="chapter">Contents</h3>
-                      {{ content | toc }}
- --> {% render_nav %} <!-- Currently, this loses us our within-the-page TOC. Will have to replace somehow. -->
+                      {% render_nav %} 
                   {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
