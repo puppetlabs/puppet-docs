@@ -107,7 +107,7 @@ The following facts can help you determine whether a given machine is running Wi
 The following facts are either Windows-only, or have different values on Windows than on \*nix:
 
 * `env_windows_installdir` --- This fact will contain the directory in which Puppet was installed.
-* `id` --- This fact will be `<HOSTNAME>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
+* `id` --- This fact will be `<DOMAIN>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
 
 
 Line Endings in Windows Text Files
