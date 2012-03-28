@@ -115,9 +115,9 @@ Line Endings in Windows Text Files
 
 Windows uses CRLF line endings instead of \*nix's LF line endings. However, in text files managed by Puppet, line endings generally behave as expected.
 
-* If the contents of a file are specified with the `content` attribute, Puppet will automatically convert standard Unix newlines (`\n` or a literal line break) in the manifest or template to Windows newlines. <!-- TODO CHECK THIS, it may be wrong. -->
+* If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` sequence should be specified in the content parameter.
 * If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-
+* Puppet manages `flat` file types in text mode, so it will automatically translate between Windows and \*nix line endings. For example, `%windir%\system32\drivers\etc\hosts`.
 
 
 Resource Types
