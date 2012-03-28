@@ -173,8 +173,8 @@ When run with elevated privileges, the data directory is located in the <a href=
 
 OS Version| Path                                            | Default
 ----------|-------------------------------------------------|---------
-2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet`
-7, 2008   | `%PROGRAMDATA%\PuppetLabs`                      | `C:\ProgramData\PuppetLabs\puppet`
+2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet`
+7, 2008   | `%PROGRAMDATA%\PuppetLabs\puppet`                      | `C:\ProgramData\PuppetLabs\puppet`
 
 Since CommonAppData directory is a system folder, it is hidden by default. See <http://support.microsoft.com/kb/812003> for steps to show system and hidden files and folders.
 
