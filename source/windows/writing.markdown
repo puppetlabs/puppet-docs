@@ -13,7 +13,7 @@ nav: windows.html
 [file]: /references/latest/type.html#file
 [user]: /references/latest/type.html#user
 [group]: /references/latest/type.html#group
-[scheduled_task]: /references/latest/type.html#scheduled_task
+[scheduled_task]: /references/latest/type.html#scheduledtask
 [package]: /references/latest/type.html#package
 [service]: /references/latest/type.html#service
 [exec]: /references/latest/type.html#exec
@@ -58,7 +58,7 @@ Forward slashes **MAY** be used in:
 Forward slashes **MUST NOT** be used in:
 
 * The `command` of an [`exec`][exec] resource. <!-- TODO double-check this -->
-* The `command` of a [`scheduled_task`][scheduled_task] resource.
+* The `command` of a [`scheduled_task`][scheduledtask] resource.
 * The `install_options` of a [`package`][package] resource.
 
 #### The Rule
@@ -174,7 +174,7 @@ Puppet can create, edit, and delete local groups, and can manage a group's membe
 * Group names are case-sensitive in puppet manifests, but insensitive on Windows (#9506). Make sure to consistently use the same case in manifests.
 * Nested groups are not supported. (Group members must be users, not other groups.)
 
-### [`scheduled_task`][scheduled_task]
+### [`scheduled_task`][scheduledtask]
 
 {% highlight ruby %}
     scheduled_task { 'Daily task':
@@ -191,7 +191,7 @@ Puppet can create, edit, and delete local groups, and can manage a group's membe
     }
 {% endhighlight %}
 
-Puppet can create, edit, and delete scheduled tasks. It can manage the task name, the enabled/disabled status, the command, any arguments, the working directory, the user and password, and triggers. For more information, see [the reference documentation for the `scheduled_task` type][scheduled_task]. This is a Windows-only resource type.
+Puppet can create, edit, and delete scheduled tasks. It can manage the task name, the enabled/disabled status, the command, any arguments, the working directory, the user and password, and triggers. For more information, see [the reference documentation for the `scheduled_task` type][scheduledtask]. This is a Windows-only resource type.
 
 * Puppet does not support "every X minutes" type triggers.
 
