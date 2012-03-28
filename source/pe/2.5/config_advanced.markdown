@@ -95,10 +95,38 @@ The console uses a database user account to access its MySQL database. If this u
 
         $ sudo /etc/init.d/pe-httpd start
         
-Allowing Anonymous Console Access
+
+Configuring Console Authentication
 -----
+
+### Configuring the SMTP Server
+
+The console's account system sends verification emails to new users, and requires an SMTP server to do so. If your site's SMTP server requires a user and password, TLS, or a non-default port, you can configure these by editing the  `/etc/puppetlabs/console-auth/config.yml` file:
+
+    smtp:
+      address: mail.example.com
+      port: 25
+      use_tls: false
+      ## Uncomment to enable SMTP authentication
+      #username:  smtp_username
+      #password:  smtp_password
+
+### Allowing Anonymous Console Access
+
 To allow anonymous, read-only access to the console, do the following:
 
+* Edit the `/etc/puppetlabs/console-auth/config.yml` file and change the value of the `global_unauthenticated_access` setting to `true`.
+* Restart Apache by running `sudo /etc/init.d/pe-httpd restart`.
+
+### Disabling and Reenabling Console Auth
+
+If necessary, you can completely disable the console's access controls. Run the following command to disable console auth:
+
+    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:disable
+
+To re-enable console auth, run the following:
+
+    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:enable
 
 Changing Orchestration Security
 -----
@@ -162,14 +190,14 @@ After changing the password, **you cannot issue orchestration messages to a give
 
 [reports]: ./console_reports.html
 
-### Fine-tuning the  `delayed_job` Queue
+Fine-tuning the `delayed_job` Queue
 ----------
 
 The console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job/) queue to asynchronously process resource-intensive tasks such as report generation. Although the console won't lose any data sent by puppet masters if these jobs don't run, you'll need to be running at least one delayed job worker (and preferably one per CPU core) to get the full benefit of the console's UI.
 
 Currently, to manage the `delayed_job` workers, you must either use the provided monitor script or start non-daemonized workers individually with the provided rake task.
 
-#### Using the monitor script
+### Using the monitor script
 
 The console ships with a worker process manager, which can be found at `script/delayed_job`. This tool's interface resembles an init script, but it can launch any number of worker processes as well as a monitor process to babysit these workers; run it with `--help` for more details. `delayed_job` requires that you specify `RAILS_ENV` as an environment variable. To start four worker processes and the monitor process:
 
