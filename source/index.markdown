@@ -110,6 +110,12 @@ Get Puppet up and running at your site.
 * [Style Guide](./guides/style_guide.html) --- Puppet community conventions
 * [Best Practices](./guides/best_practices.html) --- use Puppet effectively
 
+### Puppet on Windows
+
+Manage Windows nodes side by side with your \*nix infrastructure, with Puppet Enterprise 2.5 and Puppet 2.7.
+
+{% include windows.html %}
+
 ### Tuning and Scaling
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
@@ -134,7 +140,7 @@ Go beyond basic manifests.
 
 Build your own tools and workflows on top of Puppet.
 
-#### Using Puppet's Data Library
+#### Using the Puppet Data Library
 
 * [Puppet Data Library: Overview](./guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
 * [Inventory Service](./guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications

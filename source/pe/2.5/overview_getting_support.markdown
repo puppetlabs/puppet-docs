@@ -91,6 +91,8 @@ As a Puppet Enterprise customer you are more than welcome to participate in our 
 
     <http://projects.puppetlabs.com/projects/puppet>
 
-* * *
 
-Next: [Installing: System Requirements](./install_system_requirements.html) &rarr;
+
+* * * 
+
+- [Next: Quick Start](./quick_start.html)

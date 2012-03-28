@@ -38,7 +38,7 @@ Puppet on Windows requires the following gems be installed:
 To install them all in two commands:
 
     C:\>gem install sys-admin win32-process win32-dir win32-taskscheduler --no-rdoc --no-ri
-    C:\>gem install win32-service --platform=mswin32 --no-rdoc --no-ri --version 0.7.1
+    C:\>gem install win32-service --platform=mswin32 --no-rdoc --no-ri
 
 (Since win32-service includes native code, you should install it with the `--platform=mswin32` option. Otherwise, `gem` will need to compile the extensions at install time, which has additional dependencies and can be time-consuming.)
 

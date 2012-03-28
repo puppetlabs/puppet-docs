@@ -301,3 +301,7 @@ In addition to what this walkthrough has covered, most users will also:
 To learn about these workflows, continue to the [writing modules quick start guide](./quick_writing.html).
 
 To explore the rest of the PE 2.5 user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
+
+* * * 
+
+- [Next: Quick Start: Writing Modules](./quick_writing.html)

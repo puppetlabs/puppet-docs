@@ -167,6 +167,7 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 [classes_typing_class]: ./images/console/classes_typing_class.png
 [classes_typingclass]: ./images/console/classes_typingclass.png
 
-* * *
 
-Next: [Console: Live Management](./console_live.html) &rarr;
+* * * 
+
+- [Next: Live Management](./console_live.html)

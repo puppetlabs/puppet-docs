@@ -6,45 +6,126 @@ nav: windows.html
 
 <span class="versionnote">This documentation applies to Puppet ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
+[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[manifests]: /learning/manifests.html
+[lang]: /guides/language_guide.html
 
-**Puppet manages Windows nodes with Puppet manifests,** the same way it manages \*nix nodes. In the most common agent/master arrangement, these manifests are maintained on a puppet master server, which compiles them on request and serves the resulting catalogs to agent nodes. (Windows nodes can also compile their own configurations with the puppet apply subcommand.) 
+[file]: /references/latest/type.html#file
+[user]: /references/latest/type.html#user
+[group]: /references/latest/type.html#group
+[scheduled_task]: /references/latest/type.html#scheduled_task
+[package]: /references/latest/type.html#package
+[service]: /references/latest/type.html#service
+[exec]: /references/latest/type.html#exec
+[host]: /references/latest/type.html#host
 
-Manifests that define Windows configurations **use the same Puppet language** as those meant for \*nix systems. The same modules can even be used
+
+Just as on \*nix systems, Puppet manages resources on Windows using manifests written in the [Puppet language][lang]. There are several major differences to be aware of when writing manifests that manage Windows resources:
+
+* Windows uses the backslash as its directory separator character, and Ruby handles it differently in different circumstances. You should **learn when to use and when to avoid backslashes.**
+* Most classes written for \*nix systems will not work on Windows nodes; if you are managing a mixed environment, you should **use conditionals and Windows-specific facts** to govern the behavior of your classes. 
+* Puppet generally does the right thing with Windows line endings.
+* Puppet supports a slightly different set of resource types on Windows.
+
+
+File Paths on Windows
+-----
+
+Windows uses the backslash (`\`) as its directory separator character. Unfortunately, \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). The results are unavoidably complicated when using a system that interacts with \*nix and Windows systems as equal peers. 
+
+The following guidelines will help you use backslashes safely in Windows file paths.
+
+### Forward Slashes vs. Backslashes
+
+In many cases, you can use forward slashes instead of backslashes when specifying file paths.
+
+Forward slashes **MUST** be used in:
+
+* Template paths passed to the `template` function. For example:
+
+        file {'C:/warning.txt':
+          ensure  => present,
+          content => template('my_module/warning.erb'),
+        }
+* Puppet URLs in a [`file`][file] resource's `source` attribute.
+
+Forward slashes **MAY** be used in:
+
+* The title or `path` attribute of a [`file`][file] resource
+* The `source` attribute of a [`package`][package] resource
+* Local paths in a [`file`][file] resource's `source` attribute
+
+Forward slashes **MUST NOT** be used in:
+
+* The `command` of an [`exec`][exec] resource. <!-- TODO double-check this -->
+* The `command` of a [`scheduled_task`][scheduled_task] resource.
+* The `install_options` of a [`package`][package] resource.
+
+#### The Rule
+
+If Puppet itself is interpreting the file path, forward slashes are okay. If the file path is being passed directly to a Windows tool, forward slashes are not okay.
+
+### Using Backslashes in Double-Quoted Strings
+
+Puppet supports two kinds of string quoting. Strings surrounded by double quotes (`"`) allow variable interpretation and many escape sequences (including the common `\n` for a newline), so care must be taken to prevent backslashes from being mistaken for escape sequences.
+
+When using backslashes in a double-quoted string, **you must always use two backslashes** for each literal backslash. There are no exceptions and no special cases.
+
+### Using Backslashes in Single-Quoted Strings
+
+Strings surrounded by single quotes (`'`) do not allow variable interpretation, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash).
+
+Lone backslashes can usually be used in single-quoted strings. However:
+
+* When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
+* When a literal double backslash is intended, a quadruple backslash must be used.
+
+#### The Rule
+
+In single-quoted strings:
+
+* A double backslash always means a literal backslash.
+* A single backslash usually means a literal backslash, unless it is followed by a single quote or another backslash.
 
 
 
-However, there are several differences. In summary, manifests 
+Notable Windows Facts
+-----
+
+Windows nodes with a default install of Puppet will return the following notable facts, which can be useful when writing manifests:
+
+### Identifying Facts
+
+The following facts can help you determine whether a given machine is running Windows:
+
+* `kernel => windows`
+* `operatingsystem => windows`
+* `osfamily => windows`
+
+### Windows-Specific Facts
+
+The following facts are either Windows-only, or have different values on Windows than on \*nix:
+
+* `env_windows_installdir` --- This fact will contain the directory in which Puppet was installed.
+* `id` --- This fact will be `<HOSTNAME>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
 
 
-## Overview
+Line Endings in Windows Text Files
+-----
 
-The 2.7.6 release of puppet adds support for running puppet agents on Microsoft Windows platforms. The scope of work completed includes the following:
+Windows uses CRLF line endings instead of \*nix's LF line endings. However, in text files managed by Puppet, line endings generally behave as expected.
 
-* The following puppet applications:
-    * apply
-    * agent
-    * resource
-    * inspect
-* Managing the following resource types: 
-    * file
-    * user
-    * group
-    * scheduled_task (new type; not cron)
-    * package (MSI)
-    * service
-    * exec
-    * host
+* If the contents of a file are specified with the `content` attribute, Puppet will automatically convert standard Unix newlines (`\n` or a literal line break) in the manifest or template to Windows newlines. <!-- TODO CHECK THIS, it may be wrong. -->
+* If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
 
-Running a puppet master on Windows is not supported, nor are there plans to support it.
 
-## Usage
 
-This section describes the types of resources that can be managed using Puppet.
+Resource Types
+-----
 
-### file
+Puppet can manage the following resource types on Windows nodes:
 
-Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported. For more information, see #8411, #9186, and #9938. Windows NTFS filesystems are case-preserving, but case-insensitive. So make sure to use the same case within a puppet manifest, and it is recommended that you always use forward slashes as the file separator character.
-
+### [`file`][file]
 
 {% highlight ruby %}
     file { 'c:/mysql/my.ini':
@@ -56,48 +137,44 @@ Puppet can manage files and directories, including owner, group, permissions, an
     }
 {% endhighlight %}
 
-In order to manage files that it does not own, puppet must be running as a member of the local Administrators group (on 2003) or with elevated privileges (2008). In doing so, puppet will be able to enable the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges that it requires to manage file permissions.
+Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported. 
 
-Puppet only supports modes where the owner permissions are a superset of the group, which is a superset of other. So 0640 and 0755 are supported, but 0460 is not. The sticky bit is supported for directories, so users can only delete files from a directory that they own.
+* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file).
+* Windows NTFS filesystems are case-preserving, but case-insensitive; Puppet is case-sensitive. Thus, you should be consistent in the case you use when referring to a file resource in multiple places in a manifest. 
+* In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
+* Permissions modes are set as though they were \*nix-like octal modes; Puppet translates these to the equivalent access controls on Windows.
+    * The read, write, and execute permissions translate to the `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights.
+    * The owner of a file/directory always has the `FULL_CONTROL` access right.
+    * The `Everyone` SID is used to represent users other than the owner and group.
+* Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
+* On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
+* The source of a file can be a puppet URL, a local path, or a path to a file on a mapped drive. 
+* When downloading a file from a puppet master with a `puppet:///` URI, Puppet will set the permissions mode to match that of the remote file. Be sure to set the proper mode on any remote files.
 
-On Windows, the owner of a securable object can be a group, e.g. owner => Administrators, and the group of a securable object can be a user, e.g. group => 'Administrator'. And the owner and group can be the same, but that can cause problems if you specify a mode where the owner and group classes are different, e.g. 0750, as puppet will map that to 0770, and report that the modes are out of sync each time it runs. For this reason, it is recommended that you don't set the owner and group to the same account.
 
-The owner of a file/directory always has `FULL_CONTROL`. The modes for group and other classes are roughly mapped to `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, `FILE_GENERIC_EXECUTE` access rights. The owner and group names are mapped to Windows SIDs and used when getting/setting the object's DACL. The 'Everyone' SID is used to represent the other class.
+### [`user`][user]
 
-The source of a file can either be a local path, mapped drive, or puppet URL. In the latter case, puppet will apply a default owner, group and mode to files it sources from remote puppet masters.
+Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups.
 
-Puppet manages file resources in binary mode on Windows. So it will not add '\r\n' line endings. If you require this, then you can add them explicitly in the content parameter or in the file from which puppet is sourcing.
-
-### user
-
-Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts. The comment, home, and password parameters can be managed, as well as groups the user is a member of. 
-Passwords can only be specified in cleartext. Windows does not provide an API for setting the password hash.
-
-The user SID is available as a read-only parameter. Attempting to set the parameter will fail (#11733)
-
-User names are case-sensitive in puppet manifests, but insensitive on Windows (#9506). Make sure to consistently use the same case in manifests.
+* The `comment`, `home`, and `password` attributes can be managed, as well as groups to which the user belongs.
+* Passwords can only be specified in cleartext. Windows does not provide an API for setting the password hash.
+* The user SID is available as a read-only parameter. Attempting to set the parameter will fail
+* User names are case-sensitive in Puppet manifests, but insensitive on Windows. Make sure to consistently use the same case in manifests.
 
 #### Security Identifiers (SID)
 
 On Windows, user and group account names can take multiple forms, e.g. `Administrators`, `<host>\Administrators`, `BUILTIN\Administrators`, `S-1-5-32-544`. When comparing two account names, puppet always first transforms account names into their canonical SID form and compares the SIDs instead.
 
 
-### group
+### [`group`][group]
 
-Puppet can create, edit, and delete local groups, and can manage the groups members. Puppet does not support managing domain group accounts.
+Puppet can create, edit, and delete local groups, and can manage a group's members. Puppet does not support managing domain group accounts, but a local group can include both local and domain users as members.
 
-The group SID is available as a read-only parameter. Attempting to set the parameter will fail (#11733)
+* The group SID is available as a read-only parameter. Attempting to set the parameter will fail.
+* Group names are case-sensitive in puppet manifests, but insensitive on Windows (#9506). Make sure to consistently use the same case in manifests.
+* Nested groups are not supported. (Group members must be users, not other groups.)
 
-Group names are case-sensitive in puppet manifests, but insensitive on Windows (#9506). Make sure to consistently use the same case in manifests.
-
-Nested groups are not supported (group members must be users, not other groups)
-
-### scheduled_task
-
-Puppet can create, edit, and delete scheduled tasks. This includes the task name, enabled/disabled, command, arguments, working directory, user and password, and triggers. For more information, see #8414.
-
-Puppet also uses v1.0 of Windows task scheduler interfaces, which constrains the set of supported trigger types. Specifically, puppet does not support "every X minutes" type triggers.
-
+### [`scheduled_task`][scheduled_task]
 
 {% highlight ruby %}
     scheduled_task { 'Daily task':
@@ -114,34 +191,30 @@ Puppet also uses v1.0 of Windows task scheduler interfaces, which constrains the
     }
 {% endhighlight %}
 
-Make sure you are using version 0.2.1 or later of win32-taskscheduler gem. Otherwise, you may receive errors like the following:
+Puppet can create, edit, and delete scheduled tasks. It can manage the task name, the enabled/disabled status, the command, any arguments, the working directory, the user and password, and triggers. For more information, see [the reference documentation for the `scheduled_task` type][scheduled_task]. This is a Windows-only resource type.
+
+* Puppet does not support "every X minutes" type triggers.
 
 
-    err: /Stage[main]//Scheduled_task[task_system]: Could not evaluate: The operation completed successfully.
-
-
-### package
-
-Puppet can install and remove MSI packages, including specifying package-specific install options, e.g. install directory. For more information, see #8412. The source parameter is required, and must refer to a local file, or a file from a mapped drive, from which puppet can install the package. Puppet URLs are not currently supported (see #11865).
-
+### [`package`][package]
 
 {% highlight ruby %}
     package { 'mysql':
-      ensure => installed,
-      provider => 'msi',
-      source => 'N:/packages/mysql-5.5.16-winx64.msi',
+      ensure          => installed,
+      provider        => 'msi',
+      source          => 'N:/packages/mysql-5.5.16-winx64.msi',
       install_options => { 'INSTALLDIR' => 'C:\mysql-5.5' },
     }
 {% endhighlight %}
 
-Note, the msi package provider uses msiexec to install packages. Any file-based arguments within the `install_options` parameter, e.g. INSTALLDIR, should use backslashes to msiexec. Using forward slashes confuses msiexec.
+Puppet can install and remove MSI packages, including specifying package-specific install options, e.g. install directory.
 
-Currently, puppet can only manage packages that it installed. See #11868.
+* The source parameter is required, and must refer to a local .msi file or a file from a mapped drive. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
+* The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install. 
+    * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. 
+* Currently, Puppet can only manage packages that it installed.
 
-### service
-
-Puppet can start, stop, enable, disable, list, query and configure services. It does not support configuring service dependencies, account to run as, or desktop interaction. For more information, see #8272.
-
+### [`service`][service]
 
 {% highlight ruby %}
     service { 'mysql':
@@ -150,23 +223,27 @@ Puppet can start, stop, enable, disable, list, query and configure services. It 
     }
 {% endhighlight %}
 
-Use the short service name in puppet, e.g. wuauserv, not the display name, e.g. Automatic Updates
+Puppet can start, stop, enable, disable, list, query and configure services. It does not support configuring service dependencies, account to run as, or desktop interaction.
 
-### exec
+* Use the short service name (e.g. `wuauserv`) in Puppet, not the display name (e.g. `Automatic Updates`).
+* Setting the `enable` attribute to `true` will assign a service the "Automatic" startup type; setting `enable` to `manual` will assign the "Manual" startup type.
 
-Puppet can execute binaries (exe, com, bat, etc) returning the child process output and exit status. If an extension is not specified, e.g. ruby, then puppet will use the PATHEXT environment variable to resolve the appropriate binary. For more information, see #8410.
+### [`exec`][exec]
 
-Puppet does not support a shell provider, so if you want to execute shell built-ins, e.g. echo, then use 'cmd.exe /c echo "foo"'
+Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status.
 
-By default, powershell enforces a `restricted` execution policy which prevents the execution of scripts. As such, make sure to specify the appropriate execution policy in the powershell command:
-
+* If an extension for the `command` is not specified (for example, `ruby` instead of `ruby.exe`), Puppet will use the `PATHEXT` environment variable to resolve the appropriate binary. `PATHEXT` is a Windows-specific variable that lists the valid file extensions for executables.
+* Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.)
+* When executing Powershell scripts, you must specify the `remotesigned` execution policy as part of the `powershell.exe` invocation:
 
 {% highlight ruby %}
     exec { 'test':
-      command => 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -executionpolicy remotesigned -file C:/test.ps1',
+      command => 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
     }
 {% endhighlight %}
 
-### host
 
-Puppet can manage the host file in the same way that is supported on Unix platforms. For more information, see #8644.
+
+### [`host`][host]
+
+Puppet can manage entries in the hosts file in the same way that is supported on Unix platforms.

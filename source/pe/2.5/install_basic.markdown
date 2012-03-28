@@ -22,7 +22,6 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 
 > Note: The universal tarball is simpler to use, but is roughly ten times the size of a version-specific tarball.
 
-Puppet Enterprise for Windows is available as a single .msi installer package. 
 
 #### Available \*nix Tarballs
 
@@ -44,7 +43,7 @@ Starting the Installer
 * Run the `puppet-enterprise-installer` script with root privileges:
 
         # sudo ./puppet-enterprise-installer
-* Answer the interview questions to [customize your installation](#customizing-your-installation). 
+* Answer the interview questions to [select and configure PE's roles](#selecting-roles). 
 * Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
 * If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
 
@@ -158,24 +157,36 @@ You must choose a port on which to serve the console's web interface. If you are
 
 If the installer detects another web server on the node, it will suggest the first open port at or above 3000.
 
-#### User Name and Password
+#### User Email and Password
 
-As the console's web interface is a major point of control for your infrastructure, access is restricted with a user name and password. Additional users and passwords can be added later with Apache's standard authentication tools. 
+Access to the console's web interface is [limited to approved users and governed by a lightweight system of roles](./console_auth.html). During installation, you must create an initial admin user for the console by providing an email address and password. 
 
 The only forbidden characters for a console password are `\` (backslash), `'` (single quote), and `$$` (two dollar signs in a row). 
+
+#### SMTP Server
+
+The console's account management tools will send activation emails to new users, and requires an SMTP server to do so. 
+
+* If you cannot provide an SMTP server, an admin user can manually copy and email the activation codes for new users. 
+* If your SMTP server requires TLS or a user name and password, you must [perform additional configuration after installing.][smtpconfig]
+
+[smtpconfig]: ./config_advanced.html#configuring-the-smtp-server
 
 #### Inventory Certname and DNS Names (Optional)
 
 If you are splitting the master and the console roles, the console will maintain an inventory service to collect facts from the puppet master. Like the master, the inventory service needs a unique certname and a list of valid DNS names. 
 
-#### Database
+#### Databases
 
-The console needs a pair of MySQL databases and a MySQL user in order to operate. If a MySQL server isn't already present on this system, the installer can automatically configure everything the console needs; just confirm that you want to install a new database server, and configure the following settings:
+The console needs multiple MySQL databases and MySQL users in order to operate. If a MySQL server isn't already present on this system, the installer can automatically configure everything the console needs; just confirm that you want to install a new database server, and configure the following settings:
 
 * A password for MySQL's root user
 * A name for the console's primary database
 * A MySQL user name for the console
 * A password for the console's user
+* A name for the console authentication database
+* A MySQL user name for console authentication
+* A password for the console authentication user
 
 The only forbidden characters for a database password are `\` (backslash), `'` (single quote), and `$$` (two dollar signs in a row). 
 
@@ -190,11 +201,15 @@ If you are not automatically configuring the databases, you can create the neces
     CREATE USER 'console'@'localhost' IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON console.* TO 'console'@'localhost';
     GRANT ALL PRIVILEGES ON console_inventory_service.* TO 'console'@'localhost';
+
+    CREATE DATABASE console_auth CHARACTER SET utf8;
+    CREATE USER 'console_auth'@'localhost' IDENTIFIED BY 'password';
+    GRANT ALL PRIVILEGES ON console_auth.* TO 'console_auth'@'localhost';
     FLUSH PRIVILEGES;
 
-**Note that the names of the two databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`. 
+**Note that the names of the console and inventory databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`. 
 
-**Note also that the hostname for the console user will differ if you are using a remote database server.**
+**Note also that the hostname for the user accounts will differ if you are using a remote database server.**
 
 Consult the MySQL documentation for more info.
 
@@ -217,6 +232,10 @@ This defaults to the node's fully-qualified domain name, but any arbitrary strin
 Agent nodes need the hostname of a puppet master server. This must be one of the valid DNS names you chose when installing the puppet master.
 
 This setting defaults to `puppet`.
+
+#### Optional: Override Failed Puppet Master Communications
+
+The installer will attempt to contact the puppet master before completing the installation. If it isn't able to reach it, it will give you a choice between correcting the puppet master hostname, or continuing anyway.
 
 Final Questions
 -----
@@ -264,6 +283,7 @@ After signing a new node's certificate, it may take up to 30 minutes before that
 When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 
 
-* * *
 
-Next: [Installing: Upgrading](./install_upgrading.html) &rarr;
+* * * 
+
+- [Next: Upgrading](./install_upgrading.html)

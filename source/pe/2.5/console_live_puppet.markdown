@@ -110,6 +110,7 @@ Part of a last run summary results view:
 [live_puppet_status]: ./images/console/live_puppet_status.png
 [live_puppet_unresponsive]: ./images/console/live_puppet_unresponsive.png
 
-* * *
 
-Next: [Console: Live Management: Advanced Tasks](./console_live_advanced.html) &rarr;
+* * * 
+
+- [Next: Live Management: Advanced Tasks](./console_live_advanced.html) 

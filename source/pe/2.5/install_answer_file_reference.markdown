@@ -75,6 +75,9 @@ These answers are always needed.
 `q_puppetagent_server`
 : **String** --- The hostname of the puppet master server. For the agent to trust the master's certificate, this must be one of the valid DNS names you chose when installing the puppet master.
 
+`q_fail_on_unsuccessful_master_lookup`
+: **Y or N** --- Whether to quit the install if the puppet master cannot be reached. 
+
 
 ### Puppet Master Answers
 
@@ -100,11 +103,20 @@ These answers are only needed if you are installing the console role.
 `q_puppet_enterpriseconsole_httpd_port`
 : **Integer** --- The port on which to serve the console. If this is set to 443, you can access the console from a web browser without manually specifying a port. 
 
-`q_puppet_enterpriseconsole_auth_user`
-: **String** --- The user name for accessing the console's web interface.
+`q_puppet_enterpriseconsole_auth_user_email`
+: **String** --- The email address with which the console's admin user will log in. Note that this answer has changed from PE 2.0.
 
 `q_puppet_enterpriseconsole_auth_password`
-: **String** --- The password for accessing the console's web interface. Must be longer than four characters.
+: **String** --- The password for the console's admin user. Must be longer than eight characters.
+
+`q_puppet_enterpriseconsole_smtp_host`
+: **String** -- The SMTP server with which to email account activation codes to new console users. <!-- These related answers all appear to be inert, and are never read by the installer:
+q_puppet_enterpriseconsole_smtp_password
+q_puppet_enterpriseconsole_smtp_port
+q_puppet_enterpriseconsole_smtp_use_tls
+q_puppet_enterpriseconsole_smtp_user_auth
+q_puppet_enterpriseconsole_smtp_username
+-->
 
 `q_puppet_enterpriseconsole_inventory_certname`
 : **String** --- An identifying string for the inventory service. This ID must be unique across your entire site. Only needed if you are _not_ installing the puppet master role on the console server.
@@ -139,6 +151,18 @@ These answers are only needed if you are installing the console role.
 `q_puppet_enterpriseconsole_database_password`
 : **String** --- The password for the console's MySQL user.
 
+`q_puppet_enterpriseconsole_setup_auth_db`
+: **Y or N** --- Whether to automatically configure the console authentication database.
+
+`q_puppet_enterpriseconsole_auth_database_name`
+: **String** --- The database the console authentication will use. Note that if you are not automatically configuring the auth database, this database must already exist on the MySQL server.
+
+`q_puppet_enterpriseconsole_auth_database_user`
+: **String** --- The MySQL user the console authentication will use. Note that if you are not automatically configuring the databases, this user must already exist on the MySQL server and must be able to edit the auth database.
+
+`q_puppet_enterpriseconsole_auth_database_password`
+: **String** --- The password for the auth database's MySQL user.
+
 
 Upgrader Answers
 -----
@@ -149,11 +173,29 @@ Upgrader Answers
 `q_puppet_cloud_install`
 : **Y or N** --- Whether to install the cloud provisioner tools on this node during the upgrade. Previous versions of PE did not include the cloud provisioner tools.
 
-`q_puppet_enterpriseconsole_auth_user`
-: **String** --- A user name for accessing the console. Previous versions of PE did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
+`q_puppet_enterpriseconsole_setup_auth_db`
+: **Y or N** --- Whether to automatically configure the console's authentication database.
+
+`q_puppet_enterpriseconsole_database_root_password`
+: **String** --- The password for the root user on the console's database server. Only required if `q_puppet_enterpriseconsole_setup_auth_db` is true.
+
+`q_puppet_enterpriseconsole_auth_user_email`
+: **String** --- The email address with which the console's admin user will log in. Note that this answer has changed from PE 2.0. Only required if this node has the console role installed.
 
 `q_puppet_enterpriseconsole_auth_password`
 : **String** --- A password for accessing the console. Previous versions of PE did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
+
+`q_puppet_enterpriseconsole_auth_database_name`
+: **String** --- The database the console authentication will use. Note that if you are not automatically configuring the auth database, this database must already exist on the MySQL server.
+
+`q_puppet_enterpriseconsole_auth_database_user`
+: **String** --- The MySQL user the console authentication will use. Note that if you are not automatically configuring the databases, this user must already exist on the MySQL server and must be able to edit the auth database.
+
+`q_puppet_enterpriseconsole_auth_database_password`
+: **String** --- The password for the auth database's MySQL user.
+
+`q_puppet_enterpriseconsole_smtp_host`
+: **String** -- The SMTP server with which to email account activation codes to new console users.
 
 `q_vendor_packages_install`
 : **Y or N** --- Whether to install additional packages from your OS vendor's repository, if the upgrader determines any are needed. 
@@ -182,6 +224,7 @@ Uninstaller Answers
 : **String** --- The MySQL root user's password, to be used when deleting
   databases. Only used when `q_pe_remove_db` is Y.
 
-* * *
 
-Next: [Installing: What gets installed where?](./install_what_and_where.html) &rarr;
+* * * 
+
+- [Next: What gets installed where?](./install_what_and_where.html)

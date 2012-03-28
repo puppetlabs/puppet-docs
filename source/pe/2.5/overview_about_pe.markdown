@@ -69,3 +69,6 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>. 
 
 
+* * * 
+
+- [Next: New Features](./overview_whats_new.html)

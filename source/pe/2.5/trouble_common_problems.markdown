@@ -164,8 +164,17 @@ Changing this on the puppet master will fix the error on all agent nodes.
 
 If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failing with an "err: Missing required arguments" message, you need to [create a `~/.fog` file and populate it with the appropriate credentials](./cloudprovisioner_configuring.html). 
 
-<!-- to do I have a ton of pending tasks! how do I tune the delayed_job queue? -->
+The Console Has Too Many Pending Tasks
+-----
 
-* * *
+The console either does not have enough worker processes, or the worker processes have died and need to be restarted. 
 
-Next: <!-- TODO --> nothing &rarr;
+* [See here to restart the worker processes](./console_maintenance.html#restarting-the-background-tasks)
+* [See here to tune the number of worker processes](./config_advanced.html#fine-tuning-the-delayedjob-queue)
+
+
+
+
+* * * 
+
+- [Next: Appendix](./appendix.html)

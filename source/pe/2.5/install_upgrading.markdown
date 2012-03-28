@@ -9,6 +9,8 @@ To upgrade from a previous version of Puppet Enterprise, use the same installer 
 
 Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version. 
 
+> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows nodes, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html).
+
 {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
 Checking For Updates
@@ -22,7 +24,7 @@ Checking For Updates
 Downloading PE
 -----
 
-See the [Preparing to Install chapter][downloading] of this guide for information on downloading PE.
+See the [Installing PE][downloading] of this guide for information on downloading Puppet Enterprise tarballs.
 
 [downloading]: ./install_basic.html#downloading-pe
 
@@ -74,7 +76,7 @@ The upgrader will ask you the following questions:
 
 ### Cloud Provisioner
 
-PE 2.5 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On every node you upgrade, you'll be asked whether to install the cloud provisioner role. 
+PE 2.5 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On nodes which lack the cloud provisioner role, you'll be asked whether you wish to install it.
 
 ### Vendor Packages
 
@@ -84,30 +86,43 @@ If PE 2.5 needs any packages from your OS's repositories, it will ask permission
 
 #### Removing `mco`'s home directory
 
-The `mco` user from PE 1.2 gets deleted during the upgrade, and is replaced with the `peadmin` user.
+When upgrading from PE 1.2, the `mco` user gets deleted during the upgrade and is replaced with the `peadmin` user.
 
 If the `mco` user had any preference files or documents you need, you should tell the upgrader to preserve the `mco` user's home directory; otherwise, it will be deleted. 
 
 #### Installing Wrapper Modules
 
-In PE 2.0, the `mcollectivepe`, `accounts`, and `baselines` modules were renamed to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively. If you have used any of these modules by their previous names, you should install the wrapper modules so your site will continue to work while you switch over.
+When upgrading from PE 1.2, the `mcollectivepe`, `accounts`, and `baselines` modules will be renamed to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively. If you have used any of these modules by their previous names, you should install the wrapper modules so your site will continue to work while you switch over.
 
 ### Console Options
 
-#### User Name and Password
+#### Admin User Email and Password
 
-The console now requires a user name and a password for web access. The upgrader will ask you to choose this name and password.
+The console now uses role-based user authentication. You will be asked for an email address and password for the initial admin user; additional users [can be configured after the upgrade is completed](./console_auth.html).
 
-
-Final Steps: From an Earlier PE 2.0 Release
+Upgrader Warnings
 -----
 
-**No extra steps** are needed when upgrading between maintenance releases of PE 2.0.
+On console servers, the upgrader will check your MySQL server's `innodb_buffer_pool_size` setting. If it is too small, the upgrader will advise you to increase it. 
 
-Final Steps: From PE 1.2
+If you receive a warning about the `innodb_buffer_pool_size` setting, you should:
+
+* Cancel the upgrade and exit the upgrader.
+* [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the buffer size. 
+* Re-run the upgrader and allow it to finish. 
+
+<!--
+Final Steps: From an Earlier 2.5.x Release
 -----
 
-**No extra steps** are needed when upgrading from PE 1.2.x to PE 2.0.1 or later. 
+**No extra steps** are needed when upgrading between maintenance releases of PE 2.0. -->
+
+Final Steps: From PE 2.0 or 1.2
+-----
+
+* If you received an upgrader warning on your console server as [described above](#upgrader-warnings), be sure to increase your MySQL server's `innodb_buffer_pool_size`. 
+
+Otherwise, no extra steps are needed when upgrading from PE 2.0 or 1.2.
 
 **Note that some features may not be available until puppet agent has run once on every node.** In normal installations, this means all features will be available within 30 minutes after upgrading all nodes. 
 
@@ -285,6 +300,7 @@ On each agent node you upgrade to PE 2.5, make the following edits to `/etc/pupp
         # if you didn't originally enable pluginsync, enable it now:
         pluginsync = true
 
-* * *
 
-Next: [Installing: Uninstalling](./install_uninstalling.html) &rarr;
+* * * 
+
+- [Next: Uninstalling](./install_uninstalling.html) 

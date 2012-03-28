@@ -84,6 +84,7 @@ You can add more facts to further filter the search results , and you can change
 [reports_runcount]: ./images/console/reports_runcount.png
 [reports_searchresults]: ./images/console/reports_searchresults.png
 
-* * *
 
-Next: [Console: Managing Users](./console_auth.html) &rarr;
+* * * 
+
+- [Next: Managing Users](./console_auth.html) 

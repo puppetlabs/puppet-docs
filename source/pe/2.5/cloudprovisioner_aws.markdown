@@ -170,6 +170,8 @@ For example,
 
     $ puppet help node_aws list
 
-* * *
 
-Next: [Cloud Provisioning: Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html) &rarr;
+
+* * * 
+
+- [Next: Classifying Nodes and Remotely Installing PE](./cloudprovisioner_classifying_installing.html)

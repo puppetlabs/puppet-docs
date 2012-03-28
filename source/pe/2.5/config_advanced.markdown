@@ -5,15 +5,43 @@ title: "PE 2.5 »Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"
 ---
 
-* * *
 
-&larr; [Advanced Configuration: Installing Additional Components](./config_installing_additional.html) --- [Index](./)
-
-* * *
+Many behaviors of Puppet Enterprise can be configured after installation.
 
 
+Increasing the MySQL Buffer Pool Size
+-----
 
-During installation, you make several major decisions that affect the way Puppet Enterprise works. Several of these decisions can be changed after the fact. 
+The default MySQL configuration uses an unreasonably small `innodb_buffer_pool_size` setting, which can interfere with the console's ability to function. 
+
+If you are installing a new PE 2.5 console server and allowing the installer to configure your databases, it will set the better value for the buffer pool size. However, PE cannot automatically manage this setting for upgraded console servers and manually configured databases. 
+
+To change this setting, edit the MySQL config file on your database server (usually located at `/etc/my.cnf`, but your system may differ) and set the value of `innodb_buffer_pool_size` to at least `80M` and possibly as high as `256M`. (Its default value is `8M`, or 8388608 bytes.)
+
+The example diff below illustrates the change to a default MySQL config file:
+
+{% highlight diff %}
+ [mysqld]
+ datadir=/var/lib/mysql
+ socket=/var/lib/mysql/mysql.sock
+ user=mysql
+ # Default to using old password format for compatibility with mysql 3.x
+ # clients (those using the mysqlclient10 compatibility package).
+ old_passwords=1
++innodb_buffer_pool_size = 80M
+ 
+ # Disabling symbolic-links is recommended to prevent assorted security risks;
+ # to do so, uncomment this line:
+ # symbolic-links=0
+ 
+ [mysqld_safe]
+ log-error=/var/log/mysqld.log
+ pid-file=/var/run/mysqld/mysqld.pid
+{% endhighlight %}
+
+After changing the setting, restart the MySQL server:
+
+    # sudo /etc/init.d/mysqld restart
 
 Changing the Console's Port
 -----
@@ -67,10 +95,38 @@ The console uses a database user account to access its MySQL database. If this u
 
         $ sudo /etc/init.d/pe-httpd start
         
-Allowing Anonymous Console Access
+
+Configuring Console Authentication
 -----
 
-To allow anonymous, read-only access to the console, edit the cas client config file `etc/puppetlabs/console-auth/cas_client_config.yml` by adding the line `global_unauthenticated_access:  true`. This will grant unauthenticated users access to read-only pages.
+### Configuring the SMTP Server
+
+The console's account system sends verification emails to new users, and requires an SMTP server to do so. If your site's SMTP server requires a user and password, TLS, or a non-default port, you can configure these by editing the  `/etc/puppetlabs/console-auth/config.yml` file:
+
+    smtp:
+      address: mail.example.com
+      port: 25
+      use_tls: false
+      ## Uncomment to enable SMTP authentication
+      #username:  smtp_username
+      #password:  smtp_password
+
+### Allowing Anonymous Console Access
+
+To allow anonymous, read-only access to the console, do the following:
+
+* Edit the `/etc/puppetlabs/console-auth/cas_config.yml` file by adding the line `global_unauthenticated_access:  true`.
+* Restart Apache by running `sudo /etc/init.d/pe-httpd restart`.
+
+### Disabling and Reenabling Console Auth
+
+If necessary, you can completely disable the console's access controls. Run the following command to disable console auth:
+
+    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:disable
+
+To re-enable console auth, run the following:
+
+    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:enable
 
 Changing Orchestration Security
 -----
@@ -134,14 +190,14 @@ After changing the password, **you cannot issue orchestration messages to a give
 
 [reports]: ./console_reports.html
 
-### Fine-tuning the  `delayed_job` Queue
+Fine-tuning the `delayed_job` Queue
 ----------
 
 The console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job/) queue to asynchronously process resource-intensive tasks such as report generation. Although the console won't lose any data sent by puppet masters if these jobs don't run, you'll need to be running at least one delayed job worker (and preferably one per CPU core) to get the full benefit of the console's UI.
 
 Currently, to manage the `delayed_job` workers, you must either use the provided monitor script or start non-daemonized workers individually with the provided rake task.
 
-#### Using the monitor script
+### Using the monitor script
 
 The console ships with a worker process manager, which can be found at `script/delayed_job`. This tool's interface resembles an init script, but it can launch any number of worker processes as well as a monitor process to babysit these workers; run it with `--help` for more details. `delayed_job` requires that you specify `RAILS_ENV` as an environment variable. To start four worker processes and the monitor process:
 
@@ -149,9 +205,9 @@ The console ships with a worker process manager, which can be found at `script/d
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 
-* * *
 
-Next: [Advanced Configuration: Installing Additional Components](./config_installing_additional.html) &rarr;
+* * * 
 
-* * *
+- [Next: Installing Additional Components](./config_installing_additional.html) 
+
 

@@ -52,6 +52,7 @@ Results:
 [live_advanced_results]: ./images/console/live_advanced_results.png
 [live_advanced_running]: ./images/console/live_advanced_running.png
 
-* * *
 
-Next: [Console Maintenance](./console_maintenance.html) &rarr;
+* * * 
+
+- [Next: Console Maintenance](./console_maintenance.html)

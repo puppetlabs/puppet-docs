@@ -87,7 +87,7 @@ Click the "Continue to this website (not recommended)" link on the warning page.
 [cert_firefox2]: ./images/console/accessing_cert_firefox2.png
 [cert_safari]: ./images/console/accessing_cert_safari.png
 [cert_ie]: ./images/console/accessing_cert_ie.png
-[login]: ./images/console/accessing_login.png
+[login]: ./images/console/accessing_login.jpg
 
 
 
@@ -100,6 +100,7 @@ For security, accessing the console requires a user name and password. In PE 2.5
 
 Since the console is the main point of control for your infrastructure, you will probably want to decline your browser's offer to remember its password. 
 
-* * *
 
-Next: [Console: Navigating the Console](./console_navigating.html) &rarr;
+* * * 
+
+- [Next: Navigating the Console](./console_navigating.html) 

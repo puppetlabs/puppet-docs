@@ -50,12 +50,12 @@ For full details, see [Installing Puppet on Windows][installing].
 
 Windows nodes can run the following Puppet subcommands:
 
-* **`Puppet agent`,** to fetch configurations from a puppet master and apply them
+* **Puppet agent,** to fetch configurations from a puppet master and apply them
     * The agent functions as a standard Windows service, and agent runs can also be triggered manually.
     * Windows nodes can connect to any *nix puppet master server running Puppet 2.7.6 or higher.
-* **`Puppet apply`,** to apply configurations from local manifest files
-* **`Puppet resource`,** to directly manipulate system resources
-* **`Puppet inspect`,** to send audit reports for compliance purposes
+* **Puppet apply,** to apply configurations from local manifest files
+* **Puppet resource,** to directly manipulate system resources
+* **Puppet inspect,** to send audit reports for compliance purposes
 
 Because the installer doesn't alter the system's PATH variable, you must choose *Start Command Prompt with Puppet* from the Start menu to run Puppet commands manually.
 

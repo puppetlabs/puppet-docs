@@ -205,11 +205,12 @@ node objects can only be rendered as yaml.</p></li>
 <p>Prints the default terminus class for this subcommand. Note that different
 run modes may have different default termini; when in doubt, specify the
 run mode with the '--mode' option.</p></li>
-<li><p><code>init</code> - Install Puppet on a node and clasify it.:
+<li><p><code>init</code> - Install Puppet on a node and classify it.:
 <code>SYNOPSIS</code></p>
 
 <p>puppet node init [--terminus TERMINUS]
 [--extra HASH]
+[--facts=]
 <var>--login= | -l= | --username=</var>
 <var>--keyfile=</var>
 [--installer-payload=]
@@ -276,6 +277,20 @@ The version of facter that should be installed.
 This only makes sense in open source installation
 mode.</p>
 
+<p><var>--facts=</var> -
+To install custom facts during install of a node, use the format
+fact1=value,fact2=value. Currently, there is no way to escape
+the ',' character so facts cannot contain this character.</p>
+
+<p>Requirements:
+For community installs of puppet, i.e. not Puppet Enterprise,
+the Puppet Labs' <code>stdlib</code> module will be required. It can be found
+at 'http://forge.puppetlabs.com/puppetlabs/stdlib' or installed
+with the command 'puppet-module install puppetlabs/stdlib'.</p>
+
+<p>For Puppet Enterprise installs, there are no extra requirements
+for this option to work</p>
+
 <p><var>--install-script=</var> -
 Name of the installation template to use when installing Puppet. The current
 list of supported templates is: gems, puppet-enterprise</p>
@@ -333,6 +348,7 @@ Puppet Dashboard) when the agent checks in for the first time.</p></li>
 
 <p>puppet node install [--terminus TERMINUS]
 [--extra HASH]
+[--facts=]
 <var>--login= | -l= | --username=</var>
 <var>--keyfile=</var>
 [--installer-payload=]
@@ -348,7 +364,7 @@ Puppet Dashboard) when the agent checks in for the first time.</p></li>
 
 <p>Installs Puppet on an existing node at <var>hostname_or_ip</var>. It uses scp to
 copy installation requirements to the machine, and ssh to run the
-installation commmands remotely.</p>
+installation commands remotely.</p>
 
 <p>This action can be used on both physical and virtual machines.</p>
 
@@ -358,6 +374,20 @@ installation commmands remotely.</p>
 The version of facter that should be installed.
 This only makes sense in open source installation
 mode.</p>
+
+<p><var>--facts=</var> -
+To install custom facts during install of a node, use the format
+fact1=value,fact2=value. Currently, there is no way to escape
+the ',' character so facts cannot contain this character.</p>
+
+<p>Requirements:
+For community installs of puppet, i.e. not Puppet Enterprise,
+the Puppet Labs' <code>stdlib</code> module will be required. It can be found
+at 'http://forge.puppetlabs.com/puppetlabs/stdlib' or installed
+with the command 'puppet-module install puppetlabs/stdlib'.</p>
+
+<p>For Puppet Enterprise installs, there are no extra requirements
+for this option to work</p>
 
 <p><var>--install-script=</var> -
 Name of the installation template to use when installing Puppet. The current
@@ -408,7 +438,7 @@ Puppet Dashboard) when the agent checks in for the first time.</p></li>
 <li><p><code>save</code> - Invalid for this subcommand.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet node save [--terminus TERMINUS] [--extra HASH] <object /></p>
+<p>puppet node save [--terminus TERMINUS] [--extra HASH] <var>node object</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -443,15 +473,15 @@ Puppet Dashboard) when the agent checks in for the first time.</p></li>
 <p>Retrieve an "empty" (no classes, no ENC-imposed parameters, and an
 environment of "production") node:</p>
 
-<p>$ puppet node find somenode.example.com --terminus plain --render-as yaml</p>
+<p>$ puppet node find somenode.puppetlabs.lan --terminus plain --render-as yaml</p>
 
 <p>Retrieve a node using the puppet master's configured ENC:</p>
 
-<p>$ puppet node find somenode.example.com --terminus exec --mode master --render-as yaml</p>
+<p>$ puppet node find somenode.puppetlabs.lan --terminus exec --mode master --render-as yaml</p>
 
 <p>Retrieve the same node from the puppet master:</p>
 
-<p>$ puppet node find somenode.example.com --terminus rest --render-as yaml</p>
+<p>$ puppet node find somenode.puppetlabs.lan --terminus rest --render-as yaml</p>
 
 <h2 id="NOTES">NOTES</h2>
 
@@ -477,9 +507,10 @@ this face include:</p>
 Apache 2 license; see COPYING</p>
 
 </div>
-<hr />
 
-<p>Next: <a href="./compliance_basics.html">Compliance: Basics and UI</a> &rarr;</p>
+<hr>
+
+<p><a href="./compliance_basics.html">Next: Compliance Basics and UI</a> </p>
 
 <hr />
 

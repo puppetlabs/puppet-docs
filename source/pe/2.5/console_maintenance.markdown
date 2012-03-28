@@ -82,6 +82,7 @@ To restore the console's database from a file called `production.sql` to your `p
     RAILS_ENV=production \
     FILE=production.sql db:raw:restore
 
-* * *
 
-Next: [Puppet: Overview](./puppet_overview.html) &rarr;
+* * * 
+
+- [Next: Puppet Overview](./puppet_overview.html) 

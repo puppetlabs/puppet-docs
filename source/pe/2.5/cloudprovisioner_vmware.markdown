@@ -190,6 +190,8 @@ For example:
 
     $ puppet help node_vmware start
 
-* * *
 
-Next: [Cloud Provisioning: Provisioning with AWS](./cloudprovisioner_aws.html) &rarr;
+
+* * * 
+
+- [Next: Provisioning with AWS](./cloudprovisioner_aws.html) 

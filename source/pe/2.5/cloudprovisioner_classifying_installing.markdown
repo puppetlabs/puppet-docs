@@ -113,6 +113,8 @@ single command. For example:
 The `init` action combines the options for the `classify` and
 `install` actions. The invocation above will connect to the console, classify the node in the `appserver_pool` group, and then install Puppet Enterprise on this node.
 
-* * *
 
-Next: [Cloud Provisioning: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) &rarr;
+
+* * * 
+
+- [Next: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) 

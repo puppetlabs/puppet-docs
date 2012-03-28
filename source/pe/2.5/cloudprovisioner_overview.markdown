@@ -60,6 +60,8 @@ capability can be installed by setting the `q_puppet_cloud_install` option to `y
 
     q_puppet_cloud_install=y
 
-* * *
 
-Next: [Cloud Provisioning: Configuring and Troubleshooting](./cloudprovisioner_configuring.html) &rarr;
+
+* * * 
+
+- [Next: Configuring and Troubleshooting Cloud Provisioning](./cloudprovisioner_configuring.html)

@@ -2,21 +2,16 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Puppet » Overview"
-subtitle: "Puppet For New Users: Overview"
+subtitle: "An Overview of Puppet"
 ---
 
-Puppet is divided into two main components:
-
-* The puppet agent daemon runs on every agent node. At regular intervals, it pulls configuration "catalogs" from the puppet master and applies them to the local system. (Puppet catalogs are idempotent: they can be run any number of times and will always converge to the same state.) 
-* The puppet master service runs on a central server. It decides what configurations each agent node should receive, and compiles nodes' catalogs from "manifests" written by a user. 
-
+<!-- todo we could use something talking about what declarative configuration management is. -->
 
 Where Configurations Come From
 -----
 
 Configurations for nodes are compiled from [**manifests**](/learning/manifests.html), which are documents written in Puppet's custom language. Manifests declare [**resources**](/learning/ral.html), each of which represents the desired state of some _thing_ (software package, service, user account, file...) on a system. Resources are grouped into [**classes**](/learning/modules1.html#classes), and classes are grouped into [**modules**](/learning/modules1.html#modules). Modules are structured collections of manifest files where each file contains a single class (or defined type). 
 
-The puppet master's collection of modules lives in the `/etc/puppetlabs/puppet/modules` directory. Any class stored in one of the master's modules can be assigned to any of your nodes. 
 
 How Configurations are Assigned to Nodes
 -----
@@ -35,10 +30,10 @@ When New Configurations Take Effect
 
 By default, puppet agent will pull a catalog and run it every 30 minutes (counted from when the agent service started, rather than on the half-hour). You can change this by setting the [`runinterval`](/references/2.7.6/configuration.html#runinterval) option in an agent's [`/etc/puppetlabs/puppet/puppet.conf`](/guides/configuring.html) file to a new value. (The `runinterval` is measured in seconds.)
 
-If you need a node or group of nodes to retrieve a new configuration _now,_ use the "Control Puppet" tab of the console's live management page. <!-- TK add a link to that -->
+If you need a node or group of nodes to retrieve a new configuration _now,_ use [the "Control Puppet" tab](./console_live_puppet.html) of the console's live management page. 
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
-* * *
+* * * 
 
-Next: [Puppet: Your First Module](./puppet_first_module.html) &rarr;
+- [Next: Puppet Tools](./puppet_tools.html)

@@ -240,6 +240,8 @@ Defaults to `pe_accounts::data`.
 
 The path to the `sudoers` file on this system. Defaults to `/etc/sudoers`.
 
-* * *
 
-Next: [Maintenance: Common Configuration Errors](./maint_common_config_errors.html) &rarr;
+
+* * * 
+
+- [Next: Troubleshooting Common Problems and Solutions](./trouble_common_problems.html)

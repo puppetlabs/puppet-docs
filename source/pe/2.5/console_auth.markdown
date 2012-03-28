@@ -2,14 +2,14 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » User Management and Authorization"
-subtitle: "About Console Access Control"
+subtitle: "Managing Console Users"
 ---
 
 Starting with PE 2.5, the console supports individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows secure individual user accounts with different access privileges. Specifically, user accounts now allow the assignment of one of three access levels: read-only, read-write, or admin.
 
 Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol.
 
-**Note:** By default, CAS authentication for the console runs over port 443. If your console needs to access CAS on a different host/port, you can configure that in `/etc/puppetlabs/console_auth/cas_client_config_yml`.
+**Note:** By default, CAS authentication for the console runs over port 443. If your console needs to access CAS on a different host/port, you can configure that in `/etc/puppetlabs/console-auth/cas_client_config_yml`.
 
 User Access and Privileges
 -----
@@ -41,6 +41,7 @@ _Anonymous Users_ In addition to authenticated, per-user access, the console can
 
 Managing Accounts and Users
 ------
+
 ### Signing Up
 
 In order to sign up as a console user at any access level, an account must be created for you by an admin. Upon account creation, you will receive an email containing an activation link. You must follow this link in order to set your password and activate your account. The link will take you to a screen where you can enter and confirm your password, thereby completing account activation. Once you have completed activation you will be taken to the Login screen where you can enter your new credentials.
@@ -63,7 +64,7 @@ To view your user information, access the user account menu by clicking on your 
 
 Choose *My account* to open a page where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
 
-![user account screen](./images/console/user_account_signin.jpg) to do
+![user account screen](./images/console/user_account_signin.jpg)
 
 ### User Administration Tools
 
@@ -100,6 +101,8 @@ To delete an existing user (including pending users), click on the user's name i
 #### Bulk Editing
 
 Adding or editing users in bulk is not yet supported.
-* * *
 
-Next: [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
+
+* * * 
+
+- [Next: Grouping and Classifying Nodes](./console_classes_groups.html) 
