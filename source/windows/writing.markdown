@@ -22,8 +22,8 @@ nav: windows.html
 
 Just as on \*nix systems, Puppet manages resources on Windows using manifests written in the [Puppet language][lang]. There are several major differences to be aware of when writing manifests that manage Windows resources:
 
-* Windows uses the backslash as its directory separator character, and Ruby handles it differently in different circumstances. You should **learn when to use and when to avoid backslashes.**
-* Most classes written for \*nix systems will not work on Windows nodes; if you are managing a mixed environment, you should **use conditionals and Windows-specific facts** to govern the behavior of your classes. 
+* Windows primarily uses the backslash as its directory separator character, and Ruby handles it differently in different circumstances. You should **learn when to use and when to avoid backslashes.**
+* Most classes written for \*nix systems will not work on Windows nodes; if you are managing a mixed environment, you should **use conditionals and Windows-specific facts** to govern the behavior of your classes.
 * Puppet generally does the right thing with Windows line endings.
 * Puppet supports a slightly different set of resource types on Windows.
 
@@ -31,7 +31,7 @@ Just as on \*nix systems, Puppet manages resources on Windows using manifests wr
 File Paths on Windows
 -----
 
-Windows uses the backslash (`\`) as its directory separator character. Unfortunately, \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). The results are unavoidably complicated when using a system that interacts with \*nix and Windows systems as equal peers. 
+Windows file system APIs accept both the backslash (`\`) and forwardslash (`/`) to separate directory and file components in a path. However, several Windows programs only accept backslash. Unfortunately, \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). The results are unavoidably complicated when using a system that interacts with \*nix and Windows systems as equal peers.
 
 The following guidelines will help you use backslashes safely in Windows file paths.
 
@@ -49,21 +49,21 @@ Forward slashes **MUST** be used in:
         }
 * Puppet URLs in a [`file`][file] resource's `source` attribute.
 
-Forward slashes **MAY** be used in:
+Forward slashes **SHOULD** be used in:
 
 * The title or `path` attribute of a [`file`][file] resource
 * The `source` attribute of a [`package`][package] resource
 * Local paths in a [`file`][file] resource's `source` attribute
+* The `command` of an [`exec`][exec] resource, unless the executable requires backslashes, e.g. cmd.exe
 
 Forward slashes **MUST NOT** be used in:
 
-* The `command` of an [`exec`][exec] resource. <!-- TODO double-check this -->
 * The `command` of a [`scheduled_task`][scheduledtask] resource.
 * The `install_options` of a [`package`][package] resource.
 
 #### The Rule
 
-If Puppet itself is interpreting the file path, forward slashes are okay. If the file path is being passed directly to a Windows tool, forward slashes are not okay.
+If Puppet itself is interpreting the file path, forward slashes are okay. If the file path is being passed directly to a Windows program, forward slashes may not be okay.
 
 ### Using Backslashes in Double-Quoted Strings
 
