@@ -115,6 +115,5 @@ Note also that the UID of a user and the GIDs of its groups aren't cloned across
 [live_resources_sshd_withnodes]: ./images/console/live_resources_sshd_withnodes.png
 [live_resources_sshd]: ./images/console/live_resources_sshd.png
 
-* * *
 
-Next: [Console: Live Management: Controlling Puppet](./console_live_puppet.html) &rarr;
+- [Next: Live Management: Controlling Puppet](./console_live_puppet.html)

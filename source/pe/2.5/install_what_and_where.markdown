@@ -5,9 +5,8 @@ title: "PE 2.5 » Installing » What Gets Installed Where?"
 ---
 
 
-#What Gets Installed Where?
 
-##License File
+## License File
 
 
 Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed at `/etc/puppetlabs/license.key`.
@@ -135,6 +134,5 @@ Man pages for the Puppet subcommands are generated on the fly. To view them, run
 The `pe-man` command from previous versions of Puppet Enterprise is still functional, but it is deprecated and is slated for removal in a future release. 
 
 
-* * *
 
-Next: [Console: Accessing the Console](./console_accessing.html) &rarr;
+- [Next: Accessing the Console](./console_accessing.html) 

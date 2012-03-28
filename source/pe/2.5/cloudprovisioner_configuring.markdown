@@ -158,6 +158,6 @@ For Amazon Web Services you'll see the following error:
 Add the appropriate file or missing credentials to the file to resolve
 this issue.
 
-* * *
 
-Next: [Cloud Provisioning: Provisioning with VMware](./cloudprovisioner_vmware.html) &rarr;
+
+- [Next: Provisioning with VMware](./cloudprovisioner_vmware.html)

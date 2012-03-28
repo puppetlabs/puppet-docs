@@ -38,3 +38,4 @@ If you need a node or group of nodes to retrieve a new configuration _now,_ use 
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
 
+- [Next: Puppet Tools](./puppet_tools.html)

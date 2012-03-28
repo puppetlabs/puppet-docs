@@ -146,6 +146,6 @@ A custom report is split into a "Common Differences" tab and an "Individual Diff
 [group_same_change]: ./images/baseline/group_same_change.png
 [summary_with_differences]: ./images/baseline/summary_with_differences.png
 
-* * *
 
-Next: [Compliance: Tutorial](./compliance_tutorial.html) &rarr;
+
+- [Next: Compliance Tutorial](./compliance_tutorial.html)

@@ -2,7 +2,7 @@
 nav: pe25.html
 layout: pe2experimental
 title: "PE 2.5 » Console » User Management and Authorization"
-subtitle: "About Console Access Control"
+subtitle: "Managing Console Users"
 ---
 
 Starting with PE 2.5, the console supports individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows secure individual user accounts with different access privileges. Specifically, user accounts now allow the assignment of one of three access levels: read-only, read-write, or admin.
@@ -100,6 +100,6 @@ To delete an existing user (including pending users), click on the user's name i
 #### Bulk Editing
 
 Adding or editing users in bulk is not yet supported.
-* * *
 
-Next: [Console: Grouping and Classifying Nodes](./console_classes_groups.html) &rarr;
+
+- [Next: Grouping and Classifying Nodes](./console_classes_groups.html) 

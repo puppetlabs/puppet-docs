@@ -100,6 +100,5 @@ For security, accessing the console requires a user name and password. In PE 2.5
 
 Since the console is the main point of control for your infrastructure, you will probably want to decline your browser's offer to remember its password. 
 
-* * *
 
-Next: [Console: Navigating the Console](./console_navigating.html) &rarr;
+- [Next: Navigating the Console](./console_navigating.html) 

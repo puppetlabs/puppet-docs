@@ -40,3 +40,5 @@ Printable References
 The module layout cheat sheet is useful when writing your own modules or hacking existing modules.
 
 * [Module Layout Cheat Sheet](/module_cheat_sheet.pdf)
+
+- [Next: Puppet Data Library](./puppet_data_library.html)

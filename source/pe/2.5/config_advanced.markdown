@@ -205,9 +205,7 @@ The console ships with a worker process manager, which can be found at `script/d
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 
-* * *
 
-Next: [Advanced Configuration: Installing Additional Components](./config_installing_additional.html) &rarr;
+- [Next: Installing Additional Components](./config_installing_additional.html) 
 
-* * *
 

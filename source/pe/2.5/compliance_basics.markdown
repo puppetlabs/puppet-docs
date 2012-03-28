@@ -118,6 +118,6 @@ Although the console allows groups to contain other groups, a compliance group p
 [core_group_page]: ./images/baseline/core_group_page.png
 [core_group_custom_report]: ./images/baseline/core_group_custom_report.png
 
-* * *
 
-Next: [Compliance: Using the Compliance Workflow](./compliance_using.html) &rarr;
+
+- [Next: Using the Compliance Workflow](./compliance_using.html) 

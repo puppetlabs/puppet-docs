@@ -166,6 +166,6 @@ If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failin
 
 <!-- to do I have a ton of pending tasks! how do I tune the delayed_job queue? -->
 
-* * *
 
-Next: <!-- TODO --> nothing &rarr;
+
+- [Next: Appendix](./appendix.html)

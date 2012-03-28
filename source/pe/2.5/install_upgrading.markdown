@@ -9,6 +9,8 @@ To upgrade from a previous version of Puppet Enterprise, use the same installer 
 
 Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version. 
 
+> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows nodes, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html).
+
 {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
 Checking For Updates
@@ -298,6 +300,5 @@ On each agent node you upgrade to PE 2.5, make the following edits to `/etc/pupp
         # if you didn't originally enable pluginsync, enable it now:
         pluginsync = true
 
-* * *
 
-Next: [Installing: Uninstalling](./install_uninstalling.html) &rarr;
+- [Next: Uninstalling](./install_uninstalling.html) 

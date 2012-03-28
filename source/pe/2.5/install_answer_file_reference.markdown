@@ -224,6 +224,5 @@ Uninstaller Answers
 : **String** --- The MySQL root user's password, to be used when deleting
   databases. Only used when `q_pe_remove_db` is Y.
 
-* * *
 
-Next: [Installing: What gets installed where?](./install_what_and_where.html) &rarr;
+- [Next: What gets installed where?](./install_what_and_where.html)

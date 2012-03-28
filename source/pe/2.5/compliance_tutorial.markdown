@@ -81,6 +81,6 @@ It's an otherwise uneventful day.
 [tutorial_reject_user]: ./images/baseline/tutorial_reject_user.png
 [tutorial_overview]: ./images/baseline/tutorial_overview.png
 
-* * *
 
-Next: [PE Accounts Module: The `pe_accounts::user` Type](./accounts_user_type.html) &rarr;
+
+- [Next: The `pe_accounts::user` Type](./accounts_user_type.html) 

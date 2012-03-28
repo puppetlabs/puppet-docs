@@ -59,6 +59,5 @@ Classes aren't automatically detected or validated; you have to enter a class's 
 [nav_node]: ./images/console/nav_node.png
 [nav_nodestatus]: ./images/console/nav_nodestatus.png
 
-* * *
 
-Next: [Console: Viewing Reports and Inventory Data](./console_reports.html) &rarr;
+- [Next: Viewing Reports and Inventory Data](./console_reports.html)

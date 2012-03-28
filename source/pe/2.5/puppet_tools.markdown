@@ -49,3 +49,6 @@ Advanced Tools
 
 * [See the cloud provisioning chapter of this guide](./cloudprovisioner_overview.html) for more about the cloud provisioning tools. 
 * [See the orchestration chapter of this guide](./orchestration_overview.html) for more about the command-line orchestration tools. 
+
+
+- [Next: Puppet Modules and Manifests](./puppet_modules_manifests.html)
