@@ -115,4 +115,6 @@ The `init` action combines the options for the `classify` and
 
 
 
+* * * 
+
 - [Next: Man Page: puppet node_vmware](./cloudprovisioner_man_node_vmware.html) 

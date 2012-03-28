@@ -102,4 +102,6 @@ To delete an existing user (including pending users), click on the user's name i
 Adding or editing users in bulk is not yet supported.
 
 
+* * * 
+
 - [Next: Grouping and Classifying Nodes](./console_classes_groups.html) 

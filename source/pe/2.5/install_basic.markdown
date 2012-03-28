@@ -284,4 +284,6 @@ When you purchased Puppet Enterprise, you should have been sent a `license.key` 
 
 
 
+* * * 
+
 - [Next: Upgrading](./install_upgrading.html)

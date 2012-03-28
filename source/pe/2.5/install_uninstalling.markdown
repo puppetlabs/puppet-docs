@@ -59,4 +59,6 @@ Thus, to remove every trace of PE from a system, you would run:
     # sudo ./puppet-enterprise-uninstaller -d -p
 
 
+* * * 
+
 - [Next: Automated Installation](./install_automated.html)

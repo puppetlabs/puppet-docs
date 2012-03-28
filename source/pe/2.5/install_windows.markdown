@@ -156,4 +156,6 @@ For more details about using Puppet on Windows, see:
 * [Running Puppet on Windows][running]
 * [Writing Manifests for Windows](/windows/writing.html)
 
+* * * 
+
 - [Next: Upgrading](./install_upgrading.html)

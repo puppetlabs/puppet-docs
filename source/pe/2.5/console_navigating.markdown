@@ -60,4 +60,6 @@ Classes aren't automatically detected or validated; you have to enter a class's 
 [nav_nodestatus]: ./images/console/nav_nodestatus.png
 
 
+* * * 
+
 - [Next: Viewing Reports and Inventory Data](./console_reports.html)

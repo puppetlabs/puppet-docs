@@ -46,4 +46,6 @@ The Puppet Resource Dependency Graph provides a complete, mathematical graph of 
 [Learn more about the Puppet Resource Dependency Graph here](/guides/faq.html#how-do-i-use-puppets-graphing-support)
 
 
+* * * 
+
 - [Next: Puppet References](./puppet_references.html)

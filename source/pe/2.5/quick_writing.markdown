@@ -290,4 +290,6 @@ You have now performed the core workflows of an intermediate Puppet user. In the
 * Create new modules and write new classes to manage many types of resources, including files, services, packages, user accounts, and more. 
 * Build and curate a site module to empower junior admins and simplify the decisions involved in deploying new machines. 
 
+* * * 
+
 - [Next: System Requirements](./install_system_requirements.html)

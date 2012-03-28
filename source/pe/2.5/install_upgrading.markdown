@@ -301,4 +301,6 @@ On each agent node you upgrade to PE 2.5, make the following edits to `/etc/pupp
         pluginsync = true
 
 
+* * * 
+
 - [Next: Uninstalling](./install_uninstalling.html) 

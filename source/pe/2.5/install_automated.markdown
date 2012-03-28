@@ -70,4 +70,6 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
 * Installing with the `-A` option will prompt the user for any missing answers. 
 
 
+* * * 
+
 - [Next: Answer File Reference](./install_answer_file_reference.html) &rarr;

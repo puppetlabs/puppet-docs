@@ -93,4 +93,6 @@ As a Puppet Enterprise customer you are more than welcome to participate in our 
 
 
 
+* * * 
+
 - [Next: Quick Start](./quick_start.html)

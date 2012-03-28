@@ -225,4 +225,6 @@ Uninstaller Answers
   databases. Only used when `q_pe_remove_db` is Y.
 
 
+* * * 
+
 - [Next: What gets installed where?](./install_what_and_where.html)

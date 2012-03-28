@@ -168,4 +168,6 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 [classes_typingclass]: ./images/console/classes_typingclass.png
 
 
+* * * 
+
 - [Next: Live Management](./console_live.html)

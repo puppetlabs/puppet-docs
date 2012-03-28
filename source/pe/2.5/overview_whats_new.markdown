@@ -27,4 +27,6 @@ With PE 2.5, system administrators can access detailed information about their i
 See the [Puppet Enterprise 2.5 release notes](./appendix.html#release-notes) for more details.
 
 
+* * * 
+
 - [Next: Getting Support](./overview_getting_support.html)

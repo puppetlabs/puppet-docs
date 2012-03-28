@@ -90,4 +90,6 @@ Filtering by Puppet class can be the most powerful filtering tool on this page, 
 [live_nav_tabs]: ./images/console/live_nav_tabs.png
 
 
+* * * 
+
 - [Next: Live Management: Managing Resources](./console_live_resources.html)
