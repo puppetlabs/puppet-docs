@@ -13,7 +13,7 @@ title: "Publishing Modules on the Forge"
 Publishing Modules on the Forge
 =====
 
-**TODO: This is a placeholder page, which will be fleshed out further at a later date. We know what should be on it, but haven't had a chance to write it yet.**
+**This is a placeholder page, which will be fleshed out further at a later date. We know what should be on it, but haven't had a chance to write it yet.**
 
 * Continue reading to learn how to publish your modules to the Puppet Forge.
 * [See "Module Fundamentals"][fundamentals] for how to write and use your own Puppet modules.

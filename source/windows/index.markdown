@@ -16,8 +16,8 @@ nav: windows.html
 [writing]: ./writing.html
 
 
-[downloads]: <!-- TODO -->
-[pedownloads]: <!-- todo -->
+[downloads]: http://downloads.puppetlabs.com/windows
+[pedownloads]: http://info.puppetlabs.com/download-pe.html
 
 [Installing][]
 -----
