@@ -13,6 +13,9 @@ Depending on the version you upgrade from, **you may need to take extra steps** 
 
 {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
+**Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
+
+
 Checking For Updates
 -----
 

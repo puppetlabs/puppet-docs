@@ -140,7 +140,7 @@ This should properly generate a new signing request.
 
 ### Can Agents Reach the Filebucket Server?
 
-Agents attempt to back up files to the puppet master, but they get the filebucket hostname from the site manifest instead of their configuration file. If puppet agent is logging "could not back up" errors, your nodes are probably trying to back up files to the wrong hostname. These errors look like this: 
+Agents attempt to back up files to the filebucket on the puppet master, but they get the filebucket hostname from the site manifest instead of their configuration file. If puppet agent is logging "could not back up" errors, your nodes are probably trying to back up files to the wrong hostname. These errors look like this: 
 
     err: /Stage[main]/Pe_mcollective/File[/etc/puppetlabs/mcollective/server.cfg]/content:
     change from {md5}778087871f76ce08be02a672b1c48bdc to

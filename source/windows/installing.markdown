@@ -61,6 +61,8 @@ The installer must be run with elevated privileges. Installing Puppet **does not
 
 The only information you need to specify during installation is **the hostname of your puppet master server:** (If you are using puppet apply for node configuration instead of a puppet master, you can just enter some dummy text here.)
 
+Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No licence key is needed to run PE on up to ten nodes.
+
 ![Puppet master hostname selection][server]
 
 ### After Installation 
@@ -162,7 +164,6 @@ misc      | resources
 puppet    | Puppet source
 service   | code to run puppet agent as a service
 sys       | Ruby and other tools
-
 
 
 ### Data Directory

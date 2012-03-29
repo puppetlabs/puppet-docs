@@ -12,7 +12,7 @@ We recommend installing [Process Explorer](http://en.wikipedia.org/wiki/Process_
 
 ### Logging
 
-By default, Puppet agent logs to a file `var\log\puppetd.log` within Puppet's data directory, for example, `C:\ProgramData\PuppetLabs\puppet\var\log\puppetd.log`. You can find this value by using the `Start Command Prompt with Puppet` shortcut, right-clicking, and selecting `Run as Administrator`. Then type: `puppet agent --configprint puppetdlog`. The `Run as Administrator` option is important, since it allows puppet to print the puppetdlog configuration setting while running with elevated privileges, (i.e. the same privileges as puppet when running as a service under the `LocalSystem` account).
+By default, puppet agent logs to a file `var\log\puppetd.log` within Puppet's data directory, for example, `C:\ProgramData\PuppetLabs\puppet\var\log\puppetd.log`. You can find this value by using the `Start Command Prompt with Puppet` shortcut, right-clicking, and selecting `Run as Administrator`. Then type: `puppet agent --configprint puppetdlog`. The `Run as Administrator` option is important, since it allows puppet to print the puppetdlog configuration setting while running with elevated privileges, (i.e. the same privileges as puppet when running as a service under the `LocalSystem` account).
 
 ## Common Issues
 
@@ -20,9 +20,9 @@ By default, Puppet agent logs to a file `var\log\puppetd.log` within Puppet's da
 
 The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in `puppet.conf`.
 
-In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, un-install or re-install.
+In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
-To fully clean out a system make sure to delete the `PuppetLabs` folder (see above).
+To fully clean out a system make sure to delete the `PuppetLabs` directory (see above).
 
 Similarly, the MSI will not overwrite the custom facts written to the `PuppetLabs\facter\facts.d` directory.
 
@@ -34,7 +34,7 @@ Puppet may fail to install when trying to perform an unattended install from the
 
     msiexec /qn /i puppet.msi
 
-To get troubleshooting data, specify an installation log, e.g. /l*v install.txt. Look in teh log for entries like the following:
+To get troubleshooting data, specify an installation log, e.g. /l*v install.txt. Look in the log for entries like the following:
 
     MSI (s) (7C:D0) [17:24:15:870]: Rejecting product '{D07C45E2-A53E-4D7B-844F-F8F608AFF7C8}': Non-assigned apps are disabled for non-admin users.
     MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708 
