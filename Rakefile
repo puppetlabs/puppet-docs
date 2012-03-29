@@ -208,13 +208,16 @@ namespace :references do
 
 end
 
+desc "Deploy the site to the production servers"
 task :deploy do
   mirrors = ['mirror0', 'mirror2']
   Rake::Task['build'].invoke
   mirrors.each do |mirror|
-    Rake::Task[mirror].invoke
-    Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
-    Rake::Task['vlad:release'].invoke
+    sh "rake #{mirror} vlad:release"
+    # Note that the below will always fail on the second mirror, even though it should totally work. Life is filled with mystery. >:|
+    # Rake::Task[mirror].invoke
+    # Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
+    # Rake::Task['vlad:release'].invoke
   end
 end
 
