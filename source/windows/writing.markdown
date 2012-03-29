@@ -13,7 +13,7 @@ nav: windows.html
 [file]: /references/latest/type.html#file
 [user]: /references/latest/type.html#user
 [group]: /references/latest/type.html#group
-[scheduled_task]: /references/latest/type.html#scheduled_task
+[scheduled_task]: /references/latest/type.html#scheduledtask
 [package]: /references/latest/type.html#package
 [service]: /references/latest/type.html#service
 [exec]: /references/latest/type.html#exec
@@ -22,8 +22,8 @@ nav: windows.html
 
 Just as on \*nix systems, Puppet manages resources on Windows using manifests written in the [Puppet language][lang]. There are several major differences to be aware of when writing manifests that manage Windows resources:
 
-* Windows uses the backslash as its directory separator character, and Ruby handles it differently in different circumstances. You should **learn when to use and when to avoid backslashes.**
-* Most classes written for \*nix systems will not work on Windows nodes; if you are managing a mixed environment, you should **use conditionals and Windows-specific facts** to govern the behavior of your classes. 
+* Windows primarily uses the backslash as its directory separator character, and Ruby handles it differently in different circumstances. You should **learn when to use and when to avoid backslashes.**
+* Most classes written for \*nix systems will not work on Windows nodes; if you are managing a mixed environment, you should **use conditionals and Windows-specific facts** to govern the behavior of your classes.
 * Puppet generally does the right thing with Windows line endings.
 * Puppet supports a slightly different set of resource types on Windows.
 
@@ -31,7 +31,7 @@ Just as on \*nix systems, Puppet manages resources on Windows using manifests wr
 File Paths on Windows
 -----
 
-Windows uses the backslash (`\`) as its directory separator character. Unfortunately, \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). The results are unavoidably complicated when using a system that interacts with \*nix and Windows systems as equal peers. 
+Windows file system APIs accept both the backslash (`\`) and forwardslash (`/`) to separate directory and file components in a path. However, several Windows programs only accept backslash. Unfortunately, \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). The results are unavoidably complicated when using a system that interacts with \*nix and Windows systems as equal peers.
 
 The following guidelines will help you use backslashes safely in Windows file paths.
 
@@ -49,21 +49,21 @@ Forward slashes **MUST** be used in:
         }
 * Puppet URLs in a [`file`][file] resource's `source` attribute.
 
-Forward slashes **MAY** be used in:
+Forward slashes **SHOULD** be used in:
 
 * The title or `path` attribute of a [`file`][file] resource
 * The `source` attribute of a [`package`][package] resource
 * Local paths in a [`file`][file] resource's `source` attribute
+* The `command` of an [`exec`][exec] resource, unless the executable requires backslashes, e.g. cmd.exe
 
 Forward slashes **MUST NOT** be used in:
 
-* The `command` of an [`exec`][exec] resource. <!-- TODO double-check this -->
-* The `command` of a [`scheduled_task`][scheduled_task] resource.
+* The `command` of a [`scheduled_task`][scheduledtask] resource.
 * The `install_options` of a [`package`][package] resource.
 
 #### The Rule
 
-If Puppet itself is interpreting the file path, forward slashes are okay. If the file path is being passed directly to a Windows tool, forward slashes are not okay.
+If Puppet itself is interpreting the file path, forward slashes are okay. If the file path is being passed directly to a Windows program, forward slashes may not be okay.
 
 ### Using Backslashes in Double-Quoted Strings
 
@@ -107,7 +107,7 @@ The following facts can help you determine whether a given machine is running Wi
 The following facts are either Windows-only, or have different values on Windows than on \*nix:
 
 * `env_windows_installdir` --- This fact will contain the directory in which Puppet was installed.
-* `id` --- This fact will be `<HOSTNAME>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
+* `id` --- This fact will be `<DOMAIN>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
 
 
 Line Endings in Windows Text Files
@@ -115,9 +115,9 @@ Line Endings in Windows Text Files
 
 Windows uses CRLF line endings instead of \*nix's LF line endings. However, in text files managed by Puppet, line endings generally behave as expected.
 
-* If the contents of a file are specified with the `content` attribute, Puppet will automatically convert standard Unix newlines (`\n` or a literal line break) in the manifest or template to Windows newlines. <!-- TODO CHECK THIS, it may be wrong. -->
+* If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` sequence should be specified in the content parameter.
 * If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-
+* Puppet manages `flat` file types in text mode, so it will automatically translate between Windows and \*nix line endings. For example, `%windir%\system32\drivers\etc\hosts`.
 
 
 Resource Types
@@ -171,10 +171,10 @@ On Windows, user and group account names can take multiple forms, e.g. `Administ
 Puppet can create, edit, and delete local groups, and can manage a group's members. Puppet does not support managing domain group accounts, but a local group can include both local and domain users as members.
 
 * The group SID is available as a read-only parameter. Attempting to set the parameter will fail.
-* Group names are case-sensitive in puppet manifests, but insensitive on Windows (#9506). Make sure to consistently use the same case in manifests.
+* Group names are case-sensitive in puppet manifests, but insensitive on Windows. Make sure to consistently use the same case in manifests.
 * Nested groups are not supported. (Group members must be users, not other groups.)
 
-### [`scheduled_task`][scheduled_task]
+### [`scheduled_task`][scheduledtask]
 
 {% highlight ruby %}
     scheduled_task { 'Daily task':
@@ -191,7 +191,7 @@ Puppet can create, edit, and delete local groups, and can manage a group's membe
     }
 {% endhighlight %}
 
-Puppet can create, edit, and delete scheduled tasks. It can manage the task name, the enabled/disabled status, the command, any arguments, the working directory, the user and password, and triggers. For more information, see [the reference documentation for the `scheduled_task` type][scheduled_task]. This is a Windows-only resource type.
+Puppet can create, edit, and delete scheduled tasks. It can manage the task name, the enabled/disabled status, the command, any arguments, the working directory, the user and password, and triggers. For more information, see [the reference documentation for the `scheduled_task` type][scheduledtask]. This is a Windows-only resource type.
 
 * Puppet does not support "every X minutes" type triggers.
 

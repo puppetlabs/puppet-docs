@@ -69,7 +69,7 @@ For example:
     msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
 
 [s]: /references/latest/configuration.html#server
-[c]: /references/latest/configuration.html#ca_server
+[c]: /references/latest/configuration.html#caserver
 [r]: /references/latest/configuration.html#certname
 
 Upgrading
@@ -137,8 +137,8 @@ When run with elevated privileges --- Puppet's intended state --- the data direc
 
 OS Version| Path                                            | Default
 ----------|-------------------------------------------------|---------
-2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet`
-7, 2008   | `%PROGRAMDATA%\PuppetLabs`                      | `C:\ProgramData\PuppetLabs\puppet`
+2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet`
+7, 2008   | `%PROGRAMDATA%\PuppetLabs\puppet`                      | `C:\ProgramData\PuppetLabs\puppet`
 
 Since CommonAppData directory is a system folder, it is hidden by default. See <http://support.microsoft.com/kb/812003> for steps to show system and hidden files and folders.
 

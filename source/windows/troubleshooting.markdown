@@ -12,21 +12,23 @@ We recommend installing [Process Explorer](http://en.wikipedia.org/wiki/Process_
 
 ### Logging
 
-By default, Puppet agent logs to a file `var\log\puppetd.log` within Puppet's data directory, for example, `C:\ProgramData\PuppetLabs\puppet\var\log\puppetd.log`. You can find this value by using the `Start Command Prompt with Puppet` shortcut, right-clicking, and selecting `Run as Administrator`. Then type: `puppet agent --configprint puppetdlog`. The `Run as Administrator` option is important, since it allows puppet to print the puppetdlog configuration setting while running with elevated privileges, (i.e. the same privileges as puppet when running as a service under the `LocalSystem` account).
+Puppet's `puppetd` log file can be found at [`<data directory>`][datadirectory]`\var\log\puppetd.log`. To enable debugging, stop the puppet service and restart it as:
+
+    c:\>sc stop puppet && sc start puppet --debug --trace
+
+Puppet's windows service component also writes to the `windows.log` within the same `log` directory and can be used to debug issues with the service.
 
 ## Common Issues
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in `puppet.conf`.
+The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, un-install or re-install.
 
-To fully clean out a system make sure to delete the `PuppetLabs` folder (see above).
+To fully clean out a system make sure to delete the [`<data directory>`][datadirectory].
 
 Similarly, the MSI will not overwrite the custom facts written to the `PuppetLabs\facter\facts.d` directory.
-
-Note, however, that using the [createLine](https://github.com/puppetlabs/puppet_for_the_win/blob/master/wix/puppet.wxs#L184) attribute implements the behavior of not replacing existing keys.
 
 ### Unattended installation
 
