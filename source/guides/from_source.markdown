@@ -135,6 +135,7 @@ You can now interactively run the main puppet agent, puppet master, and puppet a
 
 For testing purposes, you will usually want to run puppet master with the `--verbose` and `--no-daemonize` options and run puppet agent with the `--test` option. For day-to-day use, you should create an init script for puppet agent (see the examples in the source's `conf/` directory) and use a Rack server like Passenger or Unicorn to run puppet master.
 
+> Note: You should never attempt to run Puppet or Facter binaries while your current working directory is in `/usr/src`. This is because Ruby automatically adds the current directory to the load path, which can cause the projects' spec tests to accidentally be loaded as libraries. 
 
 Periodically Update the Source or Switch Versions
 -----
