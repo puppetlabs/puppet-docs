@@ -5,9 +5,9 @@ title: "PE 2.5 » Accounts Module » The pe_accounts Class"
 subtitle: "The pe_accounts Class"
 ---
 
-This class is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise.
+This class is part of `pe_accounts`, a pre-built Puppet module included with Puppet Enterprise.
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** The `pe_accounts` not yet supported on Windows nodes.
+> ![windows-only](./images/windows-logo-small.jpg) **NOTE:**  `pe_accounts`  is not yet supported on Windows nodes.
 
 The `pe_accounts` class can do any or all of the following:
 
@@ -27,7 +27,7 @@ To manage users and groups with the `pe_accounts` class, you **must** prepare a 
 
 **Note:** In Puppet Enterprise 1.2, this class was called `accounts`; it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details. 
 
-**Note:** In Puppet Enterprise 2.0.0, this class is assigned to the console's default group with no parameters, which will prevent it from being redeclared with any configuration. To use the class, you must:
+**Note:** In Puppet Enterprise 2.0 and higher, this class is assigned to the console's default group with no parameters, which will prevent it from being redeclared with any configuration. To use the class, you must:
 
 * Unassign it from the default group in the console
 * Create a wrapper module that declares this class with the necessary parameters
@@ -71,7 +71,7 @@ Account data can come from one of two sources: **a Puppet class that declares th
 
 ### Using a Puppet Class as a Data Store
 
-This option is most useful if you are able to generate or import your user data with a [custom function](/guides/custom_functions.html), which may be querying from an LDAP directory or some other arbitrary data source.
+This option is most useful if you are able to generate or import your user data with a [custom function](/guides/custom_functions.html), which may be querying from an LDAP directory or some other data source.
 
 The Puppet class containing the data **must have a name ending in `::data`.** (We recommend `site::pe_accounts::data`.) This class must declare the following variables: 
 
@@ -205,21 +205,21 @@ Parameters
 
 ### `manage_groups`
 
-Whether to manage a set of shared groups, which can be used by all `pe_accounts::user` resources. If true, your data store must define these groups in the `$groups_hash` variable or the `pe_accounts_groups_hash.yaml` file. Allowed values are `true` and `false`; defaults to `true`.
+Specifies whether or not to manage a set of shared groups, which can be used by all `pe_accounts::user` resources. If true, your data store must define these groups in the `$groups_hash` variable or the `pe_accounts_groups_hash.yaml` file. Allowed values are `true` and `false`; defaults to `true`.
 
 ### `manage_users`
 
-Whether to manage a set of `pe_accounts::user` resources. If true, your data store must define these users in the `$users_hash` variable or the `pe_accounts_users_hash.yaml` file. Allowed values are `true` and `false`; defaults to `true`.
+Specifies whether or not to manage a set of `pe_accounts::user` resources. If true, your data store must define these users in the `$users_hash` variable or the `pe_accounts_users_hash.yaml` file. Allowed values are `true` and `false`; defaults to `true`.
 
 ### `manage_sudoers`
 
-Whether to add sudo rules to the node's `sudoers` file. If true, the class will add <!-- TK why the % sign --> `%sudo` and `%sudonopw` groups to the `sudoers` file and give them full sudo and passwordless sudo privileges respectively. You will need to make sure that the `sudo` and `sudonopw` groups exist in the groups hash, and that your chosen users have those groups in their `groups` arrays. Managing `sudoers` is not supported on Solaris.
+Specifies whether or not to add sudo rules to the node's `sudoers` file. If true, the class will add <!-- TK why the % sign --> `%sudo` and `%sudonopw` groups to the `sudoers` file and give them full sudo and passwordless sudo privileges respectively. You will need to make sure that the `sudo` and `sudonopw` groups exist in the groups hash, and that your chosen users have those groups in their `groups` arrays. Managing `sudoers` is not supported on Solaris.
 
 Allowed values are `true` and `false`; defaults to `false`.
 
 ### `data_store`
 
-Which data store to use for accounts and groups.
+Specifies the data store to use for accounts and groups.
 
 When set to `namespace`, data will be read from the puppet class specified in the `data_namespace` parameter.  When set to `yaml`, data will be read from specially-named YAML files in the `/etc/puppetlabs/puppet/data` directory. (If you have changed your `$confdir`, it will look in `$confdir/data`.) Example YAML files are provided in the `ext/data/` directory of this module.
 
@@ -227,7 +227,7 @@ Allowed values are `yaml` and `namespace`; defaults to `namespace`.
 
 ### `data_namespace`
 
-The Puppet namespace from which to read data. This must be the name of a Puppet class, and must end with `::data` (we recommend using `site::pe_accounts::data`); the class will automatically be declared by the `pe_accounts` class. The class cannot have any parameters, and must declare variables named:
+Specifies the Puppet namespace from which to read data. This must be the name of a Puppet class, and must end with `::data` (we recommend using `site::pe_accounts::data`); the class will automatically be declared by the `pe_accounts` class. The class cannot have any parameters, and must declare variables named:
 
 - `$users_hash`
 - `$groups_hash`
@@ -238,7 +238,7 @@ Defaults to `pe_accounts::data`.
 
 ### `sudoers_path`
 
-The path to the `sudoers` file on this system. Defaults to `/etc/sudoers`.
+Specifies the path to the `sudoers` file on this system. Defaults to `/etc/sudoers`.
 
 
 

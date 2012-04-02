@@ -5,7 +5,7 @@ title: "PE 2.5 » Accounts Module » The pe_accounts::user Type"
 subtitle: "The pe_accounts::user Type"
 ---
 
-This defined type is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise. It is available for use in your own manifests.
+This defined type is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise for use in your own manifests.
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** The `pe_accounts` module is not yet supported on Windows nodes.
 
@@ -18,9 +18,9 @@ The `pe_accounts::user` type declares a user account. It offers several benefits
 
 Puppet Enterprise uses this type internally to manage some of its own system users, but also exposes it as a public interface. 
 
-The `pe_accounts::user` type can be used on all of the platforms supported by Puppet Enterprise.
+The `pe_accounts::user` type can be used on all of the platforms supported by Puppet Enterprise (except Windows).
 
-**Note:** In Puppet Enterprise 1.2, this type was called `accounts::user`; it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details. 
+**Note:** In Puppet Enterprise 1.2, this type was called `accounts::user`. it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details. 
 
 ## Usage Example
 
@@ -116,7 +116,7 @@ The user's name.  While limitations differ by operating system, it is generally 
 
 ### `ensure`
 
-Whether the user and its primary group should exist.  Valid values are `present` and `absent`. Defaults to `present`.
+Specifies whether the user and its primary group should exist.  Valid values are `present` and `absent`. Defaults to `present`.
 
 ### `shell`
 
@@ -136,7 +136,7 @@ The user's uid number.  Must be specified numerically; defaults to being automat
 
 ### `gid`
 
-The gid of the primary group with the same name as the user; the `pe_accounts::user` type will create and manage this group. Must be specified numerically; defaults to being automatically determined (`undef`). 
+The gid of the primary group with the same name as the user. The `pe_accounts::user` type will create and manage this group. Must be specified numerically, defaults to being automatically determined (`undef`). 
 
 ### `groups`
 
@@ -152,7 +152,7 @@ The user's password, in whatever encrypted format the local machine requires. Be
 
 ### `locked`
 
-Whether the user should be prevented from logging in; set this to `true` for system users and users whose login privileges have been revoked. Valid values are `true` and `false`; defaults to false. 
+Whether the user should be prevented from logging in. Set this to `true` for system users and users whose login privileges have been revoked. Valid values are `true` and `false`; defaults to false. 
 
 ### `sshkeys`
 
