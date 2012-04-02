@@ -127,9 +127,9 @@ When declaring a Windows exec resource, the path to the resource typically depen
       path => $::path
     }
 
-### Shell Built-ins
+### Shell Builtins
 
-Puppet does not currently support a shell provider on Windows, so executing shell built-ins directly will fail:
+Puppet does not currently support a shell provider on Windows, so executing shell builtins directly will fail:
 
     exec { 'echo foo': 
       path => 'c:\windows\system32;c:\windows'
@@ -137,7 +137,7 @@ Puppet does not currently support a shell provider on Windows, so executing shel
     ...
     err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could not find command 'echo'
 
-Instead, wrap the built-in in `cmd.exe`:
+Instead, wrap the builtin in `cmd.exe`:
 
     exec { 'cmd.exe /c echo foo': 
       path => 'c:\windows\system32;c:\windows'
@@ -160,7 +160,7 @@ By default, powershell enforces a restricted execution policy which prevents the
 
 ### Package
 
-The source of an MSI package must be a file on either a local filesystem or on a network mapped drive. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master, and then defining a package whose source is the local file.
+The source of an MSI package must be a file on either a local filesystem or on a network mapped drive. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master and then defining a package whose source is the local file.
 
 ### Service
 
@@ -202,11 +202,11 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 
-    This error can occur when attempting to install a non-MSI package. Puppet only supports MSI packages. To install non-MSI packages, use an exec resource with an onlyif parameter.
+    This error can occur when attempting to install a non-MSI package. Puppet only supports MSI packages. To install non-MSI packages, use an exec resource with an `onlyif` parameter.
 
 * "`err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.`"
 
-    This error is usually a sign that the master has already issued a certificate to the agent. This can occur if the agent's SSL directory is deleted after it has retrieved a certificate from the master, or when running the agent in two different security contexts. For example, if puppet agent is running as a service, and then trying to run `puppet agent` from the command line in a non-elevated security context. Specifically, this would happen if you've selected `Start Command Prompt with Puppet` but did not elevate privileges using `Run as Administrator`.
+    This error is usually a sign that the master has already issued a certificate to the agent. This can occur if the agent's SSL directory is deleted after it has retrieved a certificate from the master, or when running the agent in two different security contexts. For example, running puppet agent as a service and then trying to run `puppet agent` from the command line with non-elevated security. Specifically, this would happen if you've selected `Start Command Prompt with Puppet` but did not elevate privileges using `Run as Administrator`.
 
 * "`err: Could not evaluate: Could not retrieve information from environment production source(s) puppet://puppet.domain.com/plugins.`"
 
@@ -214,7 +214,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed. This is often because the time is out of sync on the server or client.`"
 
-    Windows agents that are part of an Active Directory domain should automatically have their time synchronized with AD. For agents that are not part of an Active Directory domain, you may need to enable and add the Windows time service manually:
+    Windows agents that are part of an Active Directory domain should automatically have their time synchronized with AD. For agents that are not part of an AD domain, you may need to enable and add the Windows time service manually:
     
         w32tm /register
         net start w32time
