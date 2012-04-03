@@ -13,7 +13,7 @@ title: Running Puppet From Source
 Running Puppet From Source
 =====
 
-Puppet should usually be installed from reliable packages, such as those provided by Puppet Labs or your operating system vendor. If you plan to run Puppet in anything resembling a normal fashion, you leave this page and see [Installing Puppet][install]. 
+Puppet should usually be installed from reliable packages, such as those provided by Puppet Labs or your operating system vendor. If you plan to run Puppet in anything resembling a normal fashion, you should leave this page and see [Installing Puppet][install]. 
 
 However, if you are developing Puppet, helping to resolve a bug, or testing a new feature, you may need to run pre-release versions of Puppet. The most flexible way to do this, if you are not being provided with pre-release packages, is to run Puppet directly from source. 
 
@@ -42,7 +42,7 @@ Get and Install the Source
 Use Git to clone the public code repositories for [Puppet][gitpuppet] and [Facter][gitfacter]. The examples below assume a base directory of `/usr/src`; if you are installing the source elsewhere, substitute the correct locations when running commands. 
 
     $ sudo mkdir -p /usr/src
-    $ sudo cd /usr/src
+    $ cd /usr/src
     $ sudo git clone git://github.com/puppetlabs/facter
     $ sudo git clone git://github.com/puppetlabs/puppet
 
@@ -84,7 +84,9 @@ Add the following to your `/etc/profile` file:
 
     export PATH=/usr/src/puppet/bin:/usr/src/puppet/sbin:/usr/src/facter/bin:$PATH
 
-This will make the Puppet and Facter binaries runnable from login shells. 
+This will make the Puppet and Facter binaries runnable from login shells.
+
+At this point, you can run `source /etc/profile` or log out and back in again; after doing so, you will be able to run Puppet commands.
 
 Configure Puppet
 -----
@@ -127,6 +129,7 @@ Create this user and group using your operating system's normal tools, or run th
     $ sudo puppet resource user puppet ensure=present
     $ sudo puppet resource group puppet ensure=present
 
+If you skip this step, puppet master may not start correctly, and Puppet may have problems when creating some of its run data directories. 
 
 Run Puppet
 -----
@@ -135,7 +138,7 @@ You can now interactively run the main puppet agent, puppet master, and puppet a
 
 For testing purposes, you will usually want to run puppet master with the `--verbose` and `--no-daemonize` options and run puppet agent with the `--test` option. For day-to-day use, you should create an init script for puppet agent (see the examples in the source's `conf/` directory) and use a Rack server like Passenger or Unicorn to run puppet master.
 
-> Note: You should never attempt to run Puppet or Facter binaries while your current working directory is in `/usr/src`. This is because Ruby automatically adds the current directory to the load path, which can cause the projects' spec tests to accidentally be loaded as libraries. 
+> Note: You should never attempt to run Puppet or Facter binaries while your current working directory is in `/usr/src`. This is because Ruby automatically adds the current directory to the load path, which can cause the projects' spec tests to accidentally be loaded as libraries. Facter in particular will usually fail when this is done.
 
 Periodically Update the Source or Switch Versions
 -----
