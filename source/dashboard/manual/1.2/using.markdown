@@ -27,9 +27,9 @@ The three chapters below document the features that Dashboard and the PE console
 * [Viewing Reports and Inventory Data][c_reports]
 * [Grouping and Classifying Nodes][c_class]
 
-[c_nav]: http://docs.puppetlabs.com/pe/2.0/console_navigating.html
-[c_reports]: http://docs.puppetlabs.com/pe/2.0/console_reports.html
-[c_class]: http://docs.puppetlabs.com/pe/2.0/console_classes_groups.html
+[c_nav]: http://docs.puppetlabs.com/pe/2.5/console_navigating.html
+[c_reports]: http://docs.puppetlabs.com/pe/2.5/console_reports.html
+[c_class]: http://docs.puppetlabs.com/pe/2.5/console_classes_groups.html
 
 
 * * * 

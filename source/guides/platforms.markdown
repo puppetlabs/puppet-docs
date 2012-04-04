@@ -8,7 +8,7 @@ Supported Platforms
 
 For information about Puppet Enterprise's system requirements, [see here][pe2requirements].
 
-[pe2requirements]: /pe/2.0/install_system_requirements.html
+[pe2requirements]: /pe/2.5/install_system_requirements.html
 
 Puppet 2.6 and 2.7 can run on the following platforms: 
 

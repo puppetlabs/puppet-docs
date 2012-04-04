@@ -6,7 +6,7 @@ title: "Learning — Preparing an Agent VM"
 
 [current_vm]: http://info.puppetlabs.com/learning-puppet-vm
 [download_pe]: http://info.puppetlabs.com/download-pe2.html
-[upgrade_pe]: /pe/2.0/install_upgrading.html
+[upgrade_pe]: /pe/2.5/install_upgrading.html
 [lp_module]: ./files/learningpuppet.tar.gz
 
 {% capture lpmoduleurl %}http://docs.puppetlabs.com/learning/files/learningpuppet.tar.gz{% endcapture %}
