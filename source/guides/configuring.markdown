@@ -15,7 +15,8 @@ This document describes how Puppet's configuration settings work, and describes 
 [environments]: ./environment.html
 [configref]: /references/stable/configuration.html
 [versioned]: /references/
-[reports]: /references/stable/configuration.html#reports
+[reports]: /guides/reporting.html
+[plugins]: /guides/plugins_in_modules.html
 
 Puppet's Settings
 -----------------
@@ -33,15 +34,16 @@ When retrieving the value for a given setting, Puppet follows a simple lookup pa
 The settings you'll have to interact with will vary a lot, depending on what you're doing with Puppet. But at the least, you should get familiar with the following: 
 
 * [`certname`](/references/stable/configuration.html#certname) --- The locally unique name for this node. If you aren't using DNS names to identify your nodes, you'll need to set it yourself.
-* [`server`](/references/stable/configuration.html#server) --- The puppet master server to request configurations from.
+* [`server`](/references/stable/configuration.html#server) --- The puppet master server to request configurations from. If your puppet master server isn't reachable at the default hostname of `puppet`, you'll need to set this yourself.
+* [`pluginsync`](/references/stable/configuration.html#pluginsync) --- Whether to use [plugins from modules][plugins]. Most users should set this to true on all agent nodes. 
+* [`report`](/references/stable/configuration.html#report) --- Whether to send reports to the puppet master. Most users should set this to true on all agent nodes. 
+* [`reports`][reports] --- On the puppet master, which report handler(s) to use. 
+* [`modulepath`](/references/stable/configuration.html#modulepath) --- The search path for Puppet modules. Defaults to `/etc/puppet/modules:/usr/share/puppet/modules`.
+* [`environment`](/references/stable/configuration.html#environment) --- On agent nodes, the [environment][environments] to request configuration in. 
+* [`node_terminus`](/references/stable/configuration.html#nodeterminus) --- How puppet master should get node definitions; if you use an ENC, you'll need to set this to "exec" on the master (or on all nodes if running in a standalone arrangement). 
+* [`external_nodes`](/references/stable/configuration.html#externalnodes) --- The script to run for node definitions (if `node_terminus` is set to "exec"). 
 * [`confdir`](/references/stable/configuration.html#confdir) --- One of Puppet's main working directories, which usually contains config files, manifests, modules, and certificates.
 * [`vardir`](/references/stable/configuration.html#vardir) --- Puppet's other main working directory, which usually contains cached data and configurations, reports, and file backups.
-* [`modulepath`](/references/stable/configuration.html#modulepath) --- The search path for Puppet modules.
-* [`environment`](/references/stable/configuration.html#environment) --- On agent nodes, the [environment][environments] to request configuration in. 
-* [`node_terminus`](/references/stable/configuration.html#nodeterminus) --- How puppet master should get node definitions; if you use an ENC, you'll need to set it to "exec."
-* [`external_nodes`](/references/stable/configuration.html#externalnodes) --- The script to run for node definitions (if you chose a `node_terminus` of "exec"). 
-* [`report`](/references/stable/configuration.html#report) --- Whether to send reports to the puppet master.
-* [`reports`][reports] --- On the puppet master, which report handler(s) to use. 
 
 `puppet.conf`
 ------------
