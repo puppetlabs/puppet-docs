@@ -12,7 +12,7 @@ PE's compliance workflow is designed to audit changes in systems that are manage
 
 ![Baseline compliance workflow diagram](./images/baseline/baseline_workflow.png)
 
-- **A sysadmin** writes manifests defining which resources to audit on which nodes. 
+- **A sysadmin** writes manifests that define which resources to audit on which nodes. 
 - **Puppet agent** retrieves and caches a catalog compiled from those manifests. 
 - **Puppet inspect** reads that catalog to discover which resources to audit, then submits an inspect report.
 - **The console** analyzes inspect reports, then calculates a daily report of differences between the inspected system state and the approved baseline state. (Or, if this is the node's first inspect report, it will create an initial baseline for it.)
@@ -40,32 +40,32 @@ The set of resources to audit is declared in standard Puppet manifests on the ma
 
 ### Inspect Reports
 
-Each node being audited will routinely report the states of its audited resources. The documents it sends are called _inspect reports,_ and differ from standard Puppet reports.
+Each node being audited will routinely report the states of its audited resources. The documents it sends are called _inspect reports_ and differ from standard Puppet reports.
 
 By default, every PE agent node sends daily inspect reports, regardless of whether it is auditing any resources.
 
 ### Baselines
 
-Conceptually, a **baseline** is a blessed inspect report for a single node: it lists the approved states for every audited resource on that node. Each node is associated with one and only one baseline, and nodes cannot share baselines. However, nodes with similar baselines can be grouped for convenience.
+Conceptually, a **baseline** is a blessed inspect report for a single node: it lists the approved states for every audited resource on that node. Each node is associated with one and only one baseline and nodes cannot share baselines. However, nodes with similar baselines can be grouped for convenience.
 
-Baselines are maintained by the console. They change over time as administrators approve changes to audited resources. **Nodes reporting for the first time are assumed to be in a compliant state,** and their first inspect report will become the baseline against which future changes are compared. 
+Baselines are maintained by the console. They change over time as administrators approve changes to audited resources. **Nodes reporting for the first time are assumed to be in a compliant state** and their first inspect report will become the baseline against which future changes are compared. 
 
 ### Groups
 
-Although nodes cannot share baselines, nodes in groups can have similar changes approved or rejected en masse. 
+Although nodes cannot share baselines, nodes in groups can have similar changes approved or rejected in bulk. 
 
 
 The Console's Compliance UI
 -----
 
-Puppet's compliance UI lives in the console, and consists of:
+Puppet's compliance UI appears in the console. The compliance module adds the following new elements:
 
-- A new summary and custom report control on each group's page
-- A set of dedicated compliance pages, accessible from the "Compliance" link in the console's header menu
+- A summary and custom report control on each group's page
+- A set of dedicated compliance pages, accessible from the "Compliance" link in the console's main header menu
 
 ![compliance_link][]
 
-Each of these pages shows compliance information for a single day, and contains a date changer drop-down for changing the view. The most recently selected date will persist while you navigate these pages.
+Each of these pages shows compliance information for a single day and contains a date changer drop-down for changing the view. The most recently selected date will persist while you navigate these pages.
 
 ![date_changer_with_unreviewed][]
 
@@ -102,7 +102,7 @@ Links to the node pages of ungrouped nodes are displayed on the main compliance 
 
 Compliance group pages show the collected differences for a group of nodes. Two tabs are available:
 
-- Use the **"Common Differences"** tab to approve and reject aggregate changes en masse
+- Use the **"Common Differences"** tab to approve and reject aggregate changes in bulk
 - Use the **"Individual Differences"** tab to access node pages and act individually
 
 Groups are one of the console's core constructs, and nodes can be added to or removed from groups in the console's main node pages.

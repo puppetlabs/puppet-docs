@@ -120,7 +120,7 @@ The console will maintain **one** cached custom report for **each group;** gener
 
 ![core_group_custom_report][]
 
-Custom reports are generated from the console's **group pages** --- **not** from the group views in the compliance pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static markup that does not automatically poll for updates; you will need to reload the page periodically for updated status on the report.) 
+Custom reports are generated from the console's **group pages** --- **not** from the group views in the compliance pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static markup that does not automatically poll for updates; you will need to reload the page periodically to update status on the report.) 
 
 Once generated, custom reports can be viewed from **the console's page for that group,** the **main compliance overview page,** and the **compliance group pages.** 
 
@@ -130,7 +130,7 @@ Once generated, custom reports can be viewed from **the console's page for that 
 
 ![custom_report_compliance_main_link][]
 
-A custom report is split into a "Common Differences" tab and an "Individual Differences" tab. This is very similar to the layout of the group compliance review pages, and should  be read in the same fashion; the only difference is that all comparisons are to a single baseline instead of per-node baselines. 
+A custom report is split into a "Common Differences" tab and an "Individual Differences" tab. This is very similar to the layout of the group compliance review pages and can be read in the same fashion. The only difference is that all comparisons are to a single baseline instead of per-node baselines. 
 
 ![custom_report_common][]
 

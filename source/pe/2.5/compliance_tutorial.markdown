@@ -22,7 +22,7 @@ On Thursday morning, the admin notices unreviewed changes in a group of three no
 
 ![tutorial_group][]
 
-There, she notices that a user was completely deleted from all three nodes, and something odd happened with a file. She immediately rejects the deletion of the user...
+There, she notices that a user was completely deleted from all three nodes, and something odd happened with a file. She immediately clicks the (-) button to reject the deletion of the user...
 
 ![tutorial_reject_user][]
 
@@ -36,7 +36,7 @@ There, she notices that a user was completely deleted from all three nodes, and 
     [root@hawk1.example.com ~]# puppet resource user nick ensure=present uid=506 gid=506
     ...
 
-Then she takes a look at the file. It looks like two nodes had the ctime and mtime of the `/etc/profile` file changed, but no edits were made. This was probably nothing, but it piques her interest and she'll ask around about it later; in the meantime, she approves the change, since there's no functional difference. The other node, however, had its content changed. She drills down into the node view and checks the contents before and after:
+Then she takes a look at the file. It looks like two nodes had the ctime and mtime of the `/etc/profile` file changed, but no edits were made. This was probably nothing, but it piques her interest and she'll ask around about it later. In the meantime, she approves the change, since there's no functional difference. The other node, however, had its content changed. She drills down into the node view and checks the contents before and after:
 
 ![tutorial_profile_before][]
 
