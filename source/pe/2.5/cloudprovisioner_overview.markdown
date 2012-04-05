@@ -5,7 +5,7 @@ title: "PE 2.5 » Cloud Provisioning » Overview"
 subtitle: "A Cloud Provisioning Overview"
 ---
 
-Puppet Enterprise ships with command-line tools for provisioning new nodes. You can use these tools to:
+Puppet Enterprise includes command-line tools for provisioning new nodes. You can use these tools to:
 
 * Create and destroy virtual machine instances on VMware vSphere and Amazon EC2
 * Classify new nodes (virtual or physical) in the console
@@ -18,7 +18,7 @@ See the chapters on [VMware](./cloudprovisioner_vmware.html) and [AWS](./cloudpr
 Tools
 -----
 
-PE's provisioning tools are based around the `node, node_vmware,` and `node_aws` subcommands. Each of these subcommands have a selection of available **actions** (such as `list` and `start`). You can get information about a subcommand or its actions with the `puppet help` and `puppet man` commands.
+PE's provisioning tools are based around the `node, node_vmware,` and `node_aws` subcommands. Each of these subcommands has a selection of available **actions** (such as `list` and `start`). You can get information about a subcommand or its actions with the `puppet help` and `puppet man` commands.
 
 The VMware and AWS subcommands are only used for provisioning, but `node` is a pre-existing Puppet subcommand with several provisioning actions added to it. The `node` actions used in the provisioning process are:
 
@@ -53,10 +53,9 @@ Installing
 
 Cloud provisioning can be installed on any puppet master or agent node.
 
-The Puppet Enterprise installer and upgrader ask whether to install cloud provisioning during installation; answer 'yes' to enable cloud provisioning actions on a given node.
+The Puppet Enterprise installer and upgrader will ask whether to install cloud provisioning during installation; answer 'yes' to enable cloud provisioning actions on a given node.
 
-If you're using an answer file to install Puppet Enterprise, this
-capability can be installed by setting the `q_puppet_cloud_install` option to `y`.
+If you're using an answer file to install Puppet Enterprise, install cloud provisioning by setting the `q_puppet_cloud_install` option to `y`.
 
     q_puppet_cloud_install=y
 

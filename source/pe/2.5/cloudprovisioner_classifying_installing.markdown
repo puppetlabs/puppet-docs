@@ -5,7 +5,7 @@ title: "PE 2.5 » Cloud Provisioning » Classifying and Installing"
 subtitle: "Classifying New Nodes and Remotely Installing PE"
 ---
 
-In addition to the provisioning actions described in the prior chapters, Puppet Enterprise includes actions for adding nodes to a pre-existing console group and remotely installing Puppet Enterprise on new nodes. 
+In addition to the actions described in the other cloud provisioning chapters, Puppet Enterprise includes actions for adding nodes to a pre-existing console group and remotely installing Puppet Enterprise on new nodes. 
 
 Classifying nodes
 -----------------
@@ -32,7 +32,7 @@ Here we're adding an AWS EC2 instance to the console.
 With the command's options, we specify:
 
 * The `--node-group` we'd like to add the node to (in our case the `appserver_pool` group)
-* The console's server
+* The console server's name
 * The console's port
 * Whether the console uses SSL
 * The user name for connecting to the console
@@ -43,6 +43,8 @@ now navigate to the console's web interface, we can see this host has been added
 `appserver_pool` group.
 
 To see additional help for node classification, run `puppet help node classify`. For more about how the console groups and classifies nodes, [see the chapter of this manual about grouping and classifying](./console_classes_groups.html).
+
+The process of adding a node to the console is demonstrated in the following video:
 
 <object width="420" height="315"><param name="movie"
 value="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US"></param><param
@@ -55,7 +57,7 @@ allowscriptaccess="always" allowfullscreen="true"></embed></object>
 Installing Puppet
 -----------------
 
-Use the `puppet node install` command to install Puppet Enterprise (or open-source Puppet) onto new nodes.
+Use the `puppet node install` command to install Puppet Enterprise (or open-source Puppet) onto the new instances.
 
     $ puppet node install --keyfile=~/.ssh/mykey.pem --login=root ec2-50-19-207-181.compute-1.amazonaws.com 
     notice: Waiting for SSH response ...
@@ -66,23 +68,25 @@ Use the `puppet node install` command to install Puppet Enterprise (or open-sour
 
 With the command's options, we specify:
 
-* An SSH key to log in with (`--keyfile`) --- the `install` action uses SSH to connect to the host, and needs an SSH key. For VMware, this key should be loaded onto the template you used to create your virtual machine. For Amazon EC2, it should be the private key from the key pair you used to create the instance.
+* An SSH key to log in with (`--keyfile`). The `install` action uses SSH to connect to the host, and needs an SSH key. For VMware, this key should be loaded onto the template you used to create your virtual machine. For Amazon EC2, it should be the private key from the key pair you used to create the instance.
 * The local user account to log in as (`--login`).
 
-As the command's argument, we specify the name of the node we're installing Puppet Enterprise on. 
+For the command's argument, we specify the name of the node on which we're installing Puppet Enterprise. 
 
 For the default installation, the `install` action uses packages
 provided by Puppet Labs and stored in Amazon S3 storage.  You can also specify
-packages located on your local host, or on a share in your local network. See `puppet help node install` or `puppet man node` for more details.
+packages located on your local host, or on a share in your local network. Use `puppet help node install` or `puppet man node` to see more details.
 
 In addition to these default configuration options, we can specify a number of
 additional options to control how and what we install on the host. We can
-specify the specific version of Puppet Enterprise (or we can install open
-source Puppet too) to install. We can also control the version of Facter to
+specify the specific version of Puppet Enterprise  to install (or we can install open
+source Puppet too). We can also control the version of Facter to
 install, the specific answers file to use to configure Puppet Enterprise, the
 certificate name of the agent to be installed and a variety of other options. To
 see a full list of the available options, use the `puppet help node install`
 command.
+
+The process of installing puppet on a node is demonstrated in detail in the following video:
 
 <object width="420" height="315"><param name="movie"
 value="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"></param><param

@@ -8,7 +8,7 @@ subtitle: "Configuring and Troubleshooting Cloud Provisioning"
 Configuring
 -----------
 
-To create new virtual machines with Puppet Enterprise, you'll need to first configure the services you'll be using. 
+To create new virtual machines with Puppet Enterprise, first you'll need to configure the services you'll be using. 
 
 First, create a file called `.fog` in the home directory of the user who will be provisioning new nodes.
 
@@ -40,7 +40,7 @@ To connect to a VMware vSphere server, you must put the following information in
 : Your vCenter password. You should already know the value for this setting.
 
 `:vsphere_expected_pubkey_hash`
-: A public key hash for your vSphere server. The value for this setting can be obtained by filling the other three settings and running the following command:
+: A public key hash for your vSphere server. The value for this setting can be obtained by entering the other three settings and then running the following command:
 
         $ puppet node_vmware list
     
@@ -55,6 +55,8 @@ To connect to a VMware vSphere server, you must put the following information in
         err: Try 'puppet help node_vmware list' for usage
     
     ...which can then be entered as the value of this setting.
+    
+    The following video demonstrates the setup process and some basic functions:
 
 <object width="560" height="315"><param name="movie"
 value="http://www.youtube.com/v/06Er_8dHbOM?version=3&amp;hl=en_US"></param><param
@@ -78,12 +80,13 @@ You can get find your Amazon Web Services credentials online in your Amazon acco
 
 ![AWS Account tab](./images/cloud/awsaccount.png)
 
-Select the Security Credentials menu and from there choose the "Access Credentials"
-section; click on the "Access Keys" tab to view your Access Keys.
+Select the "Security Credentials" menu and choose "Access Credentials." Click on the "Access Keys" tab to view your Access Keys.
 
-You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, just click the "Show" link under "Secret Access Key". 
+You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, click the "Show" link under "Secret Access Key". 
 
 Put both keys in your `~/.fog` file as described above.
+
+The following video demonstrates the setup process and some basic functions:
 
 <object width="560" height="315"><param name="movie"
 value="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"></param><param
@@ -121,7 +124,7 @@ Make a note of the name of your key pair, as it is used when creating new instan
 To add or edit a security group, select the "Security Groups" menu item
 from the dashboard. You should see a list of the available security
 groups.  If no groups exist, you can create a new one by clicking the
-"Create Security Groups" button; otherwise, you can edit an existing group.
+"Create Security Groups" button. Otherwise, you can edit an existing group.
 
 ![AWS Security Groups](./images/cloud/awssecgroup.png)
 
@@ -139,23 +142,23 @@ Troubleshooting
 ### Missing .fog file or credentials
 
 If you attempt to provision without creating a `.fog` file or without
-populating the file with appropriate credentials:
+populating the file with appropriate credentials you'll see the following error:
 
-For VMware you'll see the following error:
+On VMware:
 
     $ puppet node_vmware list
     notice: Connecting ...
     err: Missing required arguments: vsphere_username, vsphere_password, vsphere_server
     err: Try 'puppet help node_vmware list' for usage
 
-For Amazon Web Services you'll see the following error:
+On Amazon Web Services:
 
     $ puppet node_aws list
     err: Missing required arguments: aws_access_key_id,
     aws_secret_access_key
     err: Try 'puppet help node_aws list' for usage
 
-Add the appropriate file or missing credentials to the file to resolve
+Add the appropriate file or missing credentials to the existing file to resolve
 this issue.
 
 

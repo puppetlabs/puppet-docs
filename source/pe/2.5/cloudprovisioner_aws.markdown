@@ -5,9 +5,9 @@ title: "PE 2.5 » Cloud Provisioning » AWS Provisioning"
 subtitle: "Provisioning With Amazon Web Services"
 ---
 
-Puppet Enterprise can create and manage EC2 machine instances using Amazon Web Services.
+Puppet Enterprise can create and manage EC2 virtual machine instances using Amazon Web Services.
 
-If you are new to Amazon Web Services, we recommend reading the [Getting Started
+If you are new to Amazon Web Services, we recommend reading their [Getting Started
 documentation](http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGuide/).
 
 Listing Amazon EC2 instances
@@ -35,10 +35,10 @@ Let's start by listing our running EC2 instances.  We do this by running the `pu
 Here we can see we've got three running EC2 instances and the following information has been returned:
 
 - The instance name
-- The date they were created on
+- The date the instance was created
 - The DNS host name of the instance
 - The ID of the instance
-- The state of the instance, for example running or terminated
+- The state of the instance, for example, running or terminated
 
 **If you have no instances running, then nothing will be returned.**
 
@@ -67,17 +67,19 @@ Let's provide this information and run the command:
     ec2-50-18-93-82.us-east-1.compute.amazonaws.com
 
 We've created a new instance using an AMI of `ami-edae6384`, a key named
-`cloudprovisioner` and of the type `m1.small`. If you've forgotten the
+`cloudprovisioner`, and of the type `m1.small`. If you've forgotten the
 available key names on your account, you can get a list with the `node_aws list_keynames` action:
 
     $ puppet node_aws list_keynames
     cloudprovisioner (ad:d4:04:9f:b0:8d:e5:4e:4c:46:00:bf:88:4f:b6:c2:a1:b4:af:56)
 
 You can also specify a variety of other options, including the
-region to start the instance in, and you can see a full list of these options
+region in which to start the instance. You can see a full list of these options
 by running `puppet help node_aws create`.
 
 After the instance has been created, the public DNS name of the instance will be returned. In this case: `ec2-50-18-93-82.us-east-1.compute.amazonaws.com`.
+
+The following video demonstrates the EC2 instance creation process in more detail:
 
 <object width="560" height="315"><param name="movie"
 value="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"></param><param
@@ -90,7 +92,7 @@ allowscriptaccess="always" allowfullscreen="true"></embed></object>
 Connecting to an EC2 instance
 -----
 
-Once you've created an EC2 instance you can then connect to it using SSH. To do
+Once you've created an EC2 instance you can connect to it using SSH. To do
 this we need the private key we downloaded earlier from the Amazon Web Services
 console. Add this key to your local SSH configuration, usually in the `.ssh`
 directory.
@@ -110,14 +112,16 @@ Terminating an EC2 instance
 -----
 
 Once you've finished with an EC2 instance you can easily terminate it.
-Terminating an instance destroys the instance entirely and is a destructive
-action that should only be performed when you've finished with the instance. To
-terminate an instance, use the `node_aws terminate` action.
+Terminating an instance destroys the instance entirely and is a destructive, permanent
+action that should only be performed when you've finished with the instance. 
+To terminate an instance, use the `node_aws terminate` action.
 
     $ puppet node_aws terminate ec2-50-18-93-82.us-east-1.compute.amazonaws.com
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ...
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ... Done
 
+
+The following video demonstrates the EC2 instance termination process in more detail:
 <object width="560" height="315"><param name="movie"
 value="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
@@ -158,7 +162,7 @@ To see the available actions and command line options, run:
 
     See 'puppet man node_aws' or 'man puppet-node_aws' for full help.
 
-You can also view the man page for more detailed help.
+For more detailed help you can also view the man page .
 
     $ puppet man node_aws
 
