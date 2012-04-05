@@ -90,11 +90,13 @@ table td {background:#f0f0f0; padding:1em;}
 table th:first-child {
   -webkit-border-top-left-radius: 0.5em;
   -moz-border-radius-topleft: 0.5em;
+  border-top-left-radius: 0.5em;
 }
 
 table th:last-child {
   -webkit-border-top-right-radius: 0.5em;
   -moz-border-radius-topright: 0.5em;
+  border-top-right-radius: 0.5em;
 }
 
 blockquote:before, blockquote:after,
@@ -303,6 +305,7 @@ a.gateway {
   background: #e3e3e3;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  border-radius: 4px;
   margin-left: -0.1em;
   margin-right: 0.5em;
 
@@ -611,8 +614,11 @@ header#header ul#global-navigation{
   background: #2b2539;
   -webkit-border-top-left-radius: 6px;
   -webkit-border-top-right-radius: 6px;
--moz-border-radius: 6px;
--webkit-box-shadow: 0 -1px 0 rgba(255,255,255,0.05)
+  -moz-border-radius: 6px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,0.05);
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.05);
 }
 
 header#header ul#global-navigation > li {
@@ -648,6 +654,7 @@ header#header ul#global-navigation > li:first-child a{
   border-left: none !important;
   -webkit-border-top-left-radius: 6px;
   -moz-border-radius: 6px;
+  border-top-left-radius: 6px;
 }
 
 header#header ul#global-navigation > li:last-child a{
@@ -705,6 +712,7 @@ header#header ul li.with-submenu > ul li ul {
   margin-bottom: 0.125em;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
+  border-radius: 0;
 }
 
 header#header ul li.with-submenu > ul li:last-child ul {
@@ -720,6 +728,8 @@ header#header ul ul:last-child li:last-child a {
   -webkit-border-bottom-right-radius: 8px;
   -moz-border-radius-bottomleft: 8px;
   -moz-border-radius-bottomright: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 header#header ul li.active ul {
@@ -814,11 +824,14 @@ header#header li:hover a span.subtitle {
   -webkit-border-bottom-right-radius: 6px;
   -moz-border-radius-bottomleft: 6px;
   -moz-border-radius-bottomright: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   background: #514a6b;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#514a6b), to(#524f74));
   background: -moz-linear-gradient(#514a6b, #524f74);
   -webkit-box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
   -moz-box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
 }
 
 #header #misc-navigation ul li{
@@ -917,6 +930,7 @@ section#masthead a.back {
   background: #8d4333 url(images/icons/16/white/undo.png) no-repeat center 5px;
   -webkit-border-radius: 32px;
   -moz-border-radius: 32px;
+  border-radius: 32px;
   position: relative;
   top: 3px;
   margin-right: 29px;
@@ -934,6 +948,7 @@ section#masthead a.back span {
   font-size: 1em;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  border-radius: 4px;
   opacity: 0;
   visibility: hidden;
 	position: absolute;
@@ -967,6 +982,7 @@ span.edit a {
   background: rgba(0,0,0,.33);
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
+  border-radius: 1em;
   color: white !important;
   position: relative;
   top: -0.25em;
@@ -1164,6 +1180,7 @@ footer#footer form fieldset legend {
 #footer .btn {
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
   background: #555;
   color: #ddd;
   border: 1px solid #444;
@@ -1431,6 +1448,7 @@ body#puppetlabsdocs.docs #masthead li.with-submenu > a {
   padding-right: 32px;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
   color: white;
   width: 118px;
 }
@@ -1453,6 +1471,7 @@ body#puppetlabsdocs.docs #masthead li {
   margin-right: 1em;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
   position: relative;
 }
 
@@ -1461,6 +1480,8 @@ body#puppetlabsdocs.docs #masthead li.active a {
   -webkit-border-bottom-right-radius: 0;
   -moz-border-radius-bottomleft: 0;
   -moz-border-radius-bottomright: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 body#puppetlabsdocs.docs #masthead span.drop-down-trigger {
@@ -1474,6 +1495,7 @@ body#puppetlabsdocs.docs #masthead span.drop-down-trigger {
   right: 0.25em;
   -webkit-border-radius: 0.4em;
   -moz-border-radius: 0.4em;
+  border-radius: 0.4em;
   -webkit-transition: 0.125s opacity linear;
   padding: 0;
 }
@@ -1507,6 +1529,8 @@ body#puppetlabsdocs.docs #masthead li.with-submenu dl:last-child {
   -webkit-border-bottom-right-radius: 0.5em;
   -moz-border-radius-bottomleft: 0.5em;
   -moz-border-radius-bottomright: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 body#puppetlabsdocs.docs #masthead li.with-submenu dl dt {
@@ -1763,6 +1787,7 @@ label.error {
   z-index: 2;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  border-radius: 4px;
   background: #c03c00;
   color: white !important;
   padding: 0.5em;
