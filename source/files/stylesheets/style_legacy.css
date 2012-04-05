@@ -609,7 +609,7 @@ header#header h1 a span {
 /* @group Global Navigation */
 
 header#header ul#global-navigation{
-	margin-left: 180px;
+	margin-left: 170px;
 	margin-top: 18px;
   background: #2b2539;
   -webkit-border-top-left-radius: 6px;
@@ -623,7 +623,7 @@ header#header ul#global-navigation{
 
 header#header ul#global-navigation > li {
   margin: 0 -0.2em;
-  width: 17.5%;
+  width: 14.2%;
   max-width: 180px;
   display: inline-block;
 }
