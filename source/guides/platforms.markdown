@@ -3,59 +3,66 @@ layout: default
 title: Supported Platforms
 ---
 
+[pe2requirements]: /pe/2.5/install_system_requirements.html
+
 Supported Platforms
 ===================
 
 For information about Puppet Enterprise's system requirements, [see here][pe2requirements].
 
-[pe2requirements]: /pe/2.5/install_system_requirements.html
+Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform not on this list.
+
+**[See Installing Puppet](/guides/installation.html)** for more details about the packages available for your platform(s).
 
 Puppet 2.6 and 2.7 can run on the following platforms: 
 
 Linux
 -----
 
--   Red Hat Enterprise Linux, version 4 and higher
--   CentOS, version 4 and higher
--   Scientific Linux, version 4 and higher
--   Oracle Linux, version 4 and higher
--   Debian, version 5 (Lenny) and higher
--   Ubuntu, version 8.04 LTS and higher
--   Fedora, version 15 and higher
--   SUSE Linux Enterprise Server, version 11 and higher
--   Gentoo Linux
--   Mandriva Corporate Server 4 <!-- Version not checked recently -->
--   ArchLinux
+- Red Hat Enterprise Linux, version 4 and higher
+- CentOS, version 4 and higher
+- Scientific Linux, version 4 and higher
+- Oracle Linux, version 4 and higher
+- Debian, version 5 (Lenny) and higher
+- Ubuntu, version 8.04 LTS and higher
+- Fedora, version 15 and higher
+- SUSE Linux Enterprise Server, version 11 and higher
+- Gentoo Linux
+- Mandriva Corporate Server 4 <!-- Version not checked recently -->
+- ArchLinux
 
 BSD
 ---
 
--   FreeBSD 4.7 and later <!-- Version not checked recently -->
--   OpenBSD 4.1 and later <!-- Version not checked recently -->
+- FreeBSD 4.7 and later <!-- Version not checked recently -->
+- OpenBSD 4.1 and later <!-- Version not checked recently -->
 
 Other Unix
 ----------
 
--   Mac OS X, version 10.4 (Tiger) and higher
--   Oracle Solaris, version 10 and higher
--   AIX, version 5.3 and higher
--   HP-UX
+- Mac OS X, version 10.4 (Tiger) and higher
+- Oracle Solaris, version 10 and higher
+- AIX, version 5.3 and higher
+- HP-UX
 
 Windows
 -------
 
--   Windows Server 2003 and 2008 (Puppet version 2.7.6 and higher)
+- Windows Server 2003 and 2008 (Puppet version 2.7.6 and higher)
+- Windows 7 (Puppet version 2.7.6 and higher)
 
 Ruby Versions
 -----
 
-Puppet requires [Ruby](http://www.ruby-lang.org/en/). Certain versions of Ruby work better with Puppet than others.
+Puppet requires [Ruby](http://www.ruby-lang.org/en/). Certain versions of Ruby work better with Puppet than others. Run `ruby --version` to check the version of Ruby on your system.
 
 > [Puppet Enterprise](/pe/) does not rely on the OS's Ruby version, as it maintains its own Ruby environment. You can install PE alongside any version of Ruby or on systems without Ruby installed.
 
+> ![windows logo](/images/windows-logo-small.jpg) The [Windows installers](http://downloads.puppetlabs.com/windows) provided by Puppet Labs don't rely on the OS's Ruby version, and can be installed alongside any version of Ruby or on systems without Ruby installed.
+
 {% comment %}
 
-Uncomment this at the Telly release! 
+Uncomment this at the Telly release! Also, mention Hiera way below as a new dependency, near Facter.
 
 Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.0
 -------------|------------|------------|-----------
@@ -92,6 +99,20 @@ Versions marked as "Supported" are recommended by Puppet Labs and are under exte
 * Ruby 1.9.2 and 1.9.3 have major known issues with Puppet 2.7, and should be avoided. They will not work at all with Puppet 2.6.
 * Ruby 1.9.0 and 1.9.1 should always be avoided with Puppet.
 
-Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform not on this list.
 
+The only prerequisite for Puppet that doesn't come as part of the Ruby standard library is [Facter](http://www.puppetlabs.com/projects/facter/index.html), which is also developed by Puppet Labs. All other prerequisite Ruby libraries should come with any standard Ruby 1.8.2+ install.  Should your OS not come with the complete standard library (or you are using a custom Ruby build), these include:
+
+* base64
+* cgi
+* digest/md5
+* etc
+* fileutils
+* ipaddr
+* openssl
+* strscan
+* syslog
+* uri
+* webrick
+* webrick/https
+* xmlrpc
 
