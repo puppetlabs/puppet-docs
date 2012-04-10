@@ -17,18 +17,20 @@ An external node classifier is an executable that can be called by puppet master
 
 Inside the ENC, you can reference any data source you want, including some of Puppet's own data sources, but from Puppet's perspective, it just puts in a node name and gets back a hash of information. 
 
-ENCs can co-exist with standard node definitions in `site.pp`, and the classes declared in each source are effectively merged. 
+ENCs can co-exist with standard node definitions in `site.pp`, and **the classes declared in each source are effectively merged.** 
 
-> ### Aside: Under the Hood
+> ### How Merging Works
 > 
-> Every node always gets a node object from the configured `node_terminus`. (This setting takes effect where the catalog is compiled; on the master server when using puppet agent, and on the node itself when using puppet apply). The default node terminus is `plain`, which returns an empty node object, and the `exec` terminus calls an ENC script to determine what should go in the node object. Thus, the ENC interface is really a plugin within a plugin; there are more direct termini available, like the `ldap` terminus, which looks up information in an LDAP directory to create nodes. 
+> Every node **always** gets a **node object** (which may be empty or may contain classes, parameters, and an environment) from the configured `node_terminus`. (This setting takes effect where the catalog is compiled; on the puppet master server when using an agent/master arrangement, and on the node itself when using puppet apply. The default node terminus is `plain`, which returns an empty node object; the `exec` terminus calls an ENC script to determine what should go in the node object.) Every node **may** also get a **node definition** from the site manifest (usually called site.pp). 
 > 
 > When compiling a node's catalog, Puppet will include ALL of the following:
 > 
-> * Any classes specified in the node object from the node terminus
+> * Any classes specified in the node object it received from the node terminus
 > * Any classes or resources which are in the site manifest but outside any node definitions
 > * Any classes or resources in the most specific node definition in site.pp that matches the current node (if site.pp contains any node definitions)
->     * Note that if site.pp contains at least one node definition, there **must** be a node definition that matches the current node; compilation will fail if a match can't be found. Note also that `node default` can match any node if no more specific node definitions match it.
+>     * Note 1: If site.pp contains at least one node definition, it **must** have a node definition that matches the current node; compilation will fail if a match can't be found. 
+>     * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet will make muiltiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
+>     * Note 3: If no matching node definition can be found with the node's name, Puppet will try one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
 
 
 Considerations and Limitations
