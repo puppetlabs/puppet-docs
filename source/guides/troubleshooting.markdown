@@ -295,7 +295,7 @@ no contents. This is because the inherited test\_class remains in
 the scope of base\_node, where $testname is undefined.
 
 Node inheritance is currently only really useful for inheriting
-static or self-contained classes, and is as a result of quite
+static or self-contained classes, and is, as a result, of quite
 limited value.
 
 A workaround is to define classes for your node types - essentially
