@@ -33,22 +33,22 @@ The language keyword used to create a <a id="defined type">defined type </a>
 :   Puppet lets you seperate your <a id="site">site</a> into distinct environments, each of which can be served a different set of modules. For example, environments can be used to set up scratch nodes for testing before roll-out, or to divide a site by types of hardware.
 
 **expression**
-:   The Puppet language supports several types of expressions for comparison and evaluation purposes. Amongst others, Puppet supports boolean expressions, comparision expressions, arithmetic expressions. See the [Language Guide](http://docs.puppetlabs.com/guides/language_guide.html#expressions) for more information.
+:   The Puppet language supports several types of expressions for comparison and evaluation purposes. Amongst others, Puppet supports boolean expressions, comparision expressions, and arithmetic expressions. See the [Language Guide](/guides/language_guide.html#expressions) for more information.
 
 **External Node Classifier (ENC)**
-An ENC provides an alternate method to using the main site manifest (`site.pp`) to classify nodes. An ENC lets you use a pre-existing data source (such as an LDAP db) to classify nodes. Specifically, an ENC is an executable that has only one argument: the name of the node to be classified. When called by the Puppet master, an ENC returns a YAML document describing the node. See [External Nodes](http://docs.puppetlabs.com/guides/external_nodes.html) for more information.
+An ENC provides an alternate method to using the main site manifest (`site.pp`) to classify nodes. An ENC lets you use a pre-existing data source (such as an LDAP db) to classify nodes. Specifically, an ENC is an executable that has only one argument: the name of the node to be classified. When called by the Puppet master, an ENC returns a YAML document describing the node. See [External Nodes](/guides/external_nodes.html) for more information.
 
 **fact**
-:   A fact is a detail or property returned by <a id="Facter">Facter</a> that describes the configuration of an agent, such as hostname or IP address. Facts are expressed as a key=>value pair (e.g. `operating system => Ubuntu`).Facts function as global variables.  If there are site-specific details not covered by existing facts, you can create custom facts by writing a snippet of Ruby code and adding it to Facter (see [[http://docs.puppetlabs.com/guides/custom_facts.html]]). 
+:   A fact is a detail or property returned by <a id="Facter">Facter</a> that describes the configuration of an agent, such as hostname or IP address. Facts are expressed as a key=>value pair (e.g. `operating system => Ubuntu`).Facts function as global variables.  If there are site-specific details not covered by existing facts, you can create custom facts by writing a snippet of Ruby code and adding it to Facter (see [Custom Facts](/guides/custom_facts.html)). 
 
 **Facter**
 :   Facter is Puppet's system inventory tool. Facter returns <a id="fact">"facts"</a> about each connected agent, such as the agent's hostname, IP address, operating system, etc. These facts are sent to the master, where they are automatically created as variables which can be used to manage the host. While Facter contains a wealth of information about common hosts, applications and services, you can also create custom facts specific to your environment. For more information, see the [Facter home page](http://puppetlabs.com/puppet/related-projects/facter/).
 
 **filebucket**
-:   A "filebucket" is a repository for containing file backups. A filebucket can be either host- or site-global. Typically, a single filebucket is defined for a whole network and is used as the default backup location. See [type: filebucket](http://docs.puppetlabs.com/references/stable/type.html#filebucket) for more information. 
+:   A "filebucket" is a repository for containing file backups. A filebucket can be either host- or site-global. Typically, a single filebucket is defined for a whole network and is used as the default backup location. See [type: filebucket](/references/stable/type.html#filebucket) for more information. 
 
 **function**
-:   Functions are commands that run on the Puppet master and perform various actions. Functions cannot be run on the client, they only run on the master. Consequently, functions can only operate using resources available on the master. Common functions include `generate`, `notice`, and `include`. You can choose from the [list of available functions](http://docs.puppetlabs.com/references/stable/function.html) or you can write our own custom functions (see the [Writing Your Own Functions page](http://docs.puppetlabs.com/guides/custom_functions.html))
+:   Functions are commands that run on the Puppet master and perform various actions. Functions cannot be run on the client, they only run on the master. Consequently, functions can only operate using resources available on the master. Common functions include `generate`, `notice`, and `include`. You can choose from the [list of available functions](/references/stable/function.html) or you can write our own custom functions (see the [Writing Your Own Functions page](/guides/custom_functions.html))
 
 **host**
 :   An instance of an operating system with the Puppet client installed. This can be an operating system running on its own hardware (collectively, the server) or a virtual server image. See also <a id="agent">"Agent Node"</a>.
@@ -78,10 +78,10 @@ Files
 <a id="defined resource type">Definitions</a>
 
 **metaparameter**
-:   A metaparameter is a resource attribute that is part of Puppet's framework rather than part of the implementation of a specific instance. Metaparameters perform actions on resources and can be specified for any type of resource. For examples of metaparameters and their usage, see the [Metaparameter Reference](http://docs.puppetlabs.com/references/stable/metaparameter.html)
+:   A metaparameter is a resource attribute that is part of Puppet's framework rather than part of the implementation of a specific instance. Metaparameters perform actions on resources and can be specified for any type of resource. For examples of metaparameters and their usage, see the [Metaparameter Reference](/references/stable/metaparameter.html)
 
 **module**
-:   A collection of classes, resource types, files, and templates, organized around a particular purpose. For example, a module could be used to completely configure an Apache instance or to set-up a Rails application. There are many pre-built modules available for download in the [Puppet Forge](http://forge.puppetlabs.com/). For more information see [Module Organisation](http://docs.puppetlabs.com/guides/modules.html).
+:   A collection of classes, resource types, files, and templates, organized around a particular purpose. For example, a module could be used to completely configure an Apache instance or to set-up a Rails application. There are many pre-built modules available for download in the [Puppet Forge](http://forge.puppetlabs.com/). For more information see [Module Organisation](/guides/modules.html).
 
 **namevar**
 :   The "name variable" or "namevar" is an attribute of a resource used to determine the name of that resource. Typically, namevar is not specified since it is synonomous with the title of the resource. However, in some cases (such as when referring to a file whose location varies), it is useful to specify namevar as a kind of short-hand.  
@@ -96,7 +96,7 @@ When nodes are defined in manifests (either directly or via a regular expression
 :   Noop mode (short for "No Operations" mode) lets you simulate your configuration without making any actual changes. Basically, noop allows you to do a dry run with all logging working normally, but with no effect on any hosts. To run in noop mode, add the argument `--noop` to `puppet agent` or `puppet apply`.
 
 **parameter** (custom type and provider development)
-:   A value which does not call a method on a provider. Eventually expressed as an attribute in instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
+:   A value which does not call a method on a provider. Eventually expressed as an attribute in instances of this resource type. See [Custom Types](/guides/custom_types.html).
 
 **parameter** (defined types and parameterized classes)
 :   Parameters let you declare resource or class attributes more easily than setting variables by wrangling scope.  Parameters can be passed to classes or instances of this resource type upon declaration. Parameters are expressed as resource or class attributes. 
@@ -117,7 +117,7 @@ Generally speaking, a parameter refers to information that a class or resource c
 :   An operator that allows you to add values to resource parameters using the +> ('plusignment') syntax. Useful when you need to over-ride resource parameters without having to respecify already declared values.
 
 **property** (custom type and provider development)
-:   Properties define how a resource really works. When retrieving the state of a resource, a property will call the specified method on the provider. Properties will appear as attributes to the user when working with instances of this resource type. See [Custom Types](http://docs.puppetlabs.com/guides/custom_types.html).
+:   Properties define how a resource really works. When retrieving the state of a resource, a property will call the specified method on the provider. Properties will appear as attributes to the user when working with instances of this resource type. See [Custom Types](/guides/custom_types.html).
 
 **provider**
 :   "Providers" implement types by providing the information needed to manage resources. For example, for package types, there are providers that cover tools such as `yum, dpkg,` and `ports.` Similarly, for user types there are providers for `useradd` and `netinfo.`  Typically, providers are simple Ruby wrappers around shell commands, so they are usually  short and easy to create.
@@ -141,7 +141,7 @@ Resources do not always directly map to simple details on the client -- they mig
 :   A resource specification details how to manage a resource as specified in Puppet code. This term helps to differentiate between the literal resource on disk and the specification for how to manage that resource. However, most often, these are just referred to as "resources".
 
 **scope**
-:   As elsewhere, "scope" in Puppet refers to the context in which a variable's identifier (e.g. its name) is valid and usable. Prior to Puppet 2.7, scope in Puppet and Puppet Enterprise was dynamic. Starting with 2.7, dynamic scope is being deprecated (similar functionality can be obtained by using parameterized classes). From 2.7 and later, scope in Puppet is closer to lexical scope insofar as Puppet will only examine local scope and top scope when resolving an unqualified variable. This means that, in effect, all variables are either strictly local or strictly global. For more information, see [Scope and Puppet](http://docs.puppetlabs.com/guides/scope_and_puppet.html).
+:   As elsewhere, "scope" in Puppet refers to the context in which a variable's identifier (e.g. its name) is valid and usable. Prior to Puppet 2.7, scope in Puppet and Puppet Enterprise was dynamic. Starting with 2.7, dynamic scope is being deprecated (similar functionality can be obtained by using parameterized classes). From 2.7 and later, scope in Puppet is closer to lexical scope insofar as Puppet will only examine local scope and top scope when resolving an unqualified variable. This means that, in effect, all variables are either strictly local or strictly global. For more information, see [Scope and Puppet](/guides/scope_and_puppet.html).
 
 **site**
 :   In Puppet, "site" refers to the entire IT ecosystem being managed by Puppet . That is, a site includes all the Masters and all the Clients they manage.
@@ -179,17 +179,17 @@ This structure maps directly to a [[External Nodes|external node classifier]] wh
 The title of the resource is simply the field that precedes the colon (/etc/passwd). Unless it is declared explicitly, the name attribute will default to this. 
 
 If not explicitly declared, the "name" attribute will take the value of the title. Unlike "name," a title need not map to any actual attribute of the target system, it is only a referent.  
-For more on the usage of titles, see the [language guide](http://docs.puppetlabs.com/guides/language_guide.html).
+For more on the usage of titles, see the [language guide](/guides/language_guide.html).
 
 **type**
-:   An abstract description of a particular kind of resource. Can be implemented as a native type, plug-in type, or defined type. For example the `cron` type can be used to manage and install cron jobs on nodes. See [type reference](http://docs.puppetlabs.com/references/stable/type.html) for a complete list of the types Puppet can manage is available online.
+:   An abstract description of a particular kind of resource. Can be implemented as a native type, plug-in type, or defined type. For example the `cron` type can be used to manage and install cron jobs on nodes. See [type reference](/references/stable/type.html) for a complete list of the types Puppet can manage is available online.
 
  **type (defined)** aka **defined resource type** (previously known as: **definition**)
 :   Defined types are user-created definitions of groups of resources (as opposed to the native types that are included with Puppet. See below.). They are written in the Puppet language and are analogous to macros in some other languages. A defined resource type allows you to group basic resources into a "super resource" which you can use to model a logical chunk of configuration. For example, you could use a defined resource type to perform all the steps needed to set up and populate a Git repository.
-Contrast with **native type.** For more information, see [Defined Types](http://docs.puppetlabs.com/learning/definedtypes.html)
+Contrast with **native type.** For more information, see [Defined Types](/learning/definedtypes.html)
 
 **type (native)**
-:   A built-in type written purely in Ruby and distributed with Puppet. Additional native types can extend Puppet, and can be distributed to agent nodes via the pluginsync system. For more information, see the [list of native types](http://docs.puppetlabs.com/references/2.7.0/type.html).
+:   A built-in type written purely in Ruby and distributed with Puppet. Additional native types can extend Puppet, and can be distributed to agent nodes via the pluginsync system. For more information, see the [list of native types](/references/2.7.0/type.html).
 
 **type (plug-in)** aka **plugin**
 :   a Puppet term for custom types created for Puppet at the Ruby level. These types are written entirely in Ruby and must correspond to the Puppet standards for custom-types.
