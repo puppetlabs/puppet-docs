@@ -142,7 +142,7 @@ To connect your application securely, you'll need a certificate signed by your s
     * Generate a certificate signing request (CSR): `openssl req -new -key {certname}.pem -subj "/CN={certname}" -out request.csr`.
     * Submit the CSR to the puppet master for signing: `curl -k -X PUT -H "Content-Type: text/plain" --data-binary @request.csr https://puppet:8140/production/certificate_request/no_key`.
     * Sign the certificate on the puppet master: `puppet cert --sign {certname}`.
-    * Retrieve the certificate: `curl -k -H -o {certname}.pem "Accept: s" https://puppet:8140/production/certificate/{certname}`
+    * Retrieve the certificate: `curl -k -H "Accept: s" -o {certname}.pem https://puppet:8140/production/certificate/{certname}`
 
 For one-off applications, generating it on the master is obviously easier, but if you're building a tool for distribution elsewhere, your users will appreciate it if you script the manual method and emulate the way puppet agent gets a cert.
 
