@@ -138,9 +138,9 @@ To connect your application securely, you'll need a certificate signed by your s
     * Run `puppet cert --generate {certname for application}`.
     * Then, retrieve the private key (`{ssldir}/certs/{certname}.pem`) and the signed certificate (`{ssldir}/private_keys/{certname}.pem`) and move them to your application server. 
 * **Manually:** 
-    * Generate an RSA private key: `openssl genrsa -out {certname}.pem 1024`.
-    * Generate a certificate signing request (CSR): `openssl req -new -key {certname}.pem -subj "/CN={certname}" -out request.csr`.
-    * Submit the CSR to the puppet master for signing: `curl -k -X PUT -H "Content-Type: text/plain" --data-binary @request.csr https://puppet:8140/production/certificate_request/no_key`.
+    * Generate an RSA private key: `openssl genrsa -out {certname}.key 1024`.
+    * Generate a certificate signing request (CSR): `openssl req -new -key {certname}.key -subj "/CN={certname}" -out request.csr`.
+    * Submit the CSR to the puppet master for signing: `curl -k -X PUT -H "Content-Type: text/plain" --data-binary @request.csr https://puppet:8140/production/certificate_request/new`.
     * Sign the certificate on the puppet master: `puppet cert --sign {certname}`.
     * Retrieve the certificate: `curl -k -H "Accept: s" -o {certname}.pem https://puppet:8140/production/certificate/{certname}`
 
