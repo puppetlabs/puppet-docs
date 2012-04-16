@@ -115,7 +115,7 @@ The console's account system sends verification emails to new users, and require
 
 To allow anonymous, read-only access to the console, do the following:
 
-* Edit the `/etc/puppetlabs/console-auth/cas_config.yml` file by adding the line `global_unauthenticated_access:  true`.
+* Edit the `/etc/puppetlabs/console-auth/cas_client_config.yml` file and change the `global_unauthenticated_access` setting to `true`.
 * Restart Apache by running `sudo /etc/init.d/pe-httpd restart`.
 
 ### Disabling and Reenabling Console Auth
