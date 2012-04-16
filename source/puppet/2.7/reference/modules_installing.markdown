@@ -15,7 +15,7 @@ title: "Installing Modules"
 Installing Modules
 =====
 
-<span class="versionnote">This reference applies to Puppet 2.7.12 and later and Puppet Enterprise 2.5 and later. Earlier versions will not behave identically.</span>
+<span class="versionnote">This reference applies to Puppet 2.7.14 and later and Puppet Enterprise 2.5 and later. Earlier versions will not behave identically.</span>
 
 > ![Windows note](/images/windows-logo-small.jpg) The puppet module tool does not currently work on Windows.
 > 
