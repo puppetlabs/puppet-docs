@@ -82,11 +82,20 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
 
-### Mcollectived process remains after upgrade on Enterprise Linux systems
+
+### Installer Won't Use Hosts File When Testing Puppet Master Connection
+
+If you do not have DNS configured and are using the `/etc/hosts` file to perform name resolution, the installer will refuse to proceed on agent nodes. This is because the installer's method for validating the master's domain name bypasses the hosts file. 
+
+Users who do not have DNS at their sites should run `alias host='true'` before running the installer, and `unalias host` after the installer finishes. This will allow the installer to finish normally. 
+
+This issue should be fixed in PE 2.5.2.
+
+### Mcollectived Process Remains After Upgrade on Enterprise Linux Systems
 
 When upgrading from PE 2.0 on Enterprise Linux 5/6 systems, the mcollectived.pid process remains on the system instead of being stopped and removed. EL 5/6 users should force stop the process and remove the pids before upgrading.
 
-### Hiera does not get uninstalled on Solaris nodes
+### Hiera Does Not Get Uninstalled on Solaris Nodes
 
 Running a normal uninstall on systems running Solaris fails to remove Hiera. You will need to delete Hiera manually. This should be fixed in PE 2.5.2. 
 
