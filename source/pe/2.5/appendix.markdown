@@ -8,6 +8,12 @@ subtitle: "User's Guide Appendix"
 
 This document contains additional miscellaneous information about Puppet Enterprise 2.5.
 
+<!-- 
+Glossary
+-----
+
+For help with Puppet specific terms and language, visit [the glossary](../references/glossary.html)
+ -->
 
 Release Notes
 -----
@@ -16,7 +22,23 @@ Changes to Puppet's core are documented in the [Puppet Release notes](http://pro
 
 ### Puppet Enterprise 2.5.1
 
-2.5.1 was a security fix release.
+2.5.1 was a security fix release. It also fixes a handful of minor bugs.
+
+#### Bug Fix: Upgrading from 2.0 on Debian/Ubuntu Systems  Set external_node Permissions Incorrectly
+
+Users upgrading from 2.0.x to 2.5.0  experienced "Permission Denied" errors when attempting catalog runs that execute the external\_node script. The problem was that the external\_node file permissions were being set incorrectly to 640. Consequently, users had to manually set the permissions to 755. This has been fixed and permissions should now be set correctly during upgrade.
+
+#### Bug Fix: Hiera does not get uninstalled on Solaris nodes
+
+Running a normal uninstall on PE 2.5.0 systems running Solaris failed to remove Hiera. Users needed to delete Hiera manually. This has been fixed and Hiera should now be removed as expected.
+
+#### Bug Fix: Allowing Anonymous Console Access
+
+Setting up anonymous access to the console now works as documented, by editing config.yml so as to set `global_unauthenticated_access: true`. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
+
+#### Bug Fix: Custom modules can cause upgrade failures
+
+Custom modules erroneously placed in `/opt/puppet/share/puppet/modules` will no longer cause an upgrade to fail. However, for a number of reasons, custom modules should still be placed in the documented directory: `/etc/puppetlabs/puppet/modules`.
 
 #### Security Fix: Arbitrary File Read Access
 
@@ -72,7 +94,7 @@ The telnet connection type for managing network devices opened a NET::Telnet con
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 2.5. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
+As we discover them, this page will be updated with known issues in Puppet Enterprise 2.5.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
 
 To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.12 (Puppet Enterprise 2.5.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
@@ -82,16 +104,40 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
 
+### Issues with Compliance UI
+
+Thre are three issues related to incorrect Compliance UI behavior: 
+*     Rejecting a difference by clicking (-) results in an erroneous display.
+*     Read-only users are incorrectly exposed to the node selection button and subsequent UI
+*     
+
 ### Mcollectived process remains after upgrade on Enterprise Linux systems
 
 When upgrading from PE 2.0 on Enterprise Linux 5/6 systems, the mcollectived.pid process remains on the system instead of being stopped and removed. EL 5/6 users should force stop the process and remove the pids before upgrading.
 
-### Hiera does not get uninstalled on Solaris nodes
-
-Running a normal uninstall on systems running Solaris fails to remove Hiera. You will need to delete Hiera manually. This should be fixed in PE 2.5.2. 
-
 ### No Error Messaging When Accessing Live Management from Unsupported Browsers
-Live Management is only supported on selected browsers. Currently, attempts to run Live Management in these browsers will fail silently, with no explanatory error message. Make sure to only run Live Management from [supported browsers](console_accessing.html)
+
+Live Management is only supported on selected browsers. Currently, attempts to run Live Management in these browsers will fail silently, with no explanatory error message. Make sure to only run Live Management from [supported browsers](console_accessing.html).
+
+### Incorrectly Formatted Email Addresses not Rejected by Installer.
+
+A regex bug in the installer allows email addresses without a user-name (e.g. " @domain.extension") to be entered without being rejected. Make sure you double-check the address you enter.
+
+###EC2/Dual-homed Systems Report Incorrect URIs for the Console.
+
+During installation, the PE installer attempts to automatically determine the URI where the console can be reached. On EC2 (and likely all other dual-homed systems), the installer incorrectly selects the internal, non-routable URI. Instead, you should manually enter the correct, external facing URI of the system hosting the console.
+
+### Answer file required for some SMTP servers.
+
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
+
+### Logging for Parts of the Console Non-Functional
+
+The Rack::Cas::Client class is not logging any data. (Note that the RubyCAS-client tool does log correctly.) There is no known workaround. The issue is under investigation.
+
+### Upgrading from PE 1.2 to PE 2.5 Does Not Remove Prior Versions of Modules Despite Rejecting Wrapper Modules
+
+Even if users reject the option to use wrapper modules when upgrading from PE 1.2 to PE 2.5, the old modules do not get deleted or replaced with wrapper modules. Users should manually delete the old modules ("accounts", "baselines" and "mcollectivepe") in `/opt/puppet/share/puppet/modules`.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
