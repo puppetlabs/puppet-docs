@@ -167,7 +167,7 @@ The only forbidden characters for a console password are `\` (backslash), `'` (s
 
 The console's account management tools will send activation emails to new users, and requires an SMTP server to do so. 
 
-* If you cannot provide an SMTP server, an admin user can manually copy and email the activation codes for new users. 
+* If you cannot provide an SMTP server, an admin user can manually copy and email the activation codes for new users. (Note that `localhost` will usually work as well.)
 * If your SMTP server requires TLS or a user name and password, you must [perform additional configuration after installing.][smtpconfig]
 
 [smtpconfig]: ./config_advanced.html#configuring-the-smtp-server

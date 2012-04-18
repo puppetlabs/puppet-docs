@@ -107,6 +107,7 @@ The following issues affect the currently shipped version of PE and all prior re
 ### Issues with Compliance UI
 
 There are three issues related to incorrect Compliance UI behavior: 
+
 *     Rejecting a difference by clicking (-) results in an erroneous display.
 *     Read-only users are incorrectly exposed to the node selection button and subsequent UI
 *     The user account pull-down menu in the top level compliance tab ceases to function after a host report has been selected.
@@ -131,7 +132,7 @@ Live Management is only supported on selected browsers. Currently, attempts to r
 
 ### Incorrectly Formatted Email Addresses not Rejected by Installer.
 
-A regex bug in the installer allows email addresses without a user-name (e.g. " @domain.extension") to be entered without being rejected. Make sure you double-check the address you enter.
+A regex bug in the installer allows email addresses without a user-name (e.g., " @domain.extension") to be entered without being rejected. Make sure you double-check the address you enter.
 
 ###EC2/Dual-homed Systems Report Incorrect URIs for the Console.
 
@@ -143,7 +144,7 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 
 ### Logging for Parts of the Console Non-Functional
 
-The Rack::Cas::Client class is not logging any data. (Note that the RubyCAS-client tool does log correctly.) There is no known workaround. The issue is under investigation.
+The Rack::Cas::Client class does not log any data. (Note that the RubyCAS-client tool does log correctly.) There is no known workaround. The issue is under investigation.
 
 ### Upgrading from PE 1.2 to PE 2.5 Does Not Remove Prior Versions of Modules Despite Rejecting Wrapper Modules
 
@@ -151,7 +152,7 @@ Even if users reject the option to use wrapper modules when upgrading from PE 1.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
-An inadequate default MySQL server setting can interfere with upgrades to Puppet Enterprise console servers.
+An inadequate default MySQL buffer pool size setting can interfere with upgrades to Puppet Enterprise console servers.
 
 **The PE 2.5 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade. 
 
