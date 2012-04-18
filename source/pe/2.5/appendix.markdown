@@ -106,14 +106,24 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Issues with Compliance UI
 
-Thre are three issues related to incorrect Compliance UI behavior: 
+There are three issues related to incorrect Compliance UI behavior: 
 *     Rejecting a difference by clicking (-) results in an erroneous display.
 *     Read-only users are incorrectly exposed to the node selection button and subsequent UI
-*     
+*     The user account pull-down menu in the top level compliance tab ceases to function after a host report has been selected.
 
-### Mcollectived process remains after upgrade on Enterprise Linux systems
+These issues are under investigation and should be fixed in 2.5.2.
+
+### Mcollectived Process Remains After Upgrade on Enterprise Linux systems
 
 When upgrading from PE 2.0 on Enterprise Linux 5/6 systems, the mcollectived.pid process remains on the system instead of being stopped and removed. EL 5/6 users should force stop the process and remove the pids before upgrading.
+
+### Installer Won't Use Hosts File When Testing Puppet Master Connection
+
+If you do not have DNS configured and are using the `/etc/hosts` file to perform name resolution, the installer will refuse to proceed on agent nodes. This is because the installer's method for validating the master's domain name bypasses the hosts file. 
+
+Users who do not have DNS at their sites should run `alias host='true'` before running the installer, and `unalias host` after the installer finishes. This will allow the installer to finish normally. 
+
+This issue should be fixed in PE 2.5.2.
 
 ### No Error Messaging When Accessing Live Management from Unsupported Browsers
 

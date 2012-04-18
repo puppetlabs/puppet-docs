@@ -1,7 +1,7 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 »Configuring Puppet Enterprise » Advanced Configuration"
+title: "PE 2.5 » Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"
 ---
 
@@ -205,6 +205,14 @@ The console ships with a worker process manager, which can be found at `script/d
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 
+Tuning the ActiveMQ Heap Size
+-----
+
+The puppet master node runs an ActiveMQ server to support orchestration commands. By default, the ActiveMQ process uses a Java heap size of 512 MB, which has been tested to support thousands of nodes. 
+
+You can increase or reduce the amount of memory used by ActiveMQ by navigating to the puppet master node's page in the console and creating a new parameter called `activemq_heap_mb`. The value you assign to it will be the amount of memory, in megabytes, used by ActiveMQ; delete the parameter to revert to the default setting. 
+
+This is most commonly used to create stable proof-of-concept deployments on virtual machines with limited amounts of RAM. Many of the puppet master's features can fail if ActiveMQ consumes all of the available memory on the system, and reducing its heap size by half or more can prevent these problems on a starved VM.
 
 * * * 
 

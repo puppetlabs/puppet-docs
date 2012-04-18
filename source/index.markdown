@@ -190,5 +190,5 @@ To contribute ideas, problems, or suggestions, simply use the [Contribute](./con
 Documentation Version
 ---------------------
 
-This release of the documentation was generated from revision {% gitrevision 'master' %} of the puppet-docs repo on {{ 'now' | date: "%B %d, %Y" }}.
-<!-- Note that HEAD is unreliable here because the releases branch ends up having orphaned commits. -->
+This release of the documentation was generated from revision {% gitrevision %} of the puppet-docs repo on {{ 'now' | date: "%B %d, %Y" }}.
+<!-- This used to be hardcoded as the sha of "master", since shenanigans with the "release" branch made HEAD unreliable. But now we can accurately call out the source version even when generating from a topic branch. -->
