@@ -42,19 +42,22 @@ It's a work in progress, and I'd love to read your feedback at <nick.fagerlund@p
 Get Equipped
 ------------
 
-You can't make a knowledge omelette without breaking... stuff. Possibly eggs, maybe your system's entire configuration! Such is life.
+The most efficient path to learning a new system configuration tool will probably --- hopefully, even --- involve catastrophically misconfiguring some systems. 
 
-So to learn Puppet effectively, you need a virtual machine you can experiment on fearlessly. And to learn Puppet _fast,_ you want a virtual machine with Puppet already installed, so you don't have to learn to debug SSL problems before you know how to classify a node.
-
-In short, you want _this_ virtual machine:
+So to help you learn Puppet, we provide a free virtual machine with Puppet already installed. Experiment fearlessly! 
 
 <a href="http://info.puppetlabs.com/download-learning-puppet-VM.html" class="btn">Get the Learning Puppet VM</a>
 
-The root user's password is `puppet`, and for your convenience, the system is configured to write its current IP address to the login screen about ten seconds after it boots.
+> ### Login Info
+> 
+> * Log in as `root`, with the password `puppet`.
+> * The VM is configured to write its current IP address to the login screen about ten seconds after it boots. If you prefer to use SSH, wait for the IP address to print and you can skip logging in at the console entirely.
+> * To view the Puppet Enterprise web console, navigate to **https://(your VM's IP address)** in your web browser. Log in as `puppet@example.com`, with the password `learningpuppet`.
+> * **Note:** If you want to create new user accounts in the console, the confirmation emails will contain incorrect links. You can work around this by modifying the links by hand to point to the VM's IP address, or you can fix the links by making sure the console is available at a reliable hostname and [following the instructions for changing the authentication hostname](/pe/2.5/trouble_common_problems.html#console-account-confirmation-emails-have-incorrect-links).
 
-If you'd rather cook up your own VM than download one from the web, you can imitate it fairly easily: this is a stripped-down CentOS 5.5 system with a hostname of "learn.puppet.demo," [Puppet Enterprise](http://info.puppetlabs.com/puppet-enterprise) installed using all default answers, iptables turned off, and the `pe-puppet` and `pe-httpd` services stopped and disabled. (It also has Puppet language modes installed for Vim and Emacs, but that's not strictly necessary.)
+If you'd rather cook up your own VM than download one from the web, you can imitate it fairly easily: this is a stripped-down CentOS 5.5 system with a hostname of "learn.localdomain," [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise/) installed, and `iptables` disabled. (It also has Puppet language modes installed for Vim and Emacs, but that's not strictly necessary.)
 
-To begin with, you won't need separate agent and master VMs; you'll be running Puppet in its serverless mode on a single node. When we get to agent/master Puppet, we'll walk through turning on the puppet master and duplicating this system into a new agent node.
+To begin with, you won't need separate agent and master VMs; you'll be running Puppet in its serverless mode on a single node. When you reach the agent/master exercises, we'll walk through duplicating the system into a new agent node.
 
 The Learning Puppet VM is available in VMWare .vmx format and the cross-platform OVF format, and has been tested with VMWare Fusion and VirtualBox. 
 
