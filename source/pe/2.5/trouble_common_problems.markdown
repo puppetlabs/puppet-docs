@@ -5,7 +5,7 @@ title: "PE 2.5 » Troubleshooting » Common Problems & Solutions"
 subtitle: "Troubleshooting Common Errors"
 ---
 
-The Installer is Failing!
+The Installer is Failing
 -----
 
 Here are the main problems that can cause an install to blow up.
@@ -46,7 +46,7 @@ Next, download, move, and run the uninstaller script. (This script was not inclu
 
 After you have run the uninstaller, you can safely run the installer again.
 
-Agent Nodes Can't Retrieve Their Configurations!
+Agent Nodes Can't Retrieve Their Configurations
 -----
 
 ### Is the Puppet Master Reachable From the Agents?
@@ -159,7 +159,7 @@ This usually happens when puppet master is installed with a certname that isn't 
 
 Changing this on the puppet master will fix the error on all agent nodes.
 
-`node_vmware` and `node_aws` Aren't Working!
+`node_vmware` and `node_aws` Aren't Working
 -----
 
 If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failing with an "err: Missing required arguments" message, you need to [create a `~/.fog` file and populate it with the appropriate credentials](./cloudprovisioner_configuring.html). 
@@ -172,7 +172,15 @@ The console either does not have enough worker processes, or the worker processe
 * [See here to restart the worker processes](./console_maintenance.html#restarting-the-background-tasks)
 * [See here to tune the number of worker processes](./config_advanced.html#fine-tuning-the-delayedjob-queue)
 
+Console Account Confirmation Emails Have Incorrect Links
+-----
 
+This can happen if the console's authentication layer thinks it lives on a hostname that isn't accessible to the rest of the world. The authentication system's hostname is automatically detected during installation, and the installer can sometimes choose an internal-only hostname.
+
+To fix this:
+
+1. Open the `/etc/puppetlabs/console_auth/cas_client_config.yml` file for editing.
+2. Uncomment the "`cas_host`" line, and change its value to contain the public hostname of the console server.
 
 
 * * * 
