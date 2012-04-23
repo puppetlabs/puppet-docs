@@ -356,7 +356,9 @@ master's certname is set to something other than its fully-qualified domain
 name, this variable will still contain the server's fqdn.)
 * `$serverip` --- Provided by the puppet master; contains the master server's IP address.
 * `$serverversion` --- Provided by the puppet master; contains the puppet master's current version.
-* `$settings::<name of setting>` --- Provided by the puppet master; exposes all of the master's [configuration settings](./configuring.html) as variables in the `settings` namespace. Note that other than `$environment`, the agent's settings aren't available in manifests. Added in Puppet 2.6.0.
+* `$settings::<name of setting>` --- Provided by the puppet master; exposes all of the master's [configuration settings](./configuring.html) as variables in the `settings` namespace. Note that other than `$environment`, the agent's settings aren't available in manifests. Added in Puppet 2.6.0. For example, to display your certname:
+
+    puppet apply -ve 'notify {"My certname is: ${settings::certname}":}'
 
 ### Can I access environment variables with Facter?
 
