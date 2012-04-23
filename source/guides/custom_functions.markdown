@@ -40,7 +40,8 @@ your functions:
     same as the name of function; otherwise it won't get automatically
     loaded.
 -   To use a *fact* about a client, use `lookupvar('{fact name}')`
-    instead of `Facter['{fact name}'].value`. See examples below.
+    instead of `Facter['{fact name}'].value`.  If the *fact* does not
+    exist, `lookupvar` returns `:undefined`. See examples below.
 
 ### Where to put your functions
 
@@ -144,6 +145,14 @@ functions.
     module Puppet::Parser::Functions
       newfunction(:hour_from_fqdn, :type => :rvalue) do |args|
         MD5.new(lookupvar('fqdn')).to_s.hex % 24
+      end
+    end
+
+### Example 3
+
+    module Puppet::Parser::Functions
+      newfunction(:has_fact, :type => :rvalue) do |arg|
+        lookupvar(arg[0]) != :undefined
       end
     end
 
