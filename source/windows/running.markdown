@@ -49,11 +49,11 @@ By default, the puppet agent service starts automatically at boot, runs every 30
 
     To restart the service:
 
-        c:\>sc stop puppet && sc start puppet
+        C:\>sc stop puppet && sc start puppet
     
     To change the arguments used when triggering a puppet agent run (this example changes the level of detail that gets written to Puppet's logs):
     
-        c:\>sc start puppet --test --debug
+        C:\>sc start puppet --test --debug
 
 * To change how often the agent runs, change the [`runinterval`](/references/latest/configuration.html#runinterval) setting in [puppet.conf][puppetconf].
 * To change which puppet master the agent contacts, change the [`server`](/references/latest/configuration.html#server) setting in [puppet.conf][puppetconf].
