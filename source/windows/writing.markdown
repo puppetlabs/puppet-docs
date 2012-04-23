@@ -13,7 +13,7 @@ nav: windows.html
 [file]: /references/latest/type.html#file
 [user]: /references/latest/type.html#user
 [group]: /references/latest/type.html#group
-[scheduled_task]: /references/latest/type.html#scheduledtask
+[scheduledtask]: /references/latest/type.html#scheduledtask
 [package]: /references/latest/type.html#package
 [service]: /references/latest/type.html#service
 [exec]: /references/latest/type.html#exec
@@ -31,9 +31,15 @@ Just as on \*nix systems, Puppet manages resources on Windows using manifests wr
 File Paths on Windows
 -----
 
-Windows file system APIs accept both the backslash (`\`) and forwardslash (`/`) to separate directory and file components in a path. However, several Windows programs only accept backslash. Unfortunately, \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). The results are unavoidably complicated when using a system that interacts with \*nix and Windows systems as equal peers.
+Windows file paths must be written in different ways at different times, due to various tools' conflicting rules for backslash use. 
 
-The following guidelines will help you use backslashes safely in Windows file paths.
+* Windows file system APIs accept both the backslash (`\`) and forwardslash (`/`) to separate directory and file components in a path.
+* Some Windows programs only accept backslashes in file paths.
+* \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). 
+
+As a result, any system that interacts with \*nix and Windows systems as equal peers will unavoidably have complicated behavior around backslashes. 
+
+The following guidelines will help you use backslashes safely in Windows file paths with Puppet.
 
 ### Forward Slashes vs. Backslashes
 
@@ -113,11 +119,13 @@ The following facts are either Windows-only, or have different values on Windows
 Line Endings in Windows Text Files
 -----
 
-Windows uses CRLF line endings instead of \*nix's LF line endings. However, in text files managed by Puppet, line endings generally behave as expected.
+Windows uses CRLF line endings instead of \*nix's LF line endings.
 
-* If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` sequence should be specified in the content parameter.
+* If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` escape sequence should be specified as part of the content. 
 * If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-* Puppet manages `flat` file types in text mode, so it will automatically translate between Windows and \*nix line endings. For example, `%windir%\system32\drivers\etc\hosts`.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings. 
+
+    > Note: When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
 
 Resource Types
