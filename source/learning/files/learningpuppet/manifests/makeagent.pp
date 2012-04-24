@@ -101,7 +101,7 @@ HOSTNAME=${newname}.localdomain
     subscribe => File['network'],
     hasstatus => true,
   }
-  if $::hostname != "${newname}" {
+  if $hostname != "${newname}" {
     exec {'set hostname':
       command => "/bin/hostname ${newname}",
       require => File['network'],

@@ -28,7 +28,9 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 * You can use variables as the value for any resource attribute, or as the title of a resource. 
 * You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
 * Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
-* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the top scope;[^dynamic] this means you can effectively leave off the leading `::` on top scope variables and treat them as globals. 
+* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the top scope;[^dynamic] this means you can almost always refer to global variables with just their short names.
+
+    > Note: Current versions of Puppet can log spurious warnings if you refer to top-scope variables without the `$::` prefix. These are due to a bug, and will be fixed in a future version. 
 * You can only assign the same variable **once** in a given scope.[^declarative]
 
 [^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable from anywhere north of its assignment. We're working on that.
@@ -60,16 +62,16 @@ Before you even start writing your manifests, Puppet builds you a stash of pre-a
     
     host {'self':
       ensure       => present,
-      name         => $::fqdn,
-      host_aliases => ['puppet', $::hostname],
-      ip           => $::ipaddress,
+      name         => $fqdn,
+      host_aliases => ['puppet', $hostname],
+      ip           => $ipaddress,
     }
     
     file {'motd':
       ensure  => file,
       path    => '/etc/motd',
       mode    => 0644,
-      content => "Welcome to ${::hostname},\na ${::operatingsystem} island in the sea of ${::domain}.\n",
+      content => "Welcome to ${hostname},\na ${operatingsystem} island in the sea of ${domain}.\n",
     }
 {% endhighlight %}
     
