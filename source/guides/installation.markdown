@@ -37,7 +37,7 @@ Ruby Prerequisites
 
 The only prerequisite for Puppet that doesn't come as part of the
 Ruby standard library is
-[facter](http://www.puppetlabs.com/projects/facter/index.html),
+[facter](http://puppetlabs.com/puppet/related-projects/facter/),
 which is also developed by Puppet Labs.
 
 All other prerequisite Ruby libraries should come with any standard Ruby 1.8.2+ install.  Should your OS not come with the complete standard
@@ -121,10 +121,10 @@ To install into a different location you can use:
 
 You can also install Facter and Puppet via gems:
 
-      $ wget http://puppetlabs.com/downloads/gems/facter-1.5.7.gem
-      $ sudo gem install facter-1.5.7.gem
-      $ wget http://puppetlabs.com/downloads/gems/puppet-0.25.1.gem
-      $ sudo gem install puppet-0.25.1.gem
+      $ wget http://puppetlabs.com/downloads/gems/facter-1.6.0.gem
+      $ sudo gem install facter-1.6.0.gem
+      $ wget http://puppetlabs.com/downloads/gems/puppet-2.7.6.gem
+      $ sudo gem install puppet-2.7.6.gem
 {:shell}
 
 Find the latest gems
