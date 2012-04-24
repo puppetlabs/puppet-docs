@@ -145,7 +145,7 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 ### Group Tasks
 
 `nodegroup:list [match=<REGULAR EXPRESSION>]`
-: List node groups. Can optionally match gorups by regex.
+: List node groups. Can optionally match groups by regex.
 
 `nodegroup:add name=<NAME> [classes=<CLASSES>]`
 : Create a new node group. Classes can be specified as a comma-separated list.
