@@ -46,7 +46,7 @@ Puppet master server:
       end
     end
 
-Note that the `chomp` is no longer required since Facter::Util::Resolution performs it.
+> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.) 
 
 We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
