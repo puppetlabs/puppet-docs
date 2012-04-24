@@ -295,30 +295,33 @@ packages outside of a normal Puppet configuration run. The
 following is the trimmed output of running the
 checkupdates action:
 
-    peadmin@puppetmaster:~$ mco rpc package checkupdates
-    Determining the amount of hosts matching filter for 2 seconds .... 2
-    [ ===================================================> ] 2 / 2
-    agent.example.com                      
-       Outdated Packages:
-              Output:
-                kernel.i686                 2.6.18-274.7.1.el5          
-                openssh.i386                4.3p2-72.el5_7.5            
-                openssh-clients.i386        4.3p2-72.el5_7.5            
-                openssh-server.i386         4.3p2-72.el5_7.5            
-                openssl.i686                0.9.8e-20.el5                
-                zlib.i386                   1.2.3-4.el5                  
-       Exit Code: 100
-       Package Manager: yum
+    peadmin@puppetmaster:~$ mco rpc package checkupdates -W fqdn=agent.example.com
+    Determining the amount of hosts matching filter for 2 seconds .... 1
+     * [ ============================================================> ] 1 / 1
+    agent.example.com
+       Outdated Packages: [{:package=>"glibc.i686", :version=>"2.5-65.el5_7.1", :repo=>"base_local"},
+                           {:package=>"nscd.i386", :version=>"2.5-65.el5_7.1", :repo=>"base_local"},
+                           {:package=>"ntp.i386",
+                            :version=>"4.2.2p1-15.el5.centos.1",
+                            :repo=>"base_local"},
+                           {:package=>"openssh.i386", :version=>"4.3p2-72.el5_7.5", :repo=>"base_local"},
+                           {:package=>"openssh-clients.i386",
+                            :version=>"4.3p2-72.el5_7.5",
+                            :repo=>"base_local"},
+                           {:package=>"openssh-server.i386",
+                            :version=>"4.3p2-72.el5_7.5",
+                            :repo=>"base_local"}]
+                  Output:
+    glibc.i686                       2.5-65.el5_7.1                       base_local
+    nscd.i386                        2.5-65.el5_7.1                       base_local
+    ntp.i386                         4.2.2p1-15.el5.centos.1              base_local
+    openssh.i386                     4.3p2-72.el5_7.5                     base_local
+    openssh-clients.i386             4.3p2-72.el5_7.5                     base_local
+    openssh-server.i386              4.3p2-72.el5_7.5                     base_local
+               Exit Code: 100
+         Package Manager: yum
 
-     puppetmaster.example.com              
-       Outdated Packages:
-              Output:
-                kernel.i686                           2.6.18-274.7.1.el5          
-                ...
-              Exit Code: 0
-       Package Manager: yum
-
-     Finished processing 2 / 2 hosts in 1703.97 ms
+    Finished processing 1 / 1 hosts in 409.14 ms
 
 ### Controller
 
