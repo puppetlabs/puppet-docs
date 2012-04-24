@@ -110,7 +110,7 @@ The `[main]` config block is the least specific. Settings here are always effect
 
 #### `[agent]`, `[master]`, and `[user]` Blocks
 
-These three blocks correspond to Puppet's run modes. Settings in `[agent]` will only be used by puppet agent, settings in `[master]` will be used by puppet master and puppet cert, and settings in `[user]` will be used by puppet apply. The Faces subcommands introduced in Puppet 2.7 default to the `user` run mode, but their mode can be changed at run time with the `--mode` option. Note that not every setting makes sense for every run mode, but specifying a setting in a block where it is irrelevant has no observable effect.
+These three blocks correspond to Puppet's run modes. Settings in `[agent]` will only be used by puppet agent; settings in `[master]` will be used by puppet master and puppet cert; and settings in `[user]` will only be used by puppet apply. The Faces subcommands introduced in Puppet 2.7 default to the `user` run mode, but their mode can be changed at run time with the `--mode` option. Note that not every setting makes sense for every run mode, but specifying a setting in a block where it is irrelevant has no observable effect.
 
 ##### Notes on Puppet 0.25.5 and Older
 
@@ -243,7 +243,7 @@ So, for example:
     webserver, !mailserver: httpadmins@domain.com
     emerg, crit: james@domain.com, zach@domain.com, ben@domain.com
 
-This `tagmail.conf` file will mail any resource events tagged with `webserver` but _not_ with `mailserver` to the httpadmins group, any emergency or critical events to to James, Zach, and Ben, and all events to the log-archive group.
+This `tagmail.conf` file will mail any resource events tagged with `webserver` but _not_ with `mailserver` to the httpadmins group; any emergency or critical events to to James, Zach, and Ben, and all events to the log-archive group.
 
 ### `autosign.conf`
 
