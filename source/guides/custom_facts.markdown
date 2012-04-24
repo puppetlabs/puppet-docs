@@ -42,11 +42,11 @@ Puppet master server:
 
     Facter.add("hardware_platform") do
       setcode do
-        Facter::Util::Resolution.exec('/bin/uname -i').chomp
+        Facter::Util::Resolution.exec('/bin/uname -i')
       end
     end
 
-Note that the `chomp` is required to provide clean data.
+Note that the `chomp` is no longer required since Facter::Util::Resolution performs it.
 
 We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
