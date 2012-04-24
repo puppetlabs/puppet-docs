@@ -13,7 +13,12 @@ Puppet 2.7 issues deprecation warnings for dynamic variable lookup. Find out why
 What's Changing?
 ----------------
 
-Dynamic scope will be removed from the Puppet language in a future version. **This will be a major and backwards-incompatible change.** Currently, if an unqualified variable isn't defined in the local scope, Puppet looks it up along a chain of parent scopes, eventually ending at top scope. In the future, Puppet will only examine the local, inherited, node, and top scopes and top scope when resolving an unqualified variable; intervening scopes will be ignored. **In effect, all variables will be either strictly local to a hierarchy or strictly global.**
+Dynamic scope will be removed from the Puppet language in a future version. **This will be a major and backwards-incompatible change.** Currently, if an unqualified variable isn't defined in the local scope, Puppet looks it up along an unlimited chain of parent scopes, eventually ending at top scope. In the future, Puppet will only examine the local, inherited, node, and top scopes when resolving an unqualified variable; intervening scopes will be ignored. In effect, all variables will one of the following:
+
+* Local
+* Inherited from a base class
+* Node-level
+* Global
 
 To ease the transition, Puppet 2.7 issues deprecation warnings whenever dynamic variable lookup occurs. You should strongly consider refactoring your code to eliminate these warnings. 
 
@@ -94,13 +99,13 @@ If you're referring explicitly to a top-scope variable, use the empty namespace 
 
 ### Declare Resource Defaults Per-File!
 
-Although resource defaults are not being changed, they will still by affected by dynamic scope, for consistency and clarity you'll want to follow these rules for them, as well.
+Although resource defaults are not being changed, they will still be affected by dynamic scope; for consistency and clarity you'll want to follow these rules for them, as well.
 
 Using your resource defaults without dynamic scope means one thing: you'll have to repeat yourself in each file that the defaults apply to. 
 
-But this is not a bad thing! Resource defaults are really just code compression, and were designed to make a single file of Puppet code more concise. By making sure your defaults are always on the same page as the resources they apply to, you'll make your code vastly more legible and predictable. 
+But this is not a bad thing! Resource defaults are usually just code compression, used to make a single file of Puppet code more concise. By making sure your defaults are always on the same page as the resources they apply to, you'll make your code more legible and predictable. 
 
-If you need to apply resource defaults more broadly, you can still set them at top scope in your primary site manifest. If you need the resource defaults in a class to change depending on where the class is being declared, you need parameterized classes. 
+In cases where you need site-wide resource defaults, you can still set them at top scope in your primary site manifest. If you need the resource defaults in a class to change depending on where the class is being declared, you need parameterized classes. 
 
 All told, it's more likely that defaults have been traveling through scopes without your knowledge, and following these guidelines will just make them act like you thought they were acting. 
 
