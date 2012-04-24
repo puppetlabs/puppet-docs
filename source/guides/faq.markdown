@@ -332,7 +332,7 @@ a dot file using the `dot` utility included with graphviz, run the following:
 ### How do all of these variables, like $operatingsystem, get set?
 
 The variables are all set by
-[Facter](http://puppetlabs.com/projects/facter). You can get a
+[Facter](http://puppetlabs.com/puppet/related-projects/facter/). You can get a
 full listing of the available variables and their values by running
 facter by itself in a shell.:
 

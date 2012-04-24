@@ -114,7 +114,7 @@ Puppet::Parser::Scope#to\_trans
 
 Most configurations will rely on client information to make
 decisions. When the Puppet client starts, it loads the
-[Facter](http://www.reductivelabs.com/projects/facter/) library,
+[Facter](http://puppetlabs.com/puppet/related-projects/facter/) library,
 collects all of the facts that it can, and passes those facts to
 the interpreter. When you use Puppet over a network, these facts
 are passed over the network to the server and the server uses them
