@@ -53,9 +53,9 @@ Puppet requires [Ruby](http://www.ruby-lang.org/en/). Certain versions of Ruby w
 
 * [Puppet Enterprise](/pe/) does not rely on the OS's Ruby version, as it maintains its own Ruby environment. You can install PE alongside any version of Ruby or on systems without Ruby installed.
 * Ruby 1.8.7 and 1.8.5 are fully supported with Puppet 2.6 and 2.7, and Puppet Labs runs automated tests on both of these versions.
-* Ruby 1.9.2 and higher are supported with Puppet 2.7, and Puppet Labs runs automated tests on version 1.9.2. 
-* Ruby 1.8.1 is partially supported for agent-only use on a best-effort basis, and is not included in our automated testing. 
+* Ruby 1.9.3 and higher are supported with Puppet 2.7, and Puppet Labs runs automated tests on version 1.9.3. 
 * Ruby 1.8.6, 1.9.0, and 1.9.1 have significant compatibility issues with Puppet, and there are no plans to make Puppet work with these versions.
+* Ruby 1.9.2 may work with Puppet 2.7, but Puppet Labs does not perform automated testing on it.
 
 Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform not on this list.
 

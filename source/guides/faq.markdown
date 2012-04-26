@@ -242,7 +242,7 @@ at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
 ### Which versions of Ruby does Puppet support?
 
-Ruby 1.8.5 and 1.8.7 work with all Puppet versions, and are supported with full automated testing for 2.6 and 2.7 releases. Starting with Puppet 2.7, Puppet Labs is also supporting Ruby 1.9.2 and higher, although Puppet 2.7.0 has a handful of known issues under Ruby 1.9.
+Ruby 1.8.5 and 1.8.7 work with all Puppet versions, and are supported with full automated testing for 2.6 and 2.7 releases. Starting with Puppet 2.7, Puppet Labs is also supporting Ruby 1.9.3 and higher with automated testing.
 
 Although Puppet has been known to work with other Ruby versions, Puppet Labs does not test these versions. Puppet has significant known compatibility issues under Ruby 1.8.6, 1.9.0, and 1.9.1; these versions are not recommended.
 
