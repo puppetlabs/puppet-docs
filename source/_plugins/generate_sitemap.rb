@@ -108,8 +108,11 @@ module Jekyll
       "
   <url>
       <loc>#{BASE_URL}#{path}</loc>
-      <lastmod>#{date.strftime("%Y-%m-%d")}</lastmod>
   </url>"
+
+  # There used to be a <lastmod>#{date.strftime("%Y-%m-%d")}</lastmod> here. It's gone now.
+  # -NF, apr. 25 2012
+
     end
 
   end
