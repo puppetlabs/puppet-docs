@@ -157,56 +157,6 @@ section#content{
 
 /* @group Layouts */
 
-/* @group Home */
-
-body#home .scroll{
-  overflow: hidden;
-  position: relative;
-}
-
-body#home #masthead .site-width {
-  padding-top: 3em;
-  padding-bottom: 1em;
-  background: url(images/puppet-logo-280-colorized.png) left -80px no-repeat;
-  height: 320px !important;
-  zoom: 1;
-}
-
-body#home section#masthead h1{
-	width: 500px;
-}
-
-body#home section#masthead p{
-  margin-left: 420px;
-}
-
-/* @end */
-
-/* @group Blog */
-
-/* @group Masthead */
-
-body.blog #masthead,
-body.blog #masthead ol,
-body.blog #masthead ol li,
-body.blog #masthead ol li ul{
-  position: relative;
-  z-index: 2;
-}
-
-body.blog #masthead ol > li.active > ul,
-body.blog #masthead ol li.with-submenu > ul {
-	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-}
-
-body.blog #masthead ol li:hover span.drop-down-trigger {
-	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-}
-
-
-
-/* @end */
-
 /* @group Sidebar */
 
 #subscription-section{

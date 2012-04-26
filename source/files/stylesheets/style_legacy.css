@@ -156,7 +156,6 @@ body {
   min-width: 940px;
   margin: 0 auto;
   position: relative;
-/*background: url(images/grid.png) !important;*/
 }
 
 .site-width:after {
@@ -920,63 +919,6 @@ section#masthead h1 span.ampersand {
   margin-left: 0.1em;
 }
 
-section#masthead a.back {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: inherit;
-  float: left;
-  height: 28px;
-  width: 28px;
-  background: #8d4333 url(images/icons/16/white/undo.png) no-repeat center 5px;
-  -webkit-border-radius: 32px;
-  -moz-border-radius: 32px;
-  border-radius: 32px;
-  position: relative;
-  top: 3px;
-  margin-right: 29px;
-  -webkit-transition: 0.25s linear all;
-  -moz-transition: 0.25s linear all;
-  border: 2px solid rgba(0,0,0,0.1);
-  text-decoration: none;
-}
-
-section#masthead a.back span {
-  padding: 0.25em 0.5em;
-  background: #975638;
-  background: rgba(0,0,0,0.33);
-  color: white;
-  font-size: 1em;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  opacity: 0;
-  visibility: hidden;
-	position: absolute;
-  right: -6.25em;
-  top: 50%;
-  margin-top: -1em;
-  -webkit-transition: 0.25s linear all;
-  -moz-transition: 0.25s linear all;
-  white-space: nowrap;
-}
-
-section#masthead a.back:hover {
-  -webkit-animation: pulse-dark 2s infinite;
-}
-
-section#masthead a.back:hover span {
-  background: #7e482e;
-  background: rgba(0,0,0,0.5);
-  right: -7.75em;
-  opacity: 1;
-  visibility: visible;
-}
-
-section#masthead a.back:active {
-  background-color: rgba(0,0,0,0.75);
-  -webkit-animation: none;
-}
-
 span.edit a {
   padding: 0.3em 10px;
   background: rgba(0,0,0,.33);
@@ -1002,7 +944,7 @@ span.edit a:hover {
 /* @group Content */
 
 section#content {
-  background: #fdfdfd url(images/texture_fade.png) top center no-repeat;
+  background: #fdfdfd;
   color: #444;
   padding-top: 2em;
   padding-bottom: 2.5em;
@@ -1115,6 +1057,8 @@ footer#footer ul li span.indicator {
   display: none !important;
 }
 
+/* NF: I can tell what this was originally meant to do, but it's not doing it. Turning it off. */
+/* 
 footer#footer ul li.chat span.indicator {
   background: url(images/icons/16/aim.png);
 }
@@ -1134,6 +1078,7 @@ footer#footer ul li.facebook span.indicator {
 footer#footer ul li.twitter span.indicator {
   background: url(images/icons/16/twitter.png);
 }
+ */
 
 footer#footer #newsletter {
   position: absolute;
