@@ -242,9 +242,44 @@ at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
 ### Which versions of Ruby does Puppet support?
 
-Ruby 1.8.5 and 1.8.7 work with all Puppet versions, and are supported with full automated testing for 2.6 and 2.7 releases. Starting with Puppet 2.7, Puppet Labs is also supporting Ruby 1.9.3 and higher with automated testing.
+{% comment %}
 
-Although Puppet has been known to work with other Ruby versions, Puppet Labs does not test these versions. Puppet has significant known compatibility issues under Ruby 1.8.6, 1.9.0, and 1.9.1; these versions are not recommended.
+Uncomment this at the Telly release! 
+
+Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.0
+-------------|------------|------------|-----------
+1.8.5        | Supported  | Supported  | Supported
+1.8.7        | Supported  | Supported  | Supported
+1.9.3        | No         | No         | Supported
+1.9.2        | No         | No         | No
+1.9.1        | No         | No         | No
+1.9.0        | No         | No         | No
+1.8.6        | No         | No         | No
+1.8.1        | No         | No         | No
+
+* The upcoming Puppet 3.0 runs under Ruby 1.9.3, 1.8.7, and 1.8.5. All of these versions support all of Puppet's features, and are under extensive automated test coverage. 
+* Ruby 1.9.2 may work with Puppet 3.0, but there are several known issues, and Puppet Labs does not perform automated testing on it.
+
+{% endcomment %}
+
+Ruby version | Puppet 2.6 | Puppet 2.7 
+-------------|------------|------------
+1.8.5\*      | Supported  | Supported  
+1.8.7        | Supported  | Supported  
+1.9.3        | No         | No         
+1.9.2        | No         | No         
+1.9.1        | No         | No         
+1.9.0        | No         | No         
+1.8.6        | No         | No         
+1.8.1        | No         | No         
+
+> \* Note that although Ruby 1.8.5 is fully supported, Ruby 1.8.7 generally gives better performance and memory use.
+
+Versions marked as "Supported" are recommended by Puppet Labs and are under extensive automated test coverage. Other versions are not recommended, and we make no guarantees about their performance with Puppet; however:
+
+* Ruby 1.8.6 and 1.8.1 have occasionally been known to work for agent nodes, but should never be used on a puppet master server.
+* Ruby 1.9.2 and 1.9.3 have major known issues with Puppet 2.7, and should be avoided. They will not work at all with Puppet 2.6.
+* Ruby 1.9.0 and 1.9.1 should always be avoided with Puppet.
 
 Upgrading
 ---------
