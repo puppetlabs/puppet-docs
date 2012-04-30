@@ -188,6 +188,15 @@ To contribute ideas, problems, or suggestions, simply use the [Contribute](./con
 
 * * * 
 
+Download
+--------
+
+* You can download the current version of this entire website as a zipped archive [here](./puppetdocs-latest.tar.gz). Unzip it and follow the instructions in the README.txt file to view this site offline.
+* You can also check out the git repository this website is built from [here](http://github.com/puppetlabs/puppet-docs).
+
+
+* * * 
+
 Documentation Version
 ---------------------
 
