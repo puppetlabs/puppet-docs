@@ -8,12 +8,10 @@ subtitle: "User's Guide Appendix"
 
 This document contains additional miscellaneous information about Puppet Enterprise 2.5.
 
-<!-- 
 Glossary
 -----
 
-For help with Puppet specific terms and language, visit [the glossary](../references/glossary.html)
- -->
+For help with Puppet specific terms and language, visit [the glossary](/references/glossary.html)
 
 Release Notes
 -----

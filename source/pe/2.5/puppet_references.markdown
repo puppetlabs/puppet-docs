@@ -7,13 +7,10 @@ subtitle: "Puppet References"
 
 Puppet has a lot of moving parts and a lot of information to remember. The following resources will help you keep the info you need at your fingertips and use Puppet effectively. 
 
-<!-- 
 Terms and Concepts
 -----
 
-* [The Puppet Glossary](http://projects.puppetlabs.com/projects/1/wiki/Glossary_Of_Terms) defines the common and obscure terms for pieces of the Puppet ecosystem. 
-
-TODO: deploy updated glossary, then fix link and uncomment -->
+* [The Puppet Glossary](/references/glossary.html) defines the common and obscure terms for pieces of the Puppet ecosystem. 
 
 
 Resource Types
