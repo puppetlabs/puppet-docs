@@ -20,7 +20,7 @@ in order to run puppet in client server mode.
 If you will just be running [Puppet standalone](./tools.html#puppet-apply-or-puppet)
 you don't need a Puppet master server and installation on just one machine will suffice.
 
-You may want to consider installing [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise/) 
+You may want to consider installing [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise/)
 for the easiest installation path, if you need professional support, or if some
 of the additional features built on Puppet would be useful.  Check out the
 [comparison](http://puppetlabs.com/puppet/compare/) and read the [FAQ](http://puppetlabs.com/puppet/faq/) to see if it might be right for you.
@@ -29,6 +29,14 @@ For most platforms, you can install 'puppet' via your package
 manager of choice.  For a few platforms, you will need to install
 using the [tarball](http://www.puppetlabs.com/downloads/puppet/) or
 [RubyGems](http://www.puppetlabs.com/downloads/gems/).
+
+Puppet Labs also offers native packages for our Open Source projects at:
+
+  *  [apt.puppetlabs.com](http://apt.puppetlabs.com) for Debian/Ubuntu based systems.
+  *  [yum.puppetlabs.com](http://yum.puppetlabs.com) for Enterprise Linux/Fedora systems.
+  *  [downloads.puppetlabs.com/mac](http://downloads.puppetlabs.com/mac) Mac OS X systems.
+  *  [downloads.puppetlabs.com/windows](http://downloads.puppetlabs.com/windows) Windows MSI.
+
 
 INFO: For instructions on installing puppet using a distribution-specific package manager, consult your operating system documentation.  Volunteer contributed operating system packages can also be found on the [downloads page](http://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet)
 
