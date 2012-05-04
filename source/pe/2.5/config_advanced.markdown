@@ -60,23 +60,16 @@ By default, a new installation of PE will serve the console on port 443. However
         $ sudo /etc/init.d/pe-httpd start
 
 
-Changing the Console's User/Password
+Recovering from a Lost Console Admin Password
 -----
 
-Access to the console is controlled with a user name and password, which are chosen during installation. You can change the password or add a new user using PE's copy of `htpasswd` on the `/etc/puppetlabs/httpd/console_passwd` file. To change the password of the default "console" user:
+If you have forgotten the password of the console's initial admin user, you can create a new admin user and use it to reset the original admin user's password.
 
-    $ sudo /opt/puppet/bin/htpasswd /etc/puppetlabs/httpd/console_passwd console
-    New password: 
-    Re-type new password: 
-    Updating password for user console
+On the console server, run the following command:
 
-To add a new user: 
+    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_initial_admin email=user@example.com password=<PASSWORD>
 
-    $ sudo /opt/puppet/bin/htpasswd /etc/puppetlabs/httpd/console_passwd new_admin
-
-Run `/opt/puppet/bin/htpasswd --help` for more info, including how to delete users.
-
-Note that you do not need to change any other Puppet settings after changing this password; it is only used for the console's web interface. 
+You can now log in to the console as the user you just created, and use the normal admin tools to reset other users' passwords.
 
 Changing the Console's Database User/Password
 -----
