@@ -122,6 +122,7 @@ Manage Windows nodes side by side with your \*nix infrastructure, with Puppet En
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
 * [Scaling Puppet](./guides/scaling.html) --- general tips & tricks
+* [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- a guide to adding new puppet masters to a single-master site
 * [Scaling With Passenger](./guides/passenger.html) --- for Puppet 0.24.6 and later
 * [Scaling With Mongrel](./guides/mongrel.html) --- for older versions of Puppet
 
