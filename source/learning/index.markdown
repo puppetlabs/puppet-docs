@@ -68,9 +68,13 @@ Although teaching the use of virtualization software is outside the scope of thi
 > 
 > ### Importing the VM into VirtualBox
 > 
-> If you are using VirtualBox with the OVF version of the VM, choose "Import Appliance" from the File menu and browse to the `.ovf` file included with your download; alternately, you can drag the OVF file and drop it onto VirtualBox's main window.
->
-> **Do not** use the "New Virtual Machine Wizard" and select the included `.vmdk` file as the disk; machines created this way will kernel panic during boot.
+> There are several quirks and extra considerations to manage when importing this VM into VirtualBox:
+> 
+> * If you are using VirtualBox with the OVF version of the VM, choose "Import Appliance" from the File menu and browse to the `.ovf` file included with your download; alternately, you can drag the OVF file and drop it onto VirtualBox's main window.
+> 
+>     **Do not** use the "New Virtual Machine Wizard" and select the included `.vmdk` file as the disk; machines created this way will kernel panic during boot.
+> * If you find the system hanging during boot at a "registered protocol family 2" message, you may need to go to the VM's "System" settings and check the "Enable IO APIC" option. (Many users are able to leave the IO APIC option disabled; we do not currently know what causes this problem.)
+> * The VM should work without modification on 4.x versions of VirtualBox. However, on 3.x versions, it may fail to import, with an error like "Failed to import appliance. Error reading 'filename.ovf': unknown resource type 1 in hardware item, line 95." If you see this error, you can either upgrade your copy of VirtualBox, or work around it by editing the .ovf file and recalculating the sha1 hash, [as described here](http://mattiasgeniar.be/2012/03/31/importing-the-puppet-learning-vm-into-virtualbox-unknown-resource-type-in-hardware-item). Thanks to Mattias for this workaround.
 > 
 > ### Configuring Virtual Networking
 > 
