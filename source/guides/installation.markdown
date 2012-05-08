@@ -77,9 +77,9 @@ In an agent/master deployment, you must prepare your network for Puppet's traffi
 Installing Puppet
 -----
 
-Find instructions for your operating system below, or install from gem or source if your OS doesn't have specific instructions.
+The best way to install Puppet varies by operating system. Use the links below to skip to your OS's instructions.
 
-- <a href="#enterprise-linux">Enterprise Linux</a>
+- <a href="#enterprise-linux-and-derivatives">Enterprise Linux (and Derivatives)</a>
 - <a href="#debian-and-ubuntu">Debian and Ubuntu</a>
 - <a href="#fedora">Fedora</a>
 - <a href="#mac-os-x">Mac OS X</a>
@@ -90,9 +90,9 @@ Find instructions for your operating system below, or install from gem or source
    
 * * * 
 
-### Enterprise Linux
+### Enterprise Linux (and Derivatives)
 
-These instructions apply to Enterprise Linux (EL) variants, including:
+These instructions apply to Enterprise Linux (EL) variants, including but not limited to:
 
 * Red Hat Enterprise Linux 5 and 6
 * CentOS 5 and 6
