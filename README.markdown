@@ -25,9 +25,17 @@ To install the documentation-generating code:
 
         $ sudo port -d install rb-rake libxml2 libxslt py-pygments
 
+    Make sure there is a `pygmentize` command available! If your package tools
+    install the pygmentize binary with a different name (like Macports does),
+    you must symlink it so Jekyll can find the command.
+
 3.  Install the ruby dependencies:
 
-        $ sudo rake install
+        $ sudo gem install maruku rack versionomy kramdown vlad vlad-git albino classifier directory_watcher rdoc
+        $ sudo gem install liquid --version 2.2.2
+
+    Liquid versions other than 2.2.2 don't work with the version of Jekyll
+    we use.
 
 Building and Viewing
 --------------------
@@ -86,7 +94,7 @@ Contributing Changes
 --------------------
 
 * Fork the project (we recommend [GitHub][3])
-* Make sure you read the writing guide (README_WRITING.markdown) and the 
+* Make sure you read the writing guide (README_WRITING.markdown) and the
 style and usage guide, which are both in the root of this project.
 * Make your documentation addition/fix -- preferably in a branch.
 * If you're fixing or adding features to the generation
