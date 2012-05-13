@@ -55,7 +55,7 @@ each report, and each type of metric has one or more values:
 ## Setting Up Reporting
 
 By default, the client does not send reports, and the server only
-is only configured to store reports, which just stores recieved YAML-formatted report
+is only configured to store reports, which just stores received YAML-formatted report
 in the reportdir.
 
 Clients default to sending reports to the same server they get
