@@ -71,7 +71,7 @@ should be provided for all modules:
     description 'Longer description of the module including an example'
     license 'The license the module is release under - generally GPLv2 or Apache'
     project_page 'The URL where the module source is located'
-    dependency 'otheruser-othermodule', '1.2.3'
+    dependency 'otheruser/othermodule', '>= 1.2.3'
 
 A more complete guide to the Modulefile format can be found in the [puppet-module-tool README](https://github.com/puppetlabs/puppet-module-tool/blob/master/README.markdown).
 
