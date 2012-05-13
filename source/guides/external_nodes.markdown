@@ -29,7 +29,7 @@ ENCs can co-exist with standard node definitions in `site.pp`, and **the classes
 > * Any classes or resources which are in the site manifest but outside any node definitions
 > * Any classes or resources in the most specific node definition in site.pp that matches the current node (if site.pp contains any node definitions)
 >     * Note 1: If site.pp contains at least one node definition, it **must** have a node definition that matches the current node; compilation will fail if a match can't be found. 
->     * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet will make muiltiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
+>     * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet will make multiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
 >     * Note 3: If no matching node definition can be found with the node's name, Puppet will try one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
 
 
@@ -79,7 +79,7 @@ If present, the value of `classes` MUST be either an array of class names or a h
       dns:
       ntp:
 
-Parameterized classes cannot be used with the array syntax. When using the hash key syntax, the value for a parameterized classe SHOULD be a hash of the class's attributes and values. Each value MAY be a string, number, array, or hash. String values SHOULD be quoted, as un-quoted strings like "on" may be interpreted as booleans. Non-parameterized classes MAY have empty values.
+Parameterized classes cannot be used with the array syntax. When using the hash key syntax, the value for a parameterized class SHOULD be a hash of the class's attributes and values. Each value MAY be a string, number, array, or hash. String values SHOULD be quoted, as unquoted strings like "on" may be interpreted as booleans. Non-parameterized classes MAY have empty values.
 
     classes:
         common:
