@@ -1,20 +1,61 @@
 ---
 nav: pe25.html
 layout: pe2experimental
-title: "PE 2.5 » Cloud Provisioning » Configuring and Troubleshooting"
-subtitle: "Configuring and Troubleshooting Cloud Provisioning"
+title: "PE 2.5 » Cloud Provisioning » Installation and Configuration"
+subtitle: "Installing and Configuring Cloud Provisioning"
 ---
+
+There are many options and actions associated with the main cloud provisioning sub-commands, `node`, `node_vmware`, and `node_aws`. This page provides an overview but, for all the details, check the man pages.
+
+Prerequisites
+-------------
+
+### Software
+
+- The cloud provisioning tools ship with Puppet Enterprise 2.0 and later. <!-- OpenStack tools require cloud\_provisioner 1.0.2 or later (i.e. PE 2.5 or later). -->
+
+- Puppet 2.7.2 or later is required
+
+- The [Fog](http://fog.io/) cloud services library must be installed on the machine running cloud\_provisioner. (Some operating systems and environments may also require you to manually install some of Fog's dependencies.) To install Fog, run 
+
+    \# gem install fog -v 0.7.2
+
+- Cloud\_provisioner also requires the GUID library so it can generate unique indentifiers.
+
+     \# gem install guid 
+
+### Services
+
+The following services and credentials are required:
+
+- VMware requires: VMware vSphere 4.0 (or later) and VMware vCenter
+
+- Amazon Web Services requires: An existing Amazon account with support for EC2
+
+<!-- - OpenStack requires: A standard installation of OpenStack Keystone and the accompanying EC2 credentials -->
+
+
+Installing
+----------
+
+Cloud provisioning tools can be installed on any puppet master or agent node.
+
+The Puppet Enterprise installer will ask whether or not to install cloud provisioning during installation. Answer 'yes' to enable cloud provisioning actions on a given node. 
+
+If you have already installed PE without installing the cloud provisioning tools, run the upgrader script `puppet-enterprise-upgrader` and answer "yes" when prompted to install the tools. Running the upgrader script will have no ill effects on your current installation, even if the upgrader is for the version currently installed. (No user-configured files will get overwritten, and of course the installer backs up all relevant files as well.)
+
+If you're using an answer file to install Puppet Enterprise, you can install cloud provisioning by setting the `q_puppet_cloud_install` option to `y`.
 
 Configuring
 -----------
 
-To create new virtual machines with Puppet Enterprise, first you'll need to configure the services you'll be using. 
+To create new virtual machines with Puppet Enterprise,  you'll need to first configure the services you'll be using. 
 
-First, create a file called `.fog` in the home directory of the user who will be provisioning new nodes.
+Start by creating a file called `.fog` in the home directory of the user who will be provisioning new nodes.
 
     $ touch ~/.fog
 
-This is the configuration file for [Fog](https://github.com/fog/fog), the cloud abstraction library that powers PE's provisioning tools. When filled, it will be a YAML hash containing the locations of your cloud services and the credentials necessary to control them. For example:
+This will be the configuration file for [Fog](https://github.com/fog/fog), the cloud abstraction library that powers PE's provisioning tools. Once it is filled out, it will consist of a YAML hash indicating the locations of your cloud services and the credentials necessary to control them. For example:
 
     :default:
       :vsphere_server: vc01.example.com
@@ -24,7 +65,7 @@ This is the configuration file for [Fog](https://github.com/fog/fog), the cloud 
       :aws_access_key_id: AKIAIISJV5TZ3FPWU3TA
       :aws_secret_access_key: ABCDEFGHIJKLMNOP1234556/s
 
-Continue reading for explanations of how to find these credentials.
+See below to learn how to find these credentials.
 
 ### Adding VMware Credentials
 
@@ -56,19 +97,10 @@ To connect to a VMware vSphere server, you must put the following information in
     
     ...which can then be entered as the value of this setting.
     
-    The following video demonstrates the setup process and some basic functions:
 
-<object width="560" height="315"><param name="movie"
-value="http://www.youtube.com/v/06Er_8dHbOM?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/v/06Er_8dHbOM?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="560" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
+### Adding Amazon Web Services or OpenStack Credentials
 
-### Adding Amazon Web Services credentials
-
-To connect to Amazon Web Services, you must put the following information in your `~/.fog` file:
+To connect to Amazon Web Services or your OpenStack server, you must put the following information in your `~/.fog` file:
 
 `:aws_access_key_id`
 : Your AWS Access Key ID. See below for how to find this.
@@ -76,7 +108,7 @@ To connect to Amazon Web Services, you must put the following information in you
 `:aws_secret_access_key`
 : Your AWS Secret Key ID. See below for how to find this.
 
-You can get find your Amazon Web Services credentials online in your Amazon account. To view them, go to [Amazon AWS](http://aws.amazon.com) and click on the Account tab.
+For *AWS installations*, you can find your Amazon Web Services credentials online in your Amazon account. To view them, go to [Amazon AWS](http://aws.amazon.com) and click on the Account tab.
 
 ![AWS Account tab](./images/cloud/awsaccount.png)
 
@@ -84,17 +116,12 @@ Select the "Security Credentials" menu and choose "Access Credentials." Click on
 
 You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, click the "Show" link under "Secret Access Key". 
 
-Put both keys in your `~/.fog` file as described above.
+<!-- 
+For *OpenStack installations*, your credentials are printed to screen after running `keystone ec2-credentials-create`
 
-The following video demonstrates the setup process and some basic functions:
+Put both keys in your `~/.fog` file as described above. You will also need to generate an SSH private key using Horizon, or simply import a selected public key.
+ -->
 
-<object width="560" height="315"><param name="movie"
-value="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="560" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ### Additional AWS Configuration
 
@@ -117,7 +144,7 @@ existing key pairs, you can create one with the "Create Key Pairs" button.
 Specify a new name for the key pair to create it; the private key
 file will be automatically downloaded to your host. 
 
-Make a note of the name of your key pair, as it is used when creating new instances.
+Make a note of the name of your key pair, as it will be used when creating new instances.
 
 #### Security Group
 
@@ -129,38 +156,35 @@ groups.  If no groups exist, you can create a new one by clicking the
 ![AWS Security Groups](./images/cloud/awssecgroup.png)
 
 To add the required rules, select the "Inbound" tab and add an SSH rule.
-You can also specify a specific source to lock the source IP down to
+You can also indicate a specific source to lock the source IP down to
 an appropriate source IP or network.  Click "Add Rule" to add the rule,
 then click "Apply Rule Changes" to save.
 
 You should also ensure that your security group allows outbound traffic on ports **8140** and **61613.** These are the ports PE uses to request configurations and listen for orchestration messages.
 
+<!-- 
+### Additional OpenStack Configuration
 
-Troubleshooting
----------------
+Before you can launch any instances with the provisioner module, you will need: 
 
-### Missing .fog file or credentials
+- a fully functional OpenStack environment
+- at least one valid OS image 
+- the URL of your Nova EC2 API server (typically, http://your.nova.api.server:8773/services/Cloud)
+- to use the Horizon console to configure the default security group to allow SSH (port 22) access.
+ -->
+Demonstration
 
-If you attempt to provision without creating a `.fog` file or without
-populating the file with appropriate credentials you'll see the following error:
+-----------
 
-On VMware:
+The following video demonstrates the setup process and some basic functions:
 
-    $ puppet node_vmware list
-    notice: Connecting ...
-    err: Missing required arguments: vsphere_username, vsphere_password, vsphere_server
-    err: Try 'puppet help node_vmware list' for usage
-
-On Amazon Web Services:
-
-    $ puppet node_aws list
-    err: Missing required arguments: aws_access_key_id,
-    aws_secret_access_key
-    err: Try 'puppet help node_aws list' for usage
-
-Add the appropriate file or missing credentials to the existing file to resolve
-this issue.
-
+<object width="560" height="315"><param name="movie"
+value="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"></param><param
+name="allowFullScreen" value="true"></param><param
+name="allowscriptaccess" value="always"></param><embed
+src="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="560" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 
 * * * 

@@ -5,62 +5,37 @@ title: "PE 2.5 » Cloud Provisioning » Overview"
 subtitle: "A Cloud Provisioning Overview"
 ---
 
-Puppet Enterprise includes command-line tools for provisioning new nodes. You can use these tools to:
+Puppet Enterprise includes a suite of command-line tools you can use for provisioning new virtual nodes when building or maintaining cloud computing infrastructures based on VMware VSphere and Amazon EC2. <!-- and OpenStack.  -->You can use these tools to:
 
-* Create and destroy virtual machine instances on VMware vSphere and Amazon EC2
-* Classify new nodes (virtual or physical) in the console
+* Create and destroy virtual machine instances
+* Classify new nodes (virtual or physical) in the PE console
 * Automatically install and configure PE on new nodes (virtual or physical)
+<!-- 
 
-When used together, these tools provide a quick and efficient workflow for adding nodes to your Puppet Enterprise environment.
+(Note that OpenStack requires Puppet's cloud_provisioner 1.0.2 or later.)
+ -->
 
-See the chapters on [VMware](./cloudprovisioner_vmware.html) and [AWS](./cloudprovisioner_aws) provisioning for details about creating and destroying virtual machines. After that, the chapter on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical.
+When used together, these tools provide quick and efficient workflows for adding and maintaining fully configured, ready-to-run virtual nodes in your Puppet Enterprise-managed cloud environment.
+
+See the sections on [VMware](./cloudprovisioner_vmware.html), <!-- [OpenStack](./cloudprovisioner_openstack) -->and [AWS](./cloudprovisioner_aws) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow) section.
+
+The cloud provisioning tools can be added during installation of Puppet Enterprise. If you change your mind and have already installed PE, you can simply run the upgrader to add the cloud provisioning tools to your existing installation.
 
 Tools
 -----
 
-PE's provisioning tools are based around the `node, node_vmware,` and `node_aws` subcommands. Each of these subcommands has a selection of available **actions** (such as `list` and `start`). You can get information about a subcommand or its actions with the `puppet help` and `puppet man` commands.
+PE's provisioning tools are built on the `node`, `node_vmware`, <!-- `node_openstack`, --> and `node_aws` subcommands. Each of these subcommands has a selection of available **actions** (such as `list` and `start`) that are used to complete specific provisioning tasks. You can get detailed information about a subcommand and its actions by running `puppet help` and `puppet man`.
 
-The VMware and AWS subcommands are only used for provisioning, but `node` is a pre-existing Puppet subcommand with several provisioning actions added to it. The `node` actions used in the provisioning process are:
+The VMware<!-- , OpenStack, --> and AWS subcommands are only used for cloud provisioning tasks. `Node`, on the other hand, is a general purpose Puppet subcommand that includes several provisioning-specific actions. These are:
 
 - `classify`
 - `init`
 - `install`
 
-You may also find the `clean` action useful when decommissioning nodes.
+The `clean` action may also be useful when decommissioning nodes.
 
-The VMware and AWS provisioning tools are powered by [Fog, the Ruby cloud services library](https://github.com/fog/fog). Fog is automatically installed on any machine receiving the cloud provisioner role.
-
-Prerequisites
--------------
-
-The cloud provisioning tools ship with Puppet Enterprise 2.0 and later.
-
-### Services
-
-The following services and credentials are required:
-
-For VMware you will need:
-
-- VMware vSphere 4.0 and later
-- VMware vCenter
-
-For Amazon Web Services you will need:
-
-- An existing Amazon account with support for EC2
-
-Installing
-----------
-
-Cloud provisioning can be installed on any puppet master or agent node.
-
-The Puppet Enterprise installer and upgrader will ask whether to install cloud provisioning during installation; answer 'yes' to enable cloud provisioning actions on a given node.
-
-If you're using an answer file to install Puppet Enterprise, install cloud provisioning by setting the `q_puppet_cloud_install` option to `y`.
-
-    q_puppet_cloud_install=y
-
-
+All of the cloud provisioning tools are powered by [Fog, the Ruby cloud services library](https://github.com/fog/fog). Fog is automatically installed on any machine receiving the cloud provisioner role.
 
 * * * 
 
-- [Next: Configuring and Troubleshooting Cloud Provisioning](./cloudprovisioner_configuring.html)
+- [Next: Installing and Classifying Cloud Provisioning](./cloudprovisioner_classifying_installing.html)
