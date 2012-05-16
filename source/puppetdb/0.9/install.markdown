@@ -4,307 +4,179 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-### Installing from system packages
 
-If installing from a distribution maintained package, such as those
-listed on the
-[Downloading Puppet Wiki Page](http://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet)
-all OS prerequisites should be handled by your package manager. See
-the Wiki for information on how to enable repositories for your
-particular OS. Usually the latest stable version is available as a
-package. If you would like to do puppet-development or see the latest
-versions, however, you will want to install from source.
+[keystore_instructions]: TODO
+[download_termini]: TODO
+[configure_postgres]: TODO
+[configure_heap]: TODO
+[puppetdb_conf]: TODO
 
-### Installing from source
+Before installing on a production server, [review the PuppetDB system requirements](./requirements.html).
 
-While we recommend using pre-built packages for production use, it is
-occasionally handy to have a source-based installation:
+These instructions cover the following operating systems:
 
-    $ mkdir -p ~/git && cd ~/git
-    $ git clone git://github.com/puppetlabs/puppetdb
-    $ cd puppetdb
-    $ rake install DESTDIR=/opt/puppetdb
+* Red Hat Enterprise Linux 5 and 6
+* Linux distros derived from RHEL 5 and 6, including but not limited to CentOS, Scientific Linux, and Ascendos.
+* Debian Squeeze, Lenny, Wheezy, and Sid
+* Ubuntu (all three current LTS releases, as well as 11.10 "Oneiric Ocelot" and 11.04 "Natty Narwhal")
+* Fedora 15 and 16
 
-You can replace `/opt/puppetdb` with a target installation prefix of
-your choosing.
+Users on these systems can use Puppet Labs' official PuppetDB packages. To install on other systems, you should instead follow [the instructions to install from source](./install_from_source.html).
 
-The Puppet terminuses can be installed from source by copying them into the
-same directory as your Puppet installation. Using Ruby 1.8 on Linux (without
-rvm), this is probably `/usr/lib/ruby/1.8/puppet`.
+Step 1: Install and Configure Puppet
+-----
 
-    $ cp -R puppet/lib/puppet /usr/lib/ruby/1.8/puppet
+Your PuppetDB server should be running puppet agent and have a signed certificate from your puppet master server. If you run `puppet agent --test`, it should successfully complete a run, ending with "`notice: Finished catalog run in X.XX seconds`."
 
-### Running directly from source
+If Puppet isn't fully configured yet, install it and request/sign/retrieve a certificate for the node:
 
-While installing from source is useful for simply running a development version
-for testing, for development it's better to be able to run *directly* from
-source, without any installation step. This can be accomplished using
-[leiningen](https://github.com/technomancy/leiningen#installation), a Clojure build tool.
+* [Instructions for Puppet Enterprise][installpe]
+* [Instructions for open source Puppet][installpuppet]
 
-    # Install leiningen
+[installpuppet]: /guides/installation.html
+[installpe]: /pe/2.5/install_basic.html
 
-    # Get the code!
-    $ mkdir -p ~/git && cd ~/git
-    $ git clone git://github.com/puppetlabs/puppetdb
-    $ cd puppetdb
+> Note: If Puppet doesn't have a valid certificate when PuppetDB is installed, you will have to [perform extra configuration steps][keystore_instructions] before the puppet master will be able to connect to PuppetDB.
 
-    # Download the dependencies
-    $ lein deps
+Step 2: Enable the Puppet Labs Package Repository
+-----
 
-    # Start the server from source. A sample config is provided in the root of
-    # the repo, in config.sample.ini
-    $ lein run services -c /path/to/config.ini # or to a conf.d directory with ini fragments
+If you didn't already enable it to install Puppet, you will need to enable the Puppet Labs package repository for your system. 
 
-From here you can make changes to the code, and trying them out is as easy as
-restarting the server.
+TODO handle the PE-specific repos. 
 
-Other useful commands:
+**On EL 5 systems, run:**
 
-* `lein test` to run the test suite
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-1.noarch.rpm
 
-* `lein docs` to build docs in `docs/uberdoc.html`
+**On EL 6 systems, run:**
 
-To use the Puppet module from source, add the Ruby code to $RUBYLIB.
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-1.noarch.rpm
 
-    $ export RUBYLIB=$RUBYLIB:`pwd`/puppet/lib
+**On Debian and Ubuntu systems, run:**
 
-Restart the Puppet master each time changes are made to the Ruby code.
+    $ wget http://apt.puppetlabs.com/puppetlabs-release_1.0-2_all.deb
+    $ sudo dpkg -i puppetlabs-release_1.0-2_all.deb
 
-### Installing PostgreSQL
+**On Fedora 15 systems, run:**
 
-While a full discussion of how to install PostgreSQL is outside the
-scope of this document, you can get a local copy of PostgreSQL
-installed for testing fairly easily.
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-1.noarch.rpm
 
-For example, if you're on a Mac you can install PostgreSQL easily
-through Homebrew:
+**On Fedora 16 systems, run:**
 
-    $ brew install postgresql
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-1.noarch.rpm
 
-    # Now start the database
-    $ postgres -D /usr/local/var/postgres &
+Step 3: Install PuppetDB
+-----
 
-    # Create a database
-    $ createdb puppetdb
+**On EL and Fedora systems, run:**
 
-On a Debian box you can install PostgreSQL locally like so:
+    $ sudo yum install puppetdb
 
-    $ apt-get install postgresql
+**On Debian and Ubuntu systems, run:**
 
-    # Switch to the postgres user
-    $ sudo -u postgres sh
+    $ sudo apt-get install puppetdb
 
-    # Create a new user and database for puppetdb
-    $ createuser -DRSP puppetdb
-    $ createdb -O puppetdb puppetdb
-    $ exit
 
-    # You can now login to the database via TCP with the credentials
-    # you just established
-    $ psql -h localhost puppetdb puppetdb
+Step 4: Start the PuppetDB Service
+-----
 
-## Puppet Setup
+Use Puppet to start the PuppetDB service and enable it on startup:
 
-In order to talk to PuppetDB, Puppet must be configured to use the PuppetDB
-terminuses. This can be achieved by installing the module on the Puppet master
-and changing the `storeconfigs_backend` setting to `puppetdb`. The location of
-the server can be specified using the `$confdir/puppetdb.conf` file. The basic
-format of this file is:
+    $ sudo puppet resource service puppetdb ensure=running enable=true
+
+PuppetDB is now fully functional and ready to receive catalogs and facts from a puppet master server. 
+
+> Note: You must also configure your PuppetDB server's firewall to accept incoming connections on port 8081.
+
+Step 5: Connect the Puppet Master to PuppetDB
+-----
+
+> Note: Your site's puppet master(s) must be running Puppet 2.7.12 or later.
+
+### Install Plugins
+
+Puppet needs extra Ruby plugins in order to use PuppetDB. Unlike custom facts or functions, these cannot be loaded from a module, and must be installed in Puppet's main source directory. 
+
+Puppet Labs provides a package to install these plugins. On your puppet master server, [follow the instructions above for enabling the Puppet Labs repo](#step-2-enable-the-puppet-labs-package-repository) and install the package `puppetdb-terminus`:
+
+    # On Debian and Ubuntu:
+    $ sudo apt-get install puppetdb-terminus
+    # On EL or Fedora:
+    $ sudo yum install puppetdb-terminus
+
+> TODO: Package name or repo might be different for PE, since the package will need to install in a different place. 
+
+### Locate Puppet's Configuration Directory
+
+Find your puppet master's config directory by running `sudo puppet config print confdir`. It will usually be at either `/etc/puppet/` or `/etc/puppetlabs/puppet/`. 
+
+You will need to edit or create three files in this directory:
+
+### Edit puppetdb.conf
+
+The [puppetdb.conf][puppetdb_conf] file will probably not exist yet. Create it, and edit it to contain the PuppetDB server's hostname and port:
 
     [main]
     server = puppetdb.example.com
-    port = 8080
+    port = 8081
 
-If no config file is specified, or a value isn't supplied, the defaults will be
-used:
+* PuppetDB's port for secure traffic defaults to 8081.
+* PuppetDB's port for insecure traffic defaults to 8080, but doesn't accept connections by default. 
+
+If no puppetdb.conf file exists, the following default values will be used:
 
     server = puppetdb
     port = 8080
 
-*Additionally*, you will need to specify a "routes" file, which is located by
-default at `$confdir/routes.yaml`. The content should be:
+### Edit puppet.conf
 
+To enable PuppetDB for the inventory service and saved catalogs/exported resources, create or edit the following settings in the `[master]` block of puppet.conf:
+
+    [master]
+      ...
+      storeconfigs = true
+      storeconfigs_backend = puppetdb
+      facts_terminus = puppetdb
+
+> Note: If you previously set the `thin_storeconfigs` or `async_storeconfigs` settings to `true`, you should delete them at this time. The old queuing mechanism will interfere with performance, and thinned catalogs are no longer necessary. Likewise, if you previously used the puppet queue/puppetqd daemon, you should now disable it. 
+
+### Edit routes.yaml
+
+The routes.yaml file will probably not exist yet. Create it if necessary, and edit it to contain the following: 
+
+    ---
     master:
       facts:
         terminus: puppetdb
         cache: yaml
 
-This configuration tells Puppet to use PuppetDB as the authoritative source of
-fact information, which is what is necessary for inventory search to consult
-it.
+This is necessary for making PuppetDB the authoritative source of inventory information.
 
-## SSL Setup
+### Restart Puppet Master
 
-PuppetDB can do full, verified HTTPS communication between
-Puppetmaster and itself. To set this up you need to complete a few
-steps:
+Use your system's service tools to restart the puppet master service. The command to do this will vary depending on the front-end web server being used in your deployment. For Puppet Enterprise users, run:
 
-* Generate a keypair for your PuppetDB instance
+    $ sudo /etc/init.d/pe-httpd restart
 
-* Create a Java _truststore_ containing the CA cert, so we can verify
-  client certificates
+Finish
+-----
 
-* Create a Java _keystore_ containing the cert to advertise for HTTPS
+PuppetDB is now fully functional and connected to your puppet master. You can use exported resources and the inventory service.
 
-* Configure PuppetDB to use the files you just created for HTTPS
-
-The following instructions will use the Puppet CA you've already got
-to create the keypair, but you can use any CA as long as you have PEM
-format keys and certificates.
-
-For ease-of-explanation, let's assume that:
-
-* you'll be running PuppetDB on a host called `puppetdb.my.net`
-
-* your puppet installation uses the standard directory structure and
-  its `ssldir` is `/etc/puppet/ssl`
-
-### Create a keypair
-
-This is pretty easy with Puppet's built-in CA. On the host acting as
-your CA (your puppetmaster, most likely):
-
-    # puppet cert generate puppetdb.my.net
-    notice: puppetdb.my.net has a waiting certificate request
-    notice: Signed certificate request for puppetdb.my.net
-    notice: Removing file Puppet::SSL::CertificateRequest puppetdb.my.net at '/etc/puppet/ssl/ca/requests/puppetdb.my.net.pem'
-    notice: Removing file Puppet::SSL::CertificateRequest puppetdb.my.net at '/etc/puppet/ssl/certificate_requests/puppetdb.my.net.pem'
-
-Et voilà, you've got a keypair. Copy the following files from your CA
-to the machine that will be running PuppetDB:
-
-* `/etc/puppet/ssl/ca/ca_crt.pem`
-* `/etc/puppet/ssl/private_keys/puppetdb.my.net.pem`
-* `/etc/puppet/ssl/certs/puppetdb.my.net.pem`
-
-You can do that using `scp`:
-
-    # scp /etc/puppet/ssl/ca/ca_crt.pem puppetdb.my.net:/tmp/certs/ca_crt.pem
-    # scp /etc/puppet/ssl/private_keys/puppetdb.my.net.pem puppetdb.my.net:/tmp/certs/privkey.pem
-    # scp /etc/puppet/ssl/certs/puppetdb.my.net.pem puppetdb.my.net:/tmp/certs/pubkey.pem
-
-The rest of the SSL setup occurs on the PuppetDB host; once you've
-copied the aforementioned files over, you don't need to remain logged
-in to your CA.
-
-### Create a truststore
-
-On the PuppetDB host, you'll need to use the JDK's `keytool` command
-to import your CA's cert into a file format that PuppetDB can
-understand.
-
-First, change into the directory where you copied the generated certs
-and the CA cert from the previous section. If you copied them to, say,
-`/tmp/certs`:
-
-    # cd /tmp/certs
-
-Now use `keytool` to create a _truststore_ file. A _truststore_
-contains the set of CA certs to use for validation.
-
-    # keytool -import -alias "My CA" -file ca_crt.pem -keystore truststore.jks
-    Enter keystore password:
-    Re-enter new password:
-    .
-    .
-    .
-    Trust this certificate? [no]:  y
-    Certificate was added to keystore
-
-Note that you _must_ supply a password; remember the password you
-used, as you'll need it to configure PuppetDB later. Once imported,
-you can view your certificate:
-
-    # keytool -list -keystore truststore.jks
-    Enter keystore password:
-
-    Keystore type: JKS
-    Keystore provider: SUN
-
-    Your keystore contains 1 entry
-
-    my ca, Mar 30, 2012, trustedCertEntry,
-    Certificate fingerprint (MD5): 99:D3:28:6B:37:13:7A:A2:B8:73:75:4A:31:78:0B:68
-
-Note the MD5 fingerprint; you can use it to verify this is the correct cert:
-
-    # openssl x509 -in ca_crt.pem -fingerprint -md5
-    MD5 Fingerprint=99:D3:28:6B:37:13:7A:A2:B8:73:75:4A:31:78:0B:68
-
-### Create a keystore
-
-Now we can take the keypair you generated for `puppetdb.my.net` and
-import it into a Java _keystore_. A _keystore_ file contains
-certificate to use during HTTPS. Again, on the PuppetDB host in the
-same directory you were using in the previous section:
-
-    # cat privkey.pem pubkey.pem > temp.pem
-    # openssl pkcs12 -export -in temp.pem -out puppetdb.p12 -name puppetdb.my.net
-    Enter Export Password:
-    Verifying - Enter Export Password:
-    # keytool -importkeystore  -destkeystore keystore.jks -srckeystore puppetdb.p12 -srcstoretype PKCS12 -alias puppetdb.my.net
-    Enter destination keystore password:
-    Re-enter new password:
-    Enter source keystore password:
-
-You can validate this was correct:
-
-    # keytool -list -keystore keystore.jks
-    Enter keystore password:
-
-    Keystore type: JKS
-    Keystore provider: SUN
-
-    Your keystore contains 1 entry
-
-    puppetdb.my.net, Mar 30, 2012, PrivateKeyEntry,
-    Certificate fingerprint (MD5): 7E:2A:B4:4D:1E:6D:D1:70:A9:E7:20:0D:9D:41:F3:B9
-
-    # puppet cert fingerprint puppetdb.my.net --digest=md5
-    MD5 Fingerprint=7E:2A:B4:4D:1E:6D:D1:70:A9:E7:20:0D:9D:41:F3:B9
-
-### Configuring PuppetDB to do HTTPS
-
-Take the _truststore_ and _keystore_ you generated in the preceding
-steps and copy them to a directory of your choice. For the sake of
-instruction, let's assume you've put them into `/etc/puppetdb/ssl`.
-
-First, change ownership to whatever user you plan on running PuppetDB
-as and ensure that only that user can read the files. For example, if
-you have a specific `puppetdb` user:
-
-    # chown puppetdb:puppetdb /etc/puppetdb/ssl/truststore.jks /etc/puppetdb/ssl/keystore.jks
-    # chmod 400 /etc/puppetdb/ssl/truststore.jks /etc/puppetdb/ssl/keystore.jks
-
-Now you can setup PuppetDB itself. In you PuppetDB configuration
-file, make the `[jetty]` section look like so:
-
-    [jetty]
-    host = <hostname you wish to bind to for HTTP>
-    port = <port you wish to listen on for HTTP>
-    ssl-host = <hostname you wish to bind to for HTTPS>
-    ssl-port = <port you wish to listen on for HTTPS>
-    keystore = /etc/puppetdb/ssl/keystore.jks
-    truststore = /etc/puppetdb/ssl/truststore.jks
-    key-password = <pw you used when creating the keystore>
-    trust-password = <pw you used when creating the truststore>
-
-If you don't want to do unsecured HTTP at all, then you can just leave
-out the `host` and `port` declarations. But keep in mind that anyone
-that wants to connect to PuppetDB for any purpose will need to be
-prepared to give a valid client certificate (even for things like
-viewing dashboards and such). A reasonable compromise could be to set
-`host` to `localhost`, so that unsecured traffic is only allowed from
-the local box. Then tunnels could be used to gain access to
-administrative consoles.
-
-That should do it; the next time you start PuppetDB, it will be doing
-HTTPS and using the CA's certificate for verifiying clients.
-
-With HTTPS properly setup, the PuppetDB host no longer requires the
-PEM files copied over during configuration. Those can be safely
-deleted from the PuppetDB box (the "master copies" exist on your CA
-host).
+- If this is a production deployment, do a little additional configuration:
+    - Small deployments can continue to use the built-in database backend, but should [increase PuppetDB's maximum heap size][configure_heap] to 1 GB.
+    - Large deployments should [set up a PostgreSQL server and configure PuppetDB to use it][configure_postgres]. You may also need to [adjust the maximum heap size][configure_heap]. 
+- [Read the chapter on maintaining PuppetDB](./maintain_and_tune.html). It covers monitoring PuppetDB's performance and removing decommissioned nodes from the database. 
 
 
-[leiningen]: https://github.com/technomancy/leiningen
+Troubleshooting Installation Problems
+-----
+
+TODO
+
+- Firewall
+- non-default port? 
+- Certs didn't get bundled up? How can we do that after install without having to do the whole from-source hassle? 
+- checking things with telnet
+
