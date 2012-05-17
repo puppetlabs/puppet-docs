@@ -18,7 +18,7 @@ These instructions cover the following operating systems:
 * Red Hat Enterprise Linux 5 and 6
 * Linux distros derived from RHEL 5 and 6, including but not limited to CentOS, Scientific Linux, and Ascendos.
 * Debian Squeeze, Lenny, Wheezy, and Sid
-* Ubuntu (all three current LTS releases, as well as 11.10 "Oneiric Ocelot" and 11.04 "Natty Narwhal")
+* Ubuntu's 8.04, 10.04, and 12.04 LTS releases, as well as 11.10 "Oneiric Ocelot" and 11.04 "Natty Narwhal"
 * Fedora 15 and 16
 
 Users on these systems can use Puppet Labs' official PuppetDB packages. To install on other systems, you should instead follow [the instructions to install from source](./install_from_source.html).
@@ -41,33 +41,26 @@ If Puppet isn't fully configured yet, install it and request/sign/retrieve a cer
 Step 2: Enable the Puppet Labs Package Repository
 -----
 
-If you didn't already enable it to install Puppet, you will need to enable the Puppet Labs package repository for your system. 
+If you didn't already use it to install Puppet, you will need to enable the Puppet Labs package repository for your system. Follow the instructions linked below, then continue with step 3 of this guide:
 
-TODO handle the PE-specific repos. 
+- [Instructions for PE users](/guides/puppetlabs_package_repositories.html#puppet-enterprise-repositories)
+- [Instructions for open source users](/guides/puppetlabs_package_repositories.html#open-source-repositories)
 
-**On EL 5 systems, run:**
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-1.noarch.rpm
-
-**On EL 6 systems, run:**
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-1.noarch.rpm
-
-**On Debian and Ubuntu systems, run:**
-
-    $ wget http://apt.puppetlabs.com/puppetlabs-release_1.0-2_all.deb
-    $ sudo dpkg -i puppetlabs-release_1.0-2_all.deb
-
-**On Fedora 15 systems, run:**
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-1.noarch.rpm
-
-**On Fedora 16 systems, run:**
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-1.noarch.rpm
 
 Step 3: Install PuppetDB
 -----
+
+### For PE Users
+
+**On EL systems, run:**
+
+    $ sudo yum install pe-puppetdb
+
+**On Debian and Ubuntu systems, run:**
+
+    $ sudo apt-get install pe-puppetdb
+
+### For Open Source Users
 
 **On EL and Fedora systems, run:**
 
@@ -81,31 +74,46 @@ Step 3: Install PuppetDB
 Step 4: Start the PuppetDB Service
 -----
 
-Use Puppet to start the PuppetDB service and enable it on startup:
+Use Puppet to start the PuppetDB service and enable it on startup. 
+
+### For PE Users
+
+    $ sudo puppet resource service pe-puppetdb ensure=running enable=true
+
+### For Open Source Users
 
     $ sudo puppet resource service puppetdb ensure=running enable=true
 
-PuppetDB is now fully functional and ready to receive catalogs and facts from a puppet master server. 
+You must also configure your PuppetDB server's firewall to accept incoming connections on port 8081.
 
-> Note: You must also configure your PuppetDB server's firewall to accept incoming connections on port 8081.
+> PuppetDB is now fully functional and ready to receive catalogs and facts from a puppet master server.
 
 Step 5: Connect the Puppet Master to PuppetDB
 -----
+
+Follow all of the instructions in this step **on your puppet master server(s).**
 
 > Note: Your site's puppet master(s) must be running Puppet 2.7.12 or later.
 
 ### Install Plugins
 
-Puppet needs extra Ruby plugins in order to use PuppetDB. Unlike custom facts or functions, these cannot be loaded from a module, and must be installed in Puppet's main source directory. 
+Your puppet master needs extra Ruby plugins in order to use PuppetDB. Unlike custom facts or functions, these cannot be loaded from a module, and must be installed in Puppet's main source directory. 
 
-Puppet Labs provides a package to install these plugins. On your puppet master server, [follow the instructions above for enabling the Puppet Labs repo](#step-2-enable-the-puppet-labs-package-repository) and install the package `puppetdb-terminus`:
+#### For PE Users
 
-    # On Debian and Ubuntu:
-    $ sudo apt-get install puppetdb-terminus
-    # On EL or Fedora:
-    $ sudo yum install puppetdb-terminus
+* [Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#puppet-enterprise-repositories)
+* Install the `pe-puppetdb-terminus` package. 
+    * On Debian and Ubuntu: run `sudo apt-get install pe-puppetdb-terminus`
+    * On EL or Fedora: run `sudo yum install pe-puppetdb-terminus`
 
-> TODO: Package name or repo might be different for PE, since the package will need to install in a different place. 
+
+#### For Open Source Users
+
+* [Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#open-source-repositories).
+* Install the `puppetdb-terminus` package. 
+    * On Debian and Ubuntu: run `sudo apt-get install puppetdb-terminus`
+    * On EL or Fedora: run `sudo yum install puppetdb-terminus`
+
 
 ### Locate Puppet's Configuration Directory
 
@@ -137,7 +145,6 @@ To enable PuppetDB for the inventory service and saved catalogs/exported resourc
       ...
       storeconfigs = true
       storeconfigs_backend = puppetdb
-      facts_terminus = puppetdb
 
 > Note: If you previously set the `thin_storeconfigs` or `async_storeconfigs` settings to `true`, you should delete them at this time. The old queuing mechanism will interfere with performance, and thinned catalogs are no longer necessary. Likewise, if you previously used the puppet queue/puppetqd daemon, you should now disable it. 
 
@@ -151,11 +158,11 @@ The routes.yaml file will probably not exist yet. Create it if necessary, and ed
         terminus: puppetdb
         cache: yaml
 
-This is necessary for making PuppetDB the authoritative source of inventory information.
+This is necessary for making PuppetDB the authoritative source for the inventory service.
 
 ### Restart Puppet Master
 
-Use your system's service tools to restart the puppet master service. The command to do this will vary depending on the front-end web server being used in your deployment. For Puppet Enterprise users, run:
+Use your system's service tools to restart the puppet master service. For open source users, the command to do this will vary depending on the front-end web server being used. For Puppet Enterprise users, run:
 
     $ sudo /etc/init.d/pe-httpd restart
 
@@ -173,10 +180,8 @@ PuppetDB is now fully functional and connected to your puppet master. You can us
 Troubleshooting Installation Problems
 -----
 
-TODO
-
-- Firewall
-- non-default port? 
-- Certs didn't get bundled up? How can we do that after install without having to do the whole from-source hassle? 
-- checking things with telnet
+* Check the log file, and see whether the problem is being clearly reported. This file will be either `/var/log/puppetdb/puppetdb.log` or `/var/log/pe-puppetdb/pe-puppetdb.log`. 
+* If PuppetDB is running but the puppet master can't reach it, check [PuppetDB's jetty configuration][puppetdb_conf] to see which port(s) it is listening on, then attempt to reach it by telnet (`telnet <host> <port>`) from the puppet master server. If you can't connect, the firewall may be blocking connections. If you can, Puppet may be attempting to use the wrong port, or PuppetDB's keystore may be misconfigured (see below). 
+* Check whether any other service is using PuppetDB's port and interfering with traffic. 
+* Check [PuppetDB's jetty configuration][puppetdb_conf] and the `/etc/puppetdb/ssl` (or `/etc/pe-puppetdb/ssl`) directory, and make sure it has a truststore and keystore configured. If it didn't create these during installation, you will need to [manually configure a truststore and keystore][keystore_instructions].
 

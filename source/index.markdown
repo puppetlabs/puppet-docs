@@ -74,6 +74,12 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 
 Insert more about PuppetDB once the manual is alive.
 
+Public Services
+-----
+
+- Puppet Labs maintains [Apt and Yum repositories](/guides/puppetlabs_package_repositories.html) of our products for the most popular Linux distributions. To use the most recent versions of Puppet, Facter, MCollective, and PuppetDB, [follow these instructions to enable the Puppet Labs repos](/guides/puppetlabs_package_repositories.html), then follow the installation instructions for the specific tools you're installing. 
+
+<!-- TODO put some docs for the Forge here -->
 
 <!-- 
 Facter
