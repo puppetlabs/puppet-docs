@@ -4,83 +4,77 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-### Basic Requirements
+[configure_heap]: TODO
+[tuning]: TODO
 
-* JDK 1.6 or above. The built-in Java support on recent versions of
-  MacOS X works great, as do the OpenJDK packages available on nearly
-  any linux distribution. Or if you like, you can download a recent
-  JDK directly from Oracle.
+Once installed and configured, PuppetDB will be a critical component of your Puppet deployment, and agent nodes will be unable to request catalogs if it becomes unavailable. In general, it should be run on a robust and reliable server, like any critical service. 
 
-* An existing Puppet infrastrucure. You must first setup a
-  Puppetmaster installation, then setup PuppetDB, then configure the
-  Puppetmaster to enable _storeconfigs_ and point it at your PuppetDB
-  installation.
 
-* A Puppetmaster running Puppet version 2.7.12 or better.
+Basic Requirements
+-----
 
-### Storage Requirements
+PuppetDB will run on any **\*nix system** with **JDK 1.6** or higher. This includes:
 
-There are 2 currently supported backends for PuppetDB storage:
+* Recent MacOS X versions using built-in Java support
+* Nearly any Linux distribution using its own OpenJDK packages
+* Nearly any \*nix system running a recent Oracle-provided JDK
+
+
+Easy Install Requirements
+-----
+
+Puppet Labs provides PuppetDB packages for several major Linux distributions; these packages automate the complex process of setting up SSL, and make it easier to keep PuppetDB up to date.
+
+To take advantage of this, you should install PuppetDB on a server running one of the following operating systems:
+
+* Red Hat Enterprise Linux 5 or 6
+* Any Linux distro derived from RHEL 5 or 6, including (but not limited to) CentOS, Scientific Linux, and Ascendos
+* Debian Squeeze, Lenny, Wheezy, or Sid
+* Ubuntu 12.04 LTS, 10.04 LTS, 8.04 LTS, 11.10, or 11.04
+* Fedora 15 or 16
+
+Puppet Requirements
+-----
+
+Any puppet master you wish to connect to PuppetDB must be running **Puppet version 2.7.12** or higher. You will also need to install extra components on your puppet master(s) before they can speak to PuppetDB. 
+
+After installing PuppetDB, [see here to configure a puppet master to use it.](./connect_puppet.html)
+
+
+Database Recommendations
+-----
+
+Deployments with more than 100 nodes should configure a PostgreSQL database for PuppetDB. Smaller deployments may also wish to use the PostgreSQL backend.
+
+There are two available backends for PuppetDB storage:
 
 * PuppetDB's embedded database
 * PostgreSQL
 
-The embedded database works well for small deployments (say, less than
-100 hosts). It requires no additional daemons or setup, and as such is
-very simple to get started with. It supports all PuppetDB features.
+The embedded database works well for small deployments (up to approximately 100 hosts). It requires no additional daemons or setup, and as such is very simple to get started with. It supports all PuppetDB features.
 
-However, there is a cost: the embedded database requires a fair amount
-of RAM to operate correctly. We'd recommend allocating 1G to PuppetDB
-as a starting point. Additionally, the embedded database is somewhat
-opaque; unlike more off-the-shelf database daemons, there isn't much
-companion tooling for things like interactive SQL consoles,
-performance analysis, or backups.
+However, there is a cost: the embedded database requires a fair amount of RAM to operate correctly. We'd recommend [allocating 1GB to PuppetDB][configure_heap] as a starting point. Additionally, the embedded database is somewhat opaque; unlike more off-the-shelf database daemons, there isn't much companion tooling for things like interactive SQL consoles, performance analysis, or backups.
 
-That said, if you have a small installation and enough RAM, then the
-embedded database can work just fine.
+That said, if you have a small installation and enough RAM, then the embedded database will work just fine.
 
-For most "real" use, we recommend running an instance of
-PostgreSQL. Simply install PostgreSQL using a module from the Puppet
-Forge or your local package manager, create a new (empty) database for
-PuppetDB, and verify that you can login via `psql` to this DB you
-just created. Then just supply PuppetDB with the DB host, port, name,
-and credentials you've just configured, and we'll take care of the
-rest!
+For most "real" use, we recommend running an instance of PostgreSQL. Simply install PostgreSQL using a module from the Puppet Forge or your local package manager, create a new (empty) database for PuppetDB, and verify that you can login via `psql` to this DB you just created. Then just supply PuppetDB with the DB host, port, name, and credentials you've just configured, and we'll take care of the rest!
 
-### Memory
+Memory Recommendations
+-----
 
-As mentioned above, if you're using the embedded database we recommend
-using 1G or more (to be on the safe side). If you are using an
-external database, then a decent rule-of-thumb is to allocate 128M
-base + 1M for each node in your infrastructure.
+PuppetDB runs on the JVM, and the maximum amount of memory it is allowed to use is set when the service is started. The optimal value of this maximum will vary depending on the nature of your site.
 
-For more detailed RAM requirements, we recommend starting with the
-above rule-of-thumb and experimenting. The PuppetDB Web Console shows
-you real-time JVM memory usage; if you're constantly hovering around
-the maximum memory allocation, then it would be prudent to increase
-the memory allocation. If you rarely hit the maximum, then you could
-likely lower the memory allocation without incident.
+### For Embedded DB Users
 
-In a nutshell, PuppetDB's RAM usage depends on several factors: how
-many nodes you have, how many resources you're managing with Puppet,
-and how often those nodes check-in (your `runinterval`). 1000 nodes
-that check in once a day will require much less memory than if they
-check in every 30 minutes.
+If you're using the embedded database, we recommend using 1GB or more (to be on the safe side).
 
-The good news is that if you under-provision memory for PuppetDB,
-you'll see `OutOfMemoryError` exceptions. However, nothing terrible
-should happen; you can simply restart PuppetDB with a larger memory
-allocation and it'll pick up where it left off (any requests
-successfully queued up in PuppetDB *will* get processed).
+### For PostgreSQL users
 
-So essentially, there's not a slam-dunk RAM allocation that will work
-for everyone. But we recommend starting with the rule-of-thumb and
-dialing things up or down as necessary, and based on observation of
-the running system.
+If you are using an external database, then a decent rule-of-thumb is to allocate 128MB of memory as a base, plus 1MB for each node in your infrastructure. To get a more exact measure of the required RAM, you should start with the rule-of-thumb, then [watch the performance console and experiment][tuning].
 
-### Large-scale requirements
 
-For truly large installations, we recommend terminating SSL using
-Apache or Nginx instead of within PuppetDB itself. This permits much
-greater flexibility and control over bandwidth and clients.
+Large-scale Recommendations
+-----
+
+For truly large installations, we recommend terminating SSL using Apache or Nginx instead of within PuppetDB itself. This permits much greater flexibility and control over bandwidth and clients. Instructions for configuring this are currently beyond the scope of this manual.
 
