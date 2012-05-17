@@ -4,7 +4,9 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-### Installing from source
+[use_puppetdb]: ./install.html#step-5-connect-the-puppet-master-to-puppetdb
+
+## Installing from source
 
 While we recommend using pre-built packages for production use, it is
 occasionally handy to have a source-based installation:
@@ -23,7 +25,9 @@ rvm), this is probably `/usr/lib/ruby/1.8/puppet`.
 
     $ cp -R puppet/lib/puppet /usr/lib/ruby/1.8/puppet
 
-### Running directly from source
+After installing, you will need to [configure Puppet to connect to PuppetDB][use_puppetdb].
+
+## Running directly from source
 
 While installing from source is useful for simply running a development version
 for testing, for development it's better to be able to run *directly* from
@@ -50,7 +54,6 @@ restarting the server.
 Other useful commands:
 
 * `lein test` to run the test suite
-
 * `lein docs` to build docs in `docs/uberdoc.html`
 
 To use the Puppet module from source, add the Ruby code to $RUBYLIB.
@@ -59,19 +62,18 @@ To use the Puppet module from source, add the Ruby code to $RUBYLIB.
 
 Restart the Puppet master each time changes are made to the Ruby code.
 
-## SSL Setup
+After installing, you will need to [configure Puppet to connect to PuppetDB][use_puppetdb].
+
+## Manual SSL Setup
 
 PuppetDB can do full, verified HTTPS communication between
 Puppetmaster and itself. To set this up you need to complete a few
 steps:
 
 * Generate a keypair for your PuppetDB instance
-
 * Create a Java _truststore_ containing the CA cert, so we can verify
   client certificates
-
 * Create a Java _keystore_ containing the cert to advertise for HTTPS
-
 * Configure PuppetDB to use the files you just created for HTTPS
 
 The following instructions will use the Puppet CA you've already got
@@ -80,8 +82,7 @@ format keys and certificates.
 
 For ease-of-explanation, let's assume that:
 
-* you'll be running PuppetDB on a host called `puppetdb.my.net`
-
+* you'll be running PuppetDB on a host called `puppetdb.example.com`
 * your puppet installation uses the standard directory structure and
   its `ssldir` is `/etc/puppet/ssl`
 
@@ -90,24 +91,24 @@ For ease-of-explanation, let's assume that:
 This is pretty easy with Puppet's built-in CA. On the host acting as
 your CA (your puppetmaster, most likely):
 
-    # puppet cert generate puppetdb.my.net
-    notice: puppetdb.my.net has a waiting certificate request
-    notice: Signed certificate request for puppetdb.my.net
-    notice: Removing file Puppet::SSL::CertificateRequest puppetdb.my.net at '/etc/puppet/ssl/ca/requests/puppetdb.my.net.pem'
-    notice: Removing file Puppet::SSL::CertificateRequest puppetdb.my.net at '/etc/puppet/ssl/certificate_requests/puppetdb.my.net.pem'
+    # puppet cert generate puppetdb.example.com
+    notice: puppetdb.example.com has a waiting certificate request
+    notice: Signed certificate request for puppetdb.example.com
+    notice: Removing file Puppet::SSL::CertificateRequest puppetdb.example.com at '/etc/puppet/ssl/ca/requests/puppetdb.example.com.pem'
+    notice: Removing file Puppet::SSL::CertificateRequest puppetdb.example.com at '/etc/puppet/ssl/certificate_requests/puppetdb.example.com.pem'
 
 Et voilà, you've got a keypair. Copy the following files from your CA
 to the machine that will be running PuppetDB:
 
 * `/etc/puppet/ssl/ca/ca_crt.pem`
-* `/etc/puppet/ssl/private_keys/puppetdb.my.net.pem`
-* `/etc/puppet/ssl/certs/puppetdb.my.net.pem`
+* `/etc/puppet/ssl/private_keys/puppetdb.example.com.pem`
+* `/etc/puppet/ssl/certs/puppetdb.example.com.pem`
 
 You can do that using `scp`:
 
-    # scp /etc/puppet/ssl/ca/ca_crt.pem puppetdb.my.net:/tmp/certs/ca_crt.pem
-    # scp /etc/puppet/ssl/private_keys/puppetdb.my.net.pem puppetdb.my.net:/tmp/certs/privkey.pem
-    # scp /etc/puppet/ssl/certs/puppetdb.my.net.pem puppetdb.my.net:/tmp/certs/pubkey.pem
+    # scp /etc/puppet/ssl/ca/ca_crt.pem puppetdb.example.com:/tmp/certs/ca_crt.pem
+    # scp /etc/puppet/ssl/private_keys/puppetdb.example.com.pem puppetdb.example.com:/tmp/certs/privkey.pem
+    # scp /etc/puppet/ssl/certs/puppetdb.example.com.pem puppetdb.example.com:/tmp/certs/pubkey.pem
 
 The rest of the SSL setup occurs on the PuppetDB host; once you've
 copied the aforementioned files over, you don't need to remain logged
@@ -159,16 +160,16 @@ Note the MD5 fingerprint; you can use it to verify this is the correct cert:
 
 ### Create a keystore
 
-Now we can take the keypair you generated for `puppetdb.my.net` and
+Now we can take the keypair you generated for `puppetdb.example.com` and
 import it into a Java _keystore_. A _keystore_ file contains
 certificate to use during HTTPS. Again, on the PuppetDB host in the
 same directory you were using in the previous section:
 
     # cat privkey.pem pubkey.pem > temp.pem
-    # openssl pkcs12 -export -in temp.pem -out puppetdb.p12 -name puppetdb.my.net
+    # openssl pkcs12 -export -in temp.pem -out puppetdb.p12 -name puppetdb.example.com
     Enter Export Password:
     Verifying - Enter Export Password:
-    # keytool -importkeystore  -destkeystore keystore.jks -srckeystore puppetdb.p12 -srcstoretype PKCS12 -alias puppetdb.my.net
+    # keytool -importkeystore  -destkeystore keystore.jks -srckeystore puppetdb.p12 -srcstoretype PKCS12 -alias puppetdb.example.com
     Enter destination keystore password:
     Re-enter new password:
     Enter source keystore password:
@@ -183,10 +184,10 @@ You can validate this was correct:
 
     Your keystore contains 1 entry
 
-    puppetdb.my.net, Mar 30, 2012, PrivateKeyEntry,
+    puppetdb.example.com, Mar 30, 2012, PrivateKeyEntry,
     Certificate fingerprint (MD5): 7E:2A:B4:4D:1E:6D:D1:70:A9:E7:20:0D:9D:41:F3:B9
 
-    # puppet cert fingerprint puppetdb.my.net --digest=md5
+    # puppet cert fingerprint puppetdb.example.com --digest=md5
     MD5 Fingerprint=7E:2A:B4:4D:1E:6D:D1:70:A9:E7:20:0D:9D:41:F3:B9
 
 ### Configuring PuppetDB to do HTTPS

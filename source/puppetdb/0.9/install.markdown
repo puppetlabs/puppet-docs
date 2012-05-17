@@ -5,8 +5,7 @@ nav: puppetdb0.9.html
 ---
 
 
-[keystore_instructions]: TODO
-[download_termini]: TODO
+[keystore_instructions]: ./install_from_source.html#manual-ssl-setup
 [configure_postgres]: TODO
 [configure_heap]: TODO
 [puppetdb_conf]: TODO
