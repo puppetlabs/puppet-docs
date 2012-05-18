@@ -4,8 +4,8 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-[configure_jetty]: TODO
-[configure_heap]: TODO
+[configure_jetty]: ./configure.html#jetty-http
+[configure_heap]: ./configure.html#configuring-the-java-heap-size
 [memrec]: ./requirements.html#memory-recommendations
 
 PuppetDB requires a relatively small amount of maintenance and tuning. You should become familiar with the following occasional tasks:
@@ -55,3 +55,8 @@ So the best way to manage PuppetDB's max heap size is to guess a ballpark figure
 
 The good news is that memory starvation is actually not very destructive. It will cause `OutOfMemoryError` exceptions to appear in [the log](#view-the-log), but you can restart PuppetDB with a [larger memory allocation][configure_heap] and it'll pick up where it left off --- any requests successfully queued up in PuppetDB *will* get processed.
 
+## Tune the Number of Threads
+
+When viewing [the performance console](#monitor-the-performance-console), note the MQ depth. If it is rising and you have CPU cores to spare, [increasing the number of threads](./configure.html#command-processing) may help churn through the backlog faster.
+
+If you are saturating your CPU, we recommend [lowering the number of threads](./configure.html#command-processing).  This prevents other PuppetDB subsystems (such as the web server, or the MQ itself) from being starved of resources, and can actually _increase_ throughput.

@@ -4,8 +4,8 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-[configure_heap]: TODO
-[tuning]: TODO
+[configure_heap]: ./configure.html#configuring-the-java-heap-size
+[tuning]: ./maintain_and_tune.html#monitor-the-performance-console
 
 Once installed and configured, PuppetDB will be a critical component of your Puppet deployment, and agent nodes will be unable to request catalogs if it becomes unavailable. In general, it should be run on a robust and reliable server, like any critical service. 
 

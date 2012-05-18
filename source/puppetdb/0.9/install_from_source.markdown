@@ -4,7 +4,7 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-[perf_dashboard]: TODO
+[perf_dashboard]: ./maintain_and_tune.html#monitor-the-performance-console
 [use_puppetdb]: ./connect_puppet.html
 [leiningen]: https://github.com/technomancy/leiningen#installation
 
