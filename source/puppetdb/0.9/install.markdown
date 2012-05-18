@@ -6,9 +6,9 @@ nav: puppetdb0.9.html
 
 
 [keystore_instructions]: ./install_from_source.html#manual-ssl-setup
-[configure_postgres]: TODO
-[configure_heap]: TODO
-[puppetdb_conf]: TODO
+[configure_postgres]: ./configure.html#postgresql-db-settings
+[configure_heap]: ./configure.html#configuring-the-java-heap-size
+[puppetdb_conf]: ./configure.html
 
 Before installing, [review the PuppetDB system requirements](./requirements.html).
 
