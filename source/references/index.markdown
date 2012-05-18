@@ -15,6 +15,7 @@ Note that the "latest" and "stable" links currently both point to the latest ver
 Available Versions
 ------------------
 
+* [2.7.14](./2.7.14/)
 * [2.7.13](./2.7.13/)
 * [2.7.12](./2.7.12/)
 * [2.7.11](./2.7.11/)
