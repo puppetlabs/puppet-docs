@@ -18,7 +18,7 @@ The PuppetDB plugins installed on your puppet master(s) include a `deactivate` a
 
     $ sudo puppet node deactivate <node> [<node> ...]
 
-Although the node(s) will be excluded from storeconfigs queries, its data is still preserved, and the node will be reactivated if a new catalog or facts are received for it.
+Although deactivated nodes will be excluded from storeconfigs queries, their data is still preserved, and a node will be reactivated if a new catalog or facts are received for it.
 
 ## Monitor the Performance Console
 
@@ -26,7 +26,7 @@ Once you have PuppetDB running, visit the following URL, substituting in the nam
 
 `http://puppetdb.example.com:8080/dashboard/index.html`
 
-This will display a simple, web-based performance and metrics console that displays a fixed set of information about PuppetDB: its memory use, queue depth, command processing metrics, duplication rate, and REST endpoint stats. It displays min/max/median of each metric over a configurable duration, as well as an animated SVG sparkline.
+PuppetDB uses this page to display a web-based console with performance information and metrics, including its memory use, queue depth, command processing metrics, duplication rate, and query stats. It displays min/max/median of each metric over a configurable duration, as well as an animated SVG sparkline.
 
 [![Screenshot of the performance dashboard](./images/perf-dash-small.png)](./images/perf-dash-large.png)
 

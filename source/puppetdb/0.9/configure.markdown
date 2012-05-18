@@ -28,7 +28,9 @@ To use 1GB of memory:
 The PuppetDB Configuration File(s)
 -----
 
-PuppetDB is configured using an INI-style config file with several `[sections]`. This is very similar to the format used by Puppet.
+PuppetDB is configured using an INI-style config file with several `[sections]`. This is very similar to the format used by Puppet. 
+
+**Whenever you change settings in the configuration file, you must restart PuppetDB before the changes will take effect.**
 
 Here is an example configuration file:
 
@@ -67,7 +69,7 @@ The `[global]` section is used to configure application-wide behavior.
   
   You can edit the logging configuration file while PuppetDB is running, and it will automatically react to changes after a few seconds.
 
-### `[database]
+### `[database]`
 
 The `[database]` section configures PuppetDB's database settings.
 
