@@ -4,51 +4,54 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-## Web Console
+[configure_jetty]: TODO
+[configure_heap]: TODO
+[memrec]: ./requirements.html#memory-recommendations
 
-Once you have PuppetDB running, visit the following URL on your
-PuppetDB host (what port to use depends on your configuration, as
-does whether you need to use HTTP or HTTPS):
+PuppetDB requires a relatively small amount of maintenance and tuning. You should become familiar with the following occasional tasks:
 
-    /dashboard/index.html?pollingInterval=1000
+## Deactivate Decommissioned Nodes
 
-PuppetDB includes a simple, web-based console that displays a fixed
-set of key metrics around PuppetDB operations: memory use, queue
-depth, command processing metrics, duplication rate, and REST endpoint
-stats.
+When you remove a node from your Puppet deployment, you should tell PuppetDB to deactivate it. This will ensure that any resources exported by that node will stop appearing in the catalogs served to the remaining agent nodes. 
 
-We display min/max/median of each metric over a configurable duration,
-as well as an animated SVG sparkline.
+The PuppetDB plugins installed on your puppet master(s) include a `deactivate` action for the `node` face. On your puppet master, run:
 
-Currently the only way to change the attributes of the dashboard is via URL
-parameters:
+    $ sudo puppet node deactivate <node> [<node> ...]
 
-* width = width of each sparkline
-* height = height of each sparkline
+Although the node(s) will be excluded from storeconfigs queries, its data is still preserved, and the node will be reactivated if a new catalog or facts are received for it.
+
+## Monitor the Performance Console
+
+Once you have PuppetDB running, visit the following URL, substituting in the name and port of your PuppetDB server:
+
+`http://puppetdb.example.com:8080/dashboard/index.html`
+
+This will display a simple, web-based performance and metrics console that displays a fixed set of information about PuppetDB: its memory use, queue depth, command processing metrics, duplication rate, and REST endpoint stats. It displays min/max/median of each metric over a configurable duration, as well as an animated SVG sparkline.
+
+[![Screenshot of the performance dashboard](./images/perf-dash-small.png)](./images/perf-dash-large.png)
+
+You can use the following URL parameters to change the attributes of the dashboard:
+
+* width = width of each sparkline, in pixels
+* height = height of each sparkline, in pixels
 * nHistorical = how many historical data points to use in each sparkline
 * pollingInterval = how often to poll PuppetDB for updates, in milliseconds
 
+E.g.: `http://puppetdb.example.com:8080/dashboard/index.html?height=240&pollingInterval=1000`
 
+> Note: You may need to change PuppetDB's configuration to make the dashboard available, since the default configuration will only allow unauthenticated access to `localhost`. [See here to configure unauthenticated HTTP for PuppetDB.][configure_jetty]
 
-## Operational information
+## View the Log
 
-### Deactivating nodes
+PuppetDB's log file lives at `/var/log/pe-puppetdb/pe-puppetdb.log` (for PE users) or `/var/log/puppetdb/puppetdb.log` (for open source users). Check the log when you need to confirm that PuppetDB is working correctly or troubleshoot visible malfunctions.
 
-A Puppet Face action is provided to "deactivate" nodes. Deactivating
-the node will cause it to be excluded from storeconfigs queries, and
-it useful if a node no longer exists. The node's data is still
-preserved, however, and the node will be reactivated if a new catalog
-or facts are received for it.
+The PuppetDB packages install a logrotate job in `/etc/logrotate.d/puppetdb`, which will keep the log from becoming too large. 
 
-`puppet node deactivate <node> [<node> ...] --mode master`
+## Tune the Max Heap Size
 
-This command will submit deactivation commands to PuppetDB for each of
-the nodes provided. It's necessary to run this in master mode so that
-it can be sure to find the right puppetdb.conf file.
+Although we provide [rule-of-thumb memory recommendations][memrec], PuppetDB's RAM usage depends on several factors, and everyone's memory needs will be different depending on their number of nodes, frequency of Puppet runs, and amount of managed resources. 1000 nodes that check in once a day will require much less memory than if they check in every 30 minutes.
 
-Note that `puppet node destroy` can also be used to deactivate nodes,
-as the current behavior of destroy in PuppetDB is to simply
-deactivate. However, this behavior may change in future, and the
-command is not specific to PuppetDB, so the preferred method is
-`puppet node deactivate`.
+So the best way to manage PuppetDB's max heap size is to guess a ballpark figure, then [monitor the performance console](#monitor-the-performance-console) and [increase the heap size][configure_heap] if the "JVM Heap" metric keeps approaching the maximum. You may need to revisit your memory needs whenever your site grows substantially. 
+
+The good news is that memory starvation is actually not very destructive. It will cause `OutOfMemoryError` exceptions to appear in [the log](#view-the-log), but you can restart PuppetDB with a [larger memory allocation][configure_heap] and it'll pick up where it left off --- any requests successfully queued up in PuppetDB *will* get processed.
 
