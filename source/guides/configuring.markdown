@@ -195,6 +195,43 @@ Access to Puppet's REST API is configured in `auth.conf`, the location of which 
     method find, search
     allow magpie.example.com, dashboard.example.com, finch.example.com
 
+### `puppetdb.conf`
+
+The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppetdb/0.9/) server. It is only used if you are using PuppetDB and have [connected your puppet master to it](/puppetdb/0.9/connect_puppet.html). 
+
+This file uses the same ini-like format as `puppet.conf`, but only uses a `[main]` block and only has two settings (`server` and `port`):
+
+    [main]
+    server = puppetdb.example.com
+    port = 8081
+
+See the [PuppetDB manual](/puppetdb/0.9/) for more information.
+
+### `autosign.conf`
+
+The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or certname globs (one per line) whose certificate requests will automatically be signed. 
+
+    rebuilt.example.com
+    *.scratch.example.com
+    *.local
+
+Note that certname globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
+
+As any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
+
+### `device.conf`
+
+Puppet device, added in Puppet 2.7, configures network hardware using a catalog downloaded from the puppet master; in order to function, it requires that the relevant devices be configured in `/etc/puppet/device.conf` (configurable with the `deviceconfig` setting). 
+
+`device.conf` is organized in INI-like blocks, with one block per device:
+
+    [device certname]
+        type <type>
+        url <url>
+    [router6.example.com]
+        type cisco
+        url ssh://admin:password@ef03c87a.local
+
 ### `fileserver.conf`
 
 By default, `fileserver.conf` isn't necessary, provided that you only need to serve files from modules. If you want to create additional fileserver mount points, you can do so in `/etc/puppet/fileserver.conf` (or whatever is set in the `fileserverconfig` setting).
@@ -247,27 +284,3 @@ So, for example:
 
 This `tagmail.conf` file will mail any resource events tagged with `webserver` but _not_ with `mailserver` to the httpadmins group; any emergency or critical events to to James, Zach, and Ben, and all events to the log-archive group.
 
-### `autosign.conf`
-
-The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or certname globs (one per line) whose certificate requests will automatically be signed. 
-
-    rebuilt.example.com
-    *.scratch.example.com
-    *.local
-
-Note that certname globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
-
-As any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
-
-### `device.conf`
-
-Puppet device, added in Puppet 2.7, configures network hardware using a catalog downloaded from the puppet master; in order to function, it requires that the relevant devices be configured in `/etc/puppet/device.conf` (configurable with the `deviceconfig` setting). 
-
-`device.conf` is organized in INI-like blocks, with one block per device:
-
-    [device certname]
-        type <type>
-        url <url>
-    [router6.example.com]
-        type cisco
-        url ssh://admin:password@ef03c87a.local

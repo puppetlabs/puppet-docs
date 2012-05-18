@@ -5,6 +5,7 @@ nav: puppetdb0.9.html
 ---
 
 [puppetdb_download]: http://downloads.puppetlabs.com/puppetdb
+[puppetdb_conf]: /guides/configuring.html#puppetdbconf
 
 > Note: Your site's puppet master(s) must be running Puppet 2.7.12 or later to use PuppetDB.
 
@@ -49,7 +50,7 @@ If your puppet master isn't running Puppet from a supported package, you will ne
 
 Find your puppet master's config directory by running `sudo puppet config print confdir`. It will usually be at either `/etc/puppet/` or `/etc/puppetlabs/puppet/`. 
 
-You will need to edit or create three files in this directory:
+You will need to edit (or create) three files in this directory:
 
 ### Edit puppetdb.conf
 
