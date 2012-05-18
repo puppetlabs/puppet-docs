@@ -111,10 +111,7 @@ EL 5 and 6 releases can install Puppet from Puppet Labs' official repo, or from 
 
 Puppet Labs provides an official package repo at [yum.puppetlabs.com](http://yum.puppetlabs.com). It contains up-to-date packages, and can install Puppet and its prerequisites without requiring any other external repositories.
 
-To enable the Puppet Labs repo, run the following command on all of your target systems:
-
-* For EL 5 systems, run `sudo rpm -ivh {{ yum5package }}`
-* For EL 6 systems, run `sudo rpm -ivh {{ yum6package }}`
+To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_package_repositories.html#for-red-hat-enterprise-linux-and-derivatives).
 
 ##### Using EPEL
 
@@ -167,10 +164,7 @@ Debian and Ubuntu systems can install Puppet from Puppet Labs' official repo, or
 
 Puppet Labs provides an official package repo at [apt.puppetlabs.com](http://apt.puppetlabs.com). It contains up-to-date packages, and can install Puppet and its prerequisites without requiring any other external repositories.
 
-To enable the Puppet Labs repo, run the following commands on all of your target systems:
-
-    $ wget {{ aptpackage }}
-    $ sudo dpkg -i puppetlabs-release_1.0-3_all.deb
+To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_package_repositories.html#for-debian-and-ubuntu).
 
 ##### Using Vendor Packages
 
@@ -223,11 +217,7 @@ Fedora systems can install Puppet from Puppet Labs' official repo, or from the O
 
 Puppet Labs provides an official package repo at [yum.puppetlabs.com](http://yum.puppetlabs.com). It contains up-to-date packages, and can install Puppet and its prerequisites without requiring any other external repositories.
 
-To enable the Puppet Labs repo, run the following command on all of your target systems:
-
-* For Fedora 15 systems, run `sudo rpm -ivh {{ yumf15package }}`
-* For Fedora 16 systems, run `sudo rpm -ivh {{ yumf16package }}`
-
+To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_package_repositories.html#for-fedora).
 
 ##### Using Vendor Packages
 

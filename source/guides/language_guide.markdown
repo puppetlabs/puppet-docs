@@ -1225,8 +1225,8 @@ Puppet configuration.  This is described in detail on the [Exported Resources](.
 As with virtual resources, new syntax was added to the language for this purpose.
 
 The key syntactical difference between virtual and exported
-resources is that the special sigils (@ and <| |\>) are doubled (@@
-and <<| |\>\>) when referring to an exported resource.
+resources is that the special sigils (`@` and `<| |>`) are doubled (`@@`
+and `<<| |>>`) when referring to an exported resource.
 
 Here is an example with exported resources that shares SSH keys
 between clients:
