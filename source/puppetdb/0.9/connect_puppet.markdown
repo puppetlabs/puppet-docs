@@ -4,7 +4,7 @@ layout: pe2experimental
 nav: puppetdb0.9.html
 ---
 
-[puppetdb_download]: TODO
+[puppetdb_download]: http://downloads.puppetlabs.com/puppetdb
 
 > Note: Your site's puppet master(s) must be running Puppet 2.7.12 or later to use PuppetDB.
 
