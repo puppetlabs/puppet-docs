@@ -6,6 +6,7 @@ nav: puppetdb0.9.html
 
 [puppetdb_download]: http://downloads.puppetlabs.com/puppetdb
 [puppetdb_conf]: /guides/configuring.html#puppetdbconf
+[routes_yaml]: /guides/configuring.html#routesyaml
 
 > Note: Your site's puppet master(s) must be running Puppet 2.7.12 or later to use PuppetDB.
 
@@ -80,7 +81,7 @@ To enable PuppetDB for the inventory service and saved catalogs/exported resourc
 
 ### Edit routes.yaml
 
-The routes.yaml file will probably not exist yet. Create it if necessary, and edit it to contain the following: 
+The [routes.yaml][routes_yaml] file will probably not exist yet. Create it if necessary, and edit it to contain the following: 
 
     ---
     master:

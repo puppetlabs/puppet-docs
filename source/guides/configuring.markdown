@@ -207,6 +207,21 @@ This file uses the same ini-like format as `puppet.conf`, but only uses a `[main
 
 See the [PuppetDB manual](/puppetdb/0.9/) for more information.
 
+
+### `routes.yaml`
+
+This file overrides configuration settings involving indirector termini, and allows termini to be set in greater detail than `puppet.conf` allows. 
+
+This file should be a YAML hash. Each top level key should be the name of a run mode (master, agent, user), and its value should be another hash. Each key of these second-level hashes should be the name of an indirection, and its value should be another hash. The only keys allowed in these third-level hashes are `terminus` and `cache`. The value of each of these keys should be the name of a valid terminus for the indirection.
+
+Example: 
+
+    ---
+    master:
+      facts:
+        terminus: puppetdb
+        cache: yaml
+
 ### `autosign.conf`
 
 The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or certname globs (one per line) whose certificate requests will automatically be signed. 
