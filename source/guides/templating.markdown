@@ -195,5 +195,5 @@ Puppet functions can be called by prepending "`function_`" to the beginning of t
 
 ERB files are easy to syntax check. For a file mytemplate.erb, run
 
-    erb -x -T '-' mytemplate.erb | ruby -c
+    erb -P -x -T '-' mytemplate.erb | ruby -c
 
