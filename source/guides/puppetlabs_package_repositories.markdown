@@ -81,10 +81,10 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 ### For Debian and Ubuntu
 
-The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS. 
+The [apt-enterprise.puppetlabs.com](http://apt-enterprise.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS. 
 
 To enable the repository, run the commands below:
 
-    $ wget http://apt-enterprise.puppetlabs.com/
+    $ wget http://apt-enterprise.puppetlabs.com/puppetlabs-enterprise-release-extras_1.0-1_all.deb
     $ sudo dpkg -i puppetlabs-enterprise-release-extras_1.0-1_all.deb
 
