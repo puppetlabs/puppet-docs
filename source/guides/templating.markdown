@@ -103,11 +103,13 @@ You can access variables in other scopes with the `scope.lookupvar` function:
 
 ### Undefined variables
 
-You can use the `has_variable?` helper function to test whether a variable is defined before using it:
+Instance variables are not created for variables whose values are undefined, so you can easily test for undefined variables with `if @variable`:
 
-    <% if has_variable?("myvar") %>
-    myvar has <%= myvar %> value
+    <% if @myvar %>
+    myvar has <%= @myvar %> value
     <% end %>
+
+Older templates often used the `has_variable?("myvar")` helper function, but this could yield odd results when variables were explicitly set to `undef`, and should usually be avoided.
 
 
 ## Combining templates
