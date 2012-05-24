@@ -561,7 +561,7 @@ of the relationship marker:
 {% endhighlight %}
 
 This manages all yum repository resources before managing all package resources
-using the yum provider.
+that explicitly specify the yum provider. (Note that it will not work for package resources that don't specify a provider but end up using Yum --- since this relationship is created during catalog compilation, it can only act on attributes visible to the parser, not properties that must be read from the target system.)
 
 This, finally, provides easy many to many relationships in Puppet, but it also
 opens the door to massive dependency cycles. This last feature is a very
