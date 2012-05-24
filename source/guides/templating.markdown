@@ -138,8 +138,8 @@ out file contents.
 
 If you need to test to see if a variable is defined before using it, the following works:
 
-    <% if has_variable?("myvar") then %>
-    myvar has <%= myvar %> value
+    <% if #myvar then %>
+    myvar has <%= @myvar %> value
     <% end %>
 
 ## Out of scope variables
