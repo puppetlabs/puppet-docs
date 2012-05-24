@@ -64,9 +64,9 @@ The `[global]` section is used to configure application-wide behavior.
 : Full path to a [log4j.properties](http://logging.apache.org/log4j/1.2/manual.html) file. Covering all the options available for configuring log4j is outside the scope of this document; see the aforementioned link for exhaustive information.
 
   If this setting isn't provided, we default to logging at INFO level to standard out.
-  
-  If you installed from packages, PuppetDB will use the log4j.properties file in the `/etc/puppetdb/` or `/etc/pe-puppetdb` directory. Otherwise, you can find an example file in the `ext` directory of the source.
-  
+
+  If you installed from packages, PuppetDB will use the log4j.properties file in the `/etc/puppetdb/` or `/etc/puppetlabs/puppetdb` directory. Otherwise, you can find an example file in the `ext` directory of the source.
+
   You can edit the logging configuration file while PuppetDB is running, and it will automatically react to changes after a few seconds.
 
 ### `[database]`
