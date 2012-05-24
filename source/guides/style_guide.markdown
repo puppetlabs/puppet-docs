@@ -89,7 +89,6 @@ Module manifests complying with this style guide:
 * Must use two-space soft tabs
 * Must not use literal tab characters
 * Must not contain trailing white space
-* Should not exceed an 80 character line width
 * Should align fat comma arrows (`=>`) within blocks of attributes
 
 ## 7. Comments
