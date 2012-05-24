@@ -7,7 +7,7 @@ Using Puppet Templates
 ======================
 
 Learn how to template out configuration files with Puppet, filling in variables
-from the client system from facter.
+with the managed node's facts.
 
 [lptemplates]: /learning/templates.html
 [modules]: /puppet/2.7/reference/modules_fundamentals.html
@@ -65,12 +65,12 @@ Here is an example for generating the Apache configuration for
 And then here's the template:
 
     # /etc/puppet/modules/trac/templates/tracsite.erb
-    <Location "/cgi-bin/ <%= name %>.cgi">
-        SetEnv TRAC_ENV "/export/svn/trac/<%= name %>"
+    <Location "/cgi-bin/ <%= @name %>.cgi">
+        SetEnv TRAC_ENV "/export/svn/trac/<%= @name %>"
     </Location>
 
     # You need something like this to authenticate users
-    <Location "/cgi-bin/<%= name %>.cgi/login">
+    <Location "/cgi-bin/<%= @name %>.cgi/login">
         AuthType Basic
         AuthName "Trac"
         AuthUserFile /etc/apache2/auth/svn
@@ -83,9 +83,36 @@ file, and then we just tell Apache to load all of these files:
     # /etc/httpd/httpd.conf
     Include /etc/apache2/trac/[^.#]*
 
+
+Note that the `template` function simply returns a string, which can be used as a value anywhere --- the most common use is to fill file contents, but templates can also provide values for variables:
+
+    $myvariable = template('my_module/myvariable.erb')
+
+## Referencing Variables
+
+Puppet variables (both local and global, including facts) can be referred to in templates as Ruby instance variables --- that is, `@fqdn, @memoryfree, @operatingsystem`, etc. This notation is the best way to access variables visible from the current scope, and follows Puppet's normal variable lookup rules. ([Note that these rules changed for Puppet 3.0.](/guides/scope_and_puppet.html))
+
+Puppet variables are also available as Ruby local variables --- that is, `fqdn, memoryfree, operatingsystem`, etc., without the prepended `@` sign. This notation is usually safe to use, but can potentially cause problems when variable names collide with Ruby function names. 
+
+
+### Out-of-Scope Variables
+
+You can access variables in other scopes with the `scope.lookupvar` function:
+
+    <%= scope.lookupvar('apache::user') %>
+
+### Undefined variables
+
+You can use the `has_variable?` helper function to test whether a variable is defined before using it:
+
+    <% if has_variable?("myvar") %>
+    myvar has <%= myvar %> value
+    <% end %>
+
+
 ## Combining templates
 
-You can also concatentate several templates together as follows:
+The template function can concatentate several templates together as follows:
 
      template('my_module/template1.erb','my_module/template2.erb')
 
@@ -126,32 +153,6 @@ The ERB templating supports conditionals.  The following construct is
 a quick and easy way to conditionally put content into a file:
 
     <% if broadcast != "NONE" %>        broadcast <%= broadcast %> <% end %>
-
-## Templates and variables
-
-You can also use templates to fill in variables in addition to filling
-out file contents.
-
-    $myvariable = template('my_module/myvariable.erb')
-
-## Undefined variables
-
-If you need to test to see if a variable is defined before using it, the following works:
-
-    <% if has_variable?("myvar") then %>
-    myvar has <%= myvar %> value
-    <% end %>
-
-## Out of scope variables
-
-You can access out of scope variables explicitly with the lookupvar
-function:
-
-    <%= scope.lookupvar('apache::user') %>
-
-## Facts
-
-A node's facts can be easily accessed in a template as instance variables; that is, as `@fqdn, @memoryfree, @operatingsystem` etc.
 
 ## Access to defined tags and classes
 
