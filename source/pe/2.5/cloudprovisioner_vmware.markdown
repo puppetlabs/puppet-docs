@@ -5,17 +5,22 @@ title: "PE 2.5 » Cloud Provisioning » VMware Provisioning"
 subtitle: "Provisioning With VMware"
 ---
 
-Puppet Enterprise can create and manage VMware virtual machines on your
-vSphere server using vCenter.
+Puppet Enterprise provides support for working with VMware virtual machine instances using vSphere and vCenter. Using actions of the `puppet node_vmware` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
 
-If you're new to VMware vSphere, we recommend looking at the [vSphere
+The main actions used for vSphere cloud provisioning include:
+
+*  `puppet node_vmware list` for viewing existing instances
+*  `puppet node_vmware create` for creating new instances
+*  `puppet node_vmware terminate` for destroying no longer needed instances.
+
+If you're new to VMware vSphere, you should start by looking at the [vSphere
 documentation](http://pubs.vmware.com/vsphere-50/index.jsp).
 
 Listing VMware vSphere Instances
 -----
 
 Let's get started by listing the machines currently on our vSphere
-server.  We do this by running the `puppet node_vmware list` command.
+server.  You do this by running the `puppet node_vmware list` command.
 
     $ puppet node_vmware list
 
@@ -30,12 +35,11 @@ If you haven't yet [confirmed your vSphere server's public key hash in your `~/.
     message> in ~/.fog
     err: Try 'puppet help node_vmware list' for usage
 
-Confirm that you are communicating with a trusted vSphere server by checking the hostname in your `~/.fog`
-file, then add the hash to your `.fog` file as follows:
+Confirm that you are communicating with the correct, trusted vSphere server by checking the hostname in your `~/.fog` file, then add the hash to the `.fog` file as follows:
 
     :vsphere_expected_pubkey_hash: 431dd5d0412aab11b14178290d9fcc5acb041d37f90f36f888de0cebfffff0a8
 
-Now we can run the `puppet node_vmware list` command and see a list of existing virtual machines:
+Now you should be able to run the `puppet node_vmware list` command and see a list of existing virtual machines:
 
     $ puppet node_vmware list
     notice: Connecting ...
@@ -60,14 +64,10 @@ Now we can run the `puppet node_vmware list` command and see a list of existing 
     ipaddress:  192.168.100.218
     template:   false
 
-We can see that we've connected to our vSphere server and returned a VMware
-template and a virtual machine. VMware templates contain the information needed
-to build new virtual machines, such as the operating system, hardware
-configuration, and other details. A virtual
-machine is an existing software machine that has already been provisioned on the vSphere
-server.
+This shows that you're connected to your vSphere server and shows an available VMware template ( at `master_template`). Also shown are two virtual machines (puppetmaster.example.com and agent.example.com). VMware templates contain the information needed to build new virtual machines, such as the operating system, hardware configuration, and other details. 
 
-The following information is returned:
+
+Specifically, `list` will return all of the following information:
 
 - The location of the template or machine
 - The status of the machine (for example, `poweredOff` or `poweredOn`)
@@ -80,8 +80,7 @@ The following information is returned:
 Creating a New VMware Virtual Machine
 -----
 
-Puppet Enterprise can create and manage virtual machines from VMware
-templates. This is done with the `node_vmware create` action.
+Puppet Enterprise can create and manage virtual machines from VMware templates using the `node_vmware create` action.
 
     $ puppet node_vmware create --name=newpuppetmaster --template="/Datacenters/Solutions/vm/master_template"
     notice: Connecting ...
@@ -98,11 +97,9 @@ templates. This is done with the `node_vmware create` action.
     ...
     status: success
 
-Here we've created a new virtual machine named `newpuppetmaster` with a
-template of `/Datacenters/Solutions/vm/master_template`. (We saw this template
-earlier when we listed all the resources available on our vSphere server.)  The
-virtual machine is now created and will be powered on. Powering on may take
-several minutes to complete.
+Here `node_vmware create` has built a new virtual machine named `newpuppetmaster` with a
+template of `/Datacenters/Solutions/vm/master_template`. (This is the template seen earlier with the `list` action.)  The
+virtual machine will be powered on, which may take several minutes to complete.
 
 The following video demonstrates the above and some other basic functions:
 
@@ -138,7 +135,7 @@ Lastly, we can terminate a VMware instance.  Be aware this will:
 - Delete the virtual machine AND its hard disk images
 
 **This is a destructive and permanent action that should only be taken when you wish to delete
-the virtual machine!**
+the virtual machine and its data!**
 
 The following video demonstrates the termination process and some other related functions:
 
@@ -180,10 +177,6 @@ To see the available actions and command line options, run:
     terminate    Terminate (destroy) a VM
 
     See 'puppet man node_vmware' or 'man puppet-node_vmware' for full help.
-
-You can also view the man page for more detailed help.
-
-    $ puppet man node_vmware
 
 You can get help on individual actions by running:
 
