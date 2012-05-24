@@ -192,7 +192,7 @@ Puppet can create, edit, and delete local groups, and can manage a group's membe
       arguments => '/flags /to /pass',
       trigger   => {
         schedule   => daily,
-        every      => 2             # Defaults to 1
+        every      => 2,            # Defaults to 1
         start_date => '2011-08-31', # Defaults to 'today'
         start_time => '08:00',      # Must be specified
       }
