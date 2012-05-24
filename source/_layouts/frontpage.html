@@ -326,13 +326,8 @@
             </div>
             <div class="secondary-content">
                   <div id="subCol">
-                  {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
-                  {% if maindir == 'mcollective' %}
-                      {% include mcollective_menu.html %}
-                  {% else %}
                       <h3 class="chapter">Contents</h3>
                       {{ content | toc }}
-                  {% endif %}
                                         <!-- New Ads are inserted here -->
                                         <!-- Learning Puppet VM -->
             <div style="margin-top: 0; padding-bottom: 10px;">
@@ -343,6 +338,7 @@
                 <img src="/images/learning-puppet-vm.jpg" class="Learning Puppet VM">
                 </a>
             </div>
+            {% recent_commits %}
                   </div>
             </div>
           </div>
