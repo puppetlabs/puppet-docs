@@ -44,4 +44,4 @@ If no `query` parameter is supplied, all nodes will be returned.
 The response is a JSON array of node names matching the predicates, sorted
 in ascending order:
 
-`["foo.example.com" "bar.example.com" "baz.example.com"]`
+`["foo.example.com", "bar.example.com", "baz.example.com"]`

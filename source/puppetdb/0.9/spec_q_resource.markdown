@@ -85,15 +85,15 @@ The match operator behaviours are defined:
 An array of zero or more resource objects, with each object having the
 following form:
 
-    {:certname   "the certname of the associated host"
-     :resource   "the resource's unique hash"
-     :type       "File"
-     :title      "/etc/hosts"
-     :exported   "true"
-     :tags       ["foo" "bar"]
-     :sourcefile "/etc/puppet/manifests/site.pp"
-     :sourceline "1"
-     :parameters {<parameter> <value>
-                  <parameter> <value>
-                  ...}}
+    {"certname":   "the certname of the associated host",
+     "resource":   "the resource's unique hash",
+     "type":       "File",
+     "title":      "/etc/hosts",
+     "exported":   "true",
+     "tags":       ["foo", "bar"],
+     "sourcefile": "/etc/puppet/manifests/site.pp",
+     "sourceline": "1",
+     "parameters": {<parameter>: <value>,
+                    <parameter>: <value>,
+                    ...}}
 
