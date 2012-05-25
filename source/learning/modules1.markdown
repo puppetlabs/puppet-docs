@@ -49,7 +49,7 @@ Before you can use a class, you have to **define** it, which is done with the `c
 
 Well, hey: you have a block of code hanging around from last chapter's exercises, right? Chuck it in!
 
-> Note: You can download some basic NTP config files here: ([Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el).
+> Note: You can download some basic NTP config files here: [Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el).
 
 {% highlight ruby %}
     # ntp-class1.pp
