@@ -76,6 +76,16 @@ Although teaching the use of virtualization software is outside the scope of thi
 > * If you find the system hanging during boot at a "registered protocol family 2" message, you may need to go to the VM's "System" settings and check the "Enable IO APIC" option. (Many users are able to leave the IO APIC option disabled; we do not currently know what causes this problem.)
 > * The VM should work without modification on 4.x versions of VirtualBox. However, on 3.x versions, it may fail to import, with an error like "Failed to import appliance. Error reading 'filename.ovf': unknown resource type 1 in hardware item, line 95." If you see this error, you can either upgrade your copy of VirtualBox, or work around it by editing the .ovf file and recalculating the sha1 hash, [as described here](http://mattiasgeniar.be/2012/03/31/importing-the-puppet-learning-vm-into-virtualbox-unknown-resource-type-in-hardware-item). Thanks to Mattias for this workaround.
 > 
+> ### Importing the VM into Parallels Desktop
+> 
+> Parallels Desktop 7 on OS X can import the VMX version of this VM, but it requires extra configuration before it can run:
+> 
+> 1. First, convert the VM. Do not start the VM yet. 
+> 2. Navigate to the Virtual Machine menu, then choose Configure -> Hardware -> Hard Disk 1 and change its location from SATA to IDE (e.g. IDE 0:1).
+> 3. You can now start the VM.
+> 
+> If you attempt to start the VM without changing the location of the disk, it will probably kernel panic. 
+> 
 > ### Configuring Virtual Networking
 > 
 > #### With VMware
