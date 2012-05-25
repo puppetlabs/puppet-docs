@@ -10,16 +10,14 @@ Puppet Enterprise includes a suite of command-line tools you can use for provisi
 * Create and destroy virtual machine instances
 * Classify new nodes (virtual or physical) in the PE console
 * Automatically install and configure PE on new nodes (virtual or physical)
-<!-- 
 
-(Note that OpenStack requires Puppet's cloud_provisioner 1.0.2 or later.)
- -->
+<!-- (Note that OpenStack requires Puppet's cloud_provisioner 1.0.2 or later.) -->
 
 When used together, these tools provide quick and efficient workflows for adding and maintaining fully configured, ready-to-run virtual nodes in your Puppet Enterprise-managed cloud environment.
 
-See the sections on [VMware](./cloudprovisioner_vmware.html), <!-- [OpenStack](./cloudprovisioner_openstack) -->and [AWS](./cloudprovisioner_aws) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow) section.
+See the sections on [VMware](./cloudprovisioner_vmware.html), <!-- [OpenStack](./cloudprovisioner_openstack) -->and [AWS](./cloudprovisioner_aws) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in a cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow) section.
 
-The cloud provisioning tools can be added during installation of Puppet Enterprise. If you change your mind and have already installed PE, you can simply run the upgrader to add the cloud provisioning tools to your existing installation.
+The cloud provisioning tools can be added during installation of Puppet Enterprise. If you have already installed PE, and you want to install the cloud provisioning tools, simply run the upgrader again.
 
 Tools
 -----
