@@ -49,7 +49,11 @@ body {
   background: white;
 }
 
-code { font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace }
+code {
+  font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
 
 table {
   border-collapse: separate;
@@ -68,20 +72,18 @@ table td {background:#f0f0f0; padding:1em; font-size:75%;}
 table th:first-child {
   -webkit-border-top-left-radius: 0.5em;
   -moz-border-radius-topleft: 0.5em;
+  border-top-left-radius: 0.5em;
 }
 
 table th:last-child {
   -webkit-border-top-right-radius: 0.5em;
   -moz-border-radius-topright: 0.5em;
+  border-top-right-radius: 0.5em;
 }
 
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: "";
-}
-
-blockquote, q {
-  quotes: "" "";
 }
 
 header, footer, section, article, aside, nav {
@@ -204,35 +206,12 @@ li ul {
 
 blockquote {
   position: relative;
-  overflow: hidden;
+/* overflow: hidden; */ /* I don't know why this was here. -NF 2/2012 */
   padding: 1em 20px;
-  border-top: none;
-  border-left: 3px solid #e0e0e0;
+/*   border-top: none; */
+  border: 3px solid #e0e0e0;
   margin-top: 0;
   margin-bottom: 0.5em;
-}
-
-
-blockquote:before {
-  content: "“";
-  position: absolute;
-  top: 0;
-  left: -10px;
-  font-family:"CallunaRegular", Georgia, "Times New Roman", Times, serif;
-  font-size: 12em;
-  font-style: normal;
-  z-index: 1;
-  color: #e0e0e0;
-}
-
-blockquote p{
-  font-family: "CallunaRegular", Georgia, "Times New Roman", Times, serif;
-  font-size: 1.33em;
-  font-style: italic;
-  line-height: 1.5em;
-  background: no-repeat;
-  z-index: 2;
-  position: relative;
 }
 
 cite {
@@ -390,3 +369,23 @@ pre > code{
 }
 
 /* @end */
+
+/* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
+p img {
+  border: solid 1px #ccc;
+  box-shadow: 0px 0px 8px #999;
+  /* Also, images should be limited to 640px wide so they don't blow up the page layout. */
+  max-width: 640px;
+}
+
+/* Classes for spans that warn about version incompatibilities */
+.versionnote {
+  background-color: #ff9;
+}
+.versionwarning {
+  background-color: #ff9;
+  color: #f00;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+

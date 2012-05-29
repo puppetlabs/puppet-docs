@@ -10,6 +10,8 @@ learningpuppet.html:
     - learning/templates.html
     - learning/modules2.html
     - learning/definedtypes.html
+    - learning/agentprep.html
+    - learning/agent_master_basic.html
     - bottom.html
 dashboardmanual.html:
     - top.html
@@ -19,6 +21,57 @@ dashboardmanual.html:
     - dashboard/manual/1.2/configuring.html
     - dashboard/manual/1.2/maintaining.html
     - dashboard/manual/1.2/using.html
+    - dashboard/manual/1.2/rake_api.html
+    - bottom.html
+pe2_5usersguide.html:
+    - top.html
+    - pe/2.5/index.html
+    - pe/2.5/overview_about_pe.html
+    - pe/2.5/overview_whats_new.html
+    - pe/2.5/overview_getting_support.html
+    - pe/2.5/quick_start.html
+    - pe/2.5/quick_writing.html
+    - pe/2.5/install_system_requirements.html
+    - pe/2.5/install_basic.html
+    - pe/2.5/install_windows.html
+    - pe/2.5/install_upgrading.html
+    - pe/2.5/install_uninstalling.html
+    - pe/2.5/install_automated.html
+    - pe/2.5/install_answer_file_reference.html
+    - pe/2.5/install_what_and_where.html
+    - pe/2.5/console_accessing.html
+    - pe/2.5/console_navigating.html
+    - pe/2.5/console_reports.html
+    - pe/2.5/console_auth.html
+    - pe/2.5/console_classes_groups.html
+    - pe/2.5/console_live.html
+    - pe/2.5/console_live_resources.html
+    - pe/2.5/console_live_puppet.html
+    - pe/2.5/console_live_advanced.html
+    - pe/2.5/console_maintenance.html
+    - pe/2.5/puppet_overview.html
+    - pe/2.5/puppet_tools.html
+    - pe/2.5/puppet_modules_manifests.html
+    - pe/2.5/puppet_data_library.html
+    - pe/2.5/puppet_references.html
+    - pe/2.5/config_advanced.html
+    - pe/2.5/config_installing_additional.html
+    - pe/2.5/orchestration_overview.html
+    - pe/2.5/orchestration_usage.html
+    - pe/2.5/cloudprovisioner_overview.html
+    - pe/2.5/cloudprovisioner_classifying_installing.html
+    - pe/2.5/cloudprovisioner_configuring.html
+    - pe/2.5/cloudprovisioner_vmware.html
+    - pe/2.5/cloudprovisioner_aws.html
+    - pe/2.5/cloudprovisioner_workflow.html
+    - pe/2.5/cloudprovisioner_troubleshooting.html
+    - pe/2.5/compliance_basics.html
+    - pe/2.5/compliance_using.html
+    - pe/2.5/compliance_tutorial.html
+    - pe/2.5/accounts_user_type.html
+    - pe/2.5/accounts_class.html
+    - pe/2.5/trouble_common_problems.html
+    - pe/2.5/appendix.html
     - bottom.html
 pe2_0usersguide.html:
     - top.html
@@ -32,6 +85,7 @@ pe2_0usersguide.html:
     - pe/2.0/install_preparing.html
     - pe/2.0/install_basic.html
     - pe/2.0/install_upgrading.html
+    - pe/2.0/install_uninstalling.html
     - pe/2.0/install_automated.html
     - pe/2.0/install_answer_file_reference.html
     - pe/2.0/install_what_and_where.html
@@ -85,33 +139,45 @@ pe1_2usersguide.html:
     - bottom.html
 puppetmanual.html:
     - top.html
-    - index.html
+    - puppet/index.html
     - guides/tools.html
     - guides/introduction.html
     - guides/platforms.html
     - guides/installation.html
     - guides/setting_up.html
     - guides/configuring.html
-    - guides/scaling.html
-    - guides/passenger.html
-    - guides/mongrel.html
+    - guides/language_guide.html
+    - puppet/2.7/reference/modules_fundamentals.html
+    - puppet/2.7/reference/modules_installing.html
     - guides/techniques.html
     - guides/troubleshooting.html
-    - guides/modules.html
     - guides/parameterized_classes.html
     - guides/tests_smoke.html
     - guides/scope_and_puppet.html
     - guides/file_serving.html
     - guides/style_guide.html
     - guides/best_practices.html
+    - windows/index.html
+    - windows/installing.html
+    - windows/running.html
+    - windows/writing.html
+    - windows/troubleshooting.html
+    - windows/from_source.html
+    - guides/scaling.html
+    - guides/scaling_multiple_masters.html
+    - guides/passenger.html
+    - guides/mongrel.html
     - guides/templating.html
     - guides/virtual_resources.html
     - guides/exported_resources.html
     - guides/environment.html
     - guides/reporting.html
     - guides/cloud_pack_getting_started.html
-    - guides/external_nodes.html
+    - puppet/2.7/reference/modules_publishing.html
+    - guides/puppet_data_library.html
     - guides/inventory_service.html
+    - guides/rest_auth_conf.html
+    - guides/external_nodes.html
     - guides/plugins_in_modules.html
     - guides/custom_facts.html
     - guides/custom_functions.html
@@ -121,8 +187,6 @@ puppetmanual.html:
     - guides/from_source.html
     - guides/development_lifecycle.html
     - guides/puppet_internals.html
-    - guides/rest_api.html
-    - guides/language_guide.html
     - man/index.html
     - man/agent.html
     - man/apply.html
@@ -136,7 +200,8 @@ puppetmanual.html:
     - man/master.html
     - man/queue.html
     - man/resource.html
-    - guides/rest_auth_conf.html
+    - man/module.html
+    - guides/rest_api.html
     - references/latest/type.html
     - references/latest/function.html
     - references/latest/metaparameter.html
@@ -144,4 +209,25 @@ puppetmanual.html:
     - references/latest/report.html
     - references/latest/indirection.html
     - references/latest/network.html
+    - bottom.html
+puppetdb0_9.html:
+    - top.html
+    - puppetdb/0.9/index.html
+    - puppetdb/0.9/requirements.html
+    - puppetdb/0.9/known_issues.html
+    - puppetdb/0.9/install.html
+    - puppetdb/0.9/install_from_source.html
+    - puppetdb/0.9/connect_puppet.html
+    - puppetdb/0.9/maintain_and_tune.html
+    - puppetdb/0.9/configure.html
+    - puppetdb/0.9/using.html
+    - puppetdb/0.9/repl.html
+    - puppetdb/0.9/spec_commands.html
+    - puppetdb/0.9/spec_q_node.html
+    - puppetdb/0.9/spec_q_facts.html
+    - puppetdb/0.9/spec_q_resource.html
+    - puppetdb/0.9/spec_q_status.html
+    - puppetdb/0.9/spec_q_metrics.html
+    - puppetdb/0.9/spec_catalog_wire_format.html
+    - puppetdb/0.9/spec_facts_wire_format.html
     - bottom.html
