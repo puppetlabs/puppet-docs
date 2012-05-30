@@ -27,7 +27,7 @@ tasks:
 * Create a new Amazon EC2 instance
 * Install Puppet on a remote machine of your choice
 * Remotely sign a node's certificate
-* Do all of the above with a single `puppet node bootstrap` invocation
+* Do all of the above with a single `puppet node_aws bootstrap` invocation
 
 Prerequisites
 -------------
@@ -79,7 +79,7 @@ Add its lib directory to your `$RUBYLIB` or Ruby load path:
 
 You can verify that it is installed correctly by running:
 
-    # puppet help node
+    # puppet help node_aws
 
 Verifying that you see the Cloud Provisioner specific commands (create,
 install, ...) in the output.
@@ -208,7 +208,7 @@ on it.
 * `fingerprint`: Make a best effort to securely obtain the SSH host key
 fingerprint.
 
-### puppet node create
+### puppet node_aws create
 
 Argument(s): none.
 
@@ -226,13 +226,13 @@ separated list of groups.
 
 Example:
 
-    $ puppet node create --image ami-XxXXxXXX --keypair puppetlabs.admin --type m1.small
-
+    $ puppet node_aws create --image ami-XxXXxXXX --keypair puppetlabs.admin --type m1.small
+/
 Creates a new EC2 machine instance and returns its DNS name. If the process
 fails, Puppet will automatically clean up after itself and tear down the
 instance.
 
-### puppet node install
+### puppet node_aws install
 
 Argument(s): the hostname of the system to install Puppet on.
 
@@ -257,7 +257,7 @@ script (e.g. `1.1`). Defaults to `1.1`.
 
 Example:
 
-    puppet node install ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com \
+    puppet node_aws install ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com \
     --login root --keyfile ~/.ssh/puppetlabs-ec2_rsa \
     --install-script gems --puppet-version 2.6.9
 
@@ -271,7 +271,7 @@ A reasonable default has been supplied in Cloud Provisioner's `ext` directory.
 This action is not restricted to cloud machine instances, and will install Puppet
 on any machine accessible by SSH.
 
-### puppet node init
+### puppet node_aws init
 
 Argument(s): the hostname of the system to install Puppet on.
 
@@ -279,14 +279,14 @@ Options: See "install"
 
 Example:
 
-    puppet node init ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com \
+    puppet node_aws init ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com \
     --login root --keyfile ~/.ssh/puppetlabs-ec2_rsa \
     --certname cloud_admin
 
 Install Puppet on an arbitrary system (see "install") and automatically sign
 its certificate request (using the `certificate` face's `sign` action).
 
-### puppet node bootstrap
+### puppet node_aws bootstrap
 
 Argument(s): none.
 
@@ -294,14 +294,14 @@ Options: See "create" and "install"
 
 Example:
 
-    puppet node bootstrap --image ami-XxXXxXXX --keypair \
+    puppet node_aws bootstrap --image ami-XxXXxXXX --keypair \
     puppetlabs.admin --login root --keyfile ~/.ssh/puppetlabs-ec2_rsa \
     --certname cloud_admin
 
 Create a new EC2 machine instance and pass the new node's hostname to the
 `init` action.
 
-### puppet node terminate
+### puppet node_aws terminate
 
 Argument(s): the hostname of the machine instance to tear down.
 
@@ -311,11 +311,11 @@ Options:
 
 Example:
 
-    puppet node terminate init ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com
+    puppet node_aws terminate init ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com
 
 Tear down an EC2 machine instance.
 
-### puppet node list
+### puppet node_aws list
 
 Argument(s): None
 
@@ -325,6 +325,6 @@ Options:
 
 Example:
 
-    puppet node list --region us-west-1
+    puppet node_aws list --region us-west-1
 
 List the Amazon EC2 instances in the specified region and report on their status (pending, running, shutting down, or terminated). This is not limited to instances created by Cloud Provisioner. 
