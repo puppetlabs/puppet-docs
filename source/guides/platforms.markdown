@@ -60,26 +60,6 @@ Puppet requires [Ruby](http://www.ruby-lang.org/en/). Certain versions of Ruby w
 
 > ![windows logo](/images/windows-logo-small.jpg) The [Windows installers](http://downloads.puppetlabs.com/windows) provided by Puppet Labs don't rely on the OS's Ruby version, and can be installed alongside any version of Ruby or on systems without Ruby installed.
 
-{% comment %}
-
-Uncomment this at the Telly release! Also, mention Hiera way below as a new dependency, near Facter.
-
-Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
--------------|------------|------------|-----------
-1.8.5        | Supported  | Supported  | Supported
-1.8.7        | Supported  | Supported  | Supported
-1.9.3        | No         | No         | Supported
-1.9.2        | No         | No         | No
-1.9.1        | No         | No         | No
-1.9.0        | No         | No         | No
-1.8.6        | No         | No         | No
-1.8.1        | No         | No         | No
-
-* The upcoming Puppet 3.0 runs under Ruby 1.9.3, 1.8.7, and 1.8.5. All of these versions support all of Puppet's features, and are under extensive automated test coverage. 
-* Ruby 1.9.2 may work with Puppet 3.0, but there are several known issues, and Puppet Labs does not perform automated testing on it.
-
-{% endcomment %}
-
 Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
 -------------|------------|------------|-----------
 1.8.5\*      | Supported  | Supported  | Supported
