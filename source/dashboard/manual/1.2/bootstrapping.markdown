@@ -100,67 +100,30 @@ As Dashboard no longer supports the version of Ruby used by version 5.x enterpri
 Installing Puppet Dashboard
 ------------
 
-Your three main options for installing Dashboard are to use deb or rpm packages, install the source from Git, or download a tarball of the source. Whichever way, you'll end up with a single directory --- as Rails apps are self-contained, all of Dashboard's code, configuration, and run data will be stored in the same area. **Any rake tasks mentioned later in this manual should be performed from a shell in this main directory, and any relative paths will refer to locations within it.**
+Your three options for installing Dashboard are to use the Puppet Labs package repositories, install the source from Git, or download a tarball of the source. Whichever way, you'll end up with a single directory --- as Rails apps are self-contained, all of Dashboard's code, configuration, and run data will be stored in the same area. **Any rake tasks mentioned later in this manual should be performed from a shell in this main directory, and any relative paths will refer to locations within it.**
 
-### Packages
+### Installing from Packages
 
-The best way to install Dashboard is with the official Deb and RPM packages provided by Puppet Labs. These packages are configured with the correct dependencies, and make for easier upgrades when new versions are released. 
+The best way to install Dashboard is with Puppet Labs' official package repositories. This will automatically handle Dashboard's dependencies, and will make for easier upgrades when new versions are released. 
 
-Puppet Labs ships [raw packages][packages], and also maintains Yum and Apt repositories. With each of these methods, Dashboard will be installed in `/usr/share/puppet-dashboard`, and the `puppet-dashboard` user and group will own the files; this user will be created if it doesn't already exist. 
+When installing from packages, Dashboard will be installed in `/usr/share/puppet-dashboard`, and the `puppet-dashboard` user and group will own the files; this user will be automatically created if it doesn't exist. 
 
-#### Installing Packages From Files
+#### Enabling the Repository
 
-<!-- version numbers below; check package names at http://downloads.puppetlabs.com/dashboard/ -->
-To install the RPM package, run:
+Before installing, [follow the instructions here](/guides/puppetlabs_package_repositories.html) to enable the Puppet Labs package repository for your system. 
 
-    # sudo rpm -Uvh puppet-dashboard-1.2.0.noarch.rpm
+#### Installing Dashboard
 
-To install the Deb package, run:
+On RPM-based systems, install Puppet Dashboard via Yum:
 
-    # sudo dpkg -i puppet-dashboard-1.2.0_all.deb
+    $ sudo yum install puppet-dashboard
 
-#### Using the Yum Repo
+On Debian-based systems, install Puppet Dashboard via Apt:
 
-Create a Yum repo entry for Puppet Labs in `/etc/yum.repos.d/puppetlabs.repo`:
+    $ sudo apt-get update
+    $ sudo apt-get install puppet-dashboard
 
-    # /etc/yum.repos.d/puppetlabs.repo
-    [puppetlabs]
-    name=Puppet Labs Packages
-    baseurl=http://yum.puppetlabs.com/el/6/products/
-    enabled=1
-    gpgcheck=1
-    gpgkey=http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
-
-Install Puppet Dashboard via Yum:
-
-    sudo yum install puppet-dashboard
-
-You will be prompted to install the Puppet Labs release key as part of the
-installation process.
-
-#### Using the Apt Repo
-
-Add the following to your `/etc/apt/sources.list` file:
-
-    # /etc/apt/sources.list
-    deb http://apt.puppetlabs.com lucid main
-    deb-src http://apt.puppetlabs.com lucid main
-
-Add the Puppet Labs repository key to Apt by running:
-
-    gpg --recv-key 4BD6EC30
-    gpg -a --export 4BD6EC30 | sudo apt-key add -
-
-Update Apt's package cache:
-
-    sudo apt-get update
-
-Install the Puppet Dashboard package:
-
-    sudo apt-get install puppet-dashboard
-
-
-### Git
+### Installing from Git
 
 If you're unable to use the Dashboard packages on your system, the next best way to install Dashboard is from the Puppet Labs Git repo. In the directory where you want Dashboard installed (we suggest `/opt/` or `/usr/share/`), run: <!-- Version number below -->
 
@@ -174,7 +137,7 @@ If you haven't installed Dashboard from a package, **you must create a user and 
 
     sudo chown -R puppet-dashboard:puppet-dashboard /opt/puppet-dashboard
 
-### Source Tarballs
+### Installing from Source Tarballs
 
 If you prefer not to use Git, you can simply download the most recent release of Puppet Dashboard and extract it into your install location: <!-- Version number below -->
 
