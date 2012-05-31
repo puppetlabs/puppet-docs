@@ -60,7 +60,7 @@ Puppet's main config file is `puppet.conf`, which is **located in Puppet's `conf
 
 * Puppet Enterprise's confdir is `/etc/puppetlabs/puppet`.
 * Most open source Puppet distributions use `/etc/puppet` as Puppet's confdir.
-* If you are unsure where the confdir is, run `sudo puppet --configprint confdir` to locate it.
+* If you are unsure where the confdir is, run `sudo puppet agent --configprint confdir` to locate it.
 
 #### Windows Systems
 
