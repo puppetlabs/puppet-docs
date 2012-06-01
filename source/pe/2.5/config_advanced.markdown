@@ -121,6 +121,17 @@ To re-enable console auth, run the following:
 
     # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:enable
 
+### Using LDAP or Active Directory Instead of Console Auth
+
+If your site uses an LDAP or Active Directory server, you can use it to authenticate console access. On your console server, do the following:
+
+1. Follow [the instructions above](#disabling-and-reenabling-console-auth) to disable console auth. 
+2. Edit either the `/etc/puppetlabs/httpd/auth.d/puppetconsole_auth.ldap` (for LDAP) or `/etc/puppetlabs/httpd/auth.d/puppetconsole_auth.ad` (for Active Directory) file, filling in the details for your site's authentication server. 
+3. Edit the `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` file: locate the commented-out `Include` statement that references the file you just edited, and uncomment it. 
+4. Restart the `pe-httpd` service:
+
+        $ sudo /etc/init.d/pe-httpd restart
+
 Changing Orchestration Security
 -----
 
