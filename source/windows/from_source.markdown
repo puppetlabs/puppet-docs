@@ -1,5 +1,5 @@
 ---
-layout: pe2experimental
+layout: default
 nav: windows.html
 title: "Running Puppet From Source on Windows"
 ---

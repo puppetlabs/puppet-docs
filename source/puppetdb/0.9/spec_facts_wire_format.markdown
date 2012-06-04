@@ -1,6 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Spec » Facts Wire Format"
-layout: pe2experimental
+layout: default
 nav: puppetdb0.9.html
 ---
 

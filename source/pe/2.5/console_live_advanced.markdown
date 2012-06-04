@@ -1,6 +1,6 @@
 ---
 nav: pe25.html
-layout: pe2experimental
+layout: default
 title: "PE 2.5 » Console » Live Mgmt: Advanced Tasks"
 subtitle: "Live Management: Advanced Tasks"
 ---

@@ -1,5 +1,5 @@
 ---
-layout: pe2experimental
+layout: default
 title: "Writing Manifests for Windows"
 nav: windows.html
 ---

@@ -1,6 +1,6 @@
 ---
 title: "PuppetDB » Known Issues"
-layout: pe2experimental
+layout: default
 nav: puppetdb0.9.html
 ---
 
