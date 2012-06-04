@@ -1,6 +1,6 @@
 ---
 nav: pe25.html
-layout: pe2experimental
+layout: default
 title: "PE 2.5 » Orchestration » Usage"
 subtitle: "Orchestration for New PE Users: Usage and Examples"
 ---

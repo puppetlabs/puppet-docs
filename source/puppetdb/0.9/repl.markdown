@@ -1,6 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Debugging with the Remote REPL"
-layout: pe2experimental
+layout: default
 nav: puppetdb0.9.html
 ---
 

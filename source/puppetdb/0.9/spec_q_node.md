@@ -1,6 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Spec » Querying Nodes"
-layout: pe2experimental
+layout: default
 nav: puppetdb0.9.html
 ---
 

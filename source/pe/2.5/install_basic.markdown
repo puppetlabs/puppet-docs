@@ -1,6 +1,6 @@
 ---
 nav: pe25.html
-layout: pe2experimental
+layout: default
 title: "PE 2.5 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"
 ---

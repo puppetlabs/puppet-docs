@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: The Puppet File Server
 ---
 

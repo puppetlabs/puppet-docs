@@ -1,5 +1,5 @@
 ---
-layout: pe2experimental
+layout: default
 nav: pe25.html
 title: "PE 2.5 » Puppet » Puppet Data Library"
 subtitle: "The Puppet Data Library"

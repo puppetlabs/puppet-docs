@@ -1,6 +1,6 @@
 ---
 nav: pe25.html
-layout: pe2experimental
+layout: default
 title: "PE 2.5 » Cloud Provisioning » Sample Workflow"
 subtitle: "A Day in the Life of a Puppet-Powered Cloud Sysadmin"
 ---

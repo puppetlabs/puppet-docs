@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: Exporting and Collecting Resources
 ---
 

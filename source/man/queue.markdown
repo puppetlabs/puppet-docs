@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: puppet queue Manual Page
 ---
 

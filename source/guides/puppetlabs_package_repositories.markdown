@@ -1,6 +1,6 @@
 ---
 title: "Using the Puppet Labs Package Repositories"
-layout: default
+layout: legacy
 ---
 
 Puppet Labs maintains official package repositories for several of the more popular Linux distributions. These repos contain the latest available packages for Puppet, Facter, PuppetDB, Puppet Dashboard, MCollective, and several prerequisites and add-ons for Puppet Labs products. 

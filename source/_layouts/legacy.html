@@ -36,8 +36,6 @@
     <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
     <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
     <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
-    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
-    
     <script type="text/javascript" src="http://puppetlabs.com/wp-content/themes/puppetlabs/javascripts/leadcapture.js"></script>
      <!--Add rotation jQuery Script -->
 	 	
@@ -50,7 +48,7 @@
 	
     <!-- FIXME: absolute paths -->
 
-    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style_legacy.css" media="screen"> 
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/adbanner.css" media="screen">
 
@@ -323,22 +321,21 @@
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
-              <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-              <nav class="in-page">{{ content | toc }}</nav>
               {{ content }}
             </div>
-            <nav class="main">
+            <div class="secondary-content">
                   <div id="subCol">
                   {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
                   {% if maindir == 'mcollective' %}
                       {% include mcollective_menu.html %}
                   {% else %}
-                      {% render_nav %} 
+                      <h3 class="chapter">Contents</h3>
+                      {{ content | toc }}
                   {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
                   </div>
-            </nav>
+            </div>
           </div>
         </div>
       </section>
@@ -456,7 +453,6 @@
     
   	<script type="text/javascript">Cufon.now();</script>
   	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
-
 
 <!-- BEGIN: MARKETO TRACKING -->
 <!-- Per Alanna, this must be directly before the closing body tag. -->

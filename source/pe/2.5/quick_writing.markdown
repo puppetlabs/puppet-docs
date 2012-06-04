@@ -1,6 +1,6 @@
 ---
 nav: pe25.html
-layout: pe2experimental
+layout: default
 title: "PE 2.5 » Quick Start » Writing Modules"
 subtitle: "Quick Start: Writing Modules for PE 2.5"
 ---
