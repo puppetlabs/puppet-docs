@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 nav: puppet27.html
 title: "Publishing Modules on the Forge"
 ---

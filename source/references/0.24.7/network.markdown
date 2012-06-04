@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: Network Reference
 ---
 
@@ -21,7 +21,9 @@ usually within <code>puppetd</code>.</p>
 <code>puppet/network/handler/&lt;name&gt;.rb</code> and the client class at
 <code>puppet/network/client/&lt;name&gt;.rb</code>.</p>
 
-----------------### CA
+----------------
+
+### CA
 
 <p>Provides an interface for signing CSRs.  Accepts a CSR and returns
 the CA certificate and the signed certificate, or returns nil if
@@ -40,7 +42,9 @@ the cert is not signed.</p>
 </table>
 
 
-----------------### FileBucket
+----------------
+
+### FileBucket
 
 <p>The interface to Puppet's FileBucket system.  Can be used to store
 files in and retrieve files from a filebucket.</p>
@@ -58,7 +62,9 @@ files in and retrieve files from a filebucket.</p>
 </table>
 
 
-----------------### FileServer
+----------------
+
+### FileServer
 
 <p>The interface to Puppet's fileserving abilities.</p>
 <table frame="void" rules="none">
@@ -75,7 +81,9 @@ files in and retrieve files from a filebucket.</p>
 </table>
 
 
-----------------### Master
+----------------
+
+### Master
 
 <p>Puppet's configuration interface.  Used for all interactions related to
 generating client configurations.</p>
@@ -93,7 +101,9 @@ generating client configurations.</p>
 </table>
 
 
-----------------### Report
+----------------
+
+### Report
 
 <p>Accepts a Puppet transaction report and processes it.</p>
 <table frame="void" rules="none">
@@ -110,7 +120,9 @@ generating client configurations.</p>
 </table>
 
 
-----------------### Resource
+----------------
+
+### Resource
 
 <p>An interface for interacting with client-based resources that can
 be used for querying or managing remote machines without using Puppet's
@@ -133,7 +145,9 @@ applies them locally.</p>
 </table>
 
 
-----------------### Runner
+----------------
+
+### Runner
 
 <p>An interface for triggering client configuration runs.</p>
 <table frame="void" rules="none">
@@ -150,7 +164,9 @@ applies them locally.</p>
 </table>
 
 
-----------------### Status
+----------------
+
+### Status
 
 <p>A simple interface for testing Puppet connectivity.</p>
 <table frame="void" rules="none">

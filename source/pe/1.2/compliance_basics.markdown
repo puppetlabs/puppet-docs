@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: "PE 1.2 Manual: Puppet Compliance Basics and UI"
 ---
 

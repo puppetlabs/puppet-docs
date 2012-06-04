@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: Report Reference
 ---
 
@@ -27,7 +27,9 @@ log
 Send all received logs to the local log destinations.  Usually
 the log destination is syslog.</p>
 
-----------------### rrdgraph
+----------------
+
+### rrdgraph
 
 <p>Graph all available data about hosts using the RRD library.  You
 must have the Ruby RRDtool library installed to use this report, which
@@ -47,7 +49,9 @@ directory in a web server.</p>
 which defaults to the <code>runinterval</code>.</p>
 
 
-----------------### store
+----------------
+
+### store
 
 <p>Store the yaml report on disk.  Each host sends its report as a YAML dump
 and this just stores the file on disk, in the <code>reportdir</code> directory.</p>
@@ -56,7 +60,9 @@ to perform some maintenance on them if you use this report (it's the only
 default report).</p>
 
 
-----------------### tagmail
+----------------
+
+### tagmail
 
 <p>This report sends specific log messages to specific email addresses
 based on the tags in the log messages.  See the

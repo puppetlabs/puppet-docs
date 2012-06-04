@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: "PE 1.2 Manual: Answer File Reference"
 ---
 

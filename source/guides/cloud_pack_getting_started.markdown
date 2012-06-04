@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: Getting Started With Cloud Provisioner
 ---
 
