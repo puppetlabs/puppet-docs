@@ -324,7 +324,7 @@
           <div class="primary-secondary-content">
             <div class="primary-content">
               <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-              <nav class="in-page">{{ content | toc }}</nav>
+              {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page">{{ content | toc }}</nav>{% endunless %}
               {{ content }}
             </div>
             <nav class="main">
