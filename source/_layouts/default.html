@@ -329,12 +329,7 @@
             </div>
             <nav class="main">
                   <div id="subCol">
-                  {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
-                  {% if maindir == 'mcollective' %}
-                      {% include mcollective_menu.html %}
-                  {% else %}
                       {% render_nav %} 
-                  {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
                   </div>

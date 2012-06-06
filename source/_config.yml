@@ -1,4 +1,9 @@
 ---
 pygments: true
-nav: quick_nav.html
+defaultnav: 
+  /: quick_nav.html
+  /mcollective: mcollective_menu.html
+  /pe/2.5: pe25.html
+  /pe/2.0: pe_2.0_nav.markdown
+  /puppetdb/0.9: puppetdb0.9.html
 ---

@@ -325,13 +325,8 @@
             </div>
             <div class="secondary-content">
                   <div id="subCol">
-                  {% capture maindir %}{{ page.url | urlroot }}{% endcapture %}
-                  {% if maindir == 'mcollective' %}
-                      {% include mcollective_menu.html %}
-                  {% else %}
                       <h3 class="chapter">Contents</h3>
                       {{ content | toc }}
-                  {% endif %}
                                         <!-- New Ads are inserted here -->
 		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
                   </div>

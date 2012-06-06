@@ -1,7 +1,20 @@
 module Jekyll
-  # This is a direct rip of Jekyll's include tag. It takes no arguments and
+  # Call it version 2.
+  # This is largely a rip of Jekyll's include tag. It takes no arguments and
   # renders the _includes fragment identified in the "nav" key of a page's yaml
   # frontmatter.
+  
+  # If the page doesn't have a specific nav fragment, it will render the MOST
+  # SPECIFIC default fragment specified in the "defaultnav" hash in _config.yml.
+  # Which means you can do things like have a default nav fragment for /pe URLs,
+  # but override it for /pe/2.5 URLs. Defaultnav hash should look like this: 
+
+  # defaultnav: 
+  #   /: quick_nav.html
+  #   /mcollective: mcollective_menu.html
+  #   /pe/2.5: pe25.html
+  #   /pe/2.0: pe_2.0_nav.markdown
+
   
   # This allows us to easily set a custom nav for a set of pages.
   # -NF 2012
@@ -11,7 +24,28 @@ module Jekyll
 		end
 
 		def render(context)
-			nav_fragment = context.environments.first['page']['nav'] || context.environments.first['site']['nav']
+			nav_fragment = ''
+			if context.environments.first['page']['nav']
+			  nav_fragment = context.environments.first['page']['nav']
+			else
+			  defaultnav = context.environments.first['site']['defaultnav']
+			  defaultnav_keys = defaultnav.keys
+			  path_array = context.environments.first['page']['url'].split('/')
+			  # Pop through the whole path, so we get the most specific matching default nav snippet.
+			  while !path_array.empty?
+			    partial_path = path_array.join('/')
+            partial_path = '/' if partial_path == '' # because join on a single-element array gets us the wrong thing
+          if defaultnav_keys.include?(partial_path)
+            nav_fragment = defaultnav[partial_path]
+            break
+          end
+          path_array.pop
+			  end
+			end
+
+      if nav_fragment == ''
+        return "Blank navigation filename! Something went wrong. Check the nav variable in this file, then check the defaultnav hash in _config.yml."
+      end
       if nav_fragment !~ /^[a-zA-Z0-9_\/\.-]+$/ || nav_fragment =~ /\.\// || nav_fragment =~ /\/\./
         return "Include file '#{nav_fragment}' contains invalid characters or sequences"
       end
