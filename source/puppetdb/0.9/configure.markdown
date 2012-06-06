@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Configuration"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 Configuring the Java Heap Size

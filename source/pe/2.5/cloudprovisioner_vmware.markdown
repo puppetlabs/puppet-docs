@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Cloud Provisioning » VMware Provisioning"
 subtitle: "Provisioning With VMware"

@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Connecting Puppet to PuppetDB"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 [puppetdb_download]: http://downloads.puppetlabs.com/puppetdb

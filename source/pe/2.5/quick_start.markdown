@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Quick Start » Using PE"
 subtitle: "Quick Start: Using PE 2.5"

@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » System Requirements"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 [configure_heap]: ./configure.html#configuring-the-java-heap-size

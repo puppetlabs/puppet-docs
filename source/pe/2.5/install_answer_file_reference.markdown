@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Installing » Answer File Reference"
 subtitle: "Answer File Reference"

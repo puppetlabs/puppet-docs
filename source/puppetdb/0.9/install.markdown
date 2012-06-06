@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Installing PuppetDB"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 

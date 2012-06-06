@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Spec » Querying Status"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 ## Query Format

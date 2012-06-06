@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Maintaining and Tuning"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 [configure_jetty]: ./configure.html#jetty-http

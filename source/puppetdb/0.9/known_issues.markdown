@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB » Known Issues"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 

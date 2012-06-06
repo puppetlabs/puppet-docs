@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Compliance » Basics and UI"
 subtitle: "Compliance Basics and UI"

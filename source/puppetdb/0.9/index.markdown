@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB » Overview"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 

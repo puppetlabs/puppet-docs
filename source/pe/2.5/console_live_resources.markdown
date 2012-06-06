@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Console » Live Mgmt: Managing Resources"
 subtitle: "Live Management: Managing Resources"

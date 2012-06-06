@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"

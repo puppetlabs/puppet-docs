@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Accounts Module » The pe_accounts Class"
 subtitle: "The pe_accounts Class"

@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Installing PuppetDB from Source"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 [perf_dashboard]: ./maintain_and_tune.html#monitor-the-performance-console

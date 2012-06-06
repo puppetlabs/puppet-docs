@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"

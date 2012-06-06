@@ -2,7 +2,6 @@
 layout: default
 title: "PE 2.5 » Installing » Windows Agents"
 subtitle: "Installing Windows Agents"
-nav: pe25.html
 ---
 
 

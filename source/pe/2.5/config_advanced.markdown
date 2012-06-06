@@ -1,5 +1,4 @@
 ---
-nav: pe25.html
 layout: default
 title: "PE 2.5 » Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"

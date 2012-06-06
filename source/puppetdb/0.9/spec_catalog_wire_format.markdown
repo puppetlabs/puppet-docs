@@ -1,7 +1,6 @@
 ---
 title: "PuppetDB 0.9 » Spec » Catalog Wire Format"
 layout: default
-nav: puppetdb0.9.html
 ---
 
 PuppetDB receives a new, specifically modified catalog wire format from puppet masters.
