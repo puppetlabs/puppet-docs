@@ -101,7 +101,7 @@ You can access variables in other scopes with the `scope.lookupvar` function:
 
     <%= scope.lookupvar('apache::user') %>
 
-### Undefined variables
+### Testing for Undefined variables
 
 Instance variables are not created for variables whose values are undefined, so you can easily test for undefined variables with `if @variable`:
 
@@ -111,6 +111,15 @@ Instance variables are not created for variables whose values are undefined, so 
 
 Older templates often used the `has_variable?("myvar")` helper function, but this could yield odd results when variables were explicitly set to `undef`, and should usually be avoided.
 
+If you need to test for a variable outside the current scope, you should copy it to a local variable in the manifest before evaluating the template: 
+
+    # manifest:
+    $in_var = $outside_scope::outside_var
+    
+    # template:
+    <% if @in_var %>
+    outside_var has <%= @in_var %> value
+    <% end %>
 
 ## Combining templates
 
