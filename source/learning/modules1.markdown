@@ -265,7 +265,7 @@ There --- our little example from last chapter has grown up into a self-containe
 
 ### Obtaining Modules
 
-Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. For more information, see [About the Puppet Forge](#forge) below.
+Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. For more information, see [About the Puppet Forge](#modules-and-the-puppet-forge) below.
 
 
 Module Structure
@@ -324,23 +324,34 @@ More on [templates](http://docs.puppetlabs.com/guides/templating.html) later.
 Puppet modules can also serve executable Ruby code from their `lib` directories, to extend Puppet and Facter. (Remember how I mentioned extending Facter with custom facts? This is where they live.) It'll be a while before we cover any of that.
 
 
-##<a id="forge">About the Puppet Forge</a>
-The [Puppet Forge](http://forge.puppetlabs.com/) is a great place to start looking for modules that you can use or adapt for your environment. The Forge contains modules written by Puppet employees and community members which can be freely downloaded and reused in your own infrastructure. Most of these modules are open source and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
+Modules and the Puppet Forge
+-----
 
-### Puppet Module Tool
+Now that you know how modules work, you can also use modules written by other users. The [Puppet Forge](http://forge.puppetlabs.com/) is a great place to start looking for modules: it has modules written by Puppet employees and community members, which can be freely downloaded, modified, and reused in your own infrastructure. Most of these modules are open source, and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
 
-The Puppet Module Tool (PMT) is part of Puppet's core and is accessed using a [puppet face](http://puppetlabs.com/blog/puppet-faces-what-the-heck-are-faces/). The tool is used to create, install and search for modules on the Puppet Forge. 
+The Puppet Labs blog also runs a [Modules of the Week](http://puppetlabs.com/category/blog/module-of-the-week-blog/) series to feature some of the most popular modules on the Puppet Forge. 
 
-For example, let's say you are interested in one of the [Modules of the Week](http://puppetlabs.com/category/blog/module-of-the-week-blog/), Benoit Cattie's nginx module. Start by the downloading the [module's tarball](http://forge.puppetlabs.com/system/releases/B/BenoitCattie/BenoitCattie-nginx-0.2.tar.gz) from the website to your default directory. Alternatively, you can search the repository using `puppet-module search nginx -r http://forge.puppetlabs.com`. 
+### User Names
 
-Next, run `puppet-module install BenoitCattie-nginx` which will unpack the archive file into a new _module directory_. You can then add this directory to your Puppet configuration files so you can use it.
+Modules from the Puppet Forge have a user name prefix in their names; this is done to avoid name clashes with, for example, all of the Apache modules out there. 
 
-For more information, see the puppet module tool [readme](https://github.com/puppetlabs/puppet-module-tool/blob/master/README.markdown).
+The puppet module subcommand usually handles these user name prefixes automatically --- it preserves them as metadata, but installs the module under its common name. That is, your Puppet manifests would refer to a `mysql` module instead of the `puppetlabs-mysql` module.
 
-### Puppet Module Generator
+### The Puppet Module Subcommand
 
-When working with modules, you'll be dealing with the above subdirectories and files so much, you can automate most of their creation and pre-population with the `puppet-module generate` command. This command will automatically generate a directory under your current directory which is prepopulated with the directory structure and files Puppet Labs recommends for modules.
+Puppet ships with a module subcommand for installing and managing modules from the Puppet Forge. [Detailed instructions for using it are here][installing]. Some quick examples: 
 
+Install the puppetlabs-mysql module:
+
+    $ sudo puppet module install puppetlabs-mysql
+
+List all installed modules:
+
+    $ sudo puppet module list
+
+With current versions of Puppet, you should usually avoid using the module subcommand's `generate` action --- it is provided for compatibility with an older version of the tool, and doesn't automatically handle user name prefixes. It can be useful for preparing an already developed module for release, since it provides example metadata files, but it isn't useful when beginning a new module. 
+
+[installing]: /puppet/2.7/reference/modules_installing.html
 
 
 Exercises
