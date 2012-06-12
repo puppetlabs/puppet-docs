@@ -30,18 +30,9 @@ If you are installing the console and the puppet master on separate servers and 
 
 ### How Do I Recover From a Failed Install?
 
-[uninstaller]: ./files/puppet-enterprise-uninstaller
-
 First, fix any configuration problem that may have caused the install to fail. See above for a list of the most common errors. 
 
-Next, download, move, and run the uninstaller script. (This script was not included in Puppet Enterprise 2.0, but is included in all current releases.)
-
-* [Click here to download the uninstaller][uninstaller], or use `curl` or `wget` to download it directly to the target machine.
-* Copy the uninstaller to the target machine, and move it into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory.
-* Make the uninstaller executable, then run it:
-
-        # sudo chmod +x puppet-enterprise-uninstaller
-        # sudo ./puppet-enterprise-uninstaller
+Next, run the uninstaller script. [See the uninstallation instructions in this guide](./install_uninstalling.html) for full details.
 
 After you have run the uninstaller, you can safely run the installer again.
 
