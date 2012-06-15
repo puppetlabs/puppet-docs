@@ -1,0 +1,201 @@
+---
+layout: default
+title: "Language: Data Types"
+---
+
+<!-- TODO -->
+
+[attribute]: 
+[function]: 
+[variables]: 
+[if]: 
+[comparison]: 
+[stdlib]: 
+[facts]: 
+[reserved]: 
+[resourcedefault]: 
+[functions]: 
+
+The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
+
+Booleans
+-----
+
+The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare (that is, not quoted) words. 
+
+The argument of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][]. 
+
+### Automatic Conversion to Boolean
+
+If a non-boolean value is used where a boolean is required, it will automatically be converted to a boolean as follows:
+
+Strings
+: Empty strings are false; all other strings are true. That means the string `"false"` actually resolves as true. **Warning: all [facts][] are strings in this version of Puppet, so "boolean" facts must be handled carefully.**
+
+  > Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently. 
+
+Numbers
+: All numbers are true, including zero and negative numbers. 
+
+  > Note: the [puppetlabs-stdlib][stdlib] module includes a `num2bool` function which converts numbers to boolean values more intelligently. 
+
+Undef
+: The special data type `undef` is false.
+
+Arrays and Hashes
+: Any array or hash is true, including the empty array and empty hash.
+
+Resource References
+: Any resource reference is true, regardless of whether the resource it refers to has been evaluated yet, whether the resource exists, or whether the type is valid.
+
+Undef
+-----
+
+Puppet's special undef value is roughly equivalent to nil in Ruby; variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
+
+The undef data type is usually useful for testing whether a variable has been set. When set as the value of a resource attribute, it will block any value set by a [resource default][resourcedefault], causing that attribute to be unmanaged. 
+
+When used as a boolean, `undef` is false.
+
+
+Strings
+-----
+
+Strings are unstructured text fragments of any length. They may or may not be surrounded by quotation marks. Use single quotes for all strings that do not require variable interpolation, and double quotes for strings that do require variable interpolation.
+
+### Bare Words
+
+Bare (that is, not quoted) words are usually treated as single-word strings. To be treated as a string, a bare word must:
+
+* Not be a [reserved word][reserved]
+* Begin with a letter, and contain only letters, digits, hyphens, and underscores
+
+Bare word strings are usually used with attributes that accept a limited number of one-word values, like `ensure`.
+
+### Single-Quoted Strings
+
+Strings surrounded by single quotes (`'like this'`) do not interpolate variables, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash).
+
+Lone backslashes are literal backslashes, unless followed by a single quote or another backslash. That is:
+
+* When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
+* When a literal double backslash is intended, a quadruple backslash must be used.
+
+### Double-Quoted Strings 
+
+Strings surrounded by double quotes (`"like this"`) allow variable interpolation and several escape sequences. 
+
+#### Variable Interpolation
+
+Any `$variable` in a double-quoted string will be replaced with its value. To remove ambiguity about which text is part of the variable name, you can surround the variable name in curly braces:
+
+{% highlight ruby %}
+    path => "${apache::root}/${apache::vhostdir}/${name}",
+{% endhighlight %}
+    
+#### Escape Sequences
+
+The following escape sequences are available:
+
+* `\$` --- literal dollar sign
+* `\"` --- literal double quote
+* `\\` --- single backslash
+* `\n` --- newline
+* `\r` --- carriage return
+* `\t` --- tab
+
+Resource References
+-----
+
+Some attributes, like the relationship metaparameters, require a reference to an existing Puppet resource. Refer to a Puppet resource with its type and title as follows:
+
+{% highlight ruby %}
+    subscribe => File['/etc/ntp.conf'],
+    ...
+    before => Concat::Fragment['apache_port_header'],
+{% endhighlight %}
+
+* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized.)
+* An opening square bracket.
+* The title of the resource.
+* A closing square bracket.
+
+Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared. 
+
+Numbers
+-----
+
+Puppet's mathematical expressions accept integers and floating point numbers, but internally, numbers are treated as strings until they are used in a numeric context. 
+
+Numbers can be written as bare words or quoted strings, and may consist only of digits and an optional sign and decimal point. 
+
+Arrays
+-----
+
+Arrays are written as comma-separated lists of items surrounded by square brackets:
+
+{% highlight ruby %}
+    [ 'one', 'two', 'three' ]
+{% endhighlight %}
+
+The items in an array can be any data type, including hashes or arrays.
+
+Many attributes, including the relationship metaparameters, accept arrays for their value. You can also access array entries by their numerical index (counting from zero). Square brackets are used for indexing. For example:
+
+{% highlight ruby %}
+    $foo = [ 'one', 'two', 'three' ]
+    notice( $foo[1] )
+{% endhighlight %}
+
+This manifest would log `two` as a notice.
+
+Hashes
+-----
+
+Hashes are written as key/value pairs surrounded by curly braces; a key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. 
+
+{% highlight ruby %}
+    { key1 => 'val1', key2 => 'val2' }
+{% endhighlight %}
+
+Hash keys are strings, but hash values can be any data type, including hashes or arrays.
+
+You can access hash members by their key; square brackets are used for indexing. For example:
+
+{% highlight ruby %}
+    $myhash = { key => { subkey => 'b' }}
+    notice( $myhash[key][subkey] )
+{% endhighlight %}
+
+This example manifest would log `b` as a notice.
+
+Regular Expressions
+-----
+
+Unlike every other data type, regular expressions (regexes) can only be literal values; they cannot be assigned to a variable. Regex values are accepted by the `=~` and `!~` regex match operators, as matchers in selectors and case statements, and as names for node definitions. They cannot be passed to functions or used in resource attributes.
+
+Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet), and must be surrounded by forward slashes:
+
+{% highlight ruby %}
+    if $host =~ /^www(\d+)\./ {
+      notice('Welcome web server #$1')
+    }
+{% endhighlight %}
+
+Alternate forms of regex quoting are not allowed.
+
+Regexes in Puppet cannot have options or encodings appended after the final slash. However, you may turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
+
+{% highlight ruby %}
+     $packages = $operatingsystem ? {
+       /(?i-mx:ubuntu|debian)/        => 'apache2',
+       /(?i-mx:centos|fedora|redhat)/ => 'httpd',
+     }
+{% endhighlight %}
+
+The following options are allowed: 
+
+* i --- Ignore case
+* m --- Treat a newline as a character matched by `.`
+* x --- Ignore whitespace and comments in the pattern
+
