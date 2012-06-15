@@ -1,6 +1,5 @@
 ---
-layout: legacy
-nav: puppet27.html
+layout: default
 title: "Module Fundamentals"
 ---
 
