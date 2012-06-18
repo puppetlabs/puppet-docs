@@ -277,10 +277,11 @@ The following command line or config file options are available
 
 Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](./plugins_in_modules.html) page.
 
+{% comment %}
 External Facts
 --------------
 
-**External facts are available only in Facter 1.7.0 and later.**
+**External facts are available only in Facter 2.1.0 and later.**
 
 ### What are external facts?
 
@@ -447,3 +448,4 @@ While external facts provide a mostly-equal way to create variables for Puppet, 
 * External executable facts are forked instead of executed within the same process.
 * Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. <!-- TODO: supply ticket number -->
 
+{% endcomment %}
