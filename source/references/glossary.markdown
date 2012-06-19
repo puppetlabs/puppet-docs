@@ -42,6 +42,14 @@ Classes are singletons, and can only be applied once in a given configuration, a
 
 > **Note:** Being singletons, Puppet classes are not analogous to classes in object-oriented programming languages. OO classes are like templates that can be instantiated multiple times; Puppet's equivalent to this concept is [defined types](#type-defined).
 
+### classify
+
+(or **node classification**)
+
+To assign [classes](#class) to a [node](#node), as well as provide any data the classes require. Writing a class makes a set of configurations available; classifying a node determines what its actual configuration will be. 
+
+Nodes can be classified with [node definitions](#node-definition) in the [site manifest](#site-manifest), with an [ENC](#external-node-classifier), or with both. 
+
 ### declare
 
 To direct Puppet to include a given class or resource in a given configuration. To add classes, use the `include` keyword or the `class {"foo":}` syntax. To add resources,  use the lowercase `file {"/tmp/bar":}` syntax.
@@ -316,6 +324,11 @@ Node definitions create a special "node scope." Variables in this scope are also
 
 An entire IT ecosystem being managed by Puppet. That is, a site includes all puppet master servers, all agent nodes, and all independent masterless Puppet nodes within an organization.
 
+### site manifest
+
+The main "point of entry" [manifest](#manifest) used by the puppet master when compiling a catalog. The location of this manifest is set with the `manifest` setting in puppet.conf. Its default value is usually `/etc/puppet/manifests/site.pp` or `/etc/puppetlabs/puppet/manifests/site.pp`.
+
+The site manifest usually contains [node definitions](#node-definition). When an [ENC](#external-node-classifier) is being used, the site manifest may be nearly empty, depending on whether the ENC was designed to have complete or partial node information. 
 
 ### site module
 
