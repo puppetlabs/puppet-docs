@@ -317,7 +317,7 @@ A future version of Dashboard will ship with init scripts which will let you man
 
 Dashboard ships a worker process manager, which can be found at `script/delayed_job`. This tool's interface resembles an init script, but it can launch any number of worker processes as well as a monitor process to babysit these workers; run it with `--help` for more details. `delayed_job` requires that you specify `RAILS_ENV` as an environment variable. To start four worker processes and the monitor process:
 
-    # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
+    $ sudo -u puppet-dashboard env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 
@@ -329,7 +329,7 @@ For additional reliability, you might want to use a standard service monitoring 
 
 We don't recommend using rake-started workers for production, but they can be useful when testing or developing Dashboard. To start a single worker in the production environment:
 
-    rake RAILS_ENV=production jobs:work
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production jobs:work
 
 Running Dashboard in a Production-Quality Server
 -----------
@@ -344,7 +344,7 @@ Although you may have tested Dashboard using the included WEBrick server script,
 
 First, you'll need to ensure that Apache 2.2 and Phusion Passenger are installed. The Passenger website has [installation instructions][passinstall], but it's quite possible that your OS vendor has already packaged Passenger, which can make for a much easier install.
 
-Once Passenger is enabled, copy Dashboard's example vhost from `ext/dashboard-vhost.conf` into Apache's `sites-enabled` directory and edit it to match your Dashboard installation. **Passenger runs Rails apps in the production environment by default,** so you won't need to explicitly set the environment (with the `RailsEnv` directive in the vhost configuration) unless you plan to run it in development mode. The parts of the file you'll need to edit are:
+Once Passenger is enabled, copy Dashboard's example vhost from `ext/passenger/dashboard-vhost.conf` into Apache's `sites-enabled` directory and edit it to match your Dashboard installation. **Passenger runs Rails apps in the production environment by default,** so you won't need to explicitly set the environment (with the `RailsEnv` directive in the vhost configuration) unless you plan to run it in development mode. The parts of the file you'll need to edit are:
 
 * **The port on which to serve Dashboard.** This defaults to 80, but if you want to serve it on Puppet's preferred port of 3000, you'll need to change the opening tag of the vhost definition block to `<VirtualHost *:3000>` and insert a `Listen 3000` directive above it.
 * **The subdomain you'll be serving Dashboard from,** which is generally just the fully-qualified domain name of this machine. Put this in the `ServerName` directive.

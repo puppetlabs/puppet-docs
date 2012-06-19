@@ -45,21 +45,21 @@ Upgrading Code
 
 Dashboard installations that used Puppet Labs' packages are the easiest to upgrade. If you installed Dashboard with Yum: 
 
-    # sudo yum update puppet-dashboard
+    $ sudo yum update puppet-dashboard
 
 If you installed it with APT:
 
-    # sudo apt-get update
-    # sudo apt-get install puppet-dashboard
+    $ sudo apt-get update
+    $ sudo apt-get install puppet-dashboard
 
 <!-- version numbers below -->
 If you installed it from an RPM package file:
 
-    # sudo rpm -Uvh puppet-dashboard-1.2.0.noarch.rpm
+    $ sudo rpm -Uvh puppet-dashboard-1.2.0.noarch.rpm
 
 If you installed it from a Deb package file:
 
-    # sudo dpkg -i puppet-dashboard-1.2.0_all.deb
+    $ sudo dpkg -i puppet-dashboard-1.2.0_all.deb
 
 ### From Git
 
@@ -67,31 +67,31 @@ Upgrading from Git is relatively straightforward, although you will have to re-c
 
 First, fetch data from the remote repository:
 
-    # git fetch origin
+    $ git fetch origin
 
 Before checking out the new release, make sure that you haven't made any changes that would be overwritten:
 
-    # git status
+    $ git status
 
 Dashboard's `.gitignore` file should ensure that your configuration files, certificates, temp files, and logs will be untouched by the upgrade, but if the status command shows any new or modified files, you'll need to preserve them. You could just copy them outside the directory, but the easiest path is to use git stash:
 <!-- version numbers below -->
 
-    # git add {list of modified files}
-    # git stash save "Modified files prior to 1.2.0 upgrade"
+    $ git add {list of modified files}
+    $ git stash save "Modified files prior to 1.2.0 upgrade"
 
 After that, you're clear to upgrade:
 
-    # git checkout v1.2.0
+    $ git checkout v1.2.0
 
 (And if you had to stash any edits, you can now apply them:
 
-    # git stash apply
+    $ git stash apply
 
 If they don't apply cleanly, you can abort the commit with `git reset --hard HEAD`, or [read up][mergeconflict] on how to resolve Git merge conflicts.)
 
 Finally, re-chown all Dashboard files to the puppet-dashboard user:
 
-    # chown -R puppet-dashboard:puppet-dashboard ./*
+    $ sudo chown -R puppet-dashboard:puppet-dashboard ./*
 
 [mergeconflict]: http://book.git-scm.com/3_basic_branching_and_merging.html
 
@@ -119,7 +119,7 @@ To convert an existing Dashboard installation to a Git repo, do something like t
 
 As with a standard Git upgrade, you'll need to re-chown all Dashboard files to the puppet-dashboard user:
 
-    # chown -R puppet-dashboard:puppet-dashboard ./*
+    $ sudo chown -R puppet-dashboard:puppet-dashboard ./*
 
 Running Database Migrations
 ---------------------------
@@ -128,7 +128,7 @@ Puppet Dashboard's database schema changes as features are added and improved, a
 
 DB migrations are done with a rake task, and should be simple and painless when upgrading between any two official releases of Dashboard.
 
-    # rake db:migrate RAILS_ENV=production 
+    $ sudo -u puppet-dashboard rake db:migrate RAILS_ENV=production 
 
 Remember that Rails does not consider "production" its default environment, so you must specify it manually for all rake tasks unless your `RAILS_ENV` environment variable is set or you are using the same database in the production and development environments. 
 
@@ -144,7 +144,7 @@ For reasons of speed and scalability, Dashboard 1.2 introduced a delayed job pro
 
 Currently, the best way to manage these processes is with the `script/delayed_job` command, which can daemonize as a supervisor process and manage the requested number of workers. To start four workers and the monitor process:
 
-    # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
+    $ sudo -u puppet-dashboard env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
 
 See [the delayed jobs section](./bootstrapping.html#starting-and-managing-delayed-job-workers) of the installation chapter for more information.
 
@@ -155,7 +155,7 @@ In version 1.1.0, Dashboard changed the way it stores reports, and any reports f
 
 Since this can potentially take a long time, depending on your installation's report history, it isn't performed when running `rake db:migrate`. Instead, you should run:
 
-    # rake reports:schematize RAILS_ENV=production
+    $ sudo -u puppet-dashboard rake reports:schematize RAILS_ENV=production
 
 This task will convert the most recent reports first, and if it is interrupted, it can be resumed by just re-running the command. 
 

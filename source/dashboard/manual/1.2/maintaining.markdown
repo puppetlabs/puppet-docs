@@ -31,11 +31,11 @@ Importing Pre-existing Reports
 
 If your puppet master has stored a large number of reports from before your Dashboard came online, you can import them into Dashboard to get a better view into your site's history. If you are running Dashboard on the same server as your puppet master and its reports are stored in `/var/puppet/lib/reports`, you can simply run:
 
-    rake RAILS_ENV=production reports:import
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production reports:import
 
 Alternately, you can copy the reports to your Dashboard server and run:
 
-    rake RAILS_ENV=production reports:import REPORT_DIR=/path/to/your/reports
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production reports:import REPORT_DIR=/path/to/your/reports
 
 **Note that this task can take a very long time,** depending on the number of reports to be imported. You can, however, safely interrupt and re-run the task, as the importer will automatically skip reports that Dashboard has already imported. 
 
@@ -44,7 +44,7 @@ Optimizing the Database
 
 Since Dashboard turns over a lot of data, its MySQL database should be periodically optimized for speed and disk space. Dashboard has a rake task for doing this:
 
-    rake RAILS_ENV=production db:raw:optimize
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production db:raw:optimize
 
 You should **optimize Dashboard's database monthly,** and we recommend creating a cron job to do so.
 
@@ -55,7 +55,7 @@ Reports will build up over time, which can slow Dashboard down. If you wish to d
 
 For example, to delete reports older than 1 month:
 
-    rake RAILS_ENV=production reports:prune upto=1 unit=mon
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production reports:prune upto=1 unit=mon
 
 Although this task **should be run regularly as a cron job,** the frequency with which it should be run will depend on your site's policies.
 
@@ -80,17 +80,17 @@ Although you can back up and restore Dashboard's database with any tools, there 
 
 To dump the Puppet Dashboard `production` database to a file called `production.sql`:
 
-    rake RAILS_ENV=production db:raw:dump
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production db:raw:dump
 
 Or dump it to a specific file:
 
-    rake RAILS_ENV=production FILE=/my/backup/file.sql db:raw:dump
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production FILE=/my/backup/file.sql db:raw:dump
 
 ### Restoring the Database
 
 To restore the Puppet Dashboard from a file called `production.sql` to your `production` environment:
 
-    rake RAILS_ENV=production FILE=production.sql db:raw:restore
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production FILE=production.sql db:raw:restore
 
 
 * * * 

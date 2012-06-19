@@ -29,7 +29,7 @@ Puppet Dashboard provides rake tasks that can create nodes, group nodes, create 
 
 All of these tasks should be run as follows, replacing `<TASK>` with the task name and any arguments it requires:
 
-    # sudo rake -f <FULL PATH TO DASHBOARD'S DIRECTORY>/Rakefile <TASK>
+    $ sudo -u puppet-dashboard rake -f <FULL PATH TO DASHBOARD'S DIRECTORY>/Rakefile <TASK>
 
 ### Node Tasks
 

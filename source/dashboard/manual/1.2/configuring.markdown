@@ -38,22 +38,23 @@ By default, Dashboard only responds to requests from a user or a puppet master. 
 
 ### Generating Certs and Connecting to the Puppet Master
 
-Puppet uses SSL certificates to control which entities can make which requests to the puppet master, so Dashboard has to obtain a signed cert before asking for facts or files. To do this, edit `config/settings.yml` to ensure that the `ca_server` and `ca_port` settings match the address and port of your puppet master, then run the following commands:
+Puppet uses SSL certificates to control who can make requests to the puppet master, so Dashboard has to obtain a signed cert before asking for facts or files. To do this, edit `config/settings.yml` to ensure that the `ca_server` and `ca_port` settings match the address and port of your puppet master, then run the following commands:
 
-    # sudo -u puppet-dashboard rake cert:create_key_pair
-    # rake cert:request
+    $ sudo -u puppet-dashboard rake cert:create_key_pair
+    $ sudo -u puppet-dashboard rake cert:request
 
 You'll need to sign the certificate request on the master by running `puppet cert sign dashboard`. Then, from Dashboard's directory again, run:
 
-    # sudo -u puppet-dashboard rake cert:retrieve
+    $ sudo -u puppet-dashboard rake cert:retrieve
 
 ### Enabling Inventory Support
 
 With inventory support, Dashboard can display a complete list of facts on each node's detail page. It also adds a new "Inventory Search" page which can search your entire site for nodes matching a fact query.
 
-**Requirements:** To use the inventory, you must be using Puppet 2.6.7 or later, [configured to provide the inventory service][inventory]. 
+**Requirements:** To use the inventory, you must be using Puppet 2.6.7 or later, [configured to provide the inventory service][inventory]. If you are running Puppet 2.7.12 or later, you have the option of using [PuppetDB][pdb] instead of the `inventory_active_record` backend.
 
-[inventory]: http://docs.puppetlabs.com/guides/inventory_service.html
+[pdb]: /puppetdb/0.9/index.html
+[inventory]: /guides/inventory_service.html
 
 Once the puppet master is properly configured with a database-backed inventory, edit your puppet master's [`auth.conf`](/guides/rest_auth_conf.html) file to grant Dashboard find and search access to /facts:
 
@@ -122,11 +123,7 @@ Puppet Dashboard slows down as it manages more data. Here are ways to make it ru
 * Run exactly one `delayed_job` worker per CPU core.
 * [Make sure Dashboard is running in a production-quality web server](./bootstrapping.html#running-dashboard-in-a-production-quality-server), like Apache with Passenger.
 * Make sure Dashboard is running in the production environment. Although Passenger runs Rails apps in production mode by default, other Rails tools may default to the much slower development environment.
-* Optimize your database once a month; create a cron job that runs:
-
-        rake RAILS_ENV=production db:raw:optimize
-    
-    ...from your Puppet Dashboard directory. This will reorganize and reanalyze your database for faster queries.
+* Optimize your database once a month; create a cron job that runs `rake RAILS_ENV=production db:raw:optimize` from your Puppet Dashboard directory. This will reorganize and reanalyze your database for faster queries.
 * Tune the number of processes Dashboard uses to handle more concurrent requests. If you're using Apache with Phusion Passenger to serve Dashboard (as covered in the [Installing chapter](./bootstrapping.html#serving-dashboard-with-passenger-and-apache)), you can modify the appropriate settings in Dashboard's vhost file; in particular, pay attention to the `PassengerHighPerformance`, `PassengerMaxPoolSize`, `PassengerPoolIdleTime`, `PassengerMaxRequests`, and `PassengerStatThrottleRate` settings.
 * Regularly prune your old reports; see ["cleaning old reports" in the maintenance chapter](./maintaining.html#cleaning-old-reports) for more details.
 * Run on a machine with a fast, local database.
@@ -143,7 +140,7 @@ When installing a plugin from an official package, its files should be moved int
 
 To install a plugin from source, rather than a package, you'll have to know the hardcoded internal name of the plugin. This should be listed in its documentation. Copy the plugin's directory to `vendor/plugins`, rename it to its proper internal name, and chown the directory and its files to the Dashboard user. Then, run the `puppet:plugin:install` task, passing the environment you're using[^pluginenv] and the name of the plugin as variables:
 
-    # sudo -u puppet-dashboard rake puppet:plugin:install PLUGIN=name RAILS_ENV=production
+    $ sudo -u puppet-dashboard rake puppet:plugin:install PLUGIN=name RAILS_ENV=production
 
 [^pluginenv]: `Puppet:plugin:install` runs `db:migrate` at the end. If you run in multiple environments regularly, you'll need to run `rake db:migrate` again for each additional one. 
 
