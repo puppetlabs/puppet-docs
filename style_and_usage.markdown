@@ -69,6 +69,20 @@ and shortened ("Dashboard") forms. This is because Dashboard never gets executed
 by a user at the command line, and thus is only a product name and not an
 executable statement.
 
+Other Capitalization Questions
+------------------------------
+
+The basic rationale to use when capitalizing words is: is this a proper noun?
+This turns out to be a squirrely question, but the judgement we went with
+during the PE2 launch and have felt pretty okay about since is that PRODUCTS
+are proper nouns, but FEATURES are not. That is, "live management" wouldn't be
+capitalized, and neither would "faces" -- they aren't independent products. In
+fact, we don't even capitalize the console.
+
+This was one of those tricky calls that we might revisit at some point, but
+for the time being, I (NF) feel pretty good about erring on the side of not
+looking like a bad fantasy novel.
+
 Placeholder Text
 ----------------
 

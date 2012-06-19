@@ -42,7 +42,7 @@ PE's web console is now served over SSL, and requires a login for access. This l
 Puppet Enterprise is now built around Puppet 2.7, which made several significant improvements and changes to the Puppet core:
 
 * Puppet can now manage network devices with the vlan, interface, and router resource types. 
-* There's a new API for creating subcommands called Faces, and Puppet ships with prebuilt subcommands that expose core subsystems at the command line.
+* There's a new API for creating subcommands called faces, and Puppet ships with prebuilt subcommands that expose core subsystems at the command line.
 * Error messages have been generally improved, including the infamous OpenSSL "Hostname was not match" error.
 * Service init scripts are now assumed to have status commands; use `hasstatus => false` to emulate the behavior from 2.6 and earlier.
 * Dynamically scoped variable lookup now causes warnings to be logged. If you're getting these warnings, you should begin [switching to fully qualified variable names and parameterized classes](/guides/scope_and_puppet.html) to eliminate dynamic scoping in your manifests.
