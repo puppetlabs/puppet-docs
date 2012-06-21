@@ -49,9 +49,9 @@ In Puppet version 0.25.x and later, plugins are stored in the `lib` directory of
                 ├── parser
                 │   └── functions
                 ├── provider
-                    ├── exec
-                    ├── package
-                    └── etc... (any resource type)
+                |   ├── exec
+                |   ├── package
+                |   └── etc... (any resource type)
                 └── type
 
 
@@ -78,6 +78,8 @@ A custom fact for the root of all home directories (that is, `/home` on Linux, `
 A custom Augeas lens:
 
     {modulepath}/{module}/lib/augeas/lenses/custom.aug
+
+> Note: Support for syncing Augeas lenses was added in Puppet 2.7.18.
 
 And so on. 
 
