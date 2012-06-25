@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.5 » Cloud Provisioning » Overview"
-subtitle: "A Cloud Provisioning Overview"
+subtitle: "A High Level Look at Puppet's Cloud Provisioning Tools"
 ---
 
 Puppet Enterprise includes a suite of command-line tools you can use for provisioning new virtual nodes when building or maintaining cloud computing infrastructures based on VMware VSphere and Amazon EC2. <!-- and OpenStack.  -->You can use these tools to:
@@ -35,4 +35,4 @@ All of the cloud provisioning tools are powered by [Fog, the Ruby cloud services
 
 * * * 
 
-- [Next: Installing and Classifying Cloud Provisioning](./cloudprovisioner_classifying_installing.html)
+- [Next: Installing and Configuring Cloud Provisioner](./cloudprovisioner_configuring.html)

@@ -188,4 +188,4 @@ allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 * * * 
 
-- [Next: Provisioning with VMware](./cloudprovisioner_vmware.html)
+- [Next: Classifying Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_configuring.html)
