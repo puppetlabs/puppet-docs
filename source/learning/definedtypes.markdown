@@ -115,10 +115,14 @@ To avoid this, you have to make sure that **both the title and the name** (or na
 
 If there's a singleton resource that has to exist for any instance of the defined type to work, you should:
 
-* Put that resource in a class, and...
-* ...either use `include` to declare that class in the type definition, or use the following idiom in the definition to make sure it'll fail without the class:
+* Put that resource in a class.
+* Inside the type definition, use `include` to declare that class.
+* Also inside the type definition, use something like the following to establish an order dependency:
 
-        Class['myclass'] -> Defined::Type["$title"]
+        # Make sure compilation will fail if 'myclass' doesn't get declared:
+        Class['myclass'] -> Apache::Vhost["$title"]
+    
+    Establishing ordering relationships at the class level is generally better than directly requiring one of the resources inside it. However, be aware that you can't reliably make relationships between _classes that declare other classes,_ due to an outstanding design issue in Puppet. (A class "contains" the resources declared inside it, but doesn't contain the resources from _another class_ declared inside it; those resources will "float off," and won't be part of relationships formed with the outermost class. We're working on fixing this, but it has turned out to be kind of complicated.)
 
 Defined Types in Modules
 -----
