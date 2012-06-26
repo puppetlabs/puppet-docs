@@ -182,10 +182,6 @@ If we want the service to change its behavior as soon as we change our policy, w
     service { 'sshd':
       ensure     => running,
       enable     => true,
-      hasrestart => true,
-      hasstatus  => true,
-      # FYI, those last two attributes default to false, since
-      # bad init scripts are more or less endemic.
       subscribe  => File['/etc/ssh/sshd_config'],
     }
 {% endhighlight %}
@@ -193,6 +189,10 @@ If we want the service to change its behavior as soon as we change our policy, w
 And that'll do it! Run that manifest with puppet apply, and after you log out, you won't be able to SSH into the VM again. _Victory._
 
 To fix it, you'll have to log into the machine directly --- use the screen provided by your virtualization app. Once you're there, you'll just have to edit `/root/learning-manifests/sshd_config` again to change the `PasswordAuthentication` setting and re-apply the same manifest; Puppet will replace `/etc/ssh/sshd_config` with the new version, restart the service, and re-enable remote password logins. (And you can put your SSH key back now, if you like.)
+
+> Note about services:
+>
+> The `service` type has several attributes to help work around broken or missing init scripts. As working init scripts have become more ubiquitous, some of the default values for these attributes have changed. If you find yourself using an older version of Puppet, be aware that `hasstatus` and `hasrestart` default to `true` in Puppet 2.7 and later, but used to default to `false`.
 
 Package/File/Service
 --------------------
