@@ -49,6 +49,26 @@ Run Stages                      |        |        |   X   |   X   |     X    |
 The "in" syntax                 |        |        |   X   |   X   |     X    |
 The "unless" syntax             |        |        |       |       |     X    |
 
+Acceptable Characters in Names
+-----
+
+Variable names can include **alphanumeric characters and underscores,** and are case-sensitive. Hyphens are not allowed; although some Puppet versions permit them, this is now considered a bug.
+
+Class names, module names, and the names of defined and custom resource types should be restricted to **lowercase alphanumeric characters and underscores,** and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Although some names that violate these restrictions currently work, using them is not recommended. Hyphens are very strongly discouraged, and in most versions of Puppet will cause variables inside the class to be unavailable elsewhere.
+
+Class and defined resource type names can use `::` as a namespace separator, which is both semantically useful and a means of directing the behavior of the module autoloader. The final segment of a [qualified variable](#qualified-variables) name must obey the restrictions on variable names, and the preceding segments must obey the restrictions on class names.
+
+Parameters used in parameterized classes and defined resource types can include **alphanumeric characters and underscores,** cannot begin with an underscore, and are case-sensitive. In practice, they should be treated as though they were under the same restrictions as class names in order to maximize future compatibility.
+
+There is no practical restriction on resource names.
+
+Any word that the syntax uses for special meaning is
+a reserved word, meaning you cannot use it for
+variable or type names.   Words like `true`, `define`,
+`inherits`, and `class` are all reserved. If you ever need to use a
+reserved word as a value, be sure to quote it.
+
+
 Resources
 ---------
 
@@ -1250,24 +1270,6 @@ to be stored on the central server.
 The details of this feature are somewhat complicated; see
 the [Exported Resources](./exported_resources.html)
 page for more information.
-
-### Reserved Words & Acceptable Characters
-
-Variable names can include alphanumeric characters and underscores, and are case-sensitive.
-
-Class names, module names, and the names of defined and custom resource types should be restricted to lowercase alphanumeric characters and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Although some names that violate these restrictions currently work, using them is not recommended.
-
-Class and defined resource type names can use `::` as a namespace separator, which is both semantically useful and a means of directing the behavior of the module autoloader. The final segment of a [qualified variable](#qualified-variables) name must obey the restrictions on variable names, and the preceding segments must obey the restrictions on class names.
-
-Parameters used in parameterized classes and defined resource types can include alphanumeric characters and underscores, cannot begin with an underscore, and are case-sensitive. In practice, they should be treated as though they were under the same restrictions as class names in order to maximize future compatibility.
-
-There is no practical restriction on resource names.
-
-Any word that the syntax uses for special meaning is
-a reserved word, meaning you cannot use it for
-variable or type names.   Words like `true`, `define`,
-`inherits`, and `class` are all reserved. If you ever need to use a
-reserved word as a value, be sure to quote it.
 
 ### Comments
 
