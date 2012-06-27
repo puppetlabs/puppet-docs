@@ -31,10 +31,10 @@ the query.
 This query will return active nodes whose kernel is Linux and whose uptime is less
 than 30 days:
 
-    ["and"
-      ["=" ["node" "active"] true]
-      ["=" ["fact" "kernel"] "Linux"]
-      [">" ["fact" "uptime_days"] 30]]
+    ["and",
+      ["=", ["node", "active"], true],
+      ["=", ["fact", "kernel"], "Linux"],
+      [">", ["fact", "uptime_days"], 30]]
 
 If no `query` parameter is supplied, all nodes will be returned.
 

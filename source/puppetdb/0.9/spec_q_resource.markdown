@@ -57,11 +57,11 @@ The `query` parameter is described by the following grammar:
 For example, for file resources, tagged "magical", on any active host except
 for "example.local" the JSON query structure would be:
 
-    ["and" ["not" ["=" ["node", "name"] "example.local"]]
-           ["=" ["node" "active"] true]
-           ["=" "type" "File"]
-           ["=" "tag"  "magical"]
-           ["=" ["parameter", "ensure"] "enabled"]
+    ["and", ["not", ["=", ["node", "name"], "example.local"]],
+           ["=", ["node", "active"], true],
+           ["=", "type", "File"],
+           ["=", "tag",  "magical"],
+           ["=", ["parameter", "ensure"], "enabled"]]
 
 The conditional type behaviours are defined:
 
