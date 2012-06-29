@@ -29,6 +29,8 @@ On Amazon Web Services:
 Add the appropriate file or missing credentials to the existing file to resolve
 this issue.
 
+Note that versions of fog newer than 0.7.2 may not be fully compatible with Cloud Provisioner. This issue is currently being investigated.
+
 ### Certificate Signing Issues
 
 #### Accessing Puppet Master Endpoint

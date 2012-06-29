@@ -23,6 +23,8 @@ Prerequisites
 
      \# gem install guid 
 
+Note that later versions of fog may not be fully compatible with Cloud Provisioner. This issue is currently being addressed.
+
 ### Services
 
 The following services and credentials are required:
@@ -143,7 +145,7 @@ existing key pairs, you can create one with the "Create Key Pairs" button.
 Specify a new name for the key pair to create it; the private key
 file will be automatically downloaded to your host. 
 
-Make a note of the name of your key pair, as it will be used when creating new instances.
+Make a note of the name of your key pair, since you will need to know it when creating new instances.
 
 #### Security Group
 
@@ -154,7 +156,7 @@ groups.  If no groups exist, you can create a new one by clicking the
 
 ![AWS Security Groups](./images/cloud/awssecgroup.png)
 
-To add the required rules, select the "Inbound" tab and add an SSH rule.
+To add the required rules, select the "Inbound" tab and add an SSH rule. Make sure that inbound SSH traffic is using port 22.
 You can also indicate a specific source to lock the source IP down to
 an appropriate source IP or network.  Click "Add Rule" to add the rule,
 then click "Apply Rule Changes" to save.
