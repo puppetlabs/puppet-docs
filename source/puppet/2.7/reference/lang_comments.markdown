@@ -8,7 +8,7 @@ Puppet supports two types of comments:
 Shell-Style Comments
 -----
 
-Shell-style comments (also known as Ruby-style comments) begin with a hash symbol (`#`) and continue to the end of a line. They can start at the beginning of a line, or partway through a line that began with code. 
+Shell-style comments (also known as Ruby-style comments) begin with a hash symbol (`#`) and continue to the end of a line. They can start at the beginning of a line or partway through a line that began with code. 
 
 {% highlight ruby %}
     # This is a comment
@@ -22,7 +22,7 @@ Shell-style comments (also known as Ruby-style comments) begin with a hash symbo
 C-Style Comments
 -----
 
-C-style comments are delimited by slashes with inner asterisks. They can span multiple lines. This comment style is less frequently used. 
+C-style comments are delimited by slashes with inner asterisks. They can span multiple lines. This comment style is less frequently used than shell-style. 
 
 {% highlight ruby %}
     /*
