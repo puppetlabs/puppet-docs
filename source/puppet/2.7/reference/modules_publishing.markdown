@@ -33,25 +33,20 @@ Overview
 This guide assumes that you have already [written a useful Puppet module][fundamentals]. To publish your module, you will need to:
 
 1. Create a Puppet Forge account, if you don't already have one
-2. Prepare a copy of your module and give it a Forge-ready filename
+2. Prepare your module
 3. Write a Modulefile with the required metadata
 4. Build an uploadable tarball of your module
 5. Upload your module using the Puppet Forge's web interface.
 
-> ### A Note on Filenames
+> ### A Note on Module Names
 >
-> (This note applies to all Puppet versions through 3.x.)
+> Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Puppet Forge as `puppetlabs-mysql`. 
 >
-> Puppet and the Puppet Forge have conflicting rules for how a module's directory should be named. 
-> 
-> * Puppet expects a module's directory to be the name of the module. (e.g. `mysql`)
-> * The Puppet Forge expects a module's directory to be the author's username, a hyphen, and then the name of the module. (e.g. `puppetlabs-mysql`)
-> 
-> This means you cannot directly publish a module that is currently being used by Puppet --- you must publish a renamed copy of it instead.
+> **Be sure to use this long name in your module's [Modulefile](#write-a-modulefile).** However, you do not have to rename the module's directory, and can leave the module in your active modulepath --- the build action will do the right thing as long as the Modulefile is correct. 
 
-> ### Another Note on Filenames
+> ### Another Note on Module Names
 > 
-> Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style when working on the command line.
+> Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
 
 Create a Puppet Forge Account
 --------
@@ -67,22 +62,9 @@ Fill in your details. After you finish, you will be asked to verify your email a
 Prepare the Module
 -----
 
-As [mentioned above](#a-note-on-filenames), the Puppet Forge expects modules to have a username prefix, which is not compatible with Puppet's normal operation. 
+If you already have a Puppet module with the [correct directory layout][fundamentals], you may continue to the next step. 
 
-To prepare your module for publication, you can do either of the following:
-
-* Copy and rename the entire directory containing your module, or...
-* Generate a new module template and copy the individual files into place
-
-### Copy and Rename 
-
-The Puppet Forge expects module names to be in the form `<FORGE USERNAME>-<MODULE NAME>`. If your module is otherwise ready, you can simply copy it to a directory outside Puppet's [modulepath][] and rename it:
-
-    $ cp /etc/puppetlabs/puppet/modules/mymodule ~/Development/examplecorp-mymodule
-
-### Generate a Module Template
-
-Alternately, you can use the `puppet module generate` action to generate a template. This is mostly useful if you need an example Modulefile and README, and also includes a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. It is not particularly useful for developing a module from scratch, as you would have to rename the module before attempting to use it with Puppet. 
+Alternately, you can use the `puppet module generate` action to generate a template layout. This is mostly useful if you need an example Modulefile and README, and also includes a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. If you choose to do this, you will need to manually copy your module's files into the template.
 
 To generate a template, run `puppet module generate <USERNAME>-<MODULE NAME>`. For example:
 
@@ -98,7 +80,7 @@ To generate a template, run `puppet module generate <USERNAME>-<MODULE NAME>`. F
     examplecorp-mymodule/manifests
     examplecorp-mymodule/manifests/init.pp
 
-After generating the template, you will need to manually copy your module's files into place.
+> Note: This action is of limited use when developing a module from scratch, as the module must be renamed to remove the username prefix before it can be used with Puppet. 
 
 Write a Modulefile
 -----
@@ -107,15 +89,15 @@ In your module's main directory, create a text file named `Modulefile`. If you g
 
 The Modulefile resembles a configuration or data file, but is actually a simple Ruby domain-specific language (DSL), which is executed when you build a tarball of the module. This means Ruby's normal rules of string quoting apply:
 
-    name 'myuser-mymodule'
+    name 'examplecorp-mymodule'
     version '0.0.1'
-    dependency 'otheruser-othermodule', '1.2.3'
+    dependency 'puppetlabs-mysql', '1.2.3'
     description "This is a full description
         of the module, and is being written as a multi-line string."
 
 Modulefiles support the following pieces of metadata:
 
-* `name` --- REQUIRED. The full name of the module, including the username (e.g. "username-module").
+* `name` --- REQUIRED. The **full name** of the module, including the username (e.g. "username-module" --- [see note above](#a-note-on-module-names)).
 * `version` --- REQUIRED. The current version of the module.
 * `summary` --- REQUIRED. A one-line description of the module.
 * `description` --- REQUIRED. A more complete description of the module.
@@ -133,13 +115,13 @@ Now that the content and Modulefile are ready, you can build a package of your m
 
     puppet module build <MODULE DIRECTORY>
 
-This will generate a `.tar.gz` package, which will saved in the module's `pkg/` subdirectory.
+This will generate a `.tar.gz` package, which will be saved in the module's `pkg/` subdirectory.
 
 For example:
 
-    # puppet module build ~/Development/examplecorp-mymodule 
-    Building /Users/fred/Development/examplecorp-mymodule for release
-    examplecorp-mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
+    # puppet module build /etc/puppetlabs/puppet/modules/mymodule 
+    Building /etc/puppetlabs/puppet/modules/mymodule for release
+    /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
 
 Upload to the Puppet Forge
 ------
@@ -150,7 +132,7 @@ In your web browser, navigate [to the Puppet Forge][forge]; log in if necessary.
 
 ### Create a Module Page
 
-If you have never published a copy of this module before, you must create a new page for this module. Click on the "Add a module" link in the sidebar:
+If you have never published this module before, you must create a new page for it. Click on the "Add a module" link in the sidebar:
 
 ![the "add a module" link in the Forge's sidebar][addmodule]
 
@@ -162,11 +144,11 @@ Clicking the "add module" button at the bottom of the form will automatically na
 
 Navigate to the module's page if you are not already there, and click the "add a release" link:
 
-[the "add a release" link on a module's page][addrelease]
+![the "add a release" link on a module's page][addrelease]
 
 This will bring you to the upload form:
 
-[the upload form for a new release of a module][upload]
+![the upload form for a new release of a module][upload]
 
 Click "browse," and use the file browser to locate and select the release tarball you created with the `puppet module build` action. Write some release notes, if applicable, and click the "add release" link.
 
@@ -178,7 +160,7 @@ Release a New Version
 
 To release a new version of an already published module:
 
-1. Make any necessary edits to the publishable copy of your module.
+1. Make any necessary edits to your module.
 2. Increment the `version` field in the Modulefile.
 3. Follow the instructions above for [uploading a release](#upload-a-release).
 
