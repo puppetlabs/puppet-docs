@@ -35,7 +35,7 @@ The following words are reserved:
 
 ### Reserved Class Names
 
-The following are built-in namespaces used by Puppet, which must not be used as class names:
+The following are built-in namespaces used by Puppet, and so must not be used as class names:
 
 * `main` --- Puppet automatically creates a `main` [run stage][runstage], which contains any resources not given an explicit run stage.
 * `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings). 
@@ -45,7 +45,7 @@ Acceptable Characters in Names
 
 Puppet limits the characters you can use when naming language constructs.
 
-> Note: In some cases, names containing unsupported characters can still work. These cases should be considered bugs, and may cease to work at any time. Removal of these bug cases will not be limited to major releases.
+> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and may cease to work at any time. Removal of these bug cases will not be limited to major releases.
 
 ### Variables
 
