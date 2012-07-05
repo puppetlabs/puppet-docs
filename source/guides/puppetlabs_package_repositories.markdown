@@ -43,10 +43,16 @@ The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the foll
 * Ubuntu 11.04 "Natty Narwhal"
 * Ubuntu 10.10 "Maverick Meerkat"
 
-To enable the repository, run the commands below:
+To enable the repository:
 
-    $ wget http://apt.puppetlabs.com/puppetlabs-release_1.0-3_all.deb
-    $ sudo dpkg -i puppetlabs-release_1.0-3_all.deb
+1. Download the "puppetlabs-release" package for your OS version. 
+    * You can see a full list of these packages on the front page of <http://apt.puppetlabs.com/>. They are all named `puppetlabs-release-<CODE NAME>.deb`.
+2. Install the package by running `dpkg -i <PACKAGE NAME>`. 
+
+For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
+
+    $ wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+    $ sudo dpkg -i puppetlabs-release-precise.deb
 
 ### For Fedora
 
