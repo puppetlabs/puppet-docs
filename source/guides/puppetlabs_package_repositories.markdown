@@ -22,11 +22,11 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 #### Enterprise Linux 5
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-1.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-5.noarch.rpm
 
 #### Enterprise Linux 6
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-1.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-5.noarch.rpm
 
 ### For Debian and Ubuntu
 
@@ -60,11 +60,11 @@ The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 1
 
 #### Fedora 15
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-1.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-5.noarch.rpm
 
 #### Fedora 16
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-1.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-5.noarch.rpm
 
 Puppet Enterprise Repositories
 -----
