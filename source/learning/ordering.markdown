@@ -223,7 +223,7 @@ The example we just saw was very close to a pattern you'll see constantly in pro
 
 This is **package/file/service,** one of the most useful patterns in Puppet: the package resource makes sure the software is installed, the config file depends on the package resource, and the service subscribes to changes in the config file.
 
-It's hard to understate the importance of this pattern; if this was all you knew how to do with Puppet, you could still do a fair amount of work. But we're not done yet.
+It's hard to overstate the importance of this pattern; if this were all you knew how to do with Puppet, you could still do a fair amount of work. But we're not done yet.
 
 Next
 ----
