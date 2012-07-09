@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: legacy
 title: 2.7.16 References
 ---
 
