@@ -27,7 +27,7 @@ Resource defaults are specified as follows:
     }
 {% endhighlight %}
 
-* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized, e.g. `Concat::Fragment`.)
+* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized. E.g., `Concat::Fragment`.)
 * An opening curly brace.
 * Any number of attribute and value pairs.
 * A closing curly brace. 

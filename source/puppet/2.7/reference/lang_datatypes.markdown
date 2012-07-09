@@ -27,7 +27,7 @@ The argument of an ["if" statement][if] is a boolean value. All of Puppet's [com
 
 ### Automatic Conversion to Boolean
 
-If a non-boolean value is used where a boolean is required, it will automatically be converted to a boolean as follows:
+If a non-boolean value is used where a boolean is required, it will be automatically converted to a boolean as follows:
 
 Strings
 : Empty strings are false; all other strings are true. That means the string `"false"` actually resolves as true. **Warning: all [facts][] are strings in this version of Puppet, so "boolean" facts must be handled carefully.**
@@ -46,7 +46,7 @@ Arrays and Hashes
 : Any array or hash is true, including the empty array and empty hash.
 
 Resource References
-: Any resource reference is true, regardless of whether the resource it refers to has been evaluated yet, whether the resource exists, or whether the type is valid.
+: Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
 
 Undef
 -----
@@ -68,9 +68,9 @@ Strings are unstructured text fragments of any length. They may or may not be su
 Bare (that is, not quoted) words are usually treated as single-word strings. To be treated as a string, a bare word must:
 
 * Not be a [reserved word][reserved]
-* Begin with a letter, and contain only letters, digits, hyphens, and underscores
+* Begin with a letter, and contain only letters, digits, hyphens (-), and underscores (_).
 
-Bare word strings are usually used with attributes that accept a limited number of one-word values, like `ensure`.
+Bare word strings are usually used with attributes that accept a limited number of one-word values, such as `ensure`.
 
 ### Single-Quoted Strings
 
