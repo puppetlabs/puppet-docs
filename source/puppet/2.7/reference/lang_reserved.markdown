@@ -33,7 +33,8 @@ The following words are reserved:
 * `case` --- language keyword
 * `default` --- language keyword
 
-### Reserved Class Names
+Reserved Class Names
+-----
 
 The following are built-in namespaces used by Puppet, which must not be used as class names:
 

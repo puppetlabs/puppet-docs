@@ -220,7 +220,7 @@ In **static scope,** parent scopes are **only** assigned by [class inheritance][
 > * Scope contents are predictable and do not depend on parse order.
 > * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or type is _declared_ has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
 
-All future versions of Pupet will use static scope for looking up variables. Puppet 2.7 **does not enforce** static scope, but will log warnings when a variable lookup would violate it.
+All future versions of Puppet will use static scope for looking up variables. Puppet 2.7 **does not enforce** static scope, but will log warnings when a variable lookup would violate it.
 
 ### Dynamic Scope
 
