@@ -19,6 +19,12 @@ The PuppetDB plugins installed on your puppet master(s) include a `deactivate` a
 
 Although deactivated nodes will be excluded from storeconfigs queries, their data is still preserved, and a node will be reactivated if a new catalog or facts are received for it.
 
+## Redoing SSL setup after changing certificates
+
+If you've recently changed the certificates in use by the PuppetDB server, you'll need to update the SSL configuration for PuppetDB itself.
+
+If you've installed PuppetDB from Puppet Labs packages, you can simply re-run the `puppetdb-ssl-setup` script. Otherwise, you'll need to perform again all the SSL configuration steps outlined in [the installation instructions](./install_from_source.html).
+
 ## Monitor the Performance Console
 
 Once you have PuppetDB running, visit the following URL, substituting in the name and port of your PuppetDB server:

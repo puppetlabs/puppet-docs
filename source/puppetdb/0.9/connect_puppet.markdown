@@ -66,7 +66,7 @@ The [puppetdb.conf][puppetdb_conf] file will probably not exist yet. Create it, 
 If no puppetdb.conf file exists, the following default values will be used:
 
     server = puppetdb
-    port = 8080
+    port = 8081
 
 ### Edit puppet.conf
 
