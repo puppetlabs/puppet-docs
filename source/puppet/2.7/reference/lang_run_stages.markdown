@@ -19,7 +19,7 @@ The run stage feature consists of two parts:
 * A `stage` resource type.
 * A `stage` [metaparameter][], which assigns a class to a named run stage.
 
-The Main Stage
+The Default `main` Stage
 -----
 
 By default there is only one stage (named "`main`"), and all resources are automatically associated with this stage unless explicitly assigned to a different one. If you do not use run stages, every resource is in the main stage.
