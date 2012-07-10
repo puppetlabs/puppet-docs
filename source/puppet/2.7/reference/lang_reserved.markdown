@@ -85,3 +85,6 @@ Class and defined type parameters **must begin with a lowercase letter.** They c
 
 Resource titles may contain any characters whatsoever. They are case-sensitive.
 
+### Nodes
+
+**The set of characters allowed in node names is undefined** in this version of Puppet. Characters other than letters, numbers, periods, underscores, and dashes may or may not work.
