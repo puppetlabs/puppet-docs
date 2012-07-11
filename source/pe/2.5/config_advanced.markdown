@@ -40,7 +40,7 @@ The example diff below illustrates the change to a default MySQL config file:
 
 After changing the setting, restart the MySQL server:
 
-    # sudo /etc/init.d/mysqld restart
+    $ sudo /etc/init.d/mysqld restart
 
 Changing the Console's Port
 -----
@@ -114,11 +114,11 @@ To allow anonymous, read-only access to the console, do the following:
 
 If necessary, you can completely disable the console's access controls. Run the following command to disable console auth:
 
-    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:disable
+    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:disable
 
 To re-enable console auth, run the following:
 
-    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:enable
+    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:enable
 
 ### Using LDAP or Active Directory Instead of Console Auth
 

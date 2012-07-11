@@ -37,7 +37,7 @@ Everyday Tools
 * The puppet apply subcommand can compile and apply Puppet manifests without the need for a puppet master. It's ideal for testing new modules (`puppet apply -e 'include <CLASS NAME>'`), but can also be used to manage an entire Puppet deployment in a masterless arrangement. 
 * The puppet resource subcommand provides an interactive shell for manipulating Puppet's underlying resource framework. It is ideal for one-off administration tasks and ad-hoc management, and offers an abstraction layer between various OSs' implementations of core functionality. 
     
-        # sudo puppet resource package nano ensure=latest
+        $ sudo puppet resource package nano ensure=latest
         notice: /Package[nano]/ensure: created
         package { 'nano':
           ensure => '1.3.12-1.1',

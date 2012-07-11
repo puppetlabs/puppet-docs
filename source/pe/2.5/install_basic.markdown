@@ -41,7 +41,7 @@ Starting the Installer
 * Navigate to the resulting directory in your shell.
 * Run the `puppet-enterprise-installer` script with root privileges:
 
-        # sudo ./puppet-enterprise-installer
+        $ sudo ./puppet-enterprise-installer
 * Answer the interview questions to [select and configure PE's roles](#selecting-roles). 
 * Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
 * If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
@@ -245,7 +245,7 @@ Puppet Enterprise may need some extra system software from your OS vendor's pack
 
 **A note about Java and MySQL under Enterprise Linux variants:** Java and MySQL packages provided by Oracle can satisfy the puppet master and console roles' Java and MySQL dependencies, but the installer can't make that decision automatically and will default to using the OS's packages. If you wish to use Oracle's packages instead of the OS's, you must first use RPM to manually install the `pe-virtual-java` and/or `pe-virtual-mysql` packages included with Puppet Enterprise: 
 
-    # sudo rpm -ivh packages/pe-virtual-java-1.0-1.pe.el5.noarch.rpm
+    $ sudo rpm -ivh packages/pe-virtual-java-1.0-1.pe.el5.noarch.rpm
 
 Find these in the installer's `packages/` directory. Note that these packages may have additional ramifications if you later install other software that depends on OS MySQL or Java packages. 
 

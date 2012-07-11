@@ -105,7 +105,7 @@ The console provides rake tasks that can group nodes, create classes, and assign
 
 All of these tasks should be run as follows, replacing `<TASK>` with the task name and any arguments it requires:
 
-    # sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile <TASK>
+    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile <TASK>
 
 ### Node Tasks
 
