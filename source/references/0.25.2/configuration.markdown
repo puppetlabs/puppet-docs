@@ -164,7 +164,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 ### ca
 
-<p>Wether the master should function as a certificate authority.</p>
+<p>Whether the master should function as a certificate authority.</p>
 <ul>
 <li><strong>Default</strong>: true</li>
 </ul>
@@ -1395,7 +1395,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 ### thin_storeconfigs
 
-<p>Boolean; wether storeconfigs store in the database only the facts and exported resources. If true, then storeconfigs performance will be higher and still allow exported/collected resources, but other usage external to Puppet might not work</p>
+<p>Boolean; whether storeconfigs store in the database only the facts and exported resources. If true, then storeconfigs performance will be higher and still allow exported/collected resources, but other usage external to Puppet might not work</p>
 <ul>
 <li><strong>Default</strong>: false</li>
 </ul>
