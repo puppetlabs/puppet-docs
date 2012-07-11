@@ -48,8 +48,8 @@ Next, download, move, and run the uninstaller script. (This script was not inclu
 * Copy the uninstaller to the target machine, and move it into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory.
 * Make the uninstaller executable, then run it:
 
-        # sudo chmod +x puppet-enterprise-uninstaller
-        # sudo ./puppet-enterprise-uninstaller
+        $ sudo chmod +x puppet-enterprise-uninstaller
+        $ sudo ./puppet-enterprise-uninstaller
 
 After you have run the uninstaller, you can safely run the installer again.
 

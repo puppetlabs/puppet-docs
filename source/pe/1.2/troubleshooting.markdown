@@ -35,7 +35,7 @@ The learning curve of SSL certificate management can lead to a variety of proble
 
 If you install the puppet agent role on a node before getting the puppet master up and running, the installer won't be able to request a certificate during installation, and you won't immediately see a pending certificate request when you run `puppet cert list`. To request a certificate manually, you can log into the agent node and run:
 
-    # sudo puppet agent --test
+    $ sudo puppet agent --test
 
 ...after which you should be able to sign the certificate on the puppet master. **Alternately,** you can simply wait 30 minutes, as the puppet agent service will request a certificate on its next run.
 
@@ -49,7 +49,7 @@ Agent nodes determine the validity of the master's certificate based on hostname
 
 Modify your agent nodes' settings to point to one of the master's certified hostnames. (This may also require adjusting your site's DNS.) To see the puppet master's certified hostnames, run:
 
-    # sudo puppet master --configprint certname,certdnsnames
+    $ sudo puppet master --configprint certname,certdnsnames
 
 ...on the puppet master server.
 
@@ -59,19 +59,19 @@ Re-generate the puppet master's certificate:
 
 - Stop the `pe-httpd` service:
 
-        # sudo /etc/init.d/pe-httpd stop
+        $ sudo /etc/init.d/pe-httpd stop
 - Delete the puppet master's certificate, private key, and public key:
 
-        # sudo find /etc/puppetlabs/puppet/ssl -name $(puppet master --configprint certname) -delete
+        $ sudo find /etc/puppetlabs/puppet/ssl -name $(puppet master --configprint certname) -delete
 - Edit the `certname` and `certdnsnames` settings in the puppet master's `/etc/puppetlabs/puppet/puppet.conf` file to match the puppet master's actual hostnames.
 - Start a non-daemonized WEBrick puppet master instance, and wait for it to generate and sign a new certificate:
 
-        # sudo puppet master --no-daemonize --verbose
+        $ sudo puppet master --no-daemonize --verbose
         
     You should stop the temporary puppet master with ctrl-C after you see the "notice: Starting Puppet master version 2.6.9" message.
 - Start the `pe-httpd` service: 
 
-        # sudo /etc/init.d/pe-httpd start
+        $ sudo /etc/init.d/pe-httpd start
 
 ### Puppet master is rejecting an agent node with a valid certificate
 
@@ -138,7 +138,7 @@ You have two main options: either delete the `/etc/puppetlabs/puppet/ssl` direct
 
 Background tasks are processed by worker processes, which can sometimes die and leave invalid PID files. To restart the worker tasks, run:
 
-    # sudo /etc/init.d/pe-puppet-dashboard-workers restart
+    $ sudo /etc/init.d/pe-puppet-dashboard-workers restart
 
 This should immediately start reducing the number of pending tasks.
 

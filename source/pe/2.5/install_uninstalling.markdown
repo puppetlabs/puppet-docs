@@ -11,7 +11,7 @@ Using the Uninstaller
 
 To run the uninstaller, ensure that it is in the same directory as the installer script, and run it with root privileges from the command line:
 
-    # sudo ./puppet-enterprise-uninstaller
+    $ sudo ./puppet-enterprise-uninstaller
 
 The uninstaller will ask you to confirm that you want to uninstall.
 
@@ -53,7 +53,7 @@ You can use the following command-line flags to change the installer's behavior:
 
 Thus, to remove every trace of PE from a system, you would run:
 
-    # sudo ./puppet-enterprise-uninstaller -d -p
+    $ sudo ./puppet-enterprise-uninstaller -d -p
 
 
 * * * 

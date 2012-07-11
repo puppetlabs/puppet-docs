@@ -25,15 +25,15 @@ The uninstaller script was not included in the PE 2.0.0 tarball. If the tarball 
 * Copy the uninstaller to the target machine, and move it into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory.
 * Make the uninstaller executable, then run it:
 
-        # sudo chmod +x puppet-enterprise-uninstaller
-        # sudo ./puppet-enterprise-uninstaller
+        $ sudo chmod +x puppet-enterprise-uninstaller
+        $ sudo ./puppet-enterprise-uninstaller
 
 Using the Uninstaller
 -----
 
 To run the uninstaller, ensure that it is in the same directory as the installer script, and run it with root privileges from the command line:
 
-    # sudo ./puppet-enterprise-uninstaller
+    $ sudo ./puppet-enterprise-uninstaller
 
 The uninstaller will ask you to confirm that you want to uninstall.
 
@@ -75,7 +75,7 @@ You can use the following command-line flags to change the installer's behavior:
 
 Thus, to remove every trace of PE from a system, you would run:
 
-    # sudo ./puppet-enterprise-uninstaller -d -p
+    $ sudo ./puppet-enterprise-uninstaller -d -p
 
 * * *
 

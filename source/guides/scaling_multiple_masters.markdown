@@ -87,7 +87,7 @@ If puppet master is running, stop it.
 * If the installation process created an `ssldir`, blow it away by running `sudo rm -rf $(puppet master --configprint ssldir)`.
 * Request a certificate by running:
 
-        # sudo puppet agent --test --dns_alt_names "master2.example.com,puppet,puppet.example.com"
+        $ sudo puppet agent --test --dns_alt_names "master2.example.com,puppet,puppet.example.com"
     
     The `dns_alt_names` setting is a comma-separated list, and should contain this master's unique hostname and any additional public DNS name(s) that agent nodes may use to contact a puppet master. Replace the example names with ones relevant to your site.
 * Log into the CA server and run `sudo puppet cert sign <NEW MASTER'S CERTNAME>`.
