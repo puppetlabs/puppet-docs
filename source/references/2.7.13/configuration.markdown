@@ -88,7 +88,7 @@ Where FileBucket files are stored.
 
 ### ca
 
-Wether the master should function as a certificate authority.
+Whether the master should function as a certificate authority.
 
 - *Default*: true
 
@@ -1187,7 +1187,7 @@ Where Puppet looks for template files.  Can be a list of colon-separated directo
 
 ### thin_storeconfigs
 
-Boolean; wether storeconfigs store in the database only the facts and exported resources. If true, then storeconfigs performance will be higher and still allow exported/collected resources, but other usage external to Puppet might not work
+Boolean; whether storeconfigs store in the database only the facts and exported resources. If true, then storeconfigs performance will be higher and still allow exported/collected resources, but other usage external to Puppet might not work
 
 - *Default*: false
 

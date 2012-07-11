@@ -156,7 +156,7 @@ Puppet executables, but the executables will ignore any inappropriate values.</p
 
 ### ca
 
-<p>Wether the master should function as a certificate authority.</p>
+<p>Whether the master should function as a certificate authority.</p>
 <ul>
 <li><strong>Default</strong>: true</li>
 </ul>
