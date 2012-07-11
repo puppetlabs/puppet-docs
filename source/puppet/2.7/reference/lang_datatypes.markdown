@@ -15,6 +15,7 @@ title: "Language: Data Types"
 [reserved]: 
 [resourcedefault]: 
 [functions]: 
+[node_def]: ./lang_node_definitions.html
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
 
@@ -47,6 +48,8 @@ Arrays and Hashes
 
 Resource References
 : Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
+
+Regular expressions cannot be converted to boolean values.
 
 Undef
 -----
@@ -172,13 +175,13 @@ This example manifest would log `b` as a notice.
 Regular Expressions
 -----
 
-Unlike every other data type, regular expressions (regexes) can only be literal values; they cannot be assigned to a variable. Regex values are accepted by the `=~` and `!~` regex match operators, as matchers in selectors and case statements, and as names for node definitions. They cannot be passed to functions or used in resource attributes.
+Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, and can only be used in the few places that specifically accept regular expressions. These places include the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes.
 
 Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet), and must be surrounded by forward slashes:
 
 {% highlight ruby %}
     if $host =~ /^www(\d+)\./ {
-      notice('Welcome web server #$1')
+      notify { "Welcome web server #$1": }
     }
 {% endhighlight %}
 
