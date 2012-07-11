@@ -212,7 +212,7 @@ Due to [an upstream bug in Apache](https://issues.apache.org/bugzilla/show_bug.c
 
 After using `puppet cert revoke` or `puppet cert clean` to revoke a certificate, restart the service by running:
 
-    # sudo /etc/init.d/pe-httpd restart
+    $ sudo /etc/init.d/pe-httpd restart
     
     ### Internet Explorer 8 Can't Access Live Management Features
 
@@ -224,7 +224,7 @@ Man pages generated with the `puppet man` subcommand are not formatted as proper
 
 To improve the display of Puppet man pages, you can use your system `gem` command to install the `ronn` gem:
 
-    # sudo gem install ronn
+    $ sudo gem install ronn
 
 
 

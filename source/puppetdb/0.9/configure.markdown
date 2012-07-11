@@ -96,7 +96,7 @@ We currently support two configurations: a built-in HSQLDB database, and Postgre
 
 Before using the PostgreSQL backend, you must set up a PostgreSQL server, ensure that it will accept incoming connections, create a user for PuppetDB to use when connecting, and create a database for PuppetDB. Configuring PostgreSQL is beyond the scope of this manual, but if you are logged in as root on a running Postgres server, you can create a user and db as follows:
 
-    # sudo -u postgres sh
+    $ sudo -u postgres sh
     $ createuser -DRSP puppetdb
     $ createdb -O puppetdb puppetdb
     $ exit

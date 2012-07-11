@@ -94,7 +94,7 @@ Until the upgrader can handle these cases by itself, we recommend the following:
 
 * Restart the MySQL server:
 
-        # sudo /etc/init.d/mysqld restart
+        $ sudo /etc/init.d/mysqld restart
 * Perform a normal upgrade of Puppet Enterprise on the console server.
 
 **If you have already suffered a failed upgrade:** 
@@ -153,7 +153,7 @@ Due to [an upstream bug in Apache](https://issues.apache.org/bugzilla/show_bug.c
 
 After using `puppet cert revoke` or `puppet cert clean` to revoke a certificate, restart the service by running:
 
-    # sudo /etc/init.d/pe-httpd restart
+    $ sudo /etc/init.d/pe-httpd restart
 
 ### Installer Cannot Prevent or Recover From DNS Errors
 
@@ -334,8 +334,8 @@ The Puppet Enterprise uninstaller script was not included with PE 2.0. Although 
 
 Before you can use it, you must move the uninstaller script into the directory which contains the installer script. The uninstaller and the installer _must_ be in the same directory. Once it is in place, you can make the uninstaller executable and run it:
 
-    # sudo chmod +x puppet-enterprise-uninstaller
-    # sudo ./puppet-enterprise-uninstaller
+    $ sudo chmod +x puppet-enterprise-uninstaller
+    $ sudo ./puppet-enterprise-uninstaller
 
 ### When Upgrading, `passenger-extra.conf` Requires Manual Edits
 

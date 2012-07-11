@@ -14,7 +14,7 @@ plugins. In the default installation of Puppet Enterprise, you can run any orche
 
 To open a shell as the `peadmin` user, run:
 
-    # sudo -i -u peadmin
+    $ sudo -i -u peadmin
 
 To run orchestration actions, use the `mco` command:
 
