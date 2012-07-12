@@ -2,12 +2,12 @@
 
 ### Puppet Reference Manual
 
-- Puppet 2.7 Overview
+- **Puppet 2.7 Overview**
     - What's New in Version 2.7
         * Insert all breaking changes here
     - System Requirements
         * Ruby versions, Facter versions, Hiera versions, known good OSes. 
-- Standard Puppet Operation
+- **Standard Puppet Operation**
     - The "Puppet Run"
         * Summary of a run, with parallels drawn between standalone and agent/master
             * Get plugins from master or modules
@@ -18,7 +18,7 @@
             * compare state and apply catalog changes, retrieving files if necessary
             * send report
     - Network Communications and Timing Diagrams
-- CLI Interface
+- **Command Line Interface**
     - The Puppet Command and Subcommands
     - Legacy Command Equivalents
     - Getting Help
@@ -40,7 +40,7 @@
         * installing new ones
     - Developing Puppet Faces
     - Man Pages
-- The Puppet Services
+- **The Puppet Services**
     - Puppet agent
     - Puppet master
     - Web Servers for the Puppet Master
@@ -75,11 +75,11 @@
     - Non-Recommended Language Features
         * import
     - The Ruby DSL
-- Variables and Facts
+- **Variables and Facts**
     - Facts and Built-In Variables
     - Scope and Lookup
     * links to facter docs
-- Compiling the Configuration Catalog for a Node (Node Classification)
+- **Compiling the Configuration Catalog for a Node (Node Classification)**
     - The Node Name
         * certname, node_name, node_name_value, node_name_fact
         * auth.conf issues w/ non-certname node_name
@@ -88,13 +88,13 @@
     - How Puppet Selects a Node Definition
     - The External Node Classifier Interface
     - The LDAP Node Terminus
-- Modules
+- **Modules**
     - `"Fundamentals", "./modules_fundamentals.html"`
     - Plugins in Modules
     - `"Installing Modules", "./modules_installing.html"`
     - Module Documentation (puppetdoc)
-- File Serving
-- Resource Types and Providers
+- **File Serving**
+- **Resource Types and Providers**
     - Type and Provider Overview (RAL)
     - Core Type Mini-Reference
     - Type Reference (the big one)
@@ -103,14 +103,14 @@
     - Installing custom types from modules
     - Writing Types and Providers
     - Type and Provider API Quick-Reference
-- SSL and Certificates
+- **SSL and Certificates**
     - SSL Requirements for Normal Communication
     - DNS Alt Names for Puppet Masters
     - Certificate Management Tools
     - Autosigning
     - Remote Certificate Signing
     - Certificate Request/Retrieval and Timing Diagrams
-- Puppet Data Library
+- **Puppet Data Library**
     - PuppetDB
     - Storeconfigs
     - Inventory Service
@@ -119,14 +119,14 @@
     - Resource Graphs
     - Catalog Formats
     - Node Facts Format
-- API
+- **API**
     - Puppet Subsystems
     - REST API
     - Faces Ruby API
     - Indirector Faces
-- Environments
+- **Environments**
     - Environments
-- Configuring Puppet
+- **Configuring Puppet**
     - Settings and Puppet.conf
     - Auth.conf
         * Stanza format
@@ -135,18 +135,18 @@
     - Other Config Files
     - Abridged Configuration Reference
     - Full Configuration Reference
-- Data Binding and Lookup
+- **Data Binding and Lookup**
     - Hiera Integration
     - Automatic Data Binding (*for 3.0)
     - Data Lookup Functions
     - Alternate Data Binding Termini
     - Integration Points for Custom Data Sources
-- Internals
+- **Internals**
     - Indirections and Termini
     - The Autoloader
     - The Compiler
     - The Transaction
-- Reference Appendix
+- **Reference Appendix**
     - Generated References
 
 
@@ -155,7 +155,7 @@
 <h3>Puppet Reference Manual</h3>
 
 <ul>
-<li>Puppet 2.7 Overview
+<li><strong>Puppet 2.7 Overview</strong>
 <ul>
 <li>What's New in Version 2.7
 <ul>
@@ -166,7 +166,7 @@
 <li>Ruby versions, Facter versions, Hiera versions, known good OSes. </li>
 </ul></li>
 </ul></li>
-<li>Standard Puppet Operation
+<li><strong>Standard Puppet Operation</strong>
 <ul>
 <li>The "Puppet Run"
 <ul>
@@ -183,7 +183,7 @@
 </ul></li>
 <li>Network Communications and Timing Diagrams</li>
 </ul></li>
-<li>CLI Interface
+<li><strong>Command Line Interface</strong>
 <ul>
 <li>The Puppet Command and Subcommands</li>
 <li>Legacy Command Equivalents</li>
@@ -215,7 +215,7 @@
 <li>Developing Puppet Faces</li>
 <li>Man Pages</li>
 </ul></li>
-<li>The Puppet Services
+<li><strong>The Puppet Services</strong>
 <ul>
 <li>Puppet agent</li>
 <li>Puppet master</li>
@@ -258,13 +258,13 @@
 </ul></li>
 <li>The Ruby DSL</li>
 </ul></li>
-<li>Variables and Facts
+<li><strong>Variables and Facts</strong>
 <ul>
 <li>Facts and Built-In Variables</li>
 <li>Scope and Lookup</li>
 <li>links to facter docs</li>
 </ul></li>
-<li>Compiling the Configuration Catalog for a Node (Node Classification)
+<li><strong>Compiling the Configuration Catalog for a Node (Node Classification)</strong>
 <ul>
 <li>The Node Name
 <ul>
@@ -279,15 +279,15 @@
 <li>The External Node Classifier Interface</li>
 <li>The LDAP Node Terminus</li>
 </ul></li>
-<li>Modules
+<li><strong>Modules</strong>
 <ul>
 <li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
 <li>Plugins in Modules</li>
 <li>{% iflink "Installing Modules", "./modules_installing.html" %}</li>
 <li>Module Documentation (puppetdoc)</li>
 </ul></li>
-<li>File Serving</li>
-<li>Resource Types and Providers
+<li><strong>File Serving</strong></li>
+<li><strong>Resource Types and Providers</strong>
 <ul>
 <li>Type and Provider Overview (RAL)</li>
 <li>Core Type Mini-Reference</li>
@@ -300,7 +300,7 @@
 <li>Writing Types and Providers</li>
 <li>Type and Provider API Quick-Reference</li>
 </ul></li>
-<li>SSL and Certificates
+<li><strong>SSL and Certificates</strong>
 <ul>
 <li>SSL Requirements for Normal Communication</li>
 <li>DNS Alt Names for Puppet Masters</li>
@@ -309,7 +309,7 @@
 <li>Remote Certificate Signing</li>
 <li>Certificate Request/Retrieval and Timing Diagrams</li>
 </ul></li>
-<li>Puppet Data Library
+<li><strong>Puppet Data Library</strong>
 <ul>
 <li>PuppetDB</li>
 <li>Storeconfigs</li>
@@ -320,18 +320,18 @@
 <li>Catalog Formats</li>
 <li>Node Facts Format</li>
 </ul></li>
-<li>API
+<li><strong>API</strong>
 <ul>
 <li>Puppet Subsystems</li>
 <li>REST API</li>
 <li>Faces Ruby API</li>
 <li>Indirector Faces</li>
 </ul></li>
-<li>Environments
+<li><strong>Environments</strong>
 <ul>
 <li>Environments</li>
 </ul></li>
-<li>Configuring Puppet
+<li><strong>Configuring Puppet</strong>
 <ul>
 <li>Settings and Puppet.conf</li>
 <li>Auth.conf
@@ -344,7 +344,7 @@
 <li>Abridged Configuration Reference</li>
 <li>Full Configuration Reference</li>
 </ul></li>
-<li>Data Binding and Lookup
+<li><strong>Data Binding and Lookup</strong>
 <ul>
 <li>Hiera Integration</li>
 <li>Automatic Data Binding (*for 3.0)</li>
@@ -352,14 +352,14 @@
 <li>Alternate Data Binding Termini</li>
 <li>Integration Points for Custom Data Sources</li>
 </ul></li>
-<li>Internals
+<li><strong>Internals</strong>
 <ul>
 <li>Indirections and Termini</li>
 <li>The Autoloader</li>
 <li>The Compiler</li>
 <li>The Transaction</li>
 </ul></li>
-<li>Reference Appendix
+<li><strong>Reference Appendix</strong>
 <ul>
 <li>Generated References</li>
 </ul></li>

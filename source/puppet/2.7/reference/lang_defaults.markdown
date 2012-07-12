@@ -16,8 +16,6 @@ Resource defaults let you set default attribute values for a given resource type
 Syntax
 -----
 
-Resource defaults are specified as follows:
-
 {% highlight ruby %}
     Exec { 
       path        => '/usr/bin:/bin:/usr/sbin:/sbin',
@@ -26,6 +24,8 @@ Resource defaults are specified as follows:
       timeout     => 180,
     }
 {% endhighlight %}
+
+The general form of resource defaults is:
 
 * The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized. E.g., `Concat::Fragment`.)
 * An opening curly brace.

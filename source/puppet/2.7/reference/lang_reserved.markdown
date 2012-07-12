@@ -4,7 +4,9 @@ title: "Language: Reserved Words and Acceptable Names"
 ---
 
 <!-- TODO -->
-[runstage]: 
+[contains]: ./lang_containment.html
+[resources]: ./lang_resources.html
+[class]: 
 [settings]: 
 [namespace]: 
 
@@ -38,7 +40,7 @@ Reserved Class Names
 
 The following are built-in namespaces used by Puppet, and so must not be used as class names:
 
-* `main` --- Puppet automatically creates a `main` [run stage][runstage], which contains any resources not given an explicit run stage.
+* `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
 * `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings). 
 
 Acceptable Characters in Names
@@ -87,4 +89,4 @@ Resource titles may contain any characters whatsoever. They are case-sensitive.
 
 ### Nodes
 
-**The set of characters allowed in node names is undefined** in this version of Puppet. Characters other than letters, numbers, periods, underscores, and dashes may or may not work.
+**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/[a-z0-9._-]+/`.)

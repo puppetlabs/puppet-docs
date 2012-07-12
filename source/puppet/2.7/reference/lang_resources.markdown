@@ -97,7 +97,7 @@ Puppet has attributes which can be used with every resource type, called **metap
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources. 
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/references/stable/metaparameter.html)
+You can see the full list of all metaparameters in the [Metaparameter Reference](/references/stable/metaparameter.html).
 
 
 Condensed Forms

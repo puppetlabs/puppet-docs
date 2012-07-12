@@ -41,6 +41,17 @@ Puppet's language is mostly **declarative:** instead of being a series of steps 
 
 The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility to the way resources are declared. 
 
+Files
+-----
+
+Puppet language files are called **manifests,** and are named with the `.pp` file extension.
+
+Puppet always begins compiling with a single manifest. When using a puppet master, this file is called [site.pp][sitepp]; when using puppet apply, it's whatever was specified on the command line. 
+
+Any [classes][] [declared][] in the manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also autoload any classes declared by an optional [external node classifier][enc]. 
+
+Thus, the simplest Puppet deployment is a lone manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.
+
 Example
 -----
 
@@ -68,6 +79,10 @@ The following short manifest manages NTP. It uses [package][], [file][], and [se
       ensure  => file,
       require => Package['ntp'],
       source  => "puppet:///modules/ntp/ntp.conf",
+      # This source file would be located on the puppet master at
+      # /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)
+      # or
+      # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)
     }
 {% endhighlight %}
 
@@ -81,13 +96,3 @@ In the standard [agent/master architecture][agentmaster], nodes request catalogs
 In [standalone][] Puppet, catalogs are compiled locally, which means each node must have a full set of manifests.
 
 
-Files
------
-
-Puppet language files are called **manifests,** and are named with the `.pp` file extension.
-
-Puppet always begins compiling with a single manifest. When using a puppet master, this file is called [site.pp][sitepp]; when using puppet apply, it's whatever was specified on the command line. 
-
-Any [classes][] [declared][] in the manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also declare and autoload any classes specified by an optional [external node classifier][enc]. 
-
-Thus, the simplest Puppet deployment is a lone manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.

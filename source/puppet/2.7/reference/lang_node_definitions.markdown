@@ -89,6 +89,13 @@ Node definitions look like class definitions. The general form of a node definit
 Naming
 -----
 
+Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn defaults to the node's fully qualified domain name. 
+
+> #### Notes on Node Names
+> 
+> * The set of characters allowed in a node name is **undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes.
+> * Although it is possible to configure Puppet to use something other than the [certname][] as a node name, this is not generally recommended.
+
 A node statement's **name** must be one of the following: 
 
 * A quoted [string][strings]
@@ -97,11 +104,6 @@ A node statement's **name** must be one of the following:
 
 You may not create two node statements with the same name.
 
-The set of characters allowed in a node name is **undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes.
-
-A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn defaults to the node's fully qualified domain name.
-
-> Although it is possible to configure Puppet to use something other than the certname as a node name, this is not generally recommended.
 
 ### Multiple Names
 
@@ -118,7 +120,7 @@ This example creates three identical nodes: `www1.example.com`, `www2.example.co
 
 ### The Default Node
 
-The name `default` (without quotes) is a special value for node names. If no node statement matching a given node can be found, the `default` node will be used. See [behavior](#behavior) below.
+The name `default` (without quotes) is a special value for node names. If no node statement matching a given node can be found, the `default` node will be used. See [Behavior](#behavior) below.
 
 ### Regular Expression Names
 
@@ -146,7 +148,7 @@ The above example would match `foo.example.com` and `bar.example.com`, but no ot
 Behavior
 -----
 
-If site.pp contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the value of [the `default` node](#the-default-node).) If site.pp contains **no** node definitions, this requirement is dropped.
+If site.pp contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If site.pp contains **no** node definitions, this requirement is dropped.
 
 ### Matching
 
@@ -169,7 +171,7 @@ Thus, for the node `www01.example.com`, Puppet would try the following, in order
 
 ### Code Outside Node Statements
 
-Puppet code that is outside any node statement will be compiled for every node, in addition to the code in that node's definition.
+Puppet code that is outside any node statement will be compiled for every node. That is, a given node will get both the code in its node definition and the code outside any node definition.
 
 ### Node Scope
 
@@ -208,17 +210,17 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
 > 
 > You should almost certainly avoid using node inheritance. Many users attempt to do the following: 
 > 
-> {% highlight ruby %}
->     node 'common' {
->       $ntpserver = 'time.example.com'
->       include common
->       include ntp
->     }
->     node 'www01.example.com' inherits 'common' {
->       # Override default NTP server:
->       $ntpserver = '0.pool.ntp.org'
->     }
-> {% endhighlight %}
+{% highlight ruby %}
+    node 'common' {
+      $ntpserver = 'time.example.com'
+      include common
+      include ntp
+    }
+    node 'www01.example.com' inherits 'common' {
+      # Override default NTP server:
+      $ntpserver = '0.pool.ntp.org'
+    }
+{% endhighlight %}
 > 
 > This will have the opposite of the intended effect, because Puppet treats node definitions like classes. It does not mash the two together and then compile the mix; instead, it compiles the base class, **then** compiles the derived class, which gets a parent scope and special permission to modify resource attributes from the base class. 
 > 
