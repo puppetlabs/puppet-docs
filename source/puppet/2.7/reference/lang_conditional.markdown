@@ -20,6 +20,50 @@ layout: default
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or data retrieved from an external source.
 
+Summary
+-----
+
+Puppet 2.7 supports "if" statements, case statements, and selectors. 
+
+An "if" statement: 
+
+{% highlight ruby %}
+    if $is_virtual == 'true' {
+      warn( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
+    }
+    elsif $operatingsystem == 'Darwin' {
+      warn ( 'This NTP module does not yet work on our Mac laptops.' )
+    else {
+      include ntp
+    }
+{% endhighlight %}
+
+A case statement:
+
+{% highlight ruby %}
+    case $operatingsystem {
+      'Solaris':          { include role::solaris }
+      'RedHat', 'CentOS': { include role::redhat  }
+      /^(Debian|Ubuntu)$/:{ include role::debian  }
+      default:            { include role::generic }
+    }
+{% endhighlight %}
+
+A selector:
+
+{% highlight ruby %}
+    $rootgroup = $osfamily ? {
+        'Solaris'          => 'wheel',
+        /(Darwin|FreeBSD)/ => 'wheel',
+        default            => 'root',
+    }
+    
+    file { '/etc/passwd':
+      ensure => file,
+      owner  => 'root',
+      group  => $rootgroup,
+    }
+{% endhighlight %}
 
 "If" Statements
 -----
@@ -35,8 +79,7 @@ Conditional statements let your Puppet code behave differently in different situ
       warn( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
     }
     elsif $operatingsystem == 'Darwin' {
-      # Still haven't gotten around to puppetizing time mgmt on our Mac laptops.
-      warn ( 'Tried to include class ntp on a Mac; this node may be misclassified.' )
+      warn ( 'This NTP module does not yet work on our Mac laptops.' )
     else {
       # Normal node, include the class.
       include ntp

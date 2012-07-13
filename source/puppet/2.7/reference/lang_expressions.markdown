@@ -210,11 +210,11 @@ Resolves to the product of the two operands.
 
 ### `<<` (left shift)
 
-Left bitwise shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down, and multiplying the left operand by 2 to the power of the right operand.
+Left bitwise shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer, and multiplying the left operand by 2 to the power of the right operand.
 
 ### `>>` (right shift)
 
-Right bitwise shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down, and dividing the left operand by 2 to the power of the right operand.
+Right bitwise shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer, and dividing the left operand by 2 to the power of the right operand.
 
 
 Backus Naur Form
