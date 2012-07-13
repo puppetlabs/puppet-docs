@@ -177,23 +177,28 @@ If you are splitting the master and the console roles, the console will maintain
 
 #### Databases
 
-The console needs multiple MySQL databases and MySQL users in order to operate. If a MySQL server isn't already present on this system, the installer can automatically configure everything the console needs; just confirm that you want to install a new database server, and configure the following settings:
+The console needs multiple MySQL databases and MySQL users in order to operate, but can automatically configure them. It can also automatically install the MySQL server if it isn't already present on the system.
 
-* A password for MySQL's root user
+The installer gives slightly different options to choose from depending on your system's configuration:
+
+* Automatically install a MySQL server and auto-configure databases (only available if MySQL is not yet installed). **This option will generate a random root MySQL password,** and you will need to look it up in the saved answer file after installation finishes. A message at the end of the installer will tell you the location of the answer file.
+* Auto-configure databases on an existing local or remote MySQL server. You will need to provide your server's root MySQL password to the installer. (Note that if you want to auto-configure databases on a remote server, you must make sure the root MySQL user is allowed to log in remotely.)
+* Use a set of pre-existing manually configured databases and users. 
+
+##### Manual Database Configuration
+
+If you are manually configuring your databases, the installer will ask you to provide:
+
 * A name for the console's primary database
 * A MySQL user name for the console
 * A password for the console's user
 * A name for the console authentication database
 * A MySQL user name for console authentication
 * A password for the console authentication user
+* The database server's hostname (if remote)
+* The database server's port (if remote; default: 3306)
 
-The only forbidden characters for a database password are `\` (backslash), `'` (single quote), and `$$` (two dollar signs in a row). 
-
-If you don't install a new database server, you can either manually create a database and MySQL user for the console and configure the settings above with the correct information, or allow the installer to log into the MySQL server as root and automatically configure the databases.
-
-Note that if you want to automatically configure databases on a remote database server, you must make sure the root MySQL user is allowed to log in remotely. 
-
-If you are not automatically configuring the databases, you can create the necessary MySQL resources in a secondary shell session while the installer is waiting for input. The SQL commands you need will resemble the following:
+You will also need to make sure the databases and users actually exist. The SQL commands you need will resemble the following:
 
     CREATE DATABASE console CHARACTER SET utf8;
     CREATE DATABASE console_inventory_service CHARACTER SET utf8;
@@ -208,14 +213,9 @@ If you are not automatically configuring the databases, you can create the neces
 
 **Note that the names of the console and inventory databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`. 
 
-**Note also that the hostname for the user accounts will differ if you are using a remote database server.**
-
 Consult the MySQL documentation for more info.
 
-A local database is best, but you can also create a database on a remote server. If you do, you'll need to answer `Y` when asked if your MySQL server is remote, and provide:
 
-* The database server's hostname
-* The database server's port (default: 3306)
 
 
 ### Puppet Agent Questions
@@ -260,6 +260,10 @@ The installer will offer a final chance to confirm your answers before installin
 
 After Installing
 -----
+
+### Securing the Answer File
+
+After finishing, the installer will print a message telling you where it saved its answer file. If you automatically configured console databases, **you should save and secure this file,** as it will contain the randomly-generated root MySQL password.
 
 ### Signing Agent Certificates
 
