@@ -47,6 +47,8 @@ Here is an example configuration file:
 
 You can specify either a single configuration file or a directory of .ini files. If you specify a directory (_conf.d_ style), PuppetDB will merge the .ini files in alphabetical order.
 
+If you've installed puppetdb from a package, the default is to use the _conf.d_ style, directory-based approach.  The default config directory is `/etc/puppetdb/conf.d` (or `/etc/puppetlabs/puppetdb/conf.d` for Puppet Enterprise installations).  If you're running from source you may use the "-c" command-line argument to specify your config file or directory.
+
 The available configuration **sections** and **settings** are as follows:
 
 ### `[global]`
@@ -131,7 +133,7 @@ Ensure you can log in by running:
 
 The `[command-processing]` section configures the command-processing subsystem.
 
-Every change to PuppetDB's data stores comes in via commands that are inserted into an MQ. Command processor threads pull items off of that queue, persisting those changes.
+Every change to PuppetDB's data stores comes in via commands that are inserted into a message queue (MQ). Command processor threads pull items off of that queue, persisting those changes.
 
 `threads`
 
@@ -174,6 +176,12 @@ The `[jetty]` section configures HTTP for PuppetDB.
 `trust-password`
 
 : Passphrase to use to unlock the truststore file.
+
+`certificate-whitelist`
+
+: Optional. Path to a file that contains a list of hostnames, one per line.  Incoming HTTPS requests will have their certificates validated against this list of hostnames, and only those with an _exact_, matching entry will be allowed through.
+
+  If not supplied, we'll perform standard HTTPS without any additional authorization. We'll still make sure that all HTTPS clients supply valid, verifiable SSL client certificates.
 
 ### `[repl]` (Remote Runtime Modification)
 
