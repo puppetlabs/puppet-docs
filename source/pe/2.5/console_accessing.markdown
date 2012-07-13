@@ -25,9 +25,7 @@ Browser Requirements
 - Chrome (current versions)
 - Firefox 3.5 and higher
 - Safari 4 and higher
-- Internet Explorer 9 and higher
-
-**NOTE** Internet Explorer 8 fails to load the console's live management page. Support for IE 8 live management may be added in the future. All other console features should function correctly in IE 8. Other browsers may or may not work, and have not been intensively tested with the console. 
+- Internet Explorer 8 and higher
 
 Reaching the Console
 -----
