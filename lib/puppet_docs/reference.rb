@@ -55,7 +55,7 @@ module PuppetDocs
 
           setup_destination!
           File.open(destination_filename, 'w') { |f| f.write content }
-          header = "---\nlayout: default\ntitle: "
+          header = "---\nlayout: legacy\ntitle: "
           File.open(destination_filename).read() =~ /\# (.*)\n/
           title = $1
           file = IO.read(destination_filename)
