@@ -47,6 +47,7 @@ MCollective is a powerful orchestration framework. Run actions on thousands of s
 - [The installation instructions](/mcollective/reference/basic/gettingstarted.html)
 - [The configuration guide](/mcollective/reference/basic/configuration.html)
 - [The guide to writing new agent plugins](/mcollective/simplerpc/)
+- [The release notes](/mcollective/releasenotes.html)
 
 > Note: MCollective is included with Puppet Enterprise, and new agent plugins will appear in the console's live management controls.
 
