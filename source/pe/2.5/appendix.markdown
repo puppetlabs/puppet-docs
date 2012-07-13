@@ -39,10 +39,22 @@ ActiveMQ has been updated from 5.5.0 to 5.6.0.
 
 #### Patches to Puppet
 
-Several patches have been made to Puppet:
-* A fix for a rebooting issue with SLES and "puppet resource service"
-* A patch that improves performance for large numbers of modules.
-* A patch adding upstart support for Precise.
+Several patches from upstream Puppet releases have been backported to 2.7.12 for this release:
+
+* A fix for a rebooting issue with SLES and the "puppet resource service" command
+* A patch that improves performance for large numbers of modules
+* A patch adding upstart support for Ubuntu 12.04 Precise
+
+#### Security Fixes
+
+This release includes fixes for the following security issues, which were discovered in internal and external audits initiated by Puppet Labs:
+
+* [CVE-2012-3864 – Arbitrary File Read](http://puppetlabs.com/security/cve/cve-2012-3864/)
+* [CVE-2012-3865 – Arbitrary file delete/D.O.S on Puppet Master](http://puppetlabs.com/security/cve/cve-2012-3865/)
+* [CVE-2012-3866 – `last_run_report.yaml` is World-Readable](http://puppetlabs.com/security/cve/cve-2012-3866/)
+* [CVE-2012-3867 – Insufficient Input Validation](http://puppetlabs.com/security/cve/cve-2012-3867/)
+* [CVE-2012-3408 – Agent Impersonation](http://puppetlabs.com/security/cve/cve-2012-3408/)
+
 
 
 ### Puppet Enterprise 2.5.1
