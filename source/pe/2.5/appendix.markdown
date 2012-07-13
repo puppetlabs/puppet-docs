@@ -17,6 +17,34 @@ Release Notes
 
 Changes to Puppet's core are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.10). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
 
+### Puppet Enterprise 2.5.2
+
+2.5.2 is a maintenance and update release. It adds support for new platforms and browsers as well as fixing some bugs and updating some components.
+
+#### Update: ActiveMQ Can Now Use a Thread Pool
+
+By default, ActiveMQ uses a dedicated thread for each destination. If there are a large number of destinations, this can cause issues with memory usage. A thread pool makes memory usage more efficient. ActiveMQ can be configured to use a thread pool through the use of the system property: `-Dorg.apache.activemq.UseDedicatedTaskRunner=false.` The property is specified in the activemq start script via ACTIVEMQ_OPTS.
+
+#### Update: New Installer Behavior for Database Setup
+
+The Puppet Enterprise installer will now check for an installation of MySQL. If found, the installer will prompt for information about contacting the MySQL server (whether it is remote or local). If no instance of MySQL is found, the installer will offer to install and configure MySQL and a new a database. See the [Installing Puppet Enterprise](http://docs.puppetlabs.com/pe/2.5/install_basic.html) page for complete information.
+
+#### Update: Support Added for New Platforms and Browsers.
+
+Puppet Enterprise now supports Ubuntu Precise and SLES 11 SP2. In addition, the console now works correctly in IE8. 
+
+#### Update: New Version of ActiveMQ
+
+ActiveMQ has been updated from 5.5.0 to 5.6.0.
+
+#### Patches to Puppet
+
+Several patches have been made to Puppet:
+* A fix for a rebooting issue with SLES and "puppet resource service"
+* A patch that improves performance for large numbers of modules.
+* A patch adding upstart support for Precise.
+
+
 ### Puppet Enterprise 2.5.1
 
 2.5.1 was a security fix release. It also fixes a handful of minor bugs.
