@@ -18,7 +18,7 @@ layout: default
 [functions]: 
 
 
-Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or data retrieved from an external source.
+Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.
 
 Summary
 -----
@@ -90,13 +90,13 @@ The general form of an "if" statement is:
 
 * The `if` keyword
 * A **condition**
-* A pair of curly braces containing any arbitrary Puppet code
+* A pair of curly braces containing any Puppet code
 * **Optionally:** the `elsif` keyword, another condition, and a pair of curly braces containing Puppet code
 * **Optionally:** the `else` keyword and a pair of curly braces containing Puppet code
 
 ### Behavior
 
-Puppet's "if" statements behave much like those in any other language. The `if` condition is processed first, and if it is true, only the `if` code block is executed. If it is false, each `elsif` condition (if present) is tested in order, and if all conditions fail, the `else` code block (if present) is executed.
+Puppet's "if" statements behave much like those in any other language. The `if` condition is processed first and, if it is true, only the `if` code block is executed. If it is false, each `elsif` condition (if present) is tested in order, and if all conditions fail, the `else` code block (if present) is executed.
 
 If none of the conditions in the statement match and there is no `else` block, Puppet will do nothing and move on.
 
@@ -206,14 +206,14 @@ If you use regular expression cases, any captures from parentheses in the patter
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
-These are not normal variables, and are not available outside their conditional code block. 
+These are not normal variables and are not available outside their conditional code block. 
 
 
 > #### Aside: Best Practices
 > 
 > Case statements should usually have a default case. 
 > 
-> * If the rest of your cases are meant to be comprehensive, putting a [`fail('message')`][fail] call in the default case makes your code more robust, by protecting against mystery failures due to behavior changes elsewhere in your manifests.
+> * If the rest of your cases are meant to be comprehensive, putting a [`fail('message')`][fail] call in the default case makes your code more robust by protecting against mystery failures due to behavior changes elsewhere in your manifests.
 > * If your cases aren't comprehensive and nodes that match none should do nothing, write a default case with an empty code block (`default: {}`). This makes your intention obvious to the next person who has to maintain your code. 
 
 
@@ -267,7 +267,7 @@ The general form of a selector is:
 * A **control variable**
 * The `?` (question mark) keyword
 * An opening curly brace
-* Any number of possible matches, which consist of:
+* Any number of possible matches, each of which consists of:
     * A **case**
     * The `=>` (fat comma) keyword
     * A **value**
@@ -284,7 +284,7 @@ Puppet compares the **control variable** to each of the **cases,** in the order 
 * Regular expression cases are compared with [the `=~` operator][regex_compare].
 * The special `default` case matches anything.
 
-If none of the cases match, Puppet will **fail compilation with a parse error.** As such, a default case should be considered mandatory.
+If none of the cases match, Puppet will **fail compilation with a parse error.** Consequently, a default case should be considered mandatory.
 
 ### Control Variables
 
