@@ -249,6 +249,23 @@ Puppet Enterprise may need some extra system software from your OS vendor's pack
 
 Find these in the installer's `packages/` directory. Note that these packages may have additional ramifications if you later install other software that depends on OS MySQL or Java packages. 
 
+> Note: If installing `pe-virtual-java`, make sure that the `keytool` binary is in one of the following directories:
+> 
+> * `/opt/puppet/bin`
+> * `/usr/kerberos/sbin`
+> * `/usr/kerberos/bin`
+> * `/usr/local/sbin`
+> * `/usr/local/bin`
+> * `/sbin`
+> * `/bin`
+> * `/usr/sbin`
+> * `/usr/bin`
+> 
+> If `keytool` isn't already there, use `find` or `which` to locate it, and symlink it into place so that the PE installer can find it during installation. This binary is necessary for configuring MCollective.
+> 
+>     $ which keytool
+>     /path/to/keytool
+>     $ sudo ln -s /path/to/keytool /usr/local/bin/keytool
 
 ### Convenience Links
 
