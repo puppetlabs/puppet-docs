@@ -143,35 +143,12 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Issues with Compliance UI
 
-There are three issues related to incorrect Compliance UI behavior: 
+There are two issues related to incorrect Compliance UI behavior: 
 
-*     Rejecting a difference by clicking (-) results in an erroneous display.
-*     Read-only users are incorrectly exposed to the node selection button and subsequent UI
+*     Rejecting a difference by clicking (-) results in an erroneous display. (Google Chrome only; fix is tentatively targeted for PE 2.6.)
 *     The user account pull-down menu in the top level compliance tab ceases to function after a host report has been selected.
 
-These issues are under investigation and should be fixed in 2.5.2.
-
-### Mcollectived Process Remains After Upgrade on Enterprise Linux systems
-
-When upgrading from PE 2.0 on Enterprise Linux 5/6 systems, the mcollectived.pid process remains on the system instead of being stopped and removed. EL 5/6 users should force stop the process and remove the pids before upgrading.
-
-### Installer Won't Use Hosts File When Testing Puppet Master Connection
-
-If you do not have DNS configured and are using the `/etc/hosts` file to perform name resolution, the installer will refuse to proceed on agent nodes. This is because the installer's method for validating the master's domain name bypasses the hosts file. 
-
-Users who do not have DNS at their sites should run `alias host='true'` before running the installer, and `unalias host` after the installer finishes. This will allow the installer to finish normally. 
-
-This issue should be fixed in PE 2.5.2.
-
-### No Error Messaging When Accessing Live Management from Unsupported Browsers
-
-Live Management is only supported on selected browsers. Currently, attempts to run Live Management in these browsers will fail silently, with no explanatory error message. Make sure to only run Live Management from [supported browsers](console_accessing.html).
-
-### Incorrectly Formatted Email Addresses not Rejected by Installer.
-
-A regex bug in the installer allows email addresses without a user-name (e.g., " @domain.extension") to be entered without being rejected. Make sure you double-check the address you enter.
-
-###EC2/Dual-homed Systems Report Incorrect URIs for the Console.
+### EC2/Dual-homed Systems Report Incorrect URIs for the Console.
 
 During installation, the PE installer attempts to automatically determine the URI where the console can be reached. On EC2 (and likely all other dual-homed systems), the installer incorrectly selects the internal, non-routable URI. Instead, you should manually enter the correct, external facing URI of the system hosting the console.
 
@@ -182,10 +159,6 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 ### Logging for Parts of the Console Non-Functional
 
 The Rack::Cas::Client class does not log any data. (Note that the RubyCAS-client tool does log correctly.) There is no known workaround. The issue is under investigation.
-
-### Upgrading from PE 1.2 to PE 2.5 Does Not Remove Prior Versions of Modules Despite Rejecting Wrapper Modules
-
-Even if users reject the option to use wrapper modules when upgrading from PE 1.2 to PE 2.5, the old modules do not get deleted or replaced with wrapper modules. Users should manually delete the old modules ("accounts", "baselines" and "mcollectivepe") in `/opt/puppet/share/puppet/modules`.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
