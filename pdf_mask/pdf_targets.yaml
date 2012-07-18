@@ -149,6 +149,7 @@ puppetmanual.html:
     - guides/language_guide.html
     - puppet/2.7/reference/modules_fundamentals.html
     - puppet/2.7/reference/modules_installing.html
+    - puppet/2.7/reference/modules_publishing.html
     - guides/techniques.html
     - guides/troubleshooting.html
     - guides/parameterized_classes.html
