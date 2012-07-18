@@ -16,15 +16,16 @@ title: "Language: Data Types"
 [resourcedefault]: 
 [functions]: 
 [node_def]: ./lang_node_definitions.html
+[relationship]: 
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
 
 Booleans
 -----
 
-The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare (that is, not quoted) words. 
+The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare words (that is, not quoted). 
 
-The argument of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][]. 
+The condition of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][]. 
 
 ### Automatic Conversion to Boolean
 
@@ -51,15 +52,18 @@ Resource References
 
 Regular expressions cannot be converted to boolean values.
 
+* * *
+
 Undef
 -----
 
 Puppet's special undef value is roughly equivalent to nil in Ruby; variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
 
-The undef data type is usually useful for testing whether a variable has been set. When set as the value of a resource attribute, it will block any value set by a [resource default][resourcedefault], causing that attribute to be unmanaged. 
+The undef value is usually useful for testing whether a variable has been set. It can also be used as the value of a resource attribute, which can let you un-set any value inherited from a [resource default][resourcedefault] and cause the attribute to be unmanaged. 
 
 When used as a boolean, `undef` is false.
 
+* * *
 
 Strings
 -----
@@ -77,7 +81,7 @@ Bare word strings are usually used with attributes that accept a limited number 
 
 ### Single-Quoted Strings
 
-Strings surrounded by single quotes (`'like this'`) do not interpolate variables, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash).
+Strings surrounded by single quotes `'like this'` do not interpolate variables, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash).
 
 Lone backslashes are literal backslashes, unless followed by a single quote or another backslash. That is:
 
@@ -86,7 +90,7 @@ Lone backslashes are literal backslashes, unless followed by a single quote or a
 
 ### Double-Quoted Strings 
 
-Strings surrounded by double quotes (`"like this"`) allow variable interpolation and several escape sequences. 
+Strings surrounded by double quotes `"like this"` allow variable interpolation and several escape sequences. 
 
 #### Variable Interpolation
 
@@ -107,10 +111,12 @@ The following escape sequences are available:
 * `\r` --- carriage return
 * `\t` --- tab
 
+* * *
+
 Resource References
 -----
 
-Some attributes, like the relationship metaparameters, require a reference to an existing Puppet resource. Refer to a Puppet resource with its type and title as follows:
+Some attributes, like the [relationship][] metaparameters, require a reference to an existing Puppet resource. Refer to a Puppet resource with its type and title as follows:
 
 {% highlight ruby %}
     subscribe => File['/etc/ntp.conf'],
@@ -118,19 +124,30 @@ Some attributes, like the relationship metaparameters, require a reference to an
     before => Concat::Fragment['apache_port_header'],
 {% endhighlight %}
 
-* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized.)
+The general form of a resource reference is: 
+
+* The resource **type,** capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized.)
 * An opening square bracket.
-* The title of the resource.
+* The **title** of the resource, usually as a quoted string.
 * A closing square bracket.
 
 Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared. 
 
+* * *
+
 Numbers
 -----
 
-Puppet's mathematical expressions accept integers and floating point numbers, but internally, numbers are treated as strings until they are used in a numeric context. 
+Puppet's arithmetic expressions accept integers and floating point numbers. Internally, Puppet treats numbers like strings until they are used in a numeric context.
 
 Numbers can be written as bare words or quoted strings, and may consist only of digits and an optional sign and decimal point. 
+
+{% highlight ruby %}
+    $some_number = 8 * -7.992
+    $another_number = $some_number / 4
+{% endhighlight %}
+
+* * *
 
 Arrays
 -----
@@ -141,9 +158,13 @@ Arrays are written as comma-separated lists of items surrounded by square bracke
     [ 'one', 'two', 'three' ]
 {% endhighlight %}
 
-The items in an array can be any data type, including hashes or arrays.
+The items in an array can be any data type, including hashes or more arrays.
 
-Many attributes, including the relationship metaparameters, accept arrays for their value. You can also access array entries by their numerical index (counting from zero). Square brackets are used for indexing. For example:
+Resource attributes which can optionally accept multiple values (including the relationship metaparameters) expect those values in an array.
+
+You can access individual array items by their numerical index (counting from zero). Square brackets are used for indexing. Nested arrays and hashes can be accessed by chaining indexes. 
+
+Example:
 
 {% highlight ruby %}
     $foo = [ 'one', 'two', 'three' ]
@@ -151,6 +172,8 @@ Many attributes, including the relationship metaparameters, accept arrays for th
 {% endhighlight %}
 
 This manifest would log `two` as a notice.
+
+* * * 
 
 Hashes
 -----
@@ -161,9 +184,11 @@ Hashes are written as key/value pairs surrounded by curly braces; a key is separ
     { key1 => 'val1', key2 => 'val2' }
 {% endhighlight %}
 
-Hash keys are strings, but hash values can be any data type, including hashes or arrays.
+Hash keys are strings, but hash values can be any data type, including arrays or more hashes.
 
-You can access hash members by their key; square brackets are used for indexing. For example:
+You can access hash members by their key; square brackets are used for indexing. Nested arrays and hashes can be accessed by chaining indexes. 
+
+Example:
 
 {% highlight ruby %}
     $myhash = { key => { subkey => 'b' }}
@@ -171,6 +196,8 @@ You can access hash members by their key; square brackets are used for indexing.
 {% endhighlight %}
 
 This example manifest would log `b` as a notice.
+
+* * * 
 
 Regular Expressions
 -----

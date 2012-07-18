@@ -41,7 +41,7 @@ They cannot be used in selectors or as resource titles.
 Syntax
 -----
 
-An expression consists of two **operands** separated by an **operator;** the only operator that takes one operand is the unary `!` (not).
+An expression consists of two **operands** separated by an **operator;** the only operator that takes one operand is `!` (not).
 
 {% highlight ruby %}
     5 < 9
@@ -65,7 +65,16 @@ When compounding expressions, you should use parentheses for clarity:
 Order of Operations
 -----
 
-Compound expressions are evaluated in a standard order of operations. The precedence of operators, from highest to lowest:
+Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
+
+{% highlight ruby %}
+    # This example will resolve to 30, rather than 23.
+    notice( (7+8)*2 )
+{% endhighlight %}
+
+For the sake of clarity, we recommend using parentheses in all but the simplest compound expressions.
+
+The precedence of operators, from highest to lowest:
 
 1. `!` (not)
 2. `in`
@@ -137,7 +146,7 @@ Resolves to `false` if the left operand [matches][regex_match] the regular expre
 
 ### `in`
 
-Resolves to `true` if the right operand contains the left operand. This operand is **case sensitive.** Accepts a [string][strings] as the left operand, and the following types of right operands:
+Resolves to `true` if the right operand contains the left operand. This operator is **case sensitive.** Accepts a [string][strings] as the left operand, and the following types of right operands:
 
 * [Strings][] --- Tests whether the left operand is a substring of the right. 
 * [Arrays][] --- Tests whether one of the members of the array is identical to the left operand. 
@@ -177,7 +186,7 @@ Resolves to `true` if either operand is true.
 
 {% highlight ruby %}
     $my_value = true
-    notice ( !$my_value ) # Will return false
+    notice ( !$my_value ) # Will resolve to false
 {% endhighlight %}
 
 Resolves to `true` if the operand is false, and `false` if the operand is true.

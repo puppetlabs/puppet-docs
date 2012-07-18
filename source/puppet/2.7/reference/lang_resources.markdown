@@ -5,13 +5,15 @@ title: "Language: Resources"
 
 
 <!-- TODO: -->
-[types]: 
-[bareword]:
-[string]: 
-[array]: 
-[datatype]: 
+[types]: /references/latest/type.html
+[bareword]: ./lang_datatypes.html#bare-words
+[string]: ./lang_datatypes.html#strings
+[array]: ./lang_datatypes.html#arrays
+[datatype]: ./lang_datatypes.html
 [relationships]: 
-[resdefaults]: 
+[resdefaults]: ./lang_defaults.html
+
+* [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
 
