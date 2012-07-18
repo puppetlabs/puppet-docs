@@ -97,10 +97,23 @@ To add a new user, open the user admin screen by choosing *Admin Tools* in the u
 
 To delete an existing user (including pending users), click on the user's name in the list and then click the *Delete account* button. Note that deleting a user cannot be undone, so be sure this is what you want to do before proceeding.
 
-#### Bulk Editing
+### Creating Users From the Command Line
 
-Adding or editing users in bulk is not yet supported.
+From PE 2.5.2 onward, you can create new console users from the command line. This can be used to automate user creation or import large numbers of users from an external source at once. 
 
+Command line user creation is done with a rake task. Due to a bug in PE 2.5.2, this task must be performed from a specific working directory, so keep this in mind if building scripts around it. 
+
+On the console server, the following commands will add a new user:
+
+    $ cd /opt/puppet/share/console-auth
+    $ sudo /opt/puppet/bin/rake db:create_user EMAIL="<email address>" PASSWORD="<password>" ROLE="< Admin | Read-Only | Read-Write >"
+
+Thus, to add a read-write user named jones@example.com, you would run:
+
+    $ cd /opt/puppet/share/console-auth
+    $ sudo /opt/puppet/bin/rake db:create_user EMAIL="jones@example.com" PASSWORD="good_password_1" ROLE="Read-Write"
+
+You cannot currently delete or disable users or reset passwords from the command line. 
 
 * * * 
 

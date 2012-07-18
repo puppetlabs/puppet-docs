@@ -62,13 +62,19 @@ By default, a new installation of PE will serve the console on port 443. However
 Recovering from a Lost Console Admin Password
 -----
 
-If you have forgotten the password of the console's initial admin user, you can create a new admin user and use it to reset the original admin user's password.
+If you have forgotten the password of the console's initial admin user, you can [create a new admin user](./console_auth.html#creating-users-from-the-command-line) and use it to reset the original admin user's password.
 
-On the console server, run the following command:
+On the console server, run the following commands:
 
-    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_initial_admin email=user@example.com password=<PASSWORD>
+    $ cd /opt/puppet/share/console-auth
+    $ sudo /opt/puppet/bin/rake db:create_user EMAIL="adminuser@example.com" PASSWORD="<password>" ROLE="Admin"
 
 You can now log in to the console as the user you just created, and use the normal admin tools to reset other users' passwords.
+
+> Note: in PE 2.5.1 and 2.5.0, use the following command instead:
+>
+>     $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_initial_admin email=user@example.com password=<PASSWORD>
+
 
 Changing the Console's Database User/Password
 -----
