@@ -141,6 +141,12 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
 
+### Service Resource Errors on Ubuntu with First PE 2.5.2 Release
+
+([Issue 15553](https://projects.puppetlabs.com/issues/15553))
+
+Early releases of PE 2.5.2 could cause failures on Ubuntu due to a patch error in our packages, which caused the upstart service provider to break. This issue will be fixed with the PE 2.5.2-1 release; users experiencing the issue now can install the updated packages linked to in the issue ticket above.
+
 ### Issues with Compliance UI
 
 There are two issues related to incorrect Compliance UI behavior: 
