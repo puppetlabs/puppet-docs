@@ -3,15 +3,12 @@ layout: frontpage
 title: Puppet Labs Documentation
 ---
 
-Puppet Labs Documentation
-=========================
-
 Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a set of PDFs, which can be found [here](http://info.puppetlabs.com/download-pdfs.html). You can also [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
 
 [Puppet](/puppet)
 -----
 
-Puppet manages your servers: describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there. 
+Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there. 
 
 [See the index for Puppet's documentation here](/puppet), or go directly to one of the most popular pages:
 

@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en-US">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title>Documentation | Puppet Labs - {{page.title}}</title>
+  	<title>{{page.title}}</title>
   	<meta name="description" content="The open source leader in data center automation">
   	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
   	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
@@ -322,12 +322,12 @@
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
+              <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
+              {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page">{{ content | toc }}</nav>{% endunless %}
               {{ content }}
             </div>
             <div class="secondary-content">
                   <div id="subCol">
-                      <h3 class="chapter">Contents</h3>
-                      {{ content | toc }}
                                         <!-- New Ads are inserted here -->
                                         <!-- Learning Puppet VM -->
             <div style="margin-top: 0; padding-bottom: 10px;">
@@ -335,8 +335,13 @@
 
                 <p style="font-size:0.9em;line-height: 1.5em;"><a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">Learn Puppet</a> in a safe, convenient virtual environment - free download</p>
                 <a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">
-                <img src="/images/learning-puppet-vm.jpg" class="Learning Puppet VM">
+                <img src="/images/learning-puppet-vm.jpg" class="Learning Puppet VM" alt="Learning Puppet VM screenshot">
                 </a>
+            </div>
+            <div style="margin-top: 0; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Puppet Certification Program</p>
+                <p style="font-size:0.9em;line-height: 1.5em;">Be among the first to get <a href="http://www.puppetlabs.com/services/certification/">Puppet certified</a></p>
+                <a href="http://www.puppetlabs.com/services/certification/"><img src="/images/puppet_certification.png" alt="Puppet Certification Program logo"></a>
             </div>
             {% recent_commits %}
                   </div>
