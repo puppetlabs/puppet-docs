@@ -186,7 +186,7 @@ Hashes are written as key/value pairs surrounded by curly braces; a key is separ
 
 Hash keys are strings, but hash values can be any data type, including arrays or more hashes.
 
-You can access hash members by their key; square brackets are used for indexing. Nested arrays and hashes can be accessed by chaining indexes. 
+You can access hash members with their key; square brackets are used for indexing. Nested arrays and hashes can be accessed by chaining indexes. 
 
 Example:
 
@@ -202,9 +202,9 @@ This example manifest would log `b` as a notice.
 Regular Expressions
 -----
 
-Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, and can only be used in the few places that specifically accept regular expressions. These places include the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes.
+Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, they can only be used in the few places that specifically accept regular expressions. These places include: the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes.
 
-Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet), and must be surrounded by forward slashes:
+Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet) and must be surrounded by forward slashes:
 
 {% highlight ruby %}
     if $host =~ /^www(\d+)\./ {
