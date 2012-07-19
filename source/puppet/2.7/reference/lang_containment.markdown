@@ -62,9 +62,9 @@ In the above example, a resource with a `require => Class['ntp']` metaparameter 
 
 ### Context and Plans
 
-Containment is singleton and absolute: a resource can only be contained by one container (although the container, in turn, may be contained). However, classes can be declared in multiple places with the `include` function. A naïve interpretation would thus imply that classes can be in multiple containers at once. 
+Containment is a singleton and is absolute: a resource can only be contained by one container (although the container, in turn, may be contained). However, classes can be declared in multiple places with the `include` function. A naïve interpretation would thus imply that classes can be in multiple containers at once. 
 
-Puppet 0.25 and prior would establish a containment edge with the _first_ container in which a class was declared. This made containment parse-order dependent, which was bad. However, fixing this unpredictability in 2.6 left no native way to allow the main "public" class in a module to completely own its subordinate implementation classes. This presents a problem when attempting to keep very large modules readable, since it's nice to be able to abstract complicated logic under the proverbial rug. 
+Puppet 0.25 and prior would establish a containment edge with the _first_ container in which a class was declared. This made containment dependent on parse-order, which was bad. However, fixing this unpredictability in 2.6 left no native way for the main "public" class in a module to completely own its subordinate implementation classes. This makes it hard to keep very large modules readable, since it complicates and obscures logical relationships in large blocks of code.
 
 Puppet Labs is investigating ways to resolve this for a future Puppet version. 
 

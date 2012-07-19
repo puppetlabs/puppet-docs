@@ -23,7 +23,7 @@ title: "Language: Node Definitions"
 [facts]: 
 
 
-A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's catalog. This allows you to assign specific configurations to specific nodes.
+A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's catalog. This feature allows you to assign specific configurations to specific nodes.
 
 Node statements are an **optional feature** of Puppet. They can be replaced by or combined with an [external node classifier][enc], or you can eschew both and use conditional statements with [facts][] to classify nodes.
 
@@ -34,7 +34,7 @@ Location
 
 Node definitions should go in [the site manifest (site.pp)][sitepp].
 
-Alternately, you can store nodes in any number of manifest files which are [imported][import] into site.pp:
+Alternately, you can store node definitions in any number of manifest files which are [imported][import] into site.pp:
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/manifests/site.pp
@@ -47,7 +47,7 @@ Alternately, you can store nodes in any number of manifest files which are [impo
     import extra_nodes.pp
 {% endhighlight %}
 
-This is one of the only recommended use cases for `import`. Note that using `import` will require you to restart the puppet master if you change the node manifests, and that importing many files will slow down Puppet's compilation time. [See the documentation of `import`][import] for details.
+This is one of the only recommended use cases for `import`. Note that using `import` will require you to restart the puppet master if you change the node manifests and that importing many files will slow down Puppet's compilation time. [See the documentation of `import`][import] for details.
 
 > Node statements should never be put in [modules][]. The behavior of a node statement in an autoloaded manifest is undefined.
 
@@ -89,7 +89,7 @@ Node definitions look like class definitions. The general form of a node definit
 Naming
 -----
 
-Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn defaults to the node's fully qualified domain name. 
+Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn resolves to the node's fully qualified domain name. 
 
 > #### Notes on Node Names
 > 
@@ -107,7 +107,7 @@ You may not create two node statements with the same name.
 
 ### Multiple Names
 
-Use a comma-separated list of names to create a group of nodes with a single node statement:
+You can use a comma-separated list of names to create a group of nodes with a single node statement:
 
 {% highlight ruby %}
     node 'www1.example.com', 'www2.example.com', 'www3.example.com' {
@@ -124,7 +124,7 @@ The name `default` (without quotes) is a special value for node names. If no nod
 
 ### Regular Expression Names
 
-[Regular expressions (regexes)][regex] can be used as node names. This is another method for creating a single node statement that matches multiple nodes.
+[Regular expressions (regexes)][regex] can be used as node names. This is another method for writing a single node statement that matches multiple nodes.
 
 {% highlight ruby %}
     node /^www\d+$/ {
@@ -179,16 +179,16 @@ Node definitions create a new anonymous scope that can override variables and de
 
 ### Merging With ENC Data
 
-Node definitions and [external node classifiers][enc] can co-exist, and Puppet merges their data as follows:
+Node definitions and [external node classifiers][enc] can co-exist. Puppet merges their data as follows:
 
-* Variables from an ENC are set at [top scope][topscope], and can thus be overridden by variables in a node definition. 
+* Variables from an ENC are set at [top scope][topscope] and can thus be overridden by variables in a node definition. 
 * Classes from an ENC are declared at [node scope][nodescope], which means they will be affected by any variables set in the node definition.
 
 Although ENCs and node definitions can work together, we recommend that most users pick one or the other. 
 
 ### Inheritance
 
-Nodes can [inherit][] from other nodes using the inherits keyword. Inheritance works identically to class inheritance. **This feature is not recommended; see the aside below.**
+Nodes can [inherit][] from other nodes using the `inherits` keyword. Inheritance works identically to class inheritance. **This feature is not recommended; see the aside below.**
 
 Example: 
 

@@ -20,7 +20,7 @@ layout: default
 [bool_convert]: ./lang_datatypes.html#automatic-conversion-to-boolean
 
 
-**Expressions** resolve to values, and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions, and the entire combined expression will resolve to a single value. 
+**Expressions** resolve to values and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions and the entire combined expression will resolve to a single value. 
 
 Most expressions resolve to [boolean][] values. They are particularly useful as conditions in [conditional statements][conditional].
 
@@ -32,7 +32,7 @@ Expressions can be used in the following places:
 * The operand of another expression
 * The condition of an [if statement][if]
 * The control expression of a [case statement][case]
-* The value of a variable assignment
+* The assignment of a variable
 * The value of a resource attribute
 * The argument(s) of a [function][] call
 
@@ -52,7 +52,7 @@ An expression consists of two **operands** separated by an **operator;** the onl
 
 In the examples above, the operators are `<`, `!=`, `in`, and `!`.
 
-Expressions can optionally be surrounded by parentheses, and you can create compound expressions by using an expression as an operand.
+Optionally, expressions can  be surrounded by parentheses and you can create compound expressions by using an expression as an operand.
 
 When compounding expressions, you should use parentheses for clarity:
 
@@ -65,6 +65,7 @@ When compounding expressions, you should use parentheses for clarity:
 Order of Operations
 -----
 
+<<<<<<< Updated upstream
 Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
 
 {% highlight ruby %}
@@ -75,6 +76,9 @@ Compound expressions are evaluated in a standard order of operations. However, p
 For the sake of clarity, we recommend using parentheses in all but the simplest compound expressions.
 
 The precedence of operators, from highest to lowest:
+=======
+Compound expressions are evaluated in a standard order of operations. The precedence of operators, from highest to lowest is:
+>>>>>>> Stashed changes
 
 1. `!` (not)
 2. `in`
@@ -90,10 +94,10 @@ The precedence of operators, from highest to lowest:
 Comparison Operators
 -----
 
-Comparison operators:
+Comparison operators have the following traits:
 
-* Take operands of **several data types**
-* Resolve to [**boolean**][boolean] values
+* They take operands of **several data types**
+* They resolve to [**boolean**][boolean] values
 
 ### `==` (equality)
 
@@ -165,16 +169,16 @@ Examples:
 Boolean Operators
 -----
 
-Boolean Operators: 
+Boolean Operators have the following traits: 
 
-* Take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert]
-* Resolve to [**boolean**][boolean] values
+* They take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert]
+* They resolve to [**boolean**][boolean] values
 
 These expressions are most useful when creating compound expressions.
 
 ### `and`
 
-Resolves to `true` if both operands are true, and `false` otherwise.
+Resolves to `true` if both operands are true, otherwise resolves to `false`.
 
 ### `or`
 
@@ -192,14 +196,13 @@ Resolves to `true` if either operand is true.
 Resolves to `true` if the operand is false, and `false` if the operand is true.
 
 
-
 Arithmetic Operators
 -----
 
-Arithmetic Operators:
+Arithmetic Operators have the following traits:
 
-* Take [**numeric**][numbers] operands
-* Resolve to [**numeric**][numbers] values
+* They take [**numeric**][numbers] operands
+* They resolve to [**numeric**][numbers] values
 
 ### `+` (addition)
 
@@ -219,17 +222,16 @@ Resolves to the product of the two operands.
 
 ### `<<` (left shift)
 
-Left bitwise shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer, and multiplying the left operand by 2 to the power of the right operand.
+Left bitwise shift: shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer and multiplying the left operand by 2 to the power of the right operand.
 
 ### `>>` (right shift)
 
-Right bitwise shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer, and dividing the left operand by 2 to the power of the right operand.
-
+Right bitwise shift: shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer and dividing the left operand by 2 to the power of the right operand.
 
 Backus Naur Form
 -----
 
-With the exception of the `in` operator, here are the available operators in Backus Naur Form:
+With the exception of the `in` operator, the available operators in Backus Naur Form are:
 
     <exp> ::=  <exp> <arithop> <exp>
              | <exp> <boolop> <exp>
