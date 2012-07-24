@@ -13,7 +13,7 @@ title: "Language: Reserved Words and Acceptable Names"
 Reserved Words
 -----
 
-Several words are **reserved** in the Puppet language. This means they: 
+Several words in the Puppet language are **reserved**. This means they: 
 
 * Cannot be used as bare word strings --- you must quote these words if you wish to use them as strings.
 * Cannot be used as names for custom functions.
@@ -38,7 +38,7 @@ The following words are reserved:
 Reserved Class Names
 -----
 
-The following are built-in namespaces used by Puppet, and so must not be used as class names:
+The following are built-in namespaces used by Puppet and so must not be used as class names:
 
 * `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
 * `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings). 
