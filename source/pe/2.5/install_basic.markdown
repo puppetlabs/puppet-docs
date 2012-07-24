@@ -241,11 +241,20 @@ Final Questions
 
 ### Vendor Packages
 
-Puppet Enterprise may need some extra system software from your OS vendor's package repositories. If any of this software isn't yet installed, the installer will list the packages it needs and offer to automatically install them. If you decline, it will exit so you can install the necessary packages manually before installing.
+Puppet Enterprise may need some extra system software from your OS vendor's package repositories.
 
-**A note about Java and MySQL under Enterprise Linux variants:** Java and MySQL packages provided by Oracle can satisfy the puppet master and console roles' Java and MySQL dependencies, but the installer can't make that decision automatically and will default to using the OS's packages. If you wish to use Oracle's packages instead of the OS's, you must first use RPM to manually install the `pe-virtual-java` and/or `pe-virtual-mysql` packages included with Puppet Enterprise: 
+* The puppet master role requires **a Java runtime,** in order to run the ActiveMQ server for orchestration. 
+* The console role requires **MySQL;** if using local databases, it also requires **MySQL server.**
 
-    $ sudo rpm -ivh packages/pe-virtual-java-1.0-1.pe.el5.noarch.rpm
+If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
+
+#### Java and MySQL Versions
+
+* On every supported platform, PE can use the **default system packages** for MySQL and Java (OpenJDK on most Linuxes, and IBM Java on SUSE).
+* Custom-compiled MySQL or Java versions may or may not work, as Puppet Enterprise expects to find shared objects and binaries in their standard locations. In particular, we have noticed problems with custom compiled MySQL 5.5 on Enterprise Linux variants. 
+* On Enterprise Linux variants, you may optionally use the Java and MySQL packages provided by Oracle. Before installing PE, you must manually install Java and/or MySQL, then install the  `pe-virtual-java` and/or `pe-virtual-mysql` packages included with Puppet Enterprise: 
+
+        $ sudo rpm -ivh packages/pe-virtual-java-1.0-1.pe.el5.noarch.rpm
 
 Find these in the installer's `packages/` directory. Note that these packages may have additional ramifications if you later install other software that depends on OS MySQL or Java packages. 
 
