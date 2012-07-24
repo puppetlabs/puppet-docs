@@ -311,7 +311,7 @@ Options:
 
 Example:
 
-    puppet node_aws terminate init ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com
+    puppet node_aws terminate ec2-XXX-XXX-XXX-XX.compute-1.amazonaws.com
 
 Tear down an EC2 machine instance.
 
