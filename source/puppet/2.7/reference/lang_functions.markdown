@@ -59,3 +59,19 @@ There are two types of Puppet functions:
 
 All functions run during [compilation][], which means they can only access the commands and data available on the puppet master. To do perform tasks on or collect data from an agent node, you must use a [resource][] or a [custom fact][custom_facts]. 
 
+### Arguments
+
+Each function defines how many arguments it takes and what [data types][datatype] it expects those arguments to be. These should be documented in the function's `:doc` string, which can be extracted and included in the [function reference][func_ref].
+
+Functions may accept any of Puppet's standard [data types][datatype]. The values passed to the function's Ruby code will be converted to Ruby objects as follows:
+
+Puppet type        | Ruby type
+-------------------|----------
+boolean            | boolean
+undef              | the empty string
+string             | string
+resource reference | `Puppet::Resource`
+number             | string
+array              | array
+hash               | hash
+
