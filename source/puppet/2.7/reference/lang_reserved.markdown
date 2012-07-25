@@ -9,6 +9,7 @@ title: "Language: Reserved Words and Acceptable Names"
 [class]: 
 [settings]: 
 [namespace]: 
+[qualified_var]: 
 
 Reserved Words
 -----
@@ -52,15 +53,21 @@ Puppet limits the characters you can use when naming language constructs.
 
 ### Variables
 
-Variable names can include:
+Variable names begin with a `$` (dollar sign) and can include:
 
 * Uppercase and lowercase letters
 * Numbers
 * Underscores
 
-There is no additional restriction on the first character of a variable name. Variable names are case-sensitive.
+There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive.
 
-Fully qualified variables may use `::` (double colon) as a [namespace][] separator.
+That is, variable names should match the following regular expression:
+
+    ^\$[a-zA-Z0-9_]+
+
+[Fully qualified variables][qualified_var] consist of `$`, the class name, the `::` (double colon) [namespace][] separator, and the variable's local name. That is, they should match the following regular expression:
+
+    ^\$^[a-z][a-z0-9_]*(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+
 
 ### Classes and Types
 
@@ -69,23 +76,40 @@ The names of classes, defined types, and custom types **must begin with a lowerc
 * Lowercase letters
 * Numbers
 * Underscores
-* `::` (double colon), used as a [namespace][] separator
+
+That is, they should match the following regular expression:
+
+    ^[a-z][a-z0-9_]*
+
+Namespaced class and type names can be constructed by joining several valid class names with the `::` (double colon) [namespace][] separator. That is, they should match the following regular expression:
+
+    ^[a-z][a-z0-9_]*(::[a-z][a-z0-9_]*)*
 
 ### Modules
 
 Module names obey the same rules as class names, with the added restriction that they cannot include the `::` namespace separator.
 
+That is, they should match the following regular expression:
+
+    ^[a-z][a-z0-9_]*
+
 ### Parameters
 
-Class and defined type parameters **must begin with a lowercase letter.** They can include:
+Class and defined type parameters begin with a `$` (dollar sign), and their first non-`$` character **must be a lowercase letter.** They can include:
 
 * Lowercase letters
 * Numbers
 * Underscores
 
+That is, they should match the following regular expression:
+
+    ^\$[a-z][a-z0-9_]*
+
 ### Resources
 
-Resource titles may contain any characters whatsoever. They are case-sensitive.
+Resource **titles** may contain any characters whatsoever. They are case-sensitive. 
+
+Resource names (or namevars) may be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing these limits.
 
 ### Nodes
 
