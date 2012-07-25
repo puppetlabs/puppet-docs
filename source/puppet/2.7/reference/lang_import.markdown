@@ -34,20 +34,20 @@ Syntax
 
 An import statement consists of the `import` keyword, followed by a literal quoted string with no variable interpolation. 
 
-The string provided must be a file path or file glob (as implemented by Ruby's `Dir.glob` method). These paths must resolve to one or more Puppet manifest files.
+The string provided must be a file path or file glob (as implemented by Ruby's `Dir.glob` method). These paths must resolve to one or more Puppet manifest (.pp) files.
 
 If the file path or glob is not fully qualified, it will be resolved _relative to the manifest file in which the `import` statement is found._ Thus, the examples above assume that both the `nodes/` directory and the `nodes.pp` file are in the same `/etc/puppetlabs/puppet/manifests` directory as site.pp.
 
 Behavior
 -----
 
-Import statements:
+Import statements have the following characteristics:
 
-* Read the contents of the requested file(s) and add their code to top scope
-* Are processed before any other code in the manifest is parsed
-* Cannot be contained by conditional structures or node/class definitions
+* They read the contents of the requested file(s) and add their code to top scope
+* They are processed before any other code in the manifest is parsed
+* They cannot be contained by conditional structures or node/class definitions
 
-These quirks mean **the location of an import statement in a manifest does not matter.** If an uncommented import statement exists anywhere in a manifest, it will always run (even if it looks like it shouldn't) and the code it imports will not be contained in any definition or conditional. The following example illustrates:
+These quirks mean **the location of an import statement in a manifest does not matter.** If an uncommented import statement exists anywhere in a manifest, it will always run (even if it looks like it shouldn't) and the code it imports will not be contained in any definition or conditional. The following example illustrates this:
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/manifests/site.pp
@@ -68,11 +68,11 @@ Due to the non-standard behavior of `import`, any imported file should only cont
 
 ### Interactions With the Autoloader
 
-The behavior of `import` within autoloaded manifests is **undefined,** and may vary at whim between minor versions of Puppet. You should never place `import` statements in modules; they should only exist in [site.pp][site_manifest].
+The behavior of `import` within autoloaded manifests is **undefined,** and may vary randomly between minor versions of Puppet. You should never place `import` statements in modules; they should only exist in [site.pp][site_manifest].
 
 ### Inability to Reload
 
-The puppet master service monitors its main [site manifest][site_manifest] and modules, and will reload the files whenever they are edited. However, because it only evaluates file globs when the parent file containing them is reloaded, it cannot tell when imported manifests have been changed. 
+The puppet master service monitors its main [site manifest][site_manifest] and modules and will reload the files whenever they are edited. However, because it only evaluates file globs when the parent file containing them is reloaded, it cannot tell when imported manifests have been changed. 
 
 Thus, if you use `import` statements, you must manually cause your files to be reloaded whenever you edit your imported manifests. You can do this by:
 

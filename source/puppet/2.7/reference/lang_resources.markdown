@@ -40,6 +40,8 @@ Every resource has a **type,** a **title,** and a set of **attributes.** The gen
     }
 {% endhighlight %}
 
+A resource declaration includes: 
+
 * The resource type, in lower-case.
 * An opening curly brace.
 * The title, which is a [string][].
@@ -47,7 +49,7 @@ Every resource has a **type,** a **title,** and a set of **attributes.** The gen
 * Any number of attribute and value pairs. Attributes are bare words, and are followed by a `=>` (arrow, fat comma, or hash rocket). Values are any [data type][datatype], depending on what the attribute requires, and are followed by a comma; the final comma in a declaration is optional.
 * A closing curly brace. 
 
-Note that whitespace is fungible in the Puppet language.
+Note that, in the Puppet language, whitespace is fungible.
 
 ### Type
 
@@ -91,11 +93,11 @@ The distinction between title and namevar lets you use a single, consistently-ti
 
 Many types have an `ensure` attribute. This generally manages the _existence_ of the resource on the target system.
 
-Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional nuances. Be sure to check the reference for each type you are working with.
+Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each type you are working with.
 
 ### Metaparameters
 
-Puppet has attributes which can be used with every resource type, called **metaparameters.** These don't map directly to system state; instead, they specify how Puppet should act toward the resource.
+Some attributes in Puppet can be used with every resource type. These are called **metaparameters.** They don't map directly to system state; instead, they specify how Puppet should act toward the resource.
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources. 
 
