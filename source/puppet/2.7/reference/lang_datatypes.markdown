@@ -128,7 +128,7 @@ The general form of a resource reference is:
 
 * The resource **type,** capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized.)
 * An opening square bracket.
-* The **title** of the resource, usually as a quoted string.
+* The **title** of the resource, usually as a quoted string. (If the title is a single word, it may be bare.)
 * A closing square bracket.
 
 Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared. 
@@ -202,7 +202,7 @@ This example manifest would log `b` as a notice.
 Regular Expressions
 -----
 
-Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, they can only be used in the few places that specifically accept regular expressions. These places include: the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes.
+Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, and they can only be used in the few places that specifically accept regular expressions. These places include: the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes.
 
 Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet) and must be surrounded by forward slashes:
 
