@@ -17,7 +17,7 @@ end
 $LOAD_PATH.unshift File.expand_path('lib')
 
 dependencies = %w(jekyll maruku rack versionomy kramdown)
-references = %w(configuration function indirection metaparameter network report type)
+references = %w(configuration function indirection metaparameter report type)
 
 namespace :install do
   dependencies.each do |dep|
