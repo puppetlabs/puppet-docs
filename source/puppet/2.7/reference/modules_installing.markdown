@@ -92,11 +92,15 @@ After setting the repository, follow the instructions above for installing from 
 
 ### Installing From a Release Tarball
 
+At this time, the module subcommand cannot properly install from local tarball files. [Follow issue #13542](http://projects.puppetlabs.com/issues/13542) for more details about the progress of this feature.
+
+{% comment %} Uncomment this when we finally fix the bug. 
 To install a module from a release tarball, specify the path to the tarball instead of the module name:
 
     # puppet module install ~/pmtacceptance-apache-0.0.1.tar.gz
 
 This is useful when installing modules downloaded directly from the developer's site, or local modules which haven't yet been published to the forge. 
+{% endcomment %}
 
 Finding Modules
 -----
