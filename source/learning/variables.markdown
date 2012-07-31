@@ -31,6 +31,7 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 * If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the top scope;[^dynamic] this means you can almost always refer to global variables with just their short names.
 
     > Note: Current versions of Puppet can log spurious warnings if you refer to top-scope variables without the `$::` prefix. These are due to a bug, and will be fixed in a future version. 
+    > There is a workaround for this using `scope.lookupvar("::top_scope_variable")`.
 * You can only assign the same variable **once** in a given scope.[^declarative]
 
 [^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable from anywhere north of its assignment. We're working on that.
