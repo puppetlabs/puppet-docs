@@ -13,10 +13,12 @@ title: "Language: Data Types"
 [stdlib]: 
 [facts]: 
 [reserved]: 
+[attribute_override]: ./lang_resources.html#adding-or-modifying-attributes
 [resourcedefault]: 
 [functions]: 
 [node_def]: ./lang_node_definitions.html
 [relationship]: 
+[chaining]: 
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
 
@@ -116,22 +118,36 @@ The following escape sequences are available:
 Resource References
 -----
 
-Some attributes, like the [relationship][] metaparameters, require a reference to an existing Puppet resource. Refer to a Puppet resource with its type and title as follows:
+Resource references identify a specific existing Puppet resource by its type and title. Several attributes, such as the [relationship][] metaparameters, require resource references.
 
 {% highlight ruby %}
+    # A reference to a file resource:
     subscribe => File['/etc/ntp.conf'],
     ...
+    # A type with a multi-segment name:
     before => Concat::Fragment['apache_port_header'],
 {% endhighlight %}
 
 The general form of a resource reference is: 
 
-* The resource **type,** capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized.)
-* An opening square bracket.
-* The **title** of the resource, usually as a quoted string. (If the title is a single word, it may be bare.)
-* A closing square bracket.
+* The resource **type,** capitalized (every segment must be capitalized if the type includes a namespace separator \[`::`\])
+* An opening square bracket
+* The **title** of the resource, or a comma-separated list of titles
+* A closing square bracket
 
 Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared. 
+
+### Multi-Resource References
+
+Resource references with a comma-separated list of titles refer to multiple resources of the same type:
+
+{% highlight ruby %}
+    # A multi-resource reference:
+    require => File['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types'],
+{% endhighlight %}
+
+They can be used wherever an array of references might be used. They can also go on either side of a [chaining arrow][chaining] or receive a [block of additional attributes][attribute_override].
+
 
 * * *
 
@@ -162,7 +178,7 @@ The items in an array can be any data type, including hashes or more arrays.
 
 Resource attributes which can optionally accept multiple values (including the relationship metaparameters) expect those values in an array.
 
-You can access individual array items by their numerical index (counting from zero). Square brackets are used for indexing. Nested arrays and hashes can be accessed by chaining indexes. 
+You can access items in an array by their numerical index (counting from zero). Square brackets are used for indexing. 
 
 Example:
 
@@ -171,7 +187,48 @@ Example:
     notice( $foo[1] )
 {% endhighlight %}
 
-This manifest would log `two` as a notice.
+This manifest would log `two` as a notice. (`$foo[0]` would be `one`, since indexing counts from zero.)
+
+Nested arrays and hashes can be accessed by chaining indexes:
+
+{% highlight ruby %}
+    $foo = [ 'one', {'second' => 'two', 'third' => 'three'} ]
+    notice( $foo[1]['third'] )
+{% endhighlight %}
+
+This manifest would log `three` as a notice. (`$foo[1]` is a hash, and we access a key named `'third'`.)
+
+Arrays support negative indexing, with `-1` being the final element of the array:
+
+{% highlight ruby %}
+    $foo = [ 'one', 'two', 'three', 'four', 'five' ]
+    notice( $foo[2] )
+    notice( $foo[-2] )
+{% endhighlight %}
+
+The first notice would log `three`, and the second would log `four`.
+
+The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with arrays, including: 
+
+* `delete`
+* `delete_at`
+* `flatten`
+* `grep`
+* `hash`
+* `is_array`
+* `join`
+* `member`
+* `prefix`
+* `range`
+* `reverse`
+* `shuffle`
+* `size`
+* `sort`
+* `unique`
+* `validate_array`
+* `values_at`
+* `zip`
+
 
 * * * 
 
@@ -196,6 +253,16 @@ Example:
 {% endhighlight %}
 
 This example manifest would log `b` as a notice.
+
+The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with hashes, including: 
+
+* `has_key`
+* `is_hash`
+* `keys`
+* `merge`
+* `validate_hash`
+* `values`
+
 
 * * * 
 
