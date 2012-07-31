@@ -8,16 +8,30 @@ title: "Language: Classes"
 [allowed]: ./lang_reserved.html#classes-and-types
 [function]: ./lang_functions.html
 [modules]:
+[contains]: ./lang_containment.html
+[contains_float]: ./lang_containment.html#known-issues
 [hiera]: 
 [function]: 
+[multi_ref]: ./lang_datatypes.html#multi-resource-references
 [dynamic_scope]: 
+[add_attribute]: ./lang_resources.html#adding-or-modifying-attributes
+[undef]: ./lang_datatypes.html#undef
+[collectors]: 
+[collector_override]: 
 [relationships]: 
+[namespace]: 
+[qualified_var]: 
 [chaining]: 
+[conditional]: 
+[resource_reference]: ./lang_datatypes.html#resource-references
 [node]: 
 [resource_declaration]: 
 [scope]: 
+[parent_scope]: 
+[definedtype]: 
+[sitedotpp]: 
 [enc]: 
-
+[metaparameters]: 
 
 **Classes** are named blocks of Puppet code, which are not applied unless they are invoked by name. They can be stored in [modules][] for later use, and declared (added to a node's catalog) with the `include` function or a resource-like syntax.
 
@@ -70,7 +84,7 @@ The general form of a class declaration is:
         * A new [variable][] name, including the `$` prefix
         * An optional equals sign and **default value** (any data type)
     * A closing parenthesis
-* Optionally, the `inherits` keyword followed by another class name
+* Optionally, the `inherits` keyword followed by a single class name
 * An opening curly brace
 * A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource]
 * A closing curly brace
@@ -166,136 +180,137 @@ Note that the ENC API supports classes with or without parameters, but many of t
 Behavior
 -----
 
+**Defining** a class makes it available for later use; **declaring** a class activates it and adds all of its resources to the catalog. 
+
+Classes are singletons --- although a given class may have very different behavior depending on how it is declared, the resources in it will only be declared once per compilation. You can use `include` several times on the same class, but every time after the first will have no effect. (The `require` function behaves similarly with regards to declaring the class, but will continue to create ordering relationships on subsequent uses.)
+
+### Parameters and Attributes
+
+The parameters of a class can be used as local variables inside the class's definition. These variables are not set with [normal assignment statements][variable_assignment]; instead, they are set with attributes when the class is declared:
+
+{% highlight ruby %}
+    class {'apache':
+      version => '2.2.21',
+    }
+{% endhighlight %}
+
+In the example above, the value of `$version` within the class definition would be set to `2.2.21`.
+
+### Containment
+
+A class [contains][] all of its resources. This means any [relationships][] formed with the class will be extended to every resource in the class.
+
+Note that classes cannot contain other classes. This is a known design issue; [see the relevant note on the "Containment" page][contains_float] for more details.
+
+### Metaparameters
+
+When declared with the resource-like syntax, a class may use any [metaparameter][metaparameters]. If it does, every resource contained in the class will also have that metaparameter. So if you declare a class with `noop => true`, every resource in it will also have `noop => true`, unless they specifically override it. Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any specific values from the individual resource.
 
 
+
+Location
+-----
+
+### Definitions
+
+Class definitions can (and should) be stored in [modules][]. Puppet is automatically aware of any classes in a valid module, and can autoload them by name. Classes should be stored in the `manifests/` directory of a module with one class per file, and each filename should reflect the name of its class; see [Module Fundamentals][modules] for more details. 
+
+> #### Aside: Best Practices
+>
+> You should usually only load classes from modules. Although the additional options below this aside will work, they are not recommended.
+
+You can also put class definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file, and are not parse-order dependent.
+
+This version of Puppet still allows class definitions to be stored in other class definitions, which puts the interior class under the exterior class's [namespace][]; it does not cause the interior class to be automatically declared when the exterior class is. Note that although this is not yet formally deprecated, it is very much not recommended. 
+
+### Declarations
+
+You can declare classes:
+
+* At top scope in the [site manifest][sitedotpp]
+* In a [node definition][node]
+* In the [output of an ENC][enc]
+* In any other class
+* In a [defined type][definedtype]
+* In a [conditional statement][conditional]
+
+If you are using `include` or `require` to declare a class (that is, if you are not declaring it with parameters at any point), you can declare it multiple times in several different places. This is useful for allowing classes or defined types to manage their own dependencies, or for building overlapping "role" classes when a given node may have more than one role. See [Aside: History, the Future, and Best Practices](#aside-history-the-future-and-best-practices) below for more information.
 
 Inheritance
 -----
 
+Classes can be derived from other classes using the `inherits` keyword. This allows you to make special-case classes that extend the functionality of a more general "base" class. 
 
+> Note: Puppet 2.7 does not support using parameterized classes as inheritable base classes. The base class must have no parameters.
 
+Inheritance causes three things to happen: 
 
+* When a derived class is declared, its base class is automatically declared first (if it wasn't already declared elsewhere).
+* The base class becomes the [parent scope][parent_scope] of the derived class, so that the new class receives a copy of all of the base class's variables and resource defaults.
+* Code in the derived class is given special permission to override any resource attributes that were set in the base class. 
 
+> #### Aside: When to Inherit
+>
+> You should only use class inheritance when you need to override resource attributes in the base class. This is because you can instantiate a base class by [including](#declaring-a-class-with-include) it inside another class's definition, and assigning a direct parent scope is rarely necessary since you can use [qualified variable names][qualified_var] to read any class's internal data.
+> 
+> Additionally, many of the traditional use cases for inheritance (notably the "anti-class" pattern, where you override a service resource's `ensure` attribute to disable it) can be accomplished just as easily with class parameters. It is also possible to [use resource collectors to override resource attributes][collector_override].
 
-Classes also support a simple form of object inheritance.  For those
-not acquainted with programming terms, this means that we can extend
-the functionality of the previous class without copy/pasting
-the entire class.  Inheritance allows
-subclasses to override resource settings declared in parent classes. A
-class can only inherit from one other class, not more than one.
-In programming terms, this is called 'single inheritance'.
+### Overriding Resource Attributes
 
-{% highlight ruby %}
-    class freebsd inherits unix {
-      File['/etc/passwd'] { group => 'wheel' }
-      File['/etc/shadow'] { group => 'wheel' }
-    }
-{% endhighlight %}
-
-If we needed to undo some logic specified in a parent class, we can
-use undef like so:
+The attributes of any resource in the base class can be overriden with a [reference][resource_reference] to the resource you wish to override, followed by a pair of curly braces containing attribute => value pairs:
 
 {% highlight ruby %}
-    class freebsd inherits unix {
-      File['/etc/passwd'] { group => undef }
-    }
-{% endhighlight %}
-
-In the above example, nodes which include the `unix` class will have the
-password file's group set to `root`, while nodes including
-`freebsd` would have the password file group ownership left
-unmodified.
-
-In Puppet version 0.24.6 and higher, you can specify multiple overrides like
-so:
-
-{% highlight ruby %}
-    class freebsd inherits unix {
-      File['/etc/passwd', '/etc/shadow'] { group => 'wheel' }
-    }
-{% endhighlight %}
-
-There are other ways to use inheritance.  In Puppet 0.23.1 and
-higher, it's possible to add values to resource parameters using
-the '+>' ('plusignment') operator:
-
-{% highlight ruby %}
-    class apache {
-      service { 'apache': require => Package['httpd'] }
-    }
-
-    class apache-ssl inherits apache {
-      # host certificate is required for SSL to function
-      Service['apache'] { require +> File['apache.pem'] }
-    }
-{% endhighlight %}
-
-The above example makes the service resource in the second class require all the packages in the first,
-as well as the `apache.pem` file.
-
-To append multiple requires, use array brackets and commas:
-
-{% highlight ruby %}
-    class apache {
-      service { 'apache': require => Package['httpd'] }
-    }
-
-    class apache-ssl inherits apache {
-      Service['apache'] { require +> [ File['apache.pem'], File['/etc/httpd/conf/httpd.conf'] ] }
-    }
-{% endhighlight %}
-
-The above would make the `require` parameter in the `apache-ssl`
-class equal to
-
-{% highlight ruby %}
-    [Package['httpd'], File['apache.pem'], File['/etc/httpd/conf/httpd.conf']]
-{% endhighlight %}
-
-
------
-
-
-
-
-Like resources, you can also create relationships between classes with
-'require', like so:
-
-{% highlight ruby %}
-    class apache {
-      service { 'apache': require => Class['squid'] }
-    }
-{% endhighlight %}
-
-The above example uses the `require` metaparameter to make the `apache`
-class dependent on the `squid` class.
-
-In Puppet version 0.24.6 and higher, you can specify multiple relationships
-like so:
-
-{% highlight ruby %}
-    class apache {
-      service { 'apache':
-        require => Class['squid', 'xml', 'jakarta'],
+    class base::freebsd inherits base::unix {
+      File['/etc/passwd'] {
+        group => 'wheel'
+      }
+      File['/etc/shadow'] {
+        group => 'wheel'
       }
     }
 {% endhighlight %}
 
-The `require` metaparameter does not implicitly declare a class; this means it can be used multiple times and is compatible with parameterized classes, but you must make sure you actually declare the class you're requiring at some point. 
+This is identical to the syntax for [adding attributes to an existing resource][add_attribute], but in a derived class, it gains the ability to rewrite resources instead of just adding to them. Note that you can also use [multi-resource references][multi_ref] here.
 
-Puppet also has [a `require` function](/references/latest/function.html#require), which can be used inside class definitions and which _does_ implicitly declare a class, in the same way that the `include` function does. This function doesn't play well with parameterized classes. The `require` function is largely unnecessary, as class-level dependencies can be managed in other ways.
+You can remove an attribute's previous value without setting a new one by overriding it with the special value [`undef`][undef]:
+
+{% highlight ruby %}
+    class base::freebsd inherits base::unix {
+      File['/etc/passwd'] {
+        group => undef,
+      }
+    }
+{% endhighlight %}
+
+This causes the attribute to be unmanaged by Puppet. 
+
+### Appending to Resource Attributes
+
+Some resource attributes (such as the [relationship metaparameters][relationships]) can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the `+>` ("plusignment") keyword instead of the standard `=>` hash rocket:
+
+{% highlight ruby %}
+    class apache {
+      service {'apache':
+        require => Package['httpd'],
+      }
+    }
+
+    class apache::ssl inherits apache {
+      # host certificate is required for SSL to function
+      Service['apache'] {
+        require +> [ File['apache.pem'], File['httpd.conf'] ],
+        # Since `require` will retain its previous values, this is equivalent to: 
+        # require => [ Package['httpd'], File['apache.pem'], File['httpd.conf'] ],
+      }
+    }
+{% endhighlight %}
 
 
 
 
 
------------------
-
-
-
-
-
-> ## Aside: History, the Future, and Best Practices
+> Aside: History, the Future, and Best Practices
+> -----
 > 
 > Classes often need to be configured with site-specific and node-specific data, especially if they are to be re-used at multiple sites.
 > 
@@ -334,13 +349,13 @@ Puppet also has [a `require` function](/references/latest/function.html#require)
 > #### Using Hiera to Mimic 3.0
 > 
 > [Hiera][] works today as an add-on with Puppet 2.7 and 2.6. If you maintain site data in Hiera and write your parameterized classes to use the following idiom, you can have a complete forward-compatible emulation of Puppet 3.0's auto-lookup:
-> 
+
 {% highlight ruby %}
     class example ( $parameter_one = hiera('example::parameter_one'), $parameter_two = hiera('example::parameter_two') ) {
       ...
     }
 {% endhighlight %}
-> 
+
 > This allows you to use `include` on the class and automatically retrive parameter values from Hiera. When you upgrade to 3.0, Puppet will begin automatically looking up the exact same values that it was manually looking up in Puppet 2.7; you can remove the `hiera()` statements in your default values at your leisure, or leave them there for the sake of of backwards compatibility.
 > 
 > See [the Hiera documentation][hiera] for more details about storing your data in Hiera.
@@ -356,10 +371,10 @@ Puppet also has [a `require` function](/references/latest/function.html#require)
 > * Abandon `include` and use the resource-like syntax to declare all classes. 
 > * If you use "role" classes, make them granular enough that they have absolutely no overlap. Each role class should completely "own" the parameterized classes it declares, and nodes (via node definitions or your ENC) can declare whichever roles they need.
 > * If you don't use "role" classes, every node should declare every single class it needs. This is extraordinarily unwieldy with node definitions, and you will almost certainly need a custom-built ENC able to resolve classes and parameters in a hierarchical fashion. 
-> * Most of your non-role classes or defined types shouldn't declare other classes. If any of them require a given class, you should establish a dependency [relationship][relationships] with the chaining syntax inside the definition (`Class['dependency'] -> Class['example']` or `Class['dependency'] -> Example::Type[$title]`) --- this won't declare the class in question, but will protect you by failing compilation if the class isn't being declared upstream in the role, node definition, or ENC. 
+> * Most of your non-role classes or defined types shouldn't declare other classes. If any of them require a given class, you should establish a dependency [relationship][relationships] with the chaining syntax inside the definition (`Class['dependency'] -> Class['example']` or `Class['dependency'] -> Example::Type[$title]`) --- this won't declare the class in question, but will fail compilation if the class isn't being declared elsewhere (such as in the role, node definition, or ENC). 
 > * If a class does declare another class, it must "own" that class completely, in the style of the "`ntp`, `ntp::service`, `ntp::config`, `ntp::package`" design pattern. 
 > 
-> Most users will want to do something other than this, as it takes fairly extreme design discipline. However, once constructed, it is reliable, knowable, and forward-compatible.
+> Most users will want to do something other than this, as it takes fairly extreme design discipline. However, once constructed, it is reliable and forward-compatible.
 > 
 > #### Mixing and Matching
 > 
