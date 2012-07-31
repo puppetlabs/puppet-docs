@@ -10,14 +10,18 @@ title: "Language: Resources"
 [string]: ./lang_datatypes.html#strings
 [array]: ./lang_datatypes.html#arrays
 [datatype]: ./lang_datatypes.html
+[inheritance]: 
 [relationships]: 
 [resdefaults]: ./lang_defaults.html
+[reference]: 
+[class]: 
+[defined_type]: 
 
 * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
 
-Declaring a resource instructs Puppet to include it in the catalog and manage its state on the target system.
+Declaring a resource instructs Puppet to include it in the catalog and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. 
 
 Resource Declarations
 -----
@@ -183,3 +187,28 @@ If you end an attribute block with a semicolon rather than a comma, you may spec
 {% endhighlight %}
 
 
+Adding or Modifying Attributes
+-----
+
+Although you cannot declare the same resource twice, you can add attributes to an already-declared resource:
+
+{% highlight ruby %}
+    file {'/etc/passwd':
+      ensure => file,
+    }
+    
+    File['/etc/passwd'] {
+      owner => 'root',
+      group => 'root',
+      mode  => 0640,
+    }
+{% endhighlight %}
+
+The general form of an additional attribute block is:
+
+* A [reference][] to the resource in question (or a multi-resource reference)
+* An opening curly brace
+* Any number of attribute => value pairs
+* A closing curly brace
+
+In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already specified attributes. Within an [inherited class][inheritance], you **can** use this idiom to override attributes.
