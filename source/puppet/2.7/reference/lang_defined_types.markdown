@@ -55,7 +55,7 @@ This creates a new type called `apache::vhost`.
 The general form of a type definition is:
 
 * The `define` keyword
-* The **name** of the defined type
+* The [name][naming] of the defined type
 * An optional **set of parameters,** which consists of:
     * An opening parenthesis
     * A comma-separated list of **parameters,** each of which consists of:
@@ -72,7 +72,7 @@ The definition does not cause the code in the block to be added to the catalog; 
 
 Instances of a defined type (often just called "resources") can be declared the same way a [normal resource][resource] is declared. (That is, with a type, title, and set of attribute/value pairs.)
 
-The **parameters** used when defining the type become the **attributes** used when declaring resources of the type (without the `$` prefix). Parameters which have a **default value** are optional; if they are left out of the declaration, the default will be used. Parameters without defaults are mandatory.
+The **parameters** used when defining the type become the **attributes** (without the `$` prefix) used when declaring resources of the type. Parameters which have a **default value** are optional; if they are left out of the declaration, the default will be used. Parameters without defaults are mandatory.
 
 To declare a resource of the `apache::vhost` type from the example above:
 
@@ -108,7 +108,7 @@ Every defined type gets two "free" parameters, which are always available and do
 * `$title` is always set to the [title][] of the instance. Since it is guaranteed to be unique for each instance, it is useful when making sure that contained resources are unique. (See "[Resource Uniqueness](#resource-uniqueness)" below.)
 * `$name` defaults to the value of `$title`, but users can optionally specify a different value when they declare an instance. This is only useful for mimicking the behavior of a resource with a namevar, which is usually unnecessary. If you are wondering whether to use `$name` or `$title`, use `$title`. 
 
-Unlike the other parameters, the values of `$title` and `$name` are already available inside the parameter list itself. This means you can use `$title` as the default value (or part of the default value) for another attribute:
+Unlike the other parameters, the values of `$title` and `$name` are already available **inside the parameter list.** This means you can use `$title` as the default value (or part of the default value) for another attribute:
 
 {% highlight ruby %}
     define apache::vhost ($port, $docroot, $servername = $title, $vhost_name = '*') { ...
@@ -153,7 +153,7 @@ In this example, every resource of the type would default to port 80 unless spec
 Location
 -----
 
-Defined types can and should be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module, and can autoload them by name. Definitions should be stored in the `manifests/` directory of a module with one definition per file, and each filename should reflect the name of its type; see [Module Fundamentals][modules] for more details. 
+Defined types can (and should) be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module, and can autoload them by name. Definitions should be stored in the `manifests/` directory of a module with one definition per file, and each filename should reflect the name of its type; see [Module Fundamentals][modules] for more details. 
 
 > #### Aside: Best Practices
 >

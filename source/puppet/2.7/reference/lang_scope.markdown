@@ -82,7 +82,7 @@ In this example, node scope can access top scope variables, but not vice-versa.
 
 ### Local Scopes
 
-Code inside a [class definition][class] or [defined type definition][definedtype] exists in that definition's **local scope.**
+Code inside a [class definition][class] or [defined type][definedtype] exists in a **local scope.**
 
 Variables and defaults declared in a local scope are only available in **that scope and its children.** There are two different sets of rules for when scopes are considered related; see "scope lookup rules" below.
 

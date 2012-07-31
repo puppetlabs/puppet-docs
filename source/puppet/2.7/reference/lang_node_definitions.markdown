@@ -188,7 +188,7 @@ Although ENCs and node definitions can work together, we recommend that most use
 
 ### Inheritance
 
-Nodes can [inherit][] from other nodes using the `inherits` keyword. Inheritance works identically to class inheritance. **This feature is not recommended; see the aside below.**
+Nodes can [inherit][] from other nodes using the `inherits` keyword. Inheritance works identically to [class inheritance][inherit]. **This feature is not recommended; see the aside below.**
 
 Example: 
 
