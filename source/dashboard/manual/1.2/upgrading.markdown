@@ -26,10 +26,10 @@ Overview
 
 Upgrading Dashboard from a previous version generally consists of the following:
 
-* Stopping the webserver
+* Stopping the webserver and delayed jobs workers
 * [Upgrading the Dashboard code itself](#upgrading-code)
 * [Running any new database migrations](#running-database-migrations)
-* Restarting the webserver
+* Restarting the webserver and delayed jobs workers
 
 In addition, there are several tasks you must take into account when upgrading from certain versions. 
 
@@ -134,7 +134,7 @@ Remember that Rails does not consider "production" its default environment, so y
 
 You'll need to run `db:migrate` once for each environment you use. The `db:migrate` task can be safely run multiple times in the same environment.
 
-After upgrading the code and the database, be sure to restart Dashboard's webserver.
+After upgrading the code and the database, be sure to restart Dashboard's webserver and delayed jobs workers.
 
 
 Upgrading From Versions Prior to 1.2.0
