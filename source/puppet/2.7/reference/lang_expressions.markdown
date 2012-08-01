@@ -65,7 +65,6 @@ When compounding expressions, you should use parentheses for clarity:
 Order of Operations
 -----
 
-<<<<<<< Updated upstream
 Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
 
 {% highlight ruby %}
@@ -76,9 +75,6 @@ Compound expressions are evaluated in a standard order of operations. However, p
 For the sake of clarity, we recommend using parentheses in all but the simplest compound expressions.
 
 The precedence of operators, from highest to lowest:
-=======
-Compound expressions are evaluated in a standard order of operations. The precedence of operators, from highest to lowest is:
->>>>>>> Stashed changes
 
 1. `!` (not)
 2. `in`
