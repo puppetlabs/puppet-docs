@@ -14,7 +14,7 @@ Run stages are an additional way to order resources. They allow groups of classe
 
 Run stages have [several major limitations](#limitations-and-known-issues); you should understand these before attempting to use them. 
 
-The run stage feature consists of two parts: 
+The run stage feature has two parts: 
 
 * A `stage` resource type.
 * A `stage` [metaparameter][], which assigns a class to a named run stage.
@@ -22,7 +22,7 @@ The run stage feature consists of two parts:
 The Default `main` Stage
 -----
 
-By default there is only one stage (named "`main`"), and all resources are automatically associated with this stage unless explicitly assigned to a different one. If you do not use run stages, every resource is in the main stage.
+By default there is only one stage (named "`main`"). All resources are automatically associated with this stage unless explicitly assigned to a different one. If you do not use run stages, every resource is in the main stage.
 
 Custom Stages
 -----
@@ -37,12 +37,12 @@ Additional stages are declared as normal resources. Each additional stage must h
     Stage['main'] -> Stage['last']
 {% endhighlight %}
 
-In the above example, all classes assigned to the `first` stage will be applied before the classes associated with the `main` stage, and both stages will be applied before the `last` stage.
+In the above example, all classes assigned to the `first` stage will be applied before the classes associated with the `main` stage and both stages will be applied before the `last` stage.
 
 Assigning Classes to Stages
 -----
 
-Once stages have been declared, a [class][] may be assigned to a custom stage using the `stage` metaparameter.
+Once stages have been declared, a [class][] may be assigned to a custom stage with the `stage` metaparameter.
 
 {% highlight ruby %}
     class { 'apt-keys':
@@ -58,7 +58,7 @@ Limitations and Known Issues
 -----
 
 * You cannot assign a class to a run stage when declaring it with `include`.
-* You cannot notify or subscribe to resources across a stage boundary.
+* You cannot subscribe to or notify resources across a stage boundary.
 * Due to the "anchor pattern issue" with [containment][], classes that declare other classes will behave badly if declared with a run stage. (The second-order classes will "float off" into the main stage, and since the first-order class likely depended on their resources, this will likely cause failures.)
 
 Due to these limitations, **stages should only be used with the simplest of classes,** and only when absolutely necessary. Mass dependencies like package repositories are effectively the only valid use case.
