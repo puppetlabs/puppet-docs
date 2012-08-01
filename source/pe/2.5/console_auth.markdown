@@ -101,7 +101,7 @@ To delete an existing user (including pending users), click on the user's name i
 
 From PE 2.5.2 onward, you can create new console users from the command line. This can be used to automate user creation or import large numbers of users from an external source at once. 
 
-Command line user creation is done with a rake task. Due to a bug in PE 2.5.2, this task must be performed from a specific working directory, so keep this in mind if building scripts around it. 
+Command line user creation is done with a rake task. Due to a bug in PE 2.5.2 and 2.5.3, this task must be performed from a specific working directory, so keep this in mind if building scripts around it. 
 
 On the console server, the following commands will add a new user:
 

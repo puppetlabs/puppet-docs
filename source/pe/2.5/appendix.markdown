@@ -17,6 +17,29 @@ Release Notes
 
 Changes to Puppet's core are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.10). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
 
+
+### Puppet Enterprise 2.5.3
+
+2.5.3 is a maintenance release, which fixes several outstanding bugs.
+
+#### Bug Fix: Incomplete Upstart Support on Ubuntu
+
+([Issue 15553](https://projects.puppetlabs.com/issues/15553))
+
+This issue, introduced in PE 2.5.2, could cause failures on Ubuntu due to a patch error in our packages, which caused the Upstart service provider to break.
+
+#### Bug Fix: Solaris Uninstaller
+
+On Solaris, the uninstaller would print a bash error regarding integer comparison. This has been fixed.
+
+#### Bug Fix: MCollective Upgrade Failures on Debian-based Systems
+
+Upgrades on Debian-based systems were failing due to the MCollective service not being properly stopped.
+
+#### Update: PE Cloud Provisioner Module to Version 1.0.5
+
+This update includes changes to apt repos, in response to the removal of some redirects on apt.puppetlabs.com.
+
 ### Puppet Enterprise 2.5.2
 
 2.5.2 is a maintenance and update release. It adds support for new platforms and browsers as well as fixing some bugs and updating some components.
@@ -140,12 +163,6 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
-
-### Service Resource Errors on Ubuntu with First PE 2.5.2 Release
-
-([Issue 15553](https://projects.puppetlabs.com/issues/15553))
-
-Early releases of PE 2.5.2 could cause failures on Ubuntu due to a patch error in our packages, which caused the upstart service provider to break. This issue will be fixed with the PE 2.5.2-1 release; users experiencing the issue now can install the updated packages linked to in the issue ticket above.
 
 ### Issues with Compliance UI
 
