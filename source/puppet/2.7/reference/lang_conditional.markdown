@@ -160,8 +160,8 @@ The general form of a case statement is:
 
 Puppet compares the **control expression** to each of the **cases,** in the order they are listed. It will execute the block of code associated with the **first** matching case, and ignore the remainder of the statement.
 
-* Basic cases are compared with [the `==` operator][equality].
-* Regular expression cases are compared with [the `=~` operator][regex_compare].
+* Basic cases are compared with [the `==` operator][equality] (which is case-insensitive). 
+* Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
 * The special `default` case matches anything.
 
 If none of the cases match, Puppet will do nothing and move on.
@@ -280,8 +280,8 @@ The entire selector statement is **treated as a single value.**
 
 Puppet compares the **control variable** to each of the **cases,** in the order they are listed. When it finds a matching case, it will treat that value as the value of the statement and ignore the remainder of the statement.
 
-* Basic cases are compared with [the `==` operator][equality].
-* Regular expression cases are compared with [the `=~` operator][regex_compare].
+* Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
+* Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
 * The special `default` case matches anything.
 
 If none of the cases match, Puppet will **fail compilation with a parse error.** Consequently, a default case should be considered mandatory.
