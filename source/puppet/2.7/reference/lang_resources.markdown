@@ -11,6 +11,7 @@ title: "Language: Resources"
 [array]: ./lang_datatypes.html#arrays
 [datatype]: ./lang_datatypes.html
 [inheritance]: 
+[report]: 
 [relationships]: 
 [resdefaults]: ./lang_defaults.html
 [reference]: 
@@ -23,7 +24,7 @@ title: "Language: Resources"
 
 Declaring a resource instructs Puppet to include it in the catalog and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. 
 
-Resource Declarations
+Syntax
 -----
 
 {% highlight ruby %}
@@ -79,6 +80,18 @@ Every attribute you declare must have a value; the [data type][datatype] of the 
 
 When discussing resources and types, **parameter** is a synonym for attribute.
 
+Behavior
+-----
+
+A resource declaration adds a resource to the catalog, and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
+
+* Read the actual state of the resource on the target system
+* Compare the actual state to the desired state
+* If necessary, change the system to enforce the desired state
+
+### Events
+
+If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
 
 Special Attributes
 -----
@@ -95,7 +108,7 @@ The distinction between title and namevar lets you use a single, consistently-ti
 
 ### Ensure
 
-Many types have an `ensure` attribute. This generally manages the _existence_ of the resource on the target system.
+Many types have an `ensure` attribute. This generally manages the most fundamental aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
 
 Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each type you are working with.
 
