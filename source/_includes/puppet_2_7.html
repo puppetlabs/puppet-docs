@@ -1,6 +1,6 @@
 {% comment %}
 
-### Puppet Reference Manual
+### Puppet 2.7 Reference Manual
 
 - **Puppet 2.7 Overview**
     - What's New in Version 2.7
@@ -56,8 +56,7 @@
     - `"Resources", "./lang_resources.html"`
     - `"Data Types: Strings, Arrays, Hashes, etc.", "./lang_datatypes.html"`
     - `"Resource Defaults", "./lang_defaults.html"`
-    - Variables
-    - Facts and Built-In Variables
+    - `"Variables", "./lang_variables.html"`
     - `"Scope", "./lang_scope.html"`
     - Namespaces and Autoloading
     - Virtual and Exported Resources
@@ -66,7 +65,6 @@
     - `"Defined Types", "./lang_defined_types.html"`
     - `"Run Stages", "./lang_run_stages.html"`
     - `"Node definitions", "./lang_node_definitions.html"`
-    - Class and Node Inheritance
     - `"Containment", "./lang_containment.html"`
     - `"Conditional Statements", "./lang_conditional.html"`
     - `"Expressions", "./lang_expressions.html"`
@@ -74,10 +72,6 @@
     - Resource Collectors (<||>)
     - `"Importing Manifest Files", "./lang_import.html"`
 - **The Ruby DSL**
-- **Variables and Facts**
-    - Facts and Built-In Variables
-    - Scope and Lookup
-    * links to facter docs
 - **Compiling the Configuration Catalog for a Node (Node Classification)**
     - The Node Name
         * certname, node_name, node_name_value, node_name_fact
@@ -151,215 +145,76 @@
 
 {% endcomment %}
 
-<h3>Puppet Reference Manual</h3>
+<h3 id="puppet-27-reference-manual">Puppet 2.7 Reference Manual</h3>
 
 <ul>
-<li><strong>Puppet 2.7 Overview</strong>
-<ul>
-<li>What's New in Version 2.7
-<ul>
-<li>Insert all breaking changes here</li>
-</ul></li>
-<li>System Requirements
-<ul>
-<li>Ruby versions, Facter versions, Hiera versions, known good OSes. </li>
-</ul></li>
-</ul></li>
-<li><strong>Standard Puppet Operation</strong>
-<ul>
-<li>The "Puppet Run"
-<ul>
-<li>Summary of a run, with parallels drawn between standalone and agent/master
-<ul>
-<li>Get plugins from master or modules</li>
-<li>load facts</li>
-<li>request catalog and submit facts</li>
-<li>Determine what classes go in the catalog (node terminus)</li>
-<li>compile/receive catalog</li>
-<li>compare state and apply catalog changes, retrieving files if necessary</li>
-<li>send report</li>
-</ul></li>
-</ul></li>
-<li>Network Communications and Timing Diagrams</li>
-</ul></li>
-<li><strong>Command Line Interface</strong>
-<ul>
-<li>The Puppet Command and Subcommands</li>
-<li>Legacy Command Equivalents</li>
-<li>Getting Help
-<ul>
-<li>puppet help</li>
-<li>puppet man</li>
-<li>puppet config print</li>
-<li>puppet describe</li>
-</ul></li>
-<li>Using Puppet Interactively
-<ul>
-<li>puppet apply</li>
-<li>puppet resource</li>
-<li>puppet agent --test</li>
-</ul></li>
-<li>Managing the Puppet Services
-<ul>
-<li>puppet master (summary)</li>
-<li>puppet agent</li>
-<li>puppet agent w/ cron</li>
-<li>puppet apply w/ cron</li>
-</ul></li>
-<li>Certificate Management</li>
-<li>Puppet Faces
-<ul>
-<li>installing new ones</li>
-</ul></li>
-<li>Developing Puppet Faces</li>
-<li>Man Pages</li>
-</ul></li>
-<li><strong>The Puppet Services</strong>
-<ul>
-<li>Puppet agent</li>
-<li>Puppet master</li>
-<li>Web Servers for the Puppet Master
-<ul>
-<li>Rack interface summary</li>
-<li>WEBrick</li>
-<li>Apache/Passenger</li>
-<li>Nginx/Unicorn</li>
-</ul></li>
-<li>Combine w/ CLI interface things above? does it make sense to split these? </li>
-</ul></li>
-<li><strong>The Puppet Language</strong>
-<ul>
-<li>{% iflink "Summary", "./lang_summary.html" %}</li>
-<li>{% iflink "Reserved Words and Acceptable Names", "./lang_reserved.html" %}</li>
-<li>{% iflink "Comments", "./lang_comments.html" %}</li>
-<li>{% iflink "Resources", "./lang_resources.html" %}</li>
-<li>{% iflink "Data Types: Strings, Arrays, Hashes, etc.", "./lang_datatypes.html" %}</li>
-<li>{% iflink "Resource Defaults", "./lang_defaults.html" %}</li>
-<li>Variables</li>
-<li>Facts and Built-In Variables</li>
-<li>{% iflink "Scope", "./lang_scope.html" %}</li>
-<li>Namespaces and Autoloading</li>
-<li>Virtual and Exported Resources</li>
-<li>Relationships and Ordering</li>
-<li>Classes</li>
-<li>Defined Types</li>
-<li>{% iflink "Run Stages", "./lang_run_stages.html" %}</li>
-<li>{% iflink "Node definitions", "./lang_node_definitions.html" %}</li>
-<li>Class and Node Inheritance</li>
-<li>{% iflink "Containment", "./lang_containment.html" %}</li>
-<li>{% iflink "Conditional Statements", "./lang_conditional.html" %}</li>
-<li>{% iflink "Expressions", "./lang_expressions.html" %}</li>
-<li>Functions</li>
-<li>Resource Collectors (&lt;||>)</li>
-<li>Non-Recommended Language Features
-<ul>
-<li>import</li>
-</ul></li>
-<li>The Ruby DSL</li>
-</ul></li>
-<li><strong>Variables and Facts</strong>
-<ul>
-<li>Facts and Built-In Variables</li>
-<li>Scope and Lookup</li>
-<li>links to facter docs</li>
-</ul></li>
-<li><strong>Compiling the Configuration Catalog for a Node (Node Classification)</strong>
-<ul>
-<li>The Node Name
-<ul>
-<li>certname, node<em>name, node</em>name<em>value, node</em>name<em>fact</li>
-<li>auth.conf issues w/ non-certname node</em>name</li>
-</ul></li>
-<li>Determining Catalog Contents
-<ul>
-<li>Anything outside a node def., the current node def., and whatever the terminus handed over</li>
-</ul></li>
-<li>How Puppet Selects a Node Definition</li>
-<li>The External Node Classifier Interface</li>
-<li>The LDAP Node Terminus</li>
-</ul></li>
-<li><strong>Modules</strong>
-<ul>
-<li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
-<li>Plugins in Modules</li>
-<li>{% iflink "Installing Modules", "./modules_installing.html" %}</li>
-<li>Module Documentation (puppetdoc)</li>
-</ul></li>
-<li><strong>File Serving</strong></li>
-<li><strong>Resource Types and Providers</strong>
-<ul>
-<li>Type and Provider Overview (RAL)</li>
-<li>Core Type Mini-Reference</li>
-<li>Type Reference (the big one)</li>
-<li>How to Get Info for Resource Types 
-<ul>
-<li>and use the huge type reference</li>
-</ul></li>
-<li>Installing custom types from modules</li>
-<li>Writing Types and Providers</li>
-<li>Type and Provider API Quick-Reference</li>
-</ul></li>
-<li><strong>SSL and Certificates</strong>
-<ul>
-<li>SSL Requirements for Normal Communication</li>
-<li>DNS Alt Names for Puppet Masters</li>
-<li>Certificate Management Tools</li>
-<li>Autosigning</li>
-<li>Remote Certificate Signing</li>
-<li>Certificate Request/Retrieval and Timing Diagrams</li>
-</ul></li>
-<li><strong>Puppet Data Library</strong>
-<ul>
-<li>PuppetDB</li>
-<li>Storeconfigs</li>
-<li>Inventory Service</li>
-<li>Writing Custom Reports</li>
-<li>Report Formats</li>
-<li>Resource Graphs</li>
-<li>Catalog Formats</li>
-<li>Node Facts Format</li>
-</ul></li>
-<li><strong>API</strong>
-<ul>
-<li>Puppet Subsystems</li>
-<li>REST API</li>
-<li>Faces Ruby API</li>
-<li>Indirector Faces</li>
-</ul></li>
-<li><strong>Environments</strong>
-<ul>
-<li>Environments</li>
-</ul></li>
-<li><strong>Configuring Puppet</strong>
-<ul>
-<li>Settings and Puppet.conf</li>
-<li>Auth.conf
-<ul>
-<li>Stanza format</li>
-<li>Request processing</li>
-<li>Default values</li>
-</ul></li>
-<li>Other Config Files</li>
-<li>Abridged Configuration Reference</li>
-<li>Full Configuration Reference</li>
-</ul></li>
-<li><strong>Data Binding and Lookup</strong>
-<ul>
-<li>Hiera Integration</li>
-<li>Automatic Data Binding (*for 3.0)</li>
-<li>Data Lookup Functions</li>
-<li>Alternate Data Binding Termini</li>
-<li>Integration Points for Custom Data Sources</li>
-</ul></li>
-<li><strong>Internals</strong>
-<ul>
-<li>Indirections and Termini</li>
-<li>The Autoloader</li>
-<li>The Compiler</li>
-<li>The Transaction</li>
-</ul></li>
-<li><strong>Reference Appendix</strong>
-<ul>
-<li>Generated References</li>
-</ul></li>
+  <li><strong>The Puppet Language</strong>
+    <ul>
+      <li>{% iflink "Summary", "./lang_summary.html" %}</li>
+      <li>{% iflink "Reserved Words and Acceptable Names", "./lang_reserved.html" %}</li>
+      <li>{% iflink "Comments", "./lang_comments.html" %}</li>
+      <li>{% iflink "Resources", "./lang_resources.html" %}</li>
+      <li>{% iflink "Data Types: Strings, Arrays, Hashes, etc.", "./lang_datatypes.html" %}</li>
+      <li>{% iflink "Resource Defaults", "./lang_defaults.html" %}</li>
+      <li>{% iflink "Variables", "./lang_variables.html" %}</li>
+      <li>{% iflink "Scope", "./lang_scope.html" %}</li>
+      <li>Namespaces and Autoloading</li>
+      <li>Virtual and Exported Resources</li>
+      <li>{% iflink "Relationships and Ordering", "./lang_relationships.html" %}</li>
+      <li>{% iflink "Classes", "./lang_classes.html" %}</li>
+      <li>{% iflink "Defined Types", "./lang_defined_types.html" %}</li>
+      <li>{% iflink "Run Stages", "./lang_run_stages.html" %}</li>
+      <li>{% iflink "Node definitions", "./lang_node_definitions.html" %}</li>
+      <li>{% iflink "Containment", "./lang_containment.html" %}</li>
+      <li>{% iflink "Conditional Statements", "./lang_conditional.html" %}</li>
+      <li>{% iflink "Expressions", "./lang_expressions.html" %}</li>
+      <li>{% iflink "Functions", "./lang_functions.html" %}</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Resource Collectors (&lt;</td>
+              <td>&nbsp;</td>
+              <td>&gt;)</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>{% iflink "Importing Manifest Files", "./lang_import.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Modules</strong>
+    <ul>
+      <li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
+      <li>{% iflink "Plugins in Modules", "/guides/plugins_in_modules.html" %}</li>
+      <li>{% iflink "Installing Modules", "./modules_installing.html" %}</li>
+      <li>Module Documentation (puppetdoc) (coming later)</li>
+    </ul>
+  </li>
+  <li><strong>Generated References</strong>
+    <ul>
+      <li><a href="/references/2.7.18/type.html">Resource Types</a></li>
+      <li><a href="/references/2.7.18/configuration.html">Configuration Settings</a></li>
+      <li><a href="/references/2.7.18/function.html">Functions</a></li>
+      <li><a href="/references/2.7.18/metaparameter.html">Metaparameters</a></li>
+      <li><a href="/references/2.7.18/report.html">Report Handlers</a></li>
+    </ul>
+  </li>
+  <li><strong>More Sections Coming Later</strong>
+    <ul>
+      <li><strong>Puppet 2.7 Overview</strong></li>
+      <li><strong>Standard Puppet Operation</strong></li>
+      <li><strong>Command Line Interface</strong></li>
+      <li><strong>The Puppet Services</strong></li>
+      <li><strong>The Ruby DSL</strong></li>
+      <li><strong>Node Classification</strong></li>
+      <li><strong>File Serving</strong></li>
+      <li><strong>Resource Types and Providers</strong></li>
+      <li><strong>SSL and Certificates</strong></li>
+      <li><strong>Puppet Data Library</strong></li>
+      <li><strong>Environments</strong></li>
+      <li><strong>Configuring Puppet</strong></li>
+      <li><strong>Internals</strong></li>
+    </ul>
+  </li>
 </ul>
