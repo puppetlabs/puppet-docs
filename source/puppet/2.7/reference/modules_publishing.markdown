@@ -98,7 +98,7 @@ The Modulefile resembles a configuration or data file, but is actually a simple 
 Modulefiles support the following pieces of metadata:
 
 * `name` --- REQUIRED. The **full name** of the module, including the username (e.g. "username-module" --- [see note above](#a-note-on-module-names)).
-* `version` --- REQUIRED. The current version of the module.
+* `version` --- REQUIRED. The current version of the module. This should be a [semantic version](http://semver.org/).
 * `summary` --- REQUIRED. A one-line description of the module.
 * `description` --- REQUIRED. A more complete description of the module.
 * `dependency` --- A module that this module depends on. Unlike the other fields, the `dependency` method accepts up to three arguments (separated by commas): a module name, a version requirement, and a repository. A Modulefile may include multiple `dependency` lines.
@@ -161,6 +161,6 @@ Release a New Version
 To release a new version of an already published module:
 
 1. Make any necessary edits to your module.
-2. Increment the `version` field in the Modulefile.
+2. Increment the `version` field in the Modulefile (ensuring you use a valid [semantic version](http://semver.org/).
 3. Follow the instructions above for [uploading a release](#upload-a-release).
 
