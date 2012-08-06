@@ -160,7 +160,7 @@ If the installer detects another web server on the node, it will suggest the fir
 
 Access to the console's web interface is [limited to approved users and governed by a lightweight system of roles](./console_auth.html). During installation, you must create an initial admin user for the console by providing an email address and password. 
 
-The only forbidden characters for a console password are `\` (backslash), `'` (single quote), and `$$` (two dollar signs in a row). 
+The only forbidden characters for a console password are `\` (backslash), `'` (single quote), and `$` (dollar sign).
 
 #### SMTP Server
 
