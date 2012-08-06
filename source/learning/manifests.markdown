@@ -28,8 +28,6 @@ Instead, we're going to use [puppet apply](../guides/tools.html#puppet-apply-or-
 
 Yeah, that easy.
 
-You can use `puppet` --- that is, without any subcommand --- as a shortcut for `puppet apply`; it has the rockstar parking in the UI because of how often it runs at an interactive command line. I'll mostly be saying "puppet apply" for clarity's sake.
-
 The behavior of Puppet's man pages is currently in flux. You can always get help for Puppet's command line tools by running the tool with the `--help` flag; in the Learning Puppet VM, which uses Puppet Enterprise, you can also run `pe-man puppet apply` to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will use Git-style man pages (`man puppet-apply`) with improved formatting.
 
 Manifests
