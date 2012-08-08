@@ -22,17 +22,17 @@ title: "Language: Scope"
 Scope Basics
 -----
 
-A **scope** is a specific **area of code,** which is partially isolated from other areas of code. Scopes limit the reach of [variables][] and [resource defaults][resourcedefaults]; the scope where a variable or default is declared determines where it can be used.
+A **scope** is a specific **area of code,** which is partially isolated from other areas of code. Scopes limit the reach of [variables][] and [resource defaults][resourcedefaults]. Where a default or variable can be used is determined by the scope in which it is declared.
 
 ![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][diagram]
 
-Any given scope has access to its own contents, and receives additional contents from its **parent scope,** from node scope, and from top scope.
+Any given scope has access to its own contents, and also receives additional contents from its **parent scope,** from node scope, and from top scope.
 
 In the diagram above:
 
 * Top scope can only access variables and defaults from its own scope.
 * Node scope can access variables and defaults from its own scope **and** top scope.
-* Each of the `example::parent, example::other`, and `example::four` classes can access variables and defaults from its own scope, node scope, and top scope.
+* Each of the `example::parent, example::other`, and `example::four` classes can access variables and defaults from their own scope, node scope, and top scope.
 * The `example::child` class can access variables and defaults from its own scope, `example::parent`'s scope, node scope, and top scope.
 
 
@@ -60,7 +60,7 @@ Code inside a [node definition][node] exists at **node scope.** Note that since 
 
 Variables and defaults declared at node scope are available **everywhere except top scope.**
 
-> Note: Classes and resources declared at top scope **bypass node scope entirely,** and cannot access variables or defaults from node scope.
+> Note: Classes and resources declared at top scope **bypass node scope entirely,** and so cannot access variables or defaults from node scope.
 
 {% highlight ruby %}
     # site.pp
@@ -84,7 +84,7 @@ In this example, node scope can access top scope variables, but not vice-versa.
 
 Code inside a [class definition][class] or [defined type][definedtype] exists in a **local scope.**
 
-Variables and defaults declared in a local scope are only available in **that scope and its children.** There are two different sets of rules for when scopes are considered related; see "scope lookup rules" below.
+Variables and defaults declared in a local scope are only available in **that scope and its children.** There are two different sets of rules for when scopes are considered related; see "[scope lookup rules](#scope-lookup-rules)" below.
 
 {% highlight ruby %}
     # /etc/puppet/modules/scope_example/manifests/init.pp
@@ -155,7 +155,7 @@ Resource defaults are processed **by attribute** rather than as a block. Thus, d
     include scope_example
 {% endhighlight %}    
 
-In this example, `/tmp/example` would be a directory owned by the `puppet` user, combining the defaults from top and local scope. 
+In this example, `/tmp/example` would be a directory owned by the `puppet` user, and would combine the defaults from top and local scope. 
 
 More Details
 -----
@@ -171,9 +171,9 @@ This gives approximately the best and most-expected behavior --- variables from 
 
 ### Named Scopes and Anonymous Scopes
 
-A class definition creates a **named scope,** whose name is the same as the class's name. Top scope is also a named scope, and its name is the empty string.
+A class definition creates a **named scope,** whose name is the same as the class's name. Top scope is also a named scope; its name is the empty string (aka, the null string).
 
-Node scope and the local scopes created by defined resources are **anonymous,** and cannot be directly referenced. 
+Node scope and the local scopes created by defined resources are **anonymous** and cannot be directly referenced. 
 
 ### Accessing Out-of-Scope Variables
 
@@ -192,12 +192,12 @@ This example would set the variable `$local_copy` to the value of the `$confdir`
 
 > Notes: 
 > 
-> * Remember that top scope's name is the empty string. Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if a local scope overrode its value.
+> * Remember that top scope's name is the empty string (a.k.a, the null string). Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
 > * Note that a class must be [declared][declare_class] in order to access its variables; simply having the class available in your modules is insufficient. 
 > 
 >   This means the availability of out-of-scope variables is **parse order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
 
-Variables declared in **anonymous scopes** can only be accessed normally, and do not have global qualified names. 
+Variables declared in **anonymous scopes** can only be accessed normally and do not have global qualified names. 
 
 
 Scope Lookup Rules
@@ -213,7 +213,7 @@ More details about the elimination of dynamic scope can be found [here][scopedoc
 
 In **static scope,** parent scopes are **only** assigned by [class inheritance][inheritance] (using the `inherits` keyword). Any **derived** class receives the contents of its base class in addition to the contents of node and top scope.
 
-**All other** local scopes have no parents --- they only receive their own contents, and the contents of node (if applicable) and top scope.
+**All other** local scopes have no parents --- they only receive their own contents, and the contents of node scope (if applicable) and top scope.
 
 > Static scope has the following characteristics:
 > 
@@ -243,6 +243,6 @@ If used simply, dynamic scope will usually yield simple results; in fact, it can
 Messy Under-the-Hood Details
 -----
 
-* Node scope only exists if there is at least one node definition in the site manifest (or [imported][import] into it). If no node definitions exist, then ENC classes get declared at top scope. 
+* Node scope only exists if there is at least one node definition in the site manifest (or one has been [imported][import] into it). If no node definitions exist, then ENC classes get declared at top scope. 
 * Although top scope and node scope are described above as being special scopes, they are actually implemented as part of the chain of parent scopes, with node scope being a child of top scope and the parent of any classes declared inside the node definition. However, since the move to static scoping causes them to behave as little islands of dynamic scoping in a statically scoped world, it's simpler to think of them as special cases.
 * If you ignore best practices and use node [inheritance][], the rules of parent scope assignment treat node definitions like classes; that is, the base node becomes the parent scope of the derived node, and normal dynamic scoping will apply to the classes declared in each of the two definitions. Note that this will usually yield the opposite result of whatever you are trying to achieve. 
