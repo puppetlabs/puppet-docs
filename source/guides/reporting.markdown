@@ -60,7 +60,7 @@ in the reportdir.
 
 Clients default to sending reports to the same server they get
 their configurations from, but you can change that by setting
-`reportserver` on the client, so if you have load-balanced Puppet
+[`reportserver`](references/latest/configuration.html#reportserver) on the client, so if you have load-balanced Puppet
 servers you can keep all of your reports consolidated on a single
 machine.
 
