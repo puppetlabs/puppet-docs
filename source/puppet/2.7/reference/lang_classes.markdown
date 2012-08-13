@@ -33,7 +33,7 @@ title: "Language: Classes"
 [enc]: 
 [metaparameters]: 
 
-**Classes** are named blocks of Puppet code, which are not applied unless they are invoked by name. They can be stored in [modules][] for later use, and declared (added to a node's catalog) with the `include` function or a resource-like syntax.
+**Classes** are named blocks of Puppet code which are not applied unless they are invoked by name. They can be stored in [modules][] for later use and then declared (added to a node's catalog) with the `include` function or a resource-like syntax.
 
 Syntax
 -----
@@ -82,7 +82,7 @@ The general form of a class declaration is:
     * An opening parenthesis
     * A comma-separated list of **parameters,** each of which consists of:
         * A new [variable][] name, including the `$` prefix
-        * An optional equals sign and **default value** (any data type)
+        * An optional equals (=) sign and **default value** (any data type)
     * A closing parenthesis
 * Optionally, the `inherits` keyword followed by a single class name
 * An opening curly brace
@@ -91,21 +91,21 @@ The general form of a class declaration is:
 
 ### Declaring a Class With `include`
 
-Declaring a class adds all of the code it contains to the catalog. `include` is a [function][] that declares classes.
+Declaring a class adds all of the code it contains to the catalog. Classes can be declared with the `include` function [function][].
 
 {% highlight ruby %}
     # Declaring a class with include
     include base::linux
 {% endhighlight %}
 
-You can safely use `include` multiple times on the same class, and it will only be declared once:
+You can safely use `include` multiple times on the same class and it will only be declared once:
 
 {% highlight ruby %}
     include base::linux
     include base::linux # Has no additional effect
 {% endhighlight %}
 
-`include` can accept a single class name, a comma-separated list of class names, or an array of class names:
+The `include` function can accept a single class name, a comma-separated list of class names, or an array of class names:
 
 {% highlight ruby %}
     $my_classes = ['base::linux', 'apache']
@@ -116,7 +116,7 @@ You can safely use `include` multiple times on the same class, and it will only 
     include base::linux, apache # including a list of classes
 {% endhighlight %}
 
-`include` **cannot pass values to a class's parameters.** You may still use `include` with parameterized classes, but only if every parameter has a default value; parameters without defaults are mandatory, and will require you to use the resource-like syntax to declare the class.
+The `include` function **cannot pass values to a class's parameters.** You may still use `include` with parameterized classes, but only if every parameter has a default value; parameters without defaults are mandatory, and will require you to use the resource-like syntax to declare the class.
 
 ### Declaring a Class with `require`
 
@@ -129,7 +129,7 @@ The `require` function acts like `include`, but also causes the class to become 
     }
 {% endhighlight %}
 
-Whenever an `apache::vhost` resource is declared, Puppet will add the contents of the `apache` class to the catalog if it hasn't already done so, and will ensure that every resource in class `apache` is processed before every resource in that `apache::vhost` instance. 
+In the above example, whenever an `apache::vhost` resource is declared, Puppet will add the contents of the `apache` class to the catalog if it hasn't already done so and it will ensure that every resource in class `apache` is processed before every resource in that `apache::vhost` instance. 
 
 Note that this can also be accomplished with relationship chaining. The following example will have an identical effect:
 
@@ -168,7 +168,7 @@ A class **can only be declared this way once:**
 
 Thus, unlike with `include`, you must carefully manage where and how classes are declared when using this syntax. 
 
-The resource-like syntax **should not be mixed with `include` for a given class.** The behavior of the two syntaxes when mixed is **undefined;** practically speaking, the results will be parse-order dependent, and will sometimes succeed and sometimes fail. 
+The resource-like syntax **should not be mixed with `include` for a given class.** The behavior of the two syntaxes when mixed is **undefined;** but practically speaking, the results will be parse-order dependent and will sometimes succeed and sometimes fail. 
 
 ### Declaring a Class With an ENC
 
@@ -194,7 +194,7 @@ The parameters of a class can be used as local variables inside the class's defi
     }
 {% endhighlight %}
 
-In the example above, the value of `$version` within the class definition would be set to `2.2.21`.
+In the example above, the value of `$version` within the class definition would be set to the attribute `2.2.21`.
 
 ### Containment
 
@@ -204,7 +204,7 @@ Note that classes cannot contain other classes. This is a known design issue; [s
 
 ### Metaparameters
 
-When declared with the resource-like syntax, a class may use any [metaparameter][metaparameters]. If it does, every resource contained in the class will also have that metaparameter. So if you declare a class with `noop => true`, every resource in it will also have `noop => true`, unless they specifically override it. Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any specific values from the individual resource.
+When declared with the resource-like syntax, a class may use any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter. So if you declare a class with `noop => true`, every resource in the class will also have `noop => true`, unless they specifically override it. Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any specific values from the individual resource.
 
 
 
@@ -213,15 +213,15 @@ Location
 
 ### Definitions
 
-Class definitions can (and should) be stored in [modules][]. Puppet is automatically aware of any classes in a valid module, and can autoload them by name. Classes should be stored in the `manifests/` directory of a module with one class per file, and each filename should reflect the name of its class; see [Module Fundamentals][modules] for more details. 
+Class definitions can (and should) be stored in [modules][]. Puppet is automatically aware of any classes in a valid module and can autoload them by name. Classes should be stored in the `manifests/` directory of a module with one class per file, and each filename should reflect the name of its class; see [Module Fundamentals][modules] for more details. 
 
 > #### Aside: Best Practices
 >
 > You should usually only load classes from modules. Although the additional options below this aside will work, they are not recommended.
 
-You can also put class definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file, and are not parse-order dependent.
+You can also put class definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 
-This version of Puppet still allows class definitions to be stored in other class definitions, which puts the interior class under the exterior class's [namespace][]; it does not cause the interior class to be automatically declared when the exterior class is. Note that although this is not yet formally deprecated, it is very much not recommended. 
+This version (2.7) of Puppet still allows class definitions to be stored in other class definitions, which puts the interior class under the exterior class's [namespace][]; it does not cause the interior class to be automatically declared when the exterior class is. Note that although this is not yet formally deprecated, it is very much not recommended. 
 
 ### Declarations
 
@@ -241,7 +241,7 @@ Inheritance
 
 Classes can be derived from other classes using the `inherits` keyword. This allows you to make special-case classes that extend the functionality of a more general "base" class. 
 
-> Note: Puppet 2.7 does not support using parameterized classes as inheritable base classes. The base class must have no parameters.
+> Note: Puppet 2.7 does not support using parameterized classes for inheritable base classes. The base class must have no parameters.
 
 Inheritance causes three things to happen: 
 
@@ -257,7 +257,7 @@ Inheritance causes three things to happen:
 
 ### Overriding Resource Attributes
 
-The attributes of any resource in the base class can be overriden with a [reference][resource_reference] to the resource you wish to override, followed by a pair of curly braces containing attribute => value pairs:
+The attributes of any resource in the base class can be overridden with a [reference][resource_reference] to the resource you wish to override, followed by a set of curly braces containing attribute => value pairs:
 
 {% highlight ruby %}
     class base::freebsd inherits base::unix {
@@ -316,7 +316,7 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 > 
 > The traditional way to get this info into a class was to have it look outside its local [scope][] and read arbitrary variables, which would be set by the user however they saw fit. (If you're curious, this was why ENC-set variables were originally called "parameters:" they were almost always used to pass data into classes.) This entire approach was brittle and bad, because all classes were effectively competing for variable names in a global namespace, and the only ways to find a given class's requirements were to be really diligent about documentation or read the entire module's code. 
 > 
-> Parameters for classes were introduced in Puppet 2.6 as a way to directly pass site/node-specific data into a class --- by declaring up-front what information was necessary to configure the class, module developers could communicate quickly and unambiguously to users and we could eventually build automated tooling to help with discovery. This helped a bit, but it also introduced new problems and revealed some existing ones:
+> Parameters for classes were introduced in Puppet 2.6 as a way to directly pass site/node-specific data into a class. By declaring up-front what information was necessary to configure the class, module developers could communicate quickly and unambiguously to users and Puppet Labs could eventually build automated tooling to help with discovery. This helped a bit, but it also introduced new problems and revealed some existing ones:
 > 
 > - Given that the `include` function can take multiple classes, there was no good way to make it also accept class parameters. This necessitated a new and less convenient syntax for using classes with parameters. 
 > - If a class were to be declared twice with conflicting parameter values, there was no framework for deciding which declaration should win. Thus, Puppet will simply fail compilation if there's any possibility of a conflict --- that is, if the syntax that allows parameters is used twice for a given class. The result: parameterized classes wouldn't work with some very common design patterns, including:
@@ -324,7 +324,7 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 >     - Building overlapping "role" classes and declaring more than one role on some nodes.
 > - The question of what to do about parameter conflicts also emphasized the fact that, using the traditional method of grabbing arbitrary variables, it was already possible to create parse-order dependent conflicts by using `include` multiple times in different scopes. (This remained possible after parameterized classes were introduced.)
 > 
-> The result was that class parameters were an incomplete feature, which didn't finish solving the problems that inspired them --- or rather, they _could_ solve the problem, but the cost was a much more difficult and rigorous site design, one which felt unnatural to a lot of users. This actually made the problem quite a bit _worse,_ mostly by muddying our message to users about how to deal with these issues and presenting the illusion that a very-much-still-alive problem was solved. This remained the state of affairs in Puppet 2.7. 
+> The result was that class parameters were an incomplete feature, which didn't finish solving the problems that inspired them --- or rather, they _could_ solve the problem, but the cost was a much more difficult and rigorous site design, one which felt unnatural to many users. This actually made the problem a bit _worse,_ mostly by muddying our message to users about how to deal with these issues and presenting the illusion that a very-much-still-alive problem was solved. This remained the state of affairs in Puppet 2.7. 
 > 
 > After a lot of research, we decided there were actually _two_ requirements for really solving the question of site/node-specific class data. The first was explicit class parameters, which we now had; the second was a guarantee that, while compiling a given node's catalog, there would only be **one possible value** for any given parameter. This second piece of the puzzle would restore and reaffirm the usefulness of `include`, let parameterized classes work with the traditional large-scale Puppet design patterns, and still let us have all of the benefits of class parameters. (That is: strict namespacing, obvious placement, and visibility to outside tools.) Since Puppet's language allows so much flexible logic in manifests, we determined that the only way to fulfill this second requirement was to fetch parameter values from somewhere _outside_ the Puppet manifests, and the fits-most-cases tool we settled on was [Hiera][].
 > 
@@ -333,7 +333,7 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 > - Puppet will require [Hiera][], a hierarchical data lookup tool which lets you set site-wide values and override them for groups of nodes and specific nodes. 
 > - The `include` function can be used with every class, including parameterized classes. 
 > - If you use `include` on a class with parameters, Puppet will automatically look up each parameter in Hiera, using the lookup key `class_name::parameter_name`. (So the `apache` class's `$version` parameter would be looked up as `apache::version`.) If a parameter isn't set in Hiera, Puppet will use the default value; if it's absent and there's no default, compilation will fail and you'll have to set a value for it if you want to use the class.
-> - You can still set parameters directly with the resource-like syntax or an ENC, and they will override any values from Hiera. However, you shouldn't need to (and won't want to) do this. 
+> - You can still set parameters directly with the resource-like syntax or with an ENC and they will override any values from Hiera. However, you shouldn't need to (and won't want to) do this. 
 > 
 > In the meantime, there are several approaches to dealing with this space in your own modules and site design. 
 > 
@@ -369,8 +369,8 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 > In short, you'll need to do the following:
 > 
 > * Abandon `include` and use the resource-like syntax to declare all classes. 
-> * If you use "role" classes, make them granular enough that they have absolutely no overlap. Each role class should completely "own" the parameterized classes it declares, and nodes (via node definitions or your ENC) can declare whichever roles they need.
-> * If you don't use "role" classes, every node should declare every single class it needs. This is extraordinarily unwieldy with node definitions, and you will almost certainly need a custom-built ENC able to resolve classes and parameters in a hierarchical fashion. 
+> * If you use "role" classes, make them granular enough that they have absolutely no overlap. Each role class should completely "own" the parameterized classes it declares and nodes (via node definitions or your ENC) can declare whichever roles they need.
+> * If you don't use "role" classes, every node should declare every single class it needs. This is extraordinarily unwieldy with node definitions, and you will almost certainly need a custom-built ENC which can resolve classes and parameters in a hierarchical fashion. 
 > * Most of your non-role classes or defined types shouldn't declare other classes. If any of them require a given class, you should establish a dependency [relationship][relationships] with the chaining syntax inside the definition (`Class['dependency'] -> Class['example']` or `Class['dependency'] -> Example::Type[$title]`) --- this won't declare the class in question, but will fail compilation if the class isn't being declared elsewhere (such as in the role, node definition, or ENC). 
 > * If a class does declare another class, it must "own" that class completely, in the style of the "`ntp`, `ntp::service`, `ntp::config`, `ntp::package`" design pattern. 
 > 
@@ -378,6 +378,6 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 > 
 > #### Mixing and Matching
 > 
-> The most important thing when mixing styles is to make sure your site's internal documentation is very very clear. 
+> The most important thing when mixing styles is to make sure your site's internal documentation is very, very clear. 
 > 
 > If possible, you should implement Hiera and use the idiom above for mimicking 3.0 behavior on your handful of parameterized classes. This will give you and your colleagues an obvious path forward when you eventually refactor your existing modules, and you can safely continue to add parameters (or not) at your leisure while declaring all of your classes in the same familiar way. 
