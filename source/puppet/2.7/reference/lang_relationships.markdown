@@ -20,7 +20,7 @@ title: "Language: Relationships and Ordering"
 
 
 
-The order of [resources][] in a Puppet manifest does not matter. Puppet assumes that most resources are not related to each other, and will manage the resources in whatever order is most efficient.
+The order of [resources][] in a Puppet manifest does not matter. Puppet assumes that most resources are not related to each other and will manage the resources in whatever order is most efficient.
 
 If a group of resources should be managed in a specific order, you must explicitly declare the relationships. 
 
@@ -115,7 +115,7 @@ The chaining arrows accept the following types of operands on either side of the
 * [Resource declarations][resources]
 * [Resource collectors][collector]
 
-> Note: Arrays of references cannot be chained; to chain multiple resources at once, you must use a multi-resource reference or a collector.
+> Note: Arrays of references cannot be chained. To chain multiple resources at once, you must use a multi-resource reference or a collector.
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline:"
 
@@ -149,9 +149,9 @@ And since collectors can be chained, you can create many-to-many relationships:
 
 This example would apply all yum repository resources before applying any package resources, which protects any packages that rely on custom repos. 
 
-> Note: Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles), and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], as collectors implicitly realize them. 
+> Note: Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles) and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.  
 
-> Note: Collectors can only search on attributes which are present in the manifests, and cannot see properties that must be read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests --- it would not affect any packages that didn't specify a provider but would end up using Yum.
+> Note: Collectors can only search on attributes which are present in the manifests and cannot see properties that must be read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests. It would not affect any packages that didn't specify a provider but would end up using Yum.
 
 #### Reversed Forms
 
@@ -199,7 +199,7 @@ A notification relationship does the same, but **also** sends the latter resourc
 
 ### Refreshing
 
-Only certain resource types can refresh themselves; of the built-in types, these are [service][], [mount][], and [exec][]. 
+Only certain resource types can refresh themselves. Of the built-in types, these are [service][], [mount][], and [exec][]. 
 
 Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
 
