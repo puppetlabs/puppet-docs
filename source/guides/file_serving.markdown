@@ -69,8 +69,8 @@ exactly like that of [rsync](http://samba.anu.edu.au/rsync/), and roughly resemb
 
     [mount_point]
         path /path/to/files
-        allow *.domain.com
-        deny *.wireless.domain.com
+        allow *.example.com
+        deny *.wireless.example.com
 
 The following options can currently be specified for a given mount point:
 
@@ -119,9 +119,9 @@ allowed to access the applicable mount points.
 
 ### Priority
 
-More specific `deny` and `allow` statements take precedence over less specific statements; that is, an `allow` statement for `node.domain.com` would let it connect despite a `deny` statement for `*.domain.com`. At a given level of specificity, `deny` statements take precedence over `allow` statements.
+More specific `deny` and `allow` statements take precedence over less specific statements; that is, an `allow` statement for `node.example.com` would let it connect despite a `deny` statement for `*.example.com`. At a given level of specificity, `deny` statements take precedence over `allow` statements.
 
-Unpredictable behavior can result from mixing IP address directives with hostname and domain name directives, so try to avoid doing that.  (Currently, if node.domain.com's IP address is 192.168.1.80 and `fileserver.conf` contains `allow 192.168.1.80` and `deny node.domain.com`, the IP-based `allow` directive will actually take precedence. This behavior may be changed in the future and should not be relied upon.)
+Unpredictable behavior can result from mixing IP address directives with hostname and domain name directives, so try to avoid doing that.  (Currently, if node.example.com's IP address is 192.168.1.80 and `fileserver.conf` contains `allow 192.168.1.80` and `deny node.example.com`, the IP-based `allow` directive will actually take precedence. This behavior may be changed in the future and should not be relied upon.)
 
 ### Host Names
 

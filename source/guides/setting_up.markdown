@@ -140,7 +140,7 @@ machine, run the agent against the central server to verify
 that everything is working appropriately. You should start the
 agent in verbose mode the first time and with the `--waitforcert` flag enabled:
 
-    # puppet agent --server myserver.domain.com --waitforcert 60 --test
+    # puppet agent --server myserver.example.com --waitforcert 60 --test
 
 Adding the --test flag causes the puppet agent to stay in the foreground; print extra output; only run once, then exit; and to exit immediately if the puppet master fails to compile the configuration catalog (by default, puppet agent will use a cached configuration if there is a problem with the remote manifests).
 
@@ -163,7 +163,7 @@ On your server, list the waiting certificates:
 You should see the name of the test agent node. Now go ahead and sign
 the certificate:
 
-    # puppet cert --sign mytestagent.domain.com
+    # puppet cert --sign mytestagent.example.com
 
 Within 60 seconds, your test agent should receive its certificate
 from the server, receive its configuration, apply it locally, and

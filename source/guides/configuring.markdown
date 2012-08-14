@@ -257,8 +257,8 @@ By default, `fileserver.conf` isn't necessary, provided that you only need to se
     # at puppet:///mount_point/.
     [mount_point]
         path /path/to/files
-        allow *.domain.com
-        deny *.wireless.domain.com
+        allow *.example.com
+        deny *.wireless.example.com
 
 See the [file serving documentation](./file_serving.html) for more details. 
 
@@ -293,9 +293,9 @@ The list of tags on a line builds the set of resources whose messages will be in
 
 So, for example:
 
-    all: log-archive@domain.com
-    webserver, !mailserver: httpadmins@domain.com
-    emerg, crit: james@domain.com, zach@domain.com, ben@domain.com
+    all: log-archive@example.com
+    webserver, !mailserver: httpadmins@example.com
+    emerg, crit: james@example.com, zach@example.com, ben@example.com
 
 This `tagmail.conf` file will mail any resource events tagged with `webserver` but _not_ with `mailserver` to the httpadmins group; any emergency or critical events to to James, Zach, and Ben, and all events to the log-archive group.
 

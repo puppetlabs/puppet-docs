@@ -813,7 +813,7 @@ For classes:
     #
     # === Authors
     #
-    # Author Name <author@domain.com>
+    # Author Name <author@example.com>
     #
     # === Copyright
     #
@@ -856,7 +856,7 @@ For defined resources:
     #
     # === Authors
     #
-    # Author Name <author@domain.com>
+    # Author Name <author@example.com>
     #
     # === Copyright
     #

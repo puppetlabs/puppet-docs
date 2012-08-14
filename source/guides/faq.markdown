@@ -417,7 +417,7 @@ It is very tempting to enable autosign for all nodes, as it cuts
 down on the manual steps required to bootstrap a new node (or
 indeed to move it to a new puppet master).
 
-Typically this would be done with a \*.mydomain.com or even \* in
+Typically this would be done with a \*.example.com or even \* in
 the autosign.conf file.
 
 This however can be very dangerous as it can enable a node to
@@ -427,15 +427,15 @@ certificate common name ('CN' - usually its fqdn, but this is fully
 configurable), and the puppet master then uses this CN to look up
 the node definition to serve. The certificate itself is stored, so
 two nodes could not connect with the same CN (eg
-alice.mydomain.com), but this is not the problem.
+alice.example.com), but this is not the problem.
 
 The problem lies in the fact that the puppet master does not make a
 1-1 mapping between a node and the first certificate it saw for it,
 and hence multiple certificates can map to the same node, for
 example:
 
--   alice.mydomain.com connects, gets node alice { } definition.
--   bob.mydomain.com connects with CN alice.bob.mydomain.com, and
+-   alice.example.com connects, gets node alice { } definition.
+-   bob.example.com connects with CN alice.bob.example.com, and
     also matches node alice { } definition.
 
 Without autosigning, it would be apparent that bob was trying to
