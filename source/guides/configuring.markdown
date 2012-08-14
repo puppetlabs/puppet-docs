@@ -269,7 +269,7 @@ Note that certname globs do not function as normal globs: an asterisk can only r
 Your puppet master server can send targeted emails to different admin users whenever certain resources are changed. This requires that you:
 
 * Set `report = true` on your agent nodes
-* Set `reports = tagmail` on the puppet master ([`reports`] accepts a list, so you can enable any number of reports)
+* Set `reports = tagmail` on the puppet master ([the `reports` setting][reports] accepts a list, so you can enable any number of reports)
 * Set the [`reportfrom`][reportfrom] email address and either the [`smtpserver`][smtpserver] or [`sendmail`][sendmail] setting on the puppet master
 * Create a `tagmail.conf` file at the location specified in the `tagmap` setting
 
