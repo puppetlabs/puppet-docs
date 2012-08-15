@@ -4,17 +4,17 @@ title: "Language: Relationships and Ordering"
 ---
 
 <!-- TODO -->
-[resources]: 
 [virtual]: 
 [collector]: 
-[reference]: 
-[array]: 
+[resources]: ./lang_resources.html
+[reference]: ./lang_datatypes.html#resource-references
+[array]: ./lang_datatypes.html#arrays
 [class]: ./lang_classes.html
 [event]: ./lang_resources.html#behavior
 [service]: /references/latest/type.html#service
 [exec]: /references/latest/type.html#exec
 [mount]: /references/latest/type.html#mount
-[metaparameters]: 
+[metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#declaring-a-class-with-require
 
 

@@ -4,24 +4,24 @@ layout: default
 ---
 
 <!-- TODO -->
+[sitedotpp]: 
+[namespaces]: 
+[collector]: 
 [resource]: ./lang_resources.html#resource-declarations
 [naming]: ./lang_reserved.html#classes-and-types
 [resource_namevar]: ./lang_resources.html#namenamevar
-[relationships]: 
+[relationships]: ./lang_relationships.html
 [resource_title]: ./lang_resources.html#title
-[metaparameters]: 
-[collector]: 
-[namespaces]: 
-[modules]: 
-[resource_defaults]: 
-[classes]: 
-[variable_assignment]: 
-[variable]: 
-[sitedotpp]: 
-[references_namespaced]: 
+[metaparameters]: ./lang_resources.html#metaparameters
+[modules]: ./modules_fundamentals.html
+[resource_defaults]: ./lang_defaults.html
+[classes]: ./lang_classes.html
+[variable_assignment]: ./lang_variables.html#assignment
+[variable]: ./lang_variables.html
+[references_namespaced]: ./lang_datatypes.html#resource-references
 [attributes]: ./lang_resources.html#attributes
-[title]: 
-[contains]: 
+[title]: ./lang_resources.html#title
+[contains]: ./lang_containment.html
 
 **Defined resource types** (also called **defined types** or **defines**) are blocks of Puppet code that can be evaluated multiple times with different parameters. Once defined, they act like a new resource type: you can cause the block to be evaluated by [declaring a resource][resource] of that new type. 
 
@@ -169,6 +169,6 @@ Naming
 
 [The characters allowed in a defined type's name are listed here][naming]. 
 
-If the definition is stored in a module, its name must reflect its place in the module. See [Module Fundamentals][modules] for details. 
+If the definition is stored in a module, its name must reflect its place in the module with its [namespace][namespaces]. See [Module Fundamentals][modules] for details. 
 
 Note that if a type's name has one or more [namespaces][] in it, each name segment must be capitalized when writing a [resource reference][references_namespaced], [collector][], or [resource default][resource_defaults]. (For example, a reference to the vhost resource declared above would be `Apache::Vhost['homepages']`.)

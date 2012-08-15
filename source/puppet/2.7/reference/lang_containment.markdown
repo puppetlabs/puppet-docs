@@ -3,12 +3,11 @@ layout: default
 title: "Language: Containment of Resources"
 ---
 
-<!-- todo -->
-[stdlib]: 
-[classes]: 
-[definedtype]: 
-[relationship]: 
-[notify]: 
+[stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[classes]: ./lang_classes.html
+[definedtype]: ./lang_defined_types.html
+[relationship]: ./lang_relationships.html
+[notify]: ./lang_relationships.html#ordering-and-notification
 
 Containment
 -----

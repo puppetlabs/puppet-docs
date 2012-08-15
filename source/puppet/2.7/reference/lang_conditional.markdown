@@ -4,18 +4,16 @@ layout: default
 ---
 
 
-<!-- TODO -->
 [boolean]: ./lang_datatypes.html#booleans
 [regex]: ./lang_datatypes.html#regular-expressions
-[facts]: 
-[equality]: 
+[facts]: ./lang_variables.html#facts
+[equality]: ./lang_expressions.html#equality
 [fail]: /references/latest/function.html#fail
-[regex_compare]:
-[expressions]: 
+[regex_compare]: ./lang_expressions.html#regex-match
+[expressions]: ./lang_expressions.html
 [bool_convert]: ./lang_datatypes.html#automatic-conversion-to-boolean
-[variables]: 
-[expressions]: 
-[functions]: 
+[variables]: ./lang_variables.html
+[functions]: ./lang_functions.html
 
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.

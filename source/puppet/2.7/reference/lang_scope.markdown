@@ -3,18 +3,16 @@ layout: default
 title: "Language: Scope"
 ---
 
-<!-- TODO -->
-[class]: 
-[definedtype]: 
-[node]: 
-[resourcedefaults]: 
-[declare_class]: 
-[lookup]: (on-page)
-[enc]: 
-[inheritance]: 
-[import]: 
+[class]: ./lang_classes.html
+[definedtype]: ./lang_defined_types.html
+[node]: ./lang_node_definitions.html
+[resourcedefaults]: ./lang_defaults.html
+[declare_class]: ./lang_classes.html#declaring-a-class-with-include
+[lookup]: #scope-lookup-rules
+[enc]: /guides/external_nodes.html
+[inheritance]: ./lang_classes.html#inheritance
+[import]: ./lang_import.html
 [scopedoc]: /guides/scope_and_puppet.html
-
 [variables]: ./lang_variables.html
 [namespace]: ./lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png

@@ -5,22 +5,22 @@ title: "Language: Node Definitions"
 
 <!-- TODO -->
 
-[classes]: 
 [hiera]: 
+[sitepp]: 
+[node_classification]: 
+[certname]: 
+[classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope
-[extlookup]: 
-[node_classification]: 
-[custom_functions]: 
-[sitepp]: 
-[import]: 
+[extlookup]: /references/latest/function.html#extlookup
+[custom_functions]: /guides/custom_functions.html
+[import]: ./lang_import.html
 [regex]: ./lang_datatypes.html#regular-expressions
 [strings]: ./lang_datatypes.html#strings
-[certname]: 
-[inherit]: 
-[modules]: 
-[enc]: 
-[facts]: 
+[inherit]: ./lang_classes.html#inheritance
+[modules]: ./modules_fundamentals.html
+[enc]: /guides/external_nodes.html
+[facts]: ./lang_variables.html#facts-and-built-in-variables
 
 
 A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's catalog. This feature allows you to assign specific configurations to specific nodes.
@@ -143,7 +143,7 @@ digits.
 
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.
 
-> Make sure that node regexes do not overlap. If more than regex statement matches a given node, the one it gets will be parse-order dependent.
+> Make sure that node regexes do not overlap. If more than one regex statement matches a given node, the one it gets will be parse-order dependent.
 
 Behavior
 -----
@@ -188,7 +188,7 @@ Although ENCs and node definitions can work together, we recommend that most use
 
 ### Inheritance
 
-Nodes can [inherit][] from other nodes using the `inherits` keyword. Inheritance works identically to [class inheritance][inherit]. **This feature is not recommended; see the aside below.**
+Nodes can inherit from other nodes using the `inherits` keyword. Inheritance works identically to [class inheritance][inherit]. **This feature is not recommended; see the aside below.**
 
 Example: 
 

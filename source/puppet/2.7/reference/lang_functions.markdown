@@ -3,15 +3,14 @@ title: "Language: Functions"
 layout: default
 ---
 
-<!-- TODO -->
 [func_ref]: /references/latest/function.html
 [compilation]: ./lang_summary.html#compilation
 [forge]: http://forge.puppetlabs.com
 [custom]: /guides/custom_functions.html
-[stdlib]: 
-[resource]: 
-[custom_facts]: 
-[datatype]: 
+[stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[resource]: ./lang_resources.html
+[custom_facts]: /guides/custom_facts.html
+[datatype]: ./lang_datatypes.html
 
 * [See the Function Reference for complete info about Puppet's built-in functions.][func_ref]
 

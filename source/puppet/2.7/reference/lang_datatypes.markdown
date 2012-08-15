@@ -3,22 +3,20 @@ layout: default
 title: "Language: Data Types"
 ---
 
-<!-- TODO -->
 
-[attribute]: 
-[function]: 
-[variables]: 
-[if]: 
-[comparison]: 
-[stdlib]: 
-[facts]: 
-[reserved]: 
+[attribute]: ./lang_resources.html#syntax
+[function]: ./lang_functions.html
+[variables]: ./lang_variables.html
+[if]: ./lang_conditional.html#if-statements
+[comparison]: ./lang_expressions.html#comparison-operators
+[stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[facts]: ./lang_variables.html#facts
+[reserved]: ./lang_reserved.html#reserved-words
 [attribute_override]: ./lang_resources.html#adding-or-modifying-attributes
-[resourcedefault]: 
-[functions]: 
+[resourcedefault]: ./lang_defaults.html
 [node_def]: ./lang_node_definitions.html
-[relationship]: 
-[chaining]: 
+[relationship]: ./lang_relationships.html
+[chaining]: ./lang_relationships.html#chaining-arrows
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
 
@@ -27,7 +25,7 @@ Booleans
 
 The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare words (that is, not quoted). 
 
-The condition of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][]. 
+The condition of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][function]. 
 
 ### Automatic Conversion to Boolean
 

@@ -4,19 +4,17 @@ title: "Language: Variables"
 ---
 
 
-<!-- TODO -->
-[expressions]: 
+[expressions]: ./lang_expressions.html
 [acceptable]: ./lang_reserved.html#variables
-[datatype]: 
-[double_quote]: 
-[doublequote]: 
-[functions]: 
-[definedtype]: 
+[datatype]: ./lang_datatypes.html
+[double_quote]: ./lang_datatypes.html#double-quoted-strings
+[functions]: ./lang_functions.html
+[definedtype]: ./lang_defined_types.html
 [environment]: /guides/environment.html
-[resource]: 
-[resource_attribute]: 
-[scope]: 
-[topscope]: 
+[resource]: ./lang_resources.html
+[resource_attribute]: ./lang_resources.html#syntax
+[scope]: ./lang_scope.html
+[topscope]: ./lang_scope.html#top-scope
 [facts]: /facter/1.6/core_facts.html
 [facter]: /facter
 [customfacts]: /guides/custom_facts.html

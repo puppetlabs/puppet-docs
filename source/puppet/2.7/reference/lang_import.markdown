@@ -5,8 +5,8 @@ layout: default
 
 <!-- TODO -->
 [site_manifest]: 
-[modules]: modules_fundamentals.html
-[enc]: 
+[modules]: ./modules_fundamentals.html
+[enc]: /guides/external_nodes.html
 [node_definition]: ./lang_node_definitions.html
 
 Puppet's normal behavior is to compile a single manifest (the "[site manifest][site_manifest]") and autoload any referenced classes from [modules][] (optionally doing the same with a list of classes from an [ENC][]). 
