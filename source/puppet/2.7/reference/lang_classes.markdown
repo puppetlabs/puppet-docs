@@ -5,33 +5,34 @@ title: "Language: Classes"
 
 
 <!-- TODO -->
-[allowed]: ./lang_reserved.html#classes-and-types
-[function]: ./lang_functions.html
-[modules]:
-[contains]: ./lang_containment.html
-[contains_float]: ./lang_containment.html#known-issues
 [hiera]: 
-[function]: 
-[multi_ref]: ./lang_datatypes.html#multi-resource-references
-[dynamic_scope]: 
-[add_attribute]: ./lang_resources.html#adding-or-modifying-attributes
-[undef]: ./lang_datatypes.html#undef
 [collectors]: 
 [collector_override]: 
-[relationships]: 
 [namespace]: 
-[qualified_var]: 
-[chaining]: 
-[conditional]: 
-[resource_reference]: ./lang_datatypes.html#resource-references
-[node]: 
-[resource_declaration]: 
-[scope]: 
-[parent_scope]: 
-[definedtype]: 
 [sitedotpp]: 
 [enc]: 
-[metaparameters]: 
+[tags]: 
+[allowed]: ./lang_reserved.html#classes-and-types
+[function]: ./lang_functions.html
+[modules]: ./modules_fundamentals.html
+[contains]: ./lang_containment.html
+[contains_float]: ./lang_containment.html#known-issues
+[function]: ./lang_functions.html
+[multi_ref]: ./lang_datatypes.html#multi-resource-references
+[dynamic_scope]: ./lang_scope.html#dynamic-scope
+[add_attribute]: ./lang_resources.html#adding-or-modifying-attributes
+[undef]: ./lang_datatypes.html#undef
+[relationships]: ./lang_relationships.html
+[qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
+[chaining]: ./lang_relationships.html#chaining-arrows
+[conditional]: ./lang_conditional.html
+[resource_reference]: ./lang_datatypes.html#resource-references
+[node]: ./lang_node_definitions.html
+[resource_declaration]: ./lang_resources.html
+[scope]: ./lang_scope.html
+[parent_scope]: ./lang_scope.html#scope-lookup-rules
+[definedtype]: ./lang_defined_types.html
+[metaparameters]: ./lang_resources.html#metaparameters
 
 **Classes** are named blocks of Puppet code, which are not applied unless they are invoked by name. They can be stored in [modules][] for later use, and declared (added to a node's catalog) with the `include` function or a resource-like syntax.
 
@@ -201,6 +202,10 @@ In the example above, the value of `$version` within the class definition would 
 A class [contains][] all of its resources. This means any [relationships][] formed with the class will be extended to every resource in the class.
 
 Note that classes cannot contain other classes. This is a known design issue; [see the relevant note on the "Containment" page][contains_float] for more details.
+
+### Auto-Tagging
+
+A class's name and each of its [namespace segments][namespace] are automatically added to the [tags][tags] of every resource it contains.
 
 ### Metaparameters
 

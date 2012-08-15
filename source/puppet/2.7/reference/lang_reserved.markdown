@@ -4,12 +4,14 @@ title: "Language: Reserved Words and Acceptable Names"
 ---
 
 <!-- TODO -->
-[contains]: ./lang_containment.html
-[resources]: ./lang_resources.html
-[class]: 
 [settings]: 
+[tags]: 
 [namespace]: 
-[qualified_var]: 
+[contains]: ./lang_containment.html
+[storeconfigs]: 
+[resources]: ./lang_resources.html
+[class]: ./lang_classes.html
+[qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
 
 Reserved Words
 -----
@@ -104,6 +106,12 @@ Class and defined type parameters begin with a `$` (dollar sign), and their firs
 That is, they should match the following regular expression:
 
     ^\$[a-z][a-z0-9_]*
+
+### Tags
+
+[Tags][] are case-sensitive, and may contain upper- and lower-case letters, numbers, underscores, and the `::` (double-colon) namespace separator. 
+
+> Note: Due to undefined behavior in several [resource stashing][storeconfigs] backends (including the legacy ActiveRecord backend and pre-1.0 versions of PuppetDB), we recommend avoiding capital letters in tag names.
 
 ### Resources
 
