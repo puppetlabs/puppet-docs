@@ -3,20 +3,23 @@ layout: default
 title: "Language: Resources"
 ---
 
-
-<!-- TODO: -->
+<!-- TODO -->
+[realize]: 
+[virtual]: 
+[report]: /guides/reporting.html
+[append_attributes]: ./lang_classes.html#appending-to-resource-attributes
 [types]: /references/latest/type.html
 [bareword]: ./lang_datatypes.html#bare-words
 [string]: ./lang_datatypes.html#strings
 [array]: ./lang_datatypes.html#arrays
 [datatype]: ./lang_datatypes.html
-[inheritance]: 
-[report]: 
-[relationships]: 
+[inheritance]: ./lang_classes.html#inheritance
+[relationships]: ./lang_relationships.html
 [resdefaults]: ./lang_defaults.html
-[reference]: 
-[class]: 
-[defined_type]: 
+[reference]: ./lang_datatypes.html#resource-references
+[class]: ./lang_classes.html
+[defined_type]: ./lang_defined_types.html
+[collector]: ./lang_collectors.html
 
 * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
@@ -37,7 +40,7 @@ Syntax
     }
 {% endhighlight %}
 
-Every resource has a **type,** a **title,** and a set of **attributes.** The general form of a resource is:
+Every resource has a **type,** a **title,** and a set of **attributes:** 
 
 {% highlight ruby %}
     type {'title':
@@ -45,14 +48,19 @@ Every resource has a **type,** a **title,** and a set of **attributes.** The gen
     }
 {% endhighlight %}
 
-A resource declaration includes: 
+The general form of a resource declaration is:
 
-* The resource type, in lower-case.
-* An opening curly brace.
-* The title, which is a [string][].
-* A colon.
-* Any number of attribute and value pairs. Attributes are bare words, and are followed by a `=>` (arrow, fat comma, or hash rocket). Values are any [data type][datatype], depending on what the attribute requires, and are followed by a comma; the final comma in a declaration is optional.
-* A closing curly brace. 
+* The resource type, in lower-case
+* An opening curly brace
+* The title, which is a [string][]
+* A colon
+* Optionally, any number of attribute and value pairs, each of which consists of:
+    * An attribute name, which is a bare word
+    * A `=>` (arrow, fat comma, or hash rocket)
+    * A value, which can be any [data type][datatype], depending on what the attribute requires
+    * A trailing comma (note that the comma is optional after the final attribute/value pair)
+* Optionally, a semicolon, followed by another title, colon, and attribute block
+* A closing curly brace
 
 Note that, in the Puppet language, whitespace is fungible.
 
@@ -66,7 +74,7 @@ Puppet can be extended with additional resource types, written in Ruby or in the
 
 The title is an identifying string. It only has to identify the resource to Puppet's compiler; it does not need to bear any relationship to the actual target system. 
 
-Titles must be unique per resource type. You may have a file and a service titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure. 
+Titles must be unique per resource type. You may have a package and a service both titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure. 
 
 ### Attributes
 
@@ -203,7 +211,9 @@ If you end an attribute block with a semicolon rather than a comma, you may spec
 Adding or Modifying Attributes
 -----
 
-Although you cannot declare the same resource twice, you can add attributes to an already-declared resource:
+Although you cannot declare the same resource twice, you can add attributes to an already-declared resource. In certain circumstances, you can also override attributes.
+
+### Amending Attributes With a Reference
 
 {% highlight ruby %}
     file {'/etc/passwd':
@@ -217,11 +227,46 @@ Although you cannot declare the same resource twice, you can add attributes to a
     }
 {% endhighlight %}
 
-The general form of an additional attribute block is:
+The general form of a reference attribute block is:
 
 * A [reference][] to the resource in question (or a multi-resource reference)
 * An opening curly brace
 * Any number of attribute => value pairs
 * A closing curly brace
 
-In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already specified attributes. Within an [inherited class][inheritance], you **can** use this idiom to override attributes.
+In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
+
+### Amending Attributes With a Collector
+
+{% highlight ruby %}
+    class base::linux {
+      file {'/etc/passwd':
+        ensure => file,
+      }
+      ...
+    }
+    
+    include base::linux
+    
+    File <| tag == 'base::linux' |> {
+      owner => 'root',
+      group => 'root',
+      mode  => 0640,
+    }
+{% endhighlight %}
+
+The general form of a collector attribute block is:
+
+* A [resource collector][collector] that matches any number of resources
+* An opening curly brace
+* Any number of attribute => value (or attribute +> value) pairs
+* A closing curly brace
+
+Much like in an [inherited class][inheritance], you can use the special `+>` keyword to append values to attributes that accept arrays. See [appending to attributes][append_attributes] for more details.
+
+> Note that this idiom **must be used carefully,** if at all:
+> 
+> * It **can always override** already-specified attributes, regardless of class inheritance.
+> * It can affect large numbers of resources at once.
+> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely. 
+> * Since it ignores class inheritance, you can override the same attribute twice, which results in a parse-order dependent race where the final override wins.
