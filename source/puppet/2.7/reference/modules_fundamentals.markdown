@@ -144,7 +144,10 @@ Certain module names are disallowed:
 
 ### Files 
 
-Any static file in a module can be used as the source attribute for a [`file`][file] resource. **Files in modules are referenced with puppet URLs.**
+Files in a module's `files` directory are automatically served to agent nodes. They can be downloaded by using **puppet:/// URLs** in the `source` attribute of a [`file`][file] resource.
+
+Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module. 
+
 
 [file]: /references/stable/type.html#file
 
