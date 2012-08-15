@@ -3,7 +3,6 @@ title: "Language: Expressions"
 layout: default
 ---
 
-<!-- TODO -->
 [conditional]: ./lang_conditional.html
 [datatypes]: ./lang_datatypes.html
 [boolean]: ./lang_datatypes.html#booleans
@@ -16,7 +15,7 @@ layout: default
 [if]: ./lang_conditional.html#if-statements
 [case]: ./lang_conditional.html#case-statements
 [selector]: ./lang_conditional.html#selectors
-[function]: 
+[function]: ./lang_functions.html
 [bool_convert]: ./lang_datatypes.html#automatic-conversion-to-boolean
 
 
@@ -134,19 +133,21 @@ The behavior of this operator when used with strings is undefined.
 
 ### `=~` (regex match)
 
-Accepts a [string][strings] as the left operand and a [regular expression][regex] as the right operand.
+This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand and a [regular expression][regex] as the right operand.
 
 Resolves to `true` if the left operand [matches][regex_match] the regular expression. 
 
 ### `!~` (regex non-match)
 
-Accepts a [string][strings] as the left operand and a [regular expression][regex] as the right operand.
+This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand and a [regular expression][regex] as the right operand.
 
 Resolves to `false` if the left operand [matches][regex_match] the regular expression. 
 
 ### `in`
 
-Resolves to `true` if the right operand contains the left operand. This operator is **case sensitive.** Accepts a [string][strings] as the left operand, and the following types of right operands:
+Resolves to `true` if the right operand contains the left operand. This operator is **case sensitive.** 
+
+This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand, and the following types of right operands:
 
 * [Strings][] --- Tests whether the left operand is a substring of the right. 
 * [Arrays][] --- Tests whether one of the members of the array is identical to the left operand. 
