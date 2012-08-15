@@ -64,9 +64,9 @@ shares a source with its parent class.
 
 The first question to ask about a new provider is where it will be
 functional, which Puppet describes as suitable. Unsuitable
-providers cannot be used to do any work, although we're working on
-making the suitability test late-binding, meaning that you could
-have a resource in your configuration that made a provider
+providers cannot be used to do any work, although as of Puppet
+2.7.8 the suitability test is late-binding, meaning that you can
+have a resource in your configuration that makes a provider
 suitable. If you start puppetd or puppet in debug mode, you'll see
 the results of failed provider suitability tests for the resource
 types you're using.
@@ -88,14 +88,15 @@ here is the header for the dpkg provider (as of 0.23.0):
     commands :dpkgquery => "/usr/bin/dpkg-query"
 
 In addition to looking for binaries, Puppet can compare Facter
-facts, test for the existence of a file, or test whether a given
-value is true or false. For file extistence, truth, or false, just
+facts, test for the existence of a file, check for a "feature"
+such as a library, or test whether a given value is true or false.
+For file existence, truth, or false, just
 call the confine class method with exists, true, or false as the
 name of the test and your test as the value:
 
     confine :exists => "/etc/debian_release"
-    confine :true => Puppet.features.rrd?
-    confine :false => Puppet.features.rails?
+    confine :true => /^10\.[0-4]/.match(product_version)
+    confine :false => (Puppet[:ldapuser] == "")
 
 To test Facter values, just use the name of the fact:
 
@@ -106,6 +107,16 @@ Note that case doesn't matter in the tests, nor does it matter
 whether the values are strings or symbols. It also doesn't matter
 whether you specify an array or a single value --- Puppet does an OR
 on the list of values.
+
+To test a feature, as defined in `lib/puppet/feature/*.rb`, just supply
+the name of the feature. This is preferable to using a
+`confine :true` statement that calls `Puppet.features` because the
+expression is only evaluated once. As of 2.7.20, Puppet will enable
+the provider if the feature becomes available during a run (i.e. a
+package is installed).
+
+    confine :feature => :posix
+    confine :feature => :rrd 
 
 ## Default Providers
 
