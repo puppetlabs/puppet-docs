@@ -4,42 +4,39 @@ title: "Language: Summary"
 ---
 
 
-<!-- TODO add links -->
+<!-- TODO -->
 
-[classes]: 
-[enc]: 
-[resources]: 
-[modules]: 
-[package]: 
-[file]: 
-[service]: 
-[case]: 
-[fact]: 
-[variable]: 
-[relationships]: 
-[ordering]: 
-[notification]: 
-[fileserve]: 
-[catalog]: 
-[agentmaster]: 
-[standalone]: 
-[sitepp]: 
 [autoload]: 
-[enc]: 
-[modules]: 
-[declared]: (glossary declare)
+[fileserve]: ./modules_fundamentals.html#files
+[sitepp]: /references/glossary.html#site-manifest
+[classes]: ./lang_classes.html
+[enc]: /guides/external_nodes.html
+[resources]: ./lang_resources.html
+[chaining]: ./lang_relationships.html#chaining-arrows
+[modules]: ./modules_fundamentals.html
+[package]: /references/latest/type.html#package
+[file]: /references/latest/type.html#file
+[service]: /references/latest/type.html#service
+[case]: ./lang_conditional.html#case-statements
+[fact]: ./lang_variables.html#facts-and-built-in-variables
+[variable]: ./lang_variables.html
+[relationships]: ./lang_relationships.html
+[ordering]: ./lang_relationships.html#ordering-and-notification
+[notification]: ./lang_relationships.html#ordering-and-notification
+[declared]: /references/glossary.html#declare
 
 The Puppet Language
 -----
 
 Puppet uses its own configuration language. This language was designed to be accessible to sysadmins without much formal programming experience, and its syntax was inspired by the Nagios configuration file format.
 
-Puppet's language is mostly **declarative:** instead of being a series of steps to carry out, a Puppet manifest is a description of a desired final state. Among other things, this means:
-
-* Unrelated resources are assumed to be independent of each other. If a resource must happen after another resource, you must say so with an explicit [relationship][relationships]. 
-* Puppet manifests can _mostly_ be freely ordered, as resources are not applied to the target system in the order they are written. (The major exception is that variables must be defined before they are referenced.)
-
 The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility to the way resources are declared. 
+
+Puppet's language is mostly **declarative:** instead of being a series of steps to carry out, a Puppet manifest is a _description_ of a desired final state. Once the final state is described, Puppet will decide how to reach the state. 
+
+The resources in a manifest can be freely ordered --- they will not be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must explicitly say so][relationships]. (If you wish to make a short section of code be applied in the order it is written, you can use [chaining arrows][chaining] to do so.)
+
+Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced. 
 
 Files
 -----
@@ -51,6 +48,15 @@ Puppet always begins compiling with a single manifest. When using a puppet maste
 Any [classes][] [declared][] in the manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also autoload any classes declared by an optional [external node classifier][enc]. 
 
 Thus, the simplest Puppet deployment is a lone manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.
+
+Compilation and Catalogs
+-----
+
+Puppet manifests can use conditional logic to describe many nodes' configurations at once. Before configuring a node, Puppet compiles manifests into a **catalog,** which is only valid for a single node and which contains no ambiguous logic.
+
+Catalogs are static documents which contain resources and relationships. At various stages of a Puppet run, a catalog will be in memory as a Ruby object, transmitted as JSON, and persisted to disk as YAML. The catalog format used by this version of Puppet is not documented and does not have a spec. 
+
+In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.
 
 Example
 -----
@@ -85,14 +91,5 @@ The following short manifest manages NTP. It uses [package][], [file][], and [se
       # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)
     }
 {% endhighlight %}
-
-Compilation
------
-
-Puppet manifests can use conditional logic to describe many nodes' configurations at once. Before configuring a node, Puppet compiles manifests into a **catalog,** which is only valid for a single node and which contains no ambiguous logic.
-
-In the standard [agent/master architecture][agentmaster], nodes request catalogs from a puppet master server, which compiles and serves them as needed. This means you only have to maintain manifests in one location, and lets you prevent nodes from seeing other nodes' configurations.
-
-In [standalone][] Puppet, catalogs are compiled locally, which means each node must have a full set of manifests.
 
 
