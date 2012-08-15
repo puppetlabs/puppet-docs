@@ -5,11 +5,11 @@ title: "Language: Resource Defaults"
 
 <!-- TODO -->
 
-[dynamic_scope]: 
-[resource]: 
-[definedtypes]: 
 [sitemanifest]: 
-[node]: 
+[dynamic_scope]: ./lang_scope.html#scope-lookup-rules
+[resource]: ./lang_resources.html
+[definedtypes]: ./lang_defined_types.html
+[node]: ./lang_node_definitions.html
 
 Resource defaults let you set default attribute values for a given resource type. Any resource declaration within the area of effect that omits those attributes will inherit the default values.
 
@@ -34,8 +34,22 @@ The general form of resource defaults is:
 
 You can specify defaults for any resource type in Puppet, including [defined types][definedtypes].
 
-Area of Effect
+Behavior
 -----
+
+Within the [area of effect](#area-of-effect), every resource of the specified type that omits a given attribute will inherit that attribute's default value.    
+
+Attributes that are set explicitly in a resource declaration will always override any default value. 
+
+Resource defaults are **parse-order independent.** A default will affect resource declarations written both above and below it.
+
+### Overriding Defaults From Parent Scopes
+
+Resource defaults declared in the local scope will override any defaults received from parent scopes. 
+
+Overriding of resource defaults is **per attribute,** not per block of attributes. Thus, local and inherited resource defaults that don't conflict with each other will be merged together. 
+
+### Area of Effect
 
 Resource defaults obey dynamic scope; [see here for a full description of scope rules][dynamic_scope]. 
 
@@ -43,11 +57,3 @@ You can declare global resource defaults in the [site manifest][sitemanifest] ou
 
 Unlike dynamic variable lookup, dynamic scope for resource defaults is not deprecated in Puppet 2.7.
 
-Overriding Defaults
------
-
-Attributes that are set explicitly in a resource declaration will always override any default value. 
-
-Resource defaults declared in the local scope will override defaults from parent scopes. 
-
-Overriding of resource defaults is **per attribute,** not per block of attributes. Thus, local and inherited resource defaults that don't conflict with each other will be merged together. 
