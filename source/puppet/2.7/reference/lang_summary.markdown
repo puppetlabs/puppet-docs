@@ -34,7 +34,7 @@ The core of the Puppet language is **declaring [resources][].** Every other part
 
 Puppet's language is mostly **declarative:** Rather than mandating a series of steps to carry out, a Puppet manifest simply describes a desired final state.
 
-The resources in a manifest can be freely ordered --- they will not be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must explicitly say so][relationships]. (If you wish to make a short section of code be applied in the order it is written, you can use [chaining arrows][chaining] to do so.)
+The resources in a manifest can be freely ordered --- they will not be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly ][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
 
 Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced. 
 
@@ -56,7 +56,7 @@ Puppet manifests can use conditional logic to describe many nodes' configuration
 
 Catalogs are static documents which contain resources and relationships. At various stages of a Puppet run, a catalog will be in memory as a Ruby object, transmitted as JSON, and persisted to disk as YAML. The catalog format used by this version of Puppet is not documented and does not have a spec. 
 
-In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.
+In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them to nodes as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.
 
 Example
 -----
