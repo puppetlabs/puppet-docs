@@ -30,7 +30,7 @@ Syntax
     $content = "some content\n"
 {% endhighlight %}
 
-Variable names are prefixed with `$` (dollar sign). Values can be assigned to them with the `=` (equal sign) assignment operator. 
+Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator. 
 
 Any value of any of the normal (i.e. non-regex) [data types][datatype] can be assigned to a variable. Any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) can be used in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement. 
 
@@ -61,7 +61,7 @@ The name of a variable can be used in any place where a value of its data type w
 
 Puppet can resolve variables in [double-quoted strings][double_quote]; this is called "interpolation."
 
-Inside a double-quoted string, you can optionally surround the name of the variable (the portion after the `$`) with curly braces (`${var_name}`). This syntax can avoid ambiguity and allow variables to be placed directly against non-whitespace characters. These optional curly braces are only allowed inside strings.
+Inside a double-quoted string, you can optionally surround the name of the variable (the portion after the `$`) with curly braces (`${var_name}`). This syntax helps to avoid ambiguity and allows variables to be placed directly next to non-whitespace characters. These optional curly braces are only allowed inside strings.
 
 ### Appending Assignment
 
@@ -139,7 +139,7 @@ This is the main way in which the Puppet language fails to be fully declarative.
 Naming
 -----
 
-Variable names are case-sensitive, and can include alphanumeric characters and underscores. 
+Variable names are case-sensitive and can include alphanumeric characters and underscores. 
 
 Qualified variable names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 
@@ -161,7 +161,7 @@ Each node submits a very large number of [facts][] (as discovered by [Facter][])
 
 ### Agent-Set Variables
 
-Puppet agent sets several additional variables for a node, which are available when compiling that node's catalog:
+Puppet agent sets several additional variables for a node which are available when compiling that node's catalog:
 
 * `$environment` --- the node's current [environment][].
 * `$clientcert` --- the node's certname setting.
@@ -169,16 +169,16 @@ Puppet agent sets several additional variables for a node, which are available w
 
 ### Master-Set Variables
 
-These variables are set by the puppet master, and are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
+These variables are set by the puppet master and are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
 
 * `$servername` --- the puppet master's fully-qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the puppet master's IP address.
-* `$serverversion` --- the current version of puppet master.
-* `$settings::<name of setting>` --- the value of any of the master's [configuration settings](./configuring.html). This is implemented as a special namespace, and these variables must be referred to by their qualified names. Note that, other than `$environment`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
+* `$serverversion` --- the current version of puppet on the puppet master.
+* `$settings::<name of setting>` --- the value of any of the master's [configuration settings](./configuring.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet (2.7), you will have to create a custom fact.
 
 ### Parser-Set Variables
 
-There are several local variables set by the parser when compiling. These are mostly useful when implementing complex [defined types][definedtype]. 
+There are several local variables set by the parser during compilation. These are mostly useful when implementing complex [defined types][definedtype]. 
 
 * `$module_name` --- the name of the module that contains the current class or defined type. 
 * `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules. 
