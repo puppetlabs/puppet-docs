@@ -32,9 +32,9 @@ title: "Language: Summary"
 The Puppet Language
 -----
 
-Puppet uses its own configuration language. This language was designed to be accessible to sysadmins without much formal programming experience, and its syntax was inspired by the Nagios configuration file format.
+Puppet uses its own configuration language. This language was designed to be accessible to sysadmins because it does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
 
-Puppet's language is mostly **declarative:** instead of being a series of steps to carry out, a Puppet manifest is a description of a desired final state. Among other things, this means:
+Puppet's language is mostly **declarative:** Rather than mandating a series of steps to carry out, a Puppet manifest simply describes a desired final state. Among other things, this means:
 
 * Unrelated resources are assumed to be independent of each other. If a resource must happen after another resource, you must say so with an explicit [relationship][relationships]. 
 * Puppet manifests can _mostly_ be freely ordered, as resources are not applied to the target system in the order they are written. (The major exception is that variables must be defined before they are referenced.)
