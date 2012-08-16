@@ -21,13 +21,13 @@ Installing Modules
 > * Windows nodes which pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
 > * On Windows nodes which compile their own catalogs, you can install a Forge module by downloading and extracting the module's release tarball, renaming the module directory to remove the user name prefix, and moving it into place in Puppet's [modulepath][].
 
-The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems, and using them can save you time and effort. 
+The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems so using them can save you time and effort. 
 
 The `puppet module` subcommand, which ships with Puppet, is a tool for finding and managing new modules from the Forge. Its interface is similar to several common package managers, and makes it easy to **search for and install new modules from the command line.**
 
 * Continue reading to learn how to install and manage modules from the Puppet Forge.
 * [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
-* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the puppet module tool's build and generate actions.
+* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the puppet module tool's `build` and `generate` actions.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 
 
@@ -45,6 +45,7 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
 : List installed modules.
 
       # puppet module list
+
 `search`
 : Search the Forge for a module.
 
@@ -70,14 +71,14 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--version` option to specify a version. You can use an exact version or a requirement string like `>=1.0.3`. 
 * Use the `--force` option to forcibly re-install an existing module.
 * Use the `--environment` option to install into a different environment.
-* Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation of the modulepath setting][modulepath] for details.
-* Use the `--ignore-dependencies` option to skip any modules required by this module. 
+* Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
+* Use the `--ignore-dependencies` option to skip installing any modules required by this module. 
 
 <!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
 
 ### Installing From the Puppet Forge
 
-To install a module from the Puppet Forge, simply identify a module to install by its full name. **The full name of a Forge module is formatted as "username-modulename."**
+To install a module from the Puppet Forge, simply identify the desired module by its full name. **The full name of a Forge module is formatted as "username-modulename."**
 
     # puppet module install puppetlabs-apache
 
@@ -100,7 +101,7 @@ This is useful when installing modules downloaded directly from the developer's 
 Finding Modules
 -----
 
-Modules can be found by browsing the Forge's [web interface][forge], or by using the module tool's **`search` action.** The search action accepts a single search term, and returns a list of modules whose names, descriptions, or keywords match the search term. 
+Modules can be found by browsing the Forge's [web interface][forge] or by using the module tool's **`search` action.** The search action accepts a single search term and returns a list of modules whose names, descriptions, or keywords match the search term. 
 
     $ puppet module search apache
     Searching http://forge.puppetlabs.com ...
@@ -136,14 +137,14 @@ Managing Modules
 
 Use the module tool's **`list` action** to see which modules you have installed (and which directory they're installed in). 
 
-* Use the `--tree` option to arrange the modules by dependency instead of by location on disk. 
+* Use the `--tree` option to view the modules arranged by dependency instead of by location on disk. 
 
 ### Upgrading Modules
 
 Use the module tool's **`upgrade` action** to upgrade an installed module to the latest version. The target module must be identified by its full name.
 
 * Use the `--version` option to specify a version. 
-* Use the `--ignore-dependencies` option to skip any modules required by this module. 
+* Use the `--ignore-dependencies` option to skip upgrading any modules required by this module. 
 
 ### Uninstalling Modules
 
