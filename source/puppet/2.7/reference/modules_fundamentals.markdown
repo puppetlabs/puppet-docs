@@ -20,13 +20,13 @@ title: "Module Fundamentals"
 Puppet Modules
 =====
 
-**Modules** are self-contained bundles of code and data.
+**Modules** are self-contained bundles of code and data. You can write your own modules or you can download pre-built modules from Puppet Labs' online collection, the Puppet Forge.
 
 **Nearly all Puppet manifests belong in modules.** The sole exception is the main `site.pp` manifest, which contains site-wide and node-specific code.
 
 **Every Puppet user should expect to write at least some of their own modules.**
 
-* Continue reading to learn how to write and use your own Puppet modules.
+* Continue reading to learn how to write and use Puppet modules.
 * [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
 * [See "Publishing Modules"][publishing] for how to publish your modules to the Puppet Forge.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
@@ -60,22 +60,22 @@ To make a module available to Puppet, **place it in one of the directories in Pu
 
 > ### The Modulepath
 >
-> **Note:** The `modulepath` is a list of directories separated by the system path-separator character. The most common default modulepaths are: 
+> **Note:** The `modulepath` is a list of directories separated by the system path-separator character. On 'nix systems, this is the colon (:), while Windows uses the semi-colon (;). The most common default modulepaths are: 
 >
 > * `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules` (for Puppet Enterprise)
 > * `/etc/puppet/modules:/usr/share/puppet/modules` (for open source Puppet)
 >
 > Use `puppet config print modulepath` to see your currently configured modulepath.
 > 
-> When setting the modulepath in [puppet.conf][conf], it should go in the `[main]` block if you want both puppet master and puppet apply to have access to the modules. Modulepath is also one of the settings that can be different per [environment][].
+>  If you want both puppet master and puppet apply to have access to the modules, set the modulepath in [puppet.conf][conf] to go to the `[main]` block. Modulepath is also one of the settings that can be different per [environment][].
 
-You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for more details.
+You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
 
 Module Layout
 -----
 
-On disk, a module is simply **a directory with a specific, predictable structure:**
+On disk, a module is simply **a directory tree with a specific, predictable structure:**
 
 * MODULE NAME
     * manifests
@@ -88,7 +88,7 @@ On disk, a module is simply **a directory with a specific, predictable structure
 
 ### Example
 
-This example module, named "`my_module`," shows the module layout in more detail:
+This example module, named "`my_module`," shows the standard module layout in more detail:
 
 * `my_module` --- This outermost directory's name matches the name of the module.
     * `manifests/` --- Contains all of the manifests in the module.
@@ -105,16 +105,16 @@ This example module, named "`my_module`," shows the module layout in more detail
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
         * `init.pp`
-        * `other_class.pp` --- Each class or type should have an example in the tests directroy.
+        * `other_class.pp` --- Each class or type should have an example in the tests directory.
     * `spec/` --- Contains spec tests for any plugins in the lib directory.
 
-Each of the module's subdirectories has a specific function.
+Each of the module's subdirectories has a specific function, as follows.
 
 ### Manifests
 
 **Each manifest in a module's `manifests` folder should contain one class or defined type.** The file names of manifests **map predictably** to the names of the classes and defined types they contain.
 
-`init.pp` is special, and **always contains a class with the same name as the module.**
+`init.pp` is special and **always contains a class with the same name as the module.**
 
 Every other manifest contains a class or defined type named as follows:
 
@@ -132,7 +132,7 @@ The double colon that divides the sections of a class's name is called the **nam
 
 ### Allowed Module Names
 
-Module names should only contain **lowercase letters, numbers, and underscores,** and should **begin with a lowercase letter;** that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
+Module names should only contain **lowercase letters, numbers, and underscores,** and should **begin with a lowercase letter;** that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, but with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
 
 Although some names that violate these restrictions currently work, using them is not recommended.
 
