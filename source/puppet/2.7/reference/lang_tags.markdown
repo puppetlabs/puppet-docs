@@ -35,10 +35,16 @@ title: "Language: Tags"
 Tag Names
 -----
 
-[Tag names][tagnames] are case-sensitive, and may contain upper- and lower-case letters, numbers, underscores, and the `::` (double-colon) namespace separator. 
+[Tag names][tagnames] must begin with a lowercase letter, number, or underscore, and can include:
 
-> Note: Due to undefined behavior in several [resource stashing][storeconfigs] backends (including the legacy ActiveRecord backend and pre-1.0 versions of PuppetDB), we recommend avoiding capital letters in tag names.
+* Lowercase letters
+* Numbers
+* Underscores
+* Colons
 
+Tag names should match the following regular expression: 
+
+    ^[a-z0-9_][a-z0-9_:]*$
 
 Assigning Tags to Resources
 -----

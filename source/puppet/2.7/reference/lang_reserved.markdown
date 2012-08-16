@@ -9,7 +9,6 @@ title: "Language: Reserved Words and Acceptable Names"
 [namespace]: 
 [scopes]: 
 [contains]: ./lang_containment.html
-[storeconfigs]: 
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
@@ -120,9 +119,16 @@ Parameter names should match the following regular expression:
 
 ### Tags
 
-[Tags][] are case-sensitive, and may contain upper- and lower-case letters, numbers, underscores, and the `::` (double-colon) namespace separator. 
+[Tags][] must begin with a lowercase letter, number, or underscore, and can include:
 
-> Note: Due to undefined behavior in several [resource stashing][storeconfigs] backends (including the legacy ActiveRecord backend and pre-1.0 versions of PuppetDB), we recommend avoiding capital letters in tag names.
+* Lowercase letters
+* Numbers
+* Underscores
+* Colons
+
+Tag names should match the following regular expression: 
+
+    ^[a-z0-9_][a-z0-9_:]*$
 
 ### Resources
 
