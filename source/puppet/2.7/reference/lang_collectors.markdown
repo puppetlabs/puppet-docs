@@ -23,7 +23,7 @@ title: "Language: Resource Collectors"
 
 Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the catalog. This search is parse-order independent (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual reasources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.
 
-Collectors are an irregular syntax that can function as both a statement and a value.
+Collectors have an irregular syntax that lets them function as both a statement and a value.
 
 Syntax
 -----
@@ -41,11 +41,11 @@ The general form of a resource collector is:
 * Optionally, a search expression ([see below](#search-expressions))
 * `|>` --- A pipe character and closing angle bracket (greater-than sign)
 
-Note that exported resource collectors are a slightly different syntax; [see below](#exported-resource-collectors).
+Note that exported resource collectors have a slightly different syntax; [see below](#exported-resource-collectors).
 
 ### Search Expressions
 
-Collectors can search the values of resource titles and attributes, and they use a special expression syntax to do so. This resembles the normal syntax for [Puppet expressions][expressions], but is not the same.
+Collectors can search the values of resource titles and attributes using a special expression syntax. This resembles the normal syntax for [Puppet expressions][expressions], but is not exactly the same.
 
 A collector with an empty search expression will match **every** resource of the specified type.
 
@@ -56,7 +56,7 @@ Parentheses may be used to improve readability. You can create arbitrarily compl
 This operator is non-transitive: 
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
-* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version of Puppet.
+* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version (2.7) of Puppet.
 
 For a given resource, this operator will **match** if the value of the attribute (or one of the value's members, if the value is an array) is identical to the search key. 
 
@@ -65,11 +65,11 @@ For a given resource, this operator will **match** if the value of the attribute
 This operator is non-transitive: 
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
-* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version of Puppet.
+* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version (2.7) of Puppet.
 
 For a given resource, this operator will **match** if the value of the attribute is **not** identical to the search key. 
 
-> Note: This operator will always match if the value is an array. To the best of our knowledge, there is no particular reason for this, and the behavior when the value is an array may in fact be undefined. 
+> Note: This operator will always match if the value is an array. To the best of our knowledge, there is no particular reason for this and the behavior when the value is an array may in fact be undefined. 
 
 #### `and`
 
@@ -106,7 +106,7 @@ Note again that collectors used as values will also realize any matching virtual
 Exported Resource Collectors
 -----
 
-An **exported resource collector** is a modified syntax that realizes [exported resources][exported].
+An **exported resource collector** uses a modified syntax that realizes [exported resources][exported].
 
 ### Syntax
 
@@ -125,7 +125,7 @@ The general form of an exported resource collector is:
 
 ### Behavior
 
-Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have resource stashing (storeconfigs) enabled. See [Exported Resources][exported] for more details; to enable resource stashing, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
+Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have resource stashing (storeconfigs) enabled. See [Exported Resources][exported] for more details. To enable resource stashing, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
 
 The behavior of an exported resource collector when used with an attribute block or in a chaining statement is undefined. 
 
