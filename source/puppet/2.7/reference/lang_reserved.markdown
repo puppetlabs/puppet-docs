@@ -7,6 +7,7 @@ title: "Language: Reserved Words and Acceptable Names"
 [settings]: 
 [tags]: 
 [namespace]: 
+[scopes]: 
 [contains]: ./lang_containment.html
 [storeconfigs]: 
 [resources]: ./lang_resources.html
@@ -63,37 +64,47 @@ Variable names begin with a `$` (dollar sign) and can include:
 
 There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive.
 
-That is, variable names should match the following regular expression:
+Variable names should match the following regular expression:
 
-    ^\$[a-zA-Z0-9_]+
+    ^\$[a-zA-Z0-9_]+$
 
-[Fully qualified variables][qualified_var] consist of `$`, the class name, the `::` (double colon) [namespace][] separator, and the variable's local name. That is, they should match the following regular expression:
+Variable names can be [fully qualified][qualified_var] to refer to variables from foreign [scopes][]. Qualified variable names look like `$class::name::variable_name`. They begin with `$`, the name of the class that contains the variable, and the `::` (double colon) [namespace][] separator, and end with the variable's local name. 
 
-    ^\$^[a-z][a-z0-9_]*(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+
+Qualified variable names should match the following regular expression:
+
+    ^\$([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+$
 
 ### Classes and Types
 
-The names of classes, defined types, and custom types **must begin with a lowercase letter.** They can include:
+The names of classes, defined types, and custom types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
 * Numbers
 * Underscores
 
-That is, they should match the following regular expression:
+Namespace segments should match the following regular expression:
 
-    ^[a-z][a-z0-9_]*
+    ^[a-z][a-z0-9_]*$
 
-Namespaced class and type names can be constructed by joining several valid class names with the `::` (double colon) [namespace][] separator. That is, they should match the following regular expression:
+The one exception is the top namespace, whose name is the empty string.
 
-    ^[a-z][a-z0-9_]*(::[a-z][a-z0-9_]*)*
+Multiple namespace segments can be joined together in a class or type name with the `::` (double colon) [namespace][] separator. 
+
+Class names with multiple namespaces should match the following regular expression:
+
+    ^([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*$
 
 ### Modules
 
-Module names obey the same rules as class names, with the added restriction that they cannot include the `::` namespace separator.
+Module names obey the same rules as individual class/type namespace segments. That is, they **must begin with a lowercase letter** and can include:
 
-That is, they should match the following regular expression:
+* Lowercase letters
+* Numbers
+* Underscores
 
-    ^[a-z][a-z0-9_]*
+Module names should match the following regular expression:
+
+    ^[a-z][a-z0-9_]*$
 
 ### Parameters
 
@@ -103,9 +114,9 @@ Class and defined type parameters begin with a `$` (dollar sign), and their firs
 * Numbers
 * Underscores
 
-That is, they should match the following regular expression:
+Parameter names should match the following regular expression:
 
-    ^\$[a-z][a-z0-9_]*
+    ^\$[a-z][a-z0-9_]*$
 
 ### Tags
 
@@ -117,8 +128,8 @@ That is, they should match the following regular expression:
 
 Resource **titles** may contain any characters whatsoever. They are case-sensitive. 
 
-Resource names (or namevars) may be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing these limits.
+Resource names (or namevars) may be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing the name limits on the platforms they manage.
 
 ### Nodes
 
-**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/[a-z0-9._-]+/`.)
+**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/^[a-z0-9._-]+$/`.)
