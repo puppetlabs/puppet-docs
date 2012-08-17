@@ -26,7 +26,7 @@ title: "Language: Tags"
 [collector_search]: ./lang_collectors.html#search-expressions
 
 
-[Resources][], [classes][], and [defined type instances][defined] may have any number of **tags,** and they receive some tags automatically. Tags are useful for:
+[Resources][], [classes][], and [defined type instances][defined] may have any number of **tags** associated with them, plus they receive some tags automatically. Tags are useful for:
 
 * [Collecting][collectors] resources
 * Analyzing [reports][]
@@ -82,7 +82,7 @@ You can use [the `tag` metaparameter][tagmeta] in a resource declaration to add 
     }
 {% endhighlight %}
 
-The `tag` metaparameter can accept a single tag or an array, and adds to the tags the resource already has. It can be used with normal resources, [defined resources][defined], and classes (when using the resource-like declaration syntax). Since [containment][] applies to tags, the example above would assign the `us_mirror1` and `us_mirror2` tags to every resource contained by `Apache::Vhost['docs.puppetlabs.com']`. 
+The `tag` metaparameter can accept a single tag or an array. These will be added to the tags the resource already has. Also, `tag` can be used with normal resources, [defined resources][defined], and classes (when using the resource-like declaration syntax). Since [containment][] applies to tags, the example above would assign the `us_mirror1` and `us_mirror2` tags to every resource contained by `Apache::Vhost['docs.puppetlabs.com']`. 
 
 ### The `tag` Function
 
@@ -100,7 +100,7 @@ You can use [the `tag` function][tagfunction] inside a class definition or defin
     }
 {% endhighlight %}
 
-The example above would assign the `us_mirror1` and `us_mirror2` tags to all of the defined resources being declared in class `role::public_web`, as well as all of the resources each of them contains.
+The example above would assign the `us_mirror1` and `us_mirror2` tags to all of the defined resources being declared in the class `role::public_web`, as well as all of the resources each of them contains.
 
 Using Tags
 -----
@@ -117,11 +117,11 @@ The `tags` setting can be set in `puppet.conf` (to permanently restrict the cata
 
     $ sudo puppet agent --test --tags apache,us_mirror1
 
-The value of the `tags` setting should be a comma-separated list of tags. 
+The value of the `tags` setting should be a comma-separated list of tags (with no spaces between tags). 
 
 ### Sending Tagmail Reports
 
-The built-in [tagmail report handler][tagmail] can send emails to arbitrary email addresses whenever resources with certain tags are changed. See the following pages for more info:
+The built-in [tagmail report handler][tagmail] can send emails to arbitrary email addresses whenever resources with certain tags are changed. See the following for more info:
 
 * [The tagmail report handler][tagmail]
 * [The `tagmail.conf` file][tagmail_conf]
