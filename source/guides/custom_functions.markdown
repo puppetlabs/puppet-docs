@@ -162,14 +162,17 @@ Basically, to get a fact's or variable's value, you just call
 ## Calling Functions from Functions
 
 Functions can be accessed from other functions by 
-calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.
+calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.  Alternatively, you can load a spcific function by calling `Puppet::Parser::Functions.function('myfunc1')`
+
+Also keep in mind that when calling a puppet function from the puppet DSL, arguments are all passed in as an anonymous array.  This is not the case when calling the function from within Ruby.  To work around this, you must create the anonymous array yourself by putting the arguments (even if there is only one argument) inside square brackets like this:
+    [ arg1, arg1, arg3 ]
 
 ### Example
 
     module Puppet::Parser::Functions
       newfunction(:myfunc2, :type => :rvalue) do |args|
         Puppet::Parser::Functions.autoloader.loadall
-        function_myfunc1(...)
+        function_myfunc1( [ arg1, arg2, ... ] )
       end
     end
 
