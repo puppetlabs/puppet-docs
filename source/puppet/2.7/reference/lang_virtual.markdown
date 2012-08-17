@@ -1,0 +1,97 @@
+---
+layout: default
+title: "Language: Virtual and Exported Resources"
+---
+
+<!-- TODO -->
+[resources]: ./lang_resources.html
+[references]: 
+[realize_function]: 
+[puppetdb]: /puppetdb/0.9
+[puppetdb_connect]: /puppetdb/0.9/connect_puppet.html
+[puppetdb_install]: /puppetdb/0.9/install.html
+[include]: 
+[collectors]: 
+[search_expression]: 
+[virtual_guide]: (hey rename this to "virtual resource design patterns")
+
+
+A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the catalog. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resource] into two steps. 
+
+Although virtual resources can only be declared once, they can be realized any number of times (much like how a class may be [`included`][include] multiple times). 
+
+Purpose
+-----
+
+Virtual resources are useful for:
+
+* Resources which should be managed if at least one of several conditions is met
+* Overlapping sets of resources which may be required by any number of classes
+* Resources which should only be managed if multiple cross-class conditions are met
+
+Since they offer a safe way to add a resource to the catalog in more than one place, virtual resources can be used in some of the same situations as classes. The features that distinguish them are:
+
+* **Searchability** via [resource collectors][collectors], which lets you realize overlapping clumps of virtual resources
+* **Flatness,** such that you can declare a virtual resource and realize it a few lines later, without having to clutter your modules with many single-resource classes
+
+For more details, see [Virtual Resource Design Patterns][virtual_guide].
+
+Syntax
+-----
+
+### Declaring a Virtual Resource
+
+To declare a virtual resource, prepend `@` (the "at" sign) to the **type** of a normal [resource declaration][resources]:
+
+{% highlight ruby %}
+    @user {'deploy':
+      uid     => 2004,
+      comment => 'Deployment User',
+      group   => www-data,
+      groups  => ["enterprise"],
+      tag     => [deploy, web],
+    }
+{% endhighlight %}
+
+### Realizing With the `realize` Function
+
+To realize one or more virtual resources **by title,** use the [`realize`][realize_function] function, which accepts one or more [resource references][references]:
+
+{% highlight ruby %}
+    realize User['deploy'], User['zleslie']
+{% endhighlight %}
+
+The `realize` function may be used multiple times on the same virtual resource, and the resource will only be added to the catalog once.
+
+### Realizing With a Collector
+
+Any [resource collector][collectors] will realize any virtual resource that matches its [search expression][search_expression]:
+
+{% highlight ruby %}
+    User <| tag == web |>
+{% endhighlight %}
+
+You can use multiple resource collectors that match a given virtual resource, and it will only be added to the catalog once. 
+
+
+Behavior
+-----
+
+By itself, a virtual resource declaration will not add any resources to the catalog. Instead, it makes the virtual resource available to the compiler, which may or may not realize it. A matching resource collector or a call to the `realize` function will cause the compiler to add the resource to the catalog. 
+
+### Parse-Order Independence
+
+Virtual resources do not depend on parse order. You may realize a virtual resource before the resource has been declared. 
+
+### Collectors vs. the `realize` Function
+
+The `realize` function will cause a compilation failure if you attempt to realize a virtual resource that has not been declared. Resource collectors will fail silently if they do not match any resources. 
+
+### Virtual Resources in Classes
+
+If a virtual resource is contained in a class, it cannot be realized unless the class is declared at some point during the compilation. 
+
+### Defined Resource Types
+
+You may declare virtual resources of defined resource types. This will cause every resource contained in the defined resource to behave virtually --- they will not be added to the catalog unless the defined resource is realized.
+
