@@ -94,7 +94,7 @@ Return the serial number of the machine's motherboard.
 
 * * *
 
-## `Cfkey`
+## `cfkey`
 
 **Purpose:**
 

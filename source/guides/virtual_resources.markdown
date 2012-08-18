@@ -1,9 +1,9 @@
 ---
 layout: legacy
-title: Virtual Resources
+title: Virtual Resource Design Patterns
 ---
 
-Virtual Resources
+Virtual Resource Design Patterns
 =================
 
 Referencing an entity from more than one place.
