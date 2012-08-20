@@ -100,7 +100,7 @@ You can use [the `tag` function][tagfunction] inside a class definition or defin
     }
 {% endhighlight %}
 
-The example above would assign the `us_mirror1` and `us_mirror2` tags to all of the defined resources being declared in the class `role::public_web`, as well as all of the resources each of them contains.
+The example above would assign the `us_mirror1` and `us_mirror2` tags to all of the defined resources being declared in the class `role::public_web`, as well as to all of the resources each of them contains.
 
 Using Tags
 -----
@@ -128,7 +128,7 @@ The built-in [tagmail report handler][tagmail] can send emails to arbitrary emai
 
 ### Reading Tags in Custom Report Handlers
 
-Resource tags are available to custom report handlers and out-of-band report processors: Each `Puppet::Resource::Status` object and `Puppet::Util::Log` object has a `tags` key, whose value is an array containing every tag for the resource in question. See the following pages for more info:
+Resource tags are available to custom report handlers and out-of-band report processors: Each `Puppet::Resource::Status` object and `Puppet::Util::Log` object has a `tags` key whose value is an array containing every tag for the resource in question. See the following pages for more info:
 
 * [Processing Reports][reports]
 * [Report Format 2][report_format_2] (the report format used by Puppet 2.7)
