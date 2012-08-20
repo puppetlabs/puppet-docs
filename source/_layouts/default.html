@@ -327,6 +327,7 @@
               <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
               {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page" id="page-nav">{{ content | toc }}</nav>{% endunless %}
               {{ content }}
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
             </div>
             <nav class="main">
                   <div id="subCol">
