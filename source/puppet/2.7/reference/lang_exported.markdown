@@ -49,10 +49,12 @@ Exported resources are used in two steps: declaring and collecting.
 
 {% highlight ruby %}
     class ssh {
+      # Declare:
       @@sshkey { $hostname:
         type => dsa,
         key => $sshdsakey,
       }
+      # Collect:
       Sshkey <<| |>>
     }
 {% endhighlight %}

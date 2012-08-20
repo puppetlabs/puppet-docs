@@ -44,16 +44,19 @@ Virtual resources are used in two steps: declaring and realizing.
 {% highlight ruby %}
     # <modulepath>/apache/manifests/init.pp
     ...
+    # Declare:
     @a2mod { 'rewrite':
       ensure => present,
     } # note: The a2mod type is from the puppetlabs-apache module.
     
     # <modulepath>/wordpress/manifests/init.pp
     ...
+    # Realize: 
     realize A2mod['rewrite']
     
     # <modulepath>/freight/manifests/init.pp
     ...
+    # Realize again:
     realize A2mod['rewrite']
 {% endhighlight %}
 
