@@ -11,6 +11,7 @@ title: "Language: Exported Resources"
 [namevar]: 
 [hostname]: 
 [fqdn]: 
+[tags]: 
 [facts]: 
 [bacula]: 
 [exported_collector]: 
@@ -86,7 +87,7 @@ You must use an [exported resource collector][exported_collector] to collect exp
 
 (The second example, taken from [puppetlabs-bacula][bacula], uses the [concat][] module.)
 
-Since any node could be exporting a resource, it is difficult to predict what the title of an exported resource will be. As such, it's usually best to [search][] on a more general attribute.
+Since any node could be exporting a resource, it is difficult to predict what the title of an exported resource will be. As such, it's usually best to [search][] on a more general attribute. This is one of the main use cases for [tags][].
 
 See [Exported Resource Collectors][exported_collector] for more detail on the collector syntax and search expressions.
 
