@@ -3,9 +3,8 @@ layout: default
 title: "Language: Relationships and Ordering"
 ---
 
-<!-- TODO -->
-[virtual]: 
-[collector]: 
+[virtual]: ./lang_virtual.html
+[collector]: ./lang_collectors.html
 [resources]: ./lang_resources.html
 [reference]: ./lang_datatypes.html#resource-references
 [array]: ./lang_datatypes.html#arrays

@@ -3,11 +3,10 @@ layout: default
 title: "Language: Resources"
 ---
 
-<!-- TODO -->
-[realize]: 
-[virtual]: 
-[containment]: 
-[scope]: 
+[realize]: ./lang_virtual.html#syntax
+[virtual]: ./lang_virtual.html
+[containment]: ./lang_containment.html
+[scope]: ./lang_scope.html
 [report]: /guides/reporting.html
 [append_attributes]: ./lang_classes.html#appending-to-resource-attributes
 [types]: /references/latest/type.html

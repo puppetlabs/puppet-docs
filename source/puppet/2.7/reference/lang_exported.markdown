@@ -4,23 +4,22 @@ title: "Language: Exported Resources"
 ---
 
 
-<!-- TODO -->
-[nagios_service]: 
-[concat]: 
-[title]: 
-[namevar]: 
-[hostname]: 
-[fqdn]: 
-[tags]: 
-[facts]: 
-[bacula]: 
-[exported_collector]: 
-[search]: 
+[nagios_service]: /references/latest/type.html#nagiosservice
+[concat]: http://forge.puppetlabs.com/ripienaar/concat
+[title]: ./lang_resources.html#title
+[namevar]: ./lang_resources.html#namenamevar
+[hostname]: /facter/1.6/core_facts.html#hostname
+[fqdn]: /facter/1.6/core_facts.html#fqdn
+[tags]: ./lang_tags.html
+[facts]: ./lang_variables.html#facts
+[bacula]: https://forge.puppetlabs.com/puppetlabs/bacula
+[exported_collector]: ./lang_collectors.html#exported-resource-collectors
+[search]: ./lang_collectors.html#search-expressions
 [puppetdb]: /puppetdb/0.9
 [puppetdb_connect]: /puppetdb/0.9/connect_puppet.html
 [puppetdb_install]: /puppetdb/0.9/install.html
 [ar_storeconfigs]: http://projects.puppetlabs.com/projects/puppet/wiki/Using_Stored_Configuration
-[exported_guide]: (hey rename this to "exported resource design patterns)
+[exported_guide]: /guides/exported_resources.html
 
 > **Note:** Exported resources require resource stashing (AKA "storeconfigs") to be enabled on your puppet master. Resource stashing is provided by [PuppetDB][]. To enable resource stashing, follow these instructions: 
 > 

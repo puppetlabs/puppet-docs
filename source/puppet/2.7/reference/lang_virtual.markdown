@@ -3,17 +3,16 @@ layout: default
 title: "Language: Virtual and Exported Resources"
 ---
 
-<!-- TODO -->
 [resources]: ./lang_resources.html
-[references]: 
-[classes]: 
-[realize_function]: 
-[include]: 
-[collectors]: 
-[search_expression]: 
-[override]: 
-[chaining]: 
-[virtual_guide]: (hey rename this to "virtual resource design patterns")
+[references]: ./lang_datatypes.html#resource-references
+[classes]: ./lang_classes.html
+[realize_function]: /references/latest/function.html#realize
+[include]: ./lang_classes.html#declaring-a-class-with-include
+[collectors]: ./lang_collectors.html
+[search_expression]: ./lang_collectors.html#search-expressions
+[override]: ./lang_resources.html#amending-attributes-with-a-collector
+[chaining]: ./lang_relationships.html#chaining-arrows
+[virtual_guide]: /guides/virtual_resources.html
 
 
 A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the catalog. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resource] into two steps. 

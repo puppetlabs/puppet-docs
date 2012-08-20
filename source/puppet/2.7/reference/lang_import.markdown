@@ -3,8 +3,8 @@ title: "Language: Importing Manifests"
 layout: default
 ---
 
-<!-- TODO -->
-[site_manifest]: 
+<!-- TODO: need better link for site.pp and certname-->
+[site_manifest]: ./lang_summary.html#files
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
 [node_definition]: ./lang_node_definitions.html

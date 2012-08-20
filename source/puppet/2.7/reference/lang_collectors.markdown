@@ -3,10 +3,9 @@ layout: default
 title: "Language: Resource Collectors"
 ---
 
-<!-- TODO -->
-[virtual]: 
-[realize]: 
-[exported]: 
+[virtual]: ./lang_virtual.html
+[realize]: ./lang_virtual.html#syntax
+[exported]: ./lang_exported.html
 [puppetdb]: /puppetdb/
 [puppetdb_install]: /puppetdb/0.9/install.html
 [puppetdb_connect]: /puppetdb/0.9/connect_puppet.html

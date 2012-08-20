@@ -3,15 +3,15 @@ layout: default
 title: "Language: Classes"
 ---
 
-
-<!-- TODO -->
-[hiera]: 
-[collectors]: 
-[collector_override]: 
-[namespace]: 
-[sitedotpp]: 
-[enc]: 
-[tags]: 
+<!-- TODO: Need better link for hiera -->
+[hiera]: https://github.com/puppetlabs/hiera
+<!-- TODO: need better link for site.pp -->
+[sitedotpp]: ./lang_summary.html#files
+[collectors]: ./lang_collectors.html
+[collector_override]: ./lang_resources.html#amending-attributes-with-a-collector
+[namespace]: ./lang_namespaces.html
+[enc]: /guides/external_nodes.html
+[tags]: ./lang_tags.html
 [allowed]: ./lang_reserved.html#classes-and-types
 [function]: ./lang_functions.html
 [modules]: ./modules_fundamentals.html

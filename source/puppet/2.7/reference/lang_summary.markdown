@@ -4,11 +4,9 @@ title: "Language: Summary"
 ---
 
 
-<!-- TODO -->
-
-[autoload]: 
-[config]: 
-[usecacheonfailure]: 
+[autoload]: ./lang_namespaces.html#autoloader-behavior
+[config]: /guides/configuring.html
+[usecacheonfailure]: /references/latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [sitepp]: /references/glossary.html#site-manifest
 [classes]: ./lang_classes.html

@@ -3,10 +3,10 @@ title: "Language: Defined Resource Types"
 layout: default
 ---
 
-<!-- TODO -->
-[sitedotpp]: 
-[namespaces]: 
-[collector]: 
+<!-- TODO: need better link for site.pp -->
+[sitedotpp]: ./lang_summary.html#files
+[namespaces]: ./lang_namespaces.html
+[collector]: ./lang_collectors.html
 [resource]: ./lang_resources.html#resource-declarations
 [naming]: ./lang_reserved.html#classes-and-types
 [resource_namevar]: ./lang_resources.html#namenamevar

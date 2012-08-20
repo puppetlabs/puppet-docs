@@ -3,19 +3,18 @@ layout: default
 title: "Language: Namespaces and Autoloading"
 ---
 
-<!-- TODO -->
-[classes]: 
-[define]: 
-[import]: 
-[variables]: 
-[modulepath]: 
-[module]: 
-[scopes]: 
-[include]: 
+[classes]: ./lang_classes.html
+[define]: ./lang_defined_types.html
+[import]: ./lang_import.html
+[variables]: ./lang_variables.html
+[modulepath]: ./modules_fundamentals.html#the-modulepath
+[module]: ./modules_fundamentals.html
+[scopes]: ./lang_scope.html
+[include]: ./lang_classes.html#declaring-a-class-with-include
 [2053]: https://projects.puppetlabs.com/issues/2053
-[inherits]: 
+[inherits]: ./lang_classes.html#inheritance
 [allowed]: ./lang_reserved.html#classes-and-types
-[relative_below]: 
+[relative_below]: #aside-historical-context
 
 
 [Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module]. 
