@@ -30,7 +30,9 @@ A **scope** is a specific **area of code,** which is partially isolated from oth
 Scopes **do not** limit the reach of:
 
 * [Resource titles][resources], which are all global
-* [Resource references][refs], which can refer to a resource declared to any scope
+* [Resource references][refs], which can refer to a resource declared in any scope
+
+### Summary Diagram
 
 ![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][diagram]
 
