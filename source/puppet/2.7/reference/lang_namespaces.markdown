@@ -137,13 +137,13 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 > 
 > #### Namespacing for Redistribution
 > 
-> As proto-modules got more sophisticated, their authors wanted to share them with other users. The problem with this is visible above: many modules probably had a `python` or `ssl` class, and the `lighttpd` module probably had a `vhost` define that clashed with the Apache one. 
+> As proto-modules got more sophisticated, their authors wanted to share them with other users. The problem with this is visible above: many modules were likely to have a `python` or `ssl` class, and the `lighttpd` module probably had a `vhost` define that clashed with the Apache one. 
 > 
 > The solution was namespacing, which would allow different proto-modules to use common class and defined type names without competing for global identifiers. 
 > 
 > #### Private vs. Public
 > 
-> The implementation of namespaces relied on an assumption that turned out to be incorrect: that classes and defined types other than the module's main class would (and should) mostly be used inside the module, rather than applied directly to nodes. (That is, that they would be _private,_ much like local variables are.) Thus, namespacing was done by hiding definitions within other definitions:
+> The implementation of namespaces relied on an assumption that turned out to be incorrect: that classes and defined types other than the module's main class would (and should) mostly be used inside the module, rather than applied directly to nodes. (That is, they would be _private,_ much like local variables.) Thus, namespacing was done by hiding definitions within other definitions:
 > 
 {% highlight ruby %}
     class apache {
@@ -162,9 +162,9 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 > 
 > Users and developers eventually realized several things about this arrangement: 
 > 
-> * Using a class's full name everywhere was actually not that big a deal, and was in fact a lot clearer and easier to read and maintain.
-> * Public classes and defined types were more common than private ones, and optimizing for the less common case was an odd approach. 
-> * Even for classes and defines that _were_ only used within their module, there was little real benefit to be gained by making them "private," since they were effectively public via their full name anyway.
+> * Using a class's full name everywhere was actually not that big a deal and was in fact a lot clearer and easier to read and maintain.
+> * Public classes and defined types were more common than private ones and optimizing for the less common case was an odd approach. 
+> * Even for classes and defined types that _were_ only used within their module, there was little real benefit to be gained by making them "private," since they were effectively public via their full name anyway.
 > 
 > Those realizations led to the superior [module][] autoloader design used today, where a class's "full" name is effectively its only name. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 2.7, where it often annoys users who have adopted the modern idiom. 
 > 
