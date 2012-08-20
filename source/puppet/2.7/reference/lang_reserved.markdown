@@ -12,6 +12,8 @@ title: "Language: Reserved Words and Acceptable Names"
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
+[type_ref]: /references/latest/type.html
+[func_ref]: /references/latest/function.html
 
 Reserved Words
 -----
@@ -25,18 +27,21 @@ Several words in the Puppet language are **reserved**. This means they:
 
 The following words are reserved: 
 
-* `true` --- special value
-* `false` --- special value
-* `undef` --- special value
+* `case` --- language keyword
 * `class` --- language keyword
-* `node` --- language keyword
+* `default` --- language keyword
 * `define` --- language keyword
-* `inherits` --- language keyword
-* `if` --- language keyword
 * `else` --- language keyword
 * `elsif` --- language keyword
-* `case` --- language keyword
-* `default` --- language keyword
+* `false` --- special value
+* `if` --- language keyword
+* `import` --- language keyword
+* `inherits` --- language keyword
+* `node` --- language keyword
+* `true` --- special value
+* `undef` --- special value
+
+Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 
 Reserved Class Names
 -----
