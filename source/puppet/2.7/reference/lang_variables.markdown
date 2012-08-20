@@ -18,6 +18,7 @@ title: "Language: Variables"
 [facts]: /facter/1.6/core_facts.html
 [facter]: /facter
 [customfacts]: /guides/custom_facts.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
 
@@ -153,7 +154,7 @@ Puppet provides several built-in [top-scope][topscope] variables, which you can 
 
 ### Facts
 
-Each node submits a very large number of [facts][] (as discovered by [Facter][]) when requesting its catalog, and all of them are available as top-scope variables in your manifests. In addition to the built-in facts, you can create and distribute custom facts as plugins. 
+Each node submits a very large number of [facts][] (as discovered by [Facter][]) when requesting its [catalog][], and all of them are available as top-scope variables in your manifests. In addition to the built-in facts, you can create and distribute custom facts as plugins. 
 
 * [See here for a complete list of built-in facts][facts].
 * [See here for a guide to writing custom facts][customfacts].

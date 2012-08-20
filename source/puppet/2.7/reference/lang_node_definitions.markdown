@@ -20,9 +20,10 @@ title: "Language: Node Definitions"
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
-A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's catalog. This feature allows you to assign specific configurations to specific nodes.
+A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's [catalog][]. This feature allows you to assign specific configurations to specific nodes.
 
 Node statements are an **optional feature** of Puppet. They can be replaced by or combined with an [external node classifier][enc], or you can eschew both and use conditional statements with [facts][] to classify nodes.
 

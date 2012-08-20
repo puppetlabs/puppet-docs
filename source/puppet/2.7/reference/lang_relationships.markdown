@@ -208,7 +208,7 @@ Relationships are not limited by parse-order. You can declare a relationship wit
 
 ### Missing Dependencies
 
-If a resource declares a relationship with a resource that does not exist in the catalog, **compilation will fail** with one of the following errors:
+If one of the resources in a relationship is never declared, **compilation will fail** with one of the following errors:
 
 * `Could not find dependency <OTHER RESOURCE> for <RESOURCE>`
 * `Could not find resource '<OTHER RESOURCE>' for relationship on '<RESOURCE>'`.

@@ -21,12 +21,13 @@ title: "Language: Resources"
 [class]: ./lang_classes.html
 [defined_type]: ./lang_defined_types.html
 [collector]: ./lang_collectors.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
-* [See the Type Reference for complete information about Puppet's built-in resource types.][types]
+> * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
 
-Declaring a resource instructs Puppet to include it in the catalog and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
+Declaring a resource instructs Puppet to include it in the [catalog][] and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
 Syntax
 -----

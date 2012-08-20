@@ -22,6 +22,7 @@ layout: default
 [attributes]: ./lang_resources.html#attributes
 [title]: ./lang_resources.html#title
 [contains]: ./lang_containment.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 **Defined resource types** (also called **defined types** or **defines**) are blocks of Puppet code that can be evaluated multiple times with different parameters. Once defined, they act like a new resource type: you can cause the block to be evaluated by [declaring a resource][resource] of that new type. 
 
@@ -66,7 +67,7 @@ The general form of a type definition is:
 * A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource]
 * A closing curly brace
 
-The definition does not cause the code in the block to be added to the catalog; it only makes it available. To execute the code, you must declare one or more resources of the defined type.
+The definition does not cause the code in the block to be added to the [catalog][]; it only makes it available. To execute the code, you must declare one or more resources of the defined type.
 
 ### Declaring an Instance
 

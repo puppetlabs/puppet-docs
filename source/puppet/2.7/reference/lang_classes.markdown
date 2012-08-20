@@ -33,8 +33,9 @@ title: "Language: Classes"
 [parent_scope]: ./lang_scope.html#scope-lookup-rules
 [definedtype]: ./lang_defined_types.html
 [metaparameters]: ./lang_resources.html#metaparameters
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
-**Classes** are named blocks of Puppet code which are not applied unless they are invoked by name. They can be stored in [modules][] for later use and then declared (added to a node's catalog) with the `include` function or a resource-like syntax.
+**Classes** are named blocks of Puppet code which are not applied unless they are invoked by name. They can be stored in [modules][] for later use and then declared (added to a node's [catalog][]) with the `include` function or a resource-like syntax.
 
 Syntax
 -----

@@ -20,6 +20,7 @@ title: "Language: Exported Resources"
 [puppetdb_install]: /puppetdb/0.9/install.html
 [ar_storeconfigs]: http://projects.puppetlabs.com/projects/puppet/wiki/Using_Stored_Configuration
 [exported_guide]: /guides/exported_resources.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 > **Note:** Exported resources require resource stashing (AKA "storeconfigs") to be enabled on your puppet master. Resource stashing is provided by [PuppetDB][]. To enable resource stashing, follow these instructions: 
 > 
@@ -94,7 +95,7 @@ See [Exported Resource Collectors][exported_collector] for more detail on the co
 Behavior
 -----
 
-When resource stashing (AKA storeconfigs) is enabled, the puppet master will send a copy of every catalog it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node, and provides the puppet master with a search interface to those catalogs.
+When resource stashing (AKA storeconfigs) is enabled, the puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node, and provides the puppet master with a search interface to those catalogs.
 
 Declaring an exported resource causes that resource to be added to the catalog and marked with an "exported" flag, which prevents puppet agent from managing the resource (unless it was collected). When PuppetDB receives the catalog, it also takes note of this flag. 
 

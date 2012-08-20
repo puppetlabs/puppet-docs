@@ -11,10 +11,11 @@ layout: default
 [resource]: ./lang_resources.html
 [custom_facts]: /guides/custom_facts.html
 [datatype]: ./lang_datatypes.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 * [See the Function Reference for complete info about Puppet's built-in functions.][func_ref]
 
-**Functions** are pre-defined chunks of Ruby code which run during [compilation][]. Most functions either **return values** or **modify the catalog.**
+**Functions** are pre-defined chunks of Ruby code which run during [compilation][]. Most functions either **return values** or **modify the [catalog][].**
 
 Puppet includes several built-in functions, and more are available in modules on the [Puppet Forge][forge], particularly the [puppetlabs-stdlib][stdlib] module. You can also write [custom functions][custom] and put them in your own modules. 
 
