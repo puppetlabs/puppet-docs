@@ -203,6 +203,10 @@ Only certain resource types can refresh themselves. Of the built-in types, these
 
 Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
 
+### Parse-Order Independence
+
+Relationships are not limited by parse-order. You can declare a relationship with a resource before that resource has been declared. 
+
 ### Missing Dependencies
 
 If a resource declares a relationship with a resource that does not exist in the catalog, **compilation will fail** with one of the following errors:

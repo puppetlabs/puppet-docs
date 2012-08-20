@@ -6,6 +6,8 @@ title: "Language: Resources"
 <!-- TODO -->
 [realize]: 
 [virtual]: 
+[containment]: 
+[scope]: 
 [report]: /guides/reporting.html
 [append_attributes]: ./lang_classes.html#appending-to-resource-attributes
 [types]: /references/latest/type.html
@@ -25,7 +27,7 @@ title: "Language: Resources"
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
 
-Declaring a resource instructs Puppet to include it in the catalog and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. 
+Declaring a resource instructs Puppet to include it in the catalog and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
 Syntax
 -----
@@ -74,7 +76,7 @@ Puppet can be extended with additional resource types, written in Ruby or in the
 
 The title is an identifying string. It only has to identify the resource to Puppet's compiler; it does not need to bear any relationship to the actual target system. 
 
-Titles must be unique per resource type. You may have a package and a service both titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure. 
+Titles **must be unique per resource type.** You may have a package and a service both titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure. 
 
 ### Attributes
 
@@ -97,9 +99,29 @@ A resource declaration adds a resource to the catalog, and tells Puppet to manag
 * Compare the actual state to the desired state
 * If necessary, change the system to enforce the desired state
 
+### Uniqueness
+
+Puppet does not allow you to declare the same resource twice. This is to prevent multiple conflicting values from being declared for the same attribute. 
+
+Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify duplicate resources --- if either of these is duplicated within a given resource type, the compilation will fail. 
+
+If multiple classes require the same resource, you can use a [class][] or a [virtual resource][virtual] to add it to the catalog in multiple places without duplicating it.
+
 ### Events
 
 If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
+
+### Parse-Order Independence
+
+Resources are not applied to the target system in the order they are written in the manifests --- Puppet will apply the resources in whatever way is most efficient. If a resource must be applied before or after some other resource, you must explicitly say so. [See Relationships for more information.][relationships]
+
+### Scope
+
+Resources are not subject to [scope][] --- a resource in any scope may be [referenced][reference] from any other scope, and local scopes do not introduce local namespaces for resource titles.
+
+### Containment
+
+Resources may be contained by [classes][class] and [defined types][defined_type]. See [Containment][] for more details.
 
 Special Attributes
 -----
