@@ -6,19 +6,19 @@ title: "Language: Virtual and Exported Resources"
 <!-- TODO -->
 [resources]: ./lang_resources.html
 [references]: 
+[classes]: 
 [realize_function]: 
-[puppetdb]: /puppetdb/0.9
-[puppetdb_connect]: /puppetdb/0.9/connect_puppet.html
-[puppetdb_install]: /puppetdb/0.9/install.html
 [include]: 
 [collectors]: 
 [search_expression]: 
+[override]: 
+[chaining]: 
 [virtual_guide]: (hey rename this to "virtual resource design patterns")
 
 
 A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the catalog. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resource] into two steps. 
 
-Although virtual resources can only be declared once, they can be realized any number of times (much like how a class may be [`included`][include] multiple times). 
+Although virtual resources can only be _declared_ once, they can be _realized_ any number of times (much like how a class may be [`included`][include] multiple times). 
 
 Purpose
 -----
@@ -29,15 +29,35 @@ Virtual resources are useful for:
 * Overlapping sets of resources which may be required by any number of classes
 * Resources which should only be managed if multiple cross-class conditions are met
 
-Since they offer a safe way to add a resource to the catalog in more than one place, virtual resources can be used in some of the same situations as classes. The features that distinguish them are:
+Virtual resources can be used in some of the same situations as [classes][], since they both offer a safe way to add a resource to the catalog in more than one place. The features that distinguish virtual resources are:
 
 * **Searchability** via [resource collectors][collectors], which lets you realize overlapping clumps of virtual resources
-* **Flatness,** such that you can declare a virtual resource and realize it a few lines later, without having to clutter your modules with many single-resource classes
+* **Flatness,** such that you can declare a virtual resource and realize it a few lines later without having to clutter your modules with many single-resource classes
 
 For more details, see [Virtual Resource Design Patterns][virtual_guide].
 
 Syntax
 -----
+
+Virtual resources are used in two steps: declaring and realizing. 
+
+{% highlight ruby %}
+    # <modulepath>/apache/manifests/init.pp
+    ...
+    @a2mod { 'rewrite':
+      ensure => present,
+    } # note: The a2mod type is from the puppetlabs-apache module.
+    
+    # <modulepath>/wordpress/manifests/init.pp
+    ...
+    realize A2mod['rewrite']
+    
+    # <modulepath>/freight/manifests/init.pp
+    ...
+    realize A2mod['rewrite']
+{% endhighlight %}
+
+In the example above, the `apache` class declares a virtual resource, and both the `wordpress` and `freight` classes realize it. The resource will be managed on any node that has the `wordpress` and/or `freight` classes applied to it.
 
 ### Declaring a Virtual Resource
 
@@ -73,6 +93,8 @@ Any [resource collector][collectors] will realize any virtual resource that matc
 
 You can use multiple resource collectors that match a given virtual resource, and it will only be added to the catalog once. 
 
+Note that a collector used in an [override block][override] or a [chaining statement][chaining] will also realize any matching virtual resources. 
+
 
 Behavior
 -----
@@ -89,7 +111,12 @@ The `realize` function will cause a compilation failure if you attempt to realiz
 
 ### Virtual Resources in Classes
 
-If a virtual resource is contained in a class, it cannot be realized unless the class is declared at some point during the compilation. 
+If a virtual resource is contained in a class, it cannot be realized unless the class is declared at some point during the compilation. A common pattern is to declare a class full of virtual resources and then use a collector to choose the set of resources you need:
+
+{% highlight ruby %}
+    include virtual::users
+    User <| groups == admin or group == wheel |>
+{% endhighlight %}
 
 ### Defined Resource Types
 
