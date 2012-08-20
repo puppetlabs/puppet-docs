@@ -179,7 +179,7 @@ These variables are set by the puppet master and are most useful when managing P
 
 ### Parser-Set Variables
 
-There are several local variables set by the parser during compilation. These are mostly useful when implementing complex [defined types][definedtype]. 
+These variables are set in every [local scope][scope] by the parser during compilation. These are mostly useful when implementing complex [defined types][definedtype]. 
 
 * `$module_name` --- the name of the module that contains the current class or defined type. 
 * `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules. 
