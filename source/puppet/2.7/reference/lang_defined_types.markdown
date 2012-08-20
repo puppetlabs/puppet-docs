@@ -40,13 +40,13 @@ Syntax
       include apache::params # contains common config settings
       $vhost_dir = $apache::params::vhost_dir
       file { "${vhost_dir}/${servername}.conf":
-          content => template('apache/vhost-default.conf.erb'), 
-            # This template can access all of the parameters and variables from above.
-          owner   => 'www',
-          group   => 'www',
-          mode    => '644',
-          require => Package['httpd'],
-          notify  => Service['httpd'],
+        content => template('apache/vhost-default.conf.erb'), 
+          # This template can access all of the parameters and variables from above.
+        owner   => 'www',
+        group   => 'www',
+        mode    => '644',
+        require => Package['httpd'],
+        notify  => Service['httpd'],
       }
     }
 {% endhighlight %}
@@ -122,7 +122,7 @@ Since multiple instances of a defined type might be declared in your manifests, 
 You can make resources different across instances by making their **titles** and **names/namevars** include the value of `$title` or another parameter. 
 
 {% highlight ruby %}
-      file { "${vhost_dir}/${servername}.conf":
+    file { "${vhost_dir}/${servername}.conf":
 {% endhighlight %}
 
 Since `$title` (and possibly other parameters) will be unique per instance, this ensures the resources will be unique as well. 
