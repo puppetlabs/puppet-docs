@@ -21,6 +21,7 @@ title: "Language: Node Definitions"
 [enc]: /guides/external_nodes.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
+[strict]: /references/latest/configuration.html#stricthostnamechecking
 
 
 A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's [catalog][]. This feature allows you to assign specific configurations to specific nodes.
@@ -168,6 +169,8 @@ Thus, for the node `www01.example.com`, Puppet would try the following, in order
 * `www01`
 * The first regex matching `www01`
 * `default`
+
+You can turn off this fuzzy name matching by changing the puppet master's [`strict_hostname_checking`][strict] setting to `true`. This will cause Puppet to skip step 3 and only use the node's full name before resorting to `default`.
 
 ### Code Outside Node Statements
 
