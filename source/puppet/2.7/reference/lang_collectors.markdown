@@ -51,6 +51,11 @@ A collector with an empty search expression will match **every** resource of the
 
 Parentheses may be used to improve readability. You can create arbitrarily complex expressions using the following four operators:
 
+- [`==`](#equality-search)
+- [`!=`](#non-equality-search)
+- [`and`](#and)
+- [`or`](#or)
+
 #### `==` (equality search)
 
 This operator is non-transitive: 
@@ -69,7 +74,7 @@ This operator is non-transitive:
 
 For a given resource, this operator will **match** if the value of the attribute is **not** identical to the search key. 
 
-> Note: This operator will always match if the value is an array. To the best of our knowledge, there is no particular reason for this and the behavior when the value is an array may in fact be undefined. 
+> Note: This operator will always match if the attribute's value is an array. This behavior may be undefined. 
 
 #### `and`
 
@@ -127,5 +132,5 @@ The general form of an exported resource collector is:
 
 Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have resource stashing (storeconfigs) enabled. See [Exported Resources][exported] for more details. To enable resource stashing, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
 
-The behavior of an exported resource collector when used with an attribute block or in a chaining statement is undefined. 
+Like normal collectors, exported resource collectors can be used with attribute blocks and chaining statements.
 

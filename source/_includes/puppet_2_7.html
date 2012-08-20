@@ -2,6 +2,8 @@
 
 ### Puppet 2.7 Reference Manual
 
+[Main Index](./index.html)
+
 - **Puppet 2.7 Overview**
     - What's New in Version 2.7
         * Insert all breaking changes here
@@ -50,28 +52,29 @@
         * Nginx/Unicorn
     * Combine w/ CLI interface things above? does it make sense to split these? 
 - **The Puppet Language**
-    - Visual Index
+    - `"Visual Index", "./lang_visual_index.html"`
     - `"Summary", "./lang_summary.html"`
     - `"Reserved Words and Acceptable Names", "./lang_reserved.html"`
-    - `"Comments", "./lang_comments.html"`
     - `"Resources", "./lang_resources.html"`
-    - `"Data Types: Strings, Arrays, Hashes, etc.", "./lang_datatypes.html"`
+    - `"Relationships and Ordering", "./lang_relationships.html"`
     - `"Resource Defaults", "./lang_defaults.html"`
     - `"Variables", "./lang_variables.html"`
     - `"Scope", "./lang_scope.html"`
-    - `"Namespaces and Autoloading", "./lang_namespaces.html"`
-    - Virtual and Exported Resources
-    - `"Tags", "./lang_tags.html"`
-    - `"Relationships and Ordering", "./lang_relationships.html"`
-    - `"Classes", "./lang_classes.html"`
-    - `"Defined Types", "./lang_defined_types.html"`
-    - `"Run Stages", "./lang_run_stages.html"`
-    - `"Node definitions", "./lang_node_definitions.html"`
-    - `"Containment", "./lang_containment.html"`
     - `"Conditional Statements", "./lang_conditional.html"`
     - `"Expressions", "./lang_expressions.html"`
     - `"Functions", "./lang_functions.html"`
+    - `"Classes", "./lang_classes.html"`
+    - `"Defined Types", "./lang_defined_types.html"`
+    - `"Containment", "./lang_containment.html"`
+    - `"Namespaces and Autoloading", "./lang_namespaces.html"`
     - `"Resource Collectors", "./lang_collectors.html"`
+    - `"Node definitions", "./lang_node_definitions.html"`
+    - `"Data Types", "./lang_datatypes.html"`
+    - `"Comments", "./lang_comments.html"`
+    - `"Virtual Resources", "./lang_virtual.html"`
+    - `"Exported Resources", "./lang_exported.html"`
+    - `"Tags", "./lang_tags.html"`
+    - `"Run Stages", "./lang_run_stages.html"`
     - `"Importing Manifest Files", "./lang_import.html"`
 - **The Ruby DSL**
 - **Compiling the Configuration Catalog for a Node (Node Classification)**
@@ -87,6 +90,7 @@
     - `"Fundamentals", "./modules_fundamentals.html"`
     - Plugins in Modules
     - `"Installing Modules", "./modules_installing.html"`
+    - `"Publishing Modules", "./modules_publishing.html"`
     - Module Documentation (puppetdoc)
 - **File Serving**
 - **Resource Types and Providers**
@@ -147,42 +151,38 @@
 
 {% endcomment %}
 
+
 <h3 id="puppet-27-reference-manual">Puppet 2.7 Reference Manual</h3>
+
+<p><a href="./index.html">Main Index</a></p>
 
 <ul>
   <li><strong>The Puppet Language</strong>
     <ul>
-      <li>{% iflink "Summary", "./lang_summary.html" %}</li>
-      <li>{% iflink "Reserved Words and Acceptable Names", "./lang_reserved.html" %}</li>
-      <li>{% iflink "Comments", "./lang_comments.html" %}</li>
-      <li>{% iflink "Resources", "./lang_resources.html" %}</li>
-      <li>{% iflink "Data Types: Strings, Arrays, Hashes, etc.", "./lang_datatypes.html" %}</li>
-      <li>{% iflink "Resource Defaults", "./lang_defaults.html" %}</li>
-      <li>{% iflink "Variables", "./lang_variables.html" %}</li>
-      <li>{% iflink "Scope", "./lang_scope.html" %}</li>
-      <li>Namespaces and Autoloading</li>
-      <li>Virtual and Exported Resources</li>
-      <li>{% iflink "Relationships and Ordering", "./lang_relationships.html" %}</li>
-      <li>{% iflink "Classes", "./lang_classes.html" %}</li>
-      <li>{% iflink "Defined Types", "./lang_defined_types.html" %}</li>
-      <li>{% iflink "Run Stages", "./lang_run_stages.html" %}</li>
-      <li>{% iflink "Node definitions", "./lang_node_definitions.html" %}</li>
-      <li>{% iflink "Containment", "./lang_containment.html" %}</li>
-      <li>{% iflink "Conditional Statements", "./lang_conditional.html" %}</li>
-      <li>{% iflink "Expressions", "./lang_expressions.html" %}</li>
-      <li>{% iflink "Functions", "./lang_functions.html" %}</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Resource Collectors (&lt;</td>
-              <td>&nbsp;</td>
-              <td>&gt;)</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>{% iflink "Importing Manifest Files", "./lang_import.html" %}</li>
+      <li><code>"Visual Index", "./lang_visual_index.html"</code></li>
+      <li><code>"Summary", "./lang_summary.html"</code></li>
+      <li><code>"Reserved Words and Acceptable Names", "./lang_reserved.html"</code></li>
+      <li><code>"Resources", "./lang_resources.html"</code></li>
+      <li><code>"Relationships and Ordering", "./lang_relationships.html"</code></li>
+      <li><code>"Resource Defaults", "./lang_defaults.html"</code></li>
+      <li><code>"Variables", "./lang_variables.html"</code></li>
+      <li><code>"Scope", "./lang_scope.html"</code></li>
+      <li><code>"Conditional Statements", "./lang_conditional.html"</code></li>
+      <li><code>"Expressions", "./lang_expressions.html"</code></li>
+      <li><code>"Functions", "./lang_functions.html"</code></li>
+      <li><code>"Classes", "./lang_classes.html"</code></li>
+      <li><code>"Defined Types", "./lang_defined_types.html"</code></li>
+      <li><code>"Containment", "./lang_containment.html"</code></li>
+      <li><code>"Namespaces and Autoloading", "./lang_namespaces.html"</code></li>
+      <li><code>"Resource Collectors", "./lang_collectors.html"</code></li>
+      <li><code>"Node definitions", "./lang_node_definitions.html"</code></li>
+      <li><code>"Data Types", "./lang_datatypes.html"</code></li>
+      <li><code>"Comments", "./lang_comments.html"</code></li>
+      <li><code>"Virtual Resources", "./lang_virtual.html"</code></li>
+      <li><code>"Exported Resources", "./lang_exported.html"</code></li>
+      <li><code>"Tags", "./lang_tags.html"</code></li>
+      <li><code>"Run Stages", "./lang_run_stages.html"</code></li>
+      <li><code>"Importing Manifest Files", "./lang_import.html"</code></li>
     </ul>
   </li>
   <li><strong>Modules</strong>
@@ -190,6 +190,7 @@
       <li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
       <li>{% iflink "Plugins in Modules", "/guides/plugins_in_modules.html" %}</li>
       <li>{% iflink "Installing Modules", "./modules_installing.html" %}</li>
+      <li>{% iflink "Publishing Modules on the Puppet Forge", "./modules_publishing.html" %}</li>
       <li>Module Documentation (puppetdoc) (coming later)</li>
     </ul>
   </li>
