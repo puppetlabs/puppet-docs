@@ -19,7 +19,7 @@ title: "Language: Summary"
 [service]: /references/latest/type.html#service
 [case]: ./lang_conditional.html#case-statements
 [fact]: ./lang_variables.html#facts-and-built-in-variables
-[variable]: ./lang_variables.html
+[variables]: ./lang_variables.html
 [relationships]: ./lang_relationships.html
 [ordering]: ./lang_relationships.html#ordering-and-notification
 [notification]: ./lang_relationships.html#ordering-and-notification

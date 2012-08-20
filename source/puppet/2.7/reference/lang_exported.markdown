@@ -3,7 +3,7 @@ layout: default
 title: "Language: Exported Resources"
 ---
 
-
+[resources]: ./lang_resources.html
 [nagios_service]: /references/latest/type.html#nagiosservice
 [concat]: http://forge.puppetlabs.com/ripienaar/concat
 [title]: ./lang_resources.html#title

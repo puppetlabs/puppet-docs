@@ -61,7 +61,7 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
 
       # puppet module upgrade puppetlabs-apache --version 0.0.3
 
-If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][man].
+If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man].
 
 Installing Modules
 -----

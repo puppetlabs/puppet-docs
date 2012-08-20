@@ -16,7 +16,7 @@ title: "Language: Virtual and Exported Resources"
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
-A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the [catalog][]. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resource] into two steps. 
+A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the [catalog][]. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resources] into two steps. 
 
 Although virtual resources can only be _declared_ once, they can be _realized_ any number of times (much as a class may be [`included`][include] multiple times). 
 
