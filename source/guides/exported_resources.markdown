@@ -1,9 +1,9 @@
 ---
 layout: legacy
-title: Exporting and Collecting Resources
+title: Exported Resource Design Patterns
 ---
 
-Exporting and Collecting Resources
+Exported Resource Design Patterns
 ==================================
 
 Exporting and collecting resources is an extension of [Virtual

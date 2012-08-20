@@ -6,6 +6,12 @@ title: Language Guide
 Language Guide
 =================
 
+[prm]: /puppet/2.7/reference/lang_summary.html
+
+> ## Important Note
+> 
+> **This page has been superseded** by the [Puppet 2.7 reference manual's language reference][prm]. We hope you find the new version more complete and easier to use! [Find the new version here][prm], and use the links in its left sidebar to navigate between pages. If you don't know which language feature you are looking for, use the [visual language index](/puppet/2.7/reference/lang_visual_index.html).
+
 The purpose of Puppet's language is to make it easy to specify the
 resources you need to manage on the machines you're managing.
 

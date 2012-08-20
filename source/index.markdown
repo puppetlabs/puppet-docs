@@ -13,9 +13,9 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 [See the index for Puppet's documentation here](/puppet), or go directly to one of the most popular pages:
 
 - [The Learning Puppet series](/learning) is a guided tutorial for new users, which includes a free VM to run exercises on and experiment with. Go from "What's that?" to "I can do it" in just a few hours.
-- [The language guide](/guides/language_guide.html) covers the syntax of the Puppet language. 
-- [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page. 
 - [The installation guide](/guides/installation.html) can help you install and configure the current open-source Puppet releases.
+- [The Puppet 2.7 Reference Manual](/puppet/2.7/reference) covers every detail of the Puppet language and more.
+- [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page. 
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 
 
@@ -72,20 +72,30 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 * [The installation instructions](/puppetdb/0.9/install.html)
 
 
+Facter
+-----
+
+Facter is Puppet's cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables. 
+
+* [The list of core facts](/facter/1.6/core_facts.html) lists and describes every built-in fact that ships with Facter. 
+* [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts.
+
+
+{% comment %}
+Hiera
+-----
+
+
+
+{% endcomment %}
+
+
 Public Services
 -----
 
 - [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions. 
 - [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS. 
 
-
-<!-- 
-Facter
------
-
-Insert something about Facter here.
-
- -->
 
 
 * * * 
