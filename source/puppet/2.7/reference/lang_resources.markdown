@@ -88,7 +88,7 @@ Every attribute you declare must have a value; the [data type][datatype] of the 
 
 #### Parameters
 
-When discussing resources and types, **parameter** is a synonym for attribute.
+When discussing resources and types, **parameter** is a synonym for attribute. "Parameter" is usually used when discussing a **type,** and "attribute" is usually used when discussing an individual **resource.**
 
 Behavior
 -----
