@@ -17,14 +17,14 @@ title: "Language: Virtual and Exported Resources"
 
 A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the catalog. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resource] into two steps. 
 
-Although virtual resources can only be _declared_ once, they can be _realized_ any number of times (much like how a class may be [`included`][include] multiple times). 
+Although virtual resources can only be _declared_ once, they can be _realized_ any number of times (much as a class may be [`included`][include] multiple times). 
 
 Purpose
 -----
 
 Virtual resources are useful for:
 
-* Resources which should be managed if at least one of several conditions is met
+* Resources whose management depends on at least one of multiple conditions being met
 * Overlapping sets of resources which may be required by any number of classes
 * Resources which should only be managed if multiple cross-class conditions are met
 
@@ -80,7 +80,7 @@ To realize one or more virtual resources **by title,** use the [`realize`][reali
     realize User['deploy'], User['zleslie']
 {% endhighlight %}
 
-The `realize` function may be used multiple times on the same virtual resource, and the resource will only be added to the catalog once.
+The `realize` function may be used multiple times on the same virtual resource and the resource will only be added to the catalog once.
 
 ### Realizing With a Collector
 
@@ -90,7 +90,7 @@ Any [resource collector][collectors] will realize any virtual resource that matc
     User <| tag == web |>
 {% endhighlight %}
 
-You can use multiple resource collectors that match a given virtual resource, and it will only be added to the catalog once. 
+You can use multiple resource collectors that match a given virtual resource and it will only be added to the catalog once. 
 
 Note that a collector used in an [override block][override] or a [chaining statement][chaining] will also realize any matching virtual resources. 
 
