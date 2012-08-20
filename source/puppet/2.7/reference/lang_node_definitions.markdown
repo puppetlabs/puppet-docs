@@ -3,12 +3,11 @@ layout: default
 title: "Language: Node Definitions"
 ---
 
-<!-- TODO -->
-
-[hiera]: 
-[sitepp]: 
-[node_classification]: 
-[certname]: 
+<!-- TODO: Need better link for hiera -->
+[hiera]: https://github.com/puppetlabs/hiera
+<!-- TODO: need better link for site.pp and certname-->
+[sitepp]: lang_summary.html#files
+[certname]: /references/latest/configuration.html#certname
 [classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope

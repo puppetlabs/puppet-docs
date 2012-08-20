@@ -1,12 +1,14 @@
 ---
 layout: legacy
-title: External Nodes
+title: External Node Classifiers
 ---
 
-External Nodes
+External Node Classifiers
 ==============
 
-Traditionally, puppet master uses the `node` definitions in the main site manifest (`site.pp`) to choose which classes to apply to a node. But you can also classify nodes based on a pre-existing external data source, like an LDAP database or a set of flat files describing your infrastructure. Depending on the data you've collected, building an external node classifier (ENC) can be one of the easiest and most high-value ways to extend Puppet. 
+An external node classifier is an arbitrary script or application which can tell Puppet which classes a node should have. It can replace or work in concert with the `node` definitions in the main site manifest (`site.pp`).
+
+Depending on the external data sources you use in your infrastructure, building an external node classifier can be a valuable way to extend Puppet.
 
 * * * 
 

@@ -3,12 +3,10 @@ layout: default
 title: "Language: Tags"
 ---
 
-<!-- TODO -->
 
-[virtual]: 
-[exported]: 
-[storeconfigs]: 
-[namespace]: 
+[virtual]: ./lang_virtual.html
+[exported]: ./lang_exported.html
+[namespace]: ./lang_namespaces.html
 [resources]: ./lang_resources.html
 [classes]: ./lang_classes.html
 [defined]: ./lang_defined_types.html

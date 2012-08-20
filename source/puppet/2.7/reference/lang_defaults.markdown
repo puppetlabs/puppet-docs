@@ -3,9 +3,8 @@ layout: default
 title: "Language: Resource Defaults"
 ---
 
-<!-- TODO -->
-
-[sitemanifest]: 
+<!-- TODO: need better link for site.pp -->
+[sitemanifest]: ./lang_summary.html#files
 [dynamic_scope]: ./lang_scope.html#scope-lookup-rules
 [resource]: ./lang_resources.html
 [definedtypes]: ./lang_defined_types.html

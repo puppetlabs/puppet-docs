@@ -3,24 +3,23 @@ layout: default
 title: "Language: Namespaces and Autoloading"
 ---
 
-<!-- TODO -->
-[classes]: 
-[define]: 
-[import]: 
-[variables]: 
-[modulepath]: 
-[module]: 
-[scopes]: 
-[include]: 
+[classes]: ./lang_classes.html
+[define]: ./lang_defined_types.html
+[import]: ./lang_import.html
+[variables]: ./lang_variables.html
+[modulepath]: ./modules_fundamentals.html#the-modulepath
+[module]: ./modules_fundamentals.html
+[scopes]: ./lang_scope.html
+[include]: ./lang_classes.html#declaring-a-class-with-include
 [2053]: https://projects.puppetlabs.com/issues/2053
-[inherits]: 
+[inherits]: ./lang_classes.html#inheritance
 [allowed]: ./lang_reserved.html#classes-and-types
-[relative_below]: 
+[relative_below]: #aside-historical-context
 
 
 [Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module]. 
 
-> **Important note:** Earlier versions of Puppet used namespaces to navigate nested class/type definitions, and the code that resolves namespaces still behaves as though this were the case. **This can sometimes result in the wrong class being loaded.** This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 2.7. [See below][relative_below] for a full description of the issue.
+> **Important note:** Earlier versions of Puppet used namespaces to navigate nested class/type definitions, and the code that resolves names still behaves as though this were their primary use. **This can sometimes result in the wrong class being loaded.** This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 2.7. [See below][relative_below] for a full description of the issue.
 
 Syntax
 -----
@@ -34,7 +33,7 @@ Puppet [class][classes] and [defined type][define] names may consist of any numb
     define apache::vhost { ... }
 {% endhighlight %}
 
-Optionally, class/defined type names can begin with the top namespace, which is the empty string. The following names are equivalent: 
+Optionally, class/define names can begin with the top namespace, which is the empty string. The following names are equivalent: 
 
 * `apache` and `::apache`
 * `apache::mod` and `::apache::mod`
@@ -47,7 +46,7 @@ Autoloader Behavior
 
 When a class or defined resource is declared, Puppet will use its full name to find the class or defined type in your modules. Names are interpreted as follows:
 
-* The first segment in a name (excluding the empty "top" namespace) identifies the [module][]. Every class and defined type should be in its own file in the module's `manifests` directory and each file should have the `.pp` file extension.
+* The first segment in a name (excluding the empty "top" namespace) identifies the [module][]. Every class and defined type should be in its own file in the module's `manifests` directory, and each file should have the `.pp` file extension.
 * If there are **no** additional namespaces, Puppet will look for the class or defined type in the module's `init.pp` file.
 * Otherwise, Puppet will treat the final segment as the file name and any interior segments as a series of subdirectories under the `manifests` directory.
 
@@ -59,7 +58,7 @@ name                     | file path
 `apache::mod`            | `<modulepath>/apache/manifests/mod.pp`
 `apache::mod::passenger` | `<modulepath>/apache/manifests/mod/passenger.pp`
 
-Note again that `init.pp` always contains a class or defined type named after the module and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.)
+Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.)
 
 
 Relative Name Lookup and Incorrect Name Resolution
@@ -104,7 +103,7 @@ When asked to `include nagios`, Puppet will first attempt to load `apache::nagio
 
 ### Workaround
 
-If a class within another module is blocking the declaration of a top-namespace class, you can force the correct class to load by absolutely qualifying its name. To absolutely qualify a class or defined type name, prepend `::` (double colon) to its name:
+If a class within another module is blocking the declaration of a top-namespace class, you can force the correct class to load by specifying its name from the top namespace ([as seen above](#syntax)). To specify a name from the top namespace, prepend `::` (double colon) to it:
 
 {% highlight ruby %}
     class apache::nagios {
@@ -115,31 +114,37 @@ If a class within another module is blocking the declaration of a top-namespace 
 
 In the example above, Puppet will load class `nagios` from the `nagios` module instead of declaring `apache::nagios` a second time.
 
-### Historical Context
-
-Relative name lookup makes no sense in a modern Puppet version that loads classes from modules. It was introduced in pre-module versions of Puppet due to an overeager guess at how modules would be used.
-
-#### Proto-Modules
-
-Before modules were introduced, users would create module-like blobs by putting a group of related classes and defined types into one manifest file, then using an [import][] statement in `site.pp` to make the group available to the parser. 
-
+> ### Aside: Historical Context
+> 
+> Relative name lookup was introduced in pre-module versions of Puppet. It reflects an outdated assumption about how modules would be used.
+> 
+> #### Proto-Modules
+> 
+> Before modules were introduced, users would create module-like blobs by putting a group of related classes and defined types into one manifest file, then using an [import][] statement in `site.pp` to make the group available to the parser. 
+> 
 {% highlight ruby %}
+    # /etc/puppet/manifests/apache.pp
     class apache { ... } # Manage Apache
     class ssl { ... } # Optional SSL support for Apache
     class python { ... } # Optional mod_python support for Apache
     define vhost ($port) { ... } # Create an Apache vhost
+    
+    # /etc/puppet/manifests/site.pp
+    import apache.pp
+    include apache
+    include ssl
 {% endhighlight %}
-
-#### Redistributable Proto-Modules Required Namespacing
-
-As proto-modules got more sophisticated, their authors wanted to share them with other users. The problem with this is visible above: many modules probably had a `python` or `ssl` class, and the `lighttpd` module probably had a `vhost` define that clashed with the Apache one. 
-
-The solution was namespacing, which would allow different proto-modules to use common class and defined type names without competing for global identifiers. 
-
-#### Private vs. Public
-
-The implementation of namespaces relied on an assumption that turned out to be incorrect: that classes and defined types other than the module's main class would (and should) mostly be used inside the module, rather than applied directly to nodes. (That is, classes would be _private,_ much like local variables.) Thus, namespacing was done by hiding definitions within other definitions:
-
+> 
+> #### Namespacing for Redistribution
+> 
+> As proto-modules got more sophisticated, their authors wanted to share them with other users. The problem with this is visible above: many modules were likely to have a `python` or `ssl` class, and the `lighttpd` module probably had a `vhost` define that clashed with the Apache one. 
+> 
+> The solution was namespacing, which would allow different proto-modules to use common class and defined type names without competing for global identifiers. 
+> 
+> #### Private vs. Public
+> 
+> The implementation of namespaces relied on an assumption that turned out to be incorrect: that classes and defined types other than the module's main class would (and should) mostly be used inside the module, rather than applied directly to nodes. (That is, they would be _private,_ much like local variables.) Thus, namespacing was done by hiding definitions within other definitions:
+> 
 {% highlight ruby %}
     class apache {
       ...
@@ -148,15 +153,19 @@ The implementation of namespaces relied on an assumption that turned out to be i
       define vhost ($port) { ... }
     }
 {% endhighlight %}
-
-The internal classes and defined types would be available by their short names only inside the main class. However, much like qualified variables, you could access them from anywhere by using their full (that is, namespaced) name. Full names were constructed by prepending the full name of the "outer" enclosing class, along with the `::` namespace separator. (That is, the full name of `ssl` would be `apache::ssl`, `python` would be `apache::python`, etc.)
-
-This was the origin of the relative name lookup behavior, as Puppet assumed that a class that had its own private `python` class would want to use that instead of the top-namespace `python` class. 
-
-#### This Turned Out to be Pointless
-
-Users and developers eventually decided that using a class's full name everywhere was actually not that big a deal, and was in fact a lot clearer and easier to read and maintain. Around the same time we realized that, even for classes and defines that _were_ only used within their module, there was no real benefit to be gained by making them truly private, especially when a: they were effectively public via their full name anyway, and b: most users were invoking all their classes by full name in order to not confuse their colleagues who had to maintain the code. (This contrasts with [variables][], for which local names _do_ have a very clear benefit.)
-
-Those realizations led to the superior [module][] autoloader design in use today. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 2.7, where it often annoys users who have adopted modern idioms. 
-
-We plan to fix this in a future release, after a suitable deprecation period. 
+> 
+> The short names of the internal classes and defined types could only be used inside the main class. However, much like qualified variables, you could access them from anywhere by using their full (that is, namespaced) name. Full names were constructed by prepending the full name of the "outer" class, along with the `::` namespace separator. (That is, the full name of `ssl` would be `apache::ssl`, `python` would be `apache::python`, etc.)
+> 
+> This was the origin of the relative name lookup behavior, as Puppet assumed that a class that had its own private `python` class would want to use that instead of the top-namespace `python` class. 
+> 
+> #### This Turned Out to be Pointless
+> 
+> Users and developers eventually realized several things about this arrangement: 
+> 
+> * Using a class's full name everywhere was actually not that big a deal and was in fact a lot clearer and easier to read and maintain.
+> * Public classes and defined types were more common than private ones and optimizing for the less common case was an odd approach. 
+> * Even for classes and defined types that _were_ only used within their module, there was little real benefit to be gained by making them "private," since they were effectively public via their full name anyway.
+> 
+> Those realizations led to the superior [module][] autoloader design used today, where a class's "full" name is effectively its only name. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 2.7, where it often annoys users who have adopted the modern idiom. 
+> 
+> We plan to fix this in a future release, after a suitable deprecation period. 

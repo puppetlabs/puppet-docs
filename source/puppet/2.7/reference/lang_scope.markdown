@@ -3,6 +3,8 @@ layout: default
 title: "Language: Scope"
 ---
 
+[resources]: ./lang_resources.html
+[refs]: ./lang_datatypes.html#resource-references
 [class]: ./lang_classes.html
 [definedtype]: ./lang_defined_types.html
 [node]: ./lang_node_definitions.html
@@ -20,7 +22,15 @@ title: "Language: Scope"
 Scope Basics
 -----
 
-A **scope** is a specific **area of code,** which is partially isolated from other areas of code. Scopes limit the reach of [variables][] and [resource defaults][resourcedefaults]. Where a default or variable can be used is determined by the scope in which it is declared.
+A **scope** is a specific **area of code,** which is partially isolated from other areas of code. Scopes limit the reach of:
+
+* [Variables][]
+* [Resource defaults][resourcedefaults]
+
+Scopes **do not** limit the reach of:
+
+* [Resource titles][resources], which are all global
+* [Resource references][refs], which can refer to a resource declared to any scope
 
 ![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][diagram]
 

@@ -4,22 +4,22 @@ title: "Language: Exported Resources"
 ---
 
 
-<!-- TODO -->
-[nagios_service]: 
-[concat]: 
-[title]: 
-[namevar]: 
-[hostname]: 
-[fqdn]: 
-[facts]: 
-[bacula]: 
-[exported_collector]: 
-[search]: 
+[nagios_service]: /references/latest/type.html#nagiosservice
+[concat]: http://forge.puppetlabs.com/ripienaar/concat
+[title]: ./lang_resources.html#title
+[namevar]: ./lang_resources.html#namenamevar
+[hostname]: /facter/1.6/core_facts.html#hostname
+[fqdn]: /facter/1.6/core_facts.html#fqdn
+[tags]: ./lang_tags.html
+[facts]: ./lang_variables.html#facts
+[bacula]: https://forge.puppetlabs.com/puppetlabs/bacula
+[exported_collector]: ./lang_collectors.html#exported-resource-collectors
+[search]: ./lang_collectors.html#search-expressions
 [puppetdb]: /puppetdb/0.9
 [puppetdb_connect]: /puppetdb/0.9/connect_puppet.html
 [puppetdb_install]: /puppetdb/0.9/install.html
 [ar_storeconfigs]: http://projects.puppetlabs.com/projects/puppet/wiki/Using_Stored_Configuration
-[exported_guide]: (hey rename this to "exported resource design patterns)
+[exported_guide]: /guides/exported_resources.html
 
 > **Note:** Exported resources require resource stashing (AKA "storeconfigs") to be enabled on your puppet master. Resource stashing is provided by [PuppetDB][]. To enable resource stashing, follow these instructions: 
 > 
@@ -86,7 +86,7 @@ You must use an [exported resource collector][exported_collector] to collect exp
 
 (The second example, taken from [puppetlabs-bacula][bacula], uses the [concat][] module.)
 
-Since any node could be exporting a resource, it is difficult to predict what the title of an exported resource will be. As such, it's usually best to [search][] on a more general attribute.
+Since any node could be exporting a resource, it is difficult to predict what the title of an exported resource will be. As such, it's usually best to [search][] on a more general attribute. This is one of the main use cases for [tags][].
 
 See [Exported Resource Collectors][exported_collector] for more detail on the collector syntax and search expressions.
 

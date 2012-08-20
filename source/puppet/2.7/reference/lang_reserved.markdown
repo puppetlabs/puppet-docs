@@ -3,11 +3,11 @@ layout: default
 title: "Language: Reserved Words and Acceptable Names"
 ---
 
-<!-- TODO -->
-[settings]: 
-[tags]: 
-[namespace]: 
-[scopes]: 
+<!-- TODO: Bring configuration guide into reference manual -->
+[settings]: /guides/configuring.html
+[tags]: ./lang_tags.html
+[namespace]: ./lang_namespaces.html
+[scopes]: ./lang_scope.html
 [contains]: ./lang_containment.html
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
