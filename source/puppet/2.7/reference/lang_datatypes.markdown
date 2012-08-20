@@ -137,11 +137,14 @@ Unlike variables, resource references are not parse-order dependent, and can be 
 
 ### Multi-Resource References
 
-Resource references with a comma-separated list of titles refer to multiple resources of the same type:
+Resource references with an **array of titles** or **comma-separated list of titles** refer to multiple resources of the same type:
 
 {% highlight ruby %}
     # A multi-resource reference:
     require => File['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types'],
+    # An equivalent multi-resource reference: 
+    $my_files = ['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types']
+    require => File[$my_files]
 {% endhighlight %}
 
 They can be used wherever an array of references might be used. They can also go on either side of a [chaining arrow][chaining] or receive a [block of additional attributes][attribute_override].
