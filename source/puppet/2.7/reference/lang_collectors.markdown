@@ -45,7 +45,7 @@ Note that exported resource collectors have a slightly different syntax; [see be
 
 ### Search Expressions
 
-Collectors can search the values of resource titles and attributes using a special expression syntax. This resembles the normal syntax for [Puppet expressions][expressions], but is not exactly the same.
+Collectors can search the values of resource titles and attributes using a special expression syntax. This resembles the normal syntax for [Puppet expressions][expressions], but is not the same.
 
 > Note: Collectors can only search on attributes which are present in the manifests and cannot read the state of the target system. For example, the collector `Package <| provider == yum |>` would only collect packages whose `provider` attribute had been _explicitly set_ to `yum` in the manifests. It would not match any packages that would default to the `yum` provider based on the state of the target system.
 

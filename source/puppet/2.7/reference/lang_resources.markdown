@@ -115,7 +115,7 @@ If Puppet makes any changes to a resource, it will log those changes as events. 
 
 Resources are not applied to the target system in the order they are written in the manifests --- Puppet will apply the resources in whatever way is most efficient. If a resource must be applied before or after some other resource, you must explicitly say so. [See Relationships for more information.][relationships]
 
-### Scope
+### Scope Independence
 
 Resources are not subject to [scope][] --- a resource in any scope may be [referenced][reference] from any other scope, and local scopes do not introduce local namespaces for resource titles.
 
