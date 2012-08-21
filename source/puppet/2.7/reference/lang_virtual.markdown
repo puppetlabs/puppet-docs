@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Virtual and Exported Resources"
+title: "Language: Virtual Resources"
 ---
 
 [resources]: ./lang_resources.html

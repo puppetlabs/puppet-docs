@@ -13,7 +13,7 @@ layout: default
 [datatype]: ./lang_datatypes.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
-* [See the Function Reference for complete info about Puppet's built-in functions.][func_ref]
+> * [See the Function Reference for complete info about Puppet's built-in functions.][func_ref]
 
 **Functions** are pre-defined chunks of Ruby code which run during [compilation][]. Most functions either **return values** or **modify the [catalog][].**
 
