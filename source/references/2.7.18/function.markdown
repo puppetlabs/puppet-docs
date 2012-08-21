@@ -49,7 +49,7 @@ a set of resources. The hash should be in the form `{title => {parameters} }`:
 
 A third, optional parameter may be given, also as a hash:
 
-    $defaults => {
+    $defaults = {
       'ensure'   => present,
       'provider' => 'ldap',
     }
