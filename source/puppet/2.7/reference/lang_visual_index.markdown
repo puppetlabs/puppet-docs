@@ -126,7 +126,7 @@ This page can help you find syntax elements when you can't remember their names.
     class {'ntp':}
 {% endhighlight %}
 
-↑ [Declaring a class][class_decl] in three different ways: with the `include` function, the `require` function, and the resource-like syntax. Declaring a class causes the resources in it to be managed. 
+↑ [Declaring a class][class_decl] in three different ways: with the `include` function, with the `require` function, and with the resource-like syntax. Declaring a class causes the resources in it to be managed. 
 
 
 {% highlight ruby %}
