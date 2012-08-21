@@ -6,6 +6,9 @@ title: "Language: Reserved Words and Acceptable Names"
 <!-- TODO: Bring configuration guide into reference manual -->
 [settings]: /guides/configuring.html
 [tags]: ./lang_tags.html
+[built_in]: ./lang_variables.html#facts-and-built-in-variables
+[facts]: /facter/1.6/core_facts.html
+[topscope]: ./lang_scope.html#top-scope
 [namespace]: ./lang_namespaces.html
 [scopes]: ./lang_scope.html
 [contains]: ./lang_containment.html
@@ -50,6 +53,18 @@ The following are built-in namespaces used by Puppet and so must not be used as 
 
 * `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
 * `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings). 
+
+Reserved Variable Names
+-----
+
+The following variable names must not be used due to long-standing bugs in Puppet:
+
+* `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug, tracked as [issue #14093](http://projects.puppetlabs.com/issues/14093).
+
+You should also avoid re-using the names of any of Puppet's [built-in variables][built_in] or the [most common facts][facts]:
+
+* Re-using these names at [top scope][topscope] will cause compilation to fail.
+* Re-using them at node or local scope may cause malfunctions in any classes and defined types you declare.
 
 Acceptable Characters in Names
 -----
