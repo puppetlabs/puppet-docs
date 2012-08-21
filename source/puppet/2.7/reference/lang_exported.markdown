@@ -1,4 +1,4 @@
----
+                                                                                                                   ---
 layout: default
 title: "Language: Exported Resources"
 ---
@@ -37,7 +37,7 @@ Purpose
 
 Exported resources allow nodes to share information with each other. This is useful when one node has information that another node needs in order to manage a resource --- the node with the information can construct and publish the resource, and the node managing the resource can collect it. 
 
-The most common use cases are monitoring and backups. A class that manages a service like PostgreSQL can export a [`nagios_service`][nagios_service] resource describing how to monitor it, including information like its hostname and port. The Nagios server can then collect every `nagios_service` resource, and will automatically start monitoring the Postgres server. 
+The most common use cases are monitoring and backups. A class that manages a service like PostgreSQL can export a [`nagios_service`][nagios_service] resource describing how to monitor the service, including information like its hostname and port. The Nagios server can then collect every `nagios_service` resource, and will automatically start monitoring the Postgres server. 
 
 For more details, see [Exported Resource Design Patterns][exported_guide].
 
@@ -45,7 +45,7 @@ For more details, see [Exported Resource Design Patterns][exported_guide].
 Syntax
 -----
 
-Exported resources are used in two steps: declaring and collecting.
+Using exported resources requires two steps: declaring and collecting.
 
 {% highlight ruby %}
     class ssh {
@@ -59,11 +59,11 @@ Exported resources are used in two steps: declaring and collecting.
     }
 {% endhighlight %}
 
-In the example above, every node with the `ssh` class will export its own SSH host key, and then collect the SSH host key of every node (including its own). This will cause every node in the site to trust SSH connections from every other node.
+In the example above, every node with the `ssh` class will export its own SSH host key and then collect the SSH host key of every node (including its own). This will cause every node in the site to trust SSH connections from every other node.
 
 ### Declaring an Exported Resource
 
-To declare an exported resource, prepend `@@` (a double "at" sign) to the **type** of a normal [resource declaration][resources]:
+To declare an exported resource, prepend `@@` (a double "at" sign) to the **type** of a standard [resource declaration][resources]:
 
 {% highlight ruby %}
     @@nagios_service { "check_zfs${hostname}":
@@ -78,7 +78,7 @@ To declare an exported resource, prepend `@@` (a double "at" sign) to the **type
 
 ### Collecting Exported Resources
 
-You must use an [exported resource collector][exported_collector] to collect exported resources:
+To collect exported resources you must use an [exported resource collector][exported_collector] :
 
 {% highlight ruby %}
     Nagios_service <<| |>> # Collect all exported nagios_service resources
@@ -97,7 +97,7 @@ See [Exported Resource Collectors][exported_collector] for more detail on the co
 Behavior
 -----
 
-When resource stashing (AKA storeconfigs) is enabled, the puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node, and provides the puppet master with a search interface to those catalogs.
+When resource stashing (AKA storeconfigs) is enabled, the puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node and provides the puppet master with a search interface to those catalogs.
 
 Declaring an exported resource causes that resource to be added to the catalog and marked with an "exported" flag, which prevents puppet agent from managing the resource (unless it was collected). When PuppetDB receives the catalog, it also takes note of this flag. 
 
@@ -105,7 +105,7 @@ Collecting an exported resource causes the puppet master to send a search query 
 
 ### Timing
 
-An exported resource becomes available to other nodes as soon as PuppetDB finishes storing the catalog that contains it. This is a multi-step process, and may not happen immediately:
+An exported resource becomes available to other nodes as soon as PuppetDB finishes storing the catalog that contains it. This is a multi-step process and may not happen immediately:
 
 * The puppet master must have compiled a given node's catalog at least once before its resources become available. 
 * When the puppet master submits a catalog to PuppetDB, it is added to a queue and stored as soon as possible. Depending on the PuppetDB server's workload, there may be a slight delay between a node's catalog being compiled and its resources becoming available. 
