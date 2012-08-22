@@ -145,10 +145,12 @@ Parameter names should match the following regular expression:
 * Numbers
 * Underscores
 * Colons
+* Periods
+* Hyphens
 
 Tag names should match the following regular expression: 
 
-    \A[a-z0-9_][a-z0-9_:]*\Z
+    \A[a-z0-9_][a-z0-9_:\.\-]*\Z
 
 ### Resources
 
