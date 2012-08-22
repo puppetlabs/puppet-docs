@@ -85,13 +85,13 @@ There is no additional restriction on the first non-$ character of a variable na
 
 Variable names should match the following regular expression:
 
-    ^\$[a-zA-Z0-9_]+$
+    \A\$[a-zA-Z0-9_]+\Z
 
 Variable names can be [fully qualified][qualified_var] to refer to variables from foreign [scopes][]. Qualified variable names look like `$class::name::variable_name`. They begin with `$`, the name of the class that contains the variable, and the `::` (double colon) [namespace][] separator, and end with the variable's local name. 
 
 Qualified variable names should match the following regular expression:
 
-    ^\$([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+$
+    \A\$([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+\Z
 
 ### Classes and Types
 
@@ -103,7 +103,7 @@ The names of classes, defined types, and custom types can consist of one or more
 
 Namespace segments should match the following regular expression:
 
-    ^[a-z][a-z0-9_]*$
+    \A[a-z][a-z0-9_]*\Z
 
 The one exception is the top namespace, whose name is the empty string.
 
@@ -111,7 +111,7 @@ Multiple namespace segments can be joined together in a class or type name with 
 
 Class names with multiple namespaces should match the following regular expression:
 
-    ^([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*$
+    \A([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*\Z
 
 ### Modules
 
@@ -123,7 +123,7 @@ Module names obey the same rules as individual class/type namespace segments. Th
 
 Module names should match the following regular expression:
 
-    ^[a-z][a-z0-9_]*$
+    \A[a-z][a-z0-9_]*\Z
 
 ### Parameters
 
@@ -135,7 +135,7 @@ Class and defined type parameters begin with a `$` (dollar sign), and their firs
 
 Parameter names should match the following regular expression:
 
-    ^\$[a-z][a-z0-9_]*$
+    \A\$[a-z][a-z0-9_]*\Z
 
 ### Tags
 
@@ -148,7 +148,7 @@ Parameter names should match the following regular expression:
 
 Tag names should match the following regular expression: 
 
-    ^[a-z0-9_][a-z0-9_:]*$
+    \A[a-z0-9_][a-z0-9_:]*\Z
 
 ### Resources
 
@@ -158,4 +158,4 @@ Resource names (or namevars) may be limited by the underlying system being manag
 
 ### Nodes
 
-**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/^[a-z0-9._-]+$/`.)
+**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/\A[a-z0-9._-]+\Z/`.)
