@@ -1,4 +1,5 @@
 ---
+canonical: "/references/latest/function.html"
 layout: legacy
 title: Function Reference
 ---

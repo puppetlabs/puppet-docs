@@ -1,4 +1,5 @@
 ---
+canonical: "/references/latest/type.html"
 layout: legacy
 title: Type Reference
 ---

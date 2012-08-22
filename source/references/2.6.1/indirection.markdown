@@ -1,4 +1,5 @@
 ---
+canonical: "/references/latest/indirection.html"
 layout: legacy
 title: Indirection Reference
 ---

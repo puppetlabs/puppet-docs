@@ -1,4 +1,5 @@
 ---
+canonical: "/references/0.25.5/network.html"
 layout: legacy
 title: Network Reference
 ---
