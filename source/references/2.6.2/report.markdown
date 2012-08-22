@@ -1,4 +1,5 @@
 ---
+canonical: "/references/latest/report.html"
 layout: legacy
 title: Report Reference
 ---

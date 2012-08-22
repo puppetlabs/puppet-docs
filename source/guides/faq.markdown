@@ -196,7 +196,7 @@ Security mailbox (<security@puppetlabs.com>) with the details. If you wish to co
 [security]: http://puppetlabs.com/security/
 [hotfixes]: http://puppetlabs.com/security/hotfixes/
 
-To find out about recently patched vulnerabilities, go to [puppetlabs.com/security][security]. **Puppet Enterprise users can download hotfix packages at [puppetlabs.com/security/hotfixes](hotfixes).**
+To find out about recently patched vulnerabilities, go to [puppetlabs.com/security][security]. **Puppet Enterprise users can download hotfix packages at [puppetlabs.com/security/hotfixes][hotfixes].**
 
 Puppet Labs publicly discloses security issues once patched code is available, and we work with downstream packagers to get security fixes deployed quickly and safely.
 

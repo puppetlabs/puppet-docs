@@ -1,4 +1,5 @@
 ---
+canonical: "/references/latest/metaparameter.html"
 layout: legacy
 title: Metaparameter Reference
 ---

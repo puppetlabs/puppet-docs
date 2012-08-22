@@ -88,7 +88,7 @@ Complete and up-to-date references for Puppet's resource types, functions, metap
 
 These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
 
-* [Versioned References](references/) --- inline reference docs from Puppet's past and present
+* [Versioned References](/references/) --- inline reference docs from Puppet's past and present
 
 * * * 
 

@@ -44,8 +44,10 @@
 
     <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
     <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
-    <link rel="canonical" href="http://docs.puppetlabs.com" />
     <!-- /all in one seo pack -->
+    
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="http://docs.puppetlabs.com{% if page.canonical %}{{page.canonical}}{% else %}{{page.url}}{% endif %}" />
 	
     <!-- FIXME: absolute paths -->
 

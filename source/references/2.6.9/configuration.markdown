@@ -1,4 +1,5 @@
 ---
+canonical: "/references/latest/configuration.html"
 layout: legacy
 title: Configuration Reference
 ---
