@@ -55,11 +55,17 @@ module PuppetDocs
 
           setup_destination!
           File.open(destination_filename, 'w') { |f| f.write content }
-          header = "---\nlayout: legacy\ntitle: "
           File.open(destination_filename).read() =~ /\# (.*)\n/
           title = $1
           file = IO.read(destination_filename)
-          open(destination_filename, 'w') { |f| f << header << title << "\n---" << "\n\n" << file}
+          header = <<EOT
+---
+layout: legacy
+title: "#{title}"
+canonical: "/references/latest/#{@name}.html"
+---
+EOT
+          open(destination_filename, 'w') { |f| f << header << "\n\n" << file}
           puts "Wrote #{destination_filename}"
          else
           abort "Could not build #{@name} reference using puppetdoc at #{version}"
