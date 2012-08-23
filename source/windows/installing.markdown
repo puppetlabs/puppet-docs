@@ -113,7 +113,7 @@ Uninstalling
 
 Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface, or from the command line. 
 
-To uninstall from the command line, you must have the original MSI file or know the <a href="(http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx)">ProductCode</a> of the installed MSI:
+To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 
     msiexec /qn /x [puppet.msi|product-code]
 
