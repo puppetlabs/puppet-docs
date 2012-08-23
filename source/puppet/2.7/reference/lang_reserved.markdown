@@ -8,6 +8,7 @@ title: "Language: Reserved Words and Acceptable Names"
 [tags]: ./lang_tags.html
 [built_in]: ./lang_variables.html#facts-and-built-in-variables
 [facts]: /facter/1.6/core_facts.html
+[dynamic]: ./lang_scope.html#dynamic-scope
 [topscope]: ./lang_scope.html#top-scope
 [namespace]: ./lang_namespaces.html
 [scopes]: ./lang_scope.html
@@ -61,10 +62,9 @@ The following variable names must not be used due to long-standing bugs in Puppe
 
 * `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug, tracked as [issue #14093](http://projects.puppetlabs.com/issues/14093).
 
-You should also avoid re-using the names of any of Puppet's [built-in variables][built_in] or the [most common facts][facts]:
+Additionally, re-using the names of any of Puppet's [built-in variables][built_in] or [facts][facts] at [top scope][topscope] will cause compilation to fail. 
 
-* Re-using these names at [top scope][topscope] will cause compilation to fail.
-* Re-using them at node or local scope may cause malfunctions in any classes and defined types you declare.
+> Note: You can safely re-use fact names at node or local scope, but should do so with care, as [dynamic scope lookup][dynamic] may cause classes and defined types declared in that scope to receive unexpected data.
 
 Acceptable Characters in Names
 -----
