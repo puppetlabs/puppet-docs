@@ -34,16 +34,7 @@ title: "Language: Tags"
 Tag Names
 -----
 
-[Tag names][tagnames] must begin with a lowercase letter, number, or underscore, and can include:
-
-* Lowercase letters
-* Numbers
-* Underscores
-* Colons
-
-Tag names should match the following regular expression: 
-
-    ^[a-z0-9_][a-z0-9_:]*$
+[See here for the characters allowed in tag names.][tagnames]
 
 Assigning Tags to Resources
 -----
