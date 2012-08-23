@@ -62,6 +62,7 @@ The general form of a type definition is:
     * A comma-separated list of **parameters,** each of which consists of:
         * A new [variable][] name, including the `$` prefix
         * An optional equals sign and **default value** (any data type)
+    * An optional trailing comma after the last parameter (Puppet 2.7.8 and later)
     * A closing parenthesis
 * An opening curly brace
 * A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource]
