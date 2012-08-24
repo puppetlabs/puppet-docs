@@ -4,7 +4,10 @@ title: "Language: Data Types"
 ---
 
 
+[conditional]: ./lang_conditional.html
+[node]: ./lang_node_definitions.html
 [attribute]: ./lang_resources.html#syntax
+[regsubst]: /references/latest/function.html#regsubst
 [function]: ./lang_functions.html
 [variables]: ./lang_variables.html
 [if]: ./lang_conditional.html#if-statements
@@ -293,7 +296,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 Regular Expressions
 -----
 
-Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, and they can only be used in the few places that specifically accept regular expressions. These places include: the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes.
+Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, and they can only be used in the few places that specifically accept regular expressions. These places include: the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes. (Note that the [`regsubst` function][regsubst] takes a stringified regex in order to get around this.)
 
 Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet) and must be surrounded by forward slashes:
 
@@ -304,6 +307,8 @@ Regular expressions are written as [standard Ruby regular expressions](http://ww
 {% endhighlight %}
 
 Alternate forms of regex quoting are not allowed.
+
+### Regex Options
 
 Regexes in Puppet cannot have options or encodings appended after the final slash. However, you may turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
 
@@ -320,3 +325,11 @@ The following options are allowed:
 * m --- Treat a newline as a character matched by `.`
 * x --- Ignore whitespace and comments in the pattern
 
+### Regex Capture Variables
+
+Within [conditional statements][conditional] that use regexes (but **not** [node definitions][node] that use them), any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`. 
+
+These are not normal variables, and have some special behaviors:
+
+* The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
+* In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)

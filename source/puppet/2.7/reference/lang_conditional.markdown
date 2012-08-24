@@ -4,6 +4,7 @@ layout: default
 ---
 
 
+[local]: ./lang_scope.html#local-scopes
 [boolean]: ./lang_datatypes.html#booleans
 [regex]: ./lang_datatypes.html#regular-expressions
 [facts]: ./lang_variables.html#facts
@@ -114,7 +115,7 @@ Static values may also be conditions, although doing this would be pointless.
 
 #### Regex Capture Variables
 
-If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.):
+If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
 {% highlight ruby %}
     if $hostname =~ /^www(\d+)\./ {
@@ -124,7 +125,10 @@ If you use the regular expression match operator in a condition, any captures fr
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
-These are not normal variables, and are not available outside their conditional code block. 
+These are not normal variables, and have some special behaviors:
+
+* The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
+* In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
 Case Statements
 -----
@@ -204,7 +208,10 @@ If you use regular expression cases, any captures from parentheses in the patter
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
-These are not normal variables and are not available outside their conditional code block. 
+These are not normal variables, and have some special behaviors:
+
+* The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
+* In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
 
 > #### Aside: Best Practices
@@ -317,7 +324,10 @@ If you use regular expression cases, any captures from parentheses in the patter
     }
 {% endhighlight %}
 
-These are not normal variables, and are not available outside the selector statement.
+These are not normal variables, and have some special behaviors:
+
+* The values of the numbered variables do not persist outside the value associated with the pattern that set them.
+* In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
 ### Values
 

@@ -22,6 +22,7 @@ title: "Language: Node Definitions"
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [strict]: /references/latest/configuration.html#stricthostnamechecking
+[conditional]: ./lang_conditional.html
 
 
 A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's [catalog][]. This feature allows you to assign specific configurations to specific nodes.
@@ -145,6 +146,10 @@ digits.
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.
 
 > Make sure that node regexes do not overlap. If more than one regex statement matches a given node, the one it gets will be parse-order dependent.
+
+#### No Regex Capture Variables
+
+Regular expression node names **do not** use numbered variables to expose captures from the pattern inside the node definition. This differs from the behavior of [conditional statements][conditional] that use regexes.
 
 Behavior
 -----
