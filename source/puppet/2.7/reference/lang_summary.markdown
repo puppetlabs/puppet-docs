@@ -24,6 +24,7 @@ title: "Language: Summary"
 [ordering]: ./lang_relationships.html#ordering-and-notification
 [notification]: ./lang_relationships.html#ordering-and-notification
 [declared]: /references/glossary.html#declare
+[string_newline]: ./lang_datatypes.html#line-breaks
 
 The Puppet Language
 -----
@@ -41,7 +42,10 @@ Although resources can be freely ordered, several parts of the language do depen
 Files
 -----
 
-Puppet language files are called **manifests,** and are named with the `.pp` file extension.
+Puppet language files are called **manifests,** and are named with the `.pp` file extension. Manifest files:
+
+* Should use UTF8 encoding
+* May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
 
 Puppet always begins compiling with a single manifest. When using a puppet master, this file is called [site.pp][sitepp]; when using puppet apply, it's whatever was specified on the command line. 
 

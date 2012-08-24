@@ -85,7 +85,7 @@ Bare word strings are usually used with attributes that accept a limited number 
 
 ### Single-Quoted Strings
 
-Strings surrounded by single quotes `'like this'` do not interpolate variables, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash).
+Strings surrounded by single quotes `'like this'` do not interpolate variables, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash). Line breaks within the string are interpreted as literal line breaks.
 
 Lone backslashes are literal backslashes, unless followed by a single quote or another backslash. That is:
 
@@ -94,7 +94,7 @@ Lone backslashes are literal backslashes, unless followed by a single quote or a
 
 ### Double-Quoted Strings 
 
-Strings surrounded by double quotes `"like this"` allow variable interpolation and several escape sequences. 
+Strings surrounded by double quotes `"like this"` allow variable interpolation and several escape sequences. Line breaks within the string are interpreted as literal line breaks, and you can also insert line breaks by using the `\n` escape sequence.
 
 #### Variable Interpolation
 
@@ -112,10 +112,25 @@ The following escape sequences are available:
 
 * `\$` --- literal dollar sign
 * `\"` --- literal double quote
+* `\'` --- literal single quote
 * `\\` --- single backslash
 * `\n` --- newline
-* `\r` --- carriage return
 * `\t` --- tab
+* `\s` --- space
+
+### Line Breaks
+
+Quoted strings may continue over multiple lines, and line breaks are preserved as a literal part of the string. 
+
+Puppet does not attempt to convert line breaks, which means that the type of line break (Unix/LF or Windows/CRLF) used in the file will be preserved. 
+
+If you wish to insert an LF in a manifest file saved with Windows line endings, you can use the `\n` escape sequence in double-quoted strings. Since Puppet 2.7 does not support the `\r` escape sequence, there is no good way to insert a literal CRLF in a manifest file saved with Unix line endings. It is possible to mix-and-match line endings in a single file, but most text editors do not handle it gracefully and will "help" you enough to render it impractical.
+
+### Encoding
+
+Puppet treats strings as sequences of bytes. It does not recognize encodings or translate between them, and non-printing characters are preserved.
+
+However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet may impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs. 
 
 * * *
 
