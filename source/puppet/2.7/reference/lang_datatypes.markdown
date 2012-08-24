@@ -20,6 +20,7 @@ title: "Language: Data Types"
 [node_def]: ./lang_node_definitions.html
 [relationship]: ./lang_relationships.html
 [chaining]: ./lang_relationships.html#chaining-arrows
+[mutable]: http://projects.puppetlabs.com/issues/16116
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
 
@@ -186,6 +187,8 @@ The items in an array can be any data type, including hashes or more arrays.
 
 Resource attributes which can optionally accept multiple values (including the relationship metaparameters) expect those values in an array.
 
+### Indexing
+
 You can access items in an array by their numerical index (counting from zero). Square brackets are used for indexing. 
 
 Example:
@@ -216,6 +219,8 @@ Arrays support negative indexing, with `-1` being the final element of the array
 
 The first notice would log `three`, and the second would log `four`.
 
+### Additional Functions
+
 The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with arrays, including: 
 
 * `delete`
@@ -237,6 +242,23 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `values_at`
 * `zip`
 
+### Mutability
+
+Arrays are **mutable** --- their contents can be changed within a given scope. [This behavior may or may not be intentionally designed][mutable], but is a supported language feature as of Puppet 2.7.
+
+You can add elements to an array by assigning a value to a previously unused index:
+
+{% highlight ruby %}
+    $myarray[6] = "New value"
+{% endhighlight %}
+
+You can also overwrite the value of an existing index:
+
+{% highlight ruby %}
+    $myarray = ['zero', 'one', 'two', 'three']
+    $myarray[3] = "Something else"
+    notice($myarray[3]) # Will log "Something else" instead of "three"
+{% endhighlight %}
 
 * * * 
 
@@ -244,8 +266,6 @@ Hashes
 -----
 
 Hashes are written as key/value pairs surrounded by curly braces; a key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace. 
-
-> Note: This differs 
 
 {% highlight ruby %}
     { key1 => 'val1', key2 => 'val2' }
@@ -255,9 +275,9 @@ Hashes are written as key/value pairs surrounded by curly braces; a key is separ
 
 Hash keys are strings, but hash values can be any data type, including arrays or more hashes.
 
-You can access hash members with their key; square brackets are used for indexing. Nested arrays and hashes can be accessed by chaining indexes. 
+### Indexing
 
-Flat example:
+You can access hash members with their key; square brackets are used for indexing.
 
 {% highlight ruby %}
     $myhash = { key       => "some value", 
@@ -267,7 +287,7 @@ Flat example:
 
 This manifest would log `some value` as a notice.
 
-Nested example: 
+Nested arrays and hashes can be accessed by chaining indexes:
 
 {% highlight ruby %}
     $main_site = { port        => { http  => 80,
@@ -281,6 +301,8 @@ Nested example:
 
 This example manifest would log `443` as a notice.
 
+### Additional Functions
+
 The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with hashes, including: 
 
 * `has_key`
@@ -290,6 +312,23 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `validate_hash`
 * `values`
 
+### Mutability
+
+Hashes are **mutable** --- their contents can be changed within a given scope. [This behavior may or may not be intentionally designed][mutable], but is a supported language feature as of Puppet 2.7.
+
+You can add elements to a hash by assigning a value to a previously unused key:
+
+{% highlight ruby %}
+    $myhash[new_key] = "New value"
+{% endhighlight %}
+
+You **cannot** overwrite the value of an existing key:
+
+{% highlight ruby %}
+    # Will fail compilation:
+    $myhash = { first => 'one', second => 'two' }
+    $myhash[second] = "Something else"
+{% endhighlight %}
 
 * * * 
 
