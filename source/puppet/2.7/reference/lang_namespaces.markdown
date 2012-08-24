@@ -166,6 +166,6 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 > * Public classes and defined types were more common than private ones and optimizing for the less common case was an odd approach. 
 > * Even for classes and defined types that _were_ only used within their module, there was little real benefit to be gained by making them "private," since they were effectively public via their full name anyway.
 > 
-> Those realizations led to the superior [module][] autoloader design used today, where a class's "full" name is effectively its only name. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 2.7, where it often annoys users who have adopted the modern idiom. 
+> Those realizations led to the superior [module][] autoloader design used today, where a class's "full" name is effectively its only name. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 2.7, where it often annoys users who have adopted the modern code style.
 > 
 > We plan to fix this in a future release, after a suitable deprecation period. 
