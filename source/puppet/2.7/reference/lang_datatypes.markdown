@@ -94,12 +94,14 @@ Strings surrounded by double quotes `"like this"` allow variable interpolation a
 
 #### Variable Interpolation
 
-Any `$variable` in a double-quoted string will be replaced with its value. To remove ambiguity about which text is part of the variable name, you can surround the variable name in curly braces:
+Any [`$variable`][variables] in a double-quoted string will be replaced with its value. To remove ambiguity about which text is part of the variable name, you can surround the variable name in curly braces:
 
 {% highlight ruby %}
     path => "${apache::root}/${apache::vhostdir}/${name}",
 {% endhighlight %}
-    
+
+Only variables can be interpolated --- Puppet cannot interpolate arbitrary expressions. If you wish to calculate a value to insert into a string, you must store the value in a variable first.
+
 #### Escape Sequences
 
 The following escape sequences are available:
