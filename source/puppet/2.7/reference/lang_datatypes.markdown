@@ -259,7 +259,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 
 ### Mutability
 
-Arrays are **mutable** --- their contents can be changed within a given scope. [This behavior may or may not be intentionally designed][mutable], but is a supported language feature as of Puppet 2.7.
+Due to a bug in Puppet, arrays are **mutable** --- their contents can be changed within a given scope. [This behavior is unintentional and undesired][mutable], but will not be removed during the Puppet 2.7 series. **Do not use this behavior;** it is documented here only for the sake of completeness.
 
 You can add elements to an array by assigning a value to a previously unused index:
 
@@ -329,7 +329,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 
 ### Mutability
 
-Hashes are **mutable** --- their contents can be changed within a given scope. [This behavior may or may not be intentionally designed][mutable], but is a supported language feature as of Puppet 2.7.
+Due to a bug in Puppet, arrays are **mutable** --- their contents can be changed within a given scope. [This behavior is unintentional and undesired][mutable], but will not be removed during the Puppet 2.7 series. **Do not use this behavior;** it is documented here only for the sake of completeness.
 
 You can add elements to a hash by assigning a value to a previously unused key:
 
