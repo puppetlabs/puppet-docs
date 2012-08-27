@@ -24,6 +24,8 @@ title: "Language: Classes"
 [undef]: ./lang_datatypes.html#undef
 [relationships]: ./lang_relationships.html
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
+[variable]: ./lang_variables.html
+[variable_assignment]: ./lang_variables.html#assignment
 [chaining]: ./lang_relationships.html#chaining-arrows
 [conditional]: ./lang_conditional.html
 [resource_reference]: ./lang_datatypes.html#resource-references
@@ -89,7 +91,7 @@ The general form of a class declaration is:
     * A closing parenthesis
 * Optionally, the `inherits` keyword followed by a single class name
 * An opening curly brace
-* A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource]
+* A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource_declaration]
 * A closing curly brace
 
 ### Declaring a Class With `include`

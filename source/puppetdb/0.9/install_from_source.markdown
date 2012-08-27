@@ -6,6 +6,8 @@ layout: default
 [perf_dashboard]: ./maintain_and_tune.html#monitor-the-performance-console
 [use_puppetdb]: ./connect_puppet.html
 [leiningen]: https://github.com/technomancy/leiningen#installation
+[configure_postgres]: ./configure.html#postgresql-db-settings
+[configure_heap]: ./configure.html#configuring-the-java-heap-size
 
 If possible, we recommend installing PuppetDB from packages. However, if you are installing PuppetDB on a system without official packages, or if you are testing or developing a new version of PuppetDB, you will need to install it from source. 
 

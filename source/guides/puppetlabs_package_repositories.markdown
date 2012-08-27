@@ -3,6 +3,8 @@ title: "Using the Puppet Labs Package Repositories"
 layout: legacy
 ---
 
+[peinstall]: /pe/2.5/install_basic.html
+
 Puppet Labs maintains official package repositories for several of the more popular Linux distributions. These repos contain the latest available packages for Puppet, Facter, PuppetDB, Puppet Dashboard, MCollective, and several prerequisites and add-ons for Puppet Labs products. 
 
 We also maintain repositories for Puppet Enterprise users. These repos contain additional PE components, as well as modified packages for tools like PuppetDB which will integrate more smoothly with PE's namespaced installation layout.

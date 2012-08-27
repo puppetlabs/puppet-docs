@@ -4,6 +4,8 @@ title: "Troubleshooting Puppet on Windows"
 nav: windows.html
 ---
 
+[datadirectory]: ./installing.html#data-directory
+
 ## Tips
 
 ### Process Explorer
