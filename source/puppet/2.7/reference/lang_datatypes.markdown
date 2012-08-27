@@ -279,23 +279,11 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `values_at`
 * `zip`
 
-### Mutability
-
-Due to a bug in Puppet, arrays are **mutable** --- their contents can be changed within a given scope. [This behavior is unintentional and undesired][mutable], but will not be removed during the Puppet 2.7 series. **Do not use this behavior;** it is documented here only for the sake of completeness.
-
-You can add elements to an array by assigning a value to a previously unused index:
-
-{% highlight ruby %}
-    $myarray[6] = "New value"
-{% endhighlight %}
-
-You can also overwrite the value of an existing index:
-
-{% highlight ruby %}
-    $myarray = ['zero', 'one', 'two', 'three']
-    $myarray[3] = "Something else"
-    notice($myarray[3]) # Will log "Something else" instead of "three"
-{% endhighlight %}
+> ### Significant Bugs: Mutability
+> 
+> Due to a bug in Puppet, arrays are **mutable** --- their contents can be changed within a given scope. New elements can be added by assigning a value to a previously unused index (`$myarray[6] = "New value"`) or re-assigning a value to an existing index.
+> 
+> [This behavior is considered a bug][mutable]; **do not use it.** It will not be removed during the Puppet 2.7 series, but may be removed thereafter without a deprecation period.
 
 * * * 
 
@@ -349,23 +337,11 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `validate_hash`
 * `values`
 
-### Mutability
-
-Due to a bug in Puppet, arrays are **mutable** --- their contents can be changed within a given scope. [This behavior is unintentional and undesired][mutable], but will not be removed during the Puppet 2.7 series. **Do not use this behavior;** it is documented here only for the sake of completeness.
-
-You can add elements to a hash by assigning a value to a previously unused key:
-
-{% highlight ruby %}
-    $myhash[new_key] = "New value"
-{% endhighlight %}
-
-You **cannot** overwrite the value of an existing key:
-
-{% highlight ruby %}
-    # Will fail compilation:
-    $myhash = { first => 'one', second => 'two' }
-    $myhash[second] = "Something else"
-{% endhighlight %}
+> ### Significant Bugs: Mutability
+> 
+> Due to a bug in Puppet, hashes are **mutable** --- their contents can be changed within a given scope. New elements can be added by assigning a value to a previously unused key (`$myhash[new_key] = "New value"`), although existing keys cannot be reassigned.
+> 
+> [This behavior is considered a bug][mutable]; **do not use it.** It will not be removed during the Puppet 2.7 series, but may be removed thereafter without a deprecation period.
 
 * * * 
 
