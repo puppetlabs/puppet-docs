@@ -1,4 +1,4 @@
-                                                                                                                   ---
+---
 layout: default
 title: "Language: Exported Resources"
 ---
