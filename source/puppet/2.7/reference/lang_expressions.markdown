@@ -17,6 +17,7 @@ layout: default
 [selector]: ./lang_conditional.html#selectors
 [function]: ./lang_functions.html
 [bool_convert]: ./lang_datatypes.html#automatic-conversion-to-boolean
+[variables]: ./lang_variables.html
 
 
 **Expressions** resolve to values and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions and the entire combined expression will resolve to a single value. 
@@ -51,9 +52,20 @@ An expression consists of two **operands** separated by an **operator;** the onl
 
 In the examples above, the operators are `<`, `!=`, `in`, and `!`.
 
-Optionally, expressions can  be surrounded by parentheses and you can create compound expressions by using an expression as an operand.
+Optionally, expressions can be surrounded by parentheses.
 
-When compounding expressions, you should use parentheses for clarity:
+### Operands
+
+Operands in an expression may be:
+
+* Literal values
+* [Variables][]
+* Other expressions
+* [Function calls][function] which return values
+
+The [data type][datatypes] of each operand is dictated by the operator. See the list of operators below for details.
+
+When creating compound expressions by using other expressions as operands, you should use parentheses for clarity:
 
 {% highlight ruby %}
     (90 < 7) and ('Solaris' == 'Solaris') # resolves to false
