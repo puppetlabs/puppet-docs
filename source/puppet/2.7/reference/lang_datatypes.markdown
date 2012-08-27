@@ -10,6 +10,7 @@ title: "Language: Data Types"
 [regsubst]: /references/latest/function.html#regsubst
 [function]: ./lang_functions.html
 [variables]: ./lang_variables.html
+[expression]: ./lang_expressions.html
 [if]: ./lang_conditional.html#if-statements
 [comparison]: ./lang_expressions.html#comparison-operators
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
@@ -104,7 +105,28 @@ Any [`$variable`][variables] in a double-quoted string will be replaced with its
     path => "${apache::root}/${apache::vhostdir}/${name}",
 {% endhighlight %}
 
-Only variables can be interpolated --- Puppet cannot interpolate arbitrary expressions. If you wish to calculate a value to insert into a string, you must store the value in a variable first.
+#### Expression Interpolation
+
+> Note: This is not recommended.
+
+In a double-quoted string, you may interpolate the value of an arbitrary [expression][] (which may contain both variables and literal values) by putting it inside `${}` (a pair of curly braces preceded by a dollar sign):
+
+{% highlight ruby %}
+    file {'config.yml':  
+      content => "...
+    db_remote: ${ $clientcert !~ /^db\d+/ }
+    ...",
+      ensure => file,
+    }
+{% endhighlight %}
+
+This is of limited use, since most [expressions][expression] resolve to boolean or numerical values.
+
+Behavioral oddities of interpolated expressions:
+
+* You may not use bare word [strings](#strings) or [numbers](#numbers); all literal string or number values must be quoted. The behavior of bare words in an interpolated expression is undefined.
+* Within the `${}`, you may use double or single quotes without needing to escape them.
+* Interpolated expressions may not use [function calls][function] as operands.
 
 #### Escape Sequences
 
