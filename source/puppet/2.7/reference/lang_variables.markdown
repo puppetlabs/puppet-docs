@@ -130,6 +130,8 @@ Unlike most other languages, Puppet only allows a given variable to be assigned 
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope. 
 
+> Note: Due to insufficient protection of the scope object that gets passed into templates, it is possible to reassign a variable inside a template and have the new value persist in the Puppet scope after the template is evaluated. This behavior is considered a bug; **do not use it.** It will not be removed during the Puppet 2.7 series, but may be removed thereafter without a deprecation period.
+
 ### Parse-Order Dependence
 
 Unlike [resource declarations][resource], variable assignments are parse-order dependent. This means you cannot resolve a variable before it has been assigned. 
