@@ -63,7 +63,7 @@ Reserved Variable Names
 The following variable names are reserved, and you **must not** assign values to them:
 
 * `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug rather than a deliberate design, and can be tracked at [issue #14093](http://projects.puppetlabs.com/issues/14093).
-* `$0` through `$9` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined. 
+* Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined. 
 
 Additionally, re-using the names of any of Puppet's [built-in variables][built_in] or [facts][facts] at [top scope][topscope] will cause compilation to fail. 
 

@@ -6,6 +6,7 @@ title: "Language: Variables"
 
 [expressions]: ./lang_expressions.html
 [acceptable]: ./lang_reserved.html#variables
+[reserved]: ./lang_reserved.html#reserved-variable-names
 [datatype]: ./lang_datatypes.html
 [double_quote]: ./lang_datatypes.html#double-quoted-strings
 [functions]: ./lang_functions.html
@@ -144,7 +145,7 @@ Variable names are case-sensitive and can include alphanumeric characters and un
 
 Qualified variable names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 
-[See the section on acceptable characters in variable names][acceptable] for more details.
+[See the section on acceptable characters in variable names][acceptable] for more details. Additionally, [several variable names are reserved][reserved].
 
 
 Facts and Built-In Variables
