@@ -627,8 +627,19 @@ In summary:
 ### 11.6. Namespacing Variables
 
 When using top-scope variables, including facts, Puppet modules should
-explicitly specify the empty namespace (i.e., `$::operatingsystem`, not
-`$operatingsystem`) to prevent accidental scoping issues.
+explicitly specify the empty namespace to prevent accidental scoping issues.
+
+**Good:**
+
+{% highlight ruby %}
+    $::operatingsystem
+{% endhighlight %}
+
+**Bad:**
+
+{% highlight ruby %}
+    $operatingsystem
+{% endhighlight %}
 
 ### 11.7. Variable format
 
