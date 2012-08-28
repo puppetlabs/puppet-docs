@@ -54,12 +54,13 @@ If you are using a version of Puppet prior to 0.24.0, or have some other compell
 
 ## First Function --- small steps
 
-New functions are defined by executing the newfunction method
-inside the Puppet::Parser::Functions module. You pass the name of
-the function as a symbol to newfunction, and the code to be run as
+New functions are defined by executing the `newfunction` method
+inside the `Puppet::Parser::Functions` module. You pass the name of
+the function as a symbol to `newfunction`, and the code to be run as
 a block. So a trivial function to write a string to a file in /tmp
 might look like this:
 
+{% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:write_line_to_file) do |args|
         filename = args[0]
@@ -67,10 +68,13 @@ might look like this:
         File.open(args[0], 'a') {|fd| fd.puts str }
       end
     end
+{% endhighlight %}
 
 To use this function, it's as simple as using it in your manifest:
 
+{% highlight ruby %}
     write_line_to_file('/tmp/some_file', "Hello world!")
+{% endhighlight %}
 
 (Note that this is not a useful function by any stretch of the imagination.)
 
@@ -88,11 +92,13 @@ requires a value, such as an `if` statement, a `case` statement, or a
 variable or attribute assignment. You could implement a `rand`
 function like this:
 
+{% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:rand, :type => :rvalue) do |args|
         rand(vals.empty? ? 0 : args[0])
       end
     end
+{% endhighlight %}
 
 This function works identically to the Ruby built-in rand function.
 Randomising things isn't quite as useful as you might think,
@@ -101,10 +107,12 @@ probably to vary the minute of a cron job. For instance, to stop
 all your machines from running a job at the same time, you might do
 something like:
 
+{% highlight ruby %}
     cron { run_some_job_at_a_random_time:
       command => "/usr/local/sbin/some_job",
       minute => rand(60)
     }
+{% endhighlight %}
 
 But the problem here is quite simple: every time the Puppet client
 runs, the rand function gets re-evaluated, and your cron job moves
@@ -130,6 +138,7 @@ functions.
 
 ### Example 1
 
+{% highlight ruby %}
     require 'ipaddr'
 
     module Puppet::Parser::Functions
@@ -137,9 +146,11 @@ functions.
         IPAddr.new(lookupvar('ipaddress')).to_i % 60
       end
     end
+{% endhighlight %}
 
 ### Example 2
 
+{% highlight ruby %}
     require 'md5'
 
     module Puppet::Parser::Functions
@@ -147,14 +158,17 @@ functions.
         MD5.new(lookupvar('fqdn')).to_s.hex % 24
       end
     end
+{% endhighlight %}
 
 ### Example 3
 
+{% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:has_fact, :type => :rvalue) do |arg|
         lookupvar(arg[0]) != :undefined
       end
     end
+{% endhighlight %}
 
 Basically, to get a fact's or variable's value, you just call
 `lookupvar('{fact name}')`.
@@ -162,26 +176,33 @@ Basically, to get a fact's or variable's value, you just call
 ## Calling Functions from Functions
 
 Functions can be accessed from other functions by 
-calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.  Alternatively, you can load a spcific function by calling `Puppet::Parser::Functions.function('myfunc1')`
+calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.  Alternatively, you can load a specific function by calling `Puppet::Parser::Functions.function('myfunc1')`
 
 Also keep in mind that when calling a puppet function from the puppet DSL, arguments are all passed in as an anonymous array.  This is not the case when calling the function from within Ruby.  To work around this, you must create the anonymous array yourself by putting the arguments (even if there is only one argument) inside square brackets like this:
+
+{% highlight ruby %}
     [ arg1, arg1, arg3 ]
+{% endhighlight %}
 
 ### Example
 
+{% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:myfunc2, :type => :rvalue) do |args|
         Puppet::Parser::Functions.autoloader.loadall
         function_myfunc1( [ arg1, arg2, ... ] )
       end
     end
+{% endhighlight %}
 
 ## Handling Errors
 
 To throw a parse/compile error in your function, in a similar
 manner to the `fail()` function:
 
+{% highlight ruby %}
     raise Puppet::ParseError, "my error"
+{% endhighlight %}
 
 ## Troubleshooting Functions
 
@@ -235,6 +256,7 @@ If you find yourself needing to write custom functions for older versions of Pup
 
 Until Puppet 0.25.0, safe file access was achieved by adding `self.interp.newfile($filename)` to the function. E.g., to accept a file name and return the last line of that file:
 
+{% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:file_last_line, :type => :rvalue) do |args|
         self.interp.newfile(args[0])
@@ -242,16 +264,20 @@ Until Puppet 0.25.0, safe file access was achieved by adding `self.interp.newfil
         lines[lines.length - 1]
       end
     end
+{% endhighlight %}
 
 #### Accessing Files in Puppet 0.25.x
 
 In release 0.25.0, the necessary code changed to:
 
+{% highlight ruby %}
     parser = Puppet::Parser::Parser.new(environment)
     parser.watch_file($filename)
+{% endhighlight %}
 
 This new code was used identically to the older code:
 
+{% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:file_last_line, :type => :rvalue) do |args|
         parser = Puppet::Parser::Parser.new(environment)
@@ -260,4 +286,5 @@ This new code was used identically to the older code:
         lines[lines.length - 1]
       end
     end
+{% endhighlight %}
 
