@@ -17,7 +17,7 @@ The `query` parameter is a similar format to resource queries.
 Only queries against facts and filters based on node activeness are currently
 supported.
 
-These terms must be of the form `["fact" <fact name>]` or `["node" "active"]`,
+These terms must be of the form `["fact", <fact name>]` or `["node", "active"]`,
 respectively.
 
 Accepted operators are: `[= > < >= <= and or not]`
