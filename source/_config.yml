@@ -6,5 +6,6 @@ defaultnav:
   /pe/2.5: pe25.html
   /pe/2.0: pe_2.0_nav.markdown
   /puppetdb/0.9: puppetdb0.9.html
+  /puppetdb/1: puppetdb1.html
   /puppet/2.7/reference: puppet_2_7.html
 ---
