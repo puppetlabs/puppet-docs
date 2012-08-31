@@ -6,49 +6,50 @@ layout: default
 [configure_jetty]: ./configure.html#jetty-http
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
 [memrec]: ./requirements.html#memory-recommendations
+[ttl]: ./configure.html#node-ttl-days
+[resources_type]: /references/latest/type.html#resources
+[log4j]: ./configure.html#configuring-logging
 
 PuppetDB requires a relatively small amount of maintenance and tuning. You should become familiar with the following occasional tasks:
 
-## Deactivate Decommissioned Nodes
-
-When you remove a node from your Puppet deployment, you should tell PuppetDB to deactivate it. This will ensure that any resources exported by that node will stop appearing in the catalogs served to the remaining agent nodes. 
-
-The PuppetDB plugins installed on your puppet master(s) include a `deactivate` action for the `node` face. On your puppet master, run:
-
-    $ sudo puppet node deactivate <node> [<node> ...]
-
-Although deactivated nodes will be excluded from storeconfigs queries, their data is still preserved, and a node will be reactivated if a new catalog or facts are received for it.
-
-## Redoing SSL setup after changing certificates
-
-If you've recently changed the certificates in use by the PuppetDB server, you'll need to update the SSL configuration for PuppetDB itself.
-
-If you've installed PuppetDB from Puppet Labs packages, you can simply re-run the `puppetdb-ssl-setup` script. Otherwise, you'll need to perform again all the SSL configuration steps outlined in [the installation instructions](./install_from_source.html).
-
-## Monitor the Performance Console
+## Monitor the Performance Dashboard
 
 Once you have PuppetDB running, visit the following URL, substituting in the name and port of your PuppetDB server:
 
 `http://puppetdb.example.com:8080/dashboard/index.html`
 
-PuppetDB uses this page to display a web-based console with performance information and metrics, including its memory use, queue depth, command processing metrics, duplication rate, and query stats. It displays min/max/median of each metric over a configurable duration, as well as an animated SVG sparkline.
+> **Note:** You may need to [edit PuppetDB's HTTP configuration][configure_jetty] first, changing the `host` setting to the server's externally-accessible hostname. When you do this, you should also configure your firewall to control access to PuppetDB's cleartext HTTP port.
 
-[![Screenshot of the performance dashboard](./images/perf-dash-small.png)](./images/perf-dash-large.png)
+PuppetDB uses this page to display a web-based dashboard with performance information and metrics, including its memory use, queue depth, command processing metrics, duplication rate, and query stats. It displays min/max/median of each metric over a configurable duration, as well as an animated SVG sparkline.
+
+![Screenshot of the performance dashboard](./images/perf-dash-small.png)](./images/perf-dash-large.png)
 
 You can use the following URL parameters to change the attributes of the dashboard:
 
-* width = width of each sparkline, in pixels
-* height = height of each sparkline, in pixels
-* nHistorical = how many historical data points to use in each sparkline
-* pollingInterval = how often to poll PuppetDB for updates, in milliseconds
+* `width` = width of each sparkline, in pixels
+* `height` = height of each sparkline, in pixels
+* `nHistorical` = how many historical data points to use in each sparkline
+* `pollingInterval` = how often to poll PuppetDB for updates, in milliseconds
 
 E.g.: `http://puppetdb.example.com:8080/dashboard/index.html?height=240&pollingInterval=1000`
 
-> Note: You may need to change PuppetDB's configuration to make the dashboard available, since the default configuration will only allow unauthenticated access to `localhost`. [See here to configure unauthenticated HTTP for PuppetDB.][configure_jetty]
+## Deactivate Decommissioned Nodes
+
+When you remove a node from your Puppet deployment, it should be marked as **deactivated** in PuppetDB. This will ensure that any resources exported by that node will stop appearing in the catalogs served to the remaining agent nodes. 
+
+* PuppetDB can automatically deactivate nodes that haven't checked in recently. To enable this, set the [`node-ttl-days` setting][ttl].
+* If you prefer to manually deactivate nodes, use the following command on your puppet master:
+
+        $ sudo puppet node deactivate <node> [<node> ...]
+* Any deactivated node will be reactivated if PuppetDB receives new catalogs or facts for it. 
+
+Although deactivated nodes will be excluded from storeconfigs queries, their data is still preserved.
+
+> **Note:** Deactivating a node does not remove (e.g. `ensure => absent`) exported resources from other systems; it only stops _managing_ those resources. If you want to actively destroy resources from deactivated nodes, you will probably need to purge that resource type using the [`resources` metatype][resources_type]. Note that some types cannot be purged, and several others **shouldn't** be purged.
 
 ## View the Log
 
-PuppetDB's log file lives at `/var/log/pe-puppetdb/pe-puppetdb.log` (for PE users) or `/var/log/puppetdb/puppetdb.log` (for open source users). Check the log when you need to confirm that PuppetDB is working correctly or troubleshoot visible malfunctions.
+PuppetDB's log file lives at `/var/log/pe-puppetdb/pe-puppetdb.log` (for PE users) or `/var/log/puppetdb/puppetdb.log` (for open source users). Check the log when you need to confirm that PuppetDB is working correctly or troubleshoot visible malfunctions. If you have changed the logging settings, examine the [log4j.properties file][log4j] to find the log.
 
 The PuppetDB packages install a logrotate job in `/etc/logrotate.d/puppetdb`, which will keep the log from becoming too large. 
 
@@ -65,3 +66,10 @@ The good news is that memory starvation is actually not very destructive. It wil
 When viewing [the performance console](#monitor-the-performance-console), note the MQ depth. If it is rising and you have CPU cores to spare, [increasing the number of threads](./configure.html#command-processing) may help churn through the backlog faster.
 
 If you are saturating your CPU, we recommend [lowering the number of threads](./configure.html#command-processing).  This prevents other PuppetDB subsystems (such as the web server, or the MQ itself) from being starved of resources, and can actually _increase_ throughput.
+
+## Redo SSL Setup After Changing Certificates
+
+If you've recently changed the certificates in use by the PuppetDB server, you'll need to update the SSL configuration for PuppetDB itself.
+
+If you've installed PuppetDB from Puppet Labs packages, you can simply re-run the `puppetdb-ssl-setup` script. Otherwise, you'll need to perform again all the SSL configuration steps outlined in [the installation instructions](./install_from_source.html).
+
