@@ -723,8 +723,7 @@ content
   exclusive with `source` and `target`.
 
   Newlines and tabs can be specified in double-quoted strings using
-  standard escaped syntax --- 
-   for a newline, and 	 for a tab.
+  standard escaped syntax --- \n for a newline, and \t for a tab.
 
   With very small files, you can construct content strings directly in
   the manifest...
