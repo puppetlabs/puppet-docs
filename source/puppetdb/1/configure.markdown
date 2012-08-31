@@ -4,6 +4,7 @@ layout: default
 ---
 
 [log4j]: http://logging.apache.org/log4j/1.2/manual.html
+[dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 
 Summary
 -----
@@ -223,7 +224,7 @@ Every change to PuppetDB's data stores arrives via **commands** that are inserte
 
 ### `threads`
 
-How many command processing threads to use. Each thread can process a single command at a time. [The number of threads can be tuned based on what you see in the performance console.](./maintain_and_tune#monitor-the-performance-console)
+How many command processing threads to use. Each thread can process a single command at a time. [The number of threads can be tuned based on what you see in the performance dashboard.][dashboard]
   
 This setting defaults to half the number of cores in your system.
 
@@ -234,7 +235,9 @@ The `[jetty]` section configures HTTP for PuppetDB.
 
 ### `host`
 
-The hostname to listen on for _unencrypted_ HTTP traffic. If not supplied, we bind to localhost.
+The hostname to listen on for _unencrypted_ HTTP traffic. If not supplied, we bind to `localhost`, which will reject connections from anywhere but the PuppetDB server itself.
+
+> **Note:** Unencrypted HTTP is the only way to view the [performance dashboard][dashboard], since PuppetDB uses host verification for SSL. However, it can also be used to make any call to PuppetDB's API, including inserting exported resources and retrieving arbitrary data about your Puppet-managed nodes. **If you enable cleartext HTTP, you MUST configure your firewall to protect unverified access to PuppetDB.**
 
 ### `port`
 
@@ -242,7 +245,7 @@ What port to use for _unencrypted_ HTTP traffic. If not supplied, we won't liste
 
 ### `ssl-host`
 
-The hostname to listen on for HTTPS. If not supplied, we bind to localhost.
+The hostname to listen on for _encrypted_ HTTPS traffic. If not supplied, we bind to `localhost`.
 
 ### `ssl-port`
 
