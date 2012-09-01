@@ -269,9 +269,9 @@ Passphrase to use to unlock the truststore file.
 
 ### `certificate-whitelist`
 
-Optional. Path to a file that contains a list of hostnames, one per line.  Incoming HTTPS requests will have their certificates validated against this list of hostnames, and only those with an _exact_, matching entry will be allowed through.
+Optional. Path to a file that contains a list of certificate names, one per line.  Incoming HTTPS requests will have their certificates validated against this list of names, and only those with an _exact_ matching entry will be allowed through. (For a puppet master, this compares against the value of the `certname` setting, rather than the `dns_alt_names` setting.)
 
-If not supplied, we'll perform standard HTTPS without any additional authorization. We'll still make sure that all HTTPS clients supply valid, verifiable SSL client certificates.
+If not supplied, PuppetDB uses standard HTTPS without any additional authorization. All HTTPS clients must still supply valid, verifiable SSL client certificates.
 
 `[repl]` Settings
 -----
