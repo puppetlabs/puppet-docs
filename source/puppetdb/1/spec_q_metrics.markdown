@@ -39,12 +39,6 @@ To get the attributes of a particular metric:
 
 A JSON Object mapping strings to (strings/numbers/booleans).
 
-## Example
-
-You can use `curl` to grab metrics like so:
-
-    curl -v -H "Accept: application/json" 'http://localhost:8080/metrics/mbean/java.lang:type=Memory'
-
 ## Useful metrics
 
 ### Population metrics
@@ -146,3 +140,8 @@ resources, storing edges, etc.). Metrics of particular note include:
   stats about the command processing queue. Queue depth, stats around
   how long messages remain in the queue, etc.
 
+## Example
+
+[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+
+    curl -H "Accept: application/json" 'http://localhost:8080/metrics/mbean/java.lang:type=Memory'

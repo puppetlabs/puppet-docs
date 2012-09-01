@@ -31,3 +31,11 @@ facts should be retrieved.
     }
 
 If no facts are known for the supplied node, an HTTP 404 is returned.
+
+## Example
+
+[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+
+    curl -H "Accept: application/json" 'http://localhost:8080/facts/<node>'
+
+Where `<node>` is the name of the node you wish to retrieve facts for.

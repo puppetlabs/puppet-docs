@@ -22,3 +22,11 @@ not present, the corresponding timestamps will be null.
 
 If no information is known about the node, the result will be a 404 with a JSON
 hash containing an "error" key with a message indicating such.
+
+## Example
+
+[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+
+    curl -H "Accept: application/json" 'http://localhost:8080/status/nodes/<node>'
+
+Where <node> is the name of the node whose status you wish to check.

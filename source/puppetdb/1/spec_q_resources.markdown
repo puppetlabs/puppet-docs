@@ -96,3 +96,10 @@ following form:
                     <parameter>: <value>,
                     ...}}
 
+## Example
+
+[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+
+Retrieving the resource `File['/etc/ipsec.conf']`:
+
+    curl -G -H "Accept: application/json" 'http://localhost:8080/resources' --data-urlencode 'query=["and", ["=", "type", "File"], ["=", "title", "/etc/ipsec.conf"]]'

@@ -44,3 +44,15 @@ The response is a JSON array of node names matching the predicates, sorted
 in ascending order:
 
 `["foo.example.com", "bar.example.com", "baz.example.com"]`
+
+## Example
+
+[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+
+Retrieving all nodes:
+
+    curl -H "Accept: application/json" 'http://localhost:8080/nodes'
+
+Retrieving all active nodes:
+
+    curl -G -H "Accept: application/json" 'http://localhost:8080/nodes' --data-urlencode 'query=["=", ["node", "active"], true]'
