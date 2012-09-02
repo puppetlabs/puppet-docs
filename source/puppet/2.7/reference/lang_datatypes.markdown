@@ -200,7 +200,7 @@ Numbers
 
 Puppet's arithmetic expressions accept integers and floating point numbers. Internally, Puppet treats numbers like strings until they are used in a numeric context.
 
-Numbers can be written as bare words or quoted strings, and may consist only of digits and an optional sign and decimal point. 
+Numbers can be written as bare words or quoted strings, and may consist only of digits and an optional minus sign and decimal point. 
 
 {% highlight ruby %}
     $some_number = 8 * -7.992
