@@ -217,7 +217,7 @@ Puppet can create, edit, and delete scheduled tasks. It can manage the task name
 
 Puppet can install and remove MSI packages, including specifying package-specific install options, e.g. install directory.
 
-* The source parameter is required, and must refer to a local .msi file or a file from a mapped drive. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
+* The source parameter is required, and must refer to a local .msi file, a file from a mapped drive or a an UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
 * The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install. 
     * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. 
 * Currently, Puppet can only manage packages that it installed.
