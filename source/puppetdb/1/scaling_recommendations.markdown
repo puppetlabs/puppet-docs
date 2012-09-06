@@ -4,76 +4,86 @@ layout: default
 ---
 
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
-[tuning]: ./maintain_and_tune.html#monitor-the-performance-console
+[dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
+[heap]: ./maintain_and_tune.html#tune-the-max-heap-size
+[threads]: ./maintain_and_tune.html#tune-the-number-of-threads
+[postgres]: ./configure.html#using-postgresql
+[pg_ha]: http://www.postgresql.org/docs/current/interactive/high-availability.html
+[pg_replication]: http://wiki.postgresql.org/wiki/Replication,_Clustering,_and_Connection_Pooling
+[ram]: #bottleneck-java-heap-size
+[runinterval]: /references/latest/configuration.html#runinterval
 
-Once installed and configured, PuppetDB will be a critical component of your Puppet deployment, and agent nodes will be unable to request catalogs if it becomes unavailable. In general, it should be run on a robust and reliable server, like any critical service. 
+Since PuppetDB will be a critical component of your Puppet deployment (that is, agent nodes will be unable to request catalogs if it goes down), you should make sure it can handle your site's load and be resilient against failures. 
+
+As with scaling any service, there are several possible performance and reliability bottlenecks, which can be dealt with in turn as they arise. 
 
 
-Basic Requirements
+Bottleneck: Database Performance
 -----
 
-PuppetDB will run on any **\*nix system** with **JDK 1.6** or higher. This includes:
+### Database Backend
 
-* Recent MacOS X versions using built-in Java support
-* Nearly any Linux distribution using its own OpenJDK packages
-* Nearly any \*nix system running a recent Oracle-provided JDK
+PuppetDB has two available database backends:
 
-
-Easy Install Requirements
------
-
-Puppet Labs provides PuppetDB packages for several major Linux distributions; these packages automate the complex process of setting up SSL, and make it easier to keep PuppetDB up to date.
-
-To take advantage of this, you should install PuppetDB on a server running one of the following operating systems:
-
-* Red Hat Enterprise Linux 5 or 6
-* Any Linux distro derived from RHEL 5 or 6, including (but not limited to) CentOS, Scientific Linux, and Ascendos
-* Debian Squeeze, Lenny, Wheezy, or Sid
-* Ubuntu 12.04 LTS, 10.04 LTS, 8.04 LTS, 11.10, or 11.04
-* Fedora 15 or 16
-
-Puppet Requirements
------
-
-Any puppet master you wish to connect to PuppetDB must be running **Puppet version 2.7.12** or higher. You will also need to install extra components on your puppet master(s) before they can speak to PuppetDB. 
-
-After installing PuppetDB, [see here to configure a puppet master to use it.](./connect_puppet.html)
-
-
-Database Recommendations
------
-
-Deployments with more than 100 nodes should configure a PostgreSQL database for PuppetDB. Smaller deployments may also wish to use the PostgreSQL backend.
-
-There are two available backends for PuppetDB storage:
-
-* PuppetDB's embedded database
+* Embedded HSQLDB
 * PostgreSQL
 
-The embedded database works well for small deployments (up to approximately 100 hosts). It requires no additional daemons or setup, and as such is very simple to get started with. It supports all PuppetDB features.
+The embedded database works with no additional daemons or setup, but is only suitable for up to about 100 Puppet nodes. [It also requires a signifiacntly larger Java heap][ram].
 
-However, there is a cost: the embedded database requires a fair amount of RAM to operate correctly. We'd recommend [allocating 1GB to PuppetDB][configure_heap] as a starting point. Additionally, the embedded database is somewhat opaque; unlike more off-the-shelf database daemons, there isn't much companion tooling for things like interactive SQL consoles, performance analysis, or backups.
+You can increase performance by setting up a PostgreSQL server and [switching PuppetDB to the PostgreSQL backend][postgres]. 
 
-That said, if you have a small installation and enough RAM, then the embedded database will work just fine.
+### PostgreSQL Speed and Availability
 
-For most "real" use, we recommend running an instance of PostgreSQL. Simply install PostgreSQL using a module from the Puppet Forge or your local package manager, create a new (empty) database for PuppetDB, and verify that you can login via `psql` to this DB you just created. Then just supply PuppetDB with the DB host, port, name, and credentials you've just configured, and we'll take care of the rest!
+Using the PostgreSQL backend, PuppetDB will be limited by the performance of your Postgres server. You can increase performance by making sure your DB server has an extremely fast disk, plenty of RAM, a fast processor, and a fast network connection to your PuppetDB server. You may also need to look into database clustering and load balancing.
 
-Memory Recommendations
+Database administration is beyond the scope of this manual, but the following links may be helpful: 
+
+* [High Availability, Load Balancing, and Replication][pg_ha], from the PostgreSQL manual
+* [Replication, Clustering, and Connection Pooling][pg_replication], from the PostgreSQL wiki
+
+Bottleneck: Java Heap Size
 -----
 
-PuppetDB runs on the JVM, and the maximum amount of memory it is allowed to use is set when the service is started. The optimal value of this maximum will vary depending on the nature of your site.
+PuppetDB is limited by the amount of memory available to it, which is [set in the init script's config file][configure_heap]. If it runs out of memory, it will start logging `OutOfMemoryError` exceptions and delaying command processing. Unlike many of the bottlenecks listed here, this one is fairly binary: PuppetDB either has enough memory to function under its load, or it doesn't. The exact amount needed will depend on the [DB backend](#database-backend), the number of nodes, the similarity of the nodes, the complexity of each node's catalog, and how often the nodes check in.
 
-### For Embedded DB Users
+Use one of the following rules of thumb to choose an initial heap size; afterwards, [watch the performance dashboard and adjust the heap if necessary][heap].
 
-If you're using the embedded database, we recommend using 1GB or more (to be on the safe side).
+* If you are using PostgreSQL, allocate 128 MB of memory as a base, plus 1 MB for each Puppet node in your infrastructure.
+* If you are using the embedded database, allocate at least 1 GB of heap.
 
-### For PostgreSQL users
-
-If you are using an external database, then a decent rule-of-thumb is to allocate 128MB of memory as a base, plus 1MB for each node in your infrastructure. To get a more exact measure of the required RAM, you should start with the rule-of-thumb, then [watch the performance console and experiment][tuning].
-
-
-Large-scale Recommendations
+Bottleneck: Node Checkin Interval
 -----
 
-For truly large installations, we recommend terminating SSL using Apache or Nginx instead of within PuppetDB itself. This permits much greater flexibility and control over bandwidth and clients. Instructions for configuring this are currently beyond the scope of this manual.
+The more frequently your Puppet nodes check in, the heavier the load on your PuppetDB server. 
+
+You can reduce the need for higher performance by changing the [`runinterval`][runinterval] setting in every Puppet node's puppet.conf file. (Or, if running puppet agent from cron, by changing the frequency of the cron task.)
+
+The frequency with which nodes should check in will depend on your site's policies and expectations --- this is just as much a cultural decision as it is a technical one. A possible compromise is to use a wider default checkin interval, but implement MCollective's `puppetd` plugin to trigger immediate runs when needed.
+
+Bottleneck: CPU Cores and Number of Worker Threads
+-----
+
+PuppetDB can take advantage of multiple CPU cores to handle the commands in its queue. Each core can run a worker thread; by default, PuppetDB will use half of the cores in its machine.
+
+You can increase performance by running PuppetDB on a machine with many CPU cores and [tuning the number of worker threads][threads]:
+
+* More threads will allow PuppetDB to keep up with more incoming commands per minute. Watch the queue depth in the performance dashboard to see whether you need more threads.
+* Too many worker threads can potentially starve the message queue and web server of resources, which will prevent incoming commands from entering the queue in a timely fashion. Watch your server's CPU usage to see whether the cores are saturated. 
+
+Bottleneck: Single Point of Failure
+-----
+
+Although a single PuppetDB and PostgreSQL server probably _can_ handle all of the load at the site, you may want to run multiple servers for the sake of resilience and redundancy. To configure high-availability PuppetDB, you should:
+
+* Run multiple instances of PuppetDB on multiple servers, and use a reverse proxy or load balancer to distribute traffic between them. 
+* Configure multiple PostgreSQL servers for high availability or clustering. More information is available at [the PostgreSQL manual][pg_ha] and [the PostgreSQL wiki][pg_replication].
+* Configure every PuppetDB instance to use the same PostgreSQL database. (In the case of clustered Postgres servers, they may be speaking to different machines, but conceptually they should all be writing to one database.)
+
+
+Bottleneck: SSL Performance
+-----
+
+PuppetDB uses its own embedded SSL processing, which is usually not a performance problem. However, truly large deployments will be able to squeeze out more performance by terminating SSL with Apache or Nginx instead. If you are using multiple PuppetDB servers behind a reverse proxy, we recommend terminating SSL at the proxy server.
+
+Instructions for configuring external SSL termination are currently beyond the scope of this manual. If your site is big enough for this to be necessary, you have probably done it with several other services before.
 

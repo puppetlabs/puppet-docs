@@ -1,91 +1,61 @@
 ---
-title: "PuppetDB » Overview"
+title: "PuppetDB 1 » Overview"
 layout: default
 ---
 
+[exported]: /puppet/2.7/reference/lang_exported.html
+[inventory]: /guides/inventory_service.html
+[apply]: ./connect_puppet_apply.html
+[connect]: ./connect_puppet_master.html
+[install_advanced]: ./install_from_source.html
+[install]: ./install.html
+[scaling]: ./scaling_recommendations.html
 
-Welcome to the beta release of PuppetDB!
+PuppetDB is a companion service for Puppet. It can be connected to a puppet master (or to standalone nodes running puppet apply) and enables advanced Puppet features
 
-PuppetDB is a Puppet data warehouse; it manages storage and retrieval
-of all platform-generated data. Currently, it stores catalogs and facts; in future releases, it will expand to include more data, like reports. 
+[exported resources][exported]
 
-So far, we've implemented the following features:
 
-* Fact storage
-* Full catalog storage
-  * Containment edges
-  * Dependency edges
-  * Catalog metadata
-  * Full resource list with all parameters
-  * Node-level tags
-  * Node-level classes
-* REST Fact retrieval
-  * all facts for a given node
-* REST Resource querying
-  * super-set of storeconfigs query API
-  * boolean operators
-  * can query for resources spanning multiple nodes and types
-* Storeconfigs terminus
-  * drop-in replacement of stock storeconfigs code
-  * export resources
-  * collect resources
-  * fully asynchronous operation (compiles aren't slowed down)
-  * _much_ faster storage, in _much_ less space
-* Inventory service API compatibility
-  * query nodes by their fact values
-  * drop-in replacement for Puppet Dashboard and PE console inventory service
 
-## Components
 
-PuppetDB consists of several, cooperating components:
 
-### REST-based command processor
 
-PuppetDB uses a CQRS pattern for making changes to its domain objects
-(facts, catalogs, etc). Instead of simply submitting data to PuppetDB
-and having it figure out the intent, the intent needs to be explicitly
-codified as part of the operation. This is known as a "command"
-(e.g. "replace the current facts for node X").
+System Requirements
+-----
 
-Commands are processed asynchronously; however, do our best
-to ensure that once a command has been accepted, it will eventually be
-executed. Ordering is also preserved. To do this, all incoming
-commands are placed in a message queue which the command processing
-subsystem reads from in FIFO order.
+### \*nix Server with JDK 1.6+
 
-Submission of commands is done via HTTP. See the API spec in the navigation sidebar for complete documentation. There is a specific required wire format for commands, and
-failure to conform to that format will result in an HTTP error.
+#### Easy Install: RHEL, CentOS, Debian, Ubuntu, or Fedora
 
-### Storage subsystem
+Puppet Labs provides packages for PuppetDB, which greatly simplify configuration of its SSL certificates and init scripts. These packages are available for the following operating systems:
 
-Currently, PuppetDB's data is stored in a relational database. There
-are two supported databases:
+* Red Hat Enterprise Linux 5 or 6 or any distro derived from it (including CentOS)
+* Debian Squeeze, Lenny, Wheezy, or Sid
+* Ubuntu 12.04 LTS, 10.04 LTS, 8.04 LTS, 11.10, or 11.04
+* Fedora 15 or 16
 
-* An embedded HSQLDB. This does not require a separate database
-  service, and is thus trivial to setup. This database is intended for
-  proof-of-concept use; we do not recommend it for long-term
-  production use.
-* PostgreSQL
+[See here for installation instructions.][install]
 
-There is no MySQL support, as MySQL lacks support for recursive queries
-(critical for future graph traversal features).
+#### Advanced Install: Any Unix-like OS
 
-### REST-based retrieval
+If you're willing to do some manual configuration, PuppetDB can run on any Unix-like OS with JDK 1.6 or higher, including:
 
-Read-only requests (resource queries, fact queries, etc.) are done
-using PuppetDB's REST APIs. Each REST endpoint is documented in the API spec; see the navigation sidebar.
+* Recent MacOS X versions (using built-in Java support)
+* Nearly any Linux distribution (using vendor's OpenJDK packages)
+* Nearly any \*nix system running a recent Oracle-provided JDK
 
-### Remote REPL
+[See here for advanced installation instructions.][install_advanced]
 
-For debugging purposes, you can open up a remote clojure
-[REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)
-and use it to modify the behavior of PuppetDB, live.
+### Puppet 2.7.12
 
-Vim support would be a welcome addition; please submit patches!
+Your site's puppet masters must be running Puppet 2.7.12 or later. [You will need to connect your puppet masters to PuppetDB after installing it][connect]. If you wish to use PuppetDB with [standalone nodes running puppet apply][apply], every node must be running 2.7.12 or later.
 
-### Puppet terminuses
+### Robust Hardware
 
-There are a set of Puppet terminuses that acts as a drop-in replacement for
-stock storeconfigs functionality. By asynchronously storing catalogs
-in PuppetDB, and by leveraging PuppetDB's fast querying, compilation
-times are much reduced compared to traditional storeconfigs.
+PuppetDB will be a critical component of your Puppet deployment, and should be run on a robust and reliable server. 
+
+However, it can do a lot with fairly modest hardware: in benchmarks using real-world catalogs from a customer, a single 2012 laptop (16 GB of RAM, consumer-grade SSD, and quad-core processor) running PuppetDB and PostgreSQL was able to keep up with sustained input from 8,000 simulated Puppet nodes checking in every 30 minutes. Powerful server-grade hardware will perform even better.
+
+The actual requirements will vary wildly depending on your site's size and characteristics. At smallish sites, you may even be able to run PuppetDB on your puppet master server.
+
+For more on fitting PuppetDB to your site, [see "Scaling Recommendations."][scaling]
