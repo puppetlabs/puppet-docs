@@ -6,32 +6,27 @@ title: Inventory Service
 Inventory Service
 ======
 
-Set up and begin using the inventory service with one or more puppet master servers. **This document refers to a feature currently under development.**
-
-* * *
-
+[puppetdb]: /puppetdb/1
+[puppetdb_nodes]: /puppetdb/1/spec_q_nodes.html
+[puppetdb_facts]: /puppetdb/1/spec_q_facts.html
+[puppetdb_install]: /puppetdb/1/install.html
+[puppetdb_connect]: /puppetdb/1/connect_puppet_master.html
 [authdotconf]: ./rest_auth_conf.html
 [rest]: ./rest_api.html#facts
-[storeconfigs]: http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration
+[old_storeconfigs]: http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration
+[facts]: /puppet/2.7/reference/lang_variables.html#facts-and-built-in-variables
+[exported]: /puppet/2.7/reference/lang_exported.html
 
-Puppet 2.6.7 adds support for maintaining, reading, and searching an inventory of nodes. This can be used to generate reports about the composition of your site, to drastically extend the capabilities of your external node classifier, and probably to do a lot of things we haven't even thought of yet. This service is designed as a _hackable public API._
+Starting with Puppet 2.6.7, puppet master servers offer API access to the [facts][] reported by every node. You can use this API to get complete info about any node, and to search for nodes whose facts meet certain criteria.
 
-Why
----
+* Puppet Dashboard and Puppet Enterprise's console use the inventory service to provide a search function and display each node's complete facts on the node's page. (PE does this by default. [See here for instructions on activating Dashboard's inventory support](/dashboard/manual/1.2/configuring.html#enabling-inventory-support).)
+* Your own custom applications can access any node's facts via the inventory service.
 
-In order to compile and serve a catalog to an agent node, the puppet master has to collect a large amount of information about that node, in the form of Facter facts. If that info is written to a persistent store whenever it's collected, it suddenly becomes a fairly detailed inventory of every node that Puppet controls or has controlled at a given site! This can be tremendously useful: Imagine being able to instantly find out which computers are still running CentOS 4.5 and need to be upgraded, or which computers have less than a certain amount of physical memory, or what percentage of your current infrastructure is in the cloud on EC2 instances. Build a good enough interface to the inventory, and the data becomes _knowledge._ That knowledge can then drive other tools; for example, you could let your provisioning system or node classifier make decisions about new hardware based on the properties of the existing infrastructure. 
-
-Several users have built custom inventory functionality by directly reading either the puppet master's YAML fact cache or the optional [storeconfigs][] database. But both of these approaches were non-optimal:
-
-* The YAML cache is strictly local to one puppet master, and isn't an accurate inventory in multi-master environments. Furthermore, repeatedly deserializing YAML is terribly slow, which can cause real problems depending on the use case. (Searching by fact, in particular, is basically not an option.)
-* Storeconfigs, on the other hand, is global to the site, but it's essentially a private API: Since the only officially supported use of it is for sharing exported resources, the only way to get fact data out of it is to read the database directly, and there's been no guarantee against the schema changing. Furthermore, storeconfigs is too heavyweight for users who just want an inventory, since it stores every resource and tag in each node's catalog in addition to the node's facts, and even the "thin" storeconfigs option stores a LOT of data. Implementing storeconfigs at a reasonable scale demands setting up a message queue, and even that extra infrastructure doesn't necessarily make it viable at a very large scale.
-
-Thus, the Puppet inventory service: a relatively speedy implementation that does one thing well and exposes a public network API.
 
 What It Is
 -----
 
-The _inventory_ is a collection of node facts. The _inventory service_ is a retrieval, storage, and search API exposed to the network by the puppet master. 
+The _inventory_ is a collection of node facts. The _inventory service_ is a retrieval, storage, and search API exposed to the network by the puppet master. The _inventory service backend_ (AKA the `facts_terminus`) is what the puppet master uses to store the inventory and do some of the heavy lifting of the inventory service. 
 
 The puppet master updates the inventory when agent nodes report their facts, which happens every time puppet agent requests a catalog. Optionally, additional puppet masters can use the REST API to send facts from their agents to the central inventory. 
 
@@ -45,10 +40,6 @@ or
 
 Information in the inventory is never automatically expired, but it is timestamped. 
 
-### Consumers of the Inventory Service
-
-The inventory service is primarily meant for external applications, and its data is not currently read by any part of Puppet. The only application which currently consumes the inventory data is Puppet Dashboard version 1.1.0, which can display facts in node views and provides a web interface for searching the inventory by fact.
-
 Using the Inventory Service
 -----
 
@@ -58,56 +49,35 @@ To read from the inventory, submit secured HTTP requests to the puppet master's 
 
 Full documentation of these endpoints can be found [here](http://docs.puppetlabs.com/guides/rest_api.html#facts), but a summary follows:
 
-* To retrieve the facts for testnode.localdomain, send a GET request to <https://puppet:8140/production/facts/testnode.localdomain>. 
+* To retrieve the facts for testnode.example.com, send a GET request to <https://puppet:8140/production/facts/testnode.example.com>. 
 * To retrieve a list of all Ubuntu nodes with two or more processors, send a GET request to <https://puppet:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu>. 
 
 In both cases, be sure to specify an `Accept: pson` or `Accept: yaml` header.
+
+### Directly Accessing the Inventory Service Backend
+
+If you are using the [PuppetDB][] inventory backend, you also have the option of using _its_ public API instead of the inventory service API. See the following PuppetDB pages for more info:
+
+* [The node query API][puppetdb_nodes]
+* [The facts query API][puppetdb_facts]
 
 Setting Up the Inventory Service
 -----
 
 ### Configuring the Inventory Backend
 
-The inventory service's backend is configured with the `facts_terminus` setting in the puppet master's section of `puppet.conf`.
+There are two inventory service backends available: PuppetDB and `inventory_active_record`. 
 
-#### For Prototyping: YAML
+* If you are using Puppet 2.7.12 or later, **use PuppetDB.** It is faster, easier to configure and maintain, and also provides resource stashing to enable [exported resources][exported]. Follow the installation and configuration instructions in the PuppetDB manual, and connect every puppet master to your PuppetDB server:
+    * [Install PuppetDB][puppetdb_install]
+    * [Connect a puppet master to PuppetDB][puppetdb_connect]
+* If you are using an older version of Puppet, you can use the `inventory_active_record` backend and connect your other puppet masters to the designated inventory master. [See the appendix below to enable this backend](#appendix-enabling-the-inventoryactiverecord-backend).
+    * You can upgrade to PuppetDB at a later date after upgrading Puppet; since a node's facts are replaced every time it checks in, PuppetDB should have the same data as your old inventory in a matter of hours.
 
-    [master]
-        facts_terminus = yaml
-
-You can actually start using the inventory service with the YAML backend immediately --- `yaml` is the default value for `facts_terminus`, and the YAML cache of any previously used puppet master will already be populated with fact information. Just configure access (see below) and you're good to go.
-
-#### For Production: Database
-
-    [master]
-        facts_terminus = inventory_active_record
-        dblocation = {sqlite file path (sqlite only)}
-        dbadapter = {sqlite3|mysql|postgresql|oracle_enhanced}
-        dbname = {database name (all but sqlite)}
-        dbuser = {database user (all but sqlite)}
-        dbpassword = {database password (all but sqlite)}
-        dbserver = {database server (MySQL and PostgreSQL only)}
-        dbsocket = {database socket file (MySQL only; optional)}
-
-Before using the database facts backend, you'll have to fulfill a number of requirements: 
-
-* Puppet master will need access to both a database and a user account with all privileges on that database; setting that up is outside the scope of this document. The database server can be remote or on the local host. 
-* You'll need to ensure that the copy of Ruby in use by puppet master is able to communicate with your chosen type of database server. This will _always_ entail ensuring that Rails is installed, and will _likely_ require installing a specific Ruby library to interface with the database (e.g. the `libmysql-ruby` package on Debian and Ubuntu or the `mysql` gem on other operating systems). 
-
-These requirements are essentially identical to those used by storeconfigs, so [the Puppet wiki page for storeconfigs][storeconfigs] can be helpful. Getting MySQL on the local host configured is very well-documented; other options, less so.
-
-#### For Multiple Puppet Masters: REST
-
-    [master]
-        facts_terminus = rest
-        inventory_server = {inventorying puppet master; defaults to "puppet"}
-        inventory_port = 8140 (unless changed)
-
-In addition to writing to its local YAML cache, any puppet master with a `facts_terminus` of `rest` will submit facts to another puppet master, which is hopefully using the `inventory_active_record` backend. 
 
 ### Configuring Access
 
-By default, the inventory service is not accessible! This is sane. The inventory service exposes sensitive information about your infrastructure over the network, so you'll need to carefully control access with the [`rest_authconfig` (a.k.a. `auth.conf`)][authdotconf] file.
+By default, the inventory service is not accessible! This is a reasonable default. Because the inventory service exposes sensitive information about your infrastructure over the network, you'll need to carefully control access with the [`rest_authconfig` (a.k.a. `auth.conf`)][authdotconf] file.
 
 For prototyping your inventory application on a scratch puppet master, you can just permit all access to the `facts` endpoint:
 
@@ -118,17 +88,12 @@ For prototyping your inventory application on a scratch puppet master, you can j
 
 (Note that this will allow access to both `facts` and `facts_search`, since the path is read as a prefix.)
 
-For production deployment, you'll need to allow find and search access for your application, allow save access for any other puppet masters at your site (so they can submit their nodes' facts), and deny access to all other machines. (Since agent nodes submit their facts as part of their request to the `catalog` resource, they don't require access to the `facts` or `facts_search` resources.) One such possible ACL set would be:
+For production deployment, you'll need to allow find and search access for each application that uses the inventory and deny access to all other machines. (Since agent nodes submit their facts as part of their request to the `catalog` resource, they don't require access to the `facts` or `facts_search` resources.) One such possible ACL set would be:
 
     path /facts
     auth yes
     method find, search
-    allow custominventorybrowser.example.com
-
-    path /facts
-    auth yes
-    method save
-    allow puppetmaster1.example.com, puppetmaster2.example.com, puppetmaster3.example.com
+    allow dashboard.example.com, custominventoryapp.example.com
 
 ### Configuring Certificates
 
@@ -164,4 +129,63 @@ To insert facts for a fictional node into the inventory:
 To find out which nodes at your site are Intel Macs:
 
     curl -k -H "Accept: pson" https://puppet:8140/production/facts_search/search?facts.hardwaremodel=i386&facts.kernel=Darwin
+
+
+Appendix: Enabling the `inventory_active_record` Backend
+-----
+
+The `inventory_active_record` backend works on older puppet masters, all the way back to Puppet 2.6.7. It has reasonable speed, but is generally inferior to [PuppetDB][], on account of being slightly slower and more difficult to configure.
+
+Unlike PuppetDB, this backend splits your puppet masters into two groups, which must be configured differently:
+
+* The designated inventory puppet master must be configured to access a database. (If you site only has one puppet master, this is it.)
+* Every other puppet master must be configured to access the designated inventory puppet master. 
+
+### Configuring the Inventory Puppet Master
+
+#### Step 1: Create a Database and User
+
+The inventory puppet master will need access to both a **database** and a **user account with all privileges on that database;** setting that up is outside the scope of this document. The database server can be remote or on the local host. 
+
+Since database access is mediated by the common ActiveRecord library, you can, in theory, use any local or remote database supported by Rails. In practice, MySQL on the same server as the puppet master is the best-documented approach. See [the documentation for the legacy ActiveRecord storeconfigs backend][old_storeconfigs] for more details about setting up and configuring a database with Puppet.
+
+Do not use sqlite except as a proof of concept. It is slow and unreliable.
+
+#### Step 2: Install the Appropriate Ruby Database Adapter
+
+The copy of Ruby in use by puppet master will need to be able to communicate with your chosen type of database server. This will _always_ entail ensuring that Rails is installed, and will _likely_ require installing a specific Ruby library to interface with the database (e.g. the `libmysql-ruby` package on Debian and Ubuntu or the `mysql` gem on other operating systems). As above, [see the old ActiveRecord storeconfigs docs][old_storeconfigs] for more help.
+
+#### Step 3: Edit puppet.conf
+
+Set the following settings in your inventory master's puppet.conf:
+
+    [master]
+        facts_terminus = inventory_active_record
+        dblocation = {sqlite file path (sqlite only)}
+        dbadapter = {sqlite3|mysql|postgresql|oracle_enhanced}
+        dbname = {database name (all but sqlite)}
+        dbuser = {database user (all but sqlite)}
+        dbpassword = {database password (all but sqlite)}
+        dbserver = {database server (MySQL and PostgreSQL only)}
+        dbsocket = {database socket file (MySQL only; optional)}
+
+Note that some of these are only necessary for certain databases. As above, [see the old ActiveRecord storeconfigs docs][old_storeconfigs] for more help.
+
+#### Step 4: Edit auth.conf (multiple masters only)
+
+Since your other puppet masters will be sending node facts to the designated inventory master, you will need to give each of them `save` access to the `facts` REST endpoint.
+
+    path /facts
+    auth yes
+    method save
+    allow puppetmaster1.example.com, puppetmaster2.example.com, puppetmaster3.example.com
+
+### Configuring Other Puppet Masters
+
+Edit puppet.conf on every other puppet master to contain the following:
+
+    [master]
+        facts_terminus = rest
+        inventory_server = {designated inventory master; defaults to "puppet"}
+        inventory_port = 8140
 
