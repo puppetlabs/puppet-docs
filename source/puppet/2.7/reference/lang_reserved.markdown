@@ -33,19 +33,22 @@ Several words in the Puppet language are **reserved**. This means they:
 
 The following words are reserved: 
 
+* `and` --- expression operator
 * `case` --- language keyword
 * `class` --- language keyword
 * `default` --- language keyword
 * `define` --- language keyword
 * `else` --- language keyword
 * `elsif` --- language keyword
-* `false` --- special value
+* `false` --- boolean value
 * `if` --- language keyword
+* `in` --- expression operator
 * `import` --- language keyword
 * `inherits` --- language keyword
 * `node` --- language keyword
-* `true` --- special value
-* `undef` --- special value
+* `or` --- expression operator
+* `true` --- boolean value
+* `undef` --- special value <!-- Add "unless" for 3.0 -->
 
 Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 
