@@ -7,8 +7,8 @@ title: "Language: Resource Collectors"
 [realize]: ./lang_virtual.html#syntax
 [exported]: ./lang_exported.html
 [puppetdb]: /puppetdb/
-[puppetdb_install]: /puppetdb/0.9/install.html
-[puppetdb_connect]: /puppetdb/0.9/connect_puppet.html
+[puppetdb_install]: /puppetdb/1/install.html
+[puppetdb_connect]: /puppetdb/1/connect_puppet_master.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [attribute]: ./lang_resources.html#attributes
 [expressions]: ./lang_expressions.html

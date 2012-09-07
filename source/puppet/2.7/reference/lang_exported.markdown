@@ -15,9 +15,9 @@ title: "Language: Exported Resources"
 [bacula]: https://forge.puppetlabs.com/puppetlabs/bacula
 [exported_collector]: ./lang_collectors.html#exported-resource-collectors
 [search]: ./lang_collectors.html#search-expressions
-[puppetdb]: /puppetdb/0.9
-[puppetdb_connect]: /puppetdb/0.9/connect_puppet.html
-[puppetdb_install]: /puppetdb/0.9/install.html
+[puppetdb]: /puppetdb/1
+[puppetdb_connect]: /puppetdb/1/connect_puppet_master.html
+[puppetdb_install]: /puppetdb/1/install.html
 [ar_storeconfigs]: http://projects.puppetlabs.com/projects/puppet/wiki/Using_Stored_Configuration
 [exported_guide]: /guides/exported_resources.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
