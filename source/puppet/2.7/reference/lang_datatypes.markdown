@@ -137,6 +137,7 @@ The following escape sequences are available:
 * `\'` --- literal single quote
 * `\\` --- single backslash
 * `\n` --- newline
+* `\r` --- carriage return (version 2.7.20 and higher)
 * `\t` --- tab
 * `\s` --- space
 
@@ -146,7 +147,10 @@ Quoted strings may continue over multiple lines, and line breaks are preserved a
 
 Puppet does not attempt to convert line breaks, which means that the type of line break (Unix/LF or Windows/CRLF) used in the file will be preserved. 
 
-If you wish to insert an LF in a manifest file saved with Windows line endings, you can use the `\n` escape sequence in double-quoted strings. Since Puppet 2.7 does not support the `\r` escape sequence, there is no good way to insert a literal CRLF in a manifest file saved with Unix line endings. It is possible to mix-and-match line endings in a single file, but most text editors do not handle it gracefully and will "help" you enough to render it impractical.
+* To insert an LF in a manifest file saved with Windows line endings, you can use the `\n` escape sequence.
+* **Puppet ≥ 2.7.20 only:** To insert a CRLF in a manifest file saved with Unix line endings, you can use `\r\n`.
+
+Since Puppet 2.7.19 and earlier do not support the `\r` escape sequence, they have no good way to insert a literal CRLF in a manifest file saved with Unix line endings. It is possible to mix-and-match line endings in a single file, but most text editors do not handle it gracefully and will "help" you enough to render it impractical.
 
 ### Encoding
 
