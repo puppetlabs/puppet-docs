@@ -12,8 +12,9 @@ layout: default
 [puppetdb_conf]: /guides/configuring.html#puppetdbconf
 [routes_yaml]: /guides/configuring.html#routesyaml
 [exported]: /puppet/2.7/reference/lang_exported.html
-[jetty]: ./configure.html#jetty-http
+[jetty]: ./configure.html#jetty-http-settings
 [settings_namespace]: /puppet/2.7/reference/lang_variables.html#master-set-variables
+[ssl_script]: ./install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 
 > Note: The nodes at your site must be running Puppet 2.7.12 or later to use PuppetDB.
 
@@ -26,15 +27,28 @@ PuppetDB can also be used with standalone Puppet deployments where each node run
 
 Since you must change Puppet's configuration on every managed node, **we strongly recommend that you do so with Puppet itself.** 
 
-## Step 1: Disable or Reconfigure SSL on PuppetDB
+## Step 1: Configure SSL
 
-Since PuppetDB requires client authentication for SSL connections, you may need to disable SSL support if your nodes do not have certificates.
+PuppetDB requires client authentication for its SSL connections, and the PuppetDB terminus plugins require SSL to talk to PuppetDB. You must configure Puppet and PuppetDB to work around this double-bind, using one of the following options:
 
-* If you use puppet apply but have **configured a central CA and issued a certificate to every node,** you may leave SSL enabled. Your nodes will use SSL when connecting to PuppetDB, and PuppetDB will only accept connections from authorized nodes.
-* If your nodes do not have certificates and you **don't mind catalogs being transmitted in cleartext,** you may remove the `ssl-port` setting from the [`jetty` section of the PuppetDB config files][jetty]. Use the unencrypted port in puppetdb.conf.
-* If your nodes do not have certificates and you **want your catalogs encrypted,** you must either issue them certificates (from the same CA that issued PuppetDB's certificate), or disable the embedded SSL as described above and use an SSL proxy, which can be configured for optional or no client authentication. Configuring an SSL proxy for PuppetDB is currently beyond the scope of this manual.
+### Option A: Set Up an SSL Proxy for PuppetDB
 
-## Step 2: Install Plugins
+1. Edit [the `jetty` section of the PuppetDB config files][jetty] to remove all SSL-related settings.
+2. Install a general purpose web server (like Apache or Nginx) on the PuppetDB server.
+3. Configure the web server to listen on port 8081 with SSL enabled, and proxy all traffic to `localhost:8080` (or whatever unencrypted hostname and port were set in [jetty.ini][jetty]). The proxy server can use any certificate --- as long as Puppet has never downloaded a CA cert from a puppet master, it will not verify the proxy server's certificate. If your nodes have downloaded CA certs, you must either make sure the proxy server's cert was signed by the same CA, or delete the CA cert. 
+
+More detailed instructions for setting up this proxy will be added to this guide at a later date.
+
+### Option B: Issue Certificates to All Puppet Nodes
+
+Puppet apply can use the certificates issued by a puppet master's certificate authority when talking to PuppetDB. You can issue certificates to every node by setting up a puppet master server with dummy manifests, running `puppet agent --test` once on every node, signing every certificate request on the puppet master, and running `puppet agent --test` again on every node.
+
+Do the same on your PuppetDB node, then [re-run the SSL setup script][ssl_script]. PuppetDB will now trust connections from your Puppet nodes.
+
+You will have to sign a certificate for every new node you add to your site. 
+
+
+## Step 2: Install Terminus Plugins on Every Puppet Node
 
 Currently, puppet needs extra Ruby plugins in order to use PuppetDB. Unlike custom facts or functions, these cannot be loaded from a module, and must be installed in Puppet's main source directory. 
 
