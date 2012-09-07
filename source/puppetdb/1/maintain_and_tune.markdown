@@ -3,12 +3,14 @@ title: "PuppetDB 1 » Maintaining and Tuning"
 layout: default
 ---
 
-[configure_jetty]: ./configure.html#jetty-http
+[configure_jetty]: ./configure.html#jetty-http-settings
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
-[memrec]: ./requirements.html#memory-recommendations
+[threads]: ./configure.html#command-processing-settings
+[memrec]: ./scaling_recommendations.html#bottleneck-java-heap-size
 [ttl]: ./configure.html#node-ttl-days
 [resources_type]: /references/latest/type.html#resources
 [log4j]: ./configure.html#configuring-logging
+[dashboard]: #monitor-the-performance-dashboard
 
 PuppetDB requires a relatively small amount of maintenance and tuning. You should become familiar with the following occasional tasks:
 
@@ -57,15 +59,15 @@ The PuppetDB packages install a logrotate job in `/etc/logrotate.d/puppetdb`, wh
 
 Although we provide [rule-of-thumb memory recommendations][memrec], PuppetDB's RAM usage depends on several factors, and everyone's memory needs will be different depending on their number of nodes, frequency of Puppet runs, and amount of managed resources. 1000 nodes that check in once a day will require much less memory than if they check in every 30 minutes.
 
-So the best way to manage PuppetDB's max heap size is to guess a ballpark figure, then [monitor the performance console](#monitor-the-performance-console) and [increase the heap size][configure_heap] if the "JVM Heap" metric keeps approaching the maximum. You may need to revisit your memory needs whenever your site grows substantially. 
+So the best way to manage PuppetDB's max heap size is to guess a ballpark figure, then [monitor the performance dashboard][dashboard] and [increase the heap size][configure_heap] if the "JVM Heap" metric keeps approaching the maximum. You may need to revisit your memory needs whenever your site grows substantially. 
 
 The good news is that memory starvation is actually not very destructive. It will cause `OutOfMemoryError` exceptions to appear in [the log](#view-the-log), but you can restart PuppetDB with a [larger memory allocation][configure_heap] and it'll pick up where it left off --- any requests successfully queued up in PuppetDB *will* get processed.
 
 ## Tune the Number of Threads
 
-When viewing [the performance console](#monitor-the-performance-console), note the MQ depth. If it is rising and you have CPU cores to spare, [increasing the number of threads](./configure.html#command-processing) may help churn through the backlog faster.
+When viewing [the performance dashboard][dashboard], note the MQ depth. If it is rising and you have CPU cores to spare, [increasing the number of threads][threads] may help churn through the backlog faster.
 
-If you are saturating your CPU, we recommend [lowering the number of threads](./configure.html#command-processing).  This prevents other PuppetDB subsystems (such as the web server, or the MQ itself) from being starved of resources, and can actually _increase_ throughput.
+If you are saturating your CPU, we recommend [lowering the number of threads][threads].  This prevents other PuppetDB subsystems (such as the web server, or the MQ itself) from being starved of resources, and can actually _increase_ throughput.
 
 ## Redo SSL Setup After Changing Certificates
 

@@ -16,6 +16,4 @@ Broader Issues
 
 ### Autorequire relationships are opaque
 
-We don't correctly model dependencies between Puppet resources that have an auto-require relationship. For example, if you have two file resources where one is a parent directory of the other, Puppet will automatically create a dependency such that the child requires the parent. The problem is that such a dependency is *not* reflected in the catalog; puppet agent creates these relationships on the fly when it reads the catalog. 
-
-Showing these relationships in PuppetDB will require a significant change to Puppet's core.
+Puppet resource types can "autorequire" other resources when certain conditions are met, and we don't correctly model these relationships in PuppetDB. (For example, if you manage two file resources where one is a parent directory of the other, Puppet will automatically the parent a dependency of the child.) The problem is that these dependencies are not written to the catalog; puppet agent creates these relationships on the fly when it reads the catalog. Getting these relationships into PuppetDB will require a significant change to Puppet's core.

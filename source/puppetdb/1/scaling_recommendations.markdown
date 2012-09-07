@@ -15,7 +15,7 @@ layout: default
 
 Since PuppetDB will be a critical component of your Puppet deployment (that is, agent nodes will be unable to request catalogs if it goes down), you should make sure it can handle your site's load and be resilient against failures. 
 
-As with scaling any service, there are several possible performance and reliability bottlenecks, which can be dealt with in turn as they arise. 
+As with scaling any service, there are several possible performance and reliability bottlenecks, which can be dealt with in turn as they become problems. 
 
 
 Bottleneck: Database Performance
@@ -46,7 +46,9 @@ Bottleneck: Java Heap Size
 
 PuppetDB is limited by the amount of memory available to it, which is [set in the init script's config file][configure_heap]. If it runs out of memory, it will start logging `OutOfMemoryError` exceptions and delaying command processing. Unlike many of the bottlenecks listed here, this one is fairly binary: PuppetDB either has enough memory to function under its load, or it doesn't. The exact amount needed will depend on the [DB backend](#database-backend), the number of nodes, the similarity of the nodes, the complexity of each node's catalog, and how often the nodes check in.
 
-Use one of the following rules of thumb to choose an initial heap size; afterwards, [watch the performance dashboard and adjust the heap if necessary][heap].
+### Initial Memory Recommendations
+
+Use one of the following rules of thumb to choose an initial heap size; afterwards, [watch the performance dashboard][dashboard] and [adjust the heap if necessary][heap].
 
 * If you are using PostgreSQL, allocate 128 MB of memory as a base, plus 1 MB for each Puppet node in your infrastructure.
 * If you are using the embedded database, allocate at least 1 GB of heap.

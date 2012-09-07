@@ -30,13 +30,13 @@ The `query` parameter is described by the following grammar:
 `tag`
 : a case-insensitive tag on the resource
 
-`[node name]`
+`["node", "name"]`
 : the name of the node associated with the resource
 
-`[node active]`
+`["node", "active"]`
 : `true` if the node has not been deactivated, `false` if it has
 
-`[parameter <resource_param>]`
+`["parameter", "<parameter name>"]`
 : a parameter of the resource
 
 `type`

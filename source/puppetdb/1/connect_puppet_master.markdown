@@ -26,18 +26,15 @@ Currently, puppet masters need extra Ruby plugins in order to use PuppetDB. Unli
 
 ### For PE Users
 
-* [Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#puppet-enterprise-repositories).
-* Install the `pe-puppetdb-terminus` package. 
-    * On Debian and Ubuntu: run `sudo apt-get install pe-puppetdb-terminus`
-    * On EL or Fedora: run `sudo yum install pe-puppetdb-terminus`
+[Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#puppet-enterprise-repositories) and install the `pe-puppetdb-terminus` package:
 
+    $ sudo puppet resource package pe-puppetdb-terminus ensure=latest
 
 ### For Open Source Users
 
-* [Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#open-source-repositories).
-* Install the `puppetdb-terminus` package. 
-    * On Debian and Ubuntu: run `sudo apt-get install puppetdb-terminus`
-    * On EL or Fedora: run `sudo yum install puppetdb-terminus`
+[Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#open-source-repositories) and install the `puppetdb-terminus` package:
+
+    $ sudo puppet resource package puppetdb-terminus ensure=latest
 
 ### On Platforms Without Packages
 

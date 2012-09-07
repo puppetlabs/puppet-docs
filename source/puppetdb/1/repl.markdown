@@ -10,7 +10,7 @@ This is mostly of use to developers who know Clojure and are familiar with Puppe
 Enabling the REPL
 -----
 
-To enable the REPL, you must edit PuppetDB's config file to [enable it, configure the REPL type, and choose a port](./configure.html#repl-remote-runtime-modification):
+To enable the REPL, you must edit PuppetDB's config file to [enable it, configure the REPL type, and choose a port](./configure.html#repl-settings):
 
     # /etc/puppetdb/conf.d/repl.ini
     [repl]

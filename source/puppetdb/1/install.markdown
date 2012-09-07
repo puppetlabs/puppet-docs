@@ -10,7 +10,7 @@ layout: default
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
 [puppetdb_conf]: ./configure.html
 [configure_jetty]: ./configure.html#jetty-http
-[requirements]: ./requirements.html#easy-install-requirements
+[requirements]: ./index.html#easy-install-rhel-centos-debian-ubuntu-or-fedora
 
 > **Notes:**
 > 

@@ -3,7 +3,7 @@ title: "PuppetDB 1 » Installing PuppetDB from Source"
 layout: default
 ---
 
-[perf_dashboard]: ./maintain_and_tune.html#monitor-the-performance-console
+[perf_dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [leiningen]: https://github.com/technomancy/leiningen#installation
 [configure_postgres]: ./configure.html#postgresql-db-settings
 [configure_heap]: ./configure.html#configuring-the-java-heap-size

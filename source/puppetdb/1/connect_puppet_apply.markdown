@@ -77,35 +77,22 @@ If your puppet master isn't running Puppet from a supported package, you will ne
 * Create a [file][] resource in your manifests for each of the plugin files, to move them into place on each node. 
 
 {% highlight ruby %}
-    # <modulepath>/puppetdb/manifests/terminus/file.pp
-    define puppetdb::terminus::file {
-      $puppetdir = "$rubysitedir/puppet"
-      file {$title:
-        ensure => file,
-        path   => "$puppetdir/$title",
-        source => "puppet:///modules/puppetdb/$title",
-    }
     # <modulepath>/puppetdb/manifests/terminus.pp
     class puppetdb::terminus {
       $puppetdir = "$rubysitedir/puppet"
-      $puppetdb_terminus_files = [
-        'face/node/deactivate.rb',
-        'face/node/status.rb',
-        'indirector/catalog/puppetdb.rb',
-        'indirector/facts/puppetdb.rb',
-        'indirector/node/puppetdb.rb',
-        'indirector/resource/puppetdb.rb',
-        'util/puppetdb/char_encoding.rb',
-        'util/puppetdb.rb'
-      ]
       
-      file {"$puppetdir/util/puppetdb":
+      file {$puppetdir:
         ensure => directory,
+        recurse => remote, # Copy these files without deleting the existing files
+        source => "puppet:///modules/puppetdb/puppet",
+        owner => root,
+        group => root,
+        mode => 0644,
       }
-      puppetdb::terminus::file {$puppetdb_terminus_files:}
+    }
 {% endhighlight %}
 
-## Step 3: Manage Config Files
+## Step 3: Manage Config Files on Every Puppet Node
 
 All of the config files you need to manage will be in Puppet's config directory (`confdir`). When managing these files with puppet apply, you can use the [`$settings::confdir`][settings_namespace] variable to automatically discover the location of this directory.
 
