@@ -127,6 +127,12 @@ The `[database]` section configures PuppetDB's database settings.
 
 PuppetDB can use either **a built-in HSQLDB database** or **a PostgreSQL database.** If no database information is supplied, an HSQLDB database at `<vardir>/db` will be used.
 
+> **FAQ: Why no MySQL or Oracle support?** 
+>
+> MySQL lacks several features that PuppetDB relies on; the most notable is recursive queries. We have no plans to ever support MySQL.
+>
+> Depending on demand, Oracle support may be forthcoming in a future version of PuppetDB. This hasn't been decided yet.
+
 ### Using Built-in HSQLDB
 
 To use an HSQLDB database at `<vardir>/db`, you can simply remove all database settings. To configure the DB's location, put the following in the `[database]` section:
@@ -204,6 +210,7 @@ Where to find the database. Set this to:
 
 * `file:</PATH/TO/DB>;hsqldb.tx=mvcc;sql.syntax_pgs=true` when using the embedded database, replacing `</PATH/TO/DB>` with a local filesystem path
 * `//<HOST>:<PORT>/<DATABASE>` when using PostgreSQL, replacing `<HOST>` with the DB server's hostname, `<PORT>` with the port on which PostgreSQL is listening, and `<DATABASE>` with the name of the database
+    * Append `?ssl=true` to this if your PostgreSQL server is using SSL.
 
 ### `username`
 
