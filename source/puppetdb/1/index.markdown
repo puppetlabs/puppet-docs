@@ -10,14 +10,48 @@ layout: default
 [install_advanced]: ./install_from_source.html
 [install]: ./install.html
 [scaling]: ./scaling_recommendations.html
+[facts]: /puppet/2.7/reference/lang_variables.html#facts
+[catalog]: /puppet/2.7/reference/lang_summary.html#compilation-and-catalogs
+[releasenotes]: ./release_notes.html
+[github]: https://github.com/puppetlabs/puppetdb
+[redmine]: http://projects.puppetlabs.com/projects/puppetdb/issues
 
-PuppetDB is a companion service for Puppet. It can be connected to a puppet master (or to standalone nodes running puppet apply) and enables advanced Puppet features
+PuppetDB is a companion service for Puppet that collects and serves data. It enables advanced Puppet features like the [inventory service][inventory] and [exported resources][exported], and exposes a large amount of data from Puppet via a public API.
 
-[exported resources][exported]
+Install It Now
+-----
 
+To start using PuppetDB today:
 
+* Review [the system requirements below](#system-requirements) (and, optionally, [our scaling recommendations][scaling]).
+* Follow the installation instructions: [easy install][install] on our recommended platforms, or [advanced install][install_advanced] on any other \*nix.
+* [Connect your puppet master to PuppetDB][connect] (or, at standalone puppet apply sites, [connect every node to PuppetDB][apply]). 
 
+Version Note
+-----
 
+This manual covers the 1.x series of PuppetDB releases, which has several changes from the 0.9 beta release series. [See the release notes][releasenotes] for information on all changes since the final 0.9.x release.
+
+Note that, due to issues with package repositories during the run-up to the 1.0 release, the following non-1.x version numbers are actually considered 1.0 release candidates:
+
+* 0.11.0 (actually 1.0rc2)
+* 0.10.0 (actually 1.0rc1)
+
+What Data?
+-----
+
+In version 1, PuppetDB stores:
+
+* The most recent [facts][] from every node
+* The most recent [catalog][] for every node
+
+Together, these give you a huge amount of metadata about every node in your infrastructure, and a searchable database of **every single resource** being managed on any node.
+
+Puppet itself can search a subset of this data using [exported resources][exported], which allow nodes to manage resources on other nodes. This is similar to the capabilities of the legacy ActiveRecord `storeconfigs` interface, but much much faster. The rest of the data is available through PuppetDB's query APIs (see navigation sidebar for details) and Puppet's [inventory service][inventory]. 
+
+### What Next?
+
+In future versions, PuppetDB will store reports and historical catalogs for every node. 
 
 
 System Requirements
@@ -27,7 +61,7 @@ System Requirements
 
 #### Easy Install: RHEL, CentOS, Debian, Ubuntu, or Fedora
 
-Puppet Labs provides packages for PuppetDB, which greatly simplify configuration of its SSL certificates and init scripts. These packages are available for the following operating systems:
+Puppet Labs provides packages for PuppetDB, which simplify setup of its SSL certificates and init scripts. These packages are available for the following operating systems:
 
 * Red Hat Enterprise Linux 5 or 6 or any distro derived from it (including CentOS)
 * Debian Squeeze, Lenny, Wheezy, or Sid
@@ -59,3 +93,8 @@ However, it can do a lot with fairly modest hardware: in benchmarks using real-w
 The actual requirements will vary wildly depending on your site's size and characteristics. At smallish sites, you may even be able to run PuppetDB on your puppet master server.
 
 For more on fitting PuppetDB to your site, [see "Scaling Recommendations."][scaling]
+
+Open Source
+-----
+
+PuppetDB is developed openly, and is released under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0.html). You can get the source --- and contribute to it! --- at [the PuppetDB GitHub repo][github]. Bugs and feature requests are welcome at [Puppet Labs's issue tracker][redmine].
