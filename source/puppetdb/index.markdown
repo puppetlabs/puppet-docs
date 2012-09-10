@@ -23,6 +23,7 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
       <li><a href="./1/install.html">Installing PuppetDB</a></li>
       <li><a href="./1/connect_puppet_master.html">Connecting Puppet Masters</a></li>
       <li><a href="./1/connect_puppet_apply.html">Connecting Standalone Puppet</a></li>
+      <li><a href="./1/upgrade.html">Upgrading PuppetDB</a></li>
       <li><a href="./1/install_from_source.html">Installing from Source</a></li>
     </ul>
   </li>
@@ -51,7 +52,7 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 </ul>
 
 
-[PuppetDB 0.9 Manual](./0.9)
+[PuppetDB 0.9](./0.9)
 ------
 
 <ul>
