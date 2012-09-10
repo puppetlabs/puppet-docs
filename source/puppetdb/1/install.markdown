@@ -3,7 +3,8 @@ title: "PuppetDB 1 » Installing PuppetDB"
 layout: default
 ---
 
-
+[connect_master]: ./connect_puppet_master.html
+[connect_apply]: ./connect_puppet_apply.html
 [keystore_instructions]: ./install_from_source.html#step-3-option-b-manually-create-a-keystore-and-truststore
 [ssl_script]: ./install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 [configure_postgres]: ./configure.html#postgresql-db-settings
@@ -14,7 +15,7 @@ layout: default
 
 > **Notes:**
 > 
-> * After following these instructions, you should [connect your puppet master(s) to PuppetDB](./connect_puppet_master.html). (If you use a standalone Puppet deployment, you will need to [connect every node to PuppetDB](./connect_puppet_apply.html).)
+> * After following these instructions, you should [connect your puppet master(s) to PuppetDB][connect_master]. (If you use a standalone Puppet deployment, you will need to [connect every node to PuppetDB][connect_apply].)
 > * These instructions are for [the platforms which have official PuppetDB packages][requirements]. To install on other systems, you should instead follow [the instructions for installing from source](./install_from_source.html).
 > * If this is a production deployment, [review the scaling recommendations](./scaling_recommendations.html) before installing. You should ensure your PuppetDB server will be able to comfortably handle your site's load. 
 
@@ -87,9 +88,9 @@ You must also configure your PuppetDB server's firewall to accept incoming conne
 Finish: Connect Puppet to PuppetDB 
 -----
 
-[You should now configure your puppet master(s) to connect to PuppetDB](./connect_puppet_apply.html). 
+[You should now configure your puppet master(s) to connect to PuppetDB][connect_master]. 
 
-If you use a standalone Puppet site, [you should configure every node to connect to PuppetDB](./connect_puppet_apply.html).
+If you use a standalone Puppet site, [you should configure every node to connect to PuppetDB][connect_apply].
 
 Troubleshooting Installation Problems
 -----
