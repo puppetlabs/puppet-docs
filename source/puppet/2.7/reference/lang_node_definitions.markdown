@@ -43,10 +43,10 @@ Alternately, you can store node definitions in any number of manifest files whic
     
     # Import every file in /etc/puppetlabs/puppet/manifests/nodes/
     # (Usually, each file contains one node definition.)
-    import nodes/*.pp
+    import 'nodes/*.pp'
     
     # Import several nodes from a single file
-    import extra_nodes.pp
+    import 'extra_nodes.pp'
 {% endhighlight %}
 
 This is one of the only recommended use cases for `import`. Note that using `import` will require you to restart the puppet master if you change the node manifests and that importing many files will slow down Puppet's compilation time. [See the documentation of `import`][import] for details.
