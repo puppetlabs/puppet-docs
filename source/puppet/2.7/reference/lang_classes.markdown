@@ -110,12 +110,13 @@ You can safely use `include` multiple times on the same class and it will only b
     include base::linux # Has no additional effect
 {% endhighlight %}
 
-The `include` function can accept a single class name, a comma-separated list of class names, or an array of class names:
+The `include` function can accept a single class name or a comma-separated list of class names:
 
-{% highlight ruby %}
+{% comment %}
+UNCOMMENT FOR 3.0: or an array of class names:
     $my_classes = ['base::linux', 'apache']
     include $my_classes # including an array of classes
-{% endhighlight %}
+{% endcomment %}
 
 {% highlight ruby %}
     include base::linux, apache # including a list of classes
