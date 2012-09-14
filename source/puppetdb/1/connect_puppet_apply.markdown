@@ -105,7 +105,7 @@ You can specify the contents of [puppetdb.conf][puppetdb_conf] directly in your 
     port = 8081
 
 * PuppetDB's port for secure traffic defaults to 8081.
-* PuppetDB's port for insecure traffic defaults to 8080, but doesn't accept connections by default. 
+* Puppet _requires_ use of PuppetDB's secure, HTTPS port. You cannot use the unencrypted, plain HTTP port.
 
 If no puppetdb.conf file exists, the following default values will be used:
 
