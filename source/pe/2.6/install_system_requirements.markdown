@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Installing » System Requirements"
+title: "PE 2.6  » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 ---
 
@@ -14,7 +14,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 2.5 supports the following systems:
+Puppet Enterprise 2.6 supports the following systems:
 
 |       Operating system       |  Version          |       Arch        |   Roles   |
 |------------------------------|-------------------|-------------------|-----------|

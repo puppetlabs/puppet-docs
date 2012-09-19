@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Console » Viewing Reports"
+title: "PE 2.6  » Console » Viewing Reports"
 subtitle: "Viewing Reports and Inventory Data"
 ---
 

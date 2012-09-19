@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Orchestration » Usage"
+title: "PE 2.6  » Orchestration » Usage"
 subtitle: "Orchestration for New PE Users: Usage and Examples"
 ---
 
@@ -53,7 +53,7 @@ The following orchestration actions are available in PE 2.0:
 Filtering Nodes
 -----
 
-Most orchestration actions in Puppet Enterprise 2.5 can be executed
+Most orchestration actions in Puppet Enterprise 2.6 can be executed
 on a set of nodes determined by meta-data about the deployment.
 This filtering provides a much more convenient way to manage nodes
 than the traditional approach of using host names or fully

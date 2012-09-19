@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Installing » Upgrading"
+title: "PE 2.6  » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
 ---
 
@@ -78,11 +78,11 @@ The upgrader will ask you the following questions:
 
 ### Cloud Provisioner
 
-PE 2.5 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On nodes which lack the cloud provisioner role, you'll be asked whether you wish to install it.
+PE 2.6 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On nodes which lack the cloud provisioner role, you'll be asked whether you wish to install it.
 
 ### Vendor Packages
 
-If PE 2.5 needs any packages from your OS's repositories, it will ask permission to install them. 
+If PE 2.6 needs any packages from your OS's repositories, it will ask permission to install them. 
 
 ### Puppet Master Options
 
@@ -294,7 +294,7 @@ You can now start PE's web server again.
 
 ### Edit `puppet.conf` on Each Agent Node
 
-On each agent node you upgrade to PE 2.5, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
+On each agent node you upgrade to PE 2.6, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
 
     [agent]
         # support filebucket viewing when using compliance features:

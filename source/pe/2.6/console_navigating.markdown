@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Console » Navigating"
+title: "PE 2.6  » Console » Navigating"
 subtitle: "Navigating the Console"
 ---
 

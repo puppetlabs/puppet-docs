@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "PE 2.5 » Quick Start » Writing Modules"
-subtitle: "Quick Start: Writing Modules for PE 2.5"
+title: "PE 2.6  » Quick Start » Writing Modules"
+subtitle: "Quick Start: Writing Modules for PE 2.6"
 ---
 
-Welcome to the PE 2.5 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
+Welcome to the PE 2.6 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
 
 * Modify modules obtained from the Forge
 * Write your own Puppet module

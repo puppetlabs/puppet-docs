@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Console » Live Mgmt: Controlling Puppet"
+title: "PE 2.6  » Console » Live Mgmt: Controlling Puppet"
 subtitle: "Live Management: Controlling Puppet"
 ---
 

@@ -1,29 +1,48 @@
 ---
 layout: default
-title: "PE 2.5 » Overview » What's New"
-subtitle: "New Features in PE 2.5"
+title: "PE 2.6  » Overview » What's New"
+subtitle: "New Features in PE 2.6"
 ---
 
 
-Version 2.5 is a major new release of Puppet Enterprise (PE). In addition to many fixes and refinements, PE 2.5 introduces the following new major features:
+Version 2.6 is a maintenance and feature release of Puppet Enterprise (PE). In addition to fixes and corrections, PE 2.6 introduces the following new features and improvements:
 
-### Role-Based Access Control
+### Third Party Authentication Support
 
-The Puppet Enterprise Console now has support for user authorization and management. User accounts can now be created that provide access to the Console with read-only, read-write, or admin privileges. Puppet admins now have more information and options for managing Puppet users and controlling access. For more information, see the [Console Access page](./console_auth.html).
+The Puppet Enterprise Console now supports the use of third party authentication tools such as LDAP, Active Directory or Google. Now, users of PE can be managed and authenticated with your existing infrastructure. For more information, see the [Console Access page](./console_auth.html).
 
-### Windows Support
+### Installation Improvements
 
-Puppet Enterprise can now be installed and run on agents running Windows Server 2003, 2008, or Windows 7. Windows agents have all basic Puppet Enterprise functionality, including compliance support. Note however that MCollective,  live management, and the pe_accounts module are not yet supported on Windows agents. Support for these and other functions is already under development. Installation can be done via the command line or a Windows GUI-based installer. For more information, see the [Windows pages](../../windows/index.html)
+Extensive revisions to the installer have improved its performance and reliability for both new installs and upgrades.
 
-### Puppet Forge
+### Windows improvements
 
-Access to Puppet's online library of pre-built, freely downloadable configuration modules is integrated into the PE 2.5 redesigned module tool. By providing community-contributed configurations, Puppet Forge lets you solve configuration problems easily and get automation up and running quickly. Modules can be easily installed and uninstalled using the Puppet Module Tool. For more information, visit [Puppet Forge](http://forge.puppetlabs.com/).
+Service management behavior has been improved with the ability to now synchronously start and stop Windows services (see ticket #13489).
 
-### Big Data
+Package management has also been improved. The MSI package provider now uses the `Installer` Automation (COM) interface to query system state. This provides accurate reporting on all packages, even those not installed by puppet (see ticket #11868).
 
-With PE 2.5, system administrators can access detailed information about their infrastructure through the Puppet Data Library. The Puppet Data Library provides comprehensive and volumninous information about the who, what, where, when and why of infrastructure changes. This data gives sysadmins insight into how infrastructure changes effect service levels and can be used to generate automatic IT compliance audits. In addition, third-party vendors such as Boundary and Nodeable have built innovative tools based on Data Library information that provide powerful tools for analysis and management. For more information, see the [Puppet Data Library page](./puppet_data_library.html). 
+### New Versions of Installed Packages and Modules
 
-See the [Puppet Enterprise 2.5 release notes](./appendix.html#release-notes) for more details.
+PE 2.6 updates numerous dependent packages and modules. The versions used in 2.6 are as follows:
+
+* pe\_mcollective: 0.56
+* pe\_accounts 1.1.0
+* stdlib: 2.3.3
+* Fog: 1.5.0
+* Excon: 0.14.1
+* Rubygems: 1.5.3
+* Ruby: 1.8.7-p370
+* Puppet: 2.7.19
+* Facter: 1.6.10
+* Dashboard: 1.2.10
+* Dashboard-baseline: 2.0.5 (make baselines cron fire on ubuntu/debian)
+* Console-auth: 1.1.4
+* Live-management: 1.1.18
+
+In addition, the libaugeas package is now installed on Solaris.
+<!-- 
+See the [Puppet Enterprise 2.6 release notes](./appendix.html#release-notes) for more details.
+ -->
 
 
 * * * 

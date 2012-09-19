@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
+title: "PE 2.6 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
 subtitle: "Classifying New Nodes and Remotely Installing Puppet"
 ---
 

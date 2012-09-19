@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "PE 2.5 » Console » User Management and Authorization"
+title: "PE 2.6  » Console » User Management and Authorization"
 subtitle: "Managing Console Users"
 ---
 
-Starting with PE 2.5, the console supports individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console now allows secure individual user accounts with different access privileges. Specifically, user accounts now allow the assignment of one of three access levels: read-only, read-write, or admin.
+Starting with PE 2.5, the console has supported individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console allows secure individual user accounts with different access privileges. Specifically, user accounts allow the assignment of one of three access levels: read-only, read-write, or admin. As of PE 2.6, users can also be managed using external, third-party authentication services such as LDAP, Active Directory or Google Accounts.
 
 Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol.
 
@@ -38,7 +38,7 @@ There is one exception to this: admin users cannot disable, delete or change the
 
 _Anonymous Users_ In addition to authenticated, per-user access, the console can also be configured to allow anonymous, read-only access. When so configured, the console can be viewed by anyone with a web browser who can access the site URL. For instructions on how to do this, visit the [advanced configuration page](./config_advanced.html).
 
-Managing Accounts and Users
+Managing Accounts and Users Internally
 ------
 
 ### Signing Up
@@ -99,7 +99,7 @@ To delete an existing user (including pending users), click on the user's name i
 
 ### Creating Users From the Command Line
 
-From PE 2.5.2 onward, you can create new console users from the command line. This can be used to automate user creation or import large numbers of users from an external source at once. 
+New console users can also be created from the command line. This can be used to automate user creation or to import large numbers of users from an external source at once. 
 
 Command line user creation is done with a rake task. Due to a bug in PE 2.5.2 and 2.5.3, this task must be performed from a specific working directory, so keep this in mind if building scripts around it. 
 
@@ -114,6 +114,71 @@ Thus, to add a read-write user named jones@example.com, you would run:
     $ sudo /opt/puppet/bin/rake db:create_user EMAIL="jones@example.com" PASSWORD="good_password_1" ROLE="Read-Write"
 
 You cannot currently delete or disable users or reset passwords from the command line. 
+
+Using Third-Party Authentication Services
+------
+
+As of PE 2.6, admins can now use external, third-party authentication services to manage user access. The following external services are supported:
+
+1. LDAP
+2. Active Directory
+3. Google accounts
+
+When using third-party services, the console's RBAC retains control over the access privileges. When a user logs in using an external service, the console will check their level of access privileges. If they have never logged in before, they are assigned a default role. (This role can be configured. See ["Configuration"](Configuration) below.) External users' access privileges are managed in the same manner as internal users, via the console's user administration interface.
+
+The account interface for an externally authenticated user differs slightly from internal users in that external users do not have UI for changing their passwords or deleting accounts.
+
+![ext-user](./images/console/ext-auth_user.jpg)
+
+Admins will also notice additional UI on the user administration page which indicates the authentication service ("Account Type") being used for a given user and a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
+
+![user-list_legend](./images/console/user-list_legend.jpg)
+
+### Configuration
+
+To use external authentication, the following two files must be correctly configured:
+
+1. `/etc/puppetlabs/console-auth/cas_client_config.yml`
+2. `/etc/puppetlabs/rubycas-server/config.yml`
+
+#### Configuring `cas\_client\_config\_yml`
+
+The `cas_client_config_yml` file contains several commented-out lines under `authorization:` Simply un-comment the appropriate lines that correspond to the RubyCAS authenticators you wish to use. You can also set the default access level for a given authentication service using `default_role`, which accepts the following values: `read-only`, `read-write`, or `admin`.
+
+Each entry consists of the following:
+
+* A common identifier (e.g. `local`, or `ldap`, etc.) which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator. 
+*  `default_role` which defines the role to assign to users by default
+* `description` which is simply a human readable description of the service
+
+#### Configuring `rubycas-server/config.yml`
+
+This file is used to configure RubyCAS to use external authentication services. As before, you will need to un-comment the classes for the third-party services you wish to enable. The values for the listed keys are LDAP and ActiveDirectory standards. If you are not the administrator of those databases, you should check with that administrator for the correct values.
+
+The authenticators are listed in the file in following manner:
+
+{% highlight ruby %}
+    - class: CASServer::Authenticators::Google
+        restricted_domain: example.com
+    
+    - class: CASServer::Authenticators::LDAP
+        ldap:
+            host: tb-driver.example.com
+            port: 389
+            base: dc=example,dc=test
+            filter: (objectClass=person)
+            username_attribute: mail
+      
+     - class: CASServer::Authenticators::ActiveDirectoryLDAP
+        ldap:
+            host: winbox.example.com
+            port: 389
+            base: dc=example,dc=dev
+            filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
+            auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
+            auth_password: P4ssword
+{% endhighlight %}
+
 
 * * * 
 

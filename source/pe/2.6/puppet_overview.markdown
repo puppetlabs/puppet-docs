@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Puppet » Overview"
+title: "PE 2.6  » Puppet » Overview"
 subtitle: "An Overview of Puppet"
 ---
 

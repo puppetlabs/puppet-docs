@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Console » Grouping and Classifying Nodes"
+title: "PE 2.6  » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 

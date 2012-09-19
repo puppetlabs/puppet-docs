@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "PE 2.5 » Appendix"
+title: "PE 2.6 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 
 
-This document contains additional miscellaneous information about Puppet Enterprise 2.5.
+This document contains additional miscellaneous information about Puppet Enterprise 2.6.
 
 Glossary
 -----
@@ -178,10 +178,6 @@ During installation, the PE installer attempts to automatically determine the UR
 ### Answer file required for some SMTP servers.
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
-
-### Logging for Parts of the Console Non-Functional
-
-The Rack::Cas::Client class does not log any data. (Note that the RubyCAS-client tool does log correctly.) There is no known workaround. The issue is under investigation.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Accounts Module » The pe_accounts::user Type"
+title: "PE 2.6  » Accounts Module » The pe_accounts::user Type"
 subtitle: "The pe_accounts::user Type"
 ---
 
@@ -115,7 +115,7 @@ The user's name.  While limitations differ by operating system, it is generally 
 
 ### `ensure`
 
-Specifies whether the user and its primary group should exist.  Valid values are `present` and `absent`. Defaults to `present`.
+Specifies whether the user and its primary group should exist.  Valid values are `present` and `absent`. Defaults to `present`. Note that when a user is created, a group with the same name as the user is also created.
 
 ### `shell`
 
@@ -157,6 +157,9 @@ Whether the user should be prevented from logging in. Set this to `true` for sys
 
 An array of SSH public keys associated with the user. Unlike with the [`ssh_authorized_key`](/references/2.6.9/type.html#sshauthorizedkey) type, these should be **complete public key strings** that include the type and name of the key, exactly as the key would appear in its `id_rsa.pub` or `id_dsa.pub` file. Defaults to an empty array.
 
+### `managehome`
+
+A boolean parameter that dictates whether or not a user's home directory should be managed by the `account` type. If `ensure` is set to `absent` and `managehome` is `true`, the user's home directory will be recursively deleted.
 
 
 * * * 

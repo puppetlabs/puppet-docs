@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Cloud Provisioning » VMware Provisioning"
+title: "PE 2.6  » Cloud Provisioning » VMware Provisioning"
 subtitle: "Provisioning With VMware"
 ---
 

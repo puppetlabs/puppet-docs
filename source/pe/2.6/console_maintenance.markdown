@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Console » Console Maintenance"
+title: "PE 2.6  » Console » Console Maintenance"
 subtitle: "Console Maintenance"
 ---
 

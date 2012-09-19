@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Cloud Provisioning » Installation and Configuration"
+title: "PE 2.6 » Cloud Provisioning » Installation and Configuration"
 subtitle: "Installing and Configuring Cloud Provisioning"
 ---
 

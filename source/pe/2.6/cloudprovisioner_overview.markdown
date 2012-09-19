@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Cloud Provisioning » Overview"
+title: "PE 2.6 » Cloud Provisioning » Overview"
 subtitle: "A High Level Look at Puppet's Cloud Provisioning Tools"
 ---
 

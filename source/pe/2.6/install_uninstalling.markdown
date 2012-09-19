@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Installing » Uninstalling"
+title: "PE 2.6  » Installing » Uninstalling"
 subtitle: "Uninstalling Puppet Enterprise"
 ---
 

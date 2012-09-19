@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Console » Live Management"
+title: "PE 2.6  » Console » Live Management"
 subtitle: "Live Management"
 ---
 

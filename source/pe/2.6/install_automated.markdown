@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.5 » Installing » Automated Installation"
+title: "PE 2.6  » Installing » Automated Installation"
 subtitle: "Automated Installation"
 ---
 
