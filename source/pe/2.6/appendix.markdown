@@ -36,6 +36,19 @@ To find out which of these issues you are affected by, run `/opt/puppet/bin/pupp
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
 
+### Users Logged in During Upgrade Cannot Access Console
+
+PE 2.6 deletes console login cookies when upgrading from PE 2.5, but a bug in 2.6.0 causes failures when users with old login cookies attempt to connect, displaying the following message:
+
+> Puppet Dashboard encountered an error.
+> 
+> Something went wrong, and Puppet Dashboard was unable to render the requested page. Please contact your site's help desk or systems administrator; if that happens to be you, please check Dashboard's logs for more information.
+
+The problem can be fixed for each user by visiting the URL `https://console.example.com/logout` (substituting your console server's hostname) and then logging back in. 
+
+This will be fixed in a maintenance release of PE 2.6, and future upgrades will not cause this problem.
+
+
 ### Issues with Compliance UI
 
 There are two issues related to incorrect Compliance UI behavior: 

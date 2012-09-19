@@ -36,6 +36,15 @@ Next, run the uninstaller script. [See the uninstallation instructions in this g
 
 After you have run the uninstaller, you can safely run the installer again.
 
+After Upgrading, Some Users Can't Access the Console
+-----
+
+### Manually Log Out
+
+[A bug in 2.6.0 can leave some users with mangled login cookies.](./appendix.html#users-logged-in-during-upgrade-cannot-access-console) Each affected user should type the following URL (replacing the name of your console server) into their browser's location bar to log out, then attempt to load the console again:
+
+`https://console.example.com/logout`
+
 Agent Nodes Can't Retrieve Their Configurations
 -----
 
