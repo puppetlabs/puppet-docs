@@ -120,9 +120,9 @@ Using Third-Party Authentication Services
 
 As of PE 2.6, admins can now use external, third-party authentication services to manage user access. The following external services are supported:
 
-1. LDAP
-2. Active Directory
-3. Google accounts
+* LDAP
+* Active Directory
+* Google accounts
 
 When using third-party services, the console's RBAC retains control over the access privileges. When a user logs in using an external service, the console will check their level of access privileges. If they have never logged in before, they are assigned a default role. (This role can be configured. See ["Configuration"](Configuration) below.) External users' access privileges are managed in the same manner as internal users, via the console's user administration interface.
 
@@ -141,9 +141,9 @@ To use external authentication, the following two files must be correctly config
 1. `/etc/puppetlabs/console-auth/cas_client_config.yml`
 2. `/etc/puppetlabs/rubycas-server/config.yml`
 
-#### Configuring `cas\_client\_config\_yml`
+#### Configuring `cas_client_config.yml`
 
-The `cas_client_config_yml` file contains several commented-out lines under `authorization:` Simply un-comment the appropriate lines that correspond to the RubyCAS authenticators you wish to use. You can also set the default access level for a given authentication service using `default_role`, which accepts the following values: `read-only`, `read-write`, or `admin`.
+The `cas_client_config.yml` file contains several commented-out lines under `authorization:` Simply un-comment the appropriate lines that correspond to the RubyCAS authenticators you wish to use. You can also set the default access level for a given authentication service using `default_role`, which accepts the following values: `read-only`, `read-write`, or `admin`.
 
 Each entry consists of the following:
 
@@ -157,7 +157,6 @@ This file is used to configure RubyCAS to use external authentication services. 
 
 The authenticators are listed in the file in following manner:
 
-{% highlight ruby %}
     - class: CASServer::Authenticators::Google
         restricted_domain: example.com
     
@@ -177,7 +176,6 @@ The authenticators are listed in the file in following manner:
             filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
             auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
             auth_password: P4ssword
-{% endhighlight %}
 
 
 * * * 

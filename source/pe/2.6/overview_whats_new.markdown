@@ -17,9 +17,9 @@ Extensive revisions to the installer have improved its performance and reliabili
 
 ### Windows improvements
 
-Service management behavior has been improved with the ability to now synchronously start and stop Windows services (see ticket #13489).
+Service management behavior has been improved with the ability to now synchronously start and stop Windows services (see [ticket #13489](http://projects.puppetlabs.com/issues/13489)).
 
-Package management has also been improved. The MSI package provider now uses the `Installer` Automation (COM) interface to query system state. This provides accurate reporting on all packages, even those not installed by puppet (see ticket #11868).
+Package management has also been improved. The MSI package provider now uses the Installer Automation (COM) interface to query system state. This provides accurate reporting on all packages, even those not installed by puppet (see [ticket #11868](http://projects.puppetlabs.com/issues/11868)).
 
 ### New Versions of Installed Packages and Modules
 
@@ -40,9 +40,6 @@ PE 2.6 updates numerous dependent packages and modules. The versions used in 2.6
 * Live-management: 1.1.18
 
 In addition, the libaugeas package is now installed on Solaris.
-<!-- 
-See the [Puppet Enterprise 2.6 release notes](./appendix.html#release-notes) for more details.
- -->
 
 
 * * * 
