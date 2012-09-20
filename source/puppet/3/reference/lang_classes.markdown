@@ -314,7 +314,7 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 
 
 
-
+TODO rewrite this
 
 > Aside: History, the Future, and Best Practices
 > -----

@@ -19,6 +19,8 @@ title: "Language: Scope"
 [namespace]: ./lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png
 
+TODO rewrite much of this page
+
 Scope Basics
 -----
 
