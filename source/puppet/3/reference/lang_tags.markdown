@@ -12,7 +12,7 @@ title: "Language: Tags"
 [defined]: ./lang_defined_types.html
 [collectors]: ./lang_collectors.html
 [reports]: /guides/reporting.html#processing-reports
-[report_format_2]: http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2
+[report_format_3]: http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_3
 [tagmail]: /references/latest/report.html#tagmail
 [tagmail_conf]: /guides/configuring.html#tagmailconf
 [tagmeta]: /references/latest/metaparameter.html#tag
@@ -121,5 +121,5 @@ The built-in [tagmail report handler][tagmail] can send emails to arbitrary emai
 Resource tags are available to custom report handlers and out-of-band report processors: Each `Puppet::Resource::Status` object and `Puppet::Util::Log` object has a `tags` key whose value is an array containing every tag for the resource in question. See the following pages for more info:
 
 * [Processing Reports][reports]
-* [Report Format 2][report_format_2] (the report format used by Puppet 2.7)
+* [Report Format 3][report_format_3] (the report format used by Puppet 3)
 
