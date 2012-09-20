@@ -30,6 +30,7 @@ Several words in the Puppet language are **reserved**. This means they:
 * Cannot be used as names for custom functions.
 * Cannot be used as names for classes.
 * Cannot be used as names for custom resource types or defined resource types.
+* Cannot be used as names of resource attributes for custom types (e.g., use "onlyif" instead of "if")
 
 The following words are reserved: 
 
