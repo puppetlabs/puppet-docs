@@ -22,7 +22,7 @@ Conditional statements let your Puppet code behave differently in different situ
 Summary
 -----
 
-Puppet 2.7 supports "if" statements, case statements, and selectors. 
+Puppet 3 supports "if" and "unless" statements, case statements, and selectors. 
 
 An "if" statement: 
 
@@ -34,6 +34,14 @@ An "if" statement:
       warn ( 'This NTP module does not yet work on our Mac laptops.' )
     else {
       include ntp
+    }
+{% endhighlight %}
+
+An "unless" statement: 
+
+{% highlight ruby %}
+    unless $memorysize > 1024 {
+      $maxclient = 500
     }
 {% endhighlight %}
 
@@ -67,7 +75,7 @@ A selector:
 "If" Statements
 -----
 
-**"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is true. They can optionally include `elsif` and `else` clauses. 
+**"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **true.** They can optionally include `elsif` and `else` clauses. 
 
 
 ### Syntax
@@ -95,7 +103,7 @@ The general form of an "if" statement is:
 
 ### Behavior
 
-Puppet's "if" statements behave much like those in any other language. The `if` condition is processed first and, if it is true, only the `if` code block is executed. If it is false, each `elsif` condition (if present) is tested in order, and if all conditions fail, the `else` code block (if present) is executed.
+Puppet's "if" statements behave much like those in any other language. The `if` condition is evaluated first and, if it is true, only the `if` code block is executed. If it is false, each `elsif` condition (if present) is tested in order, and if all conditions fail, the `else` code block (if present) is executed.
 
 If none of the conditions in the statement match and there is no `else` block, Puppet will do nothing and move on.
 
@@ -129,6 +137,49 @@ These are not normal variables, and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
+
+"Unless" Statements
+-----
+
+**"Unless" statements** work like reversed "if" statements. They take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **false.** They **cannot** include `elsif` or `else` clauses. 
+
+### Syntax
+
+{% highlight ruby %}
+    unless $memorysize > 1024 {
+      $maxclient = 500
+    }
+{% endhighlight %}
+
+The general form of an "unless" statement is:
+
+* The `unless` keyword
+* A **condition**
+* A pair of curly braces containing any Puppet code
+
+If an `else` or `elsif` clause is included in an "unless" statement, it is a syntax error and will cause compilation to fail. 
+
+### Behavior
+
+The condition is evaluated first and, if it is false, the code block is executed. If the condition is true, Puppet will do nothing and move on.
+
+### Conditions
+
+The condition(s) of an "unless" statement may be any fragment of Puppet code that resolves to a boolean value. This includes:
+
+* [Variables][]
+* [Expressions][], including arbitrarily nested `and` and `or` expressions
+* [Functions][] that return values
+
+Fragments that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
+
+Static values may also be conditions, although doing this would be pointless. 
+
+#### Regex Capture Variables
+
+Although "unless" statements receive regex capture variables like "if" statements, they generally can't be used, since the code in the statement will only be executed if the condition didn't match anything. Compound conditions can cause the capture variables to be set inside the statement, but this is essentially useless.
+
+
 
 Case Statements
 -----
