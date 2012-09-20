@@ -10,4 +10,5 @@ defaultnav:
   /puppetdb/1: puppetdb1.html
   /puppet/2.7/reference: puppet_2_7.html
   /puppet/3/reference: puppet_reference_3.html
+  /hiera/1: hiera1.html
 ---
