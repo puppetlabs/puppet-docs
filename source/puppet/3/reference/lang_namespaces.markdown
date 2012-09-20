@@ -19,7 +19,7 @@ title: "Language: Namespaces and Autoloading"
 
 [Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module]. 
 
-> **Important note:** Earlier versions of Puppet used namespaces to navigate nested class/type definitions, and the code that resolves names still behaves as though this were their primary use. **This can sometimes result in the wrong class being loaded.** This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 2.7. [See below][relative_below] for a full description of the issue.
+> **Important note:** Earlier versions of Puppet used namespaces to navigate nested class/type definitions, and the code that resolves names still behaves as though this were their primary use. **This can sometimes result in the wrong class being loaded.** This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 3. [See below][relative_below] for a full description of the issue.
 
 Syntax
 -----
@@ -64,7 +64,7 @@ Note again that `init.pp` always contains a class or defined type named after th
 Relative Name Lookup and Incorrect Name Resolution
 -----
 
-In Puppet 2.7, class name resolution is **partially broken** --- if the final namespace segment of a class in one module matches the name of another module, Puppet will sometimes load the wrong class.
+In Puppet 3, class name resolution is **partially broken** --- if the final namespace segment of a class in one module matches the name of another module, Puppet will sometimes load the wrong class.
 
 {% highlight ruby %}
     class bar {
@@ -79,7 +79,7 @@ In Puppet 2.7, class name resolution is **partially broken** --- if the final na
     include foo
 {% endhighlight %}
 
-In the example above, the invocation of `include bar` will actually declare class `foo::bar`. This is because Puppet assumes class and defined type names are **relative** until proven otherwise. This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 2.7, as the fix will break a large amount of existing code and require a long deprecation period. 
+In the example above, the invocation of `include bar` will actually declare class `foo::bar`. This is because Puppet assumes class and defined type names are **relative** until proven otherwise. This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 3, as the fix will break a large amount of existing code and require a long deprecation period. 
 
 ### Behavior
 
@@ -166,6 +166,6 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 > * Public classes and defined types were more common than private ones and optimizing for the less common case was an odd approach. 
 > * Even for classes and defined types that _were_ only used within their module, there was little real benefit to be gained by making them "private," since they were effectively public via their full name anyway.
 > 
-> Those realizations led to the superior [module][] autoloader design used today, where a class's "full" name is effectively its only name. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 2.7, where it often annoys users who have adopted the modern code style.
+> Those realizations led to the superior [module][] autoloader design used today, where a class's "full" name is effectively its only name. However, the previous name lookup behavior was never deprecated or removed, for fear of breaking large amounts of existing code. This leaves it present in Puppet 3, where it often annoys users who have adopted the modern code style.
 > 
 > We plan to fix this in a future release, after a suitable deprecation period. 

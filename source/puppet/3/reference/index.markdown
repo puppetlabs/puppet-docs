@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Puppet 2.7 Reference Manual"
+title: "Puppet 3 Reference Manual"
 ---
 
 
-{% include puppet_2_7.html %}
+TODO insert better navigation content here

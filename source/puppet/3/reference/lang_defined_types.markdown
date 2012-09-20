@@ -62,7 +62,7 @@ The general form of a type definition is:
     * A comma-separated list of **parameters,** each of which consists of:
         * A new [variable][] name, including the `$` prefix
         * An optional equals sign and **default value** (any data type)
-    * An optional trailing comma after the last parameter (Puppet 2.7.8 and later)
+    * An optional trailing comma after the last parameter
     * A closing parenthesis
 * An opening curly brace
 * A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource]
@@ -163,7 +163,7 @@ Defined types can (and should) be stored in [modules][]. Puppet is automatically
 
 You can also put type definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 
-Type definitions may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet (2.7), but may become so in a future release.
+Type definitions may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in Puppet 3, but may become so in a future release.
 
 
 Naming

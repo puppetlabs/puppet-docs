@@ -63,7 +63,7 @@ Parentheses may be used to improve readability. You can create arbitrarily compl
 This operator is non-transitive: 
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
-* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version (2.7) of Puppet.
+* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in Puppet 3.
 
 For a given resource, this operator will **match** if the value of the attribute (or one of the value's members, if the value is an array) is identical to the search key. 
 
@@ -72,7 +72,7 @@ For a given resource, this operator will **match** if the value of the attribute
 This operator is non-transitive: 
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
-* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version (2.7) of Puppet.
+* The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in Puppet 3.
 
 For a given resource, this operator will **match** if the value of the attribute is **not** identical to the search key. 
 

@@ -279,11 +279,6 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `values_at`
 * `zip`
 
-> ### Significant Bugs: Mutability
-> 
-> Due to a bug in Puppet, arrays are **mutable** --- their contents can be changed within a given scope. New elements can be added by assigning a value to a previously unused index (`$myarray[6] = "New value"`) or re-assigning a value to an existing index.
-> 
-> [This behavior is considered a bug][mutable]; **do not use it.** It will not be removed during the Puppet 2.7 series, but may be removed thereafter without a deprecation period.
 
 * * * 
 
@@ -337,11 +332,6 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `validate_hash`
 * `values`
 
-> ### Significant Bugs: Mutability
-> 
-> Due to a bug in Puppet, hashes are **mutable** --- their contents can be changed within a given scope. New elements can be added by assigning a value to a previously unused key (`$myhash[new_key] = "New value"`), although existing keys cannot be reassigned.
-> 
-> [This behavior is considered a bug][mutable]; **do not use it.** It will not be removed during the Puppet 2.7 series, but may be removed thereafter without a deprecation period.
 
 * * * 
 

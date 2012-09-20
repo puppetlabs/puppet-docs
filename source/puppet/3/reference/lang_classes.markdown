@@ -87,7 +87,7 @@ The general form of a class declaration is:
     * A comma-separated list of **parameters,** each of which consists of:
         * A new [variable][] name, including the `$` prefix
         * An optional equals (=) sign and **default value** (any data type)
-    * An optional trailing comma after the last parameter (Puppet 2.7.8 and later)
+    * An optional trailing comma after the last parameter
     * A closing parenthesis
 * Optionally, the `inherits` keyword followed by a single class name
 * An opening curly brace
@@ -231,7 +231,7 @@ Class definitions can (and should) be stored in [modules][]. Puppet is automatic
 
 You can also put class definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 
-This version (2.7) of Puppet still allows class definitions to be stored in other class definitions, which puts the interior class under the exterior class's [namespace][]; it does not cause the interior class to be automatically declared when the exterior class is. Note that although this is not yet formally deprecated, it is very much not recommended. 
+Puppet 3 still allows class definitions to be stored in other class definitions, which puts the interior class under the exterior class's [namespace][]; it does not cause the interior class to be automatically declared when the exterior class is. Note that although this is not yet formally deprecated, it is very much not recommended. 
 
 ### Declarations
 
@@ -251,7 +251,7 @@ Inheritance
 
 Classes can be derived from other classes using the `inherits` keyword. This allows you to make special-case classes that extend the functionality of a more general "base" class. 
 
-> Note: Puppet 2.7 does not support using parameterized classes for inheritable base classes. The base class must have no parameters.
+> Note: Puppet 3 does not support using parameterized classes for inheritable base classes. The base class must have no parameters.
 
 Inheritance causes three things to happen: 
 

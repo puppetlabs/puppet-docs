@@ -130,7 +130,7 @@ Unlike most other languages, Puppet only allows a given variable to be assigned 
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope. 
 
-> Note: Due to insufficient protection of the scope object that gets passed into templates, it is possible to reassign a variable inside a template and have the new value persist in the Puppet scope after the template is evaluated. This behavior is considered a bug; **do not use it.** It will not be removed during the Puppet 2.7 series, but may be removed thereafter without a deprecation period.
+> Note: Due to insufficient protection of the scope object that gets passed into templates, it is possible to reassign a variable inside a template and have the new value persist in the Puppet scope after the template is evaluated. **Do not do this.** This behavior is considered a bug rather than designed behavior and may be removed at any point without a deprecation period.
 
 ### Parse-Order Dependence
 
@@ -178,7 +178,7 @@ These variables are set by the puppet master and are most useful when managing P
 * `$servername` --- the puppet master's fully-qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the puppet master's IP address.
 * `$serverversion` --- the current version of puppet on the puppet master.
-* `$settings::<name of setting>` --- the value of any of the master's [configuration settings](./configuring.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet (2.7), you will have to create a custom fact.
+* `$settings::<name of setting>` --- the value of any of the master's [configuration settings](./configuring.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in Puppet 3, you will have to create a custom fact.
 
 ### Parser-Set Variables
 
