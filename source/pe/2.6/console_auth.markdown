@@ -139,15 +139,34 @@ To use external authentication, the following two files must be correctly config
 1. `/etc/puppetlabs/console-auth/cas_client_config.yml`
 2. `/etc/puppetlabs/rubycas-server/config.yml`
 
+> **Note:** If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the config files are not overwritten by the upgrader.
+>
+> To find example config code that can be copied and pasted into the live config files, look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+
+
 #### Configuring `cas_client_config.yml`
 
-The `cas_client_config.yml` file contains several commented-out lines under `authorization:` Simply un-comment the appropriate lines that correspond to the RubyCAS authenticators you wish to use. You can also set the default access level for a given authentication service using `default_role`, which accepts the following values: `read-only`, `read-write`, or `admin`.
+The `cas_client_config.yml` file contains several commented-out lines under the `authorization:` key. Simply un-comment the lines that correspond to the RubyCAS authenticators you wish to use. You can also set the default access level for a given authentication service using `default_role`, which accepts the following values: `read-only`, `read-write`, or `admin`.
 
 Each entry consists of the following:
 
 * A common identifier (e.g. `local`, or `ldap`, etc.) which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator. 
 *  `default_role` which defines the role to assign to users by default
 * `description` which is simply a human readable description of the service
+
+    authorization:
+      local:
+        default_role: read-only
+        description: Local
+    #  ldap:
+    #    default_role: read-only
+    #    description: LDAP
+    #  activedirectoryldap:
+    #    default_role: read-only
+    #    description: Active Directory
+    #  google:
+    #    default_role: read-write
+    #    description: Google
 
 #### Configuring `rubycas-server/config.yml`
 
