@@ -55,6 +55,7 @@ For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
     $ wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
     $ sudo dpkg -i puppetlabs-release-precise.deb
+    $ sudo apt-get update
 
 ### For Fedora
 
@@ -95,4 +96,5 @@ To enable the repository, run the commands below:
 
     $ wget http://apt-enterprise.puppetlabs.com/puppetlabs-enterprise-release-extras_1.0-2_all.deb
     $ sudo dpkg -i puppetlabs-enterprise-release-extras_1.0-2_all.deb
+    $ sudo apt-get update
 
