@@ -15,7 +15,7 @@ Single binary
 
 **Starting with Puppet 2.6,** Puppet uses a single `puppet` binary with multiple subcommands, in the style of Git. Each of the pre-2.6 commands corresponds directly to one of the new subcommands. 
 
-> **Note:** As of Puppet 3, the old standalone commands have been removed completely. 
+> **Note:** As of Puppet 3, the old standalone commands have been removed completely. Note also that `puppet` without any subcommand will no longer default to puppet apply.
 
 Pre-2.6       | Post-2.6
 --------------|--------------
