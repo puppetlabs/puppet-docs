@@ -12,6 +12,7 @@ Manage your module releases by dividing your site into environments.
 
 [config]: ./configuring.html
 [auth]: ./rest_auth_conf.html
+[enc]: ./external_nodes.html
 
 Slice and Dice
 --------------
@@ -44,7 +45,7 @@ Before you start, be aware that environments have some limitations, most of whic
 
 * Puppet will only read the [`modulepath`](/references/stable/configuration.html#modulepath), [`manifest`](/references/stable/configuration.html#manifest), [`manifestdir`](/references/stable/configuration.html#manifestdir), and [`templatedir`](/references/stable/configuration.html#templatedir) settings from environment config blocks; other settings in any of these blocks will be ignored in favor of settings in the `[master]` or `[main]` blocks. ([Issue 7497](http://projects.puppetlabs.com/issues/7497))
 * File serving only works well with environments if you're only serving files from modules; if you've set up custom mount points in `fileserver.conf`, they won't work in your custom environments. (Though hopefully you're only serving files from modules anyway.)
-* You can set an agent node's environment from an [external node classifier](./external_nodes.html) like Puppet Dashboard, but it isn't well-supported: currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. ([Issue 3910](http://projects.puppetlabs.com/issues/3910)) For environments to work reliably, they have to be specified in the agent's configuration. 
+* Prior to Puppet 3, environments set by [external node classifiers][enc] were not authoritative. If you are using Puppet 2.7 or earlier, you must set the environment in the agent node's config file.
 * Serving custom types and providers from an environment-specific modulepath sometimes fails. ([Issue 4409](http://projects.puppetlabs.com/issues/4409))
 
 Configuring Environments on the Puppet Master
@@ -83,18 +84,36 @@ The `$environment` variable should only rarely be necessary, but it's there if y
 Configuring Environments for Agent Nodes
 ----------------------------------------
 
+### In an ENC
+
+Your [external node classifier][enc] can set an environment for a node by setting a value for the `environment` key. In Puppet 3 and later, the environment set by the ENC will **override** the environment from the agent node's config file. If no environment is provided by the ENC, the value from the node's config file will be used. 
+
+> **Note:** In Puppet 2.7 and earlier, ENC-set environments are not authoritative, and using them results in nodes using a mixture of two environments --- the ENC environment wins during compilation, and the agent environment wins during file downloads. If you need to centrally control your nodes environments, you should upgrade to Puppet 3 as soon as is practical. 
+>
+> As a temporary workaround, you can manage nodes' puppet.conf files with a template and set the environment based on the ENC's value; this will allow nodes to use a consistent environment on their second (and subsequent) Puppet runs. 
+
+> **Note:** If your puppet master is running Puppet 3 but was once running Puppet 2.6, its [auth.conf file][auth] may be missing a rule required for ENC environments. Ensure that the following rule exists somewhere near the top of your auth.conf file:
+>
+>     # allow nodes to retrieve their own node definition
+>     path ~ ^/node/([^/]+)$
+>     method find
+>     allow $1
+>
+> Puppet masters which have only run 2.7 and later should already have this rule in their auth.conf files.
+
+### On the Agent Node
+
 To set an environment agent-side, just specify the `environment` setting in either the `[agent]` or `[main]` block of `puppet.conf`. 
 
     [agent]
       environment = dev
 
-As with any config setting, you can also use a command line option: 
+Note that in Puppet 3 and later, this value will only be used if the ENC does not override it. 
+
+As with any config setting, you can also temporarily set it with a command line option: 
 
     # puppet agent --environment dev
 
-You can also set an environment via your ENC by including an `environment: dev` (or similar) line in the yaml it returns, but see [the caveat above](#caveats) before doing this. 
-
-Eventually, server-side environments will work properly, but if you need to work around this today, you can do so by managing puppet.conf on agent nodes with a [template](./templating.html). This can take multiple runs to reach the desired configuration for the first time, but it will work. 
 
 Compatibility Notes
 -------------------
