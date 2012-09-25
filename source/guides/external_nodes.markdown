@@ -3,6 +3,8 @@ layout: legacy
 title: External Node Classifiers
 ---
 
+[environment]: ./environment.html
+
 External Node Classifiers
 ==============
 
@@ -35,11 +37,13 @@ ENCs can co-exist with standard node definitions in `site.pp`, and **the classes
 >     * Note 3: If no matching node definition can be found with the node's name, Puppet will try one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
 
 
-Considerations and Limitations
-------------------------------
+Considerations and Differences from Node Definitions
+-----
+
+[above]: #considerations-and-differences-from-node-definitions
 
 * The YAML returned by an ENC isn't an exact equivalent of a node definition in `site.pp` --- it can't declare individual resources, declare relationships, or do conditional logic. The only things an ENC can do are **declare classes, assign top-scope variables, and set an environment.** This means an ENC is most effective if you've done a good job of separating your configurations out into classes and modules.
-* Although ENCs can set an [environment](./environment.html) for a node, this is not very well supported --- currently, the server-set environment will win during catalog compilation, but the client-set environment will win when downloading files. (See [issue 3910](http://projects.puppetlabs.com/issues/3910) for more details.) We hope to make server-side environments work well in the future, but if you need them right now, the workaround is to use Puppet to manage `puppet.conf` on the agent and set the environment for the next run based on what the ENC thinks it should be.
+* In Puppet 3 and later, ENCs can set an [environment][] for a node,  overriding whatever environment the node requested. However, previous versions of Puppet use ENC-set and node-set environments inconsistently, with the ENC's used during catalog compilation and the node's used when downloading files. The workaround for Puppet 2.7 and earlier is to use Puppet to manage `puppet.conf` on the agent and set the environment for the next run based on what the ENC thinks it should be.
 * Even if you aren't using node definitions, you can still use site.pp to do things like set global resource defaults. 
 * Unlike regular node definitions, where a node may match a less specific definition if an exactly matching one isn't found (depending on the puppet master's `strict_hostname_checking` setting), an ENC is called only once, with the node's full name. 
 
@@ -107,7 +111,7 @@ If present, the value of the `parameters` key MUST be a hash of valid variable n
 
 #### Environment
 
-If present, the value of `environment` MUST be a string representing the desired environment for this node. As noted above, ENC-set environments are not currently reliable, although this can be worked around by managing `puppet.conf` as a resource. 
+If present, the value of `environment` MUST be a string representing the desired [environment][] for this node. In Puppet 3 and later, this will become the only environment used by the node in its requests for catalogs and files. In Puppet 2.7 and earlier, ENC-set environments are not reliable, [as noted above.][above]
 
     environment: production
 
