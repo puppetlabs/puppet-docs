@@ -39,7 +39,7 @@ The `factsync` option, deprecated since puppet 0.25, has been removed in 3.0.0. 
 
 #### Puppet language no longer has dynamic scoping for variables
 
-<!-- I think this should be moved to lang_scope and linked to from here and maybe also from lang_variables-->
+<!-- TODOa I think this should be moved to lang_scope and linked to from here and maybe also from lang_variables-->
 
 Dynamic scoping, which has been deprecated for the 2.7.x code, has been removed
 from this release of puppet. The most recent 2.7 release provides information
@@ -54,7 +54,7 @@ your logs and notice no warnings during a puppet agent run, you will not see a
 warning for a condition that still exists if it had already been logged during a previous run.
 
 #### `ca_days` is removed
- The previously deprecated `ca_days` setting has been removed, `ca_ttl` should be used instead.
+ The previously deprecated `ca_days` setting has been removed. `ca_ttl` should be used instead.
  
  #### `cacrl` can no longer be false
   The ability to set the `cacrl` setting to false has been removed. Puppet will now just ignore the CRL if it is missing.
@@ -63,31 +63,28 @@ warning for a condition that still exists if it had already been logged during a
   - `downcasefact` and `downcase_if_necessary` have been removed as downcasing of facts is no longer supported.
   
   #### `recurse` is removed
-  The ability to set the recursion depth with `recurse` has been removed, instead, `recurselimit` should be used.
+  The ability to set the recursion depth with `recurse` has been removed. Instead, `recurselimit` should be used.
   
   #### `path` is removed
-`path` has been removed as a valid parameter for the mount point, instead `name` should be used.
+`path` has been removed as a valid parameter for the mount point. Instead, `name` should be used.
   
-  - Grammar has been updated so that a '$' is now required for prototypes:
-	When listing parameters in a defined type or class definition, each
-	parameter must be formatted as a normal variable with a `$` prefix.
-	Note that this has no effect on declaring classes or instances of a
-	defined type.
+  #### `$` now required for prototypes
+  Puppet's grammar has been updated so that a dollar sign (`$`) is now required for prototypes.	When listing parameters in a defined type or class definition, each parameter must be formatted according to the rules for a normal variable and must include a `$` prefix. Note that this has no effect on declaring classes or instances of a defined type.
 
-	Good:
+Right:
 
-	define vhost ($port = 80, $vhostdir) { ... }
+	`define vhost ($port = 80, $vhostdir) { ... }`
 
-	Bad:
+Wrong:
 
-	define vhost (port = 80, vhostdir) { ... }
+	`define vhost (port = 80, vhostdir) { ... }`
 
-	Unchanged:
+Unchanged:
 
-	vhost {'web01.example.com':
+	`vhost {'web01.example.com':
 	port 	=> 8080,
 	vhostdir => '/etc/apache2/conf.d',
-	}
+	}`
 	
   #### `--apply` option is removed
  The `--apply` option has been removed; `puppet apply --catalog` should be used instead of `puppet --apply catalog`.
@@ -115,7 +112,7 @@ warning for a condition that still exists if it had already been logged during a
   
   #### MSI package provider is deprecated
   
-  <!--this also needs to be linked to from type.html-->
+  <!--TODO this also needs to be linked to from type.html-->
 
 Starting with Puppet 3.0, the Windows `:msi` package provider has been deprecated. The default and preferred Windows package provider is now `:windows`. This should have little impact on users unless they have manifests that specify `provider => msi`. In such cases, the line needs to be removed or replaced with `provider => windows`
 
