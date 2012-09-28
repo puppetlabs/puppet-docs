@@ -59,9 +59,13 @@ For example, to delete reports older than 1 month:
 
 If you run 'rake reports:prune' without any arguments, it will display further usage instructions.
 
-Although this task **should be run regularly as a cron job,** the frequency with which it should be run will depend on your site's policies.
+As the reports:prune will clean the reports table only, you may want to run an extra task to clean the entries orphaned by the prune:
 
-A simple cron job to run the task monthly can be installed by running:
+    $ sudo -u puppet-dashboard rake RAILS_ENV=production reports:prune:orphaned
+
+Although these tasks **should be run regularly as a cron job,** the frequency with which they should be run will depend on your site's policies.
+
+A simple cron job to run the tasks monthly can be installed by running:
 
     $ sudo -u puppet-dashboard rake cron:cleanup
 
