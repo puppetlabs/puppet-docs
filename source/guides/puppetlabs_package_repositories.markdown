@@ -74,6 +74,34 @@ The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 1
 
     $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-6.noarch.rpm
 
+Enabling the Prerelease Repos
+-----
+
+Our open source repository packages also install a disabled prerelease repo, which contains release candidate versions of all Puppet Labs products. Enable this if you wish to test upcoming versions early, or if you urgently need a bug fix that has not gone into a final release yet.
+
+### On Debian and Ubuntu
+
+After installing the repos, open your `/etc/apt/sources.list.d/puppetlabs.list` file for editing. Locate and uncomment the line that begins with `deb` and ends with `devel`:
+
+    # Puppetlabs devel (uncomment to activate)
+    deb http://apt.puppetlabs.com precise devel
+    # deb-src http://apt.puppetlabs.com precise devel
+
+To disable the prerelease repo, re-comment the line.
+
+### On Fedora, RHEL, and Derivatives
+
+After installing the repos, open your `/etc/yum.repos.d/puppetlabs.repo` file for editing. Locate the `[puppetlabs-devel]` stanza, and change the value of the `enabled` key from `0` to `1`:
+
+    [puppetlabs-devel]
+    name=Puppet Labs Devel <%= @dist.capitalize -%> <%= @version -%> - $basearch
+    baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/devel/$basearch
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+    enabled=1
+    gpgcheck=1
+
+To disable the prerelease repo, change the value back to `0`.
+
 Puppet Enterprise Repositories
 -----
 
