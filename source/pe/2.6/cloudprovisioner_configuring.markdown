@@ -4,14 +4,14 @@ title: "PE 2.6 » Cloud Provisioning » Installation and Configuration"
 subtitle: "Installing and Configuring Cloud Provisioning"
 ---
 
-There are many options and actions associated with the main cloud provisioning sub-commands, `node`, `node_vmware`, and `node_aws`. This page provides an overview but, for all the details, check the man pages.
+There are many options and actions associated with the main cloud provisioning sub-commands, `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview but, for all the details, check the man pages.
 
 Prerequisites
 -------------
 
 ### Software
 
-- The cloud provisioning tools ship with Puppet Enterprise 2.0 and later. <!-- OpenStack tools require cloud\_provisioner 1.0.2 or later (i.e. PE 2.5 or later). -->
+- The cloud provisioning tools ship with Puppet Enterprise 2.0 and later. OpenStack tools require cloud\_provisioner 1.0.2 or later (i.e. PE 2.5 or later).
 
 - Puppet 2.7.2 or later is required
 
@@ -33,7 +33,7 @@ The following services and credentials are required:
 
 - Amazon Web Services requires: An existing Amazon account with support for EC2
 
-<!-- - OpenStack requires: A standard installation of OpenStack Keystone and the accompanying EC2 credentials -->
+ - OpenStack requires: A standard installation of OpenStack Keystone and the accompanying EC2 credentials
 
 
 Installing
@@ -117,11 +117,9 @@ Select the "Security Credentials" menu and choose "Access Credentials." Click on
 
 You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, click the "Show" link under "Secret Access Key". 
 
-<!-- 
 For *OpenStack installations*, your credentials are printed to screen after running `keystone ec2-credentials-create`
 
 Put both keys in your `~/.fog` file as described above. You will also need to generate an SSH private key using Horizon, or simply import a selected public key.
- -->
 
 
 ### Additional AWS Configuration
@@ -140,10 +138,7 @@ EC2 console](https://console.aws.amazon.com/ec2/).
 
 ![AWS EC2 Console](./images/cloud/ec2console.png)
 
-Select the "Key Pairs" menu item from the dashboard. If you don't have any
-existing key pairs, you can create one with the "Create Key Pairs" button.
-Specify a new name for the key pair to create it; the private key
-file will be automatically downloaded to your host. 
+Select the "Key Pairs" menu item from the dashboard. If you don't have any existing key pairs, you can create one with the "Create Key Pairs" button. Specify a new name for the key pair to create it; the private key file will be automatically downloaded to your host. 
 
 Make a note of the name of your key pair, since you will need to know it when creating new instances.
 
@@ -157,13 +152,11 @@ groups.  If no groups exist, you can create a new one by clicking the
 ![AWS Security Groups](./images/cloud/awssecgroup.png)
 
 To add the required rules, select the "Inbound" tab and add an SSH rule. Make sure that inbound SSH traffic is using port 22.
-You can also indicate a specific source to lock the source IP down to
-an appropriate source IP or network.  Click "Add Rule" to add the rule,
+You can also indicate a specific source to lock the source IP down to an appropriate source IP or network.  Click "Add Rule" to add the rule,
 then click "Apply Rule Changes" to save.
 
 You should also ensure that your security group allows outbound traffic on ports **8140** and **61613.** These are the ports PE uses to request configurations and listen for orchestration messages.
-
-<!-- 
+ 
 ### Additional OpenStack Configuration
 
 Before you can launch any instances with the provisioner module, you will need: 
@@ -172,7 +165,8 @@ Before you can launch any instances with the provisioner module, you will need:
 - at least one valid OS image 
 - the URL of your Nova EC2 API server (typically, http://your.nova.api.server:8773/services/Cloud)
 - to use the Horizon console to configure the default security group to allow SSH (port 22) access.
- -->
+
+
 Demonstration
 
 -----------
