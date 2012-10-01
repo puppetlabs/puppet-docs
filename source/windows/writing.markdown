@@ -220,7 +220,6 @@ Puppet can install and remove MSI packages, including specifying package-specifi
 * The source parameter is required, and must refer to a local .msi file, a file from a mapped drive, or a UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
 * The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install. 
     * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. 
-* Currently, Puppet can only manage packages that it installed.
 
 ### [`service`][service]
 
