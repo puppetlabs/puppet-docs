@@ -4,7 +4,7 @@ layout: default
 ---
 
 
-**None of the following projects are published by or endorsed by Puppet Labs.** They are linked here for informational purposes only. 
+**None of the following projects are published by or endorsed by Puppet Labs.** They are linked to here for informational purposes only. 
 
 [nagios]: https://github.com/jasonhancock/nagios-puppetdb
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
@@ -14,7 +14,7 @@ layout: default
 [Jason Hancock --- nagios-puppetdb][nagios]
 -----
 
-[A collection of Nagios scripts/plugins for monitoring PuppetDB.][nagios] These plugins use [PuppetDB's metrics APIs](./spec_q_metrics.html). Pulling this data into Nagios lets you monitor key metrics over time and receive alerts when they cross certain thresholds, and can partially or completely replace the [built-in performance dashboard][dashboard]. Especially useful for knowing when the heap size or thread count needs tuning. 
+[A collection of Nagios scripts/plugins for monitoring PuppetDB.][nagios] These plugins get data using [PuppetDB's metrics APIs](./spec_q_metrics.html). Pulling this data into Nagios lets you monitor key metrics over time and receive alerts when they cross certain thresholds. This can partially or completely replace the [built-in performance dashboard][dashboard]. Especially useful for knowing when the heap size or thread count needs tuning. 
 
 
 [Eric Dalén --- PuppetDB query functions for Puppet][query]

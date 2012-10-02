@@ -24,8 +24,8 @@ Install It Now
 To start using PuppetDB today:
 
 * Review [the system requirements below](#system-requirements) (and, optionally, [our scaling recommendations][scaling]).
-* Follow the installation instructions: [easy install][install] on our recommended platforms, or [advanced install][install_advanced] on any other \*nix.
-* [Connect your puppet master to PuppetDB][connect] (or, at standalone puppet apply sites, [connect every node to PuppetDB][apply]). 
+* Follow the installation instructions: [easy install][install] on our recommended platforms or [advanced install][install_advanced] on any other \*nix.
+* [Connect your puppet master to PuppetDB][connect] (or at standalone puppet apply sites, [connect every node to PuppetDB][apply]). 
 
 Version Note
 -----
@@ -45,9 +45,9 @@ In version 1, PuppetDB stores:
 * The most recent [facts][] from every node
 * The most recent [catalog][] for every node
 
-Together, these give you a huge inventory of metadata about every node in your infrastructure, and a searchable database of **every single resource** being managed on any node.
+Together, these give you a huge inventory of metadata about every node in your infrastructure and a searchable database of **every single resource** being managed on any node.
 
-Puppet itself can search a subset of this data using [exported resources][exported], which allow nodes to manage resources on other nodes. This is similar to the capabilities of the legacy ActiveRecord `storeconfigs` interface, but much much faster. The rest of the data is available through PuppetDB's query APIs (see navigation sidebar for details) and Puppet's [inventory service][inventory]. 
+Puppet itself can search a subset of this data using [exported resources][exported], which allow nodes to manage resources on other nodes. This is similar to the capabilities of the legacy ActiveRecord `storeconfigs` interface, but much, much faster. The remaining data is available through PuppetDB's query APIs (see navigation sidebar for details) and Puppet's [inventory service][inventory]. 
 
 ### What Next?
 
@@ -61,7 +61,7 @@ System Requirements
 
 #### Easy Install: RHEL, CentOS, Debian, Ubuntu, or Fedora
 
-Puppet Labs provides packages for PuppetDB, which simplify setup of its SSL certificates and init scripts. These packages are available for the following operating systems:
+Puppet Labs provides packages for PuppetDB which simplify setup of its SSL certificates and init scripts. These packages are available for the following operating systems:
 
 * Red Hat Enterprise Linux 5 or 6 or any distro derived from it (including CentOS)
 * Debian Squeeze, Lenny, Wheezy, or Sid
@@ -82,11 +82,11 @@ If you're willing to do some manual configuration, PuppetDB can run on any Unix-
 
 ### Puppet 2.7.12
 
-Your site's puppet masters must be running Puppet 2.7.12 or later. [You will need to connect your puppet masters to PuppetDB after installing it][connect]. If you wish to use PuppetDB with [standalone nodes running puppet apply][apply], every node must be running 2.7.12 or later.
+Your site's puppet masters must be running Puppet 2.7.12 or later. [You will need to connect your puppet masters to PuppetDB after installing it][connect]. If you wish to use PuppetDB with [standalone nodes that are running puppet apply][apply], every node must be running 2.7.12 or later.
 
 ### Robust Hardware
 
-PuppetDB will be a critical component of your Puppet deployment, and should be run on a robust and reliable server. 
+PuppetDB will be a critical component of your Puppet deployment and so should be run on a robust and reliable server. 
 
 However, it can do a lot with fairly modest hardware: in benchmarks using real-world catalogs from a customer, a single 2012 laptop (16 GB of RAM, consumer-grade SSD, and quad-core processor) running PuppetDB and PostgreSQL was able to keep up with sustained input from 8,000 simulated Puppet nodes checking in every 30 minutes. Powerful server-grade hardware will perform even better.
 
