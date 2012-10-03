@@ -19,8 +19,6 @@ title: "Language: Scope"
 [namespace]: ./lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png
 
-TODO rewrite much of this page
-
 Scope Basics
 -----
 
@@ -179,7 +177,7 @@ More Details
 
 This gives approximately the best and most-expected behavior --- variables from an ENC are available everywhere, and classes may use node-specific variables.
 
-> Note: this means compilation will fail if an ENC tries to set a variable that is already set at top scope by the site manifest. 
+> Note: this means compilation will fail if the site manifest tries to set a variable that was already set at top scope by an ENC. 
 
 ### Named Scopes and Anonymous Scopes
 
@@ -217,9 +215,9 @@ Scope Lookup Rules
 
 The scope lookup rules determine when a local scope becomes the parent of another local scope.
 
-There are two different sets of scope lookup rules: **static scope** and **dynamic scope.** Puppet 2.7 uses dynamic scope, but future versions of Puppet will use static scope. To help users prepare, Puppet 2.7 will print warnings to its log file whenever a variable's value would be different under static scope. 
+There are two different sets of scope lookup rules: **static scope** and **dynamic scope.** Puppet 3 uses static scope for variables and dynamic scope for resource defaults. 
 
-More details about the elimination of dynamic scope can be found [here][scopedoc].
+> **Note:** To help users prepare, Puppet 2.7 will print warnings to its log file whenever a variable's value would be different under static scope in Puppet 3. More details about the elimination of dynamic scope can be found [here][scopedoc].
 
 ### Static Scope
 
@@ -232,7 +230,7 @@ In **static scope,** parent scopes are **only** assigned by [class inheritance][
 > * Scope contents are predictable and do not depend on parse order.
 > * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or type is _declared_ has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
 
-All future versions of Puppet will use static scope for looking up variables. Puppet 2.7 **does not enforce** static scope, but will log warnings when a variable lookup would violate it.
+Puppet 3 uses static scope for looking up variables. 
 
 ### Dynamic Scope
 
@@ -247,10 +245,9 @@ In **dynamic scope,** parent scopes are assigned by both **inheritance** and **d
 > 
 > * A scope's parent cannot be identified by looking at the definition of a class --- you must examine every place where the class or resource may have been declared.
 > * In some cases, you can only determine a scope's contents by executing the code. 
-> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are parse-order dependent, and may vary between different runs of identical code. This is less of a danger in Puppet 2.7 than in previous versions, as relative resource ordering is now deterministic, but can still cause problems when running on similar-but-not-identical nodes. 
+> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are parse-order dependent.
 
-If used simply, dynamic scope will usually yield simple results; in fact, it can emulate static scope. However, combining classes that declare classes, class inheritance, and insufficiently unique variable names can result in erratic behavior. Adding node inheritance to that mix can make the confusion an order of magnitude worse. See ["Scope and Puppet"][scopedoc] for historical context and for better solutions to deal with per-node data.
-
+Puppet 3 uses dynamic scope for resource defaults. 
 
 Messy Under-the-Hood Details
 -----
