@@ -4,7 +4,9 @@ title: "Puppet 3 Reference Manual"
 ---
 
 
-Welcome to the Puppet 3 Reference Manual! Use the navigation to the left to get around. [Documentation for Puppet 2.7 can be found here.](/puppet/2.7/reference)
+Welcome to the Puppet 3 Reference Manual! Use the navigation to the left to get around. [Documentation for Puppet 2.7 can be found here.](/puppet/2.7/reference) 
+
+To install Puppet 3, see [the Puppet installation guide](/guides/installation.html). 
 
 This manual is split into several sections: 
 
