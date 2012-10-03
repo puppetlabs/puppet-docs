@@ -25,15 +25,26 @@ title: "Language: Summary"
 [notification]: ./lang_relationships.html#ordering-and-notification
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
+[node]: ./lang_node_definitions.html
+<!-- TODO improve hiera link -->
+[hiera]: https://github.com/puppetlabs/hiera
 
-The Puppet Language
+Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
+
+Resources, Classes, and Nodes
 -----
 
-Puppet uses its own configuration language. This language was designed to be accessible to sysadmins because it does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
+The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility and convenience to the way resources are declared. 
 
-The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility to the way resources are declared. 
+Groups of resources can be organized into **[classes][],** which are larger units of configuration. While a resource may describe a single file or package, a class may describe everything needed to configure an entire service or application (including any number of packages, config files, service daemons, and maintenance tasks). Smaller classes can then be combined into larger classes which describe entire custom system roles, such as "database server" or "web application worker."
 
-Puppet's language is mostly **declarative:** Rather than mandating a series of steps to carry out, a Puppet manifest simply describes a desired final state.
+Nodes that serve different roles will generally get different sets of classes. The task of configuring which classes will be applied to a given node is called **node classification.** <!-- TODO link to a more general node classification guide --> Nodes can be classified in the Puppet language using [node definitions][node]; they can also be classified using node-specific data from outside your manifests, such as that from an [ENC][] or [Hiera][].
+
+
+Ordering
+-----
+
+Puppet's language is mostly **declarative:** Rather than listing a series of steps to carry out, a Puppet manifest describes a desired final state.
 
 The resources in a manifest can be freely ordered --- they will not be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
 
@@ -58,11 +69,12 @@ Compilation and Catalogs
 
 Puppet manifests can use conditional logic to describe many nodes' configurations at once. Before configuring a node, Puppet compiles manifests into a **catalog,** which is only valid for a single node and which contains no ambiguous logic.
 
-Catalogs are static documents which contain resources and relationships. At various stages of a Puppet run, a catalog will be in memory as a Ruby object, transmitted as JSON, and persisted to disk as YAML. The catalog format used by this version of Puppet is not documented and does not have a spec. 
+Catalogs are static documents which contain resources and relationships. At various stages of a Puppet run, a catalog will be in memory as a Ruby object, transmitted as JSON, and persisted to disk as YAML. The catalog format used by this version of Puppet is not documented <!-- TODO --> and does not have a spec. 
 
 In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them to nodes as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.
 
 Agent nodes cache their most recent catalog. If they request a catalog and the master fails to compile one, they will re-use their cached catalog. This recovery behavior is governed by the [`usecacheonfailure`][usecacheonfailure] setting in [puppet.conf][config]. When testing updated manifests, you can save time by turning it off. 
+
 
 Example
 -----

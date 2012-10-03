@@ -34,12 +34,12 @@ title: "Language: Classes"
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [import]: ./lang_import.html
-[hiera]: https://github.com/puppetlabs/hiera
 [declare]: #declaring-classes
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
 [ldap_nodes]: http://projects.puppetlabs.com/projects/1/wiki/Ldap_Nodes
 <!-- TODO point these to correct places in hiera docs -->
+[hiera]: https://github.com/puppetlabs/hiera
 [external_data]: https://github.com/puppetlabs/hiera
 [array_search]: https://github.com/puppetlabs/hiera
 [hiera_hierarchy]: https://github.com/puppetlabs/hiera
