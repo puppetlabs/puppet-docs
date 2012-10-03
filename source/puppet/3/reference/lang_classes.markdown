@@ -32,17 +32,17 @@ title: "Language: Classes"
 [definedtype]: ./lang_defined_types.html
 [metaparameters]: ./lang_resources.html#metaparameters
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[facts]: 
+[facts]: ./lang_variables.html#facts-and-built-in-variables
 [import]: ./lang_import.html
-[Hiera]: 
+[hiera]: https://github.com/puppetlabs/hiera
 [declare]: #declaring-classes
-[assign_enc]: 
-[setting_parameters]: 
-[external_data]: 
+[setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
-[array_search]: 
-[hiera_hierarchy]: 
-[ldap_nodes]: 
+[ldap_nodes]: http://projects.puppetlabs.com/projects/1/wiki/Ldap_Nodes
+<!-- TODO point these to correct places in hiera docs -->
+[external_data]: https://github.com/puppetlabs/hiera
+[array_search]: https://github.com/puppetlabs/hiera
+[hiera_hierarchy]: https://github.com/puppetlabs/hiera
 
 
 
@@ -53,7 +53,7 @@ Classes generally configure large or medium-sized chunks of functionality, such 
 Defining Classes
 -----
 
-Defining a class makes it available for later use. It doesn't yet add any resources to the catalog; to do that, you must [declare it (see below)][declare] or [assign it from an ENC][assign_enc].
+Defining a class makes it available for later use. It doesn't yet add any resources to the catalog; to do that, you must [declare it (see below)][declare] or [assign it from an ENC][enc].
 
 ### Syntax
 
@@ -392,26 +392,26 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 > ### Use Hiera Functions in Default Values
 > 
 > If you are willing to require Hiera and the `hiera-puppet` add-on package for pre-3.0 users, you can emulate Puppet 3's behavior by using a `hiera` function call in each parameter's default value:
-> 
-> {% highlight ruby %}
->     class example ( $parameter_one = hiera('example::parameter_one'), $parameter_two = hiera('example::parameter_two') ) {
->       ...
->     }
-> {% endhighlight %}
-> 
+
+{% highlight ruby %}
+    class example ( $parameter_one = hiera('example::parameter_one'), $parameter_two = hiera('example::parameter_two') ) {
+      ...
+    }
+{% endhighlight %}
+
 > Be sure to use 3.0-compatible lookup keys (`<class name>::<parameter>`). This will let 2.x users declare the class with `include`, and their Hiera data will continue to work without changes once they upgrade to Puppet 3.
 > 
-> This approach can also be combined with the params class pattern, if true default values are necessary:
-> 
-> {% highlight ruby %}
->     class example ( 
->       $parameter_one = hiera('example::parameter_one', $example::params::parameter_one),
->       $parameter_two = hiera('example::parameter_two', $example::params::parameter_two)
->     ) inherits example::params { # Inherit the params class to let the parameter list see its variables.
->       ...
->     }
-> {% endhighlight %}
-> 
+> This approach can also be combined with the "params class" pattern, if default values are necessary:
+
+{% highlight ruby %}
+    class example ( 
+      $parameter_one = hiera('example::parameter_one', $example::params::parameter_one),
+      $parameter_two = hiera('example::parameter_two', $example::params::parameter_two)
+    ) inherits example::params { # Inherit the params class to let the parameter list see its variables.
+      ...
+    }
+{% endhighlight %}
+
 > The drawbacks of this approach are:
 > 
 > * It requires 2.x users to install Hiera and `hiera-puppet`.
@@ -422,4 +422,3 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 > ### Avoid Class Parameters
 > 
 > Prior to Puppet 2.6, classes could only request data by reading arbitrary variables outside their local [scope][]. It is still possible to design classes like this. **However,** since dynamic scope was removed in Puppet 3, old-style classes can only read **top-scope or node-scope** variables, which makes them less flexible than they were in previous versions. Your best options for using old-style classes with Puppet 3 are to use an ENC to set your classes' variables, or to manually insert `$special_variable = hiera('class::special_variable')` calls at top scope in your site manifest.
-> 
