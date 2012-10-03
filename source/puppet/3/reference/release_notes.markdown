@@ -3,6 +3,20 @@ layout: default
 title: "Puppet 3.0 Release Notes"
 ---
 
+### Changes to Dependencies
+
+#### `puppet doc` only supported on Ruby 1.8.7 and 1.8.5
+
+Because of changes in Ruby 1.9 to the underlying RDoc library used with `puppet doc`, it is only supported on Ruby 1.8.7  and 1.8.5.  See [ticket # 11786](http://projects.puppetlabs.com/issues/11786) for more information.
+
+#### Rubygem support
+
+Puppet can now load extensions (faces) and plugins (types/providers/custom functions) from rubygems. See [ticket #7788](https://projects.puppetlabs.com/issues/7788) for more information.
+
+#### Functions must be called from ruby with an array (#15756)
+
+Previously, custom functions called from ruby (either from other functions or from templates) were supposed to be called using an array of arguments. However, this rule was not enforced and consequently many functions worked by chance. To ensure that functions work consistently, a check is now performed to enforce that arguments are passed via an array. See [ticket #15756](https://projects.puppetlabs.com/issues/15756) for more information.
+
 ### Deprecated and Removed Functions
 
 #### `String#lines` and `IO#lines` revert to standard Ruby semantics.
@@ -39,19 +53,11 @@ The `factsync` option, deprecated since puppet 0.25, has been removed in 3.0.0. 
 
 #### Puppet language no longer has dynamic scoping for variables
 
-<!-- TODOa I think this should be moved to lang_scope and linked to from here and maybe also from lang_variables-->
+<!-- TODO I think this should be moved to lang_scope and linked to from here and maybe also from lang_variables-->
 
-Dynamic scoping, which has been deprecated for the 2.7.x code, has been removed
-from this release of puppet. The most recent 2.7 release provides information
-about what variables were still being looked up in a dynamic manner. Before
-upgrading to this release, all manifests should be updated so that they no longer produce
-the dynamic lookup deprecation warnings.
+Dynamic scoping, which has been deprecated for the 2.7.x code, has been removed from this release of puppet. The most recent 2.7 release provides information about what variables were still being looked up in a dynamic manner. Before upgrading to this release, all manifests should be updated so that they no longer produce the dynamic lookup deprecation warnings.
 
-WARNING: Because deprecation warnings are only produced once during a run of the
-puppet master, you will need to restart the puppet master in order to be certain
-that your current manifests no longer produce the warnings. If you simply watch
-your logs and notice no warnings during a puppet agent run, you will not see a
-warning for a condition that still exists if it had already been logged during a previous run.
+WARNING: Because deprecation warnings are only produced once during a run of the puppet master, you will need to restart the puppet master in order to be certain that your current manifests no longer produce the warnings. If you simply watch your logs and notice no warnings during a puppet agent run, you will not see a warning for a condition that still exists if it had already been logged during a previous run.
 
 #### `ca_days` is removed
  The previously deprecated `ca_days` setting has been removed. `ca_ttl` should be used instead.
@@ -115,14 +121,6 @@ Unchanged:
   <!--TODO this also needs to be linked to from type.html-->
 
 Starting with Puppet 3.0, the Windows `:msi` package provider has been deprecated. The default and preferred Windows package provider is now `:windows`. This should have little impact on users unless they have manifests that specify `provider => msi`. In such cases, the line needs to be removed or replaced with `provider => windows`
-
-#### Functions must be called from ruby with an Array (#15756)
-
-Previously custom functions called from ruby (either from other functions or
-from templates) were supposed to be called with an Array of arguments. This was
-not enforced and so many functions worked by chance. There is now a check done
-to ensure that the arguments are being passed as an Array and so functions can
-work consistently.
 
 #### Built-in mongrel support and the servertype setting are removed
 
