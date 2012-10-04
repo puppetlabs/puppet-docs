@@ -39,7 +39,7 @@ module PuppetDocs
 
       def generate
         puts "Generating #{@name} reference for #{version}."
-        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppetdoc -m text -r #{@name}`
+        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc -m text -r #{@name}`
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
             require 'facter'
