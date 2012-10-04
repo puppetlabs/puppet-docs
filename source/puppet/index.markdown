@@ -110,7 +110,7 @@ Get Puppet up and running at your site.
 
 ### Puppet on Windows
 
-Manage Windows nodes side by side with your \*nix infrastructure, with Puppet Enterprise 2.5 and Puppet 2.7.
+Manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.7 and higher (including Puppet Enterprise ≥ 2.5).
 
 {% include windows.html %}
 
