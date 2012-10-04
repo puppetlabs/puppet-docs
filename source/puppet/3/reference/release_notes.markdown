@@ -3,125 +3,315 @@ layout: default
 title: "Puppet 3.0 Release Notes"
 ---
 
-### Changes to Dependencies
+[classes]: ./lang_classes.html
+<!-- TODO better hiera url -->
+[hiera]: https://github.com/puppetlabs/hiera
+[lang_scope]: ./lang_scope.html
+[qualified_vars]: ./lang_variables.html#accessing-out-of-scope-variables
+[auth_conf]: /guides/rest_auth_conf.html
 
-#### `puppet doc` only supported on Ruby 1.8.7 and 1.8.5
+Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should read [Backwards-Incompatible Changes][backwards] below** --- you may need to make changes to your configuration and manifests. 
 
-Because of changes in Ruby 1.9 to the underlying RDoc library used with `puppet doc`, it is only supported on Ruby 1.8.7  and 1.8.5.  See [ticket # 11786](http://projects.puppetlabs.com/issues/11786) for more information.
+Flagship Features in Puppet 3.x
+-----
 
-#### Rubygem support
+### Improved Version Numbering
 
-Puppet can now load extensions (faces) and plugins (types/providers/custom functions) from rubygems. See [ticket #7788](https://projects.puppetlabs.com/issues/7788) for more information.
+Puppet 3 marks the beginning of a new version scheme for Puppet releases. Beginning with 3.0.0, Puppet uses a strict three-field version number:
 
-#### Functions must be called from ruby with an array (#15756)
+* The leftmost segment of the version number must increase for major backwards-incompatible changes.
+* The middle segment may increase for backwards-compatible new functionality.
+* The rightmost segment may increase for bug fixes.
 
-Previously, custom functions called from ruby (either from other functions or from templates) were supposed to be called using an array of arguments. However, this rule was not enforced and consequently many functions worked by chance. To ensure that functions work consistently, a check is now performed to enforce that arguments are passed via an array. See [ticket #15756](https://projects.puppetlabs.com/issues/15756) for more information.
+### Major Speed Increase
 
-### Deprecated and Removed Functions
+Puppet 3 is faster than Puppet 2.6 and _significantly_ faster than Puppet 2.7. The exact change will depend on your site's configuration and Puppet code, but many 2.7 users have seen up to a 50% improvement. 
 
-#### `String#lines` and `IO#lines` revert to standard Ruby semantics.
+### Automatic Data Bindings for Class Parameters
 
-The earliest versions of Ruby supported by puppet lacked these methods. As a consequence, they were supported via emulation. However, this emulation used non-standard Ruby semantics. They have now been reverted to Ruby's norm. Specifically, whereas earlier `String#lines` and `IO#lines` behaved the same way as `split`, they now behave normally: they include the separator character (default `$/` == `\n`) in the output and include content where they previously wouldn't.
+When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details. 
 
-#### Puppet::Application: parse_config methods deprecated
+### Solaris Improvements 
 
-The following methods are now deprecated: #should_parse_config, #should_not_parse_config, and #should_parse_config? In previous versions of puppet, individual applications and faces built from the Puppet::Application class were responsible for determining whether or not the puppet config file should be parsed.  This logic is now part of the main puppet engine/framework and thus applications and faces need no longer specify this via the methods mentioned above.  The signatures still exist for now (but will print a deprecation warning) and will be removed in a future release.
+* Puppet now supports the ipkg format, and is able to "hold" packages (install without activating) on Solaris.
+* Zones support is fixed. 
+* Zpool support is significantly improved.
 
-#### Puppet::Util::CommandLine: no longer defaults to 'apply'
 
-In recent versions of puppet, if you called puppet without specifying a subcommand, it would default to 'apply'.  This behavior has been deprecated for some time and is now officially removed from 3.0.0.  A subcommand is now required for `puppet` and you will get a warning message if you attempt to run without one.
 
-#### Deprecated standalone commands
+Backwards-Incompatible Changes in 3.0
+-----
 
-The following standalone executables have been removed and replaced as indicated:
-Removed     Replacement
-`filebucket` --> `puppet filebucket`
-`pi` --> `puppet describe`
-`puppetdoc` --> `puppet doc`
-`ralsh` --> `puppet resource`
-`puppetca`  --> `puppet cert`
-`puppetd`  -->`puppet agent`
-`puppetmasterd`  -->  `puppet master`
-`puppetqd`  --> `puppet queue`
-`puppetrun`  --> `puppet kick`
+[backwards]: #backwards-incompatible-changes-in-30
 
-Note that all of the replacements have been available for at least one major version before 3.0.0.
+### Dependencies and Supported Systems
 
-#### factsync has been removed
+* Puppet 3 adds support for Ruby 1.9.3, and drops support for Ruby 1.8.5. (Puppet Labs is publishing Ruby 1.8.7 packages in its repositories to help users who are still on RHEL and CentOS 5.)
+    * Note that `puppet doc` is only supported on Ruby 1.8.7, due to 1.9's changes to the underlying RDoc library. See [ticket # 11786](http://projects.puppetlabs.com/issues/11786) for more information.
+* [Hiera][] is now a dependency of Puppet.
+* Puppet now requires Facter 1.6.2 or later.
+* Support for Mac OS X 10.4 has been dropped.
 
-The `factsync` option, deprecated since puppet 0.25, has been removed in 3.0.0. It's functionality has been entirely replaced with `pluginsync`. (See ticket #2277)
+### Puppet Language Changes
 
-#### Puppet language no longer has dynamic scoping for variables
+#### Dynamic Scope for Variables is Removed
 
-<!-- TODO I think this should be moved to lang_scope and linked to from here and maybe also from lang_variables-->
+Dynamic scoping of variables, which was deprecated in Puppet 2.7, has been removed. See [Language: Scope][lang_scope] for more details. The most recent 2.7 release logs warnings about any variables in your code that are still being looked up dynamically. 
 
-Dynamic scoping, which has been deprecated for the 2.7.x code, has been removed from this release of puppet. The most recent 2.7 release provides information about what variables were still being looked up in a dynamic manner. Before upgrading to this release, all manifests should be updated so that they no longer produce the dynamic lookup deprecation warnings.
+> **Upgrade note:** Before upgrading from Puppet 2.x, you should do the following: 
+> 
+> * Restart your puppet master --- this is necessary because deprecation warnings are only produced once per run, and warnings that were already logged may not appear again in your logs until a restart. 
+> * Allow all of your nodes to check in and retrieve a catalog.
+> * Examine your puppet master's logs for dynamic scope warnings.
+> * Edit any manifests referenced in the warnings to remove the dynamic lookup behavior. Use [fully qualified variable names][qualified_vars] where necessary, and move makeshift data hierarchies out of your manifests and into [Hiera][].
 
-WARNING: Because deprecation warnings are only produced once during a run of the puppet master, you will need to restart the puppet master in order to be certain that your current manifests no longer produce the warnings. If you simply watch your logs and notice no warnings during a puppet agent run, you will not see a warning for a condition that still exists if it had already been logged during a previous run.
 
-#### `ca_days` is removed
- The previously deprecated `ca_days` setting has been removed. `ca_ttl` should be used instead.
- 
- #### `cacrl` can no longer be false
-  The ability to set the `cacrl` setting to false has been removed. Puppet will now just ignore the CRL if it is missing.
+#### Parameter lists in class and defined type **definitions** must include a dollar sign (`$`) prefix for each parameter. In other words, parameters must be styled like variables. Non-variable-like parameter lists have been deprecated since at least Puppet 0.23.0. 
+
+  The syntax for class and defined resource **declarations** is unchanged.
+
+  Right:
   
- #### Downcasing of facts no longer supported
-  - `downcasefact` and `downcase_if_necessary` have been removed as downcasing of facts is no longer supported.
+      define vhost ($port = 80, $vhostdir) { ... }
   
-  #### `recurse` is removed
-  The ability to set the recursion depth with `recurse` has been removed. Instead, `recurselimit` should be used.
+  Wrong:
   
-  #### `path` is removed
-`path` has been removed as a valid parameter for the mount point. Instead, `name` should be used.
+      define vhost (port = 80, vhostdir) { ... }
   
-  #### `$` now required for prototypes
-  Puppet's grammar has been updated so that a dollar sign (`$`) is now required for prototypes.	When listing parameters in a defined type or class definition, each parameter must be formatted according to the rules for a normal variable and must include a `$` prefix. Note that this has no effect on declaring classes or instances of a defined type.
+  Unchanged:
+  
+      vhost {'web01.example.com':
+        port     => 8080,
+        vhostdir => '/etc/apache2/conf.d',
+      }
 
-Right:
+### Deprecated Commands Are Removed
 
-	`define vhost ($port = 80, $vhostdir) { ... }`
+The legacy standalone executables, which were replaced by subcommands in Puppet 2.6, have been removed. Additionally, running `puppet` without a subcommand no longer defaults to `puppet apply`.
 
-Wrong:
 
-	`define vhost (port = 80, vhostdir) { ... }`
+Pre-2.6       | Post-2.6
+--------------|--------------
+puppetmasterd | puppet master
+puppetd       | puppet agent
+puppet        | puppet apply
+puppetca      | puppet cert
+ralsh         | puppet resource
+puppetrun     | puppet kick
+puppetqd      | puppet queue
+filebucket    | puppet filebucket
+puppetdoc     | puppet doc
+pi            | puppet describe
 
-Unchanged:
+> **Upgrade note:** Examine your Puppet init scripts, the configuration of the puppet master's web server, and any wrapper scripts you may be using, and ensure that they are using the new subcommands instead of the legacy standalone commands. 
 
-	`vhost {'web01.example.com':
-	port 	=> 8080,
-	vhostdir => '/etc/apache2/conf.d',
-	}`
-	
-  #### `--apply` option is removed
- The `--apply` option has been removed; `puppet apply --catalog` should be used instead of `puppet --apply catalog`.
-  
-  #### `path` is removed
- The `reportserver` setting has been removed and replaced with `report_server`.
-  
-  #### `reportserver` is removed
- The `set_default_format` method has been removed, `render_as` should be used instead.
-  
-  #### `path` is removed
- The `mkmodelmethods` method has been removed for provider objects, `mk_resource_methods` should be used instead.
-  
-  #### `mkmodelmethods` is removed
- There is now a hard dependency on Facter 1.5.5 or later.
-  
-  #### `type` is removed
- The `type` attribute for packages has been removed, `provider` should be used instead
-  
-  #### Numerous methods for `type` objects are removed
- The following methods for type objects have been removed: `states`, `newstate`, `[ ]`, `[ ]=`, `alias`, `clear`, `create`, `delete`, `each`, and `has_key?`.
-  
-  #### `check` is removed
- The `check` attribute for `type` objects has been removed, `aduit` should be used in it's place.
-  
-  #### MSI package provider is deprecated
-  
-  <!--TODO this also needs to be linked to from type.html-->
+### Changed Application Behavior
 
-Starting with Puppet 3.0, the Windows `:msi` package provider has been deprecated. The default and preferred Windows package provider is now `:windows`. This should have little impact on users unless they have manifests that specify `provider => msi`. In such cases, the line needs to be removed or replaced with `provider => windows`
+#### Puppet Apply's `--apply` Option Is Removed
 
-#### Built-in mongrel support and the servertype setting are removed
+The `--apply` option has been removed. It was replaced by `--catalog`. 
 
-With the discontinuation of built-in Mongrel support, the `servertype` setting is no longer needed. It only existed to pick between Mongrel and webrick.
+#### Console Output Formatting Changes
+
+The format of messages displayed to the console has changed slightly, potentially leading to scripts that watch these messages breaking. Additionally, we now use STDERR appropriately on \*nix platforms.
+
+> **Upgrade Note:** If you scrape Puppet's console output, revise the relevant scripts.
+
+This does not change the formatting of messages logged through other channels (eg: syslog, files), which remain as they were before. [See bug #13559 for details](https://projects.puppetlabs.com/issues/13559)
+
+
+### Removed and Modified Settings
+
+The following settings have been removed: 
+
+* `factsync` (Deprecated since Puppet 0.25 and replaced with `pluginsync`; see [ticket #2277](http://projects.puppetlabs.com/issues/2277))
+* `ca_days` (Replaced with `ca_ttl`)
+* `servertype` (No longer needed, due to [removal of built-in Mongrel support](#special-case-mongrel-support-is-removed))
+* `downcasefact` (Long-since deprecated)
+* `reportserver` (Long-since deprecated; replaced with `report_server`)
+
+
+The following settings now behave differently:
+
+* `pluginsync` is now enabled by default
+* `cacrl` can no longer be set to `false`. Instead, Puppet will now ignore the CRL if the file in this setting is not present on disk.
+
+### Puppet Master Web Server Changes
+
+#### Rack Configuration Is Changed
+
+Puppet master's `config.ru` file has changed format slightly. Previously the config.ru used `Puppet::Application` to start the puppet master:
+
+    $0 = "master"
+    
+    ARGV << "--rack"
+    ARGV << "--confdir" << "/etc/puppet"
+    require 'puppet/application/master'
+    run Puppet::Application[:master].run
+
+This needs to be changed to `Puppet::Util::CommandLine`
+
+    $0 = "master"
+    
+    ARGV << "--rack"
+    ARGV << "--confdir" << "/etc/puppet"
+    require 'puppet/util/command_line'
+    run Puppet::Util::CommandLine.new.execute
+
+> **Upgrade note:** If you run puppet master via a Rack server like Passenger, you **must** change the `config.ru` file as described above.
+
+#### Special-Case Mongrel Support Is Removed
+
+Previously, the puppet master had special-case support for running under Mongrel. Since Puppet's standard Rack support can also be used with Mongrel, this redundant code has been removed. 
+
+> **Upgrade note:** If you are using Mongrel to run your puppet master, re-configure it to run Puppet as a standard Rack application.
+
+### Changes to Core Resource Types
+
+#### File
+
+* The `recurse` parameter can no longer set recursion depth, and must be set to `true`, `false`, or `remote`. Use the `recurselimit` parameter to set recursion depth. (Setting depth with the `recurse` parameter has been deprecated since at least Puppet 2.6.8.)
+  
+#### Mount
+
+* The `path` parameter has been removed. It was deprecated and replaced by `name` some time before Puppet 0.25.0.
+
+#### Package
+
+* The `type` parameter has been removed. It was deprecated and replaced by `provider` some time before Puppet 0.25.0.
+* The `msi` provider has been deprecated in favor of the more versatile `windows` provider. 
+* The `install_options` parameter for Windows packages now accepts an array of mixed strings and hashes; however, it remains backwards-compatible with the 2.7 single hash format.
+* A new `uninstall_options` parameter was added for Windows packages. It uses the same semantics as `install_options`.
+
+#### Exec
+
+* The `logoutput` parameter now defaults to `on_failure`.
+* Due to misleading values, the `HOME` and `USER` environment variables are now unset when running commands. 
+
+#### Metaparameters
+
+* The `check` metaparameter has been removed. It was deprecated and replaced by `aduit` in Puppet 2.6.0.
+
+
+### Changes to REST API
+
+#### `auth no` in `auth.conf` Is Now the Same as `auth any'
+
+Previously, `auth no` in [auth.conf][auth_conf] would reject connections with valid certificates. This was confusing, and the behavior has been removed; `auth no` now allows any kind of connection, same as `auth any`.
+
+### New `allow_ip` Directive in `auth.conf`; IP Addresses Disallowed in `allow` Directive
+
+To allow hosts based on IP address, use `allow_ip`. It functions exactly like `allow` in all respects except that it does not support backreferences. The `allow` directive now assumes that the string is not an IP address.
+
+#### "Resource Type" API Has Changed
+
+The API for querying resource types has changed to more closely match standard Puppet terminology.  This is most likely to be visible to any external tools that were using the REST API to query for information about resource types. 
+
+* You can now add a `kind` option to your request, which will allow you to filter results by one of the following kinds of resource types: `class`, `node`, `defined_type`.
+* The API would previously return a field called `type` for each result; this has been changed to `kind`.
+* The API would previously return the value `hostclass` for the `type` field for classes; this has been changed to `class`.
+* The API would previously return the value `definition` for the `type` field for classes; this has been changed to `defined_type`.
+* The API would previously return a field called `arguments` for any result that contained a parameter list; this has been changed to `parameters`.
+
+An example of the new output:
+
+    [
+      {
+        "line": 1,
+        "file": "/home/cprice/work/puppet/test/master/conf/modules/resource_type_foo/manifests/init.pp",
+        "name": "resource_type_foo",
+        "kind": "class"
+      },
+      {
+        "line": 1,
+        "file": "/home/cprice/work/puppet/test/master/conf/modules/resource_type_foo/manifests/my_parameterized_class.pp",
+        "parameters": {
+          "param1": null,
+          "param2": "\"default2\""
+        },
+        "name": "resource_type_foo::my_parameterized_class",
+        "kind": "class"
+      },
+      {
+        "line": 1,
+        "file": "/home/cprice/work/puppet/test/master/conf/modules/resource_type_foo/manifests/my_defined_type.pp",
+        "parameters": {
+          "param1": null,
+          "param2": "\"default2\""
+        },
+        "name": "resource_type_foo::my_defined_type",
+        "kind": "defined_type"
+      },
+      {
+        "line": 1,
+        "file": "/home/cprice/work/puppet/test/master/conf/modules/resource_type_foo/manifests/my_node.pp",
+        "name": "my_node",
+        "kind": "node"
+      }
+    ]
+
+#### XML-RPC support is entirely removed
+
+XML-RPC support has been removed entirely, in favor of the REST API introduced in 2.6. XML-RPC support has been deprecated since 2.6.0.
+
+
+
+### Changes to Ruby API, Including Type and Provider Interface
+
+The following hard changes have been made to Puppet's internal Ruby API:
+
+* **Helper code:** `String#lines` and `IO#lines` revert to standard Ruby semantics. Puppet used to emulate these methods to accomodate ancient Ruby versions, and its emulation was slightly inaccurate. We've stopped emulating them, so they now include the separator character (`$/`, default value `\n`) in the output and include content where they previously wouldn't.
+* **Functions:** Puppet functions called from Ruby code (templates, other functions, etc.) must be called with an **array of arguments.** Puppet has always expected this, but was not enforcing it. See [ticket #15756](https://projects.puppetlabs.com/issues/15756) for more information.
+* **Faces:** The `set_default_format` method has been removed. It had been deprecated and replaced by `render_as`.
+* **Resource types:** The following methods for type objects have been removed: `states`, `newstate`, `[ ]`, `[ ]=`, `alias`, `clear`, `create`, `delete`, `each`, and `has_key?`.
+* **Providers:** The `mkmodelmethods` method for provider objects has been removed. It was replaced with `mk_resource_methods`.
+* **Providers:** The `LANG`, `LC_*`, and `HOME` environment variables are now unset when providers and other code execute external commands.
+
+The following Ruby methods are now deprecated:
+
+* **Applications:** The `Puppet::Application` class's `#should_parse_config`, `#should_not_parse_config`, and `#should_parse_config?` methods are now deprecated, and will be removed in a future release. They are no longer necessary for individual applications and faces, since Puppet now automatically determines when the config file should be re-parsed.
+
+
+### Changes to Agent Lockfile Behavior
+
+Puppet agent now uses two lockfiles instead of one:
+
+* The run-in-progress lockfile (configured with the `agent_catalog_run_lockfile` setting) is present if an agent catalog run is in progress. It contains the PID of the currently running process. 
+* The disabled lockfile (configured with the `agent_disabled_lockfile` setting) is present if the agent was disabled by an administrator. The file is a JSON hash which **may** contain a `disabled_message` key, whose value should be a string with an explanatory message from the administrator. 
+
+### Non-Administrator Windows Data Directory Is Changed
+
+When running as a non-privileged user (i.e. not an Administrator), the location of Puppet's data directory has changed. Previously, it was in `~/.puppet`, but it is now located in the Local Application Data directory following Microsoft best-practices for per-user, non-roaming data. The location of the directory is contained in the `%LOCALAPPDATA%` environment variable, which on Windows 2003 and earlier is: `%USERPROFILE%\Local Settings\Application Data` On Windows Vista and later: `%USERPROFILE%\AppData\Local`
+
+
+New Backwards-Compatible Features in 3.0
+-----
+
+### Automatic Data Bindings for Class Parameters
+
+When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details. 
+
+### Solaris Improvements 
+
+* Puppet now supports the ipkg format, and is able to "hold" packages (install without activating) on Solaris.
+* Zones support is fixed. 
+* Zpool support is significantly improved.
+
+
+### Rubygem Extension Support
+
+Puppet can now load extensions (including subcommands) and plugins (custom types/providers/functions) from gems. See [ticket #7788](https://projects.puppetlabs.com/issues/7788) for more information.
+
+### Puppet Agent Is More Efficient in Daemon Mode
+
+Puppet agent now forks a child process to run each catalog. This allows it to return memory to system more efficiently when running in daemon mode, and should reduce resource consumption for users who don't run puppet agent from cron.
+
+### `puppet parser validate` Will Read From STDIN
+
+Piped content to `puppet parser validate` will now be read and validated, rather than ignoring it and requiring a file on disk.
+
+### The HTTP Report Processor Now Supports HTTPS
+
+Use an `https://` URL in the `report_server` setting to submit reports to an HTTPS server.
+
+### The `include` Function Now Accepts Arrays
