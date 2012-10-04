@@ -66,7 +66,9 @@ Dynamic scoping of variables, which was deprecated in Puppet 2.7, has been remov
 > * Edit any manifests referenced in the warnings to remove the dynamic lookup behavior. Use [fully qualified variable names][qualified_vars] where necessary, and move makeshift data hierarchies out of your manifests and into [Hiera][].
 
 
-#### Parameter lists in class and defined type **definitions** must include a dollar sign (`$`) prefix for each parameter. In other words, parameters must be styled like variables. Non-variable-like parameter lists have been deprecated since at least Puppet 0.23.0. 
+#### Parameters In Definitions Must Be Variables
+
+Parameter lists in class and defined type **definitions** must include a dollar sign (`$`) prefix for each parameter. In other words, parameters must be styled like variables. Non-variable-like parameter lists have been deprecated since at least Puppet 0.23.0. 
 
   The syntax for class and defined resource **declarations** is unchanged.
 
@@ -140,23 +142,30 @@ The following settings now behave differently:
 
 #### Rack Configuration Is Changed
 
-Puppet master's `config.ru` file has changed format slightly. Previously the config.ru used `Puppet::Application` to start the puppet master:
+Puppet master's `config.ru` file has changed slightly; see `ext/rack/files/config.ru` in the Puppet source code for an updated example. The new configuration:
 
-    $0 = "master"
+* Should now require `'puppet/util/command_line'` instead of `'puppet/application/master'`.
+* Should now run `Puppet::Util::CommandLine.new.execute` instead of `Puppet::Application[:master].run`.
+* Should explicitly set the `--confdir` option (to avoid reading from `~/.puppet/puppet.conf`).
+
+{% highlight diff %}
+    diff --git a/ext/rack/files/config.ru b/ext/rack/files/config.ru
+    index f9c492d..c825d22 100644
+    --- a/ext/rack/files/config.ru
+    +++ b/ext/rack/files/config.ru
+    @@ -10,7 +10,25 @@ $0 = "master"
+     # ARGV << "--debug"
+     
+     ARGV << "--rack"
+    +ARGV << "--confdir" << "/etc/puppet"
+    +
+    -require 'puppet/application/master'
+    +require 'puppet/util/command_line'
     
-    ARGV << "--rack"
-    ARGV << "--confdir" << "/etc/puppet"
-    require 'puppet/application/master'
-    run Puppet::Application[:master].run
-
-This needs to be changed to `Puppet::Util::CommandLine`
-
-    $0 = "master"
-    
-    ARGV << "--rack"
-    ARGV << "--confdir" << "/etc/puppet"
-    require 'puppet/util/command_line'
-    run Puppet::Util::CommandLine.new.execute
+    -run Puppet::Application[:master].run
+    +run Puppet::Util::CommandLine.new.execute
+    +
+{% endhighlight %}
 
 > **Upgrade note:** If you run puppet master via a Rack server like Passenger, you **must** change the `config.ru` file as described above.
 
@@ -190,7 +199,7 @@ Previously, the puppet master had special-case support for running under Mongrel
 
 #### Metaparameters
 
-* The `check` metaparameter has been removed. It was deprecated and replaced by `aduit` in Puppet 2.6.0.
+* The `check` metaparameter has been removed. It was deprecated and replaced by `audit` in Puppet 2.6.0.
 
 
 ### Changes to REST API
@@ -199,7 +208,7 @@ Previously, the puppet master had special-case support for running under Mongrel
 
 Previously, `auth no` in [auth.conf][auth_conf] would reject connections with valid certificates. This was confusing, and the behavior has been removed; `auth no` now allows any kind of connection, same as `auth any`.
 
-### New `allow_ip` Directive in `auth.conf`; IP Addresses Disallowed in `allow` Directive
+#### New `allow_ip` Directive in `auth.conf`; IP Addresses Disallowed in `allow` Directive
 
 To allow hosts based on IP address, use `allow_ip`. It functions exactly like `allow` in all respects except that it does not support backreferences. The `allow` directive now assumes that the string is not an IP address.
 

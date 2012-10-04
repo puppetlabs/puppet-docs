@@ -73,7 +73,10 @@ You can cause a class to act like it's contained in another class by "holding it
 
 {% highlight ruby %}
     class ntp {
-      include ntp::service
+      include ntp::conf_file
+      
+      # anchor is a special do-nothing resource type from the stdlib module.
+      anchor {'ntp_first':} -> Class['ntp::conf_file'] -> anchor {'ntp_last':}
       
       package {'ntp':
         ...
@@ -82,7 +85,6 @@ You can cause a class to act like it's contained in another class by "holding it
       service {'ntp':
         ...
         subscribe => Class['ntp::conf_file'], 
-        # Remember that 'subscribe' is effectively 'require, and also...'
       }
     }
 {% endhighlight %}

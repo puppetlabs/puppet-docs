@@ -131,7 +131,7 @@ Classes should be stored in their module's `manifests/` directory as one class p
 > 
 > * [The site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent. 
 > * [Imported manifests][import]. If you do so, you must [import][] the file containing the class before you may declare it.
-> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class is. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an [import][] statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is very much not recommended. 
+> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an [import][] statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is **very much** not recommended. 
 
 ### Containment
 
@@ -157,16 +157,16 @@ Inheritance causes three things to happen:
 
 > #### Aside: When to Inherit
 >
-> Class inheritance should be used sparingly, generally only in the following situations:
+> Class inheritance should be used **very sparingly,** generally only in the following situations:
 > 
+> * When you need to override resource attributes in the base class.
 > * To let a "params class" provide default values for another class's parameters:
 > 
 >       class example ($my_param = $example::params::myparam) inherits example::params { ... }
 > 
->   This pattern works by guaranteeing that the params class will be evaluated before Puppet attempts to evaluate the main class's parameter list. It is especially useful when you want your default values to change based on system facts and other data.
-> * When you need to override resource attributes in the base class.
+>   This pattern works by guaranteeing that the params class is evaluated before Puppet attempts to evaluate the main class's parameter list. It is especially useful when you want your default values to change based on system facts and other data, since it lets you isolate and encapsulate all that conditional logic.
 > 
-> In nearly all other cases, inheritance is unnecessary complexity. If you need some class's resources declared before proceeding further, you can [include](#declaring-a-class-with-include) it inside another class's definition. If you need to read internal data from another class, you should generally use [qualified variable names][qualified_var] instead of assigning parent scopes. If you need to use an "anti-class" pattern (e.g. to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.
+> **In nearly all other cases, inheritance is unnecessary complexity.** If you need some class's resources declared before proceeding further, you can [include](#declaring-a-class-with-include) it inside another class's definition. If you need to read internal data from another class, you should generally use [qualified variable names][qualified_var] instead of assigning parent scopes. If you need to use an "anti-class" pattern (e.g. to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.
 > 
 > Note also that you can [use resource collectors to override resource attributes][collector_override] in unrelated classes, although this feature should be handled with care.
 
@@ -229,7 +229,7 @@ Declaring Classes
 
 **Declaring** a class in a Puppet manifest adds all of its resources to the catalog. You can declare classes in [node definitions][node], at top scope in the [site manifest][sitedotpp], and in other classes or [defined types][definedtype]. Declaring classes isn't the only way to add them to the catalog; you can also [assign classes to nodes with an ENC](#assigning-classes-from-an-enc).
 
-Classes are singletons --- although a given class may have very different behavior depending on how it is declared, the resources in it will only be evaluated **once per compilation.** 
+Classes are singletons --- although a given class may have very different behavior depending on how its parameters are set, the resources in it will only be evaluated **once per compilation.** 
 
 ### Include-Like vs. Resource-Like
 
@@ -243,13 +243,15 @@ Puppet has two main ways to declare classes: include-like and resource-like.
 
 The `include`, `require`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node may have more than one role.
 
-Include-like behavior relies on [external data][external_data] and defaults for class parameter values. When a class is declared, Puppet will try the following for each of its parameters:
+Include-like behavior relies on [external data][external_data] and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:
 
 1. Request a value from [the external data source][external_data], using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
 2. Use the default value. 
 3. Fail compilation with an error if no value can be found.
 
-This allows the external data source to act like cascading configuration files for all of your classes. 
+> **Aside: Best Practices**
+>
+> **Most** users in **most** situations should use include-like declarations and set parameter values in their external data. However, compatibility with earlier versions of Puppet may require compromises. See [Aside: Writing for Multiple Puppet Versions][aside_history] below for details.
 
 > **Version Note:** Automatic external parameter lookup is a new feature in Puppet 3. Puppet 2.7 and earlier could only use default values or override values from resource-like declarations. [See below for more details.][aside_history]
 
@@ -267,6 +269,9 @@ Resource-like class declarations require that you **only declare a given class o
 > **Aside: Why Do Resource-Like Declarations Have to Be Unique?**
 >
 > This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and parse-order dependent.
+> 
+> This was the original reason for adding external data bindings to include-like declarations: since external data is set **before** compile-time and has a **fixed hierarchy,** the compiler can safely rely on it without risk of conflicts. 
+
 
 ### Using `include`
 
@@ -351,7 +356,7 @@ Resource-like declarations look like [normal resource declarations][resource_dec
     class {'base::linux':}
 {% endhighlight %}
 
-Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters may be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any attributes not specified will follow the normal external/default/fail lookup path.
+Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters may be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
 
 In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter:
 
