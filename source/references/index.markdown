@@ -10,10 +10,16 @@ Puppet generated references are available for a wide range of versions.
 * [Latest Version](./latest/)
 * [Stable Version](./stable/)
 
-Note that the "latest" and "stable" links currently both point to the latest version.
+> **Note:** the "latest" and "stable" links currently **both** point to the latest version. This is a bug, but we don't know when we can fix it.
 
 Available Versions
 ------------------
+
+### Puppet 3.x
+
+* [3.0.0](./3.0.0/)
+
+### Puppet 2.7.x
 
 * [2.7.19](./2.7.19/)
 * [2.7.18](./2.7.18/)
@@ -32,6 +38,9 @@ Available Versions
 * [2.7.3](./2.7.3/)
 * [2.7.1](./2.7.1/)
 * [2.7.0](./2.7.0/)
+
+### Puppet 2.6.x
+
 * [2.6.17](./2.6.17/)
 * [2.6.16](./2.6.16/)
 * [2.6.15](./2.6.15/)
@@ -50,12 +59,18 @@ Available Versions
 * [2.6.2](./2.6.2/)
 * [2.6.1](./2.6.1/)
 * [2.6.0](./2.6.0/)
+
+### Puppet 0.25.x
+
 * [0.25.5](./0.25.5/)
 * [0.25.4](./0.25.4/)
 * [0.25.3](./0.25.3/)
 * [0.25.2](./0.25.2/)
 * [0.25.1](./0.25.1/)
 * [0.25.0](./0.25.0/)
+
+### Puppet 0.24.x
+
 * [0.24.9](./0.24.9/)
 * [0.24.8](./0.24.8/)
 * [0.24.7](./0.24.7/)
