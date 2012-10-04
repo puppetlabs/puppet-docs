@@ -13,20 +13,22 @@ This guide covers the major tools that comprise Puppet.
 Single binary
 -------------
 
-From version 2.6.0 and onwards all the Puppet functions are also available via a single Puppet binary, in the style of git.
+**Starting with Puppet 2.6,** Puppet uses a single `puppet` binary with multiple subcommands, in the style of Git. Each of the pre-2.6 commands corresponds directly to one of the new subcommands. 
 
-List of binary changes:
+> **Note:** As of Puppet 3, the old standalone commands have been removed completely. Note also that `puppet` without any subcommand will no longer default to puppet apply.
 
-* puppetmasterd &rarr; puppet master
-* puppetd &rarr; puppet agent
-* puppet &rarr; puppet apply
-* puppetca &rarr; puppet cert
-* ralsh &rarr; puppet resource
-* puppetrun &rarr; puppet kick
-* puppetqd &rarr; puppet queue
-* filebucket &rarr; puppet filebucket
-* puppetdoc &rarr; puppet doc
-* pi &rarr; puppet describe
+Pre-2.6       | Post-2.6
+--------------|--------------
+puppetmasterd | puppet master
+puppetd       | puppet agent
+puppet        | puppet apply
+puppetca      | puppet cert
+ralsh         | puppet resource
+puppetrun     | puppet kick
+puppetqd      | puppet queue
+filebucket    | puppet filebucket
+puppetdoc     | puppet doc
+pi            | puppet describe
 
 This also results in a change in the puppet.conf configuration file. The sections, previously things like \[puppetd\], now should be renamed to match the new binary names. So \[puppetd\] becomes \[agent\]. You will be prompted to do this when you start Puppet. A log message will be generated for each section that needs to be renamed. This is merely a warning – existing configuration file will work unchanged.
 

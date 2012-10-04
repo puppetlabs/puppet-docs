@@ -152,6 +152,12 @@ The following is a list of the default ACLs used by Puppet:
     method find
     allow $1
 
+    # allow nodes to retrieve their own node definition
+
+    path ~ ^/node/([^/]+)$
+    method find
+    allow $1
+
     # Allow authenticated nodes to access any file services --- in practice, this results in fileserver.conf being consulted:
 
     path /file

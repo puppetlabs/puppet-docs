@@ -14,7 +14,7 @@ Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interest
 
 **[See Installing Puppet](/guides/installation.html)** for more details about the packages available for your platform(s).
 
-Puppet 2.6 and 2.7 can run on the following platforms: 
+Puppet 2.6, 2.7, and 3 can run on the following platforms: 
 
 Linux
 -----
@@ -40,7 +40,7 @@ BSD
 Other Unix
 ----------
 
-- Mac OS X, version 10.4 (Tiger) and higher
+- Mac OS X, version 10.5 (Leopard) and higher (Puppet 2.7 and earlier also support 10.4)
 - Oracle Solaris, version 10 and higher
 - AIX, version 5.3 and higher
 - HP-UX
@@ -62,7 +62,7 @@ Puppet requires [Ruby](http://www.ruby-lang.org/en/). Certain versions of Ruby w
 
 Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
 -------------|------------|------------|-----------
-1.8.5\*      | Supported  | Supported  | Supported
+1.8.5\*      | Supported  | Supported  | No
 1.8.7        | Supported  | Supported  | Supported
 1.9.3        | No         | No         | Supported
 1.9.2        | No         | No         | No

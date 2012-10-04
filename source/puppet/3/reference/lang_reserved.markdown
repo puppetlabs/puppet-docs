@@ -30,7 +30,8 @@ Several words in the Puppet language are **reserved**. This means they:
 * Cannot be used as names for custom functions.
 * Cannot be used as names for classes.
 * Cannot be used as names for custom resource types or defined resource types.
-* Cannot be used as names of resource attributes for custom types (e.g., use "onlyif" instead of "if")
+
+> **Note:** As of Puppet 3, reserved words MAY be used as names for attributes in custom resource types. This is a change from the behavior of 2.7 and earlier.
 
 The following words are reserved: 
 
@@ -49,7 +50,8 @@ The following words are reserved:
 * `node` --- language keyword
 * `or` --- expression operator
 * `true` --- boolean value
-* `undef` --- special value <!-- Add "unless" for 3.0 -->
+* `undef` --- special value 
+* `unless` --- language keyword
 
 Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 
