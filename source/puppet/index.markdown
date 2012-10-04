@@ -33,41 +33,22 @@ Learn to use Puppet! New users: start here.
 Reference Shelf
 ---------------
 
+### [Puppet 3 Reference Manual](/puppet/3/reference)
+
+A concise reference to Puppet 3's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+
+- [Overview](/puppet/3/reference)
+- [Language](/puppet/3/reference/lang_summary.html)
+- [Modules](/puppet/3/reference/modules_fundamentals.html)
+
+
 ### [Puppet 2.7 Reference Manual](/puppet/2.7/reference)
 
 A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-- [Reference manual table of contents](/puppet/2.7/reference)
-- [Language Reference](/puppet/2.7/reference/lang_summary.html) --- A complete reference to the Puppet language. 
-    - [Visual Index](/puppet/2.7/reference/lang_visual_index.html)
-    - [Summary](/puppet/2.7/reference/lang_summary.html)
-    - [Reserved Words and Acceptable Names](/puppet/2.7/reference/lang_reserved.html)
-    - [Resources](/puppet/2.7/reference/lang_resources.html)
-    - [Relationships and Ordering](/puppet/2.7/reference/lang_relationships.html)
-    - [Resource Defaults](/puppet/2.7/reference/lang_defaults.html)
-    - [Variables](/puppet/2.7/reference/lang_variables.html)
-    - [Scope](/puppet/2.7/reference/lang_scope.html)
-    - [Conditional Statements](/puppet/2.7/reference/lang_conditional.html)
-    - [Expressions](/puppet/2.7/reference/lang_expressions.html)
-    - [Functions](/puppet/2.7/reference/lang_functions.html)
-    - [Classes](/puppet/2.7/reference/lang_classes.html)
-    - [Defined Types](/puppet/2.7/reference/lang_defined_types.html)
-    - [Containment](/puppet/2.7/reference/lang_containment.html)
-    - [Namespaces and Autoloading](/puppet/2.7/reference/lang_namespaces.html)
-    - [Resource Collectors](/puppet/2.7/reference/lang_collectors.html)
-    - [Node definitions](/puppet/2.7/reference/lang_node_definitions.html)
-    - [Data Types](/puppet/2.7/reference/lang_datatypes.html)
-    - [Comments](/puppet/2.7/reference/lang_comments.html)
-    - [Virtual Resources](/puppet/2.7/reference/lang_virtual.html)
-    - [Exported Resources](/puppet/2.7/reference/lang_exported.html)
-    - [Tags](/puppet/2.7/reference/lang_tags.html)
-    - [Run Stages](/puppet/2.7/reference/lang_run_stages.html)
-    - [Importing Manifest Files](/puppet/2.7/reference/lang_import.html)
-- [Module Reference](/puppet/2.7/reference/modules_fundamentals.html)
-    - [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html)
-    - [Plugins in Modules](/guides/plugins_in_modules.html)
-    - [Installing Modules](/puppet/2.7/reference/modules_installing.html)
-    - [Publishing Modules on the Puppet Forge](/puppet/2.7/reference/modules_publishing.html)
+- [Table of Contents](/puppet/2.7/reference)
+- [Language](/puppet/2.7/reference/lang_summary.html) --- A complete reference to the Puppet language. 
+- [Modules](/puppet/2.7/reference/modules_fundamentals.html)
 
 
 ### Miscellaneous References
