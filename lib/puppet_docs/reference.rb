@@ -51,6 +51,7 @@ module PuppetDocs
               fqdn = hostname
             end
             content.gsub!(fqdn.downcase, "(the system's fully qualified domain name)")
+            content.gsub!(domain.downcase, "(the system's own domain)")
           end
 
           setup_destination!
