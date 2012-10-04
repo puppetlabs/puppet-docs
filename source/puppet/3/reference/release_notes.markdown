@@ -190,7 +190,7 @@ Previously, the puppet master had special-case support for running under Mongrel
 
 #### Metaparameters
 
-* The `check` metaparameter has been removed. It was deprecated and replaced by `aduit` in Puppet 2.6.0.
+* The `check` metaparameter has been removed. It was deprecated and replaced by `audit` in Puppet 2.6.0.
 
 
 ### Changes to REST API
