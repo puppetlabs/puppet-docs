@@ -59,7 +59,7 @@ System Requirements
 
 ### \*nix Server with JDK 1.6+
 
-#### Easy Install: RHEL, CentOS, Debian, Ubuntu, or Fedora
+#### Standard Install: RHEL, CentOS, Debian, Ubuntu, or Fedora
 
 Puppet Labs provides packages for PuppetDB which simplify setup of its SSL certificates and init scripts. These packages are available for the following operating systems:
 
@@ -70,7 +70,7 @@ Puppet Labs provides packages for PuppetDB which simplify setup of its SSL certi
 
 [See here for installation instructions.][install]
 
-#### Advanced Install: Any Unix-like OS
+#### Custom Install: Any Unix-like OS
 
 If you're willing to do some manual configuration, PuppetDB can run on any Unix-like OS with JDK 1.6 or higher, including:
 

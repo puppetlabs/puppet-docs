@@ -28,7 +28,7 @@ Redhat-like (PE)            | `/etc/sysconfig/pe-puppetdb`
 Debian/Ubuntu (open source) | `/etc/default/puppetdb`
 Debian/Ubuntu (PE)          | `/etc/default/pe-puppetb`
 
-You can change the following settings in this file:
+ In this file, you can change the following settings:
 
 `JAVA_BIN`
 
@@ -40,7 +40,7 @@ You can change the following settings in this file:
 
 `USER`
 
-: The user PuppetDB should run as.
+: The user PuppetDB should be running as.
 
 `INSTALL_DIR`
 
@@ -52,9 +52,9 @@ You can change the following settings in this file:
 
 #### Configuring the Java Heap Size
 
-To change the JVM heap size for PuppetDB, edit the [init script config file](#init-script-config-file) and set a new value for the `-Xmx` flag in the `JAVA_ARGS` variable.
+To change the JVM heap size for PuppetDB, edit the [init script config file](#init-script-config-file) by setting a new value for the `-Xmx` flag in the `JAVA_ARGS` variable.
 
-To cap PuppetDB at 192MB of memory:
+For example, to cap PuppetDB at 192MB of memory:
 
     JAVA_ARGS="-Xmx192m"
 
@@ -64,7 +64,7 @@ To use 1GB of memory:
 
 ### Configuring Logging
 
-Logging is configured with a log4j.properties file, whose location is set with the [`logging-config`](#logging-config) setting. If you change the log settings while PuppetDB is running, it will pick up the new settings without requiring a restart. 
+Logging is configured with a log4j.properties file, whose location is defined with the [`logging-config`](#logging-config) setting. If you change the log settings while PuppetDB is running, it will apply the new settings without requiring a restart. 
 
 [See the log4j documentation][log4j] for more information about logging options.
 
@@ -73,11 +73,11 @@ Logging is configured with a log4j.properties file, whose location is set with t
 
 PuppetDB is configured using an INI-style config format with several `[sections]`. This is very similar to the format used by Puppet. 
 
-**Whenever you change PuppetDB's settings, you must restart the service before the changes will take effect.**
+**Whenever you change PuppetDB's configuration settings, you must restart the service for the changes to take effect.**
 
 You can change the location of the main config file in [the init script config file](#init-script-config-file). This location can point to a single configuration file or a directory of .ini files. If you specify a directory (_conf.d_ style), PuppetDB will merge the .ini files in alphabetical order.
 
-If you've installed PuppetDB from a package, the default is to use the _conf.d_ config style.  The default config directory is `/etc/puppetdb/conf.d` (or `/etc/puppetlabs/puppetdb/conf.d` for Puppet Enterprise).  If you're running from source, you may use the `-c` command-line argument to specify your config file or directory.
+If you've installed PuppetDB from a package, by default it will use the _conf.d_ config style. The default config directory is `/etc/puppetdb/conf.d` (or `/etc/puppetlabs/puppetdb/conf.d` for Puppet Enterprise).  If you're running from source, you may use the `-c` command-line argument to specify your config file or directory.
 
 An example configuration file:
 
@@ -102,11 +102,11 @@ The `[global]` section is used to configure application-wide behavior.
 
 ### `vardir`
 
-The parent directory for the MQ's data directory. Also, if a database isn't specified, the default database's files will be stored in `<vardir>/db`. The directory must exist and be writable by the PuppetDB user in order for the application to run.
+This defines the parent directory for the MQ's data directory. Also, if a database isn't specified, the default database's files will be stored in `<vardir>/db`. The directory must exist and be writable by the PuppetDB user in order for the application to run.
 
 ### `logging-config`
 
-Full path to a [log4j.properties](http://logging.apache.org/log4j/1.2/manual.html) file. Covering all the options available for configuring log4j is outside the scope of this document; see the aforementioned link for exhaustive information.
+This describes the full path to a [log4j.properties](http://logging.apache.org/log4j/1.2/manual.html) file. Covering all the options available for configuring log4j is outside the scope of this document; see the aforementioned link for exhaustive information.
 
 If this setting isn't provided, PuppetDB defaults to logging at INFO level to standard out.
 
@@ -135,19 +135,19 @@ PuppetDB can use either **a built-in HSQLDB database** or **a PostgreSQL databas
 
 ### Using Built-in HSQLDB
 
-To use an HSQLDB database at `<vardir>/db`, you can simply remove all database settings. To configure the DB's location, put the following in the `[database]` section:
+To use an HSQLDB database at the default `<vardir>/db`, you can simply remove all database settings. To configure the DB for a different location, put the following in the `[database]` section:
 
     classname = org.hsqldb.jdbcDriver
     subprotocol = hsqldb
     subname = file:</PATH/TO/DB>;hsqldb.tx=mvcc;sql.syntax_pgs=true
   
-Replace `</PATH/TO/DB>` with a filesystem location in which you'd like to persist the database.
+Replace `</PATH/TO/DB>` with the filesystem location in which you'd like to persist the database.
 
 Do not use the `username` or `password` settings.
 
 ### Using PostgreSQL
 
-Before using the PostgreSQL backend, you must set up a PostgreSQL server, ensure that it will accept incoming connections, create a user for PuppetDB to use when connecting, and create a database for PuppetDB. Configuring PostgreSQL is beyond the scope of this manual, but if you are logged in as root on a running Postgres server, you can create a user and database as follows:
+Before using the PostgreSQL backend, you must set up a PostgreSQL server, ensure that it will accept incoming connections, create a user for PuppetDB to use when connecting, and create a database for PuppetDB. Completely configuring PostgreSQL is beyond the scope of this manual, but if you are logged in as root on a running Postgres server, you can create a user and database as follows:
 
     $ sudo -u postgres sh
     $ createuser -DRSP puppetdb
@@ -175,24 +175,24 @@ It's possible to use SSL to protect connections to the database. The [PostgreSQL
 
 ### `gc-interval`
 
-How often, in minutes, to compact the database. The compaction process reclaims space, and deletes unnecessary rows. If not supplied, the default is every 60 minutes.
+This controls how often, in minutes, to compact the database. The compaction process reclaims space and deletes unnecessary rows. If not supplied, the default is every 60 minutes.
 
 ### `node-ttl-days`
 
-The number of days with no activity (no new catalogs, facts, etc) before a node will be auto-deactivated. Nodes will be checked for staleness every `gc-interval` minutes. Manual deactivation will continue to work as always.
+This sets the number of days with no activity (no new catalogs, facts, etc) before a node will be auto-deactivated. Nodes will be checked for staleness every `gc-interval` minutes. Manual deactivation will continue to work as always.
 
 If unset, auto-deactivation of nodes is disabled.
 
 ### `log-slow-statements`
 
-The number of seconds before a SQL query is considered "slow." Slow SQL queries are logged as warnings, to assist in debugging and tuning. Note PuppetDB does not interrupt slow queries; it simply reports them after they complete.
+This sets the number of seconds before an SQL query is considered "slow." Slow SQL queries are logged as warnings, to assist in debugging and tuning. Note PuppetDB does not interrupt slow queries; it simply reports them after they complete.
   
 The default value is 10 seconds. A value of 0 will disable logging of slow queries.
 
 
 ### `classname`
 
-The JDBC class to use. Set this to:
+This sets the JDBC class to use. Set this to:
 
 * `org.hsqldb.jdbcDriver` when using the embedded database
 * `org.postgresql.Driver` when using PostgreSQL
@@ -206,7 +206,7 @@ Set this to:
 
 ### `subname`
 
-Where to find the database. Set this to:
+This describes where to find the database. Set this to:
 
 * `file:</PATH/TO/DB>;hsqldb.tx=mvcc;sql.syntax_pgs=true` when using the embedded database, replacing `</PATH/TO/DB>` with a local filesystem path
 * `//<HOST>:<PORT>/<DATABASE>` when using PostgreSQL, replacing `<HOST>` with the DB server's hostname, `<PORT>` with the port on which PostgreSQL is listening, and `<DATABASE>` with the name of the database
@@ -214,11 +214,11 @@ Where to find the database. Set this to:
 
 ### `username`
 
-The username to use when connecting. Only used with PostgreSQL.
+This is the username to use when connecting. Only used with PostgreSQL.
 
 ### `password`
 
-The password to use when connecting. Only used with PostgreSQL.
+This is the password to use when connecting. Only used with PostgreSQL.
 
 
 
@@ -231,7 +231,7 @@ Every change to PuppetDB's data stores arrives via **commands** that are inserte
 
 ### `threads`
 
-How many command processing threads to use. Each thread can process a single command at a time. [The number of threads can be tuned based on what you see in the performance dashboard.][dashboard]
+This defines how many command processing threads to use. Each thread can process a single command at a time. [The number of threads can be tuned based on what you see in the performance dashboard.][dashboard]
   
 This setting defaults to half the number of cores in your system.
 
@@ -242,41 +242,41 @@ The `[jetty]` section configures HTTP for PuppetDB.
 
 ### `host`
 
-The hostname to listen on for _unencrypted_ HTTP traffic. If not supplied, we bind to `localhost`, which will reject connections from anywhere but the PuppetDB server itself. To listen on all available interfaces, use `0.0.0.0`.
+This sets the hostname to listen on for _unencrypted_ HTTP traffic. If not supplied, we bind to `localhost`, which will reject connections from anywhere but the PuppetDB server itself. To listen on all available interfaces, use `0.0.0.0`.
 
 > **Note:** Unencrypted HTTP is the only way to view the [performance dashboard][dashboard], since PuppetDB uses host verification for SSL. However, it can also be used to make any call to PuppetDB's API, including inserting exported resources and retrieving arbitrary data about your Puppet-managed nodes. **If you enable cleartext HTTP, you MUST configure your firewall to protect unverified access to PuppetDB.**
 
 ### `port`
 
-What port to use for _unencrypted_ HTTP traffic. If not supplied, we won't listen for unencrypted traffic at all.
+This sets what port to use for _unencrypted_ HTTP traffic. If not supplied, we won't listen for unencrypted traffic at all.
 
 ### `ssl-host`
 
-The hostname to listen on for _encrypted_ HTTPS traffic. If not supplied, we bind to `localhost`. To listen on all available interfaces, use `0.0.0.0`.
+This sets the hostname to listen on for _encrypted_ HTTPS traffic. If not supplied, we bind to `localhost`. To listen on all available interfaces, use `0.0.0.0`.
 
 ### `ssl-port`
 
-What port to use for _encrypted_ HTTPS traffic. If not supplied, we won't listen for encrypted traffic at all.
+This sets the port to use for _encrypted_ HTTPS traffic. If not supplied, we won't listen for encrypted traffic at all.
 
 ### `keystore`
 
-The path to a Java keystore file containing the key and certificate we should use for HTTPS.
+This sets the path to a Java keystore file containing the key and certificate to be used for HTTPS.
 
 ### `key-password`
 
-Passphrase to use to unlock the keystore file.
+This sets the passphrase to use for unlocking the keystore file.
 
 ### `truststore`
 
-The path to a Java keystore file containing the CA certificate(s) for your puppet infrastructure.
+This describes the path to a Java keystore file containing the CA certificate(s) for your puppet infrastructure.
 
 ### `trust-password`
 
-Passphrase to use to unlock the truststore file.
+This sets the passphrase to use for unlocking the truststore file.
 
 ### `certificate-whitelist`
 
-Optional. Path to a file that contains a list of certificate names, one per line.  Incoming HTTPS requests will have their certificates validated against this list of names, and only those with an _exact_ matching entry will be allowed through. (For a puppet master, this compares against the value of the `certname` setting, rather than the `dns_alt_names` setting.)
+Optional. This describes the path to a file that contains a list of certificate names, one per line.  Incoming HTTPS requests will have their certificates validated against this list of names and only those with an _exact_ matching entry will be allowed through. (For a puppet master, this compares against the value of the `certname` setting, rather than the `dns_alt_names` setting.)
 
 If not supplied, PuppetDB uses standard HTTPS without any additional authorization. All HTTPS clients must still supply valid, verifiable SSL client certificates.
 
