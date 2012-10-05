@@ -324,3 +324,23 @@ Piped content to `puppet parser validate` will now be read and validated, rather
 Use an `https://` URL in the `report_server` setting to submit reports to an HTTPS server.
 
 ### The `include` Function Now Accepts Arrays
+
+### Puppet Agent Can Use DNS SRV Records to Find Puppet Master
+
+> **Note:** This feature is meant for certain unusual use cases; if you are wondering whether it will be useful to you, the answer is probably "No, use [round-robin DNS or a load balancer](/guides/scaling_multiple_masters.html) instead."
+
+Usually, agent nodes use the `server` setting from puppet.conf to locate their puppet master, with optional `ca_server` and `report_server` settings for centralizing some kinds of puppet master traffic. 
+
+If you set [`use_srv_records`](/references/latest/configuration.html#usesrvrecords) to `true`, agent nodes will instead use DNS SRV records to attempt to locate the puppet master. These records must be configured as follows: 
+
+Server                       | SRV record
+-----------------------------|-----------------------------
+Puppet master                | `_x-puppet._tcp.$srv_domain`
+CA server (if different)     | `_x-puppet-ca._tcp.$srv_domain`
+Report server (if different) | `_x-puppet-report._tcp.$srv_domain`
+File server\* (if different) | `_x-puppet-fileserver._tcp.$srv_domain`
+
+The [`srv_domain`](/references/latest/configuration.html#srvdomain) setting can be used to set the domain the agent will query; it defaults to the value of the [domain fact](/facter/1.6/core_facts.html#domain). If the agent doesn't find an SRV record or can't contact the servers named in the SRV record, it will fall back to the `server`/`ca_server`/`report_server` settings from puppet.conf. 
+
+\* (Note that the file server record is somewhat dangerous, as it overrides the server specified in **any** `puppet://` URL, not just URLs that use the default server.)
+
