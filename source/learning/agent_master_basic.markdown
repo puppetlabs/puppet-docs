@@ -208,7 +208,7 @@ Success! We've pulled a configuration that actually does something.
 
 If you change this node's definition in site.pp, it will fetch that new configuration on its next run (which, in a normal environment, would happen less than 30 minutes after you make the change). 
 
-Next
+More Installments Coming Later
 ----
 
 You now know how to: 
@@ -217,4 +217,6 @@ You now know how to:
 * Authorize a new agent node to pull configurations from the puppet master
 * Use node definitions in site.pp to choose which classes go into a given node's catalog
 
-But in the process of getting there, we glossed over some details. Next, <!-- [Next](./agent_master_explained.html), --> we'll talk more about certificates and node classification.
+But there are some important details we've glossed over. In a future installment, we'll talk more about certificates and node classification.
+
+<!-- [Next](./agent_master_explained.html), -->
