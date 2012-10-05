@@ -9,7 +9,7 @@ layout: default
 [exported]: /puppet/2.7/reference/lang_exported.html
 
 
-> Note: Your site's puppet master(s) must be running Puppet 2.7.12 or later to use PuppetDB.
+> Note: To use PuppetDB, your site's puppet master(s) must be running Puppet 2.7.12 or later .
 
 After PuppetDB is installed and running, you should configure your puppet master(s) to use it. Once connected to PuppetDB, puppet masters will do the following: 
 
@@ -18,21 +18,21 @@ After PuppetDB is installed and running, you should configure your puppet master
 * Query PuppetDB when compiling node catalogs that collect [exported resources][exported]
 * Query PuppetDB when responding to [inventory service](/guides/inventory_service.html) requests
 
-Follow all of the instructions below **on your puppet master server(s).**
+ **Working on your puppet master server(s),** follow all of the instructions below:
 
 ## Step 1: Install Plugins
 
-Currently, puppet masters need extra Ruby plugins in order to use PuppetDB. Unlike custom facts or functions, these cannot be loaded from a module, and must be installed in Puppet's main source directory. 
+Currently, puppet masters need additional Ruby plugins in order to use PuppetDB. Unlike custom facts or functions, these cannot be loaded from a module and must be installed in Puppet's main source directory. 
 
 ### For PE Users
 
-[Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#puppet-enterprise-repositories) and install the `pe-puppetdb-terminus` package:
+[Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#puppet-enterprise-repositories) and then install the `pe-puppetdb-terminus` package:
 
     $ sudo puppet resource package pe-puppetdb-terminus ensure=latest
 
 ### For Open Source Users
 
-[Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#open-source-repositories) and install the `puppetdb-terminus` package:
+[Enable the Puppet Labs repo](/guides/puppetlabs_package_repositories.html#open-source-repositories) and then install the `puppetdb-terminus` package:
 
     $ sudo puppet resource package puppetdb-terminus ensure=latest
 
@@ -40,8 +40,8 @@ Currently, puppet masters need extra Ruby plugins in order to use PuppetDB. Unli
 
 If your puppet master isn't running Puppet from a supported package, you will need to install the plugins manually:
 
-* [Download the PuppetDB source code][puppetdb_download]; unzip it, and navigate into the resulting directory in your terminal.
-* Run `sudo cp -R puppet/lib/puppet /usr/lib/ruby/site_ruby/1.8/puppet` --- replace the second path with the path to your Puppet installation if you have installed it somewhere other than `/usr/lib/ruby/site_ruby`.
+* [Download the PuppetDB source code][puppetdb_download], unzip it and navigate into the resulting directory in your terminal.
+* Run `sudo cp -R puppet/lib/puppet /usr/lib/ruby/site_ruby/1.8/puppet`. Replace the second path with the path to your Puppet installation if you have installed it somewhere other than `/usr/lib/ruby/site_ruby`.
 
 ## Step 2: Edit Config Files
 
@@ -51,9 +51,9 @@ Find your puppet master's config directory by running `sudo puppet config print 
 
 You will need to edit (or create) three files in this directory:
 
-### Edit puppetdb.conf
+### 1. Edit puppetdb.conf
 
-The [puppetdb.conf][puppetdb_conf] file will probably not exist yet. Create it, and edit it to contain the PuppetDB server's hostname and port:
+The [puppetdb.conf][puppetdb_conf] file will probably not exist yet. Create it, and add the PuppetDB server's hostname and port:
 
     [main]
     server = puppetdb.example.com
@@ -67,7 +67,7 @@ If no puppetdb.conf file exists, the following default values will be used:
     server = puppetdb
     port = 8081
 
-### Edit puppet.conf
+### 2. Edit puppet.conf
 
 To enable PuppetDB for the inventory service and saved catalogs/exported resources, add the following settings to the `[master]` block of puppet.conf (or edit them if already present):
 
@@ -77,9 +77,9 @@ To enable PuppetDB for the inventory service and saved catalogs/exported resourc
 
 > Note: The `thin_storeconfigs` and `async_storeconfigs` settings should be absent or set to `false`. If you have previously used the puppet queue daemon (puppetqd), you should now disable it. 
 
-### Edit routes.yaml
+### 3. Edit routes.yaml
 
-The [routes.yaml][routes_yaml] file will probably not exist yet. Create it if necessary, and edit it to contain the following: 
+The [routes.yaml][routes_yaml] file will probably not exist yet. Create it if necessary, and add the following: 
 
     ---
     master:
@@ -87,7 +87,7 @@ The [routes.yaml][routes_yaml] file will probably not exist yet. Create it if ne
         terminus: puppetdb
         cache: yaml
 
-This is necessary for making PuppetDB the authoritative source for the inventory service.
+This will make PuppetDB the authoritative source for the inventory service.
 
 ## Step 3: Restart Puppet Master
 
