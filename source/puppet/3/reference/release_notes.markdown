@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 3.0 Release Notes"
+title: "Puppet 3 Release Notes"
 ---
 
 [classes]: ./lang_classes.html
@@ -30,6 +30,10 @@ Puppet 3 is faster than Puppet 2.6 and _significantly_ faster than Puppet 2.7. T
 ### Automatic Data Bindings for Class Parameters
 
 When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details. 
+
+### Hiera Functions in Core
+
+The `hiera`, `hiera_array`, `hiera_hash`, and `hiera_include` functions are now included in Puppet core. If you previously installed these functions with the `hiera-puppet` package, you may need to uninstall it before upgrading. 
 
 ### Solaris Improvements 
 
@@ -70,22 +74,26 @@ Dynamic scoping of variables, which was deprecated in Puppet 2.7, has been remov
 
 Parameter lists in class and defined type **definitions** must include a dollar sign (`$`) prefix for each parameter. In other words, parameters must be styled like variables. Non-variable-like parameter lists have been deprecated since at least Puppet 0.23.0. 
 
-  The syntax for class and defined resource **declarations** is unchanged.
+The syntax for class and defined resource **declarations** is unchanged.
 
-  Right:
-  
-      define vhost ($port = 80, $vhostdir) { ... }
-  
-  Wrong:
-  
-      define vhost (port = 80, vhostdir) { ... }
-  
-  Unchanged:
-  
-      vhost {'web01.example.com':
-        port     => 8080,
-        vhostdir => '/etc/apache2/conf.d',
-      }
+Right:
+
+    define vhost ($port = 80, $vhostdir) { ... }
+
+Wrong:
+
+    define vhost (port = 80, vhostdir) { ... }
+
+Unchanged:
+
+    vhost {'web01.example.com':
+      port     => 8080,
+      vhostdir => '/etc/apache2/conf.d',
+    }
+
+### Ruby DSL is Deprecated
+
+The [Ruby DSL that was added in Puppet 2.6](http://projects.puppetlabs.com/projects/puppet/wiki/Ruby_Dsl) (and then largely ignored) is deprecated. A future release of Puppet will introduce a significantly improved Ruby DSL which **may** break backwards compatibility with the old one. 
 
 ### Deprecated Commands Are Removed
 
