@@ -16,21 +16,21 @@ layout: default
 > **Notes:**
 > 
 > * After following these instructions, you should [connect your puppet master(s) to PuppetDB][connect_master]. (If you use a standalone Puppet deployment, you will need to [connect every node to PuppetDB][connect_apply].)
-> * These instructions are for [the platforms which have official PuppetDB packages][requirements]. To install on other systems, you should instead follow [the instructions for installing from source](./install_from_source.html).
+> * These instructions are for [platforms with official PuppetDB packages][requirements]. To install on other systems, you should instead follow [the instructions for installing from source](./install_from_source.html).
 > * If this is a production deployment, [review the scaling recommendations](./scaling_recommendations.html) before installing. You should ensure your PuppetDB server will be able to comfortably handle your site's load. 
 
 Step 1: Install and Configure Puppet
 -----
-
-Your PuppetDB server should be running puppet agent and have a signed certificate from your puppet master server. If you run `puppet agent --test`, it should successfully complete a run, ending with "`notice: Finished catalog run in X.XX seconds`."
-
-If Puppet isn't fully configured yet, install it and request/sign/retrieve a certificate for the node:
+If Puppet isn't fully installed and configured yet on your PuppetDB server, install it and request/sign/retrieve a certificate for the node:
 
 * [Instructions for Puppet Enterprise][installpe]
 * [Instructions for open source Puppet][installpuppet]
 
 [installpuppet]: /guides/installation.html
 [installpe]: /pe/2.5/install_basic.html
+
+Your PuppetDB server should be running puppet agent and have a signed certificate from your puppet master server. If you run `puppet agent --test`, it should successfully complete a run, ending with "`notice: Finished catalog run in X.XX seconds`."
+
 
 > Note: If Puppet doesn't have a valid certificate when PuppetDB is installed, you will have to [run the SSL config script and edit the config file][ssl_script], or [manually configure PuppetDB's SSL credentials][keystore_instructions] before the puppet master will be able to connect to PuppetDB.
 
@@ -63,9 +63,9 @@ Step 4: Configure Database
 **If this is a production deployment,** you should confirm and configure your database settings:
 
 - Deployments of **100 nodes or fewer** can continue to use the default built-in database backend, but should [increase PuppetDB's maximum heap size][configure_heap] to at least 1 GB.
-- Large deployments should [set up a PostgreSQL server and configure PuppetDB to use it][configure_postgres]. You may also need to [adjust the maximum heap size][configure_heap]. 
+- Large deployments over 100 nodes should [set up a PostgreSQL server and configure PuppetDB to use it][configure_postgres]. You may also need to [adjust the maximum heap size][configure_heap]. 
 
-You can change PuppetDB's database at any time, but note that changing the database does not migrate PuppetDB's data, and the new database will be empty. However, as this data is automatically generated many times a day, PuppetDB should recover in a relatively short period of time. 
+You can change PuppetDB's database at any time, but note that changing the database does not migrate PuppetDB's data, so the new database will be empty. However, as this data is automatically generated many times a day, PuppetDB should recover in a relatively short period of time. 
 
 Step 5: Start the PuppetDB Service
 -----
