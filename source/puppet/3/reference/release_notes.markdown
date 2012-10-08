@@ -9,8 +9,14 @@ title: "Puppet 3 Release Notes"
 [lang_scope]: ./lang_scope.html
 [qualified_vars]: ./lang_variables.html#accessing-out-of-scope-variables
 [auth_conf]: /guides/rest_auth_conf.html
+[upgrade]: /guides/upgrading.html
+[upgrade_issues]: http://projects.puppetlabs.com/projects/puppet/wiki/Telly_Upgrade_Issues
 
-Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should read [Backwards-Incompatible Changes][backwards] below** --- you may need to make changes to your configuration and manifests. 
+Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should:**
+
+* Read our [general recommendations for upgrading between two major versions of Puppet][upgrade], which include suggested roll-out plans and package management practices. 
+* Read the [Backwards-Incompatible Changes][backwards] section below and watch for "upgrade notes" --- you may need to make changes to your configuration and manifests. 
+* Check the [Telly upgrade issues][upgrade_issues] wiki page, and make sure none of the bugs found immediately after the current release are dealbreakers for your site.
 
 Flagship Features in Puppet 3.x
 -----
@@ -47,6 +53,9 @@ Backwards-Incompatible Changes in 3.0
 -----
 
 [backwards]: #backwards-incompatible-changes-in-30
+
+In addition to this section, you may also wish to check the [Telly upgrade issues][upgrade_issues] wiki page, which tracks any major bugs found immediately after the current release.
+
 
 ### Dependencies and Supported Systems
 
@@ -191,7 +200,7 @@ Previously, the puppet master had special-case support for running under Mongrel
   
 #### Mount
 
-* The `path` parameter has been removed. It was deprecated and replaced by `name` some time before Puppet 0.25.0.
+* The `path` parameter has been removed. It was deprecated and replaced by `name` sometime before Puppet 0.25.0.
 
 #### Package
 
@@ -219,6 +228,8 @@ Previously, `auth no` in [auth.conf][auth_conf] would reject connections with va
 #### New `allow_ip` Directive in `auth.conf`; IP Addresses Disallowed in `allow` Directive
 
 To allow hosts based on IP address, use `allow_ip`. It functions exactly like `allow` in all respects except that it does not support backreferences. The `allow` directive now assumes that the string is not an IP address.
+
+> **Upgrade Note:** If your `auth.conf` or `fileserver.conf` files allowed any specific nodes by IP address, you must replace those `allow` directives with `allow_ip`.
 
 #### "Resource Type" API Has Changed
 
