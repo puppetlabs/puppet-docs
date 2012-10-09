@@ -39,7 +39,7 @@ module PuppetDocs
 
       def generate
         puts "Generating #{@name} reference for #{version}."
-        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc -m text -r #{@name}`
+        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp -m text -r #{@name}`
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
             require 'facter'
@@ -51,7 +51,8 @@ module PuppetDocs
               fqdn = hostname
             end
             content.gsub!(fqdn.downcase, "(the system's fully qualified domain name)")
-            content.gsub!(domain.downcase, "(the system's own domain)")
+            # Yuck, this next one is hard to deal with when the domain is "local," like a Mac on a DNS-less network. Will have to be very specific, which makes it kind of brittle.
+            content.gsub!("- *Default*: #{domain.downcase}\n", "- *Default*: (the system's own domain)\n")
           end
 
           setup_destination!
