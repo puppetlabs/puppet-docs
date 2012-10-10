@@ -5,7 +5,7 @@ layout: default
 
 PuppetDB includes a remote REPL interface, which is disabled by default.
 
-This is mostly of use to developers who know Clojure and are familiar with PuppetDB's code base, and allows you to modify PuppetDB's code on the fly. Most users should never need to use the REPL, and it should usually be left disabled for security reasons.
+This is mostly of use to developers who know Clojure and are familiar with PuppetDB's code base. It allows you to modify PuppetDB's code on the fly. Most users should never need to use the REPL, and it should usually be left disabled for security reasons.
 
 Enabling the REPL
 -----
@@ -68,5 +68,5 @@ You can also manipulate the running PuppetDB instance by redefining functions on
 
 Now any time that function is called, you'll see a message logged.
 
-Note that any changes you make to the running system are transient; they don't persist between restarts of the service. If you wish to make longer-lived changes to the code, you should consider [running PuppetDB directly from source](./install_from_source.html).
+Note that any changes you make to the running system are transient; they don't persist between restarts of the service. If you wish to make longer-lived changes to the code, consider [running PuppetDB directly from source](./install_from_source.html).
 
