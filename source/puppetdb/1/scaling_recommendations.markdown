@@ -13,9 +13,9 @@ layout: default
 [ram]: #bottleneck-java-heap-size
 [runinterval]: /references/latest/configuration.html#runinterval
 
-Since PuppetDB will be a critical component of your Puppet deployment (that is, agent nodes will be unable to request catalogs if it goes down), you should make sure it can handle your site's load and be resilient against failures. 
+Since PuppetDB will be a critical component of your Puppet deployment (that is, agent nodes will be unable to request catalogs if it goes down), you should make sure it can handle your site's load and is resilient against failures. 
 
-As with scaling any service, there are several possible performance and reliability bottlenecks, which can be dealt with in turn as they become problems. 
+As with scaling any service, there are several possible performance and reliability bottlenecks which can be dealt with in turn as they become problems. 
 
 
 Bottleneck: Database Performance
@@ -28,7 +28,7 @@ PuppetDB has two available database backends:
 * Embedded HSQLDB
 * PostgreSQL
 
-The embedded database works with no additional daemons or setup, but is only suitable for up to about 100 Puppet nodes. [It also requires a signifiacntly larger Java heap][ram].
+The embedded database works with no additional daemons or setup beyond installation, but is only suitable for up to about 100 Puppet nodes. [It also requires a signifiacntly larger Java heap][ram].
 
 You can increase performance by setting up a PostgreSQL server and [switching PuppetDB to the PostgreSQL backend][postgres]. 
 
@@ -67,7 +67,7 @@ Bottleneck: CPU Cores and Number of Worker Threads
 
 PuppetDB can take advantage of multiple CPU cores to handle the commands in its queue. Each core can run a worker thread; by default, PuppetDB will use half of the cores in its machine.
 
-You can increase performance by running PuppetDB on a machine with many CPU cores and [tuning the number of worker threads][threads]:
+You can increase performance by running PuppetDB on a machine with many CPU cores and then [tuning the number of worker threads][threads]:
 
 * More threads will allow PuppetDB to keep up with more incoming commands per minute. Watch the queue depth in the performance dashboard to see whether you need more threads.
 * Too many worker threads can potentially starve the message queue and web server of resources, which will prevent incoming commands from entering the queue in a timely fashion. Watch your server's CPU usage to see whether the cores are saturated. 
