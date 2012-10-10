@@ -8,8 +8,7 @@ The following notable changes have been made since version 0.9.2 of PuppetDB:
 1.0.0
 -----
 
-The 1.0.0 release contains no changes from 0.11.0 with the exception
-of a minor packaging change.
+The 1.0.0 release contains no changes from 0.11.0 except a minor packaging change.
 
 0.11.0
 -----
@@ -27,19 +26,19 @@ Notable features:
 
 * Additional database indexes for improved performance
 
-  Queries involving resource (type,title) or tags without much
+  Queries involving resources (type,title) or tags without much
   additional filtering criteria are now much faster. Note that tag
   queries cannot be sped up on PostgreSQL 8.1, as it doesn't have
   support for GIN indexes on array columns.
 
-* Automatic generate heap snapshots on OutOfMemoryError
+* Automatic generation of heap snapshots on OutOfMemoryError
 
   In the unfortunate situation where PuppetDB runs out of memory, a
   heap snapshot is automatically generated and saved in the log
   directory. This helps us work with users to much more precisely
   triangulate what's taking up the majority of the available heap
   without having to work to reproduce the problem on a completely
-  different system (a often-times difficult proposition).  This helps
+  different system (an often difficult proposition). This helps
   keep PuppetDB lean for everyone.
 
 * Preliminary packaging support for Fedora 17 and Ruby 1.9
@@ -57,7 +56,7 @@ Notable features:
 
 * Resource tags semantics now match those of Puppet proper
 
-  In Puppet, tags lower-case only. We now fail incoming catalogs that
+  In Puppet, tags are lower-case only. We now fail incoming catalogs that
   contain mixed case tags, and we treat tags in queries as
   case-insensitive comparisons.
 
@@ -92,7 +91,7 @@ Notable fixes:
   Prior to this commit, the puppetdb resource terminus was not setting
   a value for "collector_id" on collected resources.  This field is
   used by puppet to detect duplicate resources (exported by multiple
-  nodes) and cause a run to fail. Hence, the semantics around
+  nodes) and will cause a run to fail. Hence, the semantics around
   duplicate resources were ill-specified and could cause
   problems. This fix adds code to set the collector id based on node
   name + resource title + resource type, and adds tests to verify that
@@ -106,7 +105,7 @@ Notable fixes:
 
 * Better version display
 
-  We now display latest version info during daemon startup, and on the
+  We now display the latest version info during daemon startup and on the
   web dashboard.
 
 0.10.0
@@ -163,19 +162,19 @@ Notable features:
   how many seconds a database query can take before the query is
   logged at WARN level.
 
-  The default behavior is to log queries that take more than 10
+  The default behavior for this setting is to log queries that take more than 10
   seconds.
 
 * Add support for a --debug flag, and a debug-oriented startup script
 
   This commit adds support for a new command-line flag: --debug.  For
-  now, this flag only affects logging; it forces a console logger and
-  ensures that the log level is set to DEBUG.  The option is also
+  now, this flag only affects logging: it forces a console logger and
+  ensures that the log level is set to DEBUG. The option is also
   added to the main config hash so that it can potentially be used for
   other purposes in the future.
 
   This commit also adds a shell script, `puppetdb-foreground`, which
-  can be used to launch the services from the command line.  This
+  can be used to launch the services from the command line. This
   script will be packaged (in /usr/sbin) along with the
   puppetdb-ssl-setup script, and may be useful in helping users
   troubleshoot problems on their systems (especially problems with
@@ -218,45 +217,44 @@ Notable fixes:
   The repo now contains examples of querying PuppetDB via curl over
   both HTTP and HTTPS.
 
-* Document how to configure PuppetDB to work with "puppet apply"
+* Documentation on how to configure PuppetDB to work with "puppet apply"
 
   There are some extra steps necessary to get PuppetDB working
   properly with Puppet apply, and there are limitations
   thereafter. The repo now contains documentation around what those
   limitations are, and what additional configuration is necessary.
 
-* Upgrade testing during acceptance test runs
+* Upgraded testing during acceptance test runs
 
   We now automatically test upgrades from the last published version
   of PuppetDB to the currently-under-test version.
 
-* (#15281) Add postgres support to acceptance testing
+* (#15281) Added postgres support to acceptance testing
 
   Our acceptance tests now regularly run against both the embedded
   database and PostgreSQL, automatically, on every commit.
 
-* (#15378) Improve behavior of acceptance tests in single-node
+* (#15378) Improved behavior of acceptance tests in single-node
   environment
 
   We have some acceptance tests that require multiple nodes in order
   to execute successfully (mostly around exporting / collecting
-  resources).  If you tried to run them in a single-node environment,
+  resources). If you tried to run them in a single-node environment,
   they would give a weird ruby error about 'nil' not defining a
   certain method. Now, they will be skipped if you are running without
   more than one host in your acceptance test-bed.
 
 * Spec tests now work against Puppet master branch
 
-  We now regularly, and automatically, run PuppetDB spec tests against
+  We now regularly and automatically run PuppetDB spec tests against
   Puppet's master branch.
 
 * Acceptance testing for RPM-based systems
 
   Previously we were running all of our acceptance tests solely
-  against Debain systems. We now run them all, automatically upon each
-  commit, against RedHat machines as well.
+  against Debian systems. We now run them all, automatically upon each
+  commit against RedHat machines as well.
 
-* Add new `rake version` task
+* Added new `rake version` task
 
   Does what it says on the tin.
-
