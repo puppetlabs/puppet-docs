@@ -47,7 +47,7 @@ When you remove a node from your Puppet deployment, it should be marked as **dea
 
 Although deactivated nodes will be excluded from storeconfigs queries, their data is still preserved.
 
-> **Note:** Deactivating a node does not remove (e.g. `ensure => absent`) exported resources from other systems; it only stops _managing_ those resources. If you want to actively destroy resources from deactivated nodes, you will probably need to purge that resource type using the [`resources` metatype][resources_type]. Note that some types cannot be purged, and several others **should not** be purged.
+> **Note:** Deactivating a node does not remove (e.g. `ensure => absent`) exported resources from other systems; it only stops _managing_ those resources. If you want to actively destroy resources from deactivated nodes, you will probably need to purge that resource type using the [`resources` metatype][resources_type]. Note that some types cannot be purged (e.g. ssh authorized keys), and several others usually **should not** be purged (e.g. users).
 
 ## View the Log
 
@@ -71,7 +71,7 @@ If you are saturating your CPU, we recommend [lowering the number of threads][th
 
 ## Redo SSL Setup After Changing Certificates
 
-If you've recently changed the certificates in use by the PuppetDB server, you'll need to update the SSL configuration for PuppetDB itself.
+If you've recently changed the certificates in use by the PuppetDB server, you'll also need to update the SSL configuration for PuppetDB itself.
 
 If you've installed PuppetDB from Puppet Labs packages, you can simply re-run the `puppetdb-ssl-setup` script. Otherwise, you'll need to again perform all the SSL configuration steps outlined in [the installation instructions](./install_from_source.html).
 
