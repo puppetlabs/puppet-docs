@@ -22,10 +22,10 @@ terminus for most of its indirected classes), but some classes are tunable via n
 * **Terminus Setting**: catalog_terminus
 
 active_record
-: 
+: (undocumented)
 
 active_record
-: 
+: (undocumented)
 
 compiler
 : Puppet's catalog compilation interface, and its back-end is
@@ -36,10 +36,10 @@ compiler
   Puppet's compiler
 
 queue
-: 
+: (undocumented)
 
 queue
-: 
+: (undocumented)
 
 rest
 : Find resource catalogs over HTTP via REST.
@@ -48,16 +48,16 @@ rest
 : Find resource catalogs over HTTP via REST.
 
 static_compiler
-: 
+: (undocumented)
 
 static_compiler
-: 
+: (undocumented)
 
 store_configs
-: 
+: (undocumented)
 
 store_configs
-: 
+: (undocumented)
 
 yaml
 : Store catalogs as flat files, serialized using YAML.
@@ -136,10 +136,10 @@ rest
 
 
 file
-: 
+: (undocumented)
 
 file
-: 
+: (undocumented)
 
 rest
 : Sign, revoke, search for, or clean certificates & certificate requests over HTTP.
@@ -152,16 +152,16 @@ rest
 * **Terminus Setting**: facts_terminus
 
 active_record
-: 
+: (undocumented)
 
 active_record
-: 
+: (undocumented)
 
 couch
-: 
+: (undocumented)
 
 couch
-: 
+: (undocumented)
 
 facter
 : Retrieve facts from Facter.  This provides a somewhat abstract interface
@@ -174,10 +174,10 @@ facter
   returns the local host's facts, regardless of what you attempt to find.
 
 inventory_active_record
-: 
+: (undocumented)
 
 inventory_active_record
-: 
+: (undocumented)
 
 inventory_service
 : Find and save facts about nodes using a remote inventory service.
@@ -210,10 +210,10 @@ rest
 : Find and save facts about nodes over HTTP via REST.
 
 store_configs
-: 
+: (undocumented)
 
 store_configs
-: 
+: (undocumented)
 
 yaml
 : Store client facts as flat files, serialized using YAML, or
@@ -306,48 +306,48 @@ selector
 
 
 local
-: 
+: (undocumented)
 
 local
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 ## instrumentation_listener
 
 
 
 local
-: 
+: (undocumented)
 
 local
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 ## instrumentation_probe
 
 
 
 local
-: 
+: (undocumented)
 
 local
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 ## inventory
 
@@ -387,10 +387,10 @@ A node is composed of its name, its facts, and its environment.
 * **Terminus Setting**: node_terminus
 
 active_record
-: 
+: (undocumented)
 
 active_record
-: 
+: (undocumented)
 
 exec
 : Call an external program to get node information.  See
@@ -451,10 +451,10 @@ rest
 : This will eventually be a REST-based mechanism for finding nodes.  It is currently non-functional.
 
 store_configs
-: 
+: (undocumented)
 
 store_configs
-: 
+: (undocumented)
 
 yaml
 : Store node information as flat files, serialized using YAML,
@@ -493,28 +493,28 @@ yaml
 
 
 active_record
-: 
+: (undocumented)
 
 active_record
-: 
+: (undocumented)
 
 ral
-: 
+: (undocumented)
 
 ral
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 store_configs
-: 
+: (undocumented)
 
 store_configs
-: 
+: (undocumented)
 
 ## resource_type
 
@@ -537,16 +537,16 @@ rest
 
 
 local
-: 
+: (undocumented)
 
 local
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 rest
-: 
+: (undocumented)
 
 
 

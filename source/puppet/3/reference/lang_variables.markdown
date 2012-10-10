@@ -167,7 +167,6 @@ Each node submits a very large number of [facts][] (as discovered by [Facter][])
 
 Puppet agent sets several additional variables for a node which are available when compiling that node's catalog:
 
-* `$environment` --- the node's current [environment][].
 * `$clientcert` --- the node's certname setting.
 * `$clientversion` --- the current version of puppet agent.
 
@@ -175,6 +174,7 @@ Puppet agent sets several additional variables for a node which are available wh
 
 These variables are set by the puppet master and are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
 
+* `$environment` --- the agent node's [environment][]. (In Puppet 3, the agent may request an environment, but the master's [ENC][] may override it.)
 * `$servername` --- the puppet master's fully-qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the puppet master's IP address.
 * `$serverversion` --- the current version of puppet on the puppet master.
