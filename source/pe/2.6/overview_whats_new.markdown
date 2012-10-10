@@ -9,10 +9,10 @@ PE 2.6.1 is a bug fix release and security update.
 #### ConsoleAuth Session Error
 Users who attempted to upgrade to 2.6.0 while they had an active console session encountered an error caused by an older, incompatible cookie. This could also cause a low-risk security vulnerability. PE 2.6.1 addresses this by correctly logging out the user and creating new, fully compatible cookies. For more information, see [CVE-2012-5158](http://puppetlabs.com/security/cve/cve-2012-5158/).
 
-#### Manpages location conflicted with FOSS Puppet
+#### Manpages Location Conflicted with FOSS Puppet
 PE 2.6.0 packages conflicted with FOSS puppet because they placed manpages in a location unrecognized by FOSS puppet. This has been corrected. For more information, see [ticket #16502](http://projects.puppetlabs.com/issues/16502)
 
-#### Comments not Added to cas_client_config.yml
+#### Comments Not Added to cas_client_config.yml
 When upgrading from 2.5.0 to 2.6.0, commented out sections in the cas_client_config.yml file were not preserved. This has been corrected. For more information, see [ticket #16556](http://projects.puppetlabs.com/issues/16556)
 
 #### CVE-2012-5158
