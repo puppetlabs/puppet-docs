@@ -28,6 +28,9 @@ The installer fails in a similar way when the system's firewall or security grou
 
 If you are installing the console and the puppet master on separate servers and tried to install the console first, the installer may fail. 
 
+### Are you upgrading from Open Source Puppet?
+PE 2.6.0 introduced a bug that could cause upgrade installations to fail if FOSS Puppet had previously been installed. The issue has been fixed in PE 2.6.1. Please be sure you are using the latest PE packages.
+
 ### How Do I Recover From a Failed Install?
 
 First, fix any configuration problem that may have caused the install to fail. See above for a list of the most common errors. 
