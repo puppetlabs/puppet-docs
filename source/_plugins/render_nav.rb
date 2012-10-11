@@ -22,7 +22,23 @@ module Jekyll
 		def initialize(tag_name, something_bogus, tokens)
 			super
 		end
-
+    
+    def pick_best_default(path, defaults_array)
+			best_match = ''
+      # Pop through the whole path, so we get the most specific matching default nav snippet.
+      path_array = path.split('/')
+      while !path_array.empty?
+        partial_path = path_array.join('/')
+          partial_path = '/' if partial_path == '' # because join on a single-element array gets us the wrong thing
+        if defaults_array.include?(partial_path)
+          best_match = partial_path
+          break
+        end
+        path_array.pop
+      end
+      best_match
+    end
+    
 		def render(context)
 			nav_fragment = ''
 			if context.environments.first['page']['nav']
@@ -30,24 +46,16 @@ module Jekyll
 			else
 			  defaultnav = context.environments.first['site']['defaultnav']
 			  defaultnav_keys = defaultnav.keys
-			  path_array = context.environments.first['page']['url'].split('/')
-			  # Pop through the whole path, so we get the most specific matching default nav snippet.
-			  while !path_array.empty?
-			    partial_path = path_array.join('/')
-            partial_path = '/' if partial_path == '' # because join on a single-element array gets us the wrong thing
-          if defaultnav_keys.include?(partial_path)
-            nav_fragment = defaultnav[partial_path]
-            break
-          end
-          path_array.pop
-			  end
+			  path = context.environments.first['page']['url']
+			  nearest_path = pick_best_default(path, defaultnav_keys)
+			  nav_fragment = defaultnav[nearest_path]
 			end
 
       if nav_fragment == ''
         return "Blank navigation filename! Something went wrong. Check the nav variable in this file, then check the defaultnav hash in _config.yml."
       end
       if nav_fragment !~ /^[a-zA-Z0-9_\/\.-]+$/ || nav_fragment =~ /\.\// || nav_fragment =~ /\/\./
-        return "Include file '#{nav_fragment}' contains invalid characters or sequences"
+        return "Include file name '#{nav_fragment}' contains invalid characters or sequences"
       end
 
       Dir.chdir(File.join(context.registers[:site].source, '_includes')) do
