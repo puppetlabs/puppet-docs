@@ -78,7 +78,7 @@ module PuppetDocs
           file = IO.read(destination_filename)
           header = <<EOT
 ---
-layout: legacy
+layout: default
 title: "#{title}"
 canonical: "/references/latest/#{@name}.html"
 ---
