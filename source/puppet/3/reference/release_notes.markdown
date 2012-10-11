@@ -11,6 +11,7 @@ title: "Puppet 3 Release Notes"
 [auth_conf]: /guides/rest_auth_conf.html
 [upgrade]: /guides/upgrading.html
 [upgrade_issues]: http://projects.puppetlabs.com/projects/puppet/wiki/Telly_Upgrade_Issues
+[target_300]: http://projects.puppetlabs.com/projects/puppet/issues?set_filter=1&f[]=fixed_version_id&op[fixed_version_id]=%3D&v[fixed_version_id][]=271&f[]=&c[]=project&c[]=tracker&c[]=status&c[]=priority&c[]=subject&c[]=assigned_to&c[]=fixed_version&group_by=
 
 Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should:**
 
@@ -362,4 +363,12 @@ File server\* (if different) | `_x-puppet-fileserver._tcp.$srv_domain`
 The [`srv_domain`](/references/latest/configuration.html#srvdomain) setting can be used to set the domain the agent will query; it defaults to the value of the [domain fact](/facter/1.6/core_facts.html#domain). If the agent doesn't find an SRV record or can't contact the servers named in the SRV record, it will fall back to the `server`/`ca_server`/`report_server` settings from puppet.conf. 
 
 \* (Note that the file server record is somewhat dangerous, as it overrides the server specified in **any** `puppet://` URL, not just URLs that use the default server.)
+
+
+All Bugs Fixed in 3.0
+-----
+
+Use the Puppet issue tracker to find every bug fixed in a given version of Puppet.
+
+* [All bugs fixed in 3.0.0][target_300] (approx. 220)
 
