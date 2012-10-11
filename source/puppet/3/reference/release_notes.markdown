@@ -12,6 +12,8 @@ title: "Puppet 3 Release Notes"
 [upgrade]: /guides/upgrading.html
 [upgrade_issues]: http://projects.puppetlabs.com/projects/puppet/wiki/Telly_Upgrade_Issues
 [target_300]: http://projects.puppetlabs.com/projects/puppet/issues?set_filter=1&f[]=fixed_version_id&op[fixed_version_id]=%3D&v[fixed_version_id][]=271&f[]=&c[]=project&c[]=tracker&c[]=status&c[]=priority&c[]=subject&c[]=assigned_to&c[]=fixed_version&group_by=
+[unless]: ./lang_conditional.html#unless-statements
+
 
 Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should:**
 
@@ -219,8 +221,20 @@ Previously, the puppet master had special-case support for running under Mongrel
 
 * The `check` metaparameter has been removed. It was deprecated and replaced by `audit` in Puppet 2.6.0.
 
+### Changes to Auth.conf
 
-### Changes to REST API
+#### Puppet Agent Now Requires Node Access
+
+Puppet agent nodes now requires access to their own `node` object on the puppet master; this is used for making ENC-set environments authoritative over agent-set environments. Your puppet master's auth.conf file must contain the following stanza, or else agent nodes will not be able to retrieve catalogs:
+
+    # allow nodes to retrieve their own node object
+    path ~ ^/node/([^/]+)$
+    method find
+    allow $1
+
+Auth.conf has allowed this by default since 2.7.0, but puppet masters which have been upgraded from previous versions may still be disallowing it.
+
+> **Upgrade note:** Check your auth.conf file and make sure it includes the above stanza **before** the final stanza. Add it if necessary.
 
 #### `auth no` in `auth.conf` Is Now the Same as `auth any'
 
@@ -231,6 +245,8 @@ Previously, `auth no` in [auth.conf][auth_conf] would reject connections with va
 To allow hosts based on IP address, use `allow_ip`. It functions exactly like `allow` in all respects except that it does not support backreferences. The `allow` directive now assumes that the string is not an IP address.
 
 > **Upgrade Note:** If your `auth.conf` or `fileserver.conf` files allowed any specific nodes by IP address, you must replace those `allow` directives with `allow_ip`.
+
+### Changes to REST API
 
 #### "Resource Type" API Has Changed
 
@@ -344,6 +360,10 @@ Piped content to `puppet parser validate` will now be read and validated, rather
 Use an `https://` URL in the `report_server` setting to submit reports to an HTTPS server.
 
 ### The `include` Function Now Accepts Arrays
+
+### New `unless` Statement
+
+Puppet now has [an `unless` statement][unless].
 
 ### Puppet Agent Can Use DNS SRV Records to Find Puppet Master
 
