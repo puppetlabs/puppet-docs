@@ -1,6 +1,6 @@
 ---
 canonical: "/references/latest/function.html"
-layout: legacy
+layout: default
 title: Function Reference
 ---
 

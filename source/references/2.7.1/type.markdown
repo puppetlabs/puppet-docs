@@ -1,6 +1,6 @@
 ---
 canonical: "/references/latest/type.html"
-layout: legacy
+layout: default
 title: Type Reference
 ---
 

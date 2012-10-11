@@ -1,6 +1,6 @@
 ---
 canonical: "/references/latest/configuration.html"
-layout: legacy
+layout: default
 title: Configuration Reference
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Metaparameter Reference"
 canonical: "/references/latest/metaparameter.html"
 ---

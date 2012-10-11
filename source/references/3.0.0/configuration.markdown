@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Configuration Reference"
 canonical: "/references/latest/configuration.html"
 ---

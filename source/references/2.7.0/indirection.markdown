@@ -1,6 +1,6 @@
 ---
 canonical: "/references/latest/indirection.html"
-layout: legacy
+layout: default
 title: Indirection Reference
 ---
 

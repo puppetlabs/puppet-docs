@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Report Reference"
 canonical: "/references/latest/report.html"
 ---
