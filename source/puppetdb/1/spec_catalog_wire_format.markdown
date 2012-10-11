@@ -18,7 +18,7 @@ layout: default
 [type]: /puppet/2.7/reference/lang_resources.html#type
 [attributes]: /puppet/2.7/reference/lang_resources.html#attributes
 
-PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet, and catalogs are converted by the [PuppetDB terminus plugins](./connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
+PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](./connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
 
 Catalog Interchange Format
 -----
@@ -63,17 +63,17 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"version"`
 
-: String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/references/latest/configuration.html#configversion), and is usually the seconds since the epoch. 
+: String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/references/latest/configuration.html#configversion) and is usually the seconds elapsed since the epoch. 
 
 `"classes"`
 
-: List of strings. This key is useless, and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query](./spec_q_resources.html) API.
+: List of strings. This key has no documented use and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query](./spec_q_resources.html) API.
 
 `"tags"`
 
 : > **Deprecated:** This key is slated for removal in a future version of the catalog format. 
 
-  List of strings. This key is useless, and only exists for historical reasons. It is a list of a subset of the tags that exist on resources in the catalog, but it is not guaranteed to be complete. 
+  List of strings. This key has no current documented use and only exists for historical reasons. It is a list of a subset of the tags that exist on resources in the catalog, but it is not guaranteed to be complete. 
 
 `"edges"`
 
@@ -86,7 +86,7 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"resources"`
 
-: List of [`<resource>` objects](#data-type-resource). **Every** resource in the catalog. 
+: List of [`<resource>` objects](#data-type-resource). Contains **every** resource in the catalog. 
 
 
 ### Data Type: `<string>`
@@ -123,7 +123,7 @@ The keys of an edge are `source`, `target`, and `relationship`, all of which are
 
 `relationship`
 
-: A [`<relationship>`](#data-type-relationship). The type of relationship between the two resources.
+: A [`<relationship>`](#data-type-relationship). The way the two resources are related.
 
 ### Data Type: `<resource-spec>`
 
@@ -186,11 +186,11 @@ The eight keys in a resource object are `type`, `title`, `aliases`, `exported`, 
 
 `aliases`
 
-: List of strings. **Every** alias for the resource, including the value of its [name/namevar][namevar] and any extra names added with the `"alias"` metaparameter.
+: List of strings. Includes **every** alias for the resource, including the value of its [name/namevar][namevar] and any extra names added with the `"alias"` metaparameter.
 
 `exported`
 
-: Boolean. Whether this is an exported resource.
+: Boolean. Whether or not this is an exported resource.
 
 `file`
 
@@ -202,11 +202,11 @@ The eight keys in a resource object are `type`, `title`, `aliases`, `exported`, 
 
 `tags`
 
-: List of strings. Every tag the resource has. This is a normalized superset of the value of the resource's `tag` attribute. 
+: List of strings. Includes every tag the resource has. This is a normalized superset of the value of the resource's `tag` attribute. 
 
 `parameters`
 
-: JSON object. All of the resource's [attributes][] and their associated values. The value of an attribute may be any JSON data type, but Puppet will only provide booleans, strings, arrays, and hashes --- [resource references][resource_ref] and [numbers][] in attributes are converted to strings before being inserted into the catalog. Attributes with [undef][] values are not added to the catalog. 
+: JSON object. Includes all of the resource's [attributes][] and their associated values. The value of an attribute may be any JSON data type, but Puppet will only provide booleans, strings, arrays, and hashes --- [resource references][resource_ref] and [numbers][] in attributes are converted to strings before being inserted into the catalog. Attributes with [undef][] values are not added to the catalog. 
 
 
 
@@ -218,13 +218,13 @@ Why a new wire format?
 
 ###  Previous Wire Format Shortcomings
 
-There are a number of issues with the built-in JSON wire format used
+There were a number of issues with the built-in JSON wire format used
 in Puppet prior to PuppetDB:
 
 1. The format isn't actually JSON, it's PSON. This means a catalog may contain non-UTF-8 data. This can present problems for conforming JSON parsers that expect Unicode.
 2. Dependency edges aren't represented as first-class entities in the wire format. Instead, dependencies have to be parsed out of resource attributes.
 3. Containment edges can point to resources that aren't in the catalog's list of resources. Examples of this include things like `Stage[main]`, or other special classes.
-4. There are no (good) provisions for binary data, which can show up in a catalog via use of `generate`, among other functions
+4. There are no (good) provisions for binary data, which can show up in a catalog via use of `generate`, among other functions.
 5. Resources can refer to other resources in several ways: by proper name, by alias, by using a type-specific namevar (such as `path` for the file type). None of this is normalized in any way, and consumers of the wire format have to sift through all of this. And for the case of type-specific namevars, it may be impossible for a consumer to reconcile (because the consumer may not have access to puppet source code)
 
 In general, for communication between master and agent, it's useful to have the wire format as stripped-down as possible. But for other consumers, the catalog needs to be precise in its semantics. Otherwise, consumers just end up (poorly) re-coding the catalog-manipulation logic from puppet proper. Hence the need for a wire format that allows consuming code (which may not even originate from puppet) to handle this data.
