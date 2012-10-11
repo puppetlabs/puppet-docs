@@ -7,6 +7,22 @@ module PuppetDocs
       listing = {}
       listing[:stable] = generated_versions.detect { |v, dir| v.release_type == :final }
       listing[:latest] = generated_versions.first
+      # This looks super hairy, so here's the deal: We have an array of
+      # arrays, w/ each internal array containing a Versionomy::Value object and
+      # a directory. Whole thing is sorted by the versionomy objects. Since it's
+      # sorted, we are guaranteed that, every time the major.minor value of the
+      # version objects CHANGES, we're looking at the latest reference from that
+      # particular major.minor series. So we'll just cache all those! This gives
+      # us self-maintaining 2.7.latest, etc. links, which is rad.
+      prev_maj_min = "0.0"
+      generated_versions.each do |ver_dir_pair|
+        v = ver_dir_pair[0]
+        clump = "#{v.major}.#{v.minor}"
+        if clump != prev_maj_min
+          listing["#{clump}.latest"] = ver_dir_pair
+          prev_maj_min = clump
+        end
+      end
       listing
     end
 
