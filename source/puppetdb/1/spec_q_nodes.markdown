@@ -5,7 +5,7 @@ layout: default
 
 [resource]: ./spec_q_resources.html
 
-Querying nodes is accomplished by making an HTTP request to the `/nodes` REST
+Nodes can be queried by making an HTTP request to the `/nodes` REST
 endpoint with a JSON-formatted parameter called `query`.
 
 ## Query format
@@ -13,12 +13,12 @@ endpoint with a JSON-formatted parameter called `query`.
 * The HTTP method must be `GET`.
 * There must be an `Accept` header specifying `application/json`.
 
-The `query` parameter is a similar format to [resource queries][resource].
+The `query` parameter uses a format similar to [resource queries][resource].
 
 Only queries against facts and filters based on node activeness are currently
 supported.
 
-These terms must be of the form `["fact", "<fact name>"]` or `["node", "active"]`,
+These query terms must be of the form `["fact", "<fact name>"]` or `["node", "active"]`,
 respectively.
 
 Accepted operators are: `[= > < >= <= and or not]`
@@ -29,7 +29,7 @@ which are not numeric.
 Note that nodes which are missing a fact referenced by a `not` query will match
 the query.
 
-This query will return active nodes whose kernel is Linux and whose uptime is less
+In this example, the query will return active nodes whose kernel is Linux and whose uptime is less
 than 30 days:
 
     ["and",
