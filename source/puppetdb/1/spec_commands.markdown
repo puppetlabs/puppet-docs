@@ -4,7 +4,7 @@ layout: default
 ---
 
 
-Commands are the mechanism by which changes are made to PuppetDB's
+Commands are used to change PuppetDB's
 model of a population. Commands are represented by `command objects`,
 which have the following JSON wire format:
 
@@ -12,7 +12,7 @@ which have the following JSON wire format:
      "version": 123,
      "payload": <json object>}
 
-`command` is a string identifier for the desired command.
+`command` is a string identifying the command.
 
 `version` is a JSON integer describing what version of the given
 command you're attempting to invoke.
@@ -24,7 +24,7 @@ The entire command MUST be encoded as UTF-8.
 
 ## Command submission
 
-Commands are submitted via HTTP to the `/commands/` URL, and must
+Commands are submitted via HTTP to the `/commands/` URL and must
 conform to the following rules:
 
 * A `POST` is used
@@ -37,12 +37,12 @@ conform to the following rules:
 Optionally, there may be a parameter, `checksum`, that contains a SHA-1 hash of
 the payload which will be used for verification.
 
-If a command has been successfully submitted, the submitter will
+When a command is successfully submitted, the submitter will
 receive the following:
 
 * A response code of 200
 * A content-type of `application/json`
-* The response body is a JSON object, containing a single key 'uuid', whose
+* A response body in the form of a JSON object, containing a single key 'uuid', whose
   value is a UUID corresponding to the submitted command. This can be used, for example, by
   clients to correlate submitted commands with server-side logs.
 
