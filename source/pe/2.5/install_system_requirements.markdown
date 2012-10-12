@@ -28,7 +28,7 @@ Puppet Enterprise 2.5 supports the following systems:
 | Solaris                      | 10                | SPARC and x86\_64 | agent     |
 | Microsoft Windows            | 2003, 2008, and 7 | x86 and x86\_864  | agent     |
 
-> \* SUSE 11 SP 2 and Ubuntu 12.04 Precise both require PE 2.5.2. 
+> \* SUSE 11 **SP 2** and Ubuntu 12.04 Precise both require PE 2.5.2 or later.
 
 Hardware
 -----
