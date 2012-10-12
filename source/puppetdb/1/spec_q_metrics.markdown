@@ -14,12 +14,12 @@ to paths under the `/metrics` REST endpoint.
 To get a list of all available metric names:
 
 * Request `/metrics/mbeans`.
-* A `GET` request is used.
-* There is an `Accept` header containing `application/json`.
+* Use a `GET` request.
+* Provide an `Accept` header containing `application/json`.
 
 ### Response format
 
-A JSON Object mapping a string to a string:
+Responses return a JSON Object mapping a string to a string:
 
 * The key is the name of a valid MBean
 * The value is a URI to use for requesting that MBean's attributes
@@ -30,14 +30,14 @@ A JSON Object mapping a string to a string:
 
 To get the attributes of a particular metric:
 
-* Request `/metrics/mbean/<name>`, where `<name>` is something
+* Request `/metrics/mbean/<name>`, where `<name>` is something that was
   returned in the list of available metrics specified above.
-* A `GET` request is used.
-* There is an `Accept` header containing `application/json`.
+* Use a `GET` request.
+* Provide an `Accept` header containing `application/json`.
 
 ### Response format
 
-A JSON Object mapping strings to (strings/numbers/booleans).
+Responses return a JSON Object mapping strings to (strings/numbers/booleans).
 
 ## Useful metrics
 
@@ -82,7 +82,7 @@ Metrics available for each command:
 * `com.puppetlabs.puppetdb.command:type=<name>,name=fatal`: stats about
   commands we failed to process.
 * `com.puppetlabs.puppetdb.command:type=<name>,name=processed`: stats
-  about commands that we've successfully processed
+  about commands we've successfully processed
 * `com.puppetlabs.puppetdb.command:type=<name>,name=processing-time`:
   stats about how long it takes to process commands
 * `com.puppetlabs.puppetdb.command:type=<name>,name=retried`: stats about
@@ -120,7 +120,7 @@ independent counters and statistics.
 
 Metrics involving the PuppetDB storage subsystem all begin with the
 `com.puppetlabs.puppetdb.scf.storage:type=default,name=` prefix. There are
-a number of metrics around individual storage operations (storing
+a number of metrics concerned with individual storage operations (storing
 resources, storing edges, etc.). Metrics of particular note include:
 
 * `com.puppetlabs.puppetdb.scf.storage:type=default,name=duplicate-pct`:
@@ -137,8 +137,7 @@ resources, storing edges, etc.). Metrics of particular note include:
 ### MQ Metrics
 
 * `org.apache.activemq:BrokerName=localhost,Type=Queue,Destination=com.puppetlabs.puppetdb.commands`:
-  stats about the command processing queue. Queue depth, stats around
-  how long messages remain in the queue, etc.
+  stats about the command processing queue: queue depth, how long messages remain in the queue, etc.
 
 ## Example
 
