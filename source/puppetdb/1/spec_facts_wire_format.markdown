@@ -21,7 +21,7 @@ The `"name"` key is the certname the facts are associated with.
 The `"values"` key points to a JSON _Object_ that represents the set
 of facts. Each key is the fact name, and the value is the fact value.
 
-Fact names and value MUST be strings.
+Fact names and values MUST be strings.
 
 ## Encoding
 
