@@ -296,7 +296,7 @@ To use Dashboard's ENC, you'll need to set the puppet master's `node_terminus` a
       node_terminus = exec
       external_nodes = /usr/bin/env PUPPET_DASHBOARD_URL=http://localhost:3000 /opt/puppet-dashboard/bin/external_node
 
-[https]: http://localhost:9292/dashboard/manual/1.2/configuring.html#security
+[https]: ./configuring.html#security
 
 ### Testing Puppet's Connection to Dashboard
 
