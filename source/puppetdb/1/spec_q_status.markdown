@@ -5,8 +5,8 @@ layout: default
 
 ## Query Format
 
-Node status can be queried by making a GET request to `/status/nodes/<node>`,
-accepting JSON.
+Node status can be queried by making an HTTP GET request to `/status/nodes/<node>`,
+specifying that the request accepts JSON.
 
 ## Response Format
 
