@@ -15,7 +15,7 @@ title: "PuppetDB 1 » Spec » Curl Tips"
 
 You can use [`curl`][curl] to directly interact with PuppetDB's REST API. This is useful for testing, prototyping, and quickly fetching arbitrary data.
 
-The below instructions below are simplified. See [the curl manpage][curl] for full usage details. For additional examples, please see the docs for the individual REST endpoints:
+The instructions below are simplified. For full usage details, see [the curl manpage][curl] . For additional examples, please see the docs for the individual REST endpoints:
 
 * [Facts][]
 * [Nodes][]
@@ -34,13 +34,13 @@ If you have allowed unsecured access to other hosts in order to [monitor the das
 
 ## Using `curl` From Remote Hosts (SSL/HTTPS)
 
-To make secured requests from other hosts, you will need to supply the following on the command line:
+To make secured requests from other hosts, you will need to supply the following via the command line:
 
 * Your site's CA certificate (`--cacert`)
 * An SSL certificate signed by your site's Puppet CA (`--cert`)
 * The private key for that certificate (`--key`)
 
-Any node managed by puppet agent will have all of these, and you can re-use them for contacting PuppetDB. You can also generate a new cert on the CA puppet master with the `puppet cert generate` command. 
+Any node managed by puppet agent will already have all of these and you can re-use them for contacting PuppetDB. You can also generate a new cert on the CA puppet master with the `puppet cert generate` command. 
 
 > **Note:** If you have turned on [certificate whitelisting][whitelist], you must make sure to authorize the certificate you are using.
 
@@ -55,15 +55,15 @@ Locate Puppet's `ssldir` as follows:
 Within this directory:
 
 * The CA certificate is found at `certs/ca.pem`
-* Any other certificate is found at `certs/<name>.pem`
 * The corresponding private key is found at `private_keys/<name>.pem`
+* Other certificates are found at `certs/<name>.pem`
 
 
 ## Dealing with complex query strings
 
 Many query strings will contain characters like `[` and `]`, which must be URL-encoded. To handle this, you can use `curl`'s `--data-urlencode` option. 
 
-If you do this with an endpoint that accepts `GET` requests, **you must also use the `-G` or `--get` option.** This is because `curl` defaults to `POST` requests if the `--data-urlencode` option is present.
+If you do this with an endpoint that accepts `GET` requests, **you must also use the `-G` or `--get` option.** This is because `curl` defaults to `POST` requests when the `--data-urlencode` option is present.
 
     curl -G -H "Accept: application/json" 'http://localhost:8080/nodes' --data-urlencode 'query=["=", ["node", "active"], true]'
 
