@@ -69,6 +69,11 @@ module PuppetDocs
             content.gsub!(fqdn.downcase, "(the system's fully qualified domain name)")
             # Yuck, this next one is hard to deal with when the domain is "local," like a Mac on a DNS-less network. Will have to be very specific, which makes it kind of brittle.
             content.gsub!("- *Default*: #{domain.downcase}\n", "- *Default*: (the system's own domain)\n")
+          elsif @name == "type" # then make the feature table headers less garbage
+            content.gsub!(/^Provider(?-m:\s+|.*)$/) {|headerline|
+              headerline.gsub('_', ' ')
+            }
+
           end
 
           setup_destination!
