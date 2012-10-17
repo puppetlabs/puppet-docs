@@ -18,6 +18,11 @@ Depending on the version you upgrade from, **you may need to take extra steps** 
 
 {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
+> **NOTE: PE 1.2.5 cannot be upgraded to this version of PE.** Systems running PE 1.2.5 can only upgrade to PE 2.6.1 or higher.
+>
+> This is because PE 1.2.5 includes some packages that are newer than those in PE 2.0. This is known to block upgrades on SLES systems, and may cause more subtle failures on other platforms. If you run into an upgrade failure, it can be fixed by running the 2.6.1 upgrader. 
+
+
 {% capture locktableissue %}
 
 > ### IMPORTANT NOTE

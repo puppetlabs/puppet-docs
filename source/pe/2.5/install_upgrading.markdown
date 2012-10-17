@@ -14,6 +14,10 @@ Depending on the version you upgrade from, **you may need to take extra steps** 
 
 **Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
 
+> **NOTE: PE 1.2.5 cannot be upgraded to this version of PE.** Systems running PE 1.2.5 can only upgrade to PE 2.6.1 or higher.
+>
+> This is because PE 1.2.5 includes some packages that are newer than those in PE 2.5. This is known to block upgrades on SLES systems, and may cause more subtle failures on other platforms. If you run into an upgrade failure, it can be fixed by running the 2.6.1 upgrader. 
+
 
 Checking For Updates
 -----

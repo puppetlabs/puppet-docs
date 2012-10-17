@@ -15,6 +15,27 @@ The following is a list of known issues in each maintenance release of Puppet En
 In PE 1.2.4 and Earlier
 -----
 
+### Several Security Issues
+
+The following ten security issues were discovered after the release of PE 1.2.4. They were all resolved with hotfixes for PE 1.2.x at the time they were announced.
+
+In October 2012, PE 1.2.5 was released. PE 1.2.5 incorporates all of these fixes, as well as additional stability and security improvements in the bundled prerequisites.
+
+> **Note that PE 1.2.5 will limit your upgrade options:** Systems running PE 1.2.5 can only upgrade to PE 2.6.1 or higher.
+>
+> This is because some of the packages it includes are newer than those in earlier PE 2.x releases.
+
+* [CVE-2012-3864 – Arbitrary File Read](http://puppetlabs.com/security/cve/cve-2012-5158/)
+* [CVE-2012-3865 – Arbitrary file delete/D.O.S on Puppet Master](http://puppetlabs.com/security/cve/cve-2012-3865/)
+* [CVE-2012-3867 – Insufficient Input Validation](http://puppetlabs.com/security/cve/cve-2012-3867/)
+* [CVE-2012-1906 – Arbitrary Code Execution](http://puppetlabs.com/security/cve/cve-2012-1906/)
+* [CVE-2012-1986 – Arbitrary File Read](http://puppetlabs.com/security/cve/cve-2012-1986/)
+* [CVE-2012-1987 – Denial of Service](http://puppetlabs.com/security/cve/cve-2012-1987/)
+* [CVE-2012-1988 – Arbitrary Code Execution](http://puppetlabs.com/security/cve/cve-2012-1988/)
+* [CVE-2012-1053 – Puppet Resource Local Group Privilege Escalation](http://puppetlabs.com/security/cve/cve-2012-1053/)
+* [CVE-2012-1054 – K5login Local User Privilege Escalation](http://puppetlabs.com/security/cve/cve-2012-1054/)
+* [CVE-2012-0891 – Dashboard Cross Site Scripting (XSS) Vulnerability](http://puppetlabs.com/security/cve/cve-2012-0891/)
+
 ### Upgrading From PE 1.1 Breaks Node Classification on Debian and Ubuntu Systems
 
 ([Issue #9444](https://projects.puppetlabs.com/issues/9444))
@@ -33,16 +54,6 @@ The `accounts` class --- a data-separation wrapper that uses external data to de
 
 The workaround is to ensure that this variable/file is present in the namespace or data directory.
 
-### Security Issue: XSS Vulnerability in Puppet Dashboard (CVE-2012-0891)
-
-This issue was fixed in PE 1.2.5 and 2.0.1.
-
-Puppet Dashboard was found to be vulnerable to cross-site scripting attacks due to insufficient sanitization of user input. [See here][dashboard_xss] for more details, including hotfixes for previous versions of PE.
-
-This vulnerability has a CVE identifier of [CVE-2012-0891][dashxss_cve].
-
-[dashboard_xss]: http://puppetlabs.com/security/cve/cve-2012-0891/
-[dashxss_cve]: http://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2012-0891
 
 In PE 1.2.3 and Earlier
 -----
