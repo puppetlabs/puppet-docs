@@ -216,7 +216,7 @@ Options:
 
 * `--image, -i` --- The name of the AMI to use when creating the instance.
 **Required.**
-* `--keypair` --- The Amazon-managed SSH keypair to use for accessing the
+* `--keyname` --- The name of the Amazon-managed SSH keypair to use for accessing the
 instance. **Required.**
 * `--group, -g, --security-group` --- The security group(s) to apply to the
 instance. Can be a single group or a path-separator (colon, on *nix systems)
@@ -226,7 +226,7 @@ separated list of groups.
 
 Example:
 
-    $ puppet node_aws create --image ami-XxXXxXXX --keypair puppetlabs.admin --type m1.small
+    $ puppet node_aws create --image ami-XxXXxXXX --keyname puppetlabs.admin --type m1.small
 /
 Creates a new EC2 machine instance and returns its DNS name. If the process
 fails, Puppet will automatically clean up after itself and tear down the
@@ -294,7 +294,7 @@ Options: See "create" and "install"
 
 Example:
 
-    puppet node_aws bootstrap --image ami-XxXXxXXX --keypair \
+    puppet node_aws bootstrap --image ami-XxXXxXXX --keyname \
     puppetlabs.admin --login root --keyfile ~/.ssh/puppetlabs-ec2_rsa \
     --certname cloud_admin
 
