@@ -60,29 +60,28 @@ this feature.
 Installing
 ----------
 
-Puppet Cloud Provisioner should be installed with the puppet-module tool. First
-make sure that the tool is installed:
+Puppet Cloud Provisioner should be installed with the puppet module subcommand, which is included in Puppet 2.7.14 and later.
 
-    # gem install puppet-module
+    $ sudo puppet module install puppetlabs-cloud_provisioner
 
-Then cd to the directory where you wish to install Cloud Provisioner:
+The command will tell you where it is installing the module; take note:
 
-    # cd $(puppet --configprint confdir)/modules
+    admin@magpie$ puppet module install puppetlabs-cloud_provisioner
+    Preparing to install into /etc/puppet/modules ...
+    Downloading from https://forge.puppetlabs.com ...
+    Installing -- do not interrupt ...
+    /etc/puppet/modules
+    └── puppetlabs-cloud_provisioner (v1.0.5)
 
-Now use puppet-module to install Cloud Provisioner on your control node:
+After installing it, you must add the `lib` directory of the module to your `$RUBYLIB`. Add the following to your `.profile` file (replacing `/etc/puppet/modules` with the directory from the install command, if necessary), then run `source ~/.profile` to re-load it in the current shell:
 
-    # puppet-module install puppetlabs/cloud_provisioner
+    export RUBYLIB=/etc/puppet/modules/cloud_provisioner/lib:$RUBYLIB
 
-Add its lib directory to your `$RUBYLIB` or Ruby load path:
-
-    # export RUBYLIB=$(pwd)/cloud_provisioner/lib:$RUBYLIB
-
-You can verify that it is installed correctly by running:
+You can verify that it is installed and usable by running:
 
     # puppet help node_aws
 
-Verifying that you see the Cloud Provisioner specific commands (create,
-install, ...) in the output.
+If you are installing the Cloud Provisioner on an older version of Puppet, you will have to do so manually or with the add-on `puppet-module` gem. 
 
 Configuration
 -------------
