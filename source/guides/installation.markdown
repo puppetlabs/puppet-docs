@@ -305,7 +305,7 @@ Installing with gem requires some additional steps:
 
 * Manually create a `puppet` group, by running `sudo puppet resource group puppet ensure=present`.
 * Manually create a `puppet` user, by running `sudo puppet resource user puppet ensure=present gid=puppet shell='/sbin/nologin'`.
-* Create and install init scripts for the puppet agent and/or puppet master services. To find examples to modify, [see the `conf/` directory in the Puppet source](https://github.com/puppetlabs/puppet/tree/master/conf).
+* Create and install init scripts for the puppet agent and/or puppet master services. To find examples to modify, [see the `conf/` directory in the Puppet source](https://github.com/puppetlabs/puppet/tree/master/examples/etc/init.d).
 * Manually create an `/etc/puppet/puppet.conf` file.
 * Locate the Puppet source on disk, and manually copy the `auth.conf` file from the `/conf` directory to `/etc/puppet/auth.conf`.
 * If you get the error `require: no such file to load` when trying to run Puppet, define the RUBYOPT environment variable as advised in the [post-install instructions](http://docs.rubygems.org/read/chapter/3#page70) of the RubyGems User Guide.
