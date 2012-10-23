@@ -4252,7 +4252,9 @@ ensure
 : The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
 key
-: The key itself; generally a long string of hex digits.
+: The key itself; generally a long string of hex characters. The key attribute 
+  may not contain whitespace: Omit key headers (e.g. 'ssh-rsa') and key identifiers 
+  (e.g. 'joe@joescomputer.local') found in the public key file.
 
 name
 : The SSH key comment. This attribute is currently used as a
