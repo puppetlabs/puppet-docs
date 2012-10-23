@@ -294,7 +294,7 @@ But if that was all a module was, it'd make more sense to just load your classes
 
 ### Manifests, Namespacing, and Autoloading
 
-The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses namespacing](#an-aside-names-namespaces-and-scope) to find them. Say we have a manifests folder that looks like this: 
+The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses [namespacing](#an-aside-names-namespaces-and-scope) to find them. Say we have a manifests folder that looks like this: 
 
 * foo/
     * manifests/
