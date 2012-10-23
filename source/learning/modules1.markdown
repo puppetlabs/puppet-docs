@@ -15,7 +15,7 @@ You can write some pretty sophisticated manifests at this point, but they're sti
 * * * 
 
 [smoke]: http://docs.puppetlabs.com/guides/tests_smoke.html
-[manifestsdir]: #namespacing-and-autoloading
+[manifestsdir]: #manifests-namespacing-and-autoloading
 
 Collecting and Reusing
 ----------------------
@@ -265,7 +265,7 @@ There --- our little example from last chapter has grown up into a self-containe
 
 ### Obtaining Modules
 
-Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. For more information, see [About the Puppet Forge](#modules-and-the-puppet-forge) below.
+Puppet Labs provides the [Puppet Forge](http://forge.puppetlabs.com), the place to share and find Puppet modules. For more information, see [Modules and the Puppet Forge](#modules-and-the-puppet-forge) below.
 
 
 Module Structure
@@ -294,7 +294,7 @@ But if that was all a module was, it'd make more sense to just load your classes
 
 ### Manifests, Namespacing, and Autoloading
 
-The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses [namespacing](#an-aside-names-and-namespaces) to find them. Say we have a manifests folder that looks like this: 
+The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses namespacing](#an-aside-names-namespaces-and-scope) to find them. Say we have a manifests folder that looks like this: 
 
 * foo/
     * manifests/
