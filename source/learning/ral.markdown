@@ -111,7 +111,7 @@ Puppet has a number of built-in types, and new native types can be distributed w
 [user]: ../references/stable/type.html#user
 [group]: ../references/stable/type.html#group
 
-Documentation for all of the built-in types [can always be found in the reference section of this site][types], and can be generated on the fly with the puppet describe utility.
+Documentation for all of the built-in types [can always be found in the reference section of this site][types], and can be generated on the fly with the [`puppet describe`](http://docs.puppetlabs.com/man/describe.html) utility.
 
 [types]: ../references/stable/type.html
 
