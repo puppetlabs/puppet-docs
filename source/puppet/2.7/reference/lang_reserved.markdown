@@ -88,7 +88,7 @@ Variable names begin with a `$` (dollar sign) and can include:
 * Numbers
 * Underscores
 
-There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive.
+There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
 
 Variable names should match the following regular expression:
 
@@ -120,6 +120,8 @@ Class names with multiple namespaces should match the following regular expressi
 
     \A([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*\Z
 
+Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or type names.
+
 ### Modules
 
 Module names obey the same rules as individual class/type namespace segments. That is, they **must begin with a lowercase letter** and can include:
@@ -131,6 +133,8 @@ Module names obey the same rules as individual class/type namespace segments. Th
 Module names should match the following regular expression:
 
     \A[a-z][a-z0-9_]*\Z
+
+Note that [reserved words](#reserved-words) and [reserved class names](#reserved-class-names) cannot be used as module names.
 
 ### Parameters
 
