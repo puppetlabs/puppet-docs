@@ -136,7 +136,35 @@ specifying an entire domain using the `*` wildcard:
 
 ### IP Addresses
 
-IP address can be specified similarly to host names, using either
+> **Note:** Puppet 3.0.0 broke IP address filtering in fileserver.conf, and it is currently broken in all 3.0.x versions of Puppet. This is [issue #16686](http://projects.puppetlabs.com/issues/16686). 
+> 
+> If you rely on IP address filtering for custom file server mount points, you can implement it in Puppet 3 by simplifying fileserver.conf and adding a new rule to [auth.conf][authconf]:
+> 
+> [authconf]: /guides/rest_auth_conf.html
+> 
+> Original 2.x fileserver.conf:
+> 
+>     [files]
+>       path /etc/puppet/files
+>       allow *.example.com
+>       allow 192.168.100.0/24
+> 
+> Workaround:
+> 
+>     # fileserver.conf
+>     [files]
+>       path /etc/puppet/files
+>       allow *
+>     
+>     # auth.conf
+>     path ~ ^/file_(metadata|content)/files/
+>     auth yes
+>     allow /^(.+\.)?example.com$/
+>     allow_ip 192.168.100.0/24
+> 
+> In short, fileserver.conf must allow all access, but only authorized nodes will be allowed to reach fileserver.conf. The `file_metadata/<mount point>` and `file_content/<mount point>` endpoints control file access in [auth.conf][authconf].
+
+IP addresses can be specified similarly to host names, using either
 complete IP addresses or wildcarded addresses. You can also use
 CIDR-style notation:
 

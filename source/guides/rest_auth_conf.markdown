@@ -35,6 +35,13 @@ The auth.conf file consists of a series of ACLs (Access Control Lists); ACLs sho
     auth yes
     allow custominventory.site.net, devworkstation.site.net
 
+    # A more complicated rule
+    path ~ ^/file_(metadata|content)/user_files/
+    auth yes
+    allow /^(.+\.)?example.com$/
+    allow_ip 192.168.100.0/24
+
+    # An exception allowing one authenticated workstation to access any endpoint
     path /
     auth any
     allow devworkstation.site.net
@@ -78,7 +85,7 @@ Most communications between puppet agent and the puppet master are authenticated
 
 The value of `auth` must be **one** of the above options; it cannot be a list. If auth isn't explicitly specified, it will default to `yes`.
 
-### Allow
+### `allow`
 
 The node or nodes allowed to access this type of request. Can be a hostname, a certificate common name, a list of hostnames/certnames, or `*` (which matches all nodes). If the path for this ACL was a regular expression, `allow` directives may include backreferences to captured groups (e.g. `$1`).
 
@@ -88,7 +95,17 @@ An ACL may include multiple `allow` directives, which has the same effect as a s
 
 **Behavior in 2.7.1 and later:** Hostnames/certnames can also be specified by regular expression. Unlike with path directives, you don't need to use a tilde; just use the slash-quoting used in languages like Perl and Ruby (e.g. `allow /^[\w-]+.example.com$/`). Regular expression allow directives can include backreferences to regex paths with the standard `$1, $2` etc. variables.
 
-Nodes cannot be allowed by IP address, unless the node's IP address is also its certname.
+Any nodes which aren't specifically allowed to access the resource will be denied.
+
+### `allow_ip`
+
+> **Note:** The `allow_ip` directive was added in Puppet 3.0.0. Previous versions of Puppet **cannot** allow nodes by IP address.
+
+An IP address or range of IP addresses allowed to access this type of request. Can be:
+
+* A single IP address
+* A glob representing a group of IP addresses (e.g. `192.168.100.*`)
+* CIDR notation representing a group of IP addresses (e.g. `192.168.100.0/24`)
 
 Any nodes which aren't specifically allowed to access the resource will be denied.
 
