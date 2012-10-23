@@ -37,7 +37,7 @@ This is **Learning Puppet.** and it's part of the Puppet documentation. Specific
 
 By which I don't mean it's about getting Puppet installed, or making sure your SSL certificates got issued correctly; that's the _other_ first part. To be a little gnomic about it --- because why not --- this series is less about how to use Puppet than it is about how to become a Puppet user. If you've heard good things about Puppet but don't know where to start, this, hopefully, is it.
 
-It's a work in progress, and I'd love to read your feedback at <nick.fagerlund@puppetlabs.com>.
+It's a work in progress, and we'd love to read your feedback at <faq@puppetlabs.com>.
 
 Get Equipped
 ------------
