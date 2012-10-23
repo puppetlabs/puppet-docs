@@ -115,14 +115,14 @@ string.  For example:
 
 {% highlight ruby %}
     "/etc/${file}.conf"
-    "${operatingsystem} is not supported by ${module_name}"
+    "${::operatingsystem} is not supported by ${module_name}"
 {% endhighlight %}
 
 **Bad:**
 
 {% highlight ruby %}
     "/etc/$file.conf"
-    "$operatingsystem is not supported by $module_name"
+    "$::operatingsystem is not supported by $module_name"
 {% endhighlight %}
 
 Variables standing by themselves should not be quoted.  For example:
@@ -357,7 +357,7 @@ resource declarations.
 **Good:**
 
 {% highlight ruby %}
-    $file_mode = $operatingsystem ? {
+    $file_mode = $::operatingsystem ? {
       debian => '0007',
       redhat => '0776',
       fedora => '0007',
@@ -373,7 +373,7 @@ resource declarations.
 
 {% highlight ruby %}
     file { '/tmp/readme.txt':
-      mode => $operatingsystem ? {
+      mode => $::operatingsystem ? {
         debian => '0777',
         redhat => '0776',
         fedora => '0007',
@@ -393,7 +393,7 @@ catalog compilation to fail when no value matches.
 The following example follows the recommended style:
 
 {% highlight ruby %}
-    case $operatingsystem {
+    case $::operatingsystem {
       centos: {
         $version = '1.2.3'
       }
@@ -401,7 +401,7 @@ The following example follows the recommended style:
         $version = '3.2.1'
       }
       default: {
-        fail("Module ${module_name} is not supported on ${operatingsystem}")
+        fail("Module ${module_name} is not supported on ${::operatingsystem}")
       }
     }
 {% endhighlight %}
@@ -456,7 +456,7 @@ The following example follows the recommended style:
         fail('ensure parameter must be running or stopped')
       }
 
-      case $operatingsystem {
+      case $::operatingsystem {
         centos: {
           $package_list = 'openssh-server'
         }
@@ -464,7 +464,7 @@ The following example follows the recommended style:
           $package_list = [ SUNWsshr, SUNWsshu ]
         }
         default: {
-          fail("Module ${module_name} does not support ${operatingsystem}")
+          fail("Module ${module_name} does not support ${::operatingsystem}")
         }
       }
 
@@ -627,8 +627,19 @@ In summary:
 ### 11.6. Namespacing Variables
 
 When using top-scope variables, including facts, Puppet modules should
-explicitly specify the empty namespace (i.e., `$::operatingsystem`, not
-`$operatingsystem`) to prevent accidental scoping issues.
+explicitly specify the empty namespace to prevent accidental scoping issues.
+
+**Good:**
+
+{% highlight ruby %}
+    $::operatingsystem
+{% endhighlight %}
+
+**Bad:**
+
+{% highlight ruby %}
+    $operatingsystem
+{% endhighlight %}
 
 ### 11.7. Variable format
 
