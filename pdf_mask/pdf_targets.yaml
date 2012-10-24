@@ -1,3 +1,4 @@
+# TODO: Still need to put Puppet Reference Manual 2.7 and 3 into PDFs.
 ---
 learningpuppet.html:
     - top.html
@@ -22,6 +23,56 @@ dashboardmanual.html:
     - dashboard/manual/1.2/maintaining.html
     - dashboard/manual/1.2/using.html
     - dashboard/manual/1.2/rake_api.html
+    - bottom.html
+pe2_6usersguide.html:
+    - top.html
+    - pe/2.6/index.html
+    - pe/2.6/overview_about_pe.html
+    - pe/2.6/overview_whats_new.html
+    - pe/2.6/overview_getting_support.html
+    - pe/2.6/quick_start.html
+    - pe/2.6/quick_writing.html
+    - pe/2.6/install_system_requirements.html
+    - pe/2.6/install_basic.html
+    - pe/2.6/install_windows.html
+    - pe/2.6/install_upgrading.html
+    - pe/2.6/install_uninstalling.html
+    - pe/2.6/install_automated.html
+    - pe/2.6/install_answer_file_reference.html
+    - pe/2.6/install_what_and_where.html
+    - pe/2.6/console_accessing.html
+    - pe/2.6/console_navigating.html
+    - pe/2.6/console_reports.html
+    - pe/2.6/console_auth.html
+    - pe/2.6/console_classes_groups.html
+    - pe/2.6/console_live.html
+    - pe/2.6/console_live_resources.html
+    - pe/2.6/console_live_puppet.html
+    - pe/2.6/console_live_advanced.html
+    - pe/2.6/console_maintenance.html
+    - pe/2.6/puppet_overview.html
+    - pe/2.6/puppet_tools.html
+    - pe/2.6/puppet_modules_manifests.html
+    - pe/2.6/puppet_data_library.html
+    - pe/2.6/puppet_references.html
+    - pe/2.6/config_advanced.html
+    - pe/2.6/config_installing_additional.html
+    - pe/2.6/orchestration_overview.html
+    - pe/2.6/orchestration_usage.html
+    - pe/2.6/cloudprovisioner_overview.html
+    - pe/2.6/cloudprovisioner_configuring.html
+    - pe/2.6/cloudprovisioner_classifying_installing.html
+    - pe/2.6/cloudprovisioner_vmware.html
+    - pe/2.6/cloudprovisioner_aws.html
+    - pe/2.6/cloudprovisioner_workflow.html
+    - pe/2.6/cloudprovisioner_troubleshooting.html
+    - pe/2.6/compliance_basics.html
+    - pe/2.6/compliance_using.html
+    - pe/2.6/compliance_tutorial.html
+    - pe/2.6/accounts_user_type.html
+    - pe/2.6/accounts_class.html
+    - pe/2.6/trouble_common_problems.html
+    - pe/2.6/appendix.html
     - bottom.html
 pe2_5usersguide.html:
     - top.html
@@ -144,6 +195,7 @@ puppetmanual.html:
     - guides/introduction.html
     - guides/platforms.html
     - guides/installation.html
+    - guides/upgrading.html
     - guides/setting_up.html
     - guides/configuring.html
     - guides/language_guide.html
@@ -209,7 +261,6 @@ puppetmanual.html:
     - references/latest/configuration.html
     - references/latest/report.html
     - references/latest/indirection.html
-    - references/latest/network.html
     - bottom.html
 puppetdb0_9.html:
     - top.html
@@ -231,4 +282,30 @@ puppetdb0_9.html:
     - puppetdb/0.9/spec_q_metrics.html
     - puppetdb/0.9/spec_catalog_wire_format.html
     - puppetdb/0.9/spec_facts_wire_format.html
+    - bottom.html
+puppetdb1.html:
+    - top.html
+    - puppetdb/1/index.html
+    - puppetdb/1/release_notes.html
+    - puppetdb/1/known_issues.html
+    - puppetdb/1/community_add_ons.html
+    - puppetdb/1/install.html
+    - puppetdb/1/connect_puppet_master.html
+    - puppetdb/1/connect_puppet_apply.html
+    - puppetdb/1/upgrade.html
+    - puppetdb/1/install_from_source.html
+    - puppetdb/1/using.html
+    - puppetdb/1/maintain_and_tune.html
+    - puppetdb/1/scaling_recommendations.html
+    - puppetdb/1/configure.html
+    - puppetdb/1/repl.html
+    - puppetdb/1/spec_curl.html
+    - puppetdb/1/spec_commands.html
+    - puppetdb/1/spec_q_nodes.html
+    - puppetdb/1/spec_q_facts.html
+    - puppetdb/1/spec_q_resources.html
+    - puppetdb/1/spec_q_status.html
+    - puppetdb/1/spec_q_metrics.html
+    - puppetdb/1/spec_catalog_wire_format.html
+    - puppetdb/1/spec_facts_wire_format.html
     - bottom.html
