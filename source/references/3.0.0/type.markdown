@@ -396,10 +396,9 @@ special
   Overrides more specific time of day/week settings.
 
 target
-: Where the cron job should be stored.  For crontab-style
-  entries this is the same as the user and defaults that way.
-  Other providers default accordingly.
-
+: The username that will own the cron entry. Defaults to the value of $USER 
+  for the shell that invoked Puppet, or root if $USER is empty.
+  
 user
 : The user to run the command as.  This user must
   be allowed to run cron jobs, which is not currently checked by
