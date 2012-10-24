@@ -26,7 +26,7 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 * Variables can hold strings, numbers, special values (false, undef...), arrays, and hashes.
 * If you've never assigned a variable, you can actually still use it --- its value will be `undef`. (You can also explicitly assign `undef` as a value, although the use case for that is somewhat advanced.)
 * You can use variables as the value for any resource attribute, or as the title of a resource. 
-* You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you should wrap its name in curly braces.
+* You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you must wrap its name in curly braces.
 * Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
 * If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the top scope;[^dynamic] this means you can almost always refer to global variables with just their short names.
 
@@ -233,9 +233,9 @@ Selectors can also be used directly as values for a resource attribute, but try 
 Exercises
 ---------
 
-> **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian" and "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
+> **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian," "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
 
-> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you'll be shipping different config files ([Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el) --- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
+> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where both kinds of systems use the same package name (`ntp`), but you'll be shipping different config files ([Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el) -- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
 > 
 > (Use a second manifest to disable the NTP service after you've gotten this example working; NTP can behave kind of uselessly in a virtual machine.) 
 
