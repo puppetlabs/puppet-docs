@@ -28,7 +28,10 @@ Instead, we're going to use [puppet apply](../guides/tools.html#puppet-apply-or-
 
 Yeah, that easy.
 
-The behavior of Puppet's man pages is currently in flux. You can always get help for Puppet's command line tools by running the tool with the `--help` flag; in the Learning Puppet VM, which uses Puppet Enterprise, you can also run `pe-man puppet apply` to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will use Git-style man pages (`man puppet-apply`) with improved formatting.
+An Aside: Command Line Help
+---------------------------
+
+The behavior of Puppet's man pages is currently in flux. You can always get help for Puppet on the command line by running `puppet` with the `help` argument, e.g. `puppet help apply`. In the Learning Puppet VM, which uses Puppet Enterprise, you can also use `pe-man puppet-apply` to get the same help in a different format. Versions of Puppet starting with the upcoming 2.7 will provide Git-style man pages (`man puppet-apply`) with improved formatting.
 
 Manifests
 ---------
