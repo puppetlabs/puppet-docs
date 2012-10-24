@@ -107,6 +107,32 @@ Modulefiles support the following pieces of metadata:
 * `author` --- The module's author. If not provided, this field will default to the username portion of the module's `name` field.
 * `source` --- The module's source. This field's purpose is not specified.
 
+Dependancies in the Modulefile
+-----
+
+If you choose to rely on another Forge module, you can express this in the 'dependency' field of your Modulefile. The following is a list of operators that can be used like in the following complete example.
+
+`dependency 'puppetlabs/stdlib', '>= 2.2.1'`
+
+### Operators
+### `>1.2.3` (Greater than a specific version.)
+### `<1.2.3` (Less than a specific version.)
+### `>=1.2.3` (Greater than or equal to a specific version.)
+### `<=1.2.3` (Less than or equal to a specific version.)
+### `>=1.0.0 <2.0.0` (Range of versions)
+### `1.2.3` (A specific version.)
+### `1.x` (A semantic major version.)
+Example. 1.0.1 but _not_ 2.0.1. It's also shorthand for `>=1.0.0 <2.0.0`.
+### `1.2.x` (A semantic major & minor version.)
+Example. 1.2.3 but not 1.3.0. It's also shorthand for `>=1.2.0 <1.3.0`.
+
+> ### A Note on Semantic Versioning
+-----
+> When building your Modulefile, you're setting both a module version and optionally expressing dependancies on others module versions. Following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification is strongly recommended. Doing so not only provides a contract to others that might use your module but provides a way for you to rely on others modules without unexpected change.
+
+> For example, if you depend on puppetlabs-stdlib but want to protect against breaking changes, you could write the following line in your Modulefile (assuming the current module version of 2.2.1).  
+> `dependency 'puppetlabs/stdlib', '2.x'`
+
 
 Build Your Module
 ------
