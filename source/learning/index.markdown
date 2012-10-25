@@ -61,7 +61,7 @@ To begin with, you won't need separate agent and master VMs; you'll be running P
 
 The Learning Puppet VM is available in VMWare .vmx format and the cross-platform OVF format, and has been tested with VMWare Fusion and VirtualBox. 
 
-Although teaching the use of virtualization software is outside the scope of this introduction, [let me know](mailto:nick.fagerlund@puppetlabs.com) if you run into trouble, and we'll try to refine our approach over time.
+Although teaching the use of virtualization software is outside the scope of this introduction, [let me know](mailto:faq@puppetlabs.com) if you run into trouble, and we'll try to refine our approach over time.
 
 > VM Tips
 > -----

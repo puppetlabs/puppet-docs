@@ -145,7 +145,9 @@ Once you've edited the files, test that both VMs can ping the master at both its
     [root@agent1]# ping learn.localdomain
     [root@agent1]# ping puppet
 
-If this doesn't work, make sure that the `/etc/hosts` files don't have any conflicting lines --- there should be only one line with those puppet master hostnames.
+If this doesn't work, make sure that the `/etc/hosts` files don't have any conflicting lines --- there should be only one line with those puppet master hostnames. If `/etc/hosts` looks good, you may also need to flush cached DNS information in each VM:
+
+    # nscd --invalidate=hosts
 
 ### Ensure the Firewalls are Down
 

@@ -34,7 +34,7 @@ Puppet's agent/master mode is **pull-based.** Usually, agents are configured to 
 
 ![Diagram of manifests being compiled into a catalog, which gets applied to enforce a defined system state.][unified]
 
-Running Puppet in agent/master mode works much the same way --- the main difference is that it moves the manifests and compilation to the puppet master server. Agents don't have to have see any manifest files at all, and have no access to configuration information that isn't in their own catalog. 
+Running Puppet in agent/master mode works much the same way --- the main difference is that it moves the manifests and compilation to the puppet master server. Agents don't have to see any manifest files at all, and have no access to configuration information that isn't in their own catalog. 
 
 ![Diagram of an agent requesting a catalog, which gets compiled and served by a puppet master and applied by the agent][split]
 
