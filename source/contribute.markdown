@@ -71,6 +71,10 @@ Add your documentation fixes.
 NOTE: If you modify any of the code used to generate the documentation, make sure you
 provide passing tests that cover your changes.
 
+### Preview Your Changes
+
+Before committing any changes or submitting a patch, you should preview your changes. The [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) provides information on how to set up the correct tools to run a local server that will allow you to preview all your changes as they'll appear on the website. 
+
 ### Commit and Push/Patch
 
 * If you're using GitHub (or your own hosted repository), push to a
