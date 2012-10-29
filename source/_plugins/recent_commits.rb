@@ -19,7 +19,7 @@ class RecentCommits < Liquid::Tag
       commits.each do |line|
         fields = line.split(' ', 2)
         sha = fields[0]
-        message = fields[1].chomp
+        message = fields[1].chomp.gsub(/[<>]/, '')
         htmlfragment << %Q{<li><a href="https://github.com/puppetlabs/puppet-docs/commit/#{sha}">#{message}</a></li>\n}
       end
       htmlfragment << "</ul>\n"
