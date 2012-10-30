@@ -209,7 +209,7 @@ Puppet can create, edit, and delete scheduled tasks. It can manage the task name
 {% highlight ruby %}
     package { 'mysql':
       ensure          => installed,
-      provider        => 'msi',
+      provider        => 'msi', # deprecated in Puppet 3.0
       source          => 'N:/packages/mysql-5.5.16-winx64.msi',
       install_options => { 'INSTALLDIR' => 'C:\mysql-5.5' },
     }
@@ -221,6 +221,8 @@ Puppet can install and remove MSI packages, including specifying package-specifi
 * The source parameter is required, and must refer to a local .msi file, a file from a mapped drive, or a UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
 * The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install. 
     * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. 
+* As of Puppet 3.0, `windows` is the default provider parameter for all Windows packages. Using `msi` will result in a deprecation
+warning.
 
 ### [`service`][service]
 
