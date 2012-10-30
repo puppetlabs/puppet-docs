@@ -23,10 +23,10 @@ tightly restricted.
 Every document must have a preamble.  At the very least, this means a
 layout and a title:
 
----
-layout: default
-title: Language Tutorial
----
+    ---
+    layout: default
+    title: Language Tutorial
+    ---
 
 Replace the title with the title of the document you're adding.
 
