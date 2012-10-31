@@ -11,6 +11,7 @@ with the managed node's facts.
 
 [lptemplates]: /learning/templates.html
 [modules]: /puppet/2.7/reference/modules_fundamentals.html
+[functions]: /references/stable/function.html
 
 * * *
 
@@ -90,16 +91,23 @@ Note that the `template` function simply returns a string, which can be used as 
 
 ## Referencing Variables
 
-Puppet variables (both local and global, including facts) can be referred to in templates as Ruby instance variables --- that is, `@fqdn, @memoryfree, @operatingsystem`, etc. This notation is the best way to access variables visible from the current scope, and follows Puppet's normal variable lookup rules. ([Note that these rules changed for Puppet 3.0.](/guides/scope_and_puppet.html))
+Puppet passes all of the currently set variables (including facts) to templates when they are evaluated. There are several ways to access these variables:
 
-Puppet variables are also available as Ruby local variables --- that is, `fqdn, memoryfree, operatingsystem`, etc., without the prepended `@` sign. This notation is usually safe to use, but can potentially cause problems when variable names collide with Ruby function names. 
+* All of the variables visible **in the current scope** are available as Ruby instance variables --- that is, `@fqdn, @memoryfree, @operatingsystem`, etc. This style of reference works identically to using short (local) variable names in a Puppet manifest: `@fqdn` is exactly equivalent to `$fqdn`.
+* All of the variables visible **in the current scope** are also available as Ruby local variables --- that is, `fqdn, memoryfree, operatingsystem`, etc., without the prepended `@` sign. This style of reference can sometimes cause problems when variable names collide with Ruby method names; it's generally better to use the `@` style.
+* Puppet passes an object named `scope` to the template. This contains **all** of the currently set variables, as well as some other data ([including functions][template_functions]), and provides some methods for accessing them. You can use the scope object's `lookupvar` method to find **any** variable, in any scope. See "Out-of-Scope Variables" below for more details.
 
+[Note that Puppet's variable lookup rules changed for Puppet 3.0.](/guides/scope_and_puppet.html)
 
 ### Out-of-Scope Variables
 
-You can access variables in other scopes with the `scope.lookupvar` function:
+You can access variables in other scopes with the `scope.lookupvar` method:
 
     <%= scope.lookupvar('apache::user') %>
+
+This can also be used to ensure that you are getting the top-scope value of a variable that may have been overridden in a local scope:
+
+    <%= scope.lookupvar('::domain') %>
 
 ### Testing for Undefined variables
 
@@ -120,6 +128,17 @@ If you need to test for a variable outside the current scope, you should copy it
     <% if @in_var %>
     outside_var has <%= @in_var %> value
     <% end %>
+
+### Getting a List of All Variables
+
+If you use the scope object's `to_hash` method, you can get a hash of every variable that is defined in the current scope. This hash uses the local name (`osfamily`) of each variable, rather than the qualified name (`::osfamily`). 
+
+This snippet will print all of the variable names defined in the current scope:
+
+    <% scope.to_hash.keys.each do |k| -%>
+    <%= k %>
+    <% end -%>
+
 
 ## Combining templates
 
@@ -165,43 +184,53 @@ a quick and easy way to conditionally put content into a file:
 
     <% if broadcast != "NONE" %>        broadcast <%= broadcast %> <% end %>
 
-## Access to defined tags and classes
+## Access to Tags and Declared Classes
 
-In Puppet version 0.24.6 and later, it is possible from a template
-to get the list of defined classes, the list of tags in the current
-scope, and the list of all tags as ruby arrays. For example:
+> **Note:** The lists of tags and declared classes are parse-order dependent --- they are only safe to use if you know exactly when in the compilation process the template will be evaluated. Using these variables is not recommended. 
 
-This snippet will print all the tags defined in the current scope:
+In version 0.24.6 and later, Puppet passes the following extra variables to a template:
 
-    <% tags.each do |tag| -%>
-    The tag <%= tag %> is part of the current scope
-    <% end -%>
+* `classes` --- an array of all of the classes that have been declared so far
+* `tags` --- an array of all of the tags applied to the current container
+* `all_tags` --- an array of all of the tags in use anywhere in the catalog
 
-This snippet will print all the defined tags in the catalog:
+You can iterate over these variables or access their members. 
 
-    <% all_tags.each do |tag| -%>
-    The tag <%= tag %> is defined
-    <% end -%>
-
-This snippet will print all the defined classes in the catalog:
+This snippet will print all the classes that have been declared so far:
 
     <% classes.each do |klass| -%>
     The class <%= klass %> is defined
     <% end -%>
 
-## Access to variables and Puppet functions with the scope object
+This snippet will print all the tags applied to the current container:
 
-Inside templates you have access to a scope object. All of the functions that you can access in the puppet manifests can be accessed via that scope object, although not via the same name.
-
-Variables defined in the current scope are available as entries in the hash returned by the scope object's `to_hash` method. This snippet will print all of the variable names defined in the current scope:
-
-    <% scope.to_hash.keys.each do |k| -%>
-    <%= k %>
+    <% tags.each do |tag| -%>
+    The tag <%= tag %> is part of the current scope
     <% end -%>
 
-Puppet functions can be called by prepending "`function_`" to the beginning of the function name. For example, including one template inside another:
+This snippet will print all of the tags in use so far:
+
+    <% all_tags.each do |tag| -%>
+    The tag <%= tag %> is defined
+    <% end -%>
+
+## Using Functions Within Templates
+
+[template_functions]: #using-functions-within-templates
+
+[Puppet functions][functions] can be used inside templates, but their use there is slightly different from their use in manifests:
+
+* All functions are methods on the `scope` object.
+* You must prepend "`function_`" to the beginning of the function name.
+* The arguments of the function must be provided **as an array,** even if there is only one argument. (This is mandatory in Puppet 3. Prior to Puppet 3, some functions would succeed when passed a string and some would fail.)
+
+For example, to include one template inside another:
 
     <%= scope.function_template(["my_module/template2.erb"]) %>
+
+To log a warning using Puppet's own logging system, so that it will appear in reports:
+
+    <%= scope.function_warning(["Template was missing some data; this config file may be malformed."]) %>
 
 ## Syntax Checking
 
