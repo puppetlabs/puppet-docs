@@ -284,11 +284,10 @@ recommended.
 
 ### 9.6. File Modes
 
-File modes should be represented as 4 digits rather than 3, to explicitly show
-that they are octal values.
+File modes should be represented as 4 digits rather than 3.
 
-In addition, file modes should be specified as single-quoted strings instead of
-bare word numbers.
+In addition, file modes should be specified as single-quoted strings instead of bare word 
+numbers.
 
 **Good:**
 
@@ -314,11 +313,11 @@ Resource defaults should be used in a very controlled manner, and should only
 be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
 
 * At top scope in site.pp
-* In a class which is guaranteed to never declare another class and never be inherited by another class.
+* In a class which is guaranteed to never declare another class and never be inherited by 
+another class.
 
-This is due to the way
-resource defaults propagate through dynamic scope, which can have unpredictable
-effects far away from where the default was declared.
+This is due to the way resource defaults propagate through dynamic scope, which can have 
+unpredictable effects far away from where the default was declared.
 
 **Good:**
 
