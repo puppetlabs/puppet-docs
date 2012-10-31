@@ -23,7 +23,8 @@ Templates can be used to specify the contents of files.
 
 **For a full introduction to using templates with Puppet, see [the templates chapter of Learning Puppet][lptemplates].**
 
-## Evaluating templates
+Evaluating templates
+-----
 
 Templates are evaluated via a simple function:
 
@@ -39,7 +40,8 @@ only need to be on the server, and you never need to download them
 to the client. There's no difference that the client sees between using a
 template and specifying all of the text of the file as a string. 
 
-## Using templates
+Using templates
+-----
 
 Here is an example for generating the Apache configuration for
 [Trac](http://trac.edgewall.org/) sites:
@@ -89,7 +91,8 @@ Note that the `template` function simply returns a string, which can be used as 
 
     $myvariable = template('my_module/myvariable.erb')
 
-## Referencing Variables
+Referencing Variables
+-----
 
 Puppet passes all of the currently set variables (including facts) to templates when they are evaluated. There are several ways to access these variables:
 
@@ -140,7 +143,8 @@ This snippet will print all of the variable names defined in the current scope:
     <% end -%>
 
 
-## Combining templates
+Combining templates
+-----
 
 The template function can concatentate several templates together as follows:
 
@@ -148,7 +152,8 @@ The template function can concatentate several templates together as follows:
 
 This would be rendered as a single string with the content of both templates, in order.
 
-## Iteration
+Iteration
+-----
 
 Puppet's templates also support array iteration. If the variable you are
 accessing is an array, you can iterate over it in a loop. Given Puppet manifest
@@ -177,14 +182,16 @@ well to use ERB.   Internally, Puppet's values get translated to real Ruby value
 including true and false, so you can be pretty confident that
 variables will behave as you might expect.
 
-## Conditionals
+Conditionals
+-----
 
 The ERB templating supports conditionals.  The following construct is
 a quick and easy way to conditionally put content into a file:
 
     <% if broadcast != "NONE" %>        broadcast <%= broadcast %> <% end %>
 
-## Access to Tags and Declared Classes
+Access to Tags and Declared Classes
+-----
 
 > **Note:** The lists of tags and declared classes are parse-order dependent --- they are only safe to use if you know exactly when in the compilation process the template will be evaluated. Using these variables is not recommended. 
 
@@ -214,7 +221,8 @@ This snippet will print all of the tags in use so far:
     The tag <%= tag %> is defined
     <% end -%>
 
-## Using Functions Within Templates
+Using Functions Within Templates
+-----
 
 [template_functions]: #using-functions-within-templates
 
@@ -232,7 +240,8 @@ To log a warning using Puppet's own logging system, so that it will appear in re
 
     <%= scope.function_warning(["Template was missing some data; this config file may be malformed."]) %>
 
-## Syntax Checking
+Syntax Checking
+-----
 
 ERB files are easy to syntax check. For a file mytemplate.erb, run
 
