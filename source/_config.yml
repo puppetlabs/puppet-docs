@@ -3,6 +3,7 @@ pygments: true
 defaultnav: 
   /: quick_nav.html
   /mcollective: mcollective_menu.html
+  /pe/2.7: pe27.html
   /pe/2.6: pe26.html
   /pe/2.5: pe25.html
   /pe/2.0: pe_2.0_nav.markdown
