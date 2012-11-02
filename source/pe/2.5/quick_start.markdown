@@ -38,9 +38,9 @@ For this deployment, the puppet master and the console will be the same machine,
 > * [Puppet Enterprise installer tarballs][downloads] suitable for the OS and architecture your nodes are using. 
 > * A network --- all of your nodes should be able to reach each other.
 > * An internet connection or a local mirror of your operating system's package repositories, for downloading additional software that Puppet Enterprise may require.
-> * [Properly configured firewalls](./install_preparing.html#firewall-configuration).
+> * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
 >     * For demonstration purposes, all nodes should allow **all traffic on ports 8140, 61613, and 443.** (Production deployments can and should partially restrict this traffic.)
-> * [Properly configured name resolution](./install_preparing.html#name-resolution).
+> * [Properly configured name resolution](./install_system_requirements.html#name-resolution).
 >     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com`, the first agent node as `agent1.example.com`, and the Windows node as `windows.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.
 >     * All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the hostname command and one or more configuration files, while the exact method varies by platform.
 >     * All nodes must be able to **reach each other by name.** This can be done with a local DNS server, or by editing the `/etc/hosts` file on each node to point to the proper IP addresses. Test this by running `ping master.example.com` and `ping agent1.example.com` on every node, including the Windows node if present.

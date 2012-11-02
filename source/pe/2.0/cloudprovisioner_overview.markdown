@@ -20,7 +20,7 @@ Puppet Enterprise ships with command-line tools for provisioning new nodes. You 
 
 When used together, these tools provide a quick and efficient workflow for adding nodes to your Puppet Enterprise environment.
 
-See the chapters on [VMware](./cloudprovisioner_vmware.html) and [AWS](./cloudprovisioner_aws) provisioning for details about creating and destroying virtual machines. After that, the chapter on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical.
+See the chapters on [VMware](./cloudprovisioner_vmware.html) and [AWS](./cloudprovisioner_aws.html) provisioning for details about creating and destroying virtual machines. After that, the chapter on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical.
 
 Tools
 -----

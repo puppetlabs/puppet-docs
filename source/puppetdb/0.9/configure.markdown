@@ -137,7 +137,7 @@ Every change to PuppetDB's data stores comes in via commands that are inserted i
 
 `threads`
 
-: How many command processing threads to use. Each thread can process a single command at a time. [The number of threads can be tuned based on what you see in the performance console.](./maintain_and_tune#monitor-the-performance-console)
+: How many command processing threads to use. Each thread can process a single command at a time. [The number of threads can be tuned based on what you see in the performance console.](./maintain_and_tune.html#monitor-the-performance-console)
   
   This setting defaults to half the number of cores in your system.
 

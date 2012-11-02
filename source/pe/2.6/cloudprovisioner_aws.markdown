@@ -15,7 +15,7 @@ The main actions used for AWS cloud provisioning include:
 If you are new to Amazon Web Services, we recommend reading their [Getting Started
 documentation](http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGuide/).
 
-Below we take a quick look at these actions and their associated options. For comprehensive information, see [Getting More Help](Getting more help) below.
+Below we take a quick look at these actions and their associated options. For comprehensive information, see [Getting More Help](#getting-more-help) below.
 
 Viewing Existing EC2 Instances
 -----

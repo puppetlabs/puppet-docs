@@ -4,7 +4,7 @@ title: "PE 2.6 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 
-[25releasenotes]: /pe/2.5/appendix#release-notes
+[25releasenotes]: /pe/2.5/appendix.html#release-notes
 
 This document contains additional miscellaneous information about Puppet Enterprise 2.6.
 
