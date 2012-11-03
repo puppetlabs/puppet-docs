@@ -8,7 +8,7 @@ layout: default
 [connect_master]: ./connect_puppet_master.html
 [connect_apply]: ./connect_puppet_apply.html
 [redmine]: http://projects.puppetlabs.com/projects/puppetdb/issues
-[start_source]: /install_from_source.html#step-6-start-the-puppetdb-service
+[start_source]: ./install_from_source.html#step-6-start-the-puppetdb-service
 [plugin_source]: ./connect_puppet_master.html#on-platforms-without-packages
 
 

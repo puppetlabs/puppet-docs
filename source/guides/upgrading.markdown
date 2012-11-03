@@ -10,7 +10,7 @@ title: "Upgrading Puppet"
 [mailing_list]: https://groups.google.com/group/puppet-users/
 [tarball]: http://downloads.puppetlabs.com/puppet/
 [mcollective]: /mcollective
-[mco_puppetd]: /http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/AgentPuppetd
+[mco_puppetd]: http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/AgentPuppetd
 
 Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care.** This page describes our recommendations for upgrading Puppet.
 
