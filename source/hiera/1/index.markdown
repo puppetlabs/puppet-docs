@@ -7,11 +7,11 @@ layout: default
 [puppet]: /puppet
 [config]: ./configuring.html
 [install]: ./installing.html
-[data_sources]: 
-[hierarchy]: 
-[with_puppet]: 
-[command_line]: 
-[complete_example]: 
+[data_sources]: ./data_sources.html
+[hierarchy]: ./hierarchy.html
+[with_puppet]: ./puppet.html
+[command_line]: ./command_line.html
+[complete_example]: ./complete_example.html
 
 
 

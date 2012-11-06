@@ -4,11 +4,11 @@ title: "Hiera 1: The hiera.yaml Config File"
 ---
 
 [common_appdata]: /windows/installing.html#the-commonappdata-folder
-[yaml]: 
-[backend]: 
-[hierarchy]: 
-[interpolate]: 
-[loggers]: 
+[yaml]: http://www.yaml.org/YAML_for_ruby.html
+[hierarchy]: ./hierarchy.html
+[interpolate]: ./variables.html
+[custom_backends]: ./custom_backends.html
+
 
 Hiera's config file is usually referred to as `hiera.yaml`. Use this file to configure the [hierarchy][], which backend(s) to use, and settings for each backend.
 
@@ -52,6 +52,8 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 
 ### Example Config File
 
+[example]: #example-config-file
+
     ---
     :backends:
       - yaml
@@ -91,23 +93,25 @@ The data sources in the hierarchy are checked in order, top to bottom.
 
 ### `:backends`
 
-Must be a **string** or an **array of strings,** where each string is the name of an available Hiera [backend][].
+Must be a **string** or an **array of strings,** where each string is the name of an available Hiera backend. The built-in backends are `yaml` and `json`; an additional `puppet` backend is available when using Hiera with Puppet. Additional backends are available as add-ons. 
 
-The list of backends is processed in order: in the example above, Hiera would check the entire hierarchy in the **yaml** backend before starting again with the **json** backend. 
+> **Custom backends:** See ["Writing Custom Backends"][custom_backends] for details on writing new backend. Custom backends can interface with nearly any existing data store.
+
+The list of backends is processed in order: in the [example above][example], Hiera would check the entire hierarchy in the **yaml** backend before starting again with the **json** backend. 
 
 **Default value:** `"yaml"`
 
 ### `:logger`
 
-Must be the name of an available [logger][loggers], as a **string.**
+Must be the name of an available logger, as a **string.**
 
-Loggers only control where warnings and debug messages are routed. You can make your own logger by providing a class called `Hiera::Foo_logger` and giving it class methods called `warn` and `debug`, each of which should accept a single string.
-
-The built-in loggers are:
+Loggers only control where warnings and debug messages are routed. You can use one of the built-in loggers, or write your own. The built-in loggers are:
 
 * `console` (messages go directly to STDERR)
 * `puppet` (messages go to Puppet's logging system)
 * `noop` (messages are silenced)
+
+> **Custom loggers:** You can make your own logger by providing a class called, e.g., `Hiera::Foo_logger` (in which case Hiera's internal name for the logger would be `foo`), and giving it class methods called `warn` and `debug`, each of which should accept a single string.
 
 **Default value:** `"console"`; note that Puppet overrides this and sets it to `"puppet"`, regardless of what's in the config file.
 

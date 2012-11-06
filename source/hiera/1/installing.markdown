@@ -3,9 +3,8 @@ layout: default
 title: "Hiera 1: Installing"
 ---
 
-[hierarchy]: 
 [repos]: /guides/puppetlabs_package_repositories.html
-
+[config]: ./configuring.html
 
 
 > **Note:** If you are using Puppet 3 or later, you probably **already have Hiera installed.** You can skip these steps, and go directly to [configuring Hiera][config].

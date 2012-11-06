@@ -3,17 +3,13 @@ layout: default
 title: "Hiera 1: Variables and Interpolation"
 ---
 
-[master_set]: /puppet/3/reference/lang_variables.html#master-set-variables
-[agent_set]: /puppet/3/reference/lang_variables.html#agent-set-variables
-[datadir]: ./configuring.html#datadir
-[config]: 
-[data]: 
+[config]: ./configuring.html
+[data]: ./data_sources.html
 [puppet_vars]: /puppet/3/reference/lang_variables.html
 [qualified_var]: /puppet/3/reference/lang_variables.html#naming
 [built_in_vars]: /puppet/3/reference/lang_variables.html#facts-and-built-in-variables
-[command_line]: 
-
-
+[command_line]: ./command_line.html
+[hierarchy]: ./hierarchy.html
 
 
 Hiera receives a set of variables whenever it is invoked, and the [config file][config] and [data sources][data] can insert these variables into settings and data. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data. 
@@ -67,8 +63,6 @@ In this example, instead of creating a `%{::domain}` hierarchy level and a data 
 
 Passing Variables to Hiera
 -----
-
-[passing]: #passing-variables-to-hiera
 
 Hiera's variables can come from a variety of sources, depending on how Hiera is invoked.
 
