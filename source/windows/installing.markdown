@@ -168,23 +168,25 @@ sys       | Ruby and other tools
 
 ### Data Directory
 
-Puppet stores its settings (`puppet.conf`), manifests, and generated data (like logs and catalogs) in its **data directory.** 
+Puppet stores its settings (`puppet.conf`), manifests, and generated data (like logs and catalogs) in its **data directory.** Puppet's data directory contains two subdirectories: 
 
-When run with elevated privileges, the data directory is located in the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494(v=vs.85).aspx">`COMMON_APPDATA`</a> folder. This folder's location varies by Windows version:
+* `etc` (the `$confdir`) contains configuration files, manifests, certificates, and other important files
+* `var` (the `$vardir`) contains generated data and logs
 
-OS Version| Path                                            | Default
-----------|-------------------------------------------------|---------
-2003      | `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet` | `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet`
-7, 2008   | `%PROGRAMDATA%\PuppetLabs\puppet`                      | `C:\ProgramData\PuppetLabs\puppet`
+When run with elevated privileges, the data directory is located in `COMMON_APPDATA\PuppetLabs\puppet`; see below for more about the `COMMON_APPDATA` folder. When run without elevated privileges, the data directory will be a `.puppet` directory in the current user's home folder. Puppet on Windows should usually be run **with** elevated privileges.
 
-Since CommonAppData directory is a system folder, it is hidden by default. See <http://support.microsoft.com/kb/812003> for steps to show system and hidden files and folders.
+#### The `COMMON_APPDATA` Folder
 
-If Puppet is run without elevated privileges, it will use a `.puppet` directory in the current user's home folder as its data directory. Puppet should usually be run with elevated privileges, and running it without may result in Puppet having unexpected settings. 
+Windows' <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494(v=vs.85).aspx"><code>COMMON_APPDATA</code></a> folder contains non-roaming application data for all users. Its location varies by Windows version:
 
-Puppet's data directory contains two subdirectories: 
+OS Version| Path                                 | Default
+----------|--------------------------------------|-----------------
+7, 2008   | `%PROGRAMDATA%`                      | `C:\ProgramData`
+2003      | `%ALLUSERSPROFILE%\Application Data` | `C:\Documents and Settings\All Users\Application Data`
 
-* `etc` contains configuration files, manifests, certificates, and other important files
-* `var` contains generated data and logs
+Since the CommonAppData directory is a system folder, it is hidden by default. See <http://support.microsoft.com/kb/812003> for steps to show system and hidden files and folders.
+
+
 
 ### More
 
