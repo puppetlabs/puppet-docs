@@ -75,6 +75,20 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 
 Documentation for previous versions of PuppetDB can be found [here](/puppetdb).
 
+[Hiera](/hiera/1)
+-----
+
+Hiera is a key/value lookup tool for configuration data, built to make Puppet better and let you set node-specific data without repeating yourself. Hiera support is built into Puppet 3, and is available as an add-on for Puppet 2.7. 
+
+[See the Hiera 1 manual](/hiera/1), or go directly to:
+
+* [The installation instructions](/hiera/1/installing.html)
+* [The config file reference](/hiera/1/configuring.html)
+* [Info about hierarchies](/hiera/1/hierarchy.html)
+* [How to write data sources](/hiera/1/data_sources.html)
+* [Using Hiera with Puppet](/hiera/1/puppet.html)
+* [Using Hiera from the command line](/hiera/1/command_line.html)
+
 
 [Facter](/facter/1.6/core_facts.html)
 -----
