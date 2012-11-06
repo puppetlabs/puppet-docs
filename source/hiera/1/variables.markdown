@@ -8,67 +8,83 @@ title: "Hiera 1: Variables and Interpolation"
 [datadir]: ./configuring.html#datadir
 [config]: 
 [data]: 
-[puppet_vars]: 
-[qualified_var]: 
+[puppet_vars]: /puppet/3/reference/lang_variables.html
+[qualified_var]: /puppet/3/reference/lang_variables.html#naming
+[built_in_vars]: /puppet/3/reference/lang_variables.html#facts-and-built-in-variables
 [command_line]: 
 
-<!-- The following references are not used in the text:
-[datadir]:
--->
 
-Hiera receives a set of variables (a "scope") when it is invoked. Hiera's [config file][config] and [data sources][data] can use interpolation tokens (`%{variable}`) to insert any of these variables into both **settings** and **data.**
 
-Interpolating Values
+
+Hiera receives a set of variables whenever it is invoked, and the [config file][config] and [data sources][data] can insert these variables into settings and data. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data. 
+
+
+Inserting Variable Values
 -----
 
-If any [setting][config] or [data value][data] contains an interpolation token, Hiera will replace the token with the value of a variable. Interpolation tokens can appear alone or as part of a string.
+**Interpolation tokens** look like `%{variable}` --- a percent sign (`%`) followed by a pair of curly braces (`{}`) containing a variable name.
 
-Interpolation tokens look like `%{variable}` --- a percent sign (`%`) and a pair of curly braces (`{}`) containing a variable name.
+If any [setting in the config file][config] or [value in a data source][data] contains an interpolation token, Hiera will replace the token with the value of the variable. Interpolation tokens can appear alone or as part of a string.
 
-### Examples
+* Hiera can only interpolate variables whose values are **strings.** (**Numbers** from Puppet are also passed as strings and can be used safely.) You cannot interpolate variables whose values are booleans, numbers not from Puppet, arrays, hashes, resource references, or an explicit `undef` value.
+* Additionally, Hiera cannot interpolate an individual **element** of any array or hash, even if that element's value is a string.
 
-The main use for interpolation is to set dynamic [hierarchy levels][hierarchy] in the [config file][config]:
+
+### In Data Sources
+
+The main use for interpolation is in the [config file][config], where you can set dynamic data sources in the [hierarchy][]:
 
     ---
     :hierarchy:
       - %{::clientcert}
       - %{::custom_location}
+      - virtual_%{::is_virtual}
       - %{::environment}
       - common
 
+In this example, every data source except the final one will vary depending on the current values of the `::clientcert, ::custom_location, ::is_virtual,` and `::environment` variables.
+
+### In Other Settings
+
+You can also interpolate variables into other [settings][config], such as `:datadir` (in the YAML and JSON backends):
+
+    :yaml:
+      :datadir: /etc/puppet/hieradata/%{::environment}
+
+This example would let you use completely separate data directories for your production and development environments. 
+
+### In Data
+
+Within a data source, you can interpolate variables into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
+
+    # /var/lib/hiera/common.yaml
+    ---
+    smtpserver: mail.%{::domain}
+
+In this example, instead of creating a `%{::domain}` hierarchy level and a data source for each domain, you can get a similar result with one line in the `common` data source.
 
 
-### Limits of Interpolation
 
-Hiera can only interpolate variables whose values are **strings** (and **numbers,** for variables that come from Puppet).
-
-Trying to interpolate variables that contain booleans, arrays, hashes, resource references, or `undef` will result in an error.
-
-Additionally, Hiera cannot interpolate an element of an array or hash, even if that element's value is a string.
-
-
-Variables and Scopes
+Passing Variables to Hiera
 -----
+
+[passing]: #passing-variables-to-hiera
 
 Hiera's variables can come from a variety of sources, depending on how Hiera is invoked.
 
 ### From Puppet
 
-When used with Puppet, Hiera receives **all of the [variables][puppet_vars] currently available to Puppet.** Variables can be accessed by their short or fully-qualified names.
+When used with Puppet, Hiera **automatically** receives **all** of Puppet's current [variables][puppet_vars]. This includes [facts and built-in variables][built_in_vars], as well as local variables from the current scope. Most users will almost exclusively interpolate facts and built-in variables in their Hiera configuration and data.
 
-Within Hiera, the dollar sign (`$`) prefix must be removed from Puppet variable names. (That is, `$::clientcert` in Puppet would be `::clientcert` in Hiera.)
+* Remove Puppet's `$` (dollar sign) prefix when using its variables in Hiera. (That is, a variable called `$::clientcert` in Puppet is called `::clientcert` in Hiera.)
+* Puppet variables can be accessed by their [short name or qualified name][qualified_var].
 
 > #### Best Practices
 >
-> When used with Puppet, Hiera should **only** rely on the following kinds of variables:
+> * Usually avoid referencing **user-set local variables** from Hiera. Instead, use [**facts,** **built-in variables,**][built_in_vars] **top-scope variables,** **node-scope variables,** or **variables from an ENC** whenever possible. 
+> * When possible, reference variables by their [**fully-qualified names**][qualified_var] (e.g. `%{::environment}` and `%{::clientcert}`) to make sure their values are not masked by local scopes.
 >
-> * Facts
-> * [Agent-set][agent_set] or [master-set][master_set] variables, including `clientcert` and `environment`
-> * Top-scope variables set by an ENC
->
-> You should access these variables by their [fully-qualified names][qualified_var] (e.g. `%{::environment}` and `%{::clientcert}`) to make sure their values are not masked by local scopes.
->
-> These special variables are set **before** catalog compilation begins, and retain their values for the entire run. By limiting yourself to variables that don't depend on parse order or manifest contents, you can guarantee that your Hiera data will be both node-specific and stable. 
+> These two guidelines will make Hiera more predictable, and can help protect you from accidentally mingling data and code in your Puppet manifests. 
 
 ### From the Command Line
 
