@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 0.9 » Spec » Querying Nodes"
 layout: default
+canonical: "/puppetdb/1/spec_q_nodes.html"
 ---
 
 
