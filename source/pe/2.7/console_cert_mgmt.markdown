@@ -25,16 +25,6 @@ You will see a view containing a list of all the pending node requests. Each ite
 
 If there are no pending node requests, you will see some instructions for adding new nodes. If this is not what you expect to see, the location of your Certificate Authority (CA) may not be configured correctly.
 
-#### Configuration Details
-
-By default, the location of the CA is set to the location of PE's puppet master. If the CA is in a custom location (as in cases where there are multiple puppet masters), you will have to set the `ca_server` and `ca_port` parameters in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
-
-When upgrading PE, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for certificate management. If auth.conf has been manually modified, the upgrader will not convert the file. Consequently, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
-
-    path  /certificate_status
-    method find, search
-    auth any
-    allow pe-internal-dashboard
 
 ###Rejecting and Approving Nodes
 
@@ -44,9 +34,9 @@ Use the buttons to accept or reject nodes, singly or all at once. Note that once
 
 ![request management view](images/console/request_mgmt_view.png)
 
-In some rare cases, DNS altnames may be set up for agent nodes. In such cases, the CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the reference guide](http://docs.puppetlabs.com/references/latest/configuration.html#dnsaltnames).
+In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the reference guide](http://docs.puppetlabs.com/references/latest/configuration.html#dnsaltnames).
 
-In some cases, attempting to accept or reject a node request will result in an error. This is usually because the request has been modified somehow, usually by being accepted or rejected elsewhere (e.g. by another user or from the CLI) since the request was first generated.
+In some cases, attempting to accept or reject a node request will result in an error. This is typically because the request has been modified somehow, usually by being accepted or rejected elsewhere (e.g. by another user or from the CLI) since the request was first generated.
 
 Accepted/rejected nodes will remain displayed in the console for 24 hours after the action is taken. This interval cannot be modified.
 
@@ -64,6 +54,36 @@ To sign one of the pending requests, run:
     $ sudo puppet cert sign <name>
     
 For more information on working with certificates from the CLI, see the [Puppet tools guide](http://docs.puppetlabs.com/guides/tools.html#puppet-cert-or-puppetca) or view the [man page for `puppet cert`](http://docs.puppetlabs.com/man/cert.html).
+
+### Configuration Details
+
+* By default, the location of the CA is set to the location of PE's puppet master. If the CA is in a custom location (as in cases where there are multiple puppet masters), you will have to set the `ca_server` and `ca_port` parameters in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
+
+* When upgrading PE to 2.7, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for request management. If auth.conf has been manually modified prior to the upgrade, the upgrader will not convert the file. Consequently, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
+
+        path  /certificate_status
+        method find, search
+        auth yes
+        allow pe-internal-dashboard
+
+    Also, note that since auth.conf is fully managed by puppet in 2.7, if you make changes to the file, they will get over-written on the next puppet run.
+
+#### New Modules
+PE 2.7 installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienar-concat`. It also upgrades the `puppetlabs-stdlib` module to v.2.5.1.
+
+The `puppetlabs-auth_conf` module contains a new defined type: `auth_conf::acl`. The type takes the following parameters:
+
+
+| parameter     |  description               |  value types   |  default value | required |
+|-------------------|---------------------------------|--------------|-------------------|-----|
+| path          |  URL path of ACL           |  string        |  $title        | no |
+| acl_method    |  find, search save, delete |  string, array |                | no |
+| auth          |  yes, no, any              |  sring         |  yes           | no |
+| allow         |  certnames to access path  |  array         |  [ ]            | no |
+| order         |  order in auth.conf file   |  string        |  99            | no |
+| regex         |  is the path a regex?      |  bool          |  false         | no |
+| environment   |  environments to allow     |  string        |                | no |
+
 
 * * * 
 
