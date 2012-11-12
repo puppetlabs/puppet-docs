@@ -21,19 +21,19 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 
 
-[Puppet Enterprise](/pe/2.6)
+[Puppet Enterprise](/pe/2.7)
 -----
 
 Puppet Enterprise is Puppet with more, including professional support, a production-grade puppet master stack, a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, and cloud provisioning tools. 
 
 Nearly all of the main Puppet documentation also applies to Puppet Enterprise. For details about PE's extra features and slightly different run environment, see [the current Puppet Enterprise user's guide](/pe/2.6/), or go directly to:
 
-- [The system requirements](/pe/2.6/install_system_requirements.html)
-- [The installation instructions](/pe/2.6/install_basic.html) or [the upgrade instructions](/pe/2.6/install_upgrading.html)
-- [The quick start guide](/pe/2.6/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
+- [The system requirements](/pe/2.7/install_system_requirements.html)
+- [The installation instructions](/pe/2.7/install_basic.html) or [the upgrade instructions](/pe/2.7/install_upgrading.html)
+- [The quick start guide](/pe/2.7/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 2.6; documentation for previous versions can be found [here](/pe/index.html). 
+The current version of PE is 2.7; documentation for previous versions can be found [here](/pe/index.html). 
 
 [MCollective](/mcollective)
 -----
