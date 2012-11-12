@@ -10,7 +10,6 @@ title: "Language: Reserved Words and Acceptable Names"
 [facts]: /facter/1.6/core_facts.html
 [capture]: ./lang_datatypes.html#regex-capture-variables
 [conditional]: ./lang_conditional.html
-[dynamic]: ./lang_scope.html#dynamic-scope
 [topscope]: ./lang_scope.html#top-scope
 [namespace]: ./lang_namespaces.html
 [scopes]: ./lang_scope.html
@@ -70,10 +69,7 @@ The following variable names are reserved, and you **must not** assign values to
 
 * `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug rather than a deliberate design, and can be tracked at [issue #14093](http://projects.puppetlabs.com/issues/14093).
 * Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined. 
-
-Additionally, re-using the names of any of Puppet's [built-in variables][built_in] or [facts][facts] at [top scope][topscope] will cause compilation to fail. 
-
-> Note: You can safely re-use fact names at node or local scope, but should do so with care, as [dynamic scope lookup][dynamic] may cause classes and defined types declared in that scope to receive unexpected data.
+* Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely re-used at node or local scope.
 
 Acceptable Characters in Names
 -----

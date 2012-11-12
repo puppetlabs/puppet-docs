@@ -3,6 +3,7 @@ pygments: true
 defaultnav: 
   /: quick_nav.html
   /mcollective: mcollective_menu.html
+  /pe/2.7: pe27.html
   /pe/2.6: pe26.html
   /pe/2.5: pe25.html
   /pe/2.0: pe_2.0_nav.markdown
@@ -11,4 +12,5 @@ defaultnav:
   /puppet/2.7/reference: puppet_2_7.html
   /puppet/3/reference: puppet_reference_3.html
   /references: references_general.html
+  /hiera/1: hiera1.html
 ---

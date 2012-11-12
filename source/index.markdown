@@ -21,19 +21,19 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 
 
-[Puppet Enterprise](/pe/2.6)
+[Puppet Enterprise](/pe/2.7)
 -----
 
 Puppet Enterprise is Puppet with more, including professional support, a production-grade puppet master stack, a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, and cloud provisioning tools. 
 
 Nearly all of the main Puppet documentation also applies to Puppet Enterprise. For details about PE's extra features and slightly different run environment, see [the current Puppet Enterprise user's guide](/pe/2.6/), or go directly to:
 
-- [The system requirements](/pe/2.6/install_system_requirements.html)
-- [The installation instructions](/pe/2.6/install_basic.html) or [the upgrade instructions](/pe/2.6/install_upgrading.html)
-- [The quick start guide](/pe/2.6/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
+- [The system requirements](/pe/2.7/install_system_requirements.html)
+- [The installation instructions](/pe/2.7/install_basic.html) or [the upgrade instructions](/pe/2.7/install_upgrading.html)
+- [The quick start guide](/pe/2.7/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 2.6; documentation for previous versions can be found [here](/pe/index.html). 
+The current version of PE is 2.7; documentation for previous versions can be found [here](/pe/index.html). 
 
 [MCollective](/mcollective)
 -----
@@ -74,6 +74,20 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 * [The installation instructions](/puppetdb/1/install.html)
 
 Documentation for previous versions of PuppetDB can be found [here](/puppetdb).
+
+[Hiera](/hiera/1)
+-----
+
+Hiera is a key/value lookup tool for configuration data, built to make Puppet better and let you set node-specific data without repeating yourself. Hiera support is built into Puppet 3, and is available as an add-on for Puppet 2.7. 
+
+[See the Hiera 1 manual](/hiera/1), or go directly to:
+
+* [The installation instructions](/hiera/1/installing.html)
+* [The config file reference](/hiera/1/configuring.html)
+* [Info about hierarchies](/hiera/1/hierarchy.html)
+* [How to write data sources](/hiera/1/data_sources.html)
+* [Using Hiera with Puppet](/hiera/1/puppet.html)
+* [Using Hiera from the command line](/hiera/1/command_line.html)
 
 
 [Facter](/facter/1.6/core_facts.html)

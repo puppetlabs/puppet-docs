@@ -28,10 +28,11 @@ An "if" statement:
 
 {% highlight ruby %}
     if $is_virtual == 'true' {
-      warn( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
+      warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
     }
     elsif $operatingsystem == 'Darwin' {
-      warn ( 'This NTP module does not yet work on our Mac laptops.' )
+      warning('This NTP module does not yet work on our Mac laptops.')
+    }
     else {
       include ntp
     }

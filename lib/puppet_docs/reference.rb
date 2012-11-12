@@ -106,7 +106,7 @@ EOT
         @version ||=
           at @tag do
             raw = `ruby -I#{puppet_dir}/lib -rpuppet -e 'puts Puppet::PUPPETVERSION'`.strip
-            Gem::Version.new(raw)
+            Versionomy.parse(raw)
           end
       end
 
