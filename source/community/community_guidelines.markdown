@@ -12,7 +12,7 @@ We want to keep the Puppet communities awesome, but we need your help to keep it
 * **Stay on topic**: Make sure that you are posting to the correct channel or and avoid off-topic discussions.  Also remember that nobody likes spam. 
 
 
-Guideline Violations - 3 Strikes Method
+Guideline Violations --- 3 Strikes Method
 -----
 
 The point of this section is not to find opportunities to punish people, but we do need a fair way to deal with people who are making our community suck.
@@ -82,7 +82,7 @@ We also have a few IRC-specific guidelines:
 * Don't be a jerk: Treat people with respect and consideration.
 * Be helpful: Be patient with new people and be willing to jump in to answer questions.
 * Stay calm: The written word is always subject to interpretation, so give people the benefit of the doubt and try not to let emotions get out of control.
-* Don't post chunks: Avoid posting big chunks of text - use pastebin or a similar service to shorten it to a link.
+* Don't post chunks: Avoid posting big chunks of text --- use pastebin or a similar service to shorten it to a link.
 * Be patient: Folks might not be around when you ask a question, so wait a while for someone to speak before leaving.
 * Search first: Believe it or not, your question might not be new or you might be able to find someone who has already asked or answered your question. Do a thorough search of the [IRC log archives](http://www.puppetlogs.com/) to see if it has been answered before.
 * Don't private message: Ask permission before you send someone a private message (PM). Not everyone likes them. Also, by keeping it in public, others with similar issues can see the solution you were given.
@@ -92,7 +92,7 @@ We also have a few IRC-specific guidelines:
 ### Mailing List Guidelines
 
 
-Remember, when you post to a community mailing list, you are, in effect, asking a large group of people to give you some of their time and attention - to download your message, read it, and potentially reply to it. It is simply polite to make sure your message is relevant to as many of the people receiving the message as possible. Many of the guidelines below stem from this basic principle.
+Remember, when you post to a community mailing list, you are, in effect, asking a large group of people to give you some of their time and attention --- to download your message, read it, and potentially reply to it. It is simply polite to make sure your message is relevant to as many of the people receiving the message as possible. Many of the guidelines below stem from this basic principle.
 
 
 **Puppet Community Mailing Lists**
