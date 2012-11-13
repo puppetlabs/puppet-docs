@@ -105,9 +105,10 @@ Community
 
 Puppet has a large community and many resources for users.
 
-- [Community Guidelines and Code of Conduct](/community/community_guidelines.html)
+- [Community Guidelines and Code of Conduct](/community/community_guidelines.html) --- General info about how to navigate our community and get help. 
 - [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions. 
 - [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS. 
+- [Redmine Workflow for Puppet Open-Source Projects](/community/puppet_projects_redmine_workflow.html) --- Info about how the Puppet projects use their issue tracker, and how you can help. 
 
 
 
