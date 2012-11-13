@@ -99,18 +99,13 @@ Facter is Puppet's cross-platform system profiling library. It discovers and rep
 * [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts.
 
 
-{% comment %}
-Hiera
+
+Community
 -----
 
+Puppet has a large community and many resources for users.
 
-
-{% endcomment %}
-
-
-Public Services
------
-
+- [Community Guidelines and Code of Conduct](/community/community_guidelines.html)
 - [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions. 
 - [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS. 
 
