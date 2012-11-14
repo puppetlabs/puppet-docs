@@ -196,6 +196,11 @@ To fix this:
           console_hostname: console.example.com
 
     Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
+    
+Troubleshooting Issues on Windows
+-----
+
+Refer to the [Windows Troubleshooting page](http://docs.puppetlabs.com/windows/troubleshooting.html) for tips and  advice to help you resolve common issues when running PE on Windows.    
 
 * * * 
 
