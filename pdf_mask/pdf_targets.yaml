@@ -24,6 +24,57 @@ dashboardmanual.html:
     - dashboard/manual/1.2/using.html
     - dashboard/manual/1.2/rake_api.html
     - bottom.html
+pe2_7usersguide.html:
+    - top.html
+    - pe/2.7/index.html
+    - pe/2.7/overview_about_pe.html
+    - pe/2.7/overview_whats_new.html
+    - pe/2.7/overview_getting_support.html
+    - pe/2.7/quick_start.html
+    - pe/2.7/quick_writing.html
+    - pe/2.7/install_system_requirements.html
+    - pe/2.7/install_basic.html
+    - pe/2.7/install_windows.html
+    - pe/2.7/install_upgrading.html
+    - pe/2.7/install_uninstalling.html
+    - pe/2.7/install_automated.html
+    - pe/2.7/install_answer_file_reference.html
+    - pe/2.7/install_what_and_where.html
+    - pe/2.7/console_accessing.html
+    - pe/2.7/console_navigating.html
+    - pe/2.7/console_cert_mgmt.html
+    - pe/2.7/console_reports.html
+    - pe/2.7/console_auth.html
+    - pe/2.7/console_classes_groups.html
+    - pe/2.7/console_live.html
+    - pe/2.7/console_live_resources.html
+    - pe/2.7/console_live_puppet.html
+    - pe/2.7/console_live_advanced.html
+    - pe/2.7/console_maintenance.html
+    - pe/2.7/puppet_overview.html
+    - pe/2.7/puppet_tools.html
+    - pe/2.7/puppet_modules_manifests.html
+    - pe/2.7/puppet_data_library.html
+    - pe/2.7/puppet_references.html
+    - pe/2.7/config_advanced.html
+    - pe/2.7/config_installing_additional.html
+    - pe/2.7/orchestration_overview.html
+    - pe/2.7/orchestration_usage.html
+    - pe/2.7/cloudprovisioner_overview.html
+    - pe/2.7/cloudprovisioner_configuring.html
+    - pe/2.7/cloudprovisioner_classifying_installing.html
+    - pe/2.7/cloudprovisioner_vmware.html
+    - pe/2.7/cloudprovisioner_aws.html
+    - pe/2.7/cloudprovisioner_workflow.html
+    - pe/2.7/cloudprovisioner_troubleshooting.html
+    - pe/2.7/compliance_basics.html
+    - pe/2.7/compliance_using.html
+    - pe/2.7/compliance_tutorial.html
+    - pe/2.7/accounts_user_type.html
+    - pe/2.7/accounts_class.html
+    - pe/2.7/trouble_common_problems.html
+    - pe/2.7/appendix.html
+    - bottom.html
 pe2_6usersguide.html:
     - top.html
     - pe/2.6/index.html
@@ -308,4 +359,93 @@ puppetdb1.html:
     - puppetdb/1/spec_q_metrics.html
     - puppetdb/1/spec_catalog_wire_format.html
     - puppetdb/1/spec_facts_wire_format.html
+    - bottom.html
+hiera1.html:
+    - top.html
+    - hiera/1/index.html
+    - hiera/1/complete_example.html
+    - hiera/1/installing.html
+    - hiera/1/configuring.html
+    - hiera/1/hierarchy.html
+    - hiera/1/data_sources.html
+    - hiera/1/variables.html
+    - hiera/1/puppet.html
+    - hiera/1/command_line.html
+    - hiera/1/custom_backends.html
+    - bottom.html
+puppet_reference_2_7.html:
+    - top.html
+    - puppet/2.7/reference/lang_visual_index.html
+    - puppet/2.7/reference/lang_summary.html
+    - puppet/2.7/reference/lang_reserved.html
+    - puppet/2.7/reference/lang_resources.html
+    - puppet/2.7/reference/lang_relationships.html
+    - puppet/2.7/reference/lang_defaults.html
+    - puppet/2.7/reference/lang_variables.html
+    - puppet/2.7/reference/lang_scope.html
+    - puppet/2.7/reference/lang_conditional.html
+    - puppet/2.7/reference/lang_expressions.html
+    - puppet/2.7/reference/lang_functions.html
+    - puppet/2.7/reference/lang_classes.html
+    - puppet/2.7/reference/lang_defined_types.html
+    - puppet/2.7/reference/lang_containment.html
+    - puppet/2.7/reference/lang_namespaces.html
+    - puppet/2.7/reference/lang_collectors.html
+    - puppet/2.7/reference/lang_node_definitions.html
+    - puppet/2.7/reference/lang_datatypes.html
+    - puppet/2.7/reference/lang_comments.html
+    - puppet/2.7/reference/lang_virtual.html
+    - puppet/2.7/reference/lang_exported.html
+    - puppet/2.7/reference/lang_tags.html
+    - puppet/2.7/reference/lang_run_stages.html
+    - puppet/2.7/reference/lang_import.html
+    - puppet/2.7/reference/modules_fundamentals.html
+    - guides/plugins_in_modules.html
+    - puppet/2.7/reference/modules_installing.html
+    - puppet/2.7/reference/modules_publishing.html
+    - references/2.7.latest/type.html
+    - references/2.7.latest/configuration.html
+    - references/2.7.latest/function.html
+    - references/2.7.latest/metaparameter.html
+    - references/2.7.latest/report.html
+    - bottom.html
+puppet_reference_3.html:
+    - top.html
+    - puppet/3/reference/index.html
+    - puppet/3/reference/release_notes.html
+    - puppet/3/reference/system_requirements.html
+    - puppet/3/reference/lang_visual_index.html
+    - puppet/3/reference/lang_summary.html
+    - puppet/3/reference/lang_reserved.html
+    - puppet/3/reference/lang_resources.html
+    - puppet/3/reference/lang_relationships.html
+    - puppet/3/reference/lang_defaults.html
+    - puppet/3/reference/lang_variables.html
+    - puppet/3/reference/lang_scope.html
+    - puppet/3/reference/lang_conditional.html
+    - puppet/3/reference/lang_expressions.html
+    - puppet/3/reference/lang_functions.html
+    - puppet/3/reference/lang_classes.html
+    - puppet/3/reference/lang_defined_types.html
+    - puppet/3/reference/lang_containment.html
+    - puppet/3/reference/lang_namespaces.html
+    - puppet/3/reference/lang_collectors.html
+    - puppet/3/reference/lang_node_definitions.html
+    - puppet/3/reference/lang_datatypes.html
+    - puppet/3/reference/lang_comments.html
+    - puppet/3/reference/lang_virtual.html
+    - puppet/3/reference/lang_exported.html
+    - puppet/3/reference/lang_tags.html
+    - puppet/3/reference/lang_run_stages.html
+    - puppet/3/reference/lang_import.html
+    - puppet/3/reference/modules_fundamentals.html
+    - guides/plugins_in_modules.html
+    - puppet/3/reference/modules_installing.html
+    - puppet/3/reference/modules_publishing.html
+    - references/3.0.latest/type.html
+    - references/3.0.latest/configuration.html
+    - references/3.0.latest/function.html
+    - references/3.0.latest/metaparameter.html
+    - references/3.0.latest/report.html
+    - references/3.0.latest/indirection.html
     - bottom.html
