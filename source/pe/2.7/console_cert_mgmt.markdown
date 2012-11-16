@@ -68,7 +68,7 @@ For more information on working with certificates from the CLI, see the [Puppet 
 
     Also, note that since auth.conf is fully managed by puppet in 2.7, if you make changes to the file, they will get over-written on the next puppet run.
 
-#### New Modules
+### New Modules
 PE 2.7 installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienar-concat`. It also upgrades the `puppetlabs-stdlib` module to v.2.5.1.
 
 The `puppetlabs-auth_conf` module contains a new defined type: `auth_conf::acl`. The type takes the following parameters:
