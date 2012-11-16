@@ -29,13 +29,13 @@ Puppet agent and puppet master are the heart of Puppet's architecture.
 Everyday Tools
 -----
 
-* The puppet cert subcommand is used to add nodes to your puppet deployment. 
+* The `puppet cert` subcommand is used to add nodes to your puppet deployment. 
     
     After a new agent node has been installed, it cannot fetch configurations until its certificate request has been approved. Run `puppet cert list` on the puppet master to see which certificate requests are still outstanding, and run `puppet cert sign <NODE>` to approve a request. 
     
     When you decommission a node and remove it from your infrastructure, you should destroy its certificate information by running `puppet cert clean <NODE>` on the puppet master. 
-* The puppet apply subcommand can compile and apply Puppet manifests without the need for a puppet master. It's ideal for testing new modules (`puppet apply -e 'include <CLASS NAME>'`), but can also be used to manage an entire Puppet deployment in a masterless arrangement. 
-* The puppet resource subcommand provides an interactive shell for manipulating Puppet's underlying resource framework. It is ideal for one-off administration tasks and ad-hoc management, and offers an abstraction layer between various OSs' implementations of core functionality. 
+* The `puppet apply` subcommand can compile and apply Puppet manifests without the need for a puppet master. It's ideal for testing new modules (`puppet apply -e 'include <CLASS NAME>'`), but can also be used to manage an entire Puppet deployment in a masterless arrangement. 
+* The `puppet resource` subcommand provides an interactive shell for manipulating Puppet's underlying resource framework. It is ideal for one-off administration tasks and ad-hoc management, and offers an abstraction layer between various OSs' implementations of core functionality. 
     
         $ sudo puppet resource package nano ensure=latest
         notice: /Package[nano]/ensure: created
