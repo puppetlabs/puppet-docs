@@ -5,7 +5,7 @@ layout: legacy
 
 [redmine]: /community/puppet_projects_redmine_workflow.html
 
-We want to keep the Puppet communities awesome, but we need your help to keep it that way. While we have specific guidelines for various tools (see links below), in general, you should:
+We want to keep the Puppet communities awesome, and we need your help to keep it that way. While we have specific guidelines for various tools (see links below), in general, you should:
 
 
 * **Be nice**: Be courteous, respectful and polite to fellow community members: no regional, racial, gender, or other abuse will be tolerated. We like nice people way better than mean ones!
@@ -53,10 +53,10 @@ Many general questions about Puppet and Puppet Labs are answered in the [Frequen
  
 We also provide various [commercial services](http://puppetlabs.com/services/overview/) around Puppet (training, professional services, support, certification and more) for people who want a little extra help.
 
-
-### Getting Help From the Community
-
 If you can't solve a problem on your own, there are a lot of places you can go to get help from (and help back!) your fellow community members. The sections below cover the norms and expectations in each area of the Puppet community.
+
+Activity-Specific Guidelines
+-----
 
 * [IRC Guidelines](#irc-guidelines)
 * [Mailing List Guidelines](#mailing-list-guidelines)
@@ -64,10 +64,6 @@ If you can't solve a problem on your own, there are a lot of places you can go t
 * [Documentation Guidelines](#documentation-guidelines)
 * [Git / Source Guidelines](#git--source-guidelines)
 * [Forge and Module Guidelines](#forge--module-guidelines)
-
-
-Activity-Specific Guidelines
------
 
 ### IRC Guidelines
 
