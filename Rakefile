@@ -63,6 +63,17 @@ task :generate_pdf do
   pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
   pdf_targets.each do |target, pages|
     system("cat #{pages.join(' ')} > #{target}")
+    if target == 'puppetdb1.html'
+      content = File.read('puppetdb1.html')
+      content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
+      File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
+      # Yeah, so, I found the magic string that, when used as an element ID and then
+      # linked to from elsewhere in the document, causes wkhtmltopdf to think an
+      # unthinkable thought and corrupt the output file.
+      # Your guess is as good as mine. #doomed #sorcery #wat
+      # >:|
+      # -NF
+    end
   end
 #   system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
 #   system("mv index.html original_index.html")
@@ -71,6 +82,31 @@ task :generate_pdf do
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
   Dir.chdir("..")
 end
+
+desc "Temporary task for debugging PDF compile failures"
+task :reshuffle_pdf do
+  require 'yaml'
+  Dir.chdir("pdf_output")
+  pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
+  pdf_targets.each do |target, pages|
+    system("cat #{pages.join(' ')} > #{target}")
+    if target == 'puppetdb1.html'
+      content = File.read('puppetdb1.html')
+      content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
+      File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
+      # Yeah, so, I found the magic string that, when used as an element ID and then
+      # linked to from elsewhere in the document, causes wkhtmltopdf to think an
+      # unthinkable thought and corrupt the output file.
+      # Your guess is as good as mine. #doomed #sorcery #wat
+      # >:|
+      # -NF
+    end
+  end
+  puts "Remember to run rake serve_pdf"
+  puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
+  Dir.chdir("..")
+end
+
 
 desc "Serve generated flat-for-PDF output on port 9292"
 task :serve_pdf do
