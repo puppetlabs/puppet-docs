@@ -5,7 +5,7 @@ layout: default
 
 [perf_dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [leiningen]: https://github.com/technomancy/leiningen#installation
-[configure_postgres]: ./configure.html#postgresql-db-settings
+[configure_postgres]: ./configure.html#using-postgresql
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
 
 If possible, we recommend installing PuppetDB from packages. However, if you are installing PuppetDB on a system not supported with official packages, or if you are testing or developing a new version of PuppetDB, you will need to install it from source. 
@@ -186,7 +186,7 @@ Step 4: Configure HTTPS
 
 In your PuppetDB configuration file(s), edit the `[jetty]` section. If you installed from source, edit `/etc/puppetdb/conf.d/jetty.ini`; if you are running from source, edit the config file you chose.
 
-The `[jetty]` section should contain the following, with                                                                                                 your PuppetDB server's hostname and desired ports:
+The `[jetty]` section should contain the following, with your PuppetDB server's hostname and desired ports:
 
     [jetty]
     # Optional settings:
@@ -237,6 +237,6 @@ If you are running PuppetDB from source, you should start it as follows:
 Finish: Connect Puppet to PuppetDB 
 -----
 
-[You should now configure your puppet master(s) to connect to PuppetDB](./connect_puppet_apply.html). 
+[You should now configure your puppet master(s) to connect to PuppetDB](./connect_puppet_master.html). 
 
 If you use a standalone Puppet site, [you should configure every node to connect to PuppetDB](./connect_puppet_apply.html).
