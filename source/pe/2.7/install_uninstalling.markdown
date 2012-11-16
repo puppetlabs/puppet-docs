@@ -22,9 +22,8 @@ You can use the following command-line flags to change the installer's behavior:
 ### Uninstaller Options
 
 `-p`
-: Purge additional files. With this flag, the uninstaller will also remove all
-  configuration files, modules, manifests, certificates, and the
-  home directories of any users created by the PE installer.
+: Purge additional files. With this flag, the uninstaller will also remove all configuration files, modules, manifests, certificates, and the
+  home directories of any users created by the PE installer. This will also remove the Puppet Labs public GPG key used for package verification.
 
 `-d`
 : Also remove any databases during the uninstall. 

@@ -216,8 +216,6 @@ You will also need to make sure the databases and users actually exist. The SQL 
 Consult the MySQL documentation for more info.
 
 
-
-
 ### Puppet Agent Questions
 
 #### Certname
@@ -247,6 +245,12 @@ Puppet Enterprise may need some extra system software from your OS vendor's pack
 * The console role requires **MySQL;** if using local databases, it also requires **MySQL server.**
 
 If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
+
+As of PE 2.7.0, you also have the option of verifying the integrity of the selected packages by using Puppet Labs' public GPG key. This is done by answering "yes" when asked if you want to verify the signatures of the PE RPM packages.. The key will be used to verify the signatures of the selected RPM packages. Because the key is added to the RPM database, the option to verify is only available on platforms that support RPM packages (currently EL 5,6-based and sles 11 platforms). The question will not be presented on non-RPM based platforms (e.g. Debian) and if it is present in a pre-made answer file it will be ignored on those platforms. 
+
+The option will appear in answer files as `verify_packages=y|n`.
+
+Answering "no" to the question will preserve the PE 2.6.1 and earlier behavior of not verifying packages.
 
 #### Java and MySQL Versions
 

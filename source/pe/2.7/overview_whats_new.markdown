@@ -19,7 +19,8 @@ In addition, `puppetlabs-stdlib` has been updated to version 2.5.1 to include ne
 PE 2.7.0 uses a specially patched version of puppet 2.7.19.  See the [Appendix](appendix.html) for release notes detailing these patches.
 
 
-
+#### RPM Package Verification
+On platforms that use RPM packages (EL 5,6-based and SLES 11 platforms), you can now choose to verify those packages on installation/upgrade using Puppet Labs' public GPG key. For more information, see the [installation page](http://docs.puppetlabs.com/pe/2.7/install_basic.html).
 
 
 * * * 

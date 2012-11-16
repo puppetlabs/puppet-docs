@@ -84,6 +84,8 @@ PE 2.7 includes a cloud provisioner tool that can be installed on trusted nodes 
 
 If PE 2.7 needs any packages from your OS's repositories, it will ask permission to install them. 
 
+As with the installer, the upgrader in PE 2.7.0 and later will ask you if you want to verify the integrity of the chosen packages by using Puppet Labs' public GPG key to verify the package signatures. If the public key is already present, the verification process will take place by default and the question will not be presented. However, you can over-ride this behavior and prevent package verification by setting `verify_packages=n` in an answer file.
+
 ### Puppet Master Options
 
 #### Removing `mco`'s home directory
