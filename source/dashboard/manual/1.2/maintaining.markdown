@@ -51,11 +51,11 @@ You should **optimize Dashboard's database monthly,** and we recommend creating 
 InnoDB is Taking Up Too Much Disk Space
 -----
 
-Over time, the innodb file can get quite hefty, especially in larger deployments with many nodes. In some cases it can get large enough to consume all the space in `var`, which makes bad things happen. When this happens, you can follow the steps below to slim it back down.
+Over time, the innodb database can get quite hefty, especially in larger deployments with many nodes. In some cases it can get large enough to consume all the space in `var`, which makes bad things happen. When this happens, you can follow the steps below to slim it back down.
 
 1. Move your existing data to a backup file by running: `# mysqldump -p --databases {DASHBOARD'S DATABASE} {INVENTORY SERVICE DB (if present)} > /path/to/backup.sql`
 
-2. Stop the mySQL service
+2. Stop the MySQL service
 
 3. Remove *just* the dashboard-specific database files. If you have no other databases, you can run `# cd /var/lib/mysql # rm -rf ./ib* # rm -rf ./console*`. *Warning:* this will remove everything, including any db's you may have added.
 
