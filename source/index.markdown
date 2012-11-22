@@ -26,7 +26,7 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 
 Puppet Enterprise is Puppet with more, including professional support, a production-grade puppet master stack, a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, and cloud provisioning tools. 
 
-Nearly all of the main Puppet documentation also applies to Puppet Enterprise. For details about PE's extra features and slightly different run environment, see [the current Puppet Enterprise user's guide](/pe/2.6/), or go directly to:
+Nearly all of the main Puppet documentation also applies to Puppet Enterprise. For details about PE's extra features and slightly different run environment, see [the current Puppet Enterprise user's guide](/pe/2.7/), or go directly to:
 
 - [The system requirements](/pe/2.7/install_system_requirements.html)
 - [The installation instructions](/pe/2.7/install_basic.html) or [the upgrade instructions](/pe/2.7/install_upgrading.html)
