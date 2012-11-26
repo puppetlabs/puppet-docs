@@ -1332,7 +1332,7 @@ most systems, from highest to lowest:
     * / -> times and divide
     - + -> minus, plus
     << >> -> left shift and right shift
-    == != -> not equal, equal
+    == != -> equal, not equal
     >= <= > < -> greater equal, less or equal, greater than, less than
     and
     or
