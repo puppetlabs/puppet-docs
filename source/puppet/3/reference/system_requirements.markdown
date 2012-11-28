@@ -7,16 +7,16 @@ title: "Puppet 3 System Requirements"
 
 Puppet 3 has the following prerequisites: 
 
-- Ruby 1.8.7 or Ruby ≥ 1.9.3; other versions of Ruby are not supported, and may or may not work. 
-- [Facter][] 1.6.2 or later
-- [Hiera][] 1.0 or later
+- MRI Ruby 1.8.7 or Ruby ≥ 1.9.3; other interpreters and versions of Ruby are not supported, and may or may not work. 
+- [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 1.6.2 or later
+- [Hiera](http://docs.puppetlabs.com/hiera/1/) 1.0 or later
 
 Puppet 3 and all of its prerequisites will run on the following platforms:
 
 Linux
 -----
 
-- Red Hat Enterprise Linux, version 5 and higher
+- Red Hat Enterprise Linux, version 5 and higher, with an updated Ruby ≥ 1.8.7, [available from Puppetlabs' yum repositories](http://docs.puppetlabs.com/guides/puppetlabs_package_repositories.html)
 - RHEL-derived distributions (including CentOS, Scientific Linux, and Oracle Linux), version 5 and higher
 - Debian, version 5 (Lenny) and higher
 - Ubuntu, version 8.04 LTS and higher
