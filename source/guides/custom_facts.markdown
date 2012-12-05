@@ -15,7 +15,7 @@ Extend facter by writing your own custom facts to provide information to Puppet.
 Ruby Facts
 ----------
 
-### Adding Custom Facts to Facter
+## Adding Custom Facts to Facter
 
 Sometimes you need to be able to write conditional expressions
 based on site-specific data that just isn't available via Facter (or use
@@ -24,13 +24,13 @@ A solution can be achieved by adding a new fact to Facter. These additional fact
 can then be distributed to Puppet clients and are available for use
 in manifests.
 
-### The Concept
+## The Concept
 
 You can add new facts by writing a snippet of Ruby code on the
 Puppet master. We then use [Plugins In Modules](./plugins_in_modules.html) to distribute our
 facts to the client.
 
-### An Example
+## An Example
 
 Let's say we need to get the output of uname -i to single out a
 specific type of workstation. To do these we create a fact. We
@@ -55,7 +55,7 @@ manifests.
 
 The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code. You will find lots of examples of how to interpret different types of system data and return useful facts.
 
-### Using other facts
+## Using other facts
 
 You can write a fact which uses other facts by accessing
 Facter.value("somefact") or simply Facter.somefact. The former will
@@ -76,7 +76,7 @@ An example:
       end
     end
 
-### Loading Custom Facts
+## Loading Custom Facts
 
 Facter offers a few methods of loading facts:
 
@@ -122,11 +122,11 @@ these facts with standalone facter.
 
 Custom facts can be distributed to clients using the [Plugins In Modules](./plugins_in_modules.html) method.
 
-### Configuring Facts
+## Configuring Facts
 
 Facts have a few properties that you can use to customize how facts are evaluated.
 
-#### Confining Facts
+### Confining Facts
 
 One of the more commonly used properties is the `confine` statement, which
 restricts the fact to only run on systems that matches another given fact.
@@ -145,7 +145,7 @@ available on the given system. Since this is only available on Linux systems,
 we use the confine statement to ensure that this fact isn't needlessly run on
 systems that don't support this type of enumeration.
 
-#### Fact precedence
+### Fact precedence
 
 Another property of facts is the `weight` property. Facts with a higher weight
 are run earlier, which allows you to either override or provide fallbacks to
@@ -180,7 +180,7 @@ that more specific facts are evaluated first.
       end
     end
 
-#### Timing out
+### Timing out
 
 If you have facts that are unreliable and may not finish running, you can use
 the `timeout` property. If a fact is defined with a timeout and the evaluation
@@ -199,19 +199,13 @@ that fact and move on.
       end
     end
 
-### Viewing Fact Values
+## Viewing Fact Values
 
-You can also determine what facts (and their values) your clients
-return by checking the contents of the client's yaml output. To do
-this we check the `$yamldir` (by default `$vardir/yaml/`) on the Puppet
-master:
+[inventory]: /guides/inventory_service.html
+[puppetdb]: 
+If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info. 
 
-    # grep kernel /var/lib/puppet/yaml/node/puppetslave.example.org.yaml
-      kernel: Linux
-      kernelrelease: 2.6.18-92.el5
-      kernelversion: 2.6.18
-
-### Legacy Fact Distribution
+## Legacy Fact Distribution
 
 For Puppet versions prior to 0.24.0:
 
