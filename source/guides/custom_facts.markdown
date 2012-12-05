@@ -199,26 +199,6 @@ that fact and move on.
       end
     end
 
-#### Caching Ruby Facts
-
-Starting with Facter 1.7.0, you can now specify that the contents of a fact's "setcode"
-block should be cached for faster retrieval.
-
-The mechanism for doing this is trivial --- simply supply a "`:ttl`" option during
-fact creation. The value is specified in seconds:
-
-    Facter.add("mylongoperation", :ttl => 600) do
-        setcode do
-            ... an operation that takes a long time ...
-        end
-    end
-
-The ttl value can also be one of:
-
-* `0` --- never cache. This is the default behaviour.
-* `-1` --- cache forever. Useful for one-off operations that should never need to run again.
-
-
 ### Viewing Fact Values
 
 You can also determine what facts (and their values) your clients
