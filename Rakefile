@@ -33,7 +33,8 @@ task :install => dependencies.map { |d| "install:#{d}" }
 
 desc "Generate the documentation"
 task :generate do
-  system("rm -rf output")
+  system("mkdir -p output")
+  system("rm -rf output/*")
   Dir.chdir("source")
   system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
