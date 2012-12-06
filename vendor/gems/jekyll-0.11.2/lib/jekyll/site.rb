@@ -308,8 +308,8 @@ module Jekyll
         unless ['.htaccess'].include?(e)
           ['.', '_', '#'].include?(e[0..0]) ||
           e[-1..-1] == '~' ||
-          self.exclude.include?(e) ||
-          File.symlink?(e)
+          self.exclude.include?(e) # ||
+          # File.symlink?(e)
         end
       end
     end
