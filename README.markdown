@@ -31,11 +31,11 @@ To install the documentation-generating code:
 
 3.  Install the ruby dependencies:
 
-        $ sudo gem install maruku rack versionomy kramdown vlad vlad-git albino classifier directory_watcher rdoc
-        $ sudo gem install liquid --version 2.2.2
+        $ sudo gem install kramdown liquid maruku rack versionomy vlad vlad-git albino classifier directory_watcher rdoc
 
-    Liquid versions other than 2.2.2 don't work with the version of Jekyll
-    we use.
+    One of our tools used to fail unless Liquid's version was exactly
+    2.2.2, but that's no longer necessary; you should install the newest
+    available version of Liquid.
 
 Building and Viewing
 --------------------
