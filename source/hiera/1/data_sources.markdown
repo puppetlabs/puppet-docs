@@ -35,16 +35,38 @@ Hash    | Mapping
 Array   | Sequence
 String  | Quoted scalar or non-boolean unquoted scalar 
 Number  | Integer or float
-Boolean | Boolean (note: includes `on` and `off` in addition to `true` and `false`)
+Boolean | Boolean (note: includes `on` and `off`, `yes` and `no` in addition to `true` and `false`)
 
 Any string may include any number of [variable interpolation tokens][variables].
 
 ### Example
 
-<!-- TODO -->
+{% highlight yaml %}
+---
+# array
+apache-packages:
+    - apache2
+    - apache2-common
+    - apache2-utils
 
-Coming soon. 
+# string
+apache-service: apache2
 
+# interpolated facter variable 
+hosts_entry: sandbox.%{fqdn}
+
+# hash
+sshd_settings: 
+    root_allowed: "no"
+    password_allowed: "yes"
+
+# alternate hash notation
+sshd_settings: {root_allowed: "no", password_allowed: "yes"}
+
+# to return "true" or "false"
+sshd_settings: {root_allowed: no, password_allowed: yes}
+    
+{% endhighlight %}
 
 JSON
 -----
@@ -72,10 +94,23 @@ Boolean | `true` / `false`
 Any string may include any number of [variable interpolation tokens][variables].
 
 ### Example
+{% highlight json %}
 
-<!-- TODO -->
+{   
+    "apache-packages" : [
+    "apache2",
+    "apache2-common",
+    "apache2-utils"
+    ],
 
-Coming soon. 
+    "hosts_entry" :  "sandbox.%{fqdn}",
+
+    "sshd_settings" : {
+                        "root_allowed" : "no", 
+                        "password_allowed" : "no"
+                      }
+}
+{% endhighlight %}
 
 
 Puppet

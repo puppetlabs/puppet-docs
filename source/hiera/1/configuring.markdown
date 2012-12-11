@@ -54,29 +54,33 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 
 [example]: #example-config-file
 
-    ---
-    :backends:
-      - yaml
-      - json
-    :yaml:
-      :datadir: /etc/puppet/hieradata
-    :json:
-      :datadir: /etc/puppet/hieradata
-    :hierarchy:
-      - %{::clientcert}
-      - %{::custom_location}
-      - common
+{% highlight yaml %}
+---
+:backends:
+  - yaml
+  - json
+:yaml:
+  :datadir: /etc/puppet/hieradata
+:json:
+  :datadir: /etc/puppet/hieradata
+:hierarchy:
+  - %{::clientcert}
+  - %{::custom_location}
+  - common
+{% endhighlight %}
 
 ### Default Config Values
 
 If the config file exists but has no data, the default settings will be equivalent to the following:
 
-    ---
-    :backends: yaml
-    :yaml:
-      :datadir: /var/lib/hiera
-    :hierarchy: common
-    :logger: console
+{% highlight yaml %}
+---
+:backends: yaml
+:yaml:
+  :datadir: /var/lib/hiera
+:hierarchy: common
+:logger: console
+{% endhighlight %}
 
 Global Settings
 -----
