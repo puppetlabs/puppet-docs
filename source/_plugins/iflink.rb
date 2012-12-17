@@ -14,7 +14,7 @@ module Jekyll
       pageurl = context.environments.first['page']['url']
       pagedir = pageurl.split('/')[0..-2].join('/') + '/'
       linkpath = @linkdestination.split(/:\/\/[^\/]*/).last.split('#').first # take off any protocol or hostname, then take off any in-page anchor.
-      absolutelinkpath = linkpath.sub(/^\.\//, pagedir) # so we can compare apples to apples -- note that if you use ../ in here, you probably won't get a very useful final link.
+      absolutelinkpath = linkpath.sub(/^\.\//, pagedir).sub(/\/$/, '/index.html') # Normalize it: make ./something links absolute, and add index.html to bare directories. Note that we don't handle ../ links well.
       
       # Debugging code, because I don't trust my memory enough to delete it:
       # welp = pageurl == absolutelinkpath
