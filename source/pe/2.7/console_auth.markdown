@@ -132,9 +132,9 @@ Admins will also notice additional UI on the user administration page which indi
 
 ![user-list_legend](./images/console/user-list_legend.jpg)
  
-The order in which authentication services are listed in the `cas_client.config.yml` file (see below) is the order in which the services will be checked for valid accounts. In other words, the first service that returns an account matching the entered user credential is the service that will perform authentication and log-in.
+Lastly, note that built-in auth accounts use the email address specified at the end (e.g. "a.user@example.com"), whereas AD/LDAP accounts are generally accessed using just the username (e..g "a.user"), although this may vary in your specific organization's implementation.
 
-Lastly, note that built-in auth accounts use the email address specified at the end (e.g. "a.user@example.com"), whereas AD accounts are accessed using just the username (e..g "a.user")
+There is more, albeit sparse and specialized, information at the [Ruby-CAS github site](http://rubycas.github.com)
 
 ### Configuration
 
@@ -158,6 +158,8 @@ Each entry consists of the following:
 * A common identifier (e.g. `local`, or `ldap`, etc.) which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator. 
 *  `default_role` which defines the role to assign to users by default
 * `description` which is simply a human readable description of the service
+
+The order in which authentication services are listed in the `cas_client.config.yml` file (see below) is the order in which the services will be checked for valid accounts. In other words, the first service that returns an account matching the entered user credential is the service that will perform authentication and log-in.
 
 This example shows what you would do if you wanted to use AD and the built-in (local) auth services and disable Google and LDAP.
 
@@ -204,7 +206,7 @@ authorization:
 
 This file is used to configure RubyCAS to use external authentication services. As before, you will need to un-comment the classes for the third-party services you wish to enable. The values for the listed keys are LDAP and ActiveDirectory standards. If you are not the administrator of those databases, you should check with that administrator for the correct values.
 
-The authenticators are listed in the file in following manner (note how this example disables the Google authenticator):
+The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator):
 
 {% highlight yaml %}
 
@@ -230,9 +232,9 @@ The authenticators are listed in the file in following manner (note how this exa
             
 {% endhighlight %}
 
-As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter` key is where you would specify an `OU` or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
+As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
 
-Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`, you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.
+Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`; you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.
 
 * * * 
 
