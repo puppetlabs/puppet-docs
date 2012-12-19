@@ -12,18 +12,17 @@ with the managed node's facts.
 [lptemplates]: /learning/templates.html
 [modules]: /puppet/2.7/reference/modules_fundamentals.html
 [functions]: /references/stable/function.html
+[erb]: http://ruby-doc.org/stdlib-1.8.7/libdoc/erb/rdoc/ERB.html
 
 * * *
 
-Puppet supports templates written in the
-[ERB](http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/) templating language, which is
-part of the Ruby standard library.
+Puppet supports templates written in the [ERB][] templating language, which is part of the Ruby standard library.
 
 Templates can be used to specify the contents of files. 
 
 **For a full introduction to using templates with Puppet, see [the templates chapter of Learning Puppet][lptemplates].**
 
-Evaluating templates
+Evaluating Templates
 -----
 
 Templates are evaluated via a simple function:
@@ -37,10 +36,37 @@ Templates are evaluated via a simple function:
 Templates are always evaluated by the parser, not by the client.
 This means that if you are using a puppet master server, then the templates
 only need to be on the server, and you never need to download them
-to the client. There's no difference that the client sees between using a
+to the client. The client sees no difference between using a
 template and specifying all of the text of the file as a string. 
 
-Using templates
+ERB Template Syntax
+-----
+
+ERB is part of the Ruby standard library. Full information about its syntax and evaluation is [available in the Ruby documentation][erb]. An abbreviated version is presented below.
+
+### ERB is Plain Text With Embedded Ruby
+
+ERB templates may contain any kind of text; in the context of Puppet, this is usually some sort of config file. (Outside the context of Puppet, it is usually HTML.)
+
+Literal text in an ERB file becomes literal text in the processed output. Ruby instructions and expressions can be embedded in **tags;** these will be interpreted to help create the processed output. 
+
+### Tags
+
+The tags available in an ERB file depend on the way the ERB processor is configured. Puppet always uses the same configuration for its templates (see "trim mode" below), which makes the following tags available:
+
+* `<%= Ruby expression %>` --- This tag will be replaced with the value of the expression it contains.
+* `<% Ruby code %>` --- This tag will execute the code it contains, but will not be replaced by a value. Useful for conditional or looping logic, setting variables, and manipulating data before printing it.
+* `<%# comment %>` --- Anything in this tag will be suppressed in the final output.
+* `<%%` or `%%>` --- A literal <% or %>, respectively.
+* `<%-` --- Same as `<%`, but suppresses any leading whitespace in the final output. Useful when indenting blocks of code for readability. 
+* `-%>` --- Same as `%>`, but suppresses the subsequent line break in the final output. Useful with many lines of non-printing code in a row, which would otherwise appear as a long stretch of blank lines.
+
+### Trim Mode
+
+Puppet uses ERB's undocumented `"-"` (explicit line trim) mode, which allows tags to suppress leading whitespace and trailing line breaks as described above, and disallows the `& line of code` shortcut. Although it unfortunately doesn't appear in the ERB docs, you can read its effect in the Ruby source code starting in the `initialize` method of the `ERB::Compiler::TrimScanner` class.
+
+
+Using Templates
 -----
 
 Here is an example for generating the Apache configuration for
@@ -143,10 +169,10 @@ This snippet will print all of the variable names defined in the current scope:
     <% end -%>
 
 
-Combining templates
+Combining Templates
 -----
 
-The template function can concatentate several templates together as follows:
+The template function can concatenate several templates together as follows:
 
      template('my_module/template1.erb','my_module/template2.erb')
 

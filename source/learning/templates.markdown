@@ -14,7 +14,8 @@ File serving isn't the be-all/end-all of getting content into place. Before we g
 
 * * * 
 
-[templatecheat]: http://cheat.errtheblog.com/s/erb/
+[erb]: http://ruby-doc.org/stdlib-1.8.7/libdoc/erb/rdoc/ERB.html
+[template_syntax]: /guides/templating.html#erb-template-syntax
 
 Templating
 ------
@@ -23,7 +24,7 @@ Okay: in the last chapter, you built a module that shipped and managed a configu
 
 It would be much better if you could use all the tricks you learned in [Variables, Conditionals, and Facts](./variables.html) to rummage around in the actual text of your configuration files. Thus: templates!
 
-Puppet can use [ERB templates][templatecheat] anywhere a string is called for. (Like a file's `content` attribute, for instance, or the value of a variable.) Templates go in the (wait for it) `templates/` directory of a module, and will mostly look like normal configuration files (or what-have-you), except for the occasional `<% tag with Ruby code %>`.
+Puppet can use ERB templates ([Ruby documentation][erb] / [syntax cheat sheet][template_syntax]) anywhere a string is called for. (Like a file's `content` attribute, for instance, or the value of a variable.) Templates go in the (wait for it) `templates/` directory of a module, and will mostly look like normal configuration files (or what-have-you), except for the occasional `<% tag with Ruby code %>`.
 
 Yes, Ruby --- unfortunately you can't use the Puppet language in templates. But usually you'll only be printing a variable or doing a simple loop, which you'll get a feel for almost instantly. Anyway, let's cut to the chase: 
 
