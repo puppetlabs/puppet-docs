@@ -12,11 +12,6 @@ task :mirror1 do
     set :deploy_to, "/var/www/#{application}"
 end
 
-task :mirror2 do
-      set :domain,    "#{user}@docs.mirror2.puppetlabs.com"
-      set :deploy_to, "/var/www/#{application}"
-end
-
 task :preview1 do
     set :domain,    "#{user}@docspreview1.puppetlabs.lan"
     set :deploy_to, "/opt/docspreview1"
