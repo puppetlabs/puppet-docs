@@ -120,3 +120,7 @@ Hi, thanks for the bug report. This is a duplicate of #XXXX, so I am closing thi
 #### Related to open pull request
 
 There is an open pull request which fixes this issue  -- it would be wonderful if you could try the code that is posted here: https://github.com/puppetlabs/puppet/pull/XXX and comment on #XXXX with any issues you run into.
+
+#### Needs more information
+
+I've put this ticket's status into "Needs more Information" and assigned it to you. Please either (a) update it with the information I've requested and re-assign it to me if you need more help, or (b) change the status to "Closed" if you were able to resolve the issue on your own. 
