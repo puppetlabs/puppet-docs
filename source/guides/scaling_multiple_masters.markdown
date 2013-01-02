@@ -31,7 +31,7 @@ First things first; the rest of your configuration will depend on how you're pla
 
 This option is new in Puppet 3.0, and is the recommended deployment if your entire Puppet infrastructure is on 3.0 or newer.
 
-You can use DNS `SRV` records to assign a pool of Puppet masters for agents to communicate with.  This requires a DNS service capable of `SRV` records - all major DNS software including Windows Server's DNS and BIND are compatible.
+You can use DNS `SRV` records to assign a pool of puppet masters for agents to communicate with.  This requires a DNS service capable of `SRV` records - all major DNS software including Windows Server's DNS and BIND are compatible.
 
 Each of your puppet nodes will be configured with a `srv_domain` instead of a `server` in their `puppet.conf`:
 
@@ -39,7 +39,7 @@ Each of your puppet nodes will be configured with a `srv_domain` instead of a `s
       use_srv_records = true
       srv_domain = example.com
 
-..then they will look up a `SRV` record at `_x-puppet._tcp.example.com` when they need to talk to a Puppet master.
+..then they will look up a `SRV` record at `_x-puppet._tcp.example.com` when they need to talk to a puppet master.
 
     # Equal-weight load balancing between master-a and master-b:
     _x-puppet._tcp.example.com. IN SRV 0 5 8140 master-a.example.com.
@@ -87,7 +87,7 @@ Configuring a load balancer is beyond the scope of this document.
 Centralize the Certificate Authority
 -----
 
-The additional Puppet masters at a site should only share the burden of compiling and serving catalogs; any certificate authority functions should be delegated to a single server. **Choose one server** to act as the CA, and ensure that it is reachable at a **unique hostname other than (or in addition to) `puppet`.**
+The additional puppet masters at a site should only share the burden of compiling and serving catalogs; any certificate authority functions should be delegated to a single server. **Choose one server** to act as the CA, and ensure that it is reachable at a **unique hostname other than (or in addition to) `puppet`.**
 
 There are two main options for centralizing the CA:
 
@@ -95,7 +95,7 @@ There are two main options for centralizing the CA:
 
 #### Method A: DNS `SRV` Records
 
-If you are [utilizing `SRV` records for agents](#option-1-dns-srv-records), then you can use the `_x-puppet-ca._tcp.$srv_domain` DNS name to configure clients to point to a single specific CA server, while the `_x-puppet._tcp.$srv_domain` DNS name will be handling the majority of their requests to masters and can be a set of Puppet masters without CA capabilities.
+If you are [utilizing `SRV` records for agents](#option-1-dns-srv-records), then you can use the `_x-puppet-ca._tcp.$srv_domain` DNS name to configure clients to point to a single specific CA server, while the `_x-puppet._tcp.$srv_domain` DNS name will be handling the majority of their requests to masters and can be a set of puppet masters without CA capabilities.
 
 #### Method B: Individual Agent Configuration
 
@@ -106,7 +106,7 @@ On **every agent node,** you must set the [`ca_server`](/references/latest/confi
 
 ### Option 2: Proxy Certificate Traffic
 
-Alternately, if your nodes don't have direct connectivity to your CA master, you aren't using `SRV` records, or you do not wish to change every node's `puppet.conf`, you can configure the web server on the Puppet masters other than your CA master to proxy all certificate-related traffic to the designated CA master.
+Alternately, if your nodes don't have direct connectivity to your CA master, you aren't using `SRV` records, or you do not wish to change every node's `puppet.conf`, you can configure the web server on the puppet masters other than your CA master to proxy all certificate-related traffic to the designated CA master.
 
 > This method only works if your puppet master servers are using a web server that provides a method for proxying requests, like [Apache with Passenger](/guides/passenger.html).
 
@@ -119,7 +119,7 @@ All certificate related URLs begin with `/certificate`; simply catch and proxy t
 >     SSLProxyEngine On
 >     ProxyPassMatch ^/([^/]+/certificate.*)$ https://puppetca.example.com:8140/$1
 > 
-> This change must be made to the Apache configuration on every Puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
+> This change must be made to the Apache configuration on every puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
 > 
 > Additionally, the CA master must allow the nodes to download the certificate revocation list via the proxy, without authentication - certificate requests and retrieval of signed certificates are allowed by default, but not CRLs.  Add the following to the CA master's `auth.conf`:
 > 

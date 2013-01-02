@@ -28,7 +28,7 @@ applications inside a general purpose web server, like
 [Apache httpd](http://httpd.apache.org/) or [nginx](http://nginx.org/).
 
 Passenger is the recommended deployment method for modern versions
-of Puppet masters, but you may run into compatibility issues with
+of puppet masters, but you may run into compatibility issues with
 Puppet versions older than 0.24.6 and Passenger versions older than
 2.2.5.
 
@@ -128,7 +128,7 @@ puppetmaster port (8140).
         SSLOptions              +StdEnvVars +ExportCertData
         
         # These request headers are used to pass the client certificate
-        # authentication information on to the Puppet master process
+        # authentication information on to the puppet master process
         RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
@@ -143,7 +143,7 @@ puppetmaster port (8140).
         </Directory>
     </VirtualHost>
 
-If this Puppet master is not the certificate authority, you will
+If this puppet master is not the certificate authority, you will
 need to use different paths to the CA certificate and CRL:
 
     SSLCertificateChainFile /var/lib/puppet/ssl/certs/ca.pem
@@ -155,7 +155,7 @@ For additional details about enabling and configuring Passenger, see the
 
 ### Start the Apache service
 
-Ensure that the Puppet master service is stopped before starting
+Ensure that the puppet master service is stopped before starting
 the Apache service; only one can be bound to TCP port 8140.
 
 Debian/Ubuntu:
