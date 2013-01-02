@@ -45,48 +45,61 @@ SSL certificates are in place.
 
 Debian/Ubuntu:
 
-    apt-get install apache2 ruby1.8-dev rubygems
-    a2enmod ssl
-    a2enmod headers
+    $ sudo apt-get install apache2 ruby1.8-dev rubygems
+    $ sudo a2enmod ssl
+    $ sudo a2enmod headers
 
 RHEL/CentOS (needs the Puppet Labs repository enabled, or the
 [EPEL](https://fedoraproject.org/wiki/EPEL) repository):
 
-    yum install httpd httpd-devel mod_ssl ruby-devel rubygems
+    $ sudo yum install httpd httpd-devel mod_ssl ruby-devel rubygems
 
 ### Install Rack/Passenger
 
-    gem install rack passenger
-    passenger-install-apache2-module
-
-### Configure Apache
-
-Debian/Ubuntu:
-
-    # See Apache Configuration below for contents of puppetmaster file
-    cp puppetmaster /etc/apache2/sites-available/
-    a2ensite puppetmaster
-
-RHEL/CentOS:
-
-    # See Apache Configuration below for contents of puppetmaster.conf file
-    cp puppetmaster.conf /etc/httpd/conf.d/
-
-### Install the Rack Application
-
-    mkdir -p /usr/share/puppet/rack/puppetmasterd
-    mkdir /usr/share/puppet/rack/puppetmasterd/public /usr/share/puppet/rack/puppetmasterd/tmp
-    cp /usr/share/puppet/ext/rack/files/config.ru /usr/share/puppet/rack/puppetmasterd/
-    # This step is important - the owner of this file is the user the process will run under:
-    chown puppet /usr/share/puppet/rack/puppetmasterd/config.ru
+    $ sudo gem install rack passenger
+    $ sudo passenger-install-apache2-module
 
 Apache Configuration
 --------------------
 
-### Example Configuration
+To configure Apache to run the puppet master application, you must:
 
-This Apache Virtual Host configures the puppetmaster on the default
-puppetmaster port (8140).
+* Install the puppet master Rack application, by creating a directory for it and copying the `config.ru` file from the Puppet source.
+* Create a virtual host config file for the puppet master application, and install/enable it. 
+
+### Install the Puppet Master Rack Application
+
+Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. Create a directory for it, then copy the `ext/rack/files/config.ru` file from the Puppet source code into that directory:
+
+    $ sudo mkdir -p /usr/share/puppet/rack/puppetmasterd
+    $ sudo mkdir /usr/share/puppet/rack/puppetmasterd/public /usr/share/puppet/rack/puppetmasterd/tmp
+    $ sudo cp /usr/share/puppet/ext/rack/files/config.ru /usr/share/puppet/rack/puppetmasterd/
+    $ sudo chown puppet /usr/share/puppet/rack/puppetmasterd/config.ru
+
+> Note: The `chown` step is important --- the owner of this file is the user the puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
+
+
+### Create and Enable the Puppet Master Vhost
+
+See ["Example Vhost Configuration" below](#example-vhost-configuration) for the contents of this vhost file. Note that the vhost's `DocumentRoot` directive refers to the Rack application directory you created above. 
+
+Debian/Ubuntu:
+
+See Apache Configuration below for contents of puppetmaster file
+
+    $ sudo cp puppetmaster /etc/apache2/sites-available/
+    $ sudo a2ensite puppetmaster
+
+RHEL/CentOS:
+
+See Apache Configuration below for contents of puppetmaster.conf file
+
+    $ sudo cp puppetmaster.conf /etc/httpd/conf.d/
+
+#### Example Vhost Configuration
+
+This Apache Virtual Host configures the puppet master on the default
+puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apache2.conf` in the Puppet source.
 
     # You'll need to adjust the paths in the Passenger config depending on which OS
     # you're using, as well as the installed version of Passenger.
@@ -153,26 +166,27 @@ need to use different paths to the CA certificate and CRL:
 For additional details about enabling and configuring Passenger, see the
 [Passenger install guide](http://www.modrails.com/install.html).
 
-### Start the Apache service
+Start or Restart the Apache service
+-----
 
-Ensure that the puppet master service is stopped before starting
+Ensure that any WEBrick puppet master process is stopped before starting
 the Apache service; only one can be bound to TCP port 8140.
 
 Debian/Ubuntu:
 
-    /etc/init.d/apache2 restart
+    $ sudo /etc/init.d/apache2 restart
 
 RHEL/CentOS:
 
-    /etc/init.d/httpd restart
+    $ sudo /etc/init.d/httpd restart
 
-If all works well, you'll want to make sure the WEBrick service no longer starts:
+If all works well, you'll want to make sure the WEBrick service no longer starts on boot:
 
 Debian/Ubuntu:
 
-    update-rc.d -f puppetmaster remove
+    $ sudo update-rc.d -f puppetmaster remove
 
 RHEL/CentOS:
 
-    chkconfig puppetmaster off
-    chkconfig httpd on
+    $ sudo chkconfig puppetmaster off
+    $ sudo chkconfig httpd on
