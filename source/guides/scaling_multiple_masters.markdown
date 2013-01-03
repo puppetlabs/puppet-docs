@@ -27,11 +27,38 @@ Distributing Agent Load
 
 First things first; the rest of your configuration will depend on how you're planning on distributing the agent load.  You have several options available.  Determine what your deployment will look like now, but **implement this as the last step**, only after you have the infrastructure in place to support it.
 
-### Option 1: DNS `SRV` Records
+### Option 1: Statically Designate Servers on Agent Nodes
 
-This option is new in Puppet 3.0, and is the recommended deployment if your entire Puppet infrastructure is on 3.0 or newer.
+Manually or with Puppet, change the `server` setting in each agent node's `puppet.conf` file such that the nodes are divided more or less evenly among the available masters.
 
-You can use DNS `SRV` records to assign a pool of puppet masters for agents to communicate with.  This requires a DNS service capable of `SRV` records - all major DNS software including Windows Server's DNS and BIND are compatible.
+This option is labor-intensive and will gradually fall out of balance, but it will work without additional infrastructure.
+
+### Option 2: Use Round-Robin DNS
+
+Leave all of your agent nodes pointed at the same puppet master hostname, then configure your site's DNS to arbitrarily route all requests directed at that hostname to the pool of available masters.
+
+For instance, if all of your agent nodes are configured with `server = puppet.example.com`, you'll configure a DNS name such as:
+
+    # IP address of master 1:
+    puppet.example.com. IN A 192.0.2.50
+    # IP address of master 2:
+    puppet.example.com. IN A 198.51.100.215
+
+For this option, you'll need to configure your masters with `dns_alt_names` before their certificate request is made --- [see below.](#before-running-puppet-agent-or-puppet-master)
+
+### Option 3: Use a Load Balancer
+
+You can also use a hardware load balancer or a load balancing proxy webserver to redirect requests more intelligently. Depending on how it's configured for SSL (either raw TCP proxying, or acting as its own SSL endpoint), you'll need to use a combination of the other procedures in this document.
+
+Configuring a load balancer is beyond the scope of this document.
+
+### Option 4: DNS `SRV` Records
+
+This option is new in Puppet 3.0, and will only work if your entire Puppet infrastructure is on 3.0 or newer. 
+
+> Note: Designating Puppet services with SRV records is an **experimental feature.** It is currently being used in production at several large sites, but there are still some issues with the implementation to be wary of. Specifically: it makes a large number of DNS requests, request timeouts are completely under the DNS server's control and agents cannot bail early, the way it divides services does not map perfectly to the pre-existing `server`/`ca_server`/etc. settings, and SRV records don't interact well with static servers set in the config file (i.e. static settings can't be used for failover, it's one or the other). Please keep these potential pitfalls in mind when configuring your DNS!
+
+You can use DNS `SRV` records to assign a pool of puppet masters for agents to communicate with.  This requires a DNS service capable of `SRV` records --- all major DNS software including Windows Server's DNS and BIND are compatible.
 
 Each of your puppet nodes will be configured with a `srv_domain` instead of a `server` in their `puppet.conf`:
 
@@ -57,31 +84,6 @@ Advanced configurations are also possible.  For instance, if all devices in site
     _x-puppet._tcp.site-b.example.com. IN SRV 1 75 8140 master-1.site-a.example.com.
     _x-puppet._tcp.site-b.example.com. IN SRV 1 25 8140 master-2.site-a.example.com.
 
-### Option 2: Statically Designate Servers on Agent Nodes
-
-Manually or with Puppet, change the `server` setting in each agent node's `puppet.conf` file such that the nodes are divided more or less evenly among the available masters.
-
-This option is labor-intensive and will gradually fall out of balance, but it will work without additional infrastructure.
-
-### Option 3: Use Round-Robin DNS
-
-Leave all of your agent nodes pointed at the same puppet master hostname, then configure your site's DNS to arbitrarily route all requests directed at that hostname to the pool of available masters.
-
-For instance, if all of your agent nodes are configured with `server = puppet.example.com`, you'll configure a DNS name such as:
-
-    # IP address of master 1:
-    puppet.example.com. IN A 192.0.2.50
-    # IP address of master 2:
-    puppet.example.com. IN A 198.51.100.215
-
-For this option, you'll need to configure your masters with `dns_alt_names` before their certificate request is made - [see below.](#before-running-puppet-agent-or-puppet-master)
-
-### Option 4: Use a Load Balancer
-
-You can also use a hardware load balancer or a load balancing proxy webserver to redirect requests more intelligently. Depending on how it's configured for SSL (either raw TCP proxying, or acting as its own SSL endpoint), you'll need to use a combination of the other procedures in this document.
-
-Configuring a load balancer is beyond the scope of this document.
-
 * * *
 
 Centralize the Certificate Authority
@@ -93,16 +95,16 @@ There are two main options for centralizing the CA:
 
 ### Option 1: Direct agent nodes to the CA Master
 
-#### Method A: DNS `SRV` Records
-
-If you are [utilizing `SRV` records for agents](#option-1-dns-srv-records), then you can use the `_x-puppet-ca._tcp.$srv_domain` DNS name to configure clients to point to a single specific CA server, while the `_x-puppet._tcp.$srv_domain` DNS name will be handling the majority of their requests to masters and can be a set of puppet masters without CA capabilities.
-
-#### Method B: Individual Agent Configuration
+#### Method A: Individual Agent Configuration
 
 On **every agent node,** you must set the [`ca_server`](/references/latest/configuration.html#ca_server) setting in [`puppet.conf`](/guides/configuring.html) (in the `[main]` configuration block) to the hostname of the server acting as the certificate authority. 
 
 * If you have a large number of existing nodes, it is easiest to do this by managing `puppet.conf` with a Puppet module and a template. 
-* Be sure to pre-set this setting when provisioning new nodes - they will be unable to successfully complete their initial agent run if they're not communicating with the correct `ca_server`.
+* Be sure to pre-set this setting when provisioning new nodes --- they will be unable to successfully complete their initial agent run if they're not communicating with the correct `ca_server`.
+
+#### Method B: DNS `SRV` Records
+
+If you are [utilizing `SRV` records for agents](#option-4-dns-srv-records), then you can use the `_x-puppet-ca._tcp.$srv_domain` DNS name to configure clients to point to a single specific CA server, while the `_x-puppet._tcp.$srv_domain` DNS name will be handling the majority of their requests to masters and can be a set of puppet masters without CA capabilities.
 
 ### Option 2: Proxy Certificate Traffic
 
@@ -121,7 +123,7 @@ All certificate related URLs begin with `/certificate`; simply catch and proxy t
 > 
 > This change must be made to the Apache configuration on every puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
 > 
-> Additionally, the CA master must allow the nodes to download the certificate revocation list via the proxy, without authentication - certificate requests and retrieval of signed certificates are allowed by default, but not CRLs.  Add the following to the CA master's `auth.conf`:
+> Additionally, the CA master must allow the nodes to download the certificate revocation list via the proxy, without authentication --- certificate requests and retrieval of signed certificates are allowed by default, but not CRLs.  Add the following to the CA master's `auth.conf`:
 > 
 >     path /certificate_revocation_list
 >     auth any
@@ -151,7 +153,7 @@ Like with any puppet master, you'll need to use a production-grade web server ra
       Set `ca_server` to the hostname of your CA server in the `[main]` config block.
     * If an `ssldir` is configured, make sure it's configured in the `[main]` block only.
 
-> If you're using the [DNS round robin method](#option-3-use-round-robin-dns) of agent load balancing, or a [load balancer](#option-4-use-a-load-balancer) in TCP proxying mode, your non-CA masters will need certificates with DNS Subject Alternative Names:
+> If you're using the [DNS round robin method](#option-2-use-round-robin-dns) of agent load balancing, or a [load balancer](#option-3-use-a-load-balancer) in TCP proxying mode, your non-CA masters will need certificates with DNS Subject Alternative Names:
 > 
 > * Configure `dns_alt_names` in the `[main]` block of `puppet.conf`.
 > 
