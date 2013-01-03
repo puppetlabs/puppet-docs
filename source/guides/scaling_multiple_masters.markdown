@@ -10,7 +10,7 @@ To scale beyond a certain size, or for geographic distribution or disaster recov
 
 > Note: As of this writing, this document does not cover:
 > 
-> * How to expand the inventory service or storeconfigs ([PuppetDB](/puppetdb) should be implemented for this)
+> * How to expand the inventory service or storeconfigs ([PuppetDB](/puppetdb) should be implemented for this, with all masters using a shared PuppetDB instance)
 > * How to expand Puppet Enterprise's orchestration or live management features
 
 In brief:
@@ -112,13 +112,14 @@ Alternately, if your nodes don't have direct connectivity to your CA master, you
 
 > This method only works if your puppet master servers are using a web server that provides a method for proxying requests, like [Apache with Passenger](/guides/passenger.html).
 
-All certificate related URLs begin with `/certificate`; simply catch and proxy these requests using whatever capabilities your web server offers.
+All certificate related URLs begin with `/<NAME OF PUPPET ENVIRONMENT>/certificate`; simply catch and proxy these requests using whatever capabilities your web server offers.
 
 > #### Example: Apache configuration with [`mod_proxy`](http://httpd.apache.org/docs/current/mod/mod_proxy.html)
 > 
 > In the scope of your puppet master vhost, add the following configuration:
 > 
 >     SSLProxyEngine On
+>     # Proxy all requests that start with things like /production/certificate to the CA
 >     ProxyPassMatch ^/([^/]+/certificate.*)$ https://puppetca.example.com:8140/$1
 > 
 > This change must be made to the Apache configuration on every puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
