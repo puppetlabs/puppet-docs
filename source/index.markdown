@@ -109,6 +109,7 @@ Puppet has a large community and many resources for users.
 - [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions. 
 - [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS. 
 - [Redmine Workflow for Puppet Open-Source Projects](/community/puppet_projects_redmine_workflow.html) --- Info about how the Puppet projects use their issue tracker, and how you can help. 
+- [Trivial Patch Exemption Policy](/community/trivial_patch_exemption.html) --- Details about which contributions are exempted from our contributor agreement.
 
 
 

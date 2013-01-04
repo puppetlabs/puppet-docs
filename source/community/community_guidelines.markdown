@@ -60,6 +60,7 @@ Activity-Specific Guidelines
 
 * [IRC Guidelines](#irc-guidelines)
 * [Mailing List Guidelines](#mailing-list-guidelines)
+* [Ask Puppet Labs Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines) 
 * [Bug Guidelines](#bug-guidelines)
 * [Documentation Guidelines](#documentation-guidelines)
 * [Git / Source Guidelines](#git--source-guidelines)
@@ -152,6 +153,20 @@ Remember that thousands of copies of your message will exist in mailboxes:
 
 Credit to the [Fedora Mailing List Guidelines](http://fedoraproject.org/wiki/Communicate/MailingListGuidelines) as a starting point under the Creative Commons Attribution-ShareAlike 3.0 Unported license.
 
+### Ask Puppet Labs Q&A Site Guidelines
+
+The [Ask Puppet Labs](http://ask.puppetlabs.com) site is a place where you can get answers to questions about anything related to Puppet.
+
+Here are a few guidelines:
+
+* Please search before asking your question to make sure that someone hasn't already answered it.
+* If you ask a question and someone replies with an answer that works for you, please remember to go back to the Ask site and mark that answer as "correct" by clicking the checkmark next to the answer.
+* If you are reading answers to other people's questions, and you find a good answer, vote it up. Likewise, please vote down answers that are not good to help other people avoid using them.
+* Leave comments on answers if you want to add some additional information, like a helpful tip or advice. You should also leave a comment on answers that didn't work for you with a few notes about why it didn't work to help us all learn from your experience.
+* This is a community website, you are encouraged to add relevant tags and make other improvements.
+* You get karma points to encourage people who are being helpful on the site. The site administrator can also remove karma points in the unlikely event that someone might try to abuse the system :)
+* If you see spam or any inappropriate content, please flag it as offensive so that our moderators can take a look at it.
+* If you find a bug in the way the Ask site itself works or you want to suggest a feature, you can submit your issue into our [Ask bug tracker](https://projects.puppetlabs.com/projects/ask/issues).
 
 ### Bug Guidelines
 
