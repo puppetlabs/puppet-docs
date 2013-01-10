@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Ruby DSL Statements and Expressions"
+title: "Puppet Ruby DSL Statements and Expressions"
 ---
 
 [metaparameters]: /references/3.0.latest/metaparameter.html
@@ -211,7 +211,7 @@ end
 </tbody>
 </table>
 
-There is no support for the Puppet DSL's chaining operators (`->`, `<-`,  `~>`, `<~`) in the Ruby DSL.
+There is no support for the Puppet DSL's chaining operators (`->`, `<-`,  `~>`, `<~`) in the Puppet Ruby DSL.
 
 
 ## Class Definitions
@@ -463,7 +463,7 @@ end
 
 Just as in the Puppet DSL, the logic in the node's body is executed when a host matching the node name (either by literal hostname or matching regular expression) has requested evaluation.
 
-In Ruby DSL the node name is any object responding to `#to_s` or is a Regexp.
+In the Puppet Ruby DSL, the node name is any object responding to `#to_s` or is a Regexp.
 
 <table>
 <tbody>
@@ -652,7 +652,7 @@ Rtype['x'].realize
 </tbody>
 </table>
 
-Lookup by name is supported, but the Ruby DSL has no syntax for [collecting virtual resources](lang_collectors.html) based on other attributes. 
+Lookup by name is supported, but the Puppet Ruby DSL has no syntax for [collecting virtual resources](lang_collectors.html) based on other attributes. 
 
 ## Exported Resources
 
@@ -756,7 +756,7 @@ Rtype['x'].collect
 </table>
 
 
-Lookup by name is supported, but the Ruby DSL has no syntax for [collecting exported resources](lang_collectors.html) based on other attributes. 
+Lookup by name is supported, but the Puppet Ruby DSL has no syntax for [collecting exported resources](lang_collectors.html) based on other attributes. 
 
 
 ## Access to Puppet Variables
@@ -849,7 +849,7 @@ scope.unsetvar("p")
 
 ## Calling Functions
 
-Unlike templates, the Ruby DSL does not require arguments to be passed in an array:
+Unlike templates, the Puppet Ruby DSL does not require arguments to be passed in an array:
 
 <table><tbody>
 <tr>
@@ -883,6 +883,4 @@ call_function "notice", "hello"
 </table>
 
 
-## More Syntax Examples
-
-More examples are available in the [puppet-ruby-dsl-examples](https://github.com/hlindberg/puppet-rubydsl-examples) repository. 
+<!-- todo: link to example repo once we have something in there --> 
