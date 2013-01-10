@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Spec » Commands"
+title: "PuppetDB 1 » API » Commands"
 layout: default
 ---
 
@@ -17,7 +17,7 @@ which have the following JSON wire format:
 `version` is a JSON integer describing what version of the given
 command you're attempting to invoke.
 
-`payload` must be a valid JSON string of any sort. It's up to an
+`payload` must be a valid JSON object of any sort. It's up to an
 individual handler function to determine how to interpret that object.
 
 The entire command MUST be encoded as UTF-8.
@@ -64,15 +64,30 @@ processed.
 
 ### "replace catalog", version 1
 
-The payload is expected to be a Puppet catalog conforming to the
-[catalog wire format](./api/wire_format/catalog_wire_format.html).
+The payload is expected to be a Puppet catalog, as a JSON string, including the
+fields of the [catalog wire format](catalog-wire-format.md). Extra fields are
+ignored.
+
+### "replace catalog", version 2
+
+The payload is expected to be a Puppet catalog, as either a JSON string or an
+object, conforming exactly to the [catalog wire
+format](../wire-formats/catalog-wire-format.md). Extra or missing fields are an error.
 
 ### "replace facts", version 1
 
-The payload is expected to be a set of Puppet facts conforming to the
-[facts wire format](./api/wire_format/facts_wire_format.html).
+The payload is expected to be a set of facts, as a JSON string, conforming to
+the [fact wire format](../wire-formats/fact-wire-format.md).
 
-## "deactivate node", version 1
+### "deactivate node", version 1
 
-The payload is expected to be the name of a node, which will be deactivated
+The payload is expected to be the name of a node, as a JSON string, which will be deactivated
 effective as of the time the command is *processed*.
+
+## Experimental commands
+
+### "store report", version 1
+
+The payload is expected to be a report, containing events that occurred on Puppet
+resources.  It is structured as a JSON object, confirming to the
+[report wire format](./report-wire-format.md).
