@@ -343,3 +343,14 @@ The _swank_ type allows emacs' clojure-mode to connect directly to a running Pup
 ### `port`
 
 The port to use for the REPL.
+
+JMX
+-----
+While all JMX metrics are exposed using the `/metrics` namespace, you can also
+expose direct JMX access using standard JVM means as documented
+(here)[http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html].
+
+For example, adding the following JVM options during PuppetDB startup will open
+up a JMX socket on port 1099:
+
+    -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099
