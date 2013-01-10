@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Spec » Facts Wire Format"
+title: "PuppetDB 1.1 » Spec » Facts Wire Format"
 layout: default
 ---
 

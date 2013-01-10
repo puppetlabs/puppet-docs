@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Maintaining and Tuning"
+title: "PuppetDB 1.1 » Maintaining and Tuning"
 layout: default
 ---
 

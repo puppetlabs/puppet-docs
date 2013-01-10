@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Connecting Standalone Puppet Nodes to PuppetDB"
+title: "PuppetDB 1.1 » Connecting Standalone Puppet Nodes to PuppetDB"
 layout: default
 ---
 

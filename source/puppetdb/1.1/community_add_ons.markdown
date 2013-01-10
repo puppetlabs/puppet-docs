@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Community Projects and Add-ons"
+title: "PuppetDB 1.1 » Community Projects and Add-ons"
 layout: default
 ---
 

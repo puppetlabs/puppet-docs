@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Scaling Recommendations"
+title: "PuppetDB 1.1 » Scaling Recommendations"
 layout: default
 ---
 

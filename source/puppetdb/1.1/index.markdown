@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Overview"
+title: "PuppetDB 1.1 » Overview"
 layout: default
 ---
 
