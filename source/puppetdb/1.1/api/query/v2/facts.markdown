@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1 » Spec » Querying Facts"
+title: "PuppetDB 1 » API » v2 » Querying Facts"
 layout: default
 ---
 
@@ -8,35 +8,102 @@ layout: default
 Querying facts occurs via an HTTP request to the
 `/facts` REST endpoint.
 
-## Query format
+## v2
 
-Facts are queried by making a request to a URL in the following form:
+### Routes
 
-The HTTP request must conform to the following format:
+#### `GET /v2/facts`
 
-* The URL requested is `/facts/<node>`
-* A `GET` is used.
-* There is an `Accept` header containing `application/json`.
+This will return all facts matching the given query. Facts for
+deactivated nodes are not included in the response. There must be an
+`Accept` header containing `application/json`.
 
-The supplied `<node>` path component indicates the certname for which
-facts should be retrieved.
+##### Parameters
 
-## Response format
+  `query`: Required. A JSON array containing the query in prefix notation.
 
-    {"name": "<node>",
-     "facts": {
-         "<fact name>": "<fact value>",
-         "<fact name>": "<fact value>",
-         ...
-        }
+##### Query paths
+
+  `"name"`: matches facts of the given name
+  `"value"`: matches facts with the given value
+  `"certname"`: matches facts for the given node
+
+##### Operators
+
+  [See operators.md](operators.md)
+
+##### Examples
+
+  Get the operatingsystem fact for all nodes:
+
+    curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts --data-urlencode 'query=["=", "name", "operatingsystem"]'
+
+    [{"certname": "a.example.com", "name": "operatingsystem", "value": "Debian"},
+     {"certname": "b.example.com", "name": "operatingsystem", "value": "RedHat"},
+     {"certname": "c.example.com", "name": "operatingsystem", "value": "Darwin"},
+
+  Get all facts for a single node:
+
+    curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts --data-urlencode 'query=["=", "certname", "a.example.com"]'
+
+    [{"certname": "a.example.com", "name": "operatingsystem", "value": "Debian"},
+     {"certname": "a.example.com", "name": "ipaddress", "value": "192.168.1.105"},
+     {"certname": "a.example.com", "name": "uptime_days", "value": "26 days"}]
+
+#### `GET /v2/facts/:name`
+
+This will return all facts for all nodes with the indicated
+name. There must be an `Accept` header containing `application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/facts` route, mentioned above. When supplied,
+  the query is assumed to supply _additional_ criteria that can be
+  used to return a _subset_ of the information normally returned by
+  this route.
+
+##### Examples
+
+    curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts/operatingsystem
+
+    [{"certname": "a.example.com", "name": "operatingsystem", "value": "Debian"},
+     {"certname": "b.example.com", "name": "operatingsystem", "value": "Redhat"},
+     {"certname": "c.example.com", "name": "operatingsystem", "value": "Ubuntu"}]
+
+#### `GET /v2/facts/:name/:value`
+
+This will return all facts for all nodes with the indicated name and
+value. There must be an `Accept` header containing `application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/facts` route, mentioned above. When supplied,
+  the query is assumed to supply _additional_ criteria that can be
+  used to return a _subset_ of the information normally returned by
+  this route.
+
+##### Examples
+
+    curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts/operatingsystem/Debian
+
+    [{"certname": "a.example.com", "name": "operatingsystem", "value": "Debian"},
+     {"certname": "b.example.com", "name": "operatingsystem", "value": "Debian}]
+
+### Response Format
+
+Successful responses will be in `application/json`. Errors will be returned as
+non-JSON strings.
+
+The result will be a JSON array, with one entry per fact. Each entry is of the form:
+
+    {
+      "certname": <node name>,
+      "name": <fact name>,
+      "value": <fact value>
     }
 
 If no facts are known for the supplied node, an HTTP 404 is returned.
-
-## Example
-
-[Using `curl` from localhost](curl):
-
-    curl -H "Accept: application/json" 'http://localhost:8080/facts/<node>'
-
-Where `<node>` is the name of the node from which you wish to retrieve facts.
