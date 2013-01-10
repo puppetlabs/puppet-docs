@@ -253,17 +253,22 @@ For a standalone deployment, install this same package on all nodes.
 OS X users should install Puppet with official Puppet Labs packages. [Download them here](http://downloads.puppetlabs.com/mac/). You will need:
 
 * The most recent Facter package
+* The most recent Hiera package
 * The most recent Puppet package
 
 #### 2. Install Facter
 
 Mount the Facter disk image, and run the installer package it contains. 
 
-#### 3. Install Puppet
+#### 3. Install Hiera
+
+Mount the Hiera disk image, and run the installer package it contains. 
+
+#### 4. Install Puppet
 
 Mount the Puppet disk image, and run the installer package it contains. 
 
-#### 4. Configure and Enable
+#### 5. Configure and Enable
 
 The OS X packages are currently fairly minimal, and do not create launchd jobs, users, or default configuration or manifest files. You will have to:
 
