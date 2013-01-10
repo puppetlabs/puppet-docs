@@ -8,6 +8,8 @@ layout: default
 [routes_yaml]: /guides/configuring.html#routesyaml
 [exported]: /puppet/2.7/reference/lang_exported.html
 [install_via_module]: ./install_via_module.html
+[report_processors]: http://docs.puppetlabs.com/guides/reporting.html
+[experimental]: TODO FIXME!
 
 > Note: To use PuppetDB, your site's puppet master(s) must be running Puppet 2.7.12 or later .
 
@@ -78,6 +80,25 @@ To enable PuppetDB for the inventory service and saved catalogs/exported resourc
       storeconfigs_backend = puppetdb
 
 > Note: The `thin_storeconfigs` and `async_storeconfigs` settings should be absent or set to `false`. If you have previously used the puppet queue daemon (puppetqd), you should now disable it. 
+
+#### Enabling experimental report storage
+
+Version 1.1 of PuppetDB includes experimental support for storing Puppet
+reports.  This feature can be enabled by simply adding the `puppetdb` report
+processor in your `puppet.conf` file.  If you don't already have a `reports`
+setting in your `puppet.conf` file, you'll probably want to add a line like this:
+
+    reports = store,puppetdb
+
+This will keep Puppet's default behavior of storing the reports to disk as YAML,
+while also sending the reports to PuppetDB.
+
+You can configure how long PuppetDB stores these reports, and you can do some
+very basic querying.  For more information, see the documentation in the
+[`experimental`](experimental) section of the PuppetDB docs.
+
+More information about Puppet report processors in general can be found
+[here](report_processors).
 
 ### 3. Edit routes.yaml
 
