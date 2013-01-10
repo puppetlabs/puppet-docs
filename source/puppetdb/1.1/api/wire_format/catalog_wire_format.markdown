@@ -67,7 +67,7 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"classes"`
 
-: List of strings. This key has no documented use and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query](./spec_q_resources.html) API.
+: List of strings. This key has no documented use and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query](resource_query) API.
 
 `"tags"`
 

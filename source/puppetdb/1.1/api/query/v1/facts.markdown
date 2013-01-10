@@ -3,6 +3,7 @@ title: "PuppetDB 1 » Spec » Querying Facts"
 layout: default
 ---
 
+[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Querying facts occurs via an HTTP request to the
 `/facts` REST endpoint.
@@ -34,7 +35,7 @@ If no facts are known for the supplied node, an HTTP 404 is returned.
 
 ## Example
 
-[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+[Using `curl` from localhost](curl):
 
     curl -H "Accept: application/json" 'http://localhost:8080/facts/<node>'
 

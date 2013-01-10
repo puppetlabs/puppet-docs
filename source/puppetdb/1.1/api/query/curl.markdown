@@ -3,11 +3,11 @@ layout: default
 title: "PuppetDB 1 » Spec » Curl Tips"
 ---
 
-[Facts]: ./spec_q_facts.html
-[Nodes]: ./spec_q_nodes.html
-[Resources]: ./spec_q_resources.html
-[Status]: ./spec_q_status.html
-[Metrics]: ./spec_q_metrics.html
+[Facts]: ./api/query/v1/facts.html
+[Nodes]: ./api/query/v1/nodes.html
+[Resources]: ./api/query/v1/resources.html
+[Status]: ./api/query/v1/status.html
+[Metrics]: ./api/query/v1/metrics.html
 [curl]: http://curl.haxx.se/docs/manpage.html
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [whitelist]: ./configure.html#certificate-whitelist

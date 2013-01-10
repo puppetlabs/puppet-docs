@@ -14,7 +14,7 @@ layout: default
 [Jason Hancock --- nagios-puppetdb][nagios]
 -----
 
-[A collection of Nagios scripts/plugins for monitoring PuppetDB.][nagios] These plugins get data using [PuppetDB's metrics APIs](./spec_q_metrics.html). Pulling this data into Nagios lets you monitor key metrics over time and receive alerts when they cross certain thresholds. This can partially or completely replace the [built-in performance dashboard][dashboard]. Especially useful for knowing when the heap size or thread count needs tuning. 
+[A collection of Nagios scripts/plugins for monitoring PuppetDB.][nagios] These plugins get data using [PuppetDB's metrics APIs](./api/query/v1/metrics.html). Pulling this data into Nagios lets you monitor key metrics over time and receive alerts when they cross certain thresholds. This can partially or completely replace the [built-in performance dashboard][dashboard]. Especially useful for knowing when the heap size or thread count needs tuning.
 
 
 [Eric Dalén --- PuppetDB query functions for Puppet][query]

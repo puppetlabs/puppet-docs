@@ -3,6 +3,7 @@ title: "PuppetDB 1 » Spec » Querying Metrics"
 layout: default
 ---
 
+[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Querying PuppetDB metrics is accomplished by making an HTTP request
 to paths under the `/metrics` REST endpoint.
@@ -141,6 +142,6 @@ resources, storing edges, etc.). Metrics of particular note include:
 
 ## Example
 
-[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+[Using `curl` from localhost](curl):
 
     curl -H "Accept: application/json" 'http://localhost:8080/metrics/mbean/java.lang:type=Memory'

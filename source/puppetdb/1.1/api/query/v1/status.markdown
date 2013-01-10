@@ -3,6 +3,8 @@ title: "PuppetDB 1 » Spec » Querying Status"
 layout: default
 ---
 
+[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+
 ## Query Format
 
 Node status can be queried by making an HTTP GET request to `/status/nodes/<node>`,
@@ -25,7 +27,7 @@ hash containing an "error" key with a message indicating such.
 
 ## Example
 
-[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+[Using `curl` from localhost](curl):
 
     curl -H "Accept: application/json" 'http://localhost:8080/status/nodes/<node>'
 

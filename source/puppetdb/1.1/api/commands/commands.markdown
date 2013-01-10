@@ -65,12 +65,12 @@ processed.
 ### "replace catalog", version 1
 
 The payload is expected to be a Puppet catalog conforming to the
-[catalog wire format](./spec_catalog_wire_format.html).
+[catalog wire format](./api/wire_format/catalog_wire_format.html).
 
 ### "replace facts", version 1
 
 The payload is expected to be a set of Puppet facts conforming to the
-[facts wire format](./spec_facts_wire_format.html).
+[facts wire format](./api/wire_format/facts_wire_format.html).
 
 ## "deactivate node", version 1
 

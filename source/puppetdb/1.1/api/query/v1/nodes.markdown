@@ -3,7 +3,8 @@ title: "PuppetDB 1 » Spec » Querying Nodes"
 layout: default
 ---
 
-[resource]: ./spec_q_resources.html
+[resource]: ./resources.html
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Nodes can be queried by making an HTTP request to the `/nodes` REST
 endpoint with a JSON-formatted parameter called `query`.
@@ -48,7 +49,7 @@ in ascending order:
 
 ## Example
 
-[Using `curl` from localhost](./spec_curl.html#using-curl-from-localhost-non-sslhttp):
+[Using `curl` from localhost](curl):
 
 Retrieving all nodes:
 
