@@ -7,7 +7,9 @@ layout: default
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
 [threads]: ./configure.html#command-processing-settings
 [memrec]: ./scaling_recommendations.html#bottleneck-java-heap-size
-[ttl]: ./configure.html#node-ttl-days
+[puppetdb_report_processor]: ./connect_puppet_master.html#Enabling+experimental+report_storage
+[node_ttl]: ./configure.html#node-ttl
+[report_ttl]: ./configure.html#report-ttl
 [resources_type]: /references/latest/type.html#resources
 [log4j]: ./configure.html#configuring-logging
 [dashboard]: #monitor-the-performance-dashboard
@@ -39,7 +41,7 @@ E.g.: `http://puppetdb.example.com:8080/dashboard/index.html?height=240&pollingI
 
 When you remove a node from your Puppet deployment, it should be marked as **deactivated** in PuppetDB. This will ensure that any resources exported by that node will stop appearing in the catalogs served to the remaining agent nodes. 
 
-* PuppetDB can automatically deactivate nodes that haven't checked in recently. To enable this, set the [`node-ttl-days` setting][ttl].
+* PuppetDB can automatically deactivate nodes that haven't checked in recently. To enable this, set the [`node-ttl` setting][node_ttl].
 * If you prefer to manually deactivate nodes, use the following command on your puppet master:
 
         $ sudo puppet node deactivate <node> [<node> ...]
@@ -48,6 +50,10 @@ When you remove a node from your Puppet deployment, it should be marked as **dea
 Although deactivated nodes will be excluded from storeconfigs queries, their data is still preserved.
 
 > **Note:** Deactivating a node does not remove (e.g. `ensure => absent`) exported resources from other systems; it only stops _managing_ those resources. If you want to actively destroy resources from deactivated nodes, you will probably need to purge that resource type using the [`resources` metatype][resources_type]. Note that some types cannot be purged (e.g. ssh authorized keys), and several others usually **should not** be purged (e.g. users).
+
+## Clean Up Old Reports
+
+When the [PuppetDB report processor](puppetdb_report_processor) is enabled on your Puppet master, PuppetDB will retain reports for each node for a fixed amount of time.  This defaults to seven days, but you can alter this to suit your needs using the [`report-ttl` setting][report_ttl].  The larger the value you provide for this setting, the more history you will retain; however, your database size will grow accordingly.
 
 ## View the Log
 

@@ -186,11 +186,37 @@ It's possible to use SSL to protect connections to the database. The [PostgreSQL
 
 This controls how often, in minutes, to compact the database. The compaction process reclaims space and deletes unnecessary rows. If not supplied, the default is every 60 minutes.
 
-### `node-ttl-days`
 
-This sets the number of days with no activity (no new catalogs, facts, etc) before a node will be auto-deactivated. Nodes will be checked for staleness every `gc-interval` minutes. Manual deactivation will continue to work as always.
+### `node-ttl`
+
+Auto-deactivate nodes that haven't seen any activity (no new catalogs,
+facts, etc) in the specified amount of time. You may specify the time
+as a string using any of the following suffixes:
+
+    `d`  - days
+    `h`  - hours
+    `m`  - minutes
+    `s`  - seconds
+    `ms` - milliseconds
+
+So, e.g., a value of `30d` would set the time-to-live to 30 days, and a value of
+`48h` would set the time-to-live to 48 hours.
+
+Nodes will be checked for staleness every `gc-interval` minutes. Manual
+deactivation will continue to work as always.
 
 If unset, auto-deactivation of nodes is disabled.
+
+### `report-ttl`
+
+Automatically delete reports that are older than the specified amount of time.
+You may specify the time as a string using any of the suffixes described in the
+`node-ttl` section above.
+
+Outdated reports will be deleted during the database garbage collection, which
+runs every `gc-interval` minutes.
+
+If unset, the default value is 7 days.
 
 ### `log-slow-statements`
 
