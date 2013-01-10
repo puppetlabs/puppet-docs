@@ -6,9 +6,9 @@ layout: default
 [exported]: /puppet/2.7/reference/lang_exported.html
 [inventory]: /guides/inventory_service.html
 [apply]: ./connect_puppet_apply.html
-[connect]: ./connect_puppet_master.html
+[install_via_module]: ./install_via_module.html
+[install_from_packages]: ./install_from_packages.html
 [install_advanced]: ./install_from_source.html
-[install]: ./install.html
 [scaling]: ./scaling_recommendations.html
 [facts]: /puppet/2.7/reference/lang_variables.html#facts
 [catalog]: /puppet/2.7/reference/lang_summary.html#compilation-and-catalogs
@@ -24,8 +24,10 @@ Install It Now
 To start using PuppetDB today:
 
 * Review [the system requirements below](#system-requirements) (and, optionally, [our scaling recommendations][scaling]).
-* Follow the installation instructions: [easy install][install] on our recommended platforms or [advanced install][install_advanced] on any other \*nix.
-* [Connect your puppet master to PuppetDB][connect] (or at standalone puppet apply sites, [connect every node to PuppetDB][apply]). 
+* Choose your installation method:
+    * [easy install][install_via_module] using the PuppetDB puppet module on our recommended platforms
+    * [install from packages][install_from_packages] on our recommended platforms
+    * [advanced install][install_advanced] on any other \*nix.
 
 Version Note
 -----
@@ -68,7 +70,8 @@ Puppet Labs provides packages for PuppetDB which simplify setup of its SSL certi
 * Ubuntu 12.04 LTS, 10.04 LTS, 8.04 LTS, 11.10, or 11.04
 * Fedora 15 or 16
 
-[See here for installation instructions.][install]
+[See here for instructions for installing via the PuppetDB puppet module.][install_via_module]
+[See here for instructions for installing from OS packages.][install_from_packages]
 
 #### Custom Install: Any Unix-like OS
 

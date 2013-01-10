@@ -7,7 +7,7 @@ layout: default
 [puppetdb_conf]: /guides/configuring.html#puppetdbconf
 [routes_yaml]: /guides/configuring.html#routesyaml
 [exported]: /puppet/2.7/reference/lang_exported.html
-
+[install_via_module]: ./install_via_module.html
 
 > Note: To use PuppetDB, your site's puppet master(s) must be running Puppet 2.7.12 or later .
 
@@ -17,6 +17,8 @@ After PuppetDB is installed and running, you should configure your puppet master
 * Send every node's facts to PuppetDB 
 * Query PuppetDB when compiling node catalogs that collect [exported resources][exported]
 * Query PuppetDB when responding to [inventory service](/guides/inventory_service.html) requests
+
+> Note: if you've [installed PuppetDB using the PuppetDB puppet module](install_via_module), then the `puppetdb::master::config` class is taking care of all of this for you.
 
  **Working on your puppet master server(s),** follow all of the instructions below:
 
