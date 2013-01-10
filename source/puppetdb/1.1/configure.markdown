@@ -5,6 +5,7 @@ layout: default
 
 [log4j]: http://logging.apache.org/log4j/1.2/manual.html
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
+[repl]: ./repl.html
 
 Summary
 -----
@@ -318,7 +319,7 @@ If not supplied, PuppetDB uses standard HTTPS without any additional authorizati
 `[repl]` Settings
 -----
 
-The `[repl]` section configures remote runtime modification. 
+The `[repl]` section configures remote runtime modification.  For more detailed info, see [Debugging with the Remote REPL](repl).
 
 Enabling a remote [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) allows you to manipulate the behavior of PuppetDB at runtime. This should only be done for debugging purposes, and is thus disabled by default. An example configuration stanza:
 
