@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1.1 » Spec » Catalog Wire Format, Version 1"
+title: "PuppetDB 1.1 » API » Catalog Wire Format, Version 1"
 layout: default
 ---
 
