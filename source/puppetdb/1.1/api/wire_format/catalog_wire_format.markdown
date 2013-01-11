@@ -36,16 +36,11 @@ The entire catalog is serialized as JSON, which requires strict UTF-8 encoding. 
 A catalog is a JSON object with two keys: `"metadata"` and `"data"`. 
 
     {"metadata": {
-        "type": "catalog",
-        "version": 1
+        "api_version": 1
         }
      "data": {
         "name": <string>,
         "version": <string>,
-        "classes":
-            [<string>, <string>, ...],
-        "tags":
-            [<string>, <string>, ...],
         "edges":
             [<edge>, <edge>, ...],
         "resources":
