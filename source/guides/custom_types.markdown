@@ -68,10 +68,12 @@ You may wish to read up on "Ruby blocks" to understand more about
 the syntax.  Blocks are a very powerful feature of Ruby and are
 not surfaced in most programming languages.
 
+{% highlight ruby %}
     Puppet::Type.newtype(:database) do
         @doc = "Create a new database."
         ... the code ...
     end
+{% endhighlight %}
 
 The above code should be stored in puppet/type/database.rb (within the `libpath`), because of the name of the type we're creating ("database").
 
@@ -101,10 +103,12 @@ special because it's used to create and destroy resources. You can
 set this property up on your resource type just by calling the
 ensurable method in your type definition:
 
+{% highlight ruby %}
     Puppet::Type.newtype(:database) do
         ensurable
         ...
     end
+{% endhighlight %}
 
 This property uses three methods on the provider: create, destroy,
 and exists?. The last method, somewhat obviously, is a boolean to
@@ -120,6 +124,7 @@ The rest of the properties are defined a lot like you define the
 types, with the newproperty method, which should be called on the
 type:
 
+{% highlight ruby %}
     Puppet::Type.newtype(:database) do
         ensurable
         newproperty(:owner) do
@@ -127,6 +132,7 @@ type:
             ...
         end
     end
+{% endhighlight %}
 
 Note the call to desc; this sets the documentation string for this
 property, and for Puppet types that get distributed with Puppet, it
@@ -140,10 +146,12 @@ and it will automatically handle accepting either strings or
 symbols. In most cases, you only define allowed values for ensure,
 but it works for other properties, too:
 
+{% highlight ruby %}
     newproperty(:enable) do
         newvalue(:true)
         newvalue(:false)
     end
+{% endhighlight %}
 
 You can attach code to the value definitions (this code would be
 called instead of the property= method), but it's normally
@@ -152,6 +160,7 @@ unnecessary.
 For most properties, though, it is sufficient to set up
 validation:
 
+{% highlight ruby %}
     newproperty(:owner) do
         validate do |value|
             unless value =~ /^\w+/
@@ -159,6 +168,7 @@ validation:
             end
         end
     end
+{% endhighlight %}
 
 Note that the order in which you define your properties can be
 important: Puppet keeps track of the definition order, and it
@@ -176,9 +186,11 @@ If, instead, the property should only be in sync if _all_
 values match the current value (e.g., a list of times in a cron
 job), you can declare this:
 
+{% highlight ruby %}
     newproperty(:minute, :array_matching => :all) do # :array_matching defaults to :first
         ...
     end
+{% endhighlight %}
 
 You can also customize how information about your property gets
 logged. You can create an `is_to_s` method to change how the
@@ -196,12 +208,16 @@ those values directly by calling should on your resource (although
 note that when `:array_matching` is set to `:first` you get the first
 value in the array, otherwise you get the whole array):
 
+{% highlight ruby %}
     myval = should(:color)
+{% endhighlight %}
 
 When you're not sure (or don't care) whether you're dealing with a
 property or parameter, it's best to use value:
 
+{% highlight ruby %}
     myvalue = value(:color)
+{% endhighlight %}
 
 ### Parameters
 
@@ -213,16 +229,20 @@ Like ensure, one parameter you will always want to define is the
 one used for naming the resource. This is nearly always called
 name:
 
+{% highlight ruby %}
     newparam(:name) do
         desc "The name of the database."
     end
+{% endhighlight %}
 
 You can name your naming parameter something else, but you must
 declare it as the namevar:
 
+{% highlight ruby %}
     newparam(:path, :namevar => true) do
         ...
     end
+{% endhighlight %}
 
 In this case, path and name are both accepted by Puppet, and it
 treats them equivalently.
@@ -230,20 +250,24 @@ treats them equivalently.
 If your parameter has a fixed list of valid values, you can declare
 them all at once:
 
+{% highlight ruby %}
     newparam(:color) do
         newvalues(:red, :green, :blue, :purple)
     end
+{% endhighlight %}
 
 You can specify regexes in addition to literal values; matches
 against regexes always happen after equality comparisons against
 literal values, and those matches are not converted to symbols. For
 instance, given the following definition:
 
+{% highlight ruby %}
     newparam(:color) do
         desc "Your color, and stuff."
 
         newvalues(:blue, :red, /.+/)
     end
+{% endhighlight %}
 
 If you provide blue as the value, then your parameter will get set
 to :blue, but if you provide green, then it will get set to
@@ -255,6 +279,7 @@ If your parameter does not have a defined list of values, or you
 need to convert the values in some way, you can use the validate
 and munge hooks:
 
+{% highlight ruby %}
     newparam(:color) do
         desc "Your color, and stuff."
 
@@ -278,6 +303,7 @@ and munge hooks:
             end
         end
     end
+{% endhighlight %}
 
 The default validate method looks for values defined using
 newvalues and if there are any values defined it accepts only those
@@ -300,9 +326,11 @@ resources. You use the autorequire hook, which requires a resource
 type as an argument, and your code should return a list of resource
 names that your resource could be related to:
 
+{% highlight ruby %}
     autorequire(:file) do
       ["/tmp", "/dev"]
     end
+{% endhighlight %}
 
 Note that this won't throw an error if resources with those names
 do not exist; the purpose of this hook is to make sure that if any
@@ -330,6 +358,7 @@ properties and parameters in the type can declare that they require
 one or more specific features, and Puppet will throw an error if
 those prameters are used with providers missing those features:
 
+{% highlight ruby %}
     newtype(:coloring) do
         feature :paint, "The ability to paint.", :methods => [:paint]
         feature :draw, "The ability to draw."
@@ -338,6 +367,7 @@ those prameters are used with providers missing those features:
             ...
         end
     end
+{% endhighlight %}
 
 The first argument to the feature method is the name of the
 feature, the second argument is its description, and after that is
@@ -347,9 +377,11 @@ more methods that must be defined on the provider. If no methods
 are specified, then the provider needs to specifically declare that
 it has that feature:
 
+{% highlight ruby %}
     Puppet::Type.type(:coloring).provide(:drawer) do
         has_feature :draw
     end
+{% endhighlight %}
 
 The provider can specify multiple available features at once with
 has\_features.
