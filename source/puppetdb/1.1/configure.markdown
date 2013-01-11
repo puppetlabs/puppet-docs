@@ -6,6 +6,7 @@ layout: default
 [log4j]: http://logging.apache.org/log4j/1.2/manual.html
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [repl]: ./repl.html
+[postgres_ssl]: ./postgres_ssl.html
 
 Summary
 -----
@@ -181,6 +182,9 @@ Replace `<HOST>` with the DB server's hostname. Replace `<PORT>` with the port o
 It's possible to use SSL to protect connections to the database. The [PostgreSQL JDBC docs](http://jdbc.postgresql.org/documentation/head/ssl.html) explain how to do this. Be sure to add `?ssl=true` to the `subname` setting:
 
     subname = //<host>:<port>/<database>?ssl=true
+
+More details for configuring SSL connectivity are available in the
+[PostgreSQL SSL Setup](postgres_ssl) section.
 
 
 ### `gc-interval`
