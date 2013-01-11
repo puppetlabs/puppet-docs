@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1.1 » Spec » Querying Nodes"
+title: "PuppetDB 1.1 » API » v2 » Querying Nodes"
 layout: default
 ---
 
@@ -9,20 +9,30 @@ layout: default
 Nodes can be queried by making an HTTP request to the `/nodes` REST
 endpoint with a JSON-formatted parameter called `query`.
 
-## Query format
+## v2
 
-* The HTTP method must be `GET`.
-* There must be an `Accept` header specifying `application/json`.
+### Routes
 
-The `query` parameter uses a format similar to [resource queries][resource].
+#### `GET /v2/nodes`
 
-Only queries against facts and filters based on node activeness are currently
-supported.
+This will return all nodes matching the given query. Deactivated nodes
+aren't included in the response. There must be an `Accept` header
+containing `application/json`.
 
-These query terms must be of the form `["fact", "<fact name>"]` or `["node", "active"]`,
-respectively.
+##### Parameters
 
-Accepted operators are: `[= > < >= <= and or not]`
+  `query`: Required. A JSON array of query predicates, in prefix form,
+  conforming to the format described below.
+
+The `query` parameter is a similar format to [resource queries](resource).
+
+Only queries against `"name"` and facts are currently supported.
+
+Fact terms must be of the form `["fact", <fact name>]`.
+
+Node query supports [all available operators](operators.md). Inequality
+operators are only supported for fact queries, but regular expressions are
+supported for both name and facts.
 
 Inequality operators are strictly arithmetic, and will ignore any fact values
 which are not numeric.
@@ -30,31 +40,142 @@ which are not numeric.
 Note that nodes which are missing a fact referenced by a `not` query will match
 the query.
 
-In this example, the query will return active nodes whose kernel is Linux and whose uptime is less
+This query will return nodes whose kernel is Linux and whose uptime is less
 than 30 days:
 
     ["and",
-      ["=", ["node", "active"], true],
       ["=", ["fact", "kernel"], "Linux"],
       [">", ["fact", "uptime_days"], 30]]
 
 If no `query` parameter is supplied, all nodes will be returned.
 
-## Response format
+##### Response format
 
-The response is a JSON array of node names that match the predicates, sorted
-in ascending order:
+The response is a JSON array of hashes of the form:
 
-`["foo.example.com", "bar.example.com", "baz.example.com"]`
+    {"name": <string>,
+     "deactivated": <timestamp>,
+     "catalog_timestamp": <timestamp>,
+     "facts_timestamp": <timestamp>,
+     "report_timestamp": <timestamp>}
 
-## Example
+The array is sorted alphabetically by `name`.
 
-[Using `curl` from localhost](curl):
+##### Example
 
-Retrieving all nodes:
+[You can use `curl`](curl) to query information about nodes like so:
 
-    curl -H "Accept: application/json" 'http://localhost:8080/nodes'
+    curl -H "Accept: application/json" 'http://localhost:8080/v2/nodes'
+    curl -G -H "Accept: application/json" 'http://localhost:8080/v2/nodes' --data-urlencode 'query=["=", ["fact", "kernel"], "Linux"]'
 
-Retrieving all active nodes:
+#### `GET /v2/nodes/:node`
 
-    curl -G -H "Accept: application/json" 'http://localhost:8080/nodes' --data-urlencode 'query=["=", ["node", "active"], true]'
+This will return status information for the given node, active or
+not. There must be an `Accept` header containing `application/json`.
+
+##### Response format
+
+The response is the same format as for the [/v2/status](status.md)
+endpoint.
+
+#### `GET /v2/nodes/:node/facts`
+
+This will return the facts for the given node. Facts from deactivated
+nodes aren't included in the response. There must be an `Accept`
+header containing `application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/v2/facts` route. When supplied, the query is
+  assumed to supply _additional_ criteria that can be used to return a
+  _subset_ of the information normally returned by this route.
+
+##### Response format
+
+The response is the same format as for the [/v2/facts](facts.md)
+endpoint.
+
+#### `GET /v2/nodes/:node/facts/:name`
+
+This will return facts with the given name for the given node. Facts
+from deactivated nodes aren't included in the response. There must be
+an `Accept` header containing `application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/v2/facts` route. When supplied, the query is
+  assumed to supply _additional_ criteria that can be used to return a
+  _subset_ of the information normally returned by this route.
+
+##### Response format
+
+The response is the same format as for the [/v2/facts](facts.md)
+endpoint.
+
+
+#### `GET /v2/nodes/:node/facts/:name/:value`
+
+This will return facts with the given name and value for the given
+node. Facts from deactivated nodes aren't included in the
+response. There must be an `Accept` header containing
+`application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/v2/facts` route. When supplied, the query is
+  assumed to supply _additional_ criteria that can be used to return a
+  _subset_ of the information normally returned by this route.
+
+##### Response format
+
+The response is the same format as for the [/v2/facts](facts.md)
+endpoint.
+
+#### `GET /v2/nodes/:node/resources`
+
+This will return the resources for the given node. Resources from
+deactivated nodes aren't included in the response. There must be an
+`Accept` header containing `application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/v2/resources` route. When supplied, the query is
+  assumed to supply _additional_ criteria that can be used to return a
+  _subset_ of the information normally returned by this route.
+
+##### Response format
+
+The response is the same format as for the [/v2/resources](resource.md)
+endpoint.
+
+#### `GET /v2/nodes/:node/resources/:type`
+
+This will return the resources of the indicated type for the given
+node. Resources from deactivated nodes aren't included in the
+response. There must be an `Accept` header containing
+`application/json`.
+
+This endpoint behaves identically to the
+[/v2/resources/:type](resource.md) endpoint, except the resources
+returned include _only_ those belonging to the node given in the URL
+for this route.
+
+#### `GET /v2/nodes/:node/resources/:type/:title`
+
+This will return the resource of the indicated type and title for the
+given node. Resources from deactivated nodes aren't included in the
+response. There must be an `Accept` header containing
+`application/json`.
+
+This endpoint behaves identically to the
+[/v2/resources/:type](resource.md) endpoint, except the resources
+returned include _only_ those belonging to the node given in the URL
+for this route.

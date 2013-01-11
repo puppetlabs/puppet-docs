@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1.1 » Spec » Querying Nodes"
+title: "PuppetDB 1.1 » API » v1 » Querying Nodes"
 layout: default
 ---
 
@@ -14,7 +14,7 @@ endpoint with a JSON-formatted parameter called `query`.
 * The HTTP method must be `GET`.
 * There must be an `Accept` header specifying `application/json`.
 
-The `query` parameter uses a format similar to [resource queries][resource].
+The `query` parameter uses a format similar to [resource queries](resource).
 
 Only queries against facts and filters based on node activeness are currently
 supported.
