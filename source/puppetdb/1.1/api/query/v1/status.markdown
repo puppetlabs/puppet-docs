@@ -1,16 +1,21 @@
 ---
-title: "PuppetDB 1.1 » Spec » Querying Status"
+title: "PuppetDB 1.1 » API » v1 » Querying Status"
 layout: default
 ---
 
 [curl] ../curl.html#using-curl-from-localhost-non-sslhttp
 
-## Query Format
+## v1
 
-Node status can be queried by making an HTTP GET request to `/status/nodes/<node>`,
-specifying that the request accepts JSON.
+### Routes
 
-## Response Format
+#### `GET /v1/status/nodes/:node`
+
+This will return status information for the given node. There must be
+an `Accept` header containing `application/json`.
+
+
+### Response Format
 
 Node status information will be returned in a JSON hash of the form:
 
@@ -25,7 +30,7 @@ not present, the corresponding timestamps will be null.
 If no information is known about the node, the result will be a 404 with a JSON
 hash containing an "error" key with a message indicating such.
 
-## Example
+### Example
 
 [Using `curl` from localhost](curl):
 
