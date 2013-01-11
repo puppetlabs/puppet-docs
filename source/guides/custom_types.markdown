@@ -166,20 +166,24 @@ always checks and fixes properties in the order they are defined.
 
 #### Customizing Behaviour
 
-By default, if a property is assigned multiple values in an array,
-it is considered in sync if any of those values matches the current
-value. If, instead, the property should only be in sync if all
+By default, if a property is assigned multiple values in an array:
+
+* It is considered in sync if _any_ of those values matches the current
+value.
+* If none of those values match, the _first one_ will be used when syncing the property.
+
+If, instead, the property should only be in sync if _all_
 values match the current value (e.g., a list of times in a cron
 job), you can declare this:
 
-    newproperty(:minute, :array_matching => :all) do # defaults to :first
+    newproperty(:minute, :array_matching => :all) do # :array_matching defaults to :first
         ...
     end
 
 You can also customize how information about your property gets
-logged. You can create an is\_to\_s method to change how the
-current values are described, should\_to\_s to change how the
-desired values are logged, and change\_to\_s to change the overall
+logged. You can create an `is_to_s` method to change how the
+current values are described, `should_to_s` to change how the
+desired values are logged, and `change_to_s` to change the overall
 log message for changes. See current types for examples.
 
 #### Handling Property Values
@@ -189,7 +193,7 @@ and will hopefully be fixed in the future. When a resource is
 created with a list of desired values, those values are stored in
 each property in its @should instance variable. You can retrieve
 those values directly by calling should on your resource (although
-note that when array\_matching is set to first you get the first
+note that when `:array_matching` is set to `:first` you get the first
 value in the array, otherwise you get the whole array):
 
     myval = should(:color)
