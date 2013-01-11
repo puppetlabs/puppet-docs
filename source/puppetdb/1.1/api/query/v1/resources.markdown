@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1.1 » Spec » Querying Resources"
+title: "PuppetDB 1.1 » API » v1 » Querying Resources"
 layout: default
 ---
 

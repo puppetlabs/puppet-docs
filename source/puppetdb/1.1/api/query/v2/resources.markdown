@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1.1 » Spec » Querying Resources"
+title: "PuppetDB 1.1 » API » v2 » Querying Resources"
 layout: default
 ---
 
@@ -8,36 +8,38 @@ layout: default
 Resources are queried via an HTTP request to the
 `/resources` REST endpoint.
 
-## Query format
+## v2
 
-Queries for resources must conform to the following format:
+### Routes
 
-* A `GET` is used.
-* There is a single parameter, `query`.
-* There is an `Accept` header containing `application/json`.
-* The `query` parameter is a JSON array of query predicates, in prefix
-  form, conforming to the format described below.
+#### `GET /v2/resources`
 
-The `query` parameter adheres to the following grammar:
+This will return all resources matching the given query. Resources for
+deactivated nodes are not included in the response. There must be an
+`Accept` header containing `application/json`.
 
-    query: [ {type} {query}+ ] | [ {match} {field} {value} ]
+##### Parameters
+
+  `query`: Required. A JSON array of query predicates, in prefix form,
+  conforming to the format described below.
+
+The `query` parameter is described by the following grammar:
+
+    query: [ {bool} {query}+ ] | [ "not" {query} ] | [ {match} {field} {value} ]
     field:  string | [ string+ ]
     value:  string
-    type:   "or" | "and" | "not"
-    match:  "="
+    bool:   "or" | "and"
+    match:  "=" | "~"
 
-`field` strings may be any of the following:
+`field` may be any of:
 
 `tag`
 : a case-insensitive tag on the resource
 
-`["node", "name"]`
+`certname`
 : the name of the node associated with the resource
 
-`["node", "active"]`
-: `true` if the node has not been deactivated, `false` if it has
-
-`["parameter", "<parameter name>"]`
+`[parameter <resource_param>]`
 : a parameter of the resource
 
 `type`
@@ -50,39 +52,121 @@ The `query` parameter adheres to the following grammar:
 : whether or not the resource is exported
 
 `sourcefile`
-: the manifest file where the resource was declared
+: the manifest file the resource was declared in
 
 `sourceline`
-: the line of the manifest in which the resource was declared
+: the line of the manifest on which the resource was declared
 
-For example, the JSON query structure for file resources, tagged "magical", and present on any active host except
-for "example.local" would be:
+For example, for file resources, tagged "magical", on any host except
+for "example.local" the JSON query structure would be:
 
-    ["and", ["not", ["=", ["node", "name"], "example.local"]],
-            ["=", ["node", "active"], true],
+    ["and", ["not", ["=", "certname", "example.local"]],
             ["=", "type", "File"],
-            ["=", "tag",  "magical"],
-            ["=", ["parameter", "ensure"], "enabled"]]
+            ["=", "tag", "magical"],
+            ["=", ["parameter", "ensure"], "enabled"]
 
-The following conditionals for type behaviors are defined:
+The available operators are [defined in operators.md](operators.md). Note that
+resource queries *do not support* inequality, and regexp matching *is not
+supported* against node status or parameter values.
 
-`or`
-: If *any* condition is true, the result is true.
+#### `GET /v2/resources/:type`
 
-`and`
-: If *all* conditions are true, the result is true.
+This will return all resources for all nodes with the given
+type. Resources from deactivated nodes aren't included in the
+response. There must be an `Accept` header containing
+`application/json`.
 
-`not`
-: If *none* of the conditions are true, the result is true.
+##### Parameters
 
-The following match operator behaviors are defined:
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/resources` route, mentioned above. When
+  supplied, the query is assumed to supply _additional_ criteria that
+  can be used to return a _subset_ of the information normally
+  returned by this route.
 
-`=`
-: Exact string equality of the field and the value.
+##### Examples
 
-## Response format
+[Using `curl` from localhost](curl):
 
-An array of zero or more resource objects, with each object in the
+    curl -X GET -H "Accept: application/json" 'http://puppetdb:8080/v2/resources/User'
+
+    [{"parameters" : {
+        "uid" : "1000,
+        "shell" : "/bin/bash",
+        "managehome" : false,
+        "gid" : "1000,
+        "home" : "/home/foo,
+        "groups" : "users,
+        "ensure" : "present"
+      },
+      "sourceline" : 10,
+      "sourcefile" : "/etc/puppet/manifests/site.pp",
+      "exported" : false,
+      "tags" : [ "foo", "bar" ],
+      "title" : "foo",
+      "type" : "User",
+      "certname" : "host1.mydomain.com"
+    }, {"parameters" : {
+        "uid" : "1001,
+        "shell" : "/bin/bash",
+        "managehome" : false,
+        "gid" : "1001,
+        "home" : "/home/bar,
+        "groups" : "users,
+        "ensure" : "present"
+      },
+      "sourceline" : 20,
+      "sourcefile" : "/etc/puppet/manifests/site.pp",
+      "exported" : false,
+      "tags" : [ "foo", "bar" ],
+      "title" : "bar",
+      "type" : "User",
+      "certname" : "host2.mydomain.com"}]
+
+#### `GET /v2/resources/:type/:title`
+
+This will return all resources for all nodes with the given type and
+title. Resources from deactivated nodes aren't included in the
+response. There must be an `Accept` header containing
+`application/json`.
+
+##### Parameters
+
+  `query`: Optional. A JSON array containing the query in prefix
+  notation. The syntax and semantics are identical to the `query`
+  parameter for the `/resources` route, mentioned above. When
+  supplied, the query is assumed to supply _additional_ criteria that
+  can be used to return a _subset_ of the information normally
+  returned by this route.
+
+##### Examples
+
+[Using `curl` from localhost](curl):
+
+    curl -X GET -H "Accept: application/json" 'http://puppetdb:8080/v2/resources/User/foo'
+
+    [{"parameters" : {
+        "uid" : "1000,
+        "shell" : "/bin/bash",
+        "managehome" : false,
+        "gid" : "1000,
+        "home" : "/home/foo,
+        "groups" : "users,
+        "ensure" : "present"
+      },
+      "sourceline" : 10,
+      "sourcefile" : "/etc/puppet/manifests/site.pp",
+      "exported" : false,
+      "tags" : [ "foo", "bar" ],
+      "title" : "foo",
+      "type" : "User",
+      "certname" : "host1.mydomain.com"
+    }]
+
+# Response format
+
+An array of zero or more resource objects, with each object having the
 following form:
 
     {"certname":   "the certname of the associated host",
@@ -94,13 +178,5 @@ following form:
      "sourcefile": "/etc/puppet/manifests/site.pp",
      "sourceline": "1",
      "parameters": {<parameter>: <value>,
-                    <parameter>: <value>,
-                    ...}}
-
-## Example
-
-[Using `curl` from localhost](curl):
-
-Retrieving the resource `File['/etc/ipsec.conf']`:
-
-    curl -G -H "Accept: application/json" 'http://localhost:8080/resources' --data-urlencode 'query=["and", ["=", "type", "File"], ["=", "title", "/etc/ipsec.conf"]]'
+                   <parameter>: <value>,
+                   ...}}
