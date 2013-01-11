@@ -142,7 +142,7 @@ task :build do
 end
 
 desc "Build all references and man pages for a new Puppet version"
-task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc', 'references:update_manpages']
+task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc']
 
 namespace :references do
 
