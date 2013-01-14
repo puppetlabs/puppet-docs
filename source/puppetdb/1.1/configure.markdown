@@ -20,7 +20,8 @@ PuppetDB has three main groups of settings:
 * All other settings, which go in PuppetDB's configuration file(s) and take effect after the service is restarted
 
 
-### Init Script Config File
+Init Script Config File
+-----
 
 If you installed PuppetDB from packages or used the `rake install` installation method, an init script was created for PuppetDB. This script has its own configuration file, whose location varies by platform and by package:
 
@@ -53,7 +54,7 @@ Debian/Ubuntu (PE)          | `/etc/default/pe-puppetb`
 
 : The location of the PuppetDB config file, which may be a single file or a directory of .ini files.
 
-#### Configuring the Java Heap Size
+### Configuring the Java Heap Size
 
 To change the JVM heap size for PuppetDB, edit the [init script config file](#init-script-config-file) by setting a new value for the `-Xmx` flag in the `JAVA_ARGS` variable.
 
@@ -65,16 +66,31 @@ To use 1GB of memory:
 
     JAVA_ARGS="-Xmx1g"
 
-### Configuring Logging
+### Configuring JMX Access
+
+While all JMX metrics are exposed using the `/metrics` namespace, you can also
+expose direct JMX access using standard JVM means as documented
+[here](http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html).
+This can be done using the `JAVA_ARGS` init script setting, similar to configuring the heap size.
+
+For example, adding the following JVM options will open
+up a JMX socket on port 1099:
+
+    JAVA_ARGS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099"
+
+
+The log4j Logging Config File
+-----
 
 Logging is configured with a log4j.properties file, whose location is defined with the [`logging-config`](#logging-config) setting. If you change the log settings while PuppetDB is running, it will apply the new settings without requiring a restart. 
 
 [See the log4j documentation][log4j] for more information about logging options.
 
 
-### The PuppetDB Configuration File(s)
+The PuppetDB Configuration File(s)
+-----
 
-PuppetDB is configured using an INI-style config format with several `[sections]`. This is very similar to the format used by Puppet. 
+PuppetDB is configured using an INI-style config format with several `[sections]`. This is very similar to the format used by Puppet. All of the sections and settings described below belong in the PuppetDB config file(s).
 
 **Whenever you change PuppetDB's configuration settings, you must restart the service for the changes to take effect.**
 
@@ -125,11 +141,9 @@ The default value is 20000.
 
 ### `update-server`
 
-This setting is used by PuppetDB to check to see if a newer version is
-available.  It defaults to `http://updates.puppetlabs.com/check-for-updates`.
-Overriding this setting may be useful if, for example, you are running PuppetDB
-on a machine that is firewalled and can't make external HTTP requests.  You could
-then configure a proxy server to send requests to the `updates.puppetlabs.com` URL,
+The URL to query when checking for newer versions; defaults to `http://updates.puppetlabs.com/check-for-updates`.
+Overriding this setting may be useful if your PuppetDB server is firewalled and can't make external HTTP requests, in which case you could
+configure a proxy server to send requests to the `updates.puppetlabs.com` URL
 and override this setting to point to your proxy server.
 
 `[database]` Settings
@@ -349,13 +363,3 @@ The _swank_ type allows emacs' clojure-mode to connect directly to a running Pup
 
 The port to use for the REPL.
 
-JMX
------
-While all JMX metrics are exposed using the `/metrics` namespace, you can also
-expose direct JMX access using standard JVM means as documented
-[here](http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html).
-
-For example, adding the following JVM options during PuppetDB startup will open
-up a JMX socket on port 1099:
-
-    -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099
