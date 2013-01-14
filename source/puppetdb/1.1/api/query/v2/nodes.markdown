@@ -25,13 +25,13 @@ containing `application/json`.
   `query`: Required. A JSON array of query predicates, in prefix form,
   conforming to the format described below.
 
-The `query` parameter is a similar format to [resource queries](resource).
+The `query` parameter is a similar format to [resource queries][resource].
 
 Only queries against `"name"` and facts are currently supported.
 
 Fact terms must be of the form `["fact", <fact name>]`.
 
-Node query supports [all available operators](operators.md). Inequality
+Node query supports [all available operators](./operators.html). Inequality
 operators are only supported for fact queries, but regular expressions are
 supported for both name and facts.
 
@@ -64,7 +64,7 @@ The array is sorted alphabetically by `name`.
 
 ##### Example
 
-[You can use `curl`](curl) to query information about nodes like so:
+[You can use `curl`][curl] to query information about nodes like so:
 
     curl -H "Accept: application/json" 'http://localhost:8080/v2/nodes'
     curl -G -H "Accept: application/json" 'http://localhost:8080/v2/nodes' --data-urlencode 'query=["=", ["fact", "kernel"], "Linux"]'
@@ -76,7 +76,7 @@ not. There must be an `Accept` header containing `application/json`.
 
 ##### Response format
 
-The response is the same format as for the [/v2/status](status.md)
+The response is the same format as for the [/v1/status](../v1/status.html)
 endpoint.
 
 #### `GET /v2/nodes/:node/facts`
@@ -95,7 +95,7 @@ header containing `application/json`.
 
 ##### Response format
 
-The response is the same format as for the [/v2/facts](facts.md)
+The response is the same format as for the [/v2/facts](./facts.html)
 endpoint.
 
 #### `GET /v2/nodes/:node/facts/:name`
@@ -114,7 +114,7 @@ an `Accept` header containing `application/json`.
 
 ##### Response format
 
-The response is the same format as for the [/v2/facts](facts.md)
+The response is the same format as for the [/v2/facts](./facts.html)
 endpoint.
 
 
@@ -135,7 +135,7 @@ response. There must be an `Accept` header containing
 
 ##### Response format
 
-The response is the same format as for the [/v2/facts](facts.md)
+The response is the same format as for the [/v2/facts](./facts.html)
 endpoint.
 
 #### `GET /v2/nodes/:node/resources`
@@ -154,7 +154,7 @@ deactivated nodes aren't included in the response. There must be an
 
 ##### Response format
 
-The response is the same format as for the [/v2/resources](resource.md)
+The response is the same format as for the [/v2/resources](./resource.html)
 endpoint.
 
 #### `GET /v2/nodes/:node/resources/:type`
@@ -165,7 +165,7 @@ response. There must be an `Accept` header containing
 `application/json`.
 
 This endpoint behaves identically to the
-[/v2/resources/:type](resource.md) endpoint, except the resources
+[/v2/resources/:type](./resource.html) endpoint, except the resources
 returned include _only_ those belonging to the node given in the URL
 for this route.
 
@@ -177,6 +177,6 @@ response. There must be an `Accept` header containing
 `application/json`.
 
 This endpoint behaves identically to the
-[/v2/resources/:type](resource.md) endpoint, except the resources
+[/v2/resources/:type](./resource.html) endpoint, except the resources
 returned include _only_ those belonging to the node given in the URL
 for this route.

@@ -136,7 +136,7 @@ that of another attribute), it must be namespaced using
 `["parameter", <parameter name>]`.
 
 The full set of queryable attributes can be found in [the resource
-spec](../spec/resource.md) for easy reference.
+endpoint documentation](./resources.html) for easy reference.
 
 ## Regular expressions
 

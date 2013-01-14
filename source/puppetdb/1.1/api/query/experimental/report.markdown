@@ -67,6 +67,6 @@ the completion time of the report, in descending order:
 
 # Example
 
-[You can use `curl`](curl) to query information about reports like so:
+[You can use `curl`][curl] to query information about reports like so:
 
     curl -G -H "Accept: application/json" 'http://localhost:8080/experimental/reports' --data-urlencode 'query=["=", "certname", "example.local"]'

@@ -4,6 +4,9 @@ layout: default
 canonical: "/puppetdb/1/api/commands/commands.html"
 ---
 
+[facts]: ../wire-formats/fact-wire-format.html
+[catalog]: ../wire-formats/catalog-wire-format.html
+[report]: ../wire-formats/experimental/report-wire-format.html
 
 Commands are used to change PuppetDB's
 model of a population. Commands are represented by `command objects`,
@@ -66,19 +69,19 @@ processed.
 ### "replace catalog", version 1
 
 The payload is expected to be a Puppet catalog, as a JSON string, including the
-fields of the [catalog wire format](catalog-wire-format.md). Extra fields are
+fields of the [catalog wire format][catalog]. Extra fields are
 ignored.
 
 ### "replace catalog", version 2
 
 The payload is expected to be a Puppet catalog, as either a JSON string or an
 object, conforming exactly to the [catalog wire
-format](../wire-formats/catalog-wire-format.md). Extra or missing fields are an error.
+format][catalog]. Extra or missing fields are an error.
 
 ### "replace facts", version 1
 
 The payload is expected to be a set of facts, as a JSON string, conforming to
-the [fact wire format](../wire-formats/fact-wire-format.md).
+the [fact wire format][facts]
 
 ### "deactivate node", version 1
 
@@ -91,4 +94,4 @@ effective as of the time the command is *processed*.
 
 The payload is expected to be a report, containing events that occurred on Puppet
 resources.  It is structured as a JSON object, confirming to the
-[report wire format](./report-wire-format.md).
+[report wire format][report].

@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppetdb/1/api/query/v1/resources.html"
 ---
 
-[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Resources are queried via an HTTP request to the
 `/resources` REST endpoint.
@@ -100,7 +100,7 @@ following form:
 
 ## Example
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
 Retrieving the resource `File['/etc/ipsec.conf']`:
 

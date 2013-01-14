@@ -5,8 +5,8 @@ canonical: "/puppetdb/1/api/query/v2/operators.html"
 TODO: "@nickf: this doc is a bit different from most of the stuff in this folder, in that it doesn't document a specific query endpoint but is more of a general overview.  It might be worth differentiating it in the index or something."
 ---
 
-[resources] ./resources.html
-[facts] ./facts.html
+[resources]: ./resources.html
+[facts]: ./facts.html
 
 There are several common operators that can be used against most of the PuppetDB
 query endpoints.
@@ -72,7 +72,7 @@ all nodes with Class[Apache]:
               ["=" "title" "Apache"]]]]]]
 
 This operator is the meat of a resource subquery. It will execute a [resource
-query](resources), returning the same results as though the query were
+query][resources], returning the same results as though the query were
 made against the `/resources` endpoint. In this case, the resource query is
 `["and" ["=" "type" "Class"] ["=" "title" "Apache"]]`, which returns
 resources matching Class[Apache].
@@ -92,4 +92,4 @@ all Debian nodes.
               ["=" "value" "Debian"]]]]]]
 
 This operator is similar to `select-resources`, but will make a subquery
-[against facts](facts).
+[against facts][facts].

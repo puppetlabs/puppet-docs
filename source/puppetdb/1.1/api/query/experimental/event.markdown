@@ -31,7 +31,7 @@ The `query` parameter is described by the following grammar:
 
 `report`: the unique id of the report; this is a hash built up from the contents
     of the report which allow us to distinguish it from other reports.  These ids
-    can be acquired via the [`/reports`](report) query endpoint.
+    can be acquired via the [`/reports`][report] query endpoint.
 
 For example, for all events in the report with id
 '38ff2aef3ffb7800fe85b322280ade2b867c8d27', the JSON query structure would be:
@@ -71,6 +71,6 @@ For example, for all events in the report with id
 
 # Example
 
-[You can use `curl`](curl) to query information about events like so:
+[You can use `curl`][curl] to query information about events like so:
 
     curl -G -H "Accept: application/json" 'http://localhost:8080/experimental/events' --data-urlencode 'query=["=", "report", "38ff2aef3ffb7800fe85b322280ade2b867c8d27"]'

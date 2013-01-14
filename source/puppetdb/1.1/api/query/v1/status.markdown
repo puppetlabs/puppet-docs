@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppetdb/1/api/query/v1/status.html"
 ---
 
-[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 ## v1
 
@@ -33,7 +33,7 @@ hash containing an "error" key with a message indicating such.
 
 ### Example
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
     curl -H "Accept: application/json" 'http://localhost:8080/status/nodes/<node>'
 

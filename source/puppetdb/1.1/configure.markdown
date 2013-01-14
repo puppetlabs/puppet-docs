@@ -185,7 +185,7 @@ It's possible to use SSL to protect connections to the database. The [PostgreSQL
     subname = //<host>:<port>/<database>?ssl=true
 
 More details for configuring SSL connectivity are available in the
-[PostgreSQL SSL Setup](postgres_ssl) section.
+[PostgreSQL SSL Setup][postgres_ssl] section.
 
 
 ### `gc-interval`
@@ -324,7 +324,7 @@ If not supplied, PuppetDB uses standard HTTPS without any additional authorizati
 `[repl]` Settings
 -----
 
-The `[repl]` section configures remote runtime modification.  For more detailed info, see [Debugging with the Remote REPL](repl).
+The `[repl]` section configures remote runtime modification.  For more detailed info, see [Debugging with the Remote REPL][repl].
 
 Enabling a remote [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) allows you to manipulate the behavior of PuppetDB at runtime. This should only be done for debugging purposes, and is thus disabled by default. An example configuration stanza:
 
@@ -353,7 +353,7 @@ JMX
 -----
 While all JMX metrics are exposed using the `/metrics` namespace, you can also
 expose direct JMX access using standard JVM means as documented
-(here)[http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html].
+[here](http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html).
 
 For example, adding the following JVM options during PuppetDB startup will open
 up a JMX socket on port 1099:

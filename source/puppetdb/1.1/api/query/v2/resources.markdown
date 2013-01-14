@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppetdb/1/api/query/v2/resources.html"
 ---
 
-[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Resources are queried via an HTTP request to the
 `/resources` REST endpoint.
@@ -66,7 +66,7 @@ for "example.local" the JSON query structure would be:
             ["=", "tag", "magical"],
             ["=", ["parameter", "ensure"], "enabled"]
 
-The available operators are [defined in operators.md](operators.md). Note that
+See [the Operators page](./operators.html) for the full list of available operators. Note that
 resource queries *do not support* inequality, and regexp matching *is not
 supported* against node status or parameter values.
 
@@ -88,7 +88,7 @@ response. There must be an `Accept` header containing
 
 ##### Examples
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
     curl -X GET -H "Accept: application/json" 'http://puppetdb:8080/v2/resources/User'
 
@@ -143,7 +143,7 @@ response. There must be an `Accept` header containing
 
 ##### Examples
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
     curl -X GET -H "Accept: application/json" 'http://puppetdb:8080/v2/resources/User/foo'
 

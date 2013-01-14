@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppetdb/1/api/query/v2/fact-names.html"
 ---
 
-[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 The `/fact-names` endpoint can be used to retrieve all known fact names.
 
@@ -19,7 +19,7 @@ known only for deactivated nodes.
 
 ##### Examples
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
     curl -X GET -H 'Accept: application/json' http://localhost:8080/v2/fact-names
 

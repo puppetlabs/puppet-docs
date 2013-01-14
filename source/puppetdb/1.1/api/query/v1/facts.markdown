@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppetdb/1/api/query/v1/facts.html"
 ---
 
-[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Querying facts occurs via an HTTP request to the
 `/facts` REST endpoint.
@@ -44,7 +44,7 @@ If no facts are known for the supplied node, an HTTP 404 is returned.
 
 ## Example
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
     curl -H "Accept: application/json" 'http://localhost:8080/facts/<node>'
 

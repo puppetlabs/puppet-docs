@@ -21,7 +21,7 @@ After PuppetDB is installed and running, you should configure your puppet master
 * Query PuppetDB when compiling node catalogs that collect [exported resources][exported]
 * Query PuppetDB when responding to [inventory service](/guides/inventory_service.html) requests
 
-> Note: if you've [installed PuppetDB using the PuppetDB puppet module](install_via_module), then the `puppetdb::master::config` class is taking care of all of this for you.
+> Note: if you've [installed PuppetDB using the PuppetDB puppet module][install_via_module], then the `puppetdb::master::config` class is taking care of all of this for you.
 
  **Working on your puppet master server(s),** follow all of the instructions below:
 
@@ -96,10 +96,10 @@ while also sending the reports to PuppetDB.
 
 You can configure how long PuppetDB stores these reports, and you can do some
 very basic querying.  For more information, see the documentation in the
-[`experimental`](experimental) section of the PuppetDB docs.
+[`experimental`][experimental] section of the PuppetDB docs.
 
 More information about Puppet report processors in general can be found
-[here](report_processors).
+[here][report_processors].
 
 ### 3. Edit routes.yaml
 

@@ -18,8 +18,9 @@ canonical: "/puppetdb/1/api/wire_format/catalog_wire_format.html"
 [title]: /puppet/2.7/reference/lang_resources.html#title
 [type]: /puppet/2.7/reference/lang_resources.html#type
 [attributes]: /puppet/2.7/reference/lang_resources.html#attributes
+[resource_query]: ../query/v2/resources.html
 
-PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](./connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
+PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](/puppetdb/1.1/connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
 
 Catalog Interchange Format
 -----
@@ -63,7 +64,7 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"classes"`
 
-: List of strings. This key has no documented use and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query](resource_query) API.
+: List of strings. This key has no documented use and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query][resource_query] API.
 
 `"tags"`
 

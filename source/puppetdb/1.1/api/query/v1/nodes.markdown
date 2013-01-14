@@ -15,7 +15,7 @@ endpoint with a JSON-formatted parameter called `query`.
 * The HTTP method must be `GET`.
 * There must be an `Accept` header specifying `application/json`.
 
-The `query` parameter uses a format similar to [resource queries](resource).
+The `query` parameter uses a format similar to [resource queries][resource].
 
 Only queries against facts and filters based on node activeness are currently
 supported.
@@ -50,7 +50,7 @@ in ascending order:
 
 ## Example
 
-[Using `curl` from localhost](curl):
+[Using `curl` from localhost][curl]:
 
 Retrieving all nodes:
 
