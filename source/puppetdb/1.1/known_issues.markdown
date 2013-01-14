@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB » Known Issues"
 layout: default
+canonical: "/puppetdb/1/known_issues.html"
 ---
 
 

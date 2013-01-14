@@ -1,10 +1,8 @@
 ---
 title: "PuppetDB 1.1 » API » v2 » Query Tutorial"
 layout: default
-TODO @nickf: this doc is a bit different from most of the stuff in this folder,
- in that it doesn't document a specific query endpoint but is more of a general
- overview.  It might be worth differentiating it in the index or something.
-
+canonical: "/puppetdb/1/api/query/v2/query.html"
+TODO: "@nickf: this doc is a bit different from most of the stuff in this folder, in that it doesn't document a specific query endpoint but is more of a general overview.  It might be worth differentiating it in the index or something."
 ---
 
 # The PuppetDB query API

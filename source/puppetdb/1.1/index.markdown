@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 1.1 » Overview"
 layout: default
+canonical: "/puppetdb/1/index.html"
 ---
 
 [exported]: /puppet/2.7/reference/lang_exported.html

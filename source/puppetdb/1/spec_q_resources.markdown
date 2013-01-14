@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 1 » Spec » Querying Resources"
 layout: default
+canonical: "/puppetdb/1/spec_q_resources.html"
 ---
 
 

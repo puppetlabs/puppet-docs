@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 1.1 » API » Commands"
 layout: default
+canonical: "/puppetdb/1/api/commands/commands.html"
 ---
 
 

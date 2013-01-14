@@ -2,6 +2,7 @@
 layout: default
 title: "PuppetDB 1.1 FAQ"
 subtitle: "Basic Info and Troubleshooting Tips"
+canonical: "/puppetdb/1/puppetdb-faq.html"
 ---
 
 ### PuppetDB is complaining about a truststore or keystore file. What do I do?

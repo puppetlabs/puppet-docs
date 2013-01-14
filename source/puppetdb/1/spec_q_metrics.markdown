@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 1 » Spec » Querying Metrics"
 layout: default
+canonical: "/puppetdb/1/spec_q_metrics.html"
 ---
 
 

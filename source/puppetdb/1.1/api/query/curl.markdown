@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PuppetDB 1.1 » API » Query » Curl Tips"
+canonical: "/puppetdb/1/api/query/curl.html"
 ---
 
 [Facts]: ./api/query/v2/facts.html
