@@ -35,6 +35,8 @@ title: Installing Puppet
 
 [epel]: http://fedoraproject.org/wiki/EPEL
 [epelinstall]: http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F
+[launchd]: http://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html
+[launchctl]: http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/launchctl.1.html
 
 {% capture after %}[Continue reading here][after] and follow any necessary post-install steps. {% endcapture %}
 
@@ -274,7 +276,7 @@ The OS X packages are currently fairly minimal, and do not create launchd jobs, 
 
 * Manually create a `puppet` group, by running `sudo puppet resource group puppet ensure=present`.
 * Manually create a `puppet` user, by running `sudo puppet resource user puppet ensure=present gid=puppet shell='/sbin/nologin'`.
-* If you intend to run the puppet agent daemon regularly, or if you intend to automatically run puppet apply at a set interval, you must create and register your own launchd services, [using these as a model](http://projects.puppetlabs.com/projects/puppet/wiki/Puppet_With_Launchd).
+* If you intend to run the puppet agent daemon regularly, or if you intend to automatically run puppet apply at a set interval, you must create and register your own launchd services. [See the post-installation instructions](#with-launchd) for a model.
 
 {{ after }}
 
@@ -452,6 +454,28 @@ In an agent/master deployment, you may wish to run puppet agent with cron rather
 
     $ sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
 
+#### With Launchd
+
+Apple [recommends you use launchd][launchd] to manage the execution of services and daemons. You can define a launchd service with XML property lists (plists), and manage it with the [`launchctl`][launchctl] command line utility. If you'd like to use launchd to manage execution of your puppet master or agent, download the following files and copy each into `/Library/LaunchDaemons/`: 
+
+  - [com.puppetlabs.puppetmaster.plist](files/com.puppetlabs.puppetmaster.plist) (to manage launch of a puppet master)
+  - [com.puppetlabs.puppet.plist](files/com.puppetlabs.puppet.plist) (to manage launch of a puppet agent)
+
+Set the correct owner and permissions on the files. Both must be owned by the root user and both must be writable only by the root user:  
+
+    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppet.plist  
+    $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppet.plist
+    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist  
+    $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
+
+Make launchd aware of the new services:  
+
+    $ sudo launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
+    $ sudo launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
+
+Note that the files we provide here are responsible only for initial launch of a puppet master or puppet agent at system start. How frequently each conducts a run is determined by Puppet's configuration, not the plists. 
+
+See the OS X `launchctl` man page for more information on how to stop, start, and manage launchd jobs. 
 
 ### Sign Node Certificates
 
