@@ -5,7 +5,6 @@ canonical: "/puppetdb/1/api/wire_format/catalog_wire_format.html"
 ---
 
 [containment]: /puppet/2.7/reference/lang_containment.html
-[rel_behavior]: /puppet/2.7/reference/lang_relationships.html#behavior
 [relationship]: /puppet/2.7/reference/lang_relationships.html
 [chain]: /puppet/2.7/reference/lang_relationships.html#chaining-arrows
 [metaparameters]: /puppet/2.7/reference/lang_relationships.html#relationship-metaparameters
@@ -19,6 +18,9 @@ canonical: "/puppetdb/1/api/wire_format/catalog_wire_format.html"
 [type]: /puppet/2.7/reference/lang_resources.html#type
 [attributes]: /puppet/2.7/reference/lang_resources.html#attributes
 [resource_query]: ../query/v2/resources.html
+[replace2]: 
+[replace1]: 
+
 
 PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](/puppetdb/1.1/connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
 
@@ -29,13 +31,14 @@ Catalog Interchange Format
 
 This is **version 1** of the catalog interchange format, which is used by PuppetDB 1 (and all pre-1.0 releases).
 
+
 ### Encoding
 
 The entire catalog is serialized as JSON, which requires strict UTF-8 encoding. Unless otherwise noted, null is not allowed anywhere in the catalog.
 
 ### Main Data Type: Catalog
 
-A catalog is a JSON object with two keys: `"metadata"` and `"data"`. 
+A catalog is a JSON object with two keys: `"metadata"` and `"data"`. [Version 2 of the "replace catalog" command][replace2] will strictly validate this object and throw an error in the event of missing or extra fields. [Version 1 of the "replace catalog" command][replace1] will silently tolerate some inexact catalog objects.
 
     {"metadata": {
         "api_version": 1
@@ -50,9 +53,9 @@ A catalog is a JSON object with two keys: `"metadata"` and `"data"`.
         }
     }
 
-The value of the `"metadata"` key must be `{ "type": "catalog", "version": 1 }` --- no other value is valid for this version of the format.
+The value of the `"metadata"` key must be `{ "api_version": 1 }` --- no other value is valid for this version of the format.
 
-The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"version"`, `"classes"`, `"tags"`, `"edges"`, and `"resources"`. Each of the keys is mandatory, although values that are lists may be empty lists. The value of each key in the data object is as follows:
+The value of the `"data"` key must be a JSON object with four keys: `"name"`, `"version"`, `"edges"`, and `"resources"`. Each of the keys is mandatory, although values that are lists may be empty lists. The value of each key in the data object is as follows:
 
 `"name"`
 

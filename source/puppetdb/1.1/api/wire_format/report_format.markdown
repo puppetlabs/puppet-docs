@@ -7,7 +7,7 @@ canonical: "/puppetdb/1/api/wire_format/experimental/report-wire-format.html"
 ## Report interchange format
 
 A report is represented as JSON (this implies UTF-8 encoding). Unless
-otherwise noted, `null` is not allowed anywhere in the catalog.
+otherwise noted, `null` is not allowed anywhere in the report.
 
     {
         "certname": <string>,

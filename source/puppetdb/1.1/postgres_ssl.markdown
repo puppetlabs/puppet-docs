@@ -6,11 +6,11 @@ canonical: "/puppetdb/1/postgres_ssl.html"
 
 ## Talking to PostgreSQL using SSL/TLS
 
-If you want SSL/TLS secured connectivity between PuppetDB and PostgreSQL you can configure it by following the instructions below.
+If you want SSL/TLS-secured connectivity between PuppetDB and PostgreSQL, you can configure it by following the instructions below.
 
 When configuring SSL you need to decide whether you will:
 
-* Use a self-signed certificate on the DB server, for example you can use the Puppet CA for this
+* Use a self-signed certificate on the DB server (for example, you can use the Puppet CA for this)
 * Use a publicly signed certificate on the DB server
 
 Both methodologies are valid, but while self-signed certificates are by far more common in the real world, these types of configurations must be setup with some care.
@@ -52,7 +52,7 @@ You will then need to tell Java to use this truststore instead of the default sy
     # Modify this if you'd like to change the memory allocation, enable JMX, etc
     JAVA_ARGS="-Xmx192m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/puppetdb/puppetdb-oom.hprof -Djavax.net.ssl.trustStore=/etc/puppetdb/ssl/truststore.jks -Djavax.net.ssl.trustStorePassword=<PASSWORD>"
 
-*Note:* Replace the <PASSWORD> with the password found in `/etc/puppetdb/ssl/puppetdb_keystore_pw.txt`.
+*Note:* Replace `<PASSWORD>` with the password found in `/etc/puppetdb/ssl/puppetdb_keystore_pw.txt`.
 
 Once this is done, you need to modify the database JDBC connection URL in your PuppetDB configuration as follows:
 
@@ -88,6 +88,7 @@ Use the documentation [Secure TCP/IP Connections with SSL](http://www.postgresql
 
 Because the JDBC PostgreSQL driver utilizes the Java's system keystore, and because the system keystore usually contains all public CA's there should be no trust issues with the client configuration, all you need to do is modify the JDBC url as provided in the database configuration section for PuppetDB.
 
+
 For example:
 
     [database]
@@ -108,7 +109,7 @@ If however you really want this, the methodology is to simply modify your JDBC U
     [database]
     classname = org.postgresql.Driver
     subprotocol = postgresql
-    subname = //<HOST>:<PORT>/<DATABSE>?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+    subname = //<HOST>:<PORT>/<DATABASE>?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
     username = <USERNAME>
     password = <PASSWORD>
 
