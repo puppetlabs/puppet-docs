@@ -1,5 +1,5 @@
 ---
-title: "PuppetDB 1.1 » Installing PuppetDB"
+title: "PuppetDB 1.1 » Installing PuppetDB From Packages"
 layout: default
 canonical: "/puppetdb/1/install_from_packages.html"
 ---
@@ -13,6 +13,11 @@ canonical: "/puppetdb/1/install_from_packages.html"
 [puppetdb_conf]: ./configure.html
 [configure_jetty]: ./configure.html#jetty-http
 [requirements]: ./index.html#easy-install-rhel-centos-debian-ubuntu-or-fedora
+[module]: ./install_via_module.html
+
+This page describes how to manually install and configure PuppetDB from the official packages. **In general, we recommend that you [use the puppetlabs-puppetdb module][module] instead,** since automation makes your whole infrastructure better. See [the "Install via Module" page][module] for more details.
+
+However, these instructions may be useful for understanding the various moving parts, or in cases where you must create your own PuppetDB module. 
 
 > **Notes:**
 > 

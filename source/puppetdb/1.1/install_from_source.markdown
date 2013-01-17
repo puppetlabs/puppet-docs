@@ -8,8 +8,12 @@ canonical: "/puppetdb/1/install_from_source.html"
 [leiningen]: https://github.com/technomancy/leiningen#installation
 [configure_postgres]: ./configure.html#using-postgresql
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
+[module]: ./install_via_module.html
+[packages]: ./install_from_packages.html
 
-If possible, we recommend installing PuppetDB from packages. However, if you are installing PuppetDB on a system not supported with official packages, or if you are testing or developing a new version of PuppetDB, you will need to install it from source. 
+This page describes how to install PuppetDB from an archive of the source code, or alternately how to run it directly from source without installing.
+
+If possible, we recommend installing PuppetDB [with the puppetlabs-puppetdb module][module] or [from packages][packages]; either approach will be easier. However, if you are testing a new version, developing PuppetDB, or installing it on a system not supported with official packages, you will need to install it from source. 
 
 
 Step 1: Install Prerequisites

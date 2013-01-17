@@ -8,6 +8,7 @@ canonical: "/puppetdb/1/configure.html"
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [repl]: ./repl.html
 [postgres_ssl]: ./postgres_ssl.html
+[module]: ./install_via_module.html
 
 Summary
 -----
@@ -112,6 +113,44 @@ An example configuration file:
 
     [jetty]
     port = 8080
+
+### Playing Nice With the PuppetDB Module
+
+If you [installed PuppetDB with the puppetlabs-puppetdb module][module], the config file(s) will be managed by Puppet. However, since the module manages these files on a per-setting basis, you can still configure additional settings that the module doesn't set. 
+
+To do this, you should create a new class (something like `site::puppetdb::server::extra`), declare any number of `ini_setting` resources as shown below, set the class to refresh the `puppetdb::server` class, and assign it to your PuppetDB server. 
+
+{% highlight ruby %}
+    # Site-specific PuppetDB settings. Declare this class on any node that gets the puppetdb::server class.
+    class site::puppetdb::server::extra {
+
+      # Restart the PuppetDB service if settings change
+      Class[site::puppetdb::server::extra] ~> Class[puppetdb::server]
+      
+      # Get PuppetDB confdir
+      include puppetdb::params::confdir
+      $confdir = $puppetdb::params::confdir
+
+      # Set resource defaults assuming we're only doing [database] settings
+      Ini_setting {
+        path => "${confdir}/database.ini",
+        ensure => present,
+        section => 'database',
+        require => Class['puppetdb::server::validate_db'],
+      }
+
+      ini_setting {'puppetdb_node_ttl':
+        setting => 'node_ttl',
+        value => '5d',
+      }
+
+      ini_setting {'puppetdb_report_ttl':
+        setting => 'report_ttl',
+        value => '30d',
+      }
+
+    }
+{% endhighlight %}
 
 `[global]` Settings
 -----
