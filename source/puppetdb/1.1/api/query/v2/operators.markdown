@@ -60,16 +60,16 @@ subquery, for use with the `in` operator.
 ##### `select-resources`
 
 This query expression queries the `/facts` endpoint for the IP address fact for
-all nodes with Class[Apache]:
+all nodes with `Class[Apache]`:
 
-    ["and"
-      ["=" "name" "ipaddress"]
-      ["in" "certname"
-        ["extract" "certname"
-          ["select-resources"
-            ["and"
-              ["=" "type" "Class"]
-              ["=" "title" "Apache"]]]]]]
+    ["and",
+      ["=", "name", "ipaddress"],
+      ["in", "certname",
+        ["extract", "certname",
+          ["select-resources",
+            ["and",
+              ["=", "type", "Class"],
+              ["=", "title", "Apache"]]]]]]
 
 This operator is the meat of a resource subquery. It will execute a [resource
 query][resources], returning the same results as though the query were
@@ -82,14 +82,14 @@ resources matching Class[Apache].
 This query expression queries the `/facts` endpoint for the IP address fact of
 all Debian nodes.
 
-    ["and"
-      ["=" "name" "ipaddress"]
-      ["in" "certname"
-        ["extract" "certname"
-          ["select-facts"
-            ["and"
-              ["=" "name" "operatingsystem"]
-              ["=" "value" "Debian"]]]]]]
+    ["and",
+      ["=", "name", "ipaddress"],
+      ["in", "certname",
+        ["extract", "certname",
+          ["select-facts",
+            ["and",
+              ["=", "name", "operatingsystem"], 
+              ["=", "value", "Debian"]]]]]]
 
 This operator is similar to `select-resources`, but will make a subquery
 [against facts][facts].
