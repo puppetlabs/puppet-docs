@@ -55,7 +55,12 @@ module PuppetDocs
 
       def generate
         puts "Generating #{@name} reference for #{version}."
-        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+        ruby_loadpath = ENV['RUBYLIB'].split(":")
+        ruby_loadpath.delete_if { |v| v.include?("/puppet/") }
+        content = `export RUBYLIB=#{ruby_loadpath.join(":")} && ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+
+#        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
             require 'facter'
