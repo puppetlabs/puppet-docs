@@ -17,9 +17,20 @@ For a complete guide to the puppet language, visit [the reference manual](/puppe
 
 Release Notes
 -----
+
+### PE 2.7.1 (1/12/2013)
+
+#### Change to auth.conf File Management
+
+Previously, the auth.conf file was fully managed by PE 2.7. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1 the upgrader will still convert auth.conf to add the code needed to enable certificate management if and only if the file has not been manually modified. If the file has been modified, the upgrader will still show a warning that it is not going to convert the file. However, on subsequent puppet runs, the file will now be left untouched.
+
+#### Broken Augeas puppet Lens on Solaris
+
+On Solaris systems, PE's file paths were not compatible with the augeas puppet lenses. The augeas package has been modified to correct this issue.
+
 ### PE 2.7.0
 
-The initial release of PE 2.7. 
+The initial release of PE 2.7 (11/20/2012). 
 
 #### Puppet Core Patches
 
