@@ -126,13 +126,16 @@ Customizing Your Installation
 
 After you choose the roles for the system you're installing onto, the installer will ask questions to configure those roles.
 
+### Passwords
+The following characters are forbidden in all passwords: `\` (backslash), `'` (single quote),  `"` (double quote), `,` (comma), `()` (right and left parentheses), `|` (pipe), `&` (ampersand), and `$` (dollar sign). For all passwords used during installation, we recommend using only alphanumeric characters.
+
 ### Puppet Master Questions
 
 #### Certname
 
 The certname is the puppet master's unique identifier. It should be a DNS name at which the master server can be reliably reached, and defaults to its fully-qualified domain name. 
 
-(If the master's certname is not one of its DNS names, you [may need to edit puppet.conf after installation][bucket-troubleshooting].)
+(If the master's certname is not one of its DNS names, you may need to [edit puppet.conf after installation][bucket-troubleshooting].)
 
 [bucket-troubleshooting]: ./trouble_common_problems.html#can-agents-reach-the-filebucket-server
 
@@ -158,9 +161,7 @@ If the installer detects another web server on the node, it will suggest the fir
 
 #### User Email and Password
 
-Access to the console's web interface is [limited to approved users and governed by a lightweight system of roles](./console_auth.html). During installation, you must create an initial admin user for the console by providing an email address and password. 
-
-The only forbidden characters for a console password are `\` (backslash), `'` (single quote), `&` (ampersand), and `$` (dollar sign). This also goes for other passwords used for installation, alphanumeric characters are recommended.
+Access to the console's web interface is [limited to approved users and governed by a lightweight system of roles](./console_auth.html). During installation, you must create an initial admin user for the console by providing an email address and password. Recall the limitations on characters in passwords listed [above](#passwords).
 
 #### SMTP Server
 
