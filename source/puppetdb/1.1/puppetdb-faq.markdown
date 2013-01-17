@@ -5,7 +5,7 @@ subtitle: "Basic Info and Troubleshooting Tips"
 canonical: "/puppetdb/1/puppetdb-faq.html"
 ---
 
-### PuppetDB is complaining about a truststore or keystore file. What do I do?
+## PuppetDB is complaining about a truststore or keystore file. What do I do?
 
 There are several related causes for this, but it boils down to PuppetDB being
 unable to read your truststore.jks or keystore.jks file. The former file
@@ -33,7 +33,7 @@ Additionally, you can verify that the password is correct using
 Similarly, you can use `keytool -keystore /path/to/truststore.jks` to verify the
 truststore.
 
-### The PuppetDB dashboard gives me a weird SSL error when I visit it. What gives?
+## The PuppetDB dashboard gives me a weird SSL error when I visit it. What gives?
 
 There are two common error cases with the dashboard:
 
@@ -55,7 +55,7 @@ give your browser a certificate signed by your Puppet CA. Support for client
 certificates is varied between browsers, so it's preferred to connect over
 plaintext, as outlined above.
 
-### Does PuppetDB support Puppet apply?
+## Does PuppetDB support Puppet apply?
 
 Partially. Use with Puppet apply requires some special configuration, and due
 to limitations in Puppet, inventory service functionality isn't fully
@@ -66,7 +66,7 @@ PuppetDB in the installation guide for your version of PuppetDB.
 Either of these issues can also be solved through clever and judicious use of
 proxies, although the details of that are left as an exercise to the reader.
 
-### Why is PuppetDB written in Java?
+## Why is PuppetDB written in Java?
 
 Actually, PuppetDB isn't written in Java at all! It's written in a language
 called Clojure, which is a dialect of Lisp that runs on the Java Virtual
@@ -76,13 +76,13 @@ of its excellent libraries and high performance. Of the available JVM
 languages, we used Clojure because of its expressiveness, performance, and
 previous experience with the language on our team.
 
-### Which versions of Java are supported?
+## Which versions of Java are supported?
 
 The officially supported versions are OpenJDK and Oracle JDK, versions 1.6 and
 1.7. Other versions may work and issues will be addressed on a best effort
 basis, but support is not guaranteed.
 
-### Which databases are supported?
+## Which databases are supported?
 
 PostgreSQL is the recommended database for production use. PuppetDB also ships
 with an embedded HyperSQL database which is suitable for very small or proof of
@@ -90,4 +90,4 @@ concept deployments. As with our choice of language, we prototyped several
 databases before settling on PostgreSQL. These included Neo4j, Riak, and MySQL
 with ActiveRecord in Ruby. We have no plans to support any other databases,
 including MySQL, which lacks important features such as array columns and
-recursive queries
+recursive queries.
