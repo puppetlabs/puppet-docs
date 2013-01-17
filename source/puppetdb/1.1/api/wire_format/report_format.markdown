@@ -4,6 +4,10 @@ layout: default
 canonical: "/puppetdb/1/api/wire_format/experimental/report-wire-format.html"
 ---
 
+[api]: ../index.html
+
+> **Note:** This format is **experimental,** and may change at any time without regard for the [normal API versioning rules][api].
+
 ## Report interchange format
 
 A report is represented as JSON (this implies UTF-8 encoding). Unless

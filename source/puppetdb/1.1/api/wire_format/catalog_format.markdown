@@ -65,16 +65,6 @@ The value of the `"data"` key must be a JSON object with four keys: `"name"`, `"
 
 : String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/references/latest/configuration.html#configversion) and is usually the seconds elapsed since the epoch. 
 
-`"classes"`
-
-: List of strings. This key has no documented use and exists for unknown reasons. It is a complete list of the classes contained in the catalog, but is not used when searching for information about classes via the [resource query][resource_query] API.
-
-`"tags"`
-
-: > **Deprecated:** This key is slated for removal in a future version of the catalog format. 
-
-  List of strings. This key has no current documented use and only exists for historical reasons. It is a list of a subset of the tags that exist on resources in the catalog, but it is not guaranteed to be complete. 
-
 `"edges"`
 
 : List of [`<edge>` objects](#data-type-edge). **Every** [relationship][] between any two resources in the catalog, which may have been made with [chaining arrows][chain], [metaparameters][], or [the `require` function][require]. 
