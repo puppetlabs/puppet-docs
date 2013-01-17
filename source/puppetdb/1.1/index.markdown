@@ -33,20 +33,17 @@ To start using PuppetDB today:
 Version Note
 -----
 
-This manual covers the 1.x series of PuppetDB releases, which has several changes from the 0.9 beta release series. [See the release notes][releasenotes] for information on all changes since the final 0.9.x release.
+This manual covers the 1.1.x series of PuppetDB releases, which is backwards-compatible with the 1.0.x series but adds several new features. [See the release notes][releasenotes] for information on all changes since the final 1.0.x release.
 
-Note that, due to issues with package repositories during the run-up to the 1.0 release, the following non-1.x version numbers are actually considered 1.0 release candidates:
-
-* 0.11.0 (actually 1.0rc2)
-* 0.10.0 (actually 1.0rc1)
 
 What Data?
 -----
 
-In version 1, PuppetDB stores:
+In version 1.1, PuppetDB stores:
 
 * The most recent [facts][] from every node
 * The most recent [catalog][] for every node
+* Optionally, seven days (configurable) of event reports for every node
 
 Together, these give you a huge inventory of metadata about every node in your infrastructure and a searchable database of **every single resource** being managed on any node.
 
@@ -54,7 +51,7 @@ Puppet itself can search a subset of this data using [exported resources][export
 
 ### What Next?
 
-In future versions, PuppetDB will store reports and historical catalogs for every node. 
+In future versions, PuppetDB will store historical catalogs for every node. 
 
 
 System Requirements
@@ -64,14 +61,15 @@ System Requirements
 
 #### Standard Install: RHEL, CentOS, Debian, Ubuntu, or Fedora
 
-Puppet Labs provides packages for PuppetDB which simplify setup of its SSL certificates and init scripts. These packages are available for the following operating systems:
+Puppet Labs provides packages and a Puppet module for PuppetDB which simplify setup of its SSL certificates and init scripts. These packages are available for the following operating systems:
 
 * Red Hat Enterprise Linux 5 or 6 or any distro derived from it (including CentOS)
 * Debian Squeeze, Lenny, Wheezy, or Sid
-* Ubuntu 12.04 LTS, 10.04 LTS, 8.04 LTS, 11.10, or 11.04
-* Fedora 15 or 16
+* Ubuntu 12.10, 12.04 LTS, 10.04 LTS, 8.04 LTS, 11.10, or 11.04
+* Fedora 16 or 17
 
 [See here for instructions for installing via the PuppetDB puppet module.][install_via_module]
+
 [See here for instructions for installing from OS packages.][install_from_packages]
 
 #### Custom Install: Any Unix-like OS

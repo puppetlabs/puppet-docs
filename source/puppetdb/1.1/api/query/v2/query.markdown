@@ -9,8 +9,7 @@ TODO: "@nickf: this doc is a bit different from most of the stuff in this folder
 
 The PuppetDB query API comes in three main flavors: nodes, facts and resources.
 These correspond naturally to the `/v2/nodes`, `/v2/facts` and `/v2/resources`
-routes. This documentation only covers the v2 query API (the v1 API is
-deprecated), so we'll omit that portion of the URL from now on.
+routes. This documentation only covers the v2 query API, so we'll omit that portion of the URL from now on.
 
 # How to query
 
