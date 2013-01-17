@@ -233,12 +233,14 @@ To configure PuppetDB to use this database, put the following in the `[database]
 
 Replace `<HOST>` with the DB server's hostname. Replace `<PORT>` with the port on which PostgreSQL is listening. Replace `<DATABASE>` with the name of the database you've created for use with PuppetDB.
 
-It's possible to use SSL to protect connections to the database. The [PostgreSQL JDBC docs](http://jdbc.postgresql.org/documentation/head/ssl.html) explain how to do this. Be sure to add `?ssl=true` to the `subname` setting:
+#### Using SSL With PostgreSQL
 
-    subname = //<host>:<port>/<database>?ssl=true
+It's possible to use SSL to protect connections to the database. There are several extra steps and considerations when doing so; see the
+[PostgreSQL SSL setup page][postgres_ssl] for complete details.
 
-More details for configuring SSL connectivity are available in the
-[PostgreSQL SSL Setup][postgres_ssl] section.
+The main difference in the config file is that you must be sure to add `?ssl=true` to the `subname` setting:
+
+    subname = //<HOST>:<PORT>/<DATABASE>?ssl=true
 
 
 ### `gc-interval`

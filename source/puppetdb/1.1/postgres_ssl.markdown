@@ -106,11 +106,14 @@ So before you commence, this is not recommended if you are wishing to gain the h
 
 If however you really want this, the methodology is to simply modify your JDBC URL in the database configuration section of PuppetDB as follows:
 
-    [database]
-    classname = org.postgresql.Driver
-    subprotocol = postgresql
-    subname = //<HOST>:<PORT>/<DATABASE>?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-    username = <USERNAME>
-    password = <PASSWORD>
+{% comment %}This code block broke Jekyll for some reason. I'm using a pre-formatted version of it instead of chasing down the problem. -NF{% endcomment %}
+
+<pre><code>[database]
+classname = org.postgresql.Driver
+subprotocol = postgresql
+subname = //&lt;HOST&gt;:&lt;PORT&gt;/&lt;DATABASE&gt;?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory
+username = &lt;USERNAME&gt;
+password = &lt;PASSWORD&gt;
+</code></pre>
 
 Make this configuration change then restart PuppetDB and monitor your logs for errors. If all goes well your connection should now be SSL, and validation should be disabled.
