@@ -1,6 +1,16 @@
-# How to query
+---
+title: "PuppetDB 1.1 » API » Query Tutorial"
+layout: default
+canonical: "/puppetdb/1/api/query/tutorial.html"
+---
 
-Queries are performed by supplying a querystring parameter called `query`,
+This page is a walkthrough for constructing several types of PuppetDB queries. It uses the **version 2 API** in all of its examples; however, most of the general principles are also applicable to the version 1 API. 
+
+If you need to use the v1 API, note that it lacks many of v2's capabilities, and be sure to consult the v1 endpoint references before attempting to use these examples with it.
+
+## How to query
+
+Queries are performed by performing a GET request to an endpoint URL and supplying a querystring parameter called `query`,
 which contains the query to execute. Results are always returned in
 `application/json` form. A curl command like the following can be used to
 easily try queries from the command line:
@@ -9,9 +19,9 @@ easily try queries from the command line:
 
 where `filename` contains the query to execute.
 
-# Resources
+## Resources Walkthrough
 
-## Our first query
+### Our first query
 
 Let's start by taking a look at a simple resource query. Suppose we want to
 find the user "nick" on every node. We can use this query:
@@ -85,7 +95,7 @@ There will be an entry in the list for every resource. A resource is specific
 to a single node, so if the resource is on 100 nodes, there will be 100 copies
 of the resource (each with at least a different certname field).
 
-## Excluding results
+### Excluding results
 
 We know this instance of the user "nick" is defined on line 111 of
 /etc/puppet/manifests/user.pp. What if
@@ -105,7 +115,7 @@ The `"not"` operator wraps another clause, and returns results for which the
 clause is *not* true. In this case, we want resources which aren't defined on
 line 111 of /etc/puppet/manifests/user.pp.
 
-## Resource attributes
+### Resource attributes
 
 So far we've seen that we can query for resources based on their `certname`,
 `type`, `title`, `sourcefile`, and `sourceline`. There are a few more available:
@@ -124,7 +134,7 @@ that of another attribute), it must be namespaced using
 The full set of queryable attributes can be found in [the resource
 endpoint documentation](./resources.html) for easy reference.
 
-## Regular expressions
+### Regular expressions
 
 What if we want to restrict our results to a certain subset of nodes? Certainly, we could do something like:
 
@@ -145,7 +155,7 @@ used in the regexp depend on which database is in use, so common features
 should be used for interoperability. The regexp operator can be used on every
 field of resources except for parameters, and `exported`.
 
-# Facts
+## Facts Walkthrough
 
 In addition to resources, we can also query for facts. This looks similar,
 though the available fields and operators are a bit different. Some things are
@@ -182,7 +192,7 @@ This gives results that look something like this:
       "value" : "2.6.32"
     } ]
 
-## Fact attributes
+### Fact attributes
 
 In the last query, we saw that a "fact" consists of a "certname", a "name", and
 a "value". As you might expect, we can query using "name" or "value".
@@ -195,7 +205,7 @@ This will find all the "operatingsystem = Debian" facts, and their
 corresponding nodes. As you see, "and" is supported for facts, as are "or" and
 "not".
 
-## Fact operators
+### Fact operators
 
 As with resources, facts also support the `~` regular expression match
 operator, for all their fields. In addition to that, numeric comparisons are
@@ -212,7 +222,7 @@ values which are not numeric. Importantly, version numbers such as 2.6.12 are
 not numeric, and the numeric comparison operators can't be used with them at
 this time.
 
-# Nodes
+## Nodes Walkthrough
 
 We can also query for nodes. Once again, this is quite similar to resource and
 fact queries:
@@ -227,7 +237,7 @@ This will find the node foo.example.com. Note that the results of a node query
 contain only the node names, rather than an object with multiple fields as with
 resources and facts.
 
-## Querying on facts
+### Querying on facts
 
 Nodes can also be queried based on their facts, using the same operators as for
 fact queries:
@@ -238,7 +248,7 @@ fact queries:
 
 This will return Debian nodes with uptime_seconds < 10000.
 
-# Subqueries
+## Subquery Walkthrough
 
 The queries we've looked at so far are quite powerful and useful, but what if
 your query needs to consider both resources *and* facts? For instance, suppose
