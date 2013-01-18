@@ -22,9 +22,13 @@ Each of these operators accepts two arguments: a **field,** and a
 
 The available fields for each endpoint are listed in that endpoint's documentation. 
 
-### `=` (string equality)
+### `=` (equality)
 
-**Matches if:** the field's actual value is exactly the same as the provided value. Note that this is string only and does **not** compare equivalent numbers --- if the value of `somefield` were "0", then `["=", "somefield", "0.0"]` would **not** match.
+**Matches if:** the field's actual value is exactly the same as the provided value. Note that this **does not** coerce values --- the provided value must be the same data type as the field. In particular, be aware that:
+
+* Most fields are strings.
+* Some fields are booleans.
+* Numbers in resource parameters from Puppet are usually stored as strings, and equivalent numbers will **not** match --- if the value of `someparam` were "0", then `["=", "someparam", "0.0"]` wouldn't match.
 
 ### `>` (greater than)
 
