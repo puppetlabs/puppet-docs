@@ -54,12 +54,19 @@ module PuppetDocs
       end
 
       def generate
+
         puts "Generating #{@name} reference for #{version}."
+
+        if @name == "yard"
+          Dir.chdir(puppet_dir)
+          `bundle exec yard -o #{yard_directory}`
+          return  
+        end
+        
         ruby_loadpath = ENV['RUBYLIB'].split(":")
-        ruby_loadpath.delete_if { |v| v.include?("/puppet/") }
+        ruby_loadpath.delete_if { |v| v.include?("/puppet/lib/") }
         content = `export RUBYLIB=#{ruby_loadpath.join(":")} && ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
 
-#        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
 
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
@@ -157,6 +164,10 @@ EOT
 
       def destination_directory
         @destination_directory ||= PuppetDocs.root + "source/references" + @tag
+      end
+    
+     def yard_directory
+        @yard_directory ||= destination_directory + "developer"
       end
 
       def setup_destination!

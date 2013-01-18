@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'bundler/setup'
 require 'rake'
 require 'pathname'
 require 'fileutils'
@@ -17,15 +18,16 @@ end
 $LOAD_PATH.unshift File.expand_path('lib')
 
 dependencies = %w(jekyll maruku rack versionomy kramdown)
-references = %w(configuration function indirection metaparameter report type)
+references = %w(configuration function indirection metaparameter report type yard)
 
 namespace :install do
-  dependencies.each do |dep|
-    desc "Install '#{dep}' dependency"
-    task dep do
-      sh "gem install #{dep} --no-rdoc --no-ri"
-    end
-  end
+# dependencies.each do |dep|
+# #     desc "Install '#{dep}' dependency"
+# #     task dep do
+# #       sh "gem install #{dep} --no-rdoc --no-ri"
+# #     end
+# #   end
+   # bundle install --path=vendor/bundle
 end
 
 desc "Install dependencies"
