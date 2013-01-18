@@ -29,13 +29,15 @@ To install the documentation-generating code:
     install the pygmentize binary with a different name (like Macports does),
     you must symlink it so Jekyll can find the command.
 
-3.  Install the ruby dependencies:
+3.  Install the Ruby dependencies:
 
-        $ sudo gem install kramdown liquid maruku rack versionomy vlad vlad-git albino classifier directory_watcher rdoc
-
-    One of our tools used to fail unless Liquid's version was exactly
-    2.2.2, but that's no longer necessary; you should install the newest
-    available version of Liquid.
+    The Puppet docs project uses Ruby Bundler to ensure that you have the correct dependencies
+    installed on your system and that the documents are being built with the correct versions
+    of needed binaries. To install the project's requirements:
+    
+        $ sudo gem install bundler
+        $ cd puppet-docs
+        $ bundle install 
 
 Building and Viewing
 --------------------
@@ -50,10 +52,16 @@ Building and Viewing
 
     (You can use `rake run` to combine these steps.)
 
-Build Generated Docs For A Given Puppet Version
+Build Generated Docs for a Given Puppet Version
 -----------------------------------------------
 
     $ VERSION=0.25.0 rake references:puppetdoc
+
+For the generated docs to build correctly, you may not have Puppet in your default Ruby load path. 
+We recommend building the generated docs on a system where you have not installed Puppet as
+a system package. If this isn't possible, we recommend using [rvm][] or [rbenv][] with a 
+minimal Ruby installation to build the generated docs.
+
 
 Build Updated HTML Manpages
 ---------------------------
@@ -107,6 +115,8 @@ style and usage guide, which are both in the root of this project.
 [2]: http://projects.puppetlabs.com/projects/puppet/wiki/
 [3]: http://github.com
 [4]: http://docs.puppetlabs.com/guides/style_and_usage.html
+[rvm]: https://rvm.io
+[rbenv]: https://github.com/sstephenson/rbenv
 
 Copyright
 ---------

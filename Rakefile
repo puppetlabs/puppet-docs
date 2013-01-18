@@ -17,7 +17,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-references = %w(configuration function indirection metaparameter report type yard)
+references = %w(configuration function indirection metaparameter report type)
 
 desc "Generate the documentation"
 task :generate do
