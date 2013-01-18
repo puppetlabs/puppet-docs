@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppetdb/1/api/query/v2/facts.html"
 ---
 
-[curl] ../curl.html#using-curl-from-localhost-non-sslhttp
+[curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
 Querying facts occurs via an HTTP request to the
 `/facts` REST endpoint.
