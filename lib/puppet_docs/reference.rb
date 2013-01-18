@@ -142,6 +142,15 @@ EOT
       def puppet_dir
         PuppetDocs.root + 'vendor/puppet'
       end
+      
+      def hiera_dir
+        PuppetDocs.root + 'vendor/hiera'
+      end
+
+      def facter_dir
+        PuppetDocs.root + 'vendor/hiera'
+      end
+
 
       def setup_repository!
         if File.directory?(puppet_dir)
@@ -152,7 +161,26 @@ EOT
           puts "Retrieving puppet source."
           %x{git clone git://github.com/puppetlabs/puppet.git '#{puppet_dir}'}
         end
-      end
+
+        if File.directory?(facter)
+          at 'master' do
+            %x{git pull origin master}
+          end
+        else
+          puts "Retrieving facter source."
+          %x{git clone git://github.com/puppetlabs/facter.git '#{facter_dir}'}
+        end
+
+        if File.directory?(hiera_dir)
+          at 'master' do
+            %x{git pull origin master}
+          end
+        else
+          puts "Retrieving hiera source."
+          %x{git clone git://github.com/puppetlabs/hiera.git '#{hiera_dir}'}
+        end
+ 
+        end
 
       def change_to_tag!
         at @tag

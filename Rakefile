@@ -17,21 +17,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-dependencies = %w(jekyll maruku rack versionomy kramdown)
 references = %w(configuration function indirection metaparameter report type yard)
-
-namespace :install do
-# dependencies.each do |dep|
-# #     desc "Install '#{dep}' dependency"
-# #     task dep do
-# #       sh "gem install #{dep} --no-rdoc --no-ri"
-# #     end
-# #   end
-   # bundle install --path=vendor/bundle
-end
-
-desc "Install dependencies"
-task :install => dependencies.map { |d| "install:#{d}" }
 
 desc "Generate the documentation"
 task :generate do
