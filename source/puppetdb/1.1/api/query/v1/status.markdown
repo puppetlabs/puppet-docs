@@ -6,17 +6,16 @@ canonical: "/puppetdb/1.1/api/query/v1/status.html"
 
 [curl]: ../curl.html#using-curl-from-localhost-non-sslhttp
 
-## v1
 
-### Routes
+## Routes
 
-#### `GET /v1/status/nodes/:node`
+### `GET /v1/status/nodes/:node`
 
 This will return status information for the given node. There must be
 an `Accept` header containing `application/json`.
 
 
-### Response Format
+## Response Format
 
 Node status information will be returned in a JSON hash of the form:
 
@@ -31,7 +30,7 @@ not present, the corresponding timestamps will be null.
 If no information is known about the node, the result will be a 404 with a JSON
 hash containing an "error" key with a message indicating such.
 
-### Example
+## Example
 
 [Using `curl` from localhost][curl]:
 

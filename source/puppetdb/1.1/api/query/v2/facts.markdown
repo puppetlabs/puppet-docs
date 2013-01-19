@@ -9,33 +9,32 @@ canonical: "/puppetdb/1.1/api/query/v2/facts.html"
 Querying facts occurs via an HTTP request to the
 `/facts` REST endpoint.
 
-## v2
 
-### Routes
+## Routes
 
-#### `GET /v2/facts`
+### `GET /v2/facts`
 
 This will return all facts matching the given query. Facts for
 deactivated nodes are not included in the response. There must be an
 `Accept` header containing `application/json`.
 
-##### Parameters
+#### URL Parameters
 
-  `query`: Required. A JSON array containing the query in prefix notation.
+* `query`: Required. A JSON array containing the query in prefix notation.
 
-##### Query paths
+#### Available Fields
 
-  `"name"`: matches facts of the given name
-  `"value"`: matches facts with the given value
-  `"certname"`: matches facts for the given node
+* `"name"`: matches facts of the given name
+* `"value"`: matches facts with the given value
+* `"certname"`: matches facts for the given node
 
-##### Operators
+#### Operators
 
-  [See operators.md](operators.md)
+See [the Operators page](./operators.html)
 
-##### Examples
+#### Examples
 
-  Get the operatingsystem fact for all nodes:
+Get the operatingsystem fact for all nodes:
 
     curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts --data-urlencode 'query=["=", "name", "operatingsystem"]'
 
@@ -43,7 +42,7 @@ deactivated nodes are not included in the response. There must be an
      {"certname": "b.example.com", "name": "operatingsystem", "value": "RedHat"},
      {"certname": "c.example.com", "name": "operatingsystem", "value": "Darwin"},
 
-  Get all facts for a single node:
+Get all facts for a single node:
 
     curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts --data-urlencode 'query=["=", "certname", "a.example.com"]'
 
@@ -51,21 +50,21 @@ deactivated nodes are not included in the response. There must be an
      {"certname": "a.example.com", "name": "ipaddress", "value": "192.168.1.105"},
      {"certname": "a.example.com", "name": "uptime_days", "value": "26 days"}]
 
-#### `GET /v2/facts/:name`
+### `GET /v2/facts/:name`
 
 This will return all facts for all nodes with the indicated
 name. There must be an `Accept` header containing `application/json`.
 
-##### Parameters
+#### URL Parameters
 
-  `query`: Optional. A JSON array containing the query in prefix
+* `query`: Optional. A JSON array containing the query in prefix
   notation. The syntax and semantics are identical to the `query`
   parameter for the `/facts` route, mentioned above. When supplied,
   the query is assumed to supply _additional_ criteria that can be
   used to return a _subset_ of the information normally returned by
   this route.
 
-##### Examples
+#### Examples
 
     curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts/operatingsystem
 
@@ -73,28 +72,28 @@ name. There must be an `Accept` header containing `application/json`.
      {"certname": "b.example.com", "name": "operatingsystem", "value": "Redhat"},
      {"certname": "c.example.com", "name": "operatingsystem", "value": "Ubuntu"}]
 
-#### `GET /v2/facts/:name/:value`
+### `GET /v2/facts/:name/:value`
 
 This will return all facts for all nodes with the indicated name and
 value. There must be an `Accept` header containing `application/json`.
 
-##### Parameters
+#### URL Parameters
 
-  `query`: Optional. A JSON array containing the query in prefix
+* `query`: Optional. A JSON array containing the query in prefix
   notation. The syntax and semantics are identical to the `query`
   parameter for the `/facts` route, mentioned above. When supplied,
   the query is assumed to supply _additional_ criteria that can be
   used to return a _subset_ of the information normally returned by
   this route.
 
-##### Examples
+#### Examples
 
     curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts/operatingsystem/Debian
 
     [{"certname": "a.example.com", "name": "operatingsystem", "value": "Debian"},
      {"certname": "b.example.com", "name": "operatingsystem", "value": "Debian}]
 
-### Response Format
+## Response Format
 
 Successful responses will be in `application/json`. Errors will be returned as
 non-JSON strings.

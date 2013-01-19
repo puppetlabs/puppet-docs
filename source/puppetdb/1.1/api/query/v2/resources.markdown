@@ -9,19 +9,18 @@ canonical: "/puppetdb/1.1/api/query/v2/resources.html"
 Resources are queried via an HTTP request to the
 `/resources` REST endpoint.
 
-## v2
 
-### Routes
+## Routes
 
-#### `GET /v2/resources`
+### `GET /v2/resources`
 
 This will return all resources matching the given query. Resources for
 deactivated nodes are not included in the response. There must be an
 `Accept` header containing `application/json`.
 
-##### Parameters
+#### Parameters
 
-  `query`: Required. A JSON array of query predicates, in prefix form,
+* `query`: Required. A JSON array of query predicates, in prefix form,
   conforming to the format described below.
 
 The `query` parameter is described by the following grammar:
@@ -70,23 +69,23 @@ See [the Operators page](./operators.html) for the full list of available operat
 resource queries *do not support* inequality, and regexp matching *is not
 supported* against node status or parameter values.
 
-#### `GET /v2/resources/:type`
+### `GET /v2/resources/:type`
 
 This will return all resources for all nodes with the given
 type. Resources from deactivated nodes aren't included in the
 response. There must be an `Accept` header containing
 `application/json`.
 
-##### Parameters
+#### Parameters
 
-  `query`: Optional. A JSON array containing the query in prefix
+* `query`: Optional. A JSON array containing the query in prefix
   notation. The syntax and semantics are identical to the `query`
   parameter for the `/resources` route, mentioned above. When
   supplied, the query is assumed to supply _additional_ criteria that
   can be used to return a _subset_ of the information normally
   returned by this route.
 
-##### Examples
+#### Examples
 
 [Using `curl` from localhost][curl]:
 
@@ -125,23 +124,23 @@ response. There must be an `Accept` header containing
       "type" : "User",
       "certname" : "host2.mydomain.com"}]
 
-#### `GET /v2/resources/:type/:title`
+### `GET /v2/resources/:type/:title`
 
 This will return all resources for all nodes with the given type and
 title. Resources from deactivated nodes aren't included in the
 response. There must be an `Accept` header containing
 `application/json`.
 
-##### Parameters
+#### Parameters
 
-  `query`: Optional. A JSON array containing the query in prefix
+* `query`: Optional. A JSON array containing the query in prefix
   notation. The syntax and semantics are identical to the `query`
   parameter for the `/resources` route, mentioned above. When
   supplied, the query is assumed to supply _additional_ criteria that
   can be used to return a _subset_ of the information normally
   returned by this route.
 
-##### Examples
+#### Examples
 
 [Using `curl` from localhost][curl]:
 
@@ -165,7 +164,7 @@ response. There must be an `Accept` header containing
       "certname" : "host1.mydomain.com"
     }]
 
-# Response format
+## Response format
 
 An array of zero or more resource objects, with each object having the
 following form:

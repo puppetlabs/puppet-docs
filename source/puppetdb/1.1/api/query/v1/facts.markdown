@@ -9,7 +9,6 @@ canonical: "/puppetdb/1.1/api/query/v1/facts.html"
 Querying facts occurs via an HTTP request to the
 `/facts` REST endpoint.
 
-# v1
 
 ## Query format
 
