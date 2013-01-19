@@ -66,7 +66,7 @@ module PuppetDocs
           return  
         end
         
-        content = `ruby #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name} `
+        content = `ruby #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
 
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
