@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 0.9 » Spec » Catalog Wire Format"
 layout: default
-canonical: "/puppetdb/1/spec_catalog_wire_format.html"
+canonical: "/puppetdb/1.1/api/wire_format/catalog_format.html"
 ---
 
 PuppetDB receives a new, specifically modified catalog wire format from puppet masters.

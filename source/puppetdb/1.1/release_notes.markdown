@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 1.1 » Release Notes"
 layout: default
-canonical: "/puppetdb/1/release_notes.html"
+canonical: "/puppetdb/1.1/release_notes.html"
 ---
 
 The following notable changes have been made since version 0.9.2 of PuppetDB:

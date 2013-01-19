@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 1.1 » Using PuppetDB"
 layout: default
-canonical: "/puppetdb/1/using.html"
+canonical: "/puppetdb/1.1/using.html"
 ---
 
 [exported]: /puppet/2.7/reference/lang_exported.html
@@ -18,7 +18,7 @@ The PuppetDB plugins [installed on your puppet master(s)](./connect_puppet_maste
 
     $ sudo puppet node status <node> 
 
-where <node> is the name of the node you wish to investigate. This will tell you whether the node is active, when its last catalog was submitted, and when its last facts were submitted. 
+where `<node>` is the name of the node you wish to investigate. This will tell you whether the node is active, when its last catalog was submitted, and when its last facts were submitted. 
 
 Using Exported Resources
 -----
