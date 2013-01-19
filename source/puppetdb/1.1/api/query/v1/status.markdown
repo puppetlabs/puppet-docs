@@ -9,7 +9,7 @@ canonical: "/puppetdb/1.1/api/query/v1/status.html"
 
 ## Routes
 
-### `GET /v1/status/nodes/:node`
+### `GET /v1/status/nodes/<NODE>`
 
 This will return status information for the given node. There must be
 an `Accept` header containing `application/json`.

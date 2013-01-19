@@ -69,7 +69,7 @@ See [the Operators page](./operators.html) for the full list of available operat
 resource queries *do not support* inequality, and regexp matching *is not
 supported* against node status or parameter values.
 
-### `GET /v2/resources/:type`
+### `GET /v2/resources/<TYPE>`
 
 This will return all resources for all nodes with the given
 type. Resources from deactivated nodes aren't included in the
@@ -124,7 +124,7 @@ response. There must be an `Accept` header containing
       "type" : "User",
       "certname" : "host2.mydomain.com"}]
 
-### `GET /v2/resources/:type/:title`
+### `GET /v2/resources/<TYPE>/<TITLE>`
 
 This will return all resources for all nodes with the given type and
 title. Resources from deactivated nodes aren't included in the

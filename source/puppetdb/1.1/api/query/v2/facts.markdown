@@ -50,7 +50,7 @@ Get all facts for a single node:
      {"certname": "a.example.com", "name": "ipaddress", "value": "192.168.1.105"},
      {"certname": "a.example.com", "name": "uptime_days", "value": "26 days"}]
 
-### `GET /v2/facts/:name`
+### `GET /v2/facts/<NAME>`
 
 This will return all facts for all nodes with the indicated
 name. There must be an `Accept` header containing `application/json`.
@@ -72,7 +72,7 @@ name. There must be an `Accept` header containing `application/json`.
      {"certname": "b.example.com", "name": "operatingsystem", "value": "Redhat"},
      {"certname": "c.example.com", "name": "operatingsystem", "value": "Ubuntu"}]
 
-### `GET /v2/facts/:name/:value`
+### `GET /v2/facts/<NAME>/<VALUE>`
 
 This will return all facts for all nodes with the indicated name and
 value. There must be an `Accept` header containing `application/json`.

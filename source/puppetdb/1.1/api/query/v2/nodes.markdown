@@ -68,7 +68,7 @@ The array is sorted alphabetically by `name`.
     curl -H "Accept: application/json" 'http://localhost:8080/v2/nodes'
     curl -G -H "Accept: application/json" 'http://localhost:8080/v2/nodes' --data-urlencode 'query=["=", ["fact", "kernel"], "Linux"]'
 
-### `GET /v2/nodes/:node`
+### `GET /v2/nodes/<NODE>`
 
 This will return status information for the given node, active or
 not. There must be an `Accept` header containing `application/json`.
@@ -78,7 +78,7 @@ not. There must be an `Accept` header containing `application/json`.
 The response is the same format as for the [/v1/status](../v1/status.html)
 endpoint.
 
-### `GET /v2/nodes/:node/facts`
+### `GET /v2/nodes/<NODE>/facts`
 
 This will return the facts for the given node. Facts from deactivated
 nodes aren't included in the response. There must be an `Accept`
@@ -97,7 +97,7 @@ header containing `application/json`.
 The response is the same format as for the [/v2/facts](./facts.html)
 endpoint.
 
-### `GET /v2/nodes/:node/facts/:name`
+### `GET /v2/nodes/<NODE>/facts/<NAME>`
 
 This will return facts with the given name for the given node. Facts
 from deactivated nodes aren't included in the response. There must be
@@ -117,7 +117,7 @@ The response is the same format as for the [/v2/facts](./facts.html)
 endpoint.
 
 
-### `GET /v2/nodes/:node/facts/:name/:value`
+### `GET /v2/nodes/<NODE>/facts/<NAME>/<VALUE>`
 
 This will return facts with the given name and value for the given
 node. Facts from deactivated nodes aren't included in the
@@ -137,7 +137,7 @@ response. There must be an `Accept` header containing
 The response is the same format as for the [/v2/facts](./facts.html)
 endpoint.
 
-### `GET /v2/nodes/:node/resources`
+### `GET /v2/nodes/<NODE>/resources`
 
 This will return the resources for the given node. Resources from
 deactivated nodes aren't included in the response. There must be an
@@ -156,7 +156,7 @@ deactivated nodes aren't included in the response. There must be an
 The response is the same format as for the [/v2/resources](./resource.html)
 endpoint.
 
-### `GET /v2/nodes/:node/resources/:type`
+### `GET /v2/nodes/<NODE>/resources/<TYPE>`
 
 This will return the resources of the indicated type for the given
 node. Resources from deactivated nodes aren't included in the
@@ -164,11 +164,11 @@ response. There must be an `Accept` header containing
 `application/json`.
 
 This endpoint behaves identically to the
-[/v2/resources/:type](./resource.html) endpoint, except the resources
+[`/v2/resources/<TYPE>`](./resource.html) endpoint, except the resources
 returned include _only_ those belonging to the node given in the URL
 for this route.
 
-### `GET /v2/nodes/:node/resources/:type/:title`
+### `GET /v2/nodes/<NODE>/resources/<TYPE>/<TITLE>`
 
 This will return the resource of the indicated type and title for the
 given node. Resources from deactivated nodes aren't included in the
@@ -176,6 +176,6 @@ response. There must be an `Accept` header containing
 `application/json`.
 
 This endpoint behaves identically to the
-[/v2/resources/:type](./resource.html) endpoint, except the resources
+[`/v2/resources/<TYPE>`](./resource.html) endpoint, except the resources
 returned include _only_ those belonging to the node given in the URL
 for this route.
