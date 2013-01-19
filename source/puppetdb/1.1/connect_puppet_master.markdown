@@ -10,7 +10,10 @@ canonical: "/puppetdb/1.1/connect_puppet_master.html"
 [exported]: /puppet/2.7/reference/lang_exported.html
 [install_via_module]: ./install_via_module.html
 [report_processors]: http://docs.puppetlabs.com/guides/reporting.html
-[experimental]: TODO FIXME!
+[event]: ./api/query/experimental/event.html
+[report]: ./api/query/experimental/report.html
+[store_report]: ./api/commands.html#store-report-version-1
+[report_format]: ./api/wire_format/report_format.html
 
 > Note: To use PuppetDB, your site's puppet master(s) must be running Puppet 2.7.12 or later .
 
@@ -95,8 +98,12 @@ This will keep Puppet's default behavior of storing the reports to disk as YAML,
 while also sending the reports to PuppetDB.
 
 You can configure how long PuppetDB stores these reports, and you can do some
-very basic querying.  For more information, see the documentation in the
-[`experimental`][experimental] section of the PuppetDB docs.
+very basic querying.  For more information, see:
+
+* [The experimental `event` query endpoint][event]
+* [The experimental `report` query endpoint][report]
+* [The experimental `store report` command][store_report]
+* [The experimental report wire format][report_format]
 
 More information about Puppet report processors in general can be found
 [here][report_processors].
