@@ -19,9 +19,9 @@ To install the documentation-generating code:
 
         $ git submodule update --init
 
-2.  Use your package manager to install rake, libxml2-dev,
-    libxslt-dev, and pygments.  Package names may vary by platform; for example,
-    using Macports, these packages could be installed with:
+2.  Use your package manager to install rake, libxml2-dev, libxslt-dev, and pygments.  
+    Package names may vary by platform; for example, using Macports, these packages could 
+    be installed with:
 
         $ sudo port -d install rb-rake libxml2 libxslt py-pygments
 
@@ -59,8 +59,8 @@ Build Generated Docs for a Given Puppet Version
 
 For the generated docs to build correctly, you may not have Puppet in your default Ruby load path. 
 We recommend building the generated docs on a system where you have not installed Puppet as
-a system package. If this isn't possible, we recommend using [rvm][] or [rbenv][] with a 
-minimal Ruby installation to build the generated docs.
+a package for your operating system. If this isn't possible, we recommend using [rvm][] or 
+[rbenv][] with a minimal Ruby installation to build the generated docs.
 
 
 Build Updated HTML Manpages
