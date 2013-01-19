@@ -32,8 +32,8 @@ Commands are submitted via HTTP to the `/commands/` URL and must
 conform to the following rules:
 
 * A `POST` is used
-* There is a parameter, `payload`, that contains the entire command as
-  outlined above.
+* There is a parameter, `payload`, that contains the entire command object as
+  outlined above. (Not to be confused with the `payload` field inside the command object.)
 * There is an `Accept` header that contains `application/json`.
 * The POST body is url-encoded
 * The content-type is `x-www-form-urlencoded`.
@@ -49,6 +49,8 @@ receive the following:
 * A response body in the form of a JSON object, containing a single key 'uuid', whose
   value is a UUID corresponding to the submitted command. This can be used, for example, by
   clients to correlate submitted commands with server-side logs.
+
+The terminus plugins for puppet masters use this command API to update facts, catalogs, and reports for nodes. 
 
 ## Command Semantics
 

@@ -4,25 +4,25 @@ title: "PuppetDB 1.1 » API » Query » Curl Tips"
 canonical: "/puppetdb/1/api/query/curl.html"
 ---
 
-[Facts]: ./api/query/v2/facts.html
-[Nodes]: ./api/query/v2/nodes.html
-[Resources]: ./api/query/v2/resources.html
-[Status]: ./api/query/v2/status.html
-[Metrics]: ./api/query/v2/metrics.html
+[Facts]: ./v2/facts.html
+[Nodes]: ./v2/nodes.html
+[fact-names]: ./v2/fact-names.html
+[Resources]: ./v2/resources.html
+[Metrics]: ./v2/metrics.html
 [curl]: http://curl.haxx.se/docs/manpage.html
-[dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
-[whitelist]: ./configure.html#certificate-whitelist
+[dashboard]: ../maintain_and_tune.html#monitor-the-performance-dashboard
+[whitelist]: ../configure.html#certificate-whitelist
 
 
 You can use [`curl`][curl] to directly interact with PuppetDB's REST API. This is useful for testing, prototyping, and quickly fetching arbitrary data.
 
 The instructions below are simplified. For full usage details, see [the curl manpage][curl] . For additional examples, please see the docs for the individual REST endpoints:
 
-* [Facts][]
-* [Nodes][]
-* [Resources][]
-* [Status][]
-* [Metrics][]
+* [facts][]
+* [fact-names][]
+* [nodes][]
+* [resources][]
+* [metrics][]
 
 ## Using `curl` From `localhost` (Non-SSL/HTTP)
 
