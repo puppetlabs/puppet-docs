@@ -17,7 +17,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-references = %w(configuration function indirection metaparameter report type yard)
+references = %w(configuration function indirection metaparameter report type developer)
 
 desc "Generate the documentation"
 task :generate do
@@ -196,7 +196,11 @@ namespace :references do
         f.puts "# #{ENV['VERSION']} References\n"
         f.puts "* * *\n\n"
         references.each do |name|
-          f.puts "* [#{name.capitalize}](#{name}.html)"
+          unless name=="developer"
+            f.puts "* [#{name.capitalize}](#{name}.html)"
+          else
+            f.puts "* [Developer Documentation](developer/index.html)"
+          end
         end
       end
       puts "Wrote #{filename}"

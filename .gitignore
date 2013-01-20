@@ -1,4 +1,7 @@
 vendor/puppet
+vendor/hiera
+vendor/facter
+vendor/bundle
 bin/mar*
 output
 \#*
