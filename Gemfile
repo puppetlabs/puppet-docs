@@ -10,4 +10,4 @@ gem 'yard'
 gem 'rdoc'
 gem 'rake'
 gem 'vlad'
-gem 'facter'
+
