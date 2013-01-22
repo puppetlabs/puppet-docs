@@ -17,10 +17,8 @@ canonical: "/puppetdb/1.1/api/wire_format/catalog_format.html"
 [title]: /puppet/2.7/reference/lang_resources.html#title
 [type]: /puppet/2.7/reference/lang_resources.html#type
 [attributes]: /puppet/2.7/reference/lang_resources.html#attributes
-[resource_query]: ../query/v2/resources.html
-[replace2]: 
-[replace1]: 
-
+[replace2]: ../commands.html#replace-catalog-version-2
+[replace1]: ../commands.html#replace-catalog-version-1
 
 PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](/puppetdb/1.1/connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
 

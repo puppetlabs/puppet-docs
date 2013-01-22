@@ -10,7 +10,6 @@ canonical: "/puppetdb/1.1/install_from_packages.html"
 [ssl_script]: ./install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 [configure_postgres]: ./configure.html#using-postgresql
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
-[puppetdb_conf]: ./configure.html
 [configure_jetty]: ./configure.html#jetty-http-settings
 [requirements]: ./index.html#standard-install-rhel-centos-debian-ubuntu-or-fedora
 [module]: ./install_via_module.html

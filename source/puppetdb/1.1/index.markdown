@@ -6,6 +6,7 @@ canonical: "/puppetdb/1.1/index.html"
 
 [exported]: /puppet/2.7/reference/lang_exported.html
 [inventory]: /guides/inventory_service.html
+[connect]: ./connect_puppet_master.html
 [apply]: ./connect_puppet_apply.html
 [install_via_module]: ./install_via_module.html
 [install_from_packages]: ./install_from_packages.html

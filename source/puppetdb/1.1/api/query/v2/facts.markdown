@@ -34,6 +34,8 @@ See [the Operators page](./operators.html)
 
 #### Examples
 
+[Using `curl` from localhost][curl]:
+
 Get the operatingsystem fact for all nodes:
 
     curl -X GET -H 'Accept: application/json' http://puppetdb:8080/v2/facts --data-urlencode 'query=["=", "name", "operatingsystem"]'
