@@ -4,6 +4,7 @@ require 'rake'
 require 'pathname'
 require 'fileutils'
 
+
 Dir.glob(File.join("vendor", "gems", "*", "lib")).each do |lib|
   $LOAD_PATH.unshift(File.expand_path(lib))
 end
@@ -23,11 +24,15 @@ desc "Generate the documentation"
 task :generate do
   system("mkdir -p output")
   system("rm -rf output/*")
+  system("mkdir output/references")
   Dir.chdir("source")
-  system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../output")
+  system("bundle exec jekyll  ../output")
   Rake::Task['references:symlink'].invoke
   Dir.chdir("..")
+  puts Dir.pwd
+  
 end
+
 
 desc "Serve generated output on port 9292"
 task :serve do
@@ -46,7 +51,7 @@ task :generate_pdf do
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
   # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
   Dir.chdir("pdf_source")
-  system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../pdf_output")
+  system("bundle exec jekyll ../pdf_output")
   Rake::Task['references:symlink:for_pdf'].invoke
   Dir.chdir("../pdf_output")
   pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
