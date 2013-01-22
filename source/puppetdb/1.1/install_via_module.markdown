@@ -29,9 +29,9 @@ Step 2: Assign Classes to Nodes
 
 Using the normal methods for your site, assign the PuppetDB module's classes to your servers. You have three main options for deploying PuppetDB:
 
-* If you are installing PuppetDB on the same server as your puppet master, assign the `puppetdb` class to it.
-* If you want to run PuppetDB on its own server with a local PostgreSQL instance, assign the `puppetdb::server` and `puppetdb::database::postgresql` classes to it, and assign the `puppetdb::master::config` class to your puppet master. Make sure to set the class parameters as necessary.
-* If you want PuppetDB and PostgreSQL to each run on their own servers, assign the `puppetdb::server` class and the `puppetdb::database::postgresql` classes to different servers. Make sure to set the class parameters as necessary.
+* If you are installing PuppetDB on the same server as your puppet master, assign the `puppetdb`  and `puppetdb::master::config` classes to it.
+* If you want to run PuppetDB on its own server with a local PostgreSQL instance, assign the `puppetdb` class to it, and assign the `puppetdb::master::config` class to your puppet master. Make sure to set the class parameters as necessary.
+* If you want PuppetDB and PostgreSQL to each run on their own servers, assign the `puppetdb::server` class and the `puppetdb::database::postgresql` classes to different servers, and the `puppetdb::master::config` class to your puppet master. Make sure to set the class parameters as necessary.
 
 These classes automatically configure most aspects of PuppetDB. If you need to set additional settings (to change the `node_ttl`, for example), see [the "Playing Nice With the PuppetDB Module" section][config_with_module] of the "Configuring" page. 
 
