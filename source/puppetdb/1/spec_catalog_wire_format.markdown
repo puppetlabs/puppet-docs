@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 1 » Spec » Catalog Wire Format, Version 1"
 layout: default
+canonical: "/puppetdb/1.1/api/wire_format/catalog_format.html"
 ---
 
 [containment]: /puppet/2.7/reference/lang_containment.html

@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 0.9 » Spec » Facts Wire Format"
 layout: default
-canonical: "/puppetdb/1/spec_facts_wire_format.html"
+canonical: "/puppetdb/1.1/api/wire_format/facts_format.html"
 ---
 
 

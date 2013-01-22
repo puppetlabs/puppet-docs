@@ -1,6 +1,7 @@
 ---
 title: "PuppetDB 1 » Spec » Querying Status"
 layout: default
+canonical: "/puppetdb/1.1/api/query/v1/status.html"
 ---
 
 ## Query Format
