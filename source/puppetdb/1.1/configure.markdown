@@ -128,7 +128,7 @@ To do this, you should create a new class (something like `site::puppetdb::serve
       Class[site::puppetdb::server::extra] ~> Class[puppetdb::server]
       
       # Get PuppetDB confdir
-      include puppetdb::params::confdir
+      include puppetdb::params
       $confdir = $puppetdb::params::confdir
 
       # Set resource defaults assuming we're only doing [database] settings
