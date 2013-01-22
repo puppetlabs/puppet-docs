@@ -58,24 +58,24 @@ Notable features:
     `select-facts` operators. These operators perform queries equivalent to
     using the /v2/resources and /v2/facts routes, respectively. The information
     returned from them can then be correlated, to perform complex queries such
-    as "fetch the IP address of all nodes with Class[apache]", or "fetch the
-    operatingsystemrelease of all Debian nodes". These operators can also be
+    as "fetch the IP address of all nodes with `Class[apache]`", or "fetch the
+    `operatingsystemrelease` of all Debian nodes". These operators can also be
     nested and correlated on any field, to answer virtually any question in a
     single query.
 
   * Friendlier, RESTful query routes
 
     In addition to the standard query language, there are also now more
-    friendly, "RESTful" query routes. For instance, /v2/nodes/foo.example.com
+    friendly, "RESTful" query routes. For instance, `/v2/nodes/foo.example.com`
     will return information about the node foo.example.com. Similarly,
-    /v2/facts/operatingsystem will return the operatingsystem of every node, or
-    /v2/nodes/foo.example.com/operatingsystem can be used to just find the
-    operatingsystem of foo.example.com.
+    `/v2/facts/operatingsystem` will return the `operatingsystem` of every node, or
+    `/v2/nodes/foo.example.com/operatingsystem` can be used to just find the
+    `operatingsystem` of foo.example.com.
 
     The same sort of routes are available for resources as well.
-    /v2/resources/User will return every User resource, /v2/resources/User/joe
-    will return every instance of the User[joe] resource, and
-    /v2/nodes/foo.example.com/Package will return every Package resource on
+    `/v2/resources/User` will return every User resource, `/v2/resources/User/joe`
+    will return every instance of the `User[joe]` resource, and
+    `/v2/nodes/foo.example.com/Package` will return every Package resource on
     foo.example.com. These routes can also have a query parameter supplied, to
     further query against their results, as with the standard query API.
 
@@ -117,6 +117,7 @@ Notable features:
   that amount of space is not available.
 
 Behavior changes:
+
   * Messages received after a node is deactivated will be processed
 
     Previously, commands which were initially received before a node was
