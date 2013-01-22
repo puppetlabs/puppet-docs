@@ -8,11 +8,11 @@ canonical: "/puppetdb/1.1/maintain_and_tune.html"
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
 [threads]: ./configure.html#command-processing-settings
 [memrec]: ./scaling_recommendations.html#bottleneck-java-heap-size
-[puppetdb_report_processor]: ./connect_puppet_master.html#Enabling+experimental+report_storage
+[puppetdb_report_processor]: ./connect_puppet_master.html#enabling-experimental-report-storage
 [node_ttl]: ./configure.html#node-ttl
 [report_ttl]: ./configure.html#report-ttl
 [resources_type]: /references/latest/type.html#resources
-[log4j]: ./configure.html#configuring-logging
+[log4j]: ./configure.html#the-log4j-logging-config-file
 [dashboard]: #monitor-the-performance-dashboard
 
 PuppetDB requires a relatively small amount of maintenance and tuning. You should become familiar with the following occasional tasks:

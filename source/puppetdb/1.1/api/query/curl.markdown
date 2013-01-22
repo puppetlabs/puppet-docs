@@ -10,8 +10,8 @@ canonical: "/puppetdb/1.1/api/query/curl.html"
 [Resources]: ./v2/resources.html
 [Metrics]: ./v2/metrics.html
 [curl]: http://curl.haxx.se/docs/manpage.html
-[dashboard]: ../maintain_and_tune.html#monitor-the-performance-dashboard
-[whitelist]: ../configure.html#certificate-whitelist
+[dashboard]: ../../maintain_and_tune.html#monitor-the-performance-dashboard
+[whitelist]: ../../configure.html#certificate-whitelist
 
 
 You can use [`curl`][curl] to directly interact with PuppetDB's REST API. This is useful for testing, prototyping, and quickly fetching arbitrary data.

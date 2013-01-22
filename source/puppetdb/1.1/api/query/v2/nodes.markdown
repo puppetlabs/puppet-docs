@@ -153,7 +153,7 @@ deactivated nodes aren't included in the response. There must be an
 
 #### Response format
 
-The response is the same format as for the [/v2/resources](./resource.html)
+The response is the same format as for the [/v2/resources][resource]
 endpoint.
 
 ### `GET /v2/nodes/<NODE>/resources/<TYPE>`
@@ -164,7 +164,7 @@ response. There must be an `Accept` header containing
 `application/json`.
 
 This endpoint behaves identically to the
-[`/v2/resources/<TYPE>`](./resource.html) endpoint, except the resources
+[`/v2/resources/<TYPE>`][resource] endpoint, except the resources
 returned include _only_ those belonging to the node given in the URL
 for this route.
 
@@ -176,6 +176,6 @@ response. There must be an `Accept` header containing
 `application/json`.
 
 This endpoint behaves identically to the
-[`/v2/resources/<TYPE>`](./resource.html) endpoint, except the resources
+[`/v2/resources/<TYPE>`][resource] endpoint, except the resources
 returned include _only_ those belonging to the node given in the URL
 for this route.

@@ -8,11 +8,11 @@ canonical: "/puppetdb/1.1/install_from_packages.html"
 [connect_apply]: ./connect_puppet_apply.html
 [keystore_instructions]: ./install_from_source.html#step-3-option-b-manually-create-a-keystore-and-truststore
 [ssl_script]: ./install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
-[configure_postgres]: ./configure.html#postgresql-db-settings
+[configure_postgres]: ./configure.html#using-postgresql
 [configure_heap]: ./configure.html#configuring-the-java-heap-size
 [puppetdb_conf]: ./configure.html
-[configure_jetty]: ./configure.html#jetty-http
-[requirements]: ./index.html#easy-install-rhel-centos-debian-ubuntu-or-fedora
+[configure_jetty]: ./configure.html#jetty-http-settings
+[requirements]: ./index.html#standard-install-rhel-centos-debian-ubuntu-or-fedora
 [module]: ./install_via_module.html
 
 This page describes how to manually install and configure PuppetDB from the official packages. **In general, we recommend that you [use the puppetlabs-puppetdb module][module] instead,** since automation makes your whole infrastructure better. See [the "Install via Module" page][module] for more details.

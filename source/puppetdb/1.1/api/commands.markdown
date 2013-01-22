@@ -4,9 +4,9 @@ layout: default
 canonical: "/puppetdb/1.1/api/commands.html"
 ---
 
-[facts]: ./wire-formats/facts_format.html
-[catalog]: ./wire-formats/catalog_format.html
-[report]: ./wire-formats/report_format.html
+[facts]: ./wire-format/facts_format.html
+[catalog]: ./wire-format/catalog_format.html
+[report]: ./wire-format/report_format.html
 
 Commands are used to change PuppetDB's
 model of a population. Commands are represented by `command objects`,
