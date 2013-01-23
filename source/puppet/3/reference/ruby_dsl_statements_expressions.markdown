@@ -882,5 +882,8 @@ call_function "notice", "hello"
 </tbody>
 </table>
 
+Most functions can be called directly. The alternative `call function` form where the name of the function is given
+as a string makes it possible to call functions with a name that clash with a ruby keyword
+(`require` is one such example).
 
 <!-- todo: link to example repo once we have something in there --> 
