@@ -252,14 +252,14 @@ end
 <tr>
 <td>
 {% highlight ruby %}
-class baz ($p) {
+class baz::blatz ($p) {
   #
 }
 {% endhighlight %}        
 </td>
 <td>
 {% highlight ruby %}
-hostclass :baz, :arguments => { :p => nil } do
+hostclass :'baz::blatz', :arguments => { :p => nil } do
   #
 end
 {% endhighlight %}
