@@ -7,10 +7,11 @@ Inventory Service
 ======
 
 [puppetdb]: /puppetdb/1
-[puppetdb_nodes]: /puppetdb/1/spec_q_nodes.html
-[puppetdb_facts]: /puppetdb/1/spec_q_facts.html
-[puppetdb_install]: /puppetdb/1/install.html
-[puppetdb_connect]: /puppetdb/1/connect_puppet_master.html
+[puppetdb_nodes]: /puppetdb/1.1/api/query/v2/nodes.html
+[puppetdb_facts]: /puppetdb/1.1/api/query/v2/facts.html
+[puppetdb_fact-names]: /puppetdb/1.1/api/query/v2/fact-names.html
+[puppetdb_install]: /puppetdb/1.1/install_via_module.html
+[puppetdb_connect]: /puppetdb/1.1/connect_puppet_master.html
 [authdotconf]: ./rest_auth_conf.html
 [rest]: ./rest_api.html#facts
 [old_storeconfigs]: http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration
@@ -60,6 +61,7 @@ If you are using the [PuppetDB][] inventory backend, you also have the option of
 
 * [The node query API][puppetdb_nodes]
 * [The facts query API][puppetdb_facts]
+* [The fact-names query API][puppetdb_fact-names]
 
 Setting Up the Inventory Service
 -----

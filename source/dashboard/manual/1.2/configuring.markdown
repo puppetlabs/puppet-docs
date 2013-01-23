@@ -53,7 +53,7 @@ With inventory support, Dashboard can display a complete list of facts on each n
 
 **Requirements:** To use the inventory, you must be using Puppet 2.6.7 or later, [configured to provide the inventory service][inventory]. If you are running Puppet 2.7.12 or later, you have the option of using [PuppetDB][pdb] instead of the `inventory_active_record` backend.
 
-[pdb]: /puppetdb/1/
+[pdb]: /puppetdb/1.1/
 [inventory]: /guides/inventory_service.html
 
 Once the puppet master is properly configured with a database-backed inventory, edit your puppet master's [`auth.conf`](/guides/rest_auth_conf.html) file to grant Dashboard find and search access to /facts:

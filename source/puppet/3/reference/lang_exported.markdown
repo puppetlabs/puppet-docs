@@ -16,8 +16,8 @@ title: "Language: Exported Resources"
 [exported_collector]: ./lang_collectors.html#exported-resource-collectors
 [search]: ./lang_collectors.html#search-expressions
 [puppetdb]: /puppetdb/1
-[puppetdb_connect]: /puppetdb/1/connect_puppet_master.html
-[puppetdb_install]: /puppetdb/1/install.html
+[puppetdb_connect]: /puppetdb/1.1/connect_puppet_master.html
+[puppetdb_install]: /puppetdb/1.1/install_via_module.html
 [ar_storeconfigs]: http://projects.puppetlabs.com/projects/puppet/wiki/Using_Stored_Configuration
 [exported_guide]: /guides/exported_resources.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
