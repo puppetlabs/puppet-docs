@@ -5,33 +5,22 @@ subtitle: "New Features in PE 2.7"
 ---
 
 ### Version 2.7.1
-PE 2.7.1 is a maintenance release. It makes a modification to [the way PE manages auth_conf]() and adds some patches to address security issues.
+PE 2.7.1 is a maintenance release. It modifies the way PE manages auth_conf, fixes an issue with puppet's augeas lenses, and adds three patches to address security issues. See the [Appendix](appendix.html#release-notes) for release notes detailing the changes.
 
 #### Changes to auth_conf Management
 
+PE's management of the auth_conf file has been changed such that it will not be over-written during puppet runs after upgrading.
+
+#### Puppet Augeas Lens Fix
+
+An issue with PE's file paths have been fixed so that augeas now runs correctly on Solaris systems.
+
 #### Security Patches
 
-*CVE-2013-1398 MCO Private Key Leak*
-
-Under certain circumstances, a user with root access to a single node in a PE deployment could possibly manipulate that client's local facts in order to force the pe_mcollective module to deliver a catalog containing SSL keys. These keys could be used to access other nodes in the collective and send them arbitrary commands as root. For the vast majority of users, the fix is to apply the 2.7.1 upgrade. 
-
-For PE users who do not use the Console, this can be fixed by making sure that the pe_mcollective::role::master class is applied to your master, and
-the pe_mcollective::role::console class is applied to your console. This can be as simple as adding the following to your site.pp manifest or other node classifier:
-
-
-node console {
-  include pe_mcollective::role::console
-}
-
-node master {
-  include pe_mcollective::role::master
-}
-
-*CVE 2012-5664 SQL Injection Vulnerability*
- 
-This CVE addresses an SQL injection vulnerability in Ruby on Rails and Active Record. The vulnerability is related to the way dynamic finders are processed in Active Record wherein a method parameter could be used as scope. PE 2.7.1 provides patches to Puppet Dashboard and the Active Record packages to eliminate the vulnerabilitly. More information is available on this [CVE's page](http://puppetlabs.com/security/cve/cve-2012-5664/). 
+Three security patches have been rolled into the packages for PE 2.7.1. These address an SQL injection vulnerability, an issue with keys in MCollective, and add CSRF protection to HTML requests. The [release notes](appendix.html#release-notes) have the details.
 
 ### Version 2.7.0
+
 PE 2.7.0 adds new node request management capabilities to the console. It also fixes several bugs and adds to or modifies some existing capabilities. 
 
 #### Node Request Management

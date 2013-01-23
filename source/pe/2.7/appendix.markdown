@@ -4,8 +4,6 @@ title: "PE 2.7 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 
-[25releasenotes]: /pe/2.5/appendix#release-notes
-
 This page contains additional miscellaneous information about Puppet Enterprise 2.7.
 
 Glossary
@@ -18,15 +16,45 @@ For a complete guide to the puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### PE 2.7.1 (1/12/2013)
+### PE 2.7.1 (1/???/2013)
 
 #### Change to auth.conf File Management
 
-Previously, the auth.conf file was fully managed by PE 2.7. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1 the upgrader will still convert auth.conf to add the code needed to enable certificate management if and only if the file has not been manually modified. If the file has been modified, the upgrader will still show a warning that it is not going to convert the file. However, on subsequent puppet runs, the file will now be left untouched.
+Previously, the auth.conf file was fully managed by PE 2.7.0. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1 the upgrader will still convert auth.conf to add the code needed to enable certificate management if and only if the file has not been manually modified. If the file has been modified, the upgrader will still show a warning that it is not going to convert the file. However, on subsequent puppet runs, the file will now be left untouched.
 
 #### Broken Augeas puppet Lens on Solaris
 
 On Solaris systems, PE's file paths were not compatible with the augeas puppet lenses. The augeas package has been modified to correct this issue.
+
+#### Security Patches
+
+*CVE-2013-1398 MCO Private Key Leak*
+
+Under certain circumstances, a user with root access to a single node in a PE deployment could possibly manipulate that client's local facts in order to force the pe_mcollective module to deliver a catalog containing SSL keys. These keys could be used to access other nodes in the collective and send them arbitrary commands as root. For the vast majority of users, the fix is to apply the 2.7.1 upgrade. 
+
+For PE users who do not use the Console, this can be fixed by making sure that the `pe_mcollective::role::master` class is applied to your master, and
+the pe_mcollective::role::console class is applied to your console. This can be as simple as adding the following to your site.pp manifest or other node classifier:
+
+
+        node console {
+        include pe_mcollective::role::console
+    }
+
+       node master {
+       include pe_mcollective::role::master
+     }
+
+*CVE 2013-1399 CSRF Protection*
+ 	 
+Cross site request forgery (CSRF) protection has been added to the following areas of  the PE console: node request management, live management, and user administration. Now, basically every HTML form submitted to a server running one of these services gets a randomly generated token whose authenticity is compared against a token stored by the session of the currently logged-in user. Requests with tokens that do not authenticate (or are not present) will be answered with a "403 Forbidden" HTML status.
+
+One exception to the CSRF protection model are HTTP requests that use basic HTTP user authorization. These are treated as "API" requests and, since by definition they include a valid (or not) username and password, they are considered secure.
+ 	 	
+Note that the Rails-based  puppet dashboard application is not vulnerable due to Rails' built in CSRF protection.
+
+*CVE 2012-5664 SQL Injection Vulnerability*
+ 
+This CVE addresses an SQL injection vulnerability in Ruby on Rails and Active Record. The vulnerability is related to the way dynamic finders are processed in Active Record wherein a method parameter could be used as scope. PE 2.7.1 provides patches to Puppet Dashboard and the Active Record packages to eliminate the vulnerabilitly. More information is available on this [CVE's page](http://puppetlabs.com/security/cve/cve-2012-5664/). 
 
 ### PE 2.7.0
 
