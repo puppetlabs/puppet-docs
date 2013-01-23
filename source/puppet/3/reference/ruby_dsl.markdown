@@ -88,6 +88,14 @@ To append to a variable, use:
 scope.setvar("p", scope["p"] + value)
 {% endhighlight %}
 
+### Reloading of Puppet Ruby DSL Logic
+
+A puppet master will reload Puppet Ruby DSL logic when files have changed between catalog compilations.
+
+A future version may optimize the reloading of Ruby DSL logic. In the first release, a puppet master will
+always invalidate the cache of parsed manifests for an environment when a Ruby DSL manifest is part of
+the evaluation. This is required to enable correct reloading of changed Ruby DSL manifests.
+
 ## New in the Puppet Ruby DSL
 
 ### Resource References
