@@ -217,6 +217,8 @@ There is no support for the Puppet DSL's chaining operators (`->`, `<-`,  `~>`, 
 ## Class Definitions
 
 Values are expressed with objects responding to `#to_s` (Strings, symbols, etc.)
+This means you can enter the name of a class as `'bar'`, `:bar`, `:'bar::baz'`, `'bar::baz'`, or any expression that
+evaluates to a string with a valid classname.
 
 <table><tbody>
 <tr>
