@@ -16,4 +16,16 @@ defaultnav:
   /hiera/1: hiera1.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
+external_repos:
+  puppetdb: git://github.com/puppetlabs/puppetdb.git
+  marionette-collective: git://github.com/puppetlabs/marionette-collective.git
+external:
+  /puppetdb/1.1:
+    repo: puppetdb
+    branch: 1.1.x
+    path: documentation
+  /mcollective:
+    repo: marionette-collective
+    branch: master
+    path: website
 ---
