@@ -89,6 +89,6 @@ You can cause a class to act like it's contained in another class by "holding it
     }
 {% endhighlight %}
 
-In this case, the `ntp::service` class still isn't technically contained, but any resource can safely form a relationship with the `ntp` class and rest assured that the relationship will propagate into all relevant resources. 
+In this case, the `ntp::conf_file` class still isn't technically contained, but any resource can safely form a relationship with the `ntp` class and rest assured that the relationship will propagate into all relevant resources. 
 
 Since this anchoring behavior is effectively an invisible side effect of the relationships inside the class, you should not rely on relationships with normal resources. Instead, you should use the `anchor` resource type included in the [puppetlabs-stdlib module][stdlib], which exists solely for this purpose. 
