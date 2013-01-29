@@ -37,7 +37,7 @@ To install the documentation-generating code:
     
         $ sudo gem install bundler
         $ cd puppet-docs
-        $ bundle install 
+        $ bundle install --path=vendor/bundle
 
 Building and Viewing
 --------------------
