@@ -18,6 +18,7 @@ $LOAD_PATH.unshift File.expand_path('lib')
 
 dependencies = %w(jekyll maruku rack versionomy kramdown)
 references = %w(configuration function indirection metaparameter report type)
+top_dir = Dir.pwd
 
 namespace :install do
   dependencies.each do |dep|
@@ -48,16 +49,17 @@ namespace :externalsources do
   task :update do
     Rake::Task['externalsources:clone'].invoke
     externalsources = load_externalsources
-    Dir.chdir("externalsources")
-    externalsources.each do |name, info|
-      unless File.directory?(name)
-        puts "Making new working directory for #{name}"
-        system ("git new-workdir #{repo_name(info['repo'])} #{name} #{info['commit']}")
+    Dir.chdir("externalsources") do
+      externalsources.each do |name, info|
+        unless File.directory?(name)
+          puts "Making new working directory for #{name}"
+          system ("git new-workdir #{repo_name(info['repo'])} #{name} #{info['commit']}")
+        end
+        Dir.chdir(name) do
+          puts "Updating #{name}"
+          system ("git fetch origin && git checkout --force #{info['commit']} && git clean --force .")
+        end
       end
-      Dir.chdir(name)
-      puts "Updating #{name}"
-      system ("git fetch origin && git checkout --force #{info['commit']} && git clean --force .")
-      Dir.chdir('..')
     end
   end
 
@@ -68,18 +70,17 @@ namespace :externalsources do
     externalsources.each do |name, info|
       repos << info['repo']
     end
-    Dir.chdir("externalsources")
-    repos.uniq.each do |repo|
-      system ("git clone #{repo}") unless File.directory?("#{repo_name(repo)}")
+    Dir.chdir("externalsources") do
+      repos.uniq.each do |repo|
+        system ("git clone #{repo}") unless File.directory?("#{repo_name(repo)}")
+      end
     end
-    
   end
 
   # "Symlink external documentation into place in the source directory"
   task :link do
     Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
     externalsources = load_externalsources
-    top_dir = Dir.pwd
     externalsources.each do |name, info|
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy info['url'] is (and thus how many ../..s it would need).
       FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "source#{info['url']}"
@@ -99,10 +100,11 @@ task :generate do
   
   system("mkdir -p output")
   system("rm -rf output/*")
-  Dir.chdir("source")
-  system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../output")
+  Dir.chdir("source") do
+    system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../output")
+  end
+
   Rake::Task['references:symlink'].invoke
-  Dir.chdir("..")
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
 end
@@ -123,23 +125,25 @@ task :generate_pdf do
   system("cp -rf source pdf_source")
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
   # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
-  Dir.chdir("pdf_source")
-  system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../pdf_output")
+  Dir.chdir("pdf_source") do
+    system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../pdf_output")
+  end
   Rake::Task['references:symlink:for_pdf'].invoke
-  Dir.chdir("../pdf_output")
-  pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
-  pdf_targets.each do |target, pages|
-    system("cat #{pages.join(' ')} > #{target}")
-    if target == 'puppetdb1.html'
-      content = File.read('puppetdb1.html')
-      content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
-      File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
-      # Yeah, so, I found the magic string that, when used as an element ID and then
-      # linked to from elsewhere in the document, causes wkhtmltopdf to think an
-      # unthinkable thought and corrupt the output file.
-      # Your guess is as good as mine. #doomed #sorcery #wat
-      # >:|
-      # -NF
+  Dir.chdir("../pdf_output") do
+    pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
+    pdf_targets.each do |target, pages|
+      system("cat #{pages.join(' ')} > #{target}")
+      if target == 'puppetdb1.html'
+        content = File.read('puppetdb1.html')
+        content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
+        File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
+        # Yeah, so, I found the magic string that, when used as an element ID and then
+        # linked to from elsewhere in the document, causes wkhtmltopdf to think an
+        # unthinkable thought and corrupt the output file.
+        # Your guess is as good as mine. #doomed #sorcery #wat
+        # >:|
+        # -NF
+      end
     end
   end
 #   system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
@@ -147,31 +151,30 @@ task :generate_pdf do
 #   system("mv rebuilt_index.html index.html")
   puts "Remember to run rake serve_pdf"
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
-  Dir.chdir("..")
 end
 
 desc "Temporary task for debugging PDF compile failures"
 task :reshuffle_pdf do
   require 'yaml'
-  Dir.chdir("pdf_output")
-  pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
-  pdf_targets.each do |target, pages|
-    system("cat #{pages.join(' ')} > #{target}")
-    if target == 'puppetdb1.html'
-      content = File.read('puppetdb1.html')
-      content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
-      File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
-      # Yeah, so, I found the magic string that, when used as an element ID and then
-      # linked to from elsewhere in the document, causes wkhtmltopdf to think an
-      # unthinkable thought and corrupt the output file.
-      # Your guess is as good as mine. #doomed #sorcery #wat
-      # >:|
-      # -NF
+  Dir.chdir("pdf_output") do
+    pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
+    pdf_targets.each do |target, pages|
+      system("cat #{pages.join(' ')} > #{target}")
+      if target == 'puppetdb1.html'
+        content = File.read('puppetdb1.html')
+        content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
+        File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
+        # Yeah, so, I found the magic string that, when used as an element ID and then
+        # linked to from elsewhere in the document, causes wkhtmltopdf to think an
+        # unthinkable thought and corrupt the output file.
+        # Your guess is as good as mine. #doomed #sorcery #wat
+        # >:|
+        # -NF
+      end
     end
   end
   puts "Remember to run rake serve_pdf"
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
-  Dir.chdir("..")
 end
 
 
@@ -194,10 +197,10 @@ end
 desc "Create tarball of documentation"
 task :tarball do
   tarball_name = "puppetdocs-latest.tar.gz"
-  FileUtils.cd 'output'
-  sh "tar -czf #{tarball_name} *"
-  FileUtils.mv tarball_name, '..'
-  FileUtils.cd '..'
+  FileUtils.cd('output') do
+    sh "tar -czf #{tarball_name} *"
+    FileUtils.mv tarball_name, '..'
+  end
   sh "git rev-parse HEAD > #{tarball_name}.version" if File.directory?('.git') # Record the version of this tarball, but only if we're in a git repo.
 end
 
@@ -226,7 +229,7 @@ namespace :references do
     task :for_pdf do
       require 'puppet_docs'
       PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-        Dir.chdir '../pdf_output/references' do
+        Dir.chdir 'pdf_output/references' do
           FileUtils.ln_sf version.to_s, name.to_s
         end
       end
@@ -239,7 +242,7 @@ namespace :references do
   task :symlink do
     require 'puppet_docs'
     PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-      Dir.chdir '../output/references' do
+      Dir.chdir 'output/references' do
         FileUtils.ln_sf version.to_s, name.to_s
       end
     end
@@ -287,9 +290,9 @@ namespace :references do
   end
 
   task :fetch_tags do
-    Dir.chdir("vendor/puppet")
-    sh "git fetch --tags"
-    Dir.chdir("../..")
+    Dir.chdir("vendor/puppet") do
+      sh "git fetch --tags"
+    end
   end
 
   desc "Update the contents of source/man/{app}.markdown" # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
