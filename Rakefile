@@ -80,6 +80,7 @@ namespace :externalsources do
   # "Symlink external documentation into place in the source directory"
   task :link do
     Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
+    Rake::Task['externalsources:clean'].reenable
     externalsources = load_externalsources
     externalsources.each do |name, info|
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy info['url'] is (and thus how many ../..s it would need).
@@ -107,6 +108,7 @@ task :generate do
   Rake::Task['references:symlink'].invoke
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
+  Rake::Task['externalsources:clean'].reenable
 end
 
 desc "Serve generated output on port 9292"
