@@ -53,7 +53,7 @@ namespace :externalsources do
       externalsources.each do |name, info|
         unless File.directory?(name)
           puts "Making new working directory for #{name}"
-          system ("git new-workdir #{repo_name(info['repo'])} #{name} #{info['commit']}")
+          system ("#{top_dir}/vendor/bin/git-new-workdir #{repo_name(info['repo'])} #{name} #{info['commit']}")
         end
         Dir.chdir(name) do
           puts "Updating #{name}"
