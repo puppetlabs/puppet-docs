@@ -18,6 +18,8 @@ Release Notes
 
 ### PE 2.7.1 (1/???/2013)
 
+Two modules have been updated in this maintenance release: puppetlabs-request_manager and puppetlabs-auth_conf.
+
 #### Change to auth.conf File Management
 
 Previously, the auth.conf file was fully managed by PE 2.7.0. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1 the upgrader will still convert auth.conf to add the code needed to enable certificate management if and only if the file has not been manually modified. If the file has been modified, the upgrader will still show a warning that it is not going to convert the file. However, on subsequent puppet runs, the file will now be left untouched.
@@ -70,7 +72,6 @@ Changes to the current version of Puppet's core are documented in the [Puppet Re
 
 * A bug related to the use of hyphens in variable names caused unpredictable behavior when interpolating variables. This has been fixed. There are numerous tickets associated with this issue. See the related issues listed on [Issue 10146](http://projects.puppetlabs.com/issues/10146).
 
-* [Release notes for the PE 2.5.x series are available here.][25releasenotes]
 
 
 Known Issues
