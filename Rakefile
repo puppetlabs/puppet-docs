@@ -44,7 +44,7 @@ namespace :externalsources do
     repo_url.split('/')[-1].sub(/\.git$/, '')
   end
   
-  desc "Update all working copies defined in source/_config.yml"
+  # "Update all working copies defined in source/_config.yml"
   task :update do
     Rake::Task['externalsources:clone'].invoke
     externalsources = load_externalsources
@@ -61,7 +61,7 @@ namespace :externalsources do
     end
   end
 
-  desc "Clone any external documentation repos (from externalsources in source/_config.yml) that don't yet exist"
+  # "Clone any external documentation repos (from externalsources in source/_config.yml) that don't yet exist"
   task :clone do
     externalsources = load_externalsources
     repos = []
@@ -75,7 +75,7 @@ namespace :externalsources do
     
   end
 
-  desc "Symlink external documentation into place in the source directory"
+  # "Symlink external documentation into place in the source directory"
   task :link do
     Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
     externalsources = load_externalsources
@@ -86,7 +86,7 @@ namespace :externalsources do
     end
   end
   
-  desc "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source. 
+  # "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source. 
   task :clean do
     system("find ./source -type l -print0 | xargs -0 rm")
   end
@@ -214,7 +214,7 @@ namespace :references do
 
   namespace :symlink do
 
-    desc "Show the versions that will be symlinked"
+    # "Show the versions that will be symlinked"
     task :versions do
       require 'puppet_docs'
       PuppetDocs::Reference.special_versions.each do |name, (version, source)|
@@ -222,7 +222,7 @@ namespace :references do
       end
     end
 
-    desc "Symlink the latest & stable directories when generating a flat page for PDFing"
+    # "Symlink the latest & stable directories when generating a flat page for PDFing"
     task :for_pdf do
       require 'puppet_docs'
       PuppetDocs::Reference.special_versions.each do |name, (version, source)|
@@ -235,7 +235,7 @@ namespace :references do
 
   end
 
-  desc "Symlink the latest & stable directories"
+  # "Symlink the latest & stable directories"
   task :symlink do
     require 'puppet_docs'
     PuppetDocs::Reference.special_versions.each do |name, (version, source)|
@@ -248,7 +248,7 @@ namespace :references do
   namespace :puppetdoc do
 
     references.each do |name|
-      desc "Write references/VERSION/#{name}"
+      # "Write references/VERSION/#{name}"
       task name => 'references:check_version' do
         require 'puppet_docs'
         PuppetDocs::Reference::Generator.new(ENV['VERSION'], name).generate
@@ -262,7 +262,7 @@ namespace :references do
 
   namespace :index do
 
-    desc "Generate a stub index for VERSION"
+    # "Generate a stub index for VERSION"
     task :stub => 'references:check_version' do
       filename = Pathname.new('source/references') + ENV['VERSION'] + 'index.markdown'
       filename.parent.mkpath
@@ -326,10 +326,10 @@ end
 
 task :default => :spec
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "puppet-docs"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+# require 'rdoc/task'
+# Rake::RDocTask.new do |rdoc|
+#   rdoc.rdoc_dir = 'rdoc'
+#   rdoc.title = "puppet-docs"
+#   rdoc.rdoc_files.include('README*')
+#   rdoc.rdoc_files.include('lib/**/*.rb')
+# end
