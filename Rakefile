@@ -31,14 +31,80 @@ end
 desc "Install dependencies"
 task :install => dependencies.map { |d| "install:#{d}" }
 
+namespace :externalsources do
+
+  # For now, we're using things in the _config.yml, just... because it's there I guess.
+  def load_externalsources
+    require 'yaml'
+    all_config = YAML.load(File.open("source/_config.yml"))
+    return all_config['externalsources']
+  end
+
+  def repo_name(repo_url)
+    repo_url.split('/')[-1].sub(/\.git$/, '')
+  end
+  
+  desc "Update all working copies defined in source/_config.yml"
+  task :update do
+    Rake::Task['externalsources:clone'].invoke
+    externalsources = load_externalsources
+    Dir.chdir("externalsources")
+    externalsources.each do |name, info|
+      unless File.directory?(name)
+        puts "Making new working directory for #{name}"
+        system ("git new-workdir #{repo_name(info['repo'])} #{name} #{info['commit']}")
+      end
+      Dir.chdir(name)
+      puts "Updating #{name}"
+      system ("git fetch origin && git checkout --force #{info['commit']} && git clean --force .")
+      Dir.chdir('..')
+    end
+  end
+
+  desc "Clone any external documentation repos (from externalsources in source/_config.yml) that don't yet exist"
+  task :clone do
+    externalsources = load_externalsources
+    repos = []
+    externalsources.each do |name, info|
+      repos << info['repo']
+    end
+    Dir.chdir("externalsources")
+    repos.uniq.each do |repo|
+      system ("git clone #{repo}") unless File.directory?("#{repo_name(repo)}")
+    end
+    
+  end
+
+  desc "Symlink external documentation into place in the source directory"
+  task :link do
+    Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
+    externalsources = load_externalsources
+    top_dir = Dir.pwd
+    externalsources.each do |name, info|
+      # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy info['url'] is (and thus how many ../..s it would need).
+      FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "source#{info['url']}"
+    end
+  end
+  
+  desc "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source. 
+  task :clean do
+    system("find ./source -type l -print0 | xargs -0 rm")
+  end
+end
+
 desc "Generate the documentation"
 task :generate do
+  Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
+  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places. 
+  
   system("mkdir -p output")
   system("rm -rf output/*")
   Dir.chdir("source")
   system("../vendor/gems/jekyll-0.11.2/bin/jekyll --kramdown ../output")
   Rake::Task['references:symlink'].invoke
   Dir.chdir("..")
+
+  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
 end
 
 desc "Serve generated output on port 9292"
