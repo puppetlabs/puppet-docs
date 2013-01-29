@@ -50,9 +50,9 @@ Next, the admin moves on to the individual nodes.
 On the osprey server, something has stopped crond, which is definitely not good, and someone has made an edit to `/etc/syslog.conf`. She rejects the cron stoppage and restarts it, then checks the diff on the syslog config: 
 
     7c7
-    < *.info;mail.none;authpriv.none;cron.none		/var/log/messages
+    < *.info;mail.none;authpriv.none;cron.none      /var/log/messages
     ---
-    > *.info;mail.none;authpriv.none;cron.none		/etc/apache2/httpd.conf
+    > *.info;mail.none;authpriv.none;cron.none      /etc/apache2/httpd.conf
 
 That looks actively malicious. She rejects and reverts, then moves on to the eagle server to check on a hunch.
 

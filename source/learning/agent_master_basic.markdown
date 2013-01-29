@@ -185,8 +185,8 @@ Now that you've saved site.pp with a node definition that matches the agent VM's
     info: Caching catalog for agent1.localdomain
     info: Applying configuration version '1326416535'
     notice: /Stage[main]/Ntp/Package[ntp]/ensure: created
-    --- /etc/ntp.conf	2011-11-18 13:21:25.000000000 +0000
-    +++ /tmp/puppet-file20120113-5967-56l9xy-0	2012-01-13 01:02:23.000000000 +0000
+    --- /etc/ntp.conf   2011-11-18 13:21:25.000000000 +0000
+    +++ /tmp/puppet-file20120113-5967-56l9xy-0  2012-01-13 01:02:23.000000000 +0000
     @@ -14,6 +14,8 @@
      
      # Use public servers from the pool.ntp.org project.

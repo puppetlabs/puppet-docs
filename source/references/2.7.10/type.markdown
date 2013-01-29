@@ -3465,7 +3465,7 @@ Examples:
   scheduled_task { 'One-shot task':
     ensure    => present,
     enabled   => true,
-    command   => 'C:path	ommand.exe',
+    command   => 'C:\path\to\command.exe',
     arguments => '/flags /to /pass',
     trigger   => {
       schedule   => once,
@@ -3479,7 +3479,7 @@ Examples:
   scheduled_task { 'Daily task':
     ensure    => present,
     enabled   => true,
-    command   => 'C:path	ommand.exe',
+    command   => 'C:\path\to\command.exe',
     arguments => '/flags /to /pass',
     trigger   => {
       schedule   => daily,
@@ -3494,7 +3494,7 @@ Examples:
   scheduled_task { 'Weekly task':
     ensure    => present,
     enabled   => true,
-    command   => 'C:path	ommand.exe',
+    command   => 'C:\path\to\command.exe',
     arguments => '/flags /to /pass',
     trigger   => {
       schedule    => weekly,
@@ -3511,7 +3511,7 @@ Examples:
   scheduled_task { 'Monthly date task':
     ensure    => present,
     enabled   => true,
-    command   => 'C:path	ommand.exe',
+    command   => 'C:\path\to\command.exe',
     arguments => '/flags /to /pass',
     trigger   => {
       schedule   => monthly,
@@ -3527,7 +3527,7 @@ Examples:
   scheduled_task { 'Monthly day of week task':
     enabled   => true,
     ensure    => present,
-    command   => 'C:path	ommand.exe',
+    command   => 'C:\path\to\command.exe',
     arguments => '/flags /to /pass',
     trigger   => {
       schedule         => monthly,

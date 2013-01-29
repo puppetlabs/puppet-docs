@@ -18,14 +18,14 @@ module Jekyll
   # New in version 3: You can do partial directory names, like /references/3.
   # This allows us to easily set a custom nav for a set of pages.
   # -NF 2012
-	class RenderNavTag < Liquid::Tag
-		def initialize(tag_name, something_bogus, tokens)
-			super
-		end
+  class RenderNavTag < Liquid::Tag
+    def initialize(tag_name, something_bogus, tokens)
+      super
+    end
 
 # Old kinda naïve implementation
 #     def pick_best_default(path, defaults_array)
-# 			best_match = ''
+#       best_match = ''
 #       # Pop through the whole path, so we get the most specific matching default nav snippet.
 #       path_array = path.split('/')
 #       while !path_array.empty?
@@ -60,16 +60,16 @@ module Jekyll
       end
     end
     
-		def render(context)
-			nav_fragment = ''
-			if context.environments.first['page']['nav']
-			  nav_fragment = context.environments.first['page']['nav']
-			else
-			  defaultnav = context.environments.first['site']['defaultnav']
-			  path = context.environments.first['page']['url']
-			  nearest_path = pick_best_default(path, defaultnav.keys)
-			  nav_fragment = defaultnav[nearest_path]
-			end
+    def render(context)
+      nav_fragment = ''
+      if context.environments.first['page']['nav']
+        nav_fragment = context.environments.first['page']['nav']
+      else
+        defaultnav = context.environments.first['site']['defaultnav']
+        path = context.environments.first['page']['url']
+        nearest_path = pick_best_default(path, defaultnav.keys)
+        nav_fragment = defaultnav[nearest_path]
+      end
 
       if nav_fragment == ''
         return "Blank navigation filename! Something went wrong. Check the nav variable in this file, then check the defaultnav hash in _config.yml."
@@ -90,8 +90,8 @@ module Jekyll
           "Included file '#{nav_fragment}' not found in _includes directory"
         end
       end
-		end
-	end
+    end
+  end
 end
 
 Liquid::Template.register_tag('render_nav', Jekyll::RenderNavTag)

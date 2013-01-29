@@ -98,7 +98,7 @@ These files may or may not be present.
 Puppet Enterprise installs several suites of command line tools to help you work with the major components of the software. These include:
 
 - **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.` 
-	See the [Tools Section](http://docs.puppetlabs.com/guides/tools.html) of the Puppet Manual for more information.
+    See the [Tools Section](http://docs.puppetlabs.com/guides/tools.html) of the Puppet Manual for more information.
 - **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning Section](./cloudprovisioner_overview.html)  for more information.
 - **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the Live Management tab of the PE console. See the [Orchestration Section](./orchestration_overview.html) for more information.
 - **Module Tools:** The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).

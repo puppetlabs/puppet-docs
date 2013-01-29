@@ -30,13 +30,13 @@ The installation method will depend on your operating system's package managemen
 
 For systems using apt and dpkg (Ubuntu and Debian), run the following commands: 
 
-	$ sudo dpkg -i *ruby*dev* 
+    $ sudo dpkg -i *ruby*dev* 
 
-	$ sudo apt-get install --fix-broken
+    $ sudo apt-get install --fix-broken
 
 For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), run the following commands: 
 
-	$ sudo yum localinstall --nogpgcheck *ruby*dev* 
+    $ sudo yum localinstall --nogpgcheck *ruby*dev* 
 
 * * *
 

@@ -136,7 +136,7 @@ If you have configured the VMs to have two network adapters, examine their setti
 
 Make sure both VMs' `/etc/hosts` files contain a line similar to the following:
 
-    172.16.158.151	learn.localdomain	learn puppet.localdomain puppet	# This host is required for Puppet's name resolution to work correctly.
+    172.16.158.151  learn.localdomain   learn puppet.localdomain puppet # This host is required for Puppet's name resolution to work correctly.
 
 The IP address should be the one you found for the puppet master in the previous step. 
 

@@ -1,16 +1,16 @@
 module Jekyll
   class IfLinkTag < Liquid::Tag
-		def initialize(tag_name, args, tokens)
-			super
-			if args =~ /"(.+?)",\s*"(.+?)"/
-			  @linktext = $1
-			  @linkdestination = $2
+    def initialize(tag_name, args, tokens)
+      super
+      if args =~ /"(.+?)",\s*"(.+?)"/
+        @linktext = $1
+        @linkdestination = $2
       else
         raise SyntaxError.new(%q{Syntax Error in 'iflink' - Valid syntax: iflink "Link text", "/path/to/page.html"})
       end
-		end
+    end
     
-		def render(context)
+    def render(context)
       pageurl = context.environments.first['page']['url']
       pagedir = pageurl.split('/')[0..-2].join('/') + '/'
       linkpath = @linkdestination.split(/:\/\/[^\/]*/).last.split('#').first # take off any protocol or hostname, then take off any in-page anchor.

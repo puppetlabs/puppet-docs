@@ -161,8 +161,8 @@ If you are upgrading to PE from a self-maintained Puppet environment, you can ad
 included stored reports on the puppet master (that is, if agent nodes were configured with `report = true` and the master was configured with `reports = store`),  can add value to this existing knowledge. 
 
 
-	cd /opt/puppet/share/puppet-dashboard
-	PATH=/opt/puppet/bin:$PATH REPORT_DIR={old reports directory} rake reports:import
+    cd /opt/puppet/share/puppet-dashboard
+    PATH=/opt/puppet/bin:$PATH REPORT_DIR={old reports directory} rake reports:import
 
 If you have a significant number of existing reports, this task can take some time, so plan accordingly.
 

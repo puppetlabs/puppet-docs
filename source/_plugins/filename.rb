@@ -7,10 +7,10 @@ module Jekyll
       super
     end
     
-		def render(context)
-		  full_url = context.environments.first['page']['url']
-		  full_url.split('/')[-1]
-		end
+    def render(context)
+      full_url = context.environments.first['page']['url']
+      full_url.split('/')[-1]
+    end
   end
 end
 
