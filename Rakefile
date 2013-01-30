@@ -328,12 +328,3 @@ task :deploy do
   end
 end
 
-task :default => :spec
-
-# require 'rdoc/task'
-# Rake::RDocTask.new do |rdoc|
-#   rdoc.rdoc_dir = 'rdoc'
-#   rdoc.title = "puppet-docs"
-#   rdoc.rdoc_files.include('README*')
-#   rdoc.rdoc_files.include('lib/**/*.rb')
-# end
