@@ -59,6 +59,8 @@ GEM
     vlad (2.3.1)
       rake (>= 0.8, < 11.0)
       rake-remote_task (~> 2.1)
+    vlad-git (2.2.0)
+      vlad (>= 2.1.0)
     yard (0.8.3)
 
 PLATFORMS
@@ -75,4 +77,5 @@ DEPENDENCIES
   rdoc
   versionomy
   vlad
+  vlad-git
   yard
