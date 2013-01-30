@@ -94,9 +94,6 @@ think something important is missing, please [submit a ticket][1] to
 to get your change in is to contribute it; see the next section for
 details.
 
-NOTE: If you're talking about additional content, keep in mind that it might
-make more sense to be on the [Wiki][2].  You might want to start by
-adding it there.
 
 Contributing Changes
 --------------------

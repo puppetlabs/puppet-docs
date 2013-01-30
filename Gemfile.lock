@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/puppetlabs/jekyll.git
-  revision: c29f0c1367d51553af2f9a7b8c129834cb65dc90
+  revision: 0ee3de7eb06e9c67892fbcb86ed8ce2166a0b759
   branch: puppetdocs
   specs:
     jekyll (0.11.2)
@@ -45,7 +45,7 @@ GEM
     multi_json (1.5.0)
     open4 (1.3.0)
     posix-spawn (0.3.6)
-    rack (1.5.0)
+    rack (1.5.1)
     rake (10.0.3)
     rake-remote_task (2.1.0)
       open4 (~> 1.0)
