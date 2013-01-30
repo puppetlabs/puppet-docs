@@ -1,3 +1,4 @@
+vendor
 vendor/puppet
 vendor/hiera
 vendor/facter
