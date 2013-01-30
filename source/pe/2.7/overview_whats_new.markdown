@@ -5,7 +5,7 @@ subtitle: "New Features in PE 2.7"
 ---
 
 ### Version 2.7.1
-PE 2.7.1 is a maintenance release. It modifies the way PE manages auth_conf, fixes an issue with puppet's augeas lenses, and adds three patches to address security issues. See the [Appendix](appendix.html#release-notes) for release notes detailing the changes.
+PE 2.7.1 is a maintenance release. It modifies the way PE manages auth_conf, fixes an issue with puppet's augeas lenses, and adds several patches to address security issues. See the [Appendix](appendix.html#release-notes) for release notes detailing the changes.
 
 #### Changes to auth.conf Management
 
@@ -17,7 +17,7 @@ An issue with PE's file paths have been fixed so that augeas now runs correctly 
 
 #### Security Patches
 
-Three security patches have been rolled into the packages for PE 2.7.1. These address an SQL injection vulnerability, an issue with keys in MCollective, and add CSRF protection to HTTP requests. The [release notes](appendix.html#release-notes) have the details.
+Several security patches have been rolled into the packages for PE 2.7.1. These patches address vulnerabilities discovered in Ruby on Rails, an issue with keys in MCollective, and the addition of CSRF protection to HTTP requests. The [release notes](appendix.html#release-notes) have the details.
 
 ### Version 2.7.0
 

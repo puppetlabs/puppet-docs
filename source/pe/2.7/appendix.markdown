@@ -30,6 +30,18 @@ On Solaris systems, PE's file paths were not compatible with the augeas puppet l
 
 #### Security Patches
 
+*CVE-2013-0333 Ruby on Rails JSON Parser Code Injection Vulnerability*
+
+This is a Ruby on Rails vulnerability in the JSON parser that could allow an attacker to bypass authentication and inject and execute arbitrary code, or perform a DoS attack. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
+
+*CVE-2013-0156 Ruby on Rails SQL Injection Vulnerability*
+
+This is a Ruby on Rails vulnerability specific to Active Record that could allow the injection of arbitrary code in SQL. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
+
+*CVE-2013-0155 Ruby on Rails SQL Query Generation Vulnerability*
+
+This is a Ruby on Rails vulnerability specific to Active Record that could allow the creation of arbitrary queries in SQL. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
+
 *CVE-2013-1398 MCO Private Key Leak*
 
 Under certain circumstances, a user with root access to a single node in a PE deployment could possibly manipulate that client's local facts in order to force the pe_mcollective module to deliver a catalog containing SSL keys. These keys could be used to access other nodes in the collective and send them arbitrary commands as root. For the vast majority of users, the fix is to apply the 2.7.1 upgrade. 
