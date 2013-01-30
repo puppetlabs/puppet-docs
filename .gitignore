@@ -13,3 +13,4 @@ pdf_output
 pdf_source
 puppetdocs-latest.tar.gz*
 .bundle
+externalsources
