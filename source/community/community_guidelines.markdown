@@ -11,7 +11,7 @@ We want to keep the Puppet communities awesome, and we need your help to keep it
 * **Be nice**: Be courteous, respectful and polite to fellow community members: no regional, racial, gender, or other abuse will be tolerated. We like nice people way better than mean ones!
 * **Encourage diversity and participation**: Make everyone in our community feel welcome, regardless of their background, and do everything possible to encourage participation in our community. 
 * **Keep it legal**: Basically, don't get us in trouble. Post only content that you own, do not post private or sensitive information, and don't break the law.
-* **Stay on topic**: Make sure that you are posting to the correct channel or and avoid off-topic discussions.  Also remember that nobody likes spam. 
+* **Stay on topic**: Make sure that you are posting to the correct channel and avoid off-topic discussions.  Also remember that nobody likes spam. 
 
 
 Guideline Violations --- 3 Strikes Method

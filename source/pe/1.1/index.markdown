@@ -96,9 +96,9 @@ Puppet Dashboard can also connect to a pre-existing remote or local database ser
 
 When using a pre-existing server, you will need to manually create a user for Puppet Dashboard, create a database, and ensure that Dashboard's user has ALTER, CREATE, DELETE, DROP, INDEX, INSERT, SELECT, and UPDATE privileges on that database **before** completing the installation. Consult the MySQL documentation for more details. The relevant commands will likely resemble the following: 
 
-	CREATE DATABASE dashboard CHARACTER SET utf8;
-	CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'password';
-	GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost';
+    CREATE DATABASE dashboard CHARACTER SET utf8;
+    CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'password';
+    GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost';
 
 Before performing the installation, the Puppet Enterprise installer will provide a code snippet which can be copied and pasted verbatim into an interactive MySQL shell. 
 
@@ -370,13 +370,13 @@ If you find that you need the Ruby development libraries but skipped them during
 
 For systems using apt and dpkg (Ubuntu and Debian), execute the following commands: 
 
-	dpkg -i *ruby*dev* 
+    dpkg -i *ruby*dev* 
 
-	apt-get install --fix-broken
+    apt-get install --fix-broken
 
 For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), execute the following commands: 
 
-	yum localinstall --nogpgcheck *ruby*dev* 
+    yum localinstall --nogpgcheck *ruby*dev* 
 
 #### Configuring older agent nodes to work with Puppet Dashboard
 
@@ -390,8 +390,8 @@ If your previous Puppet architecture included stored reports on the puppet maste
 
 To run the report importer, first locate the reports directory on your previous puppet master and copy it to the server running Puppet Dashboard. (N.B.: If invoked with `--configprint reportdir`, puppet master will return its reports directory and exit.) Then, on the Puppet Dashboard server, run the following commands with root privileges: 
 
-	cd /opt/puppet/share/puppet-dashboard
-	PATH=/opt/puppet/bin:$PATH REPORT_DIR={old reports directory} rake reports:import
+    cd /opt/puppet/share/puppet-dashboard
+    PATH=/opt/puppet/bin:$PATH REPORT_DIR={old reports directory} rake reports:import
 
 If you have a significant number of existing reports, this task can take some time, so plan accordingly.
 

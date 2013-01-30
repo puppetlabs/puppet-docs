@@ -99,13 +99,13 @@ If you find that you need the Ruby development libraries but skipped them during
 
 For systems using apt and dpkg (Ubuntu and Debian), run the following commands: 
 
-	dpkg -i *ruby*dev* 
+    dpkg -i *ruby*dev* 
 
-	apt-get install --fix-broken
+    apt-get install --fix-broken
 
 For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), run the following commands: 
 
-	yum localinstall --nogpgcheck *ruby*dev* 
+    yum localinstall --nogpgcheck *ruby*dev* 
 
 ### Enabling Reporting on Non-PE Agent Nodes
 
