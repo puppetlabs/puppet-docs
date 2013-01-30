@@ -19,9 +19,9 @@ To install the documentation-generating code:
 
         $ git submodule update --init
 
-2.  Use your package manager to install rake, libxml2-dev,
-    libxslt-dev, and pygments.  Package names may vary by platform; for example,
-    using Macports, these packages could be installed with:
+2.  Use your package manager to install rake, libxml2-dev, libxslt-dev, and pygments.  
+    Package names may vary by platform; for example, using Macports, these packages could 
+    be installed with:
 
         $ sudo port -d install rb-rake libxml2 libxslt py-pygments
 
@@ -29,13 +29,15 @@ To install the documentation-generating code:
     install the pygmentize binary with a different name (like Macports does),
     you must symlink it so Jekyll can find the command.
 
-3.  Install the ruby dependencies:
+3.  Install the Ruby dependencies:
 
-        $ sudo gem install kramdown liquid maruku rack versionomy vlad vlad-git albino classifier directory_watcher rdoc
-
-    One of our tools used to fail unless Liquid's version was exactly
-    2.2.2, but that's no longer necessary; you should install the newest
-    available version of Liquid.
+    The Puppet docs project uses Ruby Bundler to ensure that you have the correct dependencies
+    installed on your system and that the documents are being built with the correct versions
+    of needed binaries. To install the project's requirements:
+    
+        $ sudo gem install bundler
+        $ cd puppet-docs
+        $ bundle install --path=vendor/bundle
 
 Building and Viewing
 --------------------
@@ -50,10 +52,16 @@ Building and Viewing
 
     (You can use `rake run` to combine these steps.)
 
-Build Generated Docs For A Given Puppet Version
+Build Generated Docs for a Given Puppet Version
 -----------------------------------------------
 
     $ VERSION=0.25.0 rake references:puppetdoc
+
+For the generated docs to build correctly, you may not have Puppet in your default Ruby load path. 
+We recommend building the generated docs on a system where you have not installed Puppet as
+a package for your operating system. If this isn't possible, we recommend using [rvm][] or 
+[rbenv][] with a minimal Ruby installation to build the generated docs.
+
 
 Build Updated HTML Manpages
 ---------------------------
@@ -86,9 +94,6 @@ think something important is missing, please [submit a ticket][1] to
 to get your change in is to contribute it; see the next section for
 details.
 
-NOTE: If you're talking about additional content, keep in mind that it might
-make more sense to be on the [Wiki][2].  You might want to start by
-adding it there.
 
 Contributing Changes
 --------------------
@@ -107,6 +112,8 @@ style and usage guide, which are both in the root of this project.
 [2]: http://projects.puppetlabs.com/projects/puppet/wiki/
 [3]: http://github.com
 [4]: http://docs.puppetlabs.com/guides/style_and_usage.html
+[rvm]: https://rvm.io
+[rbenv]: https://github.com/sstephenson/rbenv
 
 Copyright
 ---------

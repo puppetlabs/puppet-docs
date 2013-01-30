@@ -1,4 +1,8 @@
+vendor
 vendor/puppet
+vendor/hiera
+vendor/facter
+vendor/bundle
 bin/mar*
 output
 \#*
@@ -8,3 +12,4 @@ log
 pdf_output
 pdf_source
 puppetdocs-latest.tar.gz*
+.bundle

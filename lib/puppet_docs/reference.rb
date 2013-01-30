@@ -54,8 +54,20 @@ module PuppetDocs
       end
 
       def generate
+
+        ENV['RUBYLIB'] = "#{facter_dir}/lib:#{hiera_dir}/lib:#{puppet_dir}/lib"
+
         puts "Generating #{@name} reference for #{version}."
-        content = `ruby -I#{puppet_dir}/lib #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+
+        if @name == "developer"
+          Dir.chdir(puppet_dir)
+          puts "(YARD documentation takes a while to generate.)"
+          `bundle exec yard -o #{yard_directory}`
+          return
+        end
+
+        content = `ruby #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
             require 'facter'
@@ -105,7 +117,7 @@ EOT
       def version
         @version ||=
           at @tag do
-            raw = `ruby -I#{puppet_dir}/lib -rpuppet -e 'puts Puppet::PUPPETVERSION'`.strip
+            raw = `ruby  -rpuppet -e 'puts Puppet::PUPPETVERSION'`.strip
             Versionomy.parse(raw)
           end
       end
@@ -131,7 +143,17 @@ EOT
         PuppetDocs.root + 'vendor/puppet'
       end
 
+      def hiera_dir
+        PuppetDocs.root + 'vendor/hiera'
+      end
+
+      def facter_dir
+        PuppetDocs.root + 'vendor/facter'
+      end
+
+
       def setup_repository!
+
         if File.directory?(puppet_dir)
           at 'master' do
             %x{git pull origin master}
@@ -140,6 +162,23 @@ EOT
           puts "Retrieving puppet source."
           %x{git clone git://github.com/puppetlabs/puppet.git '#{puppet_dir}'}
         end
+
+        if File.directory?(facter_dir)
+           Dir.chdir(facter_dir)
+            %x{git pull origin master}
+        else
+          puts "Retrieving facter source."
+          %x{git clone git://github.com/puppetlabs/facter.git '#{facter_dir}'}
+        end
+
+        if File.directory?(hiera_dir)
+             Dir.chdir(hiera_dir)
+            %x{git pull origin master}
+        else
+          puts "Retrieving hiera source."
+          %x{git clone git://github.com/puppetlabs/hiera.git '#{hiera_dir}'}
+        end
+
       end
 
       def change_to_tag!
@@ -152,6 +191,10 @@ EOT
 
       def destination_directory
         @destination_directory ||= PuppetDocs.root + "source/references" + @tag
+      end
+
+     def yard_directory
+        @yard_directory ||= destination_directory + "developer"
       end
 
       def setup_destination!
