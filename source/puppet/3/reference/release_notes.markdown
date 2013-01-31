@@ -13,7 +13,7 @@ title: "Puppet 3 Release Notes"
 [upgrade_issues]: http://projects.puppetlabs.com/projects/puppet/wiki/Telly_Upgrade_Issues
 [target_300]: http://projects.puppetlabs.com/projects/puppet/issues?set_filter=1&f[]=fixed_version_id&op[fixed_version_id]=%3D&v[fixed_version_id][]=271&f[]=&c[]=project&c[]=tracker&c[]=status&c[]=priority&c[]=subject&c[]=assigned_to&c[]=fixed_version&group_by=
 [unless]: ./lang_conditional.html#unless-statements
-
+[target_310]: http://projects.puppetlabs.com/projects/puppet/issues?set_filter=1&f%5B%5D=fixed_version_id&op%5Bfixed_version_id%5D=%3D&v%5Bfixed_version_id%5D%5B%5D=288&f%5B%5D=&c%5B%5D=project&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=fixed_version&group_by=
 
 Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should:**
 
@@ -51,8 +51,36 @@ The `hiera`, `hiera_array`, `hiera_hash`, and `hiera_include` functions are now 
 * Zpool support is significantly improved.
 
 
+New Features in Puppet 3.1.0
+-----
 
-Backwards-Incompatible Changes in 3.0
+### YAML Node Cache Restored on Master
+
+In 3.0.0, we inadvertently removed functionality that people relied upon to get a list of all the nodes checking into a particular puppet master. This is now enabled for good, added to the test harness, and available for use as:
+
+    # shell snippet
+    export CLIENTYAML=`puppet master --configprint yamldir`
+    puppet node search "*" --node_terminus yaml --clientyamldir $CLIENTYAML
+    
+### Improvements When Loading Ruby Code
+
+A major area of focus for this release was loading extension code. As people wrote and distributed Faces (new puppet subcommands that extend Puppet's capabilities), bugs like [#7316](https://projects.puppetlabs.com/issues/7316) started biting them. Additionally, seemingly simple things like retrieving configuration file settings quickly got complicated, causing problems both for Puppet Labs' code like Cloud Provisioner as well as third-party integrations like Foreman. The upshot is that it's now possible to fully initialize puppet when using it as a library, loading Ruby code from Forge modules works correctly, and tools like puppetlabs_spec_helper now work correctly.
+
+### YARD API Documentation
+
+To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.1.latest/index.html) under [Developer Documentation](/references/3.1.latest/developer/). 
+   
+
+All Bugs Fixed in 3.1
+-----
+
+Use the Puppet issue tracker to find every bug fixed in a given version of Puppet.
+
+* [All bugs fixed in 3.1.0][target_310] (approx. 53)
+
+
+
+Backwards-Incompatible Changes in 3.x
 -----
 
 [backwards]: #backwards-incompatible-changes-in-30
@@ -105,7 +133,7 @@ Unchanged:
 
 ### Ruby DSL is Deprecated
 
-The [Ruby DSL that was added in Puppet 2.6](http://projects.puppetlabs.com/projects/puppet/wiki/Ruby_Dsl) (and then largely ignored) is deprecated. A future release of Puppet will introduce a significantly improved Ruby DSL which **may** break backwards compatibility with the old one. 
+The [Ruby DSL that was added in Puppet 2.6](http://projects.puppetlabs.com/projects/puppet/wiki/Ruby_Dsl) (and then largely ignored) is deprecated. Deprecation warnings have been added to Puppet 3.1. 
 
 ### Deprecated Commands Are Removed
 
