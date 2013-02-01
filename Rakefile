@@ -23,6 +23,10 @@ top_dir = Dir.pwd
 
 namespace :externalsources do
 
+  unless File.exists?("externalsources") && File.directory?("externalsources")
+    Dir.mkdir("externalsources")
+  end
+
   # For now, we're using things in the _config.yml, just... because it's there I guess.
   def load_externalsources
     require 'yaml'
