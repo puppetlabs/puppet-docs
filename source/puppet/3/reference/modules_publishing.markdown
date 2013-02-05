@@ -11,7 +11,7 @@ title: "Publishing Modules on the Puppet Forge"
 [forge]: https://forge.puppetlabs.com/
 [rspec]: http://rspec-puppet.com/
 
-[register]: ./images/forge_register.png
+[signup]: ./images/forge_signup.png
 [publishmodule]: ./images/forge_publish_module.png
 [uploadtarball]: ./images/forge_upload_tarball.png
 [uploadtarball2]: ./images/forge_upload_tarball2.png
@@ -54,9 +54,9 @@ Create a Puppet Forge Account
 
 Before you begin, you should create a user account on the Puppet Forge. You will need to know your username when preparing to publish any of your modules. 
 
-Start by navigating to the [Puppet Forge website][forge] and clicking the "Register" link in the sidebar:
+Start by navigating to the [Puppet Forge website][forge] and clicking the "Sign Up" link in the sidebar:
 
-![The "register" link in the Puppet Forge sidebar][register]
+![The "sign up" link in the Puppet Forge sidebar][signup]
 
 Fill in your details. After you finish, you will be asked to verify your email address via a verification email. Once you have done so, you can publish modules to the Puppet Forge.
 
