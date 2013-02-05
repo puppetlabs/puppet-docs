@@ -93,12 +93,12 @@
     - `"Publishing Modules", "./modules_publishing.html"`
     - Module Documentation (puppetdoc)
 - **Generated References**
-    - `"Resource Types", "/references/3.0.latest/type.html"`
-    - `"Configuration Settings", "/references/3.0.latest/configuration.html"`
-    - `"Functions", "/references/3.0.latest/function.html"`
-    - `"Metaparameters", "/references/3.0.latest/metaparameter.html"`
-    - `"Report Handlers", "/references/3.0.latest/report.html"`
-    - `"Indirections and Termini", "/references/3.0.latest/indirection.html"`
+    - `"Resource Types", "/references/3.1.latest/type.html"`
+    - `"Configuration Settings", "/references/3.1.latest/configuration.html"`
+    - `"Functions", "/references/3.1.latest/function.html"`
+    - `"Metaparameters", "/references/3.1.latest/metaparameter.html"`
+    - `"Report Handlers", "/references/3.1.latest/report.html"`
+    - `"Indirections and Termini", "/references/3.1.latest/indirection.html"`
 - **File Serving**
 - **Resource Types and Providers**
     - Type and Provider Overview (RAL)
@@ -159,6 +159,8 @@
 {% endcomment %}
 
 
+{% capture version %}{% reference_version %}{% endcapture %}
+
 <h3 id="puppet-3-reference-manual">Puppet 3 Reference Manual</h3>
 
 <p><a href="./index.html">Main Index</a></p>
@@ -213,12 +215,13 @@
   </li>
   <li><strong>Generated References</strong>
     <ul>
-      <li>{% iflink "Resource Types", "/references/3.0.latest/type.html" %}</li>
-      <li>{% iflink "Configuration Settings", "/references/3.0.latest/configuration.html" %}</li>
-      <li>{% iflink "Functions", "/references/3.0.latest/function.html" %}</li>
-      <li>{% iflink "Metaparameters", "/references/3.0.latest/metaparameter.html" %}</li>
-      <li>{% iflink "Report Handlers", "/references/3.0.latest/report.html" %}</li>
-      <li>{% iflink "Indirections and Termini", "/references/3.0.latest/indirection.html" %}</li>
+      <li>{% iflink "Resource Types", "/references/3.1.latest/type.html" %}</li>
+      <li>{% iflink "Configuration Settings", "/references/3.1.latest/configuration.html" %}</li>
+      <li>{% iflink "Functions", "/references/3.1.latest/function.html" %}</li>
+      <li>{% iflink "Metaparameters", "/references/3.1.latest/metaparameter.html" %}</li>
+      <li>{% iflink "Report Handlers", "/references/3.1.latest/report.html" %}</li>
+      <li>{% iflink "Indirections and Termini", "/references/3.1.latest/indirection.html" %}</li>
+      <li>{% iflink "Developer Documentation", "/references/3.1.latest/developer/index.html" %}</li>
     </ul>
   </li>
   <li><strong>More Sections Coming Later</strong>

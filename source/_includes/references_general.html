@@ -14,6 +14,7 @@ These pages are generated from the Puppet source code. You are looking at the re
 
 #### Other Versions
 
+* [Latest 3.1.x release](/references/3.1.latest/{% filename %})
 * [Latest 3.0.x release](/references/3.0.latest/{% filename %})
 * [Latest 2.7.x release](/references/2.7.latest/{% filename %})
 * [Latest version, inc. RCs](/references/latest/{% filename %})
@@ -30,6 +31,8 @@ Use these links to go back to the Puppet Reference Manual:
 
 {% endcomment %}
 
+{% capture version %}{% reference_version %}{% endcapture %}
+
 <h3 id="generated-references">Generated References</h3>
 
 <p>These pages are generated from the Puppet source code. You are looking at the references for:</p>
@@ -43,11 +46,19 @@ Use these links to go back to the Puppet Reference Manual:
   <li>{% iflink "Metaparameter Reference", "./metaparameter.html" %}</li>
   <li>{% iflink "Report Reference", "./report.html" %}</li>
   <li>{% iflink "Indirection Reference", "./indirection.html" %}</li>
+ {% unless version < "3.1" %}
+   <li>{% iflink "Developer Documentation", "./developer/index.html" %}</li>
+ {% endunless %}
+
 </ul>
 
+
+  
+  
 <h4 id="other-versions">Other Versions</h4>
 
 <ul>
+  <li><a href="/references/3.1.latest/{% filename %}">Latest 3.1.x release</a></li>
   <li><a href="/references/3.0.latest/{% filename %}">Latest 3.0.x release</a></li>
   <li><a href="/references/2.7.latest/{% filename %}">Latest 2.7.x release</a></li>
   <li><a href="/references/latest/{% filename %}">Latest version, inc. RCs</a></li>

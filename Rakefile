@@ -23,6 +23,10 @@ top_dir = Dir.pwd
 
 namespace :externalsources do
 
+  unless File.exists?("externalsources") && File.directory?("externalsources")
+    Dir.mkdir("externalsources")
+  end
+
   # For now, we're using things in the _config.yml, just... because it's there I guess.
   def load_externalsources
     require 'yaml'
@@ -324,12 +328,3 @@ task :deploy do
   end
 end
 
-task :default => :spec
-
-# require 'rdoc/task'
-# Rake::RDocTask.new do |rdoc|
-#   rdoc.rdoc_dir = 'rdoc'
-#   rdoc.title = "puppet-docs"
-#   rdoc.rdoc_files.include('README*')
-#   rdoc.rdoc_files.include('lib/**/*.rb')
-# end
