@@ -16,13 +16,13 @@ For a complete guide to the puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### PE 2.7.1 (1/???/2013)
+### PE 2.7.1 (2/6/2013)
 
 Two modules have been updated in this maintenance release: puppetlabs-request_manager and puppetlabs-auth_conf.
 
 #### Change to auth.conf File Management
 
-Previously, the auth.conf file was fully managed by PE 2.7.0. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1 the upgrader will still convert auth.conf to add the code needed to enable certificate management if and only if the file has not been manually modified. If the file has been modified, the upgrader will still show a warning that it is not going to convert the file. However, on subsequent puppet runs, the file will now be left untouched.
+Previously, the auth.conf file was fully managed by PE 2.7.0. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1, the upgrader will still convert auth.conf to add the code needed to enable certificate management. However, it will do this if and only if the file has not been manually modified. If the file has been modified, the upgrader will show a warning that it is not going to convert the file and, on subsequent puppet runs, the file will now be left untouched. Note that when auth.conf is not modified by the upgrader, you will have to manually add some lines of code to it in order to enable the Console's node request management capabilities. This is explained in the [ node request management configuration details](http://docs.puppetlabs.com/pe/2.7/console_cert_mgmt.html#configuration-details).
 
 #### Broken Augeas puppet Lens on Solaris
 
@@ -30,19 +30,19 @@ On Solaris systems, PE's file paths were not compatible with the augeas puppet l
 
 #### Security Patches
 
-*CVE-2013-0333 Ruby on Rails JSON Parser Code Injection Vulnerability*
+*[CVE-2013-0333 Ruby on Rails JSON Parser Code Injection Vulnerability]((http://puppetlabs.com/security/cve/cve-2013-0333/))*
 
 This is a Ruby on Rails vulnerability in the JSON parser that could allow an attacker to bypass authentication and inject and execute arbitrary code, or perform a DoS attack. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
 
-*CVE-2013-0156 Ruby on Rails SQL Injection Vulnerability*
+*[CVE-2013-0156 Ruby on Rails SQL Injection Vulnerability](http://puppetlabs.com/security/cve/cve-2013-0156/)*
 
 This is a Ruby on Rails vulnerability specific to Active Record that could allow the injection of arbitrary code in SQL. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
 
-*CVE-2013-0155 Ruby on Rails SQL Query Generation Vulnerability*
+*[CVE-2013-0155 Ruby on Rails SQL Query Generation Vulnerability](http://puppetlabs.com/security/cve/cve-2013-0155/)*
 
 This is a Ruby on Rails vulnerability specific to Active Record that could allow the creation of arbitrary queries in SQL. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
 
-*CVE-2013-1398 MCO Private Key Leak*
+*[CVE-2013-1398 MCO Private Key Leak](http://puppetlabs.com/security/cve/cve-2013-1398/)*
 
 Under certain circumstances, a user with root access to a single node in a PE deployment could possibly manipulate that client's local facts in order to force the pe_mcollective module to deliver a catalog containing SSL keys. These keys could be used to access other nodes in the collective and send them arbitrary commands as root. For the vast majority of users, the fix is to apply the 2.7.1 upgrade. 
 
@@ -58,7 +58,7 @@ the pe_mcollective::role::console class is applied to your console. This can be 
        include pe_mcollective::role::master
      }
 
-*CVE 2013-1399 CSRF Protection*
+*[CVE 2013-1399 CSRF Protection](http://puppetlabs.com/security/cve/cve-2013-1399/)*
  	 
 Cross site request forgery (CSRF) protection has been added to the following areas of  the PE console: node request management, live management, and user administration. Now, basically every HTML form submitted to a server running one of these services gets a randomly generated token whose authenticity is compared against a token stored by the session of the currently logged-in user. Requests with tokens that do not authenticate (or are not present) will be answered with a "403 Forbidden" HTML status.
 
@@ -66,9 +66,9 @@ One exception to the CSRF protection model are HTTP requests that use basic HTTP
  	 	
 Note that the Rails-based  puppet dashboard application is not vulnerable due to Rails' built in CSRF protection.
 
-*CVE 2012-5664 SQL Injection Vulnerability*
+*[CVE 2012-5664 SQL Injection Vulnerability](http://puppetlabs.com/security/cve/cve-2012-5664/)*
  
-This CVE addresses an SQL injection vulnerability in Ruby on Rails and Active Record. The vulnerability is related to the way dynamic finders are processed in Active Record wherein a method parameter could be used as scope. PE 2.7.1 provides patches to Puppet Dashboard and the Active Record packages to eliminate the vulnerabilitly. More information is available on this [CVE's page](http://puppetlabs.com/security/cve/cve-2012-5664/). 
+This CVE addresses an SQL injection vulnerability in Ruby on Rails and Active Record. The vulnerability is related to the way dynamic finders are processed in Active Record wherein a method parameter could be used as scope. PE 2.7.1 provides patches to Puppet Dashboard and the Active Record packages to eliminate the vulnerabilitly.
 
 ### PE 2.7.0
 

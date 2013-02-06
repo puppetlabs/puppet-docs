@@ -5,15 +5,15 @@ subtitle: "New Features in PE 2.7"
 ---
 
 ### Version 2.7.1
-PE 2.7.1 is a maintenance release. It modifies the way PE manages auth_conf, fixes an issue with puppet's augeas lenses, and adds several patches to address security issues. See the [Appendix](appendix.html#release-notes) for release notes detailing the changes.
+PE 2.7.1 is a maintenance release. It modifies the way PE manages the auth_conf file, fixes an issue with puppet's augeas lenses, and adds several patches to address security issues. See the [Appendix](appendix.html#release-notes) for release notes detailing these changes.
 
 #### Changes to auth.conf Management
 
-PE's management of the auth.conf file has been changed such that it will not be over-written during puppet runs after upgrading.
+PE's management of the auth.conf file has been changed. Now, after upgrading, the file will not be over-written on the subsequent puppet run.
 
 #### Puppet Augeas Lens Fix
 
-An issue with PE's file paths have been fixed so that augeas now runs correctly on Solaris systems.
+An issue with PE's file paths has been fixed so that augeas now runs correctly on Solaris systems.
 
 #### Security Patches
 
