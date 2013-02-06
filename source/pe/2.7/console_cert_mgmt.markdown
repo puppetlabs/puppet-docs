@@ -66,7 +66,7 @@ For more information on working with certificates from the CLI, see the [Puppet 
         auth yes
         allow pe-internal-dashboard
 
-    Also, note that since auth.conf is fully managed by puppet in 2.7, if you make changes to the file, they will get over-written on the next puppet run.
+    Also, note that in PE 2.7.0, it was the case that if you made changes to the file, they would get over-written on the next puppet run. *As of PE 2.7.1 this is no longer true.* Auth.conf will be updated during upgrade if the file has not been modified and then it will not get touched during subsequent puppet runs. See the [release notes](http://docs.puppetlabs.com/pe/2.7/appendix.html#release-notes) for more information.
 
 ### New Modules
 PE 2.7 installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienaar-concat`. It also upgrades the `puppetlabs-stdlib` module to v.2.5.1.
