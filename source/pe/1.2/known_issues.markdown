@@ -12,6 +12,18 @@ Known Issues in Puppet Enterprise 1.2
 
 The following is a list of known issues in each maintenance release of Puppet Enterprise 1.2. To find out which issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.6.9 (Puppet Enterprise 1.2.3)`.
 
+In PE 1.2.5 and Earlier
+-----
+
+### Several Security Issues
+
+Several Ruby on Rails related security issues were hot-fixed in PE 1.2.5. All of these fixes have been rolled into the packages for PE 1.2.6. The issues are:
+
+* [CVE-2013-0333 Rails JSON Parser Vulnerability](http://puppetlabs.com/security/cve/cve-2013-0333/)
+* [CVE-2013-0155 Rails (ActiveRecord) Unsafe Query Generation Risk](http://puppetlabs.com/security/cve/cve-2013-0155/)
+* [CVE-2013-0156 Rails (ActionPack) SQL Injection Vulnerability](http://puppetlabs.com/security/cve/cve-2013-0156/)
+* [CVE-2012-5664 Rails (ActiveRecord) SQL Injection Vulnerability](http://puppetlabs.com/security/cve/cve-2012-5664/)
+
 In PE 1.2.4 and Earlier
 -----
 
