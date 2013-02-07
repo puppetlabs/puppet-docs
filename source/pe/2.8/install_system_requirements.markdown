@@ -14,7 +14,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 2.7 supports the following systems:
+Puppet Enterprise 2.8 supports the following systems:
 
 |       Operating system       |  Version          |       Arch        |   Roles   |
 |------------------------------|-------------------|-------------------|-----------|
@@ -27,6 +27,7 @@ Puppet Enterprise 2.7 supports the following systems:
 | SUSE Linux Enterprise Server | 11                | x86 and x86\_864  | all roles |
 | Solaris                      | 10                | SPARC and x86\_64 | agent     |
 | Microsoft Windows            | 2003, 2008, and 7 | x86 and x86\_864  | agent     |
+| AIX            | 5, 6, and 7 | Power Arch.  | agent     |
 
 
 Hardware
