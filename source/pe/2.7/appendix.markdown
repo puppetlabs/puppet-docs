@@ -50,13 +50,13 @@ For PE users who do not use the Console, this can be fixed by making sure that t
 the pe_mcollective::role::console class is applied to your console. This can be as simple as adding the following to your site.pp manifest or other node classifier:
 
 
-        node console {
+    node console {
         include pe_mcollective::role::console
     }
 
-       node master {
+    node master {
        include pe_mcollective::role::master
-     }
+    }
 
 *[CVE 2013-1399 CSRF Protection](http://puppetlabs.com/security/cve/cve-2013-1399/)*
  	 
