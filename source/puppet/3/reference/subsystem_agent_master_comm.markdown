@@ -45,6 +45,15 @@ Note that if the agent has submitted a certificate signing request, an admin use
 4. If the agent has reached this step, it has never requested a certificate, so request one now. (Unverified PUT request to `/certificate_request/<name>`.)
 5. Return to the first step of this section, in case the master has autosign enabled; if it doesn't, the agent will end up bailing at step 2.
 
+## Request Node Object and Switch Environments
+
+1. Do a GET request to `/node/<name>`.
+    * If successful, read the environment from the node object.
+        * If the node object has one: In all subsequent requests during this run, use this environment instead of the one in the agent's config file.
+    * If unsuccessful, or if the node object had no environment set, continue using the environment from the agent's config file.
+
+> **Note:** This step was added in Puppet 3.0.0, to allow an ENC to centrally assign nodes to environments. The lenient failure mode is because many users' [auth.conf][authconf] files didn't allow access to node objects, since that rule was only added to the default auth.conf in Puppet 2.7.0 and many people don't update their config files for every upgrade.
+
 ## Fetch Plugins
 
 If `pluginsync` is enabled on the agent:
