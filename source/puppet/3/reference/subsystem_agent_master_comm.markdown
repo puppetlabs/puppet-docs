@@ -14,7 +14,7 @@ layout: default
 
 The puppet agent and the puppet master server communicate via HTTPS over host-verified SSL.
 
-> **Note on verification:** If the agent does not yet have its own certificate, it will make several unverified requests before it can switch to verified mode. The _only_ request for which the agent doesn't check the _master's_ certificate is the initial request for a copy of the CA cert. <!-- TODO verify this --> In the descriptions below, assume every request is host-verified in both directions unless stated otherwise.
+> **Note on verification:** If the agent does not yet have its own certificate, it will make several unverified requests before it can switch to verified mode. In these requests, the agent doesn't identify itself to the master and doesn't check the master's cert against the CA. In the descriptions below, assume every request is host-verified unless stated otherwise.
 
 The agent/master interface is REST-like, but may vary from strictly RESTful design in some ways. The endpoints used by the agent are detailed in the [REST API reference][rest_api]. Note that all REST endpoints are preceded by the environment being used. Note also that access to each individual endpoint is controlled by [auth.conf][authconf] on the master.
 
@@ -26,9 +26,9 @@ From beginning to end, an agent run proceeds like this:
 1. Does the agent have a private key at `$ssldir/private_keys/<name>.pem`?
     * If no, generate one.
 2. Does the agent have a copy of the CA certificate at `$ssldir/certs/ca.pem`? <!-- TODO this might be out of order. -->
-    * If no, fetch it. (Unverified GET request to `/certificate/ca` **without** verifying the master's certificate. This could be vulnerable to MITM attacks, but it's also just a convenience; you can secure this step by making distribution of the CA cert part of your server provisioning process, so that agents never ask for a CA cert over the network.)
+    * If no, fetch it. (Unverified GET request to `/certificate/ca`. Since the agent is retrieving the foundation for all future trust over an untrusted link, this could be vulnerable to MITM attacks, but it's also just a convenience; you can make this step unnecessary by distributing the CA cert as part of your server provisioning process, so that agents never ask for a CA cert over the network. If you do this, an attacker could temporarily deny Puppet service to brand new nodes, but would be unable to take control of them with a rogue puppet master.)
 3. Does the agent have a signed certificate at `$ssldir/certs/<name>.pem`?
-    * If yes, skip the following section and continue to "fetch plugins."
+    * If yes, skip the following section and continue to "request node object."
     * (If it has a cert but it doesn't match the private key, bail with an error.)
 
 ## Obtain a Certificate (if necessary)
@@ -36,7 +36,7 @@ From beginning to end, an agent run proceeds like this:
 Note that if the agent has submitted a certificate signing request, an admin user will need to run `puppet cert sign <name>` on the CA puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing `puppet agent --fingerprint` on the agent to `puppet cert list` on the CA master.
 
 1. Try to fetch an already-signed certificate from the master. (Unverified GET request to `/certificate/<name>`.)
-    * If it gets one, skip the rest of this section and continue to "fetch plugins."
+    * If it gets one, skip the rest of this section and continue to "request node object."
     * (If it gets one that doesn't match the private key, bail with an error.)
 2. Determine whether the agent has already requested a certificate signing: Look for `$ssldir/certificate_requests/<name>.pem`.
     * If this file exists, the agent will bail, assuming it needs user intervention on the master. If `waitforcert` is enabled, it will wait a few seconds and start this section over.
