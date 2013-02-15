@@ -4,9 +4,9 @@ title: "PE Deployment Guide"
 subtitle: "First Steps: Setting Up Your Environment"
 ---
 
-
 First Steps: Setting Up Your Environment
 -----
+
 Once you've completed installation and verified that all the parts are talking to each other, there are a few things you'll want to do to set up your working environment.
  
 Puppet's manifests, as well as any modules, ENC's, etc. you are writing or modifying, should be treated like any other code under development, which is to say they should be version controlled, tested prior to release, and backed up frequently. Below we'll give you some suggestions for getting that done.
