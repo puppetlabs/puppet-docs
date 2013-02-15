@@ -30,7 +30,7 @@ On Solaris systems, PE's file paths were not compatible with the augeas puppet l
 
 #### Security Patches
 
-*[CVE-2013-0333 Ruby on Rails JSON Parser Code Injection Vulnerability]((http://puppetlabs.com/security/cve/cve-2013-0333/))*
+*[CVE-2013-0333 Ruby on Rails JSON Parser Code Injection Vulnerability](http://puppetlabs.com/security/cve/cve-2013-0333/)*
 
 This is a Ruby on Rails vulnerability in the JSON parser that could allow an attacker to bypass authentication and inject and execute arbitrary code, or perform a DoS attack. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
 
