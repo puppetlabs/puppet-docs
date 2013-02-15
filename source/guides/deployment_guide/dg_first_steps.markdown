@@ -1,4 +1,11 @@
-II. First Steps: Setting Up Your Environment
+---
+layout: default
+title: "PE Deployment Guide"
+subtitle: "First Steps: Setting Up Your Environment"
+---
+
+
+First Steps: Setting Up Your Environment
 -----
 Once you've completed installation and verified that all the parts are talking to each other, there are a few things you'll want to do to set up your working environment.
  

@@ -59,11 +59,14 @@ PE gives you a lot of flexibility in choosing where its various components can b
     
 #### The Puppet Master
 
-Start by installing the master. Typically, the puppet master (which may or may not include the console, see below)  is installed on a single node. However, under certain circumstances it may be preferable to run another master. For example, you may wish to run another master in order to provide HA or failover protection. (While it is also possible to run masterless, this is almost never done with PE.)
+Start by installing the master. Typically, the puppet master (which may or may not include the console, see below)  is installed on a single node. However, under certain circumstances it may be preferable to run another master. For example, you may wish to run another master in order to provide HA or failover protection. 
 
 >Generally speaking, running multiple masters only becomes necessary when your infrastructure grows to a certain size. What that size is precisely will vary depending on how complex your infrastructure is, the number of classes and resources, etc. in your manifests, and so on. As a general rule of thumb, however, once you get to 800 nodes you will probably want to start separating out the various functions of the master, and once you get to 1200 nodes or so you will likely want to use multiple masters. In any case, you may wish to defer deploying multiple masters if you just starting out with PE and want to keep your learning environment simple and straightforward. When you're ready to set up multiple masters, see [Using Multiple Puppet Masters](http://docs.puppetlabs.com/guides/scaling_multiple_masters.html). 
 
 Make sure that any machine you select for the master conforms to the [hardware system requirements](http://docs.puppetlabs.com/pe/2.7/install_system_requirements.html#hardware) and, in particular, ensure you have plenty of disk space, especially if you will be running the console on the same hardware.
+
+While it is also possible to run masterless, this is rarely done with PE. Once you have worked with Puppet at greater length, you can evaluate some of the discussions around running masterless ([Masterless Puppet](http://jamescun.com/2012/12/14/masterless-puppet.html)).
+    
     
 #### The Puppet Agent. 
 This one is easy. The puppet agent will get installed on every node in your infrastructure that you want to manage with PE, including the master and any other nodes that run other PE roles. Don't be shy about installing it on existing infrastructure.
@@ -73,10 +76,13 @@ If your infrastructure and needs are modest (around 200 nodes or less), the cons
     
 ####The Cloud Provisioner
 This optional role can create virtual machine instances in environments such as VMWare's Vsphere or Amazon EC2. Whichever environment you are using, the node running the cloud provisioning tools must have ports open to the outside. The required ports are: 
-    * vCenter: 10443 (HTTPS), 10111 (service management), 10109 (linked mode communication), 443 (SSL)
-    * AWS: 80 and 443 (SSL)
-    * OpenStack: 5000 (service API), 35357 (admin API)
-    * Puppet Master: TCP/8140, TCP/22 (SSH), TCP/443 (SSL)
+
+* vCenter: 10443 (HTTPS), 10111 (service management), 10109 (linked mode communication), 443 (SSL)
+* AWS: 80 and 443 (SSL)
+* OpenStack: 5000 (service API), 8773 (EC2 compatibility endpoint), 35357 (admin API)
+	
+In addition you must have the following port connections available to your Puppet master server:
+* Puppet Master: TCP/8140, TCP/22 (SSH), TCP/443 (SSL)
 
 When selecting the node for the cloud provisioner role, make sure that local firewall rules will allow access to these ports. (For this reason, running cloud provisioning on the same node as the master may not work.)
 
@@ -95,7 +101,7 @@ Once you've determined where everything is going to go, you can run the install 
 #### Installation Issues and Tips
 There are a few common problems users have encountered when installing, mainly related to pre-existing conditions in the environment. The most common include:
 
-* Errors caused by an existing, old version of MySQL. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `var/lib/mysql` on RHEL systems).
+* Errors caused by an existing, old version of MySQL. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `/var/lib/mysql` on RHEL systems).
 
 * If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](http://docs.puppetlabs.com/pe/2.7/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
 
@@ -104,6 +110,7 @@ There are a few common problems users have encountered when installing, mainly r
 * The installer creates a log file, `install_log.lastrun.<hostname>` which can be very useful for debugging install issues.
 
 * Similarly, the installer generates an `answers.lastrun.<hostname>` file that can help prompt your memory for things like, say, the console's hostname or the mySQL password.  
+*Important* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
     
 ### Managing Certificates
 Once you've gotten all the parts installed where you want them, it's time to get agents connected to their master. This is done by sending certificate signing requests (CSR's) from the agents to a certificate authority (CA). By default, the CA is the same server as the master. In any case, the CA and certificate signing process is a vital part of PE's security infrastructure. Make sure it is well protected.
@@ -123,6 +130,10 @@ Note that if your institution prefers or requires you to use externally purchase
     SSLCACertificateFile    <path_to_your_purchased_cert>/ca_cert.pem
 
 After saving these edits, you'll want to restart the `pe-httpd` daemon. Also, make sure to leave in place the original pe-internal-dashboard cert, private key, and CA certs (at /opt/puppet/share/puppet-dashboard/certs/).
+
+### What's Next?
+
+At this point you should have a functioning installation of Puppet Enterprise. Your agents should be able to talk to the master and you should be able to see them in the Console. The next chapter will focus on setting up your work environment so you can start classifying nodes and automating your infrastructure.
 
 * * * 
 

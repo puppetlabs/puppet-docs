@@ -1,4 +1,4 @@
-III. First Steps Towards Automation
+III. Automating Your Infrastructure
 -----
 
 
