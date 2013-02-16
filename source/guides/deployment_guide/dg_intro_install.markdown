@@ -82,6 +82,7 @@ This optional role can create virtual machine instances in environments such as 
 * OpenStack: 5000 (service API), 8773 (EC2 compatibility endpoint), 35357 (admin API)
 	
 In addition you must have the following port connections available to your Puppet master server:
+
 * Puppet Master: TCP/8140, TCP/22 (SSH), TCP/443 (SSL)
 
 When selecting the node for the cloud provisioner role, make sure that local firewall rules will allow access to these ports. (For this reason, running cloud provisioning on the same node as the master may not work.)

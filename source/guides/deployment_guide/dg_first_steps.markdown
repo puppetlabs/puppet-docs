@@ -26,7 +26,7 @@ A course in using Git is well beyond the scope of this guide, but there are many
 
 While there are many ways to map Git workflows to infrastructure, one of the most popular patterns is to set up Git branches to map to puppet [environments](http://docs.puppetlabs.com/guides/environment.html). In this scenario, a Git branch maps to a given environment. For example, you can set up Git branches to correspond to the development, testing and production environments favored by many company's workflows. You can even set things up to create environments dynamically as workflows change. For a detailed discussion and examples of this, refer to this [blog post on git workflows and puppet environments](http://puppetlabs.com/blog/git-workflow-and-puppet-environments/).
 
-If you are already familiar with Git and have some workflows and branch structures in place already, you can probably just add in manifest control. There's no need to reinvent the wheel. If you're setting up version control for the first time, and the above example using environments is too involved, you can start with a basic set up as follows:
+If you are already familiar with Git and have some workflows and branch structures in place already, you can probably just add in manifest control. There's no need to reinvent the wheel. If you're setting up version control for the first time, and the above example using environments is too involved, you can start with a basic set up as follows: (TODO)
 
 
 
@@ -41,10 +41,10 @@ There are several resources you can turn to in order to test your manifests and 
 
 [This guide](http://docs.puppetlabs.com/guides/tests_smoke.html) will give you some basic ideas for simple smoke testing of manifests and modules. Below we'll briefly list a few tools and resources which can help you further test your PE implementation. For a more in-depth discussion, take a look at this [blog post on syntax checking and automated testing](http://puppetlabs.com/blog/verifying-puppet-checking-syntax-and-writing-automated-tests/).
 
-However, all of that said, when you are first deploying puppet, your best bet is to rely heavily on modules you can get from [the Puppet Forge](http://forge.puppetlabs.com). Forge modules, especially those from frequent contributors or "Modules of the Week", are proven solutions for the most common things sysadmins need automate and they can save you a ton of time.
+However, all of that said, when you are first deploying puppet, your best bet is to rely heavily on modules you can get from [the Puppet Forge](http://forge.puppetlabs.com). Forge modules, especially those from frequent contributors or "Modules of the Week", are proven solutions for the most common things sysadmins need to automate and they can save you a ton of time.
 
 #### Noop
-Don't overlook the power of the `noop` flag. Noop lets you do a dry run of puppet without actually doing anything. Instead, noop will sniff out catalog compilation errors and give you log output that shows what puppet would have done to what, when. To run in noop mode, add the `--noop` flag when running `puppet agent` or `puppet apply`. You will see the results of your run in the Console and in stdout.  
+Don't overlook the power of the `--noop` flag. Noop lets you do a dry run of puppet without actually doing anything. Instead, noop will sniff out catalog compilation errors and give you log output that shows what puppet would have done to what, when. To run in noop mode, add the `--noop` flag when running `puppet agent` or `puppet apply`. You will see the results of your run in the Console and in stdout.  
 
 #### Puppet Parser
 Puppet parser is another simple tool that lets you check the syntax of puppet code. You can run it manually to check a given file, for example, `puppet parser validate site.pp`. This will check the manifest file for correct syntax and will return errors showing which line(s), if any, contain syntax errors such as missing curly braces or other typos and mistakes. You can also integrate syntax checking into your text editor, as explained in the previously referenced [blog post](http://puppetlabs.com/blog/verifying-puppet-checking-syntax-and-writing-automated-tests/).
