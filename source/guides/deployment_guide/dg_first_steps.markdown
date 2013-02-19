@@ -26,7 +26,7 @@ A course in using Git is well beyond the scope of this guide, but there are many
 
 While there are many ways to map Git workflows to infrastructure, one of the most popular patterns is to set up Git branches to map to puppet [environments](http://docs.puppetlabs.com/guides/environment.html). In this scenario, a Git branch maps to a given environment. For example, you can set up Git branches to correspond to the development, testing and production environments favored by many company's workflows. You can even set things up to create environments dynamically as workflows change. For a detailed discussion and examples of this, refer to this [blog post on git workflows and puppet environments](http://puppetlabs.com/blog/git-workflow-and-puppet-environments/).
 
-If you are already familiar with Git and have some workflows and branch structures in place already, you can probably just add in manifest control. There's no need to reinvent the wheel. If you're setting up version control for the first time, and the above example using environments is too involved, you can start with a basic set up as follows: (TODO)
+If you are already familiar with Git and have some workflows and branch structures in place already, you can probably just add in manifest control. There's no need to reinvent the wheel. If you're setting up version control for the first time, and the above example using environments is too involved, there is a good overview of a fairly basic Puppet/Git workflow available [here](http://weblog.etherized.com/posts/184). Please note that the paths in this example refer to open source Puppet - modules in Puppet Enterprise are located in `/etc/puppetlabs/puppet/modules`.
 
 
 
