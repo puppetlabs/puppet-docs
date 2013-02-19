@@ -21,6 +21,69 @@ $LOAD_PATH.unshift File.expand_path('lib')
 references = %w(configuration function indirection metaparameter report type developer)
 top_dir = Dir.pwd
 
+source_dir = "#{top_dir}/source"
+stash_dir = "#{top_dir}/_stash"
+preview_dir = "#{top_dir}/_preview"
+
+
+desc "Stash all directories but one in a temporary location. Run a preview server on localhost:4000."
+task :preview, :filename do |t, args|
+
+  if ["marionette-collective", "puppetdb_master", "puppetdb_1.1", "puppetdb", "mcollective"].include?(args.filename)
+    abort("\n\n*** External documentation sources aren't supported right now.\n\n")
+  end
+  
+  # Make sure we have a stash_directory
+  FileUtils.mkdir(stash_dir) unless File.exist?(stash_dir)
+
+  # Directories and files we have to have for a good live preview
+  required_dirs = ["_config.yml", "_includes", "_plugins", "files", "favicon.ico", "_layouts","images"]
+
+  # Move the things we don't need into the _stash
+  Dir.glob("#{source_dir}/*") do |directory|
+    FileUtils.mv directory, stash_dir unless directory.include?(args.filename) || required_dirs.include?(File.basename(directory))
+  end
+
+  # Get all the files we'd like to see in a temporary preview index (so we don't have to hunt for files by name)
+  Dir.chdir("#{source_dir}/#{args.filename}")
+  file_list = Dir.glob("**/*.markdown")
+  preview_index_files = []
+  file_list.each do |f|
+    html_name = f.gsub(/\.markdown/,'.html')
+    preview_index_files << "* [#{args.filename}/#{html_name}](#{args.filename}/#{html_name})\n"
+  end
+  
+preview_index=<<PREVIEW_INDEX
+---
+layout: frontpage
+title: Files Available for Live Preview
+canonical: "/"
+---
+#{preview_index_files}
+PREVIEW_INDEX
+
+  Dir.chdir(source_dir)
+  # put our file list index in place
+  File.open("index.markdown", 'w') {|f| f.write(preview_index) }  
+
+  # Run our preview server, watching ... watching ...
+  system("bundle exec jekyll  #{preview_dir} --auto --serve")
+
+  # When we kill it with a ctl-c ... 
+  puts "\n\n*** Shut down the server."
+  
+  # Clean up after ourselves (in a separate task in case something goes wrong and we need to do it manually)
+  Rake::Task['unpreview'].invoke
+end
+
+desc "Move all stashed directories back into the source directory, ready for site generation. "
+task :unpreview do
+  puts "\n*** Putting back the stashed files, removing the preview directory."
+  FileUtils.mv Dir.glob("#{stash_dir}/*"), "#{source_dir}"
+  FileUtils.rm_rf(preview_dir)
+  puts "\n*** Done.\n\n"
+end
+
 namespace :externalsources do
 
   unless File.exists?("externalsources") && File.directory?("externalsources")
@@ -37,7 +100,7 @@ namespace :externalsources do
   def repo_name(repo_url)
     repo_url.split('/')[-1].sub(/\.git$/, '')
   end
-  
+
   # "Update all working copies defined in source/_config.yml"
   task :update do
     Rake::Task['externalsources:clone'].invoke
@@ -80,8 +143,8 @@ namespace :externalsources do
       FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "source#{info['url']}"
     end
   end
-  
-  # "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source. 
+
+  # "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source.
   task :clean do
     system("find ./source -type l -print0 | xargs -0 rm")
   end
@@ -90,8 +153,8 @@ end
 desc "Generate the documentation"
 task :generate do
   Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
-  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places. 
-  
+  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
+
   system("mkdir -p output")
   system("rm -rf output/*")
   system("mkdir output/references")
