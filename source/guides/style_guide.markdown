@@ -105,8 +105,9 @@ most visible to text editors and other code lexers.
 
 All strings that do not contain variables should be enclosed in
 single quotes.  Double quotes should be used when variable interpolation is
-required.  Quoting is optional when the string is an alphanumeric
-bare word and is not a resource title.
+required.  Double quotes may also be used to make a string more readable when
+it contains single quotes.  Quoting is optional when the string is an
+alphanumeric bare word and is not a resource title.
 
 All variables should be enclosed in braces when interpolated in a
 string.  For example:
