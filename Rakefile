@@ -163,11 +163,39 @@ task :generate do
   end
 
   Rake::Task['references:symlink'].invoke
+  Rake::Task['symlink_latest_versions'].invoke
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
   Rake::Task['externalsources:clean'].reenable
 end
 
+desc "Symlink latest versions of several projects; see symlink_latest list in _config.yml"
+task :symlink_latest_versions do
+  require 'yaml'
+  require 'versionomy'
+  require 'pathname'
+  all_config = YAML.load(File.open("source/_config.yml"))
+  all_config['symlink_latest'].each do |project|
+    # this bit is snipped from PuppetDocs::Reference
+    subdirs = Pathname.new(top_dir + "/output/#{project}").children.select do |child|
+      child.directory? && !child.symlink?
+    end
+    versions = []
+    subdirs.each do |path|
+      begin
+        version = Versionomy.parse(path.basename.to_s)
+        versions << version
+      rescue
+        next
+      end
+    end
+    versions.sort! # sorts into ascending order, so most recent is last
+    puts versions.inspect
+    Dir.chdir "output/#{project}" do
+      FileUtils.ln_sf versions.last.to_s, 'latest'
+    end
+  end
+end
 
 desc "Serve generated output on port 9292"
 task :serve do

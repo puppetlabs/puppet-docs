@@ -36,4 +36,11 @@ externalsources:
     repo: git://github.com/puppetlabs/marionette-collective.git
     commit: origin/master
     subdirectory: website
+symlink_latest:
+  - puppet
+  - puppetdb
+  - hiera
+  - facter
+  - pe
+  - dashboard/manual
 ---
