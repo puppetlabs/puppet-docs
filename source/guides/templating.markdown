@@ -31,7 +31,7 @@ Templates are evaluated via a simple function:
 
 **Template files should be stored in the `templates` directory of a [Puppet module][modules],** which allows the `template` function to locate them with the simplified path format shown above. For example, the file referenced by `template("my_module/mytemplate.erb")` would be found on disk at `/etc/puppet/modules/my_module/templates/mytemplate.erb` (assuming the common [`modulepath`](/references/latest/configuration.html#modulepath) of `/etc/puppet/modules`).
 
-(The `template` function can also locate files stored in Puppet's [`templatedir`](/references/latest/configuration.html#templatedir), but this is no longer recommended.) 
+(If a file cannot be located within any module, the `template` function will fall back to searching relative to the paths in Puppet's [`templatedir`](/references/latest/configuration.html#templatedir). However, using this setting is no longer recommended.)
 
 Templates are always evaluated by the parser, not by the client.
 This means that if you are using a puppet master server, then the templates
