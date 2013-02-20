@@ -28,8 +28,6 @@ While there are many ways to map Git workflows to infrastructure, one of the mos
 
 If you are already familiar with Git and have some workflows and branch structures in place already, you can probably just add in manifest control. There's no need to reinvent the wheel. If you're setting up version control for the first time, and the above example using environments is too involved, there is a good overview of a fairly basic Puppet/Git workflow available [here](http://weblog.etherized.com/posts/184). Please note that the paths in this example refer to open source Puppet - modules in Puppet Enterprise are located in `/etc/puppetlabs/puppet/modules`.
 
-
-
 ### Testing
 There are several resources you can turn to in order to test your manifests and modules. At this stage of the game, we don't mean testing in the formal sense of unit tests, CI tests, etc. We simply mean making reality checks to make sure things are working in the way you want. So, first you'll want to pick out the nodes you're going to automate initially. Generally speaking, when you start to deploy PE, you'll want to begin with low-risk nodes that are not mission critical. There are few approaches you can take in selecting nodes.
 
