@@ -274,7 +274,7 @@ You may get this error when using a manifest like:
        foo_module::bar_exported_resource <<| |>>
     }
 
-[collector_syntax]: /puppet/3/reference/lang_collectors.html#syntax
+[collector_syntax]: /puppet/latest/reference/lang_collectors.html#syntax
 
 This confusing error is a result of improper (or rather lack of any) capitalization while collecting the exported resource --- [resource collectors use the capitalized form of the resource type.][collector_syntax] The manifest for the node b should actually be:
 

@@ -31,10 +31,10 @@ The remainder of the `puppet:` URI maps to the server's filesystem in one of two
 
 ## Serving Module Files
 
-As the vast majority of file serving should be done through [modules](/puppet/2.7/reference/modules_fundamentals.html), the Puppet file server provides a special and semi-magical mount point called `modules`, which is available by default. If a URI's mount point is `modules`, Puppet will:
+As the vast majority of file serving should be done through [modules](/puppet/latest/reference/modules_fundamentals.html), the Puppet file server provides a special and semi-magical mount point called `modules`, which is available by default. If a URI's mount point is `modules`, Puppet will:
 
 * Interpret the next segment of the path as the name of a module...[^oldmodulemounts]
-* ... locate that module in the server's `modulepath` (as described [here](/puppet/2.7/reference/modules_fundamentals.html) under "Module Lookup")...
+* ... locate that module in the server's `modulepath` (as described [here](/puppet/latest/reference/modules_fundamentals.html) under "Module Lookup")...
 * ... and resolve the remainder of the path starting in that module's `files/` directory.
 
 That is to say, if a module named `test_module` is installed in the central server's `/etc/puppet/modules` directory, the following puppet: URI...

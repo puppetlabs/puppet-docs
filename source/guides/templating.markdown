@@ -10,7 +10,7 @@ Learn how to template out configuration files with Puppet, filling in variables
 with the managed node's facts.
 
 [lptemplates]: /learning/templates.html
-[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[modules]: /puppet/latest/reference/modules_fundamentals.html
 [functions]: /references/stable/function.html
 [erb]: http://ruby-doc.org/stdlib-1.8.7/libdoc/erb/rdoc/ERB.html
 

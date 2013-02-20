@@ -196,8 +196,8 @@ A resource [attribute](#attribute) that can be specified for any type of resourc
 
 A collection of classes, resource types, files, and templates, organized around a particular purpose. For example, a module could be used to completely configure an Apache instance or to set-up a Rails application. There are many pre-built modules available for download in the [Puppet Forge](http://forge.puppetlabs.com/). For more information see: 
 
-* [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html)
-* [Installing Modules](/puppet/2.7/reference/modules_installing.html)
+* [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html)
+* [Installing Modules](/puppet/latest/reference/modules_installing.html)
 
 ### namevar
 

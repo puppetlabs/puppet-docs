@@ -10,7 +10,7 @@ canonical: "/puppetdb/1.1/community_add_ons.html"
 [nagios]: https://github.com/jasonhancock/nagios-puppetdb
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [query]: https://github.com/dalen/puppet-puppetdbquery
-[exported]: /puppet/2.7/reference/lang_exported.html
+[exported]: /puppet/latest/reference/lang_exported.html
 
 [Jason Hancock --- nagios-puppetdb][nagios]
 -----

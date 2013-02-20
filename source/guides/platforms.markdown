@@ -3,7 +3,7 @@ layout: legacy
 title: Supported Platforms
 ---
 
-[pe2requirements]: /pe/2.5/install_system_requirements.html
+[pe2requirements]: /pe/latest/install_system_requirements.html
 
 Supported Platforms
 ===================

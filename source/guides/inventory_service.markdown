@@ -6,17 +6,17 @@ title: Inventory Service
 Inventory Service
 ======
 
-[puppetdb]: /puppetdb/1
-[puppetdb_nodes]: /puppetdb/1.1/api/query/v2/nodes.html
-[puppetdb_facts]: /puppetdb/1.1/api/query/v2/facts.html
-[puppetdb_fact-names]: /puppetdb/1.1/api/query/v2/fact-names.html
-[puppetdb_install]: /puppetdb/1.1/install_via_module.html
-[puppetdb_connect]: /puppetdb/1.1/connect_puppet_master.html
+[puppetdb]: /puppetdb/latest/
+[puppetdb_nodes]: /puppetdb/latest/api/query/v2/nodes.html
+[puppetdb_facts]: /puppetdb/latest/api/query/v2/facts.html
+[puppetdb_fact-names]: /puppetdb/latest/api/query/v2/fact-names.html
+[puppetdb_install]: /puppetdb/latest/install_via_module.html
+[puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
 [authdotconf]: ./rest_auth_conf.html
 [rest]: ./rest_api.html#facts
 [old_storeconfigs]: http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration
-[facts]: /puppet/2.7/reference/lang_variables.html#facts-and-built-in-variables
-[exported]: /puppet/2.7/reference/lang_exported.html
+[facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[exported]: /puppet/latest/reference/lang_exported.html
 
 Starting with Puppet 2.6.7, puppet master servers offer API access to the [facts][] reported by every node. You can use this API to get complete info about any node, and to search for nodes whose facts meet certain criteria.
 

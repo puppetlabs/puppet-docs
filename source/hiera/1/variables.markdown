@@ -5,9 +5,9 @@ title: "Hiera 1: Variables and Interpolation"
 
 [config]: ./configuring.html
 [data]: ./data_sources.html
-[puppet_vars]: /puppet/3/reference/lang_variables.html
-[qualified_var]: /puppet/3/reference/lang_variables.html#naming
-[built_in_vars]: /puppet/3/reference/lang_variables.html#facts-and-built-in-variables
+[puppet_vars]: /puppet/latest/reference/lang_variables.html
+[qualified_var]: /puppet/latest/reference/lang_variables.html#naming
+[built_in_vars]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
 [command_line]: ./command_line.html
 [hierarchy]: ./hierarchy.html
 

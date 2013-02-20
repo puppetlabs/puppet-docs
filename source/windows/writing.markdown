@@ -6,7 +6,7 @@ nav: windows.html
 
 <span class="versionnote">This documentation applies to Puppet ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
-[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[modules]: /puppet/latest/reference/modules_fundamentals.html
 [manifests]: /learning/manifests.html
 [lang]: /guides/language_guide.html
 

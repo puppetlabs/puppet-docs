@@ -94,7 +94,7 @@ To use `puppet apply` effectively, you should distribute your Puppet modules to 
 
 > Note: When using a multi-directory modulepath, remember to separate the directories with `;`, rather than `:`.
 
-To learn more about using modules, see [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html) or [Learning Puppet](/learning/modules1.html).
+To learn more about using modules, see [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html) or [Learning Puppet](/learning/modules1.html).
 
 <!-- TODO: Need to know how to apply manifests as a scheduled task, given that the tools aren't in the system $PATH. -->
 
@@ -125,7 +125,7 @@ Puppet Enterprise's compliance features use the `puppet inspect` subcommand to s
 * The contents of a node's inspect reports are governed by the compliance classes in use at the site; [see the compliance documentation for more details.][compliance_manifests]
 
 
-[compliance_manifests]: /pe/2.5/compliance_using.html#writing-compliance-manifests
+[compliance_manifests]: /pe/latest/compliance_using.html#writing-compliance-manifests
 
 ### Running Facter
 

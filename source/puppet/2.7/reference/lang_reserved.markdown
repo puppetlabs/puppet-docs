@@ -7,7 +7,7 @@ title: "Language: Reserved Words and Acceptable Names"
 [settings]: /guides/configuring.html
 [tags]: ./lang_tags.html
 [built_in]: ./lang_variables.html#facts-and-built-in-variables
-[facts]: /facter/1.6/core_facts.html
+[facts]: /facter/latest/core_facts.html
 [capture]: ./lang_datatypes.html#regex-capture-variables
 [conditional]: ./lang_conditional.html
 [dynamic]: ./lang_scope.html#dynamic-scope

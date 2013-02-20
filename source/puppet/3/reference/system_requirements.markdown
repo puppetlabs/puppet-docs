@@ -9,7 +9,7 @@ Puppet 3 has the following prerequisites:
 
 - MRI Ruby 1.8.7 or Ruby ≥ 1.9.3; other interpreters and versions of Ruby are not supported, and may or may not work. 
 - [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 1.6.2 or later
-- [Hiera](http://docs.puppetlabs.com/hiera/1/) 1.0 or later
+- [Hiera](http://docs.puppetlabs.com/hiera/latest/) 1.0 or later
 
 Puppet 3 and all of its prerequisites will run on the following platforms:
 

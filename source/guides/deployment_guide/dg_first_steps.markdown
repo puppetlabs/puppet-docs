@@ -61,7 +61,7 @@ Writing tests with rspec is probably beyond the scope of this guide and not some
 We really don't need to explain how or why you should back up your manifest and other files, but we will gently remind you to back up your SSL certificates along with everything else.
 	    
 ### Organize Your Users
-Figure out who at your institution should have access to PE and with what privileges. You can add and define users manually in the console, or you can access an existing directory via LDAP, etc. For more information, see the PE manual page on [user management](http://docs.puppetlabs.com/pe/2.7/console_auth.html).	Obviously, you should initially limit access to a select group, possibly a group of one.    
+Figure out who at your institution should have access to PE and with what privileges. You can add and define users manually in the console, or you can access an existing directory via LDAP, etc. For more information, see the PE manual page on [user management](http://docs.puppetlabs.com/pe/latest/console_auth.html).	Obviously, you should initially limit access to a select group, possibly a group of one.    
 
 ### Ad Hoc Change Tools
 

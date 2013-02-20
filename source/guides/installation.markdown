@@ -23,15 +23,15 @@ title: Installing Puppet
 [dashboard]: /dashboard/manual/1.2/
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
 [forge]: http://forge.puppetlabs.com/
-[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[modules]: /puppet/latest/reference/modules_fundamentals.html
 [after]: #post-install
 
 [pe]: http://puppetlabs.com/puppet/puppet-enterprise/
 [comparison]: http://puppetlabs.com/puppet/compare/
 [pefaq]: http://puppetlabs.com/puppet/faq/
 [pedownload]: http://info.puppetlabs.com/download-pe.html
-[pemanual]: /pe/2.5/
-[peinstall]: /pe/2.5/install_basic.html
+[pemanual]: /pe/latest/
+[peinstall]: /pe/latest/install_basic.html
 
 [epel]: http://fedoraproject.org/wiki/EPEL
 [epelinstall]: http://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F
