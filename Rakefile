@@ -191,7 +191,6 @@ task :symlink_latest_versions do
       end
     end
     versions.sort! # sorts into ascending order, so most recent is last
-    puts versions.inspect
     Dir.chdir "output/#{project}" do
       FileUtils.ln_sf versions.last.to_s, 'latest'
     end
