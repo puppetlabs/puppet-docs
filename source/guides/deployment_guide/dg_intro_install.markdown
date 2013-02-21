@@ -41,13 +41,13 @@ Having a few things set up correctly in advance will make installation and deplo
  
  * Make sure the system clocks on all the nodes you've selected are correct. They don't need to be exactly synchronized, just all within a minute or two of each other. You'll likely be setting up NTP management as one of the first services you manage with PE. 
  
- * Initially, you will want to start with a small number of carefully chosen nodes. Choose nodes that are not mission critical and select simple, easy to manage services. Many admins will start with dev and test machines. Eventually, you'll deploy puppet throughout your infrastructure, but because puppet is so powerful, you'll want to start out slowly and carefully while you get comfortable with the tools. In the next chapter, we'll talk about some approaches to selecting initial nodes for management.
+ * Initially, you will want to start with a small number of carefully chosen nodes. Choose nodes that are not mission critical and select simple, easy to manage services. Many admins will start with dev and test machines. Eventually, you'll deploy Puppet throughout your infrastructure, but because Puppet is so powerful, you'll want to start out slowly and carefully while you get comfortable with the tools. In the next chapter, we'll talk about some approaches to selecting initial nodes for management.
  
 #### Hostnames and DNS
 
-Finally, you need to get hostnames and DNS resolving correctly for the nodes you want to manage, especially the master. Sanity check DNS by pinging the master and agents at the expected names. You should do this from a representative sample of the nodes you are expecting to manage so you can be sure that DNS is resolving correctly throughout your ecosystem and not being influenced by something like, for example, DNS Views. 
+Finally, you need to get hostnames and DNS resolving correctly for the nodes you want to manage, especially the master. Sanity check DNS by pinging the master and agents at their expected names. You should do this from a representative sample of the nodes you are expecting to manage so you can be sure that DNS is resolving correctly throughout your ecosystem and not being influenced by something like, for example, DNS Views. 
 
-While PE can be set up to use, for example, aliases, doing so can be complex and messy. Having hostnames in DNS the way you want them before you start installing will spare you from this pain. This is particularly true for the hostname of the machine that will take the master role. Agents need to be able to reach the master over SSL with a valid DNS name. Changing the name of the puppet master host after the fact can add some complexity and pain, in no small part because all the previously generated agent certificates will now have the wrong name and so be unable to connect to the master. 
+While PE can be set up to use, for example, aliases, doing so can be complex and messy. Having hostnames in DNS the way you want them before you start installing will spare you from this pain. This is particularly true for the hostname of the machine that will take the master role, because its name needs to be in every agent's config file and the master's SSL certificate, and changing these later can be tedious.
 
 At some point in the not too distant future, you will want to review and regularize the way your organization creates host names and IP tables. 
 
@@ -92,7 +92,7 @@ Refer to the [cloud provisioner configuration guide](http://docs.puppetlabs.com/
 ####Database Servers
 The console requires several mySQL databases and users, and of course a mySQL server. The installer will create, configure and install these wherever you direct it to. The [installation instructions](http://docs.puppetlabs.com/pe/2.7/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases. 
 
-The mySQL database and server are vital to the functioning of the console. To keep things secure and robust, you should consult one of the many available hardening guides and security best practices ([such as these guidelines, for example](http://dev.mysql.com/doc/refman/5.0/en/security-guidelines.html)).
+The mySQL database and server are vital to the functioning of the console. To keep things secure and robust, you should consult one of the many available hardening guides and security best practices ([such as these guidelines](http://dev.mysql.com/doc/refman/5.0/en/security-guidelines.html)).
 
 It probably goes without saying that you should not use this mySQL server instance for anything but the console.
 
@@ -102,16 +102,11 @@ Once you've determined where everything is going to go, you can run the install 
 #### Installation Issues and Tips
 There are a few common problems users have encountered when installing, mainly related to pre-existing conditions in the environment. The most common include:
 
-* Errors caused by an existing, old version of MySQL. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `/var/lib/mysql` on RHEL systems).
-
-* If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](http://docs.puppetlabs.com/pe/2.7/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
-
-* The installer comes with an example answers file. Don't overlook it!
-
-* The installer creates a log file, `install_log.lastrun.<hostname>` which can be very useful for debugging install issues.
-
-* Similarly, the installer generates an `answers.lastrun.<hostname>` file that can help prompt your memory for things like, say, the console's hostname or the mySQL password.  
-*Important:* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
+* Errors caused by an existing, old version of MySQL on the machine that will run the console database. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `/var/lib/mysql` on RHEL systems).
+* If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](http://docs.puppetlabs.com/pe/latest/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
+* The installer comes with an example answers file, which can save you some time. Don't overlook it!
+* The installer creates a log file at `install_log.lastrun.<hostname>`, which can be very useful for debugging install issues.
+* Similarly, the installer generates an `answers.lastrun.<hostname>` file, which can help you keep a record of things like the console's hostname or the mySQL password. *Important:* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
     
 ### Managing Certificates
 Once you've gotten all the parts installed where you want them, it's time to get agents connected to their master. This is done by sending certificate signing requests (CSR's) from the agents to a certificate authority (CA). By default, the CA is the same server as the master. In any case, the CA and certificate signing process is a vital part of PE's security infrastructure. Make sure it is well protected.
@@ -121,7 +116,7 @@ The easiest way to manage node requests is with the request management capabilit
 
 If you'd prefer to manage certificates from the command line, refer to [these instructions](http://docs.puppetlabs.com/pe/2.7/install_basic.html#signing-agent-certificates).
     
-Autosigning certificates can be useful, but should be done very carefully since it potentially introduces major security liabilities. By default, auto-sign is turned off. You can edit puppet.conf to turn it on, and you can gain some finer-grained control by leaving it off but editing `autosign.conf`. [This guide](http://docs.puppetlabs.com/guides/configuring.html#autosignconf) has more information.    
+Auto-signing certificates can be useful, but should be done very carefully since it potentially introduces major security liabilities. By default, auto-signing is managed by the `/etc/puppetlabs/puppet/autosign.conf` file, which is empty in a new PE installation. [This guide](http://docs.puppetlabs.com/guides/configuring.html#autosignconf) has more information about adding entries to `autosign.conf`. Alternately, you can (but shouldn't) set `autosign = true` in `/etc/puppetlabs/puppet/puppet.conf` to auto-sign all requests.
 
 Note that if your institution prefers or requires you to use externally purchased SSL certs, you can do it, but you should back up your original, PE generated certs first, just in case of unforeseen circumstances. To use external certs you'll need to edit several lines in `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` as follows:
 
