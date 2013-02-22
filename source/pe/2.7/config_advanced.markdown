@@ -67,7 +67,7 @@ If you have forgotten the password of the console's initial admin user, you can 
 On the console server, run the following commands:
 
     $ cd /opt/puppet/share/console-auth
-    $ sudo /opt/puppet/bin/rake db:create_user USER="adminuser@example.com" PASSWORD="<password>" ROLE="Admin"
+    $ sudo /opt/puppet/bin/rake db:create_user USERNAME="adminuser@example.com" PASSWORD="<password>" ROLE="Admin"
 
 You can now log in to the console as the user you just created, and use the normal admin tools to reset other users' passwords.
 
