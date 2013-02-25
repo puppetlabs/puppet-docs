@@ -11,10 +11,11 @@ title: "Publishing Modules on the Puppet Forge"
 [forge]: https://forge.puppetlabs.com/
 [rspec]: http://rspec-puppet.com/
 
-[register]: ./images/forge_register.png
-[addmodule]: ./images/forge_add_module.png
-[addrelease]: ./images/forge_add_release.png
-[upload]: ./images/forge_upload.png
+[signup]: ./images/forge_signup.png
+[publishmodule]: ./images/forge_publish_module.png
+[uploadtarball]: ./images/forge_upload_tarball.png
+[uploadtarball2]: ./images/forge_upload_tarball2.png
+[forgenewrelease]: ./images/forge_new_release.png
 
 Publishing Modules on the Puppet Forge
 =====
@@ -53,9 +54,9 @@ Create a Puppet Forge Account
 
 Before you begin, you should create a user account on the Puppet Forge. You will need to know your username when preparing to publish any of your modules. 
 
-Start by navigating to the [Puppet Forge website][forge] and clicking the "Register" link in the sidebar:
+Start by navigating to the [Puppet Forge website][forge] and clicking the "Sign Up" link in the sidebar:
 
-![The "register" link in the Puppet Forge sidebar][register]
+![The "sing up" link in the Puppet Forge sidebar][signup]
 
 Fill in your details. After you finish, you will be asked to verify your email address via a verification email. Once you have done so, you can publish modules to the Puppet Forge.
 
@@ -162,35 +163,36 @@ In your web browser, navigate [to the Puppet Forge][forge]; log in if necessary.
 
 ### Create a Module Page
 
-If you have never published this module before, you must create a new page for it. Click on the "Add a module" link in the sidebar:
+If you have never published this module before, you must create a new page for it. Click on the "Publish a Module" link in the sidebar:
 
-![the "add a module" link in the Forge's sidebar][addmodule]
+![the "publish a module"" link in the Forge's sidebar][publishmodule]
 
-This will bring up a form for info about the new module. Only the "name" field is required. **Use the module's short name, not the long `username-module` name.**
+This will bring up a form for info about the new module. Only the "Module Name" field is required. **Use the module's short name, not the long `username-module` name.**
 
-Clicking the "add module" button at the bottom of the form will automatically navigate to the new module page.
+Clicking the "Publish Module" button at the bottom of the form will automatically navigate to the new module page.
 
-### Upload a Release
+### Create a Release
 
-Navigate to the module's page if you are not already there, and click the "add a release" link:
+Navigate to the module's page if you are not already there, and click the "Click here to upload your tarball" link:
 
-![the "add a release" link on a module's page][addrelease]
+![the "upload a tarball" link on a module's page][uploadtarball]
 
 This will bring you to the upload form:
 
-![the upload form for a new release of a module][upload]
+![the upload form for a new release of a module][uploadtarball2]
 
-Click "browse," and use the file browser to locate and select the release tarball you created with the `puppet module build` action. Write some release notes, if applicable, and click the "add release" link.
+Click "Choose File" and use the file browser to locate and select the release tarball you created with the `puppet module build` action. Then click the "Upload Release" link.
 
-Your module has now been published to the Puppet Forge. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
+Your module has now been published to the Puppet Forge. The Forge will pull your README, Changelog, and License files from your tarball to display on your module's page. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
 
 
 Release a New Version
 -----
 
-To release a new version of an already published module:
+To release a new version of an already published module, you will need to make any necessary edits to your module, and then increment the `version` field in the Modulefile (ensuring you use a valid [semantic version](http://semver.org/)).
 
-1. Make any necessary edits to your module.
-2. Increment the `version` field in the Modulefile (ensuring you use a valid [semantic version](http://semver.org/).
-3. Follow the instructions above for [uploading a release](#upload-a-release).
+When you are ready to publish your new version, navigate [to the Puppet Forge][forge] and log in if necessary. Click the "Upload a New Release" link:
 
+![the ][forgenewrelease]
+
+This will bring you to the upload form as mentioned in [Create a Release](#createarelease) above, where you can select the new release tarball and upload the release. 

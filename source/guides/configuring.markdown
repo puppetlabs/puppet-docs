@@ -197,7 +197,7 @@ Access to Puppet's REST API is configured in `auth.conf`, the location of which 
 
 ### `puppetdb.conf`
 
-The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppetdb/1.1/) server. It is only used if you are using PuppetDB and have [connected your puppet master to it](/puppetdb/1.1/connect_puppet_master.html). 
+The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppetdb/latest/) server. It is only used if you are using PuppetDB and have [connected your puppet master to it](/puppetdb/latest/connect_puppet_master.html). 
 
 This file uses the same ini-like format as `puppet.conf`, but only uses a `[main]` block and only has two settings (`server` and `port`):
 
@@ -205,7 +205,7 @@ This file uses the same ini-like format as `puppet.conf`, but only uses a `[main
     server = puppetdb.example.com
     port = 8081
 
-See the [PuppetDB manual](/puppetdb/1.1/) for more information.
+See the [PuppetDB manual](/puppetdb/latest/) for more information.
 
 
 ### `routes.yaml`

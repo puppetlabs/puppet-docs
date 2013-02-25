@@ -25,7 +25,7 @@ configuration on the [Using Stored Configuration](http://projects.puppetlabs.com
 Puppet will automatically create a database for storing
 configurations (using [Ruby on Rails](http://rubyonrails.org/)).
 
-    [puppetmasterd]
+    [master]
     storeconfigs = true
 
 This allows one host to configure another host; for instance, a

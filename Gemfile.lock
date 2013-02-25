@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/puppetlabs/jekyll.git
-  revision: 0ee3de7eb06e9c67892fbcb86ed8ce2166a0b759
+  revision: fe15ab6a097fad071c6003c642b8e226607d9d52
   branch: puppetdocs
   specs:
     jekyll (0.11.2)
@@ -35,7 +35,7 @@ GEM
       fast-stemmer (>= 1.0.0)
     directory_watcher (1.4.1)
     facter (1.6.17)
-    fast-stemmer (1.0.1)
+    fast-stemmer (1.0.2)
     i18n (0.6.1)
     json (1.7.6)
     kramdown (0.14.2)
@@ -50,7 +50,7 @@ GEM
     rake-remote_task (2.1.0)
       open4 (~> 1.0)
       rake (>= 0.8, < 11.0)
-    rdoc (3.12)
+    rdoc (3.12.1)
       json (~> 1.4)
     syntax (1.0.0)
     tzinfo (0.3.35)
@@ -61,7 +61,7 @@ GEM
       rake-remote_task (~> 2.1)
     vlad-git (2.2.0)
       vlad (>= 2.1.0)
-    yard (0.8.3)
+    yard (0.8.4.1)
 
 PLATFORMS
   ruby

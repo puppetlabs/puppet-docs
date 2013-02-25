@@ -351,7 +351,7 @@ List all installed modules:
 
 With current versions of Puppet, you should usually avoid using the module subcommand's `generate` action --- it is provided for compatibility with an older version of the tool, and doesn't automatically handle user name prefixes. It can be useful for preparing an already developed module for release, since it provides example metadata files, but it isn't useful when beginning a new module. 
 
-[installing]: /puppet/2.7/reference/modules_installing.html
+[installing]: /puppet/latest/reference/modules_installing.html
 
 
 Exercises

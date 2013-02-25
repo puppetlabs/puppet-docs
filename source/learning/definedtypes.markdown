@@ -3,7 +3,7 @@ layout: legacy
 title: "Learning — Defined Types"
 ---
 
-[peupgrade]: /pe/1.2/upgrading.html
+[peupgrade]: /pe/latest/install_upgrading.html
 
 Learning — Defined Types (Modules, Part Three)
 =====

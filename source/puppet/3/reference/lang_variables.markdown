@@ -16,7 +16,7 @@ title: "Language: Variables"
 [resource_attribute]: ./lang_resources.html#syntax
 [scope]: ./lang_scope.html
 [topscope]: ./lang_scope.html#top-scope
-[facts]: /facter/1.6/core_facts.html
+[facts]: /facter/latest/core_facts.html
 [facter]: /facter
 [customfacts]: /guides/custom_facts.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs

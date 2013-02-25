@@ -7,7 +7,10 @@
     <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/atom/">
     <link rel='index' title='Puppet Labs Documentation' href='http://docs.puppetlabs.com' />
     <link rel='icon' href='/favicon.ico' />
+  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+  <meta name="description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:150 }}">
 
+  
 <!-- Google analytics -->
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -241,11 +244,7 @@
                   <a href="http://puppetlabs.com/community/videos/">Videos</a>
                 </ul>
               </li>
- 			<li>
-                <ul>
-                  <a href="http://puppetlabs.com/community/badges/">Badges</a>
-                </ul>
-              </li>
+ 		
             </ul>
 
           <li id="company-tab" class="with-submenu">

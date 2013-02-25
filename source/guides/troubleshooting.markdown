@@ -257,6 +257,34 @@ This error results from incorrect syntax in a defined resource type:
 Default values for parameters are assigned, not defined, therefore
 a '=', not a '=>' operator is needed.
 
+### Syntax error at '<<|'; expected '|>>'
+
+You may get this error when using a manifest like:
+
+    node a {
+       @@foo_module::bar_exported_resource {
+            .....
+       }
+    }
+
+    node b {
+       #where we collect things
+       .....
+       
+       foo_module::bar_exported_resource <<| |>>
+    }
+
+[collector_syntax]: /puppet/latest/reference/lang_collectors.html#syntax
+
+This confusing error is a result of improper (or rather lack of any) capitalization while collecting the exported resource --- [resource collectors use the capitalized form of the resource type.][collector_syntax] The manifest for the node b should actually be:
+
+    node b {
+        #where we collect things
+        .....
+
+        Foo_module::Bar_exported_resource <<| |>>
+    }
+
 ### err: Exported resource Blah[$some\_title] cannot override local resource on node $nodename
 
 While this is not a classic "syntax" error, it is a annoying error

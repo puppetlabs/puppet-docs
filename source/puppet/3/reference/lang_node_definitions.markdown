@@ -5,7 +5,7 @@ title: "Language: Node Definitions"
 
 <!-- TODO: Need better link for hiera -->
 [hiera]: https://github.com/puppetlabs/hiera
-[hiera_guides]: SOMETHING
+[hiera_guides]: /hiera/1
 <!-- TODO: need better link for site.pp and certname-->
 [sitepp]: lang_summary.html#files
 [certname]: /references/latest/configuration.html#certname

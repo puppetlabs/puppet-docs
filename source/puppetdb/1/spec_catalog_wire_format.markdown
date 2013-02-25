@@ -4,20 +4,20 @@ layout: default
 canonical: "/puppetdb/1.1/api/wire_format/catalog_format.html"
 ---
 
-[containment]: /puppet/2.7/reference/lang_containment.html
-[rel_behavior]: /puppet/2.7/reference/lang_relationships.html#behavior
-[relationship]: /puppet/2.7/reference/lang_relationships.html
-[chain]: /puppet/2.7/reference/lang_relationships.html#chaining-arrows
-[metaparameters]: /puppet/2.7/reference/lang_relationships.html#relationship-metaparameters
-[require]: /puppet/2.7/reference/lang_relationships.html#the-require-function
-[resource_ref]: /puppet/2.7/reference/lang_datatypes.html#resource-references
-[numbers]: /puppet/2.7/reference/lang_datatypes.html#numbers
-[undef]: /puppet/2.7/reference/lang_datatypes.html#undef
-[namevar]: /puppet/2.7/reference/lang_resources.html#namenamevar
-[resource]: /puppet/2.7/reference/lang_resources.html
-[title]: /puppet/2.7/reference/lang_resources.html#title
-[type]: /puppet/2.7/reference/lang_resources.html#type
-[attributes]: /puppet/2.7/reference/lang_resources.html#attributes
+[containment]: /puppet/latest/reference/lang_containment.html
+[rel_behavior]: /puppet/latest/reference/lang_relationships.html#behavior
+[relationship]: /puppet/latest/reference/lang_relationships.html
+[chain]: /puppet/latest/reference/lang_relationships.html#chaining-arrows
+[metaparameters]: /puppet/latest/reference/lang_relationships.html#relationship-metaparameters
+[require]: /puppet/latest/reference/lang_relationships.html#the-require-function
+[resource_ref]: /puppet/latest/reference/lang_datatypes.html#resource-references
+[numbers]: /puppet/latest/reference/lang_datatypes.html#numbers
+[undef]: /puppet/latest/reference/lang_datatypes.html#undef
+[namevar]: /puppet/latest/reference/lang_resources.html#namenamevar
+[resource]: /puppet/latest/reference/lang_resources.html
+[title]: /puppet/latest/reference/lang_resources.html#title
+[type]: /puppet/latest/reference/lang_resources.html#type
+[attributes]: /puppet/latest/reference/lang_resources.html#attributes
 
 PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](./connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
 

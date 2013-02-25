@@ -206,9 +206,9 @@ Here are a few guidelines that apply specifically to our bug tracker:
 
 The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, written and contributed by users, and we encourage you to publish your modules on the Forge.
 
-* Start with the [Publishing Modules](http://docs.puppetlabs.com/puppet/3/reference/modules_publishing.html) document to learn how to publish your modules to the Puppet Forge.
-* See the [Module Fundamentals](http://docs.puppetlabs.com/puppet/3/reference/modules_fundamentals.html) document for how to write and use your own Puppet modules.
-* See the [Installing Modules](http://docs.puppetlabs.com/puppet/3/reference/modules_installing.html) document for how to install pre-built modules from the Puppet Forge.
+* Start with the [Publishing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html) document to learn how to publish your modules to the Puppet Forge.
+* See the [Module Fundamentals](http://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html) document for how to write and use your own Puppet modules.
+* See the [Installing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_installing.html) document for how to install pre-built modules from the Puppet Forge.
 * See the [Using Plugins](http://docs.puppetlabs.com/guides/plugins_in_modules.html) document for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 
 Credit to [01.org](https://01.org/community/participation-guidelines) and [meego.com](http://wiki.meego.com/Community_guidelines), since they formed the starting point for many of these guidelines.
