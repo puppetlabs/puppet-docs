@@ -27,9 +27,9 @@ So warm up your keyboard, grab a fresh cup of coffee and let's get PE up and run
 
 Installing PE
 -----
-First of all, if you are entirely new to PE and puppet, we strongly recommend you work your way through our [Quick Start Guide](http://docs.puppetlabs.com/pe/latest/quick_start.html), if you haven't done so already. It will familiarize you with basic concepts and components and give you a jump on creating a solid deployment and making good decisions.
+First of all, if you are entirely new to PE and puppet, we strongly recommend you work your way through our [Quick Start Guide](http://docs.puppetlabs.com/pe/2.7/quick_start.html), if you haven't done so already. It will familiarize you with basic concepts and components and give you a jump on creating a solid deployment and making good decisions.
 
-The [installing PE  page](http://docs.puppetlabs.com/pe/latest/install_basic.html) provides detailed instructions for downloading and installing PE.  If you haven't yet downloaded a fresh production copy of PE, that page also provides links and instructions for how to choose the version of PE best suited for your environment. Once you have a copy and are ready to install, the first major decision involves where and how to set up the various roles that make up PE.
+The [installing PE  page](http://docs.puppetlabs.com/pe/2.7/install_basic.html) provides detailed instructions for downloading and installing PE.  If you haven't yet downloaded a fresh production copy of PE, that page also provides links and instructions for how to choose the version of PE best suited for your environment. Once you have a copy and are ready to install, the first major decision involves where and how to set up the various roles that make up PE.
 
 ### Before Starting the install
 
@@ -37,7 +37,7 @@ Having a few things set up correctly in advance will make installation and deplo
  
  * Make sure that networking on the node chosen for the puppet master is working correctly and reliably.
  
- * Similarly, make sure your firewalls are properly configured and are not blocking any of [PE's needed ports](http://docs.puppetlabs.com/pe/latest/install_system_requirements.html#firewall-configuration). Remember to check that any loop-back ports are also open.
+ * Similarly, make sure your firewalls are properly configured and are not blocking any of [PE's needed ports](http://docs.puppetlabs.com/pe/2.6/install_system_requirements.html#firewall-configuration). Remember to check that any loop-back ports are also open.
  
  * Make sure the system clocks on all the nodes you've selected are correct. They don't need to be exactly synchronized, just all within a minute or two of each other. You'll likely be setting up NTP management as one of the first services you manage with PE. 
  
@@ -51,7 +51,7 @@ While PE can be set up to use, for example, aliases, doing so can be complex and
 
 At some point in the not too distant future, you will want to review and regularize the way your organization creates host names and IP tables. 
 
-If you need some help troubleshooting DNS, please refer to [these requirements](http://docs.puppetlabs.com/pe/latest/trouble_common_problems.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
+If you need some help troubleshooting DNS, please refer to [these requirements](http://docs.puppetlabs.com/pe/2.7/trouble_common_problems.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
  
 ### What Goes Where
 
@@ -63,7 +63,7 @@ Start by installing the master. Typically, the puppet master (which may or may n
 
 >Generally speaking, running multiple masters only becomes necessary when your infrastructure grows to a certain size. What that size is precisely will vary depending on how complex your infrastructure is, the number of classes and resources, etc. in your manifests, and so on. As a general rule of thumb, however, once you get to 800 nodes you will probably want to start separating out the various functions of the master, and once you get to 1200 nodes or so you will likely want to use multiple masters. In any case, you may wish to defer deploying multiple masters if you just starting out with PE and want to keep your learning environment simple and straightforward. When you're ready to set up multiple masters, see [Using Multiple Puppet Masters](http://docs.puppetlabs.com/guides/scaling_multiple_masters.html). 
 
-Make sure that any machine you select for the master conforms to the [hardware system requirements](http://docs.puppetlabs.com/pe/latest/install_system_requirements.html#hardware) and, in particular, ensure you have plenty of disk space, especially if you will be running the console on the same hardware.
+Make sure that any machine you select for the master conforms to the [hardware system requirements](http://docs.puppetlabs.com/pe/2.7/install_system_requirements.html#hardware) and, in particular, ensure you have plenty of disk space, especially if you will be running the console on the same hardware.
 
 While it is also possible to run masterless, this is rarely done with PE. Once you have worked with Puppet at greater length, you can evaluate some of the discussions around running masterless ([Masterless Puppet](http://jamescun.com/2012/12/14/masterless-puppet.html)).
     
@@ -87,39 +87,39 @@ In addition you must have the following port connections available to your Puppe
 
 When selecting the node for the cloud provisioner role, make sure that local firewall rules will allow access to these ports. (For this reason, running cloud provisioning on the same node as the master may not work.)
 
-Refer to the [cloud provisioner configuration guide](http://docs.puppetlabs.com/pe/latest/cloudprovisioner_configuring.html) for more details on installing and setting up cloud provisioning tools.
+Refer to the [cloud provisioner configuration guide](http://docs.puppetlabs.com/pe/2.7/cloudprovisioner_configuring.html) for more details on installing and setting up cloud provisioning tools.
     
 ####Database Servers
-The console requires several mySQL databases and users, and of course a mySQL server. The installer will create, configure and install these wherever you direct it to. The [installation instructions](http://docs.puppetlabs.com/pe/latest/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases. 
+The console requires several mySQL databases and users, and of course a mySQL server. The installer will create, configure and install these wherever you direct it to. The [installation instructions](http://docs.puppetlabs.com/pe/2.7/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases. 
 
 The mySQL database and server are vital to the functioning of the console. To keep things secure and robust, you should consult one of the many available hardening guides and security best practices ([such as these guidelines, for example](http://dev.mysql.com/doc/refman/5.0/en/security-guidelines.html)).
 
 It probably goes without saying that you should not use this mySQL server instance for anything but the console.
 
 #### Run the Install Script
-Once you've determined where everything is going to go, you can run the install script. If you have questions about the script, the answer file, etc., remember you can get  detailed instructions on the [installing PE  page](http://docs.puppetlabs.com/pe/latest/install_basic.html).
+Once you've determined where everything is going to go, you can run the install script. If you have questions about the script, the answer file, etc., remember you can get  detailed instructions on the [installing PE  page](http://docs.puppetlabs.com/pe/2.7/install_basic.html).
 
 #### Installation Issues and Tips
 There are a few common problems users have encountered when installing, mainly related to pre-existing conditions in the environment. The most common include:
 
 * Errors caused by an existing, old version of MySQL. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `/var/lib/mysql` on RHEL systems).
 
-* If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](http://docs.puppetlabs.com/pe/latest/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
+* If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](http://docs.puppetlabs.com/pe/2.7/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
 
 * The installer comes with an example answers file. Don't overlook it!
 
 * The installer creates a log file, `install_log.lastrun.<hostname>` which can be very useful for debugging install issues.
 
 * Similarly, the installer generates an `answers.lastrun.<hostname>` file that can help prompt your memory for things like, say, the console's hostname or the mySQL password.  
-*Important* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
+*Important:* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
     
 ### Managing Certificates
 Once you've gotten all the parts installed where you want them, it's time to get agents connected to their master. This is done by sending certificate signing requests (CSR's) from the agents to a certificate authority (CA). By default, the CA is the same server as the master. In any case, the CA and certificate signing process is a vital part of PE's security infrastructure. Make sure it is well protected.
 
 ### Auto-signing, Pre-signing and Request Management
-The easiest way to manage node requests is with the request management capabilities built into PE's console. See the [PE Node Request Management manual page](http://docs.puppetlabs.com/pe/latest/console_cert_mgmt.html) for details.
+The easiest way to manage node requests is with the request management capabilities built into PE's console. See the [PE Node Request Management manual page](http://docs.puppetlabs.com/pe/2.7/console_cert_mgmt.html) for details.
 
-If you'd prefer to manage certificates from the command line, refer to [these instructions](http://docs.puppetlabs.com/pe/latest/install_basic.html#signing-agent-certificates).
+If you'd prefer to manage certificates from the command line, refer to [these instructions](http://docs.puppetlabs.com/pe/2.7/install_basic.html#signing-agent-certificates).
     
 Autosigning certificates can be useful, but should be done very carefully since it potentially introduces major security liabilities. By default, auto-sign is turned off. You can edit puppet.conf to turn it on, and you can gain some finer-grained control by leaving it off but editing `autosign.conf`. [This guide](http://docs.puppetlabs.com/guides/configuring.html#autosignconf) has more information.    
 
@@ -130,7 +130,7 @@ Note that if your institution prefers or requires you to use externally purchase
     SSLCertificateChainFile <path_to_your_purchased_cert>/ca_cert.pem
     SSLCACertificateFile    <path_to_your_purchased_cert>/ca_cert.pem
 
-After saving these edits, you'll want to restart the `pe-httpd` daemon. Also, make sure to leave in place the original pe-internal-dashboard cert, private key, and CA certs (at /opt/puppet/share/puppet-dashboard/certs/).
+After saving these edits, you'll want to restart the `pe-httpd` daemon. Also, make sure to leave in place the original pe-internal-dashboard cert, private key, and CA certs (at `/opt/puppet/share/puppet-dashboard/certs/`).
 
 ### What's Next?
 
@@ -138,6 +138,6 @@ At this point you should have a functioning installation of Puppet Enterprise. Y
 
 * * * 
 
-- Next: [First Steps: Building Your Work Environment](/guides/deployment_guide/dg_first_steps.html)
+- Next: First Steps: Building Your Work Environment (Coming Soon)
 
 
