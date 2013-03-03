@@ -4384,7 +4384,7 @@ hpuxuseradd      | *X*               |                 |                | *X*   
 ldap             |                   |                 |                |                 |                      | *X*               |                      |              |
 pw               | *X*               |                 | *X*            | *X*             |                      | *X*               |                      |              |
 user_role_add    | *X*               |                 |                | *X*             | *X*                  | *X*               | *X*                  |              |
-useradd          | *X*               |                 | *X*            | *X*             |                      |                   |                      | *X*          |
+useradd          | *X*               |                 | *X*            | *X*             | *X*                  | *X*               |                      | *X*          |
 windows_adsi     |                   |                 |                | *X*             |                      | *X*               |                      |              |
 
 #### Parameters
