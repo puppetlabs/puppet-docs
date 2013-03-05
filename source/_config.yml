@@ -20,7 +20,7 @@ defaultnav:
   /references: references_general.html
   /hiera/1: hiera1.html
   /guides/deployment_guide:  deploy_guide.html
-  /puppet/release_notes: puppet_release_notes.html
+  /release_notes: release_notes.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 externalsources:

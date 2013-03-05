@@ -4,8 +4,8 @@ title: Puppet Release Notes
 description: Links to Puppet release notes for versions 3, 2.6, 2.7, and 0.2x
 ---
 
-Puppet Release Notes
-----------------------
+Supported Puppet Releases 
+-------------------------
 
 - [The 3.x series][3.x] is the current branch of Puppet releases.
 - [The 2.7 series][2.7] is a maintenance branch of Puppet releases.
