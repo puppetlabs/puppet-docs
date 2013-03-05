@@ -176,22 +176,22 @@ Access to Puppet's REST API is configured in `auth.conf`, the location of which 
     # Example auth.conf:
     
     path /
-    auth any
+    auth true
     environment override
     allow magpie.example.com
     
     path /certificate_status
-    auth any
+    auth true
     environment production
     allow magpie.example.com
     
     path /facts
     method save
-    auth any
+    auth true
     allow magpie.example.com
     
     path /facts
-    auth yes
+    auth true
     method find, search
     allow magpie.example.com, dashboard.example.com, finch.example.com
 

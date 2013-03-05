@@ -12,11 +12,15 @@ defaultnav:
   /puppetdb/0.9: puppetdb0.9.html
   /puppetdb/1: puppetdb1.html
   /puppetdb/1.1: puppetdb1.1.html
+  /puppet/0.24/reference: puppet_0_24.html
+  /puppet/0.25/reference: puppet_0_25.html
+  /puppet/2.6/reference: puppet_2_6.html
   /puppet/2.7/reference: puppet_2_7.html
   /puppet/3/reference: puppet_reference_3.html
   /references: references_general.html
   /hiera/1: hiera1.html
   /guides/deployment_guide:  deploy_guide.html
+  /puppet/release_notes: puppet_release_notes.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 externalsources:
