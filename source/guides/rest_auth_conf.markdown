@@ -43,7 +43,7 @@ The auth.conf file consists of a series of ACLs (Access Control Lists); ACLs sho
 
     # An exception allowing one authenticated workstation to access any endpoint
     path /
-    auth any
+    auth yes
     allow devworkstation.site.net
 
 Due to a known bug, trailing whitespace is not permitted after any line in auth.conf in versions prior to 2.7.3.
@@ -226,6 +226,8 @@ If you want to test the REST API for application prototyping without worrying ab
     path /
     auth any
     allow *
+
+**Note** Make sure any testing configurations using this pattern do not make it to production systems.
 
 authconfig / namespaceauth.conf
 -------------------------------

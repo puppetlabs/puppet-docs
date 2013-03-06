@@ -71,7 +71,7 @@ The example also redirects requests for a non-existent environment to a differen
 ### In `auth.conf`
 
     path /
-    auth any
+    auth true
     environment appdev
     allow localhost, customapp.example.com
 

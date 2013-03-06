@@ -124,3 +124,7 @@ There is an open pull request which fixes this issue  -- it would be wonderful i
 #### Needs more information
 
 I've put this ticket's status into "Needs more Information" and assigned it to you. Please either (a) update it with the information I've requested and re-assign it to me if you need more help, or (b) change the status to "Closed" if you were able to resolve the issue on your own. 
+
+#### Code Insufficient
+
+I’ve put this ticket’s status into “Code Insufficient” and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward. 
