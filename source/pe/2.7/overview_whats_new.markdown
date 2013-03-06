@@ -4,6 +4,18 @@ title: "PE 2.7  » Overview » What's New"
 subtitle: "New Features in PE 2.7"
 ---
 
+### Version 2.7.2
+PE 2.7.2 is a maintenance and security release. It changes a couple of modules, applies several security patches and updates the defaults for auth.conf.
+
+#### Changes to Modules
+Two modules, `java_ks` and `pe_mcollective` (which depends on `java_ks`) have been updated. 
+
+#### Security Patches
+Several security patches are included to address vulnerabilities in either Puppet itself or underlying technologies Puppet is built on (e.g. JSON, Rails). The [release notes](appendix.html#release-notes) have a complete list.
+
+#### Update to auth.conf 
+One of the security fixes involves modifying a code stanza in the auth.conf file. If you  are using a manually customized version of this file (e.g. for cloud provisioning purposes, or custom report or cert management), you will need to modify the file by editing the stanza. The [release notes](appendix.html#release-notes) have the details.
+
 ### Version 2.7.1
 PE 2.7.1 is a maintenance release. It modifies the way PE manages the auth_conf file, fixes an issue with puppet's augeas lenses, and adds several patches to address security issues. See the [Appendix](appendix.html#release-notes) for release notes detailing these changes.
 

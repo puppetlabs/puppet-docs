@@ -105,6 +105,8 @@ In most deployments, this role should be installed on **one node;** installing m
 * Route MCollective messages through its ActiveMQ server.
 * Issue valid MCollective commands (from an administrator logged in as the `peadmin` user). 
 
+**Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](http://docs.puppetlabs.com/pe/latest/install_answer_file_reference.html#puppet-master-answers).
+
 ### The Console Role
 
 This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server can: 

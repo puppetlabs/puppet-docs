@@ -12,6 +12,21 @@ Known Issues in Puppet Enterprise 1.2
 
 The following is a list of known issues in each maintenance release of Puppet Enterprise 1.2. To find out which issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.6.9 (Puppet Enterprise 1.2.3)`.
 
+In PE 1.2.6 and Earlier
+-----
+
+### Several Security Issues
+
+Several security issues were discovered in PE 1.2.6. Some of them were hot-fixed, and all of the fixes have been rolled into the packages for PE 1.2.7. The issues are:
+
+*[CVE-2013-1655 Unauthenticated Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-1655/)
+*[CVE-2013-1654 SSL Protocol Downgrade Vulnerability](http://puppetlabs.com/security/cve/cve-2013-1654/)
+*[CVE-2013-1653 SSL Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-1653/)
+*[CVE-2013-1652 Insufficient Input Validation Vulnerability](http://puppetlabs.com/security/cve/cve-2013-1652/)
+*[CVE-2013-1640 Agent Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-1640/)
+*[CVE-2013-2274 Agent Remote Code Execution Vulnerability--- Puppet 2.6 Only](http://puppetlabs.com/security/cve/cve-2013-2274/)
+*[CVE-2013-2275 Incorrect Default Report ACL Vulnerability](http://puppetlabs.com/security/cve/cve-2013-2274/)
+
 In PE 1.2.5 and Earlier
 -----
 
