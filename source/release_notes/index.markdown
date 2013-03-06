@@ -57,9 +57,9 @@ The [Roadmap Tracker](http://projects.puppetlabs.com/projects/puppet/roadmap?tra
 [3.x]: /puppet/3/reference/release_notes.html
 [2.7]: /puppet/2.7/reference/release_notes.html
 [2.6]: /puppet/2.6/reference/release_notes.html
-[pe2.7]: /pe/2.7/overview_whats_new.html
-[pe2.6]: /pe/2.6/overview_whats_new.html
-[pe2.5]: /pe/2.5/overview_whats_new.html
+[pe2.7]: /pe/2.7/appendix.html#release-notes
+[pe2.6]: /pe/2.6/appendix.html#release-notes
+[pe2.5]: /pe/2.5/appendix.html#release-notes
 [pe2.0]: /pe/2.0/welcome_whats_new.html
 [pe1.2]: /pe/1.2/upgrading.html
 [Puppet 0.25]: /puppet/0.25/reference/release_notes.html
