@@ -6,6 +6,66 @@ description: Puppet release notes for version 2.6.x
 
 # Puppet 2.6 Release Notes
 
+## 2.6.18
+
+Puppet 2.6.18 is a **security release** addressing several vulnerabilities discovered in the 2.6.x line of Puppet. These vulnerabilities have been assigned Mitre CVE numbers [CVE-2013-1640][], [CVE-2013-1652][], [CVE-2013-1654][], [CVE-2013-2274][], and [CVE-2013-2275][].
+
+All users of Puppet 2.6.17 and earlier who cannot upgrade to the current version of Puppet, 3.1.1, are strongly encouraged to upgrade
+to 2.6.18.
+
+### 2.6.18 Downloads 
+
+* Source: <https://downloads.puppetlabs.com/puppet/puppet-2.6.18.tar.gz>
+* RPMs: <https://yum.puppetlabs.com/el> or `/fedora`
+* Debs: <https://apt.puppetlabs.com>
+
+See the Verifying Puppet Download section at:  
+<https://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet>
+
+Please report feedback via the Puppet Labs Redmine site, using an affected puppet version of 2.6.18:  
+<http://projects.puppetlabs.com/projects/puppet/>
+
+### 2.6.18 Changelog
+
+* Andrew Parker (2):
+     * (#14093) Remove unsafe attributes from TemplateWrapper
+     * (#14093) Restore access to the filename in the template
+
+* Daniel Pittman (2):
+     * (#8858) Refactor tests to use real HTTP objects
+     * (#8858) Explicitly set SSL peer verification mode.
+
+* Jeff McCune (2):
+     * (#19151) Reject SSLv2 SSL handshakes and ciphers
+     * (#19531) (CVE-2013-2275) Only allow report save from the node matching the certname
+
+* Josh Cooper (8):
+     * (#19391) Backport Request#remote? method
+     * Run openssl from windows when trying to downgrade master
+     * Remove unnecessary rubygems require
+     * Don't assume puppetbindir is defined
+     * Display SSL messages so we can match our regex
+     * Don't require openssl client to return 0 on failure
+     * Don't assume master supports SSLv2
+     * (#19391) Find the catalog for the specified node name
+
+* Justin Stoller (2):
+     * Acceptance tests for CVEs 2013 (1640, 1652, 1653, 1654, 2274, 2275)
+     * Separate tests for same CVEs into separate files
+
+* Matthaus Owens (1):
+     * Update CHANGELOG, lib/puppet.rb, conf/redhat/puppet.spec for 2.6.18
+
+* Nick Lewis (2):
+     * Always read request body when using Rack
+     * Fix order-dependent test failure in rest\_authconfig\_spec
+
+* Patrick Carlisle (4):
+     * (#19391) (CVE-2013-1652) Disallow use\_node compiler parameter for remote requests
+     * (#19392) (CVE-2013-1653) Validate instances passed to indirector
+     * (#19392) (CVE-2013-1653) Validate indirection model in save handler
+     * (#19392) (CVE-2013-1653) Fix acceptance test to catch unvalidated model on 2.6
+
 ## 2.6.17
 
 This is a **security** release in the 2.6.x branch.
@@ -1138,3 +1198,9 @@ new names are:
     agent.pid
     master.pid
 
+[CVE-2013-2274]: http://puppetlabs.com/security/cve/cve-2013-2274
+[CVE-2013-2275]: http://puppetlabs.com/security/cve/cve-2013-2275
+[CVE-2013-1655]: http://puppetlabs.com/security/cve/cve-2013-1655
+[CVE-2013-1654]: http://puppetlabs.com/security/cve/cve-2013-1654
+[CVE-2013-1652]: http://puppetlabs.com/security/cve/cve-2013-1652
+[CVE-2013-1640]: http://puppetlabs.com/security/cve/cve-2013-1640

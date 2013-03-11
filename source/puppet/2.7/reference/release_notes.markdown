@@ -7,6 +7,73 @@ description: Puppet release notes for version 2.7.x.
 Puppet 2.7 Release Notes
 ------------------------
 
+## 2.7.21
+
+Puppet 2.7.21 is a **security release** addressing several security vulnerabilities discovered in
+the 2.7.x line of Puppet. These vulnerabilities have been assigned Mitre CVE numbers [CVE-2013-1640][], [CVE-2013-1652][], [CVE-2013-1653][], [CVE-2013-1654][], [CVE-2013-1655][] and [CVE-2013-2275][].
+
+All users of Puppet 2.7.20 and earlier who cannot upgrade to the current version of Puppet, 3.1.1, are strongly encouraged to upgrade
+to 2.7.21. 
+
+### 2.7.21 Downloads 
+
+* Source: <https://downloads.puppetlabs.com/puppet/puppet-2.7.21.tar.gz>
+* Windows package: <https://downloads.puppetlabs.com/windows/puppet-2.7.21.msi>
+* RPMs: <https://yum.puppetlabs.com/el> or `/fedora`
+* Debs: <https://apt.puppetlabs.com>
+* Mac package: <http://downloads.puppetlabs.com/mac/puppet-2.7.21.dmg>
+* Gems are available via rubygems: <https://rubygems.org/downloads/puppet-2.7.21.gem> or by using `gem
+install puppet --version=2.7.21`
+
+See the Verifying Puppet Download section at:  
+<https://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet>
+
+Please report feedback via the Puppet Labs Redmine site, using an affected puppet version of 2.7.21:  
+<http://projects.puppetlabs.com/projects/puppet/>
+
+
+
+### 2.7.21 Changelog
+
+* Andrew Parker (2):
+     * (#14093) Remove unsafe attributes from TemplateWrapper
+     * (#14093) Restore access to the filename in the template
+
+* Jeff McCune (2):
+     * (#19151) Reject SSLv2 SSL handshakes and ciphers
+     * (#19531) (CVE-2013-2275) Only allow report save from the node matching the certname
+
+* Josh Cooper (8):
+     * Fix module tool acceptance test
+     * Run openssl from windows when trying to downgrade master
+     * Remove unnecessary rubygems require
+     * Don't assume puppetbindir is defined
+     * Display SSL messages so we can match our regex
+     * Don't require openssl client to return 0 on failure
+     * Don't assume master supports SSLv2
+     * (#19391) Find the catalog for the specified node name
+
+* Justin Stoller (2):
+     * Acceptance tests for CVEs 2013 (1640, 1652, 1653, 1654, 2274, 2275)
+     * Separate tests for same CVEs into separate files
+
+* Moses Mendoza (2):
+     * Add missing 2.7.20 CHANGELOG entries
+     * Update CHANGELOG, PUPPETVERSION for 2.7.21
+
+* Nick Lewis (3):
+     * (#19393) Safely load YAML from the network
+     * Always read request body when using Rack
+     * Fix order-dependent test failure in rest\_authconfig\_spec
+
+* Patrick Carlisle (3):
+     * (#19391) (CVE-2013-1652) Disallow use\_node compiler parameter for remote requests
+     * (#19392) (CVE-2013-1653) Validate instances passed to indirector
+     * (#19392) Don't validate key for certificate_status
+
+* Pieter van de Bruggen (1):
+     * Updating module tool acceptance tests with new expectations.
+
 ## 2.7.20
 
 2.7.20 is a bug fix release with some performance improvements ported back from 3.0.x line.  
@@ -2925,3 +2992,10 @@ Examples include:
     curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"signed"}' https://puppetmaster:8140/production/certificate_status/client.network.address
     curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' https://puppetmaster:8140/production/certificate_status/client.network.address
     curl -k -X DELETE -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
+
+[CVE-2013-2275]: http://puppetlabs.com/security/cve/cve-2013-2275
+[CVE-2013-1655]: http://puppetlabs.com/security/cve/cve-2013-1655
+[CVE-2013-1654]: http://puppetlabs.com/security/cve/cve-2013-1654
+[CVE-2013-1653]: http://puppetlabs.com/security/cve/cve-2013-1653
+[CVE-2013-1652]: http://puppetlabs.com/security/cve/cve-2013-1652
+[CVE-2013-1640]: http://puppetlabs.com/security/cve/cve-2013-1640
