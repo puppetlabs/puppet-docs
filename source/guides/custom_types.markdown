@@ -342,7 +342,7 @@ Providers
 
 Look at the [Provider Development](./provider_development.html)
 page for intimate detail; this document will only
-cover how the resource types and providers need to interact.Because
+cover how the resource types and providers need to interact. Because
 the properties call getter and setter methods on the providers,
 except in the case of ensure, the providers must define getters and
 setters for each property.
