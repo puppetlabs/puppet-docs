@@ -94,6 +94,13 @@ These answers are only needed if you are installing the puppet master role.
 `q_puppetmaster_enterpriseconsole_port`
 : **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the puppet master server. 
 
+In addition, by default the puppet master will check for available PE software updates whenever the `pe-httpd` service restarts. To help ensure the correct update is retrieved, the master will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
+    * the IP address of the client
+    * the type and version of the client's OS
+    * the Installed version of PE
+    
+ If you wish to disable manual update checks, or if your company policy forbids transmitting this information, you will need to add the following line to the answer file: `q_pe_check_for_updates=n`
+
 
 ### Console Answers
 

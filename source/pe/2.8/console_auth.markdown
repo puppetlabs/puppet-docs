@@ -122,7 +122,7 @@ As of PE 2.6, admins can use external, third-party authentication services to ma
 * Active Directory (AD)
 * Google accounts
 
-When using third-party services, the console's RBAC retains control over the access privileges. When a user logs in using an external service, the console will check their level of access privileges. If they have never logged in before, they are assigned a default role. (This role can be configured. See ["Configuration"](Configuration) below.) External users' access privileges are managed in the same manner as internal users, via the console's user administration interface.
+When using third-party services, the console's RBAC retains control over the access privileges. When a user logs in using an external service, the console will check their level of access privileges. If they have never logged in before, they are assigned a default role. (This role can be configured. See ["Configuration"](#configuration) below.) External users' access privileges are managed in the same manner as internal users, via the console's user administration interface.
 
 The account interface for an externally authenticated user differs slightly from internal users in that external users do not have UI for changing their passwords or deleting accounts.
 

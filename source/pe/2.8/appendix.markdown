@@ -6,12 +6,12 @@ subtitle: "User's Guide Appendix"
 
 This page contains additional miscellaneous information about Puppet Enterprise 2.7.
 
-Glossary
+Puppet Terminology
 -----
 
-For help with Puppet specific terms and language, visit [the glossary](/references/glossary.html)
+For help with Puppet-specific terms and language, visit [the glossary](/references/glossary.html)
 
-For a complete guide to the puppet language, visit [the reference manual](/puppet/2.7/reference/)
+For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.7/reference/)
 
 Release Notes
 -----
