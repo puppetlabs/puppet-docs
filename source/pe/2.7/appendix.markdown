@@ -16,7 +16,7 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### PE 2.7.2 (3/7/2013)
+### PE 2.7.2 (3/12/2013)
 
 #### Updated Modules
 The `java_ks` module has been updated to version 1.0.0 and now supports java 7. The `pe_mcollective` module (which depends on `java_ks`) has been updated to 0.0.60.
@@ -37,9 +37,6 @@ The JSON rubygem has a vulnerability that could allow a crafted JSON document to
 *[CVE-2013-0277 Rails (ActiveRecord) YAML Serialization Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-0277/)* 
 Attribute handling code in Ruby on Rails 2.3 and 3.0 can make some applications that directly assign serialized fields susceptible to DoS or remote execution attacks. Affected components have been patched.
 
-*[CVE-2013-1640 Master Remote Code Execution Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-1640/)* 
-A vulnerability found in Puppet could allow an authenticated client to cause the master to execute arbitrary code while responding to a catalog request. Specifically, in order to exploit the vulnerability, the puppet master must be made to invoke the `template` or `inline_template` functions during catalog compilation.
-
 *[CVE-2013-1655 Unauthenticated Remote Code Execution Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-1655/)*
 A vulnerability found in Puppet could allow unauthenticated clients to send requests to the puppet master which would cause it to load code unsafely. This vulnerability could cause issues like those described in Rails [CVE-2013-0156](http://puppetlabs.com/security/cve/cve-2013-0156/).
 
@@ -56,7 +53,7 @@ A vulnerability found in Puppet could allow an authenticated client to connect t
 A vulnerability found in Puppet could allow an authenticated client to cause the master to execute arbitrary code while responding to a catalog request. Specifically, in order to exploit the vulnerability, the puppet master must be made to invoke the `template` or `inline_template` functions during catalog compilation.
 
 *[CVE-2013-2274 Master/Agent Remote Code Execution Vulnerability--- Puppet 2.6 Only.](http://puppetlabs.com/security/cve/cve-2013-2274/)* 
-**NOTE: This vulnerability only affects Puppet 2.6.x** 
+**NOTE: This vulnerability only affects Puppet 2.6.x.** 
 A vulnerability found in Puppet could allow an authenticated client to execute arbitrary code on a puppet master that is running in the default configuration. Specifically, a properly authenticated and connected puppet agent could submit a bogus request for an authorized report that actually causes the execution of arbitrary code on the master.
 
 *[CVE-2013-2275 Incorrect Default Report ACL Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-2274/)* 
@@ -73,7 +70,6 @@ This vulnerability affects puppet masters 0.25.0 and above. By default, auth.con
         path ~ ^/report/([^/]+)$
         method save
         allow $1
-
 
 
 ### PE 2.7.1 (2/6/2013)
