@@ -49,7 +49,7 @@ A vulnerability has been found in Puppet which could allow authenticated clients
 *[CVE-2013-1652 Insufficient Input Validation Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-1652/)* 
 A vulnerability found in Puppet could allow an authenticated client to connect to a puppet master and perform unauthorized actions. Specifically, given a valid certificate and private key, an agent could retrieve catalogs from the master that it is not authorized to access or it could poison the puppet master's caches.
 
-*[CVE-2013-1640 Agent Remote Code Execution Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-1640/)* 
+*[CVE-2013-1640 Remote Code Execution Vulnerability.](http://puppetlabs.com/security/cve/cve-2013-1640/)* 
 A vulnerability found in Puppet could allow an authenticated client to cause the master to execute arbitrary code while responding to a catalog request. Specifically, in order to exploit the vulnerability, the puppet master must be made to invoke the `template` or `inline_template` functions during catalog compilation.
 
 *[CVE-2013-2274 Master/Agent Remote Code Execution Vulnerability--- Puppet 2.6 Only.](http://puppetlabs.com/security/cve/cve-2013-2274/)* 
