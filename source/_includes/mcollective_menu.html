@@ -8,22 +8,23 @@
     - `"Release Notes", "/mcollective/releasenotes.html"`
     - `"Changelog", "/mcollective/changelog.html"`
     - `"Alternate Index", "/mcollective/reference/"`
-- **Deploy, Install, and Configure MCollective**
+- **Deploy MCollective**
     - `"Getting Started (Red Hat)", "/mcollective/reference/basic/gettingstarted_redhat.html"`
     - `"Getting Started (Debian/Ubuntu)", "/mcollective/reference/basic/gettingstarted_debian.html"`
-    - `"Getting Started (generic)", "/mcollective/reference/basic/gettingstarted.html"`
+    - `"Getting Started (old)", "/mcollective/reference/basic/gettingstarted.html"`
+    - `"ActiveMQ Config Reference", "/mcollective/deploy/middleware/activemq.html"`
+    - `"ActiveMQ TLS Keystore Setup", "/mcollective/deploy/middleware/activemq_keystores.html"`
     - `"ActiveMQ Clustering", "/mcollective/reference/integration/activemq_clusters.html"`
-    - `"ActiveMQ Security", "/mcollective/reference/integration/activemq_security.html"`
-    - `"ActiveMQ TLS", "/mcollective/reference/integration/activemq_ssl.html"`
     - `"Puppet Integration", "/mcollective/reference/integration/puppet.html"`
     - `"Chef Integration", "/mcollective/reference/integration/chef.html"`
+- **Configure MCollective**
     - `"Configuration Reference", "/mcollective/reference/basic/configuration.html"`
+    - `"Configuring SSL Validation Security", "/mcollective/reference/plugins/security_ssl.html"`
     - `"Configuring the ActiveMQ Connector", "/mcollective/reference/plugins/connector_activemq.html"`
+    - `"ActiveMQ TLS", "/mcollective/reference/integration/activemq_ssl.html"`
+    - `"ActiveMQ Security", "/mcollective/reference/integration/activemq_security.html"`
     - `"Configuring the RabbitMQ Connector", "/mcollective/reference/plugins/connector_rabbitmq.html"`
-    - `"Configuring the Generic Stomp Connector", "/mcollective/reference/plugins/connector_stomp.html"`
-    - `"Configuring AES Security", "/mcollective/reference/plugins/security_aes.html"`
-    - `"Configuring Validation-Only SSL Security", "/mcollective/reference/plugins/security_ssl.html"`
-    - `"Configuring Subcollectives and Partitioning", "/mcollective/reference/basic/subcollectives.html"`
+    - `"Subcollectives and Partitioning", "/mcollective/reference/basic/subcollectives.html"`
     - `"Enabling Auditing", "/mcollective/simplerpc/auditing.html"` <!-- contains plugin-writing info -->
 - **Use and Administer MCollective**
     - `"Command Line Usage Instructions", "/mcollective/reference/basic/basic_cli_usage.html"`
@@ -52,7 +53,9 @@
     - `"SimpleRPC Message Format", "/mcollective/simplerpc/messageformat.html"`
     - `"Core Message Format", "/mcollective/reference/basic/messageformat.html"`
     - `"Security Overview", "/mcollective/security.html"`
-- **Deprecated Pages**
+- **Older and Non-Recommended Information**
+    - `"Configuring AES Security", "/mcollective/reference/plugins/security_aes.html"`
+    - `"Configuring the Generic Stomp Connector", "/mcollective/reference/plugins/connector_stomp.html"`
     - `"Writing Old-Style Agent Plugins", "/mcollective/reference/basic/basic_agent_and_client.html"`
 
 
@@ -70,23 +73,27 @@
       <li>{% iflink "Alternate Index", "/mcollective/reference/" %}</li>
     </ul>
   </li>
-  <li><strong>Deploy, Install, and Configure MCollective</strong>
+  <li><strong>Deploy MCollective</strong>
     <ul>
       <li>{% iflink "Getting Started (Red Hat)", "/mcollective/reference/basic/gettingstarted_redhat.html" %}</li>
       <li>{% iflink "Getting Started (Debian/Ubuntu)", "/mcollective/reference/basic/gettingstarted_debian.html" %}</li>
-      <li>{% iflink "Getting Started (generic)", "/mcollective/reference/basic/gettingstarted.html" %}</li>
+      <li>{% iflink "Getting Started (old)", "/mcollective/reference/basic/gettingstarted.html" %}</li>
+      <li>{% iflink "ActiveMQ Config Reference", "/mcollective/deploy/middleware/activemq.html" %}</li>
+      <li>{% iflink "ActiveMQ TLS Keystore Setup", "/mcollective/deploy/middleware/activemq_keystores.html" %}</li>
       <li>{% iflink "ActiveMQ Clustering", "/mcollective/reference/integration/activemq_clusters.html" %}</li>
-      <li>{% iflink "ActiveMQ Security", "/mcollective/reference/integration/activemq_security.html" %}</li>
-      <li>{% iflink "ActiveMQ TLS", "/mcollective/reference/integration/activemq_ssl.html" %}</li>
       <li>{% iflink "Puppet Integration", "/mcollective/reference/integration/puppet.html" %}</li>
       <li>{% iflink "Chef Integration", "/mcollective/reference/integration/chef.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Configure MCollective</strong>
+    <ul>
       <li>{% iflink "Configuration Reference", "/mcollective/reference/basic/configuration.html" %}</li>
+      <li>{% iflink "Configuring SSL Validation Security", "/mcollective/reference/plugins/security_ssl.html" %}</li>
       <li>{% iflink "Configuring the ActiveMQ Connector", "/mcollective/reference/plugins/connector_activemq.html" %}</li>
+      <li>{% iflink "ActiveMQ TLS", "/mcollective/reference/integration/activemq_ssl.html" %}</li>
+      <li>{% iflink "ActiveMQ Security", "/mcollective/reference/integration/activemq_security.html" %}</li>
       <li>{% iflink "Configuring the RabbitMQ Connector", "/mcollective/reference/plugins/connector_rabbitmq.html" %}</li>
-      <li>{% iflink "Configuring the Generic Stomp Connector", "/mcollective/reference/plugins/connector_stomp.html" %}</li>
-      <li>{% iflink "Configuring AES Security", "/mcollective/reference/plugins/security_aes.html" %}</li>
-      <li>{% iflink "Configuring Validation-Only SSL Security", "/mcollective/reference/plugins/security_ssl.html" %}</li>
-      <li>{% iflink "Configuring Subcollectives and Partitioning", "/mcollective/reference/basic/subcollectives.html" %}</li>
+      <li>{% iflink "Subcollectives and Partitioning", "/mcollective/reference/basic/subcollectives.html" %}</li>
       <li>{% iflink "Enabling Auditing", "/mcollective/simplerpc/auditing.html" %} <!-- contains plugin-writing info --></li>
     </ul>
   </li>
@@ -132,8 +139,10 @@
       <li>{% iflink "Security Overview", "/mcollective/security.html" %}</li>
     </ul>
   </li>
-  <li><strong>Deprecated Pages</strong>
+  <li><strong>Older and Non-Recommended Information</strong>
     <ul>
+      <li>{% iflink "Configuring AES Security", "/mcollective/reference/plugins/security_aes.html" %}</li>
+      <li>{% iflink "Configuring the Generic Stomp Connector", "/mcollective/reference/plugins/connector_stomp.html" %}</li>
       <li>{% iflink "Writing Old-Style Agent Plugins", "/mcollective/reference/basic/basic_agent_and_client.html" %}</li>
     </ul>
   </li>

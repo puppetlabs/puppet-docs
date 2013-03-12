@@ -1792,8 +1792,11 @@ Author: Gary Larizza <gary@puppetlabs.com>
     
 There was an issue where a service on OS X would be enabled but also
 stopped and the launchd service provider couldn't start it. In this
-case, the launchd service provider needed to execute `launchctl load -w
-<job_path>` to successfully start the service, but it wasn't programmed
+case, the launchd service provider needed to execute:
+
+    launchctl load -w JOB_PATH 
+
+to successfully start the service, but it wasn't programmed
 to do so.
     
 To remedy this, the launchd service provider's start method now checks
