@@ -149,8 +149,13 @@ This exercise will create a class that manages the permissions of the `fstab`, `
           'Solaris' => 'wheel',
           default   => 'root',
         }
+        $fstab = $operatingsystem ? {
+          'Solaris' => '/etc/vfstab',
+          default   => '/etc/fstab',
+        }
         
-        file {'/etc/fstab':
+        file {'fstab':
+          path   => $fstab,
           ensure => present,
           mode   => 0644,
           owner  => 'root',
