@@ -3216,7 +3216,7 @@ provider
     and not `apt`, you must specify the source of any packages you want
     to manage.
 
-    Required binaries: `/usr/bin/dpkg-query`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
+    Required binaries: `/usr/bin/dpkg-query`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`. Please note that if you don't specify the right name (usually obtained when you do a manual install), it will fail checking whether the package is already installed, and will reinstall it on every puppet run.
 
   fink
   : Package management via `fink`.
