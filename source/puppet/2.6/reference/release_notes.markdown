@@ -1082,7 +1082,7 @@ The augeas type has added the 'incl' and 'lens' parameters. These parameters all
 
 #####  Single Binary
 
-Puppet is now available as a single binary with sub-arguments for the functions previously provided by the seperate binaries (the existing binaries remain for backwards compatibility).  This includes renaming several Puppet functions to better fit an overall model.
+Puppet is now available as a single binary with sub-arguments for the functions previously provided by the separate binaries (the existing binaries remain for backwards compatibility).  This includes renaming several Puppet functions to better fit an overall model.
 
 List of binary changes
 
