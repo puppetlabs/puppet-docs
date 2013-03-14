@@ -14,3 +14,4 @@ pdf_source
 puppetdocs-latest.tar.gz*
 .bundle
 externalsources
+_cache
