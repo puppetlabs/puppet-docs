@@ -36,7 +36,7 @@ Deploying Code
 Once you have your code, you will need to have it both on the
 server and also distributed to clients.
 
-The best place to put this content is within Puppet's configured `libdir`. The libdir is special because you can use the `pluginsync` system to copy all of your plugins from the fileserver to all of your clients (and seperate Puppetmasters, if they exist)). To enable pluginsync, set `pluginsync=true` in puppet.conf and, if necessary, set the `pluginsource` setting. The contents of pluginsource
+The best place to put this content is within Puppet's configured `libdir`. The libdir is special because you can use the `pluginsync` system to copy all of your plugins from the fileserver to all of your clients (and separate Puppetmasters, if they exist)). To enable pluginsync, set `pluginsync=true` in puppet.conf and, if necessary, set the `pluginsource` setting. The contents of pluginsource
 will be copied directly into `libdir`, so make sure you make a
 puppet/type directory in your `pluginsource`, too.
 
@@ -84,7 +84,7 @@ autoload the type when you reference it in the Puppet language.
 
 We have already mentioned Puppet provides a `libdir` setting where you can copy the files outside the Ruby search path.  See also [Plugins In Modules](./plugins_in_modules.html)
 
-All types should also provide inline documention in the @doc class
+All types should also provide inline documentation in the @doc class
 instance variable. The text format is in Restructured Text.
 
 ### Properties
@@ -342,7 +342,7 @@ Providers
 
 Look at the [Provider Development](./provider_development.html)
 page for intimate detail; this document will only
-cover how the resource types and providers need to interact.Because
+cover how the resource types and providers need to interact. Because
 the properties call getter and setter methods on the providers,
 except in the case of ensure, the providers must define getters and
 setters for each property.
@@ -356,7 +356,7 @@ providers can either be tested for whether they suffice or they can
 declare that they have the features. Additionally, individual
 properties and parameters in the type can declare that they require
 one or more specific features, and Puppet will throw an error if
-those prameters are used with providers missing those features:
+those parameters are used with providers missing those features:
 
 {% highlight ruby %}
     newtype(:coloring) do
