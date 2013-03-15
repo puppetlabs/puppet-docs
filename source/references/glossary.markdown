@@ -52,7 +52,7 @@ Nodes can be classified with [node definitions](#node-definition) in the [site m
 
 ### declare
 
-To direct Puppet to include a given class or resource in a given configuration. To declare resources, use the lowercase `file {"/tmp/bar":}` syntax. To declare classes, use the `include` keyword or the `class {"foo":}` syntax. (Note that Puppet will automatically declare any classes it receives from an [external node classifier](#external-node-classifier).) 
+To direct Puppet to include a given class or resource in a given configuration. To declare resources, use the lowercase `file {'/tmp/bar':}` syntax. To declare classes, use the `include` keyword or the `class {'foo':}` syntax. (Note that Puppet will automatically declare any classes it receives from an [external node classifier](#external-node-classifier).) 
 
 You can configure a resource or class when you declare it by including [attribute/value pairs](#attribute).
 
