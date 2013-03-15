@@ -359,7 +359,7 @@ Regular expressions are written as [standard Ruby regular expressions](http://ww
     }
 {% endhighlight %}
 
-Alternate forms of regex quoting are not allowed.
+Alternate forms of regex quoting are not allowed and Ruby-style variable interpolation is not available.
 
 ### Regex Options
 
