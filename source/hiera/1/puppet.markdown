@@ -19,9 +19,9 @@ title: "Hiera 1: Using Hiera With Puppet"
 [class_definition]: /puppet/latest/reference/lang_classes.html#defining-classes
 [resource_like]: /puppet/latest/reference/lang_classes.html#using-resource-like-declarations
 [enc_assign]: /puppet/latest/reference/lang_classes.html#assigning-classes-from-an-enc
-[priority]: TODO
-[array_lookup]: TODO
-[hash_lookup]: TODO
+[priority]: ./lookup_types.html#priority-default
+[array_lookup]: ./lookup_types.html#array-merge
+[hash_lookup]: ./lookup_types.html#hash-merge
 [template_functions]: /guides/templating.html#using-functions-within-templates
 [enc]: /guides/external_nodes.html
 [site_manifest]: /puppet/latest/reference/lang_summary.html#files
@@ -158,14 +158,10 @@ Puppet has three lookup functions for retrieving data from Hiera. All of these f
 : Standard priority lookup. Gets the most specific value for a given key. This can retrieve values of any data type (strings, arrays, hashes) from Hiera.
 
 `hiera_array`
-: [Array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array.
-
-  (E.g. if `mykey` had a value of `one` in `web01.example.com.yaml` and a value of `[two, three]` in `common.yaml`, `hiera_array` would return a value of `[one, two, three]`.) If priority lookup can be thought of as a "default with overrides" pattern, `hiera_array` can be though of as "default with additions."
+: Uses an [array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array.
 
 `hiera_hash`
-: [Hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep-merge in the case of nested structures. 
-
-  (E.g. if `mykey` had a value of `{z => "local value"}` in `web01.example.com.yaml` and a value of `{a => "common value"}` in `common.yaml`, `hiera_hash` would return a value of `{z => "local value", a => "common value"}`.)
+: Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep-merge in the case of nested structures. 
 
 Each of these functions takes three arguments. In order:
 
