@@ -3,12 +3,16 @@ layout: default
 title: "Hiera 1: Command Line Usage"
 ---
 
+[priority_lookup]: ./lookup_types.html#priority-default
+[hash_lookup]: ./lookup_types.html#hash-merge
+[array_lookup]: ./lookup_types.html#array-merge
+
 Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data 
 sources are returning the values you expect. You'll typically run the Hiera command line tool on a puppet master, mocking up the facts agents would would normally provide the puppet master using a variety of [fact sources](#fact-sources).
 
 ## Invocation
 
-The simplest Hiera command takes a single argument--the key to look up--and will look up the key's value using the static [data sources](data_sources.html) in the [hierarchy](./hierarchy.html).
+The simplest Hiera command takes a single argument --- the key to look up --- and will look up the key's value using the static [data sources](data_sources.html) in the [hierarchy](./hierarchy.html).
 
 `$ hiera ntp_server`
 
@@ -117,26 +121,23 @@ If you are using Puppet's [inventory service](/guides/inventory_service.html), y
 Example coming soon.
 
 
-## Other Lookup Types
+## Lookup Types
 
-By default, the Hiera command line tool will return a single value --- the first value found in the hierarchy. There are two other lookup types available: array and hash. 
+By default, the Hiera command line tool will use a [priority lookup][priority_lookup], which returns a single value --- the first value found in the hierarchy. There are two other lookup types available: array merge and hash merge. 
 
-### Array 
+### Array Merge
 
-The `--array` argument causes Hiera to return **all** matches in the hierarchy --- not just the first match --- as an array. If any of the values returned are arrays, Hiera flattens them into a single array.
+An array merge lookup assembles a value by merging every value it finds in the hierarchy into an array, then flattening the array. [See "Array Merge Lookup"][array_lookup] for more details. 
 
-If any of the values is a hash, the `--array` option will cause Hiera to return an error. 
+Use the `--array` option to do an array merge lookup.
+
+If any of the values found in the data sources are hashes, the `--array` option will cause Hiera to return an error. 
 
 ### Hash
 
-The `--hash` argument causes Hiera to expect **every** match in the hierarchy to be a hash. It will then **merge** all of the keys and values from the resulting hashes into a single hash. That is, if the following two hashes were returned:
+A hash merge lookup assembles a value by merging the top-level keys of each hash it finds in the hierarchy into a single hash. [See "Hash Merge Lookup"][hash_lookup] for more details. 
 
-    {a => something, b => something_else}
-    {c => something_third, d => nothing}
-
-...then `hiera --hash` would return `{a => something, b => something_else, c => something_third, d => nothing}`
-
-In cases where two or more hashes share some keys, the hierarchy order determines which value will be used in the final hash, with the higher priority value winning. 
+Use the `--hash` option to do a hash merge lookup.
 
 If any of the values found in the data sources are strings or arrays, the `--hash` option will cause Hiera to return an error. 
 
