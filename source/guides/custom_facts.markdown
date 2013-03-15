@@ -187,15 +187,10 @@ the `timeout` property. If a fact is defined with a timeout and the evaluation
 of the setcode block exceeds the timeout, Facter will halt the resolution of
 that fact and move on.
 
-    # Randomly sleep
-    Facter.add(:sleep) do
-      timeout = 10
+    # Sleep
+    Facter.add(:sleep, :timeout => 10) do
       setcode do
-        if Random.rand(6) == 0
           sleep 999999
-        else
-          "awake"
-        end
       end
     end
 

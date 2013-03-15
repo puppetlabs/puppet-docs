@@ -25,7 +25,7 @@ When Tom first configured Puppet, he set up his workstation with the ability to 
 
 This allows Tom to use `puppet node init` to complete the process of getting the new node up and running. `Puppet node init` is a wrapper command that will `install` Puppet, `classify` the node, and sign the certificate (`puppet certicate sign` or `puppet cert sign`). "Classifying" the node tells Puppet which configuration groups and classes should be applied to the node. In this case, applying the `cloudwidget_appserv` class configures the node with all the settings, files and database hooks needed to create a fully configured, ready-to-run app server tailored to the CloudWidget environment.
 
-Note: if Tom had not done the prep work needed for remote signing of certificates he could run the `puppet node install`, `puppet node classify` and `puppet cert sign` commands seperately.
+Note: if Tom had not done the prep work needed for remote signing of certificates he could run the `puppet node install`, `puppet node classify` and `puppet cert sign` commands separately.
 
 Now Tom needs to run Puppet on the new node in order to apply the configuration. He could wait 30 minutes for Puppet to run automatically, but instead he SSH's into the machine and runs Puppet interactively with `puppet agent --test`.
 

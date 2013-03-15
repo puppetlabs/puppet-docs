@@ -210,26 +210,34 @@ The authenticators are listed in the file in the following manner (note how this
 
 {% highlight yaml %}
 
-    #- class: CASServer::Authenticators::Google
-    #   restricted_domain: example.com
-    
-    - class: CASServer::Authenticators::LDAP
-        ldap:
-            host: tb-driver.example.com
-            port: 389
-            base: dc=example,dc=test
-            filter: (objectClass=person)
-            username_attribute: mail
-      
-     - class: CASServer::Authenticators::ActiveDirectoryLDAP
-        ldap:
-            host: winbox.example.com
-            port: 389
-            base: dc=example,dc=dev
-            filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
-            auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
-            auth_password: P4ssword
-            
+authenticator:
+  - class: CASServer::Authenticators::SQLEncrypted
+    database:
+      adapter: mysql
+      database: console_auth
+      username: console_auth
+      password: easnthycea098iu7aeo6oeu # installer-generated password
+      server: localhost
+    user_table: users
+    username_column: username
+  #- class: CASServer::Authenticators::Google
+  #   restricted_domain: example.com
+  - class: CASServer::Authenticators::LDAP
+    ldap:
+      host: tb-driver.example.com
+      port: 389
+      base: dc=example,dc=test
+      filter: (objectClass=person)
+      username_attribute: mail
+  - class: CASServer::Authenticators::ActiveDirectoryLDAP
+    ldap:
+      host: winbox.example.com
+      port: 389
+      base: dc=example,dc=dev
+      filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
+      auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
+      auth_password: P4ssword
+
 {% endhighlight %}
 
 As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
