@@ -3701,7 +3701,7 @@ about them.  It does not directly modify /etc/passwd or anything.</p>
 <tr><td>useradd</td>
 <td><strong>X</strong></td>
 <td><strong>X</strong></td>
-<td>&nbsp;</td>
+<td><strong>X</strong></td>
 </tr>
 </tbody>
 </table>
