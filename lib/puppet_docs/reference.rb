@@ -81,10 +81,27 @@ module PuppetDocs
             content.gsub!(fqdn.downcase, "(the system's fully qualified domain name)")
             # Yuck, this next one is hard to deal with when the domain is "local," like a Mac on a DNS-less network. Will have to be very specific, which makes it kind of brittle.
             content.gsub!("- *Default*: #{domain.downcase}\n", "- *Default*: (the system's own domain)\n")
-          elsif @name == "type" # then make the feature table headers less garbage
+          elsif @name == "type"
+            # make the feature table headers less garbage
             content.gsub!(/^Provider(?-m:\s+|.*)$/) {|headerline|
               headerline.gsub('_', ' ')
             }
+            # fix the useradd provider to be kinda-sorta-usually-true instead of
+            # locally-absolutely-true-but-useless-to-real-users. Line 95 of
+            # lib/puppet/provider/user/useradd.rb says:
+            #   has_features :manages_passwords, :manages_password_age if Puppet.features.libshadow?
+            # This means useradd can't manage passwords if you don't have ruby
+            # libshadow installed. You can't have libshadow installed on the laptops
+            # we generate the docs with. We always publish docs that say
+            # useradd can't manage passwords. This is locally true but the opposite
+            # of what nearly all real users experience.
+
+            # This depends on the specific structure of the providers table for
+            # the user type, so we're basically hoping they don't add more
+            # features. This is terrible but there's not an easy solution that's better.
+
+            # We want to change cells 6 and 8 of the row that starts with useradd.
+            content.sub!(/^(useradd *\| *\*X\* *\| *\| *\*X\* *\| *\*X\* *\| )   ( *\| *\| )   ( *\| *\| *\*X\* *\|)/, '\1*X*\2*X*\3')
 
           end
 
