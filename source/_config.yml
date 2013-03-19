@@ -12,6 +12,7 @@ defaultnav:
   /puppetdb/0.9: puppetdb0.9.html
   /puppetdb/1: puppetdb1.html
   /puppetdb/1.1: puppetdb1.1.html
+  /puppetdb/master: puppetdb_master.html
   /puppet/0.24/reference: puppet_0_24.html
   /puppet/0.25/reference: puppet_0_25.html
   /puppet/2.6/reference: puppet_2_6.html
