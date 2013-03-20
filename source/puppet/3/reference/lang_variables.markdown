@@ -42,7 +42,7 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
 
 {% highlight ruby %}
     file {'/tmp/testing':
-      ensure => file,
+      ensure  => file,
       content => $content,
     }
     
@@ -103,7 +103,7 @@ You can access out-of-scope variables from named scopes by using their [qualifie
     $vhostdir = $apache::params::vhostdir
 {% endhighlight %}
 
-Note that the top scope's name is the empty string. See [scope][] for details. 
+Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details. 
 
 ### No Reassignment
 

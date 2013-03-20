@@ -8,9 +8,9 @@ title: "Hiera 1: Creating Hierarchies"
 [data]: ./data_sources.html
 
 <!-- TODO: better links for the lookup types -->
-[priority]: ./puppet.html
-[array]: ./puppet.html
-[hash]: ./puppet.html
+[priority]: ./lookup_types.html#priority-default
+[array]: ./lookup_types.html#array-merge
+[hash]: ./lookup_types.html#hash-merge
 
 
 Hiera uses an ordered hierarchy to look up data. This allows you to have a large amount of common data and override smaller amounts of it wherever necessary.
