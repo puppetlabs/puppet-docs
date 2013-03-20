@@ -16,7 +16,7 @@ Operating System
 
 Puppet Enterprise 2.8 supports the following systems:
 
-|       Operating system       |  Version          |       Arch        |   Roles   |
+|       Operating system       |  Version(s)          |       Arch        |   Roles   |
 |------------------------------|-------------------|-------------------|-----------|
 | Red Hat Enterprise Linux     | 5 and 6           | x86 and x86\_64   | all roles |
 | CentOS                       | 5 and 6           | x86 and x86\_64   | all roles |
