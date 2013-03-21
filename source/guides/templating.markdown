@@ -138,6 +138,10 @@ This can also be used to ensure that you are getting the top-scope value of a va
 
     <%= scope.lookupvar('::domain') %>
 
+Puppet 3 introduces an easier syntax: you can use the square bracket operator (`[]`) on the scope object as though it were a hash.
+
+    <%= scope['::domain'] %>
+
 ### Testing for Undefined variables
 
 Instance variables are not created for variables whose values are undefined, so you can easily test for undefined variables with `if @variable`:
