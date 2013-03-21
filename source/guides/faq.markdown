@@ -242,7 +242,7 @@ at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
 ### Which versions of Ruby does Puppet support?
 
-Please see the ['Ruby Versions' section of the Supported Platforms document](http://docs.puppetlabs.com/guides/platforms.html#ruby-versions) for the complete matrix of supported Ruby versions. 
+Please see the ['Ruby Versions' section of the Supported Platforms document](http://docs.puppetlabs.com/guides/platforms.html#ruby-versions) for the complete matrix of supported Ruby versions.
 
 Upgrading
 ---------
@@ -459,7 +459,7 @@ the Apache 2.0 license.
 
 As part of this license change, Puppet Labs has approached every
 existing contributor to the project and asked them to sign a
-[Contributor License Agreement or CLA](http://www.puppetlabs.com/legal/cla.txt).
+[Contributor License Agreement or CLA](https://puppetlabs.com/wp-content/uploads/2011/10/cla.txt).
 
 Puppet Labs has adapted the standard Apache Foundation’s CLA for
 this purpose.  
@@ -479,7 +479,7 @@ cannot be disputed in the event of any legal challenge.
 If you haven’t signed a CLA, then we can’t yet accept your code
 contribution into Puppet or Facter.  Signing a CLA is very easy:
 simply sign up for a [Puppet Labs Redmine account](https://projects.puppetlabs.com/account/register)
-and go to the [CLA page to sign the agreement](https://projects.puppetlabs.com/contributor_licenses/sign).
+and go to the [CLA page to sign the agreement](http://projects.puppetlabs.com/projects/puppet/wiki/Cla).
 
 We’ve worked hard to try find to everyone who has contributed code
 to Puppet, but if you have questions or concerns about a previous
