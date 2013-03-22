@@ -55,9 +55,8 @@ If you are trying to upgrade Puppet Dashboard instead of installing it from scra
 Installing Dependencies
 ------------
 
-Dashboard is distributed with the version of Rails it uses, as well as most of its other dependencies, but you'll have to ensure that the following software is installed:
+Dashboard is distributed with the version of Rails it uses, Ruby 1.8.7 packages where required by older distributions, as well as most of its other dependencies, but you'll have to ensure that the following software is installed:
 
-* [Ruby](http://www.ruby-lang.org/en/downloads/) or [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/download.html) version 1.8.7 --- Dashboard 1.2 no longer supports older versions of Ruby, and Ruby 1.9.2 is not yet fully supported.
 * [RubyGems](http://rubygems.org/)
 * [Rake](http://github.com/jimweirich/rake) version 0.8.3 or newer
 * [MySQL](http://www.mysql.com/downloads/mysql/) database server version 5.x
@@ -91,11 +90,7 @@ These instructions assume a fresh install of the OS, and may differ depending on
 
 3. Create `gem` as an alternative name for the `gem1.8` command:
 
-        update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.8 1
-
-#### Installing Dependencies Under CentOS or RHEL 5.x or Earlier
-
-As Dashboard no longer supports the version of Ruby used by version 5.x enterprise Linuxes, installing Dashboard on a 5.x server requires that you maintain your own installation of Ruby, which is beyond the scope of this manual. If you need to deploy on a pre-6.x version of enterprise Linux and don't have the resources to maintain your own Ruby packages, you should consider using [Puppet Enterprise][pe]. 
+        update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.8 1 
 
 Installing Puppet Dashboard
 ------------
