@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "PE 2.7  » Index"
+title: "PE 2.8  » Index"
 subtitle: "Puppet Enterprise User's Guide"
 ---
 
-Welcome! This is the user's guide for Puppet Enterprise 2.7. 
+Welcome! This is the user's guide for Puppet Enterprise 2.8. 
 
 * If you are new to Puppet Enterprise, begin with the [quick start guide](./quick_start.html) to create a small proof-of-concept deployment and experience the core Puppet Enterprise tools and workflows. This guided walkthrough will take approximately 30 minutes. 
 * To install Puppet Enterprise, see the following pages:

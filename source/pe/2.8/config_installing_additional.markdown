@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Advanced Configuration » Installing Additional Components"
+title: "PE 2.8  » Advanced Configuration » Installing Additional Components"
 subtitle: "Installing Additional Components"
 ---
 

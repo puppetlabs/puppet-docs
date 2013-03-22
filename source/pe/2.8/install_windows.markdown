@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Installing » Windows Agents"
+title: "PE 2.8  » Installing » Windows Agents"
 subtitle: "Installing Windows Agents"
 ---
 
@@ -9,7 +9,7 @@ subtitle: "Installing Windows Agents"
 
 > ![windows logo](./images/windows-logo-small.jpg) This chapter refers to Windows functionality. To install PE on \*nix nodes, see [Installing Puppet Enterprise](./install_basic.html).
 
-PE 2.7 includes support for Windows agent nodes. Windows nodes:
+PE includes support for Windows agent nodes. Windows nodes:
 
 * Can fetch configurations from a puppet master and apply manifests locally
 * Cannot serve as a puppet master

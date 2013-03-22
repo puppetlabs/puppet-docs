@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Troubleshooting » Common Problems & Solutions"
+title: "PE 2.8  » Troubleshooting » Common Problems & Solutions"
 subtitle: "Troubleshooting Common Errors"
 ---
 

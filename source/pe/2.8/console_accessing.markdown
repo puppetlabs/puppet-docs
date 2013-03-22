@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Console » Accessing"
+title: "PE 2.8  » Console » Accessing"
 subtitle: "Accessing the Console"
 ---
 
@@ -91,7 +91,7 @@ Click the "Continue to this website (not recommended)" link on the warning page.
 Logging In
 -----
 
-For security, accessing the console requires a user name and password. In PE 2.7, there are three different levels of user access: read, read-write, and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [User Management page](./console_auth.html) for more information on managing console user accounts.
+For security, accessing the console requires a user name and password. PE allows three different levels of user access: read, read-write, and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [User Management page](./console_auth.html) for more information on managing console user accounts.
 
 ![Screenshot: a login dialog asking for credentials][login]
 

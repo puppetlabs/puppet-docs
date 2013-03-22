@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Console » Node Request Management"
+title: "PE 2.8  » Console » Node Request Management"
 subtitle: "Working with Node Requests"
 ---
 
@@ -59,17 +59,16 @@ For more information on working with certificates from the CLI, see the [Puppet 
 
 * By default, the location of the CA is set to the location of PE's puppet master. If the CA is in a custom location (as in cases where there are multiple puppet masters), you will have to set the `ca_server` and `ca_port` parameters in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
 
-* When upgrading PE to 2.7, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for request management. If auth.conf has been manually modified prior to the upgrade, the upgrader will not convert the file. Consequently, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
+* When upgrading PE from a version before 2.7.0, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for request management. *However*, if auth.conf has been manually modified prior to the upgrade, the upgrader will NOT convert the file. Consequently, to get it working, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
 
         path  /certificate_status
         method find, search
         auth yes
         allow pe-internal-dashboard
 
-    Also, note that in PE 2.7.0, it was the case that if you made changes to the file, they would get over-written on the next puppet run. *As of PE 2.7.1 this is no longer true.* Auth.conf will be updated during upgrade if the file has not been modified and then it will not get touched during subsequent puppet runs. See the [release notes](http://docs.puppetlabs.com/pe/2.7/appendix.html#release-notes) for more information.
 
-### New Modules
-PE 2.7 installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienaar-concat`. It also upgrades the `puppetlabs-stdlib` module to v.2.5.1.
+### Request Management Modules
+PE installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienaar-concat`. It also upgrades the `puppetlabs-stdlib` module to v.2.5.1.
 
 The `puppetlabs-auth_conf` module contains a new defined type: `auth_conf::acl`. The type takes the following parameters:
 

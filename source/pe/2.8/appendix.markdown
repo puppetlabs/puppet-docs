@@ -1,103 +1,44 @@
 ---
 layout: default
-title: "PE 2.7 » Appendix"
+title: "PE 2.8 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 
-This page contains additional miscellaneous information about Puppet Enterprise 2.7.
+This page contains additional miscellaneous information about Puppet Enterprise 2.8.
 
 Puppet Terminology
 -----
 
 For help with Puppet-specific terms and language, visit [the glossary](/references/glossary.html)
 
-For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.7/reference/)
+For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.8/reference/)
 
 Release Notes
 -----
 
-### PE 2.7.1 (1/???/2013)
-
-Two modules have been updated in this maintenance release: puppetlabs-request_manager and puppetlabs-auth_conf.
-
-#### Change to auth.conf File Management
-
-Previously, the auth.conf file was fully managed by PE 2.7.0. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1 the upgrader will still convert auth.conf to add the code needed to enable certificate management if and only if the file has not been manually modified. If the file has been modified, the upgrader will still show a warning that it is not going to convert the file. However, on subsequent puppet runs, the file will now be left untouched.
-
-#### Broken Augeas puppet Lens on Solaris
-
-On Solaris systems, PE's file paths were not compatible with the augeas puppet lenses. The augeas package has been modified to correct this issue.
-
-#### Security Patches
-
-*CVE-2013-0333 Ruby on Rails JSON Parser Code Injection Vulnerability*
-
-This is a Ruby on Rails vulnerability in the JSON parser that could allow an attacker to bypass authentication and inject and execute arbitrary code, or perform a DoS attack. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
-
-*CVE-2013-0156 Ruby on Rails SQL Injection Vulnerability*
-
-This is a Ruby on Rails vulnerability specific to Active Record that could allow the injection of arbitrary code in SQL. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
-
-*CVE-2013-0155 Ruby on Rails SQL Query Generation Vulnerability*
-
-This is a Ruby on Rails vulnerability specific to Active Record that could allow the creation of arbitrary queries in SQL. The Puppet Dashboard and Active Record packages have been patched against this vulnerability in PE 2.7.1.
-
-*CVE-2013-1398 MCO Private Key Leak*
-
-Under certain circumstances, a user with root access to a single node in a PE deployment could possibly manipulate that client's local facts in order to force the pe_mcollective module to deliver a catalog containing SSL keys. These keys could be used to access other nodes in the collective and send them arbitrary commands as root. For the vast majority of users, the fix is to apply the 2.7.1 upgrade. 
-
-For PE users who do not use the Console, this can be fixed by making sure that the `pe_mcollective::role::master` class is applied to your master, and
-the pe_mcollective::role::console class is applied to your console. This can be as simple as adding the following to your site.pp manifest or other node classifier:
-
-
-        node console {
-        include pe_mcollective::role::console
-    }
-
-       node master {
-       include pe_mcollective::role::master
-     }
-
-*CVE 2013-1399 CSRF Protection*
- 	 
-Cross site request forgery (CSRF) protection has been added to the following areas of  the PE console: node request management, live management, and user administration. Now, basically every HTML form submitted to a server running one of these services gets a randomly generated token whose authenticity is compared against a token stored by the session of the currently logged-in user. Requests with tokens that do not authenticate (or are not present) will be answered with a "403 Forbidden" HTML status.
-
-One exception to the CSRF protection model are HTTP requests that use basic HTTP user authorization. These are treated as "API" requests and, since by definition they include a valid (or not) username and password, they are considered secure.
- 	 	
-Note that the Rails-based  puppet dashboard application is not vulnerable due to Rails' built in CSRF protection.
-
-*CVE 2012-5664 SQL Injection Vulnerability*
- 
-This CVE addresses an SQL injection vulnerability in Ruby on Rails and Active Record. The vulnerability is related to the way dynamic finders are processed in Active Record wherein a method parameter could be used as scope. PE 2.7.1 provides patches to Puppet Dashboard and the Active Record packages to eliminate the vulnerabilitly. More information is available on this [CVE's page](http://puppetlabs.com/security/cve/cve-2012-5664/). 
-
-### PE 2.7.0
-
-The initial release of PE 2.7 (11/20/2012). 
-
-#### Puppet Core Patches
-
-Changes to the current version of Puppet's core are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.19). PE 2.7 uses a specially patched version of Puppet 2.7.19. These patches address the following:
-
-* In some cases, an improperly functioning alias between scope and named_scope could cause inventory service to fail. This has been fixed. For details, see [Issue 16376](http://projects.puppetlabs.com/issues/16376).
-
-*  The REST API does not return correct metadata for `GET certificate_request/{certname}` or `GET /certificate_status/{certname}`.This has been corrected. For details, see [Issue 15731](http://projects.puppetlabs.com/issues/15731).
-
-* A bug related to the use of hyphens in variable names caused unpredictable behavior when interpolating variables. This has been fixed. There are numerous tickets associated with this issue. See the related issues listed on [Issue 10146](http://projects.puppetlabs.com/issues/10146).
-
+### PE 2.8.0 (3/25/2013)
 
 
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 2.7.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
+As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
 
-To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.19 (Puppet Enterprise 2.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
+
+### Bad Data in `facter architecture`
+
+On AIX nodes, a bug causes facter to return the system's model number (e.g., IBM 3271) instead of the processor's architecture (e.g. Power6). There is no known workaround.
+
+### Augeas File Access Issue
+
+On AIX nodes, the Augeas lens is unable to access or modify `etc/services`. There is no known workaround.
 
 ### After Upgrading, Nodes Report a "Not a PE Agent" Error
 
@@ -116,13 +57,13 @@ During installation, the PE installer attempts to automatically determine the UR
 
 ### Answer file required for some SMTP servers.
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.7/config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.8/config_advanced.html#allowing-anonymous-console-access) for details.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
 An inadequate default MySQL buffer pool size setting can interfere with upgrades to Puppet Enterprise console servers.
 
-**The PE 2.7 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade. 
+**The PE 2.8 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade. 
 
 If you see this warning, you should:
 

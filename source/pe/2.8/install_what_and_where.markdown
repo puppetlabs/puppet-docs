@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Installing » What Gets Installed Where?"
+title: "PE 2.8  » Installing » What Gets Installed Where?"
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Installing » Upgrading"
+title: "PE 2.8  » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
 ---
 
@@ -80,13 +80,13 @@ The upgrader will ask you the following questions:
 
 ### Cloud Provisioner
 
-PE 2.7 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On nodes which lack the cloud provisioner role, you'll be asked whether you wish to install it.
+PE includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On nodes which lack the cloud provisioner role, you'll be asked whether you wish to install it.
 
 ### Vendor Packages
 
-If PE 2.7 needs any packages from your OS's repositories, it will ask permission to install them. 
+If PE needs any packages from your OS's repositories, it will ask permission to install them. 
 
-As with the installer, the upgrader in PE 2.7.0 and later will ask you if you want to verify the integrity of the chosen packages by using Puppet Labs' public GPG key to verify the package signatures. If the public key is already present, the verification process will take place by default and the question will not be presented. However, you can over-ride this behavior and prevent package verification by setting `verify_packages=n` in an answer file.
+As with the installer, the upgrader in PE and later will ask you if you want to verify the integrity of the chosen packages by using Puppet Labs' public GPG key to verify the package signatures. If the public key is already present, the verification process will take place by default and the question will not be presented. However, you can over-ride this behavior and prevent package verification by setting `verify_packages=n` in an answer file.
 
 ### Puppet Master Options
 
@@ -298,7 +298,7 @@ You can now start PE's web server again.
 
 ### Edit `puppet.conf` on Each Agent Node
 
-On each agent node you upgrade to PE 2.7, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
+On each agent node you upgrade, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
 
     [agent]
         # support filebucket viewing when using compliance features:

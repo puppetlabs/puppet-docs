@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Console » User Management and Authorization"
+title: "PE 2.8  » Console » User Management and Authorization"
 subtitle: "Managing Console Users"
 ---
 
@@ -105,7 +105,7 @@ On the console server, the following command will add a new user:
 
     $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="<email address>" PASSWORD="<password>" ROLE="< Admin | Read-Only | Read-Write >"
 
-> **Note:** The "EMAIL" variable used in PE 2.5 has been changed to "USERNAME" in PE 2.7.
+> **Note:** The "EMAIL" variable used in PE 2.5 has been changed to "USERNAME"  starting with PE 2.7.
 
 Thus, to add a read-write user named jones@example.com, you would run:
 

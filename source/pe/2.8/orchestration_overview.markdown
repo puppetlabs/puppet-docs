@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Orchestration » Overview"
+title: "PE 2.8  » Orchestration » Overview"
 subtitle: "Orchestration for New PE Users: Overview"
 ---
 

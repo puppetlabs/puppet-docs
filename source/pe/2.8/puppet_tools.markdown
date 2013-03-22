@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Puppet » Tools"
+title: "PE 2.8  » Puppet » Tools"
 subtitle: "Puppet Tools"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Configuring Puppet Enterprise » Advanced Configuration"
+title: "PE 2.8  » Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"
 ---
 
@@ -13,7 +13,7 @@ Increasing the MySQL Buffer Pool Size
 
 The default MySQL configuration uses an unreasonably small `innodb_buffer_pool_size` setting, which can interfere with the console's ability to function. 
 
-If you are installing a new PE 2.7 console server and allowing the installer to configure your databases, it will set the better value for the buffer pool size. However, PE cannot automatically manage this setting for upgraded console servers and manually configured databases. 
+If you are installing a new PE console server and allowing the installer to configure your databases, it will set the better value for the buffer pool size. However, PE cannot automatically manage this setting for upgraded console servers and manually configured databases. 
 
 To change this setting, edit the MySQL config file on your database server (usually located at `/etc/my.cnf`, but your system may differ) and set the value of `innodb_buffer_pool_size` to at least `80M` and possibly as high as `256M`. (Its default value is `8M`, or 8388608 bytes.)
 

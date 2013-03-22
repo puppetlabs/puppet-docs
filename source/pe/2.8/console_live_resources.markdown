@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Console » Live Mgmt: Managing Resources"
+title: "PE 2.8  » Console » Live Mgmt: Managing Resources"
 subtitle: "Live Management: Managing Resources"
 ---
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
@@ -15,10 +15,10 @@ Resource Types
 
 The live management tools can manage the following resource types:
 
-- [user](/references/2.7.6/type.html#user)
-- [group](/references/2.7.6/type.html#group)
-- [host](/references/2.7.6/type.html#host)
-- [package](/references/2.7.6/type.html#package)
+- [user](/references/2.7.latest/type.html#user)
+- [group](/references/2.7.latest/type.html#group)
+- [host](/references/2.7.latest/type.html#host)
+- [package](/references/2.7.latest/type.html#package)
 
 For an introduction to resources and types, please see [the Resources chapter of Learning Puppet](/learning/ral.html).
 

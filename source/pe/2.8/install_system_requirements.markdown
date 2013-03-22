@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Installing » System Requirements"
+title: "PE 2.8  » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 ---
 

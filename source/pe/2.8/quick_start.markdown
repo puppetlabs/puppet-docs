@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 2.7  » Quick Start » Using PE"
-subtitle: "Quick Start: Using PE 2.7"
+title: "PE 2.8  » Quick Start » Using PE"
+subtitle: "Quick Start: Using PE 2.8"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the PE 2.7 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. Follow along to learn how to:
+Welcome to the PE 2.8 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
@@ -299,7 +299,7 @@ In addition to what this walkthrough has covered, most users will also:
 
 To learn about these workflows, continue to the [writing modules quick start guide](./quick_writing.html).
 
-To explore the rest of the PE 2.7 user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
+To explore the rest of the PE user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
 
 * * * 
 

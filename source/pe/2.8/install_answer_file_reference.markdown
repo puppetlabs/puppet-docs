@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Installing » Answer File Reference"
+title: "PE 2.8  » Installing » Answer File Reference"
 subtitle: "Answer File Reference"
 ---
 

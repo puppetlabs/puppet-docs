@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7 » Overview » About Puppet Enterprise"
+title: "PE 2.8 » Overview » About Puppet Enterprise"
 subtitle: "About Puppet Enterprise"
 ---
 
@@ -15,7 +15,7 @@ Puppet Enterprise (PE) offers:
 * An alternate compliance workflow for auditing changes to unmanaged resources.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-This user's guide will help you start using Puppet Enterprise 2.7, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and MCollective. Use the **navigation at left** to move between the guide's sections and chapters.
+This user's guide will help you start using Puppet Enterprise 2.8, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and MCollective. Use the **navigation at left** to move between the guide's sections and chapters.
 
 > For New Users
 > -----
@@ -25,7 +25,7 @@ This user's guide will help you start using Puppet Enterprise 2.7, and will serv
 > For Returning Users
 > -----
 > 
-> See the [what's new page](./overview_whats_new.html) for the new features in this release of Puppet Enterprise. You can find detailed release notes for updates within the 2.7.x series in the [appendix of this guide](./appendix.html).
+> See the [what's new page](./overview_whats_new.html) for the new features in this release of Puppet Enterprise. You can find detailed release notes for updates within the 2.8.x series in the [appendix of this guide](./appendix.html).
 
 
 About Puppet

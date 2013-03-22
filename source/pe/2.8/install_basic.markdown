@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Installing » Installing PE"
+title: "PE 2.8  » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"
 ---
 
@@ -54,7 +54,7 @@ To install the packages on your selected node directly, you can run the followin
 
 *Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. Also, The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Lastly, avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
 
-The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](http://docs.puppetlabs.com/references/latest/type.html#package) for technical details.
+The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
 
 *Solaris*  
 In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system.

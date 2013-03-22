@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Overview » Getting Support"
+title: "PE 2.8  » Overview » Getting Support"
 subtitle: "Getting Support for Puppet Enterprise"
 ---
 

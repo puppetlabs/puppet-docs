@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.7  » Accounts Module » The pe_accounts::user Type"
+title: "PE 2.8  » Accounts Module » The pe_accounts::user Type"
 subtitle: "The pe_accounts::user Type"
 ---
 
@@ -107,7 +107,7 @@ The `pe_accounts::user` type can be used on all of the platforms supported by Pu
 
 ## Parameters
 
-Many of the type's parameters echo those of the standard [`user` type](/references/2.7.6/type.html#user).
+Many of the type's parameters echo those of the standard [`user` type](/references/2.8.6/type.html#user).
 
 ### `name`
 
