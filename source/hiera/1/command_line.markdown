@@ -38,7 +38,7 @@ Argument                              | Use
 `-V`, `--version`                     | Version information
 `-c`, `--config FILE`                 | Specify an alternate configuration file location
 `-d`, `--debug`                       | Show debugging information
-`-a`, `--array`                       | Return all values as a flattened array
+`-a`, `--array`                       | Return all values as a flattened array of unique values
 `-h`, `--hash`                        | Return all hash values as a merged hash 
 `-j`, `--json FILE`                   | JSON file to load scope from
 `-y`, `--yaml FILE`                   | YAML file to load scope from
@@ -127,7 +127,7 @@ By default, the Hiera command line tool will use a [priority lookup][priority_lo
 
 ### Array Merge
 
-An array merge lookup assembles a value by merging every value it finds in the hierarchy into an array, then flattening the array. [See "Array Merge Lookup"][array_lookup] for more details. 
+An array merge lookup assembles a value by merging every value it finds in the hierarchy into a flattened array of unique values. [See "Array Merge Lookup"][array_lookup] for more details. 
 
 Use the `--array` option to do an array merge lookup.
 

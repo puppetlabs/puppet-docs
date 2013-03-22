@@ -22,7 +22,7 @@ This is Hiera's default lookup method.
 Array Merge
 -----
 
-An **array merge lookup** assembles a value from **every** matching level of the hierarchy. It retrieves **all** of the (string or array) values for a given key, then **flattens** them into a single array. If priority lookup can be thought of as a "default with overrides" pattern, array merge lookup can be though of as "default with additions."
+An **array merge lookup** assembles a value from **every** matching level of the hierarchy. It retrieves **all** of the (string or array) values for a given key, then **flattens** them into a single array of unique values. If priority lookup can be thought of as a "default with overrides" pattern, array merge lookup can be though of as "default with additions."
 
 For example, given a hierarchy of:
 
