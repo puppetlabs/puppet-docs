@@ -16,7 +16,19 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### PE 2.8.0 (3/25/2013)
+### PE 2.8.0 (3/26/2013)
+
+#### AIX Support
+2.8.0 adds support for the AIX operating system. Only puppet Agents are supported, you cannot run a master, console or other component on an AIX node. Support for three AIX package providers, NIM, RPM and BFF is also added. Note that while AIX supports two modes for package installation, "install" (for test runs) and "committed" (for actual installation), the PE AIX implementation only supports "committed" mode. 
+
+#### Updated Modules
+The following modules have been updated to newer versions as indicated:
+
+* Puppet 2.7.19 updated to 2.7.21. Provides performance improvements and bug fixes.
+* Facter 1.6.10 updated to 1.6.17. Provides bug fixes.
+* Hiera 0.3.0 updated to 1.1.2. Provides support for merging arrays and hashes across back-ends, bug fixes.
+* Hiera-Puppet 0.3.0 updated to 1.0.0. Provides bug fixes.
+* Stomp 1.1.9 updated to 1.2.3. Provides performance improvements and bug fixes.
 
 
 Known Issues
@@ -24,7 +36,7 @@ Known Issues
 
 As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
 
-To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
@@ -34,11 +46,11 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Bad Data in `facter architecture`
 
-On AIX nodes, a bug causes facter to return the system's model number (e.g., IBM 3271) instead of the processor's architecture (e.g. Power6). There is no known workaround.
+On AIX agents, a bug causes facter to return the system's model number (e.g., IBM 3271) instead of the processor's architecture (e.g. Power6). There is no known workaround.
 
 ### Augeas File Access Issue
 
-On AIX nodes, the Augeas lens is unable to access or modify `etc/services`. There is no known workaround.
+On AIX agents, the Augeas lens is unable to access or modify `etc/services`. There is no known workaround.
 
 ### After Upgrading, Nodes Report a "Not a PE Agent" Error
 
