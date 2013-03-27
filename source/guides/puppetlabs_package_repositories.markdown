@@ -35,7 +35,6 @@ To enable the repository, run the command below that corresponds to your OS vers
 The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the following OS versions:
 
 * Debian 6 "Squeeze" (current stable release) (also supported by [Puppet Enterprise][peinstall])
-* Debian 5 "Lenny" (previous stable release)
 * Debian "Wheezy" (current testing distribution)
 * Debian "Sid" (current unstable distribution)
 * Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
@@ -43,8 +42,6 @@ The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the foll
 * Ubuntu 8.04 LTS "Hardy Heron"
 * Ubuntu 12.10 "Quantal Quetzal"
 * Ubuntu 11.10 "Oneiric Ocelot"
-* Ubuntu 11.04 "Natty Narwhal"
-* Ubuntu 10.10 "Maverick Meerkat"
 
 To enable the repository:
 
@@ -60,11 +57,7 @@ For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
 ### For Fedora
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 15, 16 and 17. To enable the repository, run the command below that corresponds to your OS version:
-
-#### Fedora 15
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-6.noarch.rpm
+The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 16 and 17. To enable the repository, run the command below that corresponds to your OS version:
 
 #### Fedora 16
 
