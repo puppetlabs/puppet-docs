@@ -30,6 +30,12 @@ The following modules have been updated to newer versions as indicated:
 * Hiera-Puppet 0.3.0 updated to 1.0.0. Provides bug fixes.
 * Stomp 1.1.9 updated to 1.2.3. Provides performance improvements and bug fixes.
 
+#### Security Fix
+
+*[CVE-2013-2716 CAS Client Config Vulnerability](http://puppetlabs.com/security/cve/cve-2013-2716/).* 
+A vulnerability can be introduced when upgrading PE versions 2.5.0 through 2.7.2 from PE versions 1.2.x or 2.0.x. In such cases, the CAS client config file, `/etc/puppetlabs/console-auth/cas_client_config.yml`, is installed without a randomized secret.  Consequently, an attacker could craft a cookie that would be inappropriately authorized by the console.
+
+This issue has been resolved in PE 2.8.0. Users running older affected versions can resolve the issue by running `/opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:generate_secret`
 
 Known Issues
 -----
