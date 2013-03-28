@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 1 » Installing PuppetDB"
 layout: default
-canonical: "/puppetdb/1.1/install_via_module.html"
+canonical: "/puppetdb/latest/install_via_module.html"
 ---
 
 [connect_master]: ./connect_puppet_master.html

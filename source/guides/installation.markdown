@@ -146,16 +146,14 @@ For a standalone deployment, install this same package on all nodes.
 
 These instructions apply to Debian, Ubuntu, and derived Linux distributions, including
 
-* Debian 6 "Squeeze" (current stable release; also supported by [Puppet Enterprise][peinstall])
-* Debian 5 "Lenny" (previous stable release)
+* Debian 6 "Squeeze" (current stable release) (also supported by [Puppet Enterprise][peinstall])
 * Debian "Wheezy" (current testing distribution)
 * Debian "Sid" (current unstable distribution)
 * Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
-* Ubuntu 11.10 "Oneiric Ocelot"
-* Ubuntu 11.04 "Natty Narwhal"
-* Ubuntu 10.10 "Maverick Meerkat"
 * Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
 * Ubuntu 8.04 LTS "Hardy Heron"
+* Ubuntu 12.10 "Quantal Quetzal"
+* Ubuntu 11.10 "Oneiric Ocelot"
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
@@ -207,8 +205,8 @@ For a standalone deployment, run `sudo apt-get install puppet-common` on all nod
 
 These instructions apply to Fedora releases, including:
 
+* Fedora 17
 * Fedora 16
-* Fedora 15
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
