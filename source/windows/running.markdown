@@ -9,6 +9,8 @@ nav: windows.html
 [uac]: ./images/uac.png
 [rightclick]: ./images/run_as_admin.jpg
 [elevate]: #running-other-puppet-tasks
+[deprecated puppet kick run mode]: http://projects.puppetlabs.com/issues/15735
+[Marionette Collective]: http://docs.puppetlabs.com/mcollective/index.html
 
 <span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
@@ -39,7 +41,9 @@ Triggering an agent run **requires elevated privileges,** and must be performed 
 
 #### Configuring the Agent Service
 
-By default, the puppet agent service starts automatically at boot, runs every 30 minutes, and contacts the puppet master specified during installation.
+By default, the puppet agent service starts automatically at boot, runs every 30 minutes, and contacts the puppet master specified during installation. 
+
+> **Note:** When puppet is running as a daemonized Windows service, the `listen = true` configuration directive or command line argument does not apply. Consequently, it is not possible to use the [deprecated puppet kick run mode][].  Instead, consider using [Marionette Collective][]. 
 
 * To start, stop, or disable the service, use the Service Control Manager, which can be launched by choosing "Run..." from the Start menu and typing `Services.msc`.
 * You can also use the `sc.exe` command to manage the puppet agent service. To prevent the service from starting on boot:
