@@ -52,7 +52,7 @@ Debian/Ubuntu:
 RHEL/CentOS (needs the Puppet Labs repository enabled, or the
 [EPEL](https://fedoraproject.org/wiki/EPEL) repository):
 
-    $ sudo yum install httpd httpd-devel mod_ssl ruby-devel rubygems
+    $ sudo yum install httpd httpd-devel mod_ssl ruby-devel rubygems gcc
 
 ### Install Rack/Passenger
 
