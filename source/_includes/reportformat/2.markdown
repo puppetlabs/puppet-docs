@@ -1,7 +1,9 @@
 Report Format 2
-===============
+-----
 
-This is the format of reports that is output by Puppet version 2.6.5.
+This is the format of reports output by Puppet versions 2.6.5 through 2.7.11.
+
+### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:
 
@@ -19,6 +21,8 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>status</td><td>string</td><td>"failed", "changed", or "unchanged"</td></tr>
 </table>
 
+### Puppet::Util::Log
+
 A Puppet::Util::Log object contains the following attributes:
 
 <table>
@@ -34,6 +38,8 @@ A Puppet::Util::Log object contains the following attributes:
 
 The "file" and "line" attributes are not always present.
 
+### Puppet::Util::Metric
+
 A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
 
 <table>
@@ -45,14 +51,16 @@ A Puppet::Util::Metric object represents all the metrics in a single category.  
 
 The set of particular metrics and categories which appear in a report is a fixed set.  In a successful report, the categories and metrics are:
 
-* In the "time" category, there is a metric for every resource type for which there is at least one resource in the catalog, plus two additional metrics, called "config_retrieval" and "total".  Each value in the "time" category is a float.
-* In the "resources" category, the metrics are "failed", "out_of_sync", "changed", and "total".  Each value in the "resources" category is an integer.
-* In the "events" category, there are up to five metrics: "success", "failure", "audit", "noop", and "total". "total" is always present; the others are only present when their values are non-zero. Each value in the "events" category is an integer.
-* In the "changes" category, there is only one metric, called "total".  Its value is an integer.
+* In the "time" category, there is a metric for every resource type for which there is at least one resource in the catalog, plus two additional metrics, called `config_retrieval` and `total`.  Each value in the `time` category is a float.
+* In the "resources" category, the metrics are `failed`, `out_of_sync`, `changed`, and `total`.  Each value in the `resources` category is an integer.
+* In the `events` category, there are up to five metrics: `success`, `failure`, `audit`, `noop`, and `total`. `total` is always present; the others are only present when their values are non-zero. Each value in the `events` category is an integer.
+* In the `changes` category, there is only one metric, called `total`.  Its value is an integer.
 
 Failed reports contain no metrics.
 
-In an inspect report, there is an additional "inspect" metric in the "time" category.
+In an inspect report, there is an additional `inspect` metric in the `time` category.
+
+### Puppet::Resource::Status
 
 A Puppet::Resource::Status object represents the status of a single resource. It contains the following attributes:
 
@@ -74,6 +82,8 @@ A Puppet::Resource::Status object represents the status of a single resource. It
   <tr><td>skipped</td><td>boolean</td><td>True if the resource was skipped, otherwise false.</td></tr>
   <tr><td>failed</td><td>boolean</td><td>True if Puppet experienced an error while evaluating this resource, otherwise false.</td></tr>
 </table>
+
+### Puppet::Transaction::Event
 
 A Puppet::Transaction::Event object represents a single event for a single resource. It contains the following attributes:
 
@@ -97,12 +107,12 @@ Puppet::Transaction::Event#status has the following meanings:
 * "noop": property was out of sync, and wasn't changed due to noop mode.
 * "audit": property was in sync, and was being audited.
 
-Differences from format 1
---------------------
-* Puppet::Transaction::Report gained the properties "configuration_version", "report_format", "puppet_version", "kind", and "status".  It lost the property "external_times".
-* In Puppet::Resource::Status, "change_count", "changed", and "out_of_sync" have new meanings, and "out_of_sync_count" was added.  "changed" and "out_of_sync" are now always present.  In addition, "resource_type" and "title" were added, and "source_description" and "version" were removed.
-* In Puppet::Transaction::Event, the "audited" and "historical_value" properties have been added.  The meaning of "previous_value" and "desired_value" has changed.  In addition, "file", "line", "resource", "tags", "source_description", "version", and "default_log_level" were removed.
+### Differences from Report Format 1
+
+* Puppet::Transaction::Report gained the properties `configuration_version`, `report_format`, `puppet_version`, `kind`, and `status`.  It lost the property `external_times`.
+* In Puppet::Resource::Status, `change_count`, `changed`, and `out_of_sync` have new meanings, and `out_of_sync_count` was added.  `changed` and `out_of_sync` are now always present.  In addition, `resource_type` and `title` were added, and `source_description` and `version` were removed.
+* In Puppet::Transaction::Event, the `audited` and `historical_value` properties have been added.  The meaning of `previous_value` and `desired_value` has changed.  In addition, `file`, `line`, `resource`, `tags`, `source_description`, `version`, and `default_log_level` were removed.
 * Metric names are now always strings.
 * The metrics changes/total and events/total are now always present.
 * The metric time/total has been re-added (it was present in format 0).
-* In Puppet::Util::Log, the "version" attribute was removed.
+* In Puppet::Util::Log, the `version` attribute was removed.

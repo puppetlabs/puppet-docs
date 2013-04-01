@@ -1,7 +1,9 @@
 Report Format 3
-===============
+-----
 
-This is the format of reports that is output by Puppet v2.7.12, but the report version did not get changed until Puppet v2.7.20 (See ticket #15739).
+This is the format of reports output by Puppet versions 2.7.12 and later, but the report version identifier did not get changed until Puppet 2.7.20 (See ticket #15739).
+
+### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:
 
@@ -20,6 +22,8 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>environment</td><td>string</td><td>The environment that was used for the puppet run.</td></tr>
 </table>
 
+### Puppet::Util::Log
+
 A Puppet::Util::Log object contains the following attributes:
 
 <table>
@@ -33,7 +37,9 @@ A Puppet::Util::Log object contains the following attributes:
   <tr><td>time</td><td>datetime</td><td>when the message was sent.</td></tr>
 </table>
 
-The "file" and "line" attributes are not always present.
+The `file` and `line` attributes are not always present.
+
+### Puppet::Util::Metric
 
 A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
 
@@ -46,14 +52,16 @@ A Puppet::Util::Metric object represents all the metrics in a single category.  
 
 The set of particular metrics and categories which appear in a report is a fixed set.  In a successful report, the categories and metrics are:
 
-* In the "time" category, there is a metric for every resource type for which there is at least one resource in the catalog, plus two additional metrics, called "config_retrieval" and "total".  Each value in the "time" category is a float.
-* In the "resources" category, the metrics are "failed", "out_of_sync", "changed", and "total".  Each value in the "resources" category is an integer.
-* In the "events" category, there are up to five metrics: "success", "failure", "audit", "noop", and "total". "total" is always present; the others are only present when their values are non-zero. Each value in the "events" category is an integer.
-* In the "changes" category, there is only one metric, called "total".  Its value is an integer.
+* In the `time` category, there is a metric for every resource type for which there is at least one resource in the catalog, plus two additional metrics, called `config_retrieval` and `total`.  Each value in the `time` category is a float.
+* In the `resources` category, the metrics are `failed`, `out_of_sync`, `changed`, and `total`.  Each value in the `resources` category is an integer.
+* In the `events` category, there are up to five metrics: `success`, `failure`, `audit`, `noop`, and `total`. `total` is always present; the others are only present when their values are non-zero. Each value in the `events` category is an integer.
+* In the `changes` category, there is only one metric, called `total`.  Its value is an integer.
 
 Failed reports contain no metrics.
 
-In an inspect report, there is an additional "inspect" metric in the "time" category.
+In an inspect report, there is an additional `inspect` metric in the `time` category.
+
+### Puppet::Resource::Status
 
 A Puppet::Resource::Status object represents the status of a single resource. It contains the following attributes:
 
@@ -76,6 +84,8 @@ A Puppet::Resource::Status object represents the status of a single resource. It
   <tr><td>failed</td><td>boolean</td><td>True if Puppet experienced an error while evaluating this resource, otherwise false.  *deprecated*</td></tr>
 </table>
 
+### Puppet::Transaction::Event
+
 A Puppet::Transaction::Event object represents a single event for a single resource. It contains the following attributes:
 
 <table>
@@ -93,11 +103,11 @@ A Puppet::Transaction::Event object represents a single event for a single resou
 
 Puppet::Transaction::Event#status has the following meanings:
 
-* "success": property was out of sync, and was successfully changed to be in sync.
-* "failure": property was out of sync, and couldn't be changed to be in sync due to an error.
-* "noop": property was out of sync, and wasn't changed due to noop mode.
-* "audit": property was in sync, and was being audited.
+* `success`: property was out of sync, and was successfully changed to be in sync.
+* `failure`: property was out of sync, and couldn't be changed to be in sync due to an error.
+* `noop`: property was out of sync, and wasn't changed due to noop mode.
+* `audit`: property was in sync, and was being audited.
 
-Differences from format 2
---------------------
-* Puppet::Transaction::Report gained "environment".
+### Differences from Report Format 2
+
+* Puppet::Transaction::Report gained `environment`.

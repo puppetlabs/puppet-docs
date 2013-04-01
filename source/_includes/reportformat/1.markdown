@@ -1,7 +1,9 @@
 Report Format 1
-===============
+-----
 
-This is the format of reports that is output by Puppet version 2.6.0 through 2.6.4.
+This is the format of reports output by Puppet versions 2.6.0 through 2.6.4.
+
+### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:
 
@@ -14,6 +16,8 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>resource_statuses</td><td>hash</td><td>maps from resource name to Puppet::Resource::Status</td></tr>
   <tr><td>external_times</td><td>hash</td><td>this is always a hash from :config_retrieval to a float</td></tr>
 </table>
+
+### Puppet::Util::Log
 
 A Puppet::Util::Log object contains the following attributes:
 
@@ -31,6 +35,8 @@ A Puppet::Util::Log object contains the following attributes:
 
 The "file" and "line" attributes are not always present.
 
+### Puppet::Util::Metric
+
 A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
 
 <table>
@@ -42,12 +48,14 @@ A Puppet::Util::Metric object represents all the metrics in a single category.  
 
 The set of particular metrics and categories which appear in a report is a fixed set.  In a successful report, the categories and metrics are:
 
-* In the "time" category, there is a metric for every resource type for which there is at least one resource in the catalog, plus an additional metric, called :config_retrieval.  Each value in the "time" category is a float.
-* In the "resources" category, the metrics are :failed, :out_of_sync, :changed, and :total.  Each value in the "resources" category is an integer.
-* In the "events" category, there are up to five metrics: "success", "failure", "audit", "noop", and :total. :total is present if there is at least one resource_status; the others are only present when their values are non-zero. Each value in the "events" category is an integer.
-* In the "changes" category, there is only one metric, called :total.  Its value is an integer.  It is not present if there are no changes.
+* In the "time" category, there is a metric for every resource type for which there is at least one resource in the catalog, plus an additional metric, called `:config_retrieval`.  Each value in the "time" category is a float.
+* In the "resources" category, the metrics are `:failed`, `:out_of_sync`, `:changed`, and `:total`.  Each value in the "resources" category is an integer.
+* In the "events" category, there are up to five metrics: "success", "failure", "audit", "noop", and `:total`. `:total` is present if there is at least one resource_status; the others are only present when their values are non-zero. Each value in the "events" category is an integer.
+* In the "changes" category, there is only one metric, called `:total`.  Its value is an integer.  It is not present if there are no changes.
 
 Failed reports contain no metrics.
+
+### Puppet::Resource::Status
 
 A Puppet::Resource::Status object represents the status of a single resource. It contains the following attributes:
 
@@ -69,6 +77,8 @@ A Puppet::Resource::Status object represents the status of a single resource. It
   <tr><td>failed</td><td>boolean</td><td>True if there was a failure while evaluating this resource, otherwise absent.</td></tr>
 </table>
 
+### Puppet::Transaction::Event
+
 A Puppet::Transaction::Event object represents a single event for a single resource. It contains the following attributes:
 
 <table>
@@ -89,8 +99,7 @@ A Puppet::Transaction::Event object represents a single event for a single resou
   <tr><td>tags</td><td>array</td><td>the strings with which the resource is tagged.  The same as for the corresponding Puppet::Resource::Status object.</td></tr>
 </table>
 
-Differences from format 0
---------------------
+### Differences from Report Format 0
 
 * Puppet::Transaction::Report lost the "records" field and gained resource_statuses and external_times.
 * Puppet::Util::Log#version is now always present.  For the case when source is Puppet, it is the version of the Puppet agent.

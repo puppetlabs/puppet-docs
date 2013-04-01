@@ -1,7 +1,9 @@
 Report Format 0
-===============
+-----
 
-This is the format of reports that is output by Puppet version 0.25.5.
+This is the format of reports output by Puppet version 0.25.5.
+
+### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:
 
@@ -13,6 +15,8 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>metrics</td><td>hash</td><td>maps from string (metric category) to Puppet::Util::Metric.</td></tr>
   <tr><td>records</td><td>hash</td><td>always empty.  TODO: is this always the case?</td></tr>
 </table>
+
+### Puppet::Util::Log
 
 A Puppet::Util::Log object contains the following attributes:
 
@@ -30,6 +34,8 @@ A Puppet::Util::Log object contains the following attributes:
 
 The "file" and "line" attributes are not always present.
 
+### Puppet::Util::Metric
+
 A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
 
 <table>
@@ -41,8 +47,8 @@ A Puppet::Util::Metric object represents all the metrics in a single category.  
 
 The set of particular metrics and categories which may appear in a report is a fixed set.  The available categories and metrics are:
 
-* In the "time" category, there is a metric for every resource type, plus two additional metrics, called :config_retrieval and :total.  Each value in the "time" category is a float.
-* In the "resources" category, the metrics are :failed, :failed_restarts, :out_of_sync, :scheduled, :skipped, :applied, :total, and :restarted.  Each value in the "resources" category is an integer.
-* In the "changes" category, there is only one metric, called :total.  Its value is an integer.
+* In the "time" category, there is a metric for every resource type, plus two additional metrics, called `:config_retrieval` and `:total`.  Each value in the "time" category is a float.
+* In the "resources" category, the metrics are `:failed`, `:failed_restarts`, `:out_of_sync`, `:scheduled`, `:skipped`, `:applied`, `:total`, and `:restarted`.  Each value in the "resources" category is an integer.
+* In the "changes" category, there is only one metric, called `:total`.  Its value is an integer.
 
 Not all metrics appear in all reports.  In particular, failed reports contain no metrics.
