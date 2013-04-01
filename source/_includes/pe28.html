@@ -1,0 +1,117 @@
+{% comment %}
+
+Format: 
+<ul>
+  <li><strong>section label</strong>
+    <ul>
+      <li>page if-links...</li>
+    </ul>
+  </li>
+<ul>
+
+
+{% endcomment %}
+
+<h3><a href="./index.html">Puppet Enterprise 2.8</a></h3>
+
+<ul>
+  <li><strong>Overview</strong>
+    <ul>
+      <li>{% iflink "About Puppet Enterprise", "./overview_about_pe.html" %}</li>
+      <li>{% iflink "New Features", "./overview_whats_new.html" %}</li>
+      <li>{% iflink "Getting Support", "./overview_getting_support.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Quick Start</strong>
+    <ul>
+        <li>{% iflink "Quick Start: Using PE", "./quick_start.html" %}</li>
+        <li>{% iflink "Quick Start: Writing Modules", "./quick_writing.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Installing Puppet Enterprise</strong>
+    <ul>
+      <li>{% iflink "System Requirements", "./install_system_requirements.html" %}</li>
+      <li>{% iflink "Installing PE", "./install_basic.html" %}</li>
+      <li>{% iflink "Installing Windows Agents", "./install_windows.html" %}</li>
+      <li>{% iflink "Upgrading", "./install_upgrading.html" %}</li>
+      <li>{% iflink "Uninstalling", "./install_uninstalling.html" %}</li>
+      <li>{% iflink "Automated Installation", "./install_automated.html" %}</li>
+      <li>{% iflink "Answer File Reference", "./install_answer_file_reference.html" %}</li>
+      <li>{% iflink "What gets installed where?", "./install_what_and_where.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>The Console</strong>
+    <ul>
+      <li>{% iflink "Accessing the Console", "./console_accessing.html" %}</li>
+      <li>{% iflink "Navigating the Console", "./console_navigating.html" %}</li>
+       <li>{% iflink "Managing Node Requests", "./console_cert_mgmt.html" %}</li>
+      <li>{% iflink "Viewing Reports and Inventory Data", "./console_reports.html" %}</li>
+      <li>{% iflink "Managing Users", "./console_auth.html" %}</li>
+      <li>{% iflink "Grouping and Classifying Nodes", "./console_classes_groups.html" %}</li>
+      <li>{% iflink "Live Management", "./console_live.html" %}</li>
+      <li>{% iflink "Live Management: Managing Resources", "./console_live_resources.html" %}</li>
+      <li>{% iflink "Live Management: Controlling Puppet", "./console_live_puppet.html" %}</li>
+      <li>{% iflink "Live Management: Advanced Tasks", "./console_live_advanced.html" %}</li>
+      <li>{% iflink "Console Maintenance", "./console_maintenance.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Puppet</strong>
+    <ul>
+      <li>{% iflink "Overview", "./puppet_overview.html" %}</li>
+      <li>{% iflink "Tools", "./puppet_tools.html" %}</li>
+      <li>{% iflink "Modules and Manifests", "./puppet_modules_manifests.html" %}</li>
+      <li>{% iflink "Puppet Data Library", "./puppet_data_library.html" %}</li>
+      <li>{% iflink "References", "./puppet_references.html" %}</li>
+    </ul>
+  </li>
+   <li><strong>Configuring Puppet Enterprise</strong>
+    <ul>
+     <li>{% iflink "Advanced Configuration", "./config_advanced.html" %}</li>
+     <li>{% iflink "Installing Additional Components", "./config_installing_additional.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Orchestration</strong>
+    <ul>
+      <li>{% iflink "Overview", "./orchestration_overview.html" %}</li>
+      <li>{% iflink "Usage and Examples", "./orchestration_usage.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Cloud Provisioning</strong>
+    <ul>
+      <li>{% iflink "Overview", "./cloudprovisioner_overview.html" %}</li>
+      <li>{% iflink "Installing & Configuring Cloud Provisioner", "./cloudprovisioner_configuring.html" %}</li>
+      <li>{% iflink "Classifying Nodes & Remotely Installing Puppet", "./cloudprovisioner_classifying_installing.html" %}</li>
+      <li>{% iflink "Provisioning with VMware", "./cloudprovisioner_vmware.html" %}</li>
+      <li>{% iflink "Provisioning with AWS", "./cloudprovisioner_aws.html" %}</li>
+      <li>{% iflink "Sample Workflow", "./cloudprovisioner_workflow.html" %}</li>
+      <li>{% iflink "Troubleshooting", "./cloudprovisioner_troubleshooting.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>The Compliance Workflow</strong>
+    <ul>
+      <li>{% iflink "Basics and UI", "./compliance_basics.html" %}</li>
+      <li>{% iflink "Using the Compliance Workflow", "./compliance_using.html" %}</li>
+      <li>{% iflink "Tutorial", "./compliance_tutorial.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>The PE Accounts Module</strong>
+    <ul>
+      <li>{% iflink "The pe_accounts::user Type", "./accounts_user_type.html" %}</li>
+      <li>{% iflink "The pe_accounts Class", "./accounts_class.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Troubleshooting</strong>
+    <ul>
+     <li> {% iflink "Common Problems & Solutions", "./trouble_common_problems.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Appendix</strong>
+    <ul>
+      <li>{% iflink "Release Notes", "./appendix.html#release-notes" %}</li>
+      <li>{% iflink "Known Issues", "./appendix.html#known-issues" %}</li>
+    </ul>
+  </li>
+</ul>
+
+
+
