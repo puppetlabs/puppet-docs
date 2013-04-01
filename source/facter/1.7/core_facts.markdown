@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "Facter 1.6: Core Facts"
-nav: facter16.html
+title: "Facter 1.7: Core Facts"
+nav: facter17.html
 ---
 
 ## Summary
 
-This is a list of all of the built-in facts that ship with Facter 1.6.x. Not all of them apply to every system, and your site may use many [custom facts](/guides/custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
+This is a list of all of the built-in facts that ship with Facter 1.7.x. Not all of them apply to every system, and your site may use many [custom facts](/guides/custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 
 Facts appear in Puppet as normal top-scope variables. This means you can access any fact for a node in your manifests with `$<fact name>`. (E.g. `$osfamily`, `$memorysize`, etc.) 
 
@@ -23,21 +23,6 @@ Returns the CPU hardware architecture.
 
 ([↑ Back to top](#page-nav))
 
-* * *
-
-## `arp`
-
-Undocumented.
-
-([↑ Back to top](#page-nav))
-
-* * *
-
-## `arp_{NETWORK INTERFACE}`
-
-Undocumented.
-
-([↑ Back to top](#page-nav))
 
 * * *
 
@@ -59,6 +44,76 @@ which may affect support for the Puppet Augeas provider.
 Versions prior to 0.3.6 cannot be interrogated for their version.
 
 ([↑ Back to top](#page-nav))
+
+* * *
+
+## `blockdevice_{devicename}_size`
+
+
+Returns the size of a block device in bytes.
+
+**Resolution:**
+
+Parse the contents of `/sys/block/{device}/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
+
+**Caveats:**
+
+Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## blockdevice_{devicename}_vendor
+
+
+Returns the vendor name of block devices attached to the system.
+
+**Resolution:**
+
+Parse the contents of `/sys/block/{device}/device/vendor` to retrieve the vendor for a device.
+
+**Caveats:**
+
+Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## blockdevice_{devicename}_model
+
+
+Returns the model name of block devices attached to the system.
+
+**Resolution:**
+
+Parse the contents of `/sys/block/{device}/device/model` to retrieve the model name/number for a device.
+
+**Caveats:**
+
+Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## blockdevices
+
+
+Returns a comma-separated list of block devices.
+
+**Resolution:**
+
+Retrieve the block devices that were identified and iterated over in the creation of the blockdevice_ facts.
+
+
+**Caveats:**
+
+Block devices must have been identified using sysfs information
+
+([↑ Back to top](#page-nav))
+
 
 * * *
 
@@ -165,6 +220,46 @@ Returns the version of the facter module.
 **Resolution:**
 
 Uses the version constant.
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## `filesystems` 
+
+
+Provides an alphabetic list of file systems for use by block devices such as hard drives, media cards, etc.
+
+**Resolution:**
+
+Returns a comma-delimited list.
+
+**Caveats:**
+
+Linux only. FUSE will not be reported. 
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## `ldom`
+
+
+Returns a list of dynamic facts that describe the attributes of a Solaris logical domain. 
+
+The facts returned will include:
+
+- `DOMAINROLE`
+- `DOMAINNAME`
+- `DOMAINUUID`
+- `DOMAINCONTROL`
+- `DOMAINCHASSIS`
+
+**Resolution:**
+
+Uses the output of `virtinfo -ap`. 
+
+**Caveats:**
 
 ([↑ Back to top](#page-nav))
 
@@ -1116,7 +1211,65 @@ Returns the list of Xen domains on the Dom0.
 **Resolution:**
 
 On a Xen Dom0 host, return a list of Xen domains using the 'util/xendomains' library.
+
+([↑ Back to top](#page-nav))
+
+
+* * * 
+
+## `zfs_version`
+
+Returns the version of zfs in use on the system.
+
+**Resolution:**
+
+Uses the output of `zfs upgrade -v`.
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## `zonename`
+
+Returns the name of the Solaris zone. 
+
+**Resolution:**
+
+Uses `zonename` to return the name of the Solaris zone.
+
+**Caveats:**
+
 No support for Solaris 9 and below, where zones are not available.
 
 ([↑ Back to top](#page-nav))
 
+* * * 
+
+## `zones`
+
+**Purpose:** 
+
+Returns the list of zones on the system and adds one `zones_` fact for each zone, with its state (e.g. "running," "incomplete," or "installed.")
+
+**Resolution:**
+
+Uses `usr/sbin/zoneadm list -cp` to get the list of zones in separate parsable lines with a delimeter of ':', which is used to split the line string and get the zone details.
+
+**Caveats:**
+
+No support for Solaris 9 and below, where zones are not available.
+
+([↑ Back to top](#page-nav))
+
+* * * 
+
+## `zpool_version`
+
+Returns the version number for the ZFS storage pool. 
+
+**Resolution:**
+
+Uses `zpool upgrade -v` to return the ZFS storage pool version number.
+
+
+([↑ Back to top](#page-nav))
