@@ -2,7 +2,7 @@
 pygments: true
 markdown: kramdown
 include: _index.html
-defaultnav: 
+defaultnav:
   /: quick_nav.html
   /mcollective: mcollective_menu.html
   /pe/2.8: pe28.html
@@ -13,6 +13,7 @@ defaultnav:
   /puppetdb/0.9: puppetdb0.9.html
   /puppetdb/1: puppetdb1.html
   /puppetdb/1.1: puppetdb1.1.html
+  /puppetdb/1.2: puppetdb1.2.html
   /puppetdb/master: puppetdb_master.html
   /puppet/0.24/reference: puppet_0_24.html
   /puppet/0.25/reference: puppet_0_25.html
@@ -31,7 +32,7 @@ externalsources:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/1.1.x
     subdirectory: documentation
-  puppetdb_1.1:
+  puppetdb_1.2:
     url: /puppetdb/1.2
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/1.2.x
