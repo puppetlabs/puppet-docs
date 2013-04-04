@@ -478,8 +478,8 @@ cannot be disputed in the event of any legal challenge.
 
 If you haven’t signed a CLA, then we can’t yet accept your code
 contribution into Puppet or Facter.  Signing a CLA is very easy:
-simply sign up for a [Puppet Labs Redmine account](https://projects.puppetlabs.com/account/register)
-and go to the [CLA page to sign the agreement](http://projects.puppetlabs.com/projects/puppet/wiki/Cla).
+simply log into your [GitHub](https://github.com) account
+and [go to our CLA page to sign the agreement](https://cla.puppetlabs.com/).
 
 We’ve worked hard to try find to everyone who has contributed code
 to Puppet, but if you have questions or concerns about a previous
