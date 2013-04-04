@@ -9,6 +9,7 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 Documentation Versions
 -----
 
+* [PuppetDB 1.2](./1.2)
 * [PuppetDB 1.1](./1.1)
 * [PuppetDB 1](./1)
 * [PuppetDB 0.9](./0.9)
