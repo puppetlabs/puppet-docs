@@ -18,8 +18,8 @@ performing stand-alone work like importing.  Rvalues return values and can
 only be used in a statement requiring a value, such as an assignment or a case
 statement.
 
-Functions execute on the Puppet master.  They do not execute on the Puppet agent.  
-Hence they only have access to the commands and data available on the Puppet master 
+Functions execute on the Puppet master.  They do not execute on the Puppet agent.
+Hence they only have access to the commands and data available on the Puppet master
 host.
 
 Here are the functions available in Puppet:
@@ -262,28 +262,112 @@ the generator.
 
 hiera
 -----
-Undocumented.
+
+Performs a
+standard priority lookup and returns the most specific value for a given key.
+The returned value can be data of any type (strings, arrays, or hashes).
+
+In addition to the required `key` argument, `hiera` accepts two additional
+arguments:
+
+- a `default` argument in the second position, providing a value to be
+  returned in the absence of matches to the `key` argument
+- an `override` argument in the third position, providing a data source
+  to consult for matching values, even if it would not ordinarily be
+  part of the matched hierarchy. If Hiera doesn't find a matching key
+  in the named override data source, it will continue to search through the
+  rest of the hierarchy.
+
+More thorough examples of `hiera` are available at:
+<http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions>
 
 
 - *Type*: rvalue
 
 hiera_array
 -----------
-Undocumented.
+
+Returns all
+matches throughout the hierarchy --- not just the first match --- as a flattened array of unique values.
+If any of the matched values are arrays, they're flattened and included in the results.
+
+In addition to the required `key` argument, `hiera_array` accepts two additional
+arguments:
+
+- a `default` argument in the second position, providing a string or array to be returned
+  in the absence of  matches to the `key` argument
+- an `override` argument in the third position, providing a data source to consult for
+  matching values, even if it would not ordinarily be part of the matched hierarchy.
+  If Hiera doesn't find a matching key in the named override data source, it will
+  continue to search through the rest of the hierarchy.
+
+If any matched value is a hash, puppet will raise a type mismatch error.
+
+More thorough examples of `hiera` are available at:
+<http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions>
 
 
 - *Type*: rvalue
 
 hiera_hash
 ----------
-Undocumented.
+
+Returns a merged hash of matches from throughout the hierarchy. In cases where two or
+more hashes share keys, the hierarchy  order determines which key/value pair will be
+used in the returned hash, with the pair in the highest priority data source winning.
+
+In addition to the required `key` argument, `hiera_hash` accepts two additional
+arguments:
+
+- a `default` argument in the second position, providing a  hash to be returned in the
+absence of any matches for the `key` argument
+- an `override` argument in the third position, providing  a data source to insert at
+the top of the hierarchy, even if it would not ordinarily match during a Hiera data
+source lookup. If Hiera doesn't find a match in the named override data source, it will
+continue to search through the rest of the hierarchy.
+
+`hiera_hash` expects that all values returned will be hashes. If any of the values
+found in the data sources are strings or arrays, puppet will raise a type mismatch error.
+
+More thorough examples of `hiera_hash` are available at:
+<http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions>
 
 
 - *Type*: rvalue
 
 hiera_include
 -------------
-Undocumented.
+
+Assigns classes to a node
+using an array merge lookup that retrieves the value for a user-specified key
+from a Hiera data source.
+
+To use `hiera_include`, the following configuration is required:
+
+- A key name to use for classes, e.g. `classes`.
+- A line in the puppet `sites.pp` file (e.g. `/etc/puppet/manifests/sites.pp`)
+  reading `hiera_include('classes')`. Note that this line must be outside any node
+  definition and below any top-scope variables in use for Hiera lookups.
+- Class keys in the appropriate data sources. In a data source keyed to a node's role,
+  one might have:
+
+          ---
+          classes:
+            - apache
+            - apache::passenger
+
+In addition to the required `key` argument, `hiera_include` accepts two additional
+arguments:
+
+- a `default` argument in the second position, providing an array to be returned
+  in the absence of matches to the `key` argument
+- an `override` argument in the third position, providing a data source to consult
+  for matching values, even if it would not ordinarily be part of the matched hierarchy.
+  If Hiera doesn't find a matching key in the named override data source, it will continue
+  to search through the rest of the hierarchy.
+
+More thorough examples of `hiera_include` are available at:
+<http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions>
 
 
 - *Type*: statement
@@ -302,9 +386,9 @@ Log a message on the server at level info.
 
 inline_template
 ---------------
-Evaluate a template string and return its value.  See 
-[the templating docs](http://docs.puppetlabs.com/guides/templating.html) for 
-more information.  Note that if multiple template strings are specified, their 
+Evaluate a template string and return its value.  See
+[the templating docs](http://docs.puppetlabs.com/guides/templating.html) for
+more information.  Note that if multiple template strings are specified, their
 output is all concatenated and returned as the output of the function.
 
 - *Type*: rvalue
@@ -471,7 +555,7 @@ the function to return true.
 template
 --------
 Evaluate a template and return its value.  See
-[the templating docs](http://docs.puppetlabs.com/guides/templating.html) for 
+[the templating docs](http://docs.puppetlabs.com/guides/templating.html) for
 more information.
 
 Note that if multiple templates are specified, their output is all

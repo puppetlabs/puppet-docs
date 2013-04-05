@@ -1,0 +1,54 @@
+Report Format 0
+-----
+
+This is the format of reports output by Puppet version 0.25.5.
+
+### Puppet::Transaction::Report
+
+The Puppet::Transaction::Report contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>host</td><td>string</td><td>the host that generated this report.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>when the run completed.</td></tr>
+  <tr><td>logs</td><td>array</td><td>0 or more Puppet::Util::Log objects.</td></tr>
+  <tr><td>metrics</td><td>hash</td><td>maps from string (metric category) to Puppet::Util::Metric.</td></tr>
+  <tr><td>records</td><td>hash</td><td>always empty.  TODO: is this always the case?</td></tr>
+</table>
+
+### Puppet::Util::Log
+
+A Puppet::Util::Log object contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>file</td><td>string</td><td>the pathname of the manifest file which triggered the log message.</td></tr>
+  <tr><td>line</td><td>integer</td><td>the line number in the manifest file which triggered the log message.</td></tr>
+  <tr><td>level</td><td>symbol</td><td>severity of the message.  Possible values for level are :debug, :info, :notice, :warning, :err, :alert, :emerg, :crit</td></tr>
+  <tr><td>message</td><td>string</td><td>the message itself.</td></tr>
+  <tr><td>source</td><td>string</td><td>the origin of the log message.  This could be a resource, a property of a resource, or the string "Puppet".</td></tr>
+  <tr><td>tags</td><td>array</td><td>each array element is a string.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>when the message was sent.</td></tr>
+  <tr><td>version</td><td>string or integer</td><td>If the source is not "Puppet", this is the "configuration version" of the puppet run.  This is a string if the user has specified their own versioning scheme, otherwise an integer representing seconds since the epoch.  If the source is "Puppet", this attribute is not present.</td></tr>
+</table>
+
+The "file" and "line" attributes are not always present.
+
+### Puppet::Util::Metric
+
+A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>name</td><td>string</td><td>name of the metric category.  This is the same as the key associated with this metric in the metrics hash of the Puppet::Transaction::Report.</td></tr>
+  <tr><td>label</td><td>string</td><td>This is the "titleized" version of the name, which means underscores are replaced with spaces and the first word is capitalized.</td></tr>
+  <tr><td>values</td><td>array</td><td>All the metric values within this category.  Each element is of the form [symbol, titleized_symbol, value], where symbol is the name of the particular metric, titleized_symbol is the "titleized" version of that symbol, and value is the quantity (an integer or a float).</td></tr>
+</table>
+
+The set of particular metrics and categories which may appear in a report is a fixed set.  The available categories and metrics are:
+
+* In the "time" category, there is a metric for every resource type, plus two additional metrics, called `:config_retrieval` and `:total`.  Each value in the "time" category is a float.
+* In the "resources" category, the metrics are `:failed`, `:failed_restarts`, `:out_of_sync`, `:scheduled`, `:skipped`, `:applied`, `:total`, and `:restarted`.  Each value in the "resources" category is an integer.
+* In the "changes" category, there is only one metric, called `:total`.  Its value is an integer.
+
+Not all metrics appear in all reports.  In particular, failed reports contain no metrics.
