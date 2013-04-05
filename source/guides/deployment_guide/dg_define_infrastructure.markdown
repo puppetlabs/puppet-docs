@@ -4,7 +4,7 @@ III. Automating Your Infrastructure
 
 ### How Can PE Help You?
 
-The particulars of every admin's infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, and they want keen, timely insight into their infrastructure. In this section, we identify some of these needs and provide examples of ways to meet them by using PE to automate stuff. If you've been an admin for any period of time, these should be all too familiar:
+The particulars of every admin's infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, and they want keen, timely insight into their infrastructure. In this section, we identify some of these needs and provide examples of ways to meet them by using PE to automate stuff. If you've been an admin for any period of time, these wants should be all too familiar:
 
 1. I want to learn how to use a tool that will make me a more efficient sysadmin, so I can go home earlier (or get to the pub, or my kids' soccer game, or the weekly gaming session, dragon boat race, naked knitting club meeting, etc.). If you're reading this, it's safe to assume the tool you want to learn is PE.
 
@@ -16,21 +16,25 @@ The particulars of every admin's infrastructure will vary, but all sysadmins hav
 
 5. I want to be able to implement changes quickly and repeatably. Pushing out a new website (shopping cart app, wordpress template, customer database) should be trivial, fast and reliable (see above re: getting to the pub, etc.).
 
-Below, we'll run through some examples that will help a hypothetical admin meet all these needs by automating things with PE with the assistance of pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com).  We've tried to choose things that are low-risk but high-reward so that you can not only build your confidence working with PE, you can also actually start to get your infrastructure into a more automated, less on-fire condition relatively soon. Even if the specific services we discuss aren't identical to your particular infrastructure, hopefully these examples will help you see ways you can use PE to make you a better, less stressed admin. 
+Below, we'll run through some examples that will help a hypothetical admin meet all these needs by automating things with PE with the assistance of pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com).  We've tried to choose things that are low-risk but high-reward so that you can try them out and can not only build your confidence working with PE, you can also actually start to get your infrastructure into a more automated, less on-fire condition relatively soon. Even if the specific services we discuss aren't identical to your particular infrastructure, hopefully these examples will help you see why PE can make you a better, less stressed admin. 
 
 ### A (not-so) Fictional Scenario
 
-Judy is a sysadmin at a mid-sized flying car manufacturing company. The company is undergoing yet another periodic reorganization, and Judy has been tasked with administering the marketing department's servers. Previously, the department had been maintaining their own machines and so each server has been provisioned and configured in idiosyncratic ways. This has left an infrastructure that is time-consuming to manage, hard to survey and very brittle. While you might think that flying cars sell themselves, the fact is, as management keeps reminding Judy, the marketing department is very important and needs to be up and running 24/7.
+Judy is a sysadmin at a mid-sized flying car manufacturing concern, the Enterprise National Car Company (NCC). The company is undergoing yet another periodic reorganization, and Judy has been tasked with administering the marketing department's servers. Previously, the department had been maintaining their own machines and so each server has been provisioned and configured in idiosyncratic ways. This has left an infrastructure that is time-consuming to manage, hard to survey, and very brittle. While you might think that flying cars sell themselves, the fact is, as management keeps reminding Judy, the marketing department is very important and needs to be up and running 24/7.
 
-This new responsibility is not exactly welcome. Judy already has 14 things that consistently set her hair on fire. She needs help. That help is Puppet Enterprise, which, luckily, her manager has just approved acquiring on a trial basis. If PE can work for the marketing department, Judy will get the go-ahead to deploy it across the enterprise.
+This new responsibility is not exactly welcome. Judy already has 14 things that consistently set her hair on fire. In addition, NCC is rolling out a new model, the 1701. She needs help. That help is Puppet Enterprise, which, luckily, her manager has just approved acquiring on a trial basis. If PE can work for the marketing department, Judy will get the go-ahead to deploy it across the enterprise.
 
-Judy downloads PE and, following the first two sections of this guide and the additional documentation it references, she gets a master installed on a spare rhel box and agents installed on the six servers that constitute the marketing department's infrastructure. After signing the various certificates, she is able to confirm by looking at the console that all the nodes are talking to the master.
+Judy downloads PE and, following the first two sections of this guide and the additional documentation it references, she gets a master installed on a spare RHEL box and agents installed on the six servers that constitute the marketing department's infrastructure. After signing the various certificates, she is able to confirm by looking at the console that all the nodes are talking to the master. 
+
+Enough preamble, let's start automating infrastructure.
 
 (TODO screenshot)
 
 ### Five Things (+1) You Can Configuration Manage First
 
-Note: As of PE 2.7, the module tool is not compatible with Windows nodes. In many cases, you can install modules on Windows nodes by downloading tarballs. The [installing modules page](http://docs.puppetlabs.com/puppet/2.7/reference/modules_installing.html) has all the details.
+If you're not familiar with the Puppet Forge and the module download and installation process, the [installing modules page](http://docs.puppetlabs.com/puppet/2.7/reference/modules_installing.html) has all the details.
+
+Note: As of PE 2.7, the module tool is not compatible with Windows nodes. In many cases, you can install modules on Windows nodes by downloading tarballs. You may also need to go the tarball route for Forge modules if local firewall rules prevent access to the Forge.
 
 #### Thing One: MOTD
 
