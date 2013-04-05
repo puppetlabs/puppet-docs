@@ -4,6 +4,8 @@ title: "PE 2.8 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 
+[2.8.0fix]: https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/
+
 This page contains additional miscellaneous information about Puppet Enterprise 2.8.
 
 Puppet Terminology
@@ -19,7 +21,7 @@ Release Notes
 ### PE 2.8.0 (3/26/2013)
 
 #### AIX Support
-2.8.0 adds support for the AIX operating system. Only puppet Agents are supported, you cannot run a master, console or other component on an AIX node. Support for three AIX package providers, NIM, RPM and BFF is also added. Note that while AIX supports two modes for package installation, "install" (for test runs) and "committed" (for actual installation), the PE AIX implementation only supports "committed" mode. 
+2.8.0 adds support for the AIX operating system. Only puppet Agents are supported, you cannot run a master, console or other component on an AIX node. Support for three AIX package providers, NIM, RPM and BFF is also added. Note that while AIX supports two modes for package installation, "install" (for test runs) and "committed" (for actual installation), the PE AIX implementation only supports "committed" mode.
 
 #### Updated Modules
 The following modules have been updated to newer versions as indicated:
@@ -32,7 +34,7 @@ The following modules have been updated to newer versions as indicated:
 
 #### Security Fix
 
-*[CVE-2013-2716 CAS Client Config Vulnerability](http://puppetlabs.com/security/cve/cve-2013-2716/).* 
+*[CVE-2013-2716 CAS Client Config Vulnerability](http://puppetlabs.com/security/cve/cve-2013-2716/).*
 A vulnerability can be introduced when upgrading PE versions 2.5.0 through 2.7.2 from PE versions 1.2.x or 2.0.x. In such cases, the CAS client config file, `/etc/puppetlabs/console-auth/cas_client_config.yml`, is installed without a randomized secret.  Consequently, an attacker could craft a cookie that would be inappropriately authorized by the console.
 
 This issue has been resolved in PE 2.8.0. Users running older affected versions can resolve the issue by running `/opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:generate_secret`
@@ -40,7 +42,7 @@ This issue has been resolved in PE 2.8.0. Users running older affected versions 
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues]. 
+As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
@@ -48,9 +50,15 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
 
-The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
+The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
 
-### Bad Data in `facter architecture`
+### PE 2.8.0 Only: Broken Live Management and MCollective
+
+A packaging bug in the initial PE 2.8.0 release prevents the console’s live management feature from functioning. This issue also prevents MCollective from using filters.
+
+This issue led us to pull Puppet Enterprise 2.8.0 from our download page, pending a fixed PE 2.8.1. If you are currently running 2.8.0, we've prepared a partial upgrade package which fully resolves this issue; you can [download the fix here.][2.8.0fix]
+
+### Bad Data in Facter's `architecture` Fact
 
 On AIX agents, a bug causes facter to return the system's model number (e.g., IBM 3271) instead of the processor's architecture (e.g. Power6). There is no known workaround.
 
@@ -60,11 +68,11 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 
 ### After Upgrading, Nodes Report a "Not a PE Agent" Error
 
-When doing the first puppet run after upgrading using the "upgrader" script included in PE tarballs, agents are reporting an error: "&lt;node.name&gt; is not a Puppet Enterprise agent." This was caused by a bug in the upgrader that has since been fixed. If you downloaded a tarball prior to November 28, 2012, simply download the tarball again to get the fixed upgrader. If you prefer, you can download the [latest upgrader module](http://forge.puppetlabs.com/adrien/pe_upgrade/0.4.0-rc1) from the Forge. Alternatively, you can fix it by changing `/etc/puppetlabs/facter/facts.d/is_pe.txt`  to contain: `is_pe=true`. 
+When doing the first puppet run after upgrading using the "upgrader" script included in PE tarballs, agents are reporting an error: "&lt;node.name&gt; is not a Puppet Enterprise agent." This was caused by a bug in the upgrader that has since been fixed. If you downloaded a tarball prior to November 28, 2012, simply download the tarball again to get the fixed upgrader. If you prefer, you can download the [latest upgrader module](http://forge.puppetlabs.com/adrien/pe_upgrade/0.4.0-rc1) from the Forge. Alternatively, you can fix it by changing `/etc/puppetlabs/facter/facts.d/is_pe.txt`  to contain: `is_pe=true`.
 
 ### Issues with Compliance UI
 
-There are two issues related to incorrect Compliance UI behavior: 
+There are two issues related to incorrect Compliance UI behavior:
 
 *     Rejecting a difference by clicking (-) results in an erroneous display (Google Chrome only).
 *     The user account pull-down menu in the top level compliance tab ceases to function after a host report has been selected.
@@ -81,33 +89,33 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 
 An inadequate default MySQL buffer pool size setting can interfere with upgrades to Puppet Enterprise console servers.
 
-**The PE 2.8 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade. 
+**The PE 2.8 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade.
 
 If you see this warning, you should:
 
 * Abort the upgrade.
 * [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the value of the `innodb_buffer_pool_size` setting.
 * Re-run the upgrade.
-    
+
 If you have attempted to upgrade your console server without following these instructions, it is possible for the upgrade to fail. The upgrader's output in these cases resembles the following:
 
-    (in /opt/puppet/share/puppet-dashboard) 
-    == AddReportForeignKeyConstraints: migrating ================================= 
-    Going to delete orphaned records from metrics, report_logs, resource_statuses, resource_events 
-    Preparing to delete from metrics 
-    2012-01-27 17:51:31: Deleting 0 orphaned records from metrics 
+    (in /opt/puppet/share/puppet-dashboard)
+    == AddReportForeignKeyConstraints: migrating =================================
+    Going to delete orphaned records from metrics, report_logs, resource_statuses, resource_events
+    Preparing to delete from metrics
+    2012-01-27 17:51:31: Deleting 0 orphaned records from metrics
     Deleting 100% |###################################################################| Time: 00:00:00
-    Preparing to delete from report_logs 
-    2012-01-27 17:51:31: Deleting 0 orphaned records from report_logs 
+    Preparing to delete from report_logs
+    2012-01-27 17:51:31: Deleting 0 orphaned records from report_logs
     Deleting 100% |###################################################################| Time: 00:00:00
-    Preparing to delete from resource_statuses 
-    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_statuses 
+    Preparing to delete from resource_statuses
+    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_statuses
     Deleting 100% |###################################################################| Time: 00:00:00
-    Preparing to delete from resource_events 
-    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_events 
+    Preparing to delete from resource_events
+    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_events
     Deleting 100% |###################################################################| Time: 00:00:00
-    -- execute("ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;") 
-    rake aborted! 
+    -- execute("ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;")
+    rake aborted!
     An error has occurred, all later migrations canceled:
     Mysql::Error: Can't create table 'console.#sql-328_ff6' (errno: 121): ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;
     (See full trace by running task with --trace)
@@ -123,14 +131,14 @@ If you have suffered a failed upgrade, you can fix it by doing the following:
         Enter password: <password>
 * Execute the following SQL statements:
 
-        USE console 
-        ALTER TABLE reports DROP FOREIGN KEY fk_reports_node_id; 
-        ALTER TABLE resource_events DROP FOREIGN KEY fk_resource_events_resource_status_id; 
-        ALTER TABLE resource_statuses DROP FOREIGN KEY fk_resource_statuses_report_id; 
-        ALTER TABLE report_logs DROP FOREIGN KEY fk_report_logs_report_id; 
+        USE console
+        ALTER TABLE reports DROP FOREIGN KEY fk_reports_node_id;
+        ALTER TABLE resource_events DROP FOREIGN KEY fk_resource_events_resource_status_id;
+        ALTER TABLE resource_statuses DROP FOREIGN KEY fk_resource_statuses_report_id;
+        ALTER TABLE report_logs DROP FOREIGN KEY fk_report_logs_report_id;
         ALTER TABLE metrics DROP FOREIGN KEY fk_metrics_report_id;
 * [Follow the instructions for increasing the `innodb_buffer_pool_size`](./config_advanced.html#increasing-the-mysql-buffer-pool-size) and restart the MySQL server.
-* Re-run the upgrader, which should now finish successfully. 
+* Re-run the upgrader, which should now finish successfully.
 
 For more information about the lock table size, [see this MySQL bug report](http://bugs.mysql.com/bug.php?id=15667).
 
@@ -143,14 +151,14 @@ Due to [an upstream bug in Apache](https://issues.apache.org/bugzilla/show_bug.c
 After using `puppet cert revoke` or `puppet cert clean` to revoke a certificate, restart the service by running:
 
     $ sudo /etc/init.d/pe-httpd restart
-    
+
 ### Internet Explorer 8 Can't Access Live Management Features
 
-The console's [live management](./console_live.html) page doesn't load in Internet Explorer 8. Although we are working on supporting IE8, you should currently use another browser (such as Internet Explorer 9 or Google Chrome) to access PE's live management features. 
+The console's [live management](./console_live.html) page doesn't load in Internet Explorer 8. Although we are working on supporting IE8, you should currently use another browser (such as Internet Explorer 9 or Google Chrome) to access PE's live management features.
 
 ### Dynamic Man Pages are Incorrectly Formatted
 
-Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable. 
+Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable.
 
 To improve the display of Puppet man pages, you can use your system `gem` command to install the `ronn` gem:
 
