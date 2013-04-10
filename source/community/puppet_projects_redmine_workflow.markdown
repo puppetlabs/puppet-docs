@@ -128,3 +128,8 @@ I've put this ticket's status into "Needs more Information" and assigned it to y
 #### Code Insufficient
 
 I’ve put this ticket’s status into “Code Insufficient” and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
+
+#### Contributor guidelines
+
+Our guidelines for patch submission are described in the [CONTRIBUTING.md](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md) 
+in the puppetlabs/puppet github repo.
