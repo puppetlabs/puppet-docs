@@ -4,6 +4,7 @@ title: "Hiera 1: Complete Example"
 description: "Learn how to use Hiera to pull site-specific data out of your manifests with this walkthrough."
 ---
 
+[secure_node_id]: http://projects.puppetlabs.com/issues/19514
 [hiera_lookup]: ./puppet.html#hiera-lookup-functions
 [puppet-vmwaretools]: https://github.com/craigwatson/puppet-vmwaretools
 [ntp_module]: http://forge.puppetlabs.com/puppetlabs/ntp
@@ -167,6 +168,8 @@ We want one of these two nodes, `kermit.example.com`, to act as the primary orga
 	}
 
 Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppet/hiera/node` directory as `kermit.example.com.json`.
+
+> **Note:** We're suggesting you use the `fqdn` fact as a way to identify specific nodes, but you should be aware that using facts like `fqdn` in this manner poses a security risk [we're addressing][secure_node_id]. 
 
 Once you've saved that, let's do a quick test using the [Hiera command line tool][]:
 
