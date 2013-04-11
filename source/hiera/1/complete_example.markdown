@@ -4,6 +4,7 @@ title: "Hiera 1: Complete Example"
 description: "Learn how to use Hiera to pull site-specific data out of your manifests with this walkthrough."
 ---
 
+[secure_node_id]: http://projects.puppetlabs.com/issues/19514
 [hiera_lookup]: ./puppet.html#hiera-lookup-functions
 [puppet-vmwaretools]: https://github.com/craigwatson/puppet-vmwaretools
 [ntp_module]: http://forge.puppetlabs.com/puppetlabs/ntp
@@ -109,7 +110,13 @@ Step-by-step:
 - A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g. `/etc/puppet/hiera/node/grover.example.com.json`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
 - Next, the `common` data source (the `/etc/puppet/hiera/common.json` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
 
-> **Note:** If you modify `hiera.yaml` between agent runs, you'll have to restart your puppet master for your changes to take effect.
+> **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most of the useful Puppet variables are [**facts.**][facts] Since facts are submitted by the agent node itself, they _aren't necessarily trustworthy._ We don't recommend using facts as the sole deciding factor for distributing sensitive credentials.
+>
+> In this example, we're using the `fqdn` fact to identify specific nodes; the special `clientcert` variable is another option, which the agent sets to the value of its `certname` setting. (This is usually the same as the fqdn, but not always.) Right now, Puppet doesn't provide any variables with trusted data about a given node; we're currently [investigating the possibility of adding some][secure_node_id].
+
+[facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+
+> **Puppet master note:** If you modify `hiera.yaml` between agent runs, you'll have to restart your puppet master for your changes to take effect.
 
 ### Configuring for the Command Line
 
