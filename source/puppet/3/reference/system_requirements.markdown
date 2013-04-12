@@ -3,12 +3,29 @@ layout: default
 title: "Puppet 3 System Requirements"
 ---
 
-> To install Puppet 3, see [the Puppet installation guide](/guides/installation.html). 
+> To install Puppet 3, see [the Puppet installation guide](/guides/installation.html).
 
-Puppet 3 has the following prerequisites: 
+Basic Requirements
+-----
 
-- MRI Ruby 1.8.7 or Ruby ≥ 1.9.3; other interpreters and versions of Ruby are not supported, and may or may not work. 
+Puppet 3 has the following prerequisites:
+
+### Ruby
+
+**All Puppet 3.x releases:**
+
+- MRI Ruby 1.8.7 or Ruby 1.9.3; other interpreters and versions of Ruby are not supported, and may or may not work.
+
+**Puppet 3.2.x and later:**
+
+- As above, plus MRI Ruby 2.0.x.
+
+### Facter
+
 - [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 1.6.2 or later
+
+### Hiera
+
 - [Hiera](http://docs.puppetlabs.com/hiera/latest/) 1.0 or later
 
 Puppet 3 and all of its prerequisites will run on the following platforms:
