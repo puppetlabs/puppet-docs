@@ -4,11 +4,12 @@ nav: puppet_general.html
 title: Installing Puppet
 ---
 
-{% capture yum5package %}http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-5.noarch.rpm{% endcapture %}
+{% capture yum5package %}http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm{% endcapture %}
 {% capture aptpackage %}http://apt.puppetlabs.com/puppetlabs-release_1.0-3_all.deb{% endcapture %}
 {% capture yum6package %}http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-5.noarch.rpm{% endcapture %}
-{% capture yumf16package %}http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-5.noarch.rpm{% endcapture %}
-{% capture yumf15package %}http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-5.noarch.rpm{% endcapture %}
+{% capture yumf16package %}http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-7.noarch.rpm{% endcapture %}
+{% capture yumf17package %}http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-7.noarch.rpm{% endcapture %}
+{% capture yumf18package %}http://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm{% endcapture %}
 
 
 [bestpractice]: /guides/best_practices.html
