@@ -6,6 +6,8 @@ title: "Language: Experimental Features (Puppet 3.2)"
 [parser_setting]: /references/latest/configuration.html#parser
 [arm2]: https://github.com/puppetlabs/armatures/tree/master/arm-2.iteration
 [array]: /puppet/3/reference/lang_datatypes.html#arrays
+[experimentalmodule]: https://github.com/hlindberg/puppet-network
+[experimentalcommit]: https://github.com/hlindberg/puppet-network/commit/b1665a2da730e31b76a9230796510d01e6a626d7
 
 ## Background: The Puppet "Future" Parser
 
@@ -23,9 +25,8 @@ To enable everything described in this document:
 
 * Use Puppet 3.2.x. This isn't available in prior versions.
 * Install the `rgen` gem. If you installed Puppet from the official packages, this was already installed as a dependency; otherwise, you may need to install it manually.
-* On your puppet master(s), set [`parser = future` ][parser_setting]in the `[master]` block of puppet.conf. (In a masterless "puppet apply" deployment, set this in the `[main]` block on every node.)
+* On your puppet master(s), set [`parser = future`][parser_setting]in the `[master]` block of puppet.conf. (In a masterless "puppet apply" deployment, set this in the `[main]` block on every node.)
     * Alternately, you can set `--parser future` on the command line when running puppet apply.
-
 
 ## Scope of This Document
 
@@ -38,6 +39,8 @@ This experimental feature set implements several alternative syntaxes. The inten
 ## Collection Manipulation and Iteration
 
 This experimental feature set contains support for iteration and enumerables via an extension to the language known as _lambdas_.
+
+* For a demonstration with context, [see this revision of the puppet-network module][experimentalcommit] ([GitHub home][experimentalmodule] for the revised module)
 
 ### Lambdas
 
@@ -54,7 +57,7 @@ We can try this on the command line:
     Notice: Scope(Class[main]): 3
     Notice: Finished catalog run in 0.12 seconds
 
-Lets look at what we just did:
+Let's look at what we just did:
 
 * We used `puppet apply` and passed the `--parser future` option to get the experimental parser, as [described above.](#requirements) (All examples below assume this is set in `puppet.conf`).
 * We called a function called `each`
@@ -63,7 +66,6 @@ Lets look at what we just did:
     * The lambda's parameters are declared within _pipes_ (`|`) (just like parameters are specified for a define).
     * We declared the lambda to have one parameter, and we named it `$value` (we could have called it whatever we wanted; `$x`, or `$a_unicorn`, etc.)
     * The lambdas body is enclosed in braces `{ }`, where you can place any puppet logic except class, define, or node statements.
-
 
 ### Available Functions
 

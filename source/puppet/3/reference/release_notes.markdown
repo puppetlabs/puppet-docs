@@ -87,13 +87,16 @@ For a full description of the Puppet 3 release, including major changes, backwar
 In a first for Puppet, we're shipping two versions of the Puppet language in one release.
 
 - [Language: Experimental Features (Puppet 3.2)][32experimental]
+- Demonstration: [Revision of the puppet-network module][experimentalcommit] using experimental features ([GitHub home][experimentalmodule] for the revised module)
 
-By default, Puppet 3.2 is backward compatible with Puppet 3.1, with only minimal new language features (the modulo operator). However, if you set `parser = future` in puppet.conf, you can try out new, proposed language features like iteration (as defined in [arm-2][arm2]). See the document linked above for complete details.
+By default, Puppet 3.2 is backward compatible with Puppet 3.1, with only minimal new language features (the modulo operator). However, if you set `parser = future` in puppet.conf, you can try out new, proposed language features like iteration (as defined in [arm-2][arm2]). See the documents linked above for complete details.
 
-Be warned: **Features in the experimental parser are exempt from semantic versioning.** They might change several times before being released in the "current" parser.
+Note that **features in the experimental parser are exempt from semantic versioning.** They might change several times before being released in the "current" parser.
 
 [arm2]: https://github.com/puppetlabs/armatures/tree/master/arm-2.iteration
 [32experimental]: /puppet/3/reference/lang_experimental_3_2.html
+[experimentalmodule]: https://github.com/hlindberg/puppet-network
+[experimentalcommit]: https://github.com/hlindberg/puppet-network/commit/b1665a2da730e31b76a9230796510d01e6a626d7
 
 (Issues [19983][] and [11331][])
 
