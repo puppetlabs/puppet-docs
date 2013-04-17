@@ -4,13 +4,6 @@ nav: puppet_general.html
 title: Installing Puppet
 ---
 
-{% capture yum5package %}http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm{% endcapture %}
-{% capture aptpackage %}http://apt.puppetlabs.com/puppetlabs-release_1.0-3_all.deb{% endcapture %}
-{% capture yum6package %}http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-5.noarch.rpm{% endcapture %}
-{% capture yumf16package %}http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-7.noarch.rpm{% endcapture %}
-{% capture yumf17package %}http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-7.noarch.rpm{% endcapture %}
-{% capture yumf18package %}http://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm{% endcapture %}
-
 
 [bestpractice]: /guides/best_practices.html
 [downloads]: http://downloads.puppetlabs.com/puppet/
@@ -61,7 +54,7 @@ Check the following before you install Puppet.
 Decide on a deployment type before installing:
 
 Agent/master
-: Agent nodes pull their configurations from a puppet master server. Admins must manage node certificates, but will only have to maintain manifests and modules on the puppet master server(s), and can more easily take advantage of features like reporting and external data sources. 
+: Agent nodes pull their configurations from a puppet master server. Admins must manage node certificates, but will only have to maintain manifests and modules on the puppet master server(s), and can more easily take advantage of features like reporting and external data sources.
 
   You must decide in advance which server will be the master; install Puppet on it before installing on any agents. The master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk.
 
@@ -73,7 +66,7 @@ Standalone
 In an agent/master deployment, you must prepare your network for Puppet's traffic.
 
 * **Firewalls:** The puppet master server must allow incoming connections on port 8140, and agent nodes must be able to connect to the master on that port.
-* **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. Instructions for configuring DNS are beyond the scope of this guide. If your site lacks DNS, you must write an `/etc/hosts` file on each node. 
+* **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. Instructions for configuring DNS are beyond the scope of this guide. If your site lacks DNS, you must write an `/etc/hosts` file on each node.
 
 > **Note:** The default master hostname is `puppet`. Your agent nodes will be ready sooner if this hostname resolves to your puppet master.
 
@@ -91,8 +84,8 @@ The best way to install Puppet varies by operating system. Use the links below t
 - <a href="#installing-from-gems-not-recommended">Installing from Gems (Not Recommended)</a>
 - <a href="#installing-from-a-tarball-not-recommended">Installing from a Tarball (Not Recommended)</a>
 - <a href="#running-directly-from-source-not-recommended">Running Directly from Source (Not Recommended)</a>
-   
-* * * 
+
+* * *
 
 ### Enterprise Linux (and Derivatives)
 
@@ -121,7 +114,7 @@ To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_p
 
 The [Extra Packages for Enterprise Linux (EPEL)][epel] repo includes Puppet and its prerequisites. These packages are usually older Puppet versions with security patches. <!-- dated --> As of April 2012, EPEL was shipping a Puppet version from the prior, maintenance-only release series.
 
-To install Puppet from EPEL, follow [EPEL's own instructions][epelinstall] for enabling their repository on all of your target systems. 
+To install Puppet from EPEL, follow [EPEL's own instructions][epelinstall] for enabling their repository on all of your target systems.
 
 
 #### 2. Install the Puppet Master
@@ -141,7 +134,7 @@ For a standalone deployment, install this same package on all nodes.
 
 {{ after }}
 
-* * * 
+* * *
 
 ### Debian and Ubuntu
 
@@ -188,19 +181,19 @@ Skip this step for a standalone deployment.
 
 On your puppet master node, run `sudo apt-get install puppetmaster`. This will install Puppet, its prerequisites, and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
 
-**If you are using vendor packages,** a `puppetmaster-passenger` package may be available. If you install this package instead of `puppetmaster`, it will automatically configure a production-capacity web server for the Puppet master, using Passenger and Apache. In this configuration, do not use the puppetmaster init script; instead, control the puppet master by turning the Apache web server on and off or by disabling the puppet master vhost. 
+**If you are using vendor packages,** a `puppetmaster-passenger` package may be available. If you install this package instead of `puppetmaster`, it will automatically configure a production-capacity web server for the Puppet master, using Passenger and Apache. In this configuration, do not use the puppetmaster init script; instead, control the puppet master by turning the Apache web server on and off or by disabling the puppet master vhost.
 
 #### 3. Install Puppet on Agent Nodes
 
 On your other nodes, run `sudo apt-get install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
 
-For a standalone deployment, run `sudo apt-get install puppet-common` on all nodes instead. This will install Puppet without the agent init script. 
+For a standalone deployment, run `sudo apt-get install puppet-common` on all nodes instead. This will install Puppet without the agent init script.
 
 #### 4. Configure and Enable
 
 {{ after }}
 
-* * * 
+* * *
 
 ### Fedora
 
@@ -244,7 +237,7 @@ For a standalone deployment, install this same package on all nodes.
 
 {{ after }}
 
-* * * 
+* * *
 
 
 ### Mac OS X
@@ -259,15 +252,15 @@ OS X users should install Puppet with official Puppet Labs packages. [Download t
 
 #### 2. Install Facter
 
-Mount the Facter disk image, and run the installer package it contains. 
+Mount the Facter disk image, and run the installer package it contains.
 
 #### 3. Install Hiera
 
-Mount the Hiera disk image, and run the installer package it contains. 
+Mount the Hiera disk image, and run the installer package it contains.
 
 #### 4. Install Puppet
 
-Mount the Puppet disk image, and run the installer package it contains. 
+Mount the Puppet disk image, and run the installer package it contains.
 
 #### 5. Configure and Enable
 
@@ -279,13 +272,13 @@ The OS X packages are currently fairly minimal, and do not create launchd jobs, 
 
 {{ after }}
 
-* * * 
+* * *
 
 ### Windows
 
 [See the Windows installation instructions](/windows/installing.html).
 
-* * * 
+* * *
 
 ### Installing from Gems (Not Recommended)
 
@@ -295,7 +288,7 @@ On \*nix platforms without native packages available, you can install Puppet wit
 
 #### 1. Ensure Prerequisites are Installed
 
-Use your OS's package tools to install both Ruby and RubyGems. In some cases, you may need to compile and install these yourself. 
+Use your OS's package tools to install both Ruby and RubyGems. In some cases, you may need to compile and install these yourself.
 
 On Linux platforms, you should also ensure that the LSB tools are installed; at a minimum, we recommend installing `lsb_release`. See your OS's documentation for details about its LSB tools.
 
@@ -322,7 +315,7 @@ Installing with gem requires some additional steps:
 
 
 
-* * * 
+* * *
 
 ### Installing from a Tarball (Not Recommended)
 
@@ -332,7 +325,7 @@ This is almost never recommended, but may be necessary in some cases.
 
 #### 1. Ensure Prerequisites are Installed
 
-Use your OS's package tools to install Ruby. In some cases, you may need to compile and install it yourself. 
+Use your OS's package tools to install Ruby. In some cases, you may need to compile and install it yourself.
 
 On Linux platforms, you should also ensure that the LSB tools are installed; at a minimum, we recommend installing `lsb_release`. See your OS's documentation for details about its LSB tools.
 
@@ -364,17 +357,17 @@ Installing from a tarball requires some additional steps:
 
 {{ after }}
 
-* * * 
+* * *
 
 ### Running Directly from Source (Not Recommended)
 
-This is recommended only for developers and testers. 
+This is recommended only for developers and testers.
 
 See [Running Puppet from Source](/guides/from_source.html).
 
 
 
-<!-- 
+<!--
 ### OpenSuSE
 
 ### ArchLinux
@@ -391,7 +384,7 @@ See [Running Puppet from Source](/guides/from_source.html).
 
 
 
-* * * 
+* * *
 
 Post-Install
 -----
@@ -400,7 +393,7 @@ Perform the following tasks after you finish installing Puppet.
 
 ### Configure Puppet
 
-Puppet's main configuration file is found at `/etc/puppet/puppet.conf`. See [Configuring Puppet][configuring] for more details. 
+Puppet's main configuration file is found at `/etc/puppet/puppet.conf`. See [Configuring Puppet][configuring] for more details.
 
 Most users should specify the following settings:
 
@@ -408,7 +401,7 @@ Most users should specify the following settings:
 
 Settings for agent nodes should go in the `[agent]` or `[main]` block of `puppet.conf`.
 
-* [`server`](/references/latest/configuration.html#server): The hostname of your puppet master server. Defaults to `puppet`. 
+* [`server`](/references/latest/configuration.html#server): The hostname of your puppet master server. Defaults to `puppet`.
 * [`report`](/references/latest/configuration.html#report): Most users should set this to `true`.
 * [`pluginsync`](/references/latest/configuration.html#pluginsync): Most users should set this to `true`.
 * [`certname`](/references/latest/configuration.html#certname): The sitewide unique identifier for this node. Defaults to the node's fully qualified domain name, which is usually fine.
@@ -419,7 +412,7 @@ Settings for puppet master servers should go in the `[master]` or `[main]` block
 
 > **Note:** puppet masters are usually also agent nodes; settings in `[main]` will be available to both services, and settings in the `[master]` and `[agent]` blocks will override the settings in `[main]`.
 
-* [`dns_alt_names`](/references/latest/configuration.html#dns_alt_names): A list of valid hostnames for the master, which will be embedded in its certificate. Defaults to the puppet master's `certname` and `puppet`, which is usually fine. If you are using a non-default setting, set it **before** starting the puppet master for the first time. 
+* [`dns_alt_names`](/references/latest/configuration.html#dns_alt_names): A list of valid hostnames for the master, which will be embedded in its certificate. Defaults to the puppet master's `certname` and `puppet`, which is usually fine. If you are using a non-default setting, set it **before** starting the puppet master for the first time.
 
 #### On Standalone Nodes
 
@@ -455,26 +448,26 @@ In an agent/master deployment, you may wish to run puppet agent with cron rather
 
 #### With Launchd
 
-Apple [recommends you use launchd][launchd] to manage the execution of services and daemons. You can define a launchd service with XML property lists (plists), and manage it with the [`launchctl`][launchctl] command line utility. If you'd like to use launchd to manage execution of your puppet master or agent, download the following files and copy each into `/Library/LaunchDaemons/`: 
+Apple [recommends you use launchd][launchd] to manage the execution of services and daemons. You can define a launchd service with XML property lists (plists), and manage it with the [`launchctl`][launchctl] command line utility. If you'd like to use launchd to manage execution of your puppet master or agent, download the following files and copy each into `/Library/LaunchDaemons/`:
 
   - [com.puppetlabs.puppetmaster.plist](files/com.puppetlabs.puppetmaster.plist) (to manage launch of a puppet master)
   - [com.puppetlabs.puppet.plist](files/com.puppetlabs.puppet.plist) (to manage launch of a puppet agent)
 
-Set the correct owner and permissions on the files. Both must be owned by the root user and both must be writable only by the root user:  
+Set the correct owner and permissions on the files. Both must be owned by the root user and both must be writable only by the root user:
 
-    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppet.plist  
+    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppet.plist
     $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppet.plist
-    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist  
+    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
     $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
 
-Make launchd aware of the new services:  
+Make launchd aware of the new services:
 
     $ sudo launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
     $ sudo launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
 
-Note that the files we provide here are responsible only for initial launch of a puppet master or puppet agent at system start. How frequently each conducts a run is determined by Puppet's configuration, not the plists. 
+Note that the files we provide here are responsible only for initial launch of a puppet master or puppet agent at system start. How frequently each conducts a run is determined by Puppet's configuration, not the plists.
 
-See the OS X `launchctl` man page for more information on how to stop, start, and manage launchd jobs. 
+See the OS X `launchctl` man page for more information on how to stop, start, and manage launchd jobs.
 
 ### Sign Node Certificates
 
@@ -488,7 +481,7 @@ An agent node whose request has been signed on the master will run normally on i
 
 ### Change Puppet Master's Web Server
 
-In an agent/master deployment, you **must** [configure the puppet master to run under a scalable web server][scaling] after you have done some reasonable testing. The default web server is simpler to configure and better for testing, but **cannot** support real-life workloads. 
+In an agent/master deployment, you **must** [configure the puppet master to run under a scalable web server][scaling] after you have done some reasonable testing. The default web server is simpler to configure and better for testing, but **cannot** support real-life workloads.
 
 A replacement web server can be configured at any time, and does not affect the configuration of agent nodes.
 
@@ -500,7 +493,7 @@ Now that you have installed and configured Puppet:
 
 ### Learn to Use Puppet
 
-If you have not used Puppet before, you should read the [Learning Puppet](/learning/) series and experiment, either with the Learning Puppet VM or with your own machines. This series will introduce the concepts underpinning Puppet, and will guide you through the process of writing Puppet code, using modules, and classifying nodes. 
+If you have not used Puppet before, you should read the [Learning Puppet](/learning/) series and experiment, either with the Learning Puppet VM or with your own machines. This series will introduce the concepts underpinning Puppet, and will guide you through the process of writing Puppet code, using modules, and classifying nodes.
 
 
 ### Install Optional Software
