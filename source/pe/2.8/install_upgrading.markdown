@@ -20,7 +20,7 @@ To upgrade, use the same installer tarball as in a basic installation, but run t
 
 ### The `pe_upgrade` Module
 
-To automate the upgrades of your agent nodes, you can use [the `adrien/pe_upgrade` module][upgrade_module]. Instructions are available on the module's Forge page.
+To automate the upgrades of your agent nodes, you can use [the `adrien/pe_upgrade` module][upgrade_module]. Instructions are available on the module's [Forge page][upgrade_module].
 
 **This module is unofficial,** but Puppet Labs will support it on a best-effort basis. Feel free to call us if you need help with it.
 

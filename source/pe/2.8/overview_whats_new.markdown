@@ -5,7 +5,7 @@ subtitle: "New Features in PE 2.8"
 ---
 
 ### Version 2.8.1
-PE 2.8.1 is a maintenance release. It includes a fix for a bug that caused Live Management and MCollective filtering failures.  Some other minor bug fixes are also included. For details, check the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes).
+PE 2.8.1 is a maintenance release. It includes a fix for a bug that caused Live Management and MCollective filtering failures.  Some other minor bug fixes are also included. For details, check the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes). Users of 2.8.0 are strongly encouraged to upgrade to 2.8.1. If you applied the 2.8.0 hotfix that predates the 2.8.1 release, you should still upgrade to 2.8.1 in order to get all of the latest fixes.
 
 ### Version 2.8.0
 PE 2.8.0 is a feature and maintenance release. Specifically, the 2.8.0 release includes:

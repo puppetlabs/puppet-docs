@@ -4,14 +4,8 @@ title: "PE 2.8  » Index"
 subtitle: "Puppet Enterprise User's Guide"
 ---
 
-[2.8.0fix]: https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/
 
 Welcome! This is the user's guide for Puppet Enterprise 2.8.
-
-> **Note (April 5, 2013):** We've temporarily pulled Puppet Enterprise 2.8.0 from our download page, due to a packaging bug that prevents MCollective filters and the console’s live management feature from functioning.
->
-> We plan to release a fixed PE 2.8.1 sometime next week. If you are currently running 2.8.0, we've prepared a partial upgrade package which fully resolves this issue; you can [download the fix here.][2.8.0fix]
-
 
 * If you are new to Puppet Enterprise, begin with the [quick start guide](./quick_start.html) to create a small proof-of-concept deployment and experience the core Puppet Enterprise tools and workflows. This guided walkthrough will take approximately 30 minutes.
 * To install Puppet Enterprise, see the following pages:

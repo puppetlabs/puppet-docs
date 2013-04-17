@@ -4,7 +4,6 @@ title: "PE 2.8 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 
-[2.8.0fix]: https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/
 
 This page contains additional miscellaneous information about Puppet Enterprise 2.8.
 
@@ -56,7 +55,7 @@ Known Issues
 
 As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
-To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
@@ -66,9 +65,9 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### PE 2.8.0 Only: Broken Live Management and MCollective
 
-A packaging bug in the initial PE 2.8.0 release prevents the console’s live management feature from functioning. This issue also prevents MCollective from using filters.
+A packaging bug in the initial PE 2.8.0 release prevented the console’s live management feature from functioning. This issue also prevents MCollective from using filters.
 
-This issue led us to pull Puppet Enterprise 2.8.0 from our download page, pending a fixed PE 2.8.1. If you are currently running 2.8.0, we've prepared a partial upgrade package which fully resolves this issue; you can [download the fix here.][2.8.0fix]
+This issue was fixed in PE 2.8.1. Anyone running 2.8.0 is strongly encouraged to upgrade.
 
 ### Bad Data in Facter's `architecture` Fact
 
