@@ -13,7 +13,7 @@ The Puppet Labs docs site is a collection of static HTML files generated from [M
 
 ## Initial Setup
 
-[The instructions on Github](https://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) explain how to get a functioning docs toolchain in place. 
+[The instructions on Github](https://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) explain how to get a functioning docs toolchain in place.
 
 ## Tools and Services
 
@@ -29,7 +29,7 @@ For working with the puppet-docs repository from day to day, we recommend:
 
 - Forking puppetlabs/puppet-docs
 
-- Cloning your fork to your machine ("set up a local"): 
+- Cloning your fork to your machine ("set up a local"):
     `git clone git@github.com:#{your_github_username}/puppet-docs.git`
 
 - Designating puppetlabs/puppet-docs as your git upstream:
@@ -43,10 +43,10 @@ For working with the puppet-docs repository from day to day, we recommend:
 
 - Merging your topic branch to your local master:
     `git merge name_of_topic_branch`
-    
+
 - Pushing from master to master:
     `git push upstream master`
- 
+
 If you have a very small change to make, just make sure your master branch is up to date (`git pull upstream master`), make your change, then push it.
 
 ### Jekyll
@@ -54,12 +54,12 @@ If you have a very small change to make, just make sure your master branch is up
 [Jekyll][] is a static site generator. It takes a directory full of files written in HTML or Markdown and generates a site of static HTML. If you're used to dealing with a content management system such as WordPress or Drupal elsewhere, these things are worth knowing:
 
 - Jekyll doesn't allow you to edit content on a live site: You have to make your changes to the Markdown file, save them, then generate the site.
-- Jekyll has to regenerate the entire site every time it's generated. That includes all the navigation elements and pages. 
+- Jekyll has to regenerate the entire site every time it's generated. That includes all the navigation elements and pages.
 - Jekyll __does not use__ the remote Github repository to generate the site. It uses what's in the git branch you're working on. You should generally use the [git workflow](#git-workflow) outlined above to make sure you're not generating a site with bits that aren't ready for primetime.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** Not much: 
+**Day-to-day:** Not much:
 
 - See the section on [generating the site](#generating) to learn how to generate the docs site.
 - See the section on [navigation and templating](#navigation-and-templating) if you need to change a section's navigation or templating.
@@ -75,25 +75,25 @@ We keep our fork of Jekyll in a Puppet-owned github repository:
 
 Our bundler Gemfile references that fork of Jekyll and builds the jekyll gem from the `puppetdocs` branch.
 
-#### Bundler 
+#### Bundler
 
-Bundler is a tool that allows you to make sure you've got all the Ruby gems you need to successfully build the docs site. You'll use it once when you're setting up your toolchain, then occasionally as the toolchain is updated. It shouldn't come up much. 
+Bundler is a tool that allows you to make sure you've got all the Ruby gems you need to successfully build the docs site. You'll use it once when you're setting up your toolchain, then occasionally as the toolchain is updated. It shouldn't come up much.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** Sometimes you'll try to run a rake task to build the site and get an error because the bundler Gemfile has been updated. Just run `bundle update` and that should straighten it out. 
+**Day-to-day:** Sometimes you'll try to run a rake task to build the site and get an error because the bundler Gemfile has been updated. Just run `bundle update` and that should straighten it out.
 
-**Toolsmiths:** Bundler was introduced to get a handle on loadpath problems. Now we use it as a one-stop way to get most gem dependencies onto a new system with a single command. We also use it to build a gem from our forked version of Jekyll (See [above][#jekyll]). 
+**Toolsmiths:** Bundler was introduced to get a handle on loadpath problems. Now we use it as a one-stop way to get most gem dependencies onto a new system with a single command. We also use it to build a gem from our forked version of Jekyll (See [above][#jekyll]).
 
 #### Pygments
 
-Jekyll uses the Pygments application to provide syntax highlighting. Pygments parses HTML `<code>` blocks and applies CSS to them. Pygments does a good job, but it's slow. 
+Jekyll uses the Pygments application to provide syntax highlighting. Pygments parses HTML `<code>` blocks and applies CSS to them. Pygments does a good job, but it's slow.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** Not much. You should have installed Pygments as part of your initial toolchain setup. 
+**Day-to-day:** Not much. You should have installed Pygments as part of your initial toolchain setup.
 
-**Toolsmiths:** We recently added a Jekyll plugin that caches Pygments HTML output, dramatically speeding up the toolchain build times. See `source/_plugins/pygments_cache.rb`. 
+**Toolsmiths:** We recently added a Jekyll plugin that caches Pygments HTML output, dramatically speeding up the toolchain build times. See `source/_plugins/pygments_cache.rb`.
 
 #### kramdown
 
@@ -101,7 +101,7 @@ The Puppet docs site is written in Markdown. In order to get advanced HTML featu
 
 ##### What do I need to know about this?
 
-**Day-to-day:** Not much. 
+**Day-to-day:** Not much.
 
 **Toolsmiths:** kramdown provides a superset of vanilla Markdown. If you ever decide to change Markdown parsers, you'll need to make sure the new parser supports kramdown's features. We are most dependent on its ability to generate tables, but there are also cases in the Puppet docs where we use footnotes. Neither of these features are native to vanilla Markdown.
 
@@ -109,11 +109,11 @@ kramdown also treats markup inside HTML block-level elements differently from va
 
 #### Liquid Templating
 
-Jekyll uses Liquid to provide a limited amount of relatively safe in-line logic for templates. 
+Jekyll uses Liquid to provide a limited amount of relatively safe in-line logic for templates.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** Not much. 
+**Day-to-day:** Not much.
 
 **Toolsmiths:** Liquid usually comes up in the context of providing conditional logic for inclusion/exclusion of certain page elements depending on the Puppet version they apply to. For instance, take a look at `source/_includes/references_general.html`, which includes the following Liquid markup:
 
@@ -123,7 +123,7 @@ Jekyll uses Liquid to provide a limited amount of relatively safe in-line logic 
 		 <li>{% iflink "Developer Documentation", "./developer/index.html" %}</li>
 	{% endunless %}
 
-which uses a Liquid plugin found in `source/_plugins/reference_version.rb` to discern which version of the Puppet references a page is displaying and toggles the display of a link to the developer YARD docs, which were not available prior to Puppet 3.1. 
+which uses a Liquid plugin found in `source/_plugins/reference_version.rb` to discern which version of the Puppet references a page is displaying and toggles the display of a link to the developer YARD docs, which were not available prior to Puppet 3.1.
 
 See the [Liquid wiki][] for a complete reference to Liquid functions (Liquid for Designers) and extensions (Liquid for Developers).
 
@@ -141,9 +141,9 @@ Though YARD documentation is easily read via its built-in webserver, the Puppet 
 
 ##### What do I need to know about this?
 
-**Day-to-day:** You should generate YARD documentation each time a new patch release of Puppet is made. See the section on [generated references](#generated-references) below. 
+**Day-to-day:** You should generate YARD documentation each time a new patch release of Puppet is made. See the section on [generated references](#generated-references) below.
 
-**Toolsmiths:** There's room for improvement in the YARD templating, but that should be coordinated with the platform team's developers since YARD templating has to pull double duty, both for output on a desktop docs webserver and as part of the generated references. 
+**Toolsmiths:** There's room for improvement in the YARD templating, but that should be coordinated with the platform team's developers since YARD templating has to pull double duty, both for output on a desktop docs webserver and as part of the generated references.
 
 #### Puppet Documentation
 
@@ -162,18 +162,18 @@ To modify Puppet documentation, you need to:
 
 ##### Revising Past Versions of Puppet Docs
 
-Since we keep generated references for every patch release of Puppet, there will be times when you need to make a change to legacy generated references. Consult with developers on this, since you can't always be sure under which point or patch release a change was introduced. Generally speaking, making a change to the last patch release in a series (e.g. 2.7.21) is all that's required, since that in turn will be presented as the latest, canonical version of a given document. 
+Since we keep generated references for every patch release of Puppet, there will be times when you need to make a change to legacy generated references. Consult with developers on this, since you can't always be sure under which point or patch release a change was introduced. Generally speaking, making a change to the last patch release in a series (e.g. 2.7.21) is all that's required, since that in turn will be presented as the latest, canonical version of a given document.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** You should generate Puppet references each time a new patch release of Puppet is made. See the section on [generated references](#generated-references) below. 
+**Day-to-day:** You should generate Puppet references each time a new patch release of Puppet is made. See the section on [generated references](#generated-references) below.
 
 ___WARNING: You should not regenerate references for older versions of these documents: Sometimes changes are made to the existing versions, and regenerating them will overwrite these changes.___
 
 **Toolsmiths:** Puppet documentation can be crabby. Here are some things to look out for:
 
 - Clean loadpath: You should never have Puppet installed from Puppet-Labs-provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
-- ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord. 
+- ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord.
 
 ## Working With the Toolchain
 
@@ -221,30 +221,30 @@ The content for the docs site lives in the `_source` directory of the puppet-doc
     │   ├── development_code_names.markdown
     │   └── index.markdown
     └── windows
-    
-### Generating the Docs 
 
-Generating the Puppet docs site using the Rakefile in the top of the docs repo. The 
+### Generating the Docs
 
-#### The core site 
+Generating the Puppet docs site using the Rakefile in the top of the docs repo. The
+
+#### The core site
 
 __Rake command:__ `rake generate`
 
 If all you need to do is regenerate the docs site to reflect changes you've made:
 
-`$ cd puppet-docs`  
-`$ rake generate`  
-`$ rake preview`  
+`$ cd puppet-docs`
+`$ rake generate`
+`$ rake preview`
 
 Visit `http://localhost:9292` to review your changes.
 
-> **Note:** Some Puppet subprojects keep their own copies of their documentation. These projects are automatically checked out when the documentation is generated and no user intervention is required. 
+> **Note:** Some Puppet subprojects keep their own copies of their documentation. These projects are automatically checked out when the documentation is generated and no user intervention is required.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** 
+**Day-to-day:**
 
-- Sometimes `rake` will fail with an error referencing "bundler." Run `bundle update` in your puppet-docs directory and that should sort it out. 
+- Sometimes `rake` will fail with an error referencing "bundler." Run `bundle update` in your puppet-docs directory and that should sort it out.
 - Sometimes, early in the build process, you'll see errors related to mcollective or PuppetDB being in a detached HEAD state. Feel free to ignore those.
 
 **Toolsmith:**
@@ -257,13 +257,13 @@ __Rake command:__ `VERSION=3.1.1 rake references`
 
 The generated references and YARD docs are produced from inline documentation in Puppet.  You need to regenerate these with each patch release of Puppet. Once the references are generated, the new files will need to be added to the repo and committed. The new files are located under `_source/references`.
 
-**WARNING:** Sometimes we have to go back and make corrections to existing generated references. Please do not regenerate older references or those corrections will likely be overwritten. 
+**WARNING:** Sometimes we have to go back and make corrections to existing generated references. Please do not regenerate older references or those corrections will likely be overwritten.
 
 ##### What do I need to know about this?
 
-**Day-to-day:** You shouldn't have Puppet, Hiera or Facter packages installed on your system because there's a good chance they'll cause the generated documentation to be incorrect. You should either have Puppet installed via a gem or use it from a clone of the repository. 
+**Day-to-day:** You shouldn't have Puppet, Hiera or Facter packages installed on your system because there's a good chance they'll cause the generated documentation to be incorrect. You should either have Puppet installed via a gem or use it from a clone of the repository.
 
-**Toolsmith:** The rake task for references calls `lib/puppet_docs/reference.rb`, which does some stuff to clean out the Ruby loadpath, check out captive versions of Puppet, Facter and Hiera, and then use the captive Puppet to generate the references. 
+**Toolsmith:** The rake task for references calls `lib/puppet_docs/reference.rb`, which does some stuff to clean out the Ruby loadpath, check out captive versions of Puppet, Facter and Hiera, and then use the captive Puppet to generate the references.
 
 ### Deploying
 
@@ -292,13 +292,13 @@ If you want to introduce new error pages for more than not-found errors, or if y
 
 <https://github.com/puppetlabs/puppetlabs-modules/>
 
-and edit `production/site/puppetlabs/templates/docs_vhost.erb`. Please do this by forking `puppetlabs-modules`, creating a topic branch, and submitting a pull request. 
+and edit `production/site/puppetlabs/templates/docs_vhost.erb`. Please do this by forking `puppetlabs-modules`, creating a topic branch, and submitting a pull request.
 
 ### Navigation
 
-The HTML for navigation elements that appear in the sidebars/rails on individual pages lives in `source/_includes`. Menus are assigned to a given page using a Liquid function called from the template files (`source/_plugins/render_nav.rb`) and configured in the `_config.yml` file found on the top level of the puppet-docs repo. 
+The HTML for navigation elements that appear in the sidebars/rails on individual pages lives in `source/_includes`. Menus are assigned to a given page using a Liquid function called from the template files (`source/_plugins/render_nav.rb`) and configured in the `_config.yml` file found on the top level of the puppet-docs repo.
 
-So, for pages using the default layout, to add a new navigation menu to the left rail, edit the `defaultnav` hash in `_config.yml` to map the files under a given directory to an HTML file you've placed in `source/_includes`. 
+So, for pages using the default layout, to add a new navigation menu to the left rail, edit the `defaultnav` hash in `_config.yml` to map the files under a given directory to an HTML file you've placed in `source/_includes`.
 
 ### Pages
 
@@ -309,9 +309,9 @@ Jekyll expects each page to include YAML frontmatter. It should, at a minimum, i
 	title: "Hiera 1: Command Line Usage"
 	---
 
-In addition, you can include two other values in the frontmatter: `canonical` and `description`. 
+In addition, you can include a few other values in the frontmatter: `canonical`, `description`, `toc`, and `subtitle`.
 
-**Canonical:** Designates the canonical version of a given page. We use this to generate a canonical link that guides search engines to the most current, most relevant version of a given page. Testing has shown that this is very effective for consolidating search traffic on the most recent version of a given document. Format the canonical value as an absolute path from the docroot: 
+**Canonical:** Designates the canonical version of a given page. We use this to generate a canonical link that guides search engines to the most current, most relevant version of a given page. Testing has shown that this is very effective for consolidating search traffic on the most recent version of a given document. Format the canonical value as an absolute path from the docroot:
 
 	canonical: "/puppetdb/1.1/configure.html"
 
@@ -320,6 +320,10 @@ In addition, you can include two other values in the frontmatter: `canonical` an
 	description: "The hiera command line tool is useful for previewing and validating your hierarchy before putting it into production."
 
 If you don't designate a description value, the templates will automatically include the first 150 characters of a given page as the description field. This isn't always ideal, but it's what Google would do automatically, and it keeps SEO tools in use around the company from complaining about the total lack of a description tag.
+
+**Toc:** True or false; defaults to true. Whether to include the in-page TOC at the top of this page. This can be disabled for pages that don't need it.
+
+**Subtitle:** By default, the `title` variable will be used in the `<title>` tag, the big title banner in the masthead, and the small title right above the in-page TOC. This will replace the small title if it's present.
 
 
 ## Reference Links (remove when done with draft)
