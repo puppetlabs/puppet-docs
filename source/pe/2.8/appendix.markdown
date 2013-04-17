@@ -18,6 +18,18 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### PE 2.8.1 (4/17/2013)
+
+#### Open-Source Agents Bug Fix
+A bug in 2.8.0 prevented the pe_mcollective module from working correctly when running open-source agents with a PE master. This has been fixed. For more information, see [issue 19230](http://projects.puppetlabs.com/issues/19230).
+
+#### Stomp/MCollective Bug Fix
+A bug in 2.8.0 related to the Stomp component upgrade prevented Live Management and MCollective filters from functioning. A [hotfix](https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/) was released and the issue has been fixed in PE 2.8.1
+
+#### Spaces Now Allowed in Passwords
+Previously, spaces could not be used in console passwords. This has been changed and spaces are now accepted.
+
+
 ### PE 2.8.0 (3/26/2013)
 
 #### AIX Support
