@@ -28,14 +28,14 @@ A bug in 2.8.0 related to the Stomp component upgrade prevented Live Management 
 #### Spaces Now Allowed in Passwords
 Previously, spaces could not be used in console passwords. This has been changed and spaces are now accepted.
 
-#### Redhat Installation on Amazon AMI Bug Fix
+#### Red Hat Installation on Amazon AMI Bug Fix
 A bug in 2.8.0 caused the installer to reject Amazon Linux AMIs when the `redhat-lsb` package is installed. This issue has been fixed in 2.8.1. For details see [issue 19963](https://projects.puppetlabs.com/issues/19963). 
 
 
 ### PE 2.8.0 (3/26/2013)
 
 #### AIX Support
-2.8.0 adds support for the AIX operating system. Only puppet Agents are supported, you cannot run a master, console or other component on an AIX node. Support for three AIX package providers, NIM, RPM and BFF is also added. Note that while AIX supports two modes for package installation, "install" (for test runs) and "committed" (for actual installation), the PE AIX implementation only supports "committed" mode.
+2.8.0 adds support for the AIX operating system. Only puppet agents are supported; you cannot run a master, console, or other component on an AIX node. Support for three AIX package providers, NIM, RPM and BFF, is also added. Note that while AIX supports two modes for package installation, "install" (for test runs) and "committed" (for actual installation), the PE AIX implementation only supports "committed" mode.
 
 #### Updated Modules
 The following modules have been updated to newer versions as indicated:
