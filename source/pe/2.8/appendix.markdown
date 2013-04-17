@@ -23,10 +23,13 @@ Release Notes
 A bug in 2.8.0 prevented the pe_mcollective module from working correctly when running open-source agents with a PE master. This has been fixed. For more information, see [issue 19230](http://projects.puppetlabs.com/issues/19230).
 
 #### Stomp/MCollective Bug Fix
-A bug in 2.8.0 related to the Stomp component upgrade prevented Live Management and MCollective filters from functioning. A [hotfix](https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/) was released and the issue has been fixed in PE 2.8.1
+A bug in 2.8.0 related to the Stomp component upgrade prevented Live Management and MCollective filters from functioning. A [hotfix](https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/) was released and the issue has been fixed in PE 2.8.1. 
 
 #### Spaces Now Allowed in Passwords
 Previously, spaces could not be used in console passwords. This has been changed and spaces are now accepted.
+
+#### Redhat Installation on Amazon AMI Bug Fix
+A bug in 2.8.0 caused the installer to reject Amazon Linux AMIs when the `redhat-lsb` package is installed. This issue has been fixed in 2.8.1. For details see [issue 19963](https://projects.puppetlabs.com/issues/19963). 
 
 
 ### PE 2.8.0 (3/26/2013)
