@@ -69,7 +69,7 @@ Puppet 3.x Release Notes
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
 
 
-## 3.2.0
+## Puppet 3.2.0
 
 3.2.0 is a backward-compatible features and fixes release in the Puppet 3 series. The most notable changes are:
 
@@ -216,7 +216,7 @@ Puppet apply now writes the classes file and resources file. If you run a master
 
 [See here for a list of all non-trivial changes for the 3.2.0 release.][32issues]
 
-## 3.1.1
+## Puppet 3.1.1
 
 Puppet 3.1.1 is a **security release** addressing several vulnerabilities discovered in the 3.x line of Puppet. These
 vulnerabilities have been assigned Mitre CVE numbers [CVE-2013-1640][], [CVE-2013-1652][], [CVE-2013-1653][], [CVE-2013-1654][], [CVE-2013-1655][] and [CVE-2013-2275][].
@@ -284,7 +284,7 @@ Please report feedback via the Puppet Labs Redmine site, using an affected puppe
      * Updating module tool acceptance tests with new expectations.
 
 
-## 3.1.0
+## Puppet 3.1.0
 
 For a full description of all the major changes in Puppet 3.1, please see the list of [new features in Puppet 3.1][new_in_31].
 
@@ -295,15 +295,15 @@ Use the Puppet issue tracker to find every bug fixed in a given version of Puppe
 * [All bugs fixed in 3.1.0][target_310] (approx. 53)
 
 
-## 3.0.2
+## Puppet 3.0.2
 
 3.0.2 Target version and resolved issues: <https://projects.puppetlabs.com/versions/337>
 
-## 3.0.1
+## Puppet 3.0.1
 
 3.0.1 Target version and resolved issues: <https://projects.puppetlabs.com/versions/328>
 
-## 3.0
+## Puppet 3.0.0
 
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
 
