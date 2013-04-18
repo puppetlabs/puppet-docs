@@ -138,7 +138,7 @@ We now officially support using an external certificate authority with Puppet. S
 
 If you were stalled on 2.7.17 due to [bug 15561][15561], upgrading to 3.2 should fix your problems.
 
-[external_ca]: /puppet/3/reference/config_ssl_external_ca.markdown
+[external_ca]: /puppet/3/reference/config_ssl_external_ca.html
 
 (Issues [15561][], [17864][], [19271][], and [20027][])
 
