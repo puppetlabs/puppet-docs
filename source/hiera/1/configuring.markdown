@@ -27,18 +27,18 @@ By default, the config file is `$confdir/hiera.yaml`, which is usually one of th
 * `/etc/puppetlabs/puppet/hiera.yaml` in \*nix Puppet Enterprise
 * [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows
 
-In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file. 
+In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
 
 ### From the Command Line
 
 * `/etc/hiera.yaml` on \*nix
 * [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\hiera\etc\hiera.yaml` on Windows
 
-You can specify a different config file with the `-c` (`--config`) option. 
+You can specify a different config file with the `-c` (`--config`) option.
 
 ### From Ruby Code
 
-* `/etc/hiera.yaml` on \*nix 
+* `/etc/hiera.yaml` on \*nix
 * [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\hiera\etc\hiera.yaml` on Windows
 
 You can specify a different config file or a hash of settings when calling `Hiera.new`.
@@ -85,7 +85,7 @@ If the config file exists but has no data, the default settings will be equivale
 Global Settings
 -----
 
-The Hiera config file may contain any the following settings. If absent, they will have default values. **Note that each setting must be a Ruby symbol with a colon (`:`) prefix.** 
+The Hiera config file may contain any the following settings. If absent, they will have default values. **Note that each setting must be a Ruby symbol with a colon (`:`) prefix.**
 
 ### `:hierarchy`
 
@@ -97,11 +97,11 @@ The data sources in the hierarchy are checked in order, top to bottom.
 
 ### `:backends`
 
-Must be a **string** or an **array of strings,** where each string is the name of an available Hiera backend. The built-in backends are `yaml` and `json`; an additional `puppet` backend is available when using Hiera with Puppet. Additional backends are available as add-ons. 
+Must be a **string** or an **array of strings,** where each string is the name of an available Hiera backend. The built-in backends are `yaml` and `json`; an additional `puppet` backend is available when using Hiera with Puppet. Additional backends are available as add-ons.
 
 > **Custom backends:** See ["Writing Custom Backends"][custom_backends] for details on writing new backend. Custom backends can interface with nearly any existing data store.
 
-The list of backends is processed in order: in the [example above][example], Hiera would check the entire hierarchy in the **yaml** backend before starting again with the **json** backend. 
+The list of backends is processed in order: in the [example above][example], Hiera would check the entire hierarchy in the **yaml** backend before starting again with the **json** backend.
 
 **Default value:** `"yaml"`
 
@@ -119,10 +119,22 @@ Loggers only control where warnings and debug messages are routed. You can use o
 
 **Default value:** `"console"`; note that Puppet overrides this and sets it to `"puppet"`, regardless of what's in the config file.
 
+### `:merge_behavior`
+
+Must be one of the following:
+
+* `native` (default) --- merge top-level keys only.
+* `deep` --- merge recursively; in the event of conflicting keys, allow **lower priority** values to win. You almost never want this.
+* `deeper` --- merge recursively; in the event of a conflict, allow **higher priority** values to win.
+
+Anything but `native` requires the `deep_merge` Ruby gem to be installed.
+
+Which merge strategy to use when doing a [hash merge lookup](./lookup_types.html#hash-merge). See ["Deep Merging in Hiera ≥ 1.2.0"](./lookup_types.html#deep-merging-in-hiera--120) for more details.
+
 Backend-Specific Settings
 -----
 
-Any backend can define its own settings and read them from Hiera's config file. If present, the value of a given backend's key must be a **hash,** whose keys are the settings it uses. 
+Any backend can define its own settings and read them from Hiera's config file. If present, the value of a given backend's key must be a **hash,** whose keys are the settings it uses.
 
 The following settings are available for the built-in backends:
 
@@ -130,7 +142,7 @@ The following settings are available for the built-in backends:
 
 #### `:datadir`
 
-The directory in which to find data source files. 
+The directory in which to find data source files.
 
 You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `/etc/puppet/hieradata/%{::environment}` to keep your production and development data entirely separate.
 
@@ -140,7 +152,7 @@ You can [interpolate variables][interpolate] into the datadir using `%{variable}
 
 #### `:datasource`
 
-The Puppet class in which to look for data. 
+The Puppet class in which to look for data.
 
 **Default value:** `data`
 
