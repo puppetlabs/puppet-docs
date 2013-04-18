@@ -20,7 +20,7 @@ layout: default
 [variables]: ./lang_variables.html
 
 
-**Expressions** resolve to values and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions and the entire combined expression will resolve to a single value. 
+**Expressions** resolve to values and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions and the entire combined expression will resolve to a single value.
 
 Most expressions resolve to [boolean][] values. They are particularly useful as conditions in [conditional statements][conditional].
 
@@ -123,49 +123,49 @@ Resolves to `false` if the operands are equal. Behaves similarly to `==`.
 
 Resolves to `true` if the left operand is smaller than the right operand. Accepts [numbers][].
 
-The behavior of this operator when used with strings is undefined. 
+The behavior of this operator when used with strings is undefined.
 
 ### `>` (greater than)
 
 Resolves to `true` if the left operand is bigger than the right operand. Accepts [numbers][].
 
-The behavior of this operator when used with strings is undefined. 
+The behavior of this operator when used with strings is undefined.
 
 ### `<=` (less than or equal to)
 
 Resolves to `true` if the left operand is smaller than or equal to the right operand. Accepts [numbers][].
 
-The behavior of this operator when used with strings is undefined. 
+The behavior of this operator when used with strings is undefined.
 
 ### `>=` (greater than or equal to)
 
 Resolves to `true` if the left operand is bigger than or equal to the right operand. Accepts [numbers][].
 
-The behavior of this operator when used with strings is undefined. 
+The behavior of this operator when used with strings is undefined.
 
 ### `=~` (regex match)
 
 This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand and a [regular expression][regex] as the right operand.
 
-Resolves to `true` if the left operand [matches][regex_match] the regular expression. 
+Resolves to `true` if the left operand [matches][regex_match] the regular expression.
 
 ### `!~` (regex non-match)
 
 This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand and a [regular expression][regex] as the right operand.
 
-Resolves to `false` if the left operand [matches][regex_match] the regular expression. 
+Resolves to `false` if the left operand [matches][regex_match] the regular expression.
 
 ### `in`
 
-Resolves to `true` if the right operand contains the left operand. This operator is **case sensitive.** 
+Resolves to `true` if the right operand contains the left operand. This operator is **case sensitive.**
 
 This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand, and the following types of right operands:
 
-* [Strings][] --- Tests whether the left operand is a substring of the right. 
-* [Arrays][] --- Tests whether one of the members of the array is identical to the left operand. 
-* [Hashes][] --- Tests whether the hash has a **key** named after the left operand. 
+* [Strings][] --- Tests whether the left operand is a substring of the right.
+* [Arrays][] --- Tests whether one of the members of the array is identical to the left operand.
+* [Hashes][] --- Tests whether the hash has a **key** named after the left operand.
 
-Examples: 
+Examples:
 
 {% highlight ruby %}
     'eat' in 'eaten' # resolves to TRUE
@@ -178,7 +178,7 @@ Examples:
 Boolean Operators
 -----
 
-Boolean Operators have the following traits: 
+Boolean Operators have the following traits:
 
 * They take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert]
 * They resolve to [**boolean**][boolean] values
@@ -210,7 +210,7 @@ Arithmetic Operators
 
 Arithmetic Operators have the following traits:
 
-* They take [**numeric**][numbers] operands
+* They take two [**numeric**][numbers] operands
 * They resolve to [**numeric**][numbers] values
 
 ### `+` (addition)
@@ -223,11 +223,17 @@ Resolves to the difference of the two operands.
 
 ### `/` (division)
 
-Resolves to the quotient of the two operands. 
+Resolves to the quotient of the two operands.
 
 ### `*` (multiplication)
 
 Resolves to the product of the two operands.
+
+### `%` (modulo)
+
+> **Added in Puppet 3.2.0.** Puppet 3.0.x and 3.1.x releases do not have this operator.
+
+Resolves to the **remainder** of dividing the first operand by the second operand. (E.g. `5 % 2` would resolve to `1`.)
 
 ### `<<` (left shift)
 

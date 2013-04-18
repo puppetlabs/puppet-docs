@@ -329,6 +329,8 @@ Use your OS's package tools to install Ruby. In some cases, you may need to comp
 
 On Linux platforms, you should also ensure that the LSB tools are installed; at a minimum, we recommend installing `lsb_release`. See your OS's documentation for details about its LSB tools.
 
+If you wish to use Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html), you should also install the `rgen` gem.
+
 #### 2. Download Puppet and Facter
 
 * Download Puppet [here][downloads].
