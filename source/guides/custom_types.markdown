@@ -329,11 +329,11 @@ Boolean parameters are common.  To avoid repetition, some utilities are availabl
     newparam(:force, :boolean => true, :parent => Puppet::Parameter::Boolean)
 {% endhighlight %}
 
-There are two parts here.  The ``:parent => Puppet::Parameter::Boolean`` part
+There are two parts here.  The `:parent => Puppet::Parameter::Boolean` part
 configures the parameter to accept lots of names for true and false, to make
-things easy for your users.  The ``:boolean => true`` creates a boolean method
+things easy for your users.  The `:boolean => true` creates a boolean method
 on the type class to return the value of the parameter.  In this example, the
-method would be named ``force?``.
+method would be named `force?`.
 
 ### Automatic Relationships
 
