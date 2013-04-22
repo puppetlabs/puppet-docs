@@ -319,6 +319,22 @@ Lastly, validation and munging *only\** happen when a value is
 assigned. They have no role to play at all during use of a given
 value, only during assignment.
 
+#### Boolean Parameters
+
+Boolean parameters are common.  To avoid repetition, some utilities are available:
+
+{% highlight ruby %}
+    require 'puppet/parameter/boolean'
+    # ...
+    newparam(:force, :boolean => true, :parent => Puppet::Parameter::Boolean)
+{% endhighlight %}
+
+There are two parts here.  The `:parent => Puppet::Parameter::Boolean` part
+configures the parameter to accept lots of names for true and false, to make
+things easy for your users.  The `:boolean => true` creates a boolean method
+on the type class to return the value of the parameter.  In this example, the
+method would be named `force?`.
+
 ### Automatic Relationships
 
 Your type can specify automatic relationships it can have with
