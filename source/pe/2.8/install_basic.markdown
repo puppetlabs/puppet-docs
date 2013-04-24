@@ -17,7 +17,7 @@ Before installing Puppet Enterprise, you must [download it from the Puppet Labs 
 
 ### Choosing an Installer Tarball
 
-Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball. 
+Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball.
 
 > Note: The universal tarball is simpler to use, but is roughly ten times the size of a version-specific tarball.
 
@@ -36,27 +36,27 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 
 #### Dependencies and OS Specific Details
 
-*AIX*  
-In order to run the puppet agent on AIX systems, you'll need to install the following before attempting to install the agent:  
+*AIX*
+In order to run the puppet agent on AIX systems, you'll need to install the following before attempting to install the agent:
 
-* bash  
-* zlib  
-* readline  
-    
+* bash
+* zlib
+* readline
+
 All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
 
-To install the packages on your selected node directly, you can run the following (note that the RPM package provider on AIX must be run as root): 
+To install the packages on your selected node directly, you can run the following (note that the RPM package provider on AIX must be run as root):
     `rpm -Uvh ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/bash/bash-3.2-1.aix5.2.ppc.rpm`
     `rpm -Uvh ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm`
     `rpm -Uvh ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm`
-    
+
 *Note:* if you are behind a firewall or running an http proxy, the above commands may not work. Use the link above instead to find the packages you need.
 
 *Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. Also, The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Lastly, avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
 
 The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
 
-*Solaris*  
+*Solaris*
 In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system.
 
 Starting the Installer
@@ -67,7 +67,7 @@ Starting the Installer
 * Run the `puppet-enterprise-installer` script with root privileges:
 
         $ sudo ./puppet-enterprise-installer
-* Answer the interview questions to [select and configure PE's roles](#selecting-roles). 
+* Answer the interview questions to [select and configure PE's roles](#selecting-roles).
 * Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
 * If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
 
@@ -128,15 +128,15 @@ In most deployments, this role should be installed on **one node;** installing m
 
 * Compile and serve configuration catalogs to puppet agent nodes.
 * Route MCollective messages through its ActiveMQ server.
-* Issue valid MCollective commands (from an administrator logged in as the `peadmin` user). 
+* Issue valid MCollective commands (from an administrator logged in as the `peadmin` user).
 
 **Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](http://docs.puppetlabs.com/pe/latest/install_answer_file_reference.html#puppet-master-answers).
 
 ### The Console Role
 
-This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server can: 
+This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server can:
 
-* Serve the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, approve and reject audited changes, and invoke MCollective agent actions. 
+* Serve the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, approve and reject audited changes, and invoke MCollective agent actions.
 * Collect reports from, and serve node information to the puppet master.
 
 ### The Cloud Provisioner Role
@@ -145,7 +145,7 @@ This optional role can be installed on a computer where administrators have shel
 
 * Create new VMware and Amazon EC2 virtual machine instances.
 * Install Puppet Enterprise on any virtual or physical system.
-* Add newly provisioned nodes to a group in the console. 
+* Add newly provisioned nodes to a group in the console.
 
 
 Customizing Your Installation
@@ -160,7 +160,7 @@ The following characters are forbidden in all passwords: `\` (backslash), `'` (s
 
 #### Certname
 
-The certname is the puppet master's unique identifier. It should be a DNS name at which the master server can be reliably reached, and defaults to its fully-qualified domain name. 
+The certname is the puppet master's unique identifier. It should be a DNS name at which the master server can be reliably reached, and defaults to its fully-qualified domain name.
 
 (If the master's certname is not one of its DNS names, you may need to [edit puppet.conf after installation][bucket-troubleshooting].)
 
@@ -178,7 +178,7 @@ If you are splitting the puppet master and console roles across different machin
 
 ### Console Questions
 
-The console is usually run on the same server as the puppet master, but can also be installed on a separate machine. **If you are splitting the console and puppet master roles, install the console _after_ the puppet master.**
+The console should usually run on its own dedicated server, but can also run on the same server as the puppet master. **If you are running the console and puppet master roles on separate servers, install the console _after_ the puppet master.**
 
 #### Port
 
@@ -192,7 +192,7 @@ Access to the console's web interface is [limited to approved users and governed
 
 #### SMTP Server
 
-The console's account management tools will send activation emails to new users, and requires an SMTP server to do so. 
+The console's account management tools will send activation emails to new users, and requires an SMTP server to do so.
 
 * If you cannot provide an SMTP server, an admin user can manually copy and email the activation codes for new users. (Note that `localhost` will usually work as well.)
 * If your SMTP server requires TLS or a user name and password, you must [perform additional configuration after installing.][smtpconfig]
@@ -201,7 +201,7 @@ The console's account management tools will send activation emails to new users,
 
 #### Inventory Certname and DNS Names (Optional)
 
-If you are splitting the master and the console roles, the console will maintain an inventory service to collect facts from the puppet master. Like the master, the inventory service needs a unique certname and a list of valid DNS names. 
+If you are splitting the master and the console roles, the console will maintain an inventory service to collect facts from the puppet master. Like the master, the inventory service needs a unique certname and a list of valid DNS names.
 
 #### Databases
 
@@ -211,7 +211,7 @@ The installer gives slightly different options to choose from depending on your 
 
 * Automatically install a MySQL server and auto-configure databases (only available if MySQL is not yet installed). **This option will generate a random root MySQL password,** and you will need to look it up in the saved answer file after installation finishes. A message at the end of the installer will tell you the location of the answer file.
 * Auto-configure databases on an existing local or remote MySQL server. You will need to provide your server's root MySQL password to the installer. (Note that if you want to auto-configure databases on a remote server, you must make sure the root MySQL user is allowed to log in remotely.)
-* Use a set of pre-existing manually configured databases and users. 
+* Use a set of pre-existing manually configured databases and users.
 
 ##### Manual Database Configuration
 
@@ -239,7 +239,7 @@ You will also need to make sure the databases and users actually exist. The SQL 
     GRANT ALL PRIVILEGES ON console_auth.* TO 'console_auth'@'localhost';
     FLUSH PRIVILEGES;
 
-**Note that the names of the console and inventory databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`. 
+**Note that the names of the console and inventory databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`.
 
 Consult the MySQL documentation for more info.
 
@@ -269,12 +269,12 @@ Final Questions
 
 Puppet Enterprise may need some extra system software from your OS vendor's package repositories.
 
-* The puppet master role requires **a Java runtime,** in order to run the ActiveMQ server for orchestration. 
+* The puppet master role requires **a Java runtime,** in order to run the ActiveMQ server for orchestration.
 * The console role requires **MySQL;** if using local databases, it also requires **MySQL server.**
 
 If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
 
-As of PE 2.7.0, you also have the option of verifying the integrity of the selected packages by using Puppet Labs' public GPG key. This is done by answering "yes" when asked if you want to verify the signatures of the PE RPM packages.. The key will be used to verify the signatures of the selected RPM packages. Because the key is added to the RPM database, the option to verify is only available on platforms that support RPM packages (currently EL 5,6-based and sles 11 platforms). The question will not be presented on non-RPM based platforms (e.g. Debian) and if it is present in a pre-made answer file it will be ignored on those platforms. 
+As of PE 2.7.0, you also have the option of verifying the integrity of the selected packages by using Puppet Labs' public GPG key. This is done by answering "yes" when asked if you want to verify the signatures of the PE RPM packages.. The key will be used to verify the signatures of the selected RPM packages. Because the key is added to the RPM database, the option to verify is only available on platforms that support RPM packages (currently EL 5,6-based and sles 11 platforms). The question will not be presented on non-RPM based platforms (e.g. Debian) and if it is present in a pre-made answer file it will be ignored on those platforms.
 
 The option will appear in answer files as `verify_packages=y|n`.
 
@@ -283,15 +283,15 @@ Answering "no" to the question will preserve the PE 2.6.1 and earlier behavior o
 #### Java and MySQL Versions
 
 * On every supported platform, PE can use the **default system packages** for MySQL and Java (OpenJDK on most Linuxes, and IBM Java on SUSE).
-* Custom-compiled MySQL or Java versions may or may not work, as Puppet Enterprise expects to find shared objects and binaries in their standard locations. In particular, we have noticed problems with custom compiled MySQL 5.5 on Enterprise Linux variants. 
-* On Enterprise Linux variants, you may optionally use the Java and MySQL packages provided by Oracle. Before installing PE, you must manually install Java and/or MySQL, then install the  `pe-virtual-java` and/or `pe-virtual-mysql` packages included with Puppet Enterprise: 
+* Custom-compiled MySQL or Java versions may or may not work, as Puppet Enterprise expects to find shared objects and binaries in their standard locations. In particular, we have noticed problems with custom compiled MySQL 5.5 on Enterprise Linux variants.
+* On Enterprise Linux variants, you may optionally use the Java and MySQL packages provided by Oracle. Before installing PE, you must manually install Java and/or MySQL, then install the  `pe-virtual-java` and/or `pe-virtual-mysql` packages included with Puppet Enterprise:
 
         $ sudo rpm -ivh packages/pe-virtual-java-1.0-1.pe.el5.noarch.rpm
 
-Find these in the installer's `packages/` directory. Note that these packages may have additional ramifications if you later install other software that depends on OS MySQL or Java packages. 
+Find these in the installer's `packages/` directory. Note that these packages may have additional ramifications if you later install other software that depends on OS MySQL or Java packages.
 
  Note: If installing `pe-virtual-java`, make sure that the `keytool` binary is in one of the following directories:
- 
+
  * `/opt/puppet/bin`
  * `/usr/kerberos/sbin`
  * `/usr/kerberos/bin`
@@ -301,20 +301,20 @@ Find these in the installer's `packages/` directory. Note that these packages ma
  * `/bin`
  * `/usr/sbin`
  * `/usr/bin`
- 
+
  If `keytool` isn't already there, use `find` or `which` to locate it, and symlink it into place so that the PE installer can find it during installation. This binary is necessary for configuring MCollective.
- 
+
      $ which keytool
      /path/to/keytool
      $ sudo ln -s /path/to/keytool /usr/local/bin/keytool
 
 ### Convenience Links
 
-PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. If you want to make the Puppet tools more visible to all users, the installer can make symlinks in `/usr/local/bin` for the `facter, puppet, pe-man`, and `mco` binaries. 
+PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. If you want to make the Puppet tools more visible to all users, the installer can make symlinks in `/usr/local/bin` for the `facter, puppet, pe-man`, and `mco` binaries.
 
 ### Confirming Installation
 
-The installer will offer a final chance to confirm your answers before installing. 
+The installer will offer a final chance to confirm your answers before installing.
 
 After Installing
 -----
@@ -347,6 +347,6 @@ When you purchased Puppet Enterprise, you should have been sent a `license.key` 
 
 Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No licence key is needed to run PE on up to ten nodes.
 
-* * * 
+* * *
 
 - [Next: Upgrading](./install_upgrading.html)
