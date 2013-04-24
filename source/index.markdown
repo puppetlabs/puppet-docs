@@ -34,7 +34,7 @@ Nearly all of the main Puppet documentation also applies to Puppet Enterprise. F
 - [The deployment guide](./guides/deployment_guide/dg_intro_install.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 2.7; documentation for previous versions can be found [here](/pe/index.html).
+The current version of PE is 2.8. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
