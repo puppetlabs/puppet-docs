@@ -4,14 +4,14 @@ title: "PE 2.8 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
 subtitle: "Classifying New Nodes and Remotely Installing Puppet"
 ---
 
-Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a puppet environment. You can add new nodes to pre-existing console groups, further classify and configure those nodes, and install Puppet (Enterprise or open source) on them. 
+Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a puppet environment. You can add new nodes to pre-existing console groups, further classify and configure those nodes, and install Puppet (Enterprise or open source) on them.
 
-Many of these tasks are accomplished using the `puppet node` subcommand. While `puppet node` can be applied to physical or virtual machines, several actions have been created specifically for working with virtual machine instances in the cloud. For complete details, view the `puppet node` man page and the [Getting Started With Cloud Provisioner page](/guides/cloud_pack_getting_started.html#usage). 
+Many of these tasks are accomplished using the `puppet node` subcommand. While `puppet node` can be applied to physical or virtual machines, several actions have been created specifically for working with virtual machine instances in the cloud. For complete details, view the `puppet node` man page and the [Getting Started With Cloud Provisioner page](/guides/cloud_pack_getting_started.html#usage).
 
 Classifying nodes
 -----------------
 
-Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.  You can do this by [adding nodes to a group with the console's web interface](./console_classes_groups.html#grouping-nodes). However, you can also do this right from the command line, which can be more convenient if you're already at your terminal and have the node's name ready at hand. 
+Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.  You can do this by [adding nodes to a group with the console's web interface](./console_classes_groups.html#grouping-nodes). However, you can also do this right from the command line, which can be more convenient if you're already at your terminal and have the node's name ready at hand.
 
 To classify nodes and add them to a console group, run `puppet node classify`.
 
@@ -32,7 +32,7 @@ The above example adds an AWS EC2 instance to the console. Note that you use the
 
 Note that until the first puppet run is performed on this node, puppet itself will not yet be installed. (Unless one of the "wrapper" commands has been used. See below.)
 
-To see additional help for node classification, run `puppet help node classify`. For more about how the console groups and classifies nodes, [see the section on grouping and classifying](./console_classes_groups.html). 
+To see additional help for node classification, run `puppet help node classify`. For more about how the console groups and classifies nodes, [see the section on grouping and classifying](./console_classes_groups.html).
 
 You may also wish review the [basics of Puppet classes and configuration](./puppet_overview.html) to help you understand how groups and classes interact.
 
@@ -51,7 +51,7 @@ Installing Puppet
 
 Use the `puppet node install` command to install Puppet Enterprise (or open-source puppet) onto the new instances.
 
-    $ puppet node install --keyfile=~/.ssh/mykey.pem --login=root ec2-50-19-207-181.compute-1.amazonaws.com 
+    $ puppet node install --install-script=puppet-enterprise --keyfile=~/.ssh/mykey.pem --login=root ec2-50-19-207-181.compute-1.amazonaws.com
     notice: Waiting for SSH response ...
     notice: Waiting for SSH response ... Done
     notice: Installing Puppet ...
@@ -60,10 +60,11 @@ Use the `puppet node install` command to install Puppet Enterprise (or open-sour
 
 This command's options  specify:
 
+* Install PE, instead of an open source build of Puppet.
 * The path to a private SSH key that can be used log in to the vm, specified with the `--keyfile` option. The `install` action uses SSH to connect to the host, and so needs access to an SSH key. For Amazon EC2, point to the private key from the key pair you used to create the instance. In most cases, the private key is in the ~/.ssh directory. (Note that for VMware, the public key should have been loaded onto the template you used to create your virtual machine.)
 * The local user account used to log in, specified with the `--login` option.
 
-For the command's argument, specify the name of the node on which you're installing Puppet Enterprise. 
+For the command's argument, specify the name of the node on which you're installing Puppet Enterprise.
 
 For the default installation, the `install` action uses the installation packages provided by Puppet Labs and stored in Amazon S3 storage.  You can also specify packages located on a local host, or on a share in your local network. Use `puppet help node install` or `puppet man node` to see more details.
 
@@ -97,6 +98,7 @@ If a node has been prepared to remotely sign certificates, you can use the `init
     --enc-ssl \
     --enc-auth-user=console \
     --enc-auth-passwd=password \
+    --install-script=puppet-enterprise \
     --keyfile=~/.ssh/mykey.pem \
     --login=root \
     ec2-50-19-207-181.compute-1.amazonaws.com
@@ -107,6 +109,6 @@ The invocation above will connect to the console, classify the node in the `apps
 
 Alternatively, if your deployment has been set up to use the `autosign` configuration parameter, you can use it to sign the certifcate automatically. While this can greatly simplify the process, there are some possible security risks associated with going this route, so be sure you are comfortable with the process and know the risks.
 
-* * * 
+* * *
 
-- [Next: Provisioning with VMware](./cloudprovisioner_vmware.html) 
+- [Next: Provisioning with VMware](./cloudprovisioner_vmware.html)
