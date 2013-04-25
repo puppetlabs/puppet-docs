@@ -118,7 +118,7 @@ Parameters can be set several ways, and Puppet will try each of these ways in or
 
 Step 2 interests us most here. Because Puppet will always look for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
 
-{% highlight ymal %}
+{% highlight yaml %}
     # /etc/puppet/hieradata/web01.example.com.yaml
     ---
     myclass::parameter_one: "This node is special, so we're overriding the common configuration that the other nodes use."
