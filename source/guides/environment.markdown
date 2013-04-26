@@ -17,19 +17,19 @@ Manage your module releases by dividing your site into environments.
 Slice and Dice
 --------------
 
-Puppet lets you slice your site up into an arbitrary number of "environments" and serve a different set of modules to each one. This is usually used to manage releases of Puppet modules by testing them against scratch nodes before rolling them out completely, but it introduces a lot of other possibilities, like separating a DMZ environment, splitting coding duties among multiple sysadmins, or dividing the site by hardware type. 
+Puppet lets you slice your site up into an arbitrary number of "environments" and serve a different set of modules to each one. This is usually used to manage releases of Puppet modules by testing them against scratch nodes before rolling them out completely, but it introduces a lot of other possibilities, like separating a DMZ environment, splitting coding duties among multiple sysadmins, or dividing the site by hardware type.
 
 What an Environment Is
 ----------------------
 
-Every agent node is configured to have an environment, which is simply a short label specified in puppet.conf's [`environment` setting](/references/latest/configuration.html#environment). Whenever that node makes a request, the puppet master gets informed of its environment. (If you don't specify an environment, the agent has the default "production" environment.) 
+Every agent node is configured to have an environment, which is simply a short label specified in puppet.conf's [`environment` setting](/references/latest/configuration.html#environment). Whenever that node makes a request, the puppet master gets informed of its environment. (If you don't specify an environment, the agent has the default "production" environment.)
 
-The puppet master can then use that environment several ways: 
+The puppet master can then use that environment several ways:
 
-* If the master's [`puppet.conf`][config] file has a `[config block]` for this agent's environment, those settings will override the master's normal settings when serving that agent. 
+* If the master's [`puppet.conf`][config] file has a `[config block]` for this agent's environment, those settings will override the master's normal settings when serving that agent.
 * If the values of any settings in `puppet.conf` reference the `$environment` variable (like `modulepath = $confdir/environments/$environment/modules:$confdir/modules`, for example), the agent's environment will be interpolated into them.
-* Depending on how [`auth.conf`][auth] is configured, different requests might be allowed or denied. 
-* The agent's environment will also be accessible in Puppet manifests as the top-scope `$environment` variable. 
+* Depending on how [`auth.conf`][auth] is configured, different requests might be allowed or denied.
+* The agent's environment will also be accessible in Puppet manifests as the top-scope `$environment` variable.
 
 In short: **environments let the master tweak its own configuration on the fly, and offer a way to completely swap out the set of available modules for certain nodes.**
 
@@ -64,9 +64,9 @@ As mentioned above, `puppet.conf` lets you use `$environment` as a variable and 
     [dev]
       manifest = $confdir/manifests/site.pp
 
-In the `[master]` block, this example dynamically sets the modulepath so Puppet will check a per-environment folder for a module before serving it from the main set. Note that this won't complain about missing directories, so you can create the per-environment folders lazily as you need them. 
+In the `[master]` block, this example dynamically sets the modulepath so Puppet will check a per-environment folder for a module before serving it from the main set. Note that this won't complain about missing directories, so you can create the per-environment folders lazily as you need them.
 
-The example also redirects requests for a non-existent environment to a different site manifest, which will log an error and fail compilation; this can keep typos or forgetfulness from silently causing odd configurations. 
+The example also redirects requests for a non-existent environment to a different site manifest, which will log an error and fail compilation; this can keep typos or forgetfulness from silently causing odd configurations.
 
 ### In `auth.conf`
 
@@ -75,22 +75,22 @@ The example also redirects requests for a non-existent environment to a differen
     environment appdev
     allow localhost, customapp.example.com
 
-If you specify an environment in an [`auth.conf`][auth] ACL, it will only apply to requests in that environment. This can be useful for developing new applications that integrate with Puppet; the example above will leave normal requests functioning normally, but allow an app server to access everything via the REST API. 
+If you specify an environment in an [`auth.conf`][auth] ACL, it will only apply to requests in that environment. This can be useful for developing new applications that integrate with Puppet; the example above will leave normal requests functioning normally, but allow an app server to access everything via the HTTP API.
 
 ### In Manifests
 
-The `$environment` variable should only rarely be necessary, but it's there if you need it. 
+The `$environment` variable should only rarely be necessary, but it's there if you need it.
 
 Configuring Environments for Agent Nodes
 ----------------------------------------
 
 ### In an ENC
 
-Your [external node classifier][enc] can set an environment for a node by setting a value for the `environment` key. In Puppet 3 and later, the environment set by the ENC will **override** the environment from the agent node's config file. If no environment is provided by the ENC, the value from the node's config file will be used. 
+Your [external node classifier][enc] can set an environment for a node by setting a value for the `environment` key. In Puppet 3 and later, the environment set by the ENC will **override** the environment from the agent node's config file. If no environment is provided by the ENC, the value from the node's config file will be used.
 
-> **Note:** In Puppet 2.7 and earlier, ENC-set environments are not authoritative, and using them results in nodes using a mixture of two environments --- the ENC environment wins during compilation, and the agent environment wins during file downloads. If you need to centrally control your nodes environments, you should upgrade to Puppet 3 as soon as is practical. 
+> **Note:** In Puppet 2.7 and earlier, ENC-set environments are not authoritative, and using them results in nodes using a mixture of two environments --- the ENC environment wins during compilation, and the agent environment wins during file downloads. If you need to centrally control your nodes environments, you should upgrade to Puppet 3 as soon as is practical.
 >
-> As a temporary workaround, you can manage nodes' puppet.conf files with a template and set the environment based on the ENC's value; this will allow nodes to use a consistent environment on their second (and subsequent) Puppet runs. 
+> As a temporary workaround, you can manage nodes' puppet.conf files with a template and set the environment based on the ENC's value; this will allow nodes to use a consistent environment on their second (and subsequent) Puppet runs.
 
 > **Note:** If your puppet master is running Puppet 3 but was once running Puppet 2.6, its [auth.conf file][auth] may be missing a rule required for ENC environments. Ensure that the following rule exists somewhere near the top of your auth.conf file:
 >
@@ -103,14 +103,14 @@ Your [external node classifier][enc] can set an environment for a node by settin
 
 ### On the Agent Node
 
-To set an environment agent-side, just specify the `environment` setting in either the `[agent]` or `[main]` block of `puppet.conf`. 
+To set an environment agent-side, just specify the `environment` setting in either the `[agent]` or `[main]` block of `puppet.conf`.
 
     [agent]
       environment = dev
 
-Note that in Puppet 3 and later, this value will only be used if the ENC does not override it. 
+Note that in Puppet 3 and later, this value will only be used if the ENC does not override it.
 
-As with any config setting, you can also temporarily set it with a command line option: 
+As with any config setting, you can also temporarily set it with a command line option:
 
     # puppet agent --environment dev
 

@@ -1,26 +1,26 @@
 ---
 layout: legacy
-title: REST Access Control
+title: HTTP Access Control
 ---
 
-REST Access Control
+HTTP Access Control
 ===================
 
-Learn how to configure access to Puppet's REST API using the `rest_authconfig` file, a.k.a. `auth.conf`. **This document is currently being checked for accuracy. If you note any errors, please email them to <faq@puppetlabs.com>.**
+Learn how to configure access to Puppet's HTTP API using the `rest_authconfig` file, a.k.a. `auth.conf`. **This document is currently being checked for accuracy. If you note any errors, please email them to <faq@puppetlabs.com>.**
 
 * * *
 
-REST
+HTTP
 ----
 
-Puppet master and puppet agent communicate with each other over a [RESTful network API](./rest_api.html). By default, the usage of this API is limited to the standard types of master/agent communications. However, it can be exposed to other processes and used to build advanced tools on top of Puppet's existing infrastructure and functionality. (REST API calls are formatted as `https://{server}:{port}/{environment}/{resource}/{key}`.)
+Puppet master and puppet agent communicate with each other over a pseudo-RESTful [HTTP network API](./rest_api.html). By default, the usage of this API is limited to the standard types of master/agent communications. However, it can be exposed to other processes and used to build advanced tools on top of Puppet's existing infrastructure and functionality. (HTTP API calls are formatted as `https://{server}:{port}/{environment}/{resource}/{key}`.)
 
-As you might guess, this can be turned into a security hazard, so access to the REST API is strictly controlled by a special configuration file.
+As you might guess, this can be turned into a security hazard, so access to the HTTP API is strictly controlled by a special configuration file.
 
 auth.conf
 ---------
 
-The official name of the file controlling REST API access, taken from the [configuration option](/references/stable/configuration.html) that sets its location, is `rest_authconfig`, but it's more frequently known by its default filename of `auth.conf`. If you don't set a different location for it, Puppet will look for the file at `$confdir/auth.conf`.
+The official name of the file controlling HTTP API access, taken from the [configuration option](/references/stable/configuration.html) that sets its location, is `rest_authconfig`, but it's more frequently known by its default filename of `auth.conf`. If you don't set a different location for it, Puppet will look for the file at `$confdir/auth.conf`.
 
 You cannot configure different environments to use multiple `rest_authconfig` files.
 
@@ -63,7 +63,7 @@ Lists of values are comma-separated, with an optional space after the comma.
 
 ### Path
 
-An ACL's `path` is interpreted as either a regular expression (with tilde) or a path prefix (no tilde). The root of the path in an ACL is AFTER the environment in a REST API call URL; that is, only put the `/{resource}/{key}` portion of the URL in the path. ACLs without a resource path are not permitted.
+An ACL's `path` is interpreted as either a regular expression (with tilde) or a path prefix (no tilde). The root of the path in an ACL is AFTER the environment in an HTTP API call URL; that is, only put the `/{resource}/{key}` portion of the URL in the path. ACLs without a resource path are not permitted.
 
 ### Environment
 
@@ -75,7 +75,7 @@ Available methods are `find`, `search`, `save`, and `destroy`; you can specify o
 
 ### Auth
 
-Whether the ACL matches authenticated requests. 
+Whether the ACL matches authenticated requests.
 
 - **`auth yes`** (or `on`) means this ACL will **only** match requests authenticated with an agent certificate.
 - **`auth any`** means this ACL will match **both** authenticated and unauthenticated requests.
@@ -89,7 +89,7 @@ The value of `auth` must be **one** of the above options; it cannot be a list. I
 
 The node or nodes allowed to access this type of request. Can be a hostname, a certificate common name, a list of hostnames/certnames, or `*` (which matches all nodes). If the path for this ACL was a regular expression, `allow` directives may include backreferences to captured groups (e.g. `$1`).
 
-An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a list. 
+An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a list.
 
 **Behavior in 0.25.x through 2.7.0:** No fine-grained globbing of hostnames/certnames is available in allow directives; you must specify exact host/certnames, or a single asterisk that matches everything.
 
@@ -221,7 +221,7 @@ An example auth.conf file containing these rules is provided in the Puppet sourc
 Danger Mode
 -----------
 
-If you want to test the REST API for application prototyping without worrying about specifying your final set of ACLs ahead of time, you can set a completely permissive auth.conf:
+If you want to test the HTTP API for application prototyping without worrying about specifying your final set of ACLs ahead of time, you can set a completely permissive auth.conf:
 
     path /
     auth any
@@ -232,12 +232,12 @@ If you want to test the REST API for application prototyping without worrying ab
 authconfig / namespaceauth.conf
 -------------------------------
 
-Older versions of Puppet communicated over an XMLRPC interface instead of the current RESTful interface, and access to these APIs was governed by a file known as `authconfig` (after the configuration option listing its location) or `namespaceauth.conf` (after its default filename). This legacy file will not be fully documented, but an example namespaceauth.conf file can be found in the puppet source at [conf/namespaceauth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
+Older versions of Puppet communicated over an XMLRPC interface instead of the current HTTP interface, and access to these APIs was governed by a file known as `authconfig` (after the configuration option listing its location) or `namespaceauth.conf` (after its default filename). This legacy file will not be fully documented, but an example namespaceauth.conf file can be found in the puppet source at [conf/namespaceauth.conf](http://github.com/puppetlabs/puppet/blob/2.6.x/conf/namespaceauth.conf).
 
-puppet agent and the REST API
+puppet agent and the HTTP API
 -----------------------------
 
-If started with the `listen = true` configuration option, puppet agent will accept incoming REST API requests. This is most frequently used to trigger puppet runs with the `run` endpoint. Several caveats apply:
+If started with the `listen = true` configuration option, puppet agent will accept incoming HTTP API requests. This is most frequently used to trigger puppet runs with the `run` endpoint. Several caveats apply:
 
 * A [known bug](http://projects.puppetlabs.com/issues/6442) in the 2.6.x releases of Puppet prevents puppet agent from being started with the `listen = true` option unless namespaceauth.conf is present, even though the file is never consulted. The workaround is to create an empty file: `# touch $(puppet agent --configprint authconfig)`
 * Puppet agent uses the same default ACLs as puppet master, which allow access to several useless endpoints while denying access to any agent-specific ones. For best results, you should short-circuit the defaults by denying access to `/` at the end of your auth.conf file.

@@ -19,8 +19,8 @@ description: "New features, improvements, changes, and incompatibilities in the 
 
 Puppet 3 introduces several new features and some backwards-incompatible changes. **Before upgrading from Puppet 2.x, you should:**
 
-* Read our [general recommendations for upgrading between two major versions of Puppet][upgrade], which include suggested roll-out plans and package management practices. 
-* Read the [Backwards-Incompatible Changes][backwards] section below and watch for "upgrade notes" --- you may need to make changes to your configuration and manifests. 
+* Read our [general recommendations for upgrading between two major versions of Puppet][upgrade], which include suggested roll-out plans and package management practices.
+* Read the [Backwards-Incompatible Changes][backwards] section below and watch for "upgrade notes" --- you may need to make changes to your configuration and manifests.
 * Check the [Telly upgrade issues][upgrade_issues] wiki page, and make sure none of the bugs found immediately after the current release are dealbreakers for your site.
 
 This document provides a more narrative guide to the Puppet 3 release. For information on changes to subsequent point and patch releases (e.g. 3.1.0 and 3.1.1), please see the [Puppet 3 release notes page][puppet3_release_notes]
@@ -39,20 +39,20 @@ Puppet 3 marks the beginning of a new version scheme for Puppet releases. Beginn
 
 ### Major Speed Increase
 
-Puppet 3 is faster than Puppet 2.6 and _significantly_ faster than Puppet 2.7. The exact change will depend on your site's configuration and Puppet code, but many 2.7 users have seen up to a 50% improvement. 
+Puppet 3 is faster than Puppet 2.6 and _significantly_ faster than Puppet 2.7. The exact change will depend on your site's configuration and Puppet code, but many 2.7 users have seen up to a 50% improvement.
 
 ### Automatic Data Bindings for Class Parameters
 
-When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details. 
+When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details.
 
 ### Hiera Functions in Core
 
-The `hiera`, `hiera_array`, `hiera_hash`, and `hiera_include` functions are now included in Puppet core. If you previously installed these functions with the `hiera-puppet` package, you may need to uninstall it before upgrading. 
+The `hiera`, `hiera_array`, `hiera_hash`, and `hiera_include` functions are now included in Puppet core. If you previously installed these functions with the `hiera-puppet` package, you may need to uninstall it before upgrading.
 
-### Solaris Improvements 
+### Solaris Improvements
 
 * Puppet now supports the ipkg format, and is able to "hold" packages (install without activating) on Solaris.
-* Zones support is fixed. 
+* Zones support is fixed.
 * Zpool support is significantly improved.
 
 
@@ -66,15 +66,15 @@ In 3.0.0, we inadvertently removed functionality that people relied upon to get 
     # shell snippet
     export CLIENTYAML=`puppet master --configprint yamldir`
     puppet node search "*" --node_terminus yaml --clientyamldir $CLIENTYAML
-    
+
 ### Improvements When Loading Ruby Code
 
 A major area of focus for this release was loading extension code. As people wrote and distributed Faces (new puppet subcommands that extend Puppet's capabilities), bugs like [#7316](https://projects.puppetlabs.com/issues/7316) started biting them. Additionally, seemingly simple things like retrieving configuration file settings quickly got complicated, causing problems both for Puppet Labs' code like Cloud Provisioner as well as third-party integrations like Foreman. The upshot is that it's now possible to fully initialize puppet when using it as a library, loading Ruby code from Forge modules works correctly, and tools like puppetlabs_spec_helper now work correctly.
 
 ### YARD API Documentation
 
-To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.1.latest/index.html) under [Developer Documentation](/references/3.1.latest/developer/). 
-   
+To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.1.latest/index.html) under [Developer Documentation](/references/3.1.latest/developer/).
+
 
 All Bugs Fixed in 3.1
 -----
@@ -105,11 +105,11 @@ In addition to this section, you may also wish to check the [Telly upgrade issue
 
 #### Dynamic Scope for Variables is Removed
 
-Dynamic scoping of variables, which was deprecated in Puppet 2.7, has been removed. See [Language: Scope][lang_scope] for more details. The most recent 2.7 release logs warnings about any variables in your code that are still being looked up dynamically. 
+Dynamic scoping of variables, which was deprecated in Puppet 2.7, has been removed. See [Language: Scope][lang_scope] for more details. The most recent 2.7 release logs warnings about any variables in your code that are still being looked up dynamically.
 
-> **Upgrade note:** Before upgrading from Puppet 2.x, you should do the following: 
-> 
-> * Restart your puppet master --- this is necessary because deprecation warnings are only produced once per run, and warnings that were already logged may not appear again in your logs until a restart. 
+> **Upgrade note:** Before upgrading from Puppet 2.x, you should do the following:
+>
+> * Restart your puppet master --- this is necessary because deprecation warnings are only produced once per run, and warnings that were already logged may not appear again in your logs until a restart.
 > * Allow all of your nodes to check in and retrieve a catalog.
 > * Examine your puppet master's logs for dynamic scope warnings.
 > * Edit any manifests referenced in the warnings to remove the dynamic lookup behavior. Use [fully qualified variable names][qualified_vars] where necessary, and move makeshift data hierarchies out of your manifests and into [Hiera][].
@@ -117,7 +117,7 @@ Dynamic scoping of variables, which was deprecated in Puppet 2.7, has been remov
 
 #### Parameters In Definitions Must Be Variables
 
-Parameter lists in class and defined type **definitions** must include a dollar sign (`$`) prefix for each parameter. In other words, parameters must be styled like variables. Non-variable-like parameter lists have been deprecated since at least Puppet 0.23.0. 
+Parameter lists in class and defined type **definitions** must include a dollar sign (`$`) prefix for each parameter. In other words, parameters must be styled like variables. Non-variable-like parameter lists have been deprecated since at least Puppet 0.23.0.
 
 The syntax for class and defined resource **declarations** is unchanged.
 
@@ -138,7 +138,7 @@ Unchanged:
 
 ### Ruby DSL is Deprecated
 
-The [Ruby DSL that was added in Puppet 2.6](http://projects.puppetlabs.com/projects/puppet/wiki/Ruby_Dsl) (and then largely ignored) is deprecated. Deprecation warnings have been added to Puppet 3.1. 
+The [Ruby DSL that was added in Puppet 2.6](http://projects.puppetlabs.com/projects/puppet/wiki/Ruby_Dsl) (and then largely ignored) is deprecated. Deprecation warnings have been added to Puppet 3.1.
 
 ### Deprecated Commands Are Removed
 
@@ -158,13 +158,13 @@ filebucket    | puppet filebucket
 puppetdoc     | puppet doc
 pi            | puppet describe
 
-> **Upgrade note:** Examine your Puppet init scripts, the configuration of the puppet master's web server, and any wrapper scripts you may be using, and ensure that they are using the new subcommands instead of the legacy standalone commands. 
+> **Upgrade note:** Examine your Puppet init scripts, the configuration of the puppet master's web server, and any wrapper scripts you may be using, and ensure that they are using the new subcommands instead of the legacy standalone commands.
 
 ### Changed Application Behavior
 
 #### Puppet Apply's `--apply` Option Is Removed
 
-The `--apply` option has been removed. It was replaced by `--catalog`. 
+The `--apply` option has been removed. It was replaced by `--catalog`.
 
 #### Console Output Formatting Changes
 
@@ -177,7 +177,7 @@ This does not change the formatting of messages logged through other channels (e
 
 ### Removed and Modified Settings
 
-The following settings have been removed: 
+The following settings have been removed:
 
 * `factsync` (Deprecated since Puppet 0.25 and replaced with `pluginsync`; see [ticket #2277](http://projects.puppetlabs.com/issues/2277))
 * `ca_days` (Replaced with `ca_ttl`)
@@ -208,13 +208,13 @@ Puppet master's `config.ru` file has changed slightly; see `ext/rack/files/confi
     +++ b/ext/rack/files/config.ru
     @@ -10,7 +10,25 @@ $0 = "master"
      # ARGV << "--debug"
-     
+
      ARGV << "--rack"
     +ARGV << "--confdir" << "/etc/puppet"
     +
     -require 'puppet/application/master'
     +require 'puppet/util/command_line'
-    
+
     -run Puppet::Application[:master].run
     +run Puppet::Util::CommandLine.new.execute
     +
@@ -224,7 +224,7 @@ Puppet master's `config.ru` file has changed slightly; see `ext/rack/files/confi
 
 #### Special-Case Mongrel Support Is Removed
 
-Previously, the puppet master had special-case support for running under Mongrel. Since Puppet's standard Rack support can also be used with Mongrel, this redundant code has been removed. 
+Previously, the puppet master had special-case support for running under Mongrel. Since Puppet's standard Rack support can also be used with Mongrel, this redundant code has been removed.
 
 > **Upgrade note:** If you are using Mongrel to run your puppet master, re-configure it to run Puppet as a standard Rack application.
 
@@ -233,7 +233,7 @@ Previously, the puppet master had special-case support for running under Mongrel
 #### File
 
 * The `recurse` parameter can no longer set recursion depth, and must be set to `true`, `false`, or `remote`. Use the `recurselimit` parameter to set recursion depth. (Setting depth with the `recurse` parameter has been deprecated since at least Puppet 2.6.8.)
-  
+
 #### Mount
 
 * The `path` parameter has been removed. It was deprecated and replaced by `name` sometime before Puppet 0.25.0.
@@ -241,14 +241,14 @@ Previously, the puppet master had special-case support for running under Mongrel
 #### Package
 
 * The `type` parameter has been removed. It was deprecated and replaced by `provider` some time before Puppet 0.25.0.
-* The `msi` provider has been deprecated in favor of the more versatile `windows` provider. 
+* The `msi` provider has been deprecated in favor of the more versatile `windows` provider.
 * The `install_options` parameter for Windows packages now accepts an array of mixed strings and hashes; however, it remains backwards-compatible with the 2.7 single hash format.
 * A new `uninstall_options` parameter was added for Windows packages. It uses the same semantics as `install_options`.
 
 #### Exec
 
 * The `logoutput` parameter now defaults to `on_failure`.
-* Due to misleading values, the `HOME` and `USER` environment variables are now unset when running commands. 
+* Due to misleading values, the `HOME` and `USER` environment variables are now unset when running commands.
 
 #### Metaparameters
 
@@ -279,11 +279,11 @@ To allow hosts based on IP address, use `allow_ip`. It functions exactly like `a
 
 > **Upgrade Note:** If your `auth.conf` or `fileserver.conf` files allowed any specific nodes by IP address, you must replace those `allow` directives with `allow_ip`.
 
-### Changes to REST API
+### Changes to HTTP API
 
 #### "Resource Type" API Has Changed
 
-The API for querying resource types has changed to more closely match standard Puppet terminology.  This is most likely to be visible to any external tools that were using the REST API to query for information about resource types. 
+The API for querying resource types has changed to more closely match standard Puppet terminology.  This is most likely to be visible to any external tools that were using the HTTP API to query for information about resource types.
 
 * You can now add a `kind` option to your request, which will allow you to filter results by one of the following kinds of resource types: `class`, `node`, `defined_type`.
 * The API would previously return a field called `type` for each result; this has been changed to `kind`.
@@ -330,7 +330,7 @@ An example of the new output:
 
 #### XML-RPC support is entirely removed
 
-XML-RPC support has been removed entirely, in favor of the REST API introduced in 2.6. XML-RPC support has been deprecated since 2.6.0.
+XML-RPC support has been removed entirely, in favor of the HTTP API introduced in 2.6. XML-RPC support has been deprecated since 2.6.0.
 
 
 
@@ -354,8 +354,8 @@ The following Ruby methods are now deprecated:
 
 Puppet agent now uses two lockfiles instead of one:
 
-* The run-in-progress lockfile (configured with the `agent_catalog_run_lockfile` setting) is present if an agent catalog run is in progress. It contains the PID of the currently running process. 
-* The disabled lockfile (configured with the `agent_disabled_lockfile` setting) is present if the agent was disabled by an administrator. The file is a JSON hash which **may** contain a `disabled_message` key, whose value should be a string with an explanatory message from the administrator. 
+* The run-in-progress lockfile (configured with the `agent_catalog_run_lockfile` setting) is present if an agent catalog run is in progress. It contains the PID of the currently running process.
+* The disabled lockfile (configured with the `agent_disabled_lockfile` setting) is present if the agent was disabled by an administrator. The file is a JSON hash which **may** contain a `disabled_message` key, whose value should be a string with an explanatory message from the administrator.
 
 ### Non-Administrator Windows Data Directory Is Changed
 
@@ -367,12 +367,12 @@ New Backwards-Compatible Features in 3.0
 
 ### Automatic Data Bindings for Class Parameters
 
-When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details. 
+When you declare or assign classes, Puppet now automatically looks up parameter values in Hiera. See [Classes][] for more details.
 
-### Solaris Improvements 
+### Solaris Improvements
 
 * Puppet now supports the ipkg format, and is able to "hold" packages (install without activating) on Solaris.
-* Zones support is fixed. 
+* Zones support is fixed.
 * Zpool support is significantly improved.
 
 
@@ -402,9 +402,9 @@ Puppet now has [an `unless` statement][unless].
 
 > **Note:** This feature is meant for certain unusual use cases; if you are wondering whether it will be useful to you, the answer is probably "No, use [round-robin DNS or a load balancer](/guides/scaling_multiple_masters.html) instead."
 
-Usually, agent nodes use the `server` setting from puppet.conf to locate their puppet master, with optional `ca_server` and `report_server` settings for centralizing some kinds of puppet master traffic. 
+Usually, agent nodes use the `server` setting from puppet.conf to locate their puppet master, with optional `ca_server` and `report_server` settings for centralizing some kinds of puppet master traffic.
 
-If you set [`use_srv_records`](/references/latest/configuration.html#usesrvrecords) to `true`, agent nodes will instead use DNS SRV records to attempt to locate the puppet master. These records must be configured as follows: 
+If you set [`use_srv_records`](/references/latest/configuration.html#usesrvrecords) to `true`, agent nodes will instead use DNS SRV records to attempt to locate the puppet master. These records must be configured as follows:
 
 Server                       | SRV record
 -----------------------------|-----------------------------
@@ -413,7 +413,7 @@ CA server (if different)     | `_x-puppet-ca._tcp.$srv_domain`
 Report server (if different) | `_x-puppet-report._tcp.$srv_domain`
 File server\* (if different) | `_x-puppet-fileserver._tcp.$srv_domain`
 
-The [`srv_domain`](/references/latest/configuration.html#srvdomain) setting can be used to set the domain the agent will query; it defaults to the value of the [domain fact](/facter/latest/core_facts.html#domain). If the agent doesn't find an SRV record or can't contact the servers named in the SRV record, it will fall back to the `server`/`ca_server`/`report_server` settings from puppet.conf. 
+The [`srv_domain`](/references/latest/configuration.html#srvdomain) setting can be used to set the domain the agent will query; it defaults to the value of the [domain fact](/facter/latest/core_facts.html#domain). If the agent doesn't find an SRV record or can't contact the servers named in the SRV record, it will fall back to the `server`/`ca_server`/`report_server` settings from puppet.conf.
 
 \* (Note that the file server record is somewhat dangerous, as it overrides the server specified in **any** `puppet://` URL, not just URLs that use the default server.)
 
