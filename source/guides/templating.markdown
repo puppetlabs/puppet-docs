@@ -74,20 +74,20 @@ Here is an example for generating the Apache configuration for
 
     # /etc/puppet/modules/trac/manifests/tracsite.pp
     define trac::tracsite($cgidir, $tracdir) {
-      file { "trac-$name":
-        path    => "/etc/apache2/trac/$name.conf",
-        owner   => root,
-        group   => root,
-        mode    => 644,
+      file { "trac-${name}":
+        path    => "/etc/apache2/trac/${name}.conf",
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
         require => File[apacheconf],
-        content => template("trac/tracsite.erb"),
+        content => template('trac/tracsite.erb'),
         notify  => Service[apache2]
       }
 
-      file { "tracsym-$name":
+      file { "tracsym-${name}":
         ensure => symlink,
-        path   => "$cgidir/$name.cgi",
-        target => "/usr/share/trac/cgi-bin/trac.cgi"
+        path   => "${cgidir}/${name.cgi}",
+        target => '/usr/share/trac/cgi-bin/trac.cgi'
       }
     }
 
