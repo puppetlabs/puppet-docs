@@ -33,7 +33,7 @@ task :preview, :filename do |t, args|
   if ["marionette-collective", "puppetdb_master", "puppetdb_1.1", "puppetdb", "mcollective"].include?(args.filename)
     abort("\n\n*** External documentation sources aren't supported right now.\n\n")
   end
-  
+
   # Make sure we have a stash_directory
   FileUtils.mkdir(stash_dir) unless File.exist?(stash_dir)
 
@@ -53,7 +53,7 @@ task :preview, :filename do |t, args|
     html_name = f.gsub(/\.markdown/,'.html')
     preview_index_files << "* [#{args.filename}/#{html_name}](#{args.filename}/#{html_name})\n"
   end
-  
+
 preview_index=<<PREVIEW_INDEX
 ---
 layout: frontpage
@@ -65,14 +65,14 @@ PREVIEW_INDEX
 
   Dir.chdir(source_dir)
   # put our file list index in place
-  File.open("index.markdown", 'w') {|f| f.write(preview_index) }  
+  File.open("index.markdown", 'w') {|f| f.write(preview_index) }
 
   # Run our preview server, watching ... watching ...
   system("bundle exec jekyll  #{preview_dir} --auto --serve")
 
-  # When we kill it with a ctl-c ... 
+  # When we kill it with a ctl-c ...
   puts "\n\n*** Shut down the server."
-  
+
   # Clean up after ourselves (in a separate task in case something goes wrong and we need to do it manually)
   Rake::Task['unpreview'].invoke
 end
@@ -207,6 +207,9 @@ task :run => [:generate, :serve]
 
 desc "Generate the documentation in a flat format for later PDF generation"
 task :generate_pdf do
+  Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
+  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
+
   require 'yaml'
   system("rm -rf pdf_source")
   system("rm -rf pdf_output")
@@ -237,6 +240,10 @@ task :generate_pdf do
 #   system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
 #   system("mv index.html original_index.html")
 #   system("mv rebuilt_index.html index.html")
+
+  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
+  Rake::Task['externalsources:clean'].reenable
+
   puts "Remember to run rake serve_pdf"
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
 end
