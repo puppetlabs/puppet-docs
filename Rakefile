@@ -217,10 +217,11 @@ task :generate_pdf do
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
   # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
   Dir.chdir("pdf_source") do
+    system("rm _plugins/sitemap_generator.rb") # For some reason, this explodes. I am going to be lazy and just kill it in our temp copy of the source.
     system("bundle exec jekyll ../pdf_output")
   end
   Rake::Task['references:symlink:for_pdf'].invoke
-  Dir.chdir("../pdf_output") do
+  Dir.chdir("pdf_output") do
     pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
     pdf_targets.each do |target, pages|
       system("cat #{pages.join(' ')} > #{target}")
@@ -268,6 +269,10 @@ task :reshuffle_pdf do
       end
     end
   end
+
+  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
+  Rake::Task['externalsources:clean'].reenable
+
   puts "Remember to run rake serve_pdf"
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
 end

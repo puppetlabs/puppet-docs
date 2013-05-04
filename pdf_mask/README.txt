@@ -14,6 +14,8 @@ Steps for generating a pdf of the docs:
 - Run rake serve_pdf
 - Run rake compile_pdf in a different tab
 
+And then make sure you kick the PDFs out of the puppet-docs directory and upload them.
+
 TODO:
 -----
 
