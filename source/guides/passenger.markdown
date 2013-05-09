@@ -59,13 +59,22 @@ RHEL/CentOS (needs the Puppet Labs repository enabled, or the
     $ sudo gem install rack passenger
     $ sudo passenger-install-apache2-module
 
+Puppet Configuration
+--------------------
+
+Edit the puppet.conf file, ensuring the following entries exist
+
+    [master]
+        ssl_client_header = SSL_CLIENT_S_DN
+        ssl_client_verify_header = SSL_CLIENT_VERIFY
+
 Apache Configuration
 --------------------
 
 To configure Apache to run the puppet master application, you must:
 
 * Install the puppet master Rack application, by creating a directory for it and copying the `config.ru` file from the Puppet source.
-* Create a virtual host config file for the puppet master application, and install/enable it. 
+* Create a virtual host config file for the puppet master application, and install/enable it.
 
 ### Install the Puppet Master Rack Application
 
@@ -81,7 +90,7 @@ Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn p
 
 ### Create and Enable the Puppet Master Vhost
 
-See ["Example Vhost Configuration" below](#example-vhost-configuration) for the contents of this vhost file. Note that the vhost's `DocumentRoot` directive refers to the Rack application directory you created above. 
+See ["Example Vhost Configuration" below](#example-vhost-configuration) for the contents of this vhost file. Note that the vhost's `DocumentRoot` directive refers to the Rack application directory you created above.
 
 Debian/Ubuntu:
 
@@ -103,17 +112,17 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
 
     # You'll need to adjust the paths in the Passenger config depending on which OS
     # you're using, as well as the installed version of Passenger.
-    
+
     # Debian/Ubuntu:
     #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
     #PassengerRoot /var/lib/gems/1.8/gems/passenger-3.0.x
     #PassengerRuby /usr/bin/ruby1.8
-    
+
     # RHEL/CentOS:
     #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
     #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x
     #PassengerRuby /usr/bin/ruby
-    
+
     # And the passenger performance tuning settings:
     PassengerHighPerformance On
     PassengerUseGlobalQueue On
@@ -123,11 +132,11 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
     PassengerMaxRequests 1000
     # Stop processes if they sit idle for 10 minutes
     PassengerPoolIdleTime 600
-    
+
     Listen 8140
     <VirtualHost *:8140>
         SSLEngine On
-        
+
         # Only allow high security cryptography. Alter if needed for compatibility.
         SSLProtocol             All -SSLv2
         SSLCipherSuite          HIGH:!ADH:RC4+RSA:-MEDIUM:-LOW:-EXP
@@ -139,7 +148,7 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         SSLVerifyClient         optional
         SSLVerifyDepth          1
         SSLOptions              +StdEnvVars +ExportCertData
-        
+
         # These request headers are used to pass the client certificate
         # authentication information on to the puppet master process
         RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
