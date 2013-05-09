@@ -62,7 +62,7 @@ RHEL/CentOS (needs the Puppet Labs repository enabled, or the
 Puppet Configuration
 --------------------
 
-Edit the puppet.conf file, ensuring the following entries exist
+Edit the `puppet.conf` file, ensuring the following entries exist:
 
     [master]
         ssl_client_header = SSL_CLIENT_S_DN
