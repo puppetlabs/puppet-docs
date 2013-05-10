@@ -30,7 +30,6 @@ To start with, Judy [downloads PE](http://info.puppetlabs.com/download-pe.html) 
 
 Enough preamble, let's start automating infrastructure.
 
-
 ### Three Things You Can Configuration Manage First
 
 Poor Judy. As we know, the infrastructure of the marketing department is an oddball collection of hardware that was set up ad hoc by a series of interns. Specifically, it consists of the following four servers:
