@@ -103,8 +103,11 @@ Once you've determined where everything is going to go, you can run the install 
 There are a few common problems users have encountered when installing, mainly related to pre-existing conditions in the environment. The most common include:
 
 * Errors caused by an existing, old version of MySQL on the machine that will run the console database. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `/var/lib/mysql` on RHEL systems).
+
 * If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](http://docs.puppetlabs.com/pe/latest/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
+
 * The installer comes with an example answers file, which can save you some time. Don't overlook it!
+
 * The installer creates a log file at `install_log.lastrun.<hostname>`, which can be very useful for debugging install issues.
 * Similarly, the installer generates an `answers.lastrun.<hostname>` file, which can help you keep a record of things like the console's hostname or the mySQL password. *Important:* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
     
@@ -133,6 +136,6 @@ At this point you should have a functioning installation of Puppet Enterprise. Y
 
 * * * 
 
-- Next: First Steps: Building Your Work Environment (Coming Soon)
+- Next: [First Steps: Building Your Work Environment](dg_first_steps.html)
 
 
