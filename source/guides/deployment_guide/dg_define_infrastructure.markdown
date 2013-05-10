@@ -1,8 +1,12 @@
-III. Puppetize Your Infrastructure: Beginning Automation
+---
+layout: default
+title: "PE Deployment Guide"
+subtitle: "Puppetize Your Infrastructure: Beginning Automation"
+---
+
+How Can PE Help You?
 -----
 
-
-### How Can PE Help You?
 
 The particulars of every infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, they want to spend less time fixing recurring problems, and they want keen, timely insight into their infrastructure. In this chapter, we identify some specific needs and provide examples of ways to meet them by using PE to automate stuff. If you've been an admin for any period of time, these wants should be all too familiar:
 
