@@ -159,7 +159,7 @@ Each entry consists of the following:
 *  `default_role` which defines the role to assign to users by default
 * `description` which is simply a human readable description of the service
 
-The order in which authentication services are listed in the `cas_client.config.yml` file (see below) is the order in which the services will be checked for valid accounts. In other words, the first service that returns an account matching the entered user credential is the service that will perform authentication and log-in.
+The order in which authentication services are listed in the `cas_client_config.yml` file (see below) is the order in which the services will be checked for valid accounts. In other words, the first service that returns an account matching the entered user credential is the service that will perform authentication and log-in.
 
 This example shows what you would do if you wanted to use AD and the built-in (local) auth services and disable Google and LDAP.
 
