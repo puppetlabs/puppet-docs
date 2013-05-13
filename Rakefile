@@ -33,7 +33,7 @@ task :preview, :filename do |t, args|
   if ["marionette-collective", "puppetdb_master", "puppetdb_1.1", "puppetdb", "mcollective"].include?(args.filename)
     abort("\n\n*** External documentation sources aren't supported right now.\n\n")
   end
-  
+
   # Make sure we have a stash_directory
   FileUtils.mkdir(stash_dir) unless File.exist?(stash_dir)
 
@@ -53,7 +53,7 @@ task :preview, :filename do |t, args|
     html_name = f.gsub(/\.markdown/,'.html')
     preview_index_files << "* [#{args.filename}/#{html_name}](#{args.filename}/#{html_name})\n"
   end
-  
+
 preview_index=<<PREVIEW_INDEX
 ---
 layout: frontpage
@@ -65,14 +65,14 @@ PREVIEW_INDEX
 
   Dir.chdir(source_dir)
   # put our file list index in place
-  File.open("index.markdown", 'w') {|f| f.write(preview_index) }  
+  File.open("index.markdown", 'w') {|f| f.write(preview_index) }
 
   # Run our preview server, watching ... watching ...
   system("bundle exec jekyll  #{preview_dir} --auto --serve")
 
-  # When we kill it with a ctl-c ... 
+  # When we kill it with a ctl-c ...
   puts "\n\n*** Shut down the server."
-  
+
   # Clean up after ourselves (in a separate task in case something goes wrong and we need to do it manually)
   Rake::Task['unpreview'].invoke
 end
@@ -207,6 +207,9 @@ task :run => [:generate, :serve]
 
 desc "Generate the documentation in a flat format for later PDF generation"
 task :generate_pdf do
+  Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
+  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
+
   require 'yaml'
   system("rm -rf pdf_source")
   system("rm -rf pdf_output")
@@ -214,10 +217,11 @@ task :generate_pdf do
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
   # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
   Dir.chdir("pdf_source") do
+    system("rm _plugins/sitemap_generator.rb") # For some reason, this explodes. I am going to be lazy and just kill it in our temp copy of the source.
     system("bundle exec jekyll ../pdf_output")
   end
   Rake::Task['references:symlink:for_pdf'].invoke
-  Dir.chdir("../pdf_output") do
+  Dir.chdir("pdf_output") do
     pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
     pdf_targets.each do |target, pages|
       system("cat #{pages.join(' ')} > #{target}")
@@ -237,6 +241,10 @@ task :generate_pdf do
 #   system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
 #   system("mv index.html original_index.html")
 #   system("mv rebuilt_index.html index.html")
+
+  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
+  Rake::Task['externalsources:clean'].reenable
+
   puts "Remember to run rake serve_pdf"
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
 end
@@ -261,6 +269,10 @@ task :reshuffle_pdf do
       end
     end
   end
+
+  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
+  Rake::Task['externalsources:clean'].reenable
+
   puts "Remember to run rake serve_pdf"
   puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
 end
