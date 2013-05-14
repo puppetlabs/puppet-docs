@@ -177,7 +177,7 @@ Since we want to provide this data for a specific node, and since we're using th
 
 Once you've saved that, let's do a quick test using the [Hiera command line tool][]:
 
-	$ hiera ntp::servers fqdn=kermit.example.com
+	$ hiera ntp::servers ::fqdn=kermit.example.com
 
 You should see this:
 
@@ -215,7 +215,7 @@ Our next ntp node, `grover.example.com`, is a little less critical to our infras
 
 As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hiera/nodes` directory using the `fqdn` fact for the file name: `grover.example.com.json`. We can once again test it with the hiera command line tool:
 
-	$ hiera ntp::servers fqdn=grover.example.com
+	$ hiera ntp::servers ::fqdn=grover.example.com
 	["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
 
 #### `common.json`
@@ -234,7 +234,7 @@ So, now we've configured the two nodes in our organization that we'll allow to u
 
 Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppet/hiera/common.json`. With our very simple hierarchy, which so far only looks for the `fqdn` facts, any node with a `fqdn` that doesn't match the nodes we have data sources for will get the data found in `common.json`. Let's test against one of those nodes:
 
-	$ hiera ntp::servers fqdn=snuffie.example.com
+	$ hiera ntp::servers ::fqdn=snuffie.example.com
 	["kermit.example.com iburst", "grover.example.com iburst"]
 
 #### Modifying Our `site.pp` Manifest
@@ -325,7 +325,7 @@ modifying kermit's data source, for instance, to look like this:
 
 We can test which classes we've assigned to a given node with the Hiera command line tool:
 
-	$ hiera classes fqdn=kermit.example.com
+	$ hiera classes ::fqdn=kermit.example.com
 	["ntp", "apache", "postfix"]
 
 > **Note:** The `hiera_include` function will do an [array merge lookup](./lookup_types.html#array-merge), which can let more specific data sources **add to** common sources instead of **replacing** them. This helps you avoid repeating yourself.
