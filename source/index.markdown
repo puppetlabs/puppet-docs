@@ -24,9 +24,9 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 [Puppet Enterprise](/pe/latest)
 -----
 
-Puppet Enterprise is Puppet with more, including professional support, a production-grade puppet master stack, a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, and cloud provisioning tools.
+Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.
 
-Nearly all of the main Puppet documentation also applies to Puppet Enterprise. For details about PE's extra features and slightly different run environment, see [the current Puppet Enterprise user's guide](/pe/latest/), or go directly to:
+Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration, see [the current Puppet Enterprise user's guide](/pe/latest/), or go directly to:
 
 - [The system requirements](/pe/latest/install_system_requirements.html)
 - [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
@@ -43,13 +43,13 @@ MCollective is a powerful orchestration framework. Run actions on thousands of s
 
 [See the MCollective docs index](/mcollective/), or go directly to:
 
-- [The terminology glossary](/mcollective/terminology.html)
-- [The installation instructions](/mcollective/reference/basic/gettingstarted.html)
-- [The configuration guide](/mcollective/reference/basic/configuration.html)
-- [The guide to writing new agent plugins](/mcollective/simplerpc/)
+- [The Vagrant-based demo environment](/mcollective/deploy/demo.html), to try MCollective immediately
+- [The standard deployment guide](/mcollective/deploy/standard.html), to deploy MCollective into your production environment with the recommended configurations
+- [The overview of components](/mcollective/overview_components.html), to learn about the server, client, and middleware roles
+- [The guide to writing new agent plugins](/mcollective/simplerpc/), to build powerful actions that solve your specific problems
 - [The release notes](/mcollective/releasenotes.html)
 
-> Note: MCollective is included with Puppet Enterprise, and new agent plugins will appear in the console's live management controls.
+> Note: MCollective is included with Puppet Enterprise.
 
 [Puppet Dashboard](/dashboard/manual/1.2)
 -----
