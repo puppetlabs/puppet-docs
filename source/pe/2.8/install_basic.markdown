@@ -34,30 +34,6 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 | `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
 | `-aix-<version and arch>.tar.gz`  | on AIX                                       |
 
-#### Dependencies and OS Specific Details
-
-*AIX*
-In order to run the puppet agent on AIX systems, you'll need to install the following before attempting to install the agent:
-
-* bash
-* zlib
-* readline
-
-All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
-
-To install the packages on your selected node directly, you can run the following (note that the RPM package provider on AIX must be run as root):
-    `rpm -Uvh ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/bash/bash-3.2-1.aix5.2.ppc.rpm`
-    `rpm -Uvh ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm`
-    `rpm -Uvh ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm`
-
-*Note:* if you are behind a firewall or running an http proxy, the above commands may not work. Use the link above instead to find the packages you need.
-
-*Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. Also, The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Lastly, avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
-
-The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
-
-*Solaris*
-In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system.
 
 Starting the Installer
 -----

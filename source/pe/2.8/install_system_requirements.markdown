@@ -68,6 +68,130 @@ Configure your firewalls to accomodate Puppet Enterprise's network traffic. The 
 * If you will be invoking MCollective client commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.**
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The Dashboard server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 
+### Dependencies and OS Specific Details
+
+This section details the packages that are installed from the various OS repos.  Unless you do not have internet access, you shouldn't need to worry about installing these manually, they will be set up during PE installation.
+
+***Amazon Linux AMI***
+
+|       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
+|------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
+|   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
+|  system-logos      |  apr-util                     |  apr-util                           |  mysql51                                    |  libxml2
+|  which                  | curl                           |  curl                                |  mysql51-server                         |  
+|  libxml2                | mailcap                     | mailcap
+|  dmidecode         | java-1.6.0-openjdk*   | 
+| net-tools              |            
+
+*Only needed if java isn't already installed.
+
+***Centos***
+
+|       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
+|------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
+|   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
+|  system-logos      |  apr-util                     |  apr-util                           |  mysql                                        |  libxml2
+|  which                  | curl                           |  curl                                |  mysql-server                             |  
+|  libxml2                | mailcap                     | mailcap
+|  dmidecode         |                                   | 
+| net-tools              |      
+| java-1.6.0-openjdk*         
+
+*Only needed if java isn't already installed.
+
+
+***RHEL***
+
+|       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
+|------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
+|   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
+|  system-logos      |  apr-util                     |  apr-util                           |  mysql                                        |  libxml2
+|  which                  | apr-util-ldap (RHEL 6) |  curl                             |  mysql-server                             |  
+|  libxml2                |   curl                            | mailcap                        |
+|  dmidecode         |  mailcap                       | apr-util-ldap (RHEL 6)  |
+| net-tools              |    java-1.6.0-openjdk*  |
+|  cronie (RHEL 6)
+| vixie-cron (RHEL 5)       
+
+*Only needed if java isn't already installed.
+
+
+***SLES***
+
+|       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
+|------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
+|   pciutils               |  libapr1                        |  libapr1                        |  sudo                                         |  libxslt
+|  pmtools              |  libapr-util1                   |  libapr-util1                  |  mysql                                        |  libxml2
+|  cron                    |  java-1_6_0-ibm          |  curl                             |  mysql-client                             |  
+|  libxml2                |   curl                            |                                     |
+|  net-tools             |                                     |                                     |
+  
+  <br>  
+  
+***Debian***
+
+|       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
+|------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
+|   pciutils               |  file                             |  file                              |  mysql-common                           |  libxslt1.1                            |
+|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |  
+|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |  
+|  libxml2                |  curl                            |  curl                             |
+|  hostname           |  perl                            |  perl                             |
+|  libldap-2.4-2       |  mime-support            |  mime-support             |
+|  libreadline5        |  libapr1                        |  libapr1                        |
+|                            |  libcap2                        |  libcap2                       |
+|                            |  libaprutil1                    |  libaprutil1                   |
+|                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
+|                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
+|                            |  openjdk-6-jre-headless |
+
+<br>
+
+
+***Ubuntu***
+
+
+|       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
+|------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
+|   pciutils               |  file                             |  file                              |  mysql-common                           |  libxslt1.1                            |
+|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |  
+|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |  
+|  libxml2                |  curl                            |  curl                             |
+|  hostname           |  perl                            |  perl                             |
+|  libldap-2.4-2       |  mime-support            |  mime-support             |
+|  libreadline5        |  libapr1                        |  libapr1                        |
+|                            |  libcap2                        |  libcap2                       |
+|                            |  libaprutil1                    |  libaprutil1                   |
+|                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
+|                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
+|                            |  openjdk-6-jre-headless |
+
+<br>
+
+***AIX***  
+In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed before attempting to install the puppet agent:
+
+* bash
+* zlib
+* readline
+
+All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
+
+To install the packages on your selected node directly, you can run `rpm -Uvh` with the following URLs (note that the RPM package provider on AIX must be run as root):  
+
+ * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/bash/bash-3.2-1.aix5.2.ppc.rpm
+ * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm
+ * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm
+
+*Note:* if you are behind a firewall or running an http proxy, the above commands may not work. Use the link above instead to find the packages you need.
+
+*Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. Also, The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Lastly, avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
+
+The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
+
+***Solaris***  
+In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system.
+
 
 Next
 ----
