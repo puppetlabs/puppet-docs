@@ -68,6 +68,27 @@ Puppet 3.x Release Notes
 
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
 
+Puppet 3.2.1
+-----
+
+3.2.1 is a bugfix release of the Puppet 3.2 series. It addresses two major
+issues that were uncovered in 3.2.0 and caused us to pull that release (#20726 and #20742). It also includes a fix for Solaris support (#19760).
+
+Issues fixed:
+
+* [Bug #19760](https://projects.puppetlabs.com/issues/19760): install sun packages failed with: `Error: /Stage[main]/Inf_sol10defaultpkg/Package[SMCcurl]: Could not evaluate: Unable to get information about package SMCcurl because of: No message`
+* [Bug #20726](https://projects.puppetlabs.com/issues/20726): usermod command arguments out of order
+* [Bug #20742](https://projects.puppetlabs.com/issues/20742): unauthenticated clients unable to communicate with puppet master (running in passenger)
+
+### Known Regressions
+
+On Windows, Puppet 3.2.1 is unable to manage the home directory for a user account. ([Bug #20768](https://projects.puppetlabs.com/issues/20768)) This is a regression from Puppet 3.1.1; it was introduced by switching to Ruby 1.9 in the Windows .msi package. This bug will be fixed soon in a point release, but wasn't severe enough to delay shipping.
+
+### All 3.2.1 Changes
+
+[See here for a list of all changes in the 3.2.1 release.][321_changes]
+
+[321_changes]: https://projects.puppetlabs.com/versions/405
 
 ## Puppet 3.2.0
 
