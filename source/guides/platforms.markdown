@@ -65,7 +65,7 @@ Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
 -------------|------------|------------|-----------
 1.8.5\*      | Supported  | Supported  | No
 1.8.7        | Supported  | Supported  | Supported
-1.9.3        | No         | No         | Supported
+1.9.3\*\*    | No         | No         | Supported
 1.9.2        | No         | No         | No
 1.9.1        | No         | No         | No
 1.9.0        | No         | No         | No
@@ -73,6 +73,8 @@ Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
 1.8.1        | No         | No         | No
 
 > \* Note that although Ruby 1.8.5 is fully supported on Puppet 2.6 and 2.7, Ruby 1.8.7 generally gives better performance and memory use. To support the large installed base of RHEL5 systems which ship with Ruby 1.8.5, Puppet Labs packages a drop-in replacement Ruby 1.8.7 package. Read the ['Enterprise Linux and Derivatives' section of the Installing Puppet guide](http://docs.puppetlabs.com/guides/installation.html#enterprise-linux-and-derivatives) to learn how to install these packages.
+>
+> \*\* Ruby 1.9.3-p0 has bugs that cause a number of known issues with Puppet, and you should use a different release. To the best of our knowledge, these issues were fixed in the second public release of Ruby 1.9.3 (p125), and we are positive they are resolved in p392 (which ships with Fedora 18). Unfortunately, Ubuntu Precise ships with p0 for some reason, and there's not a lot we can do about it. If you're using Precise, we recommend using Puppet Enterprise or installing a third-party Ruby package.
 
 Versions marked as "Supported" are recommended by Puppet Labs and are under extensive automated test coverage. Other versions are not recommended and we make no guarantees about their performance with Puppet.
 
