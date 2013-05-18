@@ -4,11 +4,12 @@ title: "PE Deployment Guide"
 subtitle: "Puppetize Your Infrastructure: Beginning Automation"
 ---
 
-How Can PE Help You?
+How Can Puppet Enterprise Help You?
 -----
 
+[pe_dl]: http://info.puppetlabs.com/download-pe.html
 
-The particulars of every infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, they want to spend less time fixing recurring problems, and they want keen, timely insight into their infrastructure. In this chapter, we identify some specific needs and provide examples of ways to meet them by using PE to automate stuff. If you've been an admin for any period of time, these wants should be all too familiar:
+The particulars of every infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, they want to spend less time fixing recurring problems, and they want keen, timely insight into their infrastructure. In this chapter, we identify some specific needs and provide examples of ways to meet them by using [Puppet Enterprise][pe_dl] (PE) to automate stuff. If you've been an admin for any period of time, these wants should be all too familiar:
 
 1. I want to learn how to use a tool that will make me a more efficient sysadmin, so I can go home earlier (or get to the pub, or my kids' soccer game, or the weekly gaming session, dragon boat race, naked knitting club meeting, etc.). If you're reading this, it's safe to assume the tool you want to learn is PE.
 

@@ -7,7 +7,9 @@ subtitle: "Introduction and Installation"
 Introduction
 -----
 
-You've just downloaded a shiny new tarball containing Puppet Enterprise (PE) and are wondering to yourself, "now what?" This guide will help you answer that question. Based on the collective decades of experience of Puppet Labs' professional services engineers and support staff, this guide will help you discover the best practices for initially deploying Puppet Enterprise in your infrastructure. It will also help you avoid common errors and pitfalls, and will point to detailed instructions for completing typical and important tasks you'll encounter during deployment. 
+[pe_dl]: http://info.puppetlabs.com/download-pe.html
+
+You've just [downloaded a shiny new tarball][pe_dl] containing Puppet Enterprise (PE) and are wondering to yourself, "now what?" This guide will help you answer that question. Based on the collective decades of experience of Puppet Labs' professional services engineers and support staff, this guide will help you discover the best practices for initially deploying Puppet Enterprise in your infrastructure. It will also help you avoid common errors and pitfalls, and will point to detailed instructions for completing typical and important tasks you'll encounter during deployment. 
 
 Because there is so much variation in the infrastructures where PE is used, we will focus on some standard things most sysadmins typically manage. Hopefully, learning how to automate basic services such as NTP will provide you with the knowledge you need to understand how and why PE's automation is so powerful.  Armed with this knowledge, you'll be ready to take care of more specialized needs -- such as automating the configuration of application servers -- and you'll be able to take your infrastructure to the next level of performance, reliability and visibility.
 
