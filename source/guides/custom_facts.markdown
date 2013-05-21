@@ -235,9 +235,18 @@ On Windows 2008:
 Executable facts on Unix work by dropping an executable file into the standard
 external fact path above.
 
+An example external fact written in Python:
+
+    #!/usr/bin/env python
+    data = {"key1" : "value1", "key2" : "value2" }
+
+    for k in data:
+            print "%s=%s" % (k,data[k])
+
+
 You must ensure that the script has its execute bit set:
 
-    chmod +x /etc/facter/facts.d/my_fact_script.rb
+    chmod +x /etc/facter/facts.d/my_fact_script.py
 
 For Facter to parse the output, the script must return key/value pairs on
 STDOUT in the format:
