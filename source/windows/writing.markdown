@@ -6,7 +6,7 @@ nav: windows.html
 
 <span class="versionnote">This documentation applies to Puppet ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
-[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[modules]: /puppet/latest/reference/modules_fundamentals.html
 [manifests]: /learning/manifests.html
 [lang]: /guides/language_guide.html
 
@@ -45,15 +45,17 @@ The following guidelines will help you use backslashes safely in Windows file pa
 
 In many cases, you can use forward slashes instead of backslashes when specifying file paths.
 
-Forward slashes **MUST** be used in:
+Forward slashes **MUST** be used:
 
-* Template paths passed to the `template` function. For example:
+* In template paths passed to the `template` function. For example:
 
         file {'C:/warning.txt':
           ensure  => present,
           content => template('my_module/warning.erb'),
         }
-* Puppet URLs in a [`file`][file] resource's `source` attribute.
+* In Puppet URLs in a [`file`][file] resource's `source` attribute.
+
+* When part of the `modulepath` configuration option, e.g. `puppet apply --modulepath="Z:/path/to/my/modules" "Z:/path/to/my/site.pp"` (This restriction applies only to versions of Puppet prior to 3.0.)
 
 Forward slashes **SHOULD** be used in:
 
@@ -217,7 +219,29 @@ Puppet can create, edit, and delete scheduled tasks. It can manage the task name
 
 Puppet can install and remove MSI packages, including specifying package-specific install options, e.g. install directory.
 
-* The `title` or name of the package must match the value of the `DisplayName` property in the registry, which is also the value displayed in Add/Remove Programs.
+#### Identifying Packages
+
+The `title` or name of the package must match the value of the `DisplayName` property in the registry, which is also the value displayed in Add/Remove Programs. Alternately, when a package name is not unique across versions (e.g. VMWare Tools, or where there are 32- and 64-bit versions with the same name), we provide the ability to specify the package's PackageCode as the package name. This is a GUID that's unique across all MSI builds. For instance:
+
+{% highlight ruby %}
+	package { '{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}':
+	  ensure => installed,
+	  source => 'the.msi',
+	  provider => windows
+	}
+{% endhighlight %}
+
+To find the PackageCode from an MSI, you can use Orca, or you can get to it programmatically with Ruby:
+
+{% highlight ruby %}
+	require 'win32ole'
+	installer = WIN32OLE.new('WindowsInstaller.Installer')
+	db = installer.OpenDatabase(path, 0) # where 'path' is the path to the MSI
+	puts db.SummaryInformation.Property(9)
+{% endhighlight %}
+
+#### Additional Notes on Windows Packages
+
 * The source parameter is required, and must refer to a local .msi file, a file from a mapped drive, or a UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
 * The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install. 
     * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. 

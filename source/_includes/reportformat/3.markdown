@@ -1,0 +1,113 @@
+Report Format 3
+-----
+
+This is the format of reports output by Puppet versions 2.7.12 and later, but the report version identifier did not get changed until Puppet 2.7.20 (See ticket #15739).
+
+### Puppet::Transaction::Report
+
+The Puppet::Transaction::Report contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>host</td><td>string</td><td>the host that generated this report.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>when the run began.</td></tr>
+  <tr><td>logs</td><td>array</td><td>0 or more Puppet::Util::Log objects.</td></tr>
+  <tr><td>metrics</td><td>hash</td><td>maps from string (metric category) to Puppet::Util::Metric.</td></tr>
+  <tr><td>resource_statuses</td><td>hash</td><td>maps from resource name to Puppet::Resource::Status</td></tr>
+  <tr><td>configuration_version</td><td>string or integer</td><td>The "configuration version" of the puppet run.  This is a string if the user has specified their own versioning scheme, otherwise an integer representing seconds since the epoch.</td></tr>
+  <tr><td>report_format</td><td>integer</td><td>3</td></tr>
+  <tr><td>puppet_version</td><td>string</td><td>The version of the Puppet agent.</td></tr>
+  <tr><td>kind</td><td>string</td><td>"inspect" if this report came from a "puppet inspect" run, "apply" if it came from a "puppet apply" or "puppet agent" run.</td></tr>
+  <tr><td>status</td><td>string</td><td>"failed", "changed", or "unchanged"</td></tr>
+  <tr><td>environment</td><td>string</td><td>The environment that was used for the puppet run.</td></tr>
+</table>
+
+### Puppet::Util::Log
+
+A Puppet::Util::Log object contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>file</td><td>string</td><td>the pathname of the manifest file which triggered the log message.</td></tr>
+  <tr><td>line</td><td>integer</td><td>the line number in the manifest file which triggered the log message.</td></tr>
+  <tr><td>level</td><td>symbol</td><td>severity of the message.  Possible values for level are :debug, :info, :notice, :warning, :err, :alert, :emerg, :crit</td></tr>
+  <tr><td>message</td><td>string</td><td>the message itself.</td></tr>
+  <tr><td>source</td><td>string</td><td>the origin of the log message.  This could be a resource, a property of a resource, or the string "Puppet".</td></tr>
+  <tr><td>tags</td><td>array</td><td>each array element is a string.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>when the message was sent.</td></tr>
+</table>
+
+The `file` and `line` attributes are not always present.
+
+### Puppet::Util::Metric
+
+A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>name</td><td>string</td><td>name of the metric category.  This is the same as the key associated with this metric in the metrics hash of the Puppet::Transaction::Report.</td></tr>
+  <tr><td>label</td><td>string</td><td>This is the "titleized" version of the name, which means underscores are replaced with spaces and the first word is capitalized.</td></tr>
+  <tr><td>values</td><td>array</td><td>All the metric values within this category.  Each element is of the form [name, titleized_name, value], where name is the name of the particular metric as a string, titleized_name is the "titleized" string of the name, and value is the quantity (an integer or a float).</td></tr>
+</table>
+
+The set of particular metrics and categories which appear in a report is a fixed set.  In a successful report, the categories and metrics are:
+
+* In the `time` category, there is a metric for every resource type for which there is at least one resource in the catalog, plus two additional metrics, called `config_retrieval` and `total`.  Each value in the `time` category is a float.
+* In the `resources` category, the metrics are `failed`, `out_of_sync`, `changed`, and `total`.  Each value in the `resources` category is an integer.
+* In the `events` category, there are up to five metrics: `success`, `failure`, `audit`, `noop`, and `total`. `total` is always present; the others are only present when their values are non-zero. Each value in the `events` category is an integer.
+* In the `changes` category, there is only one metric, called `total`.  Its value is an integer.
+
+Failed reports contain no metrics.
+
+In an inspect report, there is an additional `inspect` metric in the `time` category.
+
+### Puppet::Resource::Status
+
+A Puppet::Resource::Status object represents the status of a single resource. It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>resource_type</td><td>string</td><td>the resource type, capitalized.</td></tr>
+  <tr><td>title</td><td>title</td><td>the resource title.</td></tr>
+  <tr><td>resource</td><td>string</td><td>the resource name, in the form Type[title]. This is always the same as the key corresponding to this Puppet::Resource::Status object in the resource_statuses hash. *deprecated*</td></tr>
+  <tr><td>file</td><td>string</td><td>the pathname of the manifest file which declared the resource</td></tr>
+  <tr><td>line</td><td>integer</td><td>the line number in the manifest file which declared the resource</td></tr>
+  <tr><td>evaluation_time</td><td>float</td><td>the amount of time, in seconds, taken to evaluate the resource.  Not present in inspect reports.</td></tr>
+  <tr><td>change_count</td><td>integer</td><td>the number of properties which changed.  Always 0 in inspect reports.</td></tr>
+  <tr><td>out_of_sync_count</td><td>integer</td><td>the number of properties which were out of sync.  Always 0 in inspect reports.</td></tr>
+  <tr><td>tags</td><td>array</td><td>the strings with which the resource is tagged</td></tr>
+  <tr><td>time</td><td>datetime</td><td>the time at which the resource was evaluated</td></tr>
+  <tr><td>events</td><td>array</td><td>the Puppet::Transaction::Event objects for the resource</td></tr>
+  <tr><td>out_of_sync</td><td>boolean</td><td>True if out_of_sync_count > 0, otherwise false.  *deprecated*</td></tr>
+  <tr><td>changed</td><td>boolean</td><td>True if change_count > 0, otherwise false.  *deprecated*</td></tr>
+  <tr><td>skipped</td><td>boolean</td><td>True if the resource was skipped, otherwise false.</td></tr>
+  <tr><td>failed</td><td>boolean</td><td>True if Puppet experienced an error while evaluating this resource, otherwise false.  *deprecated*</td></tr>
+</table>
+
+### Puppet::Transaction::Event
+
+A Puppet::Transaction::Event object represents a single event for a single resource. It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>audited</td><td>boolean</td><td>true if this property is being audited, otherwise false.  True in inspect reports.</td></tr>
+  <tr><td>property</td><td>string</td><td>the property for which the event occurred</td></tr>
+  <tr><td>previous_value</td><td>string, array, or hash</td><td>the value of the property before the change (if any) was applied.</td></tr>
+  <tr><td>desired_value</td><td>string, array, or hash</td><td>the value specified in the manifest.  Absent in inspect reports.</td></tr>
+  <tr><td>historical_value</td><td>string, array, or hash</td><td>the audited value from a previous run of Puppet, if known.  Otherwise nil.  Absent in inspect reports.</td></tr>
+  <tr><td>message</td><td>string</td><td>the log message generated by this event</td></tr>
+  <tr><td>name</td><td>symbol</td><td>the name of the event.  Absent in inspect reports.</td></tr>
+  <tr><td>status</td><td>string</td><td>one of the following strings: "success", "failure", "noop", "audit", depending on the type of the event (see below).  Always "audit" in inspect reports.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>the time at which the property was evaluated</td></tr>
+</table>
+
+Puppet::Transaction::Event#status has the following meanings:
+
+* `success`: property was out of sync, and was successfully changed to be in sync.
+* `failure`: property was out of sync, and couldn't be changed to be in sync due to an error.
+* `noop`: property was out of sync, and wasn't changed due to noop mode.
+* `audit`: property was in sync, and was being audited.
+
+### Differences from Report Format 2
+
+* Puppet::Transaction::Report gained `environment`.

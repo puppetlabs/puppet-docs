@@ -378,6 +378,30 @@ p img {
   max-width: 640px;
 }
 
+/* NF: Also, images that are the only thing in their paragraph should be centered. */
+p > img:only-child, p > a:only-child > img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+dl dt{
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+}
+
+dl dd{
+	line-height: 1.5em;
+	border-left: 4px solid #eee;
+	padding-left: 20px;
+}
+
+dd > p {
+    margin-top: 1em; /* This is necessary for setting off the second paragraph in any dd element, since the first "paragraph" of any dd isn't inside a <p> element. */
+}
+
+
 /* Classes for spans that warn about version incompatibilities */
 .versionnote {
   background-color: #ff9;

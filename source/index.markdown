@@ -9,7 +9,7 @@ Welcome to the Puppet Labs documentation site. The documentation posted here is 
 [Puppet](/puppet)
 -----
 
-Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there. 
+Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there.
 
 [See the index for Puppet's documentation here](/puppet), or go directly to one of the most popular pages:
 
@@ -17,23 +17,24 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 - [The installation guide](/guides/installation.html) can help you install and configure the current open-source Puppet releases.
 - [The Puppet 3 Reference Manual](/puppet/3/reference)
 - [The Puppet 2.7 Reference Manual](/puppet/2.7/reference)
-- [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page. 
+- [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 
 
-[Puppet Enterprise](/pe/2.7)
+[Puppet Enterprise](/pe/latest)
 -----
 
-Puppet Enterprise is Puppet with more, including professional support, a production-grade puppet master stack, a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, and cloud provisioning tools. 
+Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.
 
-Nearly all of the main Puppet documentation also applies to Puppet Enterprise. For details about PE's extra features and slightly different run environment, see [the current Puppet Enterprise user's guide](/pe/2.7/), or go directly to:
+Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration, see [the current Puppet Enterprise user's guide](/pe/latest/), or go directly to:
 
-- [The system requirements](/pe/2.7/install_system_requirements.html)
-- [The installation instructions](/pe/2.7/install_basic.html) or [the upgrade instructions](/pe/2.7/install_upgrading.html)
-- [The quick start guide](/pe/2.7/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
+- [The system requirements](/pe/latest/install_system_requirements.html)
+- [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
+- [The quick start guide](/pe/latest/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
+- [The deployment guide](./guides/deployment_guide/dg_intro_install.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 2.7; documentation for previous versions can be found [here](/pe/index.html). 
+The current version of PE is 2.8. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
@@ -42,13 +43,13 @@ MCollective is a powerful orchestration framework. Run actions on thousands of s
 
 [See the MCollective docs index](/mcollective/), or go directly to:
 
-- [The terminology glossary](/mcollective/terminology.html)
-- [The installation instructions](/mcollective/reference/basic/gettingstarted.html)
-- [The configuration guide](/mcollective/reference/basic/configuration.html)
-- [The guide to writing new agent plugins](/mcollective/simplerpc/)
+- [The Vagrant-based demo environment](/mcollective/deploy/demo.html), to try MCollective immediately
+- [The standard deployment guide](/mcollective/deploy/standard.html), to deploy MCollective into your production environment with the recommended configurations
+- [The overview of components](/mcollective/overview_components.html), to learn about the server, client, and middleware roles
+- [The guide to writing new agent plugins](/mcollective/simplerpc/), to build powerful actions that solve your specific problems
 - [The release notes](/mcollective/releasenotes.html)
 
-> Note: MCollective is included with Puppet Enterprise, and new agent plugins will appear in the console's live management controls.
+> Note: MCollective is included with Puppet Enterprise.
 
 [Puppet Dashboard](/dashboard/manual/1.2)
 -----
@@ -63,23 +64,24 @@ Puppet Dashboard is an open source web console for Puppet, which can analyze rep
 
 > Note: Puppet Enterprise's console is based on Puppet Dashboard, and extends it with extra features. PE users should see the PE documentation instead of the Dashboard documentation.
 
-[PuppetDB](/puppetdb/1.1)
+[PuppetDB](/puppetdb/latest)
 -----
 
 PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It caches data generated by Puppet, and gives you advanced features at awesome speed with a powerful API.
 
-[See the PuppetDB 1.1 manual](/puppetdb/1.1), check out the [troubleshooting FAQ](/puppetdb/1.1/puppetdb-faq.html), or go directly to:
+[See the manual for the latest version of PuppetDB](/puppetdb/latest), or go directly to:
 
-* [The system requirements](/puppetdb/1.1/index.html#system-requirements)
-* [Install via Puppet Module](/puppetdb/1.1/install_via_module.html)
-* [Install Manually](/puppetdb/1.1/install_from_packages.html)
+* [Install via Puppet Module](/puppetdb/latest/install_via_module.html)
+* [Install Manually](/puppetdb/latest/install_from_packages.html)
+* [System requirements](/puppetdb/latest/index.html#system-requirements)
+* [Troubleshooting FAQ](/puppetdb/latest/puppetdb-faq.html)
 
-Documentation for previous versions of PuppetDB can be found [here](/puppetdb).
+Documentation for other versions of PuppetDB can be found [here](/puppetdb).
 
 [Hiera](/hiera/1)
 -----
 
-Hiera is a key/value lookup tool for configuration data, built to make Puppet better and let you set node-specific data without repeating yourself. Hiera support is built into Puppet 3, and is available as an add-on for Puppet 2.7. 
+Hiera is a key/value lookup tool for configuration data, built to make Puppet better and let you set node-specific data without repeating yourself. Hiera support is built into Puppet 3, and is available as an add-on for Puppet 2.7.
 
 [See the Hiera 1 manual](/hiera/1), or go directly to:
 
@@ -94,9 +96,9 @@ Hiera is a key/value lookup tool for configuration data, built to make Puppet be
 [Facter](/facter/1.6/core_facts.html)
 -----
 
-Facter is Puppet's cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables. 
+Facter is Puppet's cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables.
 
-* [The list of core facts](/facter/1.6/core_facts.html) lists and describes every built-in fact that ships with Facter. 
+* [The list of core facts](/facter/1.6/core_facts.html) lists and describes every built-in fact that ships with Facter.
 * [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts.
 
 
@@ -106,15 +108,15 @@ Community
 
 Puppet has a large community and many resources for users.
 
-- [Community Guidelines and Code of Conduct](/community/community_guidelines.html) --- General info about how to navigate our community and get help. 
-- [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions. 
-- [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS. 
-- [Redmine Workflow for Puppet Open-Source Projects](/community/puppet_projects_redmine_workflow.html) --- Info about how the Puppet projects use their issue tracker, and how you can help. 
+- [Community Guidelines and Code of Conduct](/community/community_guidelines.html) --- General info about how to navigate our community and get help.
+- [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions.
+- [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS.
+- [Redmine Workflow for Puppet Open-Source Projects](/community/puppet_projects_redmine_workflow.html) --- Info about how the Puppet projects use their issue tracker, and how you can help.
 - [Trivial Patch Exemption Policy](/community/trivial_patch_exemption.html) --- Details about which contributions are exempted from our contributor agreement.
 
 
 
-* * * 
+* * *
 
 Help Improve This Site
 ----------------------
@@ -126,7 +128,7 @@ These documents belong to the community and are licensed under the Creative Comm
 For suggestions or minor corrections, just email <faq@puppetlabs.com>. To contribute text or make larger-scale suggestions, see the [instructions for contributing](./contribute.html).  If you would like to submit your own content, you can fork the project on <A HREF="http://github.com/puppetlabs/puppet-docs">github</A>, make changes, and send us a pull request.  See the README files in the project for more information about how to generate and view a copy of the website.
 
 
-* * * 
+* * *
 
 Documentation Version
 ---------------------

@@ -10,11 +10,11 @@ class RecentCommits < Liquid::Tag
     super
     @limit = (limit == '') ? 10 : limit
   end
-  
+
   def render(context)
     Dir.chdir(context.registers[:site].source) do
       htmlfragment = ''
-      htmlfragment << "<h3>Recent updates:</h3>\n<ul>\n"
+      htmlfragment << "<h3>Recent commits to the puppet-docs repo:</h3>\n<ul>\n"
       commits = %x(git log --oneline --no-merges -n #{@limit} --no-abbrev-commit)
       commits.each do |line|
         fields = line.split(' ', 2)
@@ -26,7 +26,7 @@ class RecentCommits < Liquid::Tag
       htmlfragment << %q{<p><a href="https://github.com/puppetlabs/puppet-docs/commits/master">(More)</a> &mdash; <a href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">(Feed)</a></p>}
     end
   end
-  
+
 end
 
 Liquid::Template.register_tag('recent_commits', RecentCommits)

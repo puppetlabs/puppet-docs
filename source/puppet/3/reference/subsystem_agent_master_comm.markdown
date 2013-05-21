@@ -16,10 +16,15 @@ The puppet agent and the puppet master server communicate via HTTPS over host-ve
 
 > **Note on verification:** If the agent does not yet have its own certificate, it will make several unverified requests before it can switch to verified mode. In these requests, the agent doesn't identify itself to the master and doesn't check the master's cert against the CA. In the descriptions below, assume every request is host-verified unless stated otherwise.
 
-The agent/master interface is REST-like, but may vary from strictly RESTful design in some ways. The endpoints used by the agent are detailed in the [REST API reference][rest_api]. Note that all REST endpoints are preceded by the environment being used. Note also that access to each individual endpoint is controlled by [auth.conf][authconf] on the master.
+The agent/master HTTP interface is REST-like, but varies from strictly RESTful design in several ways. The endpoints used by the agent are detailed in the [HTTP API reference][rest_api]. Note that all HTTP endpoints are preceded by the environment being used. Note also that access to each individual endpoint is controlled by [auth.conf][authconf] on the master.
 
-From beginning to end, an agent run proceeds like this:
+## Diagram
 
+This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the puppet master during a single Puppet run.
+
+[See below the image for a textual description of this process](#check-for-keys-and-certificates), which explains the illustrated steps in more detail.
+
+[![An illustration of the process described below -- this diagram contains no new content, but is simply a visual interpretation of everything from "check for keys and certificates" on down.](./images/agent-master-https-sequence-small.gif)](./images/agent-master-https-sequence-large.gif)
 
 ## Check for Keys and Certificates
 
@@ -58,7 +63,7 @@ Note that if the agent has submitted a certificate signing request, an admin use
 
 If `pluginsync` is enabled on the agent:
 
-1. Do a GET request to `/file_metadatas/plugins` with `recurse=true` and `links=manage`. This is a special file server mountpoint that scans the `lib` directory of every module. Note the funky Rails-esque endpoint pluralization on `file_metadata`. 
+1. Do a GET request to `/file_metadatas/plugins` with `recurse=true` and `links=manage`. This is a special file server mountpoint that scans the `lib` directory of every module. Note the funky Rails-esque endpoint pluralization on `file_metadata`.
 2. Check whether any of the discovered plugins need to be downloaded.
     * If so, do a GET request to `/file_content/plugins/<file>` for each one.
 
@@ -66,13 +71,13 @@ If `pluginsync` is enabled on the agent:
 
 1. Do a POST request to `/catalog/<name>`, where the post data is all of the node's [facts][] encoded as JSON. Receive a compiled [catalog][] in return.
 
-> **Note:** This used to be a GET request with facts encoded as base64-encoded zlib-compressed JSON submitted as a URL parameter. This would sometimes cause failures with certain web servers and a large amount of facts, and was changed to a non-RESTful POST in Puppet 2.7.0. GETs should still work in Puppet 3 if something other than an agent tries one, but agents will use POSTs.
+> **Note:** This used to be a GET request with facts encoded as base64-encoded zlib-compressed JSON submitted as a URL parameter. This would sometimes cause failures with certain web servers and a large amount of facts, and was changed to a POST in Puppet 2.7.0. GETs should still work in Puppet 3 if something other than an agent tries one, but agents will use POSTs.
 >
 > Note also that submitting facts isn't necessarily logically bound to requesting a catalog, and could be done out of band on a different schedule; this is just the way Puppet happens to do it, because the original design assumptions were that relevant facts could change at any moment and you'd always want to guarantee the most recent data. We're experimenting with other ways, some of which might turn out to be better ideas.
 
 ## Make File Source Requests While Applying Catalog
 
-[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests. 
+[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
 
 If you are using the normal compiler, then for each file source, puppet agent will:
 
@@ -87,12 +92,12 @@ If you are using the [static compiler][static], all file metadata is embedded in
     * If it is in sync, move on to the next file source.
     * If it is out of sync, do a GET request to `/file_bucket_file/md5/<checksum>` for the current content.
 
-Note that this is cheaper in terms of network traffic, but potentially more expensive during catalog compilation. Large amounts of files, especially recursive directories, will amplify the effect in both directions. 
+Note that this is cheaper in terms of network traffic, but potentially more expensive during catalog compilation. Large amounts of files, especially recursive directories, will amplify the effect in both directions.
 
 ## Submit Report
 
 If `report` is enabled on the agent:
 
-1. Do a PUT request to `/report/<name>`. The content of the PUT should be a Puppet report object in YAML format. 
+1. Do a PUT request to `/report/<name>`. The content of the PUT should be a Puppet report object in YAML format.
 
 > **Note:** Yes, using PUT for this is not quite proper, but that's how it was implemented. It may change in the future.

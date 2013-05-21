@@ -10,8 +10,8 @@ We want to keep the Puppet communities awesome, and we need your help to keep it
 
 * **Be nice**: Be courteous, respectful and polite to fellow community members: no regional, racial, gender, or other abuse will be tolerated. We like nice people way better than mean ones!
 * **Encourage diversity and participation**: Make everyone in our community feel welcome, regardless of their background, and do everything possible to encourage participation in our community. 
-* **Keep it legal**: Basically, don't get us in trouble. Post only content that you own, do not post private or sensitive information, and don't break the law.
-* **Stay on topic**: Make sure that you are posting to the correct channel and avoid off-topic discussions.  Also remember that nobody likes spam. 
+* **Keep it legal**: Basically, don't get us in trouble. Share only content that you own, do not share private or sensitive information, and don't break the law.
+* **Stay on topic**: Make sure that you are posting to the correct online channel and avoid off-topic discussions.  Also remember that nobody likes spam. 
 
 
 Guideline Violations --- 3 Strikes Method
@@ -33,14 +33,22 @@ Notes:
 * Contact Dawn Foster to report abuse or appeal violations. In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
 
 
-Getting Help
+Activity-Specific Guidelines
 -----
 
+* [Getting Technical Help](#getting-technical-help)
+* [IRC Guidelines](#irc-guidelines)
+* [Mailing List Guidelines](#mailing-list-guidelines)
+* [Ask Puppet Labs Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines) 
+* [Bug Guidelines](#bug-guidelines)
+* [Documentation Guidelines](#documentation-guidelines)
+* [Git / Source Guidelines](#git--source-guidelines)
+* [Forge and Module Guidelines](#forge--module-guidelines)
+* [Event Code of Conduct](#event-code-of-conduct)
+
+### Getting Technical Help
+
 Puppet has a healthy community full of people who are happy to help you get unstuck, but the community works best if you know how it works. If you run into trouble with puppet, these guidelines will make it easier for you to quickly get help.
-
-
-### Self-directed Troubleshooting
-
 
 Puppet has a relatively long history and open development process for an open-source project, so there is a ton of information returned from google searches for various problems. To narrow down your results to the most relevant, try these google tips:
 
@@ -54,17 +62,6 @@ Many general questions about Puppet and Puppet Labs are answered in the [Frequen
 We also provide various [commercial services](http://puppetlabs.com/services/overview/) around Puppet (training, professional services, support, certification and more) for people who want a little extra help.
 
 If you can't solve a problem on your own, there are a lot of places you can go to get help from (and help back!) your fellow community members. The sections below cover the norms and expectations in each area of the Puppet community.
-
-Activity-Specific Guidelines
------
-
-* [IRC Guidelines](#irc-guidelines)
-* [Mailing List Guidelines](#mailing-list-guidelines)
-* [Ask Puppet Labs Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines) 
-* [Bug Guidelines](#bug-guidelines)
-* [Documentation Guidelines](#documentation-guidelines)
-* [Git / Source Guidelines](#git--source-guidelines)
-* [Forge and Module Guidelines](#forge--module-guidelines)
 
 ### IRC Guidelines
 
@@ -206,9 +203,30 @@ Here are a few guidelines that apply specifically to our bug tracker:
 
 The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, written and contributed by users, and we encourage you to publish your modules on the Forge.
 
-* Start with the [Publishing Modules](http://docs.puppetlabs.com/puppet/3/reference/modules_publishing.html) document to learn how to publish your modules to the Puppet Forge.
-* See the [Module Fundamentals](http://docs.puppetlabs.com/puppet/3/reference/modules_fundamentals.html) document for how to write and use your own Puppet modules.
-* See the [Installing Modules](http://docs.puppetlabs.com/puppet/3/reference/modules_installing.html) document for how to install pre-built modules from the Puppet Forge.
+* Start with the [Publishing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html) document to learn how to publish your modules to the Puppet Forge.
+* See the [Module Fundamentals](http://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html) document for how to write and use your own Puppet modules.
+* See the [Installing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_installing.html) document for how to install pre-built modules from the Puppet Forge.
 * See the [Using Plugins](http://docs.puppetlabs.com/guides/plugins_in_modules.html) document for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 
+### Event Code of Conduct
+
+Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of participants in any form. 
+
+We ask you to be considerate of others and behave professionally and respectfully to all other participants. Remember that sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the organizers or Puppet Labs staff members.
+
+Harassment includes offensive verbal comments related to gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, religion, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention. Participants asked to stop any harassing behavior are expected to comply immediately.
+
+If a participant engages in harassing behavior, the event organizers may take any action they deem appropriate, including warning the offender or expulsion from the event with no refund. If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of the event staff immediately.
+
+Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions. 
+
+We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact Dawn Foster (dawn at puppetlabs.com) or Kara Sowles (kara at puppetlabs.com).
+
+We expect all participants to follow these rules at all event venues and related social events.
+
+### Credits
+
 Credit to [01.org](https://01.org/community/participation-guidelines) and [meego.com](http://wiki.meego.com/Community_guidelines), since they formed the starting point for many of these guidelines.
+
+The Event Code of Conduct is based on the [example policy from the Geek Feminism wiki](http://geekfeminism.wikia.com/wiki/Conference_anti-harassment), created by the Ada Initiative and other volunteers. The [PyCon Code of Conduct](https://github.com/python/pycon-code-of-conduct) also served as inspiration.
+

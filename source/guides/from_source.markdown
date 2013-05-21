@@ -13,9 +13,9 @@ title: Running Puppet From Source
 Running Puppet From Source
 =====
 
-Puppet should usually be installed from reliable packages, such as those provided by Puppet Labs or your operating system vendor. If you plan to run Puppet in anything resembling a normal fashion, you should leave this page and see [Installing Puppet][install]. 
+Puppet should usually be installed from reliable packages, such as those provided by Puppet Labs or your operating system vendor. If you plan to run Puppet in anything resembling a normal fashion, you should leave this page and see [Installing Puppet][install].
 
-However, if you are developing Puppet, helping to resolve a bug, or testing a new feature, you may need to run pre-release versions of Puppet. The most flexible way to do this, if you are not being provided with pre-release packages, is to run Puppet directly from source. 
+However, if you are developing Puppet, helping to resolve a bug, or testing a new feature, you may need to run pre-release versions of Puppet. The most flexible way to do this, if you are not being provided with pre-release packages, is to run Puppet directly from source.
 
 > ![windows logo](/images/windows-logo-small.jpg) To run Puppet from source on Windows, [see the equivalent page in the Puppet for Windows documentation](/windows/from_source.html).
 
@@ -29,6 +29,7 @@ Prerequisites
 * Puppet requires Facter, a Ruby library. This guide will also describe how to install Facter from source, but you can skip those steps and instead install Facter from your operating system's packages or with `sudo gem install facter`.
 * To access every version of the Puppet source code, including the current pre-release status of every development branch, you will need [Git][].
 * If you want to run Puppet's tests, you will need [rake][], [rspec][], and [mocha][].
+* If you wish to use Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html), you should also install the `rgen` gem.
 
 [mocha]: http://mocha.rubyforge.org/
 [rspec]: http://rspec.info/
@@ -39,7 +40,7 @@ Prerequisites
 Get and Install the Source
 -----
 
-Use Git to clone the public code repositories for [Puppet][gitpuppet] and [Facter][gitfacter]. The examples below assume a base directory of `/usr/src`; if you are installing the source elsewhere, substitute the correct locations when running commands. 
+Use Git to clone the public code repositories for [Puppet][gitpuppet] and [Facter][gitfacter]. The examples below assume a base directory of `/usr/src`; if you are installing the source elsewhere, substitute the correct locations when running commands.
 
     $ sudo mkdir -p /usr/src
     $ cd /usr/src
@@ -49,7 +50,7 @@ Use Git to clone the public code repositories for [Puppet][gitpuppet] and [Facte
 Select a Branch or Release
 -----
 
-By default, the instructions above will leave you running the `master` branch, which contains code for the next unreleased major version of Puppet. This may or may not be what you want. 
+By default, the instructions above will leave you running the `master` branch, which contains code for the next unreleased major version of Puppet. This may or may not be what you want.
 
 Most development on existing series of releases happens on branches with names like `2.7.x`. [Explore the repository on GitHub][gitpuppet] to find the branch you want, then run:
 
@@ -75,7 +76,7 @@ For Puppet to be functional, Ruby needs to have Puppet and Facter in its load pa
 
     export RUBYLIB=/usr/src/puppet/lib:/usr/src/facter/lib:$RUBYLIB
 
-This will make Puppet and Facter available when run from login shells; if you plan to run Puppet as a daemon from source, you must set `RUBYLIB` appropriately in your init scripts. 
+This will make Puppet and Facter available when run from login shells; if you plan to run Puppet as a daemon from source, you must set `RUBYLIB` appropriately in your init scripts.
 
 Add the Binaries to the Path
 -----
@@ -91,7 +92,7 @@ At this point, you can run `source /etc/profile` or log out and back in again; a
 Configure Puppet
 -----
 
-On systems that have never had Puppet installed, you should do the following: 
+On systems that have never had Puppet installed, you should do the following:
 
 ### Copy auth.conf Into Place
 
@@ -103,14 +104,14 @@ Puppet master uses the [`auth.conf`][authconf] file to control which systems can
 
     $ sudo touch /etc/puppet/puppet.conf
 
-The `puppet.conf` file contains Puppet's settings. See [Configuring Puppet][config] for more details. 
+The `puppet.conf` file contains Puppet's settings. See [Configuring Puppet][config] for more details.
 
-You will likely want to set the following settings: 
+You will likely want to set the following settings:
 
 * In the `[agent]` block:
     * [`certname`](/references/latest/configuration.html#certname)
     * [`server`](/references/latest/configuration.html#server)
-    * [`pluginsync`](/references/latest/configuration.html#pluginsync) 
+    * [`pluginsync`](/references/latest/configuration.html#pluginsync)
     * [`report`](/references/latest/configuration.html#report)
     * [`environment`](/references/latest/configuration.html#environment)
 * In the `[master]` block:
@@ -122,19 +123,19 @@ You will likely want to set the following settings:
 
 ### Create the Puppet User and Group
 
-Puppet requires a user and group. By default, these are `puppet` and `puppet`, but they can be changed in [`puppet.conf`][config] with the [`user`](/references/latest/configuration.html#user) and [`group`](/references/latest/configuration.html#group) settings. 
+Puppet requires a user and group. By default, these are `puppet` and `puppet`, but they can be changed in [`puppet.conf`][config] with the [`user`](/references/latest/configuration.html#user) and [`group`](/references/latest/configuration.html#group) settings.
 
 Create this user and group using your operating system's normal tools, or run the following:
 
     $ sudo puppet resource user puppet ensure=present
     $ sudo puppet resource group puppet ensure=present
 
-If you skip this step, puppet master may not start correctly, and Puppet may have problems when creating some of its run data directories. 
+If you skip this step, puppet master may not start correctly, and Puppet may have problems when creating some of its run data directories.
 
 Run Puppet
 -----
 
-You can now interactively run the main puppet agent, puppet master, and puppet apply commands, as well as any of the additional commands used to manage Puppet. 
+You can now interactively run the main puppet agent, puppet master, and puppet apply commands, as well as any of the additional commands used to manage Puppet.
 
 For testing purposes, you will usually want to run puppet master with the `--verbose` and `--no-daemonize` options and run puppet agent with the `--test` option. For day-to-day use, you should create an init script for puppet agent (see the examples in the source's `conf/` directory) and use a Rack server like Passenger or Unicorn to run puppet master.
 
@@ -149,7 +150,7 @@ If you are running from source, it is likely because you need to stay up to date
     $ sudo git fetch origin
     $ sudo git checkout origin/<BRANCH NAME>
 
-Be sure to stop any Puppet processes before doing this. 
+Be sure to stop any Puppet processes before doing this.
 
-You can also switch versions or branches of Puppet at any time by running `sudo git checkout <VERSION OR BRANCH>`. 
+You can also switch versions or branches of Puppet at any time by running `sudo git checkout <VERSION OR BRANCH>`.
 

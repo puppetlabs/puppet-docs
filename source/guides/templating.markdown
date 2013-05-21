@@ -10,7 +10,7 @@ Learn how to template out configuration files with Puppet, filling in variables
 with the managed node's facts.
 
 [lptemplates]: /learning/templates.html
-[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[modules]: /puppet/latest/reference/modules_fundamentals.html
 [functions]: /references/stable/function.html
 [erb]: http://ruby-doc.org/stdlib-1.8.7/libdoc/erb/rdoc/ERB.html
 
@@ -31,7 +31,7 @@ Templates are evaluated via a simple function:
 
 **Template files should be stored in the `templates` directory of a [Puppet module][modules],** which allows the `template` function to locate them with the simplified path format shown above. For example, the file referenced by `template("my_module/mytemplate.erb")` would be found on disk at `/etc/puppet/modules/my_module/templates/mytemplate.erb` (assuming the common [`modulepath`](/references/latest/configuration.html#modulepath) of `/etc/puppet/modules`).
 
-(The `template` function can also locate files stored in Puppet's [`templatedir`](/references/latest/configuration.html#templatedir), but this is no longer recommended.) 
+(If a file cannot be located within any module, the `template` function will fall back to searching relative to the paths in Puppet's [`templatedir`](/references/latest/configuration.html#templatedir). However, using this setting is no longer recommended.)
 
 Templates are always evaluated by the parser, not by the client.
 This means that if you are using a puppet master server, then the templates
@@ -74,20 +74,20 @@ Here is an example for generating the Apache configuration for
 
     # /etc/puppet/modules/trac/manifests/tracsite.pp
     define trac::tracsite($cgidir, $tracdir) {
-      file { "trac-$name":
-        path    => "/etc/apache2/trac/$name.conf",
-        owner   => root,
-        group   => root,
-        mode    => 644,
+      file { "trac-${name}":
+        path    => "/etc/apache2/trac/${name}.conf",
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
         require => File[apacheconf],
-        content => template("trac/tracsite.erb"),
+        content => template('trac/tracsite.erb'),
         notify  => Service[apache2]
       }
 
-      file { "tracsym-$name":
+      file { "tracsym-${name}":
         ensure => symlink,
-        path   => "$cgidir/$name.cgi",
-        target => "/usr/share/trac/cgi-bin/trac.cgi"
+        path   => "${cgidir}/${name.cgi}",
+        target => '/usr/share/trac/cgi-bin/trac.cgi'
       }
     }
 
@@ -137,6 +137,10 @@ You can access variables in other scopes with the `scope.lookupvar` method:
 This can also be used to ensure that you are getting the top-scope value of a variable that may have been overridden in a local scope:
 
     <%= scope.lookupvar('::domain') %>
+
+Puppet 3 introduces an easier syntax: you can use the square bracket operator (`[]`) on the scope object as though it were a hash.
+
+    <%= scope['::domain'] %>
 
 ### Testing for Undefined variables
 

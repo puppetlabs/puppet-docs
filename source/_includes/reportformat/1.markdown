@@ -1,0 +1,110 @@
+Report Format 1
+-----
+
+This is the format of reports output by Puppet versions 2.6.0 through 2.6.4.
+
+### Puppet::Transaction::Report
+
+The Puppet::Transaction::Report contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>host</td><td>string</td><td>the host that generated this report.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>when the run completed.</td></tr>
+  <tr><td>logs</td><td>array</td><td>0 or more Puppet::Util::Log objects.</td></tr>
+  <tr><td>metrics</td><td>hash</td><td>maps from string (metric category) to Puppet::Util::Metric.</td></tr>
+  <tr><td>resource_statuses</td><td>hash</td><td>maps from resource name to Puppet::Resource::Status</td></tr>
+  <tr><td>external_times</td><td>hash</td><td>this is always a hash from :config_retrieval to a float</td></tr>
+</table>
+
+### Puppet::Util::Log
+
+A Puppet::Util::Log object contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>file</td><td>string</td><td>the pathname of the manifest file which triggered the log message.</td></tr>
+  <tr><td>line</td><td>integer</td><td>the line number in the manifest file which triggered the log message.</td></tr>
+  <tr><td>level</td><td>symbol</td><td>severity of the message.  Possible values for level are :debug, :info, :notice, :warning, :err, :alert, :emerg, :crit</td></tr>
+  <tr><td>message</td><td>string</td><td>the message itself.</td></tr>
+  <tr><td>source</td><td>string</td><td>the origin of the log message.  This could be a resource, a property of a resource, or the string "Puppet".</td></tr>
+  <tr><td>tags</td><td>array</td><td>each array element is a string.</td></tr>
+  <tr><td>time</td><td>datetime</td><td>when the message was sent.</td></tr>
+  <tr><td>version</td><td>string or integer</td><td>If the source is not "Puppet", this is the "configuration version" of the puppet run.  This is a string if the user has specified their own versioning scheme, otherwise an integer representing seconds since the epoch.  If the source is "Puppet", this is the Puppet version of the agent.</td></tr>
+</table>
+
+The "file" and "line" attributes are not always present.
+
+### Puppet::Util::Metric
+
+A Puppet::Util::Metric object represents all the metrics in a single category.  It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>name</td><td>string</td><td>name of the metric category.  This is the same as the key associated with this metric in the metrics hash of the Puppet::Transaction::Report.</td></tr>
+  <tr><td>label</td><td>string</td><td>This is the "titleized" version of the name, which means underscores are replaced with spaces and the first word is capitalized.</td></tr>
+  <tr><td>values</td><td>array</td><td>All the metric values within this category.  Each element is of the form [name, titleized_name, value], where name is the name of the particular metric as a string or symbol, titleized_name is the "titleized" string of the name, and value is the quantity (an integer or a float).</td></tr>
+</table>
+
+The set of particular metrics and categories which appear in a report is a fixed set.  In a successful report, the categories and metrics are:
+
+* In the "time" category, there is a metric for every resource type for which there is at least one resource in the catalog, plus an additional metric, called `:config_retrieval`.  Each value in the "time" category is a float.
+* In the "resources" category, the metrics are `:failed`, `:out_of_sync`, `:changed`, and `:total`.  Each value in the "resources" category is an integer.
+* In the "events" category, there are up to five metrics: "success", "failure", "audit", "noop", and `:total`. `:total` is present if there is at least one resource_status; the others are only present when their values are non-zero. Each value in the "events" category is an integer.
+* In the "changes" category, there is only one metric, called `:total`.  Its value is an integer.  It is not present if there are no changes.
+
+Failed reports contain no metrics.
+
+### Puppet::Resource::Status
+
+A Puppet::Resource::Status object represents the status of a single resource. It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>resource</td><td>string</td><td>the resource name, in the form Type[title]. This is always the same as the key corresponding to this Puppet::Resource::Status object in the resource_statuses hash.</td></tr>
+  <tr><td>file</td><td>string</td><td>the pathname of the manifest file which declared the resource</td></tr>
+  <tr><td>line</td><td>integer</td><td>the line number in the manifest file which declared the resource</td></tr>
+  <tr><td>evaluation_time</td><td>float</td><td>the amount of time, in seconds, taken to evaluate the resource</td></tr>
+  <tr><td>change_count</td><td>integer</td><td>the number of properties with events for the resource (see ticket #5705).  Absent if there are no events.</td></tr>
+  <tr><td>source_description</td><td>string</td><td>the path of the resource</td></tr>
+  <tr><td>tags</td><td>array</td><td>the strings with which the resource is tagged</td></tr>
+  <tr><td>time</td><td>datetime</td><td>the time at which the resource was evaluated</td></tr>
+  <tr><td>version</td><td>string or integer</td><td>the "configuration version" of the puppet run</td></tr>
+  <tr><td>events</td><td>array</td><td>the Puppet::Transaction::Event objects for the resource</td></tr>
+  <tr><td>out_of_sync</td><td>boolean</td><td>True if change_count > 0, otherwise absent (see ticket #5705)</td></tr>
+  <tr><td>changed</td><td>boolean</td><td>True if change_count > 0, otherwise absent (see ticket #5705)</td></tr>
+  <tr><td>skipped</td><td>boolean</td><td>True if the resource was skipped, otherwise absent.</td></tr>
+  <tr><td>failed</td><td>boolean</td><td>True if there was a failure while evaluating this resource, otherwise absent.</td></tr>
+</table>
+
+### Puppet::Transaction::Event
+
+A Puppet::Transaction::Event object represents a single event for a single resource. It contains the following attributes:
+
+<table>
+  <tr><th>name</th><th>type</th><th>description</th></tr>
+  <tr><td>resource</td><td>string</td><td>the resource name, in the form Type[title]. This is the same as the resource property of the Puppet::Resource::Status object.</td></tr>
+  <tr><td>property</td><td>string</td><td>the property for which the event occurred</td></tr>
+  <tr><td>previous_value</td><td>string, array, or hash</td><td>the value of the property before the change was applied</td></tr>
+  <tr><td>desired_value</td><td>string, array, or hash</td><td>for change or noop events, this is the value specified in the manifest. For audit events, this is the audited value from a previous run of Puppet.</td></tr>
+  <tr><td>file</td><td>string</td><td>the pathname of the manifest file which declared the resource</td></tr>
+  <tr><td>line</td><td>integer</td><td>the line number in the manifest file which declared the resource</td></tr>
+  <tr><td>default_log_level</td><td>symbol</td><td>the level at which messages for this resource are logged</td></tr>
+  <tr><td>message</td><td>string</td><td>the log message generated by this event</td></tr>
+  <tr><td>name</td><td>symbol</td><td>the name of the event</td></tr>
+  <tr><td>source_description</td><td>string</td><td>the path to the property</td></tr>
+  <tr><td>status</td><td>string</td><td>one of the following strings: "success", "failure", "noop", "audit", depending on the type of the event</td></tr>
+  <tr><td>time</td><td>datetime</td><td>the time at which the property was evaluated</td></tr>
+  <tr><td>version</td><td>string or integer</td><td>the "configuration version" of the puppet run</td></tr>
+  <tr><td>tags</td><td>array</td><td>the strings with which the resource is tagged.  The same as for the corresponding Puppet::Resource::Status object.</td></tr>
+</table>
+
+### Differences from Report Format 0
+
+* Puppet::Transaction::Report lost the "records" field and gained resource_statuses and external_times.
+* Puppet::Util::Log#version is now always present.  For the case when source is Puppet, it is the version of the Puppet agent.
+* Puppet::Util::Metric value names were previously always symbols; now they are sometimes symbols and sometimes strings.
+* In the metric category "time", metrics no longer appear for resource types that do not appear in the catalog.
+* The time/total metric is no longer present.
+* In the resources category, the metrics are different: "failed_restarts", "scheduled", "skipped", "applied", and "restarted" are no longer present.  "Changed" has been added.
+* The "events" metric category is new.

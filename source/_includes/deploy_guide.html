@@ -1,0 +1,36 @@
+{% comment %}
+
+Format: 
+<ul>
+  <li><strong>section label</strong>
+    <ul>
+      <li>page if-links...</li>
+    </ul>
+  </li>
+<ul>
+
+
+{% endcomment %}
+
+<h3><a href="dg_intro_install.html">Puppet Enterprise Deployment Guide</a></h3>
+
+<ul>
+  <li><strong>Chapters</strong>
+    <ul>
+      <li>{% iflink "1. Introduction & Installation", "dg_intro_install.html" %}</li>
+      <li>{% iflink "2. First Steps: Setting Up Your Environment", "dg_first_steps.html" %}</li>
+     <li>{% iflink "3. Automating Your Infrastructure", "dg_define_infrastructure.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Other Resources</strong>
+    <ul>
+        <li>{% iflink "Glossary of Puppet Terminology", "../../references/glossary.html" %}</li>
+        <li>{% iflink "Puppet Reference Manual", "../../puppet/2.7/reference/index.html" %}</li>
+        <li>{% iflink "PE User Manual", "../../pe/latest/index.html" %}</li>
+        <li>{% iflink "Quick Start: Using PE", "../../pe/latest/quick_start.html" %}</li>
+        <li>{% iflink "Quick Start: Writing Modules", "../../pe/latest/quick_writing.html" %}</li>
+    </ul>
+
+  
+
+

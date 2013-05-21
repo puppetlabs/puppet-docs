@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 0.9 » Installing PuppetDB"
 layout: default
-canonical: "/puppetdb/1.1/install_via_module.html"
+canonical: "/puppetdb/latest/install_via_module.html"
 ---
 
 
@@ -27,7 +27,7 @@ If Puppet isn't fully configured yet, install it and request/sign/retrieve a cer
 * [Instructions for open source Puppet][installpuppet]
 
 [installpuppet]: /guides/installation.html
-[installpe]: /pe/2.5/install_basic.html
+[installpe]: /pe/latest/install_basic.html
 
 > Note: If Puppet doesn't have a valid certificate when PuppetDB is installed, you will have to [run the SSL config script and edit the config file][ssl_script], or [manually configure PuppetDB's SSL credentials][keystore_instructions] before the puppet master will be able to connect to PuppetDB.
 

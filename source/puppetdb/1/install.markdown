@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 1 » Installing PuppetDB"
 layout: default
-canonical: "/puppetdb/1.1/install_via_module.html"
+canonical: "/puppetdb/latest/install_via_module.html"
 ---
 
 [connect_master]: ./connect_puppet_master.html
@@ -28,7 +28,7 @@ If Puppet isn't fully installed and configured yet on your PuppetDB server, inst
 * [Instructions for open source Puppet][installpuppet]
 
 [installpuppet]: /guides/installation.html
-[installpe]: /pe/2.5/install_basic.html
+[installpe]: /pe/latest/install_basic.html
 
 Your PuppetDB server should be running puppet agent and have a signed certificate from your puppet master server. If you run `puppet agent --test`, it should successfully complete a run, ending with "`notice: Finished catalog run in X.XX seconds`."
 

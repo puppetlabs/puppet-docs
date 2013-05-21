@@ -6,17 +6,17 @@ title: Inventory Service
 Inventory Service
 ======
 
-[puppetdb]: /puppetdb/1
-[puppetdb_nodes]: /puppetdb/1.1/api/query/v2/nodes.html
-[puppetdb_facts]: /puppetdb/1.1/api/query/v2/facts.html
-[puppetdb_fact-names]: /puppetdb/1.1/api/query/v2/fact-names.html
-[puppetdb_install]: /puppetdb/1.1/install_via_module.html
-[puppetdb_connect]: /puppetdb/1.1/connect_puppet_master.html
+[puppetdb]: /puppetdb/latest/
+[puppetdb_nodes]: /puppetdb/latest/api/query/v2/nodes.html
+[puppetdb_facts]: /puppetdb/latest/api/query/v2/facts.html
+[puppetdb_fact-names]: /puppetdb/latest/api/query/v2/fact-names.html
+[puppetdb_install]: /puppetdb/latest/install_via_module.html
+[puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
 [authdotconf]: ./rest_auth_conf.html
 [rest]: ./rest_api.html#facts
 [old_storeconfigs]: http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration
-[facts]: /puppet/2.7/reference/lang_variables.html#facts-and-built-in-variables
-[exported]: /puppet/2.7/reference/lang_exported.html
+[facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[exported]: /puppet/latest/reference/lang_exported.html
 
 Starting with Puppet 2.6.7, puppet master servers offer API access to the [facts][] reported by every node. You can use this API to get complete info about any node, and to search for nodes whose facts meet certain criteria.
 
@@ -27,31 +27,31 @@ Starting with Puppet 2.6.7, puppet master servers offer API access to the [facts
 What It Is
 -----
 
-The _inventory_ is a collection of node facts. The _inventory service_ is a retrieval, storage, and search API exposed to the network by the puppet master. The _inventory service backend_ (AKA the `facts_terminus`) is what the puppet master uses to store the inventory and do some of the heavy lifting of the inventory service. 
+The _inventory_ is a collection of node facts. The _inventory service_ is a retrieval, storage, and search API exposed to the network by the puppet master. The _inventory service backend_ (AKA the `facts_terminus`) is what the puppet master uses to store the inventory and do some of the heavy lifting of the inventory service.
 
-The puppet master updates the inventory when agent nodes report their facts, which happens every time puppet agent requests a catalog. Optionally, additional puppet masters can use the REST API to send facts from their agents to the central inventory. 
+The puppet master updates the inventory when agent nodes report their facts, which happens every time puppet agent requests a catalog. Optionally, additional puppet masters can use the HTTP API to send facts from their agents to the central inventory.
 
-Other tools, including Puppet Dashboard, can query the inventory via the puppet master's REST API. An API call can return:
+Other tools, including Puppet Dashboard, can query the inventory via the puppet master's HTTP API. An API call can return:
 
 * Complete facts for a single node
 
-or 
+or
 
 * A list of nodes whose facts meet some search condition
 
-Information in the inventory is never automatically expired, but it is timestamped. 
+Information in the inventory is never automatically expired, but it is timestamped.
 
 Using the Inventory Service
 -----
 
-The inventory service is plain vanilla REST: Submit HTTP requests, get back structured fact or host data. 
+The inventory service is plain vanilla HTTP: Submit HTTP requests, get back structured fact or host data.
 
-To read from the inventory, submit secured HTTP requests to the puppet master's `facts` and `facts_search` REST endpoints in the appropriate environment. Your API client will have to have an SSL certificate signed by the puppet master's CA.
+To read from the inventory, submit secured HTTP requests to the puppet master's `facts` and `facts_search` HTTP endpoints in the appropriate environment. Your API client will have to have an SSL certificate signed by the puppet master's CA.
 
 Full documentation of these endpoints can be found [here](http://docs.puppetlabs.com/guides/rest_api.html#facts), but a summary follows:
 
-* To retrieve the facts for testnode.example.com, send a GET request to <https://puppet:8140/production/facts/testnode.example.com>. 
-* To retrieve a list of all Ubuntu nodes with two or more processors, send a GET request to <https://puppet:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu>. 
+* To retrieve the facts for testnode.example.com, send a GET request to <https://puppet:8140/production/facts/testnode.example.com>.
+* To retrieve a list of all Ubuntu nodes with two or more processors, send a GET request to <https://puppet:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu>.
 
 In both cases, be sure to specify an `Accept: pson` or `Accept: yaml` header.
 
@@ -68,7 +68,7 @@ Setting Up the Inventory Service
 
 ### Configuring the Inventory Backend
 
-There are two inventory service backends available: PuppetDB and `inventory_active_record`. 
+There are two inventory service backends available: PuppetDB and `inventory_active_record`.
 
 * If you are using Puppet 2.7.12 or later, **use PuppetDB.** It is faster, easier to configure and maintain, and also provides resource stashing to enable [exported resources][exported]. Follow the installation and configuration instructions in the PuppetDB manual, and connect every puppet master to your PuppetDB server:
     * [Install PuppetDB][puppetdb_install]
@@ -99,12 +99,12 @@ For production deployment, you'll need to allow find and search access for each 
 
 ### Configuring Certificates
 
-To connect your application securely, you'll need a certificate signed by your site's puppet CA. There are two main ways to get this: 
+To connect your application securely, you'll need a certificate signed by your site's puppet CA. There are two main ways to get this:
 
-* **On the puppet master:** 
+* **On the puppet master:**
     * Run `puppet cert --generate {certname for application}`.
-    * Then, retrieve the private key (`{ssldir}/certs/{certname}.pem`) and the signed certificate (`{ssldir}/private_keys/{certname}.pem`) and move them to your application server. 
-* **Manually:** 
+    * Then, retrieve the private key (`{ssldir}/certs/{certname}.pem`) and the signed certificate (`{ssldir}/private_keys/{certname}.pem`) and move them to your application server.
+* **Manually:**
     * Generate an RSA private key: `openssl genrsa -out {certname}.key 1024`.
     * Generate a certificate signing request (CSR): `openssl req -new -key {certname}.key -subj "/CN={certname}" -out request.csr`.
     * Submit the CSR to the puppet master for signing: `curl -k -X PUT -H "Content-Type: text/plain" --data-binary @request.csr https://puppet:8140/production/certificate_request/new`.
@@ -113,14 +113,14 @@ To connect your application securely, you'll need a certificate signed by your s
 
 For one-off applications, generating it on the master is obviously easier, but if you're building a tool for distribution elsewhere, your users will appreciate it if you script the manual method and emulate the way puppet agent gets a cert.
 
-Protect your application's private key appropriately, since it's the gateway to your inventory data. 
+Protect your application's private key appropriately, since it's the gateway to your inventory data.
 
 In the event of a security breach, the application's certificate is revokable the same way any puppet agent certificate would be.
 
 Testing the Inventory Service
 -------
 
-On a machine that you've authorized to access the facts and facts_search resources, you can test the API using `curl`, as described in the [REST API docs][rest]. To retrieve facts for a node:
+On a machine that you've authorized to access the facts and facts_search resources, you can test the API using `curl`, as described in the [HTTP API docs][rest]. To retrieve facts for a node:
 
     curl -k -H "Accept: yaml" https://puppet:8140/production/facts/{node certname}
 
@@ -141,13 +141,13 @@ The `inventory_active_record` backend works on older puppet masters, all the way
 Unlike PuppetDB, this backend splits your puppet masters into two groups, which must be configured differently:
 
 * The designated inventory puppet master must be configured to access a database. (If you site only has one puppet master, this is it.)
-* Every other puppet master must be configured to access the designated inventory puppet master. 
+* Every other puppet master must be configured to access the designated inventory puppet master.
 
 ### Configuring the Inventory Puppet Master
 
 #### Step 1: Create a Database and User
 
-The inventory puppet master will need access to both a **database** and a **user account with all privileges on that database;** setting that up is outside the scope of this document. The database server can be remote or on the local host. 
+The inventory puppet master will need access to both a **database** and a **user account with all privileges on that database;** setting that up is outside the scope of this document. The database server can be remote or on the local host.
 
 Since database access is mediated by the common ActiveRecord library, you can, in theory, use any local or remote database supported by Rails. In practice, MySQL on the same server as the puppet master is the best-documented approach. See [the documentation for the legacy ActiveRecord storeconfigs backend][old_storeconfigs] for more details about setting up and configuring a database with Puppet.
 
@@ -175,7 +175,7 @@ Note that some of these are only necessary for certain databases. As above, [see
 
 #### Step 4: Edit auth.conf (multiple masters only)
 
-Since your other puppet masters will be sending node facts to the designated inventory master, you will need to give each of them `save` access to the `facts` REST endpoint.
+Since your other puppet masters will be sending node facts to the designated inventory master, you will need to give each of them `save` access to the `facts` HTTP endpoint.
 
     path /facts
     auth yes

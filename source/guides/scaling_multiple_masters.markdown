@@ -10,16 +10,17 @@ To scale beyond a certain size, or for geographic distribution or disaster recov
 
 > Note: As of this writing, this document does not cover:
 > 
-> * How to expand the inventory service or storeconfigs ([PuppetDB](/puppetdb) should be implemented for this, with all masters using a shared PuppetDB instance)
 > * How to expand Puppet Enterprise's orchestration or live management features
+> * How to use multiple PE console or Puppet Dashboard servers
 
 In brief:
 
 1. [Determine the method you will use to distribute the agent load among the available masters](#distributing-agent-load)
 2. [Centralize all certificate authority functions](#centralize-the-certificate-authority)
 3. [Bring up additional puppet master servers](#create-new-puppet-master-servers)
-4. [Keep manifests and modules in sync across your puppet masters](#keep-manifests-and-modules-in-sync-across-your-puppet-masters)
-5. [Implement agent load distribution](#implement-load-distribution)
+4. [Centralize reporting, inventory service, and storeconfigs (if necessary)](#centralize-reports-inventory-service-and-catalog-searching-storeconfigs)
+5. [Keep manifests and modules in sync across your puppet masters](#keep-manifests-and-modules-in-sync-across-your-puppet-masters)
+6. [Implement agent load distribution](#implement-load-distribution)
 
 
 Distributing Agent Load
@@ -141,7 +142,7 @@ Create New Puppet Master Servers
 To add a new puppet master server to your deployment, begin by installing and configuring Puppet as per normal. 
 
 * [Installing Puppet (open source versions)](/guides/installation.html)
-* [Installing Puppet Enterprise](/pe/2.5/install_basic.html)
+* [Installing Puppet Enterprise](/pe/latest/install_basic.html)
 
 Like with any puppet master, you'll need to use a production-grade web server rather than the default WEBrick server. We generally assume that you know how to do this if you're already at the point where you need multiple masters, but see [Scaling with Passenger](/guides/passenger.html) for one way to do it.
 
@@ -170,6 +171,18 @@ Like with any puppet master, you'll need to use a production-grade web server ra
   (You'll need to add `--allow-dns-alt-names` to the command if `dns_alt_names` were in the certificate request.)
 
 * * *
+
+Centralize Reports, Inventory Service, and Catalog Searching (storeconfigs)
+-----
+
+If you are using Puppet Dashboard or another HTTP report processor, you should point all of your puppet masters at the same shared Dashboard server; otherwise, you won't be able to see all of your nodes' reports. 
+
+If you are using the inventory service or exported resources, it's complex and impractical to use any of the older (activerecord) backends in a multi-master environment. **You should definitely switch to [PuppetDB](/puppetdb),** and point all of your puppet masters at a shared PuppetDB instance. A reasonably robust PuppetDB server can handle many puppet masters and many thousands of agent nodes. 
+
+See [the PuppetDB manual](/puppetdb/latest) for instructions on setting up PuppetDB. You will need to deploy a PuppetDB server, then configure each puppet master to use it. 
+
+
+* * * 
 
 Keep Manifests and Modules in Sync Across Your Puppet Masters
 -----

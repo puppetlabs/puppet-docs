@@ -1,18 +1,18 @@
 ---
 title: "PuppetDB 1 » Overview"
 layout: default
-canonical: "/puppetdb/1.1/index.html"
+canonical: "/puppetdb/latest/index.html"
 ---
 
-[exported]: /puppet/2.7/reference/lang_exported.html
+[exported]: /puppet/latest/reference/lang_exported.html
 [inventory]: /guides/inventory_service.html
 [apply]: ./connect_puppet_apply.html
 [connect]: ./connect_puppet_master.html
 [install_advanced]: ./install_from_source.html
 [install]: ./install.html
 [scaling]: ./scaling_recommendations.html
-[facts]: /puppet/2.7/reference/lang_variables.html#facts
-[catalog]: /puppet/2.7/reference/lang_summary.html#compilation-and-catalogs
+[facts]: /puppet/latest/reference/lang_variables.html#facts
+[catalog]: /puppet/latest/reference/lang_summary.html#compilation-and-catalogs
 [releasenotes]: ./release_notes.html
 [github]: https://github.com/puppetlabs/puppetdb
 [redmine]: http://projects.puppetlabs.com/projects/puppetdb/issues

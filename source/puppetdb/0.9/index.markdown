@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 0.9 » Overview"
 layout: default
-canonical: "/puppetdb/1.1/index.html"
+canonical: "/puppetdb/latest/index.html"
 ---
 
 

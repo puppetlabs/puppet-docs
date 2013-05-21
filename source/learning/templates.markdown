@@ -95,7 +95,10 @@ As a sidenote: if you give more than one argument to the template function...
 
 ...it will evaluate each of the templates, then concatenate their outputs and return a single string. 
 
+For more details on the behavior of Puppet templates, see [the guide for Using Puppet Templates][pgtemplating].
+
 [4885]: http://projects.puppetlabs.com/issues/4885
+[pgtemplating]: /guides/templating.html
 [^timing]: This is a good time to remind you that filling a `content` attribute  happens during catalog compilation, and serving a file with a `puppet:///` URL happens during catalog application. Again, this doesn't matter right now, but it may make some things clearer later.
 [^paths]: This inconsistency is one of those problems that tend to crop up over time when software grows organically. We're working on it, and you can keep an eye on [ticket #4885][4885] if that sort of thing interests you.
 

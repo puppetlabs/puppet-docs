@@ -3,7 +3,7 @@ layout: legacy
 title: Puppet Documentation Index
 ---
 
-This is the documentation for Puppet, the industry-leading configuration management toolkit. Most of the content here applies equally to Puppet Enterprise and open source releases of Puppet. 
+This is the documentation for Puppet, the industry-leading configuration management toolkit. Most of the content here applies equally to Puppet Enterprise and open source releases of Puppet.
 
 Drive-Thru
 ----------
@@ -17,7 +17,7 @@ Small documents for getting help fast.
 * [Frequently Asked Questions](/guides/faq.html)
 * [Glossary](/references/glossary.html)
 
-* * * 
+* * *
 
 Learning Puppet
 ---------------
@@ -28,7 +28,7 @@ Learn to use Puppet! New users: start here.
 
 {% include learning_nav.markdown %}
 
-* * * 
+* * *
 
 Reference Shelf
 ---------------
@@ -47,13 +47,13 @@ A concise reference to Puppet 3's usage and internals. Use the left sidebar of a
 A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
 - [Table of Contents](/puppet/2.7/reference)
-- [Language](/puppet/2.7/reference/lang_summary.html) --- A complete reference to the Puppet language. 
+- [Language](/puppet/2.7/reference/lang_summary.html) --- A complete reference to the Puppet language.
 - [Modules](/puppet/2.7/reference/modules_fundamentals.html)
 
 
 ### Miscellaneous References
 
-* [REST API](/guides/rest_api.html) --- reference of API-accessible resources
+* [HTTP API](/guides/rest_api.html) --- reference of API-accessible resources
 * [Puppet Language Guide](/guides/language_guide.html) --- an older version of the [Puppet reference manual's language reference](#puppet-27-reference-manualpuppet27reference)
 * [Puppet Manpages](/man/) --- detailed help for each Puppet application
 
@@ -71,7 +71,7 @@ These references are automatically generated from the inline documentation in Pu
 
 * [Versioned References](/references/) --- inline reference docs from Puppet's past and present
 
-* * * 
+* * *
 
 Puppet Guides
 -------------
@@ -146,7 +146,7 @@ Build your own tools and workflows on top of Puppet.
 
 #### Using APIs and Interfaces
 
-* [REST Access Control](/guides/rest_auth_conf.html) --- secure API access with `auth.conf`
+* [HTTP Access Control](/guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](/guides/external_nodes.html) --- specify what your machines do using external data sources
 
 #### Using Ruby Plugins
@@ -165,7 +165,7 @@ Build your own tools and workflows on top of Puppet.
 * [Puppet Internals](/guides/puppet_internals.html) --- understand how
   Puppet works internally
 
-* * * 
+* * *
 
 Other Resources
 ---------------

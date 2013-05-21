@@ -829,7 +829,7 @@ source
     on the local host, whereas `agent` will connect to the
     puppet server that it received the manifest from.
 
-    See the [fileserver configuration documentation](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration) for information on how to configure
+    See the [fileserver configuration documentation](http://docs.puppetlabs.com/guides/file_serving.html) for information on how to configure
     and use file services within Puppet.
 
     If you specify multiple file sources for a file, then the first
@@ -3772,7 +3772,7 @@ hpuxuseradd      | *X*               |                 |                | *X*   
 ldap             |                   |                 |                |                 |                      | *X*               |                      |              |
 pw               | *X*               |                 |                | *X*             |                      |                   |                      |              |
 user_role_add    | *X*               |                 |                | *X*             | *X*                  | *X*               | *X*                  |              |
-useradd          | *X*               |                 | *X*            | *X*             |                      |                   |                      | *X*          |
+useradd          | *X*               |                 | *X*            | *X*             | *X*                  | *X*               |                      | *X*          |
 
 #### Parameters
 

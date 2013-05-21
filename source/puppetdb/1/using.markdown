@@ -1,10 +1,10 @@
 ---
 title: "PuppetDB 1 » Using PuppetDB"
 layout: default
-canonical: "/puppetdb/1.1/using.html"
+canonical: "/puppetdb/latest/using.html"
 ---
 
-[exported]: /puppet/2.7/reference/lang_exported.html
+[exported]: /puppet/latest/reference/lang_exported.html
 
 
 Currently, the main use for PuppetDB is to enable advanced features in Puppet. We expect additional applications to be built on PuppetDB as it becomes more widespread.

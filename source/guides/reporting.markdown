@@ -54,19 +54,12 @@ each report, and each type of metric has one or more values:
 
 ## Setting Up Reporting
 
-By default, the client does not send reports, and the server is only configured to store reports, which just stores received YAML-formatted reports
+By default, the agent does not send reports, and the master is only configured to store reports, which just dumps reports as YAML
 in the [`reportdir`](/references/latest/configuration.html#reportdir).
 
-Clients default to sending reports to the same server they get
-their configurations from, but you can change that by setting
-[`reportserver`](/references/latest/configuration.html#reportserver) on the client, so if you have load-balanced Puppet
-servers you can keep all of your reports consolidated on a single
-machine.
+### Make Agent Nodes Send Reports
 
-### Sending Reports
-
-In order to turn on reporting on puppet agent nodes, the
-[`report`](/references/latest/configuration.html#report) setting must be set to true. This should be done in the [`puppet.conf` file][conf]:
+Set the [`report`](/references/latest/configuration.html#report) setting in the [`puppet.conf` file][conf] to true in order to turn on reporting on agent nodes.
 
 [conf]: ./configuring.html
 
@@ -79,16 +72,26 @@ In order to turn on reporting on puppet agent nodes, the
 With this setting enabled, the agent will then send the report to
 the puppet master server at the end of every transaction.
 
-### Processing Reports
+Agents default to sending reports to the same server they get
+their configurations from, but you can change that by setting
+[`reportserver`](/references/latest/configuration.html#reportserver), so if you have load-balanced Puppet
+servers you can keep all of your reports consolidated on a single
+machine. (This is unimportant if the puppet masters are using report processors like `http` or `puppetdb`, which just hand off reports to an external system.)
+
+### Make Masters Process Reports
 
 By default, the puppet master server stores incoming YAML reports to
 disk in the [`reportdir`](/references/latest/configuration.html#reportdir). There are other report types available that can process each report as it arrives; you can use Puppet's built-in report processors, write custom report processor plugins, or write an out-of-band report analyzer task that consumes the stored YAML reports on your own schedule.
 
 #### Using Built-In Reports
 
-Select the report processors to use with the [`reports`](/references/latest/configuration.html#reports) setting in the puppet master's [`puppet.conf`][conf] file. This setting should be a comma-separated list of available report processors.
+* [A list of the available built-in report processors](/references/latest/report.html)
 
-A list of the available built-in report processors [is available here](/references/latest/report.html).
+Select the report processors to use with the [`reports`](/references/latest/configuration.html#reports) setting in the puppet master's [`puppet.conf`][conf] file. This setting should be a comma-separated list of report processors to use; if there is more than one, Puppet will run all of them.
+
+The most useful one is usually the `http` processor, which sends reports to an arbitrary URL. Puppet Dashboard uses this, and it's easy enough to write a web service that consumes reports.
+
+The [PuppetDB](/puppetdb/latest) terminus plugins also include a `puppetdb` report processor.
 
 #### Writing Custom Reports
 
@@ -113,10 +116,21 @@ These example reports were [posted to the Puppet users group by a Puppet Labs em
 
 [jamesreports]: http://groups.google.com/group/puppet-users/browse_thread/thread/939cfc2e714544df/6d5aa6ae2ce51831
 
-
+When writing a report processor, you will need to handle a Puppet::Transaction::Report object provided by Puppet. See [Report Formats below](#report-formats).
 
 #### Using External Report Processors
 
 Alternately, you can use the default `store` report and write an external
-report processor that reads in and analyzes the saved YAML files. This is ideal for analyzing large amounts of reports on demand, and allows the report processor to be written in any common scripting language. 
+report processor that reads in and analyzes the saved YAML files. This is ideal for analyzing large amounts of reports on demand, and allows the report processor to be written in any common scripting language.
 
+Report Formats
+-----
+
+Puppet creates reports as Puppet::Transaction::Report objects, which have changed format several times over the course of Puppet's history. We have report format references for the following Puppet versions:
+
+* [Puppet 3.x](/puppet/3/reference/format_report.html) (report format 3)
+* [Puppet 2.7.x](/puppet/2.7/reference/format_report.html) (report formats 3 and 2)
+* [Puppet 2.6.x](/puppet/2.6/format_report.html) (report formats 2 and 1)
+* [Puppet 0.25.5](/puppet/0.25/format_report.html) (report format 0)
+
+The report format applies to both the Ruby object handed to a report processor and the YAML object written to disk by the default `store` processor.

@@ -56,7 +56,7 @@ code {
   background-color: #eee;
   border: 1px solid #ccc;
 }
-var  { 
+var  {
   font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
   font-weight: bold;
 }
@@ -137,12 +137,12 @@ body {
 	0% {
 	   background-color: rgba(0,0,0,0.25);
 	}
-	
+
 	50% {
 	  background-color: rgba(0,0,0,0.5);
 	  border-color: rgba(0,0,0,0.25);
 	}
-	
+
 	100% {
 	  background-color: rgba(0,0,0,0.25);
 	}
@@ -324,7 +324,7 @@ p > ul, ol, dl {
 
 ol > li {
   position: relative;
-  line-height: 1.25em;
+  line-height: 1.5em;
 }
 
 li {
@@ -368,7 +368,7 @@ div.left.quote {
 }
 
 /* Commenting out because I want to use blockquote elements as asides. This is semantically sketchy (this should properly be done with <aside> elements), but because Markdown has a native representation of blockquotes, and because most Markdown implementations won't recursively process Markdown syntax contained within non-native block elements, it's the easiest way to get what we want. -NF Feb 29 2012 */
-/* 
+/*
 blockquote:before {
   content: "“";
   position: absolute;
@@ -1058,7 +1058,7 @@ footer#footer ul li span.indicator {
 }
 
 /* NF: I can tell what this was originally meant to do, but it's not doing it. Turning it off. */
-/* 
+/*
 footer#footer ul li.chat span.indicator {
   background: url(images/icons/16/aim.png);
 }
@@ -1241,6 +1241,11 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
   top: 0.125em;
 }
 
+/* This adds up to the same left spacing as unordered lists get... sort of. */
+body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol {
+  margin-left: 2.5em;
+}
+
 /* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
 section#content div.primary-secondary-content div.primary-content p img {
   border: solid 1px #ccc;
@@ -1275,9 +1280,12 @@ dd > p {
 /* @group Docs TOC */
 
 ol.toc {
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 0;
   color: #888;
   font-weight: bold;
+  margin-left: 0;
 }
 
 ol.toc a {
@@ -1289,11 +1297,12 @@ ol.toc a {
 ol.toc > li > ol.toc {
   padding-bottom: 0;
   padding-top: 0.25em;
-  padding-left: 1.4em;
+  padding-left: 0;
   margin-bottom: 0;
   font-size: 0.9em;
   list-style-type: decimal;
   color: #aaa;
+  margin-left: 0;
 }
 
 ol.toc > li {

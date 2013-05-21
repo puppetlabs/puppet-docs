@@ -1,12 +1,12 @@
 ---
 layout: legacy
-title: REST API
+title: HTTP API
 ---
 
-REST API
+HTTP API
 ========
 
-Both puppet master and puppet agent have RESTful API's that they use to communicate.
+Both puppet master and puppet agent have pseudo-RESTful HTTP API's that they use to communicate.
 The basic structure of the url to access this API is
 
     https://yourpuppetmaster:8140/{environment}/{resource}/{key}
@@ -15,25 +15,25 @@ The basic structure of the url to access this API is
 Details about what resources are available and the formats they return are
 below.
 
-## REST API Security
+## HTTP API Security
 
 Puppet usually takes care of security and SSL certificate
-management for you, but if you want to use the RESTful API outside of that
+management for you, but if you want to use the HTTP API outside of that
 you'll need to manage certificates yourself when you connect. This can be done by using
 a pre-existing signed agent certificate, by generating and signing a certificate on the puppet
 master and manually distributing it to the connecting host, or by re-implementing puppet
 agent's generate / submit signing request / received signed certificate behavior in your custom app.
 
-The security policy for the REST API can be controlled through the
+The security policy for the HTTP API can be controlled through the
 [`rest_authconfig`][authconf] file. For testing purposes, it is also possible to
 permit unauthenticated connections from all hosts or a subset of hosts; see the
 [`rest_authconfig` documentation][authconf] for more details.
 
 [authconf]: ./rest_auth_conf.html
 
-## Testing the REST API using curl
+## Testing the HTTP API using curl
 
-An example of how you can use the REST API to retrieve the catalog for a node
+An example of how you can use the HTTP API to retrieve the catalog for a node
 can be seen using [curl](http://en.wikipedia.org/wiki/CURL).
 
     curl --cert /etc/puppet/ssl/certs/mymachine.pem --key /etc/puppet/ssl/private_keys/mymachine.pem --cacert /etc/puppet/ssl/ca/ca_crt.pem -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
@@ -48,7 +48,7 @@ file. The above curl invocation without certificates would be as follows:
     curl --insecure -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
 
 Basically we just send a header specifying the format or formats we want back,
-and the RESTful URI for getting a catalog for mymachine in the production
+and the HTTP URI for getting a catalog for mymachine in the production
 environment.  Here's a snippet of the output you might get back:
 
     --- &id001 !ruby/object:Puppet::Resource::Catalog
@@ -92,7 +92,7 @@ Example:
     curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
     curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
 
-## The master REST API
+## The master HTTP API
 
 A valid and signed certificate is required to retrieve these resources.
 
@@ -133,7 +133,7 @@ Example:
     curl -k -X PUT -H "Content-Type: text/plain" --data-binary @cert_request.csr https://puppetmaster:8140/production/certificate_request/no_key
 
 <!-- Note that --data won't work; it has to be --data-binary. -->
-To manually generate a CSR from an existing private key: 
+To manually generate a CSR from an existing private key:
 
     openssl req -new -key private_key.pem -subj "/CN={node certname}" -out request.csr
 
@@ -143,7 +143,7 @@ The subject can only include a /CN=, nothing else. Puppet master will determine 
 
 **Puppet 2.7.0 and later.**
 
-Read or alter the status of a certificate or pending certificate request. This endpoint is roughly equivalent to the puppet cert command; rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA. 
+Read or alter the status of a certificate or pending certificate request. This endpoint is roughly equivalent to the puppet cert command; rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA.
 
 GET `/{environment}/certificate_status/{certname}`
 
@@ -166,7 +166,7 @@ host.
 DELETE `/{environment}/certificate_status/{hostname}`
 
 Cause the certificate authority to discard all SSL information regarding a host (including
-any certificates, certificate requests, and keys). This **does not** revoke the certificate if one is present; if you wish to emulate the behavior of `puppet cert --clean`, you must PUT a `desired_state` of revoked before deleting the host's SSL information. 
+any certificates, certificate requests, and keys). This **does not** revoke the certificate if one is present; if you wish to emulate the behavior of `puppet cert --clean`, you must PUT a `desired_state` of revoked before deleting the host's SSL information.
 
 Examples:
 
@@ -224,7 +224,7 @@ Get a file from the file server.
 
 GET `/file_{metadata, content}/{file}`
 
-File serving is covered in more depth on the [wiki](http://projects.puppetlabs.com/projects/puppet/wiki/File_Serving_Configuration)
+File serving is covered in more depth in the [fileserver configuration documentation](http://docs.puppetlabs.com/guides/file_serving.html)
 
 ### Node
 
@@ -281,7 +281,7 @@ If you leave off the `.{comparison type}`, the comparison will default to simple
 * `gt` --- `>`
 * `ge` --- `>=`
 
-## The agent REST API
+## The agent HTTP API
 
 By default, puppet agent is set not to listen to HTTP requests.  To enable this you
 must set `listen = true` in the puppet.conf or pass `--listen true` to puppet agent

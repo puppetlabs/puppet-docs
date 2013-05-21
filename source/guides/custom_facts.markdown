@@ -187,15 +187,10 @@ the `timeout` property. If a fact is defined with a timeout and the evaluation
 of the setcode block exceeds the timeout, Facter will halt the resolution of
 that fact and move on.
 
-    # Randomly sleep
-    Facter.add(:sleep) do
-      timeout = 10
+    # Sleep
+    Facter.add(:sleep, :timeout => 10) do
       setcode do
-        if Random.rand(6) == 0
           sleep 999999
-        else
-          "awake"
-        end
       end
     end
 
@@ -251,11 +246,10 @@ The following command line or config file options are available
 
 Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](./plugins_in_modules.html) page.
 
-{% comment %}
 External Facts
 --------------
 
-**External facts are available only in Facter 2.1.0 and later.**
+**External facts are available only in Facter 1.7 and later.**
 
 ### What are external facts?
 
@@ -265,15 +259,16 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 On Unix/Linux:
 
-    /usr/lib/facter/ext
+    /etc/facter/facts.d/ # Puppet Open Source
+    /etc/puppetlab/facter/facts.d/ # Puppet Enterprise
 
 On Windows 2003:
 
-    C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\ext
+    C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\facts.d\
 
 On Windows 2008:
 
-    C:\ProgramData\Puppetlabs\facter\ext
+    C:\ProgramData\Puppetlabs\facter\facts.d\
 
 ### Executable facts --- Unix
 
@@ -282,7 +277,7 @@ external fact path above.
 
 You must ensure that the script has its execute bit set:
 
-    chmod +x /usr/lib/facter/ext/myscript
+    chmod +x /etc/facter/facts.d/my_fact_script.rb
 
 For Facter to parse the output, the script must return key/value pairs on 
 STDOUT in the format:
@@ -291,13 +286,11 @@ STDOUT in the format:
     key2=value2
     key3=value3
 
-Using this format, a single script can return multiple facts in one return.
+Using this format, a single script can return multiple facts.
 
 ### Executable facts --- Windows
 
-Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts
-interface expects Windows scripts to end with a known extension. At the moment the 
-following extensions are supported:
+Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. At the moment the following extensions are supported:
 
 -   `.com` and `exe`: binary executables
 -   `.bat`: batch scripts
@@ -346,13 +339,15 @@ Structured data files must use one of the supported data types and must have the
         key1: val1
         key2: val2
         key3: val3
+
 * `.json`: JSON data, in the following format:
 
         {
             "key1": "val1",
             "key2": "val2",
-            "key3": "val3",
+            "key3": "val3"
         }
+
 * `.txt`: Key value pairs, in the following format: 
 
         key1=value1
@@ -360,23 +355,6 @@ Structured data files must use one of the supported data types and must have the
         key3=value3
 
 As with executable facts, structured data files can set multiple facts at once.
-
-### Caching External facts
-
-Just like with Ruby facts, you can cache external facts for better performance. This is done by creating a text file in the facts directory with the same file name as the fact (including extension) and the `.ttl` extension. For example, if your script is:
-
-    /usr/lib/facter/ext/myfacts.sh
-
-The `.ttl` file should be:
-
-    /usr/lib/facter/ext/myfacts.sh.ttl
-
-TTL files should contain the number of seconds for which to cache the results. You can also provide the following special TTL values:
-
-* `0` --- never cache. This is the default behaviour.
-* `-1` --- cache forever. Useful for one-off operations that should never need to run again.
-
-The TTL value will apply to all of the facts set by the script. 
 
 ### Troubleshooting
 
@@ -395,7 +373,7 @@ Let say you used a hyphen instead of an equals sign in your script `test.sh`:
 Running `facter --debug` should yield a useful error message:    
 
     ...
-    Fact file /usr/lib/facter/ext/test.sh was parsed but returned an empty data set
+    Fact file /etc/facter/facter.d/sample.txt was parsed but returned an empty data set
     ...
 
 If you are interested in finding out where any bottlenecks are, you can run 
@@ -414,6 +392,12 @@ The output should look similar to the timing for Ruby facts, but will name exter
     /usr/lib/facter/ext/sample.txt: 0.65ms
     ....
 
+#### External Facts and stdlib
+
+If you find that an external fact does not match what you have configured in your `facter.d`
+directory, make sure you have not defined the same fact using the external facts capabilities
+found in the stdlib module.
+
 ### Drawbacks
 
 While external facts provide a mostly-equal way to create variables for Puppet, they have a few drawbacks:
@@ -422,4 +406,3 @@ While external facts provide a mostly-equal way to create variables for Puppet, 
 * External executable facts are forked instead of executed within the same process.
 * Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. <!-- TODO: supply ticket number -->
 
-{% endcomment %}

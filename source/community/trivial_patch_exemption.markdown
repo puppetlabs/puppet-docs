@@ -8,7 +8,7 @@ General Rule
 
 The definition of trivial below is intended to correspond roughly with changes that would, on their own, not be sufficiently robust or creative to enjoy copyright protection.  Generally, changes that do not involve any creative decisions, or that are extremely small, are not protectable.   
 
-**Policy**: Contributions that are trivial, as defined below, do not require the contributor to have signed the [Contributor Licence Agreement](https://projects.puppetlabs.com/contributor_licenses/sign).
+**Policy**: Contributions that are trivial, as defined below, do not require the contributor to have signed the [Contributor License Agreement](https://cla.puppetlabs.com/).
 
 **Puppet Labs Definition of Trivial**: A trivial patch is a pull request that does not contain creative work. As a rule of thumb, changes are trivial patches if they:
 

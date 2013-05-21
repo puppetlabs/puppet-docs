@@ -1,7 +1,7 @@
 ---
 title: "PuppetDB 0.9 » Spec » Querying Facts"
 layout: default
-canonical: "/puppetdb/1.1/api/query/v1/facts.html"
+canonical: "/puppetdb/latest/api/query/v1/facts.html"
 ---
 
 

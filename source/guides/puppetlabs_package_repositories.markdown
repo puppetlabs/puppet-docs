@@ -3,7 +3,7 @@ title: "Using the Puppet Labs Package Repositories"
 layout: legacy
 ---
 
-[peinstall]: /pe/2.5/install_basic.html
+[peinstall]: /pe/latest/install_basic.html
 
 Puppet Labs maintains official package repositories for several of the more popular Linux distributions. These repos contain the latest available packages for Puppet, Facter, PuppetDB, Puppet Dashboard, MCollective, and several prerequisites and add-ons for Puppet Labs products.
 
@@ -24,18 +24,17 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 #### Enterprise Linux 5
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-6.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-6.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm
 
 ### For Debian and Ubuntu
 
 The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the following OS versions:
 
 * Debian 6 "Squeeze" (current stable release) (also supported by [Puppet Enterprise][peinstall])
-* Debian 5 "Lenny" (previous stable release)
 * Debian "Wheezy" (current testing distribution)
 * Debian "Sid" (current unstable distribution)
 * Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
@@ -43,8 +42,6 @@ The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the foll
 * Ubuntu 8.04 LTS "Hardy Heron"
 * Ubuntu 12.10 "Quantal Quetzal"
 * Ubuntu 11.10 "Oneiric Ocelot"
-* Ubuntu 11.04 "Natty Narwhal"
-* Ubuntu 10.10 "Maverick Meerkat"
 
 To enable the repository:
 
@@ -60,19 +57,19 @@ For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
 ### For Fedora
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 15, 16 and 17. To enable the repository, run the command below that corresponds to your OS version:
-
-#### Fedora 15
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f15/products/i386/puppetlabs-release-15-6.noarch.rpm
+The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 16, 17 and 18. To enable the repository, run the command below that corresponds to your OS version:
 
 #### Fedora 16
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-6.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-7.noarch.rpm
 
 #### Fedora 17
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-6.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-7.noarch.rpm
+
+#### Fedora 18
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm
 
 Enabling the Prerelease Repos
 -----

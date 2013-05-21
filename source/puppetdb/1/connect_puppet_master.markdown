@@ -1,13 +1,13 @@
 ---
 title: "PuppetDB 1 » Connecting Puppet Masters to PuppetDB"
 layout: default
-canonical: "/puppetdb/1.1/connect_puppet_master.html"
+canonical: "/puppetdb/latest/connect_puppet_master.html"
 ---
 
 [puppetdb_download]: http://downloads.puppetlabs.com/puppetdb
 [puppetdb_conf]: /guides/configuring.html#puppetdbconf
 [routes_yaml]: /guides/configuring.html#routesyaml
-[exported]: /puppet/2.7/reference/lang_exported.html
+[exported]: /puppet/latest/reference/lang_exported.html
 
 
 > Note: To use PuppetDB, your site's puppet master(s) must be running Puppet 2.7.12 or later .

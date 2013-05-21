@@ -41,7 +41,7 @@ Windows nodes cannot serve as puppet master servers.
 
 > Version note for PE users: Your puppet master should be running PE 2.5 or later. On PE 2.0, the `pe_mcollective` and `pe_accounts` modules cause run failures on Windows nodes. If you wish to run Windows agents but have a PE 2.0 puppet master, you can do one of the following:
 >
-> * [Upgrade your master to PE 2.5](/pe/2.5/install_upgrading.html)
+> * [Upgrade your master to PE 2.5 or later](/pe/latest/install_upgrading.html)
 > * Remove those modules from the console's default group
 > * Manually hack those modules to be inert on Windows. 
 

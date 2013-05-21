@@ -4,7 +4,7 @@ title: "Learning — Basic Agent/Master Puppet"
 ---
 
 [puppetmasterhost]: ./variables.html#facts
-[upgrading]: /pe/2.5/install_upgrading.html
+[upgrading]: /pe/latest/install_upgrading.html
 [agentprep]: ./agentprep.html
 
 Basic Agent/Master Puppet

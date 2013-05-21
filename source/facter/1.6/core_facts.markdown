@@ -12,9 +12,8 @@ Facts appear in Puppet as normal top-scope variables. This means you can access 
 
 ## `architecture`
 
-**Purpose:**
 
-Return the CPU hardware architecture.
+Returns the CPU hardware architecture.
 
 **Resolution:**
 
@@ -44,13 +43,12 @@ Undocumented.
 
 ## `augeasversion`
 
-**Purpose:**
 
 Report the version of the Augeas library
 
 **Resolution:**
 
-Loads ruby-augeas and reports the value of /augeas/version, the version of
+Loads ruby-augeas and reports the value of `/augeas/version`, the version of
 the underlying Augeas library.
 
 **Caveats:**
@@ -66,9 +64,8 @@ Versions prior to 0.3.6 cannot be interrogated for their version.
 
 ## `boardmanufacturer`
 
-**Purpose:**
 
-Return the manufacturer of the machine's motherboard.
+Returns the manufacturer of the machine's motherboard.
 
 ([↑ Back to top](#page-nav))
 
@@ -76,9 +73,8 @@ Return the manufacturer of the machine's motherboard.
 
 ## `boardproductname`
 
-**Purpose:**
 
-Return the model name of the machine's motherboard.
+Returns the model name of the machine's motherboard.
 
 ([↑ Back to top](#page-nav))
 
@@ -86,9 +82,8 @@ Return the model name of the machine's motherboard.
 
 ## `boardserialnumber`
 
-**Purpose:**
 
-Return the serial number of the machine's motherboard.
+Returns the serial number of the machine's motherboard.
 
 ([↑ Back to top](#page-nav))
 
@@ -96,9 +91,8 @@ Return the serial number of the machine's motherboard.
 
 ## `cfkey`
 
-**Purpose:**
 
-Return the public key(s) for CFengine.
+Returns the public key(s) for CFengine.
 
 **Resolution:**
 
@@ -111,9 +105,8 @@ checks if they appear to be a public key, and then join them all together.
 
 ## `domain`
 
-**Purpose:**
 
-Return the host's primary DNS domain name.
+Returns the host's primary DNS domain name.
 
 **Resolution:**
 
@@ -129,9 +122,8 @@ Return the host's primary DNS domain name.
 
 ## `ec2_{EC2 INSTANCE DATA}`
 
-**Purpose:**
 
-Return info retrieved in bulk from the EC2 API. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is:
+Returns info retrieved in bulk from the EC2 API. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is:
 
 * `ec2_ami_id`
 * `ec2_ami_launch_index`
@@ -167,9 +159,8 @@ Undocumented.
 
 ## `facterversion`
 
-**Purpose:**
 
-returns the version of the facter module.
+Returns the version of the facter module.
 
 **Resolution:**
 
@@ -181,7 +172,6 @@ Uses the version constant.
 
 ## `fqdn`
 
-**Purpose:**
 
 Returns the fully qualified domain name of the host.
 
@@ -202,7 +192,6 @@ either.
 
 ## `hardwareisa`
 
-**Purpose:**
 
 Returns hardware processor type.
 
@@ -220,7 +209,6 @@ Some linuxes return unknown to uname -p with relative ease.
 
 ## `hardwaremodel`
 
-**Purpose:**
 
 Returns the hardware model of the system.
 
@@ -236,9 +224,8 @@ Returns the hardware model of the system.
 
 ## `hostname`
 
-**Purpose:**
 
-Return the system's short hostname.
+Returns the system's short hostname.
 
 **Resolution:**
 
@@ -251,10 +238,8 @@ Return the system's short hostname.
 
 ## `id`
 
-**Purpose:**
 
-Internal fact used to specity the program to return the currently
-running user id.
+Internal fact used to specify the program to return the currently running user id.
 
 **Resolution:**
 
@@ -267,9 +252,8 @@ running user id.
 
 ## `interfaces`
 
-**Purpose:**
 
-Return a list of the network interfaces on the machine. These interface names are also used to construct several additional facts. 
+Returns a list of the network interfaces on the machine. These interface names are also used to construct several additional facts. 
 
 ([↑ Back to top](#page-nav))
 
@@ -277,9 +261,8 @@ Return a list of the network interfaces on the machine. These interface names ar
 
 ## `ipaddress`
 
-**Purpose:**
 
-Return the main IP address for a host.
+Returns the main IP address for a host.
 
 **Resolution:**
 
@@ -299,9 +282,8 @@ Return the main IP address for a host.
 
 ## `ipaddress_{NETWORK INTERFACE}`
 
-**Purpose:**
 
-Return the IP4 address for a specific network interface (from the list in the `interfaces` fact).
+Returns the IP4 address for a specific network interface (from the list in the `interfaces` fact).
 
 ([↑ Back to top](#page-nav))
 
@@ -309,13 +291,12 @@ Return the IP4 address for a specific network interface (from the list in the `i
 
 ## `ipaddress6`
 
-**Purpose:**
 
 Returns the "main" IPv6 IP address of a system.
 
 **Resolution:**
 
-OS dependant code that parses the output of various networking tools and currently not very intelligent. Returns the first non-loopback and non-linklocal address found in the ouput unless a default route can be mapped to a routeable interface. Guessing an interface is currently only possible with BSD type systems to many assumptions have to be made on other platforms to make this work with the current code. Most code ported or modeled after the ipaddress fact for the sake of similar functionality and familiar mechanics.
+OS-dependent code that parses the output of various networking tools and currently not very intelligent. Returns the first non-loopback and non-linklocal address found in the ouput unless a default route can be mapped to a routeable interface. Guessing an interface is currently only possible with BSD type systems to many assumptions have to be made on other platforms to make this work with the current code. Most code ported or modeled after the ipaddress fact for the sake of similar functionality and familiar mechanics.
 
 ([↑ Back to top](#page-nav))
 
@@ -323,9 +304,8 @@ OS dependant code that parses the output of various networking tools and current
 
 ## `ipaddress6_{NETWORK INTERFACE}`
 
-**Purpose:**
 
-Return the IP6 address for a specific network interface (from the list in the `interfaces` fact).
+Returns the IP6 address for a specific network interface (from the list in the `interfaces` fact).
 
 ([↑ Back to top](#page-nav))
 
@@ -333,7 +313,6 @@ Return the IP6 address for a specific network interface (from the list in the `i
 
 ## `iphostnumber`
 
-**Purpose:**
 
 On selected versions of Darwin, returns the host's IP address.
 
@@ -347,9 +326,8 @@ Uses either the scutil program to get the localhost name, or parses output of if
 
 ## `is_virtual`
 
-**Purpose:**
 
-returning true or false for if a machine is virtualised or not.
+Returns `true` or `false` if a machine is virtualized or not.
 
 **Resolution:**
 
@@ -361,7 +339,6 @@ Hypervisors and the like may be detected as a virtual type, but are not actual v
 
 ## `kernel`
 
-**Purpose:**
 
 Returns the operating system's name.
 
@@ -375,9 +352,8 @@ Uses Ruby's rbconfig to find `host_os`, if that is a Windows derivative, the ret
 
 ## `kernelmajversion`
 
-**Purpose:**
 
-Return the operating system's release number's major value.
+Returns the operating system's release number's major value.
 
 **Resolution:**
 
@@ -389,9 +365,8 @@ Takes the first 2 elements of the kernel version as delimited by periods.
 
 ## `kernelrelease`
 
-**Purpose:**
 
-Return the operating system's release number.
+Returns the operating system's release number.
 
 **Resolution:**
 
@@ -405,9 +380,8 @@ Return the operating system's release number.
 
 ## `kernelversion`
 
-**Purpose:**
 
-Return the operating system's kernel version.
+Returns the operating system's kernel version.
 
 **Resolution:**
 
@@ -420,9 +394,8 @@ Return the operating system's kernel version.
 
 ## `lsbdistcodename`
 
-**Purpose:**
 
-Return Linux Standard Base information for the host.
+Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
@@ -440,9 +413,8 @@ Also is as only as accurate as that program outputs.
 
 ## `lsbdistdescription`
 
-**Purpose:**
 
-Return Linux Standard Base information for the host.
+Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
@@ -460,9 +432,8 @@ Also is as only as accurate as that program outputs.
 
 ## `lsbdistid`
 
-**Purpose:**
 
-Return Linux Standard Base information for the host.
+Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
@@ -480,9 +451,8 @@ Also is as only as accurate as that program outputs.
 
 ## `lsbdistrelease`
 
-**Purpose:**
 
-Return Linux Standard Base information for the host.
+Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
@@ -490,9 +460,8 @@ Uses the `lsb_release` system command
 
 **Caveats:**
 
-Only works on Linux (and the kfreebsd derivative) systems.
-Requires the `lsb_release` program, which may not be installed by default.
-Also is as only as accurate as that program outputs.
+Only works on Linux (and the kfreebsd derivative) systems. Requires the `lsb_release` 
+program, which may not be installed by default. Also is as only as accurate as that program outputs.
 
 ([↑ Back to top](#page-nav))
 
@@ -500,10 +469,8 @@ Also is as only as accurate as that program outputs.
 
 ## `lsbmajdistrelease`
 
-**Purpose:**
 
-Returns the major version of the operation system version as gleaned
-from the lsbdistrelease fact.
+Returns the major version of the operation system version as gleaned from the lsbdistrelease fact.
 
 **Resolution:**
 
@@ -520,9 +487,8 @@ lsbmajdistrelease.rb
 
 ## `lsbrelease`
 
-**Purpose:**
 
-Return Linux Standard Base information for the host.
+Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
@@ -540,9 +506,8 @@ Also is as only as accurate as that program outputs.
 
 ## `macaddress`
 
-**Purpose:**
 
-Return the MAC address of the primary network interface. 
+Returns the MAC address of the primary network interface. 
 
 ([↑ Back to top](#page-nav))
 
@@ -550,9 +515,8 @@ Return the MAC address of the primary network interface.
 
 ## `macaddress_{NETWORK INTERFACE}`
 
-**Purpose:**
 
-Return the MAC address for a specific network interface (from the list in the `interfaces` fact).
+Returns the MAC address for a specific network interface (from the list in the `interfaces` fact).
 
 ([↑ Back to top](#page-nav))
 
@@ -560,9 +524,8 @@ Return the MAC address for a specific network interface (from the list in the `i
 
 ## `macosx_buildversion`
 
-**Purpose:**
 
-Return the system's Mac OS X
+Returns the system's Mac OS X build version. 
 
 ([↑ Back to top](#page-nav))
 
@@ -570,9 +533,8 @@ Return the system's Mac OS X
 
 ## `macosx_productname`
 
-**Purpose:**
 
-Return the system's Mac OS X product name. Will almost always be "Mac OS X".
+Returns the system's Mac OS X product name. Will almost always be "Mac OS X".
 
 ([↑ Back to top](#page-nav))
 
@@ -580,9 +542,8 @@ Return the system's Mac OS X product name. Will almost always be "Mac OS X".
 
 ## `macosx_productversion`
 
-**Purpose:**
 
-Return the system's full Mac OS X version number. (e.g. 10.7.4)
+Returns the system's full Mac OS X version number. (e.g. 10.7.4)
 
 ([↑ Back to top](#page-nav))
 
@@ -590,9 +551,8 @@ Return the system's full Mac OS X version number. (e.g. 10.7.4)
 
 ## `macosx_productversion_major`
 
-**Purpose:**
 
-Return the system's major Mac OS X version number. (e.g. 10.7)
+Returns the system's major Mac OS X version number. (e.g. 10.7)
 
 ([↑ Back to top](#page-nav))
 
@@ -600,9 +560,8 @@ Return the system's major Mac OS X version number. (e.g. 10.7)
 
 ## `macosx_productversion_minor`
 
-**Purpose:**
 
-Return the system's minor Mac OS X version number. (e.g. 4)
+Returns the system's minor Mac OS X version number. (e.g. 4)
 
 ([↑ Back to top](#page-nav))
 
@@ -610,16 +569,15 @@ Return the system's minor Mac OS X version number. (e.g. 4)
 
 ## `manufacturer`
 
-**Purpose:**
 
-Return the hardware manufacturer information about the hardware.
+Returns the hardware's manufacturer information.
 
 **Resolution:**
 
 * On OpenBSD, queries sysctl values, via a util class.
 * On SunOS Sparc, uses prtdiag via a util class.
 * On Windows, queries the system via a util class.
-* Uses the 'util/manufacturer.rb' for fallback parsing.
+* Uses  `util/manufacturer.rb` for fallback parsing.
 
 ([↑ Back to top](#page-nav))
 
@@ -627,9 +585,7 @@ Return the hardware manufacturer information about the hardware.
 
 ## `memoryfree`
 
-**Purpose:**
-
-Return the amount of free memory on the system.
+Returns the amount of free memory on the system.
 
 ([↑ Back to top](#page-nav))
 
@@ -637,17 +593,13 @@ Return the amount of free memory on the system.
 
 ## `memorysize`
 
-**Purpose:**
-
-Return the total amount of memory on the system.
+Returns the total amount of memory on the system.
 
 ([↑ Back to top](#page-nav))
 
 * * *
 
 ## `memorytotal`
-
-**Purpose:**
 
 Synonym for `memorysize`. Deprecated.
 
@@ -657,7 +609,6 @@ Synonym for `memorysize`. Deprecated.
 
 ## `netmask`
 
-**Purpose:**
 
 Returns the netmask for the main interfaces.
 
@@ -671,9 +622,7 @@ Uses the facter/util/netmask library routines.
 
 ## `netmask_{NETWORK INTERFACE}`
 
-**Purpose:**
-
-Return the netmask for a specific network interface (from the list in the `interfaces` fact).
+Returns the netmask for a specific network interface (from the list in the `interfaces` fact).
 
 ([↑ Back to top](#page-nav))
 
@@ -681,9 +630,7 @@ Return the netmask for a specific network interface (from the list in the `inter
 
 ## `network_{NETWORK INTERFACE}`
 
-**Purpose:**
-
-Return the network for a specific network interface (from the list in the `interfaces` fact).
+Returns the network for a specific network interface (from the list in the `interfaces` fact).
 
 ([↑ Back to top](#page-nav))
 
@@ -691,9 +638,7 @@ Return the network for a specific network interface (from the list in the `inter
 
 ## `operatingsystem`
 
-**Purpose:**
-
-Return the name of the operating system.
+Returns the name of the operating system.
 
 **Resolution:**
 
@@ -706,8 +651,6 @@ Return the name of the operating system.
 * * *
 
 ## `operatingsystemrelease`
-
-**Purpose:**
 
 Returns the release of the operating system.
 
@@ -727,20 +670,16 @@ Returns the release of the operating system.
 
 ## `osfamily`
 
-**Purpose:**
-
-Returns the operating system
+Returns the operating system family.
 
 **Resolution:**
 
-Maps operating systems to operating system families, such as linux
-distribution derivatives. Adds mappings from specific operating systems
-to kernels in the case that it is relevant.
+Maps operating systems to operating system families, such as Linux distribution derivatives. 
+Adds mappings from specific operating systems to kernels in the case that it is relevant.
 
 **Caveats:**
 
-This fact is completely reliant on the operatingsystem fact, and no
-heuristics are used.
+This fact is completely reliant on the operatingsystem fact, and no heuristics are used.
 
 
 ([↑ Back to top](#page-nav))
@@ -749,7 +688,6 @@ heuristics are used.
 
 ## `path`
 
-**Purpose:**
 
 Returns the $PATH variable.
 
@@ -763,14 +701,13 @@ Gets $PATH from the environment.
 
 ## `physicalprocessorcount`
 
-**Purpose:**
 
-Return the number of physical processors.
+Returns the number of physical processors.
 
 **Resolution:**
 
 Attempts to use sysfs to get the physical IDs of the processors. Falls
-back to /proc/cpuinfo and "physical id" if sysfs is not available.
+back to `/proc/cpuinfo` and "physical id" if sysfs is not available.
 
 ([↑ Back to top](#page-nav))
 
@@ -778,7 +715,6 @@ back to /proc/cpuinfo and "physical id" if sysfs is not available.
 
 ## `processor`
 
-**Purpose:**
 
 Additional Facts about the machine's CPUs. Only used on BSDs.
 
@@ -788,16 +724,15 @@ Additional Facts about the machine's CPUs. Only used on BSDs.
 
 ## `processor{NUMBER}`
 
-**Purpose:**
 
 One fact for each processor, with processor info. 
 
 **Resolution:**
 
-* On Linux and kFreeBSD, parse '/proc/cpuinfo' for each processor.
-* On AIX, parse the output of 'lsdev' for its processor section.
-* On Solaris, parse the output of 'kstat' for each processor.
-* On OpenBSD, use 'uname -p' and the sysctl variable for 'hw.ncpu' for CPU count.
+* On Linux and kFreeBSD, parse `/proc/cpuinfo` for each processor.
+* On AIX, parse the output of `lsdev` for its processor section.
+* On Solaris, parse the output of `kstat` for each processor.
+* On OpenBSD, use `uname -p` and the sysctl variable for `hw.ncpu` for CPU count.
 
 ([↑ Back to top](#page-nav))
 
@@ -805,9 +740,7 @@ One fact for each processor, with processor info.
 
 ## `processorcount`
 
-**Purpose:**
-
-Return the number of processors in the machine.
+Returns the number of processors in the machine.
 
 
 ([↑ Back to top](#page-nav))
@@ -816,9 +749,8 @@ Return the number of processors in the machine.
 
 ## `productname`
 
-**Purpose:**
 
-Return the model identifier of the machine.
+Returns the model identifier of the machine.
 
 ([↑ Back to top](#page-nav))
 
@@ -826,15 +758,12 @@ Return the model identifier of the machine.
 
 ## `ps`
 
-**Purpose:**
-
-Internal fact for what to use to list all processes. Used by
-Service{} type in Puppet.
+Internal fact for what to use to list all processes. Used by Service{} type in Puppet.
 
 **Resolution:**
 
-Assumes "ps -ef" for all operating systems other than BSD derivatives, where
-it uses "ps auxwww"
+Assumes `ps -ef` for all operating systems other than BSD derivatives, where it uses 
+`ps auxwww`.
 
 ([↑ Back to top](#page-nav))
 
@@ -842,13 +771,12 @@ it uses "ps auxwww"
 
 ## `puppetversion`
 
-**Purpose:**
 
-Return the version of puppet installed.
+Returns the version of puppet installed.
 
 **Resolution:**
 
-Requres puppet via Ruby and returns it's version constant.
+Requres puppet via Ruby and returns its version constant.
 
 ([↑ Back to top](#page-nav))
 
@@ -856,22 +784,19 @@ Requres puppet via Ruby and returns it's version constant.
 
 ## `rubysitedir`
 
-**Purpose:**
 
 Returns Ruby's site library directory.
 
 **Resolution:**
 
-Works out the version to major/minor (1.8, 1.9, etc), then joins
-that with all the $: library paths.
+Works out the version to major/minor (1.8, 1.9, etc), then joins that with all the $: 
+library paths.
 
 ([↑ Back to top](#page-nav))
 
 * * *
 
 ## `rubyversion`
-
-**Purpose:**
 
 Returns the version of Ruby facter is running under.
 
@@ -885,7 +810,12 @@ Returns `RUBY_VERSION`.
 
 ## `selinux`
 
-Undocumented.
+Determine whether SE Linux is enabled on the node.
+
+**Resolution:**
+
+Checks for the existence of the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`) 
+and returns `true` if `/proc/self/attr/current` does not contain `kernel`. 
 
 ([↑ Back to top](#page-nav))
 
@@ -893,7 +823,11 @@ Undocumented.
 
 ## `selinux_config_mode`
 
-Undocumented.
+Returns the configured SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`). 
+
+**Resolution:**
+
+Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Mode from config file:`. 
 
 ([↑ Back to top](#page-nav))
 
@@ -901,7 +835,13 @@ Undocumented.
 
 ## `selinux_config_policy`
 
-Undocumented.
+
+Returns the configured SE Linux policy (e.g. `targeted`, `MLS`, or `minimum`). 
+
+**Resolution:**
+
+Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Policy from config file:`. 
+
 
 ([↑ Back to top](#page-nav))
 
@@ -909,7 +849,12 @@ Undocumented.
 
 ## `selinux_current_mode`
 
-Undocumented.
+
+Returns the current SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`).
+
+**Resolution:**
+
+Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Current mode:`. 
 
 ([↑ Back to top](#page-nav))
 
@@ -917,7 +862,12 @@ Undocumented.
 
 ## `selinux_enforced`
 
-Undocumented.
+
+Returns whether SE Linux is enabled (`true`) or not (`false`).
+
+**Resolution:**
+
+Returns the value found in the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`). 
 
 ([↑ Back to top](#page-nav))
 
@@ -925,9 +875,8 @@ Undocumented.
 
 ## `selinux_mode`
 
-**Purpose:**
 
-Return the value of `selinux_config_policy`. Deprecated.
+Returns the value of `selinux_config_policy`. Deprecated.
 
 ([↑ Back to top](#page-nav))
 
@@ -935,7 +884,12 @@ Return the value of `selinux_config_policy`. Deprecated.
 
 ## `selinux_policyversion`
 
-Undocumented.
+
+Returns the current SE Linux policy version.
+
+**Resolution:**
+
+Reads the content of the `policyvers` file found under the SE Linux mount point, e.g. (`/selinux/policyvers`).
 
 ([↑ Back to top](#page-nav))
 
@@ -943,9 +897,8 @@ Undocumented.
 
 ## `serialnumber`
 
-**Purpose:**
 
-Return the machine's serial number.
+Returns the machine's serial number.
 
 ([↑ Back to top](#page-nav))
 
@@ -953,9 +906,8 @@ Return the machine's serial number.
 
 ## `sp_{SYSTEM PROFILER DATA}`
 
-**Purpose:**
 
-Return info retrieved in bulk from the OS X system profiler. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is:
+Returns info retrieved in bulk from the OS X system profiler. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is:
 
 * `sp_64bit_kernel_and_kexts`
 * `sp_boot_mode`
@@ -988,9 +940,8 @@ Return info retrieved in bulk from the OS X system profiler. The names of these 
 
 ## `sshdsakey`
 
-**Purpose:**
 
-Return the host's SSH DSA key.
+Returns the host's SSH DSA key.
 
 ([↑ Back to top](#page-nav))
 
@@ -998,9 +949,8 @@ Return the host's SSH DSA key.
 
 ## `sshecdsakey`
 
-**Purpose:**
 
-Return the host's SSH ECDSA key.
+Returns the host's SSH ECDSA key.
 
 ([↑ Back to top](#page-nav))
 
@@ -1008,9 +958,8 @@ Return the host's SSH ECDSA key.
 
 ## `sshrsakey`
 
-**Purpose:**
 
-Return the host's SSH RSA key.
+Returns the host's SSH RSA key.
 
 ([↑ Back to top](#page-nav))
 
@@ -1018,7 +967,6 @@ Return the host's SSH RSA key.
 
 ## `swapencrypted`
 
-**Purpose:**
 
 Say whether the system's swap space is encrypted. Only used on Darwin.
 
@@ -1028,9 +976,8 @@ Say whether the system's swap space is encrypted. Only used on Darwin.
 
 ## `swapfree`
 
-**Purpose:**
 
-Return the amount of free swap on the system.
+Returns the amount of free swap on the system.
 
 ([↑ Back to top](#page-nav))
 
@@ -1038,9 +985,8 @@ Return the amount of free swap on the system.
 
 ## `swapsize`
 
-**Purpose:**
 
-Return the total amount of swap space available on the system.
+Returns the total amount of swap space available on the system.
 
 ([↑ Back to top](#page-nav))
 
@@ -1048,9 +994,8 @@ Return the total amount of swap space available on the system.
 
 ## `timezone`
 
-**Purpose:**
 
-Return the machine's time zone.
+Returns the machine's time zone.
 
 **Resolution:**
 
@@ -1062,9 +1007,8 @@ Uses's Ruby's Time module's Time.new call.
 
 ## `type`
 
-**Purpose:**
 
-Return the machine's chassis type.
+Returns the machine's chassis type.
 
 ([↑ Back to top](#page-nav))
 
@@ -1072,9 +1016,8 @@ Return the machine's chassis type.
 
 ## `uniqueid`
 
-**Purpose:**
 
-Return the output of the `hostid` command.
+Returns the output of the `hostid` command.
 
 ([↑ Back to top](#page-nav))
 
@@ -1082,9 +1025,8 @@ Return the output of the `hostid` command.
 
 ## `uptime`
 
-**Purpose:**
 
-return the system uptime in a human readable format.
+Returns the system uptime in a human readable format.
 
 **Resolution:**
 
@@ -1097,9 +1039,8 @@ days, hours and minutes of uptime
 
 ## `uptime_days`
 
-**Purpose:**
 
-Return purely number of days of uptime.
+Returns the total days of uptime.
 
 **Resolution:**
 
@@ -1111,9 +1052,8 @@ Divides `uptime_hours` fact by 24.
 
 ## `uptime_hours`
 
-**Purpose:**
 
-Return purely number of hours of uptime.
+Returns the total hours of uptime.
 
 **Resolution:**
 
@@ -1125,9 +1065,8 @@ Divides `uptime_seconds` fact by 3600.
 
 ## `uptime_seconds`
 
-**Purpose:**
 
-Return purely number of seconds of uptime.
+Returns the total seconds of uptime.
 
 **Resolution:**
 
@@ -1140,16 +1079,15 @@ Return purely number of seconds of uptime.
 
 ## `virtual`
 
-**Purpose:**
 
-Determine if the system's hardware is real or virtualised.
+Determine if the system's hardware is real or virtualized.
 
 **Resolution:**
 
 Assumes physical unless proven otherwise.
 
-* On Darwin, use the macosx util module to acquire the SPDisplaysDataType, from that parse it to see if it's VMWare or Parallels pretending to be the display.
-* On Linux, BSD, Solaris and HPUX: Much of the logic here is obscured behind util/virtual.rb, which rather than document here, which would encourage drift, just refer to it. The Xen tests in here rely on /sys and /proc, and check for the presence and contents of files in there. If after all the other tests, it's still seen as physical, then it tries to parse the output of the "lspci", "dmidecode" and "prtdiag" and parses them for obvious signs of being under VMWare, Parallels or VirtualBox. Finally it checks for the existence of vmware-vmx, which would hint it's VMWare.
+* On Darwin, uses the macosx util module to acquire the SPDisplaysDataType and from that parses it to see if it's VMWare or Parallels pretending to be the display.
+* On Linux, BSD, Solaris, and HPUX: Much of the logic here is obscured behind util/virtual.rb, which rather than document here, which would encourage drift, just refer to it. The Xen tests in here rely on `/sys` and `/proc`, and check for the presence and contents of files in there. If after all the other tests it's still seen as physical, then it tries to parse the output of `lspci`, `dmidecode` and `prtdiag` for obvious signs of being under VMWare, Parallels, or VirtualBox. Finally, it checks for the existence of vmware-vmx, which would hint it's VMWare.
 
 **Caveats:**
 
@@ -1161,14 +1099,11 @@ Many checks rely purely on existence of files.
 
 ## `vlans`
 
-**Purpose:**
-
 On Linux, return a list of all the VLANs on the system.
 
 **Resolution:**
 
-On Linux only, checks for and reads /proc/net/vlan/config and
-parses it.
+On Linux only, checks for and reads /proc/net/vlan/config and parses it.
 
 ([↑ Back to top](#page-nav))
 
@@ -1176,14 +1111,12 @@ parses it.
 
 ## `xendomains`
 
-**Purpose:**
-
-Return the list of Xen domains on the Dom0.
+Returns the list of Xen domains on the Dom0.
 
 **Resolution:**
 
-On a Xen Dom0 host, return a list of Xen domains using the 'util/xendomains'
-library.
+On a Xen Dom0 host, return a list of Xen domains using the 'util/xendomains' library.
+No support for Solaris 9 and below, where zones are not available.
 
 ([↑ Back to top](#page-nav))
 

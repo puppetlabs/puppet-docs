@@ -92,7 +92,7 @@ The output of the triage process should be moving the bug to one of the states i
 * *Status*: _In Topic Branch Pending Review_, *Assignee*: _Community-Support Developer_ -- Once there is code in a pull request, and the *Branch* field indicates the URL of the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
 * *Status*: _Merged Pending Release_, *Assignee*: _Release Engineer_ -- After merging completed code, the community support developer sets the _Merged Pending Release_ status and adds a comment with the github URL of the commit that contains the merge (e.g. https://github.com/puppetlabs/puppet/commit/abcdefbadc0ffee
 * *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket (“Not to be fixed”, “Unable to reproduce”, etc)
-* *Status*: _Requires CLA to be signed_, *Assignee*: _Author_ -- Even if the code and tests are there, we need a Contributor License Agreement on file before we can merge the code. Sign the Contributor License Agreement here.
+* *Status*: _Requires CLA to be signed_, *Assignee*: _Author_ -- Even if the code and tests are there, we need a Contributor License Agreement on file before we can merge the code. [Sign the Contributor License Agreement here.](https://cla.puppetlabs.com/)
 
 #### Potentially Unused Statuses
 
@@ -123,4 +123,13 @@ There is an open pull request which fixes this issue  -- it would be wonderful i
 
 #### Needs more information
 
-I've put this ticket's status into "Needs more Information" and assigned it to you. Please either (a) update it with the information I've requested and re-assign it to me if you need more help, or (b) change the status to "Closed" if you were able to resolve the issue on your own. 
+I've put this ticket's status into "Needs more Information" and assigned it to you. Please either (a) update it with the information I've requested and re-assign it to me if you need more help, or (b) change the status to "Closed" if you were able to resolve the issue on your own.
+
+#### Code Insufficient
+
+I’ve put this ticket’s status into “Code Insufficient” and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
+
+#### Contributor guidelines
+
+Our guidelines for patch submission are described in the [CONTRIBUTING.md](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md) 
+in the puppetlabs/puppet github repo.
