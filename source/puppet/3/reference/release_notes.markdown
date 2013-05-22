@@ -92,7 +92,9 @@ On Windows, Puppet 3.2.1 is unable to manage the home directory for a user accou
 
 ## Puppet 3.2.0
 
-3.2.0 is a backward-compatible features and fixes release in the Puppet 3 series. The most notable changes are:
+3.2.0 is a backward-compatible features and fixes release in the Puppet 3 series. It was never officially released, as major bugs were discovered after the release was tagged but before it was published; 3.2.1 was the first official Puppet 3.2 release.
+
+The most notable changes are:
 
 * An optional, experimental "Future" parser
 * Ruby 2.0 support
