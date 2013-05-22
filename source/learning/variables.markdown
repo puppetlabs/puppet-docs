@@ -116,7 +116,7 @@ We'll start with your basic `if` statement. Same as it ever was:
 The else and any number of elsif statements are optional.
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if $::is_virtual == 'true' {
       service {'ntpd':
         ensure => stopped,
         enable => false,
@@ -157,7 +157,7 @@ Conditions can get pretty sophisticated: you can use any valid [expression][] in
 Also probably familiar: the case statement. (Or switch, or whatever your language of choice calls it.) 
 
 {% highlight ruby %}
-    case $operatingsystem {
+    case $::operatingsystem {
       centos: { $apache = "httpd" }
       # Note that these matches are case-insensitive.
       redhat: { $apache = "httpd" }
@@ -183,7 +183,7 @@ String matching is case-insensitive, like the `==` comparison operator. Regular 
 Here's a regex example:
 
 {% highlight ruby %}
-    case $ipaddress_eth0 {
+    case $::ipaddress_eth0 {
       /^127[\d.]+$/: { 
         notify {'misconfig': 
           message => "Possible network misconfiguration: IP address of $0",
@@ -195,7 +195,7 @@ Here's a regex example:
 And here's the example from above, rewritten and more readable:
 
 {% highlight ruby %}
-    case $operatingsystem {
+    case $::operatingsystem {
       centos, redhat: { $apache = "httpd" }
       debian, ubuntu: { $apache = "apache2" }
       default: { fail("Unrecognized operating system for webserver") }
@@ -209,7 +209,7 @@ Selectors might be less familiar; they're kind of like the [ternary operator](ht
 Instead of choosing between a set of code blocks, selectors choose between a group of possible values. You can't use them on their own; instead, they're usually used to assign a variable. 
 
 {% highlight ruby %}
-    $apache = $operatingsystem ? {
+    $apache = $::operatingsystem ? {
       centos                => 'httpd',
       redhat                => 'httpd',
       /(?i)(ubuntu|debian)/ => "apache2-$1",
@@ -218,7 +218,7 @@ Instead of choosing between a set of code blocks, selectors choose between a gro
     }
 {% endhighlight %}
 
-Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the pivot of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can't use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)
+Careful of the syntax, there: it looks kind of like we're saying `$apache = $::operatingsystem`, but we're not. The question mark flags `$::operatingsystem` as the pivot of a selector, and the actual value that gets assigned is determined by which option `$::operatingsystem` matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can't use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)
 
 It can look a little awkward, but there are plenty of situations where it's the most concise way to get a value sorted out; if you're ever not comfortable with it, you can just use a case statement to assign the variable instead. 
 
@@ -227,7 +227,7 @@ Selectors can also be used directly as values for a resource attribute, but try 
 Exercises
 ---------
 
-> **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian," "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
+> **Exercise:** Use the $::operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian," "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
 
 > **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where both kinds of systems use the same package name (`ntp`), but you'll be shipping different config files ([Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el) -- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
 > 
