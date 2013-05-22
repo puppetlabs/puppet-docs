@@ -124,6 +124,8 @@ Blocks named for [environments][] are the most specific, and can override settin
 
 Like with the `$environment` variable, puppet master treats environments differently from the other run modes: instead of using the block corresponding to its own `environment` setting, it will use the block corresponding to each agent node's environment. The puppet master's own environment setting is effectively inert.
 
+You may not create environments named `main`, `master`, `agent`, or `user`, as these are already taken by the primary config blocks.
+
 Command-Line Options
 --------------------
 

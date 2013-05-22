@@ -38,6 +38,15 @@ Naming Environments
 
 Environment names should only contain alphanumeric characters and underscores, and are case-sensitive.
 
+There are four forbidden environment names:
+
+* `main`
+* `master`
+* `agent`
+* `user`
+
+These names are already taken by the primary [config blocks](./configuring.html#config-blocks). If you are using Git branches for your environment names, this may mean you'll need to rename the master branch to something like `production` or `stable`.
+
 Caveats
 -------
 
