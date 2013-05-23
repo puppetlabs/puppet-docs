@@ -103,7 +103,7 @@ Here are some examples to illustrate:
     # produces [1,3]
 
     reject([1,20,3]) |$value| { $value >= 10 }
-    # produces [1,3]
+    # produces [20]
 
     reduce([1,2,3]) |$result, $value|  { $result + $value }
     # produces: 6
