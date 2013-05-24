@@ -9,6 +9,8 @@ Use the "Manage Resources" tab to browse the resources on your nodes and clone a
 
 ![The manage resources tab][live_resources_main]
 
+> *IMPORTANT* The resource cloning controls are deprecated, and will be removed in Puppet Enterprise 3.0. We are continuing to improve resource inspection and interactive MCollective commands in the console.
+
 
 Resource Types
 -----
@@ -32,9 +34,9 @@ Using "Inspect All" at the start of a session will pre-load a lot of information
 Finding Resources
 -----
 
-To find a resource to work with, you must first select a resource type. Then, either search for your resource by name or load all resources of the type and browse them. 
+To find a resource to work with, you must first select a resource type. Then, either search for your resource by name or load all resources of the type and browse them.
 
-Searching and browsing only use the current selection of nodes. 
+Searching and browsing only use the current selection of nodes.
 
 ### Browsing a Type
 
@@ -52,7 +54,7 @@ This will return a list of all resources of the selected type on the selected no
 
 The resource list shows the name of each resource, the number of nodes it was found on, and how many variants of it were found. You can sort the list by any of these properties.
 
-To inspect a resource, click its name. 
+To inspect a resource, click its name.
 
 ![The sshd user, with three variants][live_resources_sshd]
 
@@ -64,7 +66,7 @@ To see which nodes have each variant, click the "on N nodes" labels to expand th
 
 ### Searching by Name
 
-To search, enter a resource name in the search field and confirm with the enter key or the "search" button. 
+To search, enter a resource name in the search field and confirm with the enter key or the "search" button.
 
 ![A search in progress][live_resources_searching]
 
@@ -78,26 +80,28 @@ Once you've located a resource, the inspect view is the same as that used when b
 Cloning Resources
 -----
 
-You can use the "clone resource" links on a resource's inspect view to make it identical on all of the selected nodes. This lets you make your population of nodes more alike without having to write any Puppet code. 
+> *IMPORTANT* The resource cloning controls are deprecated, and will be removed in Puppet Enterprise 3.0. We are continuing to improve resource inspection and interactive MCollective commands in the console.
+
+You can use the "clone resource" links on a resource's inspect view to make it identical on all of the selected nodes. This lets you make your population of nodes more alike without having to write any Puppet code.
 
 Clicking the clone link for one of the variants will raise a confirmation dialog. You can change the set of selected nodes before clicking the "preview" button.
 
 ![The confirmation dialog before previewing][live_resources_clone_before]
 
-Clicking "preview" will show the pending changes and enable the "clone" button. If the changes look good, click "clone." 
+Clicking "preview" will show the pending changes and enable the "clone" button. If the changes look good, click "clone."
 
 ![Previewing changes to the gopher user][live_resources_clone_previewing]
 
 ![Cloning...][live_resources_cloning]
 
-After the resource has been cloned, you can see a summary of the results and the new state of the resource. 
+After the resource has been cloned, you can see a summary of the results and the new state of the resource.
 
 ![After cloning][live_resources_cloning_after]
 
 
 ### Special Behavior When Cloning Users
 
-When you clone a user, any groups it belongs to are also automatically cloned. 
+When you clone a user, any groups it belongs to are also automatically cloned.
 
 Note also that the UID of a user and the GIDs of its groups aren't cloned across nodes. This means a cloned user's UID will likely differ across nodes. We hope to support UID/GID cloning in a future release.
 
@@ -115,6 +119,6 @@ Note also that the UID of a user and the GIDs of its groups aren't cloned across
 [live_resources_sshd]: ./images/console/live_resources_sshd.png
 
 
-* * * 
+* * *
 
 - [Next: Live Management: Controlling Puppet](./console_live_puppet.html)
