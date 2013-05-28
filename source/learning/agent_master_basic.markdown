@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Learning — Basic Agent/Master Puppet"
 ---
 
@@ -12,18 +12,18 @@ Basic Agent/Master Puppet
 
 This guide assumes that you've followed [the previous walkthrough][agentprep], and have a fresh agent VM that can reach your original master VM over the network. Both VMs should be running right now, and you'll need to be logged in to both of them as root.
 
-* * * 
+* * *
 
 &larr; [Preparing an Agent VM](./agentprep.html) --- [Index](./) --- TBA &rarr;
 
-* * * 
+* * *
 
 Introduction
 -----
 
 ### How Do Agents Get Configurations?
 
-Puppet's agent/master mode is **pull-based.** Usually, agents are configured to periodically fetch a catalog and apply it, and the master controls what goes into that catalog. (For the next few exercises, though, you'll be triggering runs manually.) 
+Puppet's agent/master mode is **pull-based.** Usually, agents are configured to periodically fetch a catalog and apply it, and the master controls what goes into that catalog. (For the next few exercises, though, you'll be triggering runs manually.)
 
 ### What Do Agents Do, and What Do Masters Do?
 
@@ -34,7 +34,7 @@ Puppet's agent/master mode is **pull-based.** Usually, agents are configured to 
 
 ![Diagram of manifests being compiled into a catalog, which gets applied to enforce a defined system state.][unified]
 
-Running Puppet in agent/master mode works much the same way --- the main difference is that it moves the manifests and compilation to the puppet master server. Agents don't have to see any manifest files at all, and have no access to configuration information that isn't in their own catalog. 
+Running Puppet in agent/master mode works much the same way --- the main difference is that it moves the manifests and compilation to the puppet master server. Agents don't have to see any manifest files at all, and have no access to configuration information that isn't in their own catalog.
 
 ![Diagram of an agent requesting a catalog, which gets compiled and served by a puppet master and applied by the agent][split]
 
@@ -46,7 +46,7 @@ The puppet agent subcommand fetches configurations from a master server. It has 
 1. Daemonize and fetch configurations every half-hour (default)
 2. Run once and quit
 
-We'll be using the second mode, since it gives a better view of what's going on. To keep the agent from daemonizing, you should use the `--test` option, which also prints detailed descriptions of what the agent is doing. 
+We'll be using the second mode, since it gives a better view of what's going on. To keep the agent from daemonizing, you should use the `--test` option, which also prints detailed descriptions of what the agent is doing.
 
 If you accidentally run the agent without `--test`, it will daemonize and run in the background. To check whether the agent is running in the background, run:
 
@@ -74,11 +74,11 @@ Time to start! **On your agent VM,** start puppet agent for the first time:
     warning: peer certificate won't be verified in this SSL session
     Exiting; no certificate found and waitforcert is disabled
 
-Hmm. 
+Hmm.
 
 ### What Happened?
 
-Puppet agent found the puppet master, but it got stopped at the certificate roadblock. It isn't authorized to fetch configurations, so the master is turning it away. 
+Puppet agent found the puppet master, but it got stopped at the certificate roadblock. It isn't authorized to fetch configurations, so the master is turning it away.
 
 ### Troubleshooting
 
@@ -135,7 +135,7 @@ But how do we choose which classes go into an agent's catalog?
 
 ### Site.pp
 
-When we were using puppet apply, we would usually specify a manifest file, which declared all of the classes or resources we wanted to apply. 
+When we were using puppet apply, we would usually specify a manifest file, which declared all of the classes or resources we wanted to apply.
 
 The puppet master works the same way, except that it **always loads the same manifest file,** which we usually refer to as site.pp. With Puppet Enterprise, it's located by default at `/etc/puppetlabs/puppet/manifests/site.pp`, but you can configure its location with [the `manifest` setting](/references/latest/configuration.html#manifest).
 
@@ -147,18 +147,18 @@ Node definitions work almost exactly like class definitions:
 
 {% highlight ruby %}
     # Append this at the bottom of /etc/puppetlabs/puppet/manifests/site.pp
-    
+
     node 'agent1.localdomain' {
-      
+
       # Note the quotes around the name! Node names can have characters that
       # aren't legal for class names, so you can't always use bare, unquoted
       # strings like we do with classes.
-      
+
       # Any resource or class declaration can go inside here. For now:
-      
+
       include apache
-      
-      class {'ntp': 
+
+      class {'ntp':
         enable => false,
         ensure => stopped,
       }
@@ -166,7 +166,7 @@ Node definitions work almost exactly like class definitions:
     }
 {% endhighlight %}
 
-But unlike classes, nodes are declared automatically, based on the **name** of the node whose catalog is being compiled. **Only one** node definition will get added to a given catalog, and any other node definitions are effectively hidden. 
+But unlike classes, nodes are declared automatically, based on the **name** of the node whose catalog is being compiled. **Only one** node definition will get added to a given catalog, and any other node definitions are effectively hidden.
 
 An agent node's **name** is almost always read from its [`certname` setting](/references/latest/configuration.html#certname), which is set at install time but can be changed later. The certname is usually (but not always) the node's fully qualified domain name.
 
@@ -188,7 +188,7 @@ Now that you've saved site.pp with a node definition that matches the agent VM's
     --- /etc/ntp.conf   2011-11-18 13:21:25.000000000 +0000
     +++ /tmp/puppet-file20120113-5967-56l9xy-0  2012-01-13 01:02:23.000000000 +0000
     @@ -14,6 +14,8 @@
-     
+
      # Use public servers from the pool.ntp.org project.
      # Please consider joining the pool (http://www.pool.ntp.org/join.html).
     +
@@ -206,12 +206,12 @@ Now that you've saved site.pp with a node definition that matches the agent VM's
 
 Success! We've pulled a configuration that actually does something.
 
-If you change this node's definition in site.pp, it will fetch that new configuration on its next run (which, in a normal environment, would happen less than 30 minutes after you make the change). 
+If you change this node's definition in site.pp, it will fetch that new configuration on its next run (which, in a normal environment, would happen less than 30 minutes after you make the change).
 
 More Installments Coming Later
 ----
 
-You now know how to: 
+You now know how to:
 
 * Run puppet agent interactively with `--test`
 * Authorize a new agent node to pull configurations from the puppet master

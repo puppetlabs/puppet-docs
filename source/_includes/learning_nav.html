@@ -1,16 +1,40 @@
-### Part one: Serverless Puppet
+{% comment %}
 
-* [Resources and the RAL](/learning/ral.html) --- Learn about the fundamental building blocks of system configuration.
-* [Manifests](/learning/manifests.html) --- Start controlling your system by writing actual Puppet code.
-* [Ordering](/learning/ordering.html) --- Learn about dependencies and refresh events, manage the relationships between resources, and discover the fundamental Puppet design pattern.
-* [Variables, Conditionals, and Facts](/learning/variables.html) --- Make your manifests versatile by reading system information.
-* [Modules and Classes (Part One)](/learning/modules1.html) --- Start building your manifests into self-contained modules. 
-* [Templates](/learning/templates.html) --- Use ERB to make your config files as flexible as your Puppet manifests.
-* [Parameterized Classes (Modules, Part Two)](/learning/modules2.html) --- Learn how to pass parameters to classes and make your modules more adaptable.
-* [Defined Types](/learning/definedtypes.html) --- Model repeatable chunks of configuration by grouping basic resources into super-resources.
+- `"Introduction", "/learning/index.html"`
+- **Part one: Serverless Puppet**
+    - `"Resources and the RAL", "/learning/ral.html"`
+    - `"Manifests", "/learning/manifests.html"`
+    - `"Ordering", "/learning/ordering.html"`
+    - `"Variables, Conditionals, Facts", "/learning/variables.html"`
+    - `"Modules and Classes", "/learning/modules1.html"`
+    - `"Templates", "/learning/templates.html"`
+    - `"Parameterized Classes", "/learning/modules2.html"`
+    - `"Defined Types", "/learning/definedtypes.html"`
+- **Part two: Master/Agent Puppet**
+    - `"Preparing an Agent VM", "/learning/agentprep.html"`
+    - `"Basic Agent/Master Puppet", "/learning/agent_master_basic.html"`
 
-### Part two: Master/Agent Puppet
 
-* [Preparing an Agent VM](/learning/agentprep.html) --- Prepare your tools for the next few chapters with our step-by-step walkthrough. 
-* [Basic Agent/Master Puppet](/learning/agent_master_basic.html) --- Tour the agent/master workflow: sign an agent node's certificate, pick which classes a node will get, and pull and apply a catalog. 
-* More coming soon!
+{% endcomment %}
+
+<ul>
+  <li>{% iflink "Introduction", "/learning/index.html" %}</li>
+  <li><strong>Part one: Serverless Puppet</strong>
+    <ul>
+      <li>{% iflink "Resources and the RAL", "/learning/ral.html" %}</li>
+      <li>{% iflink "Manifests", "/learning/manifests.html" %}</li>
+      <li>{% iflink "Ordering", "/learning/ordering.html" %}</li>
+      <li>{% iflink "Variables, Conditionals, Facts", "/learning/variables.html" %}</li>
+      <li>{% iflink "Modules and Classes", "/learning/modules1.html" %}</li>
+      <li>{% iflink "Templates", "/learning/templates.html" %}</li>
+      <li>{% iflink "Parameterized Classes", "/learning/modules2.html" %}</li>
+      <li>{% iflink "Defined Types", "/learning/definedtypes.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Part two: Master/Agent Puppet</strong>
+    <ul>
+      <li>{% iflink "Preparing an Agent VM", "/learning/agentprep.html" %}</li>
+      <li>{% iflink "Basic Agent/Master Puppet", "/learning/agent_master_basic.html" %}</li>
+    </ul>
+  </li>
+</ul>

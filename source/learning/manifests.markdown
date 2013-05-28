@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Learning — Manifests
 ---
 
@@ -190,7 +190,7 @@ And finally, you don't need an encyclopedic memory of what the namevar is for ea
 
 We said `/tmp/test2/` should have permissions mode 0644, but our `ls -lah` showed mode 0755. That's because Puppet groups the read bit and the traverse bit for directories, which is almost always what you actually want. The idea is to let you recursively manage whole directories as mode 0644 without making all their files executable.
 
-**Note:** Unless you're using Puppet Enterprise 2.0.0 with Puppet 2.7.6, which had a [known bug](http://projects.puppetlabs.com/issues/10269) that broke that behavior. 2.7.6 was the only Puppet version with this bug. 
+**Note:** Unless you're using Puppet Enterprise 2.0.0 with Puppet 2.7.6, which had a [known bug](http://projects.puppetlabs.com/issues/10269) that broke that behavior. 2.7.6 was the only Puppet version with this bug.
 
 ### New Ensure Values
 
@@ -221,7 +221,7 @@ The notifies are firing every time, because that's what they're for, but Puppet 
 
 > **Exercise:** Write and apply a manifest that will install the Apache [package](http://docs.puppetlabs.com/references/latest/type.html#package) (`httpd`) then make sure the Apache [service](http://docs.puppetlabs.com/references/latest/type.html#service) (also `httpd`) is running. Use a web browser on your host OS to view the Apache welcome page, then modify the manifest to turn Apache back off. (Hint: You'll have to check the [cheat sheet][cheat] or the [types reference](http://docs.puppetlabs.com/references/stable/type.html), because the `service` type's `ensure` values differ from the ones you've seen so far.)
 
-> **Slightly more difficult exercise:** Write and apply a manifest that uses the [`ssh_authorized_key`](http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey) type to let you log into the learning VM as root without a password. You'll need to have an SSH key. 
+> **Slightly more difficult exercise:** Write and apply a manifest that uses the [`ssh_authorized_key`](http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey) type to let you log into the learning VM as root without a password. You'll need to have an SSH key.
 
 Next
 ----

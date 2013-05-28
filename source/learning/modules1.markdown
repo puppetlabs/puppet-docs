@@ -1,18 +1,18 @@
 ---
-layout: legacy
+layout: default
 title: Learning — Modules 1
 ---
 
 Learning — Modules and Classes (Part One)
 =========================================
 
-You can write some pretty sophisticated manifests at this point, but they're still at a fairly low altitude, going resource-by-resource-by-resource. Now, zoom out with resource collections. 
+You can write some pretty sophisticated manifests at this point, but they're still at a fairly low altitude, going resource-by-resource-by-resource. Now, zoom out with resource collections.
 
 * * *
 
 &larr; [Variables, etc.](./variables.html) --- [Index](./) --- [Templates](./templates.html) &rarr;
 
-* * * 
+* * *
 
 [smoke]: http://docs.puppetlabs.com/guides/tests_smoke.html
 [manifestsdir]: #manifests-namespacing-and-autoloading
@@ -20,11 +20,11 @@ You can write some pretty sophisticated manifests at this point, but they're sti
 Collecting and Reusing
 ----------------------
 
-At some point, you're going to have Puppet code that fits into a couple of different buckets: really general stuff that applies to all your machines, more specialized stuff that only applies to certain classes of machines, and very specific stuff that's meant for a few nodes at most. 
+At some point, you're going to have Puppet code that fits into a couple of different buckets: really general stuff that applies to all your machines, more specialized stuff that only applies to certain classes of machines, and very specific stuff that's meant for a few nodes at most.
 
-So... you _could_ just paste in all your more general code as boilerplate atop your more specific code. There are ways to do that and get away with it. But that's the road down into the valley of the 4,000-line manifest. Better to separate your code out into meaningful units and then call those units by name as needed. 
+So... you _could_ just paste in all your more general code as boilerplate atop your more specific code. There are ways to do that and get away with it. But that's the road down into the valley of the 4,000-line manifest. Better to separate your code out into meaningful units and then call those units by name as needed.
 
-Thus, resource collections and modules! In a few minutes, you'll be able to maintain your manifest code in one place and declare whole groups of it like this: 
+Thus, resource collections and modules! In a few minutes, you'll be able to maintain your manifest code in one place and declare whole groups of it like this:
 
     class {'security_base': }
     class {'webserver_base': }
@@ -41,10 +41,10 @@ If you know any object-oriented programming, try to ignore it for a little while
 
 ### Defining
 
-Before you can use a class, you have to **define** it, which is done with the `class` keyword, a name, and a block of code: 
+Before you can use a class, you have to **define** it, which is done with the `class` keyword, a name, and a block of code:
 
-    class someclass { 
-      ... 
+    class someclass {
+      ...
     }
 
 Well, hey: you have a block of code hanging around from last chapter's exercises, right? Chuck it in!
@@ -53,30 +53,30 @@ Well, hey: you have a block of code hanging around from last chapter's exercises
 
 {% highlight ruby %}
     # ntp-class1.pp
-    
+
     class ntp {
       case $operatingsystem {
-        centos, redhat: { 
+        centos, redhat: {
           $service_name = 'ntpd'
           $conf_file    = 'ntp.conf.el'
         }
-        debian, ubuntu: { 
+        debian, ubuntu: {
           $service_name = 'ntp'
           $conf_file    = 'ntp.conf.debian'
         }
       }
-      
+
       package { 'ntp':
         ensure => installed,
       }
-      
+
       service { 'ntp':
         name      => $service_name,
         ensure    => running,
         enable    => true,
         subscribe => File['ntp.conf'],
       }
-      
+
       file { 'ntp.conf':
         path    => '/etc/ntp.conf',
         ensure  => file,
@@ -92,7 +92,7 @@ Go ahead and apply that. In the meantime:
 
 Class names have to start with a lowercase letter, and can contain lowercase alphanumeric characters and underscores. (Just your standard slightly conservative set of allowed characters.)
 
-Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](./variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir]. 
+Class names can also use a double colon (`::`) as a namespace separator. (Yes, this should [look familiar](./variables.html#variables).) This is a good way to show which classes are related to each other; for example, you can tell right away that something's going on between `apache::ssl` and `apache::vhost`. This will become more important about [two feet south of here][manifestsdir].
 
 Also, class definitions introduce new variable scopes. That means any variables you assign within won't be accessible by their short names outside the class; to get at them from elsewhere, you would have to use the fully-qualified name (e.g. `$apache::ssl::certificate_expiration`).
 
@@ -109,30 +109,30 @@ You actually already know the syntax to do that. A class definition just enables
 
 {% highlight ruby %}
     # ntp-class1.pp
-    
+
     class ntp {
       case $operatingsystem {
-        centos, redhat: { 
+        centos, redhat: {
           $service_name = 'ntpd'
           $conf_file    = 'ntp.conf.el'
         }
-        debian, ubuntu: { 
+        debian, ubuntu: {
           $service_name = 'ntp'
           $conf_file    = 'ntp.conf.debian'
         }
       }
-      
+
       package { 'ntp':
         ensure => installed,
       }
-      
+
       service { 'ntp':
         name      => $service_name,
         ensure    => running,
         enable    => true,
         subscribe => File['ntp.conf'],
       }
-      
+
       file { 'ntp.conf':
         path    => '/etc/ntp.conf',
         ensure  => file,
@@ -140,7 +140,7 @@ You actually already know the syntax to do that. A class definition just enables
         source  => "/root/learning-manifests/${conf_file}",
       }
     }
-    
+
     # Then, declare it:
     class {'ntp': }
 {% endhighlight %}
@@ -186,7 +186,7 @@ The [modulepath](http://docs.puppetlabs.com/references/stable/configuration.html
 
 By the way, `--configprint` is wonderful. Puppet has a _lot_ of [config options](http://docs.puppetlabs.com/references/stable/configuration.html), all of which have default values and site-specific overrides in puppet.conf, and trying to memorize them all is a pain. You can use `--configprint` on  most of the Puppet tools, and they'll print a value (or a bunch, if you use `--configprint all`) and exit.
 
-[^pathseparator]: Well, system path separator-separated. On POSIX systems, that's a colon; on Windows, it's a semicolon. 
+[^pathseparator]: Well, system path separator-separated. On POSIX systems, that's a colon; on Windows, it's a semicolon.
 
 Modules
 -------
@@ -199,30 +199,30 @@ Modules are re-usable bundles of code and data. Puppet autoloads manifests from 
 
 {% highlight ruby %}
     # init.pp
-    
+
     class ntp {
       case $operatingsystem {
-        centos, redhat: { 
+        centos, redhat: {
           $service_name = 'ntpd'
           $conf_file    = 'ntp.conf.el'
         }
-        debian, ubuntu: { 
+        debian, ubuntu: {
           $service_name = 'ntp'
           $conf_file    = 'ntp.conf.debian'
         }
       }
-      
+
       package { 'ntp':
         ensure => installed,
       }
-      
+
       service { 'ntp':
         name      => $service_name,
         ensure    => running,
         enable    => true,
         subscribe => File['ntp.conf'],
       }
-      
+
       file { 'ntp.conf':
         path    => '/etc/ntp.conf',
         ensure  => file,
@@ -230,7 +230,7 @@ Modules are re-usable bundles of code and data. Puppet autoloads manifests from 
         source  => "/root/learning-manifests/${conf_file}",
       }
     }
-    
+
     # (Remember not to declare the class yet.)
 {% endhighlight %}
 
@@ -239,7 +239,7 @@ And now, the reveal:[^dashe]
     # cd ~
     # puppet apply -e "include ntp"
 
-Which works! You can now include the class from any manifest, without having to cut and paste anything. 
+Which works! You can now include the class from any manifest, without having to cut and paste anything.
 
 But we're not quite done yet. See how the manifest is referring to some files stored outside the module? Let's fix that:
 
@@ -286,15 +286,15 @@ A module is just a directory with stuff in it, and the magic comes from putting 
     * `templates/` --- Contains templates, which can be referenced from the module's manifests.
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
 
-The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: main folder, manifests folder, init.pp, just like we used in the ntp module above. 
+The main directory should be named after the module. All of the manifests go in the `manifests` directory. Each manifest contains only one class (or defined type). There's a special manifest called `init.pp` that holds the module's main class, which should have the same name as the module. That's your barest-bones module: main folder, manifests folder, init.pp, just like we used in the ntp module above.
 
 > **Note:** Our printable [Module Cheat Sheet](/module_cheat_sheet.pdf) shows how to lay out a module and explains how in-manifest names map to the underlying files.
 
-But if that was all a module was, it'd make more sense to just load your classes from one flat folder. Modules really come into their own with namespacing and grouping of classes. 
+But if that was all a module was, it'd make more sense to just load your classes from one flat folder. Modules really come into their own with namespacing and grouping of classes.
 
 ### Manifests, Namespacing, and Autoloading
 
-The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses [namespacing](#an-aside-names-namespaces-and-scope) to find them. Say we have a manifests folder that looks like this: 
+The manifests directory can hold any number of other classes and even folders of classes, and Puppet uses [namespacing](#an-aside-names-namespaces-and-scope) to find them. Say we have a manifests folder that looks like this:
 
 * foo/
     * manifests/
@@ -303,17 +303,17 @@ The manifests directory can hold any number of other classes and even folders of
         * bar/
             * baz.pp
 
-The init.pp file should contain `class foo { ... }`, bar.pp should contain `class foo::bar { ... }`, and baz.pp should contain `class foo::bar::baz { ... }`. 
+The init.pp file should contain `class foo { ... }`, bar.pp should contain `class foo::bar { ... }`, and baz.pp should contain `class foo::bar::baz { ... }`.
 
-This can be a little disorienting at first, but I promise you'll get used to it. Basically, init.pp is special, and all of the other classes (each in its own manifest) should be under the main class's namespace. If you add more levels of directory hierarchy, they get interpreted as more levels of namespace hierarchy. This lets you group related classes together, or split the implementation of a complex resource collection out into conceptually separate bits. 
+This can be a little disorienting at first, but I promise you'll get used to it. Basically, init.pp is special, and all of the other classes (each in its own manifest) should be under the main class's namespace. If you add more levels of directory hierarchy, they get interpreted as more levels of namespace hierarchy. This lets you group related classes together, or split the implementation of a complex resource collection out into conceptually separate bits.
 
 ### Files
 
-Puppet can serve files from modules, and it works identically regardless of whether you're doing serverless or agent/master Puppet. Everything in the `files` directory in the ntp module is available under the `puppet:///modules/ntp/` URL. Likewise, a `test.txt` file in the `testing` module's `files` could be retrieved as `puppet:///modules/testing/test.txt`. 
+Puppet can serve files from modules, and it works identically regardless of whether you're doing serverless or agent/master Puppet. Everything in the `files` directory in the ntp module is available under the `puppet:///modules/ntp/` URL. Likewise, a `test.txt` file in the `testing` module's `files` could be retrieved as `puppet:///modules/testing/test.txt`.
 
 ### Tests
 
-Once you start writing modules you plan to keep for more than a day or two, read our brief guide to [module smoke testing][smoke]. It's pretty simple, and will eventually pay off. 
+Once you start writing modules you plan to keep for more than a day or two, read our brief guide to [module smoke testing][smoke]. It's pretty simple, and will eventually pay off.
 
 ### Templates
 
@@ -329,17 +329,17 @@ Modules and the Puppet Forge
 
 Now that you know how modules work, you can also use modules written by other users. The [Puppet Forge](http://forge.puppetlabs.com/) is a great place to start looking for modules: it has modules written by Puppet employees and community members, which can be freely downloaded, modified, and reused in your own infrastructure. Most of these modules are open source, and you can easily contribute updates and changes to improve or enhance these modules. You can also contribute your own modules.
 
-The Puppet Labs blog also runs a [Modules of the Week](http://puppetlabs.com/category/blog/module-of-the-week-blog/) series to feature some of the most popular modules on the Puppet Forge. 
+The Puppet Labs blog also runs a [Modules of the Week](http://puppetlabs.com/category/blog/module-of-the-week-blog/) series to feature some of the most popular modules on the Puppet Forge.
 
 ### User Names
 
-Modules from the Puppet Forge have a user name prefix in their names; this is done to avoid name clashes with, for example, all of the Apache modules out there. 
+Modules from the Puppet Forge have a user name prefix in their names; this is done to avoid name clashes with, for example, all of the Apache modules out there.
 
 The puppet module subcommand usually handles these user name prefixes automatically --- it preserves them as metadata, but installs the module under its common name. That is, your Puppet manifests would refer to a `mysql` module instead of the `puppetlabs-mysql` module.
 
 ### The Puppet Module Subcommand
 
-Puppet ships with a module subcommand for installing and managing modules from the Puppet Forge. [Detailed instructions for using it are here][installing]. Some quick examples: 
+Puppet ships with a module subcommand for installing and managing modules from the Puppet Forge. [Detailed instructions for using it are here][installing]. Some quick examples:
 
 Install the puppetlabs-mysql module:
 
@@ -349,7 +349,7 @@ List all installed modules:
 
     $ sudo puppet module list
 
-With current versions of Puppet, you should usually avoid using the module subcommand's `generate` action --- it is provided for compatibility with an older version of the tool, and doesn't automatically handle user name prefixes. It can be useful for preparing an already developed module for release, since it provides example metadata files, but it isn't useful when beginning a new module. 
+With current versions of Puppet, you should usually avoid using the module subcommand's `generate` action --- it is provided for compatibility with an older version of the tool, and doesn't automatically handle user name prefixes. It can be useful for preparing an already developed module for release, since it provides example metadata files, but it isn't useful when beginning a new module.
 
 [installing]: /puppet/latest/reference/modules_installing.html
 
@@ -357,10 +357,10 @@ With current versions of Puppet, you should usually avoid using the module subco
 Exercises
 ---------
 
-> **Exercise:** Build an Apache2 module and class, which ensures Apache is installed and running and manages its config file. While you're at it, make Puppet manage the DocumentRoot and put a custom 404 page and default index.html in place. 
-> 
+> **Exercise:** Build an Apache2 module and class, which ensures Apache is installed and running and manages its config file. While you're at it, make Puppet manage the DocumentRoot and put a custom 404 page and default index.html in place.
+>
 > Set any files or package/service names that might vary per distro conditionally, failing if we're not on CentOS; this'll let you cleanly shim in support for other distros once you need it.
-> 
+>
 > We'll be using this module some more in future lessons.
 
 Next

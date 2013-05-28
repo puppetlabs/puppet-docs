@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Learning — Defined Types"
 ---
 
@@ -10,11 +10,11 @@ Learning — Defined Types (Modules, Part Three)
 
 Use defined resource types to group basic resources into super-resources.
 
-* * * 
+* * *
 
 &larr; [Parameterized Classes](./modules2.html) --- [Index](./) --- [Preparing an Agent VM](./agentprep.html) &rarr;
 
-* * * 
+* * *
 
 Beyond Singletons
 -----
@@ -55,7 +55,7 @@ Like this:
         require => User[$user],
       }
     }
-    
+
     user {'nick':
       ensure     => present,
       managehome => true,
@@ -66,7 +66,7 @@ Like this:
     }
 {% endhighlight %}
 
-This one's pretty simple. (In fact, it's basically just a macro.) It has two parameters, one of which is optional (it defaults to the title of the resource), and the collection of resources it declares is just a single file resource. 
+This one's pretty simple. (In fact, it's basically just a macro.) It has two parameters, one of which is optional (it defaults to the title of the resource), and the collection of resources it declares is just a single file resource.
 
 > **A quick note:** If your VM is running Puppet 2.6.4 (use `puppet --version` to find out), that example **won't work as written,** because `$title` was exposed to the parameter list in Puppet 2.6.5. You'll need to either [upgrade the VM to Puppet Enterprise 1.2][peupgrade], or make the `$user` parameter mandatory by removing the default. **You can still use the `$title` parameter as a variable** inside the definition, though.
 
@@ -75,7 +75,7 @@ Special Little Flowers
 
 [collision]: ./images/defined_type_collision.png
 
-So it's pretty simple, right? Exactly like defining a class? **Almost:** there's one extra requirement. Since the user might declare any number of instances of a defined type, you have to make sure that the implementation will **never declare the same resource twice.** 
+So it's pretty simple, right? Exactly like defining a class? **Almost:** there's one extra requirement. Since the user might declare any number of instances of a defined type, you have to make sure that the implementation will **never declare the same resource twice.**
 
 Consider a slightly different version of that first definition:
 
@@ -92,13 +92,13 @@ Consider a slightly different version of that first definition:
     }
 {% endhighlight %}
 
-See how the title of the file resource isn't tied to any of the definition's parameters? 
+See how the title of the file resource isn't tied to any of the definition's parameters?
 
 {% highlight ruby %}
     planfile {'nick':
       content => "Working on new Learning Puppet chapters. Tomorrow: upgrading the LP virtual machine.",
     }
-    
+
     planfile {'chris':
       content => "Resurrecting a very dead laptop.",
     }
@@ -107,7 +107,7 @@ See how the title of the file resource isn't tied to any of the definition's par
     # puppet apply planfiles.pp
     Duplicate definition: File[.plan] is already defined in file /root/manifests/planfile.pp at line 9; cannot redefine at /root/manifests/planfile.pp:9 on node puppet.localdomain
 
-Yikes. You can see where we went wrong --- every time we declare an instance of `planfile`, it's going to declare the resource `File['.plan']`, and Puppet will fail compilation if you try to declare the same resource twice. 
+Yikes. You can see where we went wrong --- every time we declare an instance of `planfile`, it's going to declare the resource `File['.plan']`, and Puppet will fail compilation if you try to declare the same resource twice.
 
 ![Tragedy vs. comedy - a diagram showing a resource being declared by two defined type instances, and a diagram showing unique resources being declared by each instance.][collision]
 
@@ -121,7 +121,7 @@ If there's a singleton resource that has to exist for any instance of the define
 
         # Make sure compilation will fail if 'myclass' doesn't get declared:
         Class['myclass'] -> Apache::Vhost["$title"]
-    
+
     Establishing ordering relationships at the class level is generally better than directly requiring one of the resources inside it. However, be aware that you can't reliably make relationships between _classes that declare other classes,_ due to an outstanding design issue in Puppet. (A class "contains" the resources declared inside it, but doesn't contain the resources from _another class_ declared inside it; those resources will "float off," and won't be part of relationships formed with the outermost class. We're working on fixing this, but it has turned out to be kind of complicated.)
 
 Defined Types in Modules
@@ -129,7 +129,7 @@ Defined Types in Modules
 
 [autoloader]: ./modules1.html#manifests-namespacing-and-autoloading
 
-Defined types can be autoloaded just like classes, and thus used from anywhere in your manifests. [Like with classes][autoloader], **each defined type should go in its own file** in a module's `manifests/` directory, and **the same rules for namespacing apply.** (So the `apache::vhost` type would go somewhere like `/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp`, and if we were to keep the `planfile` type around, it would go in `/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp`.) 
+Defined types can be autoloaded just like classes, and thus used from anywhere in your manifests. [Like with classes][autoloader], **each defined type should go in its own file** in a module's `manifests/` directory, and **the same rules for namespacing apply.** (So the `apache::vhost` type would go somewhere like `/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp`, and if we were to keep the `planfile` type around, it would go in `/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp`.)
 
 ### Resource References and Namespaced Types
 
@@ -177,13 +177,13 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
         $options       = "Indexes FollowSymLinks MultiViews",
         $vhost_name    = '*'
       ) {
-    
+
       include apache
-      
-      # Below is a pre-2.6.5 idiom for having a parameter default to the title, 
+
+      # Below is a pre-2.6.5 idiom for having a parameter default to the title,
       # but you could also just declare $servername = "$title" in the parameters
       # list and change srvname to servername in the template.
-      
+
       if $servername == '' {
         $srvname = $title
       } else {
@@ -196,7 +196,7 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
                                         $logdir = '/var/log/apache2'}
         default:                      { $vdir   = '/etc/apache2/sites-enabled'
                                         $logdir = '/var/log/apache2'}
-      }        
+      }
       file {
         "${vdir}/${priority}-${name}.conf":
           content => template($template),
@@ -206,7 +206,7 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
           require => Package['httpd'],
           notify  => Service['httpd'],
       }
-    
+
     }
 {% endhighlight %}
 
@@ -217,7 +217,7 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
     # Default template in module puppetlabs-apache
     # Managed by Puppet
     # ************************************
-    
+
     Listen <%= port %>
     NameVirtualHost <%= vhost_name %>:<%= port %>
     <VirtualHost <%= vhost_name %>:<%= port %>>
@@ -241,7 +241,7 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
     </VirtualHost>
 {% endhighlight %}
 
-And that's more or less a wrap. You can apply a manifest like this: 
+And that's more or less a wrap. You can apply a manifest like this:
 
 {% highlight ruby %}
     apache::vhost {'testhost':
@@ -294,4 +294,4 @@ You can learn how to use these by running `puppet doc --reference function | les
 Next
 ----
 
-There's more to say about modules --- we still haven't covered data separation, patterns for making your modules more readable, or module composition yet --- but there's more important business afoot. [Continue reading](./agentprep.html) to prepare your VMs (yes, plural) for agent/master Puppet. 
+There's more to say about modules --- we still haven't covered data separation, patterns for making your modules more readable, or module composition yet --- but there's more important business afoot. [Continue reading](./agentprep.html) to prepare your VMs (yes, plural) for agent/master Puppet.
