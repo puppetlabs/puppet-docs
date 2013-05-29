@@ -247,9 +247,9 @@ Assuming a hierarchy of:
 
 {% highlight yaml %}
     :hierarchy:
-      - %{::clientcert}
-      - %{::osfamily}
-      - common
+      - '%{::clientcert}'
+      - '%{::osfamily}'
+      - 'common'
 {% endhighlight %}
 
 ...and given Hiera data like the following:
