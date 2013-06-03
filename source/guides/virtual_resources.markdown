@@ -93,7 +93,7 @@ using or and and. You can also parenthesize these statements, as
 you might expect. So, a more complicated collection might look
 like:
 
-    User <| (group == dba or group == sysadmin) or title == luke |>
+    User <| (groups == dba or groups == sysadmin) or title == luke |>
 
 Realizing Resources
 -------------------
