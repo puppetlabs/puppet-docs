@@ -22,9 +22,9 @@ Conditional statements let your Puppet code behave differently in different situ
 Summary
 -----
 
-Puppet 3 supports "if" and "unless" statements, case statements, and selectors. 
+Puppet 3 supports "if" and "unless" statements, case statements, and selectors.
 
-An "if" statement: 
+An "if" statement:
 
 {% highlight ruby %}
     if $is_virtual == 'true' {
@@ -38,7 +38,7 @@ An "if" statement:
     }
 {% endhighlight %}
 
-An "unless" statement: 
+An "unless" statement:
 
 {% highlight ruby %}
     unless $memorysize > 1024 {
@@ -65,7 +65,7 @@ A selector:
         /(Darwin|FreeBSD)/ => 'wheel',
         default            => 'root',
     }
-    
+
     file { '/etc/passwd':
       ensure => file,
       owner  => 'root',
@@ -76,7 +76,7 @@ A selector:
 "If" Statements
 -----
 
-**"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **true.** They can optionally include `elsif` and `else` clauses. 
+**"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **true.** They can optionally include `elsif` and `else` clauses.
 
 
 ### Syntax
@@ -88,6 +88,7 @@ A selector:
     }
     elsif $operatingsystem == 'Darwin' {
       warn ( 'This NTP module does not yet work on our Mac laptops.' )
+    }
     else {
       # Normal node, include the class.
       include ntp
@@ -108,7 +109,7 @@ Puppet's "if" statements behave much like those in any other language. The `if` 
 
 If none of the conditions in the statement match and there is no `else` block, Puppet will do nothing and move on.
 
-"If" statements will execute a maximum of one code block. 
+"If" statements will execute a maximum of one code block.
 
 ### Conditions
 
@@ -119,8 +120,8 @@ The condition(s) of an "if" statement may be any fragment of Puppet code that re
 * [Functions][] that return values
 
 Fragments that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
- 
-Static values may also be conditions, although doing this would be pointless. 
+
+Static values may also be conditions, although doing this would be pointless.
 
 #### Regex Capture Variables
 
@@ -142,7 +143,7 @@ These are not normal variables, and have some special behaviors:
 "Unless" Statements
 -----
 
-**"Unless" statements** work like reversed "if" statements. They take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **false.** They **cannot** include `elsif` or `else` clauses. 
+**"Unless" statements** work like reversed "if" statements. They take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **false.** They **cannot** include `elsif` or `else` clauses.
 
 ### Syntax
 
@@ -158,7 +159,7 @@ The general form of an "unless" statement is:
 * A **condition**
 * A pair of curly braces containing any Puppet code
 
-If an `else` or `elsif` clause is included in an "unless" statement, it is a syntax error and will cause compilation to fail. 
+If an `else` or `elsif` clause is included in an "unless" statement, it is a syntax error and will cause compilation to fail.
 
 ### Behavior
 
@@ -174,7 +175,7 @@ The condition(s) of an "unless" statement may be any fragment of Puppet code tha
 
 Fragments that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
 
-Static values may also be conditions, although doing this would be pointless. 
+Static values may also be conditions, although doing this would be pointless.
 
 #### Regex Capture Variables
 
@@ -185,7 +186,7 @@ Although "unless" statements receive regex capture variables like "if" statement
 Case Statements
 -----
 
-Like "if" statements, **case statements** choose one of several blocks of arbitrary Puppet code to execute. They take a control expression and a list of cases and code blocks, and will execute the first block whose case value matches the control expression. 
+Like "if" statements, **case statements** choose one of several blocks of arbitrary Puppet code to execute. They take a control expression and a list of cases and code blocks, and will execute the first block whose case value matches the control expression.
 
 ### Syntax
 
@@ -214,13 +215,13 @@ The general form of a case statement is:
 
 Puppet compares the **control expression** to each of the **cases,** in the order they are listed. It will execute the block of code associated with the **first** matching case, and ignore the remainder of the statement.
 
-* Basic cases are compared with [the `==` operator][equality] (which is case-insensitive). 
+* Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
 * Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
 * The special `default` case matches anything.
 
 If none of the cases match, Puppet will do nothing and move on.
 
-Case statements will execute a maximum of one code block. 
+Case statements will execute a maximum of one code block.
 
 ### Control Expressions
 
@@ -240,13 +241,13 @@ Cases may be any of the following:
 * A [regular expression][regex]
 * The special bare word value `default`
 
-Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases. 
+Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases.
 
 You may use a comma-separated list of cases to associate more than one case with the same block of code.
 
 Normal values are compared to the control expression using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control expression.
 
-Cases are compared in the order that they are written in the manifest; thus, the `default` case (if any) must be at the end of the list. 
+Cases are compared in the order that they are written in the manifest; thus, the `default` case (if any) must be at the end of the list.
 
 #### Regex Capture Variables
 
@@ -267,11 +268,11 @@ These are not normal variables, and have some special behaviors:
 
 
 > #### Aside: Best Practices
-> 
-> Case statements should usually have a default case. 
-> 
+>
+> Case statements should usually have a default case.
+>
 > * If the rest of your cases are meant to be comprehensive, putting a [`fail('message')`][fail] call in the default case makes your code more robust by protecting against mystery failures due to behavior changes elsewhere in your manifests.
-> * If your cases aren't comprehensive and nodes that match none should do nothing, write a default case with an empty code block (`default: {}`). This makes your intention obvious to the next person who has to maintain your code. 
+> * If your cases aren't comprehensive and nodes that match none should do nothing, write a default case with an empty code block (`default: {}`). This makes your intention obvious to the next person who has to maintain your code.
 
 
 Selectors
@@ -296,8 +297,8 @@ Selectors are not legal in:
 * A case in a case statement
 
 > #### Aside: Best Practices
-> 
-> For readability's sake, you should generally only use selectors in variable assignments. 
+>
+> For readability's sake, you should generally only use selectors in variable assignments.
 
 ### Syntax
 
@@ -309,7 +310,7 @@ Selectors resemble a cross between a case statement and the ternary operator fou
         /(Darwin|FreeBSD)/ => 'wheel',
         default            => 'root',
     }
-    
+
     file { '/etc/passwd':
       ensure => file,
       owner  => 'root',
@@ -333,7 +334,7 @@ The general form of a selector is:
 
 ### Behavior
 
-The entire selector statement is **treated as a single value.** 
+The entire selector statement is **treated as a single value.**
 
 Puppet compares the **control variable** to each of the **cases,** in the order they are listed. When it finds a matching case, it will treat that value as the value of the statement and ignore the remainder of the statement.
 
@@ -357,13 +358,13 @@ Cases may be any of the following:
 * A [regular expression][regex]
 * The special bare word value `default`
 
-Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases. 
+Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases.
 
 **Unlike in case statements,** you cannot use lists of cases. If you need more than one case associated with a single value, you must use a regular expression.
 
 Normal values are compared to the control variable using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control variable.
 
-Cases are compared in the order that they are written in the manifest; thus, the `default` case (if any) must be at the end of the list. 
+Cases are compared in the order that they are written in the manifest; thus, the `default` case (if any) must be at the end of the list.
 
 #### Regex Capture Variables
 
