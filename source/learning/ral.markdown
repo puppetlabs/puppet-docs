@@ -68,13 +68,15 @@ You can retrieve a specific resource's state by providing a resource name as a s
     $ puppet resource user root
 
     user { 'root':
-        home => '/var/root',
-        shell => '/bin/sh',
-        uid => '0',
-        ensure => 'present',
-        password => '*',
-        gid => '0',
-        comment => 'System Administrator'
+      ensure           => 'present',
+      comment          => 'root',
+      gid              => '0',
+      home             => '/root',
+      password         => '!',
+      password_max_age => '99999',
+      password_min_age => '0',
+      shell            => '/bin/bash',
+      uid              => '0',
     }
 
 Note that puppet resource returns Puppet code when it reads a resource from the system! You can use this code later to restore the resource to the state it's in now.
@@ -86,9 +88,9 @@ If any attribute=value pairs are provided as additional arguments to puppet reso
     notice: /User[dave]/ensure: created
 
     user { 'dave':
-        ensure => 'present',
-        home => '/home/dave',
-        shell => '/bin/zsh'
+      ensure => 'present',
+      home   => '/home/dave',
+      shell  => '/bin/zsh',
     }
 
 (Note that this command line assignment syntax differs from the Puppet language's normal attribute => value syntax.)
