@@ -3,38 +3,37 @@ layout: default
 title: Learning — Variables, Conditionals, and Facts
 ---
 
-Learning — Variables, Conditionals, and Facts
-=============================================
-
-You can write manifests and order resources; now, add logic and flexibility with conditional statements and variables.
-
-* * *
-
-&larr; [Ordering](./ordering.html) --- [Index](./) --- [Modules (Part One)][next] &rarr;
-
-* * *
-
 [next]: ./modules1.html
 [customfacts]: /guides/custom_facts.html
+
+
+Begin
+-----
+
+{% highlight ruby %}
+    $my_variable = "A bunch of text"
+    notify {$my_variable:}
+{% endhighlight %}
+
+Yup, that's a variable, all right.
 
 Variables
 ---------
 
-Variables! I'm going to bet you pretty much know this drill, so let's move a little faster:
+Variables! You've almost definitely used variables before in some other programming or scripting language, so we'll cover the basics very quickly. A more complete explanation of the syntax and behavior of variables is available in [the variables chapter of the Puppet reference manual](/puppet/latest/reference/lang_variables.html).
 
 * `$variables` always start with a dollar sign. You assign to variables with the `=` operator.
-* Variables can hold strings, numbers, special values (false, undef...), arrays, and hashes.
-* If you've never assigned a variable, you can actually still use it --- its value will be `undef`. (You can also explicitly assign `undef` as a value, although the use case for that is somewhat advanced.)
+* Variables can hold strings, numbers, booleans, arrays, hashes, and the special `undef` value. See [the data types chapter of the Puppet reference manual](/puppet/latest/reference/lang_datatypes.html) for more information.
+* If you've never assigned a variable, you can actually still use it --- its value will be `undef`.
 * You can use variables as the value for any resource attribute, or as the title of a resource.
-* You can also interpolate variables inside strings, if you use double-quotes. To distinguish a `${variable}` from the surrounding text, you must wrap its name in curly braces.
-* Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
-* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the top scope;[^dynamic] this means you can almost always refer to global variables with just their short names.
+* You can also interpolate variables inside double-quoted strings. To distinguish a variable from the surrounding text, you can wrap its name in curly braces. (`"This is the ${variable} name."`) This isn't mandatory, but it is recommended.
+* Every variable has two names:
+    * A short local name
+    * A long fully-qualified name
 
-    > Note: Current versions of Puppet can log spurious warnings if you refer to top-scope variables without the `$::` prefix. These are due to a bug, and will be fixed in a future version.
-* You can only assign the same variable **once** in a given scope.[^declarative]
-
-[^declarative]: This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn't matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br><br>In practice, this isn't the full story, because you can't currently read a variable from anywhere north of its assignment. We're working on that.
-[^dynamic]: It's actually a little more complicated than that, but don't worry about it for now. You can [read up on it](/guides/scope_and_puppet.html) later.
+    Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
+* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the global top scope; this means you can almost always refer to global variables with just their short names. You can see more about this in the scope chapter of the Puppet reference manual: [scope in Puppet Enterprise 2.x and Puppet 2.7](/puppet/2.7/reference/lang_scope.html), [scope in Puppet 3](/puppet/latest/reference/lang_scope.html)
+* You can only assign the same variable **once** in a given scope. In this way, they're more like constants from other programming languages.
 
 {% highlight ruby %}
     $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."
@@ -47,61 +46,92 @@ Variables! I'm going to bet you pretty much know this drill, so let's move a lit
 
 Pretty easy.
 
+> ### Aside: Why Do Everyone's Manifests Seem to Use $::ipaddress?
+>
+> People who write manifests to share with the public often adopt the habit of always using the `$::variable` notation when referring to facts.
+>
+> As mentioned above, the double-colon prefix specifies that a given variable should be found at top scope. This isn't actually necessary, since variable lookup will always reach top scope anyway. (See [the scope chapter of the Puppet reference manual](/puppet/latest/reference/lang_scope.html).)
+>
+> However, explicitly asking for top scope helps work around two issues that can make public code behave unpredictably. One issue affects all versions of Puppet 2.x, and the other affected earlier versions of Puppet 2.7.x:
+>
+> * In Puppet 2.x: if a user declares a class from a public module inside one of their own classes, and their personal class sets a variable whose name matches the name of a fact that the public class is trying to access, the public class will get the local variable instead of the fact. This will generally cause the public class to fail or do something really strange.
+> * In earlier versions of Puppet 2.7.x: the dynamic scope deprecation warnings would sometimes be improperly triggered when manifests accessed top scopes variables without the double-colon prefix. This was fixed in later versions, but was very annoying for a while.
+>
+> Neither of these issues are relevant as of Puppet 3, but not everyone is using Puppet 3 yet, and a Puppet 3-based version of Puppet Enterprise is still forthcoming later this year. Since a lot of people are still writing public code meant to be used with Puppet 2.7, you still see this idiom a lot.
+
+
 Facts
 -----
 
-And now, a teaspoon of magic.
+[lang_facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[core_facts]: /facter/latest/core_facts.html
 
-Before you even start writing your manifests, Puppet builds you a stash of pre-assigned variables. Check it out:
+Puppet has a bunch of built-in, pre-assigned variables that you can use. Check it out:
 
 {% highlight ruby %}
-    # hosts-simple.pp
-
-    # Host type reference:
-    # http://docs.puppetlabs.com/references/stable/type.html#host
-
-    host {'self':
-      ensure       => present,
-      name         => $fqdn,
-      host_aliases => ['puppet', $hostname],
-      ip           => $ipaddress,
-    }
+    # /root/examples/motd.pp
 
     file {'motd':
       ensure  => file,
       path    => '/etc/motd',
       mode    => 0644,
-      content => "Welcome to ${hostname},\na ${operatingsystem} island in the sea of ${domain}.\n",
+      content => "This Learning Puppet VM's IP address is ${ipaddress}. It thinks its
+    hostname is ${fqdn}, but you might not be able to reach it there
+    from your host machine. It is running ${operatingsystem} ${operatingsystemrelease} and
+    Puppet ${puppetversion}.
+    Web console login:
+      URL: https://${ipaddress_eth0}
+      User: puppet@example.com
+      Password: learningpuppet
+    ",
     }
 {% endhighlight %}
 
-    # puppet apply hosts-simple.pp
+    # puppet apply motd.pp
 
     notice: /Stage[main]//Host[puppet]/ensure: created
-    notice: /Stage[main]//File[motd]/ensure: defined content as '{md5}d149026e4b6d747ddd3a8157a8c37679'
+    notice: /Stage[main]//File[motd]/ensure: defined content as '{md5}bb1a70a2a2ac5ed3cb83e1a8caa0e331'
 
     # cat /etc/motd
-    Welcome to learn,
-    a CentOS island in the sea of localdomain.
+    This Learning Puppet VM's IP address is 172.16.52.135. It thinks its
+    hostname is learn.localdomain, but you might not be able to reach it there
+    from your host machine. It is running CentOS 5.7 and
+    Puppet 2.7.21 (Puppet Enterprise 2.8.1).
+    Web console login:
+      URL: https://172.16.52.135
+      User: puppet@example.com
+      Password: learningpuppet
 
-Our manifests are starting to get versatile, with pretty much no real work on our part.
+Our manifests are becoming more flexible, with pretty much no real work on our part.
 
-### Hostname? IPaddress?
+### What Are These Hostname and IPaddress Variables?
 
-So where did those helpful variables come from? They're "facts." Puppet ships with a tool called Facter, which ferrets out your system information, normalizes it into a set of variables, and passes them off to Puppet. The compiler then has access to those facts when it's reading a manifest.
+And where did they come from?
 
-There are a lot of different facts, and the easiest way to get a list of them is to simply run `facter` at your VM's command line. You'll get back a long list of key/value pairs separated by the familiar `=>` hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a `::`, because being explicit about namespaces is a good habit).
+They're ["facts."][lang_facts] Puppet uses a tool called Facter, which discovers some system information, normalizes it into a set of variables, and passes them off to Puppet. Puppet's compiler then has access to those facts when it's reading a manifest.
 
-Most kinds of system will have at least a few facts that aren't available on other kinds of system (e.g., try comparing Facter's output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you're extending Facter with [custom facts](/guides/custom_facts.html), but there's a general core of facts that give you the same info everywhere. You'll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names.
+* [See here for a list of all of the "core" facts built into Facter.][core_facts] Most of them are always available to Puppet, although some of them are only present on certain system types.
+* You can see what Facter knows about a given system by running `facter` at the command line.
+* You can also see all of the facts for any node in your Puppet Enterprise deployment by browsing to that node's page in the console and [scrolling down to the inventory information.](/pe/latest/console_reports.html#viewing-inventory-data)
+* You can also add new custom facts to Puppet; see [the custom facts guide](/guides/custom_facts.html) for more information.
+
+### Other Built-In Variables
+
+In addition to the facts from Facter, Puppet has a few extra built-in variables. You can see a list of them in [the variables chapter of the Puppet reference manual.][lang_facts]
+
 
 Conditional Statements
 ----------------------
 
-Puppet has a fairly complete complement of conditional syntaxes, and the info available in facts makes it really easy to code different behavior for different systems.
+Puppet has several kinds of conditional statements. You can see more complete info about them in [the conditional statements chapter of the Puppet reference manual.](/puppet/latest/reference/lang_conditional.html).
+
+By using facts as conditions, you can easily make Puppet do different things on different kinds of systems.
 
 ### If
 
-We'll start with your basic `if` statement. Same as it ever was:
+We'll start with your basic [`if` statement][lang_if]. Same as it ever was:
+
+[lang_if]: /puppet/latest/reference/lang_conditional.html#if-statements
 
     if condition {
       block of code
@@ -113,10 +143,17 @@ We'll start with your basic `if` statement. Same as it ever was:
       block of code
     }
 
-The else and any number of elsif statements are optional.
+* The `else` and any number of `elsif` statements are optional.
+* The blocks of code for each condition can contain any Puppet code.
+* The conditions can be any fragment of Puppet code that resolves to a boolean true/false value, including [expressions][], [functions][] that return values, and variables. Follow the links for more detailed descriptions of expressions and functions.
+
+[functions]: /puppet/latest/reference/lang_functions.html
+[expressions]: /puppet/latest/reference/lang_expressions.html
+
+An example `if` statement:
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if str2bool("$is_virtual") {
       service {'ntpd':
         ensure => stopped,
         enable => false,
@@ -133,28 +170,32 @@ The else and any number of elsif statements are optional.
     }
 {% endhighlight %}
 
-The blocks of code for each condition can contain any Puppet code.
 
-#### What is False?
+[bool_convert]: /puppet/latest/reference/lang_datatypes.html#automatic-conversion-to-boolean
+[strings]: /puppet/latest/reference/lang_datatypes.html#strings
+[stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
 
-The Puppet language's data types are kind of loose, and a lot of things tend to get represented internally as strings, so it's worth calling out what exactly will be treated as false by an `if` statement:
+> ### Aside: Beware of the Fake False!
+>
+> In the example above, we see something new: `str2bool("$is_virtual")`.
+>
+> The condition for an `if` statement has to resolve to a boolean true/false value. However, all facts are [strings][], and all non-empty strings --- including the string `"false"` --- are true. This means that facts that are "false" need to be transformed before Puppet will treat them as false.
+>
+> In this case, we're:
+>
+> * Surrounding the variable with double quotes --- if it contained an actual boolean for some reason (and it usually wouldn't), this would convert it to a string.
+> * Passing the string to the `str2bool` function, which converts a string that _looks_ like a boolean into a real true or false value.
+>
+> The `str2bool` [function][functions] is part of the [puppetlabs/stdlib][stdlib] module, which is included with Puppet Enterprise. If you are running open source Puppet, you can install it by running `sudo puppet module install puppetlabs/stdlib`.
+>
+> We could also use an expression instead: the expression `$is_virtual == 'true'` would resolve to true if the `is_virtual` fact has a value of true, and false otherwise.
 
-* `undef` (the value of an unassigned variable)
-* `''` (the empty string)
-* `false`
-* Any expression that evaluates to false.
-
-**In particular, be aware that the numeral 0 and the string "false" are both true.** This means that while you can use some variables alone as an if-condition, you can't use facts that way. Facts are always read into Puppet as strings, so you need to test conceptually-boolean facts for their string value instead of their literal truth or falsehood.
-
-#### Conditions
-
-[expression]: http://docs.puppetlabs.com/guides/language_guide.html#expressions
-
-Conditions can get pretty sophisticated: you can use any valid [expression][] in an if statement. Usually, this is going to mean using one of the standard comparison operators (`==`, `!=`, `<`, `>`, `<=`, `>=`), the regex match operators (`=~` and `!~`), or the `in` operator (which tests whether the right operand contains the left one).
 
 ### Case
 
-Also probably familiar: the case statement. (Or switch, or whatever your language of choice calls it.)
+Another kind of conditional is the [case statement][lang_case]. (Or switch, or whatever your language of choice calls it.)
+
+[lang_case]: /puppet/latest/reference/lang_conditional.html#case-statements
 
 {% highlight ruby %}
     case $operatingsystem {
@@ -164,7 +205,6 @@ Also probably familiar: the case statement. (Or switch, or whatever your languag
       debian: { $apache = "apache2" }
       ubuntu: { $apache = "apache2" }
       default: { fail("Unrecognized operating system for webserver") }
-      # "fail" is a function. We'll get to those later.
     }
     package {'apache':
       name   => $apache,
@@ -174,13 +214,25 @@ Also probably familiar: the case statement. (Or switch, or whatever your languag
 
 Instead of testing a condition up front, `case` matches a variable against a bunch of possible values. **`default` is a special value,** which does exactly what it sounds like.
 
+In this example, we also see the [`fail` function](/references/latest/function.html#fail). Unlike the `str2bool` function above, `fail` doesn't resolve to a value; instead, it fails compilation immediately with an error message.
+
 #### Case matching
 
-Matches can be simple strings (like above), regular expressions, or comma-separated lists of either.
+[regex]: /puppet/latest/reference/lang_datatypes.html#regular-expressions
 
-String matching is case-insensitive, like the `==` comparison operator. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they're case-sensitive by default, but you can use the `(?i)` and `(?-i)` switches to turn case-insensitivity on and off inside the pattern. Regex matches also assign captured subpatterns to `$1`, `$2`, etc. inside the associated code block, with `$0` containing the whole matching string.
+Case matches can be simple strings (like above), [regular expressions][regex], or comma-separated lists of either.
 
-Here's a regex example:
+Here's the example from above, rewritten to use comma-separated lists of strings:
+
+{% highlight ruby %}
+    case $operatingsystem {
+      centos, redhat: { $apache = "httpd" }
+      debian, ubuntu: { $apache = "apache2" }
+      default: { fail("Unrecognized operating system for webserver") }
+    }
+{% endhighlight %}
+
+And here's a regex example:
 
 {% highlight ruby %}
     case $ipaddress_eth0 {
@@ -192,19 +244,13 @@ Here's a regex example:
     }
 {% endhighlight %}
 
-And here's the example from above, rewritten and more readable:
+String matching is case-insensitive, like [the `==` comparison operator][lang_eq]. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they're case-sensitive by default, but you can use the `(?i)` and `(?-i)` switches to turn case-insensitivity on and off inside the pattern. Regex matches also assign captured subpatterns to `$1`, `$2`, etc. inside the associated code block, with `$0` containing the whole matching string. See [the regular expressions section of the Puppet reference manual's data types page][regex] for more details.
 
-{% highlight ruby %}
-    case $operatingsystem {
-      centos, redhat: { $apache = "httpd" }
-      debian, ubuntu: { $apache = "apache2" }
-      default: { fail("Unrecognized operating system for webserver") }
-    }
-{% endhighlight %}
+[lang_eq]: /puppet/latest/reference/lang_expressions.html#equality
 
 ### Selectors
 
-Selectors might be less familiar; they're kind of like the [ternary operator](http://en.wikipedia.org/wiki/%3F:), and kind of like the case statement.
+Selectors might be less familiar; they're kind of like the common [ternary operator](http://en.wikipedia.org/wiki/%3F:), and kind of like the case statement.
 
 Instead of choosing between a set of code blocks, selectors choose between a group of possible values. You can't use them on their own; instead, they're usually used to assign a variable.
 
@@ -212,13 +258,12 @@ Instead of choosing between a set of code blocks, selectors choose between a gro
     $apache = $operatingsystem ? {
       centos                => 'httpd',
       redhat                => 'httpd',
-      /(?i)(ubuntu|debian)/ => "apache2-$1",
-        # (Don't actually use that package name.)
+      /(?i)(ubuntu|debian)/ => 'apache2',
       default               => undef,
     }
 {% endhighlight %}
 
-Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the pivot of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can't use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)
+Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the control variable of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can't use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)
 
 It can look a little awkward, but there are plenty of situations where it's the most concise way to get a value sorted out; if you're ever not comfortable with it, you can just use a case statement to assign the variable instead.
 
@@ -227,13 +272,25 @@ Selectors can also be used directly as values for a resource attribute, but try 
 Exercises
 ---------
 
-> **Exercise:** Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based ("debian," "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
-
-> **Exercise:** Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where both kinds of systems use the same package name (`ntp`), but you'll be shipping different config files ([Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el) -- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
+> ### Exercise: Build Environment
 >
-> (Use a second manifest to disable the NTP service after you've gotten this example working; NTP can behave kind of uselessly in a virtual machine.)
+> Use the $operatingsystem fact to write a manifest that installs a C build environment on Debian-based ("debian," "ubuntu") and Enterprise Linux-based ("centos," "redhat") machines. (Both types of system require the `gcc` package, but Debian-type systems also require `build-essential`.)
+
+> ### Exercise: Simple NTP
+>
+> Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where both kinds of systems use the same package name (`ntp`), but you'll be shipping different config files ([Debian version](./files/examples/modules/ntp/files/ntp.conf.debian), [Red Hat version](./files/examples/modules/ntp/files/ntp.conf.el) -- remember the `file` type's "source" attribute) and using different service names (`ntp` and `ntpd`, respectively).
 
 Next
 ----
 
+**Next Lesson:**
+
 Now that your manifests can adapt to different kinds of systems, it's time to start grouping resources and conditionals into meaningful units. Onward to [classes, defined resource types, and modules][next]!
+
+**Off-Road:**
+
+Since facts from every node show up in the console, Puppet Enterprise can be a powerful inventory tool. [Download Puppet Enterprise for free][dl], follow [the quick start guide][quick] to get a small environment installed, then try browsing the console's inventory for a central view of your operating system versions, hardware profiles, and more.
+
+
+[dl]: http://info.puppetlabs.com/download-pe.html
+[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
