@@ -30,7 +30,7 @@ Puppet 3 has the following prerequisites:
 
 ### Optional: the `rgen` Ruby Gem (Puppet 3.2.0 and later)
 
-If you are using Puppet ≥ 3.2 [with `parser = future` enabled](./lang_future.html), you will need:
+If you are using Puppet ≥ 3.2 [with `parser = future` enabled](./lang_experimental_3_2.html), you will need:
 
 - [rgen gem](http://ruby-gen.org/downloads) 0.6.1 or later
 
