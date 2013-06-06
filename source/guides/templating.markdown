@@ -18,7 +18,7 @@ with the managed node's facts.
 
 Puppet supports templates written in the [ERB][] templating language, which is part of the Ruby standard library.
 
-Templates can be used to specify the contents of files. 
+Templates can be used to specify the contents of files.
 
 **For a full introduction to using templates with Puppet, see [the templates chapter of Learning Puppet][lptemplates].**
 
@@ -27,7 +27,9 @@ Evaluating Templates
 
 Templates are evaluated via a simple function:
 
+{% highlight ruby %}
     $value = template("my_module/mytemplate.erb")
+{% endhighlight %}
 
 **Template files should be stored in the `templates` directory of a [Puppet module][modules],** which allows the `template` function to locate them with the simplified path format shown above. For example, the file referenced by `template("my_module/mytemplate.erb")` would be found on disk at `/etc/puppet/modules/my_module/templates/mytemplate.erb` (assuming the common [`modulepath`](/references/latest/configuration.html#modulepath) of `/etc/puppet/modules`).
 
@@ -37,7 +39,7 @@ Templates are always evaluated by the parser, not by the client.
 This means that if you are using a puppet master server, then the templates
 only need to be on the server, and you never need to download them
 to the client. The client sees no difference between using a
-template and specifying all of the text of the file as a string. 
+template and specifying all of the text of the file as a string.
 
 ERB Template Syntax
 -----
@@ -48,7 +50,7 @@ ERB is part of the Ruby standard library. Full information about its syntax and 
 
 ERB templates may contain any kind of text; in the context of Puppet, this is usually some sort of config file. (Outside the context of Puppet, it is usually HTML.)
 
-Literal text in an ERB file becomes literal text in the processed output. Ruby instructions and expressions can be embedded in **tags;** these will be interpreted to help create the processed output. 
+Literal text in an ERB file becomes literal text in the processed output. Ruby instructions and expressions can be embedded in **tags;** these will be interpreted to help create the processed output.
 
 ### Tags
 
@@ -58,12 +60,12 @@ The tags available in an ERB file depend on the way the ERB processor is configu
 * `<% Ruby code %>` --- This tag will execute the code it contains, but will not be replaced by a value. Useful for conditional or looping logic, setting variables, and manipulating data before printing it.
 * `<%# comment %>` --- Anything in this tag will be suppressed in the final output.
 * `<%%` or `%%>` --- A literal <% or %>, respectively.
-* `<%-` --- Same as `<%`, but suppresses any leading whitespace in the final output. Useful when indenting blocks of code for readability. 
+* `<%-` --- Same as `<%`, but suppresses any leading whitespace in the final output. Useful when indenting blocks of code for readability.
 * `-%>` --- Same as `%>`, but suppresses the subsequent line break in the final output. Useful with many lines of non-printing code in a row, which would otherwise appear as a long stretch of blank lines.
 
 ### Trim Mode
 
-Puppet uses ERB's undocumented `"-"` (explicit line trim) mode, which allows tags to suppress leading whitespace and trailing line breaks as described above, and disallows the `& line of code` shortcut. Although it unfortunately doesn't appear in the ERB docs, you can read its effect in the Ruby source code starting in the `initialize` method of the `ERB::Compiler::TrimScanner` class.
+Puppet uses ERB's undocumented `"-"` (explicit line trim) mode, which allows tags to suppress leading whitespace and trailing line breaks as described above, and disallows the `% line of code` shortcut. Although it unfortunately doesn't appear in the ERB docs, you can read its effect in the Ruby source code starting in the `initialize` method of the `ERB::Compiler::TrimScanner` class.
 
 
 Using Templates
@@ -72,6 +74,7 @@ Using Templates
 Here is an example for generating the Apache configuration for
 [Trac](http://trac.edgewall.org/) sites:
 
+{% highlight ruby %}
     # /etc/puppet/modules/trac/manifests/tracsite.pp
     define trac::tracsite($cgidir, $tracdir) {
       file { "trac-${name}":
@@ -90,21 +93,24 @@ Here is an example for generating the Apache configuration for
         target => '/usr/share/trac/cgi-bin/trac.cgi'
       }
     }
+{% endhighlight %}
 
 And then here's the template:
 
-    # /etc/puppet/modules/trac/templates/tracsite.erb
+{% highlight erb %}
+    <%# /etc/puppet/modules/trac/templates/tracsite.erb %>
     <Location "/cgi-bin/ <%= @name %>.cgi">
         SetEnv TRAC_ENV "/export/svn/trac/<%= @name %>"
     </Location>
 
-    # You need something like this to authenticate users
+    <%# You need something like this to authenticate users: %>
     <Location "/cgi-bin/<%= @name %>.cgi/login">
         AuthType Basic
         AuthName "Trac"
         AuthUserFile /etc/apache2/auth/svn
         Require valid-user
     </Location>
+{% endhighlight %}
 
 This puts each Trac configuration into a separate
 file, and then we just tell Apache to load all of these files:
@@ -152,11 +158,11 @@ Instance variables are not created for variables whose values are undefined, so 
 
 Older templates often used the `has_variable?("myvar")` helper function, but this could yield odd results when variables were explicitly set to `undef`, and should usually be avoided.
 
-If you need to test for a variable outside the current scope, you should copy it to a local variable in the manifest before evaluating the template: 
+If you need to test for a variable outside the current scope, you should copy it to a local variable in the manifest before evaluating the template:
 
     # manifest:
     $in_var = $outside_scope::outside_var
-    
+
     # template:
     <% if @in_var %>
     outside_var has <%= @in_var %> value
@@ -164,7 +170,7 @@ If you need to test for a variable outside the current scope, you should copy it
 
 ### Getting a List of All Variables
 
-If you use the scope object's `to_hash` method, you can get a hash of every variable that is defined in the current scope. This hash uses the local name (`osfamily`) of each variable, rather than the qualified name (`::osfamily`). 
+If you use the scope object's `to_hash` method, you can get a hash of every variable that is defined in the current scope. This hash uses the local name (`osfamily`) of each variable, rather than the qualified name (`::osfamily`).
 
 This snippet will print all of the variable names defined in the current scope:
 
@@ -223,7 +229,7 @@ a quick and easy way to conditionally put content into a file:
 Access to Tags and Declared Classes
 -----
 
-> **Note:** The lists of tags and declared classes are parse-order dependent --- they are only safe to use if you know exactly when in the compilation process the template will be evaluated. Using these variables is not recommended. 
+> **Note:** The lists of tags and declared classes are parse-order dependent --- they are only safe to use if you know exactly when in the compilation process the template will be evaluated. Using these variables is not recommended.
 
 In version 0.24.6 and later, Puppet passes the following extra variables to a template:
 
@@ -231,7 +237,7 @@ In version 0.24.6 and later, Puppet passes the following extra variables to a te
 * `tags` --- an array of all of the tags applied to the current container
 * `all_tags` --- an array of all of the tags in use anywhere in the catalog
 
-You can iterate over these variables or access their members. 
+You can iterate over these variables or access their members.
 
 This snippet will print all the classes that have been declared so far:
 
