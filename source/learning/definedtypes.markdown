@@ -3,45 +3,36 @@ layout: default
 title: "Learning — Defined Types"
 ---
 
-[peupgrade]: /pe/latest/install_upgrading.html
-
-Learning — Defined Types (Modules, Part Three)
-=====
-
-Use defined resource types to group basic resources into super-resources.
-
-* * *
-
-&larr; [Parameterized Classes](./modules2.html) --- [Index](./) --- [Preparing an Agent VM](./agentprep.html) &rarr;
-
-* * *
 
 Beyond Singletons
 -----
 
-Classes are good for modeling singleton aspects of a system, but to model _repeatable_ chunks of configuration --- like a Git repository or an Apache vhost --- you should use **defined resource types.**
+Say you wrote a chunk of Puppet code that takes parameters and configures an individual Apache virtual host. You put it in a class. It works fine, but since classes are singletons, Puppet won't ever let you declare more than one vhost.
 
-Defined types just act like normal resource types, and are declared in the same way...
+What you want is something more like a _resource type_ --- you can't declare the same resource twice, but you can declare as many files or users as you want.
 
 {% highlight ruby %}
-    apache::vhost {'personal_site':
+    apache::vhost {'users.example.com':
       port    => 80,
       docroot => '/var/www/personal',
       options => 'Indexes MultiViews',
     }
 {% endhighlight %}
 
-...but under the hood, they're composed of other resources.
+This turns out to be easy. To model _repeatable_ chunks of configuration --- like a Git repository or an Apache vhost --- you should use **defined resource types.**
+
+Defined types act like normal resource types and are declared in the same way, but they're composed of other resources.
 
 Defining a Type
 -----
 
-**You define a type with the `define` keyword,** and the definition looks almost exactly like a parameterized class. You need:
+**You define a type with the `define` keyword,** and the definition looks almost exactly like a class with parameters. You need:
 
+- The `define` keyword
 - A **name**
 - A list of **parameters** (in parentheses, after the name)
-    - (Defined types also get a special `$title` parameter without having to declare it, and its value is always set to the title of the resource instance. Classes get this too, but it's less useful since a class will only ever have one name.)
-- And a **collection of resources.**
+    - Defined types also get a special `$title` parameter without having to declare it, and its value is always set to the title of the resource instance. (The `$name` parameter acts the same way, and usually has the same value as `$title`.) Classes get these too, but they're less useful since a class will only ever have one name.
+- A **block of Puppet code**
 
 Like this:
 
@@ -67,8 +58,6 @@ Like this:
 {% endhighlight %}
 
 This one's pretty simple. (In fact, it's basically just a macro.) It has two parameters, one of which is optional (it defaults to the title of the resource), and the collection of resources it declares is just a single file resource.
-
-> **A quick note:** If your VM is running Puppet 2.6.4 (use `puppet --version` to find out), that example **won't work as written,** because `$title` was exposed to the parameter list in Puppet 2.6.5. You'll need to either [upgrade the VM to Puppet Enterprise 1.2][peupgrade], or make the `$user` parameter mandatory by removing the default. **You can still use the `$title` parameter as a variable** inside the definition, though.
 
 Special Little Flowers
 -----
@@ -122,7 +111,7 @@ If there's a singleton resource that has to exist for any instance of the define
         # Make sure compilation will fail if 'myclass' doesn't get declared:
         Class['myclass'] -> Apache::Vhost["$title"]
 
-    Establishing ordering relationships at the class level is generally better than directly requiring one of the resources inside it. However, be aware that you can't reliably make relationships between _classes that declare other classes,_ due to an outstanding design issue in Puppet. (A class "contains" the resources declared inside it, but doesn't contain the resources from _another class_ declared inside it; those resources will "float off," and won't be part of relationships formed with the outermost class. We're working on fixing this, but it has turned out to be kind of complicated.)
+    Establishing ordering relationships at the class level is generally better than directly requiring one of the resources inside it.
 
 Defined Types in Modules
 -----
@@ -133,12 +122,12 @@ Defined types can be autoloaded just like classes, and thus used from anywhere i
 
 ### Resource References and Namespaced Types
 
-You might have already noticed this above, but: when you make a resource reference to an instance of a defined type, you have to **capitalize every namespace segment** in the type's name. That means an instance of the `foo::bar::baz` type would be referenced like `Foo::Bar::Baz['mybaz']`.
+You might have already noticed this above, but: when you make a [resource reference](/puppet/latest/reference/lang_datatypes.html#resource-references) to an instance of a defined type, you have to **capitalize every [namespace segment](/puppet/latest/reference/lang_namespaces.html)** in the type's name. That means an instance of the `foo::bar::baz` type would be referenced like `Foo::Bar::Baz['mybaz']`.
 
 An Example: Apache Vhosts
 -----
 
-Not that my .plan macro wasn't pretty great, but let's be serious for a minute. Remember your [Apache module](./modules1.html#exercises) from a few chapters back? Let's extend it so we can easily declare vhosts. (Big thanks to the ops team here at Puppet Labs, from whom I borrowed this code.)
+Not that my .plan macro wasn't pretty great, but let's be serious for a minute. Remember your [Apache module](./modules1.html#exercises) from a few chapters back? Let's extend it so we can easily declare vhosts. This example code is borrowed from [the puppetlabs-apache module](https://github.com/puppetlabs/puppetlabs-apache).
 
 {% highlight ruby %}
     # Definition: apache::vhost
@@ -269,8 +258,8 @@ Exercises
 
 Take a minute to make a few more defined types, just to get used to modeling repeatable groups of resources.
 
-* Try wrapping a `user` resource in a `human::user` type that automatically grabs that person's .bashrc file from your `site` module and manages one or more `ssh_authorized_key` resources for their account.
-* If you're familiar with git, take a stab at writing a `git::repo` type that can clone from a repository on the network (and maybe even keep the working copy up-to-date on a specific branch!). This'll be harder --- you'll probably have to make a `git` class to make sure git is available, and you'll have to use at least one `file` (`ensure => directory`) and at least one `exec` resource.
+* Try wrapping a `user` resource in a `human::user` type that manages that person's .bashrc file and manages one or more `ssh_authorized_key` resources for their account.
+* If you're familiar with git, take a stab at writing a `git::repo` type that can clone from a repository on the network (and maybe even keep the working copy up-to-date on a specific branch!). This'll be harder --- you'll probably have to make a `git` class to make sure git is available, and you'll have to use at least one `file` (`ensure => directory`) and at least one `exec` resource. Keep in mind that execs can be tricky, since you need to make sure they only run when necessary.
 
 One Last Tip
 -----
@@ -294,4 +283,21 @@ You can learn how to use these by running `puppet doc --reference function | les
 Next
 ----
 
+**Next Lesson:**
+
 There's more to say about modules --- we still haven't covered data separation, patterns for making your modules more readable, or module composition yet --- but there's more important business afoot. [Continue reading](./agentprep.html) to prepare your VMs (yes, plural) for agent/master Puppet.
+
+**Off-Road:**
+
+We've seen several Apache examples already, and it's pretty likely that you're running at least one web server in your own infrastructure. Why not use one of the off-the-shelf modules available, and see whether you can reproduce your own configuration in an automated way?
+
+[Download Puppet Enterprise for free][dl], and follow [the quick start guide][quick] to get a small environment installed on some test machines. Then, install one of the following modules:
+
+* [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache)
+* [simondean/iis](http://forge.puppetlabs.com/simondean/iis) (for IIS on Windows Server)
+* [Any of the many Nginx modules](http://forge.puppetlabs.com/modules?utf-8=%E2%9C%93&q=nginx&LeadSource=Web+-+Organic&Lead_Source_Description__c=google+-+%28not+provided%29&utm_source__c=google&utm_medium__c=organic&utm_term__c=%28not+provided%29&utm_content__c=null&utm_campaign__c=%28organic%29&utm_adgroup__c=null&gclid=)
+
+Read the module's documentation to see how it works, then try managing the service and any relevant virtual hosts to match your manually configured infrastructure.
+
+[dl]: http://info.puppetlabs.com/download-pe.html
+[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
