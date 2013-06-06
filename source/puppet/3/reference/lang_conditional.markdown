@@ -386,7 +386,7 @@ These are not normal variables, and have some special behaviors:
 
 Values may be any of the following:
 
-* A literal value
+* Any literal value, with the exception of hash literals
 * A variable
 * A [function][functions] call that returns a value
 * Another selector
