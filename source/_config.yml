@@ -25,6 +25,7 @@ defaultnav:
   /hiera/1: hiera1.html
   /guides/deployment_guide:  deploy_guide.html
   /release_notes: release_notes.html
+  /learning: learning_nav.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 externalsources:

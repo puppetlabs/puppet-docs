@@ -1,41 +1,149 @@
 ---
-layout: legacy
-title: Learning — Templates
+layout: default
+title: Learning Puppet — Templates
 ---
 
-Learning — Templates
-=========
 
-File serving isn't the be-all/end-all of getting content into place. Before we get to parameterized classes and defined types, take a break to learn about templates, which let you make your config files as versatile as your manifests.
 
-* * *
-
-&larr; [Modules (part one)](./modules1.html) --- [Index](./) --- [Modules (part two)](./modules2.html) &rarr;
-
-* * * 
 
 [erb]: http://ruby-doc.org/stdlib-1.8.7/libdoc/erb/rdoc/ERB.html
 [template_syntax]: /guides/templating.html#erb-template-syntax
 
-Templating
-------
 
-Okay: in the last chapter, you built a module that shipped and managed a configuration file, which was pretty cool. And if you expect all your enterprise Linux systems to use the exact same set of NTP servers, that's probably good enough. Except let's say you decide most of your machines should use internal NTP servers --- whose ntpd configurations are also managed by Puppet, and which should be asking for the time from an external source. The number of files you'll need to ship just multiplied, and they'll only differ by three or four lines, which seems redundant and wasteful. 
-
-It would be much better if you could use all the tricks you learned in [Variables, Conditionals, and Facts](./variables.html) to rummage around in the actual text of your configuration files. Thus: templates!
-
-Puppet can use ERB templates ([Ruby documentation][erb] / [syntax cheat sheet][template_syntax]) anywhere a string is called for. (Like a file's `content` attribute, for instance, or the value of a variable.) Templates go in the (wait for it) `templates/` directory of a module, and will mostly look like normal configuration files (or what-have-you), except for the occasional `<% tag with Ruby code %>`.
-
-Yes, Ruby --- unfortunately you can't use the Puppet language in templates. But usually you'll only be printing a variable or doing a simple loop, which you'll get a feel for almost instantly. Anyway, let's cut to the chase: 
-
-Some Simple ERB
+Begin
 -----
 
-First, keep in mind that **facts, global variables,** and **variables defined in the current scope** are available to a template as standard Ruby local variables, which are plain words without a `$` sigil in front of them. Variables from other scopes are reachable, but to read them, you have to call the `lookupvar` method on the `scope` object. (For example, `scope.lookupvar('apache::user')`.) 
+Let's make a small adjustment to our NTP module from the last chapter: remove the `source` attribute from the file resource, and replace it with a `content` attribute using a new function. (Remember that `source` specifies file contents as a file, and `content` specifies file contents as a **string.**)
 
-Facts and global or local variables are also available in templates as instance variables --- that is, `@fqdn, @memoryfree, @operatingsystem`, etc.
+{% highlight ruby %}
+    # /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
 
-### Tags
+    class ntp {
+      #...
+      #...
+      #...
+      file { 'ntp.conf':
+        path    => '/etc/ntp.conf',
+        ensure  => file,
+        require => Package['ntp'],
+        content => template("ntp/${conf_file}.erb"),
+      }
+    }
+{% endhighlight %}
+
+Then, copy the config files into the templates directory:
+
+    # cd /etc/puppetlabs/puppet/modules/ntp
+    # mkdir templates
+    # cp files/ntp.conf.el templates/ntp.conf.el.erb
+    # cp files/ntp.conf.debian templates/ntp.conf.debian.erb
+
+The module should work the same way it's been working, but your config files are no longer static files; they're templates.
+
+Stopping the Static Content Explosion
+-----
+
+So consider our NTP module.
+
+Right now, we're shipping around two different config files, which resemble the defaults for Red Hat-like and Debian-like OSes. What if we wanted to make a few small and reasonable changes? For example:
+
+* Use different NTP servers for a small number of machines
+* Adjust the settings on virtual machines, so NTP doesn't panic if the time jumps
+
+We could end up maintaining eight or more different config files! Let's not do that. Instead, we can manage a bunch of small differences in one or two **template** files.
+
+Templates are documents that contain a mixture of _static_ and _dynamic_ content. By using a small amount of conditional logic and variable interpolation, they let you maintain one source document that can be rendered into any number of final documents.
+
+For more details on the behavior of Puppet templates, see [the guide for Using Puppet Templates][pgtemplating]; we'll cover the basics right here.
+
+[pgtemplating]: /guides/templating.html
+
+Template Files
+-----
+
+Templates are saved as files with the .erb extension, and should be stored in the `templates/` directory of any module. There can be any number of subdirectories inside `templates/`.
+
+Rendering Templates
+-----
+
+To use a template, you have to **render** it to produce an output string. To do this, use Puppet's built-in [`template` function][template_function]. This function takes a path to one or more template files and returns an output string:
+
+[template_function]: /references/stable/function.html#template
+
+{% highlight ruby %}
+    file {'/etc/foo.conf':
+      ensure  => file,
+      require => Package['foo'],
+      content => template('foo/foo.conf.erb'),
+    }
+{% endhighlight %}
+
+Notice that we're using the output string as the value of the `content` attribute --- it wouldn't work with the `source` attribute, which expects a URL rather than the actual content for a file.
+
+### Refererring to Template Files in Modules
+
+The `template` function expects file paths to be in a specific format:
+
+`<MODULE NAME>/<FILENAME INSIDE TEMPLATES DIRECTORY>`
+
+That is, `template('foo/foo.conf.erb')` would point to the file `/etc/puppetlabs/puppet/modules/foo/templates/foo.conf.erb`.
+
+> Note that the path to the template doesn't use the same semantics as the path in a `puppet:///` URL. Sorry about the inconsistency.
+
+
+### Inline Templates
+
+Alternately, you can use [the `inline_template` function](/references/stable/function.html#inlinetemplate), which takes a string containing a template and returns an output string.
+
+This is less frequently useful, but if you have a very small template, you can sometimes embed it in the manifest instead of making a whole new file for it.
+
+
+
+> ### Aside: Functions in General
+>
+> We've seen several functions already, including `include`, `template`, `fail`, and `str2bool`, so this is as good a time as any to explain what they are.
+>
+> Puppet has two kinds of functions:
+>
+> * Functions that return a value
+> * Functions that do something else, without returning a value
+>
+> The `template` and `str2bool` functions both return values; you can use them anywhere that requires a value, as long as the return value is the right kind. The `include` and `fail` functions do something else, without returning a value --- declare a class, and stop catalog compilation, respectively.
+>
+> All functions are run during catalog compilation. This means they run on the puppet master, and don't have access to any files or settings on the agent node.
+>
+> Functions can take any number of arguments, which are separated by commas and can be surrounded by optional parentheses:
+>
+> `function(argument, argument, argument)`
+>
+> Functions are plugins, so many custom plugins are available in modules.
+>
+> Complete documentation about functions are available at [the functions page of the Puppet reference manual][functions] and [the list of built-in functions][function_reference].
+
+[functions]: /puppet/latest/reference/lang_functions.html
+[function_reference]: /references/stable/function.html
+
+
+Variables in Templates
+-----
+
+Templates are powerful because they have access to all of the Puppet variables that are present when the template is rendered.
+
+* **Facts, global variables,** and **local variables from the current scope** are available to a template as _Ruby instance variables_ --- instead of Puppet's `$` prefix, they have an `@` prefix. (e.g. `@fqdn, @memoryfree, @operatingsystem`, etc.)
+* Variables from other scopes can be accessed with the `scope.lookupvar` method, which takes a long variable name without the `$` prefix. (For example, `scope.lookupvar('apache::user')`.)
+
+
+The ERB Templating Language
+-----
+
+Puppet doesn't have its own templating language; instead, it uses ERB, a common Ruby-based template language. (The Rails framework uses ERB, as do several other projects.)
+
+ERB templates mostly look like normal configuration files, with the occasional `<% tag containing Ruby code %>`. [The ERB syntax is documented here][template_syntax], but since tags can contain _any_ Ruby code, it's possible for templates to get pretty complicated.
+
+In general, we recommend keeping templates as simple as possible: we'll show you how to print variables, do conditional statements, and iterate over arrays, which should be enough for most tasks.
+
+
+### Non-Printing Tags
 
 ERB tags are delimited by angle brackets with percent signs just inside. (There isn't any HTML-like concept of opening or closing tags.)
 
@@ -58,109 +166,72 @@ The value you print can be a simple variable, or it can be an arbitrarily compli
 
 ### Comments
 
-A tag with a hash mark right after the opening delimiter can hold comments, which aren't interpreted as code and aren't displayed in the rendered output. 
+A tag with a hash mark right after the opening delimiter can hold comments, which aren't interpreted as code and aren't displayed in the rendered output.
 
 {% highlight erb %}
     <%# This comment will be ignored. %>
 {% endhighlight %}
 
-### Suppressing Line Breaks
+### Suppressing Line Breaks and Leading Space
 
-Regular tags don't print anything, but if you keep each tag of logic on its own line, the line breaks you use will show up as a swath of whitespace in the final file. If you don't like that, you can make ERB trim the line break by putting a hyphen directly before the closing delimiter. 
+Regular tags don't print anything, but if you keep each tag of logic on its own line, the line breaks you use will show up as a swath of whitespace in the final file. Similarly, if you're indenting for readability, the whitespace in the indent can mess up the format of the rendered output.
+
+If you don't like that, you can:
+
+* Trim line breaks by putting a hyphen directly before the closing delimiter
+* Trim leading space by putting a hyphen directly after the opening delimiter
 
 {% highlight erb %}
-    <% document += thisline -%>
+    <%- document += thisline -%>
 {% endhighlight %}
 
-Rendering a Template
------
-
-To render output from a template, use Puppet's built-in `template` function: 
-
-{% highlight ruby %}
-    file {'/etc/foo.conf':
-      ensure  => file,
-      require => Package['foo'],
-      content => template('foo/foo.conf.erb'),
-    }
-{% endhighlight %}
-
-This evaluates the template and turns it into a string. Here, we're using that string as the `content`[^timing] of a file resource, but like I said above, we could be using it for pretty much anything. **Note that the path to the template doesn't use the same semantics as the path in a `puppet:///` URL**[^paths] --- it should be in the form `<module name>/<path relative to module's templates directory>`. (That is, `template('foo/foo.conf.erb')` points to `/etc/puppetlabs/puppet/modules/foo/templates/foo.conf.erb`.)
-
-As a sidenote: if you give more than one argument to the template function...
-
-{% highlight ruby %}
-    template('foo/one.erb', 'foo/two.erb')
-{% endhighlight %}
-
-...it will evaluate each of the templates, then concatenate their outputs and return a single string. 
-
-For more details on the behavior of Puppet templates, see [the guide for Using Puppet Templates][pgtemplating].
-
-[4885]: http://projects.puppetlabs.com/issues/4885
-[pgtemplating]: /guides/templating.html
-[^timing]: This is a good time to remind you that filling a `content` attribute  happens during catalog compilation, and serving a file with a `puppet:///` URL happens during catalog application. Again, this doesn't matter right now, but it may make some things clearer later.
-[^paths]: This inconsistency is one of those problems that tend to crop up over time when software grows organically. We're working on it, and you can keep an eye on [ticket #4885][4885] if that sort of thing interests you.
-
-### An Aside: Other Functions
-
-Since we just went over the template function, this is as good a time as any to cover functions in general. 
-
-Most of the Puppet language consists of ways to say "Here is a thing, and this is what it is" --- resource declarations, class definitions, variable assignments, and the like. Functions are ways to say "Do _something._" They're a bucket for miscellaneous functionality. (You can even write new functions in Ruby and distribute them in modules, if you need to repeatedly munge data or modify your catalogs in some way.)
-
-Puppet's functions are run during catalog compilation,[^agent] and they're pretty intuitive to call; it's basically just `function(argument, argument, argument)`, and you can optionally leave off the parentheses. (Remember that `include` is also a function.) Some functions (like `template`) get replaced with a return value, and others (like `include`) take effect silently. 
-
-You can read the full list of available functions at the [function reference](http://docs.puppetlabs.com/references/stable/function.html). We won't be covering most of these for a while, but you might find `inline_template` and `regsubst` useful in the short term.
-
-[^agent]: To jump ahead a bit, this means the agent never sees them.
 
 An Example: NTP Again
 ---------
 
-So let's modify your NTP module to use templates instead of static config files. 
+Let's make the templates in your NTP module a little more clever.
 
-First, we'll change the `init.pp` manifest:
+First, make sure you change the file resource to use a template, like we saw at the top of this page. You should also make sure you've copied the config files to the `templates/` directory and given them the .erb extension.
+
+### Adjusting the Manifest
+
+Next, we'll move the default NTP servers out of the config file and into the manifest:
 
 {% highlight ruby %}
-    # init.pp
-    
+    # /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
+
     class ntp {
       case $operatingsystem {
-        centos, redhat: { 
+        centos, redhat: {
           $service_name    = 'ntpd'
-          $conf_template   = 'ntp.conf.el.erb'
+          $conf_file   = 'ntp.conf.el'
           $default_servers = [ "0.centos.pool.ntp.org",
                                "1.centos.pool.ntp.org",
                                "2.centos.pool.ntp.org", ]
         }
-        debian, ubuntu: { 
+        debian, ubuntu: {
           $service_name    = 'ntp'
-          $conf_template   = 'ntp.conf.debian.erb'
+          $conf_file   = 'ntp.conf.debian'
           $default_servers = [ "0.debian.pool.ntp.org iburst",
                                "1.debian.pool.ntp.org iburst",
                                "2.debian.pool.ntp.org iburst",
                                "3.debian.pool.ntp.org iburst", ]
         }
       }
-      
-      if $servers == undef {
-        $servers_real = $default_servers
-      }
-      else {
-        $servers_real = $servers
-      }
-      
+
+      $servers_real = $default_servers
+
       package { 'ntp':
         ensure => installed,
       }
-      
+
       service { 'ntp':
         name      => $service_name,
         ensure    => running,
         enable    => true,
         subscribe => File['ntp.conf'],
       }
-      
+
       file { 'ntp.conf':
         path    => '/etc/ntp.conf',
         ensure  => file,
@@ -170,36 +241,76 @@ First, we'll change the `init.pp` manifest:
     }
 {% endhighlight %}
 
-There are several things going on, here: 
+We're storing the servers in an array, so we can show how to iterate within a template. Right now, we're not providing the ability to change the list of servers, but we're paving the way to do so in the next chapter.
 
-* We changed the `File['ntp.conf']` resource, as advertised.
-* We're storing the servers in an array, mostly so I can demonstrate how to iterate over an array once we get to the template. If you wanted to, you could store them as a string with line breaks and per-line `server` statements instead; it comes down to a combination of personal style and the nature of the problem at hand.
-* We'll be using that `$servers_real` variable in the actual template, which might seem odd now but will make more sense during the next chapter. Likewise with testing whether `$servers` is `undef`. (For now, it will always be `undef`, as are all variables that haven't been assigned yet.)
+### Editing the Templates
 
-Next, copy the config files to the templates directory, add the `.erb` extension to their names, and replace the blocks of servers with some choice ERB code:
+First, make each template use the `$servers_real` variable to create the list of `server` statements:
 
 {% highlight erb %}
-    # ...
-    
+    <%# /etc/puppetlabs/puppet/modules/ntp/templates/ntp %>
+
     # Managed by Class['ntp']
-    <% servers_real.each do |server| -%>
-    server <%= server %>
+    <% @servers_real.each do |this_server| -%>
+    server <%= this_server %>
     <% end -%>
-    
+
     # ...
 {% endhighlight %}
 
-This snippet will iterate over each entry in the array and print it after a `server` statement, so, for example, the string generated from the Debian template will end up with a block like this: 
+What's this doing?
+
+* Using a non-printing Ruby tag to start a loop. We reference the `$servers_real` Puppet variable by the name `@servers_real`, then call Ruby's `each` method on it. Everything between `do |server| -%>` and the `<% end -%>` tag will be repeated for each item in the `$servers_real` array, with the value of that array item being assigned to the temporary `this_server` variable.
+* Within the loop, we print the literal word `server`, followed by the value of the current array item.
+
+This snippet will produce something like the following:
 
     # Managed by Class['ntp']
-    server 0.debian.pool.ntp.org iburst
-    server 1.debian.pool.ntp.org iburst
-    server 2.debian.pool.ntp.org iburst
-    server 3.debian.pool.ntp.org iburst
+    server 0.centos.pool.ntp.org
+    server 1.centos.pool.ntp.org
+    server 2.centos.pool.ntp.org
 
-You can see the limitations here --- the servers are still basically hardcoded. But we've moved them out of the config file and into the Puppet manifest, which gets us half of the way to a much more flexible NTP class. 
+Next, let's use the `$is_virtual` fact to make NTP perform better if this is a virtual machine. At the top of the file, add this:
+
+{% highlight erb %}
+    <% if @is_virtual == "true" -%>
+    # Keep ntpd from panicking in the event of a large clock skew
+    # when a VM guest is suspended and resumed.
+    tinker panic 0
+
+    <% end -%>
+{% endhighlight %}
+
+Then, _below_ the loop we made for the server statements, add this (being sure to replace the similar section of the Red Hat-like template):
+
+{% highlight erb %}
+    <% if @is_virtual == "false" -%>
+    # Undisciplined Local Clock. This is a fake driver intended for backup
+    # and when no outside source of synchronized time is available.
+    server 127.127.1.0 # local clock
+    fudge 127.127.1.0 stratum 10
+
+    <% end -%>
+{% endhighlight %}
+
+By using facts to conditionally switch parts of the config file on and off, we can easily react to the type of machine we're managing.
 
 Next
 ----
 
-And as for the rest of the way, keep reading to learn about [parameterized classes](./modules2.html). 
+**Next Lesson:**
+
+We've already seen that classes should sometimes behave differently for different kinds of systems, and have used facts to make conditional changes to both manifests and templates.
+
+Sometimes, though, facts aren't enough --- there are times when a human has to decide what makes a machine different, because that difference is a matter of _policy._ (For example, the difference between a test server and a production server.)
+
+In these cases, we need to give ourselves a way to manually change the way a class works. We can do this by passing in data with [class parameters](./modules2.html).
+
+**Off-Road:**
+
+Are you managing any configuration on your real infrastructure yet? You've learned a lot by now, so why not [download Puppet Enterprise for free][dl], follow [the quick start guide][quick] to get a small environment installed, and start automating?
+
+
+[dl]: http://info.puppetlabs.com/download-pe.html
+[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+

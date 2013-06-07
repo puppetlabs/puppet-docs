@@ -26,7 +26,7 @@ Learn to use Puppet! New users: start here.
 
 * [Introduction and Index](/learning/)
 
-{% include learning_nav.markdown %}
+{% include learning_nav.html %}
 
 * * *
 
