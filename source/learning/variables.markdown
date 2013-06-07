@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Learning — Variables, Conditionals, and Facts
+title: Learning Puppet — Variables, Conditionals, and Facts
 ---
 
 [next]: ./modules1.html

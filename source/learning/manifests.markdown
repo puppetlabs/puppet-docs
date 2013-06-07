@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Learning — Manifests
+title: Learning Puppet — Manifests
 ---
 
 

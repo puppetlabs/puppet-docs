@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Learning — Basic Agent/Master Puppet"
+title: "Learning Puppet — Basic Agent/Master Puppet"
 ---
 
 [puppetmasterhost]: ./variables.html#facts

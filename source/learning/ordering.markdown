@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Learning — Resource Ordering
+title: Learning Puppet — Resource Ordering
 ---
 
 [variables]: ./variables.html

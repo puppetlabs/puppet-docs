@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Learning — Templates
+title: Learning Puppet — Templates
 ---
 
 

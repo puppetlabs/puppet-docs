@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Learning — Preparing an Agent VM"
+title: "Learning Puppet — Preparing an Agent VM"
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Learning — Resources and the RAL"
+title: "Learning Puppet — Resources and the RAL"
 ---
 
 [cheat]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf

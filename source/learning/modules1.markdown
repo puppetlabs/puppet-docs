@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Learning — Modules and Classes
+title: Learning Puppet — Modules and Classes
 ---
 
 

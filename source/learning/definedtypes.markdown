@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Learning — Defined Types"
+title: "Learning Puppet — Defined Types"
 ---
 
 

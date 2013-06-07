@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Learning — Class Parameters
+title: Learning Puppet — Class Parameters
 ---
 
 
