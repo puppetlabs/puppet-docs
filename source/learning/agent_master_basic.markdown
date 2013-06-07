@@ -7,16 +7,9 @@ title: "Learning — Basic Agent/Master Puppet"
 [upgrading]: /pe/latest/install_upgrading.html
 [agentprep]: ./agentprep.html
 
-Basic Agent/Master Puppet
-=====
 
 This guide assumes that you've followed [the previous walkthrough][agentprep], and have a fresh agent VM that can reach your original master VM over the network. Both VMs should be running right now, and you'll need to be logged in to both of them as root.
 
-* * *
-
-&larr; [Preparing an Agent VM](./agentprep.html) --- [Index](./) --- TBA &rarr;
-
-* * *
 
 Introduction
 -----

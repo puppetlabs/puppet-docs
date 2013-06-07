@@ -24,7 +24,7 @@
 #
 # == Sample use:
 #
-$ sudo puppet apply -e "class {'learningpuppet::makeagent': newname => 'agent3'}"
+# $ sudo puppet apply -e "class {'learningpuppet::makeagent': newname => 'agent3'}"
 #
 # [1]: http://docs.puppetlabs.com/learning
 # [2]: http://info.puppetlabs.com/learning-puppet-vm

@@ -5,22 +5,14 @@ title: "Learning — Preparing an Agent VM"
 
 
 [current_vm]: http://info.puppetlabs.com/learning-puppet-vm
-[download_pe]: http://info.puppetlabs.com/download-pe2.html
+[download_pe]: http://info.puppetlabs.com/download-pe.html
 [upgrade_pe]: /pe/latest/install_upgrading.html
 [lp_module]: ./files/learningpuppet.tar.gz
 
 {% capture lpmoduleurl %}http://docs.puppetlabs.com/learning/files/learningpuppet.tar.gz{% endcapture %}
 
-Learning --- Preparing an Agent VM for Agent/Master Exercises
-=====
-
 We're now moving into exercises that involve both a puppet master and one or more agent nodes, and to get the most out of this section, you'll need to be running more than one node at a time. This interlude will help you get two nodes running and configured so that you're ready for the next few chapters.
 
-* * *
-
-&larr; [Defined Types](./definedtypes.html) --- [Index](./) --- [Basic Agent/Master Puppet](./agent_master_basic.html) &rarr;
-
-* * *
 
 Step 0: Get the Latest VM
 -----
