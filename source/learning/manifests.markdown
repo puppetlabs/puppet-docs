@@ -228,7 +228,7 @@ If you leave out the namevar for a resource, Puppet will re-use the title as its
 
 ### Missing Attributes: "Desired State = Whatever"
 
-On the `/tmp/test1` file, we left off the `mode` and `owner` attributes, among others. When we omit attributes, Puppet doesn't mannage them, and any value is assumed to be the desired state.
+On the `/tmp/test1` file, we left off the `mode` and `owner` attributes, among others. When we omit attributes, Puppet doesn't manage them, and any value is assumed to be the desired state.
 
 If a file doesn't exist, Puppet will default to creating it with permissions mode 0644, but if you change that mode, Puppet won't change it back.
 
