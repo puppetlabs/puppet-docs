@@ -86,7 +86,7 @@ If one parameter is used, it will be set to the value of each element. If two pa
 
 **For a hash:**
 
-Only two-parameter lambdas are supported. They will be set to the key and value of each hash entry.
+If two parameters are used, they will be set to the key and value of each hash entry. If one parameter is used, it is set to an array containing `[key, value]`.
 
 Using a similar example as before, but now with two parameters, we get:
 
@@ -99,7 +99,7 @@ The remaining functions also operate on arrays and hashes, and always convert ha
 
 Here are some examples to illustrate:
 
-    collect([1,20,3]) |$value| { $value < 10 }
+    select([1,20,3]) |$value| { $value < 10 }
     # produces [1,3]
 
     reject([1,20,3]) |$value| { $value >= 10 }
