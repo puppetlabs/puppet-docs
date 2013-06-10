@@ -95,7 +95,7 @@ Rgen is only needed if you are using Puppet ≥ 3.2 [with `parser = future` enab
 [Hiera]: https://github.com/puppetlabs/hiera
 [rgen]: http://ruby-gen.org/downloads
 
-All other prerequisite Ruby libraries should come with any standard Ruby 1.8.2+ install.  Should your OS not come with the complete standard library (or you are using a custom Ruby build), these include:
+All other prerequisite Ruby libraries should come with any standard Ruby 1.8.5+ install.  Should your OS not come with the complete standard library (or you are using a custom Ruby build), these include:
 
 * base64
 * cgi
@@ -103,7 +103,7 @@ All other prerequisite Ruby libraries should come with any standard Ruby 1.8.2+ 
 * etc
 * fileutils
 * ipaddr
-* openssl
+* openssl (>= 0.9.8o if using a 3.x Puppet master or newer)
 * strscan
 * syslog
 * uri
