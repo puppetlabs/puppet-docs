@@ -80,7 +80,8 @@ Strings are unstructured text fragments of any length. They may or may not be su
 Bare (that is, not quoted) words are usually treated as single-word strings. To be treated as a string, a bare word must:
 
 * Not be a [reserved word][reserved]
-* Begin with a letter, and contain only letters, digits, hyphens (-), and underscores (_).
+* Begin with a lower case letter, and contain only letters, digits, hyphens (-), and underscores (_).
+  Bare words that begin with upper case letters are interpreted as [resource references](#resource-references).
 
 Bare word strings are usually used with attributes that accept a limited number of one-word values, such as `ensure`.
 
