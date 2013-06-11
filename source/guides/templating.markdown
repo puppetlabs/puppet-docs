@@ -129,7 +129,7 @@ Referencing Variables
 Puppet passes all of the currently set variables (including facts) to templates when they are evaluated. There are several ways to access these variables:
 
 * All of the variables visible **in the current scope** are available as Ruby instance variables --- that is, `@fqdn, @memoryfree, @operatingsystem`, etc. This style of reference works identically to using short (local) variable names in a Puppet manifest: `@fqdn` is exactly equivalent to `$fqdn`.
-* All of the variables visible **in the current scope** are also available as Ruby local variables --- that is, `fqdn, memoryfree, operatingsystem`, etc., without the prepended `@` sign. This style of reference can sometimes cause problems when variable names collide with Ruby method names; it's generally better to use the `@` style.
+* Historically, all of the variables visible **in the current scope** were also available as Ruby methods --- that is, `fqdn, memoryfree, operatingsystem`, etc., without the prepended `@` sign. This style of reference caused problems when variable names collided with Ruby method names; its use emits deprecation warnings as of Puppet 3 and will be removed in Puppet 4. Please update any existing code which uses it and start any new code out with the `@fqdn` instance-variable syntax.
 * Puppet passes an object named `scope` to the template. This contains **all** of the currently set variables, as well as some other data ([including functions][template_functions]), and provides some methods for accessing them. You can use the scope object's `lookupvar` method to find **any** variable, in any scope. See "Out-of-Scope Variables" below for more details.
 
 [Note that Puppet's variable lookup rules changed for Puppet 3.0.](/guides/scope_and_puppet.html)
@@ -199,7 +199,7 @@ code like this:
 
 You could have a template like this:
 
-    <% values.each do |val| -%>
+    <% @values.each do |val| -%>
     Some stuff with <%= val %>
     <% end -%>
 
@@ -211,7 +211,7 @@ This would produce:
 
 Note that normally, ERB template lines that just have code on them
 would get translated into blank lines.  This is because ERB generates
-newlines by default.  To prevent this, we use the closing tag -%> instead of %>.
+newlines by default.  To prevent this, we use the closing tag `-%>` instead of `%>`.
 
 As we mentioned, erb is a Ruby system, but you don't need to know Ruby
 well to use ERB.   Internally, Puppet's values get translated to real Ruby values,
@@ -262,7 +262,7 @@ Using Functions Within Templates
 
 [template_functions]: #using-functions-within-templates
 
-[Puppet functions][functions] can be used inside templates, but their use there is slightly different from their use in manifests:
+[Puppet functions][functions] can be used inside templates, but their use is slightly different from their use in manifests:
 
 * All functions are methods on the `scope` object.
 * You must prepend "`function_`" to the beginning of the function name.
