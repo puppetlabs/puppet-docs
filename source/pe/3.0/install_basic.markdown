@@ -132,7 +132,7 @@ The console relies on data provided by a PostgreSQL database. This database can 
 
 IMPORTANT: If you choose not to install the database support role on the console's node, you will be prompted for the host name and port of the node you intend to use to provide database support, and you will be asked for the user passwords for accessing the databases. The database support role must be installed on that node for the console to function. When using a separate node, you should install database support on it BEFORE installing the console role.
 
-The database users' passwords are auto-generated when the database support role is installed and are saved in "/etc/puppetlabs/installer/database_info.install". If you copy this file to the node where you'll be installing the console, you can [automate password entry](http://docs.puppetlabs.com/pe/2.8/install_automated.html#running-the-installer-in-automated-mode) by adding the `-A` flag and the path to the saved database.info.install file to the `puppet-enterprise-installer` command. 
+The database users' passwords are auto-generated when the database support role is installed and are saved in `/etc/puppetlabs/installer/database_info.install`. If you copy this file to the node where you'll be installing the console, you can [automate password entry](./install_automated.html#running-the-installer-in-automated-mode) by adding the `-A` flag and the path to the saved database.info.install file to the `puppet-enterprise-installer` command.
 
 ### The Cloud Provisioner Role
 
@@ -274,11 +274,11 @@ Puppet Enterprise may need some extra system software from your OS vendor's pack
 
 If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
 
-As of PE 2.7.0, you also have the option of verifying the integrity of the selected packages by using Puppet Labs' public GPG key. This is done by answering "yes" when asked if you want to verify the signatures of the PE RPM packages.. The key will be used to verify the signatures of the selected RPM packages. Because the key is added to the RPM database, the option to verify is only available on platforms that support RPM packages (currently EL 5,6-based and sles 11 platforms). The question will not be presented on non-RPM based platforms (e.g. Debian) and if it is present in a pre-made answer file it will be ignored on those platforms.
+You also have the option of verifying the integrity of the selected packages by using Puppet Labs' public GPG key. This is done by answering "yes" when asked if you want to verify the signatures of the PE RPM packages.. The key will be used to verify the signatures of the selected RPM packages. Because the key is added to the RPM database, the option to verify is only available on platforms that support RPM packages (currently EL 5,6-based and sles 11 platforms). The question will not be presented on non-RPM based platforms (e.g. Debian) and if it is present in a pre-made answer file it will be ignored on those platforms.
 
 The option will appear in answer files as `verify_packages=y|n`.
 
-Answering "no" to the question will preserve the PE 2.6.1 and earlier behavior of not verifying packages.
+Answering "no" to the question will cause packages to be installed without being verified.
 
 #### Java and MySQL Versions
 

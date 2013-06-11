@@ -1,12 +1,12 @@
 ---
 layout: default
 title: "PE 3.0 » Quick Start » Using PE"
-subtitle: "Quick Start: Using PE 2.8"
+subtitle: "Quick Start: Using PE 3.0"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the PE 2.8 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. Follow along to learn how to:
+Welcome to the PE 3.0 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment

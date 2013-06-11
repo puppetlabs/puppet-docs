@@ -5,72 +5,31 @@ subtitle: "User's Guide Appendix"
 ---
 
 
-This page contains additional miscellaneous information about Puppet Enterprise 2.8.
+This page contains additional miscellaneous information about Puppet Enterprise 3.0.
 
 Puppet Terminology
 -----
 
 For help with Puppet-specific terms and language, visit [the glossary](/references/glossary.html)
 
-For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.8/reference/)
+For a complete guide to the Puppet language, visit [the reference manual](/puppet/3/reference/)
 
 Release Notes
 -----
 
-### PE 2.8.1 (4/17/2013)
-
-#### Open-Source Agents Bug Fix
-A bug in 2.8.0 prevented the pe_mcollective module from working correctly when running open-source agents with a PE master. This has been fixed. For more information, see [issue 19230](http://projects.puppetlabs.com/issues/19230).
-
-#### Stomp/MCollective Bug Fix
-A bug in 2.8.0 related to the Stomp component upgrade prevented Live Management and MCollective filters from functioning. A [hotfix](https://puppetlabs.com/puppet-enterprise-hotfixes-2-8-0/) was released and the issue has been fixed in PE 2.8.1. 
-
-#### Spaces Now Allowed in Passwords
-Previously, spaces could not be used in console passwords. This has been changed and spaces are now accepted.
-
-#### Red Hat Installation on Amazon AMI Bug Fix
-A bug in 2.8.0 caused the installer to reject Amazon Linux AMIs when the `redhat-lsb` package is installed. This issue has been fixed in 2.8.1. For details see [issue 19963](https://projects.puppetlabs.com/issues/19963). 
-
-
-### PE 2.8.0 (3/26/2013)
-
-#### AIX Support
-2.8.0 adds support for the AIX operating system. Only puppet agents are supported; you cannot run a master, console, or other component on an AIX node. Support for three AIX package providers, NIM, RPM and BFF, is also added. Note that while AIX supports two modes for package installation, "install" (for test runs) and "committed" (for actual installation), the PE AIX implementation only supports "committed" mode.
-
-#### Updated Modules
-The following modules have been updated to newer versions as indicated:
-
-* Puppet 2.7.19 updated to 2.7.21. Provides performance improvements and bug fixes.
-* Facter 1.6.10 updated to 1.6.17. Provides bug fixes.
-* Hiera 0.3.0 updated to 1.1.2. Provides support for merging arrays and hashes across back-ends, bug fixes.
-* Hiera-Puppet 0.3.0 updated to 1.0.0. Provides bug fixes.
-* Stomp 1.1.9 updated to 1.2.3. Provides performance improvements and bug fixes.
-
-#### Security Fix
-
-*[CVE-2013-2716 CAS Client Config Vulnerability](http://puppetlabs.com/security/cve/cve-2013-2716/).*
-A vulnerability can be introduced when upgrading PE versions 2.5.0 through 2.7.2 from PE versions 1.2.x or 2.0.x. In such cases, the CAS client config file, `/etc/puppetlabs/console-auth/cas_client_config.yml`, is installed without a randomized secret.  Consequently, an attacker could craft a cookie that would be inappropriately authorized by the console.
-
-This issue has been resolved in PE 2.8.0. Users running older affected versions can resolve the issue by running `/opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile console:auth:generate_secret`
 
 Known Issues
 -----
 
 As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
-To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
-
-### PE 2.8.0 Only: Broken Live Management and MCollective
-
-A packaging bug in the initial PE 2.8.0 release prevented the console’s live management feature from functioning. This issue also prevents MCollective from using filters.
-
-This issue was fixed in PE 2.8.1. Anyone running 2.8.0 is strongly encouraged to upgrade.
 
 ### Bad Data in Facter's `architecture` Fact
 
@@ -104,6 +63,8 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 An inadequate default MySQL buffer pool size setting can interfere with upgrades to Puppet Enterprise console servers.
 
 **The PE 2.8 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade.
+
+TODO this shouldn't be around anymore.
 
 If you see this warning, you should:
 

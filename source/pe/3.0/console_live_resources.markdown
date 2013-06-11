@@ -17,10 +17,10 @@ Resource Types
 
 The live management tools can manage the following resource types:
 
-- [user](/references/2.7.latest/type.html#user)
-- [group](/references/2.7.latest/type.html#group)
-- [host](/references/2.7.latest/type.html#host)
-- [package](/references/2.7.latest/type.html#package)
+- [user](/references/3.2.latest/type.html#user)
+- [group](/references/3.2.latest/type.html#group)
+- [host](/references/3.2.latest/type.html#host)
+- [package](/references/3.2.latest/type.html#package)
 
 For an introduction to resources and types, please see [the Resources chapter of Learning Puppet](/learning/ral.html).
 
