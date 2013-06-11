@@ -17,6 +17,13 @@ This user's guide includes a pair of interactive quick start guides, which walk 
 * [Quick Start: Using PE](./quick_start.html)
 * [Quick Start: Writing Modules](./quick_writing.html)
 
+A More Detailed Introduction to Using Modules
+-----
+
+The Puppet Enterprise Deployment Guide includes detailed walkthroughs of how to choose modules and compose them into complete configurations.
+
+* [Deployment Guide ch. 3: Automating Your Infrastructure](/guides/deployment_guide/dg_define_infrastructure.html)
+
 A Leisurely Introduction to Writing Puppet Code
 -----
 
@@ -36,9 +43,10 @@ The Puppet reference manual contains more information about using modules and th
 Printable References
 -----
 
-The module layout cheat sheet is useful when writing your own modules or hacking existing modules.
+These two cheat sheets are useful when writing your own modules or hacking existing modules.
 
 * [Module Layout Cheat Sheet](/module_cheat_sheet.pdf)
+* [Core Resource Type Cheat Sheet](/puppet_core_types_cheatsheet.pdf)
 
 * * *
 
