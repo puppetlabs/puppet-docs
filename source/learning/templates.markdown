@@ -236,7 +236,7 @@ Next, we'll move the default NTP servers out of the config file and into the man
         path    => '/etc/ntp.conf',
         ensure  => file,
         require => Package['ntp'],
-        content => template("ntp/${conf_template}"),
+        content => template("ntp/${conf_file}.erb"),
       }
     }
 {% endhighlight %}
