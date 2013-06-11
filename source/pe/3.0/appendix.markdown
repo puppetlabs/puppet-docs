@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8 » Appendix"
+title: "PE 3.0 » Appendix"
 subtitle: "User's Guide Appendix"
 ---
 

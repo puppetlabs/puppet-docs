@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Compliance » Basics and UI"
+title: "PE 3.0 » Compliance » Basics and UI"
 subtitle: "Compliance Basics and UI"
 ---
 

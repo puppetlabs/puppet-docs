@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Installing » Windows Agents"
+title: "PE 3.0 » Installing » Windows Agents"
 subtitle: "Installing Windows Agents"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Installing » Installing PE"
+title: "PE 3.0 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Console » Accessing"
+title: "PE 3.0 » Console » Accessing"
 subtitle: "Accessing the Console"
 ---
 

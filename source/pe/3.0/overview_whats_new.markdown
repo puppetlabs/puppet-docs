@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Overview » What's New"
+title: "PE 3.0 » Overview » What's New"
 subtitle: "New Features in PE 2.8"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Puppet » References"
+title: "PE 3.0 » Puppet » References"
 subtitle: "Puppet References"
 ---
 

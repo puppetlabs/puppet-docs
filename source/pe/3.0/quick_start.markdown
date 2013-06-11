@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Quick Start » Using PE"
+title: "PE 3.0 » Quick Start » Using PE"
 subtitle: "Quick Start: Using PE 2.8"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Console » Node Request Management"
+title: "PE 3.0 » Console » Node Request Management"
 subtitle: "Working with Node Requests"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Console » Live Mgmt: Managing Resources"
+title: "PE 3.0 » Console » Live Mgmt: Managing Resources"
 subtitle: "Live Management: Managing Resources"
 ---
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.

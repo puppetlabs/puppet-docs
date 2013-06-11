@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Index"
+title: "PE 3.0 » Index"
 subtitle: "Puppet Enterprise User's Guide"
 ---
 

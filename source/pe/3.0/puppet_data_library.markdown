@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Puppet » Puppet Data Library"
+title: "PE 3.0 » Puppet » Puppet Data Library"
 subtitle: "The Puppet Data Library"
 ---
 

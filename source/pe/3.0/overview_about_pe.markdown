@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8 » Overview » About Puppet Enterprise"
+title: "PE 3.0 » Overview » About Puppet Enterprise"
 subtitle: "About Puppet Enterprise"
 ---
 

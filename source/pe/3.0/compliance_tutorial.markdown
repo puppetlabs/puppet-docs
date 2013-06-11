@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Compliance » Tutorial"
+title: "PE 3.0 » Compliance » Tutorial"
 subtitle: "Compliance Tutorial"
 ---
 

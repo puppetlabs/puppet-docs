@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Compliance » Using the Workflow"
+title: "PE 3.0 » Compliance » Using the Workflow"
 subtitle: "Using the Compliance Workflow"
 ---
 
