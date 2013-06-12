@@ -1,22 +1,22 @@
 ---
 layout: default
-title: "PE 2.8  » Installing » Automated Installation"
+title: "PE 3.0  » Installing » Automated Installation"
 subtitle: "Automated Installation"
 ---
 
 To streamline deployment, the PE installer can run non-interactively. To do this, you must: 
 
 * Create an answer file
-* Run the installer with the `-a` or `-A` flags
+* Run the installer with the `-a` or `-A` flag pointed at the answer file
 
-Instead of interviewing a user to customize the installation, the installer will read your choices from the answer file and act on them immediately.
+The flag will cause the installer to read your choices from the answer file and act on them immediately instead of interviewing a user to customize the installation.
 
 Automated installation can greatly speed up large deployments, and is crucial when [installing PE with the cloud provisioning tools](./cloudprovisioner_classifying_installing.html#installing-puppet). 
 
 Obtaining an Answer File
 -----
 
-Answer files are simply shell scripts that declare variables used by the installer:
+Answer files are simply shell scripts that declare variables used by the installer, such as:
 
     q_install=y
     q_puppet_cloud_install=n
@@ -65,8 +65,8 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
 
     $ sudo ./puppet-enterprise-installer -a ~/normal_agent.answers
 
-* Installing with the `-a` option will fail if any required variables are not set.
-* Installing with the `-A` option will prompt the user for any missing answers. 
+* Installing with the `-a` option will fail if any required question variables are not set.
+* Installing with the `-A` option will prompt the user for any missing answers to question variables. 
 
 
 * * * 
