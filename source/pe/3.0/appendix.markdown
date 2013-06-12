@@ -56,7 +56,7 @@ During installation, the PE installer attempts to automatically determine the UR
 
 ### Answer file required for some SMTP servers.
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.8/config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./config_advanced.html#allowing-anonymous-console-access) for details.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
