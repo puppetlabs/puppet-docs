@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Orchestration » Usage"
+title: "PE 3.0 » Orchestration » Usage"
 subtitle: "Orchestration for New PE Users: Usage and Examples"
 ---
 

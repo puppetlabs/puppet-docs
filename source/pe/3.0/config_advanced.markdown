@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Configuring Puppet Enterprise » Advanced Configuration"
+title: "PE 3.0 » Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"
 ---
 
@@ -11,9 +11,9 @@ Many behaviors of Puppet Enterprise can be configured after installation.
 Increasing the MySQL Buffer Pool Size
 -----
 
-The default MySQL configuration uses an unreasonably small `innodb_buffer_pool_size` setting, which can interfere with the console's ability to function. 
+The default MySQL configuration uses an unreasonably small `innodb_buffer_pool_size` setting, which can interfere with the console's ability to function.
 
-If you are installing a new PE console server and allowing the installer to configure your databases, it will set the better value for the buffer pool size. However, PE cannot automatically manage this setting for upgraded console servers and manually configured databases. 
+If you are installing a new PE console server and allowing the installer to configure your databases, it will set the better value for the buffer pool size. However, PE cannot automatically manage this setting for upgraded console servers and manually configured databases.
 
 To change this setting, edit the MySQL config file on your database server (usually located at `/etc/my.cnf`, but your system may differ) and set the value of `innodb_buffer_pool_size` to at least `80M` and possibly as high as `256M`. (Its default value is `8M`, or 8388608 bytes.)
 
@@ -28,11 +28,11 @@ The example diff below illustrates the change to a default MySQL config file:
  # clients (those using the mysqlclient10 compatibility package).
  old_passwords=1
 +innodb_buffer_pool_size = 80M
- 
+
  # Disabling symbolic-links is recommended to prevent assorted security risks;
  # to do so, uncomment this line:
  # symbolic-links=0
- 
+
  [mysqld_safe]
  log-error=/var/log/mysqld.log
  pid-file=/var/run/mysqld/mysqld.pid
@@ -52,7 +52,7 @@ By default, a new installation of PE will serve the console on port 443. However
         $ sudo /etc/init.d/pe-httpd stop
 * Edit `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` on the console server, and change the port number in the `Listen 443` and `<VirtualHost *:443>` directives. (These directives will contain the current port, which is not necessarily 443.)
 * Edit `/etc/puppetlabs/puppet/puppet.conf` on the puppet master server, and change the `reporturl` setting to use your preferred port.
-* Edit `/etc/puppetlabs/puppet-dashboard/external_node` on the puppet master server, and change the `ENC_BASE_URL` to use your preferred port. 
+* Edit `/etc/puppetlabs/puppet-dashboard/external_node` on the puppet master server, and change the `ENC_BASE_URL` to use your preferred port.
 * Make sure to allow access to the new port in your system's firewall rules.
 * Start the `pe-httpd` service:
 
@@ -71,15 +71,12 @@ On the console server, run the following commands:
 
 You can now log in to the console as the user you just created, and use the normal admin tools to reset other users' passwords.
 
-> Note: in PE 2.5.1 and 2.5.0, use the following command instead:
->
->     $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_initial_admin email=user@example.com password=<PASSWORD>
 
 
 Changing the Console's Database User/Password
 -----
 
-The console uses a database user account to access its MySQL database. If this user's password is compromised, or if it just needs to be changed periodically for policy reasons, do the following: 
+The console uses a database user account to access its MySQL database. If this user's password is compromised, or if it just needs to be changed periodically for policy reasons, do the following:
 
 1. Stop the `pe-httpd` service on the console server:
 
@@ -88,11 +85,11 @@ The console uses a database user account to access its MySQL database. If this u
 
         SET PASSWORD FOR 'console'@'localhost' = PASSWORD('<new password>');
 3. Edit `/etc/puppetlabs/puppet-dashboard/database.yml` on the console server and change the `password:` line under "common" (or under "production," depending on your configuration) to contain the new password.
-4. Edit `/etc/puppetlabs/puppet/puppet.conf` on the console server and change the `dbpassword =` line (under `[master]`) to contain the new password. 
+4. Edit `/etc/puppetlabs/puppet/puppet.conf` on the console server and change the `dbpassword =` line (under `[master]`) to contain the new password.
 5. Start the `pe-httpd` service back up:
 
         $ sudo /etc/init.d/pe-httpd start
-        
+
 
 Configuring Console Authentication
 -----
@@ -146,7 +143,7 @@ You can change the authentication method via the console. Navigate to your [defa
 
 ![A screenshot of the `mcollective_security_provider` parameter set to `psk`][maint_authentication_parameter]
 
-After changing the authentication method, **you cannot issue orchestration messages to a given node until it has run Puppet at least once.** This means changing the authentication method requires a 30 minute maintenance window during which orchestration will not be used. You can check whether a given node has changed its orchestration settings by [checking its recent reports in the console][reports] and ensuring that its `/etc/puppetlabs/mcollective/server.cfg` file was modified. 
+After changing the authentication method, **you cannot issue orchestration messages to a given node until it has run Puppet at least once.** This means changing the authentication method requires a 30 minute maintenance window during which orchestration will not be used. You can check whether a given node has changed its orchestration settings by [checking its recent reports in the console][reports] and ensuring that its `/etc/puppetlabs/mcollective/server.cfg` file was modified.
 
 [defaultgroup]: ./console_classes_groups.html#the-default-group
 [parameter]: ./console_classes_groups.html#parameters
@@ -156,30 +153,30 @@ Before changing the authentication method, you should carefully consider the pro
 
 #### PSK
 
-The PSK authentication method is enabled by default. Under this method, nodes receive a secret key via Puppet and trust messages sent by clients who have the same key. 
+The PSK authentication method is enabled by default. Under this method, nodes receive a secret key via Puppet and trust messages sent by clients who have the same key.
 
-Pro: 
+Pro:
 
-* Scales to many hundreds of nodes on average puppet master hardware. 
+* Scales to many hundreds of nodes on average puppet master hardware.
 
 Con:
 
-* Private key is known to all nodes --- an attacker with elevated privileges on one node could obtain the pre-shared key and issue valid orchestration commands to other nodes. 
+* Private key is known to all nodes --- an attacker with elevated privileges on one node could obtain the pre-shared key and issue valid orchestration commands to other nodes.
 * No protection from replay attacks --- an attacker could repeatedly re-send commands without knowing their content.
 
 #### AES (`aespe_security`)
 
-The AES authentication method must be manually enabled in the console. Under this method, nodes receive one or more public keys, and trust messages sent by clients who have one of the matching private keys. 
+The AES authentication method must be manually enabled in the console. Under this method, nodes receive one or more public keys, and trust messages sent by clients who have one of the matching private keys.
 
-Pro: 
+Pro:
 
-* Private key is only known to the puppet master node --- an attacker with elevated privileges on an agent node cannot command other nodes. 
+* Private key is only known to the puppet master node --- an attacker with elevated privileges on an agent node cannot command other nodes.
 * Protection from replay attacks --- once a short time window has passed, messages cannot be re-sent, and must be reconstructed and encrypted with a private key.
 
 Con:
 
 * All nodes must have very accurate timekeeping, and their clocks must be in sync. (The allowable time variance defaults to a 60-second window.)
-* The puppet master node requires more powerful hardware. This authentication method may not reliably scale to multiple hundreds of nodes. 
+* The puppet master node requires more powerful hardware. This authentication method may not reliably scale to multiple hundreds of nodes.
 
 
 ### Changing the Pre-Shared Key
@@ -188,7 +185,7 @@ When using PSK authentication, orchestration messages are authenticated with a r
 
 If this password is compromised, or if it just needs to be changed periodically for policy reasons, you can do so by editing `/etc/puppetlabs/mcollective/credentials` on the puppet master server and then waiting for puppet agent to run on every node.
 
-After changing the password, **you cannot issue orchestration messages to a given node until it has run Puppet at least once.** This means changing the orchestration password requires a 30 minute maintenance window during which orchestration will not be used. You can check whether a given node has changed its orchestration settings by [checking its recent reports in the console][reports] and ensuring that its `/etc/puppetlabs/mcollective/server.cfg` file was modified. 
+After changing the password, **you cannot issue orchestration messages to a given node until it has run Puppet at least once.** This means changing the orchestration password requires a 30 minute maintenance window during which orchestration will not be used. You can check whether a given node has changed its orchestration settings by [checking its recent reports in the console][reports] and ensuring that its `/etc/puppetlabs/mcollective/server.cfg` file was modified.
 
 [reports]: ./console_reports.html
 
@@ -210,20 +207,20 @@ In most configurations, you should run exactly as many workers as the machine ha
 Tuning the ActiveMQ Heap Size
 -----
 
-The puppet master node runs an ActiveMQ server to support orchestration commands. By default, the ActiveMQ process uses a Java heap size of 512 MB, which has been tested to support thousands of nodes. 
+The puppet master node runs an ActiveMQ server to support orchestration commands. By default, the ActiveMQ process uses a Java heap size of 512 MB, which has been tested to support thousands of nodes.
 
-You can increase or reduce the amount of memory used by ActiveMQ by navigating to the puppet master node's page in the console and creating a new parameter called `activemq_heap_mb`. The value you assign to it will be the amount of memory, in megabytes, used by ActiveMQ; delete the parameter to revert to the default setting. 
+You can increase or reduce the amount of memory used by ActiveMQ by navigating to the puppet master node's page in the console and creating a new parameter called `activemq_heap_mb`. The value you assign to it will be the amount of memory, in megabytes, used by ActiveMQ; delete the parameter to revert to the default setting.
 
 This is most commonly used to create stable proof-of-concept deployments on virtual machines with limited amounts of RAM. Many of the puppet master's features can fail if ActiveMQ consumes all of the available memory on the system, and reducing its heap size by half or more can prevent these problems on a starved VM.
 
 Setting ActiveMQ Thread Pooling
 -----
 
-By default, ActiveMQ is set up to use a dedicated thread for every destination. In environments with large numbers of destinations, this can cause memory resource issues. If the ActiveMQ log is full of "java.lang.OutOfMemoryError: unable to create new native thread" errors, you can configure ActiveMQ to use a thread pool by setting the system property: `-Dorg.apache.activemq.UseDedicatedTaskRunner=false`. This is specified in the ActiveMQ start script via ACTIVEMQ_OPTS. Using a thread pool will reduce the number of threads required by ActiveMQ and so should reduce its memory consumption. 
+By default, ActiveMQ is set up to use a dedicated thread for every destination. In environments with large numbers of destinations, this can cause memory resource issues. If the ActiveMQ log is full of "java.lang.OutOfMemoryError: unable to create new native thread" errors, you can configure ActiveMQ to use a thread pool by setting the system property: `-Dorg.apache.activemq.UseDedicatedTaskRunner=false`. This is specified in the ActiveMQ start script via ACTIVEMQ_OPTS. Using a thread pool will reduce the number of threads required by ActiveMQ and so should reduce its memory consumption.
 
 
-* * * 
+* * *
 
-- [Next: Installing Additional Components](./config_installing_additional.html) 
+- [Next: Installing Additional Components](./config_installing_additional.html)
 
 

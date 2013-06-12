@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Console » Live Mgmt: Advanced Tasks"
+title: "PE 3.0 » Console » Live Mgmt: Advanced Tasks"
 subtitle: "Live Management: Advanced Tasks"
 ---
 

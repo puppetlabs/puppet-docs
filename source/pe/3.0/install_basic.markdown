@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Installing » Installing PE"
+title: "PE 3.0 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"
 ---
 
@@ -148,7 +148,7 @@ The console relies on data provided by a PostgreSQL database. This database can 
 
 IMPORTANT: If you choose not to install the database support role on the console's node, you will be prompted for the host name and port of the node you intend to use to provide database support, and you will be asked for the user passwords for accessing the databases. The database support role must be installed on that node for the console to function. You should do this BEFORE installing the console role so that you have access to the database users' passwords during installation of the console.
 
-The database users' passwords are auto-generated when the database support role is installed and are saved in "/etc/puppetlabs/installer/database_info.install". If you copy this file to the node where you'll be installing the console, you can [automate password entry](http://docs.puppetlabs.com/pe/2.8/install_automated.html#running-the-installer-in-automated-mode) by adding the `-A` flag and the path to the saved database.info.install file to the `puppet-enterprise-installer` command. 
+The database users' passwords are auto-generated when the database support role is installed and are saved in `/etc/puppetlabs/installer/database_info.install`. If you copy this file to the node where you'll be installing the console, you can [automate password entry](./install_automated.html#running-the-installer-in-automated-mode) by adding the `-A` flag and the path to the saved database.info.install file to the `puppet-enterprise-installer` command.
 
 ### The Cloud Provisioner Role
 

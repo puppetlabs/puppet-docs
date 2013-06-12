@@ -12,7 +12,7 @@ Puppet Terminology
 
 For help with Puppet-specific terms and language, visit [the glossary](/references/glossary.html)
 
-For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.8/reference/)
+For a complete guide to the Puppet language, visit [the reference manual](/puppet/3/reference/)
 
 Release Notes
 -----
@@ -111,19 +111,13 @@ Known Issues
 
 As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
-To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.21 (Puppet Enterprise 2.8.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
-
-### PE 2.8.0 Only: Broken Live Management and MCollective
-
-A packaging bug in the initial PE 2.8.0 release prevented the console’s live management feature from functioning. This issue also prevents MCollective from using filters.
-
-This issue was fixed in PE 2.8.1. Anyone running 2.8.0 is strongly encouraged to upgrade.
 
 ### Bad Data in Facter's `architecture` Fact
 
@@ -141,15 +135,17 @@ When doing the first puppet run after upgrading using the "upgrader" script incl
 
 During installation, the PE installer attempts to automatically determine the URI where the console can be reached. On EC2 (and likely all other dual-homed systems), the installer incorrectly selects the internal, non-routable URI. Instead, you should manually enter the correct, external facing URI of the system hosting the console.
 
-### Answer file required for some SMTP servers.
+### Answer file required for some SMTP servers.d
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/latest/config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./config_advanced.html#allowing-anonymous-console-access) for details.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 
 An inadequate default MySQL buffer pool size setting can interfere with upgrades to Puppet Enterprise console servers.
 
 **The PE 2.8 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade.
+
+TODO this shouldn't be around anymore.
 
 If you see this warning, you should:
 

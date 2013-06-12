@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Console » Node Request Management"
+title: "PE 3.0 » Console » Node Request Management"
 subtitle: "Working with Node Requests"
 ---
 
@@ -34,7 +34,7 @@ Use the buttons to accept or reject nodes, singly or all at once. Note that once
 
 ![request management view](./images/console/request_mgmt_view.png)
 
-In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the reference guide](/references/latest/configuration.html#dnsaltnames).
+In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the configuration reference](/references/3.2.latest/configuration.html#dnsaltnames).
 
 In some cases, attempting to accept or reject a node request will result in an error. This is typically because the request has been modified somehow, usually by being accepted or rejected elsewhere (e.g. by another user or from the CLI) since the request was first generated.
 
@@ -68,7 +68,8 @@ For more information on working with certificates from the CLI, see the [Puppet 
 
 
 ### Request Management Modules
-PE installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienaar-concat`. It also upgrades the `puppetlabs-stdlib` module to v.2.5.1.
+
+PE installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `ripienaar-concat`. These are installed in the `/opt/puppet/share/puppet/modules/` directory, and usually shouldn't be modified.
 
 The `puppetlabs-auth_conf` module contains a new defined type: `auth_conf::acl`. The type takes the following parameters:
 

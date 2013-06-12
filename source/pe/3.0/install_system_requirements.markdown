@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Installing » System Requirements"
+title: "PE 3.0 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 ---
 
@@ -14,7 +14,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 2.8 supports the following systems:
+Puppet Enterprise 3.0 supports the following systems:
 
 |       Operating system       |  Version(s)          |       Arch        |   Roles   |
 |------------------------------|-------------------|-------------------|-----------|
@@ -33,7 +33,7 @@ Puppet Enterprise 2.8 supports the following systems:
 Hardware
 -----
 
-Puppet Enterprise's hardware requirements depend on the roles a machine performs. 
+Puppet Enterprise's hardware requirements depend on the roles a machine performs.
 
 * The **puppet master** role should be installed on a robust, dedicated server.
     * Minimum requirements: 2 processor cores, 1 GB RAM, and very accurate timekeeping.
@@ -78,10 +78,10 @@ This section details the packages that are installed from the various OS repos. 
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
 |   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
 |  system-logos      |  apr-util                     |  apr-util                           |  mysql51                                    |  libxml2
-|  which                  | curl                           |  curl                                |  mysql51-server                         |  
+|  which                  | curl                           |  curl                                |  mysql51-server                         |
 |  libxml2                | mailcap                     | mailcap
-|  dmidecode         | java-1.6.0-openjdk*   | 
-| net-tools              |            
+|  dmidecode         | java-1.6.0-openjdk*   |
+| net-tools              |
 
 *Only needed if java isn't already installed.
 
@@ -91,11 +91,11 @@ This section details the packages that are installed from the various OS repos. 
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
 |   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
 |  system-logos      |  apr-util                     |  apr-util                           |  mysql                                        |  libxml2
-|  which                  | curl                           |  curl                                |  mysql-server                             |  
+|  which                  | curl                           |  curl                                |  mysql-server                             |
 |  libxml2                | mailcap                     | mailcap
-|  dmidecode         |                                   | 
-| net-tools              |      
-| java-1.6.0-openjdk*         
+|  dmidecode         |                                   |
+| net-tools              |
+| java-1.6.0-openjdk*
 
 *Only needed if java isn't already installed.
 
@@ -106,12 +106,12 @@ This section details the packages that are installed from the various OS repos. 
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
 |   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
 |  system-logos      |  apr-util                     |  apr-util                           |  mysql                                        |  libxml2
-|  which                  | apr-util-ldap (RHEL 6) |  curl                             |  mysql-server                             |  
+|  which                  | apr-util-ldap (RHEL 6) |  curl                             |  mysql-server                             |
 |  libxml2                |   curl                            | mailcap                        |
 |  dmidecode         |  mailcap                       | apr-util-ldap (RHEL 6)  |
 | net-tools              |    java-1.6.0-openjdk*  |
 |  cronie (RHEL 6)
-| vixie-cron (RHEL 5)       
+| vixie-cron (RHEL 5)
 
 *Only needed if java isn't already installed.
 
@@ -122,19 +122,19 @@ This section details the packages that are installed from the various OS repos. 
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
 |   pciutils               |  libapr1                        |  libapr1                        |  sudo                                         |  libxslt
 |  pmtools              |  libapr-util1                   |  libapr-util1                  |  mysql                                        |  libxml2
-|  cron                    |  java-1_6_0-ibm          |  curl                             |  mysql-client                             |  
+|  cron                    |  java-1_6_0-ibm          |  curl                             |  mysql-client                             |
 |  libxml2                |   curl                            |                                     |
 |  net-tools             |                                     |                                     |
-  
-  <br>  
-  
+
+  <br>
+
 ***Debian***
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
 |   pciutils               |  file                             |  file                              |  mysql-common                           |  libxslt1.1                            |
-|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |  
-|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |  
+|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |
+|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |
 |  libxml2                |  curl                            |  curl                             |
 |  hostname           |  perl                            |  perl                             |
 |  libldap-2.4-2       |  mime-support            |  mime-support             |
@@ -154,8 +154,8 @@ This section details the packages that are installed from the various OS repos. 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
 |   pciutils               |  file                             |  file                              |  mysql-common                           |  libxslt1.1                            |
-|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |  
-|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |  
+|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |
+|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |
 |  libxml2                |  curl                            |  curl                             |
 |  hostname           |  perl                            |  perl                             |
 |  libldap-2.4-2       |  mime-support            |  mime-support             |
@@ -168,7 +168,7 @@ This section details the packages that are installed from the various OS repos. 
 
 <br>
 
-***AIX***  
+***AIX***
 In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed before attempting to install the puppet agent:
 
 * bash
@@ -177,7 +177,7 @@ In order to run the puppet agent on AIX systems, you'll need to ensure the follo
 
 All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
 
-To install the packages on your selected node directly, you can run `rpm -Uvh` with the following URLs (note that the RPM package provider on AIX must be run as root):  
+To install the packages on your selected node directly, you can run `rpm -Uvh` with the following URLs (note that the RPM package provider on AIX must be run as root):
 
  * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/bash/bash-3.2-1.aix5.2.ppc.rpm
  * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm
@@ -189,7 +189,7 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 
 The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
 
-***Solaris***  
+***Solaris***
 In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system.
 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8  » Cloud Provisioning » Troubleshooting"
+title: "PE 3.0 » Cloud Provisioning » Troubleshooting"
 subtitle: "Finding Common Errors"
 ---
 

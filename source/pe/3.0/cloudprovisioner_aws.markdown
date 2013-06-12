@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 2.8 » Cloud Provisioning » AWS Provisioning"
+title: "PE 3.0 » Cloud Provisioning » AWS Provisioning"
 subtitle: "Provisioning With Amazon Web Services"
 ---
 
