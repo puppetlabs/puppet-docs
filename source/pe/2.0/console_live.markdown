@@ -17,14 +17,7 @@ What's Live Management?
 
 The console's live management page contains tools for inspecting and editing your nodes in real time. It is powered by MCollective.
 
-Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console. 
-
-Show Me!
------
-
-Puppet Labs' own Randall Hansen demonstrates the power of live management:
-
-<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/_MMzUsZ2jjo?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/_MMzUsZ2jjo?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console.
 
 Tabs
 -----
@@ -33,11 +26,11 @@ The live management page is split into three **tabs,** one for each of its tools
 
 ![The live management tabs][live_nav_tabs]
 
-- The **manage resources** tab lets you browse the resources on your nodes and clone any of them across your infrastructure. 
+- The **manage resources** tab lets you browse the resources on your nodes and clone any of them across your infrastructure.
 - The **control Puppet** tab lets you tell any node to immediately pull and apply its configuration. It can also temporarily disable puppet agent on some of your nodes to control the rollout speed of new configurations.
 - The **advanced tasks** tab is a direct interface to the MCollective agents on your systems, and will auto-generate a GUI for any new agents you install.
 
-The following chapters of this section cover the use of each tab. 
+The following chapters of this section cover the use of each tab.
 
 The Node List
 -----
@@ -55,13 +48,13 @@ As long as you stay within the live management page, your selection and filterin
 
 ### Selecting Nodes
 
-Clicking a node selects it or deselects it. Use the "select all" and "select none" controls to select and deselect all nodes that match the current filter. 
+Clicking a node selects it or deselects it. Use the "select all" and "select none" controls to select and deselect all nodes that match the current filter.
 
-Only nodes that match the current filter can be selected; you don't have to worry about acidentally modifying "invisibly" selected nodes. 
+Only nodes that match the current filter can be selected; you don't have to worry about acidentally modifying "invisibly" selected nodes.
 
 ### Filtering by Name
 
-Use the "node filter" field to filter your nodes by hostname. This type of filtering is most useful for small numbers of nodes, or for situations where your hostnames have been assigned according to some logical plan. 
+Use the "node filter" field to filter your nodes by hostname. This type of filtering is most useful for small numbers of nodes, or for situations where your hostnames have been assigned according to some logical plan.
 
 ![Nodes being filtered by name][live_nav_namefilter]
 
@@ -74,7 +67,7 @@ Use the "filter" button or the enter key to confirm your search, then wait for t
 
 ### Advanced Search
 
-You can also filter by Puppet class or by the value of any fact on your nodes. Click the "advanced search" link to reveal these fields. 
+You can also filter by Puppet class or by the value of any fact on your nodes. Click the "advanced search" link to reveal these fields.
 
 ![The advanced search fields, filtering by the operatingsystem fact][live_nav_advancedsearch]
 
