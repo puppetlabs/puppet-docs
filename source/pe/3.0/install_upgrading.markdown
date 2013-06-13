@@ -4,7 +4,9 @@ title: "PE 3.0 » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
 ---
 
+Upgrading from an existing Puppet Enterprise 2.x deployment to 3.0 is not yet supported. For existing PE customers, we recommend that you wait a short time for the next PE 3 release which will include upgrade tools and instructions. We also recommend that you set up some isolated test environments which duplicate existing parts of your infrastructure so that you can familiarize yourself with the new features and functions of PE 3.0, and to get an idea of how your particular environment will need to be adapted.
 
+<!-- TODO_upgrade
 Summary
 -----
 
@@ -138,12 +140,6 @@ If you receive a warning about the `innodb_buffer_pool_size` setting, you should
 * Cancel the upgrade and exit the upgrader.
 * [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the buffer size.
 * Re-run the upgrader and allow it to finish.
-
-<!--
-Final Steps: From an Earlier 2.5.x Release
------
-
-**No extra steps** are needed when upgrading between maintenance releases of PE 2.0. -->
 
 Final Steps: From PE 2.0 or 1.2
 -----
@@ -328,7 +324,8 @@ On each agent node you upgrade, make the following edits to `/etc/puppetlabs/pup
         # if you didn't originally enable pluginsync, enable it now:
         pluginsync = true
 
-
+ -->
 * * *
+
 
 - [Next: Uninstalling](./install_uninstalling.html)

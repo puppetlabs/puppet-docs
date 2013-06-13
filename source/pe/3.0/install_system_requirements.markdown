@@ -18,16 +18,16 @@ Puppet Enterprise 3.0 supports the following systems:
 
 |       Operating system       |  Version(s)          |       Arch        |   Roles   |
 |------------------------------|-------------------|-------------------|-----------|
-| Red Hat Enterprise Linux     | 5 and 6           | x86 and x86\_64   | all roles |
-| CentOS                       | 5 and 6           | x86 and x86\_64   | all roles |
-| Ubuntu LTS                   | 10.04 and 12.04   | 32- and 64-bit    | all roles |
-| Debian                       | Squeeze (6)       | i386 and amd64    | all roles |
-| Oracle Linux                 | 5 and 6           | x86 and x86\_64   | all roles |
-| Scientific Linux             | 5 and 6           | x86 and x86\_864  | all roles |
-| SUSE Linux Enterprise Server | 11                | x86 and x86\_864  | all roles |
-| Solaris                      | 10                | SPARC and x86\_64 | agent     |
-| Microsoft Windows            | 2003, 2008, and 7 | x86 and x86\_864  | agent     |
-| AIX            | 5, 6, and 7 | Power Arch.  | agent     |
+| Red Hat Enterprise Linux     | 5 & 6           | x86 & x86\_64   | all roles |
+| CentOS                       | 5 & 6           | x86 & x86\_64   | all roles |
+| Ubuntu LTS                   | 10.04 & 12.04   |  i386 & amd64    | all roles |
+| Debian                       | Squeeze (6) & Wheezy (7)       | i386 & amd64    | all roles |
+| Oracle Linux                 | 5 & 6           | x86 & x86\_64   | all roles |
+| Scientific Linux             | 5 & 6           | x86 & x86\_64  | all roles |
+| SUSE Linux Enterprise Server | 11 (SP1 and later)                | x86 & x86\_64  | not supported (coming soon) |
+| Solaris                      | 10                | SPARC & i386 | agent     |
+| Microsoft Windows            | 2003, 2008, 7, & 2012 | x86 & x86\_64  | agent     |
+| AIX            | 5.3, 6.1, & 7.1 | Power   | agent     |
 
 
 Hardware

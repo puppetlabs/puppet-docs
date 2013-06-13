@@ -102,12 +102,21 @@ In addition, by default the puppet master will check for available PE software u
     * the type and version of the client's OS
     * the Installed version of PE
 
- If you wish to disable manual update checks, or if your company policy forbids transmitting this information, you will need to add the following line to the answer file: `q_pe_check_for_updates=n`
+ If you wish to disable manual update checks, or if your company policy forbids transmitting this information, you will need to add the following line to the answer file: `q_pe_check_for_updates=n`. Keep in mind that if you delete your answers file, the check will turn back on the next time `pe-httpd` restarts.
 
 
 ### Console Answers
 
 These answers are only needed if you are installing the console role.
+
+`q_database_host`
+: **String** --- The hostname of the server running the PostgreSQL server that supports the console.
+
+`q_database_port`
+: **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
+
+`q_puppet_enterpriseconsole_master_hostname`
+: **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
 
 `q_puppet_enterpriseconsole_httpd_port`
 : **Integer** --- The port on which to serve the console. If this is set to 443, you can access the console from a web browser without manually specifying a port.
@@ -119,60 +128,63 @@ These answers are only needed if you are installing the console role.
 : **String** --- The password for the console's admin user. Must be longer than eight characters.
 
 `q_puppet_enterpriseconsole_smtp_host`
-: **String** -- The SMTP server with which to email account activation codes to new console users. <!-- These related answers all appear to be inert, and are never read by the installer:
-q_puppet_enterpriseconsole_smtp_password
-q_puppet_enterpriseconsole_smtp_port
-q_puppet_enterpriseconsole_smtp_use_tls
-q_puppet_enterpriseconsole_smtp_user_auth
-q_puppet_enterpriseconsole_smtp_username
--->
-
-`q_puppet_enterpriseconsole_inventory_certname`
-: **String** --- An identifying string for the inventory service. This ID must be unique across your entire site. Only needed if you are _not_ installing the puppet master role on the console server.
-
-`q_puppet_enterpriseconsole_inventory_dnsaltnames`
-: **String** --- Valid DNS names at which the console server can be reached. Only needed if you are _not_ installing the puppet master role on the console server. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppetinventory,puppetinventory.<domain>`.
-
-`q_puppet_enterpriseconsole_database_install`
-: **Y or N** --- Whether to install and configure a new MySQL database from the OS's package repositories. If set to Y, the installer will also create a new database and user with the `..._name, ..._user,` and `..._password` answers below.
-
-`q_puppet_enterpriseconsole_setup_db`
-: **Y or N** --- Whether to automatically configure the console and inventory service databases. Only used when `q_puppet_enterpriseconsole_database_install` is N.
-
-`q_puppet_enterpriseconsole_database_root_password`
-: **String** --- The password for MySQL's root user. When `q_puppet_enterpriseconsole_database_install` is Y, this will set the root user's password; when `q_puppet_enterpriseconsole_setup_db` is Y, it will be used to log in and automatically configure the necessary databases. If neither of these answers is Y, this answer is not used.
-
-`q_puppet_enterpriseconsole_database_remote`
-: **Y or N** --- Whether the pre-existing database is on a remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_install` is N.
-
-`q_puppet_enterpriseconsole_database_host`
-: **String** --- The hostname of the remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_remote` is Y.
-
-`q_puppet_enterpriseconsole_database_port`
-: **String** --- The port used by the remote MySQL server. Only used when `q_puppet_enterpriseconsole_database_remote` is Y. In a normal installation, defaults to `3306`.
+: **String** -- The SMTP server with which to email account activation codes to new console users. 
 
 `q_puppet_enterpriseconsole_database_name`
-: **String** --- The database the console will use. Note that if you are not automatically configuring the databases, this database must already exist on the MySQL server.
+: **String** --- The database the console will use. Note that if you are not installing the database support role, this database must already exist on the PostgreSQL server.
 
 `q_puppet_enterpriseconsole_database_user`
-: **String** --- The MySQL user the console will use. Note that if you are not automatically configuring the databases, this user must already exist on the MySQL server and must be able to edit the console's database.
+: **String** --- The PostgreSQL user the console will use. Note that if you are not installing the database support role, this user must already exist on the PostgreSQL server and must be able to edit the console's database.
 
 `q_puppet_enterpriseconsole_database_password`
-: **String** --- The password for the console's MySQL user.
-
-`q_puppet_enterpriseconsole_setup_auth_db`
-: **Y or N** --- Whether to automatically configure the console authentication database.
+: **String** --- The password for the console's PostgreSQL user.
 
 `q_puppet_enterpriseconsole_auth_database_name`
-: **String** --- The database the console authentication will use. Note that if you are not automatically configuring the auth database, this database must already exist on the MySQL server.
+: **String** --- The database the console authentication will use. Note that if you are not installing the database support role, this database must already exist on the PostgreSQL server.
 
 `q_puppet_enterpriseconsole_auth_database_user`
-: **String** --- The MySQL user the console authentication will use. Note that if you are not automatically configuring the databases, this user must already exist on the MySQL server and must be able to edit the auth database.
+: **String** --- The PostgreSQL user the console authentication will use. Note that if you are not installing the database support role, this user must already exist on the PostgreSQL server and must be able to edit the auth database.
 
 `q_puppet_enterpriseconsole_auth_database_password`
-: **String** --- The password for the auth database's MySQL user.
+: **String** --- The password for the auth database's PostgreSQL user.
+
+Database Support Answers
+-----
+`q_database_host`
+: **String** --- The hostname of the server running the PostgreSQL server that supports the console.
+
+`q_database_install`
+: **Y or N** --- Whether or not to install the PostgreSQL server that supports the console.  
+
+`q_database_port`
+: **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
+ 
+`q_database_root_password`
+: **String** --- The password for the console's PostgreSQL user.
+
+`q_database_root_user`
+: **String** --- The console's PostgreSQL root user name.
+
+`q_puppetdb_database_name`
+: **String** --- The database PuppetDB will use.
+
+`q_puppetdb_database_password`
+: **String** --- The password for PuppetDB's root user.
+
+`q_puppetdb_database_user`
+: **String** --- PuppetDB's root user name. 
+
+`q_puppetdb_hostname`
+: **String** --- The hostname of the server running PuppetDB.
+
+`q_puppetdb_install`
+: **Y or N** --- Whether or not to install PuppetDB. 
+
+`q_puppetdb_port`
+: **Integer** --- The port where the PuppetDB server can be reached. 
 
 
+<!-- TODO_upgrade
 Upgrader Answers
 -----
 
@@ -208,6 +220,7 @@ Upgrader Answers
 
 `q_vendor_packages_install`
 : **Y or N** --- Whether to install additional packages from your OS vendor's repository, if the upgrader determines any are needed.
+ -->
 
 Uninstaller Answers
 -----
