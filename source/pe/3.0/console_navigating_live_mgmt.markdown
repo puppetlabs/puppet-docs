@@ -43,7 +43,7 @@ Every task in live management inspects or modifies a **selection of nodes.** Use
 
 ![The node list][live_nav_nodelist]
 
-Nodes are listed by their **hostnames** in the live management pages. A node's hostname may match the name Puppet knows it by, but this isn't always the case, especially in cloud environments like EC2.
+Nodes are listed by the same Puppet certnames used in the rest of the console interface.
 
 As long as you stay within the live management page, your selection and filtering in the node list will persist across all three tabs. The node list gets reset once you navigate to a different area of the console.
 
