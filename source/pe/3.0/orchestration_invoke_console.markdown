@@ -4,9 +4,7 @@ title: "PE 3.0 » Console » Live Mgmt: Advanced Tasks"
 subtitle: "Live Management: Advanced Tasks"
 ---
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
-
-Use the "Advanced Tasks" tab to invoke actions from any MCollective agent installed on your nodes. 
+Use the "Advanced Tasks" tab to invoke actions from any MCollective agent installed on your nodes.
 
 ![The advanced tasks page][live_advanced_main]
 
@@ -52,6 +50,6 @@ Results:
 [live_advanced_running]: ./images/console/live_advanced_running.png
 
 
-* * * 
+* * *
 
 - [Next: Console Maintenance](./console_maintenance.html)

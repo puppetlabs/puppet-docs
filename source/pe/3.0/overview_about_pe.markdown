@@ -38,8 +38,6 @@ About Orchestration
 
 Puppet Enterprise includes distributed task orchestration features. Nodes managed by PE will listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory.
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and live management are not yet supported on Windows nodes.
-
 About the Console
 -----
 

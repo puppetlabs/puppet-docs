@@ -1,72 +1,7 @@
 ---
 layout: default
-title: "PE 3.0 » Orchestration » Usage"
-subtitle: "Orchestration for New PE Users: Usage and Examples"
+title: "PE 3.0 » Orchestration » More Examples"
 ---
-
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
-
-Running Actions
------
-
-Orchestration actions are grouped and distributed as MCollective
-plugins. In the default installation of Puppet Enterprise, you can run any orchestration action from any plugin while logged in as the `peadmin` user on the puppet master node.
-
-To open a shell as the `peadmin` user, run:
-
-    $ sudo -i -u peadmin
-
-To run orchestration actions, use the `mco` command:
-
-    $ mco <PLUGIN> <FILTER> <ACTION> <ARGUMENT> <OPTIONS>
-
-Available Actions
------
-
-The following orchestration actions are available in PE:
-
-* `rpcutil` plugin
-  - `find` action returns a list of all nodes matching a search filter
-  - `ping` action returns a list of all nodes and their latencies
-  - `inventory` action returns a list of Facts, Classes, and other information from all nodes
-  - this plugin's actions are exposed via higher-level wrappers, such as the `mco ping` command
-* `puppetral` plugin
-  - `find` action returns a Puppet resource of a given type and title and its variations across all nodes
-  - `search` action returns all Puppet resources of a given type across all nodes
-  - `create` action creates a given resource across all nodes
-    - creating an exec resource allows for arbitrary management of nodes
-* `puppetd` plugin
-  - `enable` and `disable` actions will enable and disable puppet agent on a node or nodes
-  - `runonce` action initiates a puppet agent run on all nodes
-  - `last_run_summary` action retrieves the most recent Puppet run summary from all nodes
-  - `status` action returns puppet agent's run status on all nodes
-* `service` plugin
-  - `start, stop, restart,` and `status` actions allow direct management of services across the deployment
-* `package` plugin
-  - `install, purge, checkupdate, update,` and `status` actions work through the system package manager to query and ensure the state of software packages across the deployment
-* `controller` plugin
-  - `stats` action returns cumulative statistics about MCollective messages passed between nodes
-  - `reload_agent` action refreshes from disk the code for a specific plugin
-  - `reload_agents` action refreshes from disk the code for all plugins
-  - `exit` action removes nodes from the MCollective network
-
-Filtering Nodes
------
-
-Most orchestration actions in PE can be executed
-on a set of nodes determined by meta-data about the deployment.
-This filtering provides a much more convenient way to manage nodes
-than the traditional approach of using host names or fully
-qualified domain names to identify and access machines. Node sets
-can be created by filtering based on Facter facts, Puppet classes,
-and host names. Filters can be specified by passing options to the
-`mco` command. For example:
-
-    $ mco find --with-fact osfamily=RedHat
-
-This command forces the find action to only return nodes which have a
-fact named osfamily with a value of RedHat.  Filter options are
-case sensitive and support regular expression syntax.
 
 Examples
 -----
@@ -117,7 +52,7 @@ command returns facts and classes, among other information:
        Total Processor Time: 1.34 seconds
        System Time: 0.59 seconds
      Agents:
-       discovery       package         puppetd        
+       discovery       package         puppetd
        puppetral       rpcutil         service
      Configuration Management Classes:
        default                        helloworld
@@ -189,16 +124,16 @@ nodes in the deployment:
 
     [ =================================================> ] 2 / 2
 
-    agent.example.com                      
+    agent.example.com
     Status: Resource was created
     Resource:
-      {"exported"=>false, 
+      {"exported"=>false,
        "title"=>"/bin/bash -c 'echo Hello > /tmp/hello'",
        "parameters"=>{:returns=>:notrun},
        "tags"=>["exec"],
        "type"=>"Exec"}
 
-     puppetmaster.example.com              
+     puppetmaster.example.com
      Status: Resource was created
      Resource:
        {"exported"=>false,
@@ -329,8 +264,3 @@ deployment:
      agent.example.com> reloaded all agents
      puppetmaster.example.com> reloaded all agents
      Finished processing 2 / 2 hosts in 137.86 ms
-
-
-* * * 
-
-- [Next: Cloud Provisioning Overview](./cloudprovisioner_overview.html) 

@@ -1,69 +1,97 @@
 ---
 layout: default
 title: "PE 3.0 » Orchestration » Overview"
-subtitle: "Orchestration for New PE Users: Overview"
 ---
 
-What is Orchestration?
+
+Puppet Enterprise includes an orchestration engine called MCollective, which can invoke many kinds of action in parallel across any number of nodes. Several useful actions are available by default, and you can easily add and use new actions.
+
+Quick Links
 -----
 
-Orchestration means invoking actions in parallel across any number of nodes at once.
+**Easy orchestration tasks:**
 
-PE's orchestration features are built on the MCollective framework, which consists of the following components:
+- [Controlling Puppet](./orchestration_puppet.html)
+- [Browsing and Searching Resources](./orchestration_resources.html)
 
-* **Client interfaces** can issue orchestration commands to some or all of your nodes. The console's live management tools are one client interface and the `mco` command line tool is another.
-* **Orchestration agents** are plugins installed on agent nodes that provide orchestration actions.
-* The **MCollective service** runs on every agent node and listens for orchestration commands. If a command is legit, relevant to the node, and for a supported action, the service will trigger the action and send back results.
-* The **message broker** is a central server that routes orchestration messages between client interfaces and nodes running the MCollective service. (PE's ActiveMQ message server runs on the puppet master node.)
+**General orchestration tasks:**
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.
+- [Invoking Actions (In Console)](./orchestration_invoke_console.html)
+- [Invoking Actions (Command Line)](./orchestration_invoke_cli.html)
+- [List of Built-In Actions](./orchestration_actions.html)
+- [More Examples](./orchestration_examples.html)
 
-### Orchestration isn't SSH
+**Extending the orchestration engine:**
 
-Orchestration isn't for running arbitrary code on nodes. Instead, each node has a collection of **actions** available. Actions are distributed in plugins, and you can extend PE's orchestration features by downloading or writing new orchestration agents and distributing them with Puppet.
+- [Adding New Actions](./orchestration_adding_actions.html)
+- [Integrating Applications](./orchestration_integrating.html)
 
-### Live Management is Orchestration
+**Configuring the orchestration engine:**
 
-The console's live management page offers
-a convenient graphical interface for orchestration tasks, such as
-browsing and cloning resources across nodes. See [the live management chapters of this user's guide](./console_live.html) for more details.
+- [Configuring Orchestration](./config_orchestration.html)
 
-### Orchestration is Also Scriptable
 
-In addition to live management's interactive interface, PE includes command-line tools
-that let you script and automate orchestration tasks (or just run them from the comfort of your terminal).
-
-Changes Since PE 1.2
+Orchestration Fundamentals
 -----
 
-PE's orchestration features have been changed and improved since they were introduced in version 1.2.
+### Actions and Plugins
 
-* Orchestration is enabled by default for all PE nodes.
-* Orchestration tasks can now be invoked directly from the console, using the "advanced tasks" tab of the live management page. PE's orchestration framework also powers the other live management features.
-* The `mco` user account on the puppet master is gone, in favor of a new `peadmin` user. This user can still invoke orchestration tasks across your nodes, but will also gain more general purpose capabilities in future versions.
-* PE now includes the `puppetral` plugin, which lets you use Puppet's Resource Abstraction Layer (RAL) in orchestration tasks.
-* For performance reasons, the default message security scheme has changed from AES to PSK.
-* The network connection over which messages are sent is now encrypted using SSL.
+Orchestration isn't quite like SSH, PowerShell, or other tools meant for running arbitrary shell code in an ad-hoc way.
 
-Security
+PE's orchestration is built around the idea of predefined **actions** --- it is essentially a highly parallel **remote procedure call (RPC)** system.
+
+**Actions** are distributed in **MCollective agent plugins,** which are bundles of several related actions. Many plugins are available by default (see [Built-In Orchestration Actions](./orchestration_actions.html)), and you can extend the orchestration engine by downloading or writing new plugins and [adding them to the engine with Puppet](./orchestration_adding_actions.html).
+
+### Invoking Actions and Filtering Nodes
+
+The core concept of PE's orchestration is **invoking actions,** in parallel, on a select group of nodes.
+
+You typically choose some nodes to operate on (usually with a **filter** that describes the desired fact values or Puppet classes), and specify an **action** and its **arguments.** The orchestration engine then runs that action on the chosen nodes, and displays any data collected during the run.
+
+Puppet Enterprise can invoke orchestration actions [**in the web console** (on the live management page)](./orchestration_invoke_console.html) and [**on the command line**](./orchestration_invoke_cli.html). It's also possible to [allow your site's custom applications to invoke orchestration actions][integrate].
+
+[integrate]: ./orchestration_integrating.html
+
+### Special Interfaces: Puppet Runs and Resources
+
+In addition to the main action invocation interfaces, Puppet Enterprise provides special interfaces for two of the most useful orchestration tasks:
+
+* [Remotely controlling the puppet agent and triggering Puppet runs](./orchestration_puppet.html)
+* [Browsing and comparing resources across your nodes](./orchestration_resources.html)
+
+
+Orchestration Internals
 -----
 
-All network traffic for orchestration is encrypted with SSL (without host verification). In addition, all orchestration messages are authenticated using a randomly generated pre-shared key (PSK).
+### Components
 
-* If necessary, you can [change the password][mco_password] used as the pre-shared key.
-* You can also [change the authentication method][mco_aes] to use an AES key pair instead of a pre-shared key. (Note that this can potentially affect performance with large numbers of nodes.)
+The orchestration engine consists of the following parts:
 
-[mco_password]: ./config_advanced.html#changing-the-pre-shared-key
-[mco_aes]: ./config_advanced.html#changing-the-authentication-method
+- The `pe-activemq` service (which runs on the puppet master server) routes all orchestration-related messages.
+- The `pe-mcollective` service (which runs on every agent node) listens for authorized commands and invokes actions in response. It relies on the available agent plugins for its set of possible actions.
+- The `mco` command (available to the `peadmin` user account on the puppet master server) and the live management page of the PE console can issue authorized orchestration commands to any number of nodes.
+
+### Configuration
+
+See [the Configuring Orchestration page][config] in the "Configuring Puppet Enterprise" section of this manual.
+
+[config]: ./config_orchestration.html
+
+### Security
+
+The orchestration engine in Puppet Enterprise 3.0 uses the same security model as the recommended "standard MCollective deployment." [See the "security model" section on the MCollective standard deployment page](/mcollective/deploy/standard.html#security-model) for a more detailed rundown of these security measures.
+
+In short, all commands and replies are encrypted in transit, and only a few authorized clients are permitted to send commands. By default, PE allows orchestration commands to be sent by:
+
+- [Read/write and admin users of the PE console](./console_auth.html#user-access-and-privileges)
+- Users able to log in to the puppet master server with full administrator `sudo` privileges
+
+If you extend orchestration by [integrating external applications][integrate], you can limit the actions each application has access to by distributing policy files; [see the Configuring Orchestration page][config] for more details.
+
+You can also allow additional users to log in as the `peadmin` user on the puppet master, usually by distributing standard SSH public keys.
+
+### Network Traffic
+
+Every node (including all agent nodes, the puppet master server, and the console) needs the ability to initiate connections to the puppet master server over TCP port 61613. See the [notes on firewall configuration in the "System Requirements" chapter of this guide](./install_system_requirements.html#firewall-configuration) for more details about PE's network traffic.
 
 
-Network Traffic
------
-
-Nodes send orchestration messages over TCP port 61613
-to the ActiveMQ server, which runs on the puppet master node. See the [notes on firewall configuration in the "System Requirements" chapter of this guide](./install_system_requirements.html#firewall-configuration) for more details about PE's network traffic.
-
-
-* * *
-
-- [Next: Orchestration Usage and Examples](./orchestration_usage.html)

@@ -4,13 +4,11 @@ title: "PE 3.0 » Console » Live Mgmt: Controlling Puppet"
 subtitle: "Live Management: Controlling Puppet"
 ---
 
-> ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.
-
 Use the "Control Puppet" tab to immediately trigger a puppet agent run on any of your nodes. You can also check puppet agent's status, and enable or disable it to control the spread of new configurations.
 
 ![The control puppet tab][live_puppet_main]
 
-Be aware that the "Control Puppet" tab cannot trigger a node's _first_ puppet agent run. A node's first run will happen automatically within 30 minutes after you [sign its certificate][certsign]. 
+Be aware that the "Control Puppet" tab cannot trigger a node's _first_ puppet agent run. A node's first run will happen automatically within 30 minutes after you [sign its certificate][certsign].
 
 [certsign]: ./install_basic.html#signing-agent-certificates
 
@@ -19,13 +17,13 @@ Invoking an Action
 
 The "Control Puppet" tab can perform five actions:
 
-- Disable     
-- Enable     
-- Last Run Summary     
-- Runonce     
-- Status     
+- Disable
+- Enable
+- Last Run Summary
+- Runonce
+- Status
 
-To use one, click the name of the action, then confirm with the red "Run" button. 
+To use one, click the name of the action, then confirm with the red "Run" button.
 
 ![The red Run button revealed][live_puppet_runbutton]
 
@@ -44,19 +42,19 @@ Actions
 
 ### Run Puppet Once
 
-Use the "runonce" action to make the selected nodes immediately pull and apply their configurations from the puppet master. 
+Use the "runonce" action to make the selected nodes immediately pull and apply their configurations from the puppet master.
 
-Normally, puppet agent pulls configurations at a regular interval (30 minutes, by default). However, when testing new Puppet classes, you'll probably need to trigger agent runs at irregular times on your test nodes. 
+Normally, puppet agent pulls configurations at a regular interval (30 minutes, by default). However, when testing new Puppet classes, you'll probably need to trigger agent runs at irregular times on your test nodes.
 
 Nodes where puppet agent is disabled will ignore this action.
 
 ### Enable and Disable
 
-Use the "enable" and "disable" actions to control whether puppet agent _does_ anything. When you disable Puppet on a node, the agent daemon will continue running, but it will not pull configurations from the master. 
+Use the "enable" and "disable" actions to control whether puppet agent _does_ anything. When you disable Puppet on a node, the agent daemon will continue running, but it will not pull configurations from the master.
 
-After a node has been disabled for an hour, it will appear as "unresponsive" in the console's node views, and will stay that way until it is re-enabled. Disabled nodes will ignore runonce commands from the "Control Puppet" tab. 
+After a node has been disabled for an hour, it will appear as "unresponsive" in the console's node views, and will stay that way until it is re-enabled. Disabled nodes will ignore runonce commands from the "Control Puppet" tab.
 
-Disabling nodes is great for hedging your bets when you've made major changes to an existing Puppet module: 
+Disabling nodes is great for hedging your bets when you've made major changes to an existing Puppet module:
 
 * Filter the node list by Puppet class to find every node that will be affected by the change
 * Disable Puppet on all but a few of these nodes
@@ -71,13 +69,13 @@ Results after trying to run a mix of enabled and disabled nodes --- note the thr
 
 ![Runonce results, with three disabled nodes revealed][live_puppet_disabled_wont_run]
 
-A view of unresponsive nodes in the console (note that node certnames on EC2 don't necessarily align with hostnames): 
+A view of unresponsive nodes in the console (note that node certnames on EC2 don't necessarily align with hostnames):
 
 ![An unresponsive node view with three nodes][live_puppet_unresponsive]
 
 ### Status
 
-Use the "status" action to check up on puppet agent. 
+Use the "status" action to check up on puppet agent.
 
 The status action gets three pieces of information from each node:
 
@@ -91,9 +89,9 @@ The results of the status action, with a mix of enabled and disabled nodes:
 
 ### Last Run Summary
 
-Use the "last\_run\_summary" action for a quick view of what the most recent Puppet run did. 
+Use the "last\_run\_summary" action for a quick view of what the most recent Puppet run did.
 
-Usually, you should use the graphs and reports on the console's node views to investigate previous Puppet runs; they are more detailed, and provide more historical context. However, the overview provided by this action can be useful when combined with live management's class and fact filtering. 
+Usually, you should use the graphs and reports on the console's node views to investigate previous Puppet runs; they are more detailed, and provide more historical context. However, the overview provided by this action can be useful when combined with live management's class and fact filtering.
 
 Part of a last run summary results view:
 
@@ -110,6 +108,6 @@ Part of a last run summary results view:
 [live_puppet_unresponsive]: ./images/console/live_puppet_unresponsive.png
 
 
-* * * 
+* * *
 
-- [Next: Live Management: Advanced Tasks](./console_live_advanced.html) 
+- [Next: Live Management: Advanced Tasks](./console_live_advanced.html)
