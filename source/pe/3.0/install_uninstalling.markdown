@@ -4,7 +4,7 @@ title: "PE 3.0 » Installing » Uninstalling"
 subtitle: "Uninstalling Puppet Enterprise"
 ---
 
-Use the `puppet-enterprise-uninstaller` script to uninstall PE. This script can remove a working PE installation, or undo a partially failed installation to prepare for a re-install.
+Use the `puppet-enterprise-uninstaller` script to uninstall PE roles on a given node. This script can remove a working PE installation, or undo a partially failed installation to prepare for a re-install.
 
 Using the Uninstaller
 -----
@@ -53,6 +53,8 @@ You can use the following command-line flags to change the installer's behavior:
 Thus, to remove every trace of PE from a system, you would run:
 
     $ sudo ./puppet-enterprise-uninstaller -d -p
+    
+Note that if you plan to reinstall any PE role on the node from which you uninstalled, you may need to run `puppet cert clean <node name>` on the master in order to remove any orphaned certificates from the uninstalled node.
 
 
 * * * 

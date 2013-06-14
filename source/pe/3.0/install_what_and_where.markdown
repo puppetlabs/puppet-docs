@@ -37,11 +37,12 @@ All PE software (excluding config files) is installed under `/opt/puppet`.
 
 ###<i>Where</i>
 
-Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components.
+Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for various PE components.
 
 * Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 * [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`.
 * The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
+* PuppetDB's config files are in `/etc/puppetlabs/puppetdb/conf.d`. It also adds `/etc/puppetlabs/puppetdb/log4j.properties` which controls logging behavior and `/etc/puppetlabs/puppetdb/certificate-whitelist` which is a whitelist of the certnames that have permission to communicate with PuppetDB.
 
 ##Log Files
 
@@ -74,13 +75,17 @@ This log is maintained by the orchestration service, which is installed on all n
 
 - `/var/log/pe-mcollective/mcollective.log`
 
-### Console Log
+### Console Logs
 
 - `/var/log/pe-httpd/puppetdashboard.access.log`
 - `/var/log/pe-httpd/puppetdashboard.error.log`
 - `/var/log/pe-puppet-dashboard/delayed_job.log`
 - `/var/log/pe-puppet-dashboard/mcollective_client.log`
 - `/var/log/pe-puppet-dashboard/production.log`
+
+### Database Log
+
+-`/var/log/pe-puppetdb/pe-puppetdb.log`
 
 ### Miscellaneous Logs
 
@@ -115,6 +120,7 @@ PE uses the following services:
 - **`pe-mcollective`** --- The MCollective server. Runs on every agent node.
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console role.
 - **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master role.
+-**`pe-puppetdb`** and **`pe-postgresql`** --- daemons that manage and serve the db roles.
 
 ###User Accounts
 
@@ -125,6 +131,7 @@ PE creates the following users:
 - **`pe-apache`** --- A system user which runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system user which runs the console processes spawned by Passenger.
+- **`pe-puppetdb`**--- A system user with root access to the db.
 
 ###Certificates
 

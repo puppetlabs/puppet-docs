@@ -54,8 +54,8 @@ These answers are always needed.
 `q_puppetmaster_install`
 : **Y or N** --- Whether to install the puppet master role.
 
-`q_database_install`
-: **Y or N** --- Whether to install the database support (PuppetDB and Postgres server) role.
+`q_puppetdb_install`
+: **Y or N** --- Whether to install the database support (the console Postgres server and PuppetDB) role.
 
 `q_puppet_enterpriseconsole_install`
 : **Y or N** --- Whether to install the console role.
@@ -83,7 +83,7 @@ These answers are always needed.
 
 ### Puppet Master Answers
 
-These answers are only needed if you are installing the puppet master role.
+These answers are generally needed if you are installing the puppet master role.
 
 `q_puppetmaster_certname`
 : **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server's fully qualified domain name is often used as the puppet master's certname.
@@ -107,13 +107,16 @@ In addition, by default the puppet master will check for available PE software u
 
 ### Console Answers
 
-These answers are only needed if you are installing the console role.
+These answers are generally needed if you are installing the console role.
 
 `q_database_host`
 : **String** --- The hostname of the server running the PostgreSQL server that supports the console.
 
 `q_database_port`
 : **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
+
+`q_pe_database`
+:**Y or N** "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
 `q_puppet_enterpriseconsole_master_hostname`
 : **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
