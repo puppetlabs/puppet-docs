@@ -184,7 +184,7 @@ You've probably been using SSH and your favorite terminal app to interact with t
 
 Let's get a copy of the current sshd config file; going forward, we'll use our new copy as the canonical source for that file.
 
-    # cp /etc/ssh/sshd_config ~/learning-manifests/
+    # cp /etc/ssh/sshd_config ~/examples/
 
 Now we'll write some Puppet code to manage the file:
 
@@ -254,7 +254,7 @@ Package/File/Service
 The example we just saw was very close to a pattern you'll see constantly in production Puppet code, but it was missing a piece. Let's complete it:
 
 {% highlight ruby %}
-    # /root/learning-manifests/break_ssh.pp
+    # /root/examples/break_ssh.pp
     package { 'openssh-server':
       ensure => present,
       before => File['/etc/ssh/sshd_config'],
@@ -262,7 +262,7 @@ The example we just saw was very close to a pattern you'll see constantly in pro
     file { '/etc/ssh/sshd_config':
       ensure => file,
       mode   => 600,
-      source => '/root/learning-manifests/sshd_config',
+      source => '/root/examples/sshd_config',
     }
     service { 'sshd':
       ensure     => running,
