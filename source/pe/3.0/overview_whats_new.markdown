@@ -32,19 +32,20 @@ Many of the “under the hood” constituent parts of Puppet Enterprise have bee
 * MCollective 2.2.4
 * Dashboard 2.0
 
-In addition, PuppetDB 1.3.1 is now packaged and fully integrated with PE. Since PuppetDB uses PostgreSQL, we have moved all of PE’s database-using components to Postgres, and all MySQL databases have been replaced.
+In addition, PuppetDB 1.3.1 is now packaged and fully integrated with PE. Since PuppetDB uses PostgreSQL, we have moved all of PE’s database-using components (e.g., the console) to Postgres, and all MySQL databases have been replaced.
 
 For a complete list of package upgrades, visit the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes).
 
 ### Other Functional Changes & Noteworthy Improvements
 
 * Live Management and MCollective now support Windows orchestration.
+* Puppet agents are now supported on Windows Server 2012
 * The addition of [parameterized class](http://docs.puppetlabs.com/guides/parameterized_classes.html) support in the console makes it easier to use pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com/).
 * A new resource type, [service](http://docs.puppetlabs.com/references/latest/type.html#service), is now available for browsing in Live Management.
-* Live Management Cloning is deprecated and has been removed from the console.
-* Compliance is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, visit the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes)
+* Live Management Cloning is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes) contain detailed instructions.
+* Compliance is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes) contain detailed instructions.
 Facter 1.7 provides support for [external facts](https://puppetlabs.com/blog/facter-1-7-introduces-external-facts/), which makes writing custom facter facts much easier than before.
-* All deprecated commands that precede Puppet 2.6.x (puppetmasterd, puppetd, ralsh, etc.) are now removed.
+* All deprecated commands that precede Puppet 2.6.x (e.g., `puppetmasterd`, `puppetd`, `ralsh`, etc.) are now removed.
 
 ### New Browser Requirements
 The PE Console in 3.0 must be accessed via one of the following browsers:

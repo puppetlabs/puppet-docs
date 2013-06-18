@@ -73,10 +73,13 @@ For example:
 
 Upgrading
 -----
+To upgrade a windows agent, simply run the new 3.0 installer. There's no need to uninstall the previous version.
 
-Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
+<!-- 
+TODO_upgrading Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
 When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
+ -->
 
 Uninstalling
 -----
@@ -121,12 +124,13 @@ Directory | Description
 ----------|------------
 bin       | scripts for running Puppet and Facter
 facter    | Facter source
+hiera | Hiera source
 mcollective | MCollective source
+mcollective_plugins | Plugins used by MCollective
 misc      | resources
 puppet    | Puppet source
 service   | code to run puppet agent as a service
 sys       | Ruby and other tools
-
 
 
 ### Data Directory

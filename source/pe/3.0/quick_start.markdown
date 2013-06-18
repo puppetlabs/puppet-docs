@@ -10,7 +10,7 @@ Welcome to the PE 3.0 quick start guide. This document is a short walkthrough to
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
-* Examine nodes in real time with live management
+* Examine amd control nodes in real time with live management
 * Install a third-party Puppet module
 * Apply Puppet classes to nodes with the console
 
@@ -23,9 +23,10 @@ A standard Puppet Enterprise deployment consists of:
 
 * Many **agent nodes,** which are computers managed by Puppet.
 * At least one **puppet master server,** which serves configurations to agent nodes.
-* At least one **console server,** which analyzes agent reports and presents a GUI for managing your site.
+* At least one **console server,** which analyzes agent reports and presents a GUI for managing your site. (This may or may not be the same server as the master.)
+* At least one **database support server** which runs PuppetDB and databases that support the console. (This may or may not be the same server as the console server.)
 
-For this deployment, the puppet master and the console will be the same machine, and we will have one additional agent node.
+For this deployment, the puppet master, the console and database support server will be the same machine, and we will have one additional agent node.
 
 > ### Preparing Your Proof-of-Concept Systems
 >
@@ -52,21 +53,21 @@ For this deployment, the puppet master and the console will be the same machine,
 * **On the puppet master node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled, as on Debian and Ubuntu.)
 * [Download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
 * Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
-    * **Install** the puppet master and console roles; the cloud provisioner role is not required, but may be useful if you later promote this machine to production.
+    * **Install** the puppet master, database support, and console roles; the cloud provisioner role is not required, but may be useful if you later promote this machine to production.
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `master.example.com`.)
     * You will need the **email address and console password** it requests in order to use the console; **choose something memorable.**
     * None of the **other passwords** are relevant to this quick start guide. **Choose something random.**
     * **Accept the default responses for every other question** by hitting enter.
-* The installer will then install and configure Puppet Enterprise. It will probably need to install additional packages from your OS's repository, including Java and MySQL.
+* The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository.
 
-> You have now installed the puppet master node. A puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
+> You have now installed the puppet master node. As indicated by the installer, the puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
 
 ### Installing the Agent Node
 
 * **On the agent node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled.)
 * [Download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
 * Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
-    * **Skip** the puppet master and console roles; **install** the puppet agent role. The  cloud provisioner role is optional and is not used in this exercise.
+    * **Skip** the puppet master, database support, and console roles; **install** the puppet agent role. The  cloud provisioner role is optional and is not used in this exercise.
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `agent1.example.com`.)
     * Set the puppet master hostname as **`master.example.com`**. If you configured the master to be reachable at `puppet`, you can alternately accept the default.
     * **Accept the default responses for every other question** by hitting enter.
@@ -89,39 +90,40 @@ After installing, the agent nodes are **not yet allowed** to fetch configuration
 
 ### Approving the Certificate Request
 
-During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, **approve its request on the puppet master.**
+[console_cert]: ./console_accessing.html#accepting-the-consoles-certificate
 
-* **On the puppet master node,** run `puppet cert list` to view all outstanding certificate requests.
-* Note that nodes called `agent1.example.com` and `windows.example.com` (or whichever names you chose) have requested certificates, and fingerprints for the requests are shown.
-* **On the puppet master node,** run `puppet cert sign agent1.example.com` to approve the request and add the node to the deployment. Run `puppet cert sign windows.example.com` to approve the Windows node.
+During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, you'll need to **approve its request on the puppet master.** This is most easily done via the console.
 
-> The agent nodes can now retrieve configurations from the master.
+* **On your control workstation,** open a web browser and point it to https://master.example.com.
+* You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
+* Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
+![The console login screen](./images/quick/login.jpg)
+* The console GUI loads in your browser. Note the pending "node requests" indicator in the upper right corner. Click it to load a list of pending node requests.
+
+![Node Request Indicator](./images/console/request_indicator.png)
+* Click the "Accept All" button to approve all the requests and add the nodes to the deployment.
+
+> The agent nodes can now retrieve configurations from the master the next time puppet runs.
 
 ### Testing the Agent Nodes
 
-During this walkthrough, we will be running puppet agent interactively. Normally, puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.)
+During this walkthrough, we will be running puppet agent interactively. Normally, puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a puppet run manually from the command line.
 
 * **On the first agent node,** run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging.
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 * **On the Windows node,** open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
 * Note the similar string of log messages.
 
-> You are now fully managing these nodes. They have checked in with the puppet master for the first time, and will continue to check in and fetch new configurations every 30 minutes. They will also appear in the console, where you can make changes to them by assigning classes.
+
+> You are now fully managing these nodes. They have checked in with the puppet master for the first time, and have received their configuration info. They will continue to check in and fetch new configurations every 30 minutes. They will also appear in the console, where you can make changes to their configuration by assigning classes.
 
 ### Viewing the Agent Nodes in the Console
 
-[console_cert]: ./console_accessing.html#accepting-the-consoles-certificate
+
 [console_nav]: ./console_navigating.html
 
-You can now log into the console and see all agent nodes, including the puppet master node.
 
-* **On your control workstation,** open a web browser and point it to https://master.example.com.
-* You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
-* Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
-
-![The console login screen](./images/quick/login.jpg            )
-
-* Next, you will see the front page of the console, which shows a summary of your deployment's recent puppet runs. Notice that the master and any agent nodes appear in the list of nodes:
+* Click on "Nodes" in the primary navigation bar. You'll see various UI elements, which show a summary of your deployment's recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
 
 ![The console front page](./images/quick/front.png)
 
@@ -149,7 +151,6 @@ Puppet Enterprise does this automatically within 30 minutes of a node's first ch
 ![the nodes field](./images/quick/default_nodes.png)
 
 * **On the first agent node,** run `puppet agent --test` again. Note the long string of log messages related to the `pe_mcollective` class.
-* **You do not need to repeat this for the Windows node.** Orchestration is not supported on Windows for this release of Puppet Enterprise.
 
 > The first agent node can now respond to orchestration messages, and its resources can be edited live in the console.
 
@@ -162,11 +163,11 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 ![live management](./images/quick/live_mgmt.png)
 
-* Note that the master and the first agent node are visible in the sidebar, but the Windows node is not. Live management is not supported on Windows nodes for this release of Puppet Enterprise.
+* Note that the master and the agent nodes are all listed in the sidebar.
 
-### Discovering and Cloning Resources
+### Discovering Resources
 
-* Note that you are currently in the "manage resources" tab. Click the "user resources" link, then click the "find resources" button:
+* Note that you are currently in the "Browse Resources" tab. Click "user resources" list of resource types, then click the "Find Resources" button:
 
 ![the find resources button](./images/quick/find_resources.png)
 
@@ -174,35 +175,19 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 ![different users](./images/quick/different_users.png)
 
-* Click the MySQL user, which is only present on the puppet master. (If the MySQL server was installed on both nodes, you can use a different user like `peadmin`.)
+* Note that you can click on a user to view details about its properties and where it is present.
 
-![the mysql user details][mysql_user]
-
-* Click the "Clone resource" link, then click the blue "Preview" button that appears. This will prepare the console to duplicate the mysql user across all of the nodes selected in the sidebar.
-
-![the preview button][clone_first]
-
-![the preview][clone_preview]
-
-* Click the red "Clone" button to finish.
-
-![the completed clone operation][clone_done]
-
-> The `mysql` user is now present on both the master and the first agent node.
->
-> You can clone user accounts, user groups, entries in the `/etc/hosts` file, and software packages using this interface. This can let you quickly make many nodes resemble a single model node.
-
-[mysql_user]: ./images/quick/mysql_user.png
-[clone_done]: ./images/quick/clone_done.png
-[clone_preview]: ./images/quick/clone_preview.png
-[clone_first]: ./images/quick/clone_first.png
+The other resource types work in a similar manner. Choose the nodes whose resources you wish to browse. Select a resource type, click "Find Resources" to discover the resource on the selected nodes, click on one of the resulting found resources to see details about it.
 
 ### Triggering Puppet Runs
 
-* **On the console, in the live management page,** click the "control puppet" tab.
-* Click the "runonce" action to reveal the red "Run" button, then click the "Run" button.
+Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use Live Management to run puppet on several selected nodes.
 
-![the run button revealed](./images/quick/control_puppet.png)
+* **On the console, in the live management page,** click the "control puppet" tab.
+* Make sure one or more nodes are selected with node selector on the left.
+* Click the "runonce" action to reveal options to modify the runonce action and the red "Run" button. Click the "Run" button to run puppet on the selected nodes.
+
+![Node Request Indicator](./images/console/console_runonce.png)
 
 > You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
 >
@@ -246,7 +231,7 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
 
-* **On the console,** click the "Classes" link in the top navigation bar, then click the "Add class" button in the sidebar:
+* **On the console,** click the "Classes" link in the primary navigation bar, then click the "Add class" button in the sidebar:
 
 ![The console's add class button][classbutton]
 
@@ -262,15 +247,14 @@ Every module contains one or more **classes.** The modules you just installed co
 * Note that the `motd` class now appears in the list of `agent1`'s classes.
 * Navigate to `windows.example.com`, click the edit button, and begin typing "`win_desktop_shortcut`" in the "classes" field; select the class and click the "save changes" button.
 * Note that the `win_desktop_shortcut` class now appears in the list of `windows.example.com`'s classes.
-* Navigate to the live management page, and select the "control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the first agent. Wait one or two minutes.
+* Navigate to the live management page, and select the "control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * **On the first agent node,** run `cat /etc/motd`. Note that its contents resemble the following:
 
         The operating system is CentOS
         The free memory is 82.27 MB
         The domain is example.com
 * **On the puppet master,** run `cat /etc/motd`. Note that its contents are either empty or the operating system's default, since the `motd` class wasn't applied to it.
-* **On the Windows node,** choose "Run Puppet Agent" from the start menu, elevating privileges if necessary.
-* View the desktop; note that there is a shortcut to the Puppet Labs website.
+* **On the Windows node,** note that there is now a shortcut to the Puppet Labs website on the desktop.
 
 > Puppet is now managing the first agent node's message of the day file, and will revert it to the specified state if it is ever modified. Puppet is also managing the desktop shortcut on the Windows machine, and will restore it if it is ever deleted or modified.
 >
@@ -284,7 +268,7 @@ You have now experienced the core features and workflows of Puppet Enterprise. I
 
 * Deploy new nodes, install PE on them, and add them to their deployment by approving their certificate requests.
 * Use pre-built modules from the Forge to save time and effort.
-* Assign classes to nodes in the console.
+* Assign classes from the modules to nodes in the console.
 * Use live management for ad-hoc edits to nodes, and for triggering puppet agent runs when necessary.
 
 ### Next

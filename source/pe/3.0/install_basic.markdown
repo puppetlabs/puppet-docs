@@ -29,7 +29,7 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 | `-all.tar`                        | anywhere                                            |
 | `-debian-<version and arch>.tar.gz`  | on Debian                                           |
 | `-el-<version and arch>.tar.gz`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux  |
-| `-sles-<version and arch>.tar.gz`    | on SUSE Linux Enterprise Server                     |
+<!-- | `-sles-<version and arch>.tar.gz`    | on SUSE Linux Enterprise Server                     | -->
 | `-solaris-<version and arch>.tar.gz` | on Solaris                                          |
 | `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
 | `-aix-<version and arch>.tar.gz`  | on AIX                                       |
@@ -121,7 +121,7 @@ In most deployments, this role should be installed on **one node;** installing m
 * Route MCollective messages through its ActiveMQ server.
 * Issue valid MCollective commands (from an administrator logged in as the `peadmin` user).
 
-**Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](http://docs.puppetlabs.com/pe/latest/install_answer_file_reference.html#puppet-master-answers).
+**Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](http://docs.puppetlabs.com/pe/latest/install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will let you know.
 
 ### The Database Support Role
 This role provides required database support for PuppetDB and the console:
@@ -135,6 +135,8 @@ Installing this role will auto-generate database user passwords which you will n
 
 If you want to set up a PuppetDB database manually, the [PuppetDB configuration documentation](http://docs.puppetlabs.com/puppetdb/1.3/configure.html#using-postgresql) has more information. Otherwise, the console just requires two databases, one for the console and one for console_auth (used for user management) with separate users with admin access for each of these.
 
+If you choose to use a database server separate from the PuppetDB server, you must configure it manually. The installer cannot install and configure postgres on a remote server without PuppetDB.
+
 ### The Console Role
 
 This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server can:
@@ -144,7 +146,7 @@ This role should be installed on **one node.** It should usually run on its own 
 
 #### Console Database
 
-The console relies on data provided by a PostgreSQL database. This database can be served by a PostgreSQL server running on the same node as the console or on a separate node. The server and database files can be installed by the Puppet Enterprise installer by installing the database support role, or you can add the databases manually on an existing PostgreSQL server. You only need to create the database instances, the console will populate them.
+The console relies on data provided by a PostgreSQL database that is installed along with PuppetDB. This database can be served by a PostgreSQL server running on the same node as the console or on a separate node. The server and database files can be installed by the Puppet Enterprise installer by installing the database support role, or you can add the databases manually on an existing PostgreSQL server. You only need to create the database instances, the console will populate them.
 
 IMPORTANT: If you choose not to install the database support role on the console's node, you will be prompted for the host name and port of the node you intend to use to provide database support, and you will be asked for the user passwords for accessing the databases. The database support role must be installed on that node for the console to function. You should do this BEFORE installing the console role so that you have access to the database users' passwords during installation of the console.
 
@@ -250,13 +252,10 @@ You will also need to make sure the databases and users actually exist. The SQL 
     CREATE DATABASE "console_auth" OWNER "console_auth" TABLESPACE "console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
     CREATE USER "console" PASSWORD 'password';
     CREATE DATABASE "console" OWNER "console" TABLESPACE "console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
-    CREATE DATABASE "console__inventory_service" OWNER "console" TABLESPACE "console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8'
      LC_COLLATE 'en_US.utf8' template template0;
     CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
     CREATE USER "pe-puppetdb" PASSWORD 'password';
     CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
-
-**Note that the names of the console and inventory databases are related:** the name of the inventory service database must start with the name of the primary console database, followed by `_inventory_service`.
 
 Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
 
@@ -286,7 +285,7 @@ Final Questions
 
 Puppet Enterprise may need some extra system software from your OS vendor's package repositories.
 
-If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again. The integrity of the selected packages will be verified by using Puppet Labs' public GPG key. The key will be used to verify the signatures of the selected RPM packages.
+If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again. 
 
 ### Convenience Links
 
