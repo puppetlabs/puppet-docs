@@ -24,7 +24,7 @@ Although many Forge modules are exact solutions that fit your site, many more ar
 
 Modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/3.2.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
-Modules are directories. Their basic structure looks like this:
+Modules are directory trees. Their basic structure looks like this:
 
 - `motd/` (the module name)
     - `manifests/`
@@ -87,7 +87,7 @@ For more on resource declarations, [see the manifests chapter of Learning Puppet
 Make sure that these resources are within the two "if" blocks, alongside the first resource.
 
 * Save and close the file.
-* **On the Windows node,** choose "Run Puppet Agent" from the Start menu, elevating privileges if necessary.
+* On the console, invoke the "runonce" action on the Windows node.
 * Note that the original shortcut is gone, and a new shortcut and `Readme.txt` file have appeared on the desktop.
 
 > Your copy of the Windows example module now behaves differently.
@@ -115,7 +115,7 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
 * Close the manifest file, then open and begin editing `motd/templates/motd.erb`.
 * Add the line `Welcome to <%= hostname %>` at the beginning of the template file.
 * Save and close the file.
-* **On the first agent node,** run `puppet agent --test`, then log out and log back in.
+* Use the console to invoke the "runonce" action on the Agent. Then, go to the agent node and log out and back in again.
 * Note that the message of the day has changed to show the machine's hostname.
 
 > Your copy of the `motd` module now behaves differently.
@@ -138,7 +138,7 @@ Third-party modules save time, but **most users will also write their own module
 This exercise will create a class that manages the permissions of the `fstab`, `passwd`, and `crontab` files.
 
 * Run `mkdir -p core_permissions/manifests` to create the module directory and manifests directory.
-* Create and begin editing the `core_permissions/manifests/init.pp` file.
+* Use your text editor to create and begin editing the `core_permissions/manifests/init.pp` file.
 * Edit the init.pp file so it contains the following, then save it and exit the editor:
 
 {% highlight ruby %}
@@ -191,12 +191,12 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 [file_type]: /references/3.2.latest/type.html#file
 [conditional]: /guides/language_guide.html#conditionals
 
-See the Puppet documentation for more information about writing classes.
+See the Puppet documentation for more information about writing classes:
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
-* For a complete but terse guide to the Puppet language's syntax, [see the language guide](/guides/language_guide.html).
+* For a complete but succinct guide to the Puppet language's syntax, [see the language guide](/guides/language_guide.html).
 * For complete documentation of the available resource types, [see the type reference](/references/3.2.latest/type.html).
-* For short printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
+* For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 ### Using a Homemade Module in the Console
 
@@ -221,8 +221,8 @@ See the Puppet documentation for more information about writing classes.
         -rw-rw-r-- 1 root root 2.3K Mar 26 08:18 /etc/passwd
 * **Run puppet agent once on every node.** You can do this by:
     * Doing nothing and waiting 30 minutes
-    * Using live management to run Puppet on the two \*nix nodes, then triggering a manual run on Windows
-    * Triggering a manual run on every node, with either `puppet agent --test` or the "Run Puppet Agent" Start menu item
+    * Using live management to run the "runonce" action on the agent nodes
+    * Triggering a manual run on every node, with either `puppet agent --test` or the "Run Puppet Agent" Start menu item (on Windows)
 * **On the master and first agent nodes,** note that the permissions of the three files have been returned to safe defaults, such that only root can edit them:
 
         # ls -lah /etc/fstab /etc/passwd /etc/crontab
@@ -230,7 +230,7 @@ See the Puppet documentation for more information about writing classes.
         -rw-r--r-- 1 root root  534 Aug 22  2011 /etc/fstab
         -rw-r--r-- 1 root root 2.3K Mar 26 08:18 /etc/passwd
 * **On the Windows node,** note that the class has safely done nothing, and has not accidentally created any files in `C:\etc\`.
-* **On the console,** navigate to `master.example.com`, by clicking the nodes item in the top navigation and then clicking on the node's name. Scroll down to the list of recent reports, and note that the most recent one is blue, signifying that changes were made:
+* **On the console,** navigate to `master.example.com`, by clicking "Nodes" in the primary navigation bar and then clicking on the node's name. Scroll down to the list of recent reports, and note that the most recent one is blue, signifying that changes were made:
 
 ![blue report link][report_link]
 
@@ -260,7 +260,7 @@ Many users create a "site" module. Instead of describing smaller units of a conf
 * A `site::webserver` class for nodes that serve web content.
 * A `site::dbserver` class for nodes that provide a database server to other applications.
 
-Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls **policy,** not fine-graned implementation.
+Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls **policy,** not fine-grained implementation.
 
 * **On the puppet master,** create the `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp` file, and edit it to contain the following:
 
@@ -276,7 +276,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
     }
 {% endhighlight %}
 
-This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OSes using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 * **On the console,** remove all of the previous example classes from your nodes and groups, using the "edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
 * Add the `site::basic` class to the console with the "add class" button in the sidebar.
@@ -290,9 +290,9 @@ Summary
 
 You have now performed the core workflows of an intermediate Puppet user. In the course of their normal work, an intermediate user will:
 
-* Download and hack Forge modules that almost (but not quite) fit their deployment's needs.
+* Download and modify Forge modules that almost (but not quite) fit their deployment's needs.
 * Create new modules and write new classes to manage many types of resources, including files, services, packages, user accounts, and more.
-* Build and curate a site module to empower junior admins and simplify the decisions involved in deploying new machines.
+* Build and curate a site module to safely empower junior admins and simplify the decisions involved in deploying new machines.
 
 * * *
 
