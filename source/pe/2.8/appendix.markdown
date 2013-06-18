@@ -17,6 +17,13 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### Puppet 2.8.2 (6/18/2013)
+
+#### Security Fix
+
+*[CVE-2013-3567 Unauthenticated Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-3567/).*
+A critical vulnerability was found in puppet wherein it was possible for the puppet master to take YAML from an untrusted client via the REST API. This YAML could be deserialized to construct an object containing arbitrary code.
+
 ### PE 2.8.1 (4/17/2013)
 
 #### Open-Source Agents Bug Fix

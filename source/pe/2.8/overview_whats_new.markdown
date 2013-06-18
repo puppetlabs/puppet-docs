@@ -4,6 +4,9 @@ title: "PE 2.8  » Overview » What's New"
 subtitle: "New Features in PE 2.8"
 ---
 
+### Version 2.8.2
+PE 2.8.2 is a maintenance release that patches a critical security vulnerability. For details, check the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes).
+
 ### Version 2.8.1
 PE 2.8.1 is a maintenance release. It includes a fix for a bug that caused Live Management and MCollective filtering failures.  Some other minor bug fixes are also included. For details, check the [release notes](http://docs.puppetlabs.com/pe/latest/appendix.html#release-notes). Users of 2.8.0 are strongly encouraged to upgrade to 2.8.1. If you applied the 2.8.0 hotfix that predates the 2.8.1 release, you should still upgrade to 2.8.1 in order to get all of the latest fixes.
 
