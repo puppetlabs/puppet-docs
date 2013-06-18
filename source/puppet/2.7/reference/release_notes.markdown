@@ -7,6 +7,16 @@ description: Puppet release notes for version 2.7.x.
 Puppet 2.7 Release Notes
 ------------------------
 
+## Puppet 2.7.22
+
+2.7.22 is a security fix release of the Puppet 2.7 series. It has no other bug fixes or new features.
+
+### Security Fix
+
+*[CVE-2013-3567 Unauthenticated Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-3567/).*
+
+A critical vulnerability was found in puppet wherein it was possible for the puppet master to take YAML from an untrusted client via the REST API. This YAML could be deserialized to construct an object containing arbitrary code.
+
 ## Puppet 2.7.21
 
 Puppet 2.7.21 is a **security release** addressing several security vulnerabilities discovered in

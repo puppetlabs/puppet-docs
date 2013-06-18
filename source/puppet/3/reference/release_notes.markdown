@@ -68,6 +68,17 @@ Puppet 3.x Release Notes
 
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
 
+Puppet 3.2.2
+-----
+
+3.2.2 is a security fix release of the Puppet 3.2 series. It has no other bug fixes or new features.
+
+### Security Fix
+
+*[CVE-2013-3567 Unauthenticated Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-3567/).*
+
+A critical vulnerability was found in puppet wherein it was possible for the puppet master to take YAML from an untrusted client via the REST API. This YAML could be deserialized to construct an object containing arbitrary code.
+
 Puppet 3.2.1
 -----
 
