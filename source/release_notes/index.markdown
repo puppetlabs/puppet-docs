@@ -13,7 +13,6 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Maintenance and Security Branches
 - [Puppet 2.7][2.7] 
-- [Puppet 2.6][2.6] (security fixes only)
 
 ### Unsupported Releases
 - [Puppet 0.25][] 
@@ -23,13 +22,13 @@ description: Links to Puppet and Puppet Enterprise release notes
 ## Puppet Enterprise 
 
 ### Current Release
-- [Puppet Enterprise 2.7][pe2.7]
+- [Puppet Enterprise 2.8][pe2.8]
 
 ### Maintenance and Security Branches
+- [Puppet Enterprise 2.7][pe2.7]
 - [Puppet Enterprise 2.6][pe2.6] 
 - [Puppet Enterprise 2.5][pe2.5] 
 - [Puppet Enterprise 2.0][pe2.0] 
-- [Puppet Enterprise 1.2][pe1.2] (receiving security fixes until April, 2013)
 
 
 ## About Puppet Releases
@@ -57,6 +56,7 @@ The [Roadmap Tracker](http://projects.puppetlabs.com/projects/puppet/roadmap?tra
 [3.x]: /puppet/3/reference/release_notes.html
 [2.7]: /puppet/2.7/reference/release_notes.html
 [2.6]: /puppet/2.6/reference/release_notes.html
+[pe2.8]: /pe/2.8/appendix.html#release-notes
 [pe2.7]: /pe/2.7/appendix.html#release-notes
 [pe2.6]: /pe/2.6/appendix.html#release-notes
 [pe2.5]: /pe/2.5/appendix.html#release-notes
