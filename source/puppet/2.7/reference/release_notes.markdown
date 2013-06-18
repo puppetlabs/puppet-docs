@@ -7,15 +7,15 @@ description: Puppet release notes for version 2.7.x.
 Puppet 2.7 Release Notes
 ------------------------
 
-## 2.7.21
+## Puppet 2.7.21
 
 Puppet 2.7.21 is a **security release** addressing several security vulnerabilities discovered in
 the 2.7.x line of Puppet. These vulnerabilities have been assigned Mitre CVE numbers [CVE-2013-1640][], [CVE-2013-1652][], [CVE-2013-1653][], [CVE-2013-1654][], [CVE-2013-1655][] and [CVE-2013-2275][].
 
 All users of Puppet 2.7.20 and earlier who cannot upgrade to the current version of Puppet, 3.1.1, are strongly encouraged to upgrade
-to 2.7.21. 
+to 2.7.21.
 
-### 2.7.21 Downloads 
+### 2.7.21 Downloads
 
 * Source: <https://downloads.puppetlabs.com/puppet/puppet-2.7.21.tar.gz>
 * Windows package: <https://downloads.puppetlabs.com/windows/puppet-2.7.21.msi>
@@ -25,10 +25,10 @@ to 2.7.21.
 * Gems are available via rubygems: <https://rubygems.org/downloads/puppet-2.7.21.gem> or by using `gem
 install puppet --version=2.7.21`
 
-See the Verifying Puppet Download section at:  
+See the Verifying Puppet Download section at:
 <https://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet>
 
-Please report feedback via the Puppet Labs Redmine site, using an affected puppet version of 2.7.21:  
+Please report feedback via the Puppet Labs Redmine site, using an affected puppet version of 2.7.21:
 <http://projects.puppetlabs.com/projects/puppet/>
 
 
@@ -74,85 +74,85 @@ Please report feedback via the Puppet Labs Redmine site, using an affected puppe
 * Pieter van de Bruggen (1):
      * Updating module tool acceptance tests with new expectations.
 
-## 2.7.20
+## Puppet 2.7.20
 
-2.7.20 is a bug fix release with some performance improvements ported back from 3.0.x line.  
-For a list of bug fixes targeted for this release, see the [bug tracker](http://projects.puppetlabs.com/versions/307)  
+2.7.20 is a bug fix release with some performance improvements ported back from 3.0.x line.
+For a list of bug fixes targeted for this release, see the [bug tracker](http://projects.puppetlabs.com/versions/307)
 
 ### Important notes about 2.7.20
 
-Regarding (\#15560):  
+Regarding (\#15560):
 If you had specifically enabled
 
     `managehome => true`
 
-for user resources expecting it not to work on Windows, be aware that (\#15560) has been resolved,  
-and this works now for both creation with `ensure => present` **AND deletion** with `ensure => absent`.  
-Previously deleted users (deleted with Puppet < 2.7.20-rc1) will not have their orphaned home directories  
-removed, however.  
+for user resources expecting it not to work on Windows, be aware that (\#15560) has been resolved,
+and this works now for both creation with `ensure => present` **AND deletion** with `ensure => absent`.
+Previously deleted users (deleted with Puppet < 2.7.20-rc1) will not have their orphaned home directories
+removed, however.
 
 
-Puppet 2.7.20 also addresses concerns regarding a change introduced in Puppet 2.7.16,  
+Puppet 2.7.20 also addresses concerns regarding a change introduced in Puppet 2.7.16,
 "[b26699a](https://github.com/puppetlabs/puppet/commit/b26699a2b89f3724b4322a3723d2c700fb7e4dd3)
-(#10146) `-` is not legal in variable names.", which disallowed the use of dashes in variable names.  
-Puppet 2.7.20 introduces a new configuration option, `allow_variables_with_dashes`, which can be set to  
-`true` to allow variables with dashes. The option is set to false by default to maintain existing behavior. The  
+(#10146) `-` is not legal in variable names.", which disallowed the use of dashes in variable names.
+Puppet 2.7.20 introduces a new configuration option, `allow_variables_with_dashes`, which can be set to
+`true` to allow variables with dashes. The option is set to false by default to maintain existing behavior. The
 following commit message includes additional information:
 
      (#10146) `-` in variable names should be deprecated!
-    
+
      In commit b26699a2 I fixed an accidentally introduced change to the lexer,
      allowing `-` to be part of a variable name.  That had lasted for a while and
      was surprisingly popular.  It was also hugely ambiguous around `-` as minus,
      and led to all sorts of failures - unexpected interpolations to nothing -
      because of that.
-    
+
      A much better strategy would have been to deprecate the feature, issue proper
      warnings, and include an option to allow users to toggle the behaviour.
-    
+
      Initially defaulting that to "permit", and eventually toggling over to "deny",
      would have made the whole experience much smoother - even if this was totally
      documented as not working, and was a clear bug that it changed.
-    
+
      So, thanks to prompting from Benjamin Irizarry, we do just that: introduce the
      configuration option, default it to "deny" to match current behaviour, but
      allow users the choice to change this back.
-    
+
      Please be aware that allowing variables with `-` might break all sorts of
      things around, for example, Forge modules though.  Most people write code to
      the documented standard, and their code might well totally fail to work with
      this changed away from the default!
-    
+
      Signed-off-by: Daniel Pittman <daniel@puppetlabs.com>
 
 ### Contributors
 Adrien Thebo, Andrew Parker, Ashley Penney, Branan Purvine-Riley, Dan Bode, Daniel Pittman, Dominic Cleal, Dustin J. Mitchell, Eric Sorenson, Eric Stonfer, Gleb Arshinov, James Turnbull, Jeff McCune, Jeff Weiss, Josh Cooper, Ken Barber, Ken Dreyer, Lee Lowder, Markus Roberts, Matthaus Owens, Michael Stahnke, Moses Mendoza, Neil Hemingway, Nick Fagerlund, Patrick Carlisle, Roman Barczyński, S. Zachariah Sprackett, Sean E. Millichamp, Stefan Schulte, Todd Zullinger
 
 
-## 2.7.19
+## Puppet 2.7.19
 
 Ruby 1.9.3 has a different error when `require` fails.
-    
+
     The text of the error message when load fails has changed, resulting in the
     test failing.  This adapts that to catch the different versions, allowing this
     to pass in all cases.
 
 (\#15291) Add Vendor tag to Puppet spec file
-    
+
     Previously the spec file had no Vendor tag, which left it undefined. This
     commit adds a Vendor tag that references the _host_vendor macro, so that it can
     be easily set to 'Puppet Labs' internally and customized by users easily. The
     Vendor tag makes it easier for users to tell where the package came from.
 
 Add packaging support for fedora 17
-    
+
     This commit modifies the puppet.spec file to use
     the ruby vendorlib instead of sitelib if building
     for fedora 17, which ships with ruby 1.9. Mostly
     borrowed from the official Fedora 17 package.
 
 (\#15471) Fix setting mode of last_run_summary
-    
+
     The writlock function didn't work with setting the mode on the
     last_run_summary file. This backports some of the work in commit
     7d8fd144949f21eff924602c2a6b7f130f1c0b69. Specifically, the changes
@@ -161,91 +161,91 @@ Add packaging support for fedora 17
     windows.
 
 (\#15471) Ensure non-root can read report summary
-    
+
     The security fix for locking down the last_run_report, which contains
     sensitive information, also locked down the last_run_summary, which does
     not contain sensitive information. Unfortunately this file is often used
     by monitoring systems so that they can track puppet runs. Since the
     agent runs as root and the monitoring systems do not, this caused the
     summary to become unreadable by the monitoring systems.
-    
+
     This commit returns the summary to being world readable which undoes
     part of the change done in fd44bf5e6d0d360f6a493d663b653c121fa83c3f
 
 Use Win32 API atomic replace in `replace_file`
-    
+
     The changes to enable Windows support in `replace_file` were not actually
     complete, and it didn't work when the file didn't exist - because of
     limitations of the emulation done on our side, rather than anything else.
-    
+
     Windows has a bunch of quirks, and Ruby doesn't actually abstract over the
     underlying platform a great deal.  We can use the Windows API ReplaceFile, and
     MoveFileEx, to achieve the desired behaviour though.
-    
+
     This adds even more conditional code inside the `replace_file` method to
     handle multiple platforms - but it really isn't very clean.  Better to get
     this working now, then refactor, though.
 
 (\#11868) Use `Installer` automation interface to query package state
-    
+
     Previously, Puppet recorded MSI packages it had installed in a YAML
     file. However, if the file was deleted or the system modified, e.g.
     Add/Remove Programs, then Puppet did not know the package state had
     changed.
-    
+
     Also, if the name of the package did not change across versions, e.g.
     VMware Tools, then puppet would report the package as insync even though
     the installed version could be different than the one pointed to by the
     source parameter.
-    
+
     Also, `msiexec.exe` returns non-zero exit codes when either the package
     requests a reboot (194), the system requires a reboot (3010), e.g. due
     to a locked file, or the system initiates a reboot (1641). This would
     cause puppet to think the install failed, and it would try to reinstall
     the packge the next time it ran (since the YAML file didn't get
     updated).
-    
+
     This commit changes the msi package provider to use the `Installer`
     Automation (COM) interface to query the state of the system[1]. It will
     now accurately report on installed packages, even those it did not
     install, including Puppet itself (#13444). If a package is removed via
     Add/Remove Programs, Puppet will re-install it the next time it runs.
-    
+
     The MSI package provider will now warn in the various reboot scenarios,
     but report the overall install/uninstall as successful (#14055).
-    
+
     When using the msi package resource, the resource title should match the
     'ProductName' property in the MSI Property table, which is also the
     value displayed in Add/Remove Programs, e.g.
-    
+
         package { 'Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.4148':
           ensure => installed,
           ...
         }
-    
+
     In cases where the ProductName does not change across versions, e.g.
     VMware Tools, you MUST use the PackageCode as the name of the resource
     in order for puppet to accurately determine the state of the system:
-    
+
         package { '{0E3AA38E-EAD3-4348-B5C5-051B6852CED6}':
           ensure => installed,
           ...
         }
-    
+
     You can obtain the PackageCode in ruby using:
-    
+
         require 'win32ole'
         installer = WIN32OLE.new('WindowsInstaller.Installer')
         db = installer.OpenDatabase(path, 0)
         puts db.SummaryInformation.Property(9)
-    
+
     where <path> is the path to the MSI.
-    
+
     The msi provider does not automatically compare PackageCodes when
     determining if the resource is insync, because the source MSI could be
     on a network share, and we do not want to copy the potentially large
     file just to see if changes need to be made.
-    
+
     The msi provider does not use the `Installer` interface to perform
     install and uninstall, because I have not found a way to obtain useful
     error codes when reboots are requested. Instead the methods
@@ -257,25 +257,25 @@ Use Win32 API atomic replace in `replace_file`
     during uninstall. This could be resolved by allowing uninstall_options
     to be specified, or figuring out how to obtain useful error codes when
     using the `Installer` interface.
-    
+
     [1] http://msdn.microsoft.com/en-us/library/windows/desktop/aa369432(v=vs.85).aspx
 
 (\#14964) Unlink Tempfiles consistently across different ruby versions
-    
+
     The previous fix for #14964 relied on inconsisent behavior of ruby 1.8's
     `Tempfile#close!` method, which is called by `close(true)`.  Although
     the ruby documentation says `close!` is the same as `delete` followed by
     `unlink`, the exact semantics are different.  The former calls the
     Tempfile's finalizer callback directly and can raise an `Errno::EACCES`,
     while `unlink` never does.
-    
+
     In ruby 1.9, the `Tempfile#close!` method was changed to call `unlink`,
     making the two APIs consistent.  As a result, the begin-ensure block
     added previously to fix #14964 was wrong.
-    
+
     Also, previously if the call to `read` failed, then the Tempfile would
     not be closed and deleted until its finalizer ran.
-    
+
     This commit changes the `wait_for_output` method to close and unlink the
     Tempfile in two steps.  The `unlink` method will not raise an
     `Errno::EACCES` in either ruby 1.8 or 1.9.   It also changes the `read`
@@ -289,110 +289,110 @@ Use Win32 API atomic replace in `replace_file`
     allows this to work on all supported rubies.
 
 Don't allow resource titles which aren't strings
-    
+
     It was possible to create resources whose titles weren't strings, by
     using a variable containing a hash, or the result of a function which
     doesn't return a string. This can cause problems resolving relationships
     when the stringified version of the title differs between master and
     agent.
-    
+
     Now we will only accept primitives, and will stringify them. That is:
     string, symbol, number, boolean. Arrays or nested arrays will still be
     flattened and used to create multiple resources. Any other value (for
     instance: a hash) will cause a parse error.
 
 Eliminate require calls at runtime.
-    
+
     Calling `require` is a surprisingly expensive operation, especially if
     ActiveRecord has been loaded.  Consequently, the places where we do that in
     the body of a function are hot-spots in the profile.
-    
+
     They are also, generally, pretty simple and clear wins: almost all of them can
     simply require the library the first time they are loaded and everything will
     work fine.
-    
+
     In my testing with a complex, real-world set of manifests this reduces time
     spent by ~ 3 wall-clock seconds in require and all children.
 
 Fix broken ability to remove resources from the catalog.
-    
+
     For the last forever, the Puppet catalog object has unable to remove resources
     correctly - they used the wrong key to remove items from an internal map.
-    
+
     Because the test was broken we also ran into a situation where this simply
     wasn't noticed - and, presumably, we simply didn't depend on this in the real
     world enough to actually discover the failure.
-    
+
     This fixes that, as well as the bad test, to ensure that the feature works
     correctly, and that it stays that way.
 
 (\#14962) PMT doesn't support setting a relative modulepath
-    
+
     We previously fixed expansion for the target_dir, but this only worked when the
     target_dir was set explicitly, it didn't support relative paths being passed in
     the modulepath. This patch fixes that and adds tests.
-    
+
     As a side-effect, this should also fixes cases where the first modulepath
     defined in the configuration file is relative.
-    
+
     It also corrects the tests previously applied for expanding the target_dir, as
     it used to rely on expanding the target_dir before adding it to the modulepath.
     This wasn't necessary, so now we don't bother testing that the targetdir is
     expanded in the modulepath after being added.
-    
+
     Acceptance tests have been added for testing modulepath, with absolute
     and relative paths.
 
 (\#15221) Create /etc/puppet/modules directory for puppet module tool
-    
+
     Previously, this directory was not created by the package,
     which caused errors when the puppet module tool was used
     to install modules. This commit updates the RPM spec file
     to create this directory upon installation of the package.
 
 (\#13070) Mark files as loaded before we load
-    
+
     There is a loading cycle that occurs in some situations. It showed up as
     not being able to describe certain types because the description
     depended on the name of the type's class. For some reason (that is not
     entirely clear) the multiple loading of code seems to cause the name of
     the class to be wrong.
-    
+
     This patch changes it to mark the file as loaded first, so that we don't
     get into a loading cycle.
 
  Extract host validation in store report processor
-    
+
     Extract the validation step and refactor tests around this. Tests now don't
     touch the filesystem which avoids a corner case on windows that caused test
     failures.
 
  Enforce "must not should" on Puppet::Type instances in tests.
-    
+
     Because we define a `should` method on Puppet::Type, and that conflicts with
     the identically named method in RSpec, we have an alias for `must` defined in
     the test helper.
-    
+
     Sadly, this isn't *complete*: if you call `should` on those instances you
     actually get no failure, it just silently ignores your actual test.
-    
+
     This change monkey-patches Puppet::Type in the spec helper, and adds a type
     check to fail hard if you supply something "illegal" as the argument to
     Puppet::Type.
 
 (\#14531) Change default ensure value from symlink to link
-    
+
     If ensure on a file resource is omitted, puppet will set the should value
     to :symlink in the initialize method of the file type but the ensure property
     does not use :symlink but :link to identify a link.
-    
+
     As a result, puppet will always treat a resource with a specific target
     property but no ensure property as out of sync:
-    
+
         file { '/tmp/a':
           target => '/tmp/b',
         }
-    
+
     When puppet now calls sync on the ensure property, the fileresource
     (`/tmp/a`) is removed first (method `remove_existing`) but we do not
     execute the block passed to `newvalue(:link)` to recreate it. Because
@@ -400,12 +400,12 @@ Fix broken ability to remove resources from the catalog.
     `newvalue(/./)` which is just a dummy and does nothing at all. As a
     result puppet will *always* say it created something while in fact
     making sure that the resource is *removed*.
-    
+
     Change the default ensure value from :symlink to :link if target is
     set.
 
  Upstart code cleanup, init provider improvement
-    
+
     This commit adds an is_init? function to the init provider, to prevent the init
     provider from handling upstart jobs redundantly (which happens with services
     such as network-interface and network-interface-security). It also adds tests
@@ -418,7 +418,7 @@ Fix broken ability to remove resources from the catalog.
     effective at gauging the status of upstart services.
 
  Handle network-interface-security in upstart
-    
+
     Similar to network-interface, network-interface-security is an upstart job that
     requires special handling to get status information. While network-interface
     takes and interface argument, network-interface-security takes a job argument.
@@ -426,7 +426,7 @@ Fix broken ability to remove resources from the catalog.
     corresponding special case so the jobs can be recognized as upstart jobs.
 
 Add exclude list to upstart provider
-    
+
     The wait-for-state service seems to be a helper that is used by upstart, but
     doesn't have a useful status or consistent way to call. Trying to use that
     upstart service generally results in an error. This commit adds an exclude list
@@ -434,7 +434,7 @@ Add exclude list to upstart provider
     excluded from the service instances.
 
 (\#15027, \#15028, \#15029) Fix upstart version parsing
-    
+
     A leading space in the --version argument would confuse upstart, and the
     version returned would not always be a semantic version, which caused the
     upstart provider to fail. This commit updates the initctl call to remove the
@@ -444,7 +444,7 @@ Add exclude list to upstart provider
     subtly broken regex to grab the full version string.
 
 (\#13489) Synchronously start and stop services
-    
+
     Previously, we were using the `win32-service` gem to start and stop
     services.  It uses Win32 APIs to programmatically send start and stop
     requests.  The actual service starts/stops asynchronously with respect
@@ -453,7 +453,7 @@ Add exclude list to upstart provider
     would race as the service would often still be running when the start
     request occurred, leading to 'An instance of the service is already
     running'.
-    
+
     This commit changes the windows service provider to use `net.exe` to
     start and stop services.  This command will block until the service
     start/stops, and returns 0 on success, making it easy to adapt to the
@@ -464,70 +464,70 @@ Add exclude list to upstart provider
     'The service name is invalid.' and include it in the exception message.
 
  (\#14964) Don't fail if we can't unlink the Tempfile on Windows
-    
+
     Previously, if the exec resource created a process, e.g. start.exe, that
     executed another process asynchronously, then the grandchild would inherit
     the tempfile handle, preventing puppet from being able to unlink it. This
     is not an issue on POSIX systems.
-    
+
     This commit changes the `wait_for_output` method to ignore Errno::EACCES
     exceptions caused when closing and unlinking the stdout tempfile. The
     behavior on POSIX systems is unchanged.
 
 \(#14860) Fix puppet cert exit status on failures
-    
+
     Without this patch applied the following command errors out but does not
     correctly set the exit status:
-    
+
         puppet cert generate foo.bar.com --dns_alt_names foo,foo.bar.com
-    
+
     The error returned is:
-    
+
         err: Could not call generate: CSR 'pe-internal-broker-test'
           contains subject alternative names (DNS:pe-centos6, \
           DNS:pe-centos6.puppetlabs.vm, DNS:pe-internal-broker-test, \
           DNS:stomp), which are disallowed. Use `puppet cert \
           --allow-dns-alt-names sign pe-internal-broker-test` to sign this \
           request.
-    
+
     However, the exit status is 0.
-    
+
     This is a problem because we need to easily detect if certificate
     generation from the command line failed or succeeded.  The most natural
     and expected way to check this is by looking at the exit status.
-    
+
     The root cause of the problem is that
     Puppet::SSL::CertificateAuthority::InterFace#apply incorrectly catches
     and masks the exception raised by the generate method because it simply
     logs an error with Puppet.err and continues along happily.
-    
+
     This patch fixes the problem by re-raising the error produced by
     generate, allowing the application controller to catch the error
     appropriately and exit with the non-zero exit status.
 
 (\#13379) Add path of pluginsync'd lenses to Augeas load_path automatically
-    
+
     The path $libdir/augeas/lenses is added to the Augeas load_path initialisation
     option automatically to support lenses being pluginsynced.  Lenses should be
     added into the <module>/lib/augeas/lenses directory inside a module.
-    
+
     The load_path parameter has been expanded to support an array of paths as well
     as a colon-separated list.
 
 Fixes for \#10915 and \#11200 - user provider for AIX
-    
+
     The user provider on AIX fails to set the password for local users
     using chpasswd.
-    
+
     This commit includes the code in ticket #11200 suggested by Josh
     Cooper. It works in my environment (AIX 5.3 + 6.1).
-    
+
     chpasswd can also return 1 even on success; it's not clear if this is
     by design, as the manpage doesn't mention it. The lack of output from
     chpasswd indicates success; if there's a problem it dumps output to
     stderr/stdout.
 
-## 2.7.18
+## Puppet 2.7.18
 
 This is a **security** release in the 2.7.x branch.
 
@@ -536,7 +536,7 @@ This is a **security** release in the 2.7.x branch.
 CVE-2012-3864 Arbitrary file read on the puppet master from authenticated clients (high)
     It is possible to construct an HTTP get request from an authenticated
     client with a valid certificate that will return the contents of an arbitrary
-    file on the Puppet master that the master has read-access to. 
+    file on the Puppet master that the master has read-access to.
 
  CVE-2012-3865 Arbitrary file delete/D.O.S on Puppet Master from authenticated clients (high)
     Given a Puppet master with the "Delete" directive allowed in auth.conf
@@ -579,10 +579,10 @@ CVE-2012-3864 Arbitrary file read on the puppet master from authenticated client
     Puppet < 3.x is deprecated, and a warning will be issued when used.
 
 
-## 2.7.17
+## Puppet 2.7.17
 
 (#15027, #15028, #15029) Fix upstart version parsing
-    
+
     A leading space in the --version argument would confuse upstart, and the
     version returned would not always be a semantic version, which caused the
     upstart provider to fail. This commit updates the initctl call to remove the
@@ -592,7 +592,7 @@ CVE-2012-3864 Arbitrary file read on the puppet master from authenticated client
     subtly broken regex to grab the full version string.
 
 Add exclude list to upstart provider
-    
+
     The wait-for-state service seems to be a helper that is used by upstart, but
     doesn't have a useful status or consistent way to call. Trying to use that
     upstart service generally results in an error. This commit adds an exclude list
@@ -600,22 +600,22 @@ Add exclude list to upstart provider
     excluded from the service instances.
 
 Handle network-interface-security in upstart
-    
+
     Similar to network-interface, network-interface-security is an upstart job that
     requires special handling to get status information. While network-interface
     takes and interface argument, network-interface-security takes a job argument.
     This commit adds that special case, and also updates the search method with a
     corresponding special case so the jobs can be recognized as upstart jobs.
 
-## 2.7.16
+## Puppet 2.7.14
 
 (\#8858) Explicitly set SSL peer verification mode.
-    
+
     In Ruby 1.8 the Net::HTTP library defaults to skipping peer verification when
     no mode is explicitly set.  Ruby 1.9, on the other hand, does not: it defaults
     to verification of the peer certificate - leading to failure when we depended
     on the default value in our HTTP setup.
-    
+
     This changes to explicitly set the verification mode, ensuring we get
     consistent results across all Ruby versions.
 
@@ -628,7 +628,7 @@ Handle network-interface-security in upstart
     which of the module's potentially manifests match the class it's looking
     for. To answer that request, the environment instantiates a
     Puppet::Module.
-    
+
     This amounts to potentially thousands of Puppet::Module instances being
     created, because it does this many times (based on nesting of the class
     name) per include/autoload/import. When Puppet::Module instances are
@@ -636,7 +636,7 @@ Handle network-interface-security in upstart
     validate their use. This implies that each compilation results in
     metadata.json being parsed thousands of times, which is extremely slow
     (and obviously provides no actual benefit).
-    
+
     Fortunately, the environment object already keeps a list of
     Puppet::Module instances for every module in its modulepath. The fix
     applied here is simply to change the environment such that it provides
@@ -646,27 +646,27 @@ Handle network-interface-security in upstart
 *Colorize console output on Windows
     Previously, `Puppet[:color]` was false on Windows, because the Windows
     console does not support ANSI escape sequences.
-    
+
     The win32console gem converts ANSI color escape sequences into Win32
     console API calls to change the foreground color, etc. If the output
     stream has been redirected to a file, then the gem does not translate
     the sequences, instead preserving them in the stream, as is done on
     Unix.
-    
+
     To disable colorized output specify `color=false` or `--color=false` on
     the command line.
-    
+
     This commit adds a `Puppet.features.ansicolor?` feature that defines
     whether ANSI color escape sequences are supported. On Windows, this is
     only true if the win32console gem can be loaded. On other platforms, the
     value is always true.
-    
+
     The win32console gem will be packaged into the Windows installer, and
     so, `Puppet[:color]` now defaults to true. If the gem can't be loaded,
     then puppet will revert to its previous behavior.
 
 (\#8174) Allow defines to reference topscope
-    
+
     Because the compiler re-assigned the topscope, looking up topscope vars
     or facts from a defined resource type was causing deprecation warnings
     when it should not be. By cherry-picking commits
@@ -676,43 +676,43 @@ Handle network-interface-security in upstart
     variables without problem.
 
 Evaluate node classes either in top or node scope
-    
+
     Classes that are tied to a node should be preferred to be evaluated in
     the node scope, but if we don't have one then they should be in the top
     scope
 
 (\#14297) Handle upstart services better
-    
+
     The previous changes to the upstart provider didn't take into account services
     that may have upstart jobs in /etc/init with no corresponding symlink to
     upstart-job in /etc/init.d. This fix adds /etc/init/$service.conf to the search
     path in the upstart provider.
-    
+
     In order to allow upstart to use debian as its parent, this commit adds methods
     for enabled?, enable and disable. Without this fix, using a debian style init
     script on ubuntu requires manually specifying the debian provider be used.
     With this commit, the upstart provider can be the default for ubuntu and
     still fail up to its parent, debian.
-    
+
     The enabled?, disable, and enable methods are complicated because upstart has 3
     behaviors to account for. Upstart < 0.6.7 have only the conf file and start on
     stanzas to worry about, 0.6.7 < upstart < 0.9.0 has a manual stanza which
     removes any previous start on declaration, and upstart >= 0.9.0 has an override
     file. In upstart >= 0.9.0, the provider does all of its work using override files
     to leave the upstart conf file for the service intact and unchanged.
-    
+
     Because of the need to know which upstart version is being used, this commit
     also adds a method and a class variable to hold and access the upstart version,
     obtained by a call to `initctl --version`.
 
 (\#14343) Lookup in correct inherited scope
-    
+
     The previous twoscope lookup of the inheritied scope tried to find the
     inherited scope by looking up the class_scope() directly. Unfortunately,
     this does not work correctly in cases where the inherited scope is
     qualified to the topscope (::parent) or where the scope is implicitly
     qualified (class a { class b {} class c inherits b {} }).
-    
+
     By using the same mechanism that variables use for looking up scope (the
     qualified_scope() method) variable lookup will find a scope consistent
     with what qualified variable lookups will find.
@@ -740,9 +740,9 @@ Evaluate node classes either in top or node scope
     executed.
     Exclude helperscripts when searching inside `/etc/init.d`.
 
-## 2.7.14
+## Puppet 2.7.14
 
-### Contributors 
+### Contributors
 Andrew Parker, Chris Price, Daniel Pittman, Dominic Cleal, Gary
 Larizza, Hunter Haugen, Jeff McCune, Jeff Weiss, Josh Cooper, Justin
 Stoller, Kelsey Hightower, Ken Barber, Lauri Tirkkonen, Matt Robinson,
@@ -750,13 +750,13 @@ Matthaus Litteken, Moses Mendoza, Nicholas Hubbard, Nick Lewis, Nick
 Fagerlund, Nigel Kersten, Patrick Carlisle, Pieter van de Bruggen,
 Reid Vandewiele, and Stefan Schulte
 
-### Features 
+### Features
     Puppet Module Tool Face - the module tool has seen a host of
     improvements including dependency resolution, environment handling,
     and searching the forge. There are more details available at
     http://docs.puppetlabs.com/puppet/2.7/reference/modules_installing.html
 
-### Bug Fixes 
+### Bug Fixes
 
 (\#13682) Rename Puppet::Module::Tool to Puppet::ModuleTool
 
@@ -765,12 +765,12 @@ Reid Vandewiele, and Stefan Schulte
     implementations are all jumbled up inside of one another and behavior
     may become unpredictable.  Warnings are also displayed directly to the
     end user in the form of redefined constants.
-    
+
     This patch fixes the problem by renaming Puppet::Module::Tool inside of
     Puppet to Puppet::ModuleTool  This fixes the problem because Puppet will
     no longer monkey-patch the Puppet::Module::Tool module inside of the
     puppet-module Gem.
-    
+
     This patch also has the added benefit of making the Module's name match
     up with the CamelCase filepath (puppet/module_tool/ =>
     Puppet::ModuleTool)  As a result, no file moves are necessary.
@@ -780,7 +780,7 @@ Reid Vandewiele, and Stefan Schulte
     On Lucid, /usr/share/puppet may not exist.  The module upgrade tests all
     make the assumption that this parent directory exists.  This causes
     false positive failures when running systest against a Lucid system.
-    
+
     This patch modifies the setup code for all of the tests to ensure the
     parent directory exists.
 
@@ -791,10 +791,10 @@ Reid Vandewiele, and Stefan Schulte
     add a newline to every file it modifies in place.  The files that
     actually have modifications by the global search and replace need to be
     separated from the files that only have newlines added.
-    
+
     This patch simply adds newlines to everything if they don't exist on the
     last line.
-    
+
     Yes, the PNG's are perfectly fine with a trailing newline as well.
 
 (\#14036) Handle upstart better
@@ -803,24 +803,24 @@ Reid Vandewiele, and Stefan Schulte
     that are upstart controlled and some that are init script controlled.
 
 (\#14060) Fix quoting of commands to interpolate inside the shell.
-    
+
     The `shell` exec provider was supposed to emulate the behaviour of 0.25 exec,
     which was to pass the content through the default shell to get it executed.
-    
+
     Unfortunately, it got quoting a bit wrong, and ended up interpolating
     variables at the wrong point - it used double quotes where single quotes were
     really what was desired.
-    
+
     Thanks to Matthew Byng-Maddick for the report, and a fix to the quoting; in
     the end we should not be in this position - we shouldn't be using string
     execution where we can pass an array instead.  That avoids any chance that
     there is more than one round of shell interpolation entirely.
-    
+
     As a bonus, this fixes the base exec type to support specifying the command to
     run that very way, and making it good.
 
 (\#14101) Improve deprecation warning for dynamic lookup
-    
+
     The new message will tell the user how to get more information about
     what is occuring. More information will be provided at debug level so
     that a user can see what the change to the lookup will be.
@@ -958,7 +958,7 @@ Windows Bugfixes
     the eventlog feature is not available.
 
 
-## 2.7.13
+## Puppet 2.7.13
 
 This is a **security** release in the 2.7.x branch.
 
@@ -1030,7 +1030,7 @@ http://puppetlabs.com/security/cve/cve-2012-1989
     symlink, potentially clobbering data or worse.
 
 
-## 2.7.12
+## Puppet 2.7.12
 
 ### Features
 
@@ -1066,10 +1066,10 @@ Windows Bug Fixes
 * Don't overwrite symlinks in augeas provider
 * Fix zypper provider so ensure => 'latest' works
 
-### Details 
+### Details
 
 (\#11988) Don't overwrite symlinks in augeas provider
-    
+
     Previously, if not running with `force` set, we would try to write the
     file in SAVE_NEWFILE mode to create a <filename>.augnew file with the
     changes. We determined whether there were changes to be made based on
@@ -1077,7 +1077,7 @@ Windows Bug Fixes
     make the changes, we would simply move the .augnew file over the file
     being managed. Unfortunately, if the file being managed were a symlink,
     this would clobber it.
-    
+
     There was a fallback path in the case of force (or older versions of
     augeas not supporting SAVE_NEWFILE) in which we would make the
     changes in SAVE_OVERWRITE mode as normal. Now, the behavior is a
@@ -1088,51 +1088,51 @@ Windows Bug Fixes
     to augeas, so we don't duplicate effort or bugs.
 
 (\#8312) Fix zypper provider so ensure => 'latest' now works
-    
+
     Previously the regular expression to match the correct column from
     'zypper list-updates' was wrong, it seems to have been based on the command
     'zypper packages' instead. This was caused ensure => 'latest' to fail as the
     provider couldn't adequately figure out what newer versions were actually
     availabe.
-    
+
     So I've fixed the regular expression (based on Felix Frank's patch) and updated
     the spec test so that it uses the real output from zypper list-updates and now
     references an external spec file, as apposed to referencing the content inline.
 
 (\#12914) Allow puppet to be interrupted while waiting for child
-    
+
     Previously, puppet on Windows could not be interrupted, e.g. Ctrl-C,
     while waiting for a child process it executed to exit. For example,
     when executing a pre/post run command.
-    
+
     This commit changes puppet to poll the state of the child process'
     handle, sleeping for 1 second in between.
 
 (\#12844) Agent lockfiles: backwards compatibility with 2.7.10/2.7.11
-    
+
     In 2.7.10 there was a change in behavior introduced with regards
     to agent lockfiles.  Basically we split the concept of "an agent
     is currently running" apart from the concept of "the agent has
     been administratively disabled" by using 2 different lockfiles.
-    
+
     That change was determined to have broken compatibility with
     mcollective, so it has been reverted as of 2.7.12.
-    
+
     This commit provides backwards compatibility between 2.7.12+
     and 2.7.10/2.7.11 for cases where a user may have administratively
     disabled their agent and then upgraded to a newer version of puppet.
 
 (\#12881) Fix cron type default name error on windows
-    
+
     On windows I ran into this error with the cron type:
-    
+
         err: Failed to apply catalog: undefined method 'name' for nil:NilClass
-    
+
     Without this patch, the problem appears to be that the cron type name
     parameter defaults to the following block:
-    
+
         defaultto { Etc.getpwuid(Process.uid).name || "root" }
-    
+
     On windows `Etc.getpwuid(Process.uid)` returns `nil`.  This patch fixes
     the problem by binding the object returned by
     `Etc.getpwuid(Process.uid)` to a variable.  We then check if the
@@ -1140,109 +1140,109 @@ Windows Bug Fixes
     if so.  Otherwise, we return "root"
 
 (\#12933) Better error message when agent is administratively disabled
-    
+
     Detect the difference between the cases where an agent run is
     aborted due to another agent run already in progress vs. being
     aborted due to the agent being administratively disabled via
     '--disable', and print a more useful message for the latter case.
 
 (\#12080) Implement a rich console logging prototype.
-    
+
     The new telly_prototype_console log destination aims to be a more human-friendly logging
     endpoint, and acts as a prototype of some of the work we plan to build into Telly.
 
 (\#12106) Enhance the uninstall PMT action for UX
-    
+
     Before this patch the uninstall action only uninstalled puppet modules by
     name. The uninstallation of a module consists of removing a directory in
     the module path that matches the name of the module. This does not take
     into account the version of the module installed.
-    
+
     This patch changes the behaviour of the uninstall action with the
     following features:
-    
+
     * Modules can be uninstalled by specific version
     * Modules can be uninstalled by enviornment
     * Output of the unistall command has been enhanced to provide a better UX
-    
+
     This patch also includes updated specs for the change in behaviour.
 
 (\#12244) All forge interactions should be centralized
-    
+
     Before this patch each module application makes direct connection to the
     Puppet Forge. This is a maintenance nightmare, any changes to the
     Forge API requires changes to all the module applications.
-    
+
     This patch re-factors how we communicate with the Forge. All module
     application now use the interface exposed by the `lib/puppet/forge.rb`
     module.
-    
+
     This patch also includes tests for the new forge.rb module, and updates
     others to reflect the new behaviour.
 
 (\#12256) Fix SemVer's range behavior to work with Ruby 1.9
-    
+
     In Ruby 1.9 Range's implementation of include? changed so that if the
     objects being compared were non-numeric it would iterate over them
     instead of doing a comparison with the endpoints.  We're subclassing
     numeric to force non-discrete range behavior.
-    
+
     Numeric doesn't allow singleton methods to be defined, so we had to
     change the way inspect worked when dealing with MIN and MAX values.
-    
+
     Paired-with: Pieter van de Bruggen <pieter@puppetlabs.com>
 
 (\#12256) module_requirements should include versions
-    
+
     Before this patch module requirements do not include version numbers.
     Since modules with the same name, but different version numbers, can be
     installed at the same time -- in different parts of the modulepath,
     there is no way to tell which module has the dependency.
-    
+
     This patch fixes this issue by changing the data structure that
     represents module requirements from a two item Array to a Hash with
     three keys: name, version, and version_requirement.
-    
+
     This patch includes updated spec tests related to this change.
 
 (\#10299) Use CheckTokenMembership to see if user has admin rights
-    
+
     Previously, on Windows 2003 and earlier, Puppet.features.root? was
     implemented by checking if the current user is a member of the local
     Administrators group. However, many accounts, e.g. LocalSystem, are
     implicit members of this group, so Puppet.features.root? would
     incorrectly return false. This led to puppet not being able to find
     its default configuration directory, among other things.
-    
+
     Conversely, a process can be executing using a restricted token, so
     while the user may be a member of the Administrators group, the
     process will be running with less privileges, and
     Puppet.features.root?  would incorrectly return true.
-    
+
     This commit uses CheckTokenMembership to determine if the local
     Administrators group SID is both present and enabled in the calling
     thread's access token.
-    
+
     The behavior on Vista/2008 is unchanged. The calling thread's token
     must be currently elevated.
 
 (\#12725) Fix puppet agent --listen on Windows
-    
+
     Previously, running `puppet agent --listen` failed on Windows, because
     we were trying to set the Fcntl::FD_CLOEXEC flag on webrick's http
     access log, but Windows does not support that flag.
-    
+
     There are ways to prevent file handles from being inherited across
     calls to CreateProcess (either disabling inheritance on a given handle
     or preventing all handles from being inherited). But for now, this
     commit just skips setting the flag on Windows.
-    
+
     This commit also re-enables spec tests that were disabled on
     Windows. The thinking previously is that webrick would never run on a
     Windows agent, but that's not true.
 
 (\#11740) Wait on the handle from the PROCESS_INFORMATION structure
-    
+
     Previously, the `Puppet::Util.execute` method was using `waitpid2` to
     wait for the child process to exit and retrieve its exit status. On
     Windows, this method (as implemented by the win32-process gem) opens a
@@ -1252,36 +1252,36 @@ Windows Bug Fixes
     the child process has exited. As a result there was a race condition
     whereby puppet could sometimes fail to retrieve the exit status of
     child processes.
-    
+
     The normal way of getting the exit code for a child process on Windows
     is to use the child process handle contained in the
     `PROCESS_INFORMATION` structure returned by `CreateProcess`. This
     works regardless of whether the child process is currently executing
     or not.
-    
+
     This commit reworks the `Puppet::Util.execute_windows` method to wait
     on the child process handle contained in the process information
     structure. This requires that we pass the `:close_handles => false`
     option to the win32-process gem so that it doesn't close the handles.
-    
+
     This commit also re-enables tests that were previously being skipped
     due to this bug.
 
 (\#11408): Don't add execute bit to newly created files on Windows
-    
+
     Previously, if a directory was executable for owner or group, then any
     file created at a later time in the directory would have its execute
     bit set. For example, if a directory's mode is set to 0750, then any
     file created in the directory at a later time would have the same
     mode.
-    
+
     This causes the file mode to change unnecessarily across puppet
     runs. For example, when puppet starts for the first time, it creates a
     $vardir/certs directory that is executable. During the same run, it
     writes out its signed cert, which is now executable. The second time
     puppet runs, it sees that the mode is out-of-sync, it should be 0644,
     and changes the mode.
-    
+
     If the same scenario occurs to a service's configuration file, then
     puppet could bounce the service unnecessarily.
 
@@ -1289,50 +1289,50 @@ Windows Bug Fixes
     the parent directory. One set applies the same permissions from the
     parent directory to its subdirectories (containers) at creation time. The other set
     masks off the execute bit for its files (objects) at creation time.
-    
+
     Note puppet always has FULL_CONTROL (which includes FILE_EXECUTE) for
     files it creates, so this commit does not prevent puppet from being
     able to execute content that it downloads. It only prevents group and
     other from having execute permission by default.
-    
+
     In order to grant execute permission to group and other on a file that
     puppet manages, you must explicitly specify the appropriate mode in
     the file's resource.
 
 (\#11408) Allow POSIX paths for files served to Windows agents
-    
+
     Previously, Windows agents would fail during fact and plugin sync. The
     agent would retrieve the remote file metadata and attempt to set the
     metadata's path based on the path of the file as it exists on the
     remote system. Since the remote system is typically a POSIX puppet
     master, our `Puppet::Util.absolute_path?` path check would fail on
     Windows.
-    
+
     To complicate matters, the path of the "remote" file can in fact be a
     Windows-style path, such as when using puppet apply and a modulepath
     that refers to the local filesystem.
-    
+
     This commit changes the `Puppet::FileServing::Base#path=` method to
     allow both POSIX and Windows style paths on Windows hosts, but only
     allows POSIX style paths on POSIX hosts, since we don't support
     running puppet master on Windows.
 
 (\#6663) Raise default key lengths in Puppet.
-    
+
     The CA key length was lower than it should be - 1024 bits is no longer secure
     enough for real world use.  This raises both client and CA certs to use 4096
     bit keys.  Those are slow, but effective for long term security.
-    
+
     People who know enough to decide that the trade-off of speed vs limited window
     of security can still totally reduce the size of the key without much trouble,
     but we default to being more cautious.
-    
+
     This also pegs the key lengths low in testing, since building a 4K key is
     awful slow if you want to do it time and time again over the course of dozens
     of tests.
 
 
-## 2.7.11
+## Puppet 2.7.11
 
 This is a **security, and bug fix** release in the 2.7.x branch.
 
@@ -1342,7 +1342,7 @@ This is a **security, and bug fix** release in the 2.7.x branch.
 
 http://puppetlabs.com/security/cve/cve-2012-1053/
 
-(\#12457, \#12458, \#12459) 
+(\#12457, \#12458, \#12459)
 A bug in Puppet gives unexpected and improper group privileges to execs and types/providers.
 When executing commands as a different user, Puppet leaves the forked
 process with Puppet’s own group permissions. Specifically:
@@ -1369,7 +1369,7 @@ user’s `.k5login` file to root’s `.k5login` file.
 2.7.11 also addresses the following regressions in the 2.7.10 release
 \#12572, \#12188, \#12412, \#2927, \#12296, \#12310, \#12464
 
-## 2.7.10
+## Puppet 2.7.10
 
 ### Pulled due to regressions from 2.7.9
 
@@ -1383,7 +1383,7 @@ These are the most significant tickets around the  2.7.10 regressions.
 #### Community MVP for this release: Brice Figureau (@masterzen) for the
 Instrumentation Framework
 
-#### Highlights 
+#### Highlights
 We have several section of release notes this month due to the high volume of commits.  Sections are Instrumentation, Core, Mac OS, Windows, and FreeBSD.
 
 
@@ -1396,7 +1396,7 @@ We have several section of release notes this month due to the high volume of co
 * Make sure managehome is respected on FreeBSD
 * Add password management on FreeBSD
 
-#### Bug Fixes 
+#### Bug Fixes
 * Make the Debian service provider handle services that don't conform to the debian policy manual.
 * Only load facts once per run
 * Puppetd removes pid file upon exit
@@ -1408,7 +1408,7 @@ We have several section of release notes this month due to the high volume of co
 * Fix fact and plugin sync on Windows
 * Set password before creating user on Windows
 * Always serve files in binary mode on Windows
-* Don't hard code ruby install paths in Windows batch files 
+* Don't hard code ruby install paths in Windows batch files
 * Don't copy owner and group when sourcing files from master on Windows
 * Fix OS X supplementary group handling
 * Use launchctl load -w in launchd provider (Mac OS)
@@ -1466,37 +1466,37 @@ List all the current executable probes:
 
 Enable the instrumentation probes:
      puppet instrumentation_probe enable --terminus rest
- 
+
 How to get access to the data coming from a listener (here the
 "performance" one):
     puppet instrumentation_data find performance --terminus rest
 
-#### Core 
+#### Core
 
 #### Improve error msg for missing pip comand
 Author: Kelsey Hightower <kelsey@puppetlabs.com>
 
 (#11958) Improve error msg for missing pip command
-    
+
 Without this patch the pip package provider does not produce a user
 friendly error message when the pip command is not available. The
 current error message looks like this:
-    
+
         err: /Stage[main]/Dummy/Package[virtualenv]/ensure: change from
         absent to present failed: Could not set 'present on ensure:
         undefined method `pip' for
         #<Puppet::Type::Package::ProviderPip:0xb6cf6cd0> at
         /etc/puppet/modules/dummy/manifests/init.pp:5
-    
+
 This patch improves the error message by passing a string argument, 'Could not locate
 the pip command.', when raising the `NoMethodError`. The new error
 message looks like this:
-    
+
         err: /Stage[main]/Dummy/Package[virtualenv]/ensure: change from
         absent to present failed: Could not set 'present on ensure: Could
         not locate the pip command. at
         /etc/puppet/modules/dummy/manifests/init.pp:5
-    
+
 This patch also includes updated spec tests validating this change. No
 other behavior changes are being introduced.
 
@@ -1504,11 +1504,11 @@ other behavior changes are being introduced.
 Author: Daniel Pittman <daniel@puppetlabs.com>
 
 (#11499) Better validation for IPv4 and IPv6 address in host type.
-    
+
 The previous code was fairly lax in validation, and would allow a bunch of
 invalid addresses through - as well as rejecting some legal, but uncommon,
 IPv6 address types.
-    
+
 This adds substantial testing, especially around IPv6 addressing, and replaces
 the older validation with new, fancy stuff that works for all the cases.
 
@@ -1516,76 +1516,76 @@ the older validation with new, fancy stuff that works for all the cases.
 Author: Daniel Pittman <daniel@puppetlabs.com>
 
  (#2927) Support symbolic file modes.
-   
+
 This adds a new feature, support for symbolic file modes, to Puppet.  In
 addition to being able to specify the octal mode, you can now use the same
 symbolic mode style that chmod supports:
-    
+
         file { "/example": mode => "u=rw,go=r" }
-    
+
 This also supports relative file modes:
-    
+
         file { "/relative": mode = "u+w,go-wx" }
-    
+
 Support is based on the common GNU and BSD symbolic modes of operation; you
 specify a comma separated list of actions to take in each you can sit:
-    
+
 The user (u), group (g), other (o), or all (a) of the permission map.
-    
+
 You can modify the ability to read (r), write (w), execute / search (x) on a
  file or directory.
-    
+
 You can also modify the sticky bit (t), or the setuid and setgid bits (s).
-    
+
 Finally, you can set conditional execute permissions (X), which will result in
 the file having the execute bit if the target is a directory, or if the target
 had *any* execute bit set.  (eg: g+X will set x if the original was u=x,g=.)
-    
+
 
 ### Only load facts once per puppet run
 
 Author: Patrick Carlisle <patrick@puppetlabs.com>
 
 (#8341) Only load facts once per puppet run
-    
+
 Make the facter terminus the only place that loads facts (with the notable
 exception of pluginsync which loads any ruby code it syncs).
-    
+
 This should satisfy several requirements:
 
  * daemonized puppet agent can get fresh facts on each run
  * puppet master can load facts
  * facts are not loaded more than once by the puppet agent fact handler
-        
+
 ### Puppetd does not remove its pidfile when it exits
 Author: R.I.Pienaar <rip@devco.net>
 
 (#5246) Puppetd does not remove its pidfile when it exits
-    
+
 The Puppet::Daemon instance sets up the pid file when it starts
 but it's up to the user of that object to arrange for stop to be
 called
-    
+
 There are signal handlers setup to call stop but in a onetime run
 those are never called
-    
+
 This change arrange for the stop method to be called after a onetime
 run is done but do not hand the task of exiting the application over
 to that so that the agent application can handle the report status
 based exit codes
-    
+
 
 ### Retry inventory ActiveRecord transaction failure
 Author: Carl Caum <carl@carlcaum.com>
 
 Retry inventory ActiveRecord transaction failure
-    
+
 Previous to this commit, if the ActiveRecord transaction for saving
 facts failed do to MySQL deadlock, for example, the transaction would
 fail printing a message to the user.  This primarily occurred during a
 PE agent installation if multiple agent's were being creating
 simultaneously.
-    
+
 This commit adds the ability to retry if a
 ActiveRecord::StatementInvalid exception is thrown.  To accomplish this,
 this commit ports Cloud Provisioner's
@@ -1597,7 +1597,7 @@ Puppet::Util::RetryAction#retry_action.
 Author: Nick Lewis <nick@puppetlabs.com>
 
 (#11641) Properly track blockers when generating additional resources
-    
+
 Previously, we would enqueue any unblocked resources as we added them to the
 graph. These were our initial resources, with no dependencies, and served as a
 starting place for traversal. However, we would
@@ -1605,7 +1605,7 @@ add_dynamically_generated_resources before traversing, which could add
 additional resources and dependencies. We never accounted for these, causing
 our measure of blockedness to become incorrect (a resource could have more
 dependencies than we counted).
-    
+
 This is similar to the case of eval_generate adding additional resources. In
 that case, we clear the blockers list and allow it to be recalculated on
 demand. Unfortunately, that approach doesn't work for the case where we add
@@ -1615,48 +1615,48 @@ Now we no longer enqueue resources when adding them, and instead wait until
 after we have called add_dynamically_generated_resources (which happens only
 once). This allows us to add our root resources with the assurance they won't
 change before we start evaluating them.
-    
+
 ### Make the Debian service provider handle services that don't conform to the debain policy manual.
 Author: Zach Leslie <zach@puppetlabs.com>
 
 (#7296) Make the Debian service provider handle services that don't conform to the debain policy manual.
-    
+
 This change is to support initscripts that do not support the --query
 method of invoke-rc.d used by the Debian provider to determine if
 service is enabled.
-    
+
 The fix checks that the link count in /etc/rc?.d is equal to 4, which is
 the number of links that should be present when using the Debian service
 provider, which is done by `update-rc.d #{service} defaults`.
-    
+
 ### Write reports to a temporary file and move them into place
 Author: Ricky Zhou <ricky@fedoraproject.org>
 
 (#8119) Write reports to a temporary file and move them into place
-    
+
 When writing reports, there is a window in between opening and writing to the
 report file when the report file exists as an empty file. This makes writing
 report processors a little annoying as they have to deal with this case. This
 writes the report into a temporary file then renames it to the report file.
 
-### Test Augueas versions correctly with versioncmp    
+### Test Augueas versions correctly with versioncmp
 Author: Dominic Cleal <dcleal@redhat.com>
 
 (#11414) Test Augeas versions correctly with versioncmp
-    
+
 The release of Augeas 0.10.0 broke simplistic version comparisons with the >=
 operator, so now use versioncmp.
-    
+
 ### Save/execute changes on versions of Augeas < 0.3.6
 Author: Dominic Cleal <dcleal@redhat.com>
 
 (#11414) Save/execute changes on versions of Augeas < 0.3.6
-    
+
 Versions of Augeas prior to 0.3.6 didn't report their version number, so a
 fallback of executing changes once in need_to_run? and again in execute_changes
 is performed.  Otherwise a save is done in need_to_run? and this is re-used in
 execute_changes.
-    
+
 The /augeas/events/saved node is used to tell whether the latter optimisation
 happened, but the return value of #match wasn't tested correctly (it's an empty
 array).
@@ -1665,39 +1665,39 @@ array).
 Author: Ilya Sher <ilya.sher@coding-knight.com>
 
 (#11333) Make Puppet::Type.ensurable? false when exists? is undefined
-    
+
 Puppet::Type.ensurable? incorrectly returned true even when
 public_method_defined?(:exists?) was false because the check never
 actually happened. This make sure all the necessary methods are checked
 and adds tests.
 
-### Consider package epoch version when comparing yum package versions    
+### Consider package epoch version when comparing yum package versions
 Author: Jude Nagurney <jude@pwan.org>
 
 (#8062) Consider package epoch version when comparing yum package versions
-    
+
 By including the epoch version in the version returned as the "latest"
 available, we can now properly consider package updates where only the
 epoch version has changed.
-    
+
 ### Log when we start evaluating resource at the info level
 Author: Patrick Carlisle <patrick@puppetlabs.com>
 
 (#4865) Log when we start evaluating resources at the info level
-    
+
 Since we log the final time at info it makes sense to log the start at info as
 well.
 
-### Fix array support in schedule's range parameters    
+### Fix array support in schedule's range parameters
 Author: Sean Millichamp <sean@bruenor.org>
 
 (#10321) Fix array support in schedule's range parameter
-    
+
 Change the schedule type's range parameter to properly evaluate
 all elements of a supplied array for validity instead of only
 checking the first member of the array. Add documentation to
 clarify that range does accept an array.
-    
+
 Fix the associated tests to use must instead of should (Puppet::Type#should
 shadows the rspec should).
 
@@ -1705,33 +1705,33 @@ shadows the rspec should).
 Author: Max Martin <max@puppetlabs.com>
 
 (#10109) Make resourcefile work with composite namevars
-    
+
 The code for creating the resourcefile was directly calling
 resource.name_var, which was causing problems with resources that have
 composite namevars (since, for these, Type#name_var will return false).
 This patch sanitizes the process by first checking whether there is a
 single namevar, and simply calling resource.ref if there is not one.
-    
+
 
 ### Add README_DEVELOPER describing UTF-8 in Puppet
 Author: Jeff McCune <jeff@puppetlabs.com>
 
 (#11246) Add README_DEVELOPER describing UTF-8 in Puppet
-    
+
 Without this patch, developers of Puppet don't have a clear place to get
 a high level understanding of the way other Puppet developers are
 working with UTF-8 and the differences in character encodings between
 Ruby 1.8 and 1.9.
-    
+
 This patch addresses this problem by adding a new document,
 README_DEVELOPER.md where developers and contributors can look to for
 high level information.
 
-### Better SSL error message certificate doesn't match key    
+### Better SSL error message certificate doesn't match key
 Author: Joshua Harlan Lifton <lifton@puppetlabs.com>
 
 (#7110) Better SSL error message certificate doesn't match key
-    
+
 Previously, any error with the certificate retrieved from the master
 matching the agent's private key would give the same static error
 message, which wasn't particularly helpful. This commit differentiates
@@ -1744,23 +1744,23 @@ explicit command line instructions on how to fix the problem.
 Author: Matthias Pigulla <mp@webfactory.de>
 
 (#9768) Add a defaults argument to create_resources
-    
+
 Make it possible to supply defaults when calling create_resources using an
 optional hash argument.
-    
+
 ### Link should autorequire target
 Author: Stefan Schulte <stefan.schulte@taunusstein.net>
 
 (#5421) Link should autorequire target
-    
+
 When we manage a local link to a directory and the target directory is
 managed by puppet as well, establish an autorequire. So if we have
 something like
-    
+
       file { '/foo': ensure => directory }
       file { '/link_to_foo': ensure => '/foo' }
       file { '/link_to_foo/bar': ensure => file }
-    
+
 we can ensure that puppet does not create dead links and does not try to
 create '/link_to_foo/bar' before /foo is created.
 
@@ -1768,26 +1768,26 @@ create '/link_to_foo/bar' before /foo is created.
 Author: Dominic Cleal <dcleal@redhat.com>
 
 (#10807) Use SMF's svcadm -s option to wait for errors
-    
+
 By default running `svcadm enable example` will start the service in the
 background and won't return errors if it fails.  Using the -s option will cause
 svcadm to wait and return errors back to the provider if the service cannot
 start for some reason.
-    
+
 ### Added missing RequestHeader entries to ext/rack/files/apache2.conf
 Author: Eli Klein <eklein@rallydev.com>
 
     Added missing RequestHeader entries to ext/rack/files/apache2.conf
- 
+
 ###    Debug logging when we start evaluating resources.
 Author: Daniel Pittman <daniel@puppetlabs.com>
 
 (#4865) Debug logging when we start evaluating resources.
-    
+
 The `evaltrace` option allowed individual resource evaluation time to be
 tracked, which made it easier to post-hoc identify which resources took long
 periods of time to process.
-    
+
 It is also helpful, when doing live debugging, to know where the hang happens;
 to support that we now log a debug message about starting the evaluation of
 the resource before we go into the process.
@@ -1796,86 +1796,86 @@ the resource before we go into the process.
 Author: Nan Liu <nan@puppetlabs.com>
 
 (#8547) Update storeconfigclean script to read puppet.conf
-    
+
 The existing storeconfig script is parsing and reading puppet.conf
 specifically from the master section. This change allows the script to
 read from the settings from puppet.conf in the order of master, main,
 and loads the rails default. This should match the puppet application
 behaviour.
-    
+
 ### Add mysql2 gem support
 Author: Stefan Schulte <stefan.schulte@taunusstein.net>
 
 (#9997) Add mysql2 gem support
-    
+
 Besides the mysql gem there is a mysql2 gem that is a "modern, simple
 and very fast Mysql library for Ruby" [1]. It can either be installed as a
 separate gem (v0.2.x) for ActiveRecord < 3.1 or can be used as part of
 ActiveRecord 3.1
-    
+
 To use mysql2 the dbadapter setting must be set to "mysql2" and this patch
 adds support for this setting.
-    
-    [1] https://github.com/brianmario/mysql2#readme
-    
 
-### Mac Highlights 
+    [1] https://github.com/brianmario/mysql2#readme
+
+
+### Mac Highlights
 ####  Fix OS X Ruby supplementary group handling
 Author: Gary Larizza <gary@puppetlabs.com>
 
 (#3419) Fix OS X Ruby supplementary group handling
-    
+
 Catch Errno::EINVAL as some operating systems (OS X in particular) can
 cause troubles when using Process#groups= to change the user/process
 list of supplementary groups membership.
-    
+
 Test coverage has been added to check for regressions.
-    
+
 Add a test for the expected failure
 
-#### Fix group resource in OS X    
+#### Fix group resource in OS X
 Author: Gary Larizza <gary@puppetlabs.com>
 
 (#4855) Fix group resource in OS X
-    
+
 The group provider on OS X uses “dseditgroup” to manage group
 membership. Due to Apple bug 8481241 (“dseditgroup can’t remove unknown
 users from groups”), however, if the puppet group provider needs to
 remove a non-existant user from a group it manages, it will fail.
-    
+
 To remedy this, in the meantime, the provider will call dscl to delete
 the non-existant member from the group. If that fails then the error
 is rescued and feedback is provided.
-    
+
 #### Build a Rake task for building Apple Packages
 Author: Gary Larizza <gary@puppetlabs.com>
 
 Build a Rake task for building Apple Packages
 
-#### Use launchctl load -w in launchd provider    
+#### Use launchctl load -w in launchd provider
 Author: Gary Larizza <gary@puppetlabs.com>
 
 (#2773) Use launchctl load -w in launchd provider
-    
+
 There was an issue where a service on OS X would be enabled but also
 stopped and the launchd service provider couldn't start it. In this
 case, the launchd service provider needed to execute:
 
-    launchctl load -w JOB_PATH 
+    launchctl load -w JOB_PATH
 
 to successfully start the service, but it wasn't programmed
 to do so.
-    
+
 To remedy this, the launchd service provider's start method now checks
 if the job is disabled OR if the job is currently stopped.
-    
+
 A spec test was added to catch for this unique situation.
-    
+
 #### Add password get/set behavior for 10.7
 Author: Gary Larizza <gary@puppetlabs.com>
 
 (#11293) Add password get/set behavior for 10.7
-    
+
 Puppet did not have the ability to get/set passwords in OS X version
 10.7.  This commit implements this behavior. Users in 10.7 have a
 binary plist file in /var/db/dslocal/nodes/Default/users that contains
@@ -1887,47 +1887,47 @@ this 4 byte salt + salted-SHA512 password hash in order to set the
 user's password. Since this value is drastically different from
 previous versions of OS X, Puppet will fail if you try and pass
 a SHA1 password hash that was used in previous versions of OS X.
-    
+
 Spec tests were added to ensure that Puppet fails with an incorrect
 password, and that the get/set behavior works properly with OS X
 version 10.7.
 
-### Windows Highlights 
+### Windows Highlights
 
 #### Always serve files in binary mode
 Author: Josh Cooper <josh@puppetlabs.com>
 
 (#11929) Always serve files in binary mode
-    
+
 Previously, Windows agents were reading files in text mode when serving
 them locally, such as when serving files from a local module, corrupting
 binary files in the process.
-    
+
 This commit reads files in binary mode, which is a noop on Unix.
-    
+
 ####  Use `%~dp0` to resolve bat file's install directory
 Author: Josh Cooper <josh@puppetlabs.com>
 
 (#11714) Use `%~dp0` to resolve bat file's install directory
-    
+
 This commit uses the `%~dp0` batch script modifier to resolve the
 drive and path of the directory containing the envpuppet.bat
 file. This eliminates the need for hard coded paths within the script
 tselfIt also uses `%VAR:\=/%` to substitute each backslash for a
 forward slash in the RUBYLIB environment
-    
+
 Also added a section about running the spec tests on Windows.
- 
+
 
 #### Add envpuppet batch file to run Puppet from source on Windows
 Author: Jeff McCune <jeff@puppetlabs.com>
 
 (#11714) Add envpuppet batch file to run Puppet from source on Windows
-    
+
 Running Puppet on windows from source is non-trivial since the
 environment variables behave quite differently.  In addition, it's not
 clear windows paths expect / rather than \ path separators.
-    
+
 This patch provides an envpuppet batch file to run Puppet from source on
 Windows platforms.
 
@@ -1935,37 +1935,37 @@ Windows platforms.
 Author: Josh Cooper <josh@puppetlabs.com>
 
 (#11847) Don't hard code ruby install paths in Windows batch files
-    
+
 Previously, the {filebucket,pi,puppet,puppetdoc,ralsh}.bat files hard
 coded the path to the ruby installation, making it impossible to move
 the ruby install directory.
-    
+
 This commit changes the script to use the `%~dp0` batch file modifier,
 which resolves to the drive letter and path of the directory of the
 batch file being executed.
-    
+
 Windows XP and later all support the `%*` modifier, so this commit
 removes the Win 9x code paths that are not supported.
 
-#### Set password before creating user on Windows    
+#### Set password before creating user on Windows
 Author: Paul Tinsley <paul.tinsley@gmail.com>
 
 (#11717) Set password before creating user on Windows
-    
+
 Previously, puppet could not create a user with no password when a
 local password complexity policy was set. This commit sets the
 password on the user prior to creating it, and updates the spec tests
 accordingly.
 
-#### Fix fact and plugin sync on Windows    
+#### Fix fact and plugin sync on Windows
 Author: Josh Cooper <josh@puppetlabs.com>
 
 (#11408) Fix fact and plugin sync on Windows
-    
+
 Previously, fact and pluginsync were broken on Windows, because it was
 defaulting the owner and group to Process.uid/gid, and then failing to
 translate them into Windows SIDs.
-    
+
 This commit changes the default file owner to the current user name,
 and the default file group to Nobody, which is the group that Windows
 typically applies to newly created files.
@@ -1974,20 +1974,20 @@ typically applies to newly created files.
 Author: Josh Cooper <josh@puppetlabs.com>
 
 (#10586) Don't copy owner and group when sourcing files from master
-    
+
 Previously, puppet on Windows was not able to source files from the
 master, because it was attempting to translate the uid/gid from
 the Unix master into a Windows account, and obviously failing.
-    
+
 This commit skips the owner and group properties when copying them
 from non-local sources, i.e. sources whose URIs have a 'puppet'
 scheme.
-    
+
 If the source comes from a local source, then puppet behaves the same
 as it did previously, it copies the owner and group if the source
 volume supports Windows ACLs, e.g. C:/, samba mapped drives, or uses
 default values if the volume does not, e.g. VMware shared drives.
-    
+
 
 ### FreeBSD Highlights
 
@@ -2045,7 +2045,7 @@ is set to expire. The next run of puppet correctly sets the password but the
 expiry is still set. The new code avoids using -p for passwords, and also sets
 the password correctly when an account is created.
 
-## 2.7.9
+## Puppet 2.7.9
 
 This is a bug fix release for regression (#11306) in 2.7.8 on Ruby 1.8.5.
 
@@ -2053,12 +2053,12 @@ The 1.8.5-incompatible code wasn’t caught because of a long-standing bug in ou
 
 (#11306)
     Fix Ruby 1.8.5-incompatible code in Transaction#eval_generate
-    
+
     This was previously creating a Hash from an array of pairs.
     Unfortunately, Ruby 1.8.5 only supports an argument list of pairs rather
     than an array, so this code didn't work with that version.
 
-## 2.7.8
+## Puppet 2.7.8
 
 This is a **feature and bug fix** release in the 2.7.x branch.
 
@@ -2110,7 +2110,7 @@ we no longer implicitly set `show_diff` in noop mode.
 
 (#6907)
 
-At long last! You can now deliver a provider with pluginsync, use a Puppet resource to install executables or files the provider depends on, and use that provider in resources during the same run. 
+At long last! You can now deliver a provider with pluginsync, use a Puppet resource to install executables or files the provider depends on, and use that provider in resources during the same run.
 
 This works for both explicitly selected providers and providers that would be the default for their type.
 
@@ -2161,7 +2161,7 @@ be seen in some other scenarios.
 
 #### Windows: Handle files on non-ACL volumes more gracefully
 
-(#10614) 
+(#10614)
 
 * We now check whether a Windows volume supports ACLs before just trying to get or set them. This eliminates a nasty error that would arise when managing owner, group, and/or mode on a file whose volume didn't support ACLs.
 * We also insert default ACL values when sourcing file content from a volume that doesn't support Windows ACLs (e.g. a VMware shared drive) to a volume that does; this allows content to be sourced without requiring the owner, group, and mode to be specified in the manifest. A file's owner now defaults to Administrators, its group defaults to Nobody, and its mode defaults to 0644.
@@ -2191,11 +2191,11 @@ Previously, the default `auth.conf` allowed anonymous clients *more* access to t
 Previously, Puppet::FileServing::Content opened files in text
 mode. This has been changed to use binary mode.
 
-## 2.7.7
+## Puppet 2.7.7
 
 2.7.7 was killed in the Thunderdome by 2.7.8. It was never released.
 
-## 2.7.6
+## Puppet 2.7.6
 
 This is a **security, feature, and bug fix** release in the 2.7.x branch.
 
@@ -2413,7 +2413,7 @@ the default `daemonize` setting on Windows. Puppet will also report an error if
 `daemonize` is set to true on Windows.
 
 
-## 2.7.5
+## Puppet 2.7.5
 
 Puppet 2.7.5 is a **security and regression fix** release in the 2.7.x branch.
 
@@ -2446,7 +2446,7 @@ Some StoreConfigs exported and imported resources were not being
 found under PostgreSQL. This fix resolves the regression.
 
 
-## 2.7.4
+## Puppet 2.7.4
 
 Puppet 2.7.4 is security and feature release in the 2.7.x branch.  Due to the security patches included, it is recommended anybody using the 2.7.x series update to 2.7.4.
 
@@ -2644,7 +2644,7 @@ fixes the spec test, which was looking in the `Dir::WINDOWS` directory.
 
 
 
-## 2.7.3
+## Puppet 2.7.3
 
 2.7.3 is a maintenance and enhancement release in the 2.7.x branch.
 
@@ -2815,11 +2815,11 @@ Highlights include:
 * 107b38a maint: Fix pacman provider to work with Ruby 1.9
 * 0b8ebac (#7300) Fix instances method of mount provider
 
-## 2.7.2
+## Puppet 2.7.2
 
 2.7.2 was slain in the Thunderdome by 2.7.3.
 
-## 2.7.1
+## Puppet 2.7.1
 
 2.7.1 is a bug fix release in the 2.7.x branch.
 
@@ -2827,7 +2827,7 @@ Fixing bug #8048.  This made users of Puppet as a gem unable to install Puppet 2
 
 This issue only impacted users of Puppet as a gem.
 
-## 2.7.0
+## Puppet 2.7.0
 
 
 2.7.0 is a new feature release of Puppet.
