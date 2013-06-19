@@ -64,8 +64,8 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 :json:
   :datadir: /etc/puppet/hieradata
 :hierarchy:
-  - %{::clientcert}
-  - %{::custom_location}
+  - "%{::clientcert}"
+  - "%{::custom_location}"
   - common
 {% endhighlight %}
 
