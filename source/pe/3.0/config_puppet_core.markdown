@@ -1,15 +1,8 @@
 ---
 layout: default
-title: "PE 3.0 » Advanced Configuration » Installing Additional Components"
-subtitle: "Installing Additional Components"
+title: "PE 3.0 » Puppet » Configuration & Troubleshooting"
+subtitle: "Configuration & Troubleshooting"
 ---
-
-Several optional components of PE can be installed manually.
-
-Installing Cloud Provisioner
------
-
-You can install PE's cloud provisioning tools on any node by running the `puppet-enterprise-upgrader` script included in the installation tarball. This script will give you a chance to install the cloud provisioning tools. Using the upgrader script for the version of PE that is already installed should have no ill effect on the node's configuration. 
 
 Installing the Ruby Development Libraries
 -----
