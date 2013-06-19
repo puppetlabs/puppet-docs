@@ -1,35 +1,44 @@
 ---
 layout: default
-title: "PE 3.0 » Orchestration » Invoking Actions (Command Line)"
-subtitle: "Invoking Orchestration Actions on the Command Line"
+title: "PE 3.0 » Orchestration » Invoking Actions"
+subtitle: "Invoking Orchestration Actions"
 ---
 
-[invoke_web]: ./orchestration_invoke_console.html
 [master_server]: ./install_basic.html#the-puppet-master-role
 [install_certname]: ./install_basic.html#puppet-agent-questions
 [console_inventory]: ./console_reports.html#viewing-inventory-data
 [core_facts]: /facter/1.7/core_facts.html
+[live_mgmt]: ./console_navigating_live_mgmt.html
 
-Puppet Enterprise (PE) has two ways to invoke orchestration actions: [the live management page of the web console][invoke_web], and the Linux command line on the puppet master server. This page covers the latter.
+About This Page
+-----
 
-> MCollective Documentation
-> -----
->
-> Puppet Enterprise's orchestration engine, MCollective, has its own section of the documentation site, which includes more complete details and examples for command line orchestration usage.
->
-> This page covers basic CLI usage and all PE-specific information; for more details, see the following pages from the MCollective docs:
->
-> * [MCollective Command Line Usage](/mcollective/reference/basic/basic_cli_usage.html)
-> * [Filtering](/mcollective/reference/ui/filters.html)
+Puppet Enterprise (PE) has two ways to invoke orchestration actions:
+
+* The live management page of the web console
+* The Linux command line on the puppet master server
+
+This page covers only the command line. See [the Navigating Live Management page of this manual][nav_live] for instructions on using live management to invoke actions.
+
+> **Note:** Although you will be running these commands on the Linux command line, they can invoke orchestration actions on both \*nix and Windows machines.
+
+### MCollective Documentation
+
+Puppet Enterprise's orchestration engine, MCollective, has its own section of the documentation site, which includes more complete details and examples for command line orchestration usage.
+
+This page covers basic CLI usage and all PE-specific information; for more details, see the following pages from the MCollective docs:
+
+* [MCollective Command Line Usage](/mcollective/reference/basic/basic_cli_usage.html)
+* [Filtering](/mcollective/reference/ui/filters.html)
 
 Logging In as `peadmin`
 -----
 
 To run orchestration commands, you must log in to [the puppet master server][master_server] as the special `peadmin` user account, which is created during installation.
 
-> **Note:** Puppet Enterprise 3.0 does not fully support adding more orchestration user accounts.
+> **Note:** Puppet Enterprise 3.0 does not support adding more orchestration user accounts.
 >
-> This means that, while it is possible (and fairly easy) to allow other accounts on other machines to invoke orchestration actions, upgrading to a future version of PE may disable access for these extra accounts, requiring you to re-enable them manually.
+> This means that, while it is possible (albeit complex) to allow other accounts on other machines to invoke orchestration actions, upgrading to a future version of PE may disable access for these extra accounts, requiring you to re-enable them manually. We do not provide instructions for enabling extra orchestration accounts.
 
 By default, the `peadmin` account cannot log in with a password. We recommend two ways to log in:
 
@@ -268,7 +277,3 @@ In these cases, you can **batch** actions, to run all of the matching nodes in a
 
 * Use the `--limit <COUNT>` option to invoke an action on only `<COUNT>` matching nodes. `<COUNT>` can be an absolute number or a percentage. The nodes will be chosen randomly.
 * Use the `-1` or `--one` option to invoke an action on just one matching node, chosen randomly.
-
-{% comment %}* Use the `--limit-seed <NUMBER>` option to repeatably choose the same "random" nodes for multiple commands. `<NUMBER>` can be any integer.
-This doesn't seem to work???
-{% endcomment %}

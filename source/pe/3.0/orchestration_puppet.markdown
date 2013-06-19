@@ -5,8 +5,8 @@ subtitle: "Orchestration: Controlling Puppet"
 ---
 
 [certsign]: ./install_basic.html#signing-agent-certificates
-[puppet_tab]: ./console_navigating_live_mgmt.html#tabs
-[peadmin]: todo
+[puppet_tab]: ./console_navigating_live_mgmt.html#the-control-puppet-tab
+[peadmin]: ./orchestration_invoke_cli.html#logging-in-as-peadmin
 [inpage_stop]: #start-and-stop-the-puppet-agent-service
 [filter]: todo
 [environment]: todo
@@ -29,15 +29,15 @@ The orchestration engine can control Puppet from the **web console** and from th
 
 In the console, most of these tasks use [the "Control Puppet" tab of the live management page][puppet_tab], which behaves much like the "Advanced Tasks" tab. On the command line, most of these tasks use the `mco puppet` subcommand.
 
-![The control puppet tab][live_puppet_main] TODO chop this down a bit
+![The control puppet tab][live_puppet_main]
 
 > See the following pages for basic instructions on invoking actions, including how to log in:
 >
-> * [Invoking Actions (In Console)][cli]
-> * [Invoking Actions (Command Line)][console]
+> * [Invoking Actions on the Command Line][cli]
+> * [Navigating Live Management][console]
 
-[console]: ./orchestration_invoke_cli.html
-[cli]: ./orchestration_invoke_console.html
+[cli]: ./orchestration_invoke_cli.html
+[console]: ./console_navigating_live_mgmt.html
 
 ### The Puppet Agent Service
 
