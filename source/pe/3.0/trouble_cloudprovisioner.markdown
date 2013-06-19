@@ -1,11 +1,15 @@
 ---
 layout: default
-title: "PE 3.0 » Cloud Provisioning » Troubleshooting"
-subtitle: "Finding Common Errors"
+title: "PE 3.0 » Troubleshooting » Cloud Provisioner"
+subtitle: "Finding Common Problems "
 ---
 
-Troubleshooting
----------------
+Below are some common issues with the Cloud Provisioner.
+
+### `node_vmware` and `node_aws` Aren't Working
+
+If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failing with an "err: Missing required arguments" message, you need to [create a `~/.fog` file and populate it with the appropriate credentials](./cloudprovisioner_configuring.html).
+
 
 ### Missing .fog File or Credentials
 
@@ -56,5 +60,6 @@ Then sign the certificate as usual on the master (`puppet cert sign {certname}`)
      puppet certificate find {certname} --ca-location remote
      This should let you operate under the new certname when you run puppet commands with the --certname {certname} option.
 
- [Next: Compliance Basics](./compliance_basics.html) 
+* * * 
 
+- [Next: Troubleshooting Windows](http://docs.puppetlabs.com/windows/troubleshooting.html.html)
