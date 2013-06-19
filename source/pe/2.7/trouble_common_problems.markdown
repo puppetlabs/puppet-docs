@@ -197,7 +197,7 @@ To fix this:
 
     Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
     
-<!-- InnoDB is Taking Up Too Much Disk Space
+InnoDB is Taking Up Too Much Disk Space
 -----
 
 Over time, the innodb database can get quite hefty, especially in larger deployments with many nodes. In some cases it can get large enough to consume all the space in `var`, which makes bad things happen. When this happens, you can follow the steps below to slim it back down.
@@ -206,13 +206,13 @@ Over time, the innodb database can get quite hefty, especially in larger deploym
 
 2. Stop the MySQL service
 
-3. Remove *just* the PE-specific database files. If you have no other databases, you can run `# cd /var/lib/mysql # rm -rf ./ib* # rm -rf ./console*`. *Warning:* this will remove everything, including any db's you may have added.
+3. Remove *just* the PE-specific database files. If you have no other databases, you can run `# cd /var/lib/mysql # rm -rf ./ib*`. *Warning:* this will remove everything, including any db's you may have added.
 
 4. Restart the MySQL service.
 
 5. Create new, empty databases by running this rake task: `# /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production /opt/puppet/bin/rake db:reset`.
 
-6. Repopulate the databases by importing the data from the backup you created in step 1 by running: `# mysql -p < /path/to/backup.sql`. -->
+6. Repopulate the databases by importing the data from the backup you created in step 1 by running: `# mysql -p < /path/to/backup.sql`.
 
 Troubleshooting Issues on Windows
 -----
