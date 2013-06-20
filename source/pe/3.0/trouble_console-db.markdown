@@ -1,8 +1,10 @@
 ---
 layout: default
 title: "PE 3.0 » Troubleshooting » Troubleshooting the Console & Database "
-subtitle: "Troubleshooting the Console & Database"
+subtitle: "Finding Common Problems"
 ---
+
+Below are some common issues that can cause trouble with the databases that support the console.
 
 PostgreSQL is Taking Up Too Much Space
 -----
@@ -54,4 +56,4 @@ To fix this:
 
 * * * 
 
-- [Next: ](./foo.html)
+- [Next: Troubleshooting Orchestration](./trouble_orchestration.html)
