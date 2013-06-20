@@ -8,7 +8,7 @@ subtitle: "Invoking Orchestration Actions"
 [install_certname]: ./install_basic.html#puppet-agent-questions
 [console_inventory]: ./console_reports.html#viewing-inventory-data
 [core_facts]: /facter/1.7/core_facts.html
-[live_mgmt]: ./console_navigating_live_mgmt.html
+[nav_live]: ./console_navigating_live_mgmt.html
 
 About This Page
 -----
