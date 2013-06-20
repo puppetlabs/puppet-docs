@@ -1,122 +1,107 @@
 ---
 layout: default
-title: "PE 3.0 » Console » Live Mgmt: Managing Resources"
-subtitle: "Live Management: Managing Resources"
+title: "PE 3.0 » Orchestration » Browsing Resources"
+subtitle: "Orchestration: Browsing and Comparing Resources"
 ---
 
-Use the "Manage Resources" tab to browse the resources on your nodes and clone any of them across your infrastructure.
+Use the live management page's "Browse Resources" tab to browse the resources on your nodes and inspect their current state.
 
-![The manage resources tab][live_resources_main]
+[live]: ./console_navigating_live_mgmt.html
+[selected_nodes]: ./console_navigating_live_mgmt.html#selecting-nodes
 
-> *IMPORTANT* The resource cloning controls are deprecated, and will be removed in Puppet Enterprise 3.0. We are continuing to improve resource inspection and interactive MCollective commands in the console.
+> **Note:** Resource browsing and comparison are **only** available in the web console; there is not a command line interface for these features. If you need to do simple resource inspections on the command line, you can investigate the `puppetral` plugin's `find` and `search` actions.
 
-
-Resource Types
+Live Management Basics
 -----
 
-The live management tools can manage the following resource types:
+Browsing resources requires you to select a node or group of nodes to inspect.
 
-- [user](/references/3.2.latest/type.html#user)
+To learn how to navigate the live management page and select/filter nodes, see [the Navigating Live Management page][live] of this manual.
+
+The Browse Resources Tab
+-----
+
+The Browse Resources tab contains a **resource type navigation** list in its left pane. This is used to switch the right pane between several **resource type pages** (and a summary page, which includes an "Inspect All" button for pre-caching resource data).
+
+![The Browse Resources tab][live_resources_main]
+
+### Resource Types
+
+The Browse Resources tab can inspect the following resource types:
+
 - [group](/references/3.2.latest/type.html#group)
 - [host](/references/3.2.latest/type.html#host)
 - [package](/references/3.2.latest/type.html#package)
+- [service](/references/3.2.latest/type.html#service)
+- [user](/references/3.2.latest/type.html#user)
 
 For an introduction to resources and types, please see [the Resources chapter of Learning Puppet](/learning/ral.html).
 
-The Summary View
------
+### The "Inspect All" Button
 
-The summary view "Inspect All" button scans all resources of all types and reports on their similarity. This is mostly useful when you think you've selected a group of identical nodes but want to make sure.
+The summary view's "Inspect All" button scans all resources of all types and reports on their **similarity.** This is mostly useful when you think you've selected a group of very similar nodes but want to make sure.
 
-Using "Inspect All" at the start of a session will pre-load a lot of information into memory, which can speed up later operations.
+![Similarity for resources after clicking "inspect all"][live_resources_all_similarity]
 
-Finding Resources
------
+After clicking "Inspect All," the Browse Resources tab will use the lists of resources it got to pre-populate the corresponding lists in each resource type page. This can save you a few clicks on the "Find Resources" buttons (see below).
 
-To find a resource to work with, you must first select a resource type. Then, either search for your resource by name or load all resources of the type and browse them.
+### Resource Type Pages
 
-Searching and browsing only use the current selection of nodes.
-
-### Browsing a Type
-
-When you select a type for the first time in a session, it won't automatically display any resources:
+Resource type pages contain a **search field,** a **Find Resources button,** and (if the Find Resources button has been used) a list of resources labeled with their nodes and number of variants.
 
 ![An empty list of user resources][live_resources_none]
 
-To browse a list of all resources, use the "find resources" button.
+Browsing All Resources of a Type
+-----
 
-![The find resources button][live_resources_findbutton]
+To browse resources, you must first select a resource type. You must also have one or more [nodes selected.][selected_nodes]
+
+If you have previously clicked the "Inspect All" button, the resource type page will be pre-populated; if it is empty, you must click the "Find Resources" button.
 
 ![Browsing a list of users on more than 400 nodes][live_resources_browse_users]
 
-This will return a list of all resources of the selected type on the selected nodes, plus a summary of how similar the resources are. In general, a set of nodes that perform similar tasks should have very similar resources. You can make a set of nodes more similar by cloning resources across them.
+The resource type page will display a list of all resources of that type on the selected nodes, plus a summary of how similar the resources are. An "Update" button is available for re-scanning your nodes. In general, a set of nodes that perform similar tasks should have very similar resources.
 
-The resource list shows the name of each resource, the number of nodes it was found on, and how many variants of it were found. You can sort the list by any of these properties.
+The resource list shows the name of each resource, the number of nodes it was found on, and how many variants of it were found. You can sort the list by any of these properties by clicking the headers.
 
-To inspect a resource, click its name.
+To [inspect a resource](#inspecting-and-comparing-resources), click its name.
 
-![The sshd user, with three variants][live_resources_sshd]
+Finding Resources by Name
+-----
 
-When you inspect a resource, you can see the values of all its properties. If there is more than one variant, you can see all of them and the properties that differ will be highlighted.
+To find resources by name, you must first select a resource type. You must also have one or more [nodes selected.][selected_nodes]
 
-To see which nodes have each variant, click the "on N nodes" labels to expand the node lists.
-
-![Nodes with the sshd user][live_resources_sshd_withnodes]
-
-### Searching by Name
+The **search field** on a resource type page is not a standard search field; it only works with the exact name of a resource. Wildcards are not allowed. If you are unsure of the name of the resource you're looking for, you should browse instead.
 
 To search, enter a resource name in the search field and confirm with the enter key or the "search" button.
 
 ![A search in progress][live_resources_searching]
 
-The name you search for has to be exact; wildcards are not allowed.
-
-Once you've located a resource, the inspect view is the same as that used when browsing.
+Once located, you will be taken directly to the inspect view for that resource. This is the same as the inspect view available when browsing (see below).
 
 ![The user resource we found][live_resources_found]
 
 
-Cloning Resources
+Inspecting and Comparing Resources
 -----
 
-> *IMPORTANT* The resource cloning controls are deprecated, and will be removed in Puppet Enterprise 3.0. We are continuing to improve resource inspection and interactive MCollective commands in the console.
+![The gopher user, with two variants][live_resources_gopher]
 
-You can use the "clone resource" links on a resource's inspect view to make it identical on all of the selected nodes. This lets you make your population of nodes more alike without having to write any Puppet code.
+When you inspect a resource, you can see the values of all its properties. If there is more than one variant, you can see all of them and the properties that differ across nodes will be highlighted.
 
-Clicking the clone link for one of the variants will raise a confirmation dialog. You can change the set of selected nodes before clicking the "preview" button.
+To see which nodes have each variant, click the "on N nodes" labels to expand the node lists.
 
-![The confirmation dialog before previewing][live_resources_clone_before]
+![Nodes with the gopher user][live_resources_gopher_withnodes]
 
-Clicking "preview" will show the pending changes and enable the "clone" button. If the changes look good, click "clone."
-
-![Previewing changes to the gopher user][live_resources_clone_previewing]
-
-![Cloning...][live_resources_cloning]
-
-After the resource has been cloned, you can see a summary of the results and the new state of the resource.
-
-![After cloning][live_resources_cloning_after]
-
-
-### Special Behavior When Cloning Users
-
-When you clone a user, any groups it belongs to are also automatically cloned.
-
-Note also that the UID of a user and the GIDs of its groups aren't cloned across nodes. This means a cloned user's UID will likely differ across nodes. We hope to support UID/GID cloning in a future release.
 
 [live_resources_browse_users]: ./images/console/live_resources_browse_users.png
-[live_resources_clone_before]: ./images/console/live_resources_clone_before.png
-[live_resources_clone_previewing]: ./images/console/live_resources_clone_previewing.png
-[live_resources_cloning_after]: ./images/console/live_resources_cloning_after.png
-[live_resources_cloning]: ./images/console/live_resources_cloning.png
-[live_resources_findbutton]: ./images/console/live_resources_findbutton.png
 [live_resources_found]: ./images/console/live_resources_found.png
 [live_resources_main]: ./images/console/live_resources_main.png
 [live_resources_none]: ./images/console/live_resources_none.png
 [live_resources_searching]: ./images/console/live_resources_searching.png
-[live_resources_sshd_withnodes]: ./images/console/live_resources_sshd_withnodes.png
-[live_resources_sshd]: ./images/console/live_resources_sshd.png
-
+[live_resources_gopher_withnodes]: ./images/console/live_resources_gopher_withnodes.png
+[live_resources_gopher]: ./images/console/live_resources_gopher.png
+[live_resources_all_similarity]: ./images/console/live_resources_all_similarity.png
 
 * * *
 
