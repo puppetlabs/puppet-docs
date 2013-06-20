@@ -9,7 +9,9 @@ Use the live management page's "Browse Resources" tab to browse the resources on
 [live]: ./console_navigating_live_mgmt.html
 [selected_nodes]: ./console_navigating_live_mgmt.html#selecting-nodes
 
-> **Note:** Resource browsing and comparison are **only** available in the web console; there is not a command line interface for these features. If you need to do simple resource inspections on the command line, you can investigate the `puppetral` plugin's `find` and `search` actions.
+> **Note:** Resource browsing and comparison are **only** available in the web console; there is not a command line interface for these features.
+>
+> If you need to do simple resource inspections on the command line, you can investigate the `puppetral` plugin's `find` and `search` actions. These give output similar to what you can get from running `puppet resource <type> [<name>]` locally.
 
 Live Management Basics
 -----
