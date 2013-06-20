@@ -179,19 +179,17 @@ To see the available actions and command line options, run:
     required.
 
     OPTIONS:
-      --mode MODE                    - The run mode to use (user, agent, or master).
       --render-as FORMAT             - The rendering format to use.
-      --verbose                      - Whether to log verbosely.
-      --debug                        - Whether to log debug information.
+     --verbose                      - Whether to log verbosely.
+     --debug                        - Whether to log debug information.
 
     ACTIONS:
-      bootstrap        Create and initialize an EC2 instance using Puppet
-      create           Create a new EC2 machine instance.
-      fingerprint      Make a best effort to securely obtain the SSH host key
-                       fingerprint
-      list             List AWS EC2 node instances
-      list_keynames    List available AWS EC2 key names
-      terminate        Terminate an EC2 machine instance
+     bootstrap        Create and initialize an EC2 instance using Puppet.
+     create           Create a new EC2 machine instance.
+     fingerprint      Make a best effort to securely obtain the SSH host key fingerprint.
+     list             List AWS EC2 machine instances.
+     list_keynames    List available AWS EC2 key names.
+     terminate        Terminate an EC2 machine instance.
 
     See 'puppet man node_aws' or 'man puppet-node_aws' for full help.
 

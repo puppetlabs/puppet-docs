@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "PE 3.0 » Cloud Provisioning » Installation and Configuration"
+title: "PE 3.0 » Cloud Provisioner » Installation and Configuration"
 subtitle: "Installing and Configuring Cloud Provisioning"
 ---
 
-There are many options and actions associated with the main cloud provisioning sub-commands, `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview but, for all the details, check the man pages.
+There are many options and actions associated with the main cloud provisioning sub-commands, `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview but, for all the details, check the man pages (`puppet man node_aws`, etc.).
 
 Prerequisites
 -------------
@@ -12,7 +12,7 @@ Prerequisites
 ### Software
 
 - The cloud provisioning tools ship with Puppet Enterprise; they are an optional role in the PE installer. You must specifically choose to install cloud provisioner in order to run the cloud provisioner commands.
-- OpenStack tools can be installed separately. TODO need download link
+- OpenStack tools can be installed separately. <!-- TODO need download link -->
 
 ### Services
 
