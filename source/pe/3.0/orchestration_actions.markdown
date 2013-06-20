@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 3.0 » Orchestration » List of Built-In Actions"
+subtitle: "List of Built-In Orchestration Actions"
 ---
 
 [fundamentals]: ./orchestration_overview.html#orchestration-fundamentals
@@ -15,6 +16,7 @@ This page is a comprehensive list of Puppet Enterprise (PE)'s built-in orchestra
 > * For an overview of orchestration topics, see [the Orchestration Overview page][fundamentals].
 > * To invoke actions in the web console, see [Navigating Live Management](./console_navigating_live_mgmt.html).
 > * To invoke actions on the command line, see [Invoking Actions](./orchestration_invoke_cli.html).
+> * To add your own actions, see [Adding Orchestration Actions](./orchestration_adding_actions.html).
 
 Actions and Plugins
 -----
