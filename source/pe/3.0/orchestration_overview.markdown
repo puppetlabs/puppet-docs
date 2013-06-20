@@ -1,22 +1,23 @@
 ---
 layout: default
 title: "PE 3.0 » Orchestration » Overview"
+subtitle: "Overview of Orchestration Topics"
 ---
 
 
-Puppet Enterprise includes an orchestration engine called MCollective, which can invoke many kinds of action in parallel across any number of nodes. Several useful actions are available by default, and you can easily add and use new actions.
+Puppet Enterprise includes an orchestration engine (MCollective), which can invoke many kinds of action in parallel across any number of nodes. Several useful actions are available by default, and you can easily add and use new actions.
 
 Quick Links
 -----
 
-**Easy orchestration tasks:**
+**Special orchestration tasks:**
 
 - [Controlling Puppet](./orchestration_puppet.html)
 - [Browsing and Searching Resources](./orchestration_resources.html)
 
 **General orchestration tasks:**
 
-- [Invoking Actions (In Console)](./orchestration_invoke_console.html)
+- [Invoking Actions (In the Web Console)](./console_navigating_live_mgmt.html)
 - [Invoking Actions (Command Line)](./orchestration_invoke_cli.html)
 - [List of Built-In Actions](./orchestration_actions.html)
 - [More Examples](./orchestration_examples.html)
@@ -31,6 +32,8 @@ Quick Links
 - [Configuring Orchestration](./config_orchestration.html)
 
 
+> **Note:** Sometimes, newly added nodes won't respond immediately to orchestration commands. These nodes will begin responding to orchestration commands about 30m after Puppet Enterprise is installed. You can accelerate this by logging into the node and running `puppet agent --test` as an admin user.
+
 Orchestration Fundamentals
 -----
 
@@ -40,15 +43,23 @@ Orchestration isn't quite like SSH, PowerShell, or other tools meant for running
 
 PE's orchestration is built around the idea of predefined **actions** --- it is essentially a highly parallel **remote procedure call (RPC)** system.
 
-**Actions** are distributed in **MCollective agent plugins,** which are bundles of several related actions. Many plugins are available by default (see [Built-In Orchestration Actions](./orchestration_actions.html)), and you can extend the orchestration engine by downloading or writing new plugins and [adding them to the engine with Puppet](./orchestration_adding_actions.html).
+**Actions** are distributed in **MCollective agent plugins,** which are bundles of several related actions.
+
+* Many plugins are available by default; see [Built-In Orchestration Actions](./orchestration_actions.html).
+* You can extend the orchestration engine by downloading or writing new plugins and [adding them to the engine with Puppet](./orchestration_adding_actions.html).
 
 ### Invoking Actions and Filtering Nodes
 
 The core concept of PE's orchestration is **invoking actions,** in parallel, on a select group of nodes.
 
-You typically choose some nodes to operate on (usually with a **filter** that describes the desired fact values or Puppet classes), and specify an **action** and its **arguments.** The orchestration engine then runs that action on the chosen nodes, and displays any data collected during the run.
+Typically you choose some nodes to operate on (usually with a **filter** that describes the desired fact values or Puppet classes), and specify an **action** and its **arguments.** The orchestration engine then runs that action on the chosen nodes, and displays any data collected during the run.
 
-Puppet Enterprise can invoke orchestration actions [**in the web console** (on the live management page)](./orchestration_invoke_console.html) and [**on the command line**](./orchestration_invoke_cli.html). It's also possible to [allow your site's custom applications to invoke orchestration actions][integrate].
+Puppet Enterprise can invoke orchestration actions in two places:
+
+* [**In the web console** (on the live management page)](./console_navigating_live_mgmt.html)
+* [**On the command line**](./orchestration_invoke_cli.html)
+
+You can also [allow your site's custom applications to invoke orchestration actions][integrate].
 
 [integrate]: ./orchestration_integrating.html
 

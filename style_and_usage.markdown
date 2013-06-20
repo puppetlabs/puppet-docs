@@ -34,7 +34,7 @@ agent should usually be called "agent nodes." In general we should avoid using
 
 * Node: Any computer; all other info must be gleaned from context. When using
   this term, you shouldn't expect that it necessarily means agent node.
-* System: Synonym for node. 
+* System: Synonym for node.
 * Agent or agent node: a computer running puppet agent on a regular basis.
 * Server: Cannot be assumed to mean puppet master server, since most systems
   running Puppet are servers in some capacity. If you mean puppet master
@@ -49,7 +49,7 @@ agent should usually be called "agent nodes." In general we should avoid using
 
 Here's how to style the word "puppet," depending on how it's being used:
 
-1. When referring to the entire suite/solution, Puppet is a normal proper noun. 
+1. When referring to the entire suite/solution, Puppet is a normal proper noun.
 2. When referring to an executable tool by name (e.g. "puppet agent"), it is
 downcased; the principle here is that when an utterance is both a proper name
 and part of an executable statement, we should treat it more like code than like
@@ -207,29 +207,32 @@ There is also at least one case where we abuse Markdown:
 Console UI Terminology
 -----
 
-This is the current most-canonical list of the words we have for parts of the console UI, as of January 12, 2012's meeting w/ Randall.
+This is the current most-canonical list of the words we have for parts of the console UI, as of January 12, 2012's meeting w/ Randall. Nick F modified the LM stuff in June 2013 with some limited input from UX.
 
-the bar at the very top is the MAIN NAVIGATION or PRIMARY NAVIGATION. 
+the bar at the very top is the MAIN NAVIGATION or PRIMARY NAVIGATION.
 
 Clicking on an element in the main navigation takes you to a SECTION of the console. This word is vague and unconcrete because the divisions between the sections are vague and unconcrete.
 
-The sidebar is the SIDEBAR. It contains: 
+The sidebar is the SIDEBAR. It contains:
     - the NODE STATE SUMMARY
-        Clicking a state takes you to the <sate> NODE LIST (changed node list, failed node list, etc.).        
+        Clicking a state takes you to the <sate> NODE LIST (changed node list, failed node list, etc.).
     - the GROUP SUMMARY
         Clicking a group takes you to that group's PAGE.
     - the CLASS SUMMARY
         Clicking a class takes you to that class's PAGE.
 
-From the nodes section, or any other list of nodes, you can get to a node's PAGE. Likewise for any class, group, or report; each individual object has its own PAGE. 
+From the nodes section, or any other list of nodes, you can get to a node's PAGE. Likewise for any class, group, or report; each individual object has its own PAGE.
 
-A report page contains TABS that show different parts of the report. 
+A report page contains TABS that show different parts of the report.
 
 The landing page of the reports section is the REPORTS LIST.
 You can refer to the inventory search section as a section, a page, or just the inventory search. Likewise the file search.
 
-The live management SECTION contains three TABS, and a FILTERABLE NODE LIST (or just NODE LIST) in the SIDEBAR.
-    the manage resources tab contains a RESOURCE TYPE NAVIGATION for switching between RESOURCE TYPE PAGES.
-        Resource type pages contain a LIST OF RESOURCES, any of which can be clicked to reach the RESOURCE DETAIL PAGE. (These can be referred to by type: "package detail page.")
-    the advanced tasks tab contains a TASK NAVIGATION for switching between TASK PAGES.
-    
+The live management SECTION or PAGE contains three TABS, and a FILTERABLE NODE LIST (or just NODE LIST) in the SIDEBAR.
+    The Browse Resources tab contains a RESOURCE TYPE NAVIGATION for switching between RESOURCE TYPE PAGES.
+        Resource type pages contain a search field, a "Find Resources" button, and a LIST OF RESOURCES, any of which can be clicked to reach their RESOURCE DETAIL PAGE. (These can be referred to by type: "package detail page.")
+    The Advanced Tasks tab contains a TASK NAVIGATION on the left side for switching between several ACTION LISTS. Each action list is just an MCollective agent plugin.
+        Action lists contain ACTIONS. We can also call these TASKS, but "actions" is more harmonious with the command line orchestration terminology, which cannot be changed.
+            When you click an action, it reveals a RED "RUN" BUTTON and any available ARGUMENT FIELDS.
+    The Control Puppet tab consists of a single ACTION LIST.
+
