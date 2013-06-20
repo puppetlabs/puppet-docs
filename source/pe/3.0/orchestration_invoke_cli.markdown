@@ -60,9 +60,9 @@ You can use Puppet's [`ssh_authorized_key` resource type](/references/3.2.latest
 The `mco` Command
 -----
 
-All orchestration actions are invoked with the `mco` executable (which can also display help about plugins).
+All orchestration actions are invoked with the `mco` executable. The `mco` command always requires a **subcommand** to invoke actions.
 
-For security, the `mco` command relies on a config file (`/var/lib/peadmin/.mcollective`) which is only readable by the `peadmin` user. PE automatically configures this file; it usually shouldn't be modified by users.
+> **Note:** For security, the `mco` command relies on a config file (`/var/lib/peadmin/.mcollective`) which is only readable by the `peadmin` user. PE automatically configures this file; it usually shouldn't be modified by users.
 
 ### Subcommands
 
