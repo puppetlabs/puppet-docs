@@ -83,74 +83,72 @@ This section details the packages that are installed from the various OS repos. 
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
-|   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
-|  system-logos      |  apr-util                     |  apr-util                           |  mysql51                                    |  libxml2
-|  which                  | curl                           |  curl                                |  mysql51-server                         |
-|  libxml2                | mailcap                     | mailcap
-|  dmidecode         | java-1.6.0-openjdk*   |
+|   pciutils               |  apr                           |  apr                                 |  libjpeg                                         |  libxslt
+|  system-logos      |  apr-util                     |  apr-util                           |                                                |  libxml2
+|  which                  | curl                           |  curl                                |                                                |
+|  libxml2                | mailcap                    | mailcap
+|  dmidecode         | libjpeg                       |
 | net-tools              |
+| virt-what              |
 
-*Only needed if java isn't already installed.
 
 ***Centos***
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
-|   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
-|  system-logos      |  apr-util                     |  apr-util                           |  mysql                                        |  libxml2
-|  which                  | curl                           |  curl                                |  mysql-server                             |
+|   pciutils               |  apr                           |  apr                                 |  libjpeg                                         |  libxslt
+|  system-logos      |  apr-util                     |  apr-util                           |                                                  |  libxml2
+|  which                  | curl                           |  curl                                |                                                  |
 |  libxml2                | mailcap                     | mailcap
-|  dmidecode         |                                   |
+|  dmidecode         |   libjpeg                      |
 | net-tools              |
-| java-1.6.0-openjdk*
+| virt-what             |
 
-*Only needed if java isn't already installed.
 
 
 ***RHEL***
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
-|   pciutils               |  apr                           |  apr                                 |  sudo                                         |  libxslt
-|  system-logos      |  apr-util                     |  apr-util                           |  mysql                                        |  libxml2
-|  which                  | apr-util-ldap (RHEL 6) |  curl                             |  mysql-server                             |
+|   pciutils               |  apr                           |  apr                                 |  libjpeg                                         |  libxslt
+|  system-logos      |  apr-util                     |  apr-util                           |                                                   |  libxml2
+|  which                  | apr-util-ldap (RHEL 6) |  curl                             |                                                   |
 |  libxml2                |   curl                            | mailcap                        |
 |  dmidecode         |  mailcap                       | apr-util-ldap (RHEL 6)  |
-| net-tools              |    java-1.6.0-openjdk*  |
-|  cronie (RHEL 6)
-| vixie-cron (RHEL 5)
+| net-tools              |    libjpeg                     |
+|  cronie (RHEL 6)  |
+| vixie-cron (RHEL 5) |
+| virt-what             |
 
-*Only needed if java isn't already installed.
 
-
+<!-- TODO
 ***SLES***
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
-|   pciutils               |  libapr1                        |  libapr1                        |  sudo                                         |  libxslt
-|  pmtools              |  libapr-util1                   |  libapr-util1                  |  mysql                                        |  libxml2
-|  cron                    |  java-1_6_0-ibm          |  curl                             |  mysql-client                             |
+|   pciutils               |  libapr1                        |  libapr1                        |  libjpeg                                         |  libxslt
+|  pmtools              |  libapr-util1                   |  libapr-util1                  |                                                     |  libxml2
+|  cron                    |  java-1_6_0-ibm          |  curl                             |                                                     |
 |  libxml2                |   curl                            |                                     |
-|  net-tools             |                                     |                                     |
-
-  <br>
+|  net-tools             |    libjpeg                       |                                     |
+ -->
 
 ***Debian***
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
-|   pciutils               |  file                             |  file                              |  mysql-common                           |  libxslt1.1                            |
-|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |
-|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |
+|   pciutils               |  file                             |  file                              |  libjpeg62                                     |  libxslt1.1                            |
+|  dmidecode         |  libmagic1                   |  libmagic1                   |                                                      | libxml2                               |
+|  cron                    |  libpcre3                     |  libpcre3                      |                                                     |
 |  libxml2                |  curl                            |  curl                             |
 |  hostname           |  perl                            |  perl                             |
 |  libldap-2.4-2       |  mime-support            |  mime-support             |
 |  libreadline5        |  libapr1                        |  libapr1                        |
-|                            |  libcap2                        |  libcap2                       |
+|  virt-what             |  libcap2                        |  libcap2                       |
 |                            |  libaprutil1                    |  libaprutil1                   |
 |                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
 |                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
-|                            |  openjdk-6-jre-headless |
+|                            |  libjpeg62                     |
 
 <br>
 
@@ -160,18 +158,18 @@ This section details the packages that are installed from the various OS repos. 
 
 |       All Nodes       |  Master Nodes          |       Console Nodes        |   Console/Console DB Nodes   |   Cloud Provisioner Nodes  |
 |------------------------|-----------------------------|---------------------------------|-------------------------------------------|-------------------------------------|
-|   pciutils               |  file                             |  file                              |  mysql-common                           |  libxslt1.1                            |
-|  dmidecode         |  libmagic1                   |  libmagic1                   |  mysql-server                               |
-|  cron                    |  libpcre3                     |  libpcre3                      |  mysql-client                                |
+|   pciutils               |  file                             |  file                              |  libjpeg62                                    |  libxslt1.1                            |
+|  dmidecode         |  libmagic1                   |  libmagic1                   |                                                     |  libxml2                              |
+|  cron                    |  libpcre3                     |  libpcre3                      |                                                     |
 |  libxml2                |  curl                            |  curl                             |
 |  hostname           |  perl                            |  perl                             |
 |  libldap-2.4-2       |  mime-support            |  mime-support             |
 |  libreadline5        |  libapr1                        |  libapr1                        |
-|                            |  libcap2                        |  libcap2                       |
+|  virt-what             |  libcap2                        |  libcap2                       |
 |                            |  libaprutil1                    |  libaprutil1                   |
 |                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
 |                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
-|                            |  openjdk-6-jre-headless |
+|                            |  libjpeg62                     |
 
 <br>
 
@@ -197,7 +195,9 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
 
 ***Solaris***
-In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system.
+SUNWgccruntime is required for all Solaris agents.
+
+In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
 
 
 Next
