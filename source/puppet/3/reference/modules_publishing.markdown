@@ -6,13 +6,13 @@ title: "Publishing Modules on the Puppet Forge"
 
 
 [installing]: ./modules_installing.html
-[fundamentals]: ./modules_fundamentals.html
-[plugins]: /guides/plugins_in_modules.html
-[forge]: https://forge.puppetlabs.com/
-[rspec]: http://rspec-puppet.com/
-
-[signup]: ./images/forge_signup.png
-[publishmodule]: ./images/forge_publish_module.png
+# [fundamentals]: ./modules_fundamentals.html
+# [plugins]: /guides/plugins_in_modules.html
+# [forge]: https://forge.puppetlabs.com/
+# [rspec]: http://rspec-puppet.com/
+# 
+# [signup]: ./images/forge_signup.png
+# [publishmodule]: ./images/forge_publish_module.png
 [uploadtarball]: ./images/forge_upload_tarball.png
 [uploadtarball2]: ./images/forge_upload_tarball2.png
 [forgenewrelease]: ./images/forge_new_release.png

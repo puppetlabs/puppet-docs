@@ -15,9 +15,9 @@ Answer files consist of normal shell script variable assignments:
 
 Boolean answers should use Y or N (case-insensitive) rather than true, false, 1, or 0.
 
-A variable can be omitted if another answer ensures that it won't be used (i.e. `q_puppetmaster_certname` can be left blank if `q_puppetmaster_install` = n).
+A variable can be omitted if a prior answer ensures that it won't be used (i.e. `q_puppetmaster_certname` can be left blank if `q_puppetmaster_install` = n).
 
-Answer files can include arbitrary bash control logic, and can assign variables with commands in subshells (`$(command)`). For example, to set an agent node's certname to its fqdn:
+Answer files can include arbitrary bash control logic and can assign variables with commands in subshells (`$(command)`). For example, to set an agent node's certname to its fqdn:
 
     q_puppetagent_certname=$(hostname -f)
 
@@ -97,12 +97,12 @@ These answers are generally needed if you are installing the puppet master role.
 `q_puppetmaster_enterpriseconsole_port`
 : **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the puppet master server.
 
-In addition, by default the puppet master will check for available PE software updates whenever the `pe-httpd` service restarts. To help ensure the correct update is retrieved, the master will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
+By default the puppet master will check for available PE software updates whenever the `pe-httpd` service restarts. To help ensure the correct update is retrieved, the master will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
     * the IP address of the client
     * the type and version of the client's OS
     * the Installed version of PE
 
- If you wish to disable manual update checks, or if your company policy forbids transmitting this information, you will need to add the following line to the answer file: `q_pe_check_for_updates=n`. Keep in mind that if you delete your answers file, the check will turn back on the next time `pe-httpd` restarts.
+If you wish to disable manual update checks, or if your company policy forbids transmitting this information, you will need to add the following line to the answer file: `q_pe_check_for_updates=n`. Keep in mind that if you delete your answers file, the check will turn back on the next time `pe-httpd` restarts.
 
 
 ### Console Answers
@@ -122,16 +122,16 @@ These answers are generally needed if you are installing the console role.
 : **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
 
 `q_puppet_enterpriseconsole_httpd_port`
-: **Integer** --- The port on which to serve the console. If this is set to 443, you can access the console from a web browser without manually specifying a port.
+: **Integer** --- The port on which to serve the console. The default is port 443, which will allow access to the console from a web browser without manually specifying a port. If port 443 is not available, the installer will try port 3000, 3001, 3002, 3003, 3004, and 3005.
 
 `q_puppet_enterpriseconsole_auth_user_email`
-: **String** --- The email address with which the console's admin user will log in.
+: **String** --- The email address the console's admin user will use to log in.
 
 `q_puppet_enterpriseconsole_auth_password`
 : **String** --- The password for the console's admin user. Must be longer than eight characters.
 
 `q_puppet_enterpriseconsole_smtp_host`
-: **String** -- The SMTP server with which to email account activation codes to new console users. 
+: **String** -- The SMTP server used to email account activation codes to new console users. 
 
 `q_puppet_enterpriseconsole_database_name`
 : **String** --- The database the console will use. Note that if you are not installing the database support role, this database must already exist on the PostgreSQL server.
@@ -153,6 +153,9 @@ These answers are generally needed if you are installing the console role.
 
 Database Support Answers
 -----
+
+These answers are only needed if you are installing the console role.
+
 `q_database_host`
 : **String** --- The hostname of the server running the PostgreSQL server that supports the console.
 

@@ -6,12 +6,12 @@ subtitle: "Automated Installation"
 
 To streamline deployment, the PE installer can run non-interactively. To do this, you must: 
 
-* Create an answer file
-* Run the installer with the `-a` or `-A` flag pointed at the answer file
+* Create an answer file.
+* Run the installer with the `-a` or `-A` flag pointed at the answer file.
 
 The flag will cause the installer to read your choices from the answer file and act on them immediately instead of interviewing a user to customize the installation.
 
-Automated installation can greatly speed up large deployments, and is crucial when [installing PE with the cloud provisioning tools](./cloudprovisioner_classifying_installing.html#installing-puppet). 
+Automated installation can greatly speed up large deployments and is crucial when [installing PE with the cloud provisioning tools](./cloudprovisioner_classifying_installing.html#installing-puppet). 
 
 Obtaining an Answer File
 -----
@@ -32,10 +32,10 @@ Answer files are simply shell scripts that declare variables used by the install
 
 To obtain an answer file, you can:
 
-* Use one of the example files provided in the installer's `answers` directory
-* Retrieve the `answers.lastrun` file from a node on which you've already installed PE
-* Run the installer with the `-s <FILE>` flag, which saves  an answer file without installing
-* Write one by hand
+* Use one of the example files provided in the installer's `answers` directory.
+* Retrieve the `answers.lastrun` file from a node on which you've already installed PE.
+* Run the installer with the `-s <FILE>` flag, which saves  an answer file without installing.
+* Write one by hand.
 
 **You must hand edit any pre-made answer file before using it,** as new nodes will need, at a minimum, a unique agent certname.
 

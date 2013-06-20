@@ -10,7 +10,7 @@ The Puppet Data Library (PDL) consists of two elements:
 * The large amount of data Puppet automatically collects about your infrastructure.
 * The formats and APIs Puppet uses to expose that data.
 
-Sysadmins can access information from the PDL with their choice of tools, including familiar scripting languages like Ruby, Perl, and Python. Use this data to build custom reports, add to existing data sets, or automate repetitive tasks.
+Sysadmins can access information from the PDL with their choice of tools, including familiar scripting languages like Ruby, Perl, and Python. This data can be used to build custom reports, add to existing data sets, or automate repetitive tasks.
 
 Right now, the Puppet Data Library consists of three different data services:
 
@@ -19,14 +19,14 @@ PuppetDB
 
 PuppetDB is a built-in part of PE 3.0 and later.
 
-PuppetDB constantly receives up-to-date copies of every node's **facts,** **resource catalogs,** and **recent run reports.** External tools can easily query and search all of this data over a stable, versioned HTTP query API. This is a more full-featured replacement for Puppet's older Inventory Service interface, and it enables entirely new functionality like class, resource, and event searches.
+PuppetDB stores up-to-date copies of every node's **facts,** **resource catalogs,** and **run reports** as part of each Puppet run. External tools can easily query and search all of this data over a stable, versioned HTTP query API. This is a more full-featured replacement for Puppet's older Inventory Service interface, and it enables entirely new functionality like class, resource, and event searches.
 
 * [See the documentation for PuppetDB's query API here.][puppetdb_api]
 * Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/guides/custom_facts.html) on your puppet master server.
 
 [puppetdb_api]: /puppetdb/1.3/api/index.html
 
-> **EXAMPLE:**  Using the older Puppet Inventory Service, a customer automated the validation and reporting of their servers' warranty status.  Their automation regularly retrieved the serial numbers of all servers in the data center, then checked them against the hardware vendor's warranty database using the vendor's public API to determine the warranty status for each.
+> **EXAMPLE:**  Using the old Puppet Inventory Service, a customer automated the validation and reporting of their servers' warranty status.  Their automation regularly retrieved the serial numbers of all servers in the data center, then checked them against the hardware vendor's warranty database using the vendor's public API to determine the warranty status for each.
 >
 > Using PuppetDB's improvements over the inventory API, it would also be possible to correlate serial number data with what the machines were actually being used for, by getting lists of the Puppet classes being applied to each machine.
 
