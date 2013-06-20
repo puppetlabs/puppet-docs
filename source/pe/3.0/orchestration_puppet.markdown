@@ -8,11 +8,20 @@ subtitle: "Orchestration: Controlling Puppet"
 [puppet_tab]: ./console_navigating_live_mgmt.html#the-control-puppet-tab
 [peadmin]: ./orchestration_invoke_cli.html#logging-in-as-peadmin
 [inpage_stop]: #start-and-stop-the-puppet-agent-service
-[filter]: todo
-[environment]: todo
-[tags]: todo
-[batch]: todo
-[data_plugins]: todo
+[filter]: ./orchestration_invoke_cli.html#filtering-actions
+[environment]: /guides/environment.html
+[tags]: /puppet/3/reference/lang_tags.html
+[batch]: ./orchestration_invoke_cli.html#batching
+[data_plugins]: ./orchestration_invoke_cli.html#data-plugins
+[console_user]: ./console_auth.html#user-access-and-privileges
+[tab]: ./console_navigating_live_mgmt.html#the-control-puppet-tab
+[select_nodes]: ./console_navigating_live_mgmt.html#the-node-list
+[advanced_tasks]: ./console_navigating_live_mgmt.html#the-advanced-tasks-tab
+[live_puppet_lastrun]: ./images/console/live_puppet_lastrun.png
+[live_puppet_main]: ./images/console/live_puppet_main.png
+[live_puppet_runonce_arguments]: ./images/console/live_puppet_runonce_arguments.png
+[live_puppet_status]: ./images/console/live_puppet_status.png
+
 
 Puppet Enterprise (PE)'s configuration management features rely on the **puppet agent service,** which runs on every node and fetches configurations from the puppet master server. [(See the Puppet section of this manual for more details.)](./puppet_tools.html)
 
@@ -27,14 +36,14 @@ Basics
 
 The orchestration engine can control Puppet from the **web console** and from the puppet master server's Linux **command line.** These interfaces don't have identical capabilities, so this page will call out any differences when applicable.
 
-In the console, most of these tasks use [the "Control Puppet" tab of the live management page][puppet_tab], which behaves much like the "Advanced Tasks" tab. On the command line, most of these tasks use the `mco puppet` subcommand.
-
-![The control puppet tab][live_puppet_main]
-
 > See the following pages for basic instructions on invoking actions, including how to log in:
 >
 > * [Invoking Actions on the Command Line][cli]
 > * [Navigating Live Management][console]
+
+In the console, most of these tasks use [the "Control Puppet" tab of the live management page][puppet_tab], which behaves much like the "Advanced Tasks" tab. On the command line, most of these tasks use the `mco puppet` subcommand.
+
+![The control puppet tab][live_puppet_main]
 
 [cli]: ./orchestration_invoke_cli.html
 [console]: ./console_navigating_live_mgmt.html
@@ -50,19 +59,22 @@ In PE 3.0, puppet agent runs in the background as a system service.
 
 Puppet agent can be in many possible states, which are represented by three attributes:
 
-* **Running** or **stopped** --- whether the agent _service_ (`pe-puppet`) is running in the background. Even if it's running, the service may or may not be doing anything at the moment. If the service is stopped, no scheduled runs will occur but you can trigger on-demand runs.
+* **Running** or **stopped** --- whether the agent _service_ (`pe-puppet`) is running in the background. Even if it's running, the service may or may not be doing anything at the moment. If the service is stopped, no scheduled runs will occur but you can still trigger on-demand runs.
 * **Applying,** **idling,** or **neither** --- whether puppet agent is in the process of applying a configuration. Idling is only applicable if the service is running, but Puppet may be applying an on-demand configuration even if the service is stopped.
 * **Enabled** or **disabled** --- whether there's a lockfile preventing puppet agent from performing _any_ configuration runs. If puppet agent is disabled, the service can idle in the background but no configurations can be applied --- even on-demand runs will be rejected until the agent is re-enabled.
 
 The orchestration engine can trigger on-demand Puppet runs unless the agent is **applying** or **disabled.** Scheduled runs will only take place if the agent is both **running** and **enabled.**
 
+[↑ Back to top](#content)
+
+* * *
 
 Run Puppet on Demand
 -----
 
 Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If you need to run Puppet on many nodes (more than about 10), you should see [the "many nodes" section below](#run-puppet-on-many-nodes-in-a-controlled-series).
 
-[options]: #behavior-note-running-vs-stopped
+[options]: #behavior-differences-running-vs-stopped
 
 > ### Behavior Differences: Running vs. Stopped
 >
@@ -76,7 +88,22 @@ Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If y
 
 ### In the Console
 
-TODO
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "runonce" action. Enter any arguments, and click the red "Run" button.
+
+![The runonce action with its arguments][live_puppet_runonce_arguments]
+
+#### Arguments
+
+If the agent service is stopped (on affected \*nix nodes; [see above][options]), you can change the way Puppet runs by specifying optional arguments:
+
+* **Force** (`true`/`false`) --- Ignore the default splay and run all nodes immediately.
+* **Server** --- Contact a different puppet master than normal. Useful for testing new manifests (or a new version of PE) on a subset of nodes.
+* **Tags** (comma-separated list of tags) --- Apply only resources with these tags. Tags can be class names, and this is a fast way to test changes to a single class without performing an entire Puppet run.
+* **Noop** (`true`/`false`) --- Only _simulate_ changes, and submit a report describing what _would_ have changed in a real run. Useful for safely testing new manifests. If you have configured puppet agent to _always_ run in no-op mode (via `/etc/puppetlabs/puppet/puppet.conf`), you can set this to `false` to do an enforcing Puppet run.
+* **Splay** (`true`/`false`) --- Defaults to true. Whether to stagger runs over a period of time.
+* **Splaylimit** (in seconds) --- The period of time over which to randomly stagger runs. The more nodes you are running at once, the longer this should be.
+* **Environment** --- The Puppet [environment][] in which to run. Useful for testing new manifests on a subset of nodes.
+
 
 ### On the Command Line
 
@@ -109,6 +136,10 @@ The most useful options are:
 * `--tags TAGS`, which takes a comma-separated list of [tags][] and applies only resources with those tags. Tags can be class names, and this is a fast way to test changes to a single class without performing an entire Puppet run.
 * `--server SERVER`, which causes puppet agent to contact a different puppet master than normal. Also useful for testing new manifests (or a new version of PE) on a subset of nodes.
 
+[↑ Back to top](#content)
+
+* * *
+
 Run Puppet on Many Nodes in a Controlled Series
 -----
 
@@ -122,7 +153,11 @@ Instead, use the special `runall` action of the `mco puppet` subcommand.
 
 This action requires an argument, which must be the number of nodes allowed to run at once. It invokes a run on that many nodes, then only starts the next node when one has finished. This prevents your puppet master from being overwhelmed by the herd, and will delay only as long as is necessary. The ideal concurrency will vary from site to site, depending on how powerful your puppet master server is and how complex your configurations are.
 
-The `runall` action can take extra options like `--noop` [as described for the `runonce` action](#extra-options); however, note that [restrictions still apply for \*nix nodes where the pe-puppet service is running](#behavior-differences-running-vs-stopped).
+The `runall` action can take extra options like `--noop` [as described for the `runonce` action](#extra-options); however, note that [restrictions still apply for \*nix nodes where the pe-puppet service is running][options].
+
+[↑ Back to top](#content)
+
+* * *
 
 Enable and Disable Puppet Agent
 -----
@@ -131,9 +166,11 @@ Disabling Puppet will block **all** Puppet runs, including both scheduled and on
 
 The `disable` action accepts an optional reason for the lockdown; take advantage of this to keep your colleagues informed. The reason will be shown when checking Puppet's status on those nodes.
 
+After a node has been disabled for an hour, it will appear as "unresponsive" in the console's node views, and will stay that way until it is re-enabled.
+
 ### In the Console
 
-TODO
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "enable" or "disable" action. Enter a reason (if disabling), and click the red "Run" button.
 
 ### On the Command Line
 
@@ -143,6 +180,9 @@ While [logged in to the puppet master server as `peadmin`][peadmin], run `mco pu
 
     $ mco puppet disable "Investigating a problem with the haproxy module. -NF" -C /haproxy/
 
+[↑ Back to top](#content)
+
+* * *
 
 Start and Stop the Puppet Agent Service
 -----
@@ -151,7 +191,8 @@ You can start or stop the `pe-puppet` service with the `start` and `stop` action
 
 ### In the Console
 
-TODO
+While logged in as a [read/write or admin user][console_user], navigate to the [Advanced Tasks][advanced_tasks] tab, [filter and select your nodes][select_nodes], choose the "Service" action list, and click the "start" or "stop" action. Click the red "Run" button.
+
 
 ### On the Command Line
 
@@ -161,6 +202,9 @@ To prepare all web servers for a manifest update and no-op run:
 
     $ mco service pe-puppet stop -C /apache/
 
+[↑ Back to top](#content)
+
+* * *
 
 View Puppet Agent's Status
 -----
@@ -171,7 +215,11 @@ View Puppet Agent's Status
 
 ### In the Console
 
-TODO
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "status" action. Click the red "Run" button.
+
+![The results of the status action][live_puppet_status]
+
+Note that on disabled nodes, the reason for disabling is shown in the `disable_message` field.
 
 ### On the Command Line
 
@@ -189,6 +237,9 @@ The one thing `mco puppet status` doesn't show is the [reason why puppet agent w
 
     $ mco rpc puppet status -S "puppet().enabled=false"
 
+[↑ Back to top](#content)
+
+* * *
 
 View Statistics About Recent Runs
 -----
@@ -199,7 +250,11 @@ Puppet keeps records of the last run, including the amount of time spent per res
 
 ### In the Console
 
-TODO
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "last\_run\_summary" action. Click the red "Run" button.
+
+Usually, you should use the graphs and reports on the console's node views to investigate previous Puppet runs; they are more detailed, and provide more historical context.
+
+![Part of a last run summary results view][live_puppet_lastrun]
 
 ### On the Command Line
 
@@ -222,107 +277,6 @@ You can get sparkline graphs for the last run statistics across all your nodes w
 
 While [logged in to the puppet master server as `peadmin`][peadmin], run `mco rpc puppet last_run_summary` with or without a filter. This returns detailed run statistics for each node. (Note that this uses the `rpc` subcommand instead of the `puppet` subcommand.)
 
-
-------OLD--------
-
-Use the "Control Puppet" tab to immediately trigger a puppet agent run on any of your nodes. You can also check puppet agent's status, and enable or disable it to control the spread of new configurations.
-
-
-
-Invoking an Action
------
-
-The "Control Puppet" tab can perform five actions:
-
-- Disable
-- Enable
-- Last Run Summary
-- Runonce
-- Status
-
-To use one, click the name of the action, then confirm with the red "Run" button.
-
-![The red Run button revealed][live_puppet_runbutton]
-
-Running an action returns a results view. Results views will attempt to group similar results to reduce noise; click the "on N nodes" links to see which nodes returned a given result.
-
-A collapsed results view:
-
-![A collapsed results view][live_puppet_results_collapsed]
-
-An expanded results view:
-
-![An expanded results view][live_puppet_results_expanded]
-
-Actions
------
-
-### Run Puppet Once
-
-Use the "runonce" action to make the selected nodes immediately pull and apply their configurations from the puppet master.
-
-Normally, puppet agent pulls configurations at a regular interval (30 minutes, by default). However, when testing new Puppet classes, you'll probably need to trigger agent runs at irregular times on your test nodes.
-
-Nodes where puppet agent is disabled will ignore this action.
-
-### Enable and Disable
-
-Use the "enable" and "disable" actions to control whether puppet agent _does_ anything. When you disable Puppet on a node, the agent daemon will continue running, but it will not pull configurations from the master.
-
-After a node has been disabled for an hour, it will appear as "unresponsive" in the console's node views, and will stay that way until it is re-enabled. Disabled nodes will ignore runonce commands from the "Control Puppet" tab.
-
-Disabling nodes is great for hedging your bets when you've made major changes to an existing Puppet module:
-
-* Filter the node list by Puppet class to find every node that will be affected by the change
-* Disable Puppet on all but a few of these nodes
-* Run Puppet on the test nodes, and carefully examine the reports to make sure the changes worked
-* Re-enable Puppet on the rest of your nodes (or a subset thereof, if you think you need more testing)
-
-A confirmation screen will appear after disabling some nodes:
-
-![The disable confirmation, with four nodes revealed][live_puppet_disable_results]
-
-Results after trying to run a mix of enabled and disabled nodes --- note the three nodes whose only response was "---":
-
-![Runonce results, with three disabled nodes revealed][live_puppet_disabled_wont_run]
-
-A view of unresponsive nodes in the console (note that node certnames on EC2 don't necessarily align with hostnames):
-
-![An unresponsive node view with three nodes][live_puppet_unresponsive]
-
-### Status
-
-Use the "status" action to check up on puppet agent.
-
-The status action gets three pieces of information from each node:
-
-* Whether Puppet is enabled or disabled
-* Whether Puppet is idle ("not running") or actively applying a configuration ("running")
-* When the last Puppet run occurred
-
-The results of the status action, with a mix of enabled and disabled nodes:
-
-![The results of the status action][live_puppet_status]
-
-### Last Run Summary
-
-Use the "last\_run\_summary" action for a quick view of what the most recent Puppet run did.
-
-Usually, you should use the graphs and reports on the console's node views to investigate previous Puppet runs; they are more detailed, and provide more historical context. However, the overview provided by this action can be useful when combined with live management's class and fact filtering.
-
-Part of a last run summary results view:
-
-![Part of a last run summary results view][live_puppet_lastrun]
-
-[live_puppet_disable_results]: ./images/console/live_puppet_disable_results.png
-[live_puppet_disabled_wont_run]: ./images/console/live_puppet_disabled_wont_run.png
-[live_puppet_lastrun]: ./images/console/live_puppet_lastrun.png
-[live_puppet_main]: ./images/console/live_puppet_main.png
-[live_puppet_results_collapsed]: ./images/console/live_puppet_results_collapsed.png
-[live_puppet_results_expanded]: ./images/console/live_puppet_results_expanded.png
-[live_puppet_runbutton]: ./images/console/live_puppet_runbutton.png
-[live_puppet_status]: ./images/console/live_puppet_status.png
-[live_puppet_unresponsive]: ./images/console/live_puppet_unresponsive.png
 
 
 * * *
