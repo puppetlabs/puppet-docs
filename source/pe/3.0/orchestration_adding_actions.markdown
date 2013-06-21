@@ -122,8 +122,7 @@ For any class that will be installing plugins **on agent nodes,** you should put
 
 {% highlight ruby %}
     Class['pe_mcollective::server::plugins'] -> Class[$title] ~> Service['pe-mcollective']
-    include pe_mcollective::server::plugins
-    include pe_mcollective::params
+    include pe_mcollective
     $plugin_basedir = $pe_mcollective::server::plugins::plugin_basedir
     $mco_etc        = $pe_mcollective::params::mco_etc
 {% endhighlight %}
@@ -140,13 +139,14 @@ This will do the following:
 
 * If any `agent` or `data`-like subdirectory of the libdir is going to be managed, it should be managed by the pe_mcollective::server::plugins class. Users shouldn't have to manage these directories, and should avoid doing so in case we decide to start managing more of them. (In practice, they're all created by the package that installs pe-mcollective and we don't manage them, but a comment in the module implied that we may start managing more of them in the future.)
 
-* If a node has MCollective anyway, it is safe to use include on the pe_mcollective::server::plugins class. Nothing weird will happen.
+* If a node has MCollective anyway, it is safe to use include on the pe_mcollective class, and that doing so will eventually cause the pe_mcollective::params class and the pe_mcollective::server::plugins class to be declared. Nothing weird will happen.
 
 * The pe_mcollective::server::plugins class's $plugin_basedir variable will continue to be available and correct on all supported versions of all platforms.
 
 * The pe-mcollective service's name is pe-mcollective. If a node has MCollective at all, this service will always be present, will have the right name, and can be safely notified.
 
 * We also rely on the following variables from the params class:
+    $pe_mcollective::params::mco_etc,
     $pe_mcollective::params::root_owner,
     $pe_mcollective::params::root_group,
     $pe_mcollective::params::root_mode,
@@ -244,8 +244,7 @@ This is an example of a Puppet class that installs [the Puppet Labs nrpe plugin]
     # /etc/puppetlabs/puppet/modules/mco_plugins/manifests/nrpe.pp
     class mco_plugins::nrpe {
       Class['pe_mcollective::server::plugins'] -> Class[$title] ~> Service['pe-mcollective']
-      include pe_mcollective::server::plugins
-      include pe_mcollective::params
+      include pe_mcollective
       $plugin_basedir = $pe_mcollective::server::plugins::plugin_basedir
       $mco_etc        = $pe_mcollective::params::mco_etc
 
