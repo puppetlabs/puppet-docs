@@ -57,6 +57,8 @@ When you're done working in the console, choose *Logout* from the user account m
 
 ![login screen](./images/console/login.jpg)
 
+*Note:* User authentication services rely on a PostgreSQL database. If this database is restarted for any reason, you may get an error message when trying to log in or out. See [known issues](http://docs.puppetlabs.com/pe/3.0/appendix.html#known-issues) for more information. 
+
 ### Viewing Your User Account
 
 To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar.
@@ -99,19 +101,36 @@ To add a new user, open the user admin screen by choosing *Admin Tools* in the u
 
 To delete an existing user (including pending users), click on the user's name in the list and then click the *Delete account* button. Note that deleting a user cannot be undone, so be sure this is what you want to do before proceeding.
 
-### Creating Users From the Command Line
+### Working with Users From the Command Line
 
-New console users can also be created from the command line. This can be used to automate user creation or to import large numbers of users from an external source at once.
+Several actions related to console users can be done from the command line using rake tasks. This can be useful for things like automating user creation/deletion or importing large numbers of users from an external source all at once. All of these tasks should be run on the console server node.
 
-On the console server, the following command will add a new user:
+These tasks will add their actions to the console_auth log, located by default at `/var/log/pe-console-auth/auth.log`.
 
-    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="<email address>" PASSWORD="<password>" ROLE="< Admin | Read-Only | Read-Write >"
+#### Adding or Modifying Users 
 
-Thus, to add a read-write user named jones@example.com, you would run:
+The db:create_user rake task is used to add users. The command is issued as follows:
 
-    $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="jones@example.com" PASSWORD="good_password_1" ROLE="Read-Write"
+     cd /opt/puppet/share/puppet-dashboard
+    sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="<email address>" PASSWORD="<password>" ROLE="< Admin | Read-Only | Read-Write >"
+    
+If you specify a user that already exists, the same command can be used to change attributes for that user, e.g. to reset a password or elevate/demote privileges.
 
-You cannot currently delete or disable users or reset passwords from the command line.
+#### Deleting Users
+
+The db:users:remove task is used to delete users. The command is issued as follows:
+
+    cd /opt/puppet/share/puppet-dashboard
+    sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:remove[<email address>]
+
+#### Viewing Users
+
+To print a list of existing users to the screen use the db:users:list task as follows: 
+
+    cd /opt/puppet/share/puppet-dashboard
+    sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list`
+
+
 
 Using Third-Party Authentication Services
 ------

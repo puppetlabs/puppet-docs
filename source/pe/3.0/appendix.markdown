@@ -109,11 +109,14 @@ If you are using the compliance workflow tools today, you can achieve a similar 
 
  In this alternate workflow, you are essentially still maintaining baselines of your systems' desired states. However, instead of maintaining an _abstract_ baseline by approving changes in the console, you are maintaining _concrete_ baselines in readable Puppet code, which can be audited via version control records.
 
+#### Puppet Agent Service Rename
+Previously, the puppet agent service was known by several names, depending on platform (e.g. `puppetagent` on Solaris, `pe-puppet-agent` on Debian/Ubuntu, etc.). As of PE 3, it is called `'pe-puppet` on all platforms.
+
 
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 2.8.x. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.0 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
@@ -122,6 +125,14 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
+
+### Debian/Ubuntu Local Hostname Issue
+On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname will cause it to resolve to the local, rather public, IP of 127.0.1.1. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
+
+To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. But if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
+
+### Console_auth Fails After PostgreSQL Restart
+RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`. 
 
 ### Bad Data in Facter's `architecture` Fact
 
@@ -143,65 +154,6 @@ During installation, the PE installer attempts to automatically determine the UR
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./config_advanced.html#allowing-anonymous-console-access) for details.
 
-### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
-
-An inadequate default MySQL buffer pool size setting can interfere with upgrades to Puppet Enterprise console servers.
-
-**The PE 2.8 upgrader will check for this bad setting.** If you are affected, it will warn you and give you a chance to abort the upgrade.
-
-TODO this shouldn't be around anymore.
-
-If you see this warning, you should:
-
-* Abort the upgrade.
-* [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the value of the `innodb_buffer_pool_size` setting.
-* Re-run the upgrade.
-
-If you have attempted to upgrade your console server without following these instructions, it is possible for the upgrade to fail. The upgrader's output in these cases resembles the following:
-
-    (in /opt/puppet/share/puppet-dashboard)
-    == AddReportForeignKeyConstraints: migrating =================================
-    Going to delete orphaned records from metrics, report_logs, resource_statuses, resource_events
-    Preparing to delete from metrics
-    2012-01-27 17:51:31: Deleting 0 orphaned records from metrics
-    Deleting 100% |###################################################################| Time: 00:00:00
-    Preparing to delete from report_logs
-    2012-01-27 17:51:31: Deleting 0 orphaned records from report_logs
-    Deleting 100% |###################################################################| Time: 00:00:00
-    Preparing to delete from resource_statuses
-    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_statuses
-    Deleting 100% |###################################################################| Time: 00:00:00
-    Preparing to delete from resource_events
-    2012-01-27 17:51:31: Deleting 0 orphaned records from resource_events
-    Deleting 100% |###################################################################| Time: 00:00:00
-    -- execute("ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;")
-    rake aborted!
-    An error has occurred, all later migrations canceled:
-    Mysql::Error: Can't create table 'console.#sql-328_ff6' (errno: 121): ALTER TABLE reports ADD CONSTRAINT fk_reports_node_id FOREIGN KEY (node_id) REFERENCES nodes(id) ON DELETE CASCADE;
-    (See full trace by running task with --trace)
-    ===================================================================================
-    !! ERROR: Cancelling installation
-    ===================================================================================
-
-If you have suffered a failed upgrade, you can fix it by doing the following:
-
-* On your database server, log into the MySQL client as either the root user or the console user:
-
-        # mysql -u console -p
-        Enter password: <password>
-* Execute the following SQL statements:
-
-        USE console
-        ALTER TABLE reports DROP FOREIGN KEY fk_reports_node_id;
-        ALTER TABLE resource_events DROP FOREIGN KEY fk_resource_events_resource_status_id;
-        ALTER TABLE resource_statuses DROP FOREIGN KEY fk_resource_statuses_report_id;
-        ALTER TABLE report_logs DROP FOREIGN KEY fk_report_logs_report_id;
-        ALTER TABLE metrics DROP FOREIGN KEY fk_metrics_report_id;
-* [Follow the instructions for increasing the `innodb_buffer_pool_size`](./config_advanced.html#increasing-the-mysql-buffer-pool-size) and restart the MySQL server.
-* Re-run the upgrader, which should now finish successfully.
-
-For more information about the lock table size, [see this MySQL bug report](http://bugs.mysql.com/bug.php?id=15667).
-
 ### `pe-httpd` Must Be Restarted After Revoking Certificates
 
 ([Issue #8421](http://projects.puppetlabs.com/issues/8421))
@@ -211,10 +163,6 @@ Due to [an upstream bug in Apache](https://issues.apache.org/bugzilla/show_bug.c
 After using `puppet cert revoke` or `puppet cert clean` to revoke a certificate, restart the service by running:
 
     $ sudo /etc/init.d/pe-httpd restart
-
-### Internet Explorer 8 Can't Access Live Management Features
-
-The console's [live management](./console_live.html) page doesn't load in Internet Explorer 8. Although we are working on supporting IE8, you should currently use another browser (such as Internet Explorer 9 or Google Chrome) to access PE's live management features.
 
 ### Dynamic Man Pages are Incorrectly Formatted
 

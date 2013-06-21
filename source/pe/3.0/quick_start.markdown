@@ -6,7 +6,7 @@ subtitle: "Quick Start: Using PE 3.0"
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the PE 3.0 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise and become familiar with its features. Follow along to learn how to:
+Welcome to the Puppet Enterprise 3.0 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
@@ -21,7 +21,7 @@ Creating a Deployment
 
 A standard Puppet Enterprise deployment consists of:
 
-* Many **agent nodes,** which are computers managed by Puppet.
+* Many **agent nodes,** which are computers (physical or virtual) managed by Puppet.
 * At least one **puppet master server,** which serves configurations to agent nodes.
 * At least one **console server,** which analyzes agent reports and presents a GUI for managing your site. (This may or may not be the same server as the master.)
 * At least one **database support server** which runs PuppetDB and databases that support the console. (This may or may not be the same server as the console server.)
@@ -223,7 +223,7 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 > You have just installed multiple Puppet modules. All of the classes in them are now available to be added to the console and assigned to nodes.
 
-### Using Modules in the Console
+### Using Modules in the PE Console
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_motd]: ./images/quick/add_motd.png
@@ -277,7 +277,7 @@ In addition to what this walkthrough has covered, most users will also:
 
 * Edit modules from the Forge to make them better suit the deployment.
 * Create new modules from scratch by writing classes that manage resources.
-* Examine reports in the console.
+* Examine reports in the PE console.
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
 * Assign classes to groups in the console instead of individual nodes.
 

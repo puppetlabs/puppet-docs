@@ -195,9 +195,12 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
 
 ***Solaris***
-SUNWgccruntime is required for all Solaris agents.
 
-In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
+Solaris support is agent only. The following packages are required: 
+
+  * SUNWgccruntime
+  * libgcc_s.so.1
+  * In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
 
 
 Next
