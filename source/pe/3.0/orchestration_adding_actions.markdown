@@ -25,7 +25,7 @@ You can extend Puppet Enterprise (PE)'s orchestration engine by adding new **act
 > ### Related Topics
 >
 > * For an overview of orchestration topics, see [the Orchestration Overview page][fundamentals].
-> * To invoke actions in the web console, see [Navigating Live Management](./console_navigating_live_mgmt.html).
+> * To invoke actions in the PE console, see [Navigating Live Management](./console_navigating_live_mgmt.html).
 > * To invoke actions on the command line, see [Invoking Actions](./orchestration_invoke_cli.html).
 > * For a list of built-in actions, see [List of Built-In Orchestration Actions](./orchestration_actions.html).
 
