@@ -5,9 +5,9 @@ subtitle: "About Puppet Enterprise"
 ---
 
 
-Thank you for choosing Puppet Enterprise, IT automation software that allows system administrators to programmatically provision, configure, and manage servers, network devices and storage, in the data center or in the cloud.
+Thank you for choosing Puppet Enterprise (PE), IT automation software that allows system administrators to programmatically provision, configure, and manage servers, network devices and storage, in the data center or in the cloud.
 
-Puppet Enterprise (PE) offers:
+Puppet Enterprise offers:
 
 * Configuration management tools that let sysadmins define a desired state for their infrastructure and then automatically enforce that state.
 * A web-based console UI, for analyzing reports, managing your Puppet systems and users, and editing resources on the fly.
@@ -38,7 +38,7 @@ About Orchestration
 
 Puppet Enterprise includes distributed task orchestration features. Nodes managed by PE will listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory.
 
-About the Console
+About the Puppet Enterprise Console
 -----
 
 PE's console is the web front-end for managing your systems. The console can:
