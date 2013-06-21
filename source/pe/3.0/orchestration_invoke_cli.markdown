@@ -15,7 +15,7 @@ About This Page
 
 Puppet Enterprise (PE) has two ways to invoke orchestration actions:
 
-* The live management page of the web console
+* The live management page of the PE console
 * The Linux command line on the puppet master server
 
 This page covers only the command line. See [the Navigating Live Management page of this manual][nav_live] for instructions on using live management to invoke actions.
@@ -211,7 +211,7 @@ A node's "identity" is the same as its Puppet certname, [as specified during ins
 
 ### Filtering by Fact, Class, and Agent
 
-* **Facts** are the standard Puppet Enterprise facts, which are available in your Puppet manifests and can be [viewed as inventory information][console_inventory] in the web console. [A list of the core facts is available here.][core_facts] Use the `-F` or `--with-fact` option with a `fact=value` pair to filter on facts.
+* **Facts** are the standard Puppet Enterprise facts, which are available in your Puppet manifests and can be [viewed as inventory information][console_inventory] in the PE console. [A list of the core facts is available here.][core_facts] Use the `-F` or `--with-fact` option with a `fact=value` pair to filter on facts.
 * **Classes** are the Puppet classes that are assigned to a node. This includes classes assigned in the console, assigned via Hiera, declared in `site.pp`, or declared indirectly by another class. Use the `-C` or `--with-class` option with a class name to filter on classes.
 * **Agents** are MCollective agent plugins. Puppet Enterprise's default plugins are available on every node, so filtering by agent makes more sense if you are distributing custom plugins to only a subset of your nodes. For example, if you made an emergency change to a custom plugin that you distribute with Puppet, you could filter by agent to trigger an immediate Puppet run on all affected systems. (`mco puppet runall 5 -A my_agent`) Use the `-A` or `--with-agent` option to filter on agents.
 

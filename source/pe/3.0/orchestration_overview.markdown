@@ -17,7 +17,7 @@ Quick Links
 
 **General orchestration tasks:**
 
-- [Invoking Actions (In the Web Console)](./console_navigating_live_mgmt.html)
+- [Invoking Actions (In the PE Console)](./console_navigating_live_mgmt.html)
 - [Invoking Actions (Command Line)](./orchestration_invoke_cli.html)
 - [List of Built-In Actions](./orchestration_actions.html)
 - [More Examples](./orchestration_examples.html)
@@ -56,7 +56,7 @@ Typically you choose some nodes to operate on (usually with a **filter** that de
 
 Puppet Enterprise can invoke orchestration actions in two places:
 
-* [**In the web console** (on the live management page)](./console_navigating_live_mgmt.html)
+* [**In the PE console** (on the live management page)](./console_navigating_live_mgmt.html)
 * [**On the command line**](./orchestration_invoke_cli.html)
 
 You can also [allow your site's custom applications to invoke orchestration actions][integrate].

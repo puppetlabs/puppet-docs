@@ -34,7 +34,7 @@ Basics
 
 ### Invoking Actions
 
-The orchestration engine can control Puppet from the **web console** and from the puppet master server's Linux **command line.** These interfaces don't have identical capabilities, so this page will call out any differences when applicable.
+The orchestration engine can control Puppet from the **PE console** and from the puppet master server's Linux **command line.** These interfaces don't have identical capabilities, so this page will call out any differences when applicable.
 
 > See the following pages for basic instructions on invoking actions, including how to log in:
 >
