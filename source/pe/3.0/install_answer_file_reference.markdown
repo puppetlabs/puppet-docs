@@ -85,6 +85,9 @@ These answers are always needed.
 
 These answers are generally needed if you are installing the puppet master role.
 
+`q_all_in_one_install`
+: **Y or N** --- Whether or not the installation is an all-in-one installation, (i.e., are puppetdb and the console also being installed on this node).
+
 `q_puppetmaster_certname`
 : **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server's fully qualified domain name is often used as the puppet master's certname.
 
@@ -96,6 +99,7 @@ These answers are generally needed if you are installing the puppet master role.
 
 `q_puppetmaster_enterpriseconsole_port`
 : **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the puppet master server.
+
 
 In addition, by default the puppet master will check for available PE software updates whenever the `pe-httpd` service restarts. To help ensure the correct update is retrieved, the master will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
     * the IP address of the client
