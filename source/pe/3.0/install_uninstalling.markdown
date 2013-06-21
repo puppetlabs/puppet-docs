@@ -17,16 +17,15 @@ The uninstaller will ask you to confirm that you want to uninstall.
 
 By default, the uninstaller will remove the Puppet Enterprise software, users, logs, cron jobs, and caches, but it will leave your modules, manifests, certificates, databases, and configuration files in place, as well as the home directories of any users it removes.
 
-You can use the following command-line flags to change the installer's behavior:
+You can use the following command-line flags to change the uninstaller's behavior:
 
 ### Uninstaller Options
 
 `-p`
-: Purge additional files. With this flag, the uninstaller will also remove all configuration files, modules, manifests, certificates, and the
-  home directories of any users created by the PE installer. This will also remove the Puppet Labs public GPG key used for package verification.
+: Purge additional files. With this flag, the uninstaller will also remove all configuration files, modules, manifests, certificates, and the home directories of any users created by the PE installer. This will also remove the Puppet Labs public GPG key used for package verification.
 
 `-d`
-: Also remove any databases during the uninstall. 
+: Also remove any databases created during installation. 
 
 `-h`
 : Display a help message.
@@ -54,7 +53,7 @@ Thus, to remove every trace of PE from a system, you would run:
 
     $ sudo ./puppet-enterprise-uninstaller -d -p
     
-Note that if you plan to reinstall any PE role on the node from which you uninstalled, you may need to run `puppet cert clean <node name>` on the master in order to remove any orphaned certificates from the uninstalled node.
+Note that if you plan to reinstall any PE role on a node you've run an uninstall on, you may need to run `puppet cert clean <node name>` on the master in order to remove any orphaned certificates from the node.
 
 
 * * * 

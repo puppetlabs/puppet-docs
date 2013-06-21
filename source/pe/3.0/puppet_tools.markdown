@@ -15,12 +15,12 @@ Puppet agent and puppet master are the heart of Puppet's architecture.
 
 * The puppet agent service runs on every managed Puppet Enterprise node. It fetches and applies configurations from a puppet master server.
 
-    In Puppet Enterprise, puppet agent runs without user interaction as the `pe-puppet` service; by default, it performs a run every 30 minutes. You can manually trigger an immediate run on any node from the [Control Puppet](./console_live_puppet.html) tab of the console's live management page. (If you are logged into an agent node as an administrator, you can also run `sudo puppet agent --test` from the command line.)
+    In Puppet Enterprise, the puppet agent runs without user interaction as the `pe-puppet` service; by default, it performs a run every 30 minutes. You can manually trigger an immediate run on any node from the [Control Puppet](./console_live_puppet.html) tab of the console's live management page. (If you are logged into an agent node as an administrator, you can also run `sudo puppet agent --test` from the command line.)
 
-    Puppet agent reads its settings from the `[main]` and `[agent]` blocks of `/etc/puppetlabs/puppet/puppet.conf`.
+    The puppet agent reads its settings from the `[main]` and `[agent]` blocks of `/etc/puppetlabs/puppet/puppet.conf`.
 * The puppet master service compiles and serves configurations to agent nodes.
 
-    In Puppet Enterprise, puppet master is managed by Apache and Passenger, under the umbrella of the `pe-httpd` service. Apache handles HTTPS requests from agents, and it spawns and kills puppet master processes as needed.
+    In Puppet Enterprise, the puppet master is managed by Apache and Passenger, under the umbrella of the `pe-httpd` service. Apache handles HTTPS requests from agents, and it spawns and kills puppet master processes as needed.
 
     The puppet master creates agent configurations by consulting its Puppet modules and the instructions it receives from the [console](./console_accessing.html).
 
@@ -41,7 +41,7 @@ Everyday Tools
 [cert_mgmt]: ./console_cert_mgmt.html
 * The [node requests page of the PE console][cert_mgmt] is used to add nodes to your Puppet Enterprise deployment.
 
-    After a new agent node has been installed, it asks for a certificate that will allow it to fetch configurations; it can't be managed by PE until its certificate request has been approved. [See the documentation for the node requests page][cert_mgmt] for more info.
+    After a new agent node has been installed, it requests a certificate from the master, which will allow it to fetch configurations; the agent node can't be managed by PE until its certificate request has been approved. [See the documentation for the node requests page][cert_mgmt] for more info.
 
     When you decommission a node and remove it from your infrastructure, you should destroy its certificate information by logging into the puppet master server as an admin user and running `puppet cert clean <NODE NAME>`.
 * The `puppet apply` subcommand can compile and apply Puppet manifests without the need for a puppet master. It's ideal for testing new modules (`puppet apply -e 'include <CLASS NAME>'`), but can also be used to manage an entire Puppet deployment in a masterless arrangement.
