@@ -100,6 +100,8 @@ Here `node_vmware create` has built a new virtual machine named `newpuppetmaster
 template of `/Datacenters/Solutions/vm/master_template`. (This is the template seen earlier with the `list` action.)  The
 virtual machine will be powered on, which may take several minutes to complete.
 
+**Important** All ENC connections to cloud nodes now require SSL support.
+
 The following video demonstrates the above and some other basic functions:
 
 <object width="420" height="315"><param name="movie"
@@ -162,7 +164,6 @@ To see the available actions and command line options, run:
     no longer required.
 
     OPTIONS:
-    --mode MODE                    - The run mode to use (user, agent, or master).
     --render-as FORMAT             - The rendering format to use.
     --verbose                      - Whether to log verbosely.
     --debug                        - Whether to log debug information.

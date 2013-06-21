@@ -9,7 +9,7 @@ subtitle: "An Overview of Puppet"
 Where Configurations Come From
 -----
 
-Configurations for nodes are compiled from [**manifests**](/learning/manifests.html), which are documents written in Puppet's custom language. Manifests declare [**resources**](/learning/ral.html), each of which represents the desired state of some _thing_ (software package, service, user account, file...) on a system. Resources are grouped into [**classes**](/learning/modules1.html#classes), and classes are grouped into [**modules**](/learning/modules1.html#modules). Modules are structured collections of manifest files where each file contains a single class (or defined type).
+Configurations for nodes are compiled from [**manifests**](/learning/manifests.html), which are documents written in Puppet's custom language. Manifests declare [**resources**](/learning/ral.html), each of which represents the desired state of some _thing_ (software package, service, user account, file...) on a system. Resources are grouped into [**classes**](/learning/modules1.html#classes), and classes are grouped into [**modules**](/learning/modules1.html#modules). Modules are structured collections of manifest files, with each file containing a single class (or defined type).
 
 
 How Configurations are Assigned to Nodes
@@ -29,7 +29,7 @@ When New Configurations Take Effect
 
 By default, puppet agent will pull a catalog and run it every 30 minutes (counted from when the agent service started, rather than on the half-hour). You can change this by setting the [`runinterval`](/references/3.2.latest/configuration.html#runinterval) option in an agent's [`/etc/puppetlabs/puppet/puppet.conf`](/guides/configuring.html) file to a new value. (The `runinterval` is measured in seconds.)
 
-If you need a node or group of nodes to retrieve a new configuration _now,_ use [the "Control Puppet" tab](./console_live_puppet.html) of the console's live management page. You can also log into the puppet master as the `peadmin` user and use the TODO put cmd line mco command for doing puppet runs in batches here.
+If you need a node or group of nodes to retrieve a new configuration _now,_ use [the "Control Puppet" tab](./console_live_puppet.html) of the console's live management page. You can also run a large number of nodes in a controlled series from the puppet master's command line; [see this section of the Orchestration: Controlling Puppet page](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series) for details.
 
 
 * * *

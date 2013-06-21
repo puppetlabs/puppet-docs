@@ -6,6 +6,17 @@ subtitle: "Finding Common Problems "
 
 Below are some common issues with the Cloud Provisioner.
 
+### I'm Using Puppet Enterprise 3 and Some `node` Options Don't Work Anymore
+Several command options were changed in PE 3. Specifically:
+
+- `--pe-version` has been removed from all `node_<provider>` commands. Users should manually select the desired source for packages and the installation script they wish to use.
+- `--name` for the `node_vmware` command has been changed to `--vname`.
+- `--tags` for the `node_aws` command has been changed to `--instance_tags`.
+- `--group` for the `node_aws` command has been changed to `--security_group`.
+
+### ENC Can't Communicate with Nodes
+As of Puppet Enterprise 3.0, SSL is required for all communication between nodes and the ENC. The `--enc-ssl` option has been removed.
+
 ### `node_vmware` and `node_aws` Aren't Working
 
 If the [cloud provisioning actions](./cloudprovisioner_overview.html) are failing with an "err: Missing required arguments" message, you need to [create a `~/.fog` file and populate it with the appropriate credentials](./cloudprovisioner_configuring.html).

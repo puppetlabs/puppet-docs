@@ -17,11 +17,13 @@ The guide will be released in chapters.
 
  * This first chapter covers initial architecture decisions you'll need to make, and other best practices for installation and preparation.
 
- * The next chapter will look at setting up your work environment with version control, best practices for hardening your installation, and managing users and security. Then we'll look at strategies for starting the process of automating your infrastructure by working our way through automating a basic service, MOTD.
+ * The next chapter will look at setting up your work environment with version control, best practices for hardening your installation, and managing users and security. 
 
- * The third chapter gets to the meat of the matter by demonstrating how and why automation can help you do your job better and faster. It will demonstrate setting up automation for some example services, configurations, and other things that a typical admin might want to first start managing with PE. This chapter will cover using the console and writing manifests, and will recommend some modules to help you get automation up and running quickly. We'll also discuss some methods for testing your work before going live.
+ * The third chapter gets to the meat of the matter by demonstrating how and why automation can help you do your job better and faster. You'll follow a fictional sysadmin while she sets up automation for some simple services, configurations, and other things that a typical admin might want to first start managing with PE. This chapter will cover using the console and the forge, will introduce you to writing manifests, and will recommend some modules to help you get automation up and running quickly. We'll also discuss some methods for testing your work before going live.
+ 
+ * The fourth chapter will move on to more advanced automation tasks and will explore manifest writing and the puppet language in more detail.
 
- * The fourth chapter will discuss some of the regular maintenance tasks  and troubleshooting tips you'll want to know about to keep things humming along smoothly.
+ * The fifth chapter will discuss some of the regular maintenance tasks  and troubleshooting tips you'll want to know about to keep things humming along smoothly.
 
  * The final chapter will discuss different resources for reporting so you can stay on top of performance metrics and discover issues early before they become problems.
 
@@ -57,7 +59,7 @@ If you need some help troubleshooting DNS, please refer to [these requirements](
 
 ### What Goes Where
 
-PE gives you a lot of flexibility in choosing where its various components can be installed. These components play various roles and include: the Puppet Agent, the Puppet Master, the Console Server, the Cloud Provisioner and any supporting database(s).
+PE gives you a lot of flexibility in choosing where its various components can be installed. These components play various roles and include: the Puppet Agent, the Puppet Master, the Console Server, the Cloud Provisioner and the Database support role (which includes PuppetDB and databases need to support the console).
 
 #### The Puppet Master
 
@@ -69,12 +71,21 @@ Make sure that any machine you select for the master conforms to the [hardware s
 
 While it is also possible to run masterless, this is rarely done with PE. Once you have worked with Puppet at greater length, you can evaluate some of the discussions around running masterless ([Masterless Puppet](http://jamescun.com/2012/12/14/masterless-puppet.html)).
 
+#### The Puppet Master
+The puppet master compiles and serves configuration catalogs to puppet agent nodes. It also issues Orchestration commands to agents. It is usually installed first, and on its own, dedicated and robust server.
 
 #### The Puppet Agent.
 This one is easy. The puppet agent will get installed on every node in your infrastructure that you want to manage with PE, including the master and any other nodes that run other PE roles. Don't be shy about installing it on existing infrastructure.
 
+#### Database Support
+The console and its data sources, including PuppetDB, requiree several PostgreSQL databases and users, and of course a PostgreSQL server. The installer will create, configure and install these wherever you direct it to. You can use the same node as the console or choose a separate server to provide database support. If you want to use a separate server, you should install this role before installing the console role. The [installation instructions](/pe/latest/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases.
+
+The PostgreSQL databases and server are vital to the functioning of the console. To keep things secure and robust, you should consult one of the many available hardening guides and security best practices ([such as these guidelines](https://www.owasp.org/index.php/OWASP_Backend_Security_Project_PostgreSQL_Hardening)).
+
+It probably goes without saying that you should not use this PostgreSQL server instance for anything but the console.
+
 ####The Console
-If your infrastructure and needs are modest (around 200 nodes or less), the console can run on the same server as the puppet master. When running the console on a separate server, you should also install a puppet agent to manage that machine. Be sure to give the agent the same hostname as the console.
+If your infrastructure and needs are modest (around 200 nodes or less), the console can run on the same server as the puppet master. When running the console on a separate server, the installer will automatically also install a puppet agent to manage that machine. Be sure to give the agent the same hostname as the console.
 
 ####The Cloud Provisioner
 This optional role can create virtual machine instances in environments such as VMWare's Vsphere or Amazon EC2. Whichever environment you are using, the node running the cloud provisioning tools must have ports open to the outside. The required ports are:
@@ -91,12 +102,6 @@ When selecting the node for the cloud provisioner role, make sure that local fir
 
 Refer to the [cloud provisioner configuration guide](/pe/latest/cloudprovisioner_configuring.html) for more details on installing and setting up cloud provisioning tools.
 
-####Database Servers
-The console requires several mySQL databases and users, and of course a mySQL server. The installer will create, configure and install these wherever you direct it to. The [installation instructions](/pe/latest/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases.
-
-The mySQL database and server are vital to the functioning of the console. To keep things secure and robust, you should consult one of the many available hardening guides and security best practices ([such as these guidelines](http://dev.mysql.com/doc/refman/5.0/en/security-guidelines.html)).
-
-It probably goes without saying that you should not use this mySQL server instance for anything but the console.
 
 #### Run the Install Script
 Once you've determined where everything is going to go, you can run the install script. If you have questions about the script, the answer file, etc., remember you can get  detailed instructions on the [installing PE  page](/pe/latest/install_basic.html).
@@ -104,14 +109,14 @@ Once you've determined where everything is going to go, you can run the install 
 #### Installation Issues and Tips
 There are a few common problems users have encountered when installing, mainly related to pre-existing conditions in the environment. The most common include:
 
-* Errors caused by an existing, old version of MySQL on the machine that will run the console database. Be sure to completely uninstall any existing instances of MySQL and the data directory (e.g. `/var/lib/mysql` on RHEL systems).
+* Errors caused by an existing, old version of PostgreSQL on the machine that will run the console database. Be sure to completely uninstall any existing instances of PostgreSQL and the data directory (e.g. `/var/lib/pgsql/9.2/data` on RHEL systems).
 
-* If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](/pe/latest/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing mySQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
+* If you experience issues during installation and just want to start over, you can uninstall everything with `puppet-enterprise-uninstaller -pd`. See the [uninstaller documentation](/pe/latest/install_uninstalling.html) for more information. Note that this will not uninstall any pre-existing PostgreSQL instances and related files; if these are causing issues, they will continue to do so on subsequent installation attempts.
 
 * The installer comes with an example answers file, which can save you some time. Don't overlook it!
 
 * The installer creates a log file at `install_log.lastrun.<hostname>`, which can be very useful for debugging install issues.
-* Similarly, the installer generates an `answers.lastrun.<hostname>` file, which can help you keep a record of things like the console's hostname or the mySQL password. *Important:* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
+* Similarly, the installer generates an `answers.lastrun.<hostname>` file, which can help you keep a record of things like the console's hostname or the database users' passwords. *Important:* You will want to delete this file or move it to a secured location after your install to eliminate the plaintext record of these passwords.
 
 ### Managing Certificates
 Once you've gotten all the parts installed where you want them, it's time to get agents connected to their master. This is done by sending certificate signing requests (CSR's) from the agents to a certificate authority (CA). By default, the CA is the same server as the master. In any case, the CA and certificate signing process is a vital part of PE's security infrastructure. Make sure it is well protected.

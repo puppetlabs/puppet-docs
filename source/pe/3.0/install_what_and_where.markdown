@@ -8,7 +8,7 @@ title: "PE 3.0 » Installing » What Gets Installed Where?"
 ## License File
 
 
-Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed at `/etc/puppetlabs/license.key`.
+Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed in `/etc/puppetlabs/license.key`.
 
 Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master. 
 
@@ -18,14 +18,14 @@ To purchase a license, please see the [Puppet Enterprise pricing page](http://ww
 
 ###<i>What</i>
 
-All working components of PE, excluding configuration files. These are files you are not likely to need to change.
+All functional components of PE, excluding configuration files. You are not likely to need to change these components.
 
 ###<i>Where</i>
 
 All PE software (excluding config files) is installed under `/opt/puppet`.
 
 * Executable binaries are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
-* Optionally, you can choose at install time to symlink the most common binaries into `/usr/local/bin`.
+* Optionally, at install time, you can choose to symlink the most common binaries into `/usr/local/bin`.
 * The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`. 
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
@@ -33,7 +33,7 @@ All PE software (excluding config files) is installed under `/opt/puppet`.
 
 ###<i>What</i>
 
- Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
+Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
 
 ###<i>Where</i>
 
@@ -42,7 +42,7 @@ Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with s
 * Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 * [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`.
 * The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
-* PuppetDB's config files are in `/etc/puppetlabs/puppetdb/conf.d`. It also adds `/etc/puppetlabs/puppetdb/log4j.properties` which controls logging behavior and `/etc/puppetlabs/puppetdb/certificate-whitelist` which is a whitelist of the certnames that have permission to communicate with PuppetDB.
+* PuppetDB's config files are in `/etc/puppetlabs/puppetdb/conf.d`. It also adds `/etc/puppetlabs/puppetdb/log4j.properties`, which controls logging behavior, and `/etc/puppetlabs/puppetdb/certificate-whitelist`, which is a whitelist of the certnames that have permission to communicate with PuppetDB.
 
 ##Log Files
 

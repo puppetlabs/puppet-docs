@@ -29,10 +29,10 @@ Note: if Tom had not done the prep work needed for remote signing of certificate
 
 Now Tom needs to run Puppet on the new node in order to apply the configuration. He could wait 30 minutes for Puppet to run automatically, but instead he SSH's into the machine and runs Puppet interactively with `puppet agent --test`.
 
-At this point we have:
+At this point Tom now has:
 
 * A new virtual machine node with Puppet installed
-* The node has a signed certificate and is an authorized member of the CloudWidget deployment
+* A node with a signed certificate that is an authorized member of the CloudWidget deployment
 * Puppet has fully configured the node with all of the bits and pieces needed to go live and start doing real work as a fully functioning CloudWidget application server.
 
 The CloudWidget infrastructure is now scaled and running at acceptable loads. Tom leans back and takes a sip of his coffee. It's still hot.
@@ -40,4 +40,4 @@ The CloudWidget infrastructure is now scaled and running at acceptable loads. To
 
 * * *
 
-- [Next: Troubleshooting Cloud Provisioner](./cloudprovisioner_troubleshooting.html)
+- [Next: The pe_accounts::user Type](./accounts_user_type.html)
