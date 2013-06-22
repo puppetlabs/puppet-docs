@@ -9,7 +9,7 @@ Before installing Puppet Enterprise:
 * Ensure that your nodes are running a supported operating system.
 * Ensure that your puppet master and console servers are sufficiently powerful.
 * Ensure that your network, firewalls, and name resolution are configured correctly and all target servers are communicating.
-* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are seperating roles, install in this order: 
+* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are seperating roles, install in this order:
 1. Puppet Master
 2. Database Support
 3. Console
@@ -43,10 +43,10 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
     * Minimum requirements: 2 processor cores, 1 GB RAM, and very accurate timekeeping.
     * Recommended requirements: 2-4 processor cores, at least 4 GB RAM, and very accurate timekeeping. Performance will vary, but this configuration can generally manage approximately 1,000 agent nodes.
 * The **database support** role can be installed on the same server as the console or, optionally, on a separate, dedicated server.
-    * Minimum requirements: These will vary considerably depending on the size of your deployment. However, you'll need a machine able to handle moderate network traffic, perform processor-intensive background tasks, and run a disk-intensive PostgreSQL database server.  The machine should have two to four processor cores. As a rough rule of thumb for RAM needed, start here: 1-500 nodes: 192-1024MB, 500-1000 nodes: 1-2GB, 1000-2000 nodes: 2-4 GB, 2000+ nodes, 4GB or greater. So as your deployment scales, make sure to scale RAM allocations accordingly. More information about scaling PuppetDB is available in the [PuppetDB manual's scaling guidelines](http://docs.puppetlabs.com/puppetdb/1.3/scaling_recommendations.html). 
-* The **console** role should usually be installed on a separate server from the puppet master, but can optionally be installed on the same server in smaller deployments. 
-    * Minimum requirements:  A machine able to handle moderate network traffic, perform processor-intensive background tasks, and run a disk-intensive PostgreSQL database server. Requirements will vary significantly depending on the size and complexity of your site.   
-    * Recommended Requirements:  
+    * Minimum requirements: These will vary considerably depending on the size of your deployment. However, you'll need a machine able to handle moderate network traffic, perform processor-intensive background tasks, and run a disk-intensive PostgreSQL database server.  The machine should have two to four processor cores. As a rough rule of thumb for RAM needed, start here: 1-500 nodes: 192-1024MB, 500-1000 nodes: 1-2GB, 1000-2000 nodes: 2-4 GB, 2000+ nodes, 4GB or greater. So as your deployment scales, make sure to scale RAM allocations accordingly. More information about scaling PuppetDB is available in the [PuppetDB manual's scaling guidelines](http://docs.puppetlabs.com/puppetdb/1.3/scaling_recommendations.html).
+* The **console** role should usually be installed on a separate server from the puppet master, but can optionally be installed on the same server in smaller deployments.
+    * Minimum requirements:  A machine able to handle moderate network traffic, perform processor-intensive background tasks, and run a disk-intensive PostgreSQL database server. Requirements will vary significantly depending on the size and complexity of your site.
+    * Recommended Requirements:
 * The **cloud provisioner** role has very modest requirements.
     * Minimum requirements: A system which provides interactive shell access for trusted users. This system should be kept very secure, as the cloud provisioning tools must be given cloud service account credentials in order to function.
 * The **puppet agent** role has very modest requirements.
@@ -69,10 +69,10 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 
 Configure your firewalls to accomodate Puppet Enterprise's network traffic. The short version is that you should open up ports **8140, 61613, and 443.** The more detailed version is:
 
-* All agent nodes must be able to send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for MCollective).
-* The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for MCollective).
+* All agent nodes must be able to send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for orchestration).
+* The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for orchestration).
 * Any hosts you will use to access the console must be able to reach the console server on port **443,** or whichever port you specify during installation. (Users who cannot run the console on port 443 will often run it on port 3000.)
-* If you will be invoking MCollective client commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.**
+* If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible, but not supported in this version of Puppet Enterprise.)
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The console server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 
 ### Dependencies and OS Specific Details
@@ -196,7 +196,7 @@ The PE AIX implementation supports the NIM, BFF, and RPM package providers. Chec
 
 ***Solaris***
 
-Solaris support is agent only. The following packages are required: 
+Solaris support is agent only. The following packages are required:
 
   * SUNWgccruntime
   * libgcc_s.so.1

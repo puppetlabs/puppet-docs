@@ -15,7 +15,7 @@ Puppet Enterprise offers:
 * An alternate compliance workflow for auditing changes to unmanaged resources.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-This user's guide will help you start using Puppet Enterprise 3.0, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and MCollective. Use the **navigation at left** to move between the guide's sections and chapters.
+This user's guide will help you start using Puppet Enterprise 3.0, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and the orchestration engine. Use the **navigation at left** to move between the guide's sections and chapters.
 
 > For New Users
 > -----
@@ -44,11 +44,11 @@ About the Puppet Enterprise Console
 PE's console is the web front-end for managing your systems. The console can:
 
 * Trigger immediate Puppet runs on an arbitrary subset of your nodes
-* Browse and edit resources on your nodes in real time
+* Browse and compare resources on your nodes in real time
 * Analyze reports to help visualize your infrastructure over time
 * Browse inventory data and backed-up file contents from your nodes
 * Group similar nodes and control the Puppet classes they receive in their catalogs
-* Run advanced tasks powered by MCollective plugins
+* Run advanced orchestration tasks
 
 About the Cloud Provisioning Tools
 -----

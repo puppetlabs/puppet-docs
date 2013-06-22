@@ -110,7 +110,7 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (If you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically.) Nodes with the puppet agent role can:
 
 * Run the puppet agent daemon, which pulls configurations from the puppet master and applies them.
-* Listen for MCollective messages, and invoke MCollective agent actions when they receive a valid command.
+* Listen for orchestration messages, and invoke orchestration actions when they receive a valid command.
 * Send data to the Master for use by PuppetDB.
 
 ### The Puppet Master Role
@@ -118,8 +118,8 @@ This role should be installed on **every node** in your deployment, including th
 In most deployments, this role should be installed on **one node;** installing multiple puppet masters requires additional configuration. The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for more detail. The puppet master server can:
 
 * Compile and serve configuration catalogs to puppet agent nodes.
-* Route MCollective messages through its ActiveMQ server.
-* Issue valid MCollective commands (from an administrator logged in as the `peadmin` user).
+* Route orchestration messages through its ActiveMQ server.
+* Issue valid orchestration commands (from an administrator logged in as the `peadmin` user).
 
 **Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](http://docs.puppetlabs.com/pe/latest/install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will let you know.
 
@@ -141,7 +141,7 @@ If you choose to use a database server separate from the PuppetDB server, you mu
 
 This role should be installed on **one node.** It should usually run on its own dedicated server, but can also run on the same server as the puppet master. The console server can:
 
-* Serve the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, and invoke MCollective agent actions.
+* Serve the console web interface, with which administrators can directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, and invoke orchestration actions.
 * Collect reports from, and serve node information to the puppet master.
 
 #### Console Database
@@ -285,7 +285,7 @@ Final Questions
 
 Puppet Enterprise may need some extra system software from your OS vendor's package repositories.
 
-If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again. 
+If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
 
 ### Convenience Links
 

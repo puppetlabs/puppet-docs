@@ -39,7 +39,7 @@ The only information you need to specify during installation is **the hostname o
 
 Once the installer finishes:
 
-* A puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes (by default). You can now assign classes to the node using your puppet master or console server. After the first puppet run, the MCollective service will also be running and the node can now be controlled with live management and orchestration. The puppet agent service and the MCollective service can be started and stopped independently using either the service control manager GUI or the command line `sc.exe` utility; see [Running Puppet on Windows](/windows/running.html#configuring-the-agent-service) for more details.
+* A puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes (by default). You can now assign classes to the node using your puppet master or console server. After the first puppet run, the orchestration service (`pe-mcollective`) will also be running and the node can now be controlled with live management and orchestration. The puppet agent service and the orchestration service can be started and stopped independently using either the service control manager GUI or the command line `sc.exe` utility; see [Running Puppet on Windows](/windows/running.html#configuring-the-agent-service) for more details.
 * The Start Menu will contain a Puppet folder, with shortcuts for running the puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details.
 
     ![Start Menu icons][startmenu]
@@ -75,7 +75,7 @@ Upgrading
 -----
 To upgrade a Windows agent, simply run the new 3.0 installer. There's no need to uninstall the previous version.
 
-<!-- 
+<!--
 TODO_upgrading Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
 When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
@@ -98,7 +98,7 @@ Installation Details
 
 ### What Gets Installed
 
-In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter.  (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org). MCollective is also installed.
+In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter.  (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org). The orchestration daemon (MCollective) is also installed.
 
 These prerequisites are used only for Puppet Enterprise components and do not interfere with other local copies of Ruby.
 

@@ -36,10 +36,10 @@ Many of the constituent components of Puppet Enterprise have been upgraded. Name
 
 #### Removal of Cloning
 
-The Live Management cloning tool is deprecated and has been removed in PE 3.0. We are continuing to improve resource inspection and interactive MCollective commands in the console. In the meantime, you can use your manifests and MCollective's `puppetral` plug-in provider to achieve similar functionality to the cloning tool. 
+The Live Management cloning tool is deprecated and has been removed in PE 3.0. We are continuing to improve resource inspection and interactive orchestration commands in the console. In general, we recommend managing resources with Puppet manifests instead of one-off commands.
 
 ##### Alternate Workflow in Brief
-Use `puppet resource` to learn the details of resources on individual host. Then, use the MCollective `puppetral` plug-in provider to query for resources across multiple nodes. Use that info to write or append to a manifest. 
+Use `puppet resource` or [the puppetral plugin's `find` action](./orchestration_actions.html#find) to learn the details of resources on individual host. Then, use that info to write or append to a manifest.
 
 
 #### Removal of Compliance
@@ -132,7 +132,7 @@ On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an ent
 To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. But if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
 
 ### Console_auth Fails After PostgreSQL Restart
-RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`. 
+RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`.
 
 ### Bad Data in Facter's `architecture` Fact
 

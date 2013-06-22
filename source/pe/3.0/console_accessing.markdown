@@ -12,7 +12,7 @@ The console is Puppet Enterprise's web GUI. Use it to:
 * Assign Puppet classes to nodes
 * View inventory data
 * Track compliance audits
-* Invoke MCollective agents on your nodes
+* Invoke orchestration actions on your nodes
 * Manage console users and their access privileges
 
 Browser Requirements
