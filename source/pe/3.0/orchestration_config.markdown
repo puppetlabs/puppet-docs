@@ -37,6 +37,25 @@ need to also describe:
 
 - scaling activemq servers? classes to apply, vars to set, etc.
 
+
+In order to support PE agent nodes that are not necessarily
+MCollective nodes (network devices for example), we've added two new console
+groups that are managed by the `/etc/cron.d/default-add-all-nodes` rake tasks.
+
+The change in behavior is as follows:
+
+ 1. The cron job no longer adds the `pe_mcollective` class to the default group.
+ 2. The cron job creates the `mcollective` and `no mcollective` groups if they
+    don't exist.
+ 3. The cron job adds the `pe_mcollective` class to the `mcollective` group.
+ 4. All nodes are added to the `mcollective` group unless they're in the
+    `no mcollective` group.
+
+In order to prevent a PE node from receiving the mcollective configuration the
+user should add the node to the `no mcollective` group. The node will then stop
+receiving the `pe_mcollective` classification. This applies to device nodes and
+"normal" nodes.
+
 *Stuff from old configuring pages:*
 
 Tuning the ActiveMQ Heap Size
@@ -56,7 +75,6 @@ By default, ActiveMQ is set up to use a dedicated thread for every destination. 
 
 
 
-
-* * * 
+* * *
 
 - [Next: ](./foo.html)
