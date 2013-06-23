@@ -118,7 +118,7 @@ Once the module is created, **put the plugin files into its `files/` directory.*
 
 ### Step 2: Create Relationships and Set Variables
 
-For any class that will be installing plugins **on agent nodes,** you should put the following five lines near the top of the class definition:
+For any class that will be installing plugins **on agent nodes,** you should put the following four lines near the top of the class definition:
 
 {% highlight ruby %}
     Class['pe_mcollective::server::plugins'] -> Class[$title] ~> Service['pe-mcollective']
