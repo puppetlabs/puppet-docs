@@ -4,22 +4,22 @@ title: "PE 3.0 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 
-Groups, classes, and parameters are used to control which Puppet configurations your nodes receive. 
+Groups, classes, and variables are used to control which Puppet configurations your nodes receive.
 
 **NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
 
-Parameters
+Variables
 -----
 
-Parameters are simple: they're top-scope [variables](/learning/variables.html) that your Puppet manifests can use. Use them to configure the behavior of classes.
+Variables that you set in the console will become top-scope [variables](/learning/variables.html) in your Puppet manifests. Use them to configure the behavior of classes.
 
-Add parameters by clicking the edit button in a node view (or group view) and typing a key and value under the "parameters" heading. Use the "add parameter" button below to make additional key/value fields. Be sure to save your changes when done.
+Add variables by clicking the edit button in a node view (or group view) and typing a key and value under the "variables" heading. Use the "add variable" button below to make additional key/value fields. Be sure to save your changes when done.
 
 ![The edit button][classes_editbutton]
 
-![Adding a parameter][classes_add_parameter]
+![Adding a variable][classes_add_variable]
 
-Parameters can only be strings, not arrays or hashes. 
+Variables can only be strings, not arrays or hashes.
 
 Classes
 -----
@@ -53,7 +53,7 @@ Assign classes by clicking the edit button in a node view (or group view). Start
 
 Defining wrapper classes in a "site" module can help you use the console more effectively, and may be mandatory if you use [parameterized classes][paramclass] heavily.
 
-Most Puppet modules are written so each class manages a logical chunk of configuration. This means any node's configuration could be composed of dozens of Puppet classes. Although you can add these dozens of classes to the console, it's often better to create a module called `site` and populate it with super-classes, which declare all of the smaller classes a given _type_ of machine will need. 
+Most Puppet modules are written so each class manages a logical chunk of configuration. This means any node's configuration could be composed of dozens of Puppet classes. Although you can add these dozens of classes to the console, it's often better to create a module called `site` and populate it with super-classes, which declare all of the smaller classes a given _type_ of machine will need.
 
 There are many ways to compose these classes; which one you choose depends on how your own collection of modules works. Some possibilities:
 
@@ -67,13 +67,13 @@ Wrapper classes are also necessary for working with [parameterized classes][para
 Grouping Nodes
 -----
 
-Groups let you assign a class or parameter to many nodes at once. This saves you time and makes the structure of your site more knowable.
+Groups let you assign a class or variable to many nodes at once. This saves you time and makes the structure of your site more knowable.
 
-Nodes can belong to many groups, and inherit classes and parameters from all of them. Groups can also contain other groups, which will inherit information the same way nodes do.
+Nodes can belong to many groups, and inherit classes and variables from all of them. Groups can also contain other groups, which will inherit information the same way nodes do.
 
 ### Adding a New Group
 
-Use the "add group" button in the console's sidebar, then enter the group's name and any classes or parameters you want to assign. 
+Use the "add group" button in the console's sidebar, then enter the group's name and any classes or variables you want to assign.
 
 ![The add group button][classes_group_button]
 
@@ -81,19 +81,19 @@ Use the "add group" button in the console's sidebar, then enter the group's name
 
 ### Adding Nodes to a Group
 
-You can change the membership of a group from both node views and group views. Click the edit button and use the "groups" or "nodes" fields, as needed. These fields will offer auto-completions the same way the classes field does. 
+You can change the membership of a group from both node views and group views. Click the edit button and use the "groups" or "nodes" fields, as needed. These fields will offer auto-completions the same way the classes field does.
 
 ![Adding groups to a node][classes_groups_to_node]
 
 ![Adding nodes to a group][classes_nodes_to_group]
 
-### Assigning Classes and Parameters to a Group
+### Assigning Classes and Variables to a Group
 
-This works identically to assigning classes and parameters to a single node. Use the edit button and the classes or key/value fields.
+This works identically to assigning classes and variables to a single node. Use the edit button and the classes or key/value fields.
 
 ### The Default Group
 
-The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node. 
+The console automatically adds every node to a group called `default`. Use this group for any classes you need assigned to every single node.
 
 Nodes are added to the default group by a periodic background task, so it may take several minutes after a node first checks in before it joins the group.
 
@@ -157,7 +157,7 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 
 [classes_add_group]: ./images/console/classes_add_group.png
-[classes_add_parameter]: ./images/console/classes_add_parameter.png
+[classes_add_variable]: ./images/console/classes_add_variable.png
 [classes_addclass]: ./images/console/classes_addclass.png
 [classes_editbutton]: ./images/console/classes_editbutton.png
 [classes_group_button]: ./images/console/classes_group_button.png
@@ -167,6 +167,6 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 [classes_typingclass]: ./images/console/classes_typingclass.png
 
 
-* * * 
+* * *
 
 - [Next: Live Management](./console_live.html)
