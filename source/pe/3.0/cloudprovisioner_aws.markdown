@@ -4,7 +4,7 @@ title: "PE 3.0 » Cloud Provisioning » AWS Provisioning"
 subtitle: "Provisioning With Amazon Web Services"
 ---
 
-Puppet Enterprise provides support for working with EC2 virtual machine instances using Amazon Web Services. Using actions of the `puppet node_aws` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
+Puppet Enterprise provides support for working with EC2 virtual machine instances using Amazon Web Services. Using the `puppet node_aws` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
 
 The main actions used for AWS cloud provisioning include:
 
@@ -15,7 +15,7 @@ The main actions used for AWS cloud provisioning include:
 If you are new to Amazon Web Services, we recommend reading their [Getting Started
 documentation](http://docs.amazonwebservices.com/AWSEC2/latest/GettingStartedGuide/).
 
-Below we take a quick look at these actions and their associated options. For comprehensive information, see [Getting More Help](#getting-more-help) below.
+Below, we take a quick look at these actions and their associated options. For comprehensive information, see [Getting More Help](#getting-more-help) below.
 
 Viewing Existing EC2 Instances
 -----
@@ -45,7 +45,7 @@ This shows three running EC2 instances. For each instance, the following charact
 - The date the instance was created
 - The DNS host name of the instance
 - The ID of the instance
-- The state of the instance, for example, running or terminated
+- The state of the instance, for example: running or terminated
 
 **If you have no instances running, nothing will be returned.**
 
@@ -92,9 +92,9 @@ After the instance has been created, the public DNS name of the instance will be
 
 ### Using `bootstrap`
 
-The `bootstrap` action is a wrapper that combines several actions, allowing you to create, classify, install Puppet on, and sign the certificate of EC2 machine instances. Classification is done via the Console.
+The `bootstrap` action is a wrapper that combines several actions, allowing you to create, classify, install Puppet on, and sign the certificate of EC2 machine instances. Classification is done via the console.
 
-In addition to the three options required by `create` (see above), `Bootstrap` also requires the following:
+In addition to the three options required by `create` (see above), `bootstrap` also requires the following:
 
 - The name of the user Puppet should be using when logging in to the new node.  (`--login` or `--username`)
 -  The path to a local private key that allows SSH access to the node (`--keyfile`). Typically, this is the path to the private key that gets downloaded from the Amazon EC2 site.
@@ -125,7 +125,7 @@ Connecting to an EC2 instance
 -----
 
 You connect to EC2 instances via SSH. To do
-this you will need the private key  downloaded earlier from the Amazon Web Services
+this you will need the private key downloaded earlier from the Amazon Web Services
 console. Add this key to your local SSH configuration, usually in the `.ssh`
 directory.
 
@@ -143,7 +143,7 @@ You can now use this key to connect to our new instance.
 Terminating an EC2 instance
 -----
 
-Once you've finished with an EC2 instance you can easily terminate it.
+Once you've finished with an EC2 instance, you can easily terminate it.
 Terminating an instance destroys the instance entirely and is a destructive, permanent
 action that should only be performed when you are confident the instance, and its data, are no longer needed.
  
@@ -166,7 +166,7 @@ allowscriptaccess="always" allowfullscreen="true"></embed></object>
 Getting more help
 -----
 
-The `puppet node_aws` command has extensive in-line help documentation and a man page.
+The `puppet node_aws` command has extensive in-line help documentation, as well as a man page.
 
 To see the available actions and command line options, run:
 
