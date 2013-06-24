@@ -7,41 +7,116 @@ subtitle: "Upgrading Puppet Enterprise"
 Summary
 -----
 
-Automated upgrading from an existing Puppet Enterprise 2.x deployment to 3.0 is currently only supported for puppet agent nodes. Master and console nodes must be migrated by hand. A complete upgrade solution will be in place no later than August 15, 2013. If you wish to upgrade now, the instructions below should help.
+Upgrading from an existing Puppet Enterprise 2.x deployment to PE 3.0 is currently only supported for puppet agent nodes. All other nodes must be migrated by installing the 3.0 master, console, database and cloud provisioner (if applicable) roles on a new node (or nodes, if you have separated roles) and then pointing upgraded agents at that node. A complete upgrade solution will be in place no later than August 15, 2013. If you wish to upgrade now, the instructions below should help.
 
 If you'd prefer to wait until the complete solution is available, we nonetheless recommend that you set up some isolated test environments which duplicate existing parts of your infrastructure. This will help to familiarize you with the new features and functions of PE 3.0, and to get an idea of how your particular environment will need to be adapted.
 
-<!-- TODO_upgrade
-Summary
------
-
-[upgrade_module]: https://forge.puppetlabs.com/adrien/pe_upgrade
-
-You can upgrade PE manually or with an unofficial Puppet module.
-
-### Upgrading Manually
-
-To upgrade, use the same installer tarball as in a basic installation, but run the `puppet-enterprise-upgrader` script instead of the `-installer` script. The rest of this page goes into more detail about manual upgrades.
 
 > ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows nodes, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html).
 
-### The `pe_upgrade` Module
-
-To automate the upgrades of your agent nodes, you can use [the `adrien/pe_upgrade` module][upgrade_module]. Instructions are available on the module's [Forge page][upgrade_module].
-
-**This module is unofficial,** but Puppet Labs will support it on a best-effort basis. Feel free to call us if you need help with it.
-
-> **Important note:** Only use version 0.4.0 or later of the `pe_upgrade` module. If you're getting mysterious "Not a Puppet Enterprise node" errors on your Puppet runs, you may need to update this module to 0.4.0 or later.
 
 ### Important Notes and Warnings
 
-Upgrade the master first, then the console, then other agent nodes.
+- Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is installed and will then run in "install" or "upgrade" mode as appropriate.
 
-Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version.
+- Upgrading is currently only supported for agents. If you attempt to upgrade an existing master, console, database support, or cloud provisioner node, the installer will quit with an error.
 
-{% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
+- On AIX 5.3, puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
 
-**Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
+- On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running
+         rpm -e --nodeps readline
+        rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
+        
+If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade.
+
+Downloading PE
+-----
+
+If you haven't done so already, you will need a Puppet Enterprise tarball appropriate for your system(s). See the [Installing PE][downloading] of this guide for information on downloading Puppet Enterprise tarballs.
+
+[downloading]: ./install_basic.html#downloading-pe
+
+
+Migrating a Deployment
+-----
+
+Follow these steps to migrate your 2.8.x deployment to 3.0. For the purpose of this description, we will assume you are using a "monolithic" architecture wherein the console, database support, and master roles are all running on the same node. If your deployment uses separate roles, the steps are largely similar, except that you should remember to install the roles in this order: 
+    1. Master
+    2. Database support
+    3. Console
+
+Further, we assume that all of the components (agents, master, console, etc.) in your 2.8.x deployment are correctly configured and communicating with each other, and that live management is up and running with all nodes connected.
+
+### Create a New PE 3.0 Master
+Start by installing a new master/console/database on a fresh node (do *not* use an existing 2.8.x node) as described in the [basic install instructions](./install_basic.html).
+
+### Move Certificates from the Old Master to the New
+
+Next, you will move and/or create new credentials as follows (substituting the correct FQDN for your 2.8 master):
+
+#### Copy CA and Agents' Certificates
+
+On the new, 3.0 master run:
+    cp -a /etc/puppetlabs/puppet/ssl /etc/puppetlabs/puppet/ssl.orig
+    rm -fr /etc/puppetlabs/puppet/ssl/*
+    scp -r root@<2.8.x.master>:/etc/puppetlabs/puppet/ssl/* /etc/puppetlabs/puppet/ssl/
+    
+#### Generate a CA with New Alt Names
+
+On the new, 3.0 master, run:
+    puppet cert clean internal-broker
+    puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain 3-0master.domain
+    puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain,stomp pe-internal-broker
+    
+#### Copy Dashboard Certificates
+
+On the new, 3.0 master, run:
+    scp root@2.8.x.master:/opt/puppet/share/puppet-dashboard/certs/* /opt/puppet/share/puppet-dashboard/certs/
+    
+#### Create New PuppetDB Certificates
+
+On the new, 3.0 master, run:
+    rm -fr /etc/puppetlabs/puppetdb/ssl/*
+    /opt/puppet/sbin/puppetdb-ssl-setup -f
+    
+#### Restart Services
+
+On the new, 3.0 master, restart the following services: `pe-puppet`, `pe-puppethttpd`, and `pe-puppetdb`.
+
+### Point 2.8.x Agents at the New 3.0 Master
+
+#### Update `puppet.conf`
+
+On each agent, update the `/etc/puppetlabs/puppet/puppet.conf` file to point to the new, 3.0 master. Specifically, you will make two changes, as follows: 
+
+    [main]
+        archive_file_server=<fqdn.of.3.0.master>
+    [agent]
+        server=<fqdn.of.3.0.master>
+        
+#### Remove Prior Installer Facts
+
+Remove the previously installed Installer's facts file:
+    rm -f /etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt
+    
+#### Update Agent Catalogs
+
+Trigger puppet runs on each agent with `puppet agent -t` until a message is displayed which warns that the 2.8 agent cannot communicate via live management with a 3.0 master: 
+
+    notice: In order for the Puppet Enterprise 3 master to communicate with an agent using MCollective, the agent must also be version 3.
+    The mynode node is running Puppet Enterprise version 2.8.1 so it cannot communicate with the PE 3 master either via the Console's Live     Management view or via the MCO command line tool
+    To fix this, upgrade the agent to Puppet Enterprise 3.  
+    ...
+    
+Next, verify in the console that all the agents have reported.
+
+###Upgrade Agents to 3.0
+
+Now that the agents are successfully pointed at the 3.0 master, they can be upgraded to 3.0 as well. This is done by running  `puppet-enterprise-installer` on each agent after the 3.0 tarball has been copied onto them and unpacked. The installer will detect that this is an upgrade, and proceed  to ask the usual install questions regarding vendor packages, symlinks, etc.
+
+The installer should do a puppet run at the end of installation, but if the new agents are not yet available in live management, you can get them connected by waiting a minute or two and then running `puppet agent -t` one more time.
+    
+At this point you should have a fully functioning PE 3.0 deployment with a new master, console, and db support and upgraded agents.
 
 
 Checking For Updates
@@ -54,52 +129,17 @@ Checking For Updates
 
 **Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** As part of the check, it passes some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable checking can be found in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers).
 
-Downloading PE
+
+Starting the Upgrade Installer
 -----
 
-See the [Installing PE][downloading] of this guide for information on downloading Puppet Enterprise tarballs.
+The upgrade installer must be run with root privileges:
 
-[downloading]: ./install_basic.html#downloading-pe
+    # ./puppet-enterprise-install
 
-Starting the Upgrader
------
-
-The upgrader must be run with root privileges:
-
-    # ./puppet-enterprise-upgrader
-
-This will start the upgrader in interactive mode. If the puppet master role and the console role are installed on different servers, **you must upgrade the puppet master first.**
+This will start the installer in interactive mode. If the puppet master role and the console role are installed on different servers, **you must upgrade the puppet master first.**
 
 {{ slowbigdatabase }}
-
-### Upgrader Options
-
-Like the installer, the upgrade will accept some command-line options:
-
-`-h`
-: Display a brief help message.
-
-`-s <ANSWER FILE>`
-: Save answers to file and quit without installing.
-
-`-a <ANSWER FILE>`
-: Read answers from file and fail if an answer is missing. See the [upgrader answers section][upgrader_answers] of the answer file reference for a list of available answers.
-
-`-A <ANSWER FILE>`
-: Read answers from file and prompt for input if an answer is missing. See the [upgrader answers section][upgrader_answers] of the answer file reference for a list of available answers.
-
-`-D`
-: Display debugging information.
-
-`-l <LOG FILE>`
-: Log commands and results to file.
-
-`-n`
-: Run in 'noop' mode; show commands that would have been run during installation without running them.
-
-Non-interactive upgrades work identically to non-interactive installs, albeit with different answers available.
-
-[upgrader_answers]: ./install_answer_file_reference.html#upgrader-answers
 
 
 Configuring the Upgrade
@@ -117,217 +157,6 @@ If PE needs any packages from your OS's repositories, it will ask permission to 
 
 As with the installer, the upgrader in PE and later will ask you if you want to verify the integrity of the chosen packages by using Puppet Labs' public GPG key to verify the package signatures. If the public key is already present, the verification process will take place by default and the question will not be presented. However, you can over-ride this behavior and prevent package verification by setting `verify_packages=n` in an answer file.
 
-### Puppet Master Options
-
-#### Removing `mco`'s home directory
-
-When upgrading from PE 1.2, the `mco` user gets deleted during the upgrade and is replaced with the `peadmin` user.
-
-If the `mco` user had any preference files or documents you need, you should tell the upgrader to preserve the `mco` user's home directory; otherwise, it will be deleted.
-
-#### Installing Wrapper Modules
-
-When upgrading from PE 1.2, the `mcollectivepe`, `accounts`, and `baselines` modules will be renamed to `pe_mcollective, pe_accounts,` and `pe_compliance`, respectively. If you have used any of these modules by their previous names, you should install the wrapper modules so your site will continue to work while you switch over.
-
-### Console Options
-
-#### Admin User Email and Password
-
-The console now uses role-based user authentication. You will be asked for an email address and password for the initial admin user; additional users [can be configured after the upgrade is completed](./console_auth.html).
-
-Upgrader Warnings
------
-
-On console servers, the upgrader will check your MySQL server's `innodb_buffer_pool_size` setting. If it is too small, the upgrader will advise you to increase it.
-
-If you receive a warning about the `innodb_buffer_pool_size` setting, you should:
-
-* Cancel the upgrade and exit the upgrader.
-* [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the buffer size.
-* Re-run the upgrader and allow it to finish.
-
-Final Steps: From PE 2.0 or 1.2
------
-
-* If you received an upgrader warning on your console server as [described above](#upgrader-warnings), be sure to increase your MySQL server's `innodb_buffer_pool_size`.
-
-Otherwise, no extra steps are needed when upgrading from PE 2.0 or 1.2.
-
-**Note that some features may not be available until puppet agent has run once on every node.** In normal installations, this means all features will be available within 30 minutes after upgrading all nodes.
-
-Final Steps: From PE 1.1 or 1.0
------
-
-**Important note: Upgrades from some configurations of PE 1.1 and 1.0 aren't fully supported.** To upgrade from PE 1.1 or 1.0, **you must have originally installed the puppet master and Puppet Dashboard roles on the same node.** Contact Puppet Labs support for help with other configurations on a case-by-case basis, and see [issue #10872](http://projects.puppetlabs.com/issues/10872) for more information.
-
-After running the upgrader on the puppet master/Dashboard (now console) node, you must:
-
-* Stop the `pe-httpd` service
-* Create a new database for the inventory service and grant all permissions on it to the console's PostgreSQL user.
-* Manually edit the puppet master's `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files
-* Generate and sign certificates for the console, to enable inventory and filebucket viewing.
-* Edit `passenger-extra.conf`
-* Restart the `pe-httpd` service.
-
-You can upgrade agent nodes after upgrading the puppet master and console. After upgrading an agent node, you must:
-
-* Manually edit `puppet.conf`.
-
-### Stop `pe-httpd`
-
-For the duration of these manual steps, Puppet Enterprise's web server should be stopped.
-
-    $ sudo /etc/init.d/pe-httpd stop
-
-### Create a New Inventory Database
-
-To support the inventory service, you must manually create a new database for puppet master to store node facts in. To do this, use the `mysql` client on the node running the database server. (This will almost always be the same server running the puppet master and console.)
-
-    # mysql -uroot -p
-    Enter password:
-    mysql> CREATE DATABASE console_inventory_service;
-    mysql> GRANT ALL PRIVILEGES ON console_inventory_service.* TO '<USER>'@'localhost';
-
-Replace `<USER>` with the PostgreSQL user name you gave Dashboard during your original installation.
-
-### Edit Puppet Master's `/etc/puppetlabs/puppet/puppet.conf`
-
-* To support the inventory service, you must configure Puppet to save facts to a PostgreSQL database.
-
-        [master]
-            # ...
-            facts_terminus = inventory_active_record
-            dbadapter = mysql
-            dbname = console_inventory_service
-            dbuser = <CONSOLE/DASHBOARD'S MYSQL USER>
-            dbpassword = <PASSWORD FOR CONSOLE'S MYSQL USER>
-            dbserver = localhost
-
-    If you chose a different PostgreSQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost".
-* If you configured the puppet master to not send reports to the Dashboard, you must configure it to report to the console now:
-
-        [master]
-            # ...
-            reports = https, store
-            reporturl = https://<CONSOLE HOSTNAME>:<PORT>/reports/upload
-* Puppet agent on this node also has a new requirement:
-
-        [agent]
-
-            # if you didn't originally enable pluginsync, enable it now:
-            pluginsync = true
-
-### Edit Puppet Master's `/etc/puppetlabs/puppet/auth.conf`
-
-To support the inventory service, you must add the following two stanzas to your puppet master's [`auth.conf`](/guides/rest_auth_conf.html) file:
-
-    # Allow the console to retrieve inventory facts:
-
-    path /facts
-    auth yes
-    method find, search
-    allow pe-internal-dashboard
-
-    # Allow puppet master to save facts to the inventory:
-
-    path /facts
-    auth yes
-    method save
-    allow <PUPPET MASTER'S CERTNAME>
-
-These stanzas **must** be inserted **before** the final stanza, which looks like this:
-
-    path /
-    auth any
-
-If you paste the new stanzas after this final stanza, they will not take effect.
-
-### Edit `/etc/puppetlabs/puppet/manifests/site.pp`
-
-You must add the following lines to site.pp in order to view file contents in the console:
-
-    # specify remote filebucket
-    filebucket { 'main':
-      server => '<puppet master's hostname>',
-      path => false,
-    }
-
-    File { backup => 'main' }
-
-### Edit `/etc/puppetlabs/puppet-dashboard/settings.yml`
-
-Change the following three settings to point to one of the puppet master's valid DNS names:
-
-    ca_server: '<PUPPET MASTER HOSTNAME>'
-    inventory_server: '<PUPPET MASTER HOSTNAME>'
-    file_bucket_server: '<PUPPET MASTER HOSTNAME>'
-
-Change the following two settings to true:
-
-    enable_inventory_service: true
-    use_file_bucket_diffs: true
-
-Ensure that the following settings exist and are set to the suggested values; if any are missing, you will need to add them to `settings.yml` yourself:
-
-    private_key_path: 'certs/pe-internal-dashboard.private_key.pem'
-    public_key_path: 'certs/pe-internal-dashboard.public_key.pem'
-    ca_crl_path: 'certs/pe-internal-dashboard.ca_crl.pem'
-    ca_certificate_path: 'certs/pe-internal-dashboard.ca_cert.pem'
-    certificate_path: 'certs/pe-internal-dashboard.cert.pem'
-    key_length: 1024
-    cn_name: 'pe-internal-dashboard'
-
-### Generate and Sign Console Certificates
-
-First, navigate to the console's installation directory:
-
-    $ cd /opt/puppet/share/puppet-dashboard
-
-Next, start a temporary WEBrick puppet master:
-
-    $ sudo /opt/puppet/bin/puppet master
-
-Next, create a keypair and request a certificate:
-
-    $ sudo /opt/puppet/bin/rake cert:create_key_pair
-    $ sudo /opt/puppet/bin/rake cert:request
-
-Next, sign the certificate request:
-
-    $ sudo /opt/puppet/bin/puppet cert sign dashboard
-
-Next, retrieve the signed certificate:
-
-    $ sudo /opt/puppet/bin/rake cert:retrieve
-
-Next, stop the temporary puppet master:
-
-    $ sudo kill $(cat $(puppet master --configprint pidfile) )
-
-Finally, chown the certificates directory to `puppet-dashboard`:
-
-    $ sudo chown -R puppet-dashboard:puppet-dashboard certs
-
-#### Troubleshooting
-
-If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the `settings.yml` file. Go back to the previous section and make sure all of the required settings exist.
-
-### Start `pe-httpd`
-
-You can now start PE's web server again.
-
-    $ sudo /etc/init.d/pe-httpd start
-
-### Edit `puppet.conf` on Each Agent Node
-
-On each agent node you upgrade, make the following edit to `/etc/puppetlabs/puppet/puppet.conf`:
-
-    [agent]
-
-        # if you didn't originally enable pluginsync, enable it now:
-        pluginsync = true
-
- -->
 * * *
 
 

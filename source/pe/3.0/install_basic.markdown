@@ -29,7 +29,6 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 | `-all.tar`                        | anywhere                                            |
 | `-debian-<version and arch>.tar.gz`  | on Debian                                           |
 | `-el-<version and arch>.tar.gz`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux  |
-<!-- | `-sles-<version and arch>.tar.gz`    | on SUSE Linux Enterprise Server                     | -->
 | `-solaris-<version and arch>.tar.gz` | on Solaris                                          |
 | `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
 | `-aix-<version and arch>.tar.gz`  | on AIX                                       |
@@ -306,11 +305,11 @@ After finishing, the installer will print a message telling you where it saved i
 
 Before nodes with the puppet agent role can fetch configurations or appear in the console, an administrator has to sign their certificate requests. This helps prevent unauthorized nodes from intercepting sensitive configuration data.
 
-TODO add a link to the cert mgr page, as well as a screenshot here.
+After the first puppet run (which the installer should trigger at the end of installation, or it can be triggered manually with `puppet agent -t`), the agent will automatically submit a certificate request to the puppet master. Before the agent can retrieve any configurations, a user will have to approve this certificate.
 
-During installation, PE will automatically submit a certificate request to the puppet master. Before the agent can retrieve any configurations, a user will have to sign a certificate for it.
+Node requests can be approved or rejected using the console's [certificate management capability](./console_cert_mgmt.html). Pending node requests are indicated in the main nav bar. Click on this indicator to go to a page where you can see current requests and approve or reject them as needed.
 
-Node requests can be approved or rejected using the console's certificate management capability. Pending node requests are indicated in the main nav bar. Click on the "node requests" indicator to go to a view where you can see current requests and approve or reject them as needed.
+![request management view](./images/console/request_mgmt_view.png)
 
 Alternatively, you can use the CLI. **Certificate signing with the CLI is done on the puppet master node.** To view the list of pending certificate requests, run:
 
