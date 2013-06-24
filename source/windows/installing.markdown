@@ -28,7 +28,9 @@ Puppet runs on the following versions of Windows:
 
 * Windows Server 2003 and 2003 R2
 * Windows Server 2008 and 2008 R2
-* Windows 7
+* Windows Server 2012
+* Windows Vista
+* Windows 7 and 8
 
 The Puppet installer bundles all of Puppet's prerequisites. There are no additional software requirements. 
 
