@@ -118,7 +118,7 @@ Once the module is created, **put the plugin files into its `files/` directory.*
 
 ### Step 2: Create Relationships and Set Variables
 
-For any class that will be installing plugins **on agent nodes,** you should put the following five lines near the top of the class definition:
+For any class that will be installing plugins **on agent nodes,** you should put the following four lines near the top of the class definition:
 
 {% highlight ruby %}
     Class['pe_mcollective::server::plugins'] -> Class[$title] ~> Service['pe-mcollective']
@@ -210,6 +210,33 @@ You can use a normal file resource to create these config files with the appropr
     }
 {% endhighlight %}
 
+#### Policy Files
+
+You can also distribute [policy files for the ActionPolicy authorization plugin][actionpolicy]. This can be a useful way to completely disable certain unused actions, limit actions so they can only be used on a subset of your agent nodes, or allow certain actions from the command line but not from the live management page.
+
+These files should be named for the agent plugin they apply to, and should go in `${mco_etc}/policies/<plugin name>.cfg`. Policy files should be distributed to every agent node that runs the plugin you are configuring.
+
+> **Note:** The `policies` directory doesn't exist by default; you will need to use a `file` resource with `ensure => directory` to initialize it.
+
+[The policy file format is documented here.][actionpolicy] When configuring caller IDs in policy files, note that PE uses the following two IDs by default:
+
+* `cert=peadmin-public` --- the command line orchestration client, as used by the `peadmin` user on the puppet master server.
+* `cert=puppet-dashboard-public` --- the live management page in the PE console.
+
+Example: This code would completely disable the package plugin's `update` option, to force users to do package upgrades through your centralized Puppet code:
+
+{% highlight ruby %}
+    file {"${mco_etc}/policies": ensure => directory,}
+
+    file {"${mco_etc}/policies/package.policy":
+      ensure => file,
+      content => "policy default allow
+    deny	*	update	*	*
+    ",
+    }
+{% endhighlight %}
+
+[actionpolicy]: http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/AuthorizationActionPolicy
 
 ### Step 5: Assign the Class to Nodes
 
