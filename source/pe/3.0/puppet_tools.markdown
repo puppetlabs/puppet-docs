@@ -15,7 +15,7 @@ Puppet agent and puppet master are the heart of Puppet's architecture.
 
 * The puppet agent service runs on every managed Puppet Enterprise node. It fetches and applies configurations from a puppet master server.
 
-    In Puppet Enterprise, the puppet agent runs without user interaction as the `pe-puppet` service; by default, it performs a run every 30 minutes. You can manually trigger an immediate run on any node from the [Control Puppet](./console_live_puppet.html) tab of the console's live management page. (If you are logged into an agent node as an administrator, you can also run `sudo puppet agent --test` from the command line.)
+    In Puppet Enterprise, the puppet agent runs without user interaction as the `pe-puppet` service; by default, it performs a run every 30 minutes. You can also [use the orchestration engine to manually trigger Puppet runs on any nodes](./orchestration_puppet.html). (If you are logged into an agent node as an administrator, you can also run `sudo puppet agent --test` from the command line.)
 
     The puppet agent reads its settings from the `[main]` and `[agent]` blocks of `/etc/puppetlabs/puppet/puppet.conf`.
 * The puppet master service compiles and serves configurations to agent nodes.

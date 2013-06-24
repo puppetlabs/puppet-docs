@@ -22,12 +22,13 @@ All functional components of PE, excluding configuration files. You are not like
 
 ###<i>Where</i>
 
-All PE software (excluding config files) is installed under `/opt/puppet`.
+On \*nix nodes, all PE software (excluding config files and generated data) is installed under `/opt/puppet`.
 
-* Executable binaries are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
-* Optionally, at install time, you can choose to symlink the most common binaries into `/usr/local/bin`.
-* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
-* MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet. TODO put windows info here too
+On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdirectory of [the standard 32-bit applications directory](./install_windows.html#program-directory)
+
+* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`. Optionally, at install time, you can choose to symlink the most common binaries into `/usr/local/bin`.
+* The Puppet modules included with PE are installed on the puppet master server in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
+* Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective`. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
 
 ##Configuration Files
 
@@ -37,12 +38,16 @@ Files used to configure Puppet and its subsidiary components. These are the file
 
 ###<i>Where</i>
 
-Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for various PE components.
+On \*nix nodes, Puppet Enterprise's configuration files all live under `/etc/puppetlabs`.
 
-* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
-* [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`. TODO update for windows, update terminology
-* The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
-* PuppetDB's config files are in `/etc/puppetlabs/puppetdb/conf.d`. It also adds `/etc/puppetlabs/puppetdb/log4j.properties`, which controls logging behavior, and `/etc/puppetlabs/puppetdb/certificate-whitelist`, which is a whitelist of the certnames that have permission to communicate with PuppetDB.
+On Windows nodes, Puppet Enterprise's configuration files all live under `<COMMON_APPDATA>\PuppetLabs`. The location of this folder [varies by Windows version](./install_windows.html#data-directory); in 2008 and 2012, its default location is `C:\ProgramData\PuppetLabs\`.
+
+PE's various components all have subdirectories inside this main data directory:
+
+* Puppet's `confdir` is in the `puppet` subdirectory. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
+* [The orchestration engine](orchestration_overview.html)'s config files are in the `mcollective` subdirectory on all agent nodes, as well as the `activemq` subdirectory and the `/var/lib/peadmin` directories on the puppet master. The default files in these directories are managed by Puppet Enterprise, but you can add [plugin config files](./orchestration_adding_actions.html#step-4-configure-the-plugin-optional) to the `mcollective/plugin.d` directory.
+* The console's config files are in the `puppet-dashboard`, `rubycas-server`, and `console-auth` subdirectories.
+* PuppetDB's config files are in the `puppetdb` subdirectory.
 
 ##Log Files
 
@@ -126,7 +131,7 @@ PE uses the following services:
 
 PE creates the following users:
 
-- **`peadmin`** --- An administrative account which can issue MCollective client commands. This is the only PE user account intended for use in a login shell. See [the section on orchestration](./orchestration_overview.html) for more about this user. This user exists on servers with the puppet master role, and replaces the `mco` user that was present in PE 1.2.
+- **`peadmin`** --- An administrative account which can invoke orchestration actions. This is the only PE user account intended for use in a login shell. See [the "Invoking Orchestration Actions" page of this manual](./orchestration_invoke_cli.html) for more about this user. This user exists on servers with the puppet master role.
 - **`pe-puppet`**  --- A system user which runs the puppet master processes spawned by Passenger.
 - **`pe-apache`** --- A system user which runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.

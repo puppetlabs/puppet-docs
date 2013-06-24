@@ -11,15 +11,13 @@ Puppet Enterprise (PE) 3.0 is a major release that includes many new functions a
 The most significant changes in PE 3.0 are the upgrade to Puppet 3.2, major improvements to PE's orchestration engine with the upgrade to MCollective 2.2.4, and the integration of PuppetDB 1.3. These changes result in considerable performance increases and add major new functionality.
 
 * Information on changes in Puppet 3 versus Puppet 2.x can be found in the [Puppet 3 Reference Guide](http://docs.puppetlabs.com/puppet/3/reference/whats_new.html). This [blog post](https://puppetlabs.com/blog/say-hello-to-puppet-3/) also provides a good overview of what’s new and different in Puppet 3. In particular, you’ll want to ensure your manifests do not use [dynamic scope lookup](http://docs.puppetlabs.com/guides/scope_and_puppet.html) (they shouldn’t since it has been deprecated for some time). You’ll also want to get familiar with how Puppet 3 changes the way Puppet deals with [classes and class parameters](http://docs.puppetlabs.com/puppet/3/reference/lang_classes.html) generally, and [automatic parameter lookup](http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup) in particular.
-
-* For information on what you can now do with orchestration, check out the [MCollective manual](http://docs.puppetlabs.com/mcollective/). Specifically:
-
+* For information on what you can now do with orchestration, check out the [orchestration section of this manual](./orchestration_overview.html). Specifically:
     * For an overview of what’s new in the orchestration engine, refer to this [blog post introducing MCollective version 2.0](http://puppetlabs.com/blog/announcing-the-marionette-collective-2-0/) or, for more detail, the [MCollective Release Notes](http://docs.puppetlabs.com/mcollective/releasenotes.html).
-   * For information about writing new agent plugins, see the [agent writing guide](http://docs.puppetlabs.com/mcollective/simplerpc/agents.html). Note that if you have written custom plugins to use with MCollective 1.2.x, you may need to revise them to work with 2.2.4.
-  * For info about the new command line capabilities, see the [command line usage docs](http://docs.puppetlabs.com/mcollective/reference/basic/basic_cli_usage.html) and [filter docs](http://docs.puppetlabs.com/mcollective/reference/ui/filters.html). In particular, check out the new --batch option and [data plugin filters](http://docs.puppetlabs.com/mcollective/reference/basic/basic_cli_usage.html#filtering-using-data-plugins).
-* For information on what you can now do with PuppetDB, check out the [PuppetDB manual](http://docs.puppetlabs.com/puppetdb/latest/). You can also learn about the [specific features in PuppetDB 1.3](https://puppetlabs.com/blog/puppetdb-1-3/). If you’re unfamiliar with PuppetDB, Puppet Labs developer Nick Lewis provides a [good introduction](http://puppetlabs.com/blog/introducing-puppetdb-put-your-data-to-work/).
+    * To install new orchestration actions, see [the Adding Actions page of this manual](./orchestration_adding_actions.html) For information about writing plugins, see the [MCollective agent writing guide](http://docs.puppetlabs.com/mcollective/simplerpc/agents.html). Note that if you have written custom plugins to use with MCollective 1.2.x, you may need to revise them to work with 2.2.4.
+    * To learn the improved command line capabilities, see [the Invoking Orchestration Actions on the Command Line page of this manual](./orchestration_invoke_cli.html). In particular, check out the new --batch option and [compound filters with data plugins](./orchestration_invoke_cli.html#compound-select-filters).
+* For information on what you can now do with PuppetDB, check out the [PuppetDB manual](http://docs.puppetlabs.com/puppetdb/1.3/). You can also learn about the [specific features in PuppetDB 1.3](https://puppetlabs.com/blog/puppetdb-1-3/). If you’re unfamiliar with PuppetDB, Puppet Labs developer Nick Lewis provides a [good introduction](http://puppetlabs.com/blog/introducing-puppetdb-put-your-data-to-work/).
 
-Note that orchestration tools and PuppetDB are automatically installed and configured by PE 3.0, so you can ignore the installation instructions in the above linked documentation.
+Note that orchestration tools and PuppetDB are automatically installed and configured by PE 3.0, so you can ignore any installation instructions in the above linked documentation.
 
 ###Component Upgrades & Additions
 
@@ -55,7 +53,7 @@ In 3.0, the PE console must be accessed via one of the following browsers:
 * Safari 5.1 and higher
 * Internet Explorer 9, 10 (IE 8 is no longer supported)
 
-    
-* * * 
+
+* * *
 
 - [Next: Getting Support](./overview_getting_support.html)

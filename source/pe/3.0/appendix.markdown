@@ -51,6 +51,9 @@ If you are using the compliance workflow tools today, you can achieve a similar 
 #### Puppet Agent Service Rename
 Previously, the puppet agent service was known by several names, depending on platform (e.g. `puppetagent` on Solaris, `pe-puppet-agent` on Debian/Ubuntu, etc.). As of PE 3, it is called `'pe-puppet` on all platforms.
 
+#### Change to Orchestration Engine's Authentication Backend
+
+In previous versions, the orchestration engine (MCollective) used either the `psk` or `aespe` security plugin. As of PE 3, it uses the more secure and reliable `ssl` security plugin. **If you have integrated external applications with the orchestration engine,** you will need to [re-configure their security credentials](./orchestration_config.html#adding-new-orchestration-users-and-integrating-applications).
 
 Known Issues
 -----
@@ -66,9 +69,9 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
 
 ### Debian/Ubuntu Local Hostname Issue
-On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname will cause it to resolve to the local, rather public, IP of 127.0.1.1. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
+On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname will cause it to resolve to the local-only IP address rather than its public IP. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
 
-To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. But if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
+To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. However, if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
 
 ### Console_auth Fails After PostgreSQL Restart
 RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`.
@@ -112,6 +115,6 @@ To improve the display of Puppet man pages, you can use your system `gem` comman
     $ sudo gem install ronn
 
 
-* * * 
+* * *
 
 - [Next: Compliance: Alternate Workflow](./compliance_alt.html.html)
