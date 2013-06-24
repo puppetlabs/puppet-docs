@@ -61,27 +61,15 @@ Facts include things like the operating system (`operatingsystem`), the amount o
 
 The facts you see in the inventory can be useful when [filtering nodes in the live management page](./console_navigating_live_mgmt.html#advanced-search).
 
-### Searching by Fact
-
-Use the "inventory search" page to find a list of nodes with a certain fact value.
-
-![The inventory search page][reports_inventorysearch]
-
-![Results of a search][reports_searchresults]
-
-You can add more facts to further filter the search results , and you can change the comparison criteria for each one.
-
 [reports_eventstab]: ./images/console/reports_eventstab.png
 [reports_graphs]: ./images/console/reports_graphs.png
 [reports_inventory_location]: ./images/console/reports_inventory_location.png
 [reports_inventory]: ./images/console/reports_inventory.png
-[reports_inventorysearch]: ./images/console/reports_inventorysearch.png
 [reports_logtab]: ./images/console/reports_logtab.png
 [reports_metricstab]: ./images/console/reports_metricstab.png
 [reports_point]: ./images/console/reports_point.png
 [reports_recent]: ./images/console/reports_recent.png
 [reports_runcount]: ./images/console/reports_runcount.png
-[reports_searchresults]: ./images/console/reports_searchresults.png
 
 
 * * *
