@@ -41,7 +41,7 @@ Since the console receives a report every time Puppet runs on a node, it keeps a
 
 This can tell you at a glance whether your nodes have suddenly started failing their Puppet runs, whether any nodes have stopped responding, and whether Puppet is making many changes to your systems. Click these state totals to see complete lists of nodes in each state. 
 
-Individual node pages contain graphs of recent runs, lists of reports, inventory data, compliance data, and any classes the node has or groups it's a part of.
+Individual node pages contain graphs of recent runs, lists of reports, inventory data, and any classes the node has or groups it's a part of.
 
 ### Groups
 
@@ -61,4 +61,4 @@ Classes aren't automatically detected or validated; you have to enter a class's 
 
 * * * 
 
-- [Next: Responding to Node Requests with Certificate Management](./console_cert_mgmt.html)
+- [Next: Navigating the Live Management Page](./console_navigating_live_mgmt.html)

@@ -105,7 +105,7 @@ Puppet Enterprise installs several suites of command line tools to help you work
 - **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.`
     See the [Tools section](http://docs.puppetlabs.com/guides/tools.html) of the Puppet Manual for more information.
 - **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning section](./cloudprovisioner_overview.html)  for more information.
-- **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the Live Management page of the PE console. See the [Orchestration section](./orchestration_overview.html) for more information.
+- **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the "Live Management" page of the PE console. See the [Orchestration section](./orchestration_overview.html) for more information.
 - **Module Tools:** The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).
 - **Console:** The console is Puppet Enterprise's GUI web interface. The console provides tools to view and edit resources on your nodes, view reports and activity graphs, trigger Puppet runs, etc. See the [Console section](./console_accessing.html) of the Puppet Manual for more information.
 
@@ -142,7 +142,7 @@ PE generates a number of certificates at install. These are:
 - **` q_puppetmaster_install `** --- This certificate is either generated at install if the puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
 - **`pe-internal-mcollective-servers`** --- A shared certificate generated on the puppet master and shared to all agent nodes.
 - **`pe-internal-peadmin-mcollective-client`** --- The orchestration certificate for the peadmin account on the puppet master.
-- **`pe-internal-puppet-console-mcollective-client`** --- The orchestration certificate for the PE Console/Live Management
+- **`pe-internal-puppet-console-mcollective-client`** --- The orchestration certificate for the PE console/live management
 - **`pe-internal-broker`** ---  The certificate generated for the activemq instance running over SSL on the puppet master. Added to /etc/puppetlabs/activemq/broker.ks.
 
 A fresh PE install should thus give the following list of certificates:

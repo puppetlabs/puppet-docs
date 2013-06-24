@@ -4,23 +4,8 @@ title: "PE 3.0 »  » "
 subtitle: " "
 ---
 
-Installing the Ruby Development Libraries
------
-
-Puppet Enterprise ships with its own copy of Ruby. If you need to install the Ruby development libraries, the PE installer tarball includes packages for them, which can be installed manually.
-
-The installation method will depend on your operating system's package management tools, but in each case, you must first navigate to the directory containing the packages for your operating system and architecture, which will be inside the `packages` subdirectory of the unarchived Puppet Enterprise tarball.
-
-For systems using apt and dpkg (Ubuntu and Debian), run the following commands: 
-
-    $ sudo dpkg -i *ruby*dev* 
-
-    $ sudo apt-get install --fix-broken
-
-For systems using rpm and yum (Red Hat Enterprise Linux, CentOS, and Oracle Linux), run the following commands: 
-
-    $ sudo yum localinstall --nogpgcheck *ruby*dev* 
-
+link the auth.conf page, the configuring guide, the configuration reference for 3.2.latest...
+and mention that the locations for all the config files are in /etc/puppetlabs/puppet/ on *nix and… wherever they are on windows.
 
 * * * 
 

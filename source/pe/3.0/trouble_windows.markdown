@@ -237,3 +237,7 @@ Windows services support a short name and a display name. Make sure to use the s
 * "Error: Could not parse for environment production: Syntax error at '='; expected '}'"
 
     This error will usually occur if `puppet apply -e` is used from the command line and the supplied command is surrounded with single quotes ('), which will cause `cmd.exe` to interpret any `=>` in the command as a redirect. To solve this surround the command with double quotes (") instead. See <https://projects.puppetlabs.com/issues/20528>.
+
+* * * 
+
+- [Next: Appendix: Release Notes](./appendix.html#release-notes.html)

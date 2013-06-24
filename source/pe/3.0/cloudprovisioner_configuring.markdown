@@ -171,4 +171,4 @@ allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 * * *
 
-- [Next: Classifying Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_installing.html)
+- [Next: Classifying Cloud Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_installing.html)

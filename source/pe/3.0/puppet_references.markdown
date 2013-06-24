@@ -35,4 +35,4 @@ Configuration and Settings
 
 * * *
 
-- [Next: Advanced Configuration](./config_advanced.html)
+- [Next: Configuring Puppet Core](./puppet_config.html)

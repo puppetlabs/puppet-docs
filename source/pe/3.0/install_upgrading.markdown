@@ -4,7 +4,12 @@ title: "PE 3.0 » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
 ---
 
-Upgrading from an existing Puppet Enterprise 2.x deployment to 3.0 is not yet supported. For existing PE customers, we recommend that you wait a short time for the next PE 3 release which will include upgrade tools and instructions. We also recommend that you set up some isolated test environments which duplicate existing parts of your infrastructure so that you can familiarize yourself with the new features and functions of PE 3.0, and to get an idea of how your particular environment will need to be adapted.
+Summary
+-----
+
+Automated upgrading from an existing Puppet Enterprise 2.x deployment to 3.0 is currently only supported for puppet agent nodes. Master and console nodes must be migrated by hand. A complete upgrade solution will be in place no later than August 15, 2013. If you wish to upgrade now, the instructions below should help.
+
+If you'd prefer to wait until the complete solution is available, we nonetheless recommend that you set up some isolated test environments which duplicate existing parts of your infrastructure. This will help to familiarize you with the new features and functions of PE 3.0, and to get an idea of how your particular environment will need to be adapted.
 
 <!-- TODO_upgrade
 Summary
@@ -158,7 +163,7 @@ Final Steps: From PE 1.1 or 1.0
 After running the upgrader on the puppet master/Dashboard (now console) node, you must:
 
 * Stop the `pe-httpd` service
-* Create a new database for the inventory service and grant all permissions on it to the console's MySQL user.
+* Create a new database for the inventory service and grant all permissions on it to the console's PostgreSQL user.
 * Manually edit the puppet master's `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files
 * Generate and sign certificates for the console, to enable inventory and filebucket viewing.
 * Edit `passenger-extra.conf`
@@ -183,11 +188,11 @@ To support the inventory service, you must manually create a new database for pu
     mysql> CREATE DATABASE console_inventory_service;
     mysql> GRANT ALL PRIVILEGES ON console_inventory_service.* TO '<USER>'@'localhost';
 
-Replace `<USER>` with the MySQL user name you gave Dashboard during your original installation.
+Replace `<USER>` with the PostgreSQL user name you gave Dashboard during your original installation.
 
 ### Edit Puppet Master's `/etc/puppetlabs/puppet/puppet.conf`
 
-* To support the inventory service, you must configure Puppet to save facts to a MySQL database.
+* To support the inventory service, you must configure Puppet to save facts to a PostgreSQL database.
 
         [master]
             # ...
@@ -198,18 +203,17 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
             dbpassword = <PASSWORD FOR CONSOLE'S MYSQL USER>
             dbserver = localhost
 
-    If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost".
+    If you chose a different PostgreSQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost".
 * If you configured the puppet master to not send reports to the Dashboard, you must configure it to report to the console now:
 
         [master]
             # ...
             reports = https, store
             reporturl = https://<CONSOLE HOSTNAME>:<PORT>/reports/upload
-* Puppet agent on this node also has some new requirements:
+* Puppet agent on this node also has a new requirement:
 
         [agent]
-            # support filebucket viewing when using compliance features:
-            archive_files = true
+           
             # if you didn't originally enable pluginsync, enable it now:
             pluginsync = true
 
@@ -316,11 +320,10 @@ You can now start PE's web server again.
 
 ### Edit `puppet.conf` on Each Agent Node
 
-On each agent node you upgrade, make the following edits to `/etc/puppetlabs/puppet/puppet.conf`:
+On each agent node you upgrade, make the following edit to `/etc/puppetlabs/puppet/puppet.conf`:
 
     [agent]
-        # support filebucket viewing when using compliance features:
-        archive_files = true
+        
         # if you didn't originally enable pluginsync, enable it now:
         pluginsync = true
 

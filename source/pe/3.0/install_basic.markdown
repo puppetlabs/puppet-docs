@@ -320,7 +320,7 @@ To sign one of the pending requests, run:
 
     $ sudo puppet cert sign <name>
 
-After signing a new node's certificate, it may take up to 30 minutes before that node appears in the console and begins retrieving configurations. You can use Live Management or the CLI to trigger a puppet run manually on the node if you want to see it right away.
+After signing a new node's certificate, it may take up to 30 minutes before that node appears in the console and begins retrieving configurations. You can use live management or the CLI to trigger a puppet run manually on the node if you want to see it right away.
 
 If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command on the CLI.
 

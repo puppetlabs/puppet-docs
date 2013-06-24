@@ -174,4 +174,4 @@ Although all arguments are presented as text fields, some arguments have specifi
 
 * * *
 
-- [Next: Live Management: Managing Resources](./console_live_resources.html)
+- [Next: Managing Node Requests](./console_cert_mgmt.html)

@@ -18,10 +18,8 @@ Depending on the access privileges assigned to them, users will be able to see a
 
 _Read-Only Users_ can only view information on the console, but cannot perform any actions. In particular, read-only users are restricted from:
 
-* cloning resources in Live Management
-* accessing the Control Puppet tab in Live Management
-* accessing the Advanced Tasks tab in Live Management
-* accepting or rejecting changes to the baseline in Compliance
+* accessing the Control Puppet tab in live management
+* accessing the Advanced Tasks tab in live management
 * adding, editing, or removing nodes, groups, or classes
 
 _Read-Write Users_ have access to all parts of the console EXCEPT the user-management interface. Read-write users can interact with the console and use it to perform node management tasks.
@@ -232,7 +230,7 @@ The authenticators are listed in the file in the following manner (note how this
 authenticator:
   - class: CASServer::Authenticators::SQLEncrypted
     database:
-      adapter: mysql
+      adapter: postgresql
       database: console_auth
       username: console_auth
       password: easnthycea098iu7aeo6oeu # installer-generated password

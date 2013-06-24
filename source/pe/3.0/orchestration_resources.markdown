@@ -107,4 +107,4 @@ To see which nodes have each variant, click the "on N nodes" labels to expand th
 
 * * *
 
-- [Next: Live Management: Controlling Puppet](./console_live_puppet.html)
+- [Next: List of Built-In Orchestration Actions](./orchestration_actions.html)

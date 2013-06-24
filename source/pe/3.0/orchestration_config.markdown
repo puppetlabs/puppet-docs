@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.0 » Orchestration » Configuration"
-subtitle: "Configuring Orchestration "
+subtitle: "Configuring Orchestration"
 ---
 
 available console vars:
@@ -37,7 +37,7 @@ need to also describe:
 
 - scaling activemq servers? classes to apply, vars to set, etc.
 
-*Stuff from old configuring pages:*
+
 
 Tuning the ActiveMQ Heap Size
 -----
@@ -54,9 +54,6 @@ Setting ActiveMQ Thread Pooling
 By default, ActiveMQ is set up to use a dedicated thread for every destination. In environments with large numbers of destinations, this can cause memory resource issues. If the ActiveMQ log is full of "java.lang.OutOfMemoryError: unable to create new native thread" errors, you can configure ActiveMQ to use a thread pool by setting the system property: `-Dorg.apache.activemq.UseDedicatedTaskRunner=false`. This is specified in the ActiveMQ start script via ACTIVEMQ_OPTS. Using a thread pool will reduce the number of threads required by ActiveMQ and so should reduce its memory consumption.
 
 
-
-
-
 * * * 
 
-- [Next: ](./foo.html)
+- [Next: Cloud Provisioning: Overview](./cloudprovisioner_overview.html)
