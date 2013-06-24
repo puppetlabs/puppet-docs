@@ -4,9 +4,36 @@ title: "PE 3.0 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 
+This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
+
+> **Note:** To use the console to assign node configurations, you must be logged in as a read-write or admin level user. Read-only users can view node configuration data, but cannot modify it.
+
+
+Overview: Assigning Configurations With the PE Console
+-----
+
+[puppet]: ./puppet_overview.html
+[lang_classes]: /puppet/3/reference/lang_classes.html
+[learn]: /learning/
+
+As described in [the Puppet section of this manual][puppet], node configurations are compiled from a variety of sources, including the PE console.
+
+**Puppet classes** are the primary unit of node configuration in PE.  [Classes are named blocks of Puppet code][lang_classes] which can be either **declared** by other Puppet code or **directly assigned** to nodes.
+
+The console allows you to **assign** classes to nodes or groups of nodes.
+
+### Creating Puppet Classes
+
+Before you can assign classes in the console, the classes need to be available to the puppet master server. There are several ways to get classes:
+
+* Write y
+
+
+
+
 Groups, classes, class parameters, and variables are the console's  used to control which Puppet configurations your nodes receive.
 
-**NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
+
 
 Variables
 -----
@@ -26,9 +53,8 @@ Classes
 
 The classes the console knows about are a subset of the classes in your puppet master's collection of modules. You must add classes to the console manually if you want to assign them to any nodes or groups.
 
-See [the Puppet section of this user's guide][puppetnew] for an introduction to Puppet classes.
+See [the Puppet section of this user's guide][puppet] for an introduction to Puppet classes.
 
-[puppetnew]: ./puppet_overview.html
 
 ### Adding a New Class
 
