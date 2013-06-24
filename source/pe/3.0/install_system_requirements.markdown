@@ -9,7 +9,7 @@ Before installing Puppet Enterprise:
 * Ensure that your nodes are running a supported operating system.
 * Ensure that your puppet master and console servers are sufficiently powerful.
 * Ensure that your network, firewalls, and name resolution are configured correctly and all target servers are communicating.
-* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are seperating roles, install in this order:
+* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating roles, install in this order:
     1. Puppet Master
     2. Database Support
     3. Console
@@ -67,12 +67,12 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 
 ### Firewall Configuration
 
-Configure your firewalls to accomodate Puppet Enterprise's network traffic. The short version is that you should open up ports **8140, 61613, and 443.** The more detailed version is:
+Configure your firewalls to accommodate Puppet Enterprise's network traffic. In brief: you should open up ports **8140, 61613, and 443.** The more detailed version is:
 
 * All agent nodes must be able to send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for orchestration).
 * The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for orchestration).
 * Any hosts you will use to access the console must be able to reach the console server on port **443,** or whichever port you specify during installation. (Users who cannot run the console on port 443 will often run it on port 3000.)
-* If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible, but not supported in this version of Puppet Enterprise.)
+* If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible but not supported in this version of Puppet Enterprise.)
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The console server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 
 ### Dependencies and OS Specific Details
@@ -188,9 +188,9 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
  * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm
  * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm
 
-*Note:* if you are behind a firewall or running an http proxy, the above commands may not work. Use the link above instead to find the packages you need.
+*Note:* if you are behind a firewall or running an http proxy, the above commands may not work. Instead, use the link above to find the packages you need.
 
-*Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. Also, The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Lastly, avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
+*Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
 
 The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](reference_type.html#package) for technical details on these providers.
 
