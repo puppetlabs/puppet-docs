@@ -221,9 +221,9 @@ The sidebar is the SIDEBAR. It contains:
     - the CLASS SUMMARY
         Clicking a class takes you to that class's PAGE.
 
-From the nodes section, or any other list of nodes, you can get to a node's PAGE. Likewise for any class, group, or report; each individual object has its own PAGE.
+From the nodes section, or any other list of nodes, you can get to a node's DETAIL PAGE. Likewise for any class, group, or report; each individual object has its own DETAIL PAGE.
 
-A report page contains TABS that show different parts of the report.
+A report detail page contains TABS that show different parts of the report.
 
 The landing page of the reports section is the REPORTS LIST.
 You can refer to the inventory search section as a section, a page, or just the inventory search. Likewise the file search.
