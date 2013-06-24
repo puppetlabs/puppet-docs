@@ -20,18 +20,18 @@ Operating System
 
 Puppet Enterprise 3.0 supports the following systems:
 
-Operating system             | Version(s)               | Arch          | Roles
------------------------------|--------------------------|---------------|----------------------------
-Red Hat Enterprise Linux     | 5 & 6                    | x86 & x86\_64 | all roles
-CentOS                       | 5 & 6                    | x86 & x86\_64 | all roles
-Ubuntu LTS                   | 10.04 & 12.04            | i386 & amd64  | all roles
-Debian                       | Squeeze (6) & Wheezy (7) | i386 & amd64  | all roles
-Oracle Linux                 | 5 & 6                    | x86 & x86\_64 | all roles
-Scientific Linux             | 5 & 6                    | x86 & x86\_64 | all roles
-SUSE Linux Enterprise Server | 11 (SP1 and later)       | x86 & x86\_64 | not supported (coming soon)
-Solaris                      | 10                       | SPARC & i386  | agent
-Microsoft Windows            | 2003, 2008, 7, & 2012    | x86 & x86\_64 | agent
-AIX                          | 5.3, 6.1, & 7.1          | Power         | agent
+Operating system             | Version(s)                              | Arch          | Roles
+-----------------------------|-----------------------------------------|---------------|----------------------------
+Red Hat Enterprise Linux     | 5 & 6                                   | x86 & x86\_64 | all roles
+CentOS                       | 5 & 6                                   | x86 & x86\_64 | all roles
+Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all roles
+Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all roles
+Oracle Linux                 | 5 & 6                                   | x86 & x86\_64 | all roles
+Scientific Linux             | 5 & 6                                   | x86 & x86\_64 | all roles
+SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | not supported (coming soon)
+Solaris                      | 10                                      | SPARC & i386  | agent
+Microsoft Windows            | 2003, 2003R2, 2008, 2008R2 7, 8, & 2012 | x86 & x86\_64 | agent
+AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 
 
 Hardware
