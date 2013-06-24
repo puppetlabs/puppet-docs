@@ -4,7 +4,7 @@ title: "PE 3.0 » Cloud Provisioner » Installation and Configuration"
 subtitle: "Installing and Configuring Cloud Provisioning"
 ---
 
-There are many options and actions associated with the main cloud provisioning sub-commands, `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview but, for all the details, check the man pages (`puppet man node_aws`, etc.).
+There are many options and actions associated with the main cloud provisioning sub-commands: `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview, but check the man pages for all the details (`puppet man node_aws`, etc.).
 
 Prerequisites
 -------------
@@ -30,7 +30,7 @@ Cloud provisioning tools can be installed on any puppet master or agent node.
 
 The Puppet Enterprise installer will ask whether or not to install cloud provisioning during installation. Answer 'yes' to enable cloud provisioning actions on a given node.
 
-If you have already installed PE without installing the cloud provisioning tools, run the upgrader script `puppet-enterprise-upgrader` and answer "yes" when prompted to install the tools. Running the upgrader script will have no ill effects on your current installation, even if the upgrader is for the version currently installed. (No user-configured files will get overwritten, and of course the installer backs up all relevant files as well.)
+If you have already installed PE without installing the cloud provisioning tools, run the upgrader script `puppet-enterprise-upgrader` and answer "yes" when prompted to install the tools. Running the upgrader script will have no ill effects on your current installation, even if the upgrader is for the version currently installed. (No user-configured files will get overwritten, and the installer backs up all relevant files as well.)
 
 If you're using an answer file to install Puppet Enterprise, you can install cloud provisioning by setting the `q_puppet_cloud_install` option to `y`.
 
@@ -111,10 +111,10 @@ Put both keys in your `~/.fog` file as described above. You will also need to ge
 
 ### Additional AWS Configuration
 
-To provision with Puppet, your Amazon Web Services EC2 account will need to have:
+For Puppet to provision nodes in Amazon Web Services, you will need an EC2 account with the following::
 
 * At least one Amazon-managed SSH key pair.
-* A security group that allows outbound traffic on ports **8140** and **61613,** and inbound SSH traffic (port 22) from the machine being used for provisioning.
+* A security group that allows outbound traffic on ports **8140** and **61613,** and inbound SSH traffic on port 22 from the machine being used for provisioning.
 
 You'll need to provide the names of these resources as arguments when running the provisioning commands.
 
@@ -151,7 +151,7 @@ Before you can launch any instances with the provisioner module, you will need:
 - a fully functional OpenStack environment
 - at least one valid OS image
 - the URL of your Nova EC2 API server (typically, http://your.nova.api.server:8773/services/Cloud)
-- to use the Horizon console to configure the default security group to allow SSH (port 22) access.
+- to use the Horizon console to configure the default security group to allow SSH (port 22) access
 
 
 Demonstration

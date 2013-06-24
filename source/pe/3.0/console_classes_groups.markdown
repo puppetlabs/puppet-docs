@@ -4,9 +4,36 @@ title: "PE 3.0 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 
-Groups, classes, and variables are used to control which Puppet configurations your nodes receive.
+This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
 
-**NOTE** To use the console to control node configuration, you must be logged in as a read-write or admin level user. Read-only users can only view node configuration data, they cannot modify it.
+> **Note:** To use the console to assign node configurations, you must be logged in as a read-write or admin level user. Read-only users can view node configuration data, but cannot modify it.
+
+
+Overview: Assigning Configurations With the PE Console
+-----
+
+[puppet]: ./puppet_overview.html
+[lang_classes]: /puppet/3/reference/lang_classes.html
+[learn]: /learning/
+
+As described in [the Puppet section of this manual][puppet], node configurations are compiled from a variety of sources, including the PE console.
+
+**Puppet classes** are the primary unit of node configuration in PE.  [Classes are named blocks of Puppet code][lang_classes] which can be either **declared** by other Puppet code or **directly assigned** to nodes.
+
+The console allows you to **assign** classes to nodes or groups of nodes.
+
+### Creating Puppet Classes
+
+Before you can assign classes in the console, the classes need to be available to the puppet master server. There are several ways to get classes:
+
+* Write y
+
+
+
+
+Groups, classes, class parameters, and variables are the console's  used to control which Puppet configurations your nodes receive.
+
+
 
 Variables
 -----
@@ -26,9 +53,8 @@ Classes
 
 The classes the console knows about are a subset of the classes in your puppet master's collection of modules. You must add classes to the console manually if you want to assign them to any nodes or groups.
 
-See [the Puppet section of this user's guide][puppetnew] for an introduction to Puppet classes.
+See [the Puppet section of this user's guide][puppet] for an introduction to Puppet classes.
 
-[puppetnew]: ./puppet_overview.html
 
 ### Adding a New Class
 
@@ -109,8 +135,25 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 ### Node Tasks
 
+#### Getting Info
+
 `node:list [match=<REGULAR EXPRESSION>]`
 : List nodes. Can optionally match nodes by regex.
+
+`node:listclasses name=<NAME>`
+: List classes for a node.
+
+`node:listclassparams name=<NAME> class=<CLASS>`
+: List classparams for a node/class pair.
+
+`node:listgroups name=<NAME>`
+: List groups for a node.
+
+`node:variables name=<NAME>`
+: List variables for a node.
+
+
+#### Modifying Info
 
 `node:add name=<NAME> [groups=<GROUPS>] [classes=<CLASSES>]`
 : Add a new node. Classes and groups can be specified as comma-separated lists.
@@ -119,15 +162,35 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 : Delete a node.
 
 `node:classes name=<NAME> classes=<CLASSES>`
-: Replace the list of classes assigned to a node. Classes must be specified as a comma-separated list.
+: **Replace** the list of classes assigned to a node. Classes must be specified as a comma-separated list.
 
 `node:groups name=<NAME> groups=<GROUPS>`
-: Replace the list of groups a node belongs to. Groups must be specified as a comma-separated list.
+: **Replace** the list of groups a node belongs to. Groups must be specified as a comma-separated list.
+
+`node:addclass name=<NAME> class=<CLASS>`
+: Add a class to a node.
+
+`node:addclassparam name=<NAME> class=<CLASS> param=<PARAM> value=<VALUE>`
+: Add a classparam to a node.
+
+`node:addgroup name=<NAME> group=<GROUP>`
+: Add a group to a node.
+
+`node:delclassparam name=<NAME> class=<CLASS> param=<PARAM>`
+: Remove a class param from a node.
+
+`node:variables name=<NAME> variables="<VARIABLE>=<VALUE>,<VARIABLE>=<VALUE>,..."`
+: Add (or edit, if they exist) variables for a node. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted.
+
 
 ### Class Tasks
 
+#### Getting Info
+
 `nodeclass:list [match=<REGULAR EXPRESSION>]`
 : List node classes. Can optionally match classes by regex.
+
+#### Modifying Info
 
 `nodeclass:add name=<NAME>`
 : Add a new class. This must be a class available to the Puppet autoloader via a module.
@@ -137,8 +200,25 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 ### Group Tasks
 
+#### Getting Info
+
 `nodegroup:list [match=<REGULAR EXPRESSION>]`
 : List node groups. Can optionally match groups by regex.
+
+`nodegroup:listclasses name=<NAME>`
+: List classes that belong to a node group.
+
+`nodegroup:listclassparams name=<NAME> class=<CLASS>`
+: List classparams for a nodegroup/class.
+
+`nodegroup:listgroups name=<NAME>`
+: List child groups that belong to a node group.
+
+`nodegroup:variables name=<NAME>`
+: List variables for a node group.
+
+
+#### Modifying Info
 
 `nodegroup:add name=<NAME> [classes=<CLASSES>]`
 : Create a new node group. Classes can be specified as a comma-separated list.
@@ -153,7 +233,26 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 : Assign a class to a group without overwriting its existing classes.
 
 `nodegroup:edit name=<NAME> classes=<CLASSES>`
-: Replace the classes assigned to a node group. Classes must be specified as a comma-separated list.
+: **Replace** the classes assigned to a node group. Classes must be specified as a comma-separated list.
+
+`nodegroup:addclassparam name=<NAME> class=<CLASS> param=<PARAM> value=<VALUE>`
+: Add classparam to a nodegroup.
+
+`nodegroup:addgroup name=<NAME> group=<GROUP>`
+: Add a child group to a nodegroup.
+
+`nodegroup:delclass name=<NAME> class=<CLASS>`
+: Remove a class from a nodegroup.
+
+`nodegroup:delclassparam name=<NAME> class=<CLASS> param=<PARAM>`
+: Remove a class param from a node group.
+
+`nodegroup:delgroup name=<NAME> group=<GROUP>`
+: Remove a child group from a nodegroup.
+
+`nodegroup:variables name=<NAME> variables="<VARIABLE>=<VALUE>,<VARIABLE>=<VALUE>,..."`
+: Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted.
+
 
 
 [classes_add_group]: ./images/console/classes_add_group.png

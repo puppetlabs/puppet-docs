@@ -15,7 +15,9 @@ Configurations for nodes are compiled from [**manifests**](/learning/manifests.h
 How Configurations are Assigned to Nodes
 -----
 
-In Puppet Enterprise, the console controls which classes are assigned to nodes. You can assign classes to nodes individually, or you can collect nodes into groups and assign classes to large numbers of nodes at a time. You can also declare variables ("parameters") that can be read by any of the classes assigned to the node.
+In Puppet Enterprise, the console controls which classes are assigned to nodes. You can assign classes and class parameters to nodes individually, or you can collect nodes into groups and configure a large number of nodes in a single page. You can also declare variables that can be read by any of the classes assigned to a node.
+
+> To see how to assign configurations to nodes in the PE console, see [the Grouping and Classifying Nodes page](./console_classes_groups.html) in the console section of this manual.
 
 When an agent node requests its catalog from the master, the master asks the console which classes and parameters to use, then compiles those classes into the node's catalog.
 
