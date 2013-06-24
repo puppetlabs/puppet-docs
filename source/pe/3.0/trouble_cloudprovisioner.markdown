@@ -50,7 +50,7 @@ Note that versions of fog newer than 0.7.2 may not be fully compatible with Clou
 
 #### Accessing Puppet Master Endpoint
 
-For automatic signing to work, the computer running Cloud Provisioner (i.e. the CP control node) needs to be able to access the puppet master's `certificate_status` REST endpoint. This can be done in the master's [auth.conf](http://docs.puppetlabs.com/guides/rest_auth_conf.html) file as follows:
+For automatic signing to work, the computer running Cloud Provisioner (i.e. the CP control node) needs to be able to access the puppet master's `certificate_status` REST endpoint. This can be done in the master's [auth.conf](/guides/rest_auth_conf.html) file as follows:
 
      path /certificate_status
      method save
@@ -71,6 +71,6 @@ Then sign the certificate as usual on the master (`puppet cert sign {certname}`)
      puppet certificate find {certname} --ca-location remote
      This should let you operate under the new certname when you run puppet commands with the --certname {certname} option.
 
-* * * 
+* * *
 
-- [Next: Troubleshooting Windows](http://docs.puppetlabs.com/windows/troubleshooting.html.html)
+- [Next: Troubleshooting Windows](/windows/troubleshooting.html.html)

@@ -38,7 +38,7 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 Starting the Installer
 -----
 
-Installation will go more smoothly if you know a few things in advance. Puppet Enterprise's functions are spread across several different "roles" which get installed and configured when you run the installer. You can choose to install multiple roles on a single node or spread the roles across nodes (except for the "agent" role, which gets installed on every node). You should decide on this architecture before starting the install process. For each node where you will be installing a PE role, you should know the fully qualified domain name where that node can be reached and you should ensure that firewall rules are set up to allow access to the [required ports](http://docs.puppetlabs.com/pe/latest/install_system_requirements.html#firewall-configuration).
+Installation will go more smoothly if you know a few things in advance. Puppet Enterprise's functions are spread across several different "roles" which get installed and configured when you run the installer. You can choose to install multiple roles on a single node or spread the roles across nodes (except for the "agent" role, which gets installed on every node). You should decide on this architecture before starting the install process. For each node where you will be installing a PE role, you should know the fully qualified domain name where that node can be reached and you should ensure that firewall rules are set up to allow access to the [required ports](./install_system_requirements.html#firewall-configuration).
 
 When separating the roles across nodes, you should install in the following order:
 
@@ -48,7 +48,7 @@ When separating the roles across nodes, you should install in the following orde
   4. Cloud Provisioner Role
   5. Agents
 
-The [Puppet Enterprise Deployment Guide](http://docs.puppetlabs.com/guides/deployment_guide/index.html) contains more information about the installation process and how to set up the various roles.
+The [Puppet Enterprise Deployment Guide](/guides/deployment_guide/index.html) contains more information about the installation process and how to set up the various roles.
 
 With that knowledge in hand, the installation process on each node is as follows:
 
@@ -121,7 +121,7 @@ In most deployments, this role should be installed on **one node;** installing m
 * Route orchestration messages through its ActiveMQ server.
 * Issue valid orchestration commands (from an administrator logged in as the `peadmin` user).
 
-**Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](http://docs.puppetlabs.com/pe/latest/install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will let you know.
+**Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will let you know.
 
 ### The Database Support Role
 This role provides required database support for PuppetDB and the console:
@@ -133,7 +133,7 @@ You can install database support on the same node as the console or onto a separ
 
 Installing this role will auto-generate database user passwords which you will need to answer questions you'll be asked during the console installation interview. For more information, see the Console Role section below.
 
-If you want to set up a PuppetDB database manually, the [PuppetDB configuration documentation](http://docs.puppetlabs.com/puppetdb/1.3/configure.html#using-postgresql) has more information. Otherwise, the console just requires two databases, one for the console and one for console_auth (used for user management) with separate users with admin access for each of these.
+If you want to set up a PuppetDB database manually, the [PuppetDB configuration documentation](/puppetdb/1.3/configure.html#using-postgresql) has more information. Otherwise, the console just requires two databases, one for the console and one for console_auth (used for user management) with separate users with admin access for each of these.
 
 If you choose to use a database server separate from the PuppetDB server, you must configure it manually. The installer cannot install and configure postgres on a remote server without PuppetDB.
 
