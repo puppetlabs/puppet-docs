@@ -44,7 +44,7 @@ The run-time chart graphs how long each of the last 30 Puppet runs took to compl
 
 ![Tooltip showing how long a run took][reports_point]
 
-### Normal Reports
+### Reports
 
 Each node page has a short list of recent reports, with a "More" button at the bottom for viewing older reports:
 
