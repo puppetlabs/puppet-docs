@@ -320,3 +320,8 @@ This is an example of a Puppet class that installs [the Puppet Labs nrpe plugin]
 
     }
 {% endhighlight %}
+
+* * * 
+
+- [Next: Configuring Orchestration](./orchestration_config.html)
+

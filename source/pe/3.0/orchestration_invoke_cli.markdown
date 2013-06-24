@@ -277,3 +277,7 @@ In these cases, you can **batch** actions, to run all of the matching nodes in a
 
 * Use the `--limit <COUNT>` option to invoke an action on only `<COUNT>` matching nodes. `<COUNT>` can be an absolute number or a percentage. The nodes will be chosen randomly.
 * Use the `-1` or `--one` option to invoke an action on just one matching node, chosen randomly.
+
+* * *
+
+- [Next: Controlling Puppet](./orchestration_puppet.html)

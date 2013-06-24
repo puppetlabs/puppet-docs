@@ -281,4 +281,4 @@ While [logged in to the puppet master server as `peadmin`][peadmin], run `mco rp
 
 * * *
 
-- [Next: Live Management: Advanced Tasks](./console_live_advanced.html)
+- [Next: Browsing Resources](./orchestration_resources.html)

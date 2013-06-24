@@ -181,7 +181,7 @@ The other resource types work in a similar manner. Choose the nodes whose resour
 
 ### Triggering Puppet Runs
 
-Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use Live Management to run puppet on several selected nodes.
+Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use live management to run puppet on several selected nodes.
 
 * **On the console, in the live management page,** click the "control puppet" tab.
 * Make sure one or more nodes are selected with node selector on the left.

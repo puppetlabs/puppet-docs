@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.0 » Orchestration » Configuration"
-subtitle: "Configuring Orchestration "
+subtitle: "Configuring Orchestration"
 ---
 
 The Puppet Enterprise (PE) orchestration engine can be configured to enable new actions, modify existing actions, restrict actions, and prevent run failures on non-PE nodes.
@@ -117,7 +117,6 @@ Still need to know what classes to apply, etc., as well as how to comply with th
 
 -->
 
-
 * * *
 
-- [Next: ](./foo.html)
+- [Next: Cloud Provisioning: Overview](./cloudprovisioner_overview.html)

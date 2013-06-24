@@ -169,4 +169,4 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 * * *
 
-- [Next: Live Management](./console_live.html)
+- [Next: Configuring & Tuning the Console](./console_config.html)

@@ -39,4 +39,4 @@ After you have run the uninstaller, you can safely run the installer again.
 
 * * * 
 
-- [Next: Troubleshooting the Console & Database Support ](./trouble_console-db.html)
+- [Next: Troubleshooting Connections & Communications ](./trouble_comms.html)

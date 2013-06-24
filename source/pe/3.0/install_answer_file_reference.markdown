@@ -217,13 +217,13 @@ Upgrader Answers
 : **String** --- A password for accessing the console. Previous versions of PE did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
 
 `q_puppet_enterpriseconsole_auth_database_name`
-: **String** --- The database the console authentication will use. Note that if you are not automatically configuring the auth database, this database must already exist on the MySQL server.
+: **String** --- The database the console authentication will use. Note that if you are not automatically configuring the auth database, this database must already exist on the PostgreSQL server.
 
 `q_puppet_enterpriseconsole_auth_database_user`
-: **String** --- The MySQL user the console authentication will use. Note that if you are not automatically configuring the databases, this user must already exist on the MySQL server and must be able to edit the auth database.
+: **String** --- The PostgreSQL user the console authentication will use. Note that if you are not automatically configuring the databases, this user must already exist on the PostgreSQL server and must be able to edit the auth database.
 
 `q_puppet_enterpriseconsole_auth_database_password`
-: **String** --- The password for the auth database's MySQL user.
+: **String** --- The password for the auth database's PostgreSQL user.
 
 `q_puppet_enterpriseconsole_smtp_host`
 : **String** -- The SMTP server with which to email account activation codes to new console users.
@@ -247,7 +247,7 @@ Uninstaller Answers
 : **Y or N** --- Whether to remove any PE-specific databases when uninstalling.
 
 `q_pe_db_root_pass`
-: **String** --- The MySQL root user's password, to be used when deleting
+: **String** --- The PostgreSQL root user's password, to be used when deleting
   databases. Only used when `q_pe_remove_db` is Y.
 
 

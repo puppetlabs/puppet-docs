@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 »  » "
+title: "PE 3.0 » Maintenance » Orchestration"
 subtitle: " "
 ---
 
@@ -11,4 +11,4 @@ Section Title
 
 * * * 
 
-- [Next: ](./foo.html)
+- [Next: Troubleshooting the Installer](./trouble_install.html)
