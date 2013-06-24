@@ -6,24 +6,24 @@ subtitle: "Accessing the Console"
 
 The console is Puppet Enterprise's web GUI. Use it to:
 
-* Browse and edit resources on your nodes
-* Trigger Puppet runs at will
+* Manage node requests to join the puppet deployment
+* Assign Puppet classes to nodes and groups
 * View reports and activity graphs
-* Assign Puppet classes to nodes
+* Trigger Puppet runs on demand
+* Browse and compare resources on your nodes
 * View inventory data
 * Invoke orchestration actions on your nodes
 * Manage console users and their access privileges
-* Manage node requests to join the puppet deployment
 
 Browser Requirements
 -----
 
  The following browsers are supported for use with the console:
 
-- Chrome (current versions)
-- Firefox 3.5 and higher
-- Safari 4 and higher
-- Internet Explorer 8 and higher
+* Chrome (current versions)
+* Firefox 19 and higher
+* Safari 5.1 and higher
+* Internet Explorer 9 or 10
 
 Reaching the Console
 -----

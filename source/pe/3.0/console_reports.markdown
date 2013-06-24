@@ -6,6 +6,25 @@ subtitle: "Viewing Reports and Inventory Data"
 
 When nodes fetch their configurations from the puppet master, they send back inventory data and a report of their run. These end up in the console, where you can view them in that node's page.
 
+Node States
+-----
+
+Depending on how its last Puppet run went, every node is in one of six states. Each state is indicated by a specific color in graphs and the [node state summary](./console_navigating.html#the-sidebar), and by an icon beside the report or the node name in a report list or node list view.
+
+- <span style="font-family: Helvetica, Arial, Verdana; color: #888;">Unresponsive:</span> The node hasn't reported to the puppet master recently; something may be wrong. The cutoff for considering a node unresponsive defaults to one hour, and can be configured in `settings.yml` with the `no_longer_reporting_cutoff` setting. Represented by dark grey text. This state has no icon; the node retains whatever icon the last report used.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #c21;">Failed:</span> During its last Puppet run, this node encountered some error from which it couldn't recover. Something is probably wrong, and investigation is recommended. Represented by red text or the ![failed][failed] failed icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #e72;">Pending:</span> During its last Puppet run, this node _would_ have made changes, but since it was either running in no-op mode or found a discrepancy in a resource whose `noop` metaparameter was set to `true`, it _simulated_ the changes instead of enforcing them. See the node's last report for more details. Represented by orange text or the ![pending][pending] pending icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #069;">Changed:</span> This node's last Puppet run was successful, and changes were made to bring the node into compliance. Represented by blue text or the ![changed][changed] changed icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #093;">Unchanged:</span> This node's last Puppet run was successful, and it was fully compliant; no changes were necessary. Represented by green text or the ![unchanged][unchanged] unchanged icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #aaa;">Unreported:</span> Although Dashboard is aware of this node's existence, it has never submitted a Puppet report. It may be a newly-commissioned node, it may have never come online, or its copy of Puppet may not be configured correctly. Represented by light grey text or the ![error][error] error icon.
+
+[changed]: ./images/console/icon_changed.png
+[error]: ./images/console/icon_error.png
+[failed]: ./images/console/icon_failed.png
+[pending]: ./images/console/icon_pending.png
+[unchanged]: ./images/console/icon_unchanged.png
+
+
 Reading Reports
 -----
 
@@ -25,7 +44,7 @@ The run-time chart graphs how long each of the last 30 Puppet runs took to compl
 
 ![Tooltip showing how long a run took][reports_point]
 
-### Normal Reports
+### Reports
 
 Each node page has a short list of recent reports, with a "More" button at the bottom for viewing older reports:
 
@@ -61,27 +80,15 @@ Facts include things like the operating system (`operatingsystem`), the amount o
 
 The facts you see in the inventory can be useful when [filtering nodes in the live management page](./console_navigating_live_mgmt.html#advanced-search).
 
-### Searching by Fact
-
-Use the "inventory search" page to find a list of nodes with a certain fact value.
-
-![The inventory search page][reports_inventorysearch]
-
-![Results of a search][reports_searchresults]
-
-You can add more facts to further filter the search results , and you can change the comparison criteria for each one.
-
 [reports_eventstab]: ./images/console/reports_eventstab.png
 [reports_graphs]: ./images/console/reports_graphs.png
 [reports_inventory_location]: ./images/console/reports_inventory_location.png
 [reports_inventory]: ./images/console/reports_inventory.png
-[reports_inventorysearch]: ./images/console/reports_inventorysearch.png
 [reports_logtab]: ./images/console/reports_logtab.png
 [reports_metricstab]: ./images/console/reports_metricstab.png
 [reports_point]: ./images/console/reports_point.png
 [reports_recent]: ./images/console/reports_recent.png
 [reports_runcount]: ./images/console/reports_runcount.png
-[reports_searchresults]: ./images/console/reports_searchresults.png
 
 
 * * *

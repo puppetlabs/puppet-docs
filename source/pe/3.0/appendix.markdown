@@ -47,6 +47,9 @@ The compliance workflow tools, including File Search, are deprecated, and have b
 
 If you are using the compliance workflow tools today, you can achieve a similar workflow by using Puppet's **noop** features to detect changes. We've created an example page that shows this [alternate workflow in greater detail](./compliance_alt.html).
 
+#### Removal of "File Search"
+
+Related to the removal of compliance, the File Search section of the console has been removed. This section was able to display file contents when given an MD5 checksum, but was no longer relevant once compliance was removed.
 
 #### Puppet Agent Service Rename
 Previously, the puppet agent service was known by several names, depending on platform (e.g. `puppetagent` on Solaris, `pe-puppet-agent` on Debian/Ubuntu, etc.). As of PE 3, it is called `'pe-puppet` on all platforms.
@@ -54,6 +57,10 @@ Previously, the puppet agent service was known by several names, depending on pl
 #### Change to Orchestration Engine's Authentication Backend
 
 In previous versions, the orchestration engine (MCollective) used either the `psk` or `aespe` security plugin. As of PE 3, it uses the more secure and reliable `ssl` security plugin. **If you have integrated external applications with the orchestration engine,** you will need to [re-configure their security credentials](./orchestration_config.html#adding-new-orchestration-users-and-integrating-applications).
+
+#### Change to Built-in Orchestration Actions
+
+The output format and available actions of the `puppetral` orchestration plugin have changed --- the `create` action has been removed, and the output format is now an array of hashes. If you have built applications that integrate with the `puppetral` plugin, you'll need to update them.
 
 Known Issues
 -----
@@ -75,6 +82,10 @@ To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to it
 
 ### Console_auth Fails After PostgreSQL Restart
 RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`.
+
+### Inconsistent Counts When Comparing Service Resources in Live Management
+
+In the Browse Resources tab, comparing a service across a mixture of RedHat-based and Debian-based nodes will give different numbers in the list view and the detail view.
 
 ### Bad Data in Facter's `architecture` Fact
 

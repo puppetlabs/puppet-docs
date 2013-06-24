@@ -106,7 +106,7 @@ The invocation above will connect to the console, classify the node in the `apps
 
 ### Using `autosign.conf`
 
-Alternatively, if your deployment has been set up to use the `autosign` configuration parameter, you can use it to sign the certifcate automatically. While this can greatly simplify the process, there are some possible security issues associated with going this route, so be sure you are comfortable with the process and know the risks.
+Alternatively, if your CA puppet master has the `autosign` setting configured, it can sign certifcates automatically. While this can greatly simplify the process, there are some security issues associated with going this route, so be sure you are comfortable with the process and know the risks.
 
 * * *
 
