@@ -25,7 +25,7 @@ Note that orchestration tools and PuppetDB are automatically installed and confi
 Many of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.0. Most notably these include:
 
 * Ruby 1.9.3
-* Puppet 3.2.1
+* Puppet 3.2.2
 * Facter 1.7.1
 * Hiera 1.2.1
 * MCollective 2.2.4

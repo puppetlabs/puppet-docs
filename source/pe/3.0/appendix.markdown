@@ -25,7 +25,7 @@ Many of the constituent components of Puppet Enterprise have been upgraded. Name
 
 * Ruby 1.9.3
 * Augeas 1.0.0
-* Puppet 3.2.1
+* Puppet 3.2.2
 * Facter 1.7.1
 * Hiera 1.2.1
 * MCollective 2.2.4
@@ -76,9 +76,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
 
 ### Readline Version Issues on AIX Agents
-- As wtith PE 2.8.2,  AIX 5.3, puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
+- As wtith PE 2.8.2,  on AIX 5.3, puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`. If you need to install it, you can [download it from IBM](ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm). Install it *before* installing the puppet agent.
 
-- On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running
+- On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading or installing by running
+
          rpm -e --nodeps readline
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
         
