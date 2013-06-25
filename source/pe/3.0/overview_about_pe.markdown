@@ -31,19 +31,19 @@ This user's guide will help you start using Puppet Enterprise 3.0, and will serv
 About Puppet
 -----
 
-Puppet is the leading open source configuration management tool. It allows system configuration "manifests" to be written in a high-level <abbr title="Domain-Specific Language">DSL</abbr>, and can compose modular chunks of configuration to create a machine's unique configuration. By default, Puppet Enterprise uses a client/server Puppet deployment, where agent nodes fetch configurations from a central puppet master.
+Puppet is the leading open source configuration management tool. It allows system configuration "manifests" to be written in a high-level <abbr title="Domain-Specific Language">DSL</abbr> and can compose modular chunks of configuration to create a machine's unique configuration. By default, Puppet Enterprise uses a client/server Puppet deployment, where agent nodes fetch configurations from a central puppet master.
 
 About Orchestration
 -----
 
-Puppet Enterprise includes distributed task orchestration features. Nodes managed by PE will listen for commands over a message bus, and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory.
+Puppet Enterprise includes distributed task orchestration features. Nodes managed by PE will listen for commands over a message bus and independently take action when they hear an authorized request. This lets you investigate and command your infrastructure in real time without relying on a central inventory.
 
 About the Puppet Enterprise Console
 -----
 
 PE's console is the web front-end for managing your systems. The console can:
 
-* Trigger immediate Puppet runs on an arbitrary subset of your nodes
+* Trigger immediate puppet runs on an arbitrary subset of your nodes
 * Browse and compare resources on your nodes in real time
 * Analyze reports to help visualize your infrastructure over time
 * Browse inventory data and backed-up file contents from your nodes
@@ -53,7 +53,7 @@ PE's console is the web front-end for managing your systems. The console can:
 About the Cloud Provisioning Tools
 -----
 
-PE includes command line tools for building new nodes, which can create new VMware, Openstack and Amazon EC2 instances, install PE on any virtual or physical machine, and classify newly provisioned nodes within your Puppet infrastructure.
+PE includes command line tools for building new nodes, which can create new VMware, Openstack, and Amazon EC2 instances, install PE on any virtual or physical machine, and classify newly provisioned nodes within your Puppet infrastructure.
 
 
 Licensing
