@@ -76,6 +76,8 @@ Many pages in the console --- including class and group detail pages --- contain
 
 Every node list includes an "Export nodes as CSV" link, for use when importing data into a spreadsheet.
 
+Certain node lists (the main node list and the per-state lists) include a **search field.** This field accepts partial node names, and narrows the list to show only nodes whose names match the search.
+
 ![The nodes page][nav_node]
 
 Clicking the name of a node will take you to that node's **node detail page,** where you can see in-depth information and assign configurations directly to the node. See the [Grouping and Classifying Nodes][classify] and [Viewing Reports and Inventory Data][report] pages for information about node detail pages.
