@@ -6,14 +6,14 @@ title: "Language: Run Stages"
 [metaparameter]: ./lang_resources.html#metaparameters
 [ordering]: ./lang_relationships.html
 [class]: ./lang_classes.html
-[resourcelike]: ./lang_classes.html#declaring-a-class-like-a-resource
+[resourcelike]: ./lang_classes.html#using-resource-like-declarations
 [containment]: ./lang_containment.html
 
-Run stages are an additional way to order resources. They allow groups of classes to run before or after nearly everything else, without having to explicitly create relationships with every other class. Run stages were added in Puppet 2.6.0. 
+Run stages are an additional way to order resources. They allow groups of classes to run before or after nearly everything else, without having to explicitly create relationships with every other class. Run stages were added in Puppet 2.6.0.
 
-Run stages have [several major limitations](#limitations-and-known-issues); you should understand these before attempting to use them. 
+Run stages have [several major limitations](#limitations-and-known-issues); you should understand these before attempting to use them.
 
-The run stage feature has two parts: 
+The run stage feature has two parts:
 
 * A `stage` resource type.
 * A `stage` [metaparameter][], which assigns a class to a named run stage.
@@ -29,7 +29,7 @@ Custom Stages
 Additional stages are declared as normal resources. Each additional stage must have an [order relationship][ordering] with another stage, such as `Stage['main']`. As with normal resources, these relationships can be specified with metaparameters or with chaining arrows.
 
 {% highlight ruby %}
-    stage { 'first': 
+    stage { 'first':
       before => Stage['main'],
     }
     stage { 'last': }
@@ -49,7 +49,7 @@ Once stages have been declared, a [class][] may be assigned to a custom stage wi
     }
 {% endhighlight %}
 
-The above example will ensure that the `apt-keys` class happens before all other classes, which can be useful if most of your package resources rely on those keys. 
+The above example will ensure that the `apt-keys` class happens before all other classes, which can be useful if most of your package resources rely on those keys.
 
 In order to assign a class to a stage, you **must** use the [resource-like][resourcelike] class declaration syntax. You **cannot** assign classes to stages with the `include` function.
 

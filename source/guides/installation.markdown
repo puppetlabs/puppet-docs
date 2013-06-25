@@ -329,7 +329,7 @@ Use your OS's package tools to install Ruby. In some cases, you may need to comp
 
 On Linux platforms, you should also ensure that the LSB tools are installed; at a minimum, we recommend installing `lsb_release`. See your OS's documentation for details about its LSB tools.
 
-If you wish to use Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html), you should also install the `rgen` gem.
+If you wish to use Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/3/reference/lang_experimental_3_2.html), you should also install the `rgen` gem.
 
 #### 2. Download Puppet and Facter
 
@@ -414,7 +414,7 @@ Settings for puppet master servers should go in the `[master]` or `[main]` block
 
 > **Note:** puppet masters are usually also agent nodes; settings in `[main]` will be available to both services, and settings in the `[master]` and `[agent]` blocks will override the settings in `[main]`.
 
-* [`dns_alt_names`](/references/latest/configuration.html#dns_alt_names): A list of valid hostnames for the master, which will be embedded in its certificate. Defaults to the puppet master's `certname` and `puppet`, which is usually fine. If you are using a non-default setting, set it **before** starting the puppet master for the first time.
+* [`dns_alt_names`](/references/latest/configuration.html#dnsaltnames): A list of valid hostnames for the master, which will be embedded in its certificate. Defaults to the puppet master's `certname` and `puppet`, which is usually fine. If you are using a non-default setting, set it **before** starting the puppet master for the first time.
 
 #### On Standalone Nodes
 

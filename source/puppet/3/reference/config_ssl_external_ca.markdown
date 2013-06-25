@@ -23,10 +23,10 @@ Supported External CA Configurations
 
 Puppet ≥ 3.2 supports _some_ external CA configurations, but not every possible arrangement. We fully support the following setups:
 
-1. [Single self-signed CA which directly issues SSL certificates.](#single-ca)
-2. [Single, intermediate CA issued by a root self-signed CA.](#single-intermediate-ca)  The intermediate
+1. [Single self-signed CA which directly issues SSL certificates.](#option-1-single-ca)
+2. [Single, intermediate CA issued by a root self-signed CA.](#option-2-single-intermediate-ca)  The intermediate
    CA directly issues SSL certificates; the root CA doesn't.
-3. [Two intermediate CAs, both issued by the same root self-signed CA.](#two-intermediate-cas-issued-by-one-root-ca)
+3. [Two intermediate CAs, both issued by the same root self-signed CA.](#option-3-two-intermediate-cas-issued-by-one-root-ca)
     * One intermediate CA issues SSL certificates for puppet master servers.
     * The other intermediate CA issues SSL certificates for agent nodes.
     * Agent certificates can't act as servers, and master certificates can't act as clients.

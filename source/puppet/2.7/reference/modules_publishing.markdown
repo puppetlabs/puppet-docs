@@ -41,18 +41,18 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 
 > ### A Note on Module Names
 >
-> Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Puppet Forge as `puppetlabs-mysql`. 
+> Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Puppet Forge as `puppetlabs-mysql`.
 >
-> **Be sure to use this long name in your module's [Modulefile](#write-a-modulefile).** However, you do not have to rename the module's directory, and can leave the module in your active modulepath --- the build action will do the right thing as long as the Modulefile is correct. 
+> **Be sure to use this long name in your module's [Modulefile](#write-a-modulefile).** However, you do not have to rename the module's directory, and can leave the module in your active modulepath --- the build action will do the right thing as long as the Modulefile is correct.
 
 > ### Another Note on Module Names
-> 
+>
 > Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
 
 Create a Puppet Forge Account
 --------
 
-Before you begin, you should create a user account on the Puppet Forge. You will need to know your username when preparing to publish any of your modules. 
+Before you begin, you should create a user account on the Puppet Forge. You will need to know your username when preparing to publish any of your modules.
 
 Start by navigating to the [Puppet Forge website][forge] and clicking the "Sign Up" link in the sidebar:
 
@@ -63,7 +63,7 @@ Fill in your details. After you finish, you will be asked to verify your email a
 Prepare the Module
 -----
 
-If you already have a Puppet module with the [correct directory layout][fundamentals], you may continue to the next step. 
+If you already have a Puppet module with the [correct directory layout][fundamentals], you may continue to the next step.
 
 Alternately, you can use the `puppet module generate` action to generate a template layout. This is mostly useful if you need an example Modulefile and README, and also includes a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. If you choose to do this, you will need to manually copy your module's files into the template.
 
@@ -81,7 +81,7 @@ To generate a template, run `puppet module generate <USERNAME>-<MODULE NAME>`. F
     examplecorp-mymodule/manifests
     examplecorp-mymodule/manifests/init.pp
 
-> Note: This action is of limited use when developing a module from scratch, as the module must be renamed to remove the username prefix before it can be used with Puppet. 
+> Note: This action is of limited use when developing a module from scratch, as the module must be renamed to remove the username prefix before it can be used with Puppet.
 
 Write a Modulefile
 -----
@@ -117,7 +117,7 @@ If you choose to rely on another Forge module, you can express this in the "depe
 
 > **Warning:** The full name in a dependency **must** use a slash between the username and module name. **This is different from the name format used elsewhere in the Modulefile.** This is a legacy architecture problem with the Puppet Forge, and we apologize for the inconvenience. Our eventual plan is to allow full names with hyphens everywhere while continuing to allow names with slashes, then (eventually, much later) phase out names with slashes.
 
-A Modulefile may have several dependency fields. 
+A Modulefile may have several dependency fields.
 
 The version requirement in a dependency isn't limited to a single version; you can use several operators for version comparisons. The following operators are available:
 
@@ -127,12 +127,12 @@ The version requirement in a dependency isn't limited to a single version; you c
 * `>=1.2.3` --- Greater than or equal to a specific version.
 * `<=1.2.3` --- Less than or equal to a specific version.
 * `>=1.0.0 <2.0.0` --- Range of versions; both conditions must be satisfied. (This example would match 1.0.1 but not 2.0.1)
-* `1.x` --- A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>=1.0.0 <2.0.0`.) 
+* `1.x` --- A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>=1.0.0 <2.0.0`.)
 * `1.2.x` --- A semantic major & minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>=1.2.0 <1.3.0`.)
 
 > ### A Note on Semantic Versioning
 >
-> When writing your Modulefile, you're setting a version for your own module and optionally expressing dependancies on others' module versions. We strongly recommend following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification. Doing so allows others to rely on your modules without unexpected change. 
+> When writing your Modulefile, you're setting a version for your own module and optionally expressing dependancies on others' module versions. We strongly recommend following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification. Doing so allows others to rely on your modules without unexpected change.
 >
 > Many other users already use semantic versioning, and you can take advantage of this in your modules' dependencies. For example, if you depend on puppetlabs/stdlib and want to allow updates while avoiding breaking changes, you could write the following line in your Modulefile (assuming a current stdlib version of 2.2.1):
 >
@@ -150,7 +150,7 @@ This will generate a `.tar.gz` package, which will be saved in the module's `pkg
 
 For example:
 
-    # puppet module build /etc/puppetlabs/puppet/modules/mymodule 
+    # puppet module build /etc/puppetlabs/puppet/modules/mymodule
     Building /etc/puppetlabs/puppet/modules/mymodule for release
     /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
 
@@ -159,7 +159,7 @@ Upload to the Puppet Forge
 
 Now that you have a compiled `tar.gz` package, you can upload it to the Puppet Forge. There is currently no command line tool for publishing; you must use the Puppet Forge's web interface.
 
-In your web browser, navigate [to the Puppet Forge][forge]; log in if necessary. 
+In your web browser, navigate [to the Puppet Forge][forge]; log in if necessary.
 
 ### Create a Module Page
 
@@ -195,4 +195,4 @@ When you are ready to publish your new version, navigate [to the Puppet Forge][f
 
 ![the ][forgenewrelease]
 
-This will bring you to the upload form as mentioned in [Create a Release](#createarelease) above, where you can select the new release tarball and upload the release. 
+This will bring you to the upload form as mentioned in [Create a Release](#create-a-release) above, where you can select the new release tarball and upload the release.
