@@ -284,14 +284,14 @@ Every module contains one or more **classes.** The modules you just installed co
 
 Summary
 -----
-TODO deep link all bullets
+
 You have now experienced the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
-* Deploy new nodes, install PE on them, and add them to their deployment by approving their certificate requests.
-* Use pre-built modules from the Forge to save time and effort.
-* Assign classes from the modules to nodes in the console.
-* Allow nodes to be managed by regularly scheduled Puppet runs.
-* Use live management to inspect and compare nodes, and to trigger on-demand puppet agent runs when necessary.
+* Deploy new nodes, install PE on them ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add them to their deployment by approving their certificate requests](./console_cert_mgmt.html).
+* Use [pre-built modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
+* [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
+* [Allow nodes to be managed by regularly scheduled Puppet runs.](./puppet_overview.html#when-new-configurations-take-effect)
+* Use [live management](./console_navigating_live_mgmt.html) to [inspect and compare nodes](./orchestration_resources.html), and to [trigger on-demand puppet agent](./orchestration_puppet.html) runs when necessary.
 
 ### Next
 
