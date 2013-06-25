@@ -9,9 +9,9 @@ We want to keep the Puppet communities awesome, and we need your help to keep it
 
 
 * **Be nice**: Be courteous, respectful and polite to fellow community members: no regional, racial, gender, or other abuse will be tolerated. We like nice people way better than mean ones!
-* **Encourage diversity and participation**: Make everyone in our community feel welcome, regardless of their background, and do everything possible to encourage participation in our community. 
+* **Encourage diversity and participation**: Make everyone in our community feel welcome, regardless of their background, and do everything possible to encourage participation in our community.
 * **Keep it legal**: Basically, don't get us in trouble. Share only content that you own, do not share private or sensitive information, and don't break the law.
-* **Stay on topic**: Make sure that you are posting to the correct online channel and avoid off-topic discussions.  Also remember that nobody likes spam. 
+* **Stay on topic**: Make sure that you are posting to the correct online channel and avoid off-topic discussions.  Also remember that nobody likes spam.
 
 
 Guideline Violations --- 3 Strikes Method
@@ -39,7 +39,7 @@ Activity-Specific Guidelines
 * [Getting Technical Help](#getting-technical-help)
 * [IRC Guidelines](#irc-guidelines)
 * [Mailing List Guidelines](#mailing-list-guidelines)
-* [Ask Puppet Labs Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines) 
+* [Ask Puppet Labs Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines)
 * [Bug Guidelines](#bug-guidelines)
 * [Documentation Guidelines](#documentation-guidelines)
 * [Git / Source Guidelines](#git--source-guidelines)
@@ -58,7 +58,7 @@ Puppet has a relatively long history and open development process for an open-so
 
 
 Many general questions about Puppet and Puppet Labs are answered in the [Frequently Asked Questions](http://docs.puppetlabs.com/guides/faq.html). Otherwise, the [Documentation Start](http://docs.puppetlabs.com/) is the place to go. Also available is [“Pulling Strings with Puppet”](http://www.amazon.com/gp/product/1590599780?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599780) by James Turnbull which is the first book to be written about Puppet and its sequel [“Pro Puppet”](http://www.amazon.com/gp/product/1430230576?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=1430230576).
- 
+
 We also provide various [commercial services](http://puppetlabs.com/services/overview/) around Puppet (training, professional services, support, certification and more) for people who want a little extra help.
 
 If you can't solve a problem on your own, there are a lot of places you can go to get help from (and help back!) your fellow community members. The sections below cover the norms and expectations in each area of the Puppet community.
@@ -95,7 +95,7 @@ Remember, when you post to a community mailing list, you are, in effect, asking 
 
 * [Puppet-Users](https://groups.google.com/group/puppet-users): The Puppet users mailing list, for any and all Puppet discussion.
 * [Puppet-Dev](https://groups.google.com/group/puppet-dev): The Puppet-dev mailing list, for all public discussions related to the development of the puppet codebase.
-* [Puppet-Razor](https://groups.google.com/group/puppet-razor): The mailing list for any and all questions about the Razor project. 
+* [Puppet-Razor](https://groups.google.com/group/puppet-razor): The mailing list for any and all questions about the Razor project.
 * [Puppet-Announce](https://groups.google.com/group/puppet-announce) (Read-Only): A list for announcements related to Puppet, e.g.; major version releases
 * [Puppet Bugs](http://groups.google.com/group/puppet-bugs) (Read-Only): An automated list that gets a copy of all project ticket activity.
 * [Puppet Commit](http://groups.google.com/group/puppet-commit) (Read-Only): An automated list that gets a copy of all git source code commits.
@@ -138,7 +138,7 @@ Remember that thousands of copies of your message will exist in mailboxes:
 
 **Subscribers Only**
 
-* Only subscribers can post to our mailing lists. If you would like to contribute to our mailing lists, we think it is only fair that you be a subscriber. Note: If you want to participate only occasionally, you can subscribe to a list and set your email options to digest or no mail and read the web archives when you want to catch up. 
+* Only subscribers can post to our mailing lists. If you would like to contribute to our mailing lists, we think it is only fair that you be a subscriber. Note: If you want to participate only occasionally, you can subscribe to a list and set your email options to digest or no mail and read the web archives when you want to catch up.
 * To reduce spam, we may moderate posts from new mailing list users. If your message doesn’t appear right away, please be patient and give us a little time to respond to the list moderation requests.
 
 
@@ -168,7 +168,7 @@ Here are a few guidelines:
 ### Bug Guidelines
 
 
-You can lodge bug reports and support tickets for Puppet at the [Redmine ticketing system](http://projects.puppetlabs.com/projects/show/puppet). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
+You can lodge bug reports and support tickets for Puppet at the [Redmine ticketing system](http://projects.puppetlabs.com/projects/puppet). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
 
 
 Here are a few guidelines that apply specifically to our bug tracker:
@@ -186,15 +186,15 @@ Here are a few guidelines that apply specifically to our bug tracker:
 
 * We encourage contributions to our documentation.
 * Our documentation is licensed under a [Creative Commons Attribution-Share Alike 3.0 United States License](http://creativecommons.org/licenses/by-sa/3.0/us/).
-* For suggestions or minor corrections, just email faq@puppetlabs.com. 
-* To contribute text or make larger-scale suggestions, see the [instructions for contributing](http://docs.puppetlabs.com/contribute.html). 
+* For suggestions or minor corrections, just email faq@puppetlabs.com.
+* To contribute text or make larger-scale suggestions, see the [instructions for contributing](http://docs.puppetlabs.com/contribute.html).
 * If you would like to submit your own content, you can fork the project on [github](http://github.com/puppetlabs/puppet-docs), make changes, and send us a pull request. See the README files in the project for more information about how to generate and view a copy of the website.
 
 
 ### Git / Source Guidelines
 
 * If you want to contribute code, you might want to start with a discussion on the mailing list to make sure that what you want to submit is a good idea or architected in a way that will be useful for others.
-* Look at existing pull requests to make sure that you aren’t duplicating effort. 
+* Look at existing pull requests to make sure that you aren’t duplicating effort.
 * Review any existing CONTRIBUTOR.MD files associated with the project.
 * If you are new to git or github, you might find these resources useful: [github help files](http://help.github.com/), [Git cheat sheets](http://help.github.com/git-cheat-sheets/), and [Git Reference documentation](http://gitref.org/).
 
@@ -210,7 +210,7 @@ The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, wri
 
 ### Event Code of Conduct
 
-Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of participants in any form. 
+Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of participants in any form.
 
 We ask you to be considerate of others and behave professionally and respectfully to all other participants. Remember that sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the organizers or Puppet Labs staff members.
 
@@ -218,7 +218,7 @@ Harassment includes offensive verbal comments related to gender, gender identity
 
 If a participant engages in harassing behavior, the event organizers may take any action they deem appropriate, including warning the offender or expulsion from the event with no refund. If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of the event staff immediately.
 
-Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions. 
+Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions.
 
 We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact Dawn Foster (dawn at puppetlabs.com) or Kara Sowles (kara at puppetlabs.com).
 

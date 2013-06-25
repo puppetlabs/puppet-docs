@@ -12,7 +12,7 @@ title: "Hiera 1: Writing Data Sources"
 
 Hiera can use several different data backends, including two built-in backends and various optional backends. Each backend uses a different document format for its data sources.
 
-This page describes the built-in `yaml` and `json` backends, as well as the `puppet` backend included with Hiera's Puppet integration. For optional backends, see the backend's documentation. 
+This page describes the built-in `yaml` and `json` backends, as well as the `puppet` backend included with Hiera's Puppet integration. For optional backends, see the backend's documentation.
 
 YAML
 -----
@@ -25,19 +25,21 @@ The `yaml` backend looks for data sources on disk, in the directory specified in
 
 See [yaml.org][yaml] and [the "YAML for Ruby" cookbook][yaml_ruby] for a complete description of valid YAML.
 
-The root object of each YAML data source must be a YAML **mapping** (hash). Hiera will treat its top level keys as the pieces of data available in the data source. The value for each key can be any of the data types below. 
+The root object of each YAML data source must be a YAML **mapping** (hash). Hiera will treat its top level keys as the pieces of data available in the data source. The value for each key can be any of the data types below.
 
-Hiera's data types map to the native YAML data types as follows: 
+Hiera's data types map to the native YAML data types as follows:
 
 Hiera   | YAML
 --------|-----
 Hash    | Mapping
 Array   | Sequence
-String  | Quoted scalar or non-boolean unquoted scalar 
+String  | Quoted scalar or non-boolean unquoted scalar
 Number  | Integer or float
 Boolean | Boolean (note: includes `on` and `off`, `yes` and `no` in addition to `true` and `false`)
 
 Any string may include any number of [variable interpolation tokens][variables].
+
+> **Important note:** The "psych" YAML parser, which is used by many Ruby versions, **requires** that any strings containing a `%` be quoted.
 
 ### Example
 
@@ -52,11 +54,11 @@ apache-packages:
 # string
 apache-service: apache2
 
-# interpolated facter variable 
-hosts_entry: sandbox.%{fqdn}
+# interpolated facter variable
+hosts_entry: "sandbox.%{fqdn}"
 
 # hash
-sshd_settings: 
+sshd_settings:
     root_allowed: "no"
     password_allowed: "yes"
 
@@ -65,7 +67,7 @@ sshd_settings: {root_allowed: "no", password_allowed: "yes"}
 
 # to return "true" or "false"
 sshd_settings: {root_allowed: no, password_allowed: yes}
-    
+
 {% endhighlight %}
 
 JSON
@@ -79,9 +81,9 @@ The `json` backend looks for data sources on disk, in the directory specified in
 
 [See the JSON spec for a complete description of valid JSON.][json]
 
-The root object of each JSON data source must be a JSON **object** (hash). Hiera will treat its top level keys as the pieces of data available in the data source. The value for each key can be any of the data types below. 
+The root object of each JSON data source must be a JSON **object** (hash). Hiera will treat its top level keys as the pieces of data available in the data source. The value for each key can be any of the data types below.
 
-Hiera's data types map to the native JSON data types as follows: 
+Hiera's data types map to the native JSON data types as follows:
 
 Hiera   | JSON
 --------|------
@@ -96,7 +98,7 @@ Any string may include any number of [variable interpolation tokens][variables].
 ### Example
 {% highlight json %}
 
-{   
+{
     "apache-packages" : [
     "apache2",
     "apache2-common",
@@ -106,7 +108,7 @@ Any string may include any number of [variable interpolation tokens][variables].
     "hosts_entry" :  "sandbox.%{fqdn}",
 
     "sshd_settings" : {
-                        "root_allowed" : "no", 
+                        "root_allowed" : "no",
                         "password_allowed" : "no"
                       }
 }
