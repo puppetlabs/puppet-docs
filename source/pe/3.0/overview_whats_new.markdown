@@ -41,7 +41,7 @@ For a complete list of package upgrades, visit the [release notes](./appendix.ht
 * Puppet agents are now supported on Windows Server 2012.
 * The addition of [parameterized class](/guides/parameterized_classes.html) support in the console makes it easier to use pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com/).
 * A new resource type, [service](/references/3.2.latest/type.html#service), is now available for browsing in live management.
-* Live management cloning is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, the [release notes](./appendix.html#release-notes) contain detailed instructions.
+* Live management cloning is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, the [release notes](./appendix.html#release-notes) contain suggestions.
 * Compliance is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, visit this page that describes an [alternate workflow in greater detail](./compliance_alt.html).
 * Facter 1.7 provides support for [external facts](https://puppetlabs.com/blog/facter-1-7-introduces-external-facts/), which makes writing custom Facter facts much easier than before.
 * All deprecated commands that precede Puppet 2.6.x (e.g., `puppetmasterd`, `puppetd`, `ralsh`, etc.) are now removed.
@@ -50,7 +50,7 @@ For a complete list of package upgrades, visit the [release notes](./appendix.ht
 In 3.0, the PE console must be accessed via one of the following browsers:
 
 * Chrome (current versions)
-* Firefox 19 and higher
+* Firefox (current versions)
 * Safari 5.1 and higher
 * Internet Explorer 9, 10 (IE 8 is no longer supported)
 

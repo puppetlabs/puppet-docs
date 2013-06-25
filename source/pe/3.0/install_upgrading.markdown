@@ -23,11 +23,12 @@ If you'd prefer to wait until the complete solution is available, we nonetheless
 
 - On AIX 5.3, as in PE 2.8.2, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
 
-- On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running
+- On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running:
+
         rpm -e --nodeps readline
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
-        
-If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
+
+    If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
 
 Downloading PE
 -----
@@ -41,9 +42,10 @@ Migrating a Deployment
 -----
 
 Follow these steps to migrate your 2.8.x deployment to 3.0. For the purpose of this description, we will assume you are using a "monolithic" architecture wherein the console, database support, and master roles are all running on the same node. If your deployment uses separate roles, the steps are largely similar, except that you should remember to install the roles in this order:
-    1. Master
-    2. Database support
-    3. Console
+
+ 1. Master
+ 2. Database support
+ 3. Console
 
 Further, we assume that all of the components (agents, master, console, etc.) in your 2.8.x deployment are correctly configured and communicating with each other, and that live management is up and running with all nodes connected.
 
@@ -58,6 +60,7 @@ Next, you will move and/or create new credentials as follows (substituting the c
 First, we'll migrate the CA and agents' certificates from the old 2.8 master to the new 3.0 master.
 
 On the new, 3.0 master run:
+
     cp -a /etc/puppetlabs/puppet/ssl /etc/puppetlabs/puppet/ssl.orig
     rm -fr /etc/puppetlabs/puppet/ssl/*
     scp -r root@<2.8.x.master>:/etc/puppetlabs/puppet/ssl/* /etc/puppetlabs/puppet/ssl/
@@ -67,6 +70,7 @@ Because the new master's certificate that was initially generated during install
 
 
 On the new, 3.0 master, run:
+
     puppet cert clean internal-broker
     puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain 3-0master.domain
     puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain,stomp pe-internal-broker
@@ -75,12 +79,14 @@ On the new, 3.0 master, run:
 Next, for the internal certificates used by the console, we also need migrate over the certificates signed by the 2.8 CA.
 
 On the new, 3.0 master, run:
+
     scp root@2.8.x.master:/opt/puppet/share/puppet-dashboard/certs/* /opt/puppet/share/puppet-dashboard/certs/
 
 #### Create New PuppetDB Certificates
 Again, we need to replace the certificate generated during installtion with a certificate signed by the 2.8 CA.
 
 On the new, 3.0 master, run:
+
     rm -fr /etc/puppetlabs/puppetdb/ssl/*
     /opt/puppet/sbin/puppetdb-ssl-setup -f
 
