@@ -6,9 +6,9 @@ subtitle: "Working with Node Requests"
 
 
 ### Intro/Overview
-In previous versions of PE, sysadmins had to use the command line on the puppet master to manually approve or reject certificates from agent nodes attempting to join the site. Node request management is a new capability of the PE console which allows sysadmins to view and respond to requests graphically, from within the console. This means nodes can now be approved without needing access to the puppet master. For further security, node request management supports the console's user management system: only users with read/write privileges can take action on node requests.
+Node request management allows sysadmins to view and respond to node requests graphically, from within the console. This means nodes can be approved for addition to the deployment without needing access to the puppet master or using the CLI. For further security, node request management supports the console's user management system: only users with read/write privileges can take action on node requests.
 
-Once the console has been properly configured to point at the appropriate Certificate Authority, it will display all of the nodes that have generated Certificate Signing Requests (CSRs). You can then approve or deny the requests, individually or in a batch.
+Once the console has been properly configured to point at the appropriate Certificate Authority (CA), it will display all of the nodes that have generated Certificate Signing Requests (CSRs). You can then approve or deny the requests, individually or in a batch.
 
 For each node making a request, you can also see its name and associated CSR fingerprint.
 

@@ -27,7 +27,7 @@ If you alter an agent's name in `puppet.conf` or make other changes that affect 
 AIX Agents Not Registering with Live Management After 3.0 Upgrade
 -----
 
-In some cases, agents running on AIX 5.3 will not come back up in live management after the upgrade. You can restore their connection by forcing `pe-mcollective` process to die, by using the following commands on the agent:
+In some cases, the MCollective service on AIX agents may be stuck in the `stopping` state. In such cases, the agents will not come back up in live management after the upgrade. You can restore their connection by forcing the `pe-mcollective` process to die, by using the following commands on the agent:
 
     lssrc -s pe-mcollective   # note returned pid
     kill -9 <pid-of-pe-mcollective>

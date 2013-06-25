@@ -73,13 +73,12 @@ For example:
 
 Upgrading
 -----
-To upgrade a Windows agent, simply run the new 3.0 installer. There's no need to uninstall the previous version.
+ 
 
-<!-- 
-TODO_upgrading Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
+Upgrading Windows agents is done by simply running the new 3.0 version of the MSI package. There's no need to uninstall the previous version. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
 When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
- -->
+
 
 Uninstalling
 -----

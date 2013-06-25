@@ -15,6 +15,8 @@ By default, a new installation of PE will serve the console on port 443. However
 * Edit `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` on the console server, and change the port number in the `Listen 443` and `<VirtualHost *:443>` directives. (These directives will contain the current port, which is not necessarily 443.)
 * Edit `/etc/puppetlabs/puppet/puppet.conf` on the puppet master server, and change the `reporturl` setting to use your preferred port.
 * Edit `/etc/puppetlabs/puppet-dashboard/external_node` on the puppet master server, and change the `ENC_BASE_URL` to use your preferred port.
+* Edit `/etc/puppetlabs/console-auth/config.yml ` on the puppet master server, and change the `cas_url` to use your preferred port.
+* Edit `/etc/puppetlabs/rubycas-server/config.yml ` on the puppet master server, and change the `console_base_url` to use your preferred port.
 * Make sure to allow access to the new port in your system's firewall rules.
 * Start the `pe-httpd` service:
 

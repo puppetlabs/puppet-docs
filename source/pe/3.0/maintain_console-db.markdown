@@ -75,4 +75,4 @@ The same procedure is also used for the PuppetDB user's password, except you'll 
 
 * * * 
 
-- [Next: Maintaining Puppet Core](./maintain_puppet.html) 
+- [Next: Troubleshooting the Installer](./trouble_install.html) 

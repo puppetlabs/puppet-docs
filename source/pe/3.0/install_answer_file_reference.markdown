@@ -194,44 +194,6 @@ These answers are only needed if you are installing the console role.
 : **Integer** --- The port where the PuppetDB server can be reached. 
 
 
-<!-- TODO_upgrade
-Upgrader Answers
------
-
-`q_upgrade_installation`
-: **Y or N** --- Whether to upgrade. Answer files must set this to Y.
-
-`q_puppet_cloud_install`
-: **Y or N** --- Whether to install the cloud provisioner tools on this node during the upgrade. Previous versions of PE did not include the cloud provisioner tools.
-
-`q_puppet_enterpriseconsole_setup_auth_db`
-: **Y or N** --- Whether to automatically configure the console's authentication database.
-
-`q_puppet_enterpriseconsole_database_root_password`
-: **String** --- The password for the root user on the console's database server. Only required if `q_puppet_enterpriseconsole_setup_auth_db` is true.
-
-`q_puppet_enterpriseconsole_auth_user_email`
-: **String** --- The email address with which the console's admin user will log in. Only required if this node has the console role installed.
-
-`q_puppet_enterpriseconsole_auth_password`
-: **String** --- A password for accessing the console. Previous versions of PE did not secure the Dashboard with a username and password. Only required if this node has the console role (previously Puppet Dashboard) installed.
-
-`q_puppet_enterpriseconsole_auth_database_name`
-: **String** --- The database the console authentication will use. Note that if you are not automatically configuring the auth database, this database must already exist on the PostgreSQL server.
-
-`q_puppet_enterpriseconsole_auth_database_user`
-: **String** --- The PostgreSQL user the console authentication will use. Note that if you are not automatically configuring the databases, this user must already exist on the PostgreSQL server and must be able to edit the auth database.
-
-`q_puppet_enterpriseconsole_auth_database_password`
-: **String** --- The password for the auth database's PostgreSQL user.
-
-`q_puppet_enterpriseconsole_smtp_host`
-: **String** -- The SMTP server with which to email account activation codes to new console users.
-
-`q_vendor_packages_install`
-: **Y or N** --- Whether to install additional packages from your OS vendor's repository, if the upgrader determines any are needed.
- -->
-
 Uninstaller Answers
 -----
 

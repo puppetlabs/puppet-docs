@@ -21,9 +21,9 @@ Browser Requirements
  The following browsers are supported for use with the console:
 
 * Chrome (current versions)
-* Firefox 19 and higher
+* Firefox (current versions)
 * Safari 5.1 and higher
-* Internet Explorer 9 or 10
+* Internet Explorer 9 or higher
 
 Reaching the Console
 -----

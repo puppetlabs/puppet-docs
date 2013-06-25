@@ -126,7 +126,7 @@ The db:users:remove task is used to delete users. The command is issued as follo
 To print a list of existing users to the screen use the db:users:list task as follows:
 
     cd /opt/puppet/share/puppet-dashboard
-    sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list`
+    sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list
 
 
 

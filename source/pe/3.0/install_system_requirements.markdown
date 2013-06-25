@@ -174,7 +174,7 @@ virt-what     | libcap2                 | libcap2                 |             
 <br>
 
 ***AIX***
-In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed before attempting to install the puppet agent:
+In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed *before* attempting to install the puppet agent:
 
 * bash
 * zlib
@@ -186,7 +186,7 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 
  * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/bash/bash-3.2-1.aix5.2.ppc.rpm
  * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm
- * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm
+ * ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-6.1-1.aix6.1.ppc.rpm
 
 *Note:* if you are behind a firewall or running an http proxy, the above commands may not work. Instead, use the link above to find the packages you need.
 

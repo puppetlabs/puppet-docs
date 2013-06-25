@@ -76,13 +76,13 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
 
 ### Readline Version Issues on AIX Agents
-- On AIX 5.3, puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
+- As wtith PE 2.8.2,  AIX 5.3, puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
 
 - On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running
          rpm -e --nodeps readline
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
         
-If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the installation or upgrade.
+If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the installation or upgrade (you can verify the installation with  `rpm -q readline`).
 
 ### Debian/Ubuntu Local Hostname Issue
 On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname will cause it to resolve to the local-only IP address rather than its public IP. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
