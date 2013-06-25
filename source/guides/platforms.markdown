@@ -1,14 +1,14 @@
 ---
 layout: legacy
-title: Supported Platforms
+title: Puppet Open Source: Supported Platforms
 ---
 
-[pe2requirements]: /pe/latest/install_system_requirements.html
+[pe-requirements]: /pe/latest/install_system_requirements.html
 
-Supported Platforms
+Puppet Open Source Supported Platforms
 ===================
 
-For information about Puppet Enterprise's system requirements, [see here][pe2requirements].
+This page lists supported platforms for the open source version of Puppet. For Puppet Enterprise's supported platforms visit the [PE system requirements page][pe-requirements].
 
 Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform not on this list.
 
