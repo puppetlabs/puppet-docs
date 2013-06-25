@@ -46,7 +46,7 @@ Classes are singletons, and can only be applied once in a given configuration, a
 
 (or **node classification**)
 
-To assign [classes](#class) to a [node](#node), as well as provide any data the classes require. Writing a class makes a set of configurations available; classifying a node determines what its actual configuration will be.
+To assign [classes](#class) to a [node](#agent), as well as provide any data the classes require. Writing a class makes a set of configurations available; classifying a node determines what its actual configuration will be.
 
 Nodes can be classified with [node definitions](#node-definition) in the [site manifest](#site-manifest), with an [ENC](#external-node-classifier), or with both.
 
@@ -110,7 +110,7 @@ Facter can also be extended with custom facts, which can expose site-specific de
 
 ### Facter
 
-Facter is Puppet's system inventory tool. Facter reads [facts](#facts) about a node (such as its hostname, IP address, operating system, etc.) and makes them available to Puppet.
+Facter is Puppet's system inventory tool. Facter reads [facts](#fact) about a node (such as its hostname, IP address, operating system, etc.) and makes them available to Puppet.
 
 Facter includes a large number of built-in facts; you can view their names and values for the local system by running `facter` at the command line.
 
@@ -141,7 +141,7 @@ See [scope](#scope).
 
 Any computer (physical or virtual) attached to a network.
 
-In the Puppet docs, this usually means an instance of an operating system with the Puppet agent installed. See also "[Agent Node](#agent-node)".
+In the Puppet docs, this usually means an instance of an operating system with the Puppet agent installed. See also "[Agent Node](#agent)".
 
 ### host (resource type)
 
@@ -275,7 +275,7 @@ The parameters you use when defining a type (or class) become the attributes ava
 
 ### parameter (external nodes)
 
-A top-scope variable set by an [external node classifier](#external-node-classifier-enc). Although these are called "parameters," they are just normal variables; the name refers to the fact that they are usually used to configure the behavior of classes.
+A top-scope variable set by an [external node classifier](#external-node-classifier). Although these are called "parameters," they are just normal variables; the name refers to the fact that they are usually used to configure the behavior of classes.
 
 
 ### pattern

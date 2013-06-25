@@ -53,7 +53,7 @@ While PE can be set up to use, for example, aliases, doing so can be complex and
 
 At some point in the not too distant future, you will want to review and regularize the way your organization creates host names and IP tables.
 
-If you need some help troubleshooting DNS, please refer to [these requirements](/pe/latest/trouble_common_problems.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
+If you need some help troubleshooting DNS, please refer to [these requirements](/pe/latest/trouble_install.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
 
 ### What Goes Where
 

@@ -17,10 +17,10 @@ The guide will be released in chapters.
 
  * This first chapter covers initial architecture decisions you'll need to make, and other best practices for installation and preparation.
 
- * The next chapter will look at setting up your work environment with version control, best practices for hardening your installation, and managing users and security. 
+ * The next chapter will look at setting up your work environment with version control, best practices for hardening your installation, and managing users and security.
 
  * The third chapter gets to the meat of the matter by demonstrating how and why automation can help you do your job better and faster. You'll follow a fictional sysadmin while she sets up automation for some simple services, configurations, and other things that a typical admin might want to first start managing with PE. This chapter will cover using the console and the forge, will introduce you to writing manifests, and will recommend some modules to help you get automation up and running quickly. We'll also discuss some methods for testing your work before going live.
- 
+
  * The fourth chapter will move on to more advanced automation tasks and will explore manifest writing and the puppet language in more detail.
 
  * The fifth chapter will discuss some of the regular maintenance tasks  and troubleshooting tips you'll want to know about to keep things humming along smoothly.
@@ -55,7 +55,7 @@ While PE can be set up to use, for example, aliases, doing so can be complex and
 
 At some point in the not too distant future, you will want to review and regularize the way your organization creates host names and IP tables.
 
-If you need some help troubleshooting DNS, please refer to [these requirements](/pe/latest/trouble_common_problems.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
+If you need some help troubleshooting DNS, please refer to [these requirements](/pe/latest/trouble_install.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
 
 ### What Goes Where
 
