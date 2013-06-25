@@ -176,7 +176,7 @@ The certname is the puppet master's unique identifier. It should be a DNS name a
 
 (If the master's certname is not one of its DNS names, you may need to [edit puppet.conf after installation][bucket-troubleshooting].)
 
-[bucket-troubleshooting]: ./trouble_common_problems.html#can-agents-reach-the-filebucket-server
+[bucket-troubleshooting]: ./trouble_comms.html#can-agents-reach-the-filebucket-server
 
 #### Valid DNS Names
 
@@ -214,7 +214,7 @@ The console's account management tools will send activation emails to new users 
 * If you cannot provide an SMTP server, an admin user can manually copy and email the activation codes for new users. (Note that `localhost` will usually work as well.)
 * If your SMTP server requires TLS or a user name and password, you must [perform additional configuration after installing.][smtpconfig]
 
-[smtpconfig]: ./config_advanced.html#configuring-the-smtp-server
+[smtpconfig]: ./console_config.html#configuring-the-smtp-server
 
 #### Databases
 

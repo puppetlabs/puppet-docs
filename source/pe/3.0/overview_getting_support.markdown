@@ -1,4 +1,4 @@
-    ---
+---
 layout: default
 title: "PE 3.0 » Overview » Getting Support"
 subtitle: "Getting Support for Puppet Enterprise"
@@ -27,9 +27,9 @@ Puppet Labs provides two levels of [commercial support offerings for Puppet Ente
 
 When seeking support, you may be asked to run the information-gathering support script included with in the Puppet Enterprise installer tarball. This script is located in the root of the unzipped tarball and is named simply "`support`."
 
-This script will collect a large amount of system information, compress it, and print the location of the zipped tarball when it finishes running; an uncompressed directory (named `support`) containing the same data will be left in the same directory as the compressed copy. We recommend that you examine the collected data before forwarding it to Puppet Labs, as it may contain sensitive information that you will wish to redact. 
+This script will collect a large amount of system information, compress it, and print the location of the zipped tarball when it finishes running; an uncompressed directory (named `support`) containing the same data will be left in the same directory as the compressed copy. We recommend that you examine the collected data before forwarding it to Puppet Labs, as it may contain sensitive information that you will wish to redact.
 
-The information collected by the support script includes: 
+The information collected by the support script includes:
 
 - iptables info (is it loaded? what are the inbound and outbound rules?) (both ipv4 and ipv6)
 - a full run of Facter (if installed)
@@ -67,9 +67,9 @@ Join the Puppet Enterprise user group
 
 <http://groups.google.com/a/puppetlabs.com/group/pe-users>
 
-- Click on “Sign in and apply for membership.”     
-- Click on “Enter your email address to access the document.”     
-- Enter your email address.     
+- Click on “Sign in and apply for membership.”
+- Click on “Enter your email address to access the document.”
+- Enter your email address.
 
 
 Your request to join will be sent to Puppet Labs for authorization and you will receive an email when you’ve been added to the user group.
@@ -91,6 +91,6 @@ As a Puppet Enterprise customer you are more than welcome to participate in our 
 
 
 
-* * * 
+* * *
 
 - [Next: Quick Start](./quick_start.html)
