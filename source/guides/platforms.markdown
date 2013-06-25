@@ -1,6 +1,6 @@
 ---
 layout: legacy
-title: Puppet Open Source: Supported Platforms
+title: Puppet Open Source » Supported Platforms
 ---
 
 [pe-requirements]: /pe/latest/install_system_requirements.html
