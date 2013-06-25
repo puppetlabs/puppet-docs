@@ -58,7 +58,7 @@ For this deployment, the puppet master, the console and database support server 
     * You will need the **email address and console password** it requests in order to use the console; **choose something memorable.**
     * None of the **other passwords** are relevant to this quick start guide. **Choose something random.**
     * **Accept the default responses for every other question** by hitting enter.
-* The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository.
+* The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take 10-15 minutes.**
 
 > You have now installed the puppet master node. As indicated by the installer, the puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
 
@@ -67,9 +67,11 @@ For this deployment, the puppet master, the console and database support server 
 * **On the agent node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled.)
 * [Download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
 * Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
-    * **Skip** the puppet master, database support, and console roles; **install** the puppet agent role. The  cloud provisioner role is optional and is not used in this exercise.
+    * **Skip** the puppet master role.
+    * Provide the puppet master hostname; in this case, **`master.example.com`**. If you configured the master to be reachable at `puppet`, you can alternately accept the default.
+    * **Skip** the database support and console roles.
+    * **Install** the puppet agent role. The cloud provisioner role is optional and is not used in this exercise.
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `agent1.example.com`.)
-    * Set the puppet master hostname as **`master.example.com`**. If you configured the master to be reachable at `puppet`, you can alternately accept the default.
     * **Accept the default responses for every other question** by hitting enter.
 * The installer will then install and configure Puppet Enterprise.
 
@@ -97,10 +99,13 @@ During installation, the agent node contacted the puppet master and requested a 
 * **On your control workstation,** open a web browser and point it to https://master.example.com.
 * You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
 * Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
+
 ![The console login screen](./images/quick/login.jpg)
+
 * The console GUI loads in your browser. Note the pending "node requests" indicator in the upper right corner. Click it to load a list of pending node requests.
 
 ![Node Request Indicator](./images/console/request_indicator.png)
+
 * Click the "Accept All" button to approve all the requests and add the nodes to the deployment.
 
 > The agent nodes can now retrieve configurations from the master the next time puppet runs.
@@ -109,7 +114,10 @@ During installation, the agent node contacted the puppet master and requested a 
 
 During this walkthrough, we will be running puppet agent interactively. Normally, puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a puppet run manually from the command line.
 
+
 * **On the first agent node,** run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging.
+
+    > **Note:** If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 * **On the Windows node,** open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
 * Note the similar string of log messages.
@@ -137,22 +145,24 @@ Although puppet agent is now fully functional on any agent nodes, some other Pup
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following:
 
-* **On the console,** use the sidebar to navigate to the default group:
+* **On the console,** use the sidebar to navigate to the "mcollective" group:
 
-![the default group link](./images/quick/default_link.png)
+![the mcollective group link](./images/quick/mcollective_link.png)
 
-* Check the list of nodes at the bottom of the page for `agent1.example.com` --- depending on your timing, it may already be present. If so, skip the next two steps and go directly to the agent node.
+* Check the list of nodes at the bottom of the page for `agent1.example.com` and `windows.example.com` (or whatever you named your Windows node) --- depending on your timing, they may already be present. If so, skip to "on each agent node" below.
 * If `agent1` is not a member of the group already, click the "edit" button:
 
-![the edit button](./images/quick/default_edit.png)
+![the edit button](./images/quick/mcollective_edit.png)
 
 * In the "nodes" field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the update button after you have selected it.
 
 ![the nodes field](./images/quick/default_nodes.png)
 
-* **On the first agent node,** run `puppet agent --test` again. Note the long string of log messages related to the `pe_mcollective` class.
+* **On each agent node,** run `puppet agent --test` again, [as described above](#testing-the-agent-nodes). Note the long string of log messages related to the `pe_mcollective` class.
 
-> The first agent node can now respond to orchestration messages, and its resources can be edited live in the console.
+In a normal environment, you would usually skip these steps and allow orchestration to come on-line automatically.
+
+> Both the Linux and the Windows agent node can now respond to orchestration messages, and their resources can be viewed live in the console.
 
 Using Live Management to Control Agent Nodes
 -----
@@ -183,15 +193,17 @@ The other resource types work in a similar manner. Choose the nodes whose resour
 
 Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use live management to run puppet on several selected nodes.
 
-* **On the console, in the live management page,** click the "control puppet" tab.
+* **On the console, in the live management page,** click the "Control Puppet" tab.
 * Make sure one or more nodes are selected with node selector on the left.
-* Click the "runonce" action to reveal options to modify the runonce action and the red "Run" button. Click the "Run" button to run puppet on the selected nodes.
+* Click the `runonce` action to reveal the red "Run" button and additional options. Click the "Run" button to run Puppet on the selected nodes.
 
-![Node Request Indicator](./images/console/console_runonce.png)
+> **Note:** You can't always use the `runonce` action's additional options --- with \*nix nodes, you must stop the `pe-puppet` service before you can use options like `noop`. [See this note in the orchestration section of the manual](./orchestration_puppet.html#behavior-differences-running-vs-stopped) for more details.
+
+![The runonce action and its options](./images/quick/console_runonce.png)
 
 > You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
 >
-> In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server.
+> In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
 Installing a Puppet Module
 -----
@@ -202,9 +214,12 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 ### Installing two Forge Modules
 
-* **On your control workstation,** navigate to <http://forge.puppetlabs.com/puppetlabs/motd>. This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
+We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_desktop_shortcut`.
+
+* **On your control workstation,** . This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
 * Navigate to <https://forge.puppetlabs.com/puppetlabs/win_desktop_shortcut>. This is the Forge listing for an example module that manages a desktop shortcut on Windows.
-* **On the puppet master,** run `puppet module search motd`. This is an alternate way to find the same information as a Forge listing contains:
+
+* **On the puppet master,** run `puppet module search motd`. This searches for modules from the Puppet Forge with `motd` in their names or descriptions:
 
         Searching http://forge.puppetlabs.com ...
         NAME             DESCRIPTION                                                 AUTHOR        KEYWORDS
@@ -212,6 +227,12 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
         jeffmccune-motd  This manages a basic message of the day based on useful...  @jeffmccune   motd
         dhoppe-motd       This module manages motd                                   @dhoppe       debian ubuntu motd
         saz-motd         Manage 'Message Of The Day' via Puppet                      @saz          motd
+
+    We want `puppetlabs-motd`, which is an example module that sets the message of the day file (`/etc/motd`) on \*nix systems.
+
+    You can view detailed info about the module by navigating to <http://forge.puppetlabs.com/puppetlabs/motd> in your web browser, or by using the search field on the Forge website.
+
+    You can also do a similar search for `desktop_shortcut`, which should find the other module we'll be using.
 * Install the first module by running `puppet module install puppetlabs-motd`:
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
@@ -231,7 +252,7 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
 
-* **On the console,** click the "Classes" link in the primary navigation bar, then click the "Add class" button in the sidebar:
+* **On the console,** click the "Add class" button in the sidebar:
 
 ![The console's add class button][classbutton]
 
@@ -240,14 +261,14 @@ Every module contains one or more **classes.** The modules you just installed co
 ![the add class field][add_motd]
 
 * Do the same for the `win_desktop_shortcut` class.
-* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "Save changes" button after you have selected it.
+* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "Update" button after you have selected it.
 
 ![assigning the motd class][assign_motd]
 
 * Note that the `motd` class now appears in the list of `agent1`'s classes.
-* Navigate to `windows.example.com`, click the edit button, and begin typing "`win_desktop_shortcut`" in the "classes" field; select the class and click the "save changes" button.
+* Navigate to `windows.example.com`, click the edit button, and begin typing "`win_desktop_shortcut`" in the "classes" field; select the class and click the "Update" button.
 * Note that the `win_desktop_shortcut` class now appears in the list of `windows.example.com`'s classes.
-* Navigate to the live management page, and select the "control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+* Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * **On the first agent node,** run `cat /etc/motd`. Note that its contents resemble the following:
 
         The operating system is CentOS
@@ -263,13 +284,14 @@ Every module contains one or more **classes.** The modules you just installed co
 
 Summary
 -----
-
+TODO deep link all bullets
 You have now experienced the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
 * Deploy new nodes, install PE on them, and add them to their deployment by approving their certificate requests.
 * Use pre-built modules from the Forge to save time and effort.
 * Assign classes from the modules to nodes in the console.
-* Use live management for ad-hoc edits to nodes, and for triggering puppet agent runs when necessary.
+* Allow nodes to be managed by regularly scheduled Puppet runs.
+* Use live management to inspect and compare nodes, and to trigger on-demand puppet agent runs when necessary.
 
 ### Next
 
