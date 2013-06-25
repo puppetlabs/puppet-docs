@@ -19,7 +19,7 @@ Listing VMware vSphere Instances
 -----
 
 Let's get started by listing the machines currently on our vSphere
-server.  You do this by running the `puppet node_vmware list` command.
+server.  You do this by running the `puppet node_vmware list` command:
 
     $ puppet node_vmware list
 
@@ -63,7 +63,7 @@ Now you should be able to run the `puppet node_vmware list` command and see a li
     ipaddress:  192.168.100.218
     template:   false
 
-This shows that you're connected to your vSphere server and shows an available VMware template ( at `master_template`). Also shown are two virtual machines (puppetmaster.example.com and agent.example.com). VMware templates contain the information needed to build new virtual machines, such as the operating system, hardware configuration, and other details. 
+This shows that you're connected to your vSphere server and shows an available VMware template ( at `master_template`). Two virtual machines are also shown (puppetmaster.example.com and agent.example.com). VMware templates contain the information needed to build new virtual machines, such as the operating system, hardware configuration, and other details. 
 
 
 Specifically, `list` will return all of the following information:
@@ -100,7 +100,7 @@ Here `node_vmware create` has built a new virtual machine named `newpuppetmaster
 template of `/Datacenters/Solutions/vm/master_template`. (This is the template seen earlier with the `list` action.)  The
 virtual machine will be powered on, which may take several minutes to complete.
 
-**Important** All ENC connections to cloud nodes now require SSL support.
+**Important:** All ENC connections to cloud nodes now require SSL support.
 
 The following video demonstrates the above and some other basic functions:
 
