@@ -175,6 +175,66 @@ ___WARNING: You should not regenerate references for older versions of these doc
 - Clean loadpath: You should never have Puppet installed from Puppet-Labs-provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
 - ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord.
 
+## Linkchecker
+
+Linkchecker is a python app that does what it says on the tin. It's not a mandatory part of the toolchain, but it's nice to run once in a while and catch the inevitable link rot. You can install it with macports by running sudo port install linkchecker, not sure if there's another good way to install it.
+
+The docs for linkchecker are a little bit crap, and some of its behavior isn't clear, but here's what I've managed to nail down:
+
+### Neuter the templates, then generate the site
+
+All our templates include these conditional stylesheet links for IE that cause linkchecker to stop reading the file as soon as they reach them. So you have to delete them in each _layouts/something.html file, then restore them when you're done with the whole process.
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+Then generate the site with rake generate.
+
+### Make a ~/.linkchecker/linkcheckerrc file, or edit it if it exists
+
+You want the ignorewarnings line to look like this:
+
+ignorewarnings=url-content-duplicate,http-moved-permanent
+
+This prevents a bunch of noise I'm having to wrestle with right now.
+
+### Make sure you're serving the site locally with apache... or something
+
+This thing spins up like 100 threads to do http requests, so the little webrick server made by "rake serve" is a no-go.
+
+And since we use domain-less links all over the place, the site doesn't quite work as local files, so it has to be served by something. Hmm, maybe nginx would make this go faster. :/
+
+#### OH WAIT, HOLD ON
+
+It looks like the config file allows a localwebroot setting for checking absolute URLs in local files?
+
+localwebroot=/Users/nick/puppet-docs/output/
+
+YES, set that and do a local check.
+
+### Limit your command
+
+As far as I can tell, the default behavior is to recurse infinitely on the domain you provide, and go one step outwards on links to other domains. This gets INSSSAAANNNNEEE, but I don't know what a safe recursion limit is for catching all the links. I guess it only takes six degrees to reach Kevin Bacon, so maybe peg it at 6 and see what happens? Anyway, this time I left it at infinite, but blocked anything outside the local area and didn't recurse into any /references/ links.
+
+    linkchecker --anchors --ignore-url='^(?!file:///)' --no-follow-url='^file:///Users/nick/Documents/puppet-docs/output/references/' /Users/nick/Documents/puppet-docs/output/
+
+That one above is using the local filesystem, which is so much faster OMG. What I was doing before was using the local apache server:
+
+    linkchecker --anchors --ignore-url='^(?!http://docs.magpie)' --no-follow-url='docs.magpie.lan/references/' http://docs.magpie.lan
+
+If we wanted to set a recursion limit, it'd be `-r 6` or whatever.
+
+Oh, and we're using the `--anchors` flag because anchors matter on our internal links.
+
+### Also
+
+I've experienced with doing things like -r 0 or -r 1 and giving it a file glob, with the hope that that would make it slurp every file and be faster because it's not recursing, and it didn't work. Good thought, though.
+
 ## Working With the Toolchain
 
 #### Where do things live in the filesystem?
