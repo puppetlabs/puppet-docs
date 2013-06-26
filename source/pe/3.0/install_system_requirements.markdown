@@ -121,8 +121,11 @@ vixie-cron (RHEL 5) |                        |                        |         
 virt-what           |                        |                        |                          |
 
 
+     
 ***SLES***
+
 Support for SLES is delayed and will be added to the next release of PE 3.0, no later than August 15, 2013.
+
 
 <!-- TODO
 ***SLES***
