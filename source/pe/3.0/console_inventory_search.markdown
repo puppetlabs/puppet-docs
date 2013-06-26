@@ -23,3 +23,7 @@ To choose facts to search for, you should [view the inventory data][inventory] f
 [inventory]: ./console_reports.html#viewing-inventory-data
 [inventory_search]: ./images/console/inventory_search.png
 [inventory_zoom]: ./images/console/inventory_zoom.png
+
+* * *
+
+- [Next: Configuring & Tuning the Console](./console_config.html)

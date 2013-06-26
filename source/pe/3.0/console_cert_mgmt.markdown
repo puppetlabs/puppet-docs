@@ -87,4 +87,4 @@ environment | environments to allow     | string        |               | no
 
 * * *
 
-- [Next: Viewing Reports and Inventory Data](./console_reports.html)
+- [Next: Grouping and Classifying Nodes](./console_classes_groups.html)

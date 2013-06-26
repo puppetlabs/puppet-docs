@@ -263,4 +263,4 @@ Also note that the value for the `filter:` key must be the full name for the lef
 
 * * *
 
-- [Next: Grouping and Classifying Nodes](./console_classes_groups.html)
+- [Next: Searching for Nodes by Fact](./console_inventory_search.html)

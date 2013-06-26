@@ -400,4 +400,4 @@ All of these tasks should be run as follows, replacing `<TASK>` with the task na
 
 * * *
 
-- [Next: Configuring & Tuning the Console](./console_config.html)
+- [Next: Viewing Reports and Inventory Data](./console_reports.html)
