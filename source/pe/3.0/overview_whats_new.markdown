@@ -54,6 +54,11 @@ In 3.0, the PE console must be accessed via one of the following browsers:
 * Safari 5.1 and higher
 * Internet Explorer 9, 10 (IE 8 is no longer supported)
 
+### Delayed Support for Upgrading and SLES
+
+* Full functionality for upgrades is not yet complete in 3.0. Upgrading is not yet supported for master, console and database roles, but is fully supported for agents. Visit the [upgrading page](./install_upgrading) for complete instructions on how to migrate a 2.8 deployment to PE 3.0 now. Full upgrade support will be included in the next release of PE 3.0, no later than August 15, 2013.
+* Support for nodes running the SLES operating system is not yet completed. It will be included in the next release of PE 3.0, no later than August 15, 2013.
+
 
 * * *
 
