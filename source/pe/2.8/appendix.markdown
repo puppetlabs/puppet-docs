@@ -12,7 +12,7 @@ Puppet Terminology
 
 For help with Puppet-specific terms and language, visit [the glossary](/references/glossary.html)
 
-For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.8/reference/)
+For a complete guide to the Puppet language, visit [the reference manual](/puppet/2.7/reference/)
 
 Release Notes
 -----

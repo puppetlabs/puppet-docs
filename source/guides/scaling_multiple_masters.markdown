@@ -9,7 +9,7 @@ Using Multiple Puppet Masters
 To scale beyond a certain size, or for geographic distribution or disaster recovery, a deployment may warrant having more than one puppet master server. This document outlines options for deployments with multiple masters.
 
 > Note: As of this writing, this document does not cover:
-> 
+>
 > * How to expand Puppet Enterprise's orchestration or live management features
 > * How to use multiple PE console or Puppet Dashboard servers
 
@@ -55,7 +55,7 @@ Configuring a load balancer is beyond the scope of this document.
 
 ### Option 4: DNS `SRV` Records
 
-This option is new in Puppet 3.0, and will only work if your entire Puppet infrastructure is on 3.0 or newer. 
+This option is new in Puppet 3.0, and will only work if your entire Puppet infrastructure is on 3.0 or newer.
 
 > Note: Designating Puppet services with SRV records is an **experimental feature.** It is currently being used in production at several large sites, but there are still some issues with the implementation to be wary of. Specifically: it makes a large number of DNS requests, request timeouts are completely under the DNS server's control and agents cannot bail early, the way it divides services does not map perfectly to the pre-existing `server`/`ca_server`/etc. settings, and SRV records don't interact well with static servers set in the config file (i.e. static settings can't be used for failover, it's one or the other). Please keep these potential pitfalls in mind when configuring your DNS!
 
@@ -74,12 +74,12 @@ Each of your puppet nodes will be configured with a `srv_domain` instead of a `s
     _x-puppet._tcp.example.com. IN SRV 0 5 8140 master-b.example.com.
 
 Advanced configurations are also possible.  For instance, if all devices in site A are configured with a `srv_domain` of `site-a.example.com` and all nodes in site B are configured to `site-b.example.com`, you can configure them to prefer a master in the local site, but fail over to the remote site:
-    
+
     # Site A has two masters - master-1 is beefier, give it 75% of the load:
     _x-puppet._tcp.site-a.example.com. IN SRV 0 75 8140 master-1.site-a.example.com.
     _x-puppet._tcp.site-a.example.com. IN SRV 0 25 8140 master-2.site-a.example.com.
     _x-puppet._tcp.site-a.example.com. IN SRV 1 5 8140 master.site-b.example.com.
-    
+
     # For site B, prefer the local master unless it's down, then fail back to site A
     _x-puppet._tcp.site-b.example.com. IN SRV 0 5 8140 master.site-b.example.com.
     _x-puppet._tcp.site-b.example.com. IN SRV 1 75 8140 master-1.site-a.example.com.
@@ -98,9 +98,9 @@ There are two main options for centralizing the CA:
 
 #### Method A: Individual Agent Configuration
 
-On **every agent node,** you must set the [`ca_server`](/references/latest/configuration.html#ca_server) setting in [`puppet.conf`](/guides/configuring.html) (in the `[main]` configuration block) to the hostname of the server acting as the certificate authority. 
+On **every agent node,** you must set the [`ca_server`](/references/latest/configuration.html#caserver) setting in [`puppet.conf`](/guides/configuring.html) (in the `[main]` configuration block) to the hostname of the server acting as the certificate authority.
 
-* If you have a large number of existing nodes, it is easiest to do this by managing `puppet.conf` with a Puppet module and a template. 
+* If you have a large number of existing nodes, it is easiest to do this by managing `puppet.conf` with a Puppet module and a template.
 * Be sure to pre-set this setting when provisioning new nodes --- they will be unable to successfully complete their initial agent run if they're not communicating with the correct `ca_server`.
 
 #### Method B: DNS `SRV` Records
@@ -116,30 +116,30 @@ Alternately, if your nodes don't have direct connectivity to your CA master, you
 All certificate related URLs begin with `/<NAME OF PUPPET ENVIRONMENT>/certificate`; simply catch and proxy these requests using whatever capabilities your web server offers.
 
 > #### Example: Apache configuration with [`mod_proxy`](http://httpd.apache.org/docs/current/mod/mod_proxy.html)
-> 
+>
 > In the scope of your puppet master vhost, add the following configuration:
-> 
+>
 >     SSLProxyEngine On
 >     # Proxy all requests that start with things like /production/certificate to the CA
 >     ProxyPassMatch ^/([^/]+/certificate.*)$ https://puppetca.example.com:8140/$1
-> 
+>
 > This change must be made to the Apache configuration on every puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
-> 
+>
 > Additionally, the CA master must allow the nodes to download the certificate revocation list via the proxy, without authentication --- certificate requests and retrieval of signed certificates are allowed by default, but not CRLs.  Add the following to the CA master's `auth.conf`:
-> 
+>
 >     path /certificate_revocation_list
 >     auth any
 >     method find
 >     allow *
 
-* * * 
+* * *
 
 Create New Puppet Master Servers
 -----
 
 ### Install Puppet
 
-To add a new puppet master server to your deployment, begin by installing and configuring Puppet as per normal. 
+To add a new puppet master server to your deployment, begin by installing and configuring Puppet as per normal.
 
 * [Installing Puppet (open source versions)](/guides/installation.html)
 * [Installing Puppet Enterprise](/pe/latest/install_basic.html)
@@ -151,18 +151,18 @@ Like with any puppet master, you'll need to use a production-grade web server ra
 * In `puppet.conf`, do the following:
     * Set `ca` to `false` in the `[master]` config block.
     * *If you're using the [individual agent configuration method of CA centralization](#option-1-direct-agent-nodes-to-the-ca-master):*
-    
+
       Set `ca_server` to the hostname of your CA server in the `[main]` config block.
     * If an `ssldir` is configured, make sure it's configured in the `[main]` block only.
 
 > If you're using the [DNS round robin method](#option-2-use-round-robin-dns) of agent load balancing, or a [load balancer](#option-3-use-a-load-balancer) in TCP proxying mode, your non-CA masters will need certificates with DNS Subject Alternative Names:
-> 
+>
 > * Configure `dns_alt_names` in the `[main]` block of `puppet.conf`.
-> 
+>
 >   It should be configured to cover every DNS name that might be used by a node to access this master.
->   
+>
 >       dns_alt_names = puppet,puppet.example.com,puppet.site-a.example.com
->       
+>
 > * If the agent or master has been run and already created a certificate, blow it away by running `sudo rm -rf $(puppet master --configprint ssldir)`.  If a cert has been requested from the master, you'll also need to delete it there to re-issue a new one with the alt names: `puppet cert clean master-2.example.com`.
 
 * Request a new certificate by running `puppet agent --test --waitforcert 10`.
@@ -175,14 +175,14 @@ Like with any puppet master, you'll need to use a production-grade web server ra
 Centralize Reports, Inventory Service, and Catalog Searching (storeconfigs)
 -----
 
-If you are using Puppet Dashboard or another HTTP report processor, you should point all of your puppet masters at the same shared Dashboard server; otherwise, you won't be able to see all of your nodes' reports. 
+If you are using Puppet Dashboard or another HTTP report processor, you should point all of your puppet masters at the same shared Dashboard server; otherwise, you won't be able to see all of your nodes' reports.
 
-If you are using the inventory service or exported resources, it's complex and impractical to use any of the older (activerecord) backends in a multi-master environment. **You should definitely switch to [PuppetDB](/puppetdb),** and point all of your puppet masters at a shared PuppetDB instance. A reasonably robust PuppetDB server can handle many puppet masters and many thousands of agent nodes. 
+If you are using the inventory service or exported resources, it's complex and impractical to use any of the older (activerecord) backends in a multi-master environment. **You should definitely switch to [PuppetDB](/puppetdb),** and point all of your puppet masters at a shared PuppetDB instance. A reasonably robust PuppetDB server can handle many puppet masters and many thousands of agent nodes.
 
-See [the PuppetDB manual](/puppetdb/latest) for instructions on setting up PuppetDB. You will need to deploy a PuppetDB server, then configure each puppet master to use it. 
+See [the PuppetDB manual](/puppetdb/latest) for instructions on setting up PuppetDB. You will need to deploy a PuppetDB server, then configure each puppet master to use it.
 
 
-* * * 
+* * *
 
 Keep Manifests and Modules in Sync Across Your Puppet Masters
 -----

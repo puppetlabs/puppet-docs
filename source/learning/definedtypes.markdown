@@ -116,7 +116,7 @@ If there's a singleton resource that has to exist for any instance of the define
 Defined Types in Modules
 -----
 
-[autoloader]: ./modules1.html#manifests-namespacing-and-autoloading
+[autoloader]: ./modules1.html#module-structure
 
 Defined types can be autoloaded just like classes, and thus used from anywhere in your manifests. [Like with classes][autoloader], **each defined type should go in its own file** in a module's `manifests/` directory, and **the same rules for namespacing apply.** (So the `apache::vhost` type would go somewhere like `/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp`, and if we were to keep the `planfile` type around, it would go in `/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp`.)
 

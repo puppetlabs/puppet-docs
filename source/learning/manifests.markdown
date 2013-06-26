@@ -303,7 +303,7 @@ This way, you can have many machines being configured by Puppet, while only main
 >
 > Write and apply a manifest that uses the [`ssh_authorized_key` type](http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey) to let you log into the learning VM as root without a password.
 >
-> **Bonus work:** Try putting it directly into the site manifest, instead of using puppet apply. [Use the console to trigger a puppet agent run](/pe/latest/console_live_puppet.html), and [check the reports in the console](/pe/latest/console_reports.html) to see whether the manifest worked.
+> **Bonus work:** Try putting it directly into the site manifest, instead of using puppet apply. [Use the console to trigger a puppet agent run](/pe/latest/orchestration_puppet.html), and [check the reports in the console](/pe/latest/console_reports.html) to see whether the manifest worked.
 >
 > * You'll need to have an SSH key pair, a terminal application on your host system, and some basic understanding of how SSH works. You can get all of these with a little outside research.
 > * Watch out: you can't just paste the line from `id_rsa.pub` into the `key` attribute of the resource. You'll need to separate its components out into multiple attributes. Read the documentation for the `ssh_authorized_key` type to see how.

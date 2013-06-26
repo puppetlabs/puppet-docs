@@ -245,7 +245,7 @@ And that'll do it! After the Puppet run has completed and you can see the report
 >
 > Puppet only sends refresh events if it makes changes to the notifying resource in _this run._ So if you wrote a file resource with new desired content for a config file, applied the manifest, then edited the manifest again to create a refresh relationship with a service, the service would miss its refresh, since the file resource would already be in its desired state.
 >
-> This will generally only happen to you on the machines you're testing early versions of manifests on, rather than your production boxes. If it does bite you, you can restart the service manually with [the "Advanced Tasks" section of the PE console's live management page](/pe/latest/console_live_advanced.html) --- use the "restart" action in the "service tasks" section.
+> This will generally only happen to you on the machines you're testing early versions of manifests on, rather than your production boxes. If it does bite you, you can restart the service manually with [the "Advanced Tasks" section of the PE console's live management page](/pe/latest/console_navigating_live_mgmt.html#the-advanced-tasks-tab) --- use the "restart" action in the "service tasks" section.
 
 
 Package/File/Service

@@ -98,7 +98,7 @@ What goes in that block of code? How about your answer from last chapter's NTP e
 
 That's a working class definition!
 
-> Note: You can download some basic NTP config files here: [Debian version](./files/ntp/files/ntp.conf.debian), [Red Hat version](./files/ntp/files/ntp.conf.el).
+> Note: You can download some basic NTP config files here: [Debian version](./files/examples/modules/ntp/files/ntp.conf.debian), [Red Hat version](./files/examples/modules/ntp/files/ntp.conf.el).
 
 > #### Aside: Class Names
 >
@@ -229,7 +229,7 @@ The first, `/etc/puppetlabs/puppet/modules`, is the main module directory we'll 
 
 > #### Aside: Configprint
 >
-> You can also get the value of the modulepath by running `puppet master --configprint modulepath`. The `--configprint` option lets you get the value of any Puppet [setting](/reference/latest/configuration.html); by using the `master` subcommand, we're making sure we get the value the puppet master will use.
+> You can also get the value of the modulepath by running `puppet master --configprint modulepath`. The `--configprint` option lets you get the value of any Puppet [setting](/references/latest/configuration.html); by using the `master` subcommand, we're making sure we get the value the puppet master will use.
 
 
 ### Module Structure
@@ -330,7 +330,7 @@ You can also assign classes to specific nodes using PE's web console. You'll hav
 We'll go into more detail later about working with multiple nodes.
 
 [pe_classes]: /pe/latest/console_classes_groups.html#adding-a-new-class
-[pe_node_class]: /pe/latest/console_classes_groups.html#assigning-a-class-to-a-node
+[pe_node_class]: /pe/latest/console_classes_groups.html#assigning-classes-and-groups-to-nodes
 
 
 

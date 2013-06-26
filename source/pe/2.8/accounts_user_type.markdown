@@ -8,18 +8,18 @@ This defined type is part of `pe_accounts`, a pre-built Puppet module that ships
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** The `pe_accounts` module is not yet supported on Windows nodes.
 
-The `pe_accounts::user` type declares a user account. It offers several benefits over Puppet's core `user` type: 
+The `pe_accounts::user` type declares a user account. It offers several benefits over Puppet's core `user` type:
 
 * It can create and manage the user's home directory as a Puppet resource.
 * It creates and manages a primary group with the same name as the user, even on platforms where this is not the default.
 * It can manage a set of SSH public keys for the user.
 * It can easily lock the user's account, preventing all logins.
 
-Puppet Enterprise uses this type internally to manage some of its own system users, but also exposes it as a public interface. 
+Puppet Enterprise uses this type internally to manage some of its own system users, but also exposes it as a public interface.
 
 The `pe_accounts::user` type can be used on all of the platforms supported by Puppet Enterprise (except Windows).
 
-**Note:** In Puppet Enterprise 1.2, this type was called `accounts::user`. it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details. 
+**Note:** In Puppet Enterprise 1.2, this type was called `accounts::user`. it was renamed in PE 2 to avoid namespace conflicts. If you are upgrading and wish to continue using the older name, the upgrader can install a wrapper module to enable it. See [the chapter on upgrading](./install_upgrading.html) for more details.
 
 ## Usage Example
 
@@ -28,12 +28,12 @@ The `pe_accounts::user` type can be used on all of the platforms supported by Pu
     class site::users {
       # Declaring a dependency: we require several shared groups from the site::groups class (see below).
       Class[site::groups] -> Class[site::users]
-      
-      # Setting resource defaults for user accounts: 
+
+      # Setting resource defaults for user accounts:
       Pe_accounts::User {
         shell => '/bin/zsh',
       }
-      
+
       # Declaring our pe_accounts::user resources:
       pe_accounts::user {'puppet':
         locked  => true,
@@ -83,7 +83,7 @@ The `pe_accounts::user` type can be used on all of the platforms supported by Pu
         sshkeys => ['ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwLBhQefRiXHSbVNZYKu2o8VWJjZJ/B4LqICXuxhiiNSCmL8j+5zE/VLPIMeDqNQt8LjKJVOQGZtNutW4OhsLKxdgjzlYnfTsQHp8+JMAOFE3BD1spVnGdmJ33JdMsQ/fjrVMacaHyHK0jW4pHDeUU3kRgaGHtX4TnC0A175BNTH9yJliDvddRzdKR4WtokNzqJU3VPtHaGmJfXEYSfun/wFfc46+hP6u0WcSS7jZ2WElBZ7gNO4u2Z+eJjFWS9rjQ/gNE8HHlvmN0IUuvdpKdBlJjzSiKZR+r/Bo9ujQmGY4cmvlvgmcdajM/X1TqP6p3OuouAk5QSPUlDRV91oEHw== nigel+moduledevkey@puppetlabs.com'],
       }
     }
-    
+
     # /etc/puppetlabs/puppet/modules/site/manifests/groups.pp
     class site::groups {
       # Shared groups:
@@ -107,7 +107,7 @@ The `pe_accounts::user` type can be used on all of the platforms supported by Pu
 
 ## Parameters
 
-Many of the type's parameters echo those of the standard [`user` type](/references/2.8.6/type.html#user).
+Many of the type's parameters echo those of the standard [`user` type](/references/2.7.latest/type.html#user).
 
 ### `name`
 
@@ -135,7 +135,7 @@ The user's uid number.  Must be specified numerically; defaults to being automat
 
 ### `gid`
 
-The gid of the primary group with the same name as the user. The `pe_accounts::user` type will create and manage this group. Must be specified numerically, defaults to being automatically determined (`undef`). 
+The gid of the primary group with the same name as the user. The `pe_accounts::user` type will create and manage this group. Must be specified numerically, defaults to being automatically determined (`undef`).
 
 ### `groups`
 
@@ -151,7 +151,7 @@ The user's password, in whatever encrypted format the local machine requires. Be
 
 ### `locked`
 
-Whether the user should be prevented from logging in. Set this to `true` for system users and users whose login privileges have been revoked. Valid values are `true` and `false`; defaults to false. 
+Whether the user should be prevented from logging in. Set this to `true` for system users and users whose login privileges have been revoked. Valid values are `true` and `false`; defaults to false.
 
 ### `sshkeys`
 
@@ -162,6 +162,6 @@ An array of SSH public keys associated with the user. Unlike with the [`ssh_auth
 A boolean parameter that dictates whether or not a user's home directory should be managed by the `account` type. If `ensure` is set to `absent` and `managehome` is `true`, the user's home directory will be recursively deleted.
 
 
-* * * 
+* * *
 
 - [Next: The `pe_accounts` Class](./accounts_class.html)

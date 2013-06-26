@@ -29,7 +29,7 @@ Prerequisites
 * Puppet requires Facter, a Ruby library. This guide will also describe how to install Facter from source, but you can skip those steps and instead install Facter from your operating system's packages or with `sudo gem install facter`.
 * To access every version of the Puppet source code, including the current pre-release status of every development branch, you will need [Git][].
 * If you want to run Puppet's tests, you will need [rake][], [rspec][], and [mocha][].
-* If you wish to use Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html), you should also install the `rgen` gem.
+* If you wish to use Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/3.0/reference/lang_experimental_3_2.html), you should also install the `rgen` gem.
 
 [mocha]: http://mocha.rubyforge.org/
 [rspec]: http://rspec.info/
@@ -116,10 +116,10 @@ You will likely want to set the following settings:
     * [`environment`](/references/latest/configuration.html#environment)
 * In the `[master]` block:
     * [`certname`](/references/latest/configuration.html#certname)
-    * [`dns_alt_names`](/references/latest/configuration.html#dns_alt_names)
+    * [`dns_alt_names`](/references/latest/configuration.html#dnsaltnames)
     * [`reports`](/references/latest/configuration.html#reports)
-    * [`node_terminus`](/references/latest/configuration.html#node_terminus)
-    * [`external_nodes`](/references/latest/configuration.html#external_nodes)
+    * [`node_terminus`](/references/latest/configuration.html#nodeterminus)
+    * [`external_nodes`](/references/latest/configuration.html#externalnodes)
 
 ### Create the Puppet User and Group
 

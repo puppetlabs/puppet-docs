@@ -23,7 +23,7 @@ Puppet's agent/master mode is **pull-based.** Usually, agents are configured to 
 [unified]: ./images/manifest_to_defined_state_unified.png
 [split]: ./images/manifest_to_defined_state_split.png
 
-[Earlier](./manifests.html#an-aside-compilation), you saw this diagram of how Puppet compiles and applies a manifest:
+[Earlier](./manifests.html#aside-compilation), you saw this diagram of how Puppet compiles and applies a manifest:
 
 ![Diagram of manifests being compiled into a catalog, which gets applied to enforce a defined system state.][unified]
 

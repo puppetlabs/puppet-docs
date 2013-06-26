@@ -94,9 +94,7 @@ appropriate permissions:
     }
 {% endhighlight %}
 
-For more information on how to create the site manifest, see the
-tutorials listed in the
-[Getting Started](../index.html#getting_started) section.
+For more information on how to create the site manifest, see [the Manifests chapter of the Learning Puppet tutorial](/learning/manifests.html).
 
 
 Start the Central Daemon
