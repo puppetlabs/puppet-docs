@@ -11,7 +11,10 @@ Many of these tasks are accomplished using the `puppet node` subcommand. While `
 Classifying nodes
 -----------------
 
-Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings, and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.  You can do this by [adding nodes to a group with the console's web interface](./console_classes_groups.html#grouping-nodes). However, you can also work right from the command line, which can be more convenient if you're already at your terminal and have the node's name ready at hand.
+Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings, and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.  You can do this by [assigning groups to nodes][g2n] or [nodes to groups][n2g] with the console's web interface. However, you can also work right from the command line, which can be more convenient if you're already at your terminal and have the node's name ready at hand.
+
+[g2n]: ./console_classes_groups.html#assigning-classes-and-groups-to-nodes
+[n2g]: ./console_classes_groups.html#adding-nodes-to-a-group
 
 To classify nodes and add them to a console group, run `puppet node classify`.
 

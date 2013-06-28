@@ -88,7 +88,7 @@ The following issues affect the currently shipped version of PE and all prior re
 
          rpm -e --nodeps readline
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
-        
+
 If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the installation or upgrade (you can verify the installation with  `rpm -q readline`).
 
 ### Debian/Ubuntu Local Hostname Issue
@@ -121,7 +121,7 @@ During installation, the PE installer attempts to automatically determine the UR
 
 ### Answer file required for some SMTP servers.d
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
 ### `pe-httpd` Must Be Restarted After Revoking Certificates
 
@@ -144,4 +144,4 @@ To improve the display of Puppet man pages, you can use your system `gem` comman
 
 * * *
 
-- [Next: Compliance: Alternate Workflow](./compliance_alt.html.html)
+- [Next: Compliance: Alternate Workflow](./compliance_alt.html)

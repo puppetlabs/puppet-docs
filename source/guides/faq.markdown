@@ -315,7 +315,7 @@ should build on the corresponding RHEL and CentOS variants.
 ### How do I use Puppet's graphing support?
 
 Puppet has graphing support capable of creating graph files of your
-aagent node configurations.
+agent node configurations.
 
 These graphs are created by and on the
 agent nodes, so you must enable `graph=true` in the `[agent]` section of your nodes' Puppet.conf and

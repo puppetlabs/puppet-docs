@@ -24,7 +24,7 @@ In a text editor --- `vim`, `emacs`, or `nano` --- create a file with the follow
 
 Save and close the editor, then run:
 
-    # puppet apply examples/user-absent.pp
+    # puppet apply /root/examples/user-absent.pp
     notice: /Stage[main]//User[katie]/ensure: removed
     notice: Finished catalog run in 0.07 seconds
 
@@ -83,7 +83,7 @@ Let's start by looking at a single resource:
 
 Try applying the short manifest above:
 
-    # puppet apply examples/file-1.pp
+    # puppet apply /root/examples/file-1.pp
     notice: /Stage[main]//File[testfile]/ensure: created
     notice: Finished catalog run in 0.05 seconds
 
@@ -97,7 +97,7 @@ This is just the reverse of what we saw above when we removed the user account: 
 If we try changing the mode and applying the manifest again, Puppet will fix it:
 
     # chmod 0666 /tmp/testfile
-    # puppet apply file-1.pp
+    # puppet apply /root/examples/file-1.pp
     notice: /Stage[main]//File[testfile]/mode: mode changed '0666' to '0640'
     notice: Finished catalog run in 0.04 seconds
 
@@ -156,7 +156,7 @@ Now that you know resource declarations, let's play with the file type some more
 
 Apply:
 
-    # puppet apply file-2.pp
+    # puppet apply /root/examples/file-2.pp
     notice: /Stage[main]//File[/tmp/test1]/ensure: created
     notice: /Stage[main]//File[/tmp/test3]/ensure: created
     notice: /Stage[main]//File[/tmp/test2]/ensure: created

@@ -200,7 +200,7 @@ See the Puppet documentation for more information about writing classes:
 
 ### Using a Homemade Module in the Console
 
-* **On the console,** use the "add class" button to make the class available, just as in the [previous example](./quick_start.html#using-a-module-in-the-console).
+* **On the console,** use the "add class" button to make the class available, just as in the [previous example](./quick_start.html#using-modules-in-the-console).
 * Instead of assigning the class to a single node, **assign it to a group.** Navigate to the default group and use the edit button, then **add the `core_permissions` class to its list of classes.** Do not delete the existing classes, which are necessary for configuring new nodes.
 
 ![adding the `core_permissions` class](./images/quick/add_core_permissions.png)

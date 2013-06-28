@@ -87,7 +87,7 @@ Puppet has a bunch of built-in, pre-assigned variables that you can use. Check i
     }
 {% endhighlight %}
 
-    # puppet apply motd.pp
+    # puppet apply /root/examples/motd.pp
 
     notice: /Stage[main]//Host[puppet]/ensure: created
     notice: /Stage[main]//File[motd]/ensure: defined content as '{md5}bb1a70a2a2ac5ed3cb83e1a8caa0e331'

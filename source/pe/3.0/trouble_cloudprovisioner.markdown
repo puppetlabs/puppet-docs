@@ -73,4 +73,4 @@ Then sign the certificate as usual on the master (`puppet cert sign {certname}`)
 
 * * *
 
-- [Next: Troubleshooting Windows](/windows/troubleshooting.html.html)
+- [Next: Troubleshooting Windows](./trouble_windows.html)

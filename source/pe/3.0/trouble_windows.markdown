@@ -4,7 +4,7 @@ title: "PE 3.0 » Troubleshooting » Windows"
 subtitle: "Troubleshooting Puppet on Windows"
 ---
 
-[datadirectory]: ./installing.html#data-directory
+[datadirectory]: ./install_windows.html#data-directory
 
 
 Puppet Enterprise supports Windows agents, for both the core Puppet configuration management features and the orchestration features.
@@ -63,7 +63,7 @@ Make sure to use a semi-colon (;) as the path separator on Windows, e.g., `modul
 
 ### File Separator
 
-[backslashes]: ./writing.html#file-paths-on-windows
+[backslashes]: /windows/writing.html#file-paths-on-windows
 
 In most resource attributes, the Puppet language accepts either forward- or backslashes as the file separator. However, some attributes absolutely require forward slashes, and some attributes absolutely require backslashes. [See the relevant section of Writing Manifests for Windows][backslashes] for more information.
 
@@ -238,6 +238,6 @@ Windows services support a short name and a display name. Make sure to use the s
 
     This error will usually occur if `puppet apply -e` is used from the command line and the supplied command is surrounded with single quotes ('), which will cause `cmd.exe` to interpret any `=>` in the command as a redirect. To solve this surround the command with double quotes (") instead. See <https://projects.puppetlabs.com/issues/20528>.
 
-* * * 
+* * *
 
-- [Next: Appendix: Release Notes](./appendix.html#release-notes.html)
+- [Next: Appendix: Release Notes](./appendix.html#release-notes)

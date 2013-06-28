@@ -192,6 +192,6 @@ To release a new version of an already published module, you will need to make a
 
 When you are ready to publish your new version, navigate [to the Puppet Forge][forge] and log in if necessary. Click the "Upload a New Release" link:
 
-![the ][forgenewrelease]
+![the upload a new release link][forgenewrelease]
 
-This will bring you to the upload form as mentioned in [Create a Release](#modules_publishing.html#create-a-release) above, where you can select the new release tarball and upload the release.
+This will bring you to the upload form as mentioned in [Create a Release](#create-a-release) above, where you can select the new release tarball and upload the release.

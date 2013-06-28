@@ -14,7 +14,7 @@ PostgreSQL should have `autovacuum=on` set by default. If you're having memory i
 Recovering from a Lost Console Admin Password
 -----
 
-If you have forgotten the password of the console's initial admin user, you can [create a new admin user](./console_auth.html#creating-users-from-the-command-line) and use it to reset the original admin user's password.
+If you have forgotten the password of the console's initial admin user, you can [create a new admin user](./console_auth.html#working-with-users-from-the-command-line) and use it to reset the original admin user's password.
 
 On the console server, run the following commands:
 
@@ -28,8 +28,8 @@ The Console Has Too Many Pending Tasks
 
 The console either does not have enough worker processes, or the worker processes have died and need to be restarted.
 
-* [See here to restart the worker processes](./console_maintenance.html#restarting-the-background-tasks)
-* [See here to tune the number of worker processes](./config_advanced.html#fine-tuning-the-delayedjob-queue)
+* [See here to restart the worker processes](./maintain_console-db.html#restarting-the-background-tasks)
+* [See here to tune the number of worker processes](./console_config.html#fine-tuning-the-delayedjob-queue)
 
 Console Account Confirmation Emails Have Incorrect Links
 -----
@@ -38,7 +38,7 @@ This can happen if the console's authentication layer thinks it lives on a hostn
 
 To fix this:
 
-1. Open the `/etc/puppetlabs/console_auth/cas_client_config.yml` file for editing. Locate the `cas_host` line, which is likely commented-out:
+1. Open the `/etc/puppetlabs/console-auth/cas_client_config.yml` file for editing. Locate the `cas_host` line, which is likely commented-out:
 
         authentication:
 
@@ -47,13 +47,13 @@ To fix this:
           # cas_host: console.example.com:443
 
     Change its value to contain the **public hostname** of the console server, including the correct port.
-2. Open the `/etc/puppetlabs/console_auth/config.yml` file for editing. Locate the `console_hostname` line:
+2. Open the `/etc/puppetlabs/console-auth/config.yml` file for editing. Locate the `console_hostname` line:
 
         authentication:
           console_hostname: console.example.com
 
     Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
 
-* * * 
+* * *
 
 - [Next: Troubleshooting Orchestration](./trouble_orchestration.html)

@@ -20,16 +20,14 @@ Quick Links
 - [Invoking Actions (In the PE Console)](./console_navigating_live_mgmt.html)
 - [Invoking Actions (Command Line)](./orchestration_invoke_cli.html)
 - [List of Built-In Actions](./orchestration_actions.html)
-- [More Examples](./orchestration_examples.html)
 
 **Extending the orchestration engine:**
 
 - [Adding New Actions](./orchestration_adding_actions.html)
-- [Integrating Applications](./orchestration_integrating.html)
 
 **Configuring the orchestration engine:**
 
-- [Configuring Orchestration](./config_orchestration.html)
+- [Configuring Orchestration](./orchestration_config.html)
 
 
 > **Note:** Sometimes, newly added nodes won't respond immediately to orchestration commands. These nodes will begin responding to orchestration commands about 30m after Puppet Enterprise is installed. You can accelerate this by logging into the node and running `puppet agent --test` as an admin user.
@@ -84,9 +82,9 @@ The orchestration engine consists of the following parts:
 
 ### Configuration
 
-See [the Configuring Orchestration page][config] in the "Configuring Puppet Enterprise" section of this manual.
+See [the Configuring Orchestration page][config].
 
-[config]: ./config_orchestration.html
+[config]: ./orchestration_config.html
 
 ### Security
 

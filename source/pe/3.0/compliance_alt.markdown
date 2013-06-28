@@ -71,6 +71,6 @@ Compliance Alternate Workflow
 
  In this alternate workflow, you are essentially still maintaining baselines of your systems' desired states. However, instead of maintaining an _abstract_ baseline by approving changes in the console, you are maintaining _concrete_ baselines in readable Puppet code, which can be audited via version control records.
 
-* * * 
+* * *
 
-<!-- - [Next: Cloning: Alternate Workflow](./cloning_alt.html.html) -->
+<!-- - [Next: Cloning: Alternate Workflow](./cloning_alt.html) -->
