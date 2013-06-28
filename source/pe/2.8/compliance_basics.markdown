@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Compliance » Basics and UI"
 subtitle: "Compliance Basics and UI"
+canonical: "/pe/latest/compliance_alt.html"
 ---
 
 

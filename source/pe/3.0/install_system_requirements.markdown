@@ -180,6 +180,7 @@ virt-what     | libcap2                 | libcap2                 |             
 <br>
 
 ***AIX***
+
 In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed *before* attempting to install the puppet agent:
 
 * bash
