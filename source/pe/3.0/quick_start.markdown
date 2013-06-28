@@ -10,7 +10,7 @@ Welcome to the Puppet Enterprise 3.0 quick start guide. This document is a short
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
-* Examine amd control nodes in real time with live management
+* Examine and control nodes in real time with live management
 * Install a third-party Puppet module
 * Apply Puppet classes to nodes with the console
 
