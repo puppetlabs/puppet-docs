@@ -91,7 +91,7 @@ dmidecode    | libjpeg      |               |                          |
 net-tools    |              |               |                          |
 virt-what    |              |               |                          |
 
-
+<br>
 ***Centos***
 
 All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
@@ -104,7 +104,7 @@ dmidecode    | libjpeg      |               |                          |
 net-tools    |              |               |                          |
 virt-what    |              |               |                          |
 
-
+<br>
 
 ***RHEL***
 
@@ -121,11 +121,11 @@ vixie-cron (RHEL 5) |                        |                        |         
 virt-what           |                        |                        |                          |
 
 
-     
+  <br>   
 ***SLES***
 
 Support for SLES is delayed and will be added to the next release of PE 3.0, no later than August 15, 2013.
-
+<br>
 
 <!-- TODO
 ***SLES***
@@ -180,6 +180,7 @@ virt-what     | libcap2                 | libcap2                 |             
 <br>
 
 ***AIX***
+
 In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed *before* attempting to install the puppet agent:
 
 * bash

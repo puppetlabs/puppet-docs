@@ -2,9 +2,10 @@
 layout: default
 title: "PE 2.8  » Compliance » Using the Workflow"
 subtitle: "Using the Compliance Workflow"
+canonical: "/pe/latest/compliance_alt.html"
 ---
 
-> *IMPORTANT:* The compliance workflow tools are deprecated, and will be removed in Puppet Enterprise 3.0. [See the compliance workflow deprecation notice](./compliance_basics.html#deprecation-notice) for more details and suggestions for alternate workflows.
+> *IMPORTANT:* The compliance workflow tools are deprecated, and have been removed in Puppet Enterprise 3.0. [See the compliance alternate workflow](./compliance_alt.html) for more details and suggestions for ways to replace compliance.
 
 Prerequisites
 -----
