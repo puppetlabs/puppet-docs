@@ -1141,7 +1141,7 @@ Provider         | libuser | manages aix lam | manages members | system groups |
 ---------------- | ------- | --------------- | --------------- | ------------- |
 aix              |         | *X*             | *X*             |               |
 directoryservice |         |                 | *X*             |               |
-groupadd         |         |                 |                 | *X*           |
+groupadd         | *X*     |                 |                 | *X*           |
 ldap             |         |                 |                 |               |
 pw               |         |                 | *X*             |               |
 windows_adsi     |         |                 | *X*             |               |
@@ -4565,7 +4565,7 @@ hpuxuseradd      | *X*               |         |                 |              
 ldap             |                   |         |                 |                |                 |                      |                       | *X*               |                      |              |
 pw               | *X*               |         |                 | *X*            | *X*             |                      |                       | *X*               |                      |              |
 user_role_add    | *X*               |         |                 |                | *X*             | *X*                  |                       | *X*               | *X*                  |              |
-useradd          | *X*               |         |                 | *X*            | *X*             |                      |                       |                   |                      | *X*          |
+useradd          | *X*               | *X*     |                 | *X*            | *X*             |                      |                       |                   |                      | *X*          |
 windows_adsi     |                   |         |                 |                | *X*             |                      |                       | *X*               |                      |              |
 
 #### Parameters
