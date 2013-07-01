@@ -121,7 +121,7 @@ The examples you have seen can be written like this:
 
     [1,2,3].each |$index, $value| { notice "$index = $value" }'
 
-    [1,20,3].collect |$value| { $value < 10 }
+    [1,20,3].select |$value| { $value < 10 }
 
     [1,20,3].reject() |$value| { $value >= 10 }
 
@@ -131,7 +131,7 @@ The examples you have seen can be written like this:
 
 And then let's chain these:
 
-    [1,20,3].collect |$value| {$value < 10 }.each |$value| { notice $value }
+    [1,20,3].select |$value| {$value < 10 }.each |$value| { notice $value }
     # produces the output
     Notice: Scope(Class[main]): 1
     Notice: Scope(Class[main]): 3
