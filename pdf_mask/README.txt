@@ -22,6 +22,28 @@ Steps for generating a pdf of the docs:
 
 And then make sure you kick the PDFs out of the puppet-docs directory and upload them.
 
+UPLOADING:
+-----
+
+1. Get the PDFs out of the docs directory and into their own folder on like your desktop.
+
+2. Zip them up -- you can do this on your own desktop, because if you're downloading them all it's reasonable to assume you don't need the old PE versions. If you're doing this, make sure the zip file is named puppet_labs_docs_pdfs.zip, and upload it at the same time as the PDFs themselves.
+
+3. Copy them to the /opt/downloads/docs folder on Burji (downloads.puppetlabs.com).
+
+    cd ~/Desktop/newpdfs
+    rsync -av ./ deploy@downloads.puppetlabs.com:/opt/downloads/docs/
+
+(Don't use --delete, you want to leave any frozen pdfs in place.)
+
+
+POSTING LINKS
+-----
+
+Just tell Kent.
+
+- (We used to just edit the wordpress page ourselves, but now that they're transitioning to Drupal and you need to edit both, we're leaving it to the pros.)
+
 TODO:
 -----
 
