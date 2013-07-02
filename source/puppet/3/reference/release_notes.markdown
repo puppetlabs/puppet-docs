@@ -80,7 +80,7 @@ Puppet 3.2.3
 This release fixes several Windows bugs that couldn't be targeted for earlier 3.2 releases.
 
 * [#20768: windows user provider can not manage password or home directory](https://projects.puppetlabs.com/issues/20768) --- This was a regression in 3.2.0/3.2.1.
-* [#21043: setting in puppet.conf ignored on Windows in Puppet 3.2.1](https://projects.puppetlabs.com/issues/21043) --- This was a regression in 3.2.0/3.2.1.
+* [#21043: runinterval setting in puppet.conf ignored on Windows in Puppet 3.2.1](https://projects.puppetlabs.com/issues/21043) --- This was a regression in 3.2.0/3.2.1.
 * [#16080: Service provider broken in Windows Server 2012](https://projects.puppetlabs.com/issues/16080) --- This affected all previous Puppet versions.
 * [#20787: 'puppet resource group' takes incredibly long on Windows](https://projects.puppetlabs.com/issues/20787) --- This affected all previous Puppet versions.
 * [#20302: Windows File.executable? now returns false on ruby 1.9](https://projects.puppetlabs.com/issues/20302)
