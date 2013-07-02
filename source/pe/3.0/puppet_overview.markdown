@@ -6,32 +6,106 @@ subtitle: "An Overview of Puppet"
 
 <!-- todo we could use something talking about what declarative configuration management is. -->
 
-Where Configurations Come From
+> **Note:** This page gives a broad overview of how Puppet configures systems, and provides links to deeper information. If you prefer to learn by doing, you can follow the Puppet Enterprise quick start guide:
+>
+> * [Quick Start: Using PE](./quick_start.html)
+> * [Quick Start: Writing Modules](./quick_writing.html)
+
+
+Summary of Puppet
 -----
 
-Configurations for nodes are compiled from [**manifests**](/learning/manifests.html), which are documents written in Puppet's custom language. Manifests declare [**resources**](/learning/ral.html), each of which represents the desired state of some _thing_ (software package, service, user account, file...) on a system. Resources are grouped into [**classes**](/learning/modules1.html#classes), and classes are grouped into [**modules**](/learning/modules1.html#modules). Modules are structured collections of manifest files, with each file containing a single class (or defined type).
+Puppet Enterprise (PE) uses **Puppet** as the core of its configuration management features. It models desired system states with a declarative resource-based syntax, enforces those states, and reports any variances so you can track what Puppet is doing.
 
+Puppet breaks configuration management out into four major areas of activity:
 
-How Configurations are Assigned to Nodes
+1. The user [describes re-usable pieces of configuration][step1] by creating or downloading Puppet modules.
+2. The user [assigns (and configures) classes][step2] to each machine in the PE deployment.
+3. Each node [fetches and applies its complete configuration][step3] from the puppet master server, either on a recurring schedule or on demand. This configuration includes all of the classes that have been assigned to that node. Applying a configuration enforces the desired state that was defined by the user, and submits a report about any changes that had to be made.
+4. The user may view aggregate and individual reports to monitor what resources have been changed by Puppet.
+
+Continue reading this page for an overview of the first three activities and links to deeper info. See [the Viewing Reports and Inventory Data page](./console_reports.html) to learn how to monitor Puppet's activity from the PE console.
+
+[step1]: #modules-and-manifests
+[step2]: #assigning-and-configuring-classes
+[step3]: #managing-and-triggering-configuration-runs
+
+Modules and Manifests
 -----
 
-In Puppet Enterprise, the console controls which classes are assigned to nodes. You can assign classes and class parameters to nodes individually, or you can collect nodes into groups and configure a large number of nodes in a single page. You can also declare variables that can be read by any of the classes assigned to a node.
+Puppet uses its own domain-specific language (DSL) to describe re-usable pieces of configuration. Puppet code is saved in files called _manifests,_ which are in turn stored in structured directories called _modules._ Pre-built Puppet modules can be downloaded from [the Puppet Forge](http://forge.puppetlabs.com), and most users will write at least some of their own modules.
 
-> To see how to assign configurations to nodes in the PE console, see [the Grouping and Classifying Nodes page](./console_classes_groups.html) in the console section of this manual.
+* [**See the Modules and Manifests page of this manual**](./puppet_modules_manifests.html) for information on how Puppet code is written and arranged.
 
-When an agent node requests its catalog from the master, the master asks the console which classes and parameters to use, then compiles those classes into the node's catalog.
 
-What Nodes Do With Catalogs
+Assigning and Configuring Classes
 -----
 
-The heart of Puppet is the resource abstraction layer (RAL), which lets the puppet agent turn abstract resource declarations into concrete actions specific to the local system. Once the agent has its catalog of resource declarations, it uses the system's own tools to bring those resources into their desired state.
+**Classes** are re-usable pieces of configuration stored in modules. Some classes can be configured to behave differently to suit different needs. (This is most common with general-purpose classes written to solve many problems at once.)
 
-When New Configurations Take Effect
+To compose a complete configuration for a node, you will generally assign a combination of several classes to it. (For example, a node that serves as a load balancer might have an HAProxy class, but it would also have classes to keep time synchronized, manage important file permissions, and manage login security.)
+
+PE includes several ways to _assign and configure_ classes; some require you to specifically identify each node, others can operate automatically on metadata, and most users will use a combination of a few methods.
+
+* [**See the Assigning Configurations to Nodes page of this manual**](./puppet_assign_configurations.html) for information on how to compose classes into complete configurations.
+
+Managing and Triggering Configuration Runs
 -----
 
-By default, puppet agent will pull a catalog and run it every 30 minutes (counted from when the agent service started, rather than on the half-hour). You can change this by setting the [`runinterval`](/references/3.2.latest/configuration.html#runinterval) option in an agent's [`/etc/puppetlabs/puppet/puppet.conf`](/guides/configuring.html) file to a new value. (The `runinterval` is measured in seconds.)
+Puppet Enterprise has a default schedule and behavior for each node's configuration runs, but you can reconfigure this arrangement.
 
-If you need a node or group of nodes to retrieve a new configuration _now,_ [use the orchestration engine to trigger a Puppet run on any number of nodes](./orchestration_puppet.html). You can also run a large number of nodes in a controlled series from the puppet master's command line; [see this section of the Orchestration: Controlling Puppet page](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series) for details.
+### Default Run Behavior
+
+In a default PE deployment:
+
+* Each agent node runs the puppet agent service (`pe-puppet`) as a daemon. This service idles in the background and does a configuration run at regular intervals.
+* The default run interval is every 30 minutes, as configured by the `runinterval` setting in the node's puppet.conf file.
+* Additional on-demand runs can be triggered when necessary; see [the Controlling Puppet page in the orchestration section][orch] for details.
+
+[orch]: ./orchestration_puppet.html
+[stop]: ./orchestration_puppet.html#start-and-stop-the-puppet-agent-service
+
+### Alternate Run Behaviors
+
+#### Different Run Interval
+
+You can change the run interval by setting a new value for [the `runinterval` setting][runinterval] in each agent node's puppet.conf file.
+
+[runinterval]: /references/3.2.latest/configuration.html#runinterval
+
+* This file is located at `/etc/puppetlabs/puppet/puppet.conf` on \*nix nodes, and [`<DATADIR>`](http://docs.puppetlabs.com/windows/installing.html#data-directory)`\puppet.conf` on Windows.
+* Make sure you put this setting in [the `[agent]` or `[main]` block of puppet.conf](/guides/configuring.html#config-blocks).
+* Since you will be managing this file on many systems at once, you may wish to manage puppet.conf with a Puppet template.
+
+#### Run From Cron
+
+On \*nix nodes, the `pe-puppet` daemon process can sometimes use more memory than is desired. This was a common problem in PE 2.x which is largely solved in PE 3, but some users may still wish to disable it.
+
+You can [turn off the daemon][stop] and still get scheduled runs by creating a cron task for puppet agent on your \*nix nodes. An example snippet of Puppet code, which would create this task on non-Windows nodes:
+
+{% highlight ruby %}
+    # Place in /etc/puppetlabs/puppet/manifests/site.pp on the puppet master node, outside any node statement.
+    # Run puppet agent hourly (with splay) on non-Windows nodes:
+    if $osfamily != windows {
+      cron { 'puppet_agent':
+        ensure  => 'present',
+        command => '/opt/puppet/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 1h --logdest syslog',
+        user    => 'root',
+        minute  => 0,
+      }
+    }
+{% endhighlight %}
+
+Remember, after creating this task you should [turn off the `pe-puppet` service][stop] on \*nix nodes.
+
+> **Windows note:** This is unnecessary on Windows, since it doesn't use the same version of the `pe-puppet` service; the Windows service was implemented long after the \*nix service, and was designed from the start to limit memory usage. Additionally, it's more difficult on Windows to make a scheduled task run multiple times a day.
+
+#### On-Demand Only
+
+You can stop all scheduled runs by [stopping the `pe-puppet` service][stop] on all nodes. This will cause nodes to only fetch configurations when you [explicitly trigger runs with the orchestration engine.][orch]
+
+If you are only doing on-demand runs, you're likely to be running large numbers of nodes at once. For best performance, you should take advantage of the orchestration engine's ability to [run many nodes in a controlled series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
+
 
 
 * * *
