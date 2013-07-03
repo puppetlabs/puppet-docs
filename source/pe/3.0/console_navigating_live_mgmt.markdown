@@ -130,7 +130,7 @@ These groups of actions come from the MCollective agent plugins you have install
 Invoking Actions
 -----
 
-You can invoke actions from the [Control Puppet](#control-puppet) and [Advanced Tasks](#advanced-tasks) tabs.
+You can invoke actions from the [Control Puppet](#the-control-puppet-tab) and [Advanced Tasks](#the-advanced-tasks-tab) tabs.
 
 To invoke an action, you must be viewing an **action list.**
 

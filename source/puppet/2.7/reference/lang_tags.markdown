@@ -11,7 +11,7 @@ title: "Language: Tags"
 [classes]: ./lang_classes.html
 [defined]: ./lang_defined_types.html
 [collectors]: ./lang_collectors.html
-[reports]: /guides/reporting.html#processing-reports
+[reports]: /guides/reporting.html#make-masters-process-reports
 [report_format_2]: http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2
 [tagmail]: /references/latest/report.html#tagmail
 [tagmail_conf]: /guides/configuring.html#tagmailconf
@@ -49,17 +49,17 @@ Every resource automatically receives the following tags:
 * The full name of the [class][classes] and/or [defined type][defined] in which the resource was declared
 * Every [namespace segment][namespace] of the resource's class and/or defined type
 
-For example, a file resource in class `apache::ssl` would get the tags `file`, `apache::ssl`, `apache`, and `ssl`. 
+For example, a file resource in class `apache::ssl` would get the tags `file`, `apache::ssl`, `apache`, and `ssl`.
 
 Class tags are generally the most useful, especially when setting up [tagmail][] or testing refactored manifests.
 
-{% comment %} <!-- Actually, there's some bugginess where tags obey the old 0.25.x containment behavior. Issue #15945. I am leaving this deliberately undocumented because yeah. 
+{% comment %} <!-- Actually, there's some bugginess where tags obey the old 0.25.x containment behavior. Issue #15945. I am leaving this deliberately undocumented because yeah.
 
 Also, you get auto-tagged with the title of the specific defined type instance containing the resource, but only if it is a single-word title! That is also too fuzzy (and useless) to want to document. --> {% endcomment %}
 
 ### Containment
 
-Like [relationships][] and most metaparameters, tags are passed along by [containment][]. This means a resource will receive all of the tags from the class and/or defined type that contains it. In the case of nested containment (e.g. a class that declares a defined resource, or a defined type that declares other defined resources), a resource will receive tags from all of its containers. 
+Like [relationships][] and most metaparameters, tags are passed along by [containment][]. This means a resource will receive all of the tags from the class and/or defined type that contains it. In the case of nested containment (e.g. a class that declares a defined resource, or a defined type that declares other defined resources), a resource will receive tags from all of its containers.
 
 ### The `tag` Metaparameter
 
@@ -72,7 +72,7 @@ You can use [the `tag` metaparameter][tagmeta] in a resource declaration to add 
     }
 {% endhighlight %}
 
-The `tag` metaparameter can accept a single tag or an array. These will be added to the tags the resource already has. Also, `tag` can be used with normal resources, [defined resources][defined], and classes (when using the resource-like declaration syntax). Since [containment][] applies to tags, the example above would assign the `us_mirror1` and `us_mirror2` tags to every resource contained by `Apache::Vhost['docs.puppetlabs.com']`. 
+The `tag` metaparameter can accept a single tag or an array. These will be added to the tags the resource already has. Also, `tag` can be used with normal resources, [defined resources][defined], and classes (when using the resource-like declaration syntax). Since [containment][] applies to tags, the example above would assign the `us_mirror1` and `us_mirror2` tags to every resource contained by `Apache::Vhost['docs.puppetlabs.com']`.
 
 ### The `tag` Function
 
@@ -81,7 +81,7 @@ You can use [the `tag` function][tagfunction] inside a class definition or defin
 {% highlight ruby %}
     class role::public_web {
       tag 'us_mirror1', 'us_mirror2'
-      
+
       apache::vhost {'docs.puppetlabs.com':
         port => 80,
       }
@@ -107,7 +107,7 @@ The `tags` setting can be set in `puppet.conf` (to permanently restrict the cata
 
     $ sudo puppet agent --test --tags apache,us_mirror1
 
-The value of the `tags` setting should be a comma-separated list of tags (with no spaces between tags). 
+The value of the `tags` setting should be a comma-separated list of tags (with no spaces between tags).
 
 ### Sending Tagmail Reports
 

@@ -14,7 +14,7 @@ Puppet Enterprise includes a suite of command-line tools you can use for provisi
 
 When used together, these tools provide quick and efficient workflows for adding and maintaining fully configured, ready-to-run virtual nodes in your Puppet Enterprise-managed cloud environment.
 
-See the sections on [VMware](./cloudprovisioner_vmware.html) <!-- [OpenStack](./cloudprovisioner_openstack) -->and [AWS](./cloudprovisioner_aws) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in a cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow) section.
+See the sections on [VMware](./cloudprovisioner_vmware.html) <!-- [OpenStack](./cloudprovisioner_openstack) -->and [AWS](./cloudprovisioner_aws.html) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in a cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow.html) section.
 
 The cloud provisioning tools can be added during installation of Puppet Enterprise. If you have already installed PE and you want to install the cloud provisioning tools, simply run the upgrader again.
 
@@ -33,6 +33,6 @@ The `clean` action may also be useful when decommissioning nodes.
 
 All of the cloud provisioning tools are powered by [Fog, the Ruby cloud services library](https://github.com/fog/fog). Fog is automatically installed on any machine receiving the cloud provisioner role.
 
-* * * 
+* * *
 
 - [Next: Installing and Configuring Cloud Provisioner](./cloudprovisioner_configuring.html)

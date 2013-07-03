@@ -119,6 +119,6 @@ This usually happens when puppet master is installed with a certname that isn't 
 
 Changing this on the puppet master will fix the error on all agent nodes.
 
-* * * 
+* * *
 
-- [Next: Troubleshooting the Console & Database Support](./trouble_console-db.html.html)
+- [Next: Troubleshooting the Console & Database Support](./trouble_console-db.html)

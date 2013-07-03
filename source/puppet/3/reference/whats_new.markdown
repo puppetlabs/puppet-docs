@@ -88,7 +88,7 @@ Use the Puppet issue tracker to find every bug fixed in a given version of Puppe
 Backwards-Incompatible Changes in 3.x
 -----
 
-[backwards]: #backwards-incompatible-changes-in-30
+[backwards]: #backwards-incompatible-changes-in-3x
 
 In addition to this section, you may also wish to check the [Telly upgrade issues][upgrade_issues] wiki page, which tracks any major bugs found immediately after the current release.
 

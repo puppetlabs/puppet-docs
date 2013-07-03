@@ -36,7 +36,7 @@ _Admin Users_ have unrestricted access to all parts of the console, including th
 
 There is one exception to this: admin users cannot disable, delete or change the privileges of their own accounts. Only another admin user can make these changes.
 
-_Anonymous Users_ In addition to authenticated, per-user access, the console can also be configured to allow anonymous, read-only access. When so configured, the console can be viewed by anyone with a web browser who can access the site URL. For instructions on how to do this, visit the [advanced configuration page](./config_advanced.html).
+_Anonymous Users_ In addition to authenticated, per-user access, the console can also be configured to allow anonymous, read-only access. When so configured, the console can be viewed by anyone with a web browser who can access the site URL. For instructions on how to do this, visit the [console configuration page](./console_config.html).
 
 Managing Accounts and Users Internally
 ------

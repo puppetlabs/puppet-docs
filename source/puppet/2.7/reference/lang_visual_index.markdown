@@ -23,7 +23,6 @@ title: "Language: Visual Index"
 [hash]: ./lang_datatypes.html#hashes
 [interpolation]: ./lang_datatypes.html#variable-interpolation
 [class_def]: ./lang_classes.html#defining-a-class
-[class_decl]: ./lang_classes.html#defining-a-class
 [defined_type]: ./lang_defined_types.html
 [namespace]: ./lang_namespaces.html
 [defined_resource]: ./lang_defined_types.html#declaring-an-instance
@@ -75,7 +74,7 @@ This page can help you find syntax elements when you can't remember their names.
       ensure => installed,
       before => File['ntp.conf'],
     }
-    service {'ntpd': 
+    service {'ntpd':
       ensure    => running,
       subscribe => File['ntp.conf'],
     }
@@ -126,7 +125,7 @@ This page can help you find syntax elements when you can't remember their names.
     class {'ntp':}
 {% endhighlight %}
 
-↑ [Declaring a class][class_decl] in three different ways: with the `include` function, with the `require` function, and with the resource-like syntax. Declaring a class causes the resources in it to be managed. 
+↑ Declaring a class in three different ways: [with the `include` function](./lang_classes.html#declaring-a-class-with-include), [with the `require` function](./lang_classes.html#declaring-a-class-with-require), and [with the resource-like syntax](./lang_classes.html#declaring-a-class-like-a-resource). Declaring a class causes the resources in it to be managed.
 
 
 {% highlight ruby %}
@@ -135,7 +134,7 @@ This page can help you find syntax elements when you can't remember their names.
       include apache::params
       $vhost_dir = $apache::params::vhost_dir
       file { "${vhost_dir}/${servername}.conf":
-          content => template('apache/vhost-default.conf.erb'), 
+          content => template('apache/vhost-default.conf.erb'),
           owner   => 'www',
           group   => 'www',
           mode    => '644',
@@ -154,7 +153,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ Declaring a [defined resource][defined_resource] (or "instance") of the type defined above. 
+↑ Declaring a [defined resource][defined_resource] (or "instance") of the type defined above.
 
 {% highlight ruby %}
     Apache::Vhost['homepages']
@@ -214,7 +213,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ An [if statement][if] using a [regular expression][regex] and the [regex match operator][regex_match]. 
+↑ An [if statement][if] using a [regular expression][regex] and the [regex match operator][regex_match].
 
 {% highlight ruby %}
     if 'www' in $hostname {
@@ -258,7 +257,7 @@ This page can help you find syntax elements when you can't remember their names.
 ↑ An [exported resource collector][export_collector], which works with [exported resources][export]
 
 {% highlight ruby %}
-    Exec { 
+    Exec {
       path        => '/usr/bin:/bin:/usr/sbin:/sbin',
       environment => 'RUBYLIB=/opt/puppet/lib/ruby/site_ruby/1.8/',
       logoutput   => true,

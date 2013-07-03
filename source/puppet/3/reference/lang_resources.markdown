@@ -42,7 +42,7 @@ Syntax
     }
 {% endhighlight %}
 
-Every resource has a **type,** a **title,** and a set of **attributes:** 
+Every resource has a **type,** a **title,** and a set of **attributes:**
 
 {% highlight ruby %}
     type {'title':
@@ -70,19 +70,19 @@ Note that, in the Puppet language, whitespace is fungible.
 
 The type identifies what kind of resource it is. Puppet has a large number of built-in resource types, including files on disk, cron jobs, user accounts, services, and software packages. [See here for a list of built-in resource types][types].
 
-Puppet can be extended with additional resource types, written in Ruby or in the Puppet language. 
+Puppet can be extended with additional resource types, written in Ruby or in the Puppet language.
 
 ### Title
 
-The title is an identifying string. It only has to identify the resource to Puppet's compiler; it does not need to bear any relationship to the actual target system. 
+The title is an identifying string. It only has to identify the resource to Puppet's compiler; it does not need to bear any relationship to the actual target system.
 
-Titles **must be unique per resource type.** You may have a package and a service both titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure. 
+Titles **must be unique per resource type.** You may have a package and a service both titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure.
 
 ### Attributes
 
 Attributes describe the desired state of the resource; each attribute handles some aspect of the resource.
 
-Each resource type has its own set of available attributes; see [the type reference][types] for a complete list. Most types have a handful of crucial attributes and a larger number of optional ones. Many attributes have a default value that will be used if a value isn't specified. 
+Each resource type has its own set of available attributes; see [the type reference][types] for a complete list. Most types have a handful of crucial attributes and a larger number of optional ones. Many attributes have a default value that will be used if a value isn't specified.
 
 Every attribute you declare must have a value; the [data type][datatype] of the value depends on what the attribute accepts. Most attributes that can take multiple values accept them as an [array][].
 
@@ -101,9 +101,9 @@ A resource declaration adds a resource to the catalog, and tells Puppet to manag
 
 ### Uniqueness
 
-Puppet does not allow you to declare the same resource twice. This is to prevent multiple conflicting values from being declared for the same attribute. 
+Puppet does not allow you to declare the same resource twice. This is to prevent multiple conflicting values from being declared for the same attribute.
 
-Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify duplicate resources --- if either of these is duplicated within a given resource type, the compilation will fail. 
+Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify duplicate resources --- if either of these is duplicated within a given resource type, the compilation will fail.
 
 If multiple classes require the same resource, you can use a [class][] or a [virtual resource][virtual] to add it to the catalog in multiple places without duplicating it.
 
@@ -130,9 +130,9 @@ Special Attributes
 
 Most types have an attribute which identifies a resource _on the target system._ This is referred to as the "namevar," and is often simply called "name." For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. The `path` of a file is its location on disk.
 
-Namevar values **must be unique per resource type,** with only rare exceptions (such as `exec`). 
+Namevar values **must be unique per resource type,** with only rare exceptions (such as `exec`).
 
-Namevars are not to be confused with the title, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will **default to the title** if it isn't specified. Thus, the `path` of the file example [above](#resource-declarations) is `/etc/passwd`, even though it was never specified. 
+Namevars are not to be confused with the title, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will **default to the title** if it isn't specified. Thus, the `path` of the file example [above](#syntax) is `/etc/passwd`, even though it was never specified.
 
 The distinction between title and namevar lets you use a single, consistently-titled resource to manage something whose name differs by platform. For example, the NTP service is `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; the service resource could simply be titled "ntp," but could have its name set correctly by platform. Other resources could then form relationships to it without worrying that its title will change.
 
@@ -146,7 +146,7 @@ Allowed values for `ensure` vary by type. Most types accept `present` and `absen
 
 Some attributes in Puppet can be used with every resource type. These are called **metaparameters.** They don't map directly to system state; instead, they specify how Puppet should act toward the resource.
 
-The most commonly used metaparameters are for specifying [order relationships][relationships] between resources. 
+The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
 You can see the full list of all metaparameters in the [Metaparameter Reference](/references/stable/metaparameter.html).
 
@@ -154,11 +154,11 @@ You can see the full list of all metaparameters in the [Metaparameter Reference]
 Condensed Forms
 -----
 
-There are two ways to compress multiple resource declarations. You can also use [resource defaults][resdefaults] to reduce duplicate typing. 
+There are two ways to compress multiple resource declarations. You can also use [resource defaults][resdefaults] to reduce duplicate typing.
 
 ### Array of Titles
 
-If you specify an array of strings as the title of a resource declaration, Puppet will treat it as multiple resource declarations with an identical block of attributes. 
+If you specify an array of strings as the title of a resource declaration, Puppet will treat it as multiple resource declarations with an identical block of attributes.
 
 {% highlight ruby %}
     file { ['/etc',
@@ -170,7 +170,7 @@ If you specify an array of strings as the title of a resource declaration, Puppe
             '/etc/rc.d/rc3.d',
             '/etc/rc.d/rc4.d',
             '/etc/rc.d/rc5.d',
-            '/etc/rc.d/rc6.d']: 
+            '/etc/rc.d/rc6.d']:
       ensure => directory,
       owner  => 'root',
       group  => 'root',
@@ -178,7 +178,7 @@ If you specify an array of strings as the title of a resource declaration, Puppe
     }
 {% endhighlight %}
 
-This example is the same as declaring each directory as a separate resource with the same attribute block. You can also store an array in a variable and specify the variable as a resource title: 
+This example is the same as declaring each directory as a separate resource with the same attribute block. You can also store an array in a variable and specify the variable as a resource title:
 
 {% highlight ruby %}
     $rcdirectories = ['/etc',
@@ -192,7 +192,7 @@ This example is the same as declaring each directory as a separate resource with
                       '/etc/rc.d/rc5.d',
                       '/etc/rc.d/rc6.d']
 
-    file { $rcdirectories: 
+    file { $rcdirectories:
       ensure => directory,
       owner  => 'root',
       group  => 'root',
@@ -201,11 +201,11 @@ This example is the same as declaring each directory as a separate resource with
 {% endhighlight %}
 
 
-Note that you cannot specify a separate namevar with an array of titles, since it would then be duplicated across all of the resources. Thus, each title must be a valid namevar value. 
+Note that you cannot specify a separate namevar with an array of titles, since it would then be duplicated across all of the resources. Thus, each title must be a valid namevar value.
 
 ### Semicolon After Attribute Block
 
-If you end an attribute block with a semicolon rather than a comma, you may specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single type. 
+If you end an attribute block with a semicolon rather than a comma, you may specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single type.
 
 {% highlight ruby %}
     file {
@@ -214,13 +214,13 @@ If you end an attribute block with a semicolon rather than a comma, you may spec
         owner  => 'root',
         group  => 'root',
         mode   => 0755;
-        
+
       '/etc/rc.d/init.d':
         ensure => directory,
         owner  => 'root',
         group  => 'root',
         mode   => 0755;
-        
+
       '/etc/rc.d/rc0.d':
         ensure => directory,
         owner  => 'root',
@@ -241,7 +241,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
     file {'/etc/passwd':
       ensure => file,
     }
-    
+
     File['/etc/passwd'] {
       owner => 'root',
       group => 'root',
@@ -267,9 +267,9 @@ In normal circumstances, this idiom can only be used to add previously unmanaged
       }
       ...
     }
-    
+
     include base::linux
-    
+
     File <| tag == 'base::linux' |> {
       owner => 'root',
       group => 'root',
@@ -287,8 +287,8 @@ The general form of a collector attribute block is:
 Much like in an [inherited class][inheritance], you can use the special `+>` keyword to append values to attributes that accept arrays. See [appending to attributes][append_attributes] for more details.
 
 > Note that this idiom **must be used carefully,** if at all:
-> 
+>
 > * It **can always override** already-specified attributes, regardless of class inheritance.
 > * It can affect large numbers of resources at once.
-> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely. 
+> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely.
 > * Since it ignores class inheritance, you can override the same attribute twice, which results in a parse-order dependent race where the final override wins.

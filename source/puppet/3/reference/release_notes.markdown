@@ -68,6 +68,44 @@ Puppet 3.x Release Notes
 
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
 
+Puppet 3.2.3
+-----
+
+**Release candidate:** This version entered RC on July 2, 2013. It has not yet been officially released.
+
+3.2.3 is a bugfix release of the Puppet 3.2 series. It fixes some Windows bugs introduced in 3.2.0, as well as a few performance problems and miscellaneous bugs.
+
+### Windows Fixes
+
+This release fixes several Windows bugs that couldn't be targeted for earlier 3.2 releases.
+
+* [#20768: windows user provider can not manage password or home directory](https://projects.puppetlabs.com/issues/20768) --- This was a regression in 3.2.0/3.2.1.
+* [#21043: runinterval setting in puppet.conf ignored on Windows in Puppet 3.2.1](https://projects.puppetlabs.com/issues/21043) --- This was a regression in 3.2.0/3.2.1.
+* [#16080: Service provider broken in Windows Server 2012](https://projects.puppetlabs.com/issues/16080) --- This affected all previous Puppet versions.
+* [#20787: 'puppet resource group' takes incredibly long on Windows](https://projects.puppetlabs.com/issues/20787) --- This affected all previous Puppet versions.
+* [#20302: Windows File.executable? now returns false on ruby 1.9](https://projects.puppetlabs.com/issues/20302)
+* [#21280: Don't create c:\dev\null in windows specs](https://projects.puppetlabs.com/issues/21280) --- This was only relevant to Puppet developers.
+
+### Logging and Reporting Fixes
+
+* [#20383: Bring back helpful error messages like prior to Puppet 3](https://projects.puppetlabs.com/issues/20383) --- This was a regression from 3.0.0, which caused file names and line numbers to disappear from duplicate resource declaration errors.
+* [#20900: tagmail triggers in --onetime mode without changes after upgrade from 3.1.1 to 3.2.1](https://projects.puppetlabs.com/issues/20900) --- This was a regression in 3.2.0/3.2.1.
+* [#20919: Logging behaviour issues in 3.2.1](https://projects.puppetlabs.com/issues/20919) --- This was a regression in 3.2.0/3.2.1, which caused noisy logging to the console even if the `--logdest` option was set.
+
+### Performance Fixes
+
+* [#21376: Stack level too deep after updating from 3.1.1 to 3.2.2](https://projects.puppetlabs.com/issues/21376) --- This would sometimes cause total failures when importing a large number of manifest files (such as with the `import nodes/*.pp` idiom).
+* [#21320: Puppet daemon may sleep for 100 years after receiving USR1 on 64 bit systems](https://projects.puppetlabs.com/issues/21320) --- MCollective's Puppet plugin uses puppet agent's USR1 signal to trigger a run if the agent is running; on 64-bit systems, this could cause puppet agent to keep running, but stop doing scheduled configuration runs. This was caused by a bug in Ruby \< 2.0, but we modified Puppet to work around it.
+* [#20901: `puppet --version` is unnecessarily slow](https://projects.puppetlabs.com/issues/20901) --- This was a regression in 3.2.0/3.2.1.
+
+### Misc Fixes
+
+* [#21264: parser = future breaks executing functions as class defaults](https://projects.puppetlabs.com/issues/21264)
+
+### All 3.2.3 Changes
+
+[See here for a list of all changes in the 3.2.3 release.](https://projects.puppetlabs.com/versions/410)
+
 Puppet 3.2.2
 -----
 
