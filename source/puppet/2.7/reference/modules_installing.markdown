@@ -10,6 +10,7 @@ title: "Installing Modules"
 [publishing]: ./modules_publishing.html
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: /guides/plugins_in_modules.html
+[documentation]: ./modules_documentation.html
 
 Installing Modules
 =====
@@ -29,6 +30,7 @@ The `puppet module` subcommand, which ships with Puppet, is a tool for finding a
 * [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
 * [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the puppet module tool's `build` and `generate` actions.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
+* [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module. 
 
 
 Using the Module Tool

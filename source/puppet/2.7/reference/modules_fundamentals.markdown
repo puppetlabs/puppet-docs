@@ -6,8 +6,9 @@ title: "Module Fundamentals"
 [modulepath]: /references/stable/configuration.html#modulepath
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
-{% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %}
+<!-- {% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %} -->
 [plugins]: /guides/plugins_in_modules.html
+[documentation]: ./modules_documentation.html
 
 
 [classes]: /guides/language_guide.html#classes
@@ -30,6 +31,7 @@ Puppet Modules
 * [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
 * [See "Publishing Modules"][publishing] for how to publish your modules to the Puppet Forge.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
+* [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module. 
 
 Using Modules
 -----
