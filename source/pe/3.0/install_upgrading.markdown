@@ -71,7 +71,7 @@ Because the new master's certificate that was initially generated during install
 
 On the new, 3.0 master, run:
 
-    puppet cert clean internal-broker
+    puppet cert clean pe-internal-broker
     puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain 3-0master.domain
     puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain,stomp pe-internal-broker
     
