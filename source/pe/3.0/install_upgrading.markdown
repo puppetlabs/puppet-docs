@@ -72,8 +72,8 @@ Because the new master's certificate that was initially generated during install
 On the new, 3.0 master, run:
 
     puppet cert clean pe-internal-broker
-    puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain 3-0master.domain
-    puppet ca generate --dns-alt-names=3-0master,3-0master.domain,puppet,puppet.domain,stomp pe-internal-broker
+    puppet cert generate 3-0master.domain --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain 
+    puppet cert generate pe-internal-broker --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain,stomp 
     
 #### Copy Console Certificates
 Next, for the internal certificates used by the console, we also need migrate over the certificates signed by the 2.8 CA.
