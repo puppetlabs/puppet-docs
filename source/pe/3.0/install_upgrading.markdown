@@ -7,7 +7,7 @@ subtitle: "Upgrading Puppet Enterprise"
 Summary
 -----
 
-Upgrading from an existing Puppet Enterprise 2.x deployment to PE 3.0 is currently only supported for puppet agent nodes. All other nodes must be migrated by installing the 3.0 master, console, database and cloud provisioner (if applicable) roles on a new node (or nodes, if you have separated roles), pointing your existing agents at that new node and then upgrading them to 3.0. A complete upgrade solution will be in place no later than August 15, 2013. If you wish to upgrade now, the instructions below should help.
+Upgrading from an existing Puppet Enterprise deployment to PE 3.0 is currently only supported for puppet *agent* nodes running PE 2.5.3 or later. All other nodes must be migrated by installing the 3.0 master, console, database and cloud provisioner (if applicable) roles on a new node (or nodes, if you have separated roles), pointing your existing agents at that new node and then upgrading them to 3.0. A complete upgrade solution will be in place no later than August 15, 2013. If you wish to upgrade now, the instructions below should help.
 
 If you'd prefer to wait until the complete solution is available, we nonetheless recommend that you set up some isolated test environments which duplicate existing parts of your infrastructure. This will help to familiarize you with the new features and functions of PE 3.0, and to get an idea of how your particular environment will need to be adapted.
 
