@@ -119,13 +119,13 @@ You can also run a second instance of puppet master on your production puppet ma
 2. Open a root shell, which should stay open for the duration of this test. (`sudo -i`)
 3. Change directory into the source tarball. (`cd puppet-<version>`)
 4. Add the lib directory to your shell's RUBYLIB. (`export RUBYLIB=$(pwd)/lib:$RUBYLIB`)
-5. Run `puppet master --no-daemonize --verbose --port 8141`. This will run a puppet master **on a different port** in the foreground so you can easily see log messages and warnings. Use care to limit concurrent checkins on your test nodes; this WEBrick puppet master cannot handle sustained load.
-6. Choose a subset of your nodes to test with the new master, or spin up new nodes. Upgrade Puppet to the new version on them, and change their `port` setting to point to 8141.
+5. Run `puppet master --no-daemonize --verbose --masterport 8141`. This will run a puppet master **on a different port** in the foreground so you can easily see log messages and warnings. Use care to limit concurrent checkins on your test nodes; this WEBrick puppet master cannot handle sustained load.
+6. Choose a subset of your nodes to test with the new master, or spin up new nodes. Upgrade Puppet to the new version on them, and change their `masterport` setting to point to 8141.
 7. Trigger a `puppet agent --test` run on every test node, so you can see log messages in the foreground. **Look for changes to their resources;** if you see anything you didn't expect, investigate it. If something seems dangerous and you can't figure it out, you may want to post to the [Puppet users list][mailing_list] or ask other users in #puppet on Freenode.
 8. Check the log messages in the terminal window on your puppet master. Look for warnings and deprecation notices.
 9. Check the actual configurations of your test nodes. Make sure everything is still working as expected.
 10. Repeat steps 6-9 with more test nodes if you're still not sure.
-11. Revert the `port` setting on all test nodes. Kill the temporary puppet master process, delete the temporary copy of the puppet source. Upgrade your production puppet master(s) by stopping their web server, upgrading the puppet package, and restarting their web server. Upgrade all of your production nodes. (Most packaging systems allow you to use Puppet to upgrade Puppet.)
+11. Revert the `masterport` setting on all test nodes. Kill the temporary puppet master process, delete the temporary copy of the puppet source. Upgrade your production puppet master(s) by stopping their web server, upgrading the puppet package, and restarting their web server. Upgrade all of your production nodes. (Most packaging systems allow you to use Puppet to upgrade Puppet.)
 
 
 
