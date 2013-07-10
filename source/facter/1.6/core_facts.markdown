@@ -8,7 +8,7 @@ nav: facter16.html
 
 This is a list of all of the built-in facts that ship with Facter 1.6.x. Not all of them apply to every system, and your site may use many [custom facts](/guides/custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 
-Facts appear in Puppet as normal top-scope variables. This means you can access any fact for a node in your manifests with `$<fact name>`. (E.g. `$osfamily`, `$memorysize`, etc.) 
+Facts appear in Puppet as normal top-scope variables. This means you can access any fact for a node in your manifests with `$<fact name>`. (E.g. `$osfamily`, `$memorysize`, etc.)
 
 ## `architecture`
 
@@ -18,7 +18,7 @@ Returns the CPU hardware architecture.
 **Resolution:**
 
 * On OpenBSD, Linux and Debian's kfreebsd, use the hardwaremodel fact.
-* Gentoo and Debian call "x86_86" "amd64".
+* Gentoo and Debian call "x86_64" "amd64".
 * Gentoo also calls "i386" "x86".
 
 ([↑ Back to top](#page-nav))
@@ -151,7 +151,7 @@ Returns info retrieved in bulk from the EC2 API. The names of these facts should
 
 ## `ec2_userdata`
 
-Undocumented. 
+Undocumented.
 
 ([↑ Back to top](#page-nav))
 
@@ -253,7 +253,7 @@ Internal fact used to specify the program to return the currently running user i
 ## `interfaces`
 
 
-Returns a list of the network interfaces on the machine. These interface names are also used to construct several additional facts. 
+Returns a list of the network interfaces on the machine. These interface names are also used to construct several additional facts.
 
 ([↑ Back to top](#page-nav))
 
@@ -460,7 +460,7 @@ Uses the `lsb_release` system command
 
 **Caveats:**
 
-Only works on Linux (and the kfreebsd derivative) systems. Requires the `lsb_release` 
+Only works on Linux (and the kfreebsd derivative) systems. Requires the `lsb_release`
 program, which may not be installed by default. Also is as only as accurate as that program outputs.
 
 ([↑ Back to top](#page-nav))
@@ -507,7 +507,7 @@ Also is as only as accurate as that program outputs.
 ## `macaddress`
 
 
-Returns the MAC address of the primary network interface. 
+Returns the MAC address of the primary network interface.
 
 ([↑ Back to top](#page-nav))
 
@@ -525,7 +525,7 @@ Returns the MAC address for a specific network interface (from the list in the `
 ## `macosx_buildversion`
 
 
-Returns the system's Mac OS X build version. 
+Returns the system's Mac OS X build version.
 
 ([↑ Back to top](#page-nav))
 
@@ -674,7 +674,7 @@ Returns the operating system family.
 
 **Resolution:**
 
-Maps operating systems to operating system families, such as Linux distribution derivatives. 
+Maps operating systems to operating system families, such as Linux distribution derivatives.
 Adds mappings from specific operating systems to kernels in the case that it is relevant.
 
 **Caveats:**
@@ -725,7 +725,7 @@ Additional Facts about the machine's CPUs. Only used on BSDs.
 ## `processor{NUMBER}`
 
 
-One fact for each processor, with processor info. 
+One fact for each processor, with processor info.
 
 **Resolution:**
 
@@ -762,7 +762,7 @@ Internal fact for what to use to list all processes. Used by Service{} type in P
 
 **Resolution:**
 
-Assumes `ps -ef` for all operating systems other than BSD derivatives, where it uses 
+Assumes `ps -ef` for all operating systems other than BSD derivatives, where it uses
 `ps auxwww`.
 
 ([↑ Back to top](#page-nav))
@@ -789,7 +789,7 @@ Returns Ruby's site library directory.
 
 **Resolution:**
 
-Works out the version to major/minor (1.8, 1.9, etc), then joins that with all the $: 
+Works out the version to major/minor (1.8, 1.9, etc), then joins that with all the $:
 library paths.
 
 ([↑ Back to top](#page-nav))
@@ -814,8 +814,8 @@ Determine whether SE Linux is enabled on the node.
 
 **Resolution:**
 
-Checks for the existence of the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`) 
-and returns `true` if `/proc/self/attr/current` does not contain `kernel`. 
+Checks for the existence of the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`)
+and returns `true` if `/proc/self/attr/current` does not contain `kernel`.
 
 ([↑ Back to top](#page-nav))
 
@@ -823,11 +823,11 @@ and returns `true` if `/proc/self/attr/current` does not contain `kernel`.
 
 ## `selinux_config_mode`
 
-Returns the configured SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`). 
+Returns the configured SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`).
 
 **Resolution:**
 
-Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Mode from config file:`. 
+Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Mode from config file:`.
 
 ([↑ Back to top](#page-nav))
 
@@ -836,11 +836,11 @@ Parses the output of `sestatus_cmd` and returns the value of the line beginning 
 ## `selinux_config_policy`
 
 
-Returns the configured SE Linux policy (e.g. `targeted`, `MLS`, or `minimum`). 
+Returns the configured SE Linux policy (e.g. `targeted`, `MLS`, or `minimum`).
 
 **Resolution:**
 
-Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Policy from config file:`. 
+Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Policy from config file:`.
 
 
 ([↑ Back to top](#page-nav))
@@ -854,7 +854,7 @@ Returns the current SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`
 
 **Resolution:**
 
-Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Current mode:`. 
+Parses the output of `sestatus_cmd` and returns the value of the line beginning with `Current mode:`.
 
 ([↑ Back to top](#page-nav))
 
@@ -867,7 +867,7 @@ Returns whether SE Linux is enabled (`true`) or not (`false`).
 
 **Resolution:**
 
-Returns the value found in the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`). 
+Returns the value found in the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`).
 
 ([↑ Back to top](#page-nav))
 
