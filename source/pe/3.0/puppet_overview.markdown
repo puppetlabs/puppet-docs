@@ -110,4 +110,4 @@ If you are only doing on-demand runs, you're likely to be running large numbers 
 
 * * *
 
-- [Next: Puppet Tools](./puppet_tools.html)
+- [Next: Puppet Modules and Manifests](./puppet_modules_manifests.html)

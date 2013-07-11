@@ -207,4 +207,4 @@ Only sending the catalog to agents allows Puppet to do several things:
 
 * * *
 
-- [Next: Puppet Data Library](./puppet_data_library.html)
+- [Next: Assigning Configurations to Nodes](./puppet_assign_configurations.html)

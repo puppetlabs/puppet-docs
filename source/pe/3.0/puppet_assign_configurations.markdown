@@ -528,3 +528,6 @@ By pre-seeding new nodes with external facts when you deploy them, it's possible
 
 > **Note:** Facts are not trusted data, and can be spoofed by a rogue agent node. Inverting control can be useful for some deployment processes, but it's generally best to not allow nodes to choose what pieces of sensitive information they will receive. If you're inverting control with role facts, be careful with the types of configuration you allow nodes to request.
 
+* * *
+
+- [Next: Puppet Tools](./puppet_tools.html)
