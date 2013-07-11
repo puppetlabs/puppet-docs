@@ -62,4 +62,4 @@ Advanced Tools
 
 * * *
 
-- [Next: Puppet Modules and Manifests](./puppet_modules_manifests.html)
+- [Next: Puppet Data Library](./puppet_data_library.html)

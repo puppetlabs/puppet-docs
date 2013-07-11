@@ -4,32 +4,29 @@ title: "PE 3.0 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 ---
 
-This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
-
-> **Note:** To use the console to assign node configurations, you must be logged in as a read-write or admin level user. Read-only users can view node configuration data, but cannot modify it.
-
-
-Overview: Assigning Configurations With the PE Console
------
-
 [puppet]: ./puppet_overview.html
+[puppet_assign]: ./puppet_assign_configurations.html
 [lang_classes]: /puppet/3/reference/lang_classes.html
 [learn]: /learning/
 [forge]: http://forge.puppetlabs.com
 [modules]: /puppet/3/reference/modules_fundamentals.html
-[lang_params]: /puppet/3/reference/lang_classes.html#class-parameters-and-variables
-[hiera]: /hiera/1/puppet.html
-[hiera_auto]: /hiera/1/puppet.html#automatic-parameter-lookup
-[resource_like]: /puppet/3/reference/lang_classes.html#using-resource-like-declarations
 [topscope]: /puppet/3/reference/lang_scope.html#top-scope
-[role_profile]: http://www.craigdunn.org/2012/05/239/
 [sidebar]: ./console_navigating.html#the-sidebar
 
-As described in [the Puppet section of this manual][puppet], node configurations are compiled from a variety of sources, including the PE console.
+This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
+
+> **Note:** To use the console to assign node configurations, you must be logged in as a read-write or admin level user. Read-only users can view node configuration data, but cannot modify it.
+
+Overview: Assigning Configurations With the PE Console
+-----
+
+> **Note:** As described in [the Puppet section of this manual][puppet], node configurations are compiled from a variety of sources, including the PE console.
+>
+> For a complete description of Puppet Enterprise's configuration data sources, see [the Assigning Configurations to Nodes page][puppet_assign] of the Puppet section of this manual.
 
 **Puppet classes** are the primary unit of node configuration in PE.  [Classes are named blocks of Puppet code][lang_classes] which can be either **declared** by other Puppet code or **directly assigned** to nodes or groups of nodes.
 
-The console allows you to **assign** classes and **configure** their behavior.
+The console allows you to [**assign** classes](./puppet_assign_configurations.html#assigning-classes) and [**configure** their behavior](./puppet_assign_configurations.html#configuring-classes).
 
 > ### Creating Puppet Classes
 >
@@ -38,35 +35,6 @@ The console allows you to **assign** classes and **configure** their behavior.
 > * [Download modules from the Puppet Forge][forge] --- there are many public modules available for free, with instructions for how to use them.
 > * [Write your own classes][lang_classes], and put them in a [module][modules].
 > * If you are new to Puppet and have not written Puppet code before, [follow the Learning Puppet tutorial][learn], which walks you through the basics of Puppet code, classes, and modules.
-
-### Configuring Classes
-
-Many Puppet classes can be configured to change their behavior, which lets them meet different needs on different nodes.
-
-There are two main ways to configure classes in Puppet: **class parameters** and **top-scope variables.** Each module's author dictates which method to use; see the documentation of the classes you are using for local details.
-
-If you are using a set of modules written by many authors over a long timespan, you will likely need to use a mixture of these two methods.
-
-#### Class Parameters
-
-Class parameters are a way for classes to explicitly ask for configuration data; see [the Puppet language reference page on classes][lang_params] for more details. Each parameter for a class can be marked as optional or mandatory by the class's author.
-
-* In the PE console, [you can set class parameters][inpage_classparams] after assigning a class to a node or group.
-* In `/etc/puppetlabs/puppet/manifests/site.pp` on the puppet master, or within other classes, you can use [resource-like class declarations][resource_like] to set class parameters. This is most frequently done when using [role and profile modules][role_profile], which are a highly maintainable and scalable way to design node configurations. <!-- TODO we still need to get role/profile stuff in PE docs. -->
-* Advanced PE users can [configure Hiera](./puppet_config.html#configuring-hiera) and use [automatic parameter lookup][hiera_auto] to set class parameters. This can be vastly more flexible than setting parameters in the console and is easier to maintain over the long term, but it requires more initial setup.
-
-    Hiera parameters can co-exist with either console parameters or role-and-profile modules; in either case, explicit parameter values will override the Hiera values.
-
-<!-- todo: once we have a more comprehensive overview of puppet's data inputs, link it from here.  -->
-
-#### Top-Scope Variables
-
-Instead of defining class parameters, classes may also look up [top-scope][topscope] Puppet variables and use their values as configuration. In older versions of Puppet (0.25 and earlier), this was the only way to configure classes, and it remained more convenient for several more versions. You will still encounter some classes written to use top-scope variables as configuration.
-
-Classes written this way should clearly state which variables to set in their documentation.
-
-* In the PE console, [you can set top-scope variables][inpage_vars] for both groups and individual nodes. Node values will override group values when necessary.
-* Top-scope variables can also be set in `/etc/puppetlabs/puppet/manifests/site.pp` on the puppet master.
 
 ### Navigating the Console
 
@@ -157,9 +125,6 @@ Parameters are added with pairs of key/value fields. There will always be at lea
 Click the "Update" button to save your changes. The next time you view that node's detail page, you'll see a "2 Parameters" (or appropriate number) link in the "Parameters" column of the "Classes" table.
 
 ![After adding some parameters][classes_parameters_done]
-
-[inpage_classparams]: #setting-class-parameters-on-nodes
-[inpage_vars]: #setting-variables-on-nodes
 
 ### Setting Variables on Nodes
 
