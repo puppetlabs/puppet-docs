@@ -71,7 +71,7 @@ For a full description of the Puppet 3 release, including major changes, backwar
 Puppet 3.2.3
 -----
 
-**Release candidate:** This version entered RC on July 2, 2013. It has not yet been officially released.
+Released July 15, 2013.
 
 3.2.3 is a bugfix release of the Puppet 3.2 series. It fixes some Windows bugs introduced in 3.2.0, as well as a few performance problems and miscellaneous bugs.
 
