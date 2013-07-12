@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Cloud Provisioning » VMware Provisioning"
 subtitle: "Provisioning With VMware"
+canonical: "/pe/latest/cloudprovisioner_vmware.html"
 ---
 
 Puppet Enterprise provides support for working with VMware virtual machine instances using vSphere and vCenter. Using actions of the `puppet node_vmware` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.

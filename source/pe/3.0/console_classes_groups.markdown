@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
+canonical: "/pe/latest/console_classes_groups.html"
 ---
 
 [puppet]: ./puppet_overview.html

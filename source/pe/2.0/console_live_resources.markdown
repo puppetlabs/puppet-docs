@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Live Mgmt: Managing Resources"
+canonical: "/pe/latest/console_live_resources.html"
 ---
 
 * * *

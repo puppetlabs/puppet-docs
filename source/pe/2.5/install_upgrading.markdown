@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
+canonical: "/pe/latest/install_upgrading.html"
 ---
 
 To upgrade from a previous version of Puppet Enterprise, use the same installer tarball as in a basic installation, but **don't** run the `puppet-enterprise-installer` script. Instead, run `puppet-enterprise-upgrader`. 

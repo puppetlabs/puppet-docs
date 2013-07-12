@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Answer File Reference"
+canonical: "/pe/latest/answer_file_reference.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

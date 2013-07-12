@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Puppet » Overview"
+canonical: "/pe/latest/puppet_overview.html"
 ---
 
 * * *

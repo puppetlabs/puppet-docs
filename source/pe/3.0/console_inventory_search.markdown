@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Console » Inventory Search"
 subtitle: "Searching for Nodes by Fact"
+canonical: "/pe/latest/console_inventory_search.html"
 ---
 
 The **Inventory Search** section of the Puppet Enterprise console lets you search Puppet's inventory of node data. This search utility uses Puppet Enterprise's central data storage layer, PuppetDB.

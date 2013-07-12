@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Advanced Configuration » Installing Additional Components"
 subtitle: "Installing Additional Components"
+canonical: "/pe/latest/config_installing_additional.html"
 ---
 
 Several optional components of PE can be installed manually.

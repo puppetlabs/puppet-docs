@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Cloud Provisioner » Installation and Configuration"
 subtitle: "Installing and Configuring Cloud Provisioning"
+canonical: "/pe/latest/cloudprovisioner_configuring.html"
 ---
 
 There are many options and actions associated with the main cloud provisioning sub-commands: `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview, but check the man pages for all the details (`puppet man node_aws`, etc.).

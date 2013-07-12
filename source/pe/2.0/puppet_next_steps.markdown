@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Puppet » Next Steps"
+canonical: "/pe/latest/puppet_next_steps.html"
 ---
 
 * * *

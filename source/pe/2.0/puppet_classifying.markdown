@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Puppet » Assigning a Class to a Node"
+canonical: "/pe/latest/puppet_classifying.html"
 ---
 
 * * *

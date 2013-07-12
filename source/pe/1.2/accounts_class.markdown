@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: The accounts Class"
+canonical: "/pe/latest/accounts_class.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

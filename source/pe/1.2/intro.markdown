@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Introduction"
+canonical: "/pe/latest/intro.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

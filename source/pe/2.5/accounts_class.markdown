@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Accounts Module » The pe_accounts Class"
 subtitle: "The pe_accounts Class"
+canonical: "/pe/latest/accounts_class.html"
 ---
 
 This class is part of `pe_accounts`, a pre-built Puppet module included with Puppet Enterprise.

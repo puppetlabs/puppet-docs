@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Maintenance and Troubleshooting » Common Config Errors"
+canonical: "/pe/latest/maint_common_config_errors.html"
 ---
 
 * * *

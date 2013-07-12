@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Compliance » Using the Workflow"
 subtitle: "Using the Compliance Workflow"
+canonical: "/pe/latest/compliance_using.html"
 ---
 
 Prerequisites

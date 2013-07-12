@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 3.0 » Installing » What Gets Installed Where?"
+canonical: "/pe/latest/install_what_and_where.html"
 ---
 
 

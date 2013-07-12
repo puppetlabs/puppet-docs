@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Navigating"
+canonical: "/pe/latest/console_navigating.html"
 ---
 
 * * *

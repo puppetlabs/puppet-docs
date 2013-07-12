@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7  » Cloud Provisioning » Troubleshooting"
 subtitle: "Finding Common Errors"
+canonical: "/pe/latest/cloudprovisioner_troubleshooting.html"
 ---
 
 Troubleshooting

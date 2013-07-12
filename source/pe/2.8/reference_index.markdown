@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 2.7.21 (PE) References
+canonical: "/pe/latest/reference_index.html"
 ---
 
 

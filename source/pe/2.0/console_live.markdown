@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Live Management"
+canonical: "/pe/latest/console_live.html"
 ---
 
 * * *

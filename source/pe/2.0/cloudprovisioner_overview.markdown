@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Cloud Provisioning » Overview"
+canonical: "/pe/latest/cloudprovisioner_overview.html"
 ---
 
 * * *

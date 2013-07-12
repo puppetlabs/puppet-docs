@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7  » Orchestration » Overview"
 subtitle: "Orchestration for New PE Users: Overview"
+canonical: "/pe/latest/orchestration_overview.html"
 ---
 
 What is Orchestration?

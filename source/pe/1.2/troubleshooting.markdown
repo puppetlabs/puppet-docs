@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Troubleshooting"
+canonical: "/pe/latest/troubleshooting.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

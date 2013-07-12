@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Console » Live Management"
 subtitle: "Live Management"
+canonical: "/pe/latest/console_live.html"
 ---
 
 What is Live Management?

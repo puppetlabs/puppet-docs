@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.1 Manual"
+canonical: "/pe/latest/index.html"
 ---
 
 {% include warnings/old_pe_version.html %}

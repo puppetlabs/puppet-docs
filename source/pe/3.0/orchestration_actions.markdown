@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Orchestration » List of Built-In Actions"
 subtitle: "List of Built-In Orchestration Actions"
+canonical: "/pe/latest/orchestration_actions.html"
 ---
 
 [fundamentals]: ./orchestration_overview.html#orchestration-fundamentals

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Welcome » Getting Started"
+canonical: "/pe/latest/welcome_getting_started.html"
 ---
 
 * * *

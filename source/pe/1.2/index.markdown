@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Index"
+canonical: "/pe/latest/index.html"
 ---
 
 Puppet Enterprise 1.2 Manual

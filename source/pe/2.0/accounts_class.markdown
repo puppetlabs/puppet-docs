@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Accounts Module » The pe_accounts Class"
+canonical: "/pe/latest/accounts_class.html"
 ---
 
 * * *

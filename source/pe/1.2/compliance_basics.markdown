@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Puppet Compliance Basics and UI"
+canonical: "/pe/latest/compliance_basics.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

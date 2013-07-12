@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Compliance » Using the Workflow"
+canonical: "/pe/latest/compliance_using.html"
 ---
 
 * * *
