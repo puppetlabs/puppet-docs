@@ -116,33 +116,29 @@ In PE, Puppet will use the following **data sources** to configure classes and a
 
 (Click to enlarge.)
 
-> #### Description of Diagram (for accessibility and clarity)
+> #### Accessibility Note: Description of Diagram
 >
-> This diagram shows seven different data sources providing varying kinds of data to the puppet master. Clockwise from the upper left:
+> The diagram above shows seven different data sources providing varying kinds of data to the puppet master. Clockwise from the upper left:
 >
-> 1. site.pp (site manifest). Can assign **classes, class parameters,** and **variables.** It is unique in that it can also declare resources outside any class.
-> 2. Hiera, which is composed of several levels of hierarchical data sources. Can assign **classes** and **class parameters,** and provide **arbitrary data.**
-> 3. PE Console, which is composed of nodes and groups. Can assign **classes, class parameters,** and **variables.**
-> 4. PuppetDB. Can provide **exported resources** and **generated data** (via functions).
-> 5. External CMDB (shown as a cloud to indicate that it is optional and Puppet Enterprise knows nothing about it). Can provide **arbitrary data** (via functions).
-> 6. Puppet agent. Can provide facts, which are assigned as top-scope **variables.**
-> 7. Puppet modules, which includes two special sub-elements labeled "roles" and "profiles." The set of modules as a whole provides the set of **available classes** which can be assigned by other data sources. The role and profile modules can assign **classes** and **class parameters.**
+> 1. [site.pp (site manifest)](#assigning-configuration-data-with-the-site-manifest-sitepp). Can assign **classes, class parameters,** and **variables.** It is unique in that it can also declare resources outside any class.
+> 2. [Hiera](#assigning-configuration-data-with-hiera), which is composed of several levels of hierarchical data sources. Can assign **classes** and **class parameters,** and provide **arbitrary data.**
+> 3. [The PE Console](#assigning-configuration-data-with-the-pe-console), which is composed of nodes and groups. Can assign **classes, class parameters,** and **variables.**
+> 4. [PuppetDB](#querying-puppetdb-for-supplementary-configuration-data). Can provide **exported resources** and **generated data** (via functions).
+> 5. [External CMDB](#querying-an-external-cmdb-for-supplementary-configuration-data) (shown as a cloud to indicate that it is optional and Puppet Enterprise knows nothing about it). Can provide **arbitrary data** (via functions).
+> 6. [Puppet agent](#using-puppet-agents-facts-as-hints-for-configuration-data). Can provide facts, which are assigned as top-scope **variables.**
+> 7. Puppet modules, which includes [two special sub-elements labeled "roles" and "profiles."](#assigning-configuration-data-with-role-and-profile-modules) The set of modules as a whole provides the set of **available classes** which can be assigned by other data sources. The role and profile modules can assign **classes** and **class parameters.**
 
 
-In this diagram, we can distinguish between a few kinds of data sources:
+In this diagram, we can distinguish between two kinds of data sources:
 
 Primary Data Sources                             | Assisting Data Sources
 -------------------------------------------------|-----------------------------------------------
 PE console, site.pp, Hiera, role/profile modules | Puppet agent (facts), PuppetDB, external CMDBs
 
 * The **primary data sources** can directly assign classes and configuration data to a node; you will use some combination of them to control what configurations your nodes will receive.
-* The **assisting data sources** provide other kinds of data. This data can be:
-    * Used directly by modules --- this works very well for facts and exported resources, but you should be very careful with embedding PuppetDB or CMDB query calls in modules. (See the relevant sections below.)
-    * Used by a primary data source, to help decide which classes or configuration data to assign to a node.
-        * Hiera, site.pp, and role/profile modules can all use facts to assign classes and parameters.
-        * Site.pp and role/profile modules can convert queries to PuppetDB or an external CMDB into class parameter values.
-        * Site.pp can convert PuppetDB and CMDB queries into top-scope variables. (These variables can, in turn, be used by Hiera or role/profile modules, but you want to be very careful and disciplined if you're considering nesting data sources like that.)
+* The **assisting data sources** provide other kinds of data. This data can be used directly by modules, or used by a primary data source to help assign configuration data to nodes.
 
+The remainder of  this page describes in detail each of the data sources available to Puppet Enterprise. Most users should choose a few primary data sources based on their deployment's needs; read the "characteristics" and "recommendations" sections for each data source to understand their benefits and drawbacks.
 
 [↑ Back to top](#content)
 
