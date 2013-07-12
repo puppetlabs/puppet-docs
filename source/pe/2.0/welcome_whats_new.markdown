@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Welcome » New Features and Release Notes"
-canonical: "/pe/latest/welcome_whats_new.html"
+canonical: "/pe/latest/overview_whats_new.html"
 ---
 
 * * *

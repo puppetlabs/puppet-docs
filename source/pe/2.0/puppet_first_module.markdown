@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Puppet » Your First Module"
-canonical: "/pe/latest/puppet_first_module.html"
+canonical: "/pe/latest/quick_writing.html"
 ---
 
 * * *

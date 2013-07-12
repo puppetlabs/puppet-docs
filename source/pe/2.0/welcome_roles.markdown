@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Welcome » Components and Roles"
-canonical: "/pe/latest/welcome_roles.html"
+canonical: "/pe/latest/install_basic.html"
 ---
 
 * * *

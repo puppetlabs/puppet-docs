@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Live Mgmt: Advanced Tasks"
-canonical: "/pe/latest/console_live_advanced.html"
+canonical: "/pe/latest/console_navigating_live_mgmt.html"
 ---
 
 * * *

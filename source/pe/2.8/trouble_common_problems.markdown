@@ -2,7 +2,7 @@
 layout: default
 title: "PE 2.8  » Troubleshooting » Common Problems & Solutions"
 subtitle: "Troubleshooting Common Errors"
-canonical: "/pe/latest/trouble_common_problems.html"
+canonical: "/pe/latest/trouble_install.html"
 ---
 
 The Installer is Failing

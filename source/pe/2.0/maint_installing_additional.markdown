@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Maintenance and Troubleshooting » Installing Additional Components"
-canonical: "/pe/latest/maint_installing_additional.html"
+canonical: "/pe/latest/cloudprovisioner_configuring.html"
 ---
 
 * * *

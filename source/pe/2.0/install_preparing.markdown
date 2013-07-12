@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Installing » Preparing to Install"
-canonical: "/pe/latest/install_preparing.html"
+canonical: "/pe/latest/install_basic.html"
 ---
 
 * * *

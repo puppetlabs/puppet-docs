@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Live Mgmt: Controlling Puppet"
-canonical: "/pe/latest/console_live_puppet.html"
+canonical: "/pe/latest/orchestration_puppet.html"
 ---
 
 * * *

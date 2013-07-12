@@ -2,7 +2,7 @@
 layout: default
 title: "PE 2.5 » Compliance » Basics and UI"
 subtitle: "Compliance Basics and UI"
-canonical: "/pe/latest/compliance_basics.html"
+canonical: "/pe/latest/compliance_alt.html"
 ---
 
 The Compliance Workflow Cycle

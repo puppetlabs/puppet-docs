@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Orchestration » Usage"
-canonical: "/pe/latest/orchestration_usage.html"
+canonical: "/pe/latest/orchestration_invoke_cli.html"
 ---
 
 * * *

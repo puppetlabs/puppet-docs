@@ -1,7 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Upgrading Puppet Enterprise
-canonical: "/pe/latest/upgrading.html"
+canonical: "/pe/latest/install_upgrading.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

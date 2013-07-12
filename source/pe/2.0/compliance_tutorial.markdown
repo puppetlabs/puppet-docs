@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Compliance » Tutorial"
-canonical: "/pe/latest/compliance_tutorial.html"
+canonical: "/pe/latest/compliance_alt.html"
 ---
 
 * * *

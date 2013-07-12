@@ -2,7 +2,7 @@
 layout: default
 title: "PE 2.5 » Console » Live Mgmt: Advanced Tasks"
 subtitle: "Live Management: Advanced Tasks"
-canonical: "/pe/latest/console_live_advanced.html"
+canonical: "/pe/latest/console_navigating_live_mgmt.html"
 ---
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.

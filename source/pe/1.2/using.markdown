@@ -1,7 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: Using Puppet Enterprise"
-canonical: "/pe/latest/using.html"
+canonical: "/pe/latest/quick_start.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

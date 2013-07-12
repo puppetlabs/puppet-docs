@@ -2,7 +2,7 @@
 layout: default
 title: "PE 2.6  » Console » Console Maintenance"
 subtitle: "Console Maintenance"
-canonical: "/pe/latest/console_maintenance.html"
+canonical: "/pe/latest/maintain_console-db.html"
 ---
 
 If PE's console becomes sluggish or begins taking up too much space on disk, there are several maintenance tasks that can improve its performance. 
