@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Troubleshooting » Cloud Provisioner"
 subtitle: "Finding Common Problems "
+canonical: "/pe/latest/trouble_cloudprovisioner.html"
 ---
 
 Below are some common issues with the Cloud Provisioner.

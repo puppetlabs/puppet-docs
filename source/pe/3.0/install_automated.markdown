@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Installing » Automated Installation"
 subtitle: "Automated Installation"
+canonical: "/pe/latest/install_automated.html"
 ---
 
 To streamline deployment, the PE installer can run non-interactively. To do this, you must: 

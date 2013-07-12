@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Console » Accessing"
 subtitle: "Accessing the Console"
+canonical: "/pe/latest/console_accessing.html"
 ---
 
 The console is Puppet Enterprise's web GUI. Use it to:

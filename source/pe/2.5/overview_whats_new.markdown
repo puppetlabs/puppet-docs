@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Overview » What's New"
 subtitle: "New Features in PE 2.5"
+canonical: "/pe/latest/overview_whats_new.html"
 ---
 
 

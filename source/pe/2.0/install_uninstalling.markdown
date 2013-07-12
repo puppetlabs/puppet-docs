@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Installing » Uninstalling"
+canonical: "/pe/latest/install_uninstalling.html"
 ---
 
 * * *

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Indirection Reference"
-canonical: "/references/latest/indirection.html"
+canonical: "/references/2.7.latest/indirection.html"
 ---
 
 
@@ -22,23 +22,23 @@ terminus for most of its indirected classes), but some classes are tunable via n
 * **Terminus Setting**: catalog_terminus
 
 active_record
-: 
+:
 
 compiler
 : Puppet's catalog compilation interface, and its back-end is
   Puppet's compiler
 
 queue
-: 
+:
 
 rest
 : Find resource catalogs over HTTP via REST.
 
 static_compiler
-: 
+:
 
 store_configs
-: 
+:
 
 yaml
 : Store catalogs as flat files, serialized using YAML.
@@ -102,7 +102,7 @@ rest
 
 
 file
-: 
+:
 
 rest
 : Sign, revoke, search for, or clean certificates & certificate requests over HTTP.
@@ -112,10 +112,10 @@ rest
 * **Terminus Setting**: facts_terminus
 
 active_record
-: 
+:
 
 couch
-: 
+:
 
 facter
 : Retrieve facts from Facter.  This provides a somewhat abstract interface
@@ -123,7 +123,7 @@ facter
   returns the local host's facts, regardless of what you attempt to find.
 
 inventory_active_record
-: 
+:
 
 inventory_service
 : Find and save facts about nodes using a remote inventory service.
@@ -141,7 +141,7 @@ rest
 : Find and save facts about nodes over HTTP via REST.
 
 store_configs
-: 
+:
 
 yaml
 : Store client facts as flat files, serialized using YAML, or
@@ -197,30 +197,30 @@ selector
 
 
 local
-: 
+:
 
 rest
-: 
+:
 
 ## instrumentation_listener
 
 
 
 local
-: 
+:
 
 rest
-: 
+:
 
 ## instrumentation_probe
 
 
 
 local
-: 
+:
 
 rest
-: 
+:
 
 ## inventory
 
@@ -254,7 +254,7 @@ A node is composed of its name, its facts, and its environment.
 * **Terminus Setting**: node_terminus
 
 active_record
-: 
+:
 
 exec
 : Call an external program to get node information.  See
@@ -286,7 +286,7 @@ rest
 : This will eventually be a REST-based mechanism for finding nodes.  It is currently non-functional.
 
 store_configs
-: 
+:
 
 yaml
 : Store node information as flat files, serialized using YAML,
@@ -311,16 +311,16 @@ yaml
 
 
 active_record
-: 
+:
 
 ral
-: 
+:
 
 rest
-: 
+:
 
 store_configs
-: 
+:
 
 ## resource_type
 
@@ -337,10 +337,10 @@ rest
 
 
 local
-: 
+:
 
 rest
-: 
+:
 
 
 

@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Troubleshooting » Connections & Communications"
 subtitle: "Troubleshooting Connections Between Components "
+canonical: "/pe/latest/trouble_comms.html"
 ---
 
 Below are some common issues that can prevent the different parts of Puppet Enterprise from communicating with each other.

@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
+canonical: "/pe/latest/console_classes_groups.html"
 ---
 
 Groups, classes, and parameters are used to control which Puppet configurations your nodes receive. 

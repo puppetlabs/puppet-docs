@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7 » Appendix"
 subtitle: "User's Guide Appendix"
+canonical: "/pe/latest/appendix.html"
 ---
 
 This page contains additional miscellaneous information about Puppet Enterprise 2.7.

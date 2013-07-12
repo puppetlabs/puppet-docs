@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Installing » Upgrading"
+canonical: "/pe/latest/install_upgrading.html"
 ---
 
 * * *

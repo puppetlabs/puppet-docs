@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Accessing"
+canonical: "/pe/latest/console_accessing.html"
 ---
 
 * * *

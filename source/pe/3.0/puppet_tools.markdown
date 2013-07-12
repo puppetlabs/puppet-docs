@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Puppet » Tools"
 subtitle: "Puppet Tools"
+canonical: "/pe/latest/puppet_tools.html"
 ---
 
 Puppet is built on a large number of services and command-line tools. Understanding which to reach for and when is crucial to using Puppet effectively.

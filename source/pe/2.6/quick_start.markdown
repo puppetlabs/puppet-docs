@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Quick Start » Using PE"
 subtitle: "Quick Start: Using PE 2.6"
+canonical: "/pe/latest/quick_start.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html

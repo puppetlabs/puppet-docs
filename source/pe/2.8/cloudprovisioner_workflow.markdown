@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Cloud Provisioning » Sample Workflow"
 subtitle: "A Day in the Life of a Puppet-Powered Cloud Sysadmin"
+canonical: "/pe/latest/cloudprovisioner_workflow.html"
 ---
 
 Tom is a sysadmin for CloudWidget.com, a company that provides web-based application services. They use a three-tier application architecture with the following types of nodes:

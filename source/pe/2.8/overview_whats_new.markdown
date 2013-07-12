@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Overview » What's New"
 subtitle: "New Features in PE 2.8"
+canonical: "/pe/latest/overview_whats_new.html"
 ---
 
 ### Version 2.8.2

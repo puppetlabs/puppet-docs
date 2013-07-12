@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Console » Navigating"
 subtitle: "Navigating the Console"
+canonical: "/pe/latest/console_navigating.html"
 ---
 
 Getting Around

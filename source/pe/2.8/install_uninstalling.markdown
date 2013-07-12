@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Installing » Uninstalling"
 subtitle: "Uninstalling Puppet Enterprise"
+canonical: "/pe/latest/install_uninstalling.html"
 ---
 
 Use the `puppet-enterprise-uninstaller` script to uninstall PE. This script can remove a working PE installation, or undo a partially failed installation to prepare for a re-install.

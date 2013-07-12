@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Console » Live Mgmt: Controlling Puppet"
 subtitle: "Live Management: Controlling Puppet"
+canonical: "/pe/latest/orchestration_puppet.html"
 ---
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Live management and MCollective are not yet supported on Windows nodes.

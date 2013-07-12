@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Troubleshooting » Orchestration"
 subtitle: "Troubleshooting the Orchestration Engine"
+canonical: "/pe/latest/trouble_orchestration.html"
 ---
 
 Agents Not Appearing in Live Management

@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Appendix"
 subtitle: "User's Guide Appendix"
+canonical: "/pe/latest/appendix.html"
 ---
 
 

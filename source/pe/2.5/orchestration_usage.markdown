@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Orchestration » Usage"
 subtitle: "Orchestration for New PE Users: Usage and Examples"
+canonical: "/pe/latest/orchestration_invoke_cli.html"
 ---
 
 > ![windows-only](./images/windows-logo-small.jpg) **NOTE:** Orchestration and MCollective are not yet supported on Windows nodes.

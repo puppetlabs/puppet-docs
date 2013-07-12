@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Orchestration » Invoking Actions"
 subtitle: "Invoking Orchestration Actions"
+canonical: "/pe/latest/orchestration_invoke_cli.html"
 ---
 
 [master_server]: ./install_basic.html#the-puppet-master-role

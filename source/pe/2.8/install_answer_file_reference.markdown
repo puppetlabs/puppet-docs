@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Installing » Answer File Reference"
 subtitle: "Answer File Reference"
+canonical: "/pe/latest/install_answer_file_reference.html"
 ---
 
 Answer files are used for automated installations of PE. See [the chapter on automated installation](./install_automated.html) for more details.

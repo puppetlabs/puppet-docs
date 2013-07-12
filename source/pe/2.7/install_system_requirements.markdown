@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7  » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
+canonical: "/pe/latest/install_system_requirements.html"
 ---
 
 Before installing Puppet Enterprise:

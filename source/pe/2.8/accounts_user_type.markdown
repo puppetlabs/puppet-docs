@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Accounts Module » The pe_accounts::user Type"
 subtitle: "The pe_accounts::user Type"
+canonical: "/pe/latest/accounts_user_type.html"
 ---
 
 This defined type is part of `pe_accounts`, a pre-built Puppet module that ships with Puppet Enterprise for use in your own manifests.

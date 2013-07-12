@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Puppet » References"
 subtitle: "Puppet References"
+canonical: "/pe/latest/puppet_references.html"
 ---
 
 Puppet has a lot of moving parts and a lot of information to remember. The following resources will help you keep the info you need at your fingertips and use Puppet effectively. 

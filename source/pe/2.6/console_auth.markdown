@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Console » User Management and Authorization"
 subtitle: "Managing Console Users"
+canonical: "/pe/latest/console_auth.html"
 ---
 
 Starting with PE 2.5, the console has supported individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console allows secure individual user accounts with different access privileges. Specifically, user accounts allow the assignment of one of three access levels: read-only, read-write, or admin. As of PE 2.6, users can also be managed using external, third-party authentication services such as LDAP, Active Directory or Google Accounts.

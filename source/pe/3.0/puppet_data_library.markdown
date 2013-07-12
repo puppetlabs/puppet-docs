@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Puppet » Puppet Data Library"
 subtitle: "The Puppet Data Library"
+canonical: "/pe/latest/puppet_data_library.html"
 ---
 
 

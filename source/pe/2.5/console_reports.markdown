@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.5 » Console » Viewing Reports"
 subtitle: "Viewing Reports and Inventory Data"
+canonical: "/pe/latest/console_reports.html"
 ---
 
 When nodes fetch their configurations from the puppet master, they send back inventory data and a report of their run. These end up in the console, where you can view them in that node's page. 

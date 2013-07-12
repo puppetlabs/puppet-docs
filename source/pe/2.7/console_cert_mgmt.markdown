@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7  » Console » Node Request Management"
 subtitle: "Working with Node Requests"
+canonical: "/pe/latest/console_cert_mgmt.html"
 ---
 
 

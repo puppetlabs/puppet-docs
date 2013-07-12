@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Maintenance and Troubleshooting » Console Maintenance Tasks"
+canonical: "/pe/latest/maintain_console-db.html"
 ---
 
 * * *

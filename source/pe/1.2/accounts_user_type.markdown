@@ -1,6 +1,7 @@
 ---
 layout: legacy
 title: "PE 1.2 Manual: The accounts::user Type"
+canonical: "/pe/latest/accounts_user_type.html"
 ---
 
 {% include pe_1.2_nav.markdown %}

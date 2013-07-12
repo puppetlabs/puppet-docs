@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Maintenance and Troubleshooting » Reconfiguring PE"
+canonical: "/pe/latest/console_config.html"
 ---
 
 * * *

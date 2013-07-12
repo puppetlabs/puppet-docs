@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Installing » Windows Agents"
 subtitle: "Installing Windows Agents"
+canonical: "/pe/latest/install_windows.html"
 ---
 
 
