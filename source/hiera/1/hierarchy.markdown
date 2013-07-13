@@ -27,9 +27,9 @@ Each element in the hierarchy must be a **string,** which may or may not include
     # /etc/hiera.yaml
     ---
     :hierarchy:
-      - %{::clientcert}
-      - %{::environment}
-      - virtual_%{::is_virtual}
+      - "%{::clientcert}"
+      - "%{::environment}"
+      - "virtual_%{::is_virtual}"
       - common
 
 > **Terminology:** 
@@ -86,9 +86,9 @@ Assume the following hierarchy:
     # /etc/hiera.yaml
     ---
     :hierarchy:
-      - %{::clientcert}
-      - %{::environment}
-      - virtual_%{::is_virtual}
+      - "%{::clientcert}"
+      - "%{::environment}"
+      - "virtual_%{::is_virtual}"
       - common
 
 ...and the following set of data sources:
