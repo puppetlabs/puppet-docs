@@ -1,7 +1,7 @@
-Report Format 3
+Report Format 4
 -----
 
-This is the format of reports output by Puppet versions 2.7.12 and later, but the report version identifier did not get changed until Puppet 2.7.20 (See ticket #15739).
+This is the format of reports output by Puppet versions 3.3.0 and later.
 
 ### Puppet::Transaction::Report
 
@@ -15,7 +15,7 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>metrics</td><td>hash</td><td>maps from string (metric category) to Puppet::Util::Metric.</td></tr>
   <tr><td>resource_statuses</td><td>hash</td><td>maps from resource name to Puppet::Resource::Status</td></tr>
   <tr><td>configuration_version</td><td>string or integer</td><td>The "configuration version" of the puppet run.  This is a string if the user has specified their own versioning scheme, otherwise an integer representing seconds since the epoch.</td></tr>
-  <tr><td>report_format</td><td>integer</td><td>3</td></tr>
+  <tr><td>report_format</td><td>integer</td><td>4</td></tr>
   <tr><td>puppet_version</td><td>string</td><td>The version of the Puppet agent.</td></tr>
   <tr><td>kind</td><td>string</td><td>"inspect" if this report came from a "puppet inspect" run, "apply" if it came from a "puppet apply" or "puppet agent" run.</td></tr>
   <tr><td>status</td><td>string</td><td>"failed", "changed", or "unchanged"</td></tr>
@@ -82,6 +82,7 @@ A Puppet::Resource::Status object represents the status of a single resource. It
   <tr><td>changed</td><td>boolean</td><td>True if change_count > 0, otherwise false.  *deprecated*</td></tr>
   <tr><td>skipped</td><td>boolean</td><td>True if the resource was skipped, otherwise false.</td></tr>
   <tr><td>failed</td><td>boolean</td><td>True if Puppet experienced an error while evaluating this resource, otherwise false.  *deprecated*</td></tr>
+  <tr><td>containment_path</td><td>array</td><td>An array of strings; each element represents a container (type or class) that, together, make up the path of the resource in the catalog.</td></tr>
 </table>
 
 ### Puppet::Transaction::Event
@@ -108,6 +109,6 @@ Puppet::Transaction::Event#status has the following meanings:
 * `noop`: property was out of sync, and wasn't changed due to noop mode.
 * `audit`: property was in sync, and was being audited.
 
-### Differences from Report Format 2
+### Differences from Report Format 3
 
-* Puppet::Transaction::Report gained `environment`.
+* Puppet::Resource::Status gained `containment_path`.
