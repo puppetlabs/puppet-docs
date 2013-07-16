@@ -163,11 +163,11 @@ Puppet Enterprise includes a web console for controlling many of its features. O
 >
 > When you first started your VM, it gave you the URL, username, and password for accessing the console. The user and password should always be `puppet@example.com` and `learningpuppet`. The URL will be `https://<IP ADDRESS>`; you can get your VM's IP address by running `facter ipaddress` at the command line.
 
-Once logged in, navigate to "Live Management" in the top menu bar, then click the "Manage Resources" tab. You can then [follow these instructions][live_resources] to find and inspect resources.
+Once logged in, navigate to "Live Management" in the top menu bar, then click the "Manage Resources" tab. From here, you can [use orchestration to find and inspect resources][live_resources]. 
 
 Since you're only using a single node, you won't see much in the way of comparisons, but you can see the current states of packages, user accounts, etc.
 
-[live_resources]: http://docs.puppetlabs.com/pe/latest/console_live_resources.html
+[live_resources]: http://docs.puppetlabs.com/pe/3.0/orchestration_resources.html
 
 ### The Puppet Resource Command
 

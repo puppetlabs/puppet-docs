@@ -8,6 +8,7 @@ canonical: "/pe/latest/index.html"
 
 Welcome! This is the user's guide for Puppet Enterprise 3.0.
 
+
 * If you are new to Puppet Enterprise, begin with the [quick start guide](./quick_start.html) to create a small proof-of-concept deployment and experience the core Puppet Enterprise tools and workflows. This guided walkthrough will take approximately 30 minutes.
 * To install Puppet Enterprise, see the following pages:
     * [System Requirements](./install_system_requirements.html)
@@ -18,3 +19,5 @@ Welcome! This is the user's guide for Puppet Enterprise 3.0.
 * The [Deployment Guide](../../guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 
 Otherwise, use the **navigation to the left** to move between this guide's sections and chapters.
+
+If you are using an older version of Puppet Enterprise, you can find [documentation for previous versions here](http://docs.puppetlabs.com/pe/index.html).
