@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Orchestration » Browsing Resources"
 subtitle: "Orchestration: Browsing and Comparing Resources"
+canonical: "/pe/latest/orchestration_resources.html"
 ---
 
 Use the live management page's "Browse Resources" tab to browse the resources on your nodes and inspect their current state.

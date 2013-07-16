@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Overview » What's New"
 subtitle: "New Features in PE 2.6"
+canonical: "/pe/latest/overview_whats_new.html"
 ---
 ### Version 2.6.1
 PE 2.6.1 is a bug fix release and security update. 

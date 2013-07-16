@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Console »  Configuration"
 subtitle: " Configuring & Tuning the Console & Databases"
+canonical: "/pe/latest/console_config.html"
 ---
 
 Changing the Console's Port

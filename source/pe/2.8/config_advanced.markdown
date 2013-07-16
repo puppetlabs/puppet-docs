@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8  » Configuring Puppet Enterprise » Advanced Configuration"
 subtitle: "Working with Complex Settings"
+canonical: "/pe/latest/console_config.html"
 ---
 
 

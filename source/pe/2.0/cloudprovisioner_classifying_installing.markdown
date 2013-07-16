@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Cloud Provisioning » Classifying and Installing"
+canonical: "/pe/latest/cloudprovisioner_classifying_installing.html"
 ---
 
 * * *

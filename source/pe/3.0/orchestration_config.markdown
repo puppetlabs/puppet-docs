@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Orchestration » Configuration"
 subtitle: "Configuring Orchestration"
+canonical: "/pe/latest/orchestration_config.html"
 ---
 
 The Puppet Enterprise (PE) orchestration engine can be configured to enable new actions, modify existing actions, restrict actions, and prevent run failures on non-PE nodes.

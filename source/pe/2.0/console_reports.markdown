@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Viewing Reports"
+canonical: "/pe/latest/console_reports.html"
 ---
 
 * * *

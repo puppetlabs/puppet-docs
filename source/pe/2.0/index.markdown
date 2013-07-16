@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Index"
+canonical: "/pe/latest/index.html"
 ---
 
 Puppet Enterprise User's Guide

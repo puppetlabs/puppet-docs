@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuration Reference"
-canonical: "/references/latest/configuration.html"
+canonical: "/references/2.7.latest/configuration.html"
 ---
 
 
@@ -43,7 +43,7 @@ Whether to allow a new certificate request to overwrite an existing certificate.
 
 ### allow_variables_with_dashes
 
-Permit hyphens (`-`) in variable names and issue deprecation warnings about them. This setting **should always be `false`;** setting it to `true` will cause subtle and wide-ranging bugs. It will be removed in a future version. Hyphenated variables caused major problems in the language, but were allowed between Puppet 2.7.3 and 2.7.14. If you used them during this window, we apologize for the inconvenience --- you can temporarily set this to `true` in order to upgrade, and can rename your variables at your leisure. Please revert it to `false` after you have renamed all affected variables. 
+Permit hyphens (`-`) in variable names and issue deprecation warnings about them. This setting **should always be `false`;** setting it to `true` will cause subtle and wide-ranging bugs. It will be removed in a future version. Hyphenated variables caused major problems in the language, but were allowed between Puppet 2.7.3 and 2.7.14. If you used them during this window, we apologize for the inconvenience --- you can temporarily set this to `true` in order to upgrade, and can rename your variables at your leisure. Please revert it to `false` after you have renamed all affected variables.
 
 - *Default*: false
 
@@ -131,7 +131,7 @@ The server to use for certificate authority requests.  It's a separate server be
 
 ### ca_ttl
 
-The default TTL for new certificates; valid values must be an integer, optionally followed by one of the units 'y' (years of 365 days), 'd' (days), 'h' (hours), or 's' (seconds). The unit defaults to seconds. If this setting is set, ca_days is ignored. Examples are '3600' (one hour) and '1825d', which is the same as '5y' (5 years) 
+The default TTL for new certificates; valid values must be an integer, optionally followed by one of the units 'y' (years of 365 days), 'd' (days), 'h' (hours), or 's' (seconds). The unit defaults to seconds. If this setting is set, ca_days is ignored. Examples are '3600' (one hour) and '1825d', which is the same as '5y' (5 years)
 
 - *Default*: 5y
 
@@ -202,7 +202,7 @@ The certificate directory.
 
 ### certdnsnames
 
-The `certdnsnames` setting is no longer functional, after CVE-2011-3872. We ignore the value completely. For your own certificate request you can set `dns_alt_names` in the configuration and it will apply locally.  There is no configuration option to set DNS alt names, or any other `subjectAltName` value, for another nodes certificate. Alternately you can use the `--dns_alt_names` command line option to set the labels added while generating your own CSR. 
+The `certdnsnames` setting is no longer functional, after CVE-2011-3872. We ignore the value completely. For your own certificate request you can set `dns_alt_names` in the configuration and it will apply locally.  There is no configuration option to set DNS alt names, or any other `subjectAltName` value, for another nodes certificate. Alternately you can use the `--dns_alt_names` command line option to set the labels added while generating your own CSR.
 
 
 ### certificate_revocation
@@ -381,7 +381,7 @@ Which arguments to pass to the diff command when printing differences between fi
 
 ### dns_alt_names
 
-The comma-separated list of alternative DNS names to use for the local host. When the node generates a CSR for itself, these are added to the request as the desired `subjectAltName` in the certificate: additional DNS labels that the certificate is also valid answering as. This is generally required if you use a non-hostname `certname`, or if you want to use `puppet kick` or `puppet resource -H` and the primary certname does not match the DNS name you use to communicate with the host. This is unnecessary for agents, unless you intend to use them as a server for `puppet kick` or remote `puppet resource` management. It is rarely necessary for servers; it is usually helpful only if you need to have a pool of multiple load balanced masters, or for the same master to respond on two physically separate networks under different names. 
+The comma-separated list of alternative DNS names to use for the local host. When the node generates a CSR for itself, these are added to the request as the desired `subjectAltName` in the certificate: additional DNS labels that the certificate is also valid answering as. This is generally required if you use a non-hostname `certname`, or if you want to use `puppet kick` or `puppet resource -H` and the primary certname does not match the DNS name you use to communicate with the host. This is unnecessary for agents, unless you intend to use them as a server for `puppet kick` or remote `puppet resource` management. It is rarely necessary for servers; it is usually helpful only if you need to have a pool of multiple load balanced masters, or for the same master to respond on two physically separate networks under different names.
 
 
 ### document_all

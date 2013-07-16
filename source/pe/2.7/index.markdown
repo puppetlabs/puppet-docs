@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7  » Index"
 subtitle: "Puppet Enterprise User's Guide"
+canonical: "/pe/latest/index.html"
 ---
 
 Welcome! This is the user's guide for Puppet Enterprise 2.7.

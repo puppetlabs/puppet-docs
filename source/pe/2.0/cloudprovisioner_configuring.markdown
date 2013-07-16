@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Cloud Provisioning » Configuring and Troubleshooting"
+canonical: "/pe/latest/cloudprovisioner_configuring.html"
 ---
 
 * * *

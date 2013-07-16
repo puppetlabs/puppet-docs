@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Orchestration » Overview"
+canonical: "/pe/latest/orchestration_overview.html"
 ---
 
 * * *

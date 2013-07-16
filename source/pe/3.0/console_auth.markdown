@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Console » User Management and Authorization"
 subtitle: "Managing Console Users"
+canonical: "/pe/latest/console_auth.html"
 ---
 
 The Puppet Enterprise console supports individual user management, access and authentication. Instead of a single, shared username and password authenticated over HTTP with SSL, the console allows secure individual user accounts with different access privileges. Specifically, user accounts allow the assignment of one of three access levels: read-only, read-write, or admin.

@@ -1,6 +1,7 @@
 ---
 layout: legacy
-title: "PE 1.2 Manual: Upgrading Puppet Enterprise
+title: "PE 1.2 Manual: Upgrading Puppet Enterprise"
+canonical: "/pe/latest/install_upgrading.html"
 ---
 
 {% include pe_1.2_nav.markdown %}
@@ -14,7 +15,7 @@ PE versions prior to 1.2.4 are vulnerable to the [CVE-2011-3872 AltNames vulnera
 Upgrading to Puppet Enterprise 1.2
 ======
 
-Puppet Enterprise ships with an upgrade script that will do a large part of the work of upgrading your installation. However, you will have to finish the configuration of PE 1.2 manually. 
+Puppet Enterprise ships with an upgrade script that will do a large part of the work of upgrading your installation. However, you will have to finish the configuration of PE 1.2 manually.
 
 To upgrade to PE 1.2, you must:
 
@@ -43,9 +44,9 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 Running the Upgrader
 -----
 
-Once you've retrieved a PE tarball, you should unarchive it, navigate to the resulting directory, and run `./puppet-enterprise-upgrader`. This script will examine your system to determine which Puppet Enterprise roles are currently installed, then list the packages these roles will require and ask if you want to continue with the upgrade. **Note that the list of packages shown is not complete:** any new dependencies from your operating system's repositories will be installed without confirmation, and the upgrade may fail if you are not connected to the source of these packages. Note also that **upgrades to PE 1.x systems with the Puppet Dashboard role and no puppet agent role may not upgrade cleanly,** as this configuration is no longer supported under PE 1.2. We recommend that you run the `puppet-enterprise-installer` script in this situation, although this upgrade path has not been thoroughly tested. 
+Once you've retrieved a PE tarball, you should unarchive it, navigate to the resulting directory, and run `./puppet-enterprise-upgrader`. This script will examine your system to determine which Puppet Enterprise roles are currently installed, then list the packages these roles will require and ask if you want to continue with the upgrade. **Note that the list of packages shown is not complete:** any new dependencies from your operating system's repositories will be installed without confirmation, and the upgrade may fail if you are not connected to the source of these packages. Note also that **upgrades to PE 1.x systems with the Puppet Dashboard role and no puppet agent role may not upgrade cleanly,** as this configuration is no longer supported under PE 1.2. We recommend that you run the `puppet-enterprise-installer` script in this situation, although this upgrade path has not been thoroughly tested.
 
-After receiving confirmation, the upgrader will update existing packages, install new packages added in this version of PE, and run additional scripts or puppet manifests to make the system similar (though not necessarily identical) to a new installation of PE 1.2. 
+After receiving confirmation, the upgrader will update existing packages, install new packages added in this version of PE, and run additional scripts or puppet manifests to make the system similar (though not necessarily identical) to a new installation of PE 1.2.
 
 Upgrading From PE 1.2.1 Through 1.2.3
 -----
@@ -68,30 +69,30 @@ Upgrading From PE 1.1 and Earlier
 
 When upgrading from PE 1.1 and 1.0, you must:
 
-* Create a new database for the inventory service and grant all permissions on it to the dashboard MySQL user. 
-* Manually edit the `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files on your puppet master. 
-* Generate and sign certificates for Puppet Dashboard to enable inventory and filebucket viewing. 
+* Create a new database for the inventory service and grant all permissions on it to the dashboard MySQL user.
+* Manually edit the `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files on your puppet master.
+* Generate and sign certificates for Puppet Dashboard to enable inventory and filebucket viewing.
 * Restart `pe-httpd`.
 * Remediate the AltNames vulnerability, if you have not already done so.
 
-Puppet and Puppet Dashboard will continue to perform their pre-existing tasks properly if you skip the first four steps, but they are necessary to enable new features added in version 1.2. 
+Puppet and Puppet Dashboard will continue to perform their pre-existing tasks properly if you skip the first four steps, but they are necessary to enable new features added in version 1.2.
 
-Upgrades to sites which run the master and Dashboard on different servers can be significantly more complicated, and are supported on a case-by-case basis. Contact Puppet Labs support for more details. 
+Upgrades to sites which run the master and Dashboard on different servers can be significantly more complicated, and are supported on a case-by-case basis. Contact Puppet Labs support for more details.
 
 ### Create a New Inventory Database
 
-To support the inventory service, you must manually create a new database for puppet master to store node facts in. To do this, use the `mysql` client on the server providing the database. The server providing the database will almost always be the server running puppet master and Dashboard. 
+To support the inventory service, you must manually create a new database for puppet master to store node facts in. To do this, use the `mysql` client on the server providing the database. The server providing the database will almost always be the server running puppet master and Dashboard.
 
     # mysql -uroot -p
-    Enter password: 
+    Enter password:
     mysql> CREATE DATABASE dashboard_inventory_service;
     mysql> GRANT ALL PRIVILEGES ON dashboard_inventory_service.* TO 'dashboard'@'localhost';
 
-If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name instead of "dashboard". If the database is served by a remote machine, use the hostname of the master/Dashboard server instead of "localhost". 
+If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name instead of "dashboard". If the database is served by a remote machine, use the hostname of the master/Dashboard server instead of "localhost".
 
 ### Edit `/etc/puppetlabs/puppet/puppet.conf`
 
-* To use the new `accounts, mcollectivepe, stdlib,` and `baselines` modules, you must add the the `/opt/puppet/share/puppet/modules` directory to Puppet's `modulepath`: 
+* To use the new `accounts, mcollectivepe, stdlib,` and `baselines` modules, you must add the the `/opt/puppet/share/puppet/modules` directory to Puppet's `modulepath`:
 
         [main]
             modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
@@ -107,7 +108,7 @@ If you chose a different MySQL user name for Puppet Dashboard when you originall
             dbpassword = <MySQL password for dashboard user>
             dbserver = localhost
 
-    If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost". 
+    If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost".
 * To support filebucket viewing when using the Puppet Compliance workflow, you must set `archive_files` to true for puppet inspect:
 
         [main]
@@ -118,24 +119,24 @@ If you chose a different MySQL user name for Puppet Dashboard when you originall
 To support the inventory service, you must add the following stanzas to your [`auth.conf`](http://docs.puppetlabs.com/guides/rest_auth_conf.html) file:
 
     # Allow Dashboard to retrieve inventory facts:
-    
+
     path /facts
     auth yes
     method find, search
     allow dashboard
-    
+
     # Allow puppet master to save facts to the inventory:
-    
+
     path /facts
     auth yes
     method save
     allow <puppet master's certname>
 
 These stanzas **must** be inserted **before** the final stanza, which looks like this:
-    
+
     path /
     auth any
-    
+
 If you paste the new stanzas after this final stanza, they will not take effect.
 
 ### Edit `/etc/puppetlabs/puppet/manifests/site.pp`
@@ -147,10 +148,10 @@ Even if you don't use `site.pp` to classify nodes, you must add the following re
       server => '<puppet master's hostname>',
       path => false,
     }
-    
+
     File { backup => 'main' }
 
-This will cause all agent nodes to back up their file contents to the puppet master, which will then serve the files to Dashboard on demand. 
+This will cause all agent nodes to back up their file contents to the puppet master, which will then serve the files to Dashboard on demand.
 
 ### Edit `/etc/puppetlabs/puppet-dashboard/settings.yml`
 
@@ -188,7 +189,7 @@ Next, create a keypair and request a certificate:
     $ sudo /opt/puppet/bin/rake cert:create_key_pair
     $ sudo /opt/puppet/bin/rake cert:request
 
-Next, sign the certificate request: 
+Next, sign the certificate request:
 
     $ sudo /opt/puppet/bin/puppet cert sign dashboard
 
@@ -202,7 +203,7 @@ And finally, make `puppet-dashboard` the owner of the certificates directory:
 
 #### Troubleshooting
 
-If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist. 
+If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist.
 
 ### Restart `pe-httpd`
 

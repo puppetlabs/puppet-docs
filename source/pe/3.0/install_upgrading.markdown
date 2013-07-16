@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
+canonical: "/pe/latest/install_upgrading.html"
 ---
 
 Summary

@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Orchestration » Controlling Puppet"
 subtitle: "Orchestration: Controlling Puppet"
+canonical: "/pe/latest/orchestration_puppet.html"
 ---
 
 [certsign]: ./install_basic.html#signing-agent-certificates

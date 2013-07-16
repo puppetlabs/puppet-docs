@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Installing » System Requirements"
+canonical: "/pe/latest/install_system_requirements.html"
 ---
 
 * * *

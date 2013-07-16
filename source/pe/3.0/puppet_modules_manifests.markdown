@@ -2,6 +2,7 @@
 layout: default
 title: "PE 3.0 » Puppet » Modules and Manifests"
 subtitle: "Puppet Modules and Manifests"
+canonical: "/pe/latest/puppet_modules_manifests.html"
 ---
 
 [assign]: ./puppet_assign_configurations.html

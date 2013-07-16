@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Accounts Module » The pe_accounts::user Type"
+canonical: "/pe/latest/accounts_user_type.html"
 ---
 
 

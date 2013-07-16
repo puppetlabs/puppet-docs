@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Console » Grouping and Classifying Nodes"
+canonical: "/pe/latest/console_classes_groups.html"
 ---
 
 * * *

@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Puppet » Overview"
 subtitle: "An Overview of Puppet"
+canonical: "/pe/latest/puppet_overview.html"
 ---
 
 <!-- todo we could use something talking about what declarative configuration management is. -->

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Welcome » Getting Support"
+canonical: "/pe/latest/overview_getting_support.html"
 ---
 
 * * *

@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.7 » Overview » About Puppet Enterprise"
 subtitle: "About Puppet Enterprise"
+canonical: "/pe/latest/overview_about_pe.html"
 ---
 
 

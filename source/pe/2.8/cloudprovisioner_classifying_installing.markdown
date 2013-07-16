@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.8 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
 subtitle: "Classifying New Nodes and Remotely Installing Puppet"
+canonical: "/pe/latest/cloudprovisioner_classifying_installing.html"
 ---
 
 Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a puppet environment. You can add new nodes to pre-existing console groups, further classify and configure those nodes, and install Puppet (Enterprise or open source) on them.

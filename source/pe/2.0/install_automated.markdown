@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "PE 2.0 » Installing » Automated Installation"
+canonical: "/pe/latest/install_automated.html"
 ---
 
 * * *

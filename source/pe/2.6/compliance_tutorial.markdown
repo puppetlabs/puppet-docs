@@ -2,6 +2,7 @@
 layout: default
 title: "PE 2.6  » Compliance » Tutorial"
 subtitle: "Compliance Tutorial"
+canonical: "/pe/latest/compliance_alt.html"
 ---
 
 This brief walkthrough shows a compliance workflow auditing the state of the following resources:

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Report Reference"
-canonical: "/references/latest/report.html"
+canonical: "/references/2.7.latest/report.html"
 ---
 
 
@@ -43,10 +43,10 @@ rrdgraph
 --------
 Graph all available data about hosts using the RRD library.  You
 must have the Ruby RRDtool library installed to use this report, which
-you can get from 
-[the RubyRRDTool RubyForge page](http://rubyforge.org/projects/rubyrrdtool/).  
-This package may also be available as `ruby-rrd` or `rrdtool-ruby` in your 
-distribution's package management system.  The library and/or package will both 
+you can get from
+[the RubyRRDTool RubyForge page](http://rubyforge.org/projects/rubyrrdtool/).
+This package may also be available as `ruby-rrd` or `rrdtool-ruby` in your
+distribution's package management system.  The library and/or package will both
 require the binary `rrdtool` package from your distribution to be installed.
 
 This report will create, manage, and graph RRD database files for each
@@ -74,7 +74,7 @@ default report).
 tagmail
 -------
 This report sends specific log messages to specific email addresses
-based on the tags in the log messages.  
+based on the tags in the log messages.
 
 See the [documentation on tags](http://projects.puppetlabs.com/projects/puppet/wiki/Using_Tags) for more information.
 
