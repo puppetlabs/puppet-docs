@@ -46,7 +46,7 @@ Poor Judy. As we know, the infrastructure of the marketing department is an oddb
 
 In addition, there is also the puppet master server, a RHEL box named "puppet."
 
-Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines. For the fourth, the SugarCRM box (crm01.marketing), Judy decides she will write her own module.
+Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines. For the fourth, the SugarCRM box (crm01), Judy decides she will write her own module.
 
 > *Note:* In case you're not familiar with modules, they are self-contained bundles of code and data that use Puppet to express a model for a given piece of infrastructure and interact with the puppet master to build your desired configuration state. A module consists of simple structures of folders and files that deliver manifests and extensions, like custom types or custom facts.) To learn more about the Puppet Forge and the module download and installation process, visit the [installing modules page](/puppet/3/reference/modules_installing.html).
 *Important:* As of PE 2.8, the Puppet module tool is not compatible with Windows nodes, although modules themselves can be readily applied to Windows systems. In a typical Puppet environment, it is unlikely that a module would need to be installed directly on a Windows agent. However, if you encounter a corner case where installing a module directly on a Windows agent is unavoidable, you can do so by downloading tarballs. You may also need to go the tarball route to get Forge modules if local firewall rules prevent access to the Forge.
