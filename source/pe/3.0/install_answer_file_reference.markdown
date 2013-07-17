@@ -12,7 +12,7 @@ Answer File Syntax
 
 Answer files consist of normal shell script variable assignments:
 
-    q_puppet_enterpriseconsole_database_port=3306
+    q_database_port=3306
 
 Boolean answers should use Y or N (case-insensitive) rather than true, false, 1, or 0.
 
@@ -47,6 +47,8 @@ These answers are always needed.
 `q_puppet_symlinks_install`
 : **Y or N** --- Whether to make the Puppet tools more visible to all users by installing symlinks in `/usr/local/bin`.
 
+`q_run_updtvpkg`
+: **Y or N** --- Only used on AIX. Whether to run the `updtvpkg` command to add info about native libraries to the RPM database. The answer should usually be Y, unless you have special needs around the RPM database.
 
 ### Roles
 
@@ -136,7 +138,22 @@ These answers are generally needed if you are installing the console role.
 : **String** --- The password for the console's admin user. Must be longer than eight characters.
 
 `q_puppet_enterpriseconsole_smtp_host`
-: **String** -- The SMTP server used to email account activation codes to new console users. 
+: **String** -- The SMTP server used to email account activation codes to new console users.
+
+`q_puppet_enterpriseconsole_smtp_port`
+: **Integer** -- The port to use when contacting the SMTP server.
+
+`q_puppet_enterpriseconsole_smtp_use_tls`
+: **Y or N** -- Whether to use TLS when contacting the SMTP server.
+
+`q_puppet_enterpriseconsole_smtp_user_auth`
+: **Y or N** -- Whether to authenticate to the SMTP server with a username and password.
+
+`q_puppet_enterpriseconsole_smtp_username`
+: **String** -- The username to use when contacting the SMTP server. Only used when `q_puppet_enterpriseconsole_smtp_user_auth` is Y.
+
+`q_puppet_enterpriseconsole_smtp_password`
+: **String** -- The password to use when contacting the SMTP server. Only used when `q_puppet_enterpriseconsole_smtp_user_auth` is Y.
 
 `q_puppet_enterpriseconsole_database_name`
 : **String** --- The database the console will use. Note that if you are not installing the database support role, this database must already exist on the PostgreSQL server.
@@ -156,20 +173,19 @@ These answers are generally needed if you are installing the console role.
 `q_puppet_enterpriseconsole_auth_database_password`
 : **String** --- The password for the auth database's PostgreSQL user.
 
-Database Support Answers
------
+### Database Support Answers
 
-These answers are only needed if you are installing the console role.
+These answers are only needed if you are installing the database support role.
 
 `q_database_host`
 : **String** --- The hostname of the server running the PostgreSQL server that supports the console.
 
 `q_database_install`
-: **Y or N** --- Whether or not to install the PostgreSQL server that supports the console.  
+: **Y or N** --- Whether or not to install the PostgreSQL server that supports the console.
 
 `q_database_port`
 : **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
- 
+
 `q_database_root_password`
 : **String** --- The password for the console's PostgreSQL user.
 
@@ -183,16 +199,16 @@ These answers are only needed if you are installing the console role.
 : **String** --- The password for PuppetDB's root user.
 
 `q_puppetdb_database_user`
-: **String** --- PuppetDB's root user name. 
+: **String** --- PuppetDB's root user name.
 
 `q_puppetdb_hostname`
 : **String** --- The hostname of the server running PuppetDB.
 
 `q_puppetdb_install`
-: **Y or N** --- Whether or not to install PuppetDB. 
+: **Y or N** --- Whether or not to install PuppetDB.
 
 `q_puppetdb_port`
-: **Integer** --- The port where the PuppetDB server can be reached. 
+: **Integer** --- The port where the PuppetDB server can be reached.
 
 
 Uninstaller Answers
