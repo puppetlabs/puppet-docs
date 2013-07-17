@@ -5,8 +5,6 @@ subtitle: "An Overview of Puppet"
 canonical: "/pe/latest/puppet_overview.html"
 ---
 
-<!-- todo we could use something talking about what declarative configuration management is. -->
-
 > **Note:** This page gives a broad overview of how Puppet configures systems, and provides links to deeper information. If you prefer to learn by doing, you can follow the Puppet Enterprise quick start guide:
 >
 > * [Quick Start: Using PE](./quick_start.html)
@@ -16,7 +14,9 @@ canonical: "/pe/latest/puppet_overview.html"
 Summary of Puppet
 -----
 
-Puppet Enterprise (PE) uses **Puppet** as the core of its configuration management features. It models desired system states with a declarative resource-based syntax, enforces those states, and reports any variances so you can track what Puppet is doing.
+Puppet Enterprise (PE) uses **Puppet** as the core of its configuration management features. Puppet models desired system states, enforces those states, and reports any variances so you can track what Puppet is doing.
+
+To model system states, Puppet uses a declarative resource-based language --- this means a user describes a _desired final state_ (e.g. "this package must be installed" or "this service must be running") rather than describing a series of steps to execute.
 
 Puppet breaks configuration management out into four major areas of activity:
 
