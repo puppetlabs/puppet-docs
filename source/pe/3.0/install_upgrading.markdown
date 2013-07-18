@@ -50,6 +50,8 @@ Follow these steps to migrate your 2.8.x deployment to 3.0. For the purpose of t
 
 Further, we assume that all of the components (agents, master, console, etc.) in your 2.8.x deployment are correctly configured and communicating with each other, and that live management is up and running with all nodes connected.
 
+**Note** PE 3 uses Ruby 1.9 which is stricter about character encoding than the previous version used in PE 2.8. If your manifests contain non-ASCII characters they may fail to compile or behave unpredictably. When upgrading, make sure manifests contain only ASCII characters. For more information see the [release notes](./appendix.html#known-issues)
+
 ### Create a New PE 3.0 Master
 Start by installing a new master/console/database on a fresh node (do *not* use an existing 2.8.x node) as described in the [basic install instructions](./install_basic.html).
 
