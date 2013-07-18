@@ -74,6 +74,22 @@ The console ships with a worker process manager, which can be found at `script/d
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 
-* * * 
+Disabling Update Checking
+-----
+
+When the console's web server (`pe-httpd`) starts or restarts, it checks for updates. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
+
+* the IP address of the client
+* the type and version of the client's OS
+* the installed version of PE
+
+If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to add the following line to the `/etc/puppetlabs/installer/answers.install` file:
+
+    q_pe_check_for_updates=n
+
+Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` file, update checking will resume.
+
+
+* * *
 
 - [Next: Puppet Core Overview ](./puppet_overview.html)

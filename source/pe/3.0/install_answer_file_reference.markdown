@@ -103,13 +103,14 @@ These answers are generally needed if you are installing the puppet master role.
 `q_puppetmaster_enterpriseconsole_port`
 : **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the puppet master server.
 
-In addition, by default the puppet master will check for available PE software updates whenever the `pe-httpd` service restarts. To help ensure the correct update is retrieved, the master will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
+`q_pe_check_for_updates`
+: **y or n; MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-httpd` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
 
-    * the IP address of the client
-    * the type and version of the client's OS
-    * the Installed version of PE
+  * the IP address of the client
+  * the type and version of the client's OS
+  * the installed version of PE
 
-If you wish to disable manual update checks, or if your company policy forbids transmitting this information, you will need to add the following line to the answer file: `q_pe_check_for_updates=n`. Keep in mind that if you delete your answers file, the check will turn back on the next time `pe-httpd` restarts.
+  If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
 
 
 ### Console Answers
@@ -172,6 +173,15 @@ These answers are generally needed if you are installing the console role.
 
 `q_puppet_enterpriseconsole_auth_database_password`
 : **String** --- The password for the auth database's PostgreSQL user.
+
+`q_pe_check_for_updates`
+: **y or n; MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-httpd` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
+
+  * the IP address of the client
+  * the type and version of the client's OS
+  * the installed version of PE
+
+  If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
 
 ### Database Support Answers
 
