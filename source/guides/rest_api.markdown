@@ -110,7 +110,7 @@ Example:
 
 Get the certificate revocation list.
 
-GET `/certificate_revocation_list/ca`
+GET `{environment}/certificate_revocation_list/ca`
 
 Example:
 
