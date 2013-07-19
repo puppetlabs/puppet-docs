@@ -46,7 +46,7 @@ Puppet master server:
       end
     end
 
-> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.) 
+> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.)
 
 We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
@@ -197,8 +197,8 @@ that fact and move on.
 ## Viewing Fact Values
 
 [inventory]: /guides/inventory_service.html
-[puppetdb]: 
-If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info. 
+[puppetdb]:
+If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info.
 
 ## Legacy Fact Distribution
 
@@ -260,7 +260,7 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 On Unix/Linux:
 
     /etc/facter/facts.d/ # Puppet Open Source
-    /etc/puppetlab/facter/facts.d/ # Puppet Enterprise
+    /etc/puppetlabs/facter/facts.d/ # Puppet Enterprise
 
 {% comment %}
 
@@ -274,16 +274,18 @@ On Windows 2008:
 
 {% endcomment %}
 
+> **Note:** These directories will not necessarily exist by default; you may need to create them.
+
 ### Executable facts --- Unix
 
-Executable facts on Unix work by dropping an executable file into the standard 
+Executable facts on Unix work by dropping an executable file into the standard
 external fact path above.
 
 You must ensure that the script has its execute bit set:
 
     chmod +x /etc/facter/facts.d/my_fact_script.rb
 
-For Facter to parse the output, the script must return key/value pairs on 
+For Facter to parse the output, the script must return key/value pairs on
 STDOUT in the format:
 
     key1=value1
@@ -296,7 +298,7 @@ Using this format, a single script can return multiple facts.
 
 Executable facts are not currently supported on Windows.
 
-{% comment}
+{% comment %}
 
 Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. At the moment the following extensions are supported:
 
@@ -321,7 +323,7 @@ sure you have the correct execution policy set.
 the impact of changing execution policy. We recommend understanding any security
 implications before making a global change to execution policy.
 
-The simplest and safest mechanism we have found is to change the execution 
+The simplest and safest mechanism we have found is to change the execution
 policy so that only remotely downloaded scripts need to be signed. You can
 set this policy with:
 
@@ -358,7 +360,7 @@ Structured data files must use one of the supported data types and must have the
             "key3": "val3"
         }
 
-* `.txt`: Key value pairs, in the following format: 
+* `.txt`: Key value pairs, in the following format:
 
         key1=value1
         key2=value2
@@ -380,14 +382,14 @@ Let say you used a hyphen instead of an equals sign in your script `test.sh`:
 
     echo "key1-value1"
 
-Running `facter --debug` should yield a useful error message:    
+Running `facter --debug` should yield a useful error message:
 
     ...
-    Fact file /etc/facter/facter.d/sample.txt was parsed but returned an empty data set
+    Fact file /etc/facter/facts.d/sample.txt was parsed but returned an empty data set
     ...
 
-If you are interested in finding out where any bottlenecks are, you can run 
-Facter in timing mode and it will reflect how long it takes to parse your 
+If you are interested in finding out where any bottlenecks are, you can run
+Facter in timing mode and it will reflect how long it takes to parse your
 external facts:
 
     facter --timing
@@ -404,7 +406,7 @@ The output should look similar to the timing for Ruby facts, but will name exter
 
 #### External Facts and stdlib
 
-If you find that an external fact does not match what you have configured in your `facter.d`
+If you find that an external fact does not match what you have configured in your `facts.d`
 directory, make sure you have not defined the same fact using the external facts capabilities
 found in the stdlib module.
 
