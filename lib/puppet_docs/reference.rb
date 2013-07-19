@@ -96,12 +96,29 @@ module PuppetDocs
             # useradd can't manage passwords. This is locally true but the opposite
             # of what nearly all real users experience.
 
+            # Then, they added the libuser feature for both user and group, and it
+            # does exactly the same awful thing.
+
             # This depends on the specific structure of the providers table for
             # the user type, so we're basically hoping they don't add more
-            # features. This is terrible but there's not an easy solution that's better.
+            # features (LOLLLLL). This is terrible but there's not an easy solution
+            # that's better; basically we need Puppet core to express features as
+            # data rather than as raw code. See issue #18426 in Redmine.
 
-            # We want to change cells 6 and 8 of the row that starts with useradd.
-            content.sub!(/^(useradd *\| *\*X\* *\| *\| *\*X\* *\| *\*X\* *\| )   ( *\| *\| )   ( *\| *\| *\*X\* *\|)/, '\1*X*\2*X*\3')
+            # We want to change cells 3, 7, and 9 of the row that starts with useradd, then
+            # cell 2 of the row that starts with groupadd.
+            content.sub!(/^useradd *\|.*$/) { |match|
+              useradd_row = match.split('|')
+              useradd_row[2].sub!(/^ {4}/, ' *X*')
+              useradd_row[6].sub!(/^ {4}/, ' *X*')
+              useradd_row[8].sub!(/^ {4}/, ' *X*')
+              useradd_row.join('|') + '|'
+            }
+            content.sub!(/^groupadd *\|.*$/) { |match|
+              groupadd_row = match.split('|')
+              groupadd_row[1].sub!(/^ {4}/, ' *X*')
+              groupadd_row.join('|') + '|'
+            }
 
           end
 
