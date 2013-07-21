@@ -200,52 +200,6 @@ that fact and move on.
 [puppetdb]:
 If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info.
 
-## Legacy Fact Distribution
-
-For Puppet versions prior to 0.24.0:
-
-On older versions of Puppet, prior to 0.24.0, a different method
-called factsync was used for custom fact distribution. Puppet would
-look for custom facts on
-[puppet://$server/facts](puppet://%24server/facts) by default and
-you needed to run puppetd with `--factsync` option (or add `factsync =
-true` to puppetd.conf). This would enable the syncing of these files
-to the local file system and loading them within puppetd.
-
-Facts were synced to a local directory ($vardir/facts, by default)
-before facter was run, so they would be available the first time.
-If $factsource was unset, the `--factsync` option is equivalent to:
-
-    file { $factdir: source => "puppet://puppet/facts", recurse => true }
-
-After the facts were downloaded, they were loaded (or reloaded)
-into memory.
-
-Some additional options were available to configure this legacy
-method:
-
-The following command line or config file options are available
-(default options shown):
-
--   factpath ($vardir/facts): Where Puppet should look for facts.
-    Multiple directories should be colon-separated, like normal PATH
-    variables. By default, this is set to the same value as factdest,
-    but you can have multiple fact locations (e.g., you could have one
-    or more on NFS).
--   factdest ($vardir/facts): Where Puppet should store facts that
-    it pulls down from the central server.
--   factsource
-    ([puppet://$server/facts](puppet://%24server/facts)): From where to
-    retrieve facts. The standard Puppet file type is used for
-    retrieval, so anything that is a valid file source can be used
-    here.
--   factsync (false): Whether facts should be synced with the
-    central server.
--   factsignore (.svn CVS): What files to ignore when pulling down
-    facts.
-
-Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](./plugins_in_modules.html) page.
-
 External Facts
 --------------
 
