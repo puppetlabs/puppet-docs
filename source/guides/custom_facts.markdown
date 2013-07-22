@@ -211,6 +211,8 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 ### Fact Locations
 
+External facts must go in a standard directory. The location of this directory varies depending on whether you're using Puppet Enterprise or an open source release of Facter.
+
 On Unix/Linux:
 
     /etc/facter/facts.d/ # Puppet Open Source
@@ -235,9 +237,18 @@ On Windows 2008:
 Executable facts on Unix work by dropping an executable file into the standard
 external fact path above.
 
+An example external fact written in Python:
+
+    #!/usr/bin/env python
+    data = {"key1" : "value1", "key2" : "value2" }
+
+    for k in data:
+            print "%s=%s" % (k,data[k])
+
+
 You must ensure that the script has its execute bit set:
 
-    chmod +x /etc/facter/facts.d/my_fact_script.rb
+    chmod +x /etc/facter/facts.d/my_fact_script.py
 
 For Facter to parse the output, the script must return key/value pairs on
 STDOUT in the format:
@@ -370,5 +381,5 @@ While external facts provide a mostly-equal way to create variables for Puppet, 
 
 * An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
 * External executable facts are forked instead of executed within the same process.
-* Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. <!-- TODO: supply ticket number -->
+* Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. See [ticket #9546](https://projects.puppetlabs.com/issues/9546)
 
