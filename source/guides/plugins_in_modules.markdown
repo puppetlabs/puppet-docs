@@ -28,16 +28,9 @@ process which is described further on in this document.
 To enable module distribution you need to make changes on both the
 Puppet master and the clients.
 
-Note: Plugins in modules is supported in 0.24.x onwards
-and modifies the pluginsync model supported in releases prior to
-0.24.x. It is NOT supported in earlier releases of Puppet but may
-be present as a patch in some older Debian Puppet packages. The older 0.24.x
-configuration for plugins in modules is documented at the end of this
-page.
+## Module structure
 
-## Module structure for 0.25.x and later
-
-In Puppet version 0.25.x and later, plugins are stored in the `lib` directory of a module, using an internal directory structure that mirrors that of the Puppet code:
+Plugins are stored in the `lib` directory of a module, using an internal directory structure that mirrors that of the Puppet code:
 
     {modulepath}
     └── {module}
@@ -98,8 +91,6 @@ following directories:
     /etc/puppet/modules/custom/lib/puppet/parser/functions
     /etc/puppet/modules/custom/lib/facter
 
-Note: 0.25.x versions of Puppet have a known bug whereby plugins are instead loaded from the deprecated `plugins` directories of modules when applying a manifest locally with the `puppet` command, even though puppetmasterd will correctly serve the contents of `lib/` directories to agent nodes. This bug is fixed in Puppet 2.6.
-
 ## Enabling Pluginsync
 
 After setting up the directory structure, we then need to turn on pluginsync in our puppet.conf configuration file on both the master and the clients:
@@ -132,38 +123,3 @@ As always custom functions are loaded once by the Puppet master. Simply
 replacing a custom function with a new version will not cause
 Puppet master to automatically reload the function. You must
 restart the Puppet master.
-
-## Legacy 0.24.x and Plugins in Modules
-
-For older Puppet release the `lib` directory was called `plugins`.
-
-So for types you would place them in:
-
-    {modulepath}/{module}/plugins/puppet/type
-
-For providers you place them in:
-
-    {modulepath}/{module}/plugins/puppet/provider
-
-Similarly, Facter facts belong in the facter subdirectory of the
-library directory:
-
-    {modulepath}/{module}/plugins/facter
-
-If we are using our custom module and our modulepath is
-/etc/puppet/modules then types and facts would be stored in the
-following directories:
-
-    /etc/puppet/modules/custom/plugins/puppet/type
-    /etc/puppet/modules/custom/plugins/puppet/provider
-    /etc/puppet/modules/custom/plugins/facter
-
-## Enabling pluginsync for 0.24.x versions
-
-For 0.24.x versions you may need to specify some additional options:
-
-    [main]
-    pluginsync=true
-    factsync=true
-    factpath = $vardir/lib/facter
-
