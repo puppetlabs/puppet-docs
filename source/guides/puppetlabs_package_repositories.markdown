@@ -41,7 +41,7 @@ The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the foll
 * Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
 * Ubuntu 8.04 LTS "Hardy Heron"
 * Ubuntu 12.10 "Quantal Quetzal"
-* Ubuntu 11.10 "Oneiric Ocelot"
+* Ubuntu 13.04 "Raring Ringtail"
 
 To enable the repository:
 
@@ -57,11 +57,7 @@ For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
 ### For Fedora
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 16, 17 and 18. To enable the repository, run the command below that corresponds to your OS version:
-
-#### Fedora 16
-
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f16/products/i386/puppetlabs-release-16-7.noarch.rpm
+The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 17, 18 and 19. To enable the repository, run the command below that corresponds to your OS version:
 
 #### Fedora 17
 
@@ -70,6 +66,10 @@ The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 1
 #### Fedora 18
 
     $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm
+
+#### Fedora 19
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f19/products/i386/puppetlabs-release-19-2.noarch.rpm
 
 Enabling the Prerelease Repos
 -----

@@ -147,7 +147,7 @@ These instructions apply to Debian, Ubuntu, and derived Linux distributions, inc
 * Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
 * Ubuntu 8.04 LTS "Hardy Heron"
 * Ubuntu 12.10 "Quantal Quetzal"
-* Ubuntu 11.10 "Oneiric Ocelot"
+* Ubuntu 13.04 "Raring Ringtail"
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
@@ -200,7 +200,8 @@ For a standalone deployment, run `sudo apt-get install puppet-common` on all nod
 These instructions apply to Fedora releases, including:
 
 * Fedora 17
-* Fedora 16
+* Fedora 18
+* Fedora 19
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 

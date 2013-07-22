@@ -25,7 +25,7 @@ Linux
 - Oracle Linux, version 4 and higher
 - Debian, version 5 (Lenny) and higher
 - Ubuntu, version 8.04 LTS and higher
-- Fedora, version 15 and higher
+- Fedora, version 17 and higher
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
 - Mandriva Corporate Server 4 <!-- Version not checked recently -->
