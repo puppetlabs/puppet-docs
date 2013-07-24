@@ -23,29 +23,24 @@ If you are using Puppet Enterprise, use the PE-specific installer; otherwise, us
 
 ### Supported Platforms
 
-
 Puppet runs on the following versions of Windows:
 
-* Windows Server 2003 and 2003 R2
-* Windows Server 2008 and 2008 R2
-* Windows Server 2012
-* Windows Vista
-* Windows 7 and 8
+{% include platforms_windows.markdown %}
 
-The Puppet installer bundles all of Puppet's prerequisites. There are no additional software requirements. 
+The Puppet installer bundles all of Puppet's prerequisites. There are no additional software requirements.
 
 ### Puppet Master Requirements
 
 Windows nodes cannot serve as puppet master servers.
 
-* If your Windows nodes will be fetching configurations from a puppet master, you will need a \*nix server to run as puppet master at your site. 
-* If your Windows nodes will be compiling and applying configurations locally with puppet apply, you should disable the puppet agent service on them after installing Puppet. See [Running Puppet on Windows](./running.html) for details on how to stop the service. 
+* If your Windows nodes will be fetching configurations from a puppet master, you will need a \*nix server to run as puppet master at your site.
+* If your Windows nodes will be compiling and applying configurations locally with puppet apply, you should disable the puppet agent service on them after installing Puppet. See [Running Puppet on Windows](./running.html) for details on how to stop the service.
 
 > Version note for PE users: Your puppet master should be running PE 2.5 or later. On PE 2.0, the `pe_mcollective` and `pe_accounts` modules cause run failures on Windows nodes. If you wish to run Windows agents but have a PE 2.0 puppet master, you can do one of the following:
 >
 > * [Upgrade your master to PE 2.5 or later](/pe/latest/install_upgrading.html)
 > * Remove those modules from the console's default group
-> * Manually hack those modules to be inert on Windows. 
+> * Manually hack those modules to be inert on Windows.
 
 
 
@@ -57,7 +52,7 @@ Windows nodes cannot serve as puppet master servers.
 Installing Puppet
 -----
 
-To install Puppet, simply download and run the installer, which is a standard Windows .msi package and will run as a graphical wizard. 
+To install Puppet, simply download and run the installer, which is a standard Windows .msi package and will run as a graphical wizard.
 
 The installer must be run with elevated privileges. Installing Puppet **does not** require a system reboot.
 
@@ -67,7 +62,7 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 
 ![Puppet master hostname selection][server]
 
-### After Installation 
+### After Installation
 
 Once the installer finishes:
 
@@ -106,14 +101,14 @@ For example:
 Upgrading
 -----
 
-Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service. 
+Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
-When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line. 
+When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
 
 Uninstalling
 -----
 
-Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface, or from the command line. 
+Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface, or from the command line.
 
 To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 
@@ -129,12 +124,12 @@ Installation Details
 
 In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter. (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org)).
 
-These prerequisites are used only for Puppet and do not interfere with other local copies of Ruby. 
+These prerequisites are used only for Puppet and do not interfere with other local copies of Ruby.
 
 
 ### Program Directory
 
-Unless overridden during installation, Puppet and its dependencies are installed into the standard Program Files directory for 32-bit applications. 
+Unless overridden during installation, Puppet and its dependencies are installed into the standard Program Files directory for 32-bit applications.
 
 For Puppet Enterprise, the default installation path is:
 
@@ -170,7 +165,7 @@ sys       | Ruby and other tools
 
 ### Data Directory
 
-Puppet stores its settings (`puppet.conf`), manifests, and generated data (like logs and catalogs) in its **data directory.** Puppet's data directory contains two subdirectories: 
+Puppet stores its settings (`puppet.conf`), manifests, and generated data (like logs and catalogs) in its **data directory.** Puppet's data directory contains two subdirectories:
 
 * `etc` (the `$confdir`) contains configuration files, manifests, certificates, and other important files
 * `var` (the `$vardir`) contains generated data and logs

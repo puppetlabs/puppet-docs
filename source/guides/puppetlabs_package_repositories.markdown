@@ -3,7 +3,6 @@ title: "Using the Puppet Labs Package Repositories"
 layout: legacy
 ---
 
-[peinstall]: /pe/latest/install_basic.html
 
 Puppet Labs maintains official package repositories for several of the more popular Linux distributions. These repos contain the latest available packages for Puppet, Facter, PuppetDB, Puppet Dashboard, MCollective, and several prerequisites and add-ons for Puppet Labs products.
 
@@ -18,7 +17,11 @@ Use these repositories to install open source releases of Puppet, Facter, MColle
 
 ### For Red Hat Enterprise Linux and Derivatives
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports versions 5 and 6 of Red Hat Enterprise Linux and distributions based on it, including but not limited to CentOS, Scientific Linux, and Ascendos. Enabling this repository will let you install Puppet without requiring any other external repositories like EPEL.
+The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports the following versions of Red Hat Enterprise Linux and distributions based on it:
+
+{% include platforms_redhat_like.markdown %}
+
+Enabling this repository will let you install Puppet without requiring any other external repositories like EPEL.
 
 To enable the repository, run the command below that corresponds to your OS version:
 
@@ -34,19 +37,12 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the following OS versions:
 
-* Debian 6 "Squeeze" (current stable release) (also supported by [Puppet Enterprise][peinstall])
-* Debian "Wheezy" (current testing distribution)
-* Debian "Sid" (current unstable distribution)
-* Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
-* Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
-* Ubuntu 8.04 LTS "Hardy Heron"
-* Ubuntu 12.10 "Quantal Quetzal"
-* Ubuntu 13.04 "Raring Ringtail"
+{% include platforms_debian_like.markdown %}
 
 To enable the repository:
 
 1. Download the "puppetlabs-release" package for your OS version.
-    * You can see a full list of these packages on the front page of <http://apt.puppetlabs.com/>. They are all named `puppetlabs-release-<CODE NAME>.deb`.
+    * You can see a full list of these packages on the front page of <http://apt.puppetlabs.com/>. They are all named `puppetlabs-release-<CODE NAME>.deb`. (For Ubuntu releases, the code name is the adjective, not the animal.)
 2. Install the package by running `dpkg -i <PACKAGE NAME>`.
 
 For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
@@ -57,7 +53,11 @@ For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
 ### For Fedora
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports Fedora 17, 18 and 19. To enable the repository, run the command below that corresponds to your OS version:
+The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports the following Fedora versions:
+
+{% include platforms_fedora.markdown %}
+
+To enable the repository, run the command below that corresponds to your OS version:
 
 #### Fedora 17
 
@@ -102,11 +102,11 @@ To disable the prerelease repo, change the value back to `0`.
 Puppet Enterprise Repositories
 -----
 
-Use these repositories to install PE-compatible versions of PuppetDB and the Ruby development headers.
+Use these repositories to install PE-compatible versions of PuppetDB and the Ruby development headers. **These repositories should only be used with Puppet Enterprise 2.8 and earlier;** PE 3 includes PuppetDB and the Ruby dev libraries by default.
 
 ### For Red Hat Enterprise Linux and Derivatives
 
-The [yum-enterprise.puppetlabs.com](http://yum-enterprise.puppetlabs.com) repository supports versions 5 and 6 of Red Hat Enterprise Linux and distributions based on it, including but not limited to CentOS, Scientific Linux, and Ascendos. It contains additional components and add-ons compatible with Puppet Enterprise's installation layout. 
+The [yum-enterprise.puppetlabs.com](http://yum-enterprise.puppetlabs.com) repository supports versions 5 and 6 of Red Hat Enterprise Linux and distributions based on it, including but not limited to CentOS, Scientific Linux, and Ascendos. It contains additional components and add-ons compatible with Puppet Enterprise's installation layout.
 
 To enable the repository, run the command below that corresponds to your OS version:
 
@@ -120,7 +120,7 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 ### For Debian and Ubuntu
 
-The [apt-enterprise.puppetlabs.com](http://apt-enterprise.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS. 
+The [apt-enterprise.puppetlabs.com](http://apt-enterprise.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS.
 
 To enable the repository, run the commands below:
 

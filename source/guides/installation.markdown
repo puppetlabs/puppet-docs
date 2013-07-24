@@ -76,7 +76,7 @@ Installing Puppet
 
 The best way to install Puppet varies by operating system. Use the links below to skip to your OS's instructions.
 
-- <a href="#enterprise-linux-and-derivatives">Enterprise Linux (and Derivatives)</a>
+- <a href="#red-hat-enterprise-linux-and-derivatives">Red Hat Enterprise Linux (and Derivatives)</a>
 - <a href="#debian-and-ubuntu">Debian and Ubuntu</a>
 - <a href="#fedora">Fedora</a>
 - <a href="#mac-os-x">Mac OS X</a>
@@ -87,22 +87,17 @@ The best way to install Puppet varies by operating system. Use the links below t
 
 * * *
 
-### Enterprise Linux (and Derivatives)
+### Red Hat Enterprise Linux (and Derivatives)
 
-These instructions apply to Enterprise Linux (EL) variants, including but not limited to:
+These instructions apply to the following Enterprise Linux (EL) versions:
 
-* Red Hat Enterprise Linux 5 and 6
-* CentOS 5 and 6
-* Scientific Linux 5 and 6
-* Ascendos 5 and 6
-
-These distributions are also supported by [Puppet Enterprise][peinstall].
+{% include platforms_redhat_like.markdown %}
 
 Users of out-of-production EL systems (i.e. RHEL 4) may need to compile their own copy of Ruby before installing, or use an older snapshot of EPEL.
 
 #### 1. Choose a Package Source
 
-EL 5 and 6 releases can install Puppet from Puppet Labs' official repo, or from [EPEL][].
+Enterprise Linux users can install from Puppet Labs' official repo, or from [EPEL][].
 
 ##### Using Puppet Labs' Packages
 
@@ -138,16 +133,9 @@ For a standalone deployment, install this same package on all nodes.
 
 ### Debian and Ubuntu
 
-These instructions apply to Debian, Ubuntu, and derived Linux distributions, including
+These instructions apply to currently supported versions of Debian, Ubuntu, and derived Linux distributions, including:
 
-* Debian 6 "Squeeze" (current stable release) (also supported by [Puppet Enterprise][peinstall])
-* Debian "Wheezy" (current testing distribution)
-* Debian "Sid" (current unstable distribution)
-* Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
-* Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
-* Ubuntu 8.04 LTS "Hardy Heron"
-* Ubuntu 12.10 "Quantal Quetzal"
-* Ubuntu 13.04 "Raring Ringtail"
+{% include platforms_debian_like.markdown %}
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
@@ -165,7 +153,7 @@ To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_p
 
 Debian and Ubuntu distributions include Puppet in their default package repos. No extra steps are necessary to enable it.
 
-Older OS versions will have outdated Puppet versions, which are updated only with security patches. <!-- dated --> As of April 2012:
+Older OS versions will have outdated Puppet versions, which are updated only with security patches. As a general guideline to how current OS packages tend to be, we found the following when checking versions in April 2012:
 
 * Debian unstable's Puppet was current.
 * Debian testing's Puppet was nearly current (one point release behind the current version).
@@ -197,11 +185,9 @@ For a standalone deployment, run `sudo apt-get install puppet-common` on all nod
 
 ### Fedora
 
-These instructions apply to Fedora releases, including:
+These instructions apply to the currently supported Fedora releases, which are:
 
-* Fedora 17
-* Fedora 18
-* Fedora 19
+{% include platforms_fedora.markdown %}
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
