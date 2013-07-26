@@ -246,6 +246,19 @@ Usually, the block you pass to `Backend.datasources` will contain a case stateme
 * Array lookups should continue iterating and append any new answers onto an array of existing answers.
 * Hash lookups should continue iterating and use [the `Backend.merge_answer` method][merge_answer] to merge any new answers into a hash of existing answers.
 
+### What To Do and Not Do in the Datasources Block
+
+In our examples here, the block passed to the [`Backend.datasources` method][datasources] is doing all of the data lookup work and is directly modifying the answer that will eventually be returned by the `lookup` method. This makes sense for simple file-based backends, where lookups are resource-cheap.
+
+It may make less sense if both of the following are true:
+
+- Lookups are relatively resource-expensive compared to local text files, such as anything requiring a request over the network.
+- It's possible to construct complex requests (think SQL) which aren't significantly more expensive than simple requests.
+
+In this case, you might want to use the hierarchy iterator block to construct a complex request, then issue that request outside the block after the `Backend.datasources` call has finished.
+
+This way, you could get answers for every hierarchy level at once, and make decisions about which answer(s) to use once you have the full results in your hand. If your data is highly hierarchical and you frequently have lookup misses at the top of the hierarchy (say most of your data is in fact-based hierarchy levels, and only a few answers are ever assigned directly to individual nodes), this might double your backend's performance.
+
 
 Complete Example
 -----
