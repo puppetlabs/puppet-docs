@@ -112,4 +112,5 @@ Puppet::Transaction::Event#status has the following meanings:
 
 ### Differences from Report Format 3
 
+* Puppet::Transaction::Report gained `transaction_uuid`.
 * Puppet::Resource::Status gained `containment_path`.
