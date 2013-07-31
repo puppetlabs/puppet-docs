@@ -140,11 +140,15 @@ If you receive a warning about the `innodb_buffer_pool_size` setting, you should
 * [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the buffer size.
 * Re-run the upgrader and allow it to finish.
 
-<!--
-Final Steps: From an Earlier 2.5.x Release
+
+Final Steps: From PE 2.5 (optional)
 -----
 
-**No extra steps** are needed when upgrading between maintenance releases of PE 2.0. -->
+If your console server has ever run PE 2.5, two of its config files will be lacking commented-out example code that is useful when [enabling third-party authentication services](./console_auth.html#using-third-party-authentication-services). If you expect to use LDAP, ActiveDirectory, or Google to authenticate console users in the future, you may want to copy the example code into place.
+
+* Edit `/etc/puppetlabs/console-auth/cas_client_config.yml` to resemble the `cas_client_config.yml.rpmnew` or `cas_client_config.yml.dpkg-new` file in the same directory.
+* Edit `/etc/puppetlabs/rubycas-server/config.yml` to resemble the `config.yml.rpmnew` or `config.yml.dpkg-new` file in the same directory.
+
 
 Final Steps: From PE 2.0 or 1.2
 -----

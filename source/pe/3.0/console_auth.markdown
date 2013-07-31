@@ -15,6 +15,7 @@ Following standard security practices, user passwords are hashed with a salt and
 
 User Access and Privileges
 -----
+
 Depending on the access privileges assigned to them, users will be able to see and access different parts of the console:
 
 _Read-Only Users_ can only view information on the console, but cannot perform any actions. In particular, read-only users are restricted from:
@@ -140,127 +141,25 @@ User access can be managed with external, third-party authentication services. T
 * Active Directory (AD)
 * Google accounts
 
-When using third-party services, the console's RBAC retains control over the access privileges. When a user logs in using an external service, the console will check their level of access privileges. If they have never logged in before, they are assigned a default role. (This role can be configured. See ["Configuration"](#configuration) below.) External users' access privileges are managed in the same manner as internal users, via the console's user administration interface.
+> **Note:** To use a third-party authentication system, you must configure two files on the console server.
+>
+> * See [the "Configuring Third-Party Authentication Services" section of the console config page][conf_thirdparty] for details.
+
+[conf_thirdparty]: ./console_config.html#configuring-third-party-authentication-services
+
+Third-party services are only used for _authenticating_ users; the console's RBAC still manages each user's privileges. If a user has never logged in before, they are assigned a default role. (This role can be configured. See the [`cas_client_config.yml` section](./console_config.html#configuring-casclientconfigyml) of the config instructions for details.) External users' access privileges are managed in the same manner as internal users, via the console's user administration interface.
 
 The account interface for an externally authenticated user differs slightly from internal users in that external users do not have UI for changing their passwords or deleting accounts.
 
 ![ext-user](./images/console/ext-auth_user.jpg)
 
-Admins will also notice additional UI on the user administration page which indicates the authentication service ("Account Type") being used for a given user and a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
+There will also be additional text on the user administration page which indicates the authentication service ("Account Type") being used for a given user and a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
 
 ![user-list_legend](./images/console/user-list_legend.jpg)
 
 Lastly, note that built-in auth accounts use the email address specified at the end (e.g. "a.user@example.com"), whereas AD/LDAP accounts are generally accessed using just the username (e..g "a.user"), although this may vary in your specific organization's implementation.
 
-There is more, albeit sparse and specialized, information at the [Ruby-CAS github site](http://rubycas.github.com)
 
-### Configuration
-
-To use external authentication, the following two files must be correctly configured:
-
-1. `/etc/puppetlabs/console-auth/cas_client_config.yml`
-2. `/etc/puppetlabs/rubycas-server/config.yml`
-
-> **Note:** If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files.
->
-> You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
-
-After editing these files, which we'll discuss more below, you’ll want to restart `pe-httpd` and `pe-puppet-dashboard-workers` via their `init.d` scripts. Note that YAML requires that whitespace and tabs match up exactly. Type carefully.
-
-#### Configuring `cas_client_config.yml`
-
-The `cas_client_config.yml` file contains several commented-out lines under the `authorization:` key. Simply un-comment the lines that correspond to the RubyCAS authenticators you wish to use. You can also set the default access level for a given authentication service using `default_role`, which accepts the following values: `read-only`, `read-write`, or `admin`.
-
-Each entry consists of the following:
-
-* A common identifier (e.g. `local`, or `ldap`, etc.) which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator.
-*  `default_role` which defines the role to assign to users by default
-* `description` which is simply a human readable description of the service
-
-The order in which authentication services are listed in the `cas_client_config.yml` file (see below) is the order in which the services will be checked for valid accounts. In other words, the first service that returns an account matching the entered user credential is the service that will perform authentication and log-in.
-
-This example shows what you would do if you wanted to use AD and the built-in (local) auth services and disable Google and LDAP.
-
-{% highlight yaml %}
-
-## This configuration file contains information required by any web
-## service that makes use of the CAS server for authentication.
-
-authentication:
-
-  ## Use this configuration option if the CAS server is on a host different
-  ## from the console-auth server.
-  # cas_host: master:443
-
-  ## The port CAS is listening on.  This is ignored if cas_host is set.
-  # cas_port: 443
-
-  ## The session secret is randomly generated during installation of Puppet
-  ## Enterprise and will be regenerated any time console-auth is enabled or disabled.
-  session_key: 'puppet_enterprise_console'
-  session_secret: [REDACTED]
-
-  ## Set this to true to allow anonymous users read-only access to all of
-  ## Puppet Enterprise Console.
-  global_unauthenticated_access: false
-
-authorization:
-  local:
-    default_role: read-only
-    description: Local
-#  ldap:
-#    default_role: read-only
-#    description: LDAP
-  activedirectoryldap:
-    default_role: read-only
-    description: Active Directory
-#  google:
-#    default_role: read-only
-#    description: Google
-
-{% endhighlight %}
-
-#### Configuring `rubycas-server/config.yml`
-
-This file is used to configure RubyCAS to use external authentication services. As before, you will need to un-comment the classes for the third-party services you wish to enable. The values for the listed keys are LDAP and ActiveDirectory standards. If you are not the administrator of those databases, you should check with that administrator for the correct values.
-
-The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator):
-
-{% highlight yaml %}
-
-authenticator:
-  - class: CASServer::Authenticators::SQLEncrypted
-    database:
-      adapter: postgresql
-      database: console_auth
-      username: console_auth
-      password: easnthycea098iu7aeo6oeu # installer-generated password
-      server: localhost
-    user_table: users
-    username_column: username
-  #- class: CASServer::Authenticators::Google
-  #   restricted_domain: example.com
-  - class: CASServer::Authenticators::LDAP
-    ldap:
-      host: tb-driver.example.com
-      port: 389
-      base: dc=example,dc=test
-      filter: (objectClass=person)
-      username_attribute: mail
-  - class: CASServer::Authenticators::ActiveDirectoryLDAP
-    ldap:
-      host: winbox.example.com
-      port: 389
-      base: dc=example,dc=dev
-      filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
-      auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
-      auth_password: P4ssword
-
-{% endhighlight %}
-
-As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
-
-Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`; you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.
 
 * * *
 

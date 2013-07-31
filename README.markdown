@@ -15,8 +15,8 @@ To install the documentation-generating code:
 
         $ git clone git://github.com/puppetlabs/puppet-docs.git
 
-2.  Use your package manager to install rake, libxml2-dev, libxslt-dev, and pygments.  
-    Package names may vary by platform; for example, using Macports, these packages could 
+2.  Use your package manager to install rake, libxml2-dev, libxslt-dev, and pygments.
+    Package names may vary by platform; for example, using Macports, these packages could
     be installed with:
 
         $ sudo port -d install rb-rake libxml2 libxslt py-pygments
@@ -30,7 +30,7 @@ To install the documentation-generating code:
     The Puppet docs project uses Ruby Bundler to ensure that you have the correct dependencies
     installed on your system and that the documents are being built with the correct versions
     of needed binaries. To install the project's requirements:
-    
+
         $ sudo gem install bundler
         $ cd puppet-docs
         $ bundle install --path=vendor/bundle
@@ -48,14 +48,24 @@ Building and Viewing
 
     (You can use `rake run` to combine these steps.)
 
+Deploying the Site
+------------------
+
+To deploy a new copy of the site to the production servers (Puppet Labs employees only):
+
+    $ rake deploy
+
+(This is several commands bundled into one: `rake build`,
+`rake mirror0 vlad:release`, and `rake mirror1 vlad:release`.)
+
 Build Generated Docs for a Given Puppet Version
 -----------------------------------------------
 
     $ VERSION=0.25.0 rake references:puppetdoc
 
-For the generated docs to build correctly, you may not have Puppet in your default Ruby load path. 
+For the generated docs to build correctly, you may not have Puppet in your default Ruby load path.
 We recommend building the generated docs on a system where you have not installed Puppet as
-a package for your operating system. If this isn't possible, we recommend using [rvm][] or 
+a package for your operating system. If this isn't possible, we recommend using [rvm][] or
 [rbenv][] with a minimal Ruby installation to build the generated docs.
 
 

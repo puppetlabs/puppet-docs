@@ -612,6 +612,8 @@ is because of a bug within Ruby.  If you are using Puppet to
 create this user, the exec will automatically require the user,
 as long as it is specified by name.
 
+  Please also note that $HOME is not set when using this option.
+
 
 
 

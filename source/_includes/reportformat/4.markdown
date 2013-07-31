@@ -15,6 +15,7 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>metrics</td><td>hash</td><td>maps from string (metric category) to Puppet::Util::Metric.</td></tr>
   <tr><td>resource_statuses</td><td>hash</td><td>maps from resource name to Puppet::Resource::Status</td></tr>
   <tr><td>configuration_version</td><td>string or integer</td><td>The "configuration version" of the puppet run.  This is a string if the user has specified their own versioning scheme, otherwise an integer representing seconds since the epoch.</td></tr>
+  <tr><td>transaction_uuid</td><td>string</td><td>A UUID covering the transaction.  The query parameters for the catalog retrieval will have included the same UUID.</td></tr>
   <tr><td>report_format</td><td>integer</td><td>4</td></tr>
   <tr><td>puppet_version</td><td>string</td><td>The version of the Puppet agent.</td></tr>
   <tr><td>kind</td><td>string</td><td>"inspect" if this report came from a "puppet inspect" run, "apply" if it came from a "puppet apply" or "puppet agent" run.</td></tr>
@@ -111,4 +112,5 @@ Puppet::Transaction::Event#status has the following meanings:
 
 ### Differences from Report Format 3
 
+* Puppet::Transaction::Report gained `transaction_uuid`.
 * Puppet::Resource::Status gained `containment_path`.

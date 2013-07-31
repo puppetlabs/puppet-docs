@@ -46,7 +46,7 @@ Puppet master server:
       end
     end
 
-> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.) 
+> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.)
 
 We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
@@ -197,54 +197,8 @@ that fact and move on.
 ## Viewing Fact Values
 
 [inventory]: /guides/inventory_service.html
-[puppetdb]: 
-If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info. 
-
-## Legacy Fact Distribution
-
-For Puppet versions prior to 0.24.0:
-
-On older versions of Puppet, prior to 0.24.0, a different method
-called factsync was used for custom fact distribution. Puppet would
-look for custom facts on
-[puppet://$server/facts](puppet://%24server/facts) by default and
-you needed to run puppetd with `--factsync` option (or add `factsync =
-true` to puppetd.conf). This would enable the syncing of these files
-to the local file system and loading them within puppetd.
-
-Facts were synced to a local directory ($vardir/facts, by default)
-before facter was run, so they would be available the first time.
-If $factsource was unset, the `--factsync` option is equivalent to:
-
-    file { $factdir: source => "puppet://puppet/facts", recurse => true }
-
-After the facts were downloaded, they were loaded (or reloaded)
-into memory.
-
-Some additional options were available to configure this legacy
-method:
-
-The following command line or config file options are available
-(default options shown):
-
--   factpath ($vardir/facts): Where Puppet should look for facts.
-    Multiple directories should be colon-separated, like normal PATH
-    variables. By default, this is set to the same value as factdest,
-    but you can have multiple fact locations (e.g., you could have one
-    or more on NFS).
--   factdest ($vardir/facts): Where Puppet should store facts that
-    it pulls down from the central server.
--   factsource
-    ([puppet://$server/facts](puppet://%24server/facts)): From where to
-    retrieve facts. The standard Puppet file type is used for
-    retrieval, so anything that is a valid file source can be used
-    here.
--   factsync (false): Whether facts should be synced with the
-    central server.
--   factsignore (.svn CVS): What files to ignore when pulling down
-    facts.
-
-Remember the approach described above for `factsync` is now deprecated and replaced by the plugin approach described in the [Plugins In Modules](./plugins_in_modules.html) page.
+[puppetdb]:
+If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info.
 
 External Facts
 --------------
@@ -257,33 +211,46 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 ### Fact Locations
 
+External facts must go in a standard directory. The location of this directory varies depending on whether you're using Puppet Enterprise or an open source release of Facter.
+
 On Unix/Linux:
 
     /etc/facter/facts.d/ # Puppet Open Source
-    /etc/puppetlab/facter/facts.d/ # Puppet Enterprise
+    /etc/puppetlabs/facter/facts.d/ # Puppet Enterprise
 
 {% comment %}
 
 On Windows 2003:
 
-    C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\facts.d\
+    C:\Documents and Settings\All Users\Application Data\PuppetLabs\facter\facts.d\
 
-On Windows 2008:
+On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
-    C:\ProgramData\Puppetlabs\facter\facts.d\
+    C:\ProgramData\PuppetLabs\facter\facts.d\
 
 {% endcomment %}
 
+> **Note:** These directories will not necessarily exist by default; you may need to create them.
+
 ### Executable facts --- Unix
 
-Executable facts on Unix work by dropping an executable file into the standard 
+Executable facts on Unix work by dropping an executable file into the standard
 external fact path above.
+
+An example external fact written in Python:
+
+    #!/usr/bin/env python
+    data = {"key1" : "value1", "key2" : "value2" }
+
+    for k in data:
+            print "%s=%s" % (k,data[k])
+
 
 You must ensure that the script has its execute bit set:
 
-    chmod +x /etc/facter/facts.d/my_fact_script.rb
+    chmod +x /etc/facter/facts.d/my_fact_script.py
 
-For Facter to parse the output, the script must return key/value pairs on 
+For Facter to parse the output, the script must return key/value pairs on
 STDOUT in the format:
 
     key1=value1
@@ -296,12 +263,12 @@ Using this format, a single script can return multiple facts.
 
 Executable facts are not currently supported on Windows.
 
-{% comment}
+{% comment %}
 
-Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. At the moment the following extensions are supported:
+Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
--   `.com` and `exe`: binary executables
--   `.bat`: batch scripts
+-   `.com` and `.exe`: binary executables
+-   `.bat` and `.cmd`: batch scripts
 -   `.ps1`: PowerShell scripts
 
 As with Unix facts, each script must return key/value pairs on STDOUT in the format:
@@ -312,28 +279,30 @@ As with Unix facts, each script must return key/value pairs on STDOUT in the for
 
 Using this format, a single script can return multiple facts in one return.
 
-#### Enabling PowerShell Scripts
+#### Batch Scripts
 
-For PowerShell scripts (scripts with a ps1 extension) to work, you need to make
-sure you have the correct execution policy set.
+The file encoding for `.bat/.cmd` files must be `ANSI` or `UTF8 without BOM` (Byte Order Mark), otherwise you may get strange output.
 
-[See this Microsoft TechNet article][executionpolicy] for more detail about
-the impact of changing execution policy. We recommend understanding any security
-implications before making a global change to execution policy.
+Here is a sample batch script which outputs facts using the required format:
 
-The simplest and safest mechanism we have found is to change the execution 
-policy so that only remotely downloaded scripts need to be signed. You can
-set this policy with:
+    @echo off
+    echo key1=val1
+    echo key2=val2
+    echo key3=val3
+    REM Invalid - echo 'key4=val4'
+    REM Invalid - echo "key5=val5"
 
-    Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+#### PowerShell Scripts
+
+The encoding that should be used with `.ps1` files is pretty open. PowerShell will determine the encoding of the file at run time.
 
 Here is a sample PowerShell script which outputs facts using the required format:
 
     Write-Host "key1=val1"
-    Write-Host "key2=val2"
-    Write-Host "key3=val3"
+    Write-Host 'key2=val2'
+    Write-Host key3=val3
 
-You should be able to save and execute this PowerShell script on the command line after changing the execution policy.
+You should be able to save and execute this PowerShell script on the command line.
 
 {% endcomment %}
 
@@ -358,13 +327,24 @@ Structured data files must use one of the supported data types and must have the
             "key3": "val3"
         }
 
-* `.txt`: Key value pairs, in the following format: 
+* `.txt`: Key value pairs, in the following format:
 
         key1=value1
         key2=value2
         key3=value3
 
 As with executable facts, structured data files can set multiple facts at once.
+
+{% comment %}
+
+#### Structured Data Facts on Windows
+
+All of the above types are supported on Windows with the following caveats:
+
+ * The line endings can be either `LF` or `CRLF`.
+ * The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
+
+{% endcomment %}
 
 ### Troubleshooting
 
@@ -380,14 +360,14 @@ Let say you used a hyphen instead of an equals sign in your script `test.sh`:
 
     echo "key1-value1"
 
-Running `facter --debug` should yield a useful error message:    
+Running `facter --debug` should yield a useful error message:
 
     ...
-    Fact file /etc/facter/facter.d/sample.txt was parsed but returned an empty data set
+    Fact file /etc/facter/facts.d/sample.txt was parsed but returned an empty data set
     ...
 
-If you are interested in finding out where any bottlenecks are, you can run 
-Facter in timing mode and it will reflect how long it takes to parse your 
+If you are interested in finding out where any bottlenecks are, you can run
+Facter in timing mode and it will reflect how long it takes to parse your
 external facts:
 
     facter --timing
@@ -404,7 +384,7 @@ The output should look similar to the timing for Ruby facts, but will name exter
 
 #### External Facts and stdlib
 
-If you find that an external fact does not match what you have configured in your `facter.d`
+If you find that an external fact does not match what you have configured in your `facts.d`
 directory, make sure you have not defined the same fact using the external facts capabilities
 found in the stdlib module.
 
@@ -414,5 +394,5 @@ While external facts provide a mostly-equal way to create variables for Puppet, 
 
 * An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
 * External executable facts are forked instead of executed within the same process.
-* Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. <!-- TODO: supply ticket number -->
+* Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. See [ticket #9546](https://projects.puppetlabs.com/issues/9546)
 

@@ -5,6 +5,20 @@ subtitle: "Upgrading Puppet Enterprise"
 canonical: "/pe/latest/install_upgrading.html"
 ---
 
+
+{% comment %}
+
+Things we don't have a place for yet, since we don't support console/etc upgrades yet: this upgrade note for systems that used to run 2.5.
+
+> **Note:** If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files.
+>
+> You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+
+We should think about how to handle diminishing returns on stuff like this that involves very old versions.
+
+{% endcomment %}
+
+
 Summary
 -----
 
@@ -69,7 +83,7 @@ On the new, 3.0 master run:
     cp -a /etc/puppetlabs/puppet/ssl /etc/puppetlabs/puppet/ssl.orig
     rm -fr /etc/puppetlabs/puppet/ssl/*
     scp -r root@<2.8.x.master>:/etc/puppetlabs/puppet/ssl/* /etc/puppetlabs/puppet/ssl/
-    
+
 #### Generate a New Cert for the 3.0 Master
 Because the new master's certificate that was initially generated during installation was signed by the now retired CA, we need to generate a new certifcate for the new master, which will get signed by the CA we copied in the previous step.
 
@@ -77,9 +91,9 @@ Because the new master's certificate that was initially generated during install
 On the new, 3.0 master, run:
 
     puppet cert clean pe-internal-broker
-    puppet cert generate 3-0master.domain --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain 
-    puppet cert generate pe-internal-broker --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain,stomp 
-    
+    puppet cert generate 3-0master.domain --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain
+    puppet cert generate pe-internal-broker --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain,stomp
+
 #### Copy Console Certificates
 Next, for the internal certificates used by the console, we also need migrate over the certificates signed by the 2.8 CA.
 
@@ -96,7 +110,7 @@ On the new, 3.0 master, run:
     /opt/puppet/sbin/puppetdb-ssl-setup -f
 
 #### Restart Services
-To get the PE services to refresh their cached certificates, we need to restart them. 
+To get the PE services to refresh their cached certificates, we need to restart them.
 
 On the new, 3.0 master, run `service <service name> restart` for these services: `pe-puppet`, `pe-httpd`, and `pe-puppetdb`.
 
@@ -106,7 +120,7 @@ On the new, 3.0 master, run `service <service name> restart` for these services:
 
 If your deployment uses a DNS CNAME to refer to the master, you'll need to update its DNS entry to reflect the new master. Otherwise, if you use FQDN's to refer to the master, you'll need to update the agents' configuration as follows.
 
-On each agent, update the `/etc/puppetlabs/puppet/puppet.conf` file to point to the new, 3.0 master. Specifically, you will make two changes: 
+On each agent, update the `/etc/puppetlabs/puppet/puppet.conf` file to point to the new, 3.0 master. Specifically, you will make two changes:
 
     [main]
         archive_file_server=<fqdn of 3.0 master>
@@ -136,7 +150,7 @@ Next, verify that all the agents have reported by checking to see if they're lis
 Now that the agents are successfully pointed at the 3.0 master, they can be upgraded to 3.0 as well. This is done by running  `puppet-enterprise-installer` on each agent after the 3.0 tarball has been copied onto them and unpacked. The installer will detect that this is an upgrade, and proceed  to ask the usual install questions regarding vendor packages, symlinks, etc.
 
 The installer should do a puppet run at the end of installation, but if the new agents are not yet available in live management, you can get them connected by waiting a minute or two and then running `puppet agent -t` one more time.
-    
+
 At this point you should have a fully functioning PE 3.0 deployment with a new master, console, and db support and upgraded agents connected to the new master and console.
 
 

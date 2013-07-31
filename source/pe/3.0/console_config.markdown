@@ -1,27 +1,9 @@
 ---
 layout: default
 title: "PE 3.0 » Console »  Configuration"
-subtitle: " Configuring & Tuning the Console & Databases"
+subtitle: "Configuring & Tuning the Console & Databases"
 canonical: "/pe/latest/console_config.html"
 ---
-
-Changing the Console's Port
------
-
-By default, a new installation of PE will serve the console on port 443. However, previous versions of PE served the console's predecessor on port 3000. If you upgraded and want to change to the more convenient new default, or if you need port 443 for something else and want to shift the console somewhere else, perform the following steps:
-
-* Stop the `pe-httpd` service:
-
-        $ sudo /etc/init.d/pe-httpd stop
-* Edit `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` on the console server, and change the port number in the `Listen 443` and `<VirtualHost *:443>` directives. (These directives will contain the current port, which is not necessarily 443.)
-* Edit `/etc/puppetlabs/puppet/puppet.conf` on the puppet master server, and change the `reporturl` setting to use your preferred port.
-* Edit `/etc/puppetlabs/puppet-dashboard/external_node` on the puppet master server, and change the `ENC_BASE_URL` to use your preferred port.
-* Edit `/etc/puppetlabs/console-auth/config.yml ` on the puppet master server, and change the `cas_url` to use your preferred port.
-* Edit `/etc/puppetlabs/rubycas-server/config.yml ` on the puppet master server, and change the `console_base_url` to use your preferred port.
-* Make sure to allow access to the new port in your system's firewall rules.
-* Start the `pe-httpd` service:
-
-        $ sudo /etc/init.d/pe-httpd start
 
 Configuring Console Authentication
 -----
@@ -45,9 +27,128 @@ To allow anonymous, read-only access to the console, do the following:
 * Edit the `/etc/puppetlabs/console-auth/cas_client_config.yml` file and change the `global_unauthenticated_access` setting to `true`.
 * Restart Apache by running `sudo /etc/init.d/pe-httpd restart`.
 
-### Using LDAP or Active Directory Instead of Console Auth
 
-For instructions on using third-party authentication services, see the [console_auth configuration page](./console_auth.html#configuration).
+Configuring Third-Party Authentication Services
+-----
+
+[auth_thirdparty]: ./console_auth.html#using-third-party-authentication-services
+
+User access can be managed with external, third-party authentication services, [as described on the user management and authorization page][auth_thirdparty]. The following external services are supported:
+
+* LDAP
+* Active Directory (AD)
+* Google accounts
+
+To use external authentication, the following two files must be correctly configured:
+
+* `/etc/puppetlabs/console-auth/cas_client_config.yml` ([see below](#configuring-casclientconfigyml))
+* `/etc/puppetlabs/rubycas-server/config.yml` ([see below](#configuring-rubycas-serverconfigyml))
+
+(Note that YAML requires whitespace and tabs to match up exactly. Type carefully.)
+
+After editing these files you must restart the `pe-httpd` and `pe-puppet-dashboard-workers` services via their `init.d` scripts.
+
+
+### Configuring `cas_client_config.yml`
+
+The `/etc/puppetlabs/console-auth/cas_client_config.yml` file contains several commented-out lines under the `authorization:` key. Un-comment the lines that correspond to the RubyCAS authenticators you wish to use, and set a new `default_role` if desired.
+
+Each entry consists of the following:
+
+* A common identifier (e.g. `local`, or `ldap`, etc.), which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator.
+* `default_role`, which defines the role to assign to users by default --- allowed values are `read-only`, `read-write`, or `admin`.
+* `description`, which is simply a human readable description of the service.
+
+The order in which authentication services are listed in the `cas_client_config.yml` file is the order in which the services will be checked for valid accounts. In other words, the first service that returns an account matching the entered user credential is the service that will perform authentication and log-in.
+
+This example shows how to edit the file if you want to use AD and the built-in (local) auth services while leaving Google and LDAP disabled:
+
+{% highlight yaml %}
+
+## This configuration file contains information required by any web
+## service that makes use of the CAS server for authentication.
+
+authentication:
+
+  ## Use this configuration option if the CAS server is on a host different
+  ## from the console-auth server.
+  # cas_host: master:443
+
+  ## The port CAS is listening on.  This is ignored if cas_host is set.
+  # cas_port: 443
+
+  ## The session secret is randomly generated during installation of Puppet
+  ## Enterprise and will be regenerated any time console-auth is enabled or disabled.
+  session_key: 'puppet_enterprise_console'
+  session_secret: [REDACTED]
+
+  ## Set this to true to allow anonymous users read-only access to all of
+  ## Puppet Enterprise Console.
+  global_unauthenticated_access: false
+
+authorization:
+  local:
+    default_role: read-only
+    description: Local
+#  ldap:
+#    default_role: read-only
+#    description: LDAP
+  activedirectoryldap:
+    default_role: read-only
+    description: Active Directory
+#  google:
+#    default_role: read-only
+#    description: Google
+
+{% endhighlight %}
+
+> **Note:** If your console server ever ran PE 2.5, the commented-out sections may not be present in this file. To find example config text that can be copied and pasted into place, look for a `cas_client_config.yml.rpmnew` or `cas_client_config.yml.dpkg-new` file in the same directory.
+
+
+### Configuring `rubycas-server/config.yml`
+
+The `/etc/puppetlabs/rubycas-server/config.yml` file is used to configure RubyCAS to use external authentication services. As before, you will need to un-comment the section for the third-party services you wish to enable and configure them as necessary. The values for the listed keys are LDAP and ActiveDirectory standards. If you are not the administrator of those databases, you should check with that administrator for the correct values.
+
+The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator but enables both AD and LDAP):
+
+{% highlight yaml %}
+
+authenticator:
+  - class: CASServer::Authenticators::SQLEncrypted
+    database:
+      adapter: postgresql
+      database: console_auth
+      username: console_auth
+      password: easnthycea098iu7aeo6oeu # installer-generated password
+      server: localhost
+    user_table: users
+    username_column: username
+  #- class: CASServer::Authenticators::Google
+  #   restricted_domain: example.com
+  - class: CASServer::Authenticators::LDAP
+    ldap:
+      host: tb-driver.example.com
+      port: 389
+      base: dc=example,dc=test
+      filter: (objectClass=person)
+      username_attribute: mail
+  - class: CASServer::Authenticators::ActiveDirectoryLDAP
+    ldap:
+      host: winbox.example.com
+      port: 389
+      base: dc=example,dc=dev
+      filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
+      auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
+      auth_password: P4ssword
+
+{% endhighlight %}
+
+> **Note:** If your console server ever ran PE 2.5, the commented-out sections may not be present in this file. To find example config text that can be copied and pasted into place, look for a `config.yml.rpmnew` or `config.yml.dpkg-new` file in the same directory.
+
+As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
+
+Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`; you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.
+
 
 Tuning the PostgreSQL Buffer Pool Size
 -----
@@ -73,6 +174,24 @@ The console ships with a worker process manager, which can be found at `script/d
     # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
+
+Changing the Console's Port
+-----
+
+By default, a new installation of PE will serve the console on port 443. However, previous versions of PE served the console's predecessor on port 3000. If you upgraded and want to change to the more convenient new default, or if you need port 443 for something else and want to shift the console somewhere else, perform the following steps:
+
+* Stop the `pe-httpd` service:
+
+        $ sudo /etc/init.d/pe-httpd stop
+* Edit `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` on the console server, and change the port number in the `Listen 443` and `<VirtualHost *:443>` directives. (These directives will contain the current port, which is not necessarily 443.)
+* Edit `/etc/puppetlabs/puppet/puppet.conf` on the puppet master server, and change the `reporturl` setting to use your preferred port.
+* Edit `/etc/puppetlabs/puppet-dashboard/external_node` on the puppet master server, and change the `ENC_BASE_URL` to use your preferred port.
+* Edit `/etc/puppetlabs/console-auth/config.yml ` on the puppet master server, and change the `cas_url` to use your preferred port.
+* Edit `/etc/puppetlabs/rubycas-server/config.yml ` on the puppet master server, and change the `console_base_url` to use your preferred port.
+* Make sure to allow access to the new port in your system's firewall rules.
+* Start the `pe-httpd` service:
+
+        $ sudo /etc/init.d/pe-httpd start
 
 Disabling Update Checking
 -----

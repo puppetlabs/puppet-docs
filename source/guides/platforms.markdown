@@ -14,18 +14,25 @@ Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interest
 
 **[See Installing Puppet](/guides/installation.html)** for more details about the packages available for your platform(s).
 
-Puppet 2.6, 2.7, and 3 can run on the following platforms:
+Puppet 2.7 and Puppet 3.x can run on the following platforms:
 
 Linux
 -----
 
-- Red Hat Enterprise Linux, version 4 and higher
-- CentOS, version 4 and higher
-- Scientific Linux, version 4 and higher
-- Oracle Linux, version 4 and higher
-- Debian, version 5 (Lenny) and higher
-- Ubuntu, version 8.04 LTS and higher
-- Fedora, version 15 and higher
+### Red Hat Enterprise Linux (and Derivatives)
+
+{% include platforms_redhat_like.markdown %}
+
+### Debian and Ubuntu
+
+{% include platforms_debian_like.markdown %}
+
+### Fedora
+
+{% include platforms_fedora.markdown %}
+
+### Other
+
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
 - Mandriva Corporate Server 4 <!-- Version not checked recently -->
@@ -48,8 +55,9 @@ Other Unix
 Windows
 -------
 
-- Windows Server 2003 and 2008 (Puppet version 2.7.6 and higher)
-- Windows 7 (Puppet version 2.7.6 and higher)
+(Puppet version 2.7.6 and higher)
+
+{% include platforms_windows.markdown %}
 
 Ruby Versions
 -----
@@ -65,6 +73,7 @@ Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
 -------------|------------|------------|-----------
 1.8.5\*      | Supported  | Supported  | No
 1.8.7        | Supported  | Supported  | Supported
+2.0.0\*\*    | No         | No         | Supported (3.2 and higher)
 1.9.3\*\*    | No         | No         | Supported
 1.9.2        | No         | No         | No
 1.9.1        | No         | No         | No

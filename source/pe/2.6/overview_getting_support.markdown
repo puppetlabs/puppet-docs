@@ -14,8 +14,16 @@ There are three primary ways to get support for Puppet Enterprise:
 - Seeking help from the Puppet open source community.
 
 [portal]: https://support.puppetlabs.com
+[lifecycle]: https://puppetlabs.com/misc/puppet-enterprise-lifecycle/
 
-Reporting Issues to the customer support portal
+Support Lifecycle
+-----
+
+Puppet Enterprise 2.x will receive feature updates through September 30, 2013, and will receive security updates through September 30, 2014. [See the support lifecycle page for more details.][lifecycle]
+
+After Puppet Enterprise 2.x reaches end-of-life, customers can still contact Puppet Labs support for best-effort help, although we will recommend upgrading as soon as you are able.
+
+Reporting Issues to the Customer Support Portal
 -----
 
 ### Paid Support
@@ -28,9 +36,9 @@ Puppet Labs provides two levels of [commercial support offerings for Puppet Ente
 
 When seeking support, you may be asked to run the information-gathering support script included with in the Puppet Enterprise installer tarball. This script is located in the root of the unzipped tarball and is named simply "`support`."
 
-This script will collect a large amount of system information, compress it, and print the location of the zipped tarball when it finishes running; an uncompressed directory (named `support`) containing the same data will be left in the same directory the compressed copy. We recommend that you examine the collected data before forwarding it to Puppet Labs, as it may contain sensitive information that you will wish to redact. 
+This script will collect a large amount of system information, compress it, and print the location of the zipped tarball when it finishes running; an uncompressed directory (named `support`) containing the same data will be left in the same directory the compressed copy. We recommend that you examine the collected data before forwarding it to Puppet Labs, as it may contain sensitive information that you will wish to redact.
 
-The information collected by the support script includes: 
+The information collected by the support script includes:
 
 - iptables info (is it loaded? what are the inbound and outbound rules?) (both ipv4 and ipv6)
 - a full run of facter (if installed)
@@ -63,20 +71,20 @@ If you are evaluating Puppet Enterprise, we also offer support during your evalu
 
 **Public support portal: <http://projects.puppetlabs.com/projects/puppet-enterprise>**
 
-Join the Puppet Enterprise user group
+Join the Puppet Enterprise User Group
 -----
 
 <http://groups.google.com/a/puppetlabs.com/group/pe-users>
 
-- Click on “Sign in and apply for membership”     
-- Click on “Enter your email address to access the document”     
-- Enter your email address.     
+- Click on “Sign in and apply for membership”
+- Click on “Enter your email address to access the document”
+- Enter your email address.
 
 
 
 Your request to join will be sent to Puppet Labs for authorization and you will receive an email when you’ve been added to the user group.
 
-Getting support from the existing Puppet Community
+Getting Support From the Existing Puppet Community
 -----
 
 As a Puppet Enterprise customer you are more than welcome to participate in our large and helpful open source community as well as report issues against the open source project.
@@ -93,6 +101,6 @@ As a Puppet Enterprise customer you are more than welcome to participate in our 
 
 
 
-* * * 
+* * *
 
 - [Next: Quick Start](./quick_start.html)
