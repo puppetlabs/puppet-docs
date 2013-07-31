@@ -138,6 +138,9 @@ PE creates the following users:
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system user which runs the console processes spawned by Passenger.
 - **`pe-puppetdb`**--- A system user with root access to the db.
+- **`pe-auth`** --- Puppet Console Auth User
+- **`pe-memcached`** --- Puppet Enterprise Memcached Daemon User
+- **`peadmin`** --- PE Administrative user. Currently used primarily for mcollective administration.
 
 ###Certificates
 
