@@ -14,8 +14,16 @@ There are three primary ways to get support for Puppet Enterprise:
 - Seeking help from the Puppet open source community.
 
 [portal]: https://support.puppetlabs.com
+[lifecycle]: https://puppetlabs.com/misc/puppet-enterprise-lifecycle/
 
-Reporting Issues to the customer support portal
+Support Lifecycle
+-----
+
+Puppet Enterprise 3.x will receive feature updates through June 25, 2014 (or the release of Puppet Enterprise 4, whichever is longer), and will receive security updates through June 25, 2015 (or 1 year from the release of Puppet Enterprise 4, whichever is longer). [See the support lifecycle page for more details.][lifecycle]
+
+After Puppet Enterprise 3.x reaches end-of-life, customers can still contact Puppet Labs support for best-effort help, although we will recommend upgrading as soon as you are able.
+
+Reporting Issues to the Customer Support Portal
 -----
 
 ### Paid Support
@@ -63,7 +71,7 @@ If you are evaluating Puppet Enterprise, we also offer support during your evalu
 
 **Public support portal: <http://projects.puppetlabs.com/projects/puppet-enterprise>**
 
-Join the Puppet Enterprise user group
+Join the Puppet Enterprise User Group
 -----
 
 <http://groups.google.com/a/puppetlabs.com/group/pe-users>
@@ -75,7 +83,7 @@ Join the Puppet Enterprise user group
 
 Your request to join will be sent to Puppet Labs for authorization and you will receive an email when you’ve been added to the user group.
 
-Getting support from the existing Puppet Community
+Getting Support From the Existing Puppet Community
 -----
 
 As a Puppet Enterprise customer you are more than welcome to participate in our large and helpful open source community as well as report issues against the open source project.
