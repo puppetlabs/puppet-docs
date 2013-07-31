@@ -82,6 +82,9 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
 
+### PE Install Fails if Port 8080 is in Use
+PuppetDB requires access to port 8080. The installer will check to make sure this port is available and if it is not, the install wil fail with an error message. To fix this, either disable the service currently using 8080 or install the database role on a different node that has port 8080 available.
+
 ### Puppet Code Issues with UTF-8 Encoding
 PE 3 uses an updated version of Ruby, 1.9 that is much stricter about character encodings than the version of Ruby used in PE 2.8. As a result, puppet code that contains UTF-8 characters such as accents or other non-ASCII characters can fail or act unpredictably. There are a number of ways UTF-8 characters can make it into puppet code, including, but not limited to, downloading a Forge module where some piece of metadata (e.g., author's name) contains UTF-8 characters. With apologies to our international customers, the current solution is to strictly limit puppet code to the ASCII character set only, including any code comments or metadata. Puppet Labs is working on cleaning up character encoding issues in Puppet and the various libraries it interfaces with.
 
