@@ -222,11 +222,11 @@ On Unix/Linux:
 
 On Windows 2003:
 
-    C:\Documents and Settings\All Users\Application Data\Puppetlabs\facter\facts.d\
+    C:\Documents and Settings\All Users\Application Data\PuppetLabs\facter\facts.d\
 
-On Windows 2008:
+On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
-    C:\ProgramData\Puppetlabs\facter\facts.d\
+    C:\ProgramData\PuppetLabs\facter\facts.d\
 
 {% endcomment %}
 
@@ -265,10 +265,10 @@ Executable facts are not currently supported on Windows.
 
 {% comment %}
 
-Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. At the moment the following extensions are supported:
+Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
--   `.com` and `exe`: binary executables
--   `.bat`: batch scripts
+-   `.com` and `.exe`: binary executables
+-   `.bat` and `.cmd`: batch scripts
 -   `.ps1`: PowerShell scripts
 
 As with Unix facts, each script must return key/value pairs on STDOUT in the format:
@@ -279,28 +279,30 @@ As with Unix facts, each script must return key/value pairs on STDOUT in the for
 
 Using this format, a single script can return multiple facts in one return.
 
-#### Enabling PowerShell Scripts
+#### Batch Scripts
 
-For PowerShell scripts (scripts with a ps1 extension) to work, you need to make
-sure you have the correct execution policy set.
+The file encoding for `.bat/.cmd` files must be `ANSI` or `UTF8 without BOM` (Byte Order Mark), otherwise you may get strange output.
 
-[See this Microsoft TechNet article][executionpolicy] for more detail about
-the impact of changing execution policy. We recommend understanding any security
-implications before making a global change to execution policy.
+Here is a sample batch script which outputs facts using the required format:
 
-The simplest and safest mechanism we have found is to change the execution
-policy so that only remotely downloaded scripts need to be signed. You can
-set this policy with:
+    @echo off
+    echo key1=val1
+    echo key2=val2
+    echo key3=val3
+    REM Invalid - echo 'key4=val4'
+    REM Invalid - echo "key5=val5"
 
-    Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+#### PowerShell Scripts
+
+The encoding that should be used with `.ps1` files is pretty open. PowerShell will determine the encoding of the file at run time.
 
 Here is a sample PowerShell script which outputs facts using the required format:
 
     Write-Host "key1=val1"
-    Write-Host "key2=val2"
-    Write-Host "key3=val3"
+    Write-Host 'key2=val2'
+    Write-Host key3=val3
 
-You should be able to save and execute this PowerShell script on the command line after changing the execution policy.
+You should be able to save and execute this PowerShell script on the command line.
 
 {% endcomment %}
 
@@ -332,6 +334,17 @@ Structured data files must use one of the supported data types and must have the
         key3=value3
 
 As with executable facts, structured data files can set multiple facts at once.
+
+{% comment %}
+
+#### Structured Data Facts on Windows
+
+All of the above types are supported on Windows with the following caveats:
+
+ * The line endings can be either `LF` or `CRLF`.
+ * The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
+
+{% endcomment %}
 
 ### Troubleshooting
 
