@@ -5,6 +5,7 @@ include: _index.html
 defaultnav:
   /: quick_nav.html
   /mcollective: mcollective_menu.html
+  /mcollective1.2: mcollective_1.2.html
   /pe/3.0: pe30.html
   /pe/2.8: pe28.html
   /pe/2.7: pe27.html
@@ -29,6 +30,12 @@ defaultnav:
   /learning: learning_nav.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
+#Anatomy of an external source:
+#  mcollective: # an arbitrary name. The working dir for this source will be at externalsources/<name>.
+#    url: /mcollective # The absolute URL where the source's contents should be mounted in the final site.
+#    repo: git://github.com/puppetlabs/marionette-collective.git # The URL of the upstream repo, in a form acceptable to `git clone`. This must be accessible to anyone who will need to deploy the site.
+#    commit: origin/master # a git treeish (in a form acceptable to `git checkout`) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
+#    subdirectory: website # A subdirectory within the remote repository that contains the documentation files that we'll build and mount at the specified url.
 externalsources:
   puppetdb_1.1:
     url: /puppetdb/1.1
@@ -50,10 +57,15 @@ externalsources:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/master
     subdirectory: documentation
-  marionette-collective:
+  mcollective:
     url: /mcollective
     repo: git://github.com/puppetlabs/marionette-collective.git
     commit: origin/master
+    subdirectory: website
+  mcollective1.2:
+    url: /mcollective1.2
+    repo: git://github.com/nfagerlund/marionette-collective.git
+    commit: origin/docs_1.2
     subdirectory: website
 symlink_latest:
   - puppet

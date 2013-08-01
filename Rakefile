@@ -98,8 +98,14 @@ namespace :externalsources do
     return all_config['externalsources']
   end
 
+  # Returns the short name of a repo, which would be the directory name if you did a `git clone` without specifying a directory name. This isn't used anymore, but I left it around in case it's useful later.
   def repo_name(repo_url)
     repo_url.split('/')[-1].sub(/\.git$/, '')
+  end
+
+  # Returns something like git_github_com_puppetlabs_marionette-collective_git. We use this as the name of the main repo directory, because we may need to disambiguate between two repos with the same short name but a different user account on github.
+  def repo_unique_id(repo_url)
+    repo_url.gsub(/[:\/\.]+/, '_')
   end
 
   # "Update all working copies defined in source/_config.yml"
@@ -110,7 +116,7 @@ namespace :externalsources do
       externalsources.each do |name, info|
         unless File.directory?(name)
           puts "Making new working directory for #{name}"
-          system ("#{top_dir}/vendor/bin/git-new-workdir #{repo_name(info['repo'])} #{name} #{info['commit']}")
+          system ("#{top_dir}/vendor/bin/git-new-workdir #{repo_unique_id(info['repo'])} #{name} #{info['commit']}")
         end
         Dir.chdir(name) do
           puts "Updating #{name}"
@@ -129,7 +135,7 @@ namespace :externalsources do
     end
     Dir.chdir("externalsources") do
       repos.uniq.each do |repo|
-        system ("git clone #{repo}") unless File.directory?("#{repo_name(repo)}")
+        system ("git clone #{repo} #{repo_unique_id(repo)}") unless File.directory?("#{repo_unique_id(repo)}")
       end
     end
   end
