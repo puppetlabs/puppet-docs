@@ -1,4 +1,4 @@
-* Fedora 17
+* Fedora 17 (EOL 2013-07-30)
 * Fedora 18
 * Fedora 19
 

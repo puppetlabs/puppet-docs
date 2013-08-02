@@ -10,6 +10,8 @@ We also maintain repositories for Puppet Enterprise users. These repos contain a
 
 This page explains how to enable these repositories on all of the supported operating systems.
 
+Our repositories will be maintained for the life of the corresponding operating system and available for three months after their end of life date. So if an operating system goes end of life on July 15, our repositories for that operating system will still be available until October 15.
+
 Open Source Repositories
 -----
 
