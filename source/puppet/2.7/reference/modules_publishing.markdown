@@ -1,6 +1,5 @@
 ---
-layout: legacy
-nav: puppet27.html
+layout: default
 title: "Publishing Modules on the Puppet Forge"
 ---
 
@@ -28,7 +27,7 @@ The Puppet Forge is a repository of modules, written and contributed by users. T
 * [See "Module Fundamentals"][fundamentals] for how to write and use your own Puppet modules.
 * [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
-* [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module. 
+* [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 
 Overview
 -----
