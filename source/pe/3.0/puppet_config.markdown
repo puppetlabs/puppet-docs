@@ -44,7 +44,7 @@ Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` 
 
 * * *
 
-- [Next: Orchestration Overview](./orchestration_overview.html)
+- [Next: Troubleshooting Puppet](./trouble_puppet.html)
 
 
 
