@@ -106,7 +106,7 @@ The string should be in [Markdown][] format (avoiding dialect-specific features 
     end
 {% endhighlight %}
 
-In this example, any whitespace would be trimmed from the first line (in this case, it's zero spaces), then the greatest common amount would be trimmed from remaining lines. Three lines have four leading spaces, two lines have six, and two lines have eight, so two leading spaces would be trimmed from each line. This leaves the example code block indented by four spaces, and thus doesn't break the Markdown formatting.
+In this example, any whitespace would be trimmed from the first line (in this case, it's zero spaces), then the greatest common amount would be trimmed from remaining lines. Three lines have four leading spaces, two lines have six, and two lines have eight, so four leading spaces would be trimmed from each line. This leaves the example code block indented by four spaces, and thus doesn't break the Markdown formatting.
 
 ### Properties and Parameters
 
@@ -301,7 +301,21 @@ There are three ways to designate a namevar. Every type must have **exactly one*
     end
 {% endhighlight %}
 
-
+> ##### Errors When Namevar is Absent
+>
+> If you try to create a type that lacks a namevar, you'll see one of two errors when declaring resources of that type, depending on the Puppet version.
+>
+> **Puppet 2.7:**
+>
+>     $ puppet apply -e "testing { h: }"
+>     Error: undefined method `merge' for []:Array
+>
+> **Puppet 3:**
+>
+>     $ puppet apply -e "testing { h: }"
+>     Error: No set of title patterns matched the title "h".
+>
+> The fact that these are not particularly helpful is tracked as [issue 5220](http://projects.puppetlabs.com/issues/5220).
 
 #### Specifying Allowed Values
 
