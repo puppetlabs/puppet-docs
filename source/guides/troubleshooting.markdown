@@ -444,7 +444,7 @@ variable which was set in the foo class.
 ### err: Could not retrieve catalog: Invalid parameter 'foo' for type 'bar'
 
 When you are developing new custom types, you should restart both
-the puppetmasterd and the puppetd before running the configuration
+the puppet master and the puppet agent before running the configuration
 using the new custom type. The pluginsync feature will then
 synchronise the files and the new code will be loaded when both
 daemons are restarted.
