@@ -54,7 +54,6 @@ A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of
 ### Miscellaneous References
 
 * [HTTP API](/guides/rest_api.html) --- reference of API-accessible resources
-* [Puppet Language Guide](/guides/language_guide.html) --- an older version of the [Puppet reference manual's language reference](#puppet-27-reference-manualpuppet27reference)
 * [Puppet Manpages](/man/) --- detailed help for each Puppet application
 
 ### Generated References
@@ -97,7 +96,6 @@ Get Puppet up and running at your site.
 
 ### Basic Features and Use
 
-* [Puppet Language Guide](/guides/language_guide.html) --- all the language details
 * [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html) --- nearly all Puppet code should be in modules.
 * [Installing Modules from the Puppet Forge](/puppet/2.7/reference/modules_installing.html) --- save time by using pre-existing modules
 * [Techniques](/guides/techniques.html) --- common design patterns, tips, and tricks

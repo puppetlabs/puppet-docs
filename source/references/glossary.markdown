@@ -88,7 +88,7 @@ An arbitrary segment of your Puppet [site](#site), which can be served a differe
 
 ### expression
 
-The Puppet language supports several types of expressions for comparison and evaluation purposes. Amongst others, Puppet supports boolean expressions, comparision expressions, and arithmetic expressions. See the [Language Guide](/guides/language_guide.html#expressions) for more information.
+The Puppet language supports several types of expressions for comparison and evaluation purposes. Amongst others, Puppet supports boolean expressions, comparision expressions, and arithmetic expressions. See [the Expressions page](/puppet/latest/reference/lang_expressions.html) in the latest Puppet language reference for more information.
 
 ### external node classifier
 
@@ -217,7 +217,7 @@ A collection of classes, resources, and variables in a manifest, which will only
 
 When a managed node retrieves or compiles its catalog, it will receive the contents of a single matching node statement, as well as any classes or resources declared outside any node statement. The classes in every _other_ node statement will be hidden from that node.
 
-See [nodes](/guides/language_guide.html#nodes) in the language guide for more details.
+See [node definitions](/puppet/latest/reference/lang_node_definitions.html) in the latest Puppet language reference for more details.
 
 ### node scope
 
@@ -388,11 +388,11 @@ The unique identifier (in a given Puppet [catalog](#catalog)) of a resource or c
 {% endhighlight %}
 
 * In native resource types, the [name or namevar](#namevar) will use the title as its default value if you don't explicitly specify a name.
-* In a defined resource type, the title is available for use throughout the definition as the `$title` variable.
+* In a defined resource type or a class, the title is available for use throughout the definition as the `$title` variable.
 
 Unlike the name or namevar, a resource's title need not map to any actual attribute of the target system; it is only a referent. This means you can give a resource a single title even if its name has to vary across different kinds of system, like a configuration file whose location differs on Solaris.
 
-For more on the usage of titles, see the [language guide](/guides/language_guide.html).
+For more on resource titles, see [the Resources page](/puppet/latest/reference/lang_resources.html#syntax) of the latest Puppet language reference.
 
 ### top scope
 

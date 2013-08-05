@@ -8,7 +8,7 @@ nav: windows.html
 
 [modules]: /puppet/latest/reference/modules_fundamentals.html
 [manifests]: /learning/manifests.html
-[lang]: /guides/language_guide.html
+[lang]: /puppet/latest/reference/lang_summary.html
 
 [file]: /references/latest/type.html#file
 [user]: /references/latest/type.html#user
@@ -31,13 +31,13 @@ Just as on \*nix systems, Puppet manages resources on Windows using manifests wr
 File Paths on Windows
 -----
 
-Windows file paths must be written in different ways at different times, due to various tools' conflicting rules for backslash use. 
+Windows file paths must be written in different ways at different times, due to various tools' conflicting rules for backslash use.
 
 * Windows file system APIs accept both the backslash (`\`) and forwardslash (`/`) to separate directory and file components in a path.
 * Some Windows programs only accept backslashes in file paths.
-* \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character). 
+* \*nix shells and many programming languages --- including the Puppet language --- use the backslash as an [escape character](http://en.wikipedia.org/wiki/Escape_character).
 
-As a result, any system that interacts with \*nix and Windows systems as equal peers will unavoidably have complicated behavior around backslashes. 
+As a result, any system that interacts with \*nix and Windows systems as equal peers will unavoidably have complicated behavior around backslashes.
 
 The following guidelines will help you use backslashes safely in Windows file paths with Puppet.
 
@@ -123,9 +123,9 @@ Line Endings in Windows Text Files
 
 Windows uses CRLF line endings instead of \*nix's LF line endings.
 
-* If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` escape sequence should be specified as part of the content. 
+* If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` escape sequence should be specified as part of the content.
 * If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings. 
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
@@ -147,10 +147,10 @@ Puppet can manage the following resource types on Windows nodes:
     }
 {% endhighlight %}
 
-Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported. 
+Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported.
 
 * If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file).
-* Windows NTFS filesystems are case-preserving, but case-insensitive; Puppet is case-sensitive. Thus, you should be consistent in the case you use when referring to a file resource in multiple places in a manifest. 
+* Windows NTFS filesystems are case-preserving, but case-insensitive; Puppet is case-sensitive. Thus, you should be consistent in the case you use when referring to a file resource in multiple places in a manifest.
 * In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
 * Permissions modes are set as though they were \*nix-like octal modes; Puppet translates these to the equivalent access controls on Windows.
     * The read, write, and execute permissions translate to the `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights.
@@ -158,7 +158,7 @@ Puppet can manage files and directories, including owner, group, permissions, an
     * The `Everyone` SID is used to represent users other than the owner and group.
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
-* The source of a file can be a puppet URL, a local path, or a path to a file on a mapped drive. 
+* The source of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
 * When downloading a file from a puppet master with a `puppet:///` URI, Puppet will set the permissions mode to match that of the remote file. Be sure to set the proper mode on any remote files.
 
 
@@ -243,8 +243,8 @@ To find the PackageCode from an MSI, you can use Orca, or you can get to it prog
 #### Additional Notes on Windows Packages
 
 * The source parameter is required, and must refer to a local .msi file, a file from a mapped drive, or a UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
-* The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install. 
-    * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. 
+* The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install.
+    * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes.
 * As of Puppet 3.0, `windows` is the default provider parameter for all Windows packages. Using `msi` will result in a deprecation
 warning.
 
