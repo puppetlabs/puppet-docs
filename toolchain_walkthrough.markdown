@@ -175,6 +175,17 @@ ___WARNING: You should not regenerate references for older versions of these doc
 - Clean loadpath: You should never have Puppet installed from Puppet-Labs-provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
 - ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord.
 
+
+### Apache and Puppet
+
+Eventually, once the site is deployed to the servers, it's served by Apache, although it could be served by more or less anything.
+
+In production, the Apache virtual host file is managed by a Puppet module in the puppetlabs-modules repo. This is a private repository only accessible to Puppet Labs employees.
+
+If you need to do redirects from one page to another within the docs.puppetlabs.com domain, where by "you" we mean "us," edit the puppetlabs-modules/site/puppetlabs/templates/docs_vhost.erb file.
+
+If you need to do redirects from the wiki, edit the puppetlabs-modules/dist/redmine/templates/vhost-redmine-unicorn.nginx.erb file. WATCH OUT, because there's another file that looks nearly identical but is not used.
+
 ## Linkchecker
 
 Linkchecker is a python app that does what it says on the tin. It's not a mandatory part of the toolchain, but it's nice to run once in a while and catch the inevitable link rot. You can install it with macports by running sudo port install linkchecker, not sure if there's another good way to install it.

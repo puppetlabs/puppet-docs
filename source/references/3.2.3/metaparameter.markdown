@@ -58,7 +58,6 @@ the following code will not work:
 There's no way here for the Puppet parser to know that these two stanzas
 should be affecting the same file.
 
-See the [Language Guide](http://docs.puppetlabs.com/guides/language_guide.html) for more information.
 
 
 
@@ -221,7 +220,7 @@ Stages can only be set on classes, not individual resources.  This will
 fail:
 
     file { '/foo': stage => 'pre', ensure => file }
-    
+
 
 ### subscribe
 

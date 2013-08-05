@@ -7,12 +7,12 @@ title: "Module Fundamentals"
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
 [documentation]: ./modules_documentation.html
-<!-- {% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %} -->     
+<!-- {% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %} -->
 [plugins]: /guides/plugins_in_modules.html
 
 
-[classes]: /guides/language_guide.html#classes
-[defined_types]: /guides/language_guide.html#defined-resource-types
+[classes]: ./lang_classes.html
+[defined_types]: ./lang_defined_types.html
 [enc]: /guides/external_nodes.html
 [conf]: /guides/configuring.html
 [environment]: /guides/environment.html
@@ -40,14 +40,14 @@ Using Modules
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/site.pp
-    
+
     node default {
       include apache
-      
+
       class {'ntp':
         enable => false;
       }
-      
+
       apache::vhost {'personal_site':
         port    => 80,
         docroot => '/var/www/personal',
@@ -62,13 +62,13 @@ To make a module available to Puppet, **place it in one of the directories in Pu
 
 > ### The Modulepath
 >
-> **Note:** The `modulepath` is a list of directories separated by the system path-separator character. On 'nix systems, this is the colon (:), while Windows uses the semi-colon (;). The most common default modulepaths are: 
+> **Note:** The `modulepath` is a list of directories separated by the system path-separator character. On 'nix systems, this is the colon (:), while Windows uses the semi-colon (;). The most common default modulepaths are:
 >
 > * `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules` (for Puppet Enterprise)
 > * `/etc/puppet/modules:/usr/share/puppet/modules` (for open source Puppet)
 >
 > Use `puppet config print modulepath` to see your currently configured modulepath.
-> 
+>
 >  If you want both puppet master and puppet apply to have access to the modules, set the modulepath in [puppet.conf][conf] to go to the `[main]` block. Modulepath is also one of the settings that can be different per [environment][].
 
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
@@ -103,7 +103,7 @@ This example module, named "`my_module`," shows the standard module layout in mo
     * `files/` --- Contains static files, which managed nodes can download.
         * `service.conf` --- This file's URL would be **`puppet:///modules/my_module/service.conf`.**
     * `lib/` --- Contains plugins, like custom facts and custom resource types. See ["Using Plugins"][plugins] for more details.
-    * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details. 
+    * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
         * `init.pp`
@@ -125,7 +125,7 @@ Name of module | :: | Other directories:: (if any) | Name of file (no extension)
  `my_module`   |`::`|                              | `other_class`
  `my_module`   |`::`|    `implementation::`        |     `foo`
 
-Thus: 
+Thus:
 
 * `my_module::other_class` would be in the file `my_module/manifests/other_class.pp`
 * `my_module::implementation::foo` would be in the file `my_module/manifests/implementation/foo.pp`
@@ -144,11 +144,11 @@ Certain module names are disallowed:
 * settings
 
 
-### Files 
+### Files
 
 Files in a module's `files` directory are automatically served to agent nodes. They can be downloaded by using **puppet:/// URLs** in the `source` attribute of a [`file`][file] resource.
 
-Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module. 
+Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
 
 
 [file]: /references/stable/type.html#file
@@ -163,7 +163,7 @@ So `puppet:///modules/my_module/service.conf` would map to `my_module/files/serv
 
 ### Templates
 
-Any ERB template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function. The output of the template is a simple string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable. 
+Any ERB template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function. The output of the template is a simple string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
 
 **The template function can look up templates identified by shorthand:**
 
@@ -177,7 +177,7 @@ So `template('my_module/component.erb')` would render the template `my_module/te
 Writing Modules
 -----
 
-To write a module, simply write classes and defined types and place them in properly named manifest files as described above. 
+To write a module, simply write classes and defined types and place them in properly named manifest files as described above.
 
 * [See here][classes] for more information on classes
 * [See here][defined_types] for more information on defined types
@@ -186,8 +186,8 @@ To write a module, simply write classes and defined types and place them in prop
 Best Practices
 -----
 
-The [classes][], [defined types][defined_types], and [plugins][] in a module **should all be related,** and the module should aim to be **as self-contained as possible.** 
+The [classes][], [defined types][defined_types], and [plugins][] in a module **should all be related,** and the module should aim to be **as self-contained as possible.**
 
-Manifests in one module should never reference files or templates stored in another module. 
+Manifests in one module should never reference files or templates stored in another module.
 
-Be wary of having classes declare classes from other modules, as this makes modules harder to redistribute. When possible, it's best to isolate "super-classes" that declare many other classes in a local "site" module. 
+Be wary of having classes declare classes from other modules, as this makes modules harder to redistribute. When possible, it's best to isolate "super-classes" that declare many other classes in a local "site" module.
