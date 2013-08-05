@@ -54,6 +54,7 @@ A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of
 ### Miscellaneous References
 
 * [HTTP API](/guides/rest_api.html) --- reference of API-accessible resources
+* [History of the Puppet Language](/guides/language_history.html) --- a table showing which language features were added and removed in which Puppet versions
 * [Puppet Manpages](/man/) --- detailed help for each Puppet application
 
 ### Generated References
