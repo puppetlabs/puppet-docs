@@ -6,7 +6,7 @@ gem 'rack'
 gem 'git'
 
 group(:build_site) do
-  gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
+  gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'aug_2013_upgrade_test'
   gem 'kramdown'
   gem 'vlad'
   gem 'vlad-git'
