@@ -161,9 +161,7 @@ task :generate do
   system("mkdir -p #{output_dir}")
   system("rm -rf #{output_dir}/*")
   system("mkdir #{output_dir}/references")
-  Dir.chdir(source_dir) do
-    system("bundle exec jekyll  #{output_dir}")
-  end
+  system("bundle exec jekyll build --source #{source_dir} --destination #{output_dir}")
 
   Rake::Task['references:symlink'].invoke
   Rake::Task['symlink_latest_versions'].invoke
