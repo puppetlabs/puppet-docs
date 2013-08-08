@@ -1,5 +1,5 @@
-* Debian 6 "Squeeze" (current stable release) (also supported by [Puppet Enterprise][peinstall])
-* Debian 7 "Wheezy" (current testing distribution)
+* Debian 6 "Squeeze" (obsolete stable release) (also supported by [Puppet Enterprise][peinstall])
+* Debian 7 "Wheezy" (current stable release) (also supported by [Puppet Enterprise][peinstall])
 * Debian "Sid" (current unstable distribution)
 * Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
 * Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
