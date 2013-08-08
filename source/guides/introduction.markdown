@@ -173,7 +173,7 @@ Learning The Language
 
 Seeing a few examples in action will greatly help in learning the system.
 
-For information about the Puppet language, see the excellent
-[language guide](./language_guide.html)
+For information about the Puppet language, see the latest
+[Puppet language reference](/puppet/latest/reference/lang_summary.html)
 
 

@@ -23,7 +23,7 @@ Although many Forge modules are exact solutions that fit your site, many more ar
 
 ### Module Basics
 
-Modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/latest/configuration.html#modulepath) setting in `puppet.conf`.)
+Modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/2.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directories. Their basic structure looks like this:
 
@@ -67,7 +67,7 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
     }
 {% endhighlight %}
 
-For more on resource declarations, [see the manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources section of the language guide](/guides/language_guide.html#resources). For more about how file paths with backslashes work in manifests for Windows, [see the page on writing manifests for Windows](/windows/writing.html).
+For more on resource declarations, [see the manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/2.7/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, [see the page on writing manifests for Windows](/windows/writing.html).
 
 * Change the `ensure` attribute of the `file` resource to `absent`.
 * Delete the `content` line of the `file` resource.
@@ -122,12 +122,12 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
 > Your copy of the `motd` module now behaves differently.
 >
 > * For more about templates, see [the templates chapter of Learning Puppet][templates] or the [templates section of the Puppet documentation][tempdoc].
-> * For more about variables, including "facts" like `hostname`, see [the variables chapter of Learning Puppet][variables] or the [variables section of the language guide][langvar].
+> * For more about variables, including "facts" like `hostname`, see [the variables chapter of Learning Puppet][variables] or the [variables page of the language reference][langvar].
 
 [templates]: /learning/templates.html
 [tempdoc]: /guides/templating.html
 [variables]: /learning/variables.html
-[langvar]: /guides/language_guide.html#variables
+[langvar]: /puppet/2.7/reference/lang_variables.html
 
 Writing a Puppet Module
 -----
@@ -189,14 +189,14 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 > * Uses a selector [conditional][] and a variable to change the name of the root user's primary group on Solaris.
 > * Uses three [`file` resources][file_type] to manage the `fstab`, `passwd`, and `crontab` files on \*nix systems. These resources do not manage the content of the files, only their ownership and permissions.
 
-[file_type]: /references/latest/type.html#file
-[conditional]: /guides/language_guide.html#conditionals
+[file_type]: /references/2.7.latest/type.html#file
+[conditional]: /puppet/2.7/reference/lang_conditional.html
 
 See the Puppet documentation for more information about writing classes.
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
-* For a complete but terse guide to the Puppet language's syntax, [see the language guide](/guides/language_guide.html).
-* For complete documentation of the available resource types, [see the type reference](/references/latest/type.html).
+* For a complete but terse guide to the Puppet language's syntax, [see the Puppet 2.7 language reference](/puppet/2.7/reference/lang_summary.html).
+* For complete documentation of the available resource types, [see the type reference](/references/2.7.latest/type.html).
 * For short printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 ### Using a Homemade Module in the Console

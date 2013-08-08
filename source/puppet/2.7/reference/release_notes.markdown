@@ -617,7 +617,7 @@ Handle network-interface-security in upstart
     This commit adds that special case, and also updates the search method with a
     corresponding special case so the jobs can be recognized as upstart jobs.
 
-## Puppet 2.7.14
+## Puppet 2.7.16
 
 (\#8858) Explicitly set SSL peer verification mode.
 
@@ -749,6 +749,10 @@ Evaluate node classes either in top or node scope
     this will cause the system to reboot when `/etc/init.d/reboot.sh status` is
     executed.
     Exclude helperscripts when searching inside `/etc/init.d`.
+
+## Puppet 2.7.15
+
+Puppet 2.7.15 was never released, and its commits were rolled into 2.7.16.
 
 ## Puppet 2.7.14
 

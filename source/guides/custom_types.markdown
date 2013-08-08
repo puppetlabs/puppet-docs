@@ -3,89 +3,124 @@ layout: legacy
 title: Custom Types
 ---
 
+[package_type]: /references/latest/type.html#package
+[module]: /puppet/latest/reference/modules_fundamentals.html
+[custom_functions]: /guides/custom_functions.html
+[custom_facts]: /guides/custom_facts.html
+[pluginsync]: /references/latest/configuration.html#pluginsync
+[symbol]: http://www.ruby-doc.org/core/Symbol.html
+[ruby_block]: http://www.robertsosinski.com/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
+[markdown]: http://daringfireball.net/projects/markdown/
+[metaparameters]: /puppet/latest/reference/lang_resources.html#metaparameters
+[inpage_whitespace]: #type-documentation
+[namevar]: /puppet/latest/reference/lang_resources.html#namenamevar
+
 Custom Types
 ============
 
-Learn how to create your own custom types & providers in Puppet
+This page describes how to create your own custom resource types to add new resource types to Puppet. It covers the nature of the type/provider split, how to develop the type file, and how types and providers interact; for more complete details on developing providers, see [the Provider Development page](./provider_development.html).
 
-* * *
+Puppet types and providers must always be written in Ruby. If you're new to Ruby, what is going on should still be somewhat evident from the examples below, but some experience with Ruby is definitely recommended.
 
-Organizational Principles
--------------------------
+The internals of how types are created have changed over Puppet's lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn't do.
+
+> **Note:** Often the best way to learn types and providers is to read the existing type and providers in Puppet's core codebase. One warning: Don't start with the `file` type; start with `user` or `package` instead. New extension writers often expect that `file` would be a nice easy one to get started with, and it's actually an incredibly complicated morass of special cases that most types just don't have to deal with.
+>
+> User or package, not file.
+
+Types and Providers
+-------------------
 
 When making a new Puppet type, you will create two things:
-The resource type itself, which we normally just call a
-'type', and the provider(s) for that type.  While Puppet does not require
-Ruby experience to use, extending Puppet with new Puppet types and providers does require some knowledge of the Ruby programming language, as is the case with
-new functions and facts.   If you're new to Ruby, what is going on should
-still be somewhat evident from the examples below, and it is easy to learn.
 
-The resource types provide the model for what you can do; they define
-what parameters are present, handle input validation, and they
-determine what features a provider can (or should) provide.
+* The "type" itself, which is a model of the resource type. It defines what parameters are available, handles input validation, and determines what features a provider can (or should) provide.
+* One or more providers for that type, which implements the type by translating its capabilities into specific operations on a system. (For example, the [package][package_type] has `yum` and `apt` providers which implement package resources on Red Hat-like and Debian-like systems, respectively.)
 
-The providers implement support for that type by translating calls
-in the resource type to operations on the system.  As mentioned
-in our [Introduction](./introduction.html) and [language guide](./language_guide.html), an example would be
-that "yum" and "apt" are both different providers that fulfill
-the "package" type.
-
-Deploying Code
+Deploying and Using Types and Providers
 --------------
 
-Once you have your code, you will need to have it both on the
-server and also distributed to clients.
+To use new types and providers, two conditions must be met:
 
-The best place to put this content is within Puppet's configured `libdir`. The libdir is special because you can use the `pluginsync` system to copy all of your plugins from the fileserver to all of your clients (and separate Puppetmasters, if they exist)). To enable pluginsync, set `pluginsync=true` in puppet.conf and, if necessary, set the `pluginsource` setting. The contents of pluginsource
-will be copied directly into `libdir`, so make sure you make a
-puppet/type directory in your `pluginsource`, too.
+1. The type and providers must be present in a [module][] on the puppet master server(s). Like other types of plugin (such as [custom functions][custom_functions] and [custom facts][custom_facts]), they should go in the module's `lib` directory:
+    * Type files should be located at `lib/puppet/type/<TYPE NAME>.rb`.
+    * Provider files should be located at `lib/puppet/provider/<TYPE NAME>/<PROVIDER NAME>.rb`.
+2. If you are using an agent/master Puppet deployment, each agent node must have its [`pluginsync` setting][pluginsync] in puppet.conf set to `true`.
+    * Starting in Puppet 3.0, this setting defaults to true.
+    * In Puppet 2.x, it defaults to false and must be explicitly enabled.
 
-In Puppet 0.24 and later, the "old" `pluginsync` function has been
-deprecated and you should see the [Plugins In Modules](./plugins_in_modules.html) page for details of distributing custom types and facts via modules.
+In masterless Puppet using puppet apply, pluginsync is not required, but the module containing the type and providers must be present on each node.
 
-The internals of how types are created have changed over Puppet's
-lifetime, and this document will focus on best practices, skipping over all the things you can but probably shouldn't do.
+See [the Plugins In Modules page](./plugins_in_modules.html) for more details on distributing custom types and facts via modules.
 
-Resource Types
---------------
+
+Types
+-----
 
 When defining the resource type, focus on what the resource can do,
-not how it does it (that is the job for providers!).
+not how it does it.
 
-The first thing you have to figure out is what `properties` the resource has. Properties are the changeable bits, like a file's owner or a user's UID.
+### Creating a Type
 
-After adding properties, Then you need to add any other necessary `parameters`, which can affect how the resource behaves but do not directly manage the resource itself. Parameters handle things like whether to recurse when managing files or where to look for service init scripts.
-
-Resource types also support special parameters, called `MetaParameters`, that are supported by all resource types, but you can safely ignore these since they are already defined and you won't normally add more.  You may remember that things like `require` are metaparameters.
-
-Types are created by calling the `newtype` method on `Puppet::Type`,
-with the name of the type as the only required argument.  You can
-optionally specify a parent class; otherwise, `Puppet::Type` is used
-as the parent class.  You must also provide a block of code
-used to define the type:
-
-You may wish to read up on "Ruby blocks" to understand more about
-the syntax.  Blocks are a very powerful feature of Ruby and are
-not surfaced in most programming languages.
+Types are created by calling the `newtype` method on the `Puppet::Type` class:
 
 {% highlight ruby %}
+    # lib/puppet/type/database.rb
     Puppet::Type.newtype(:database) do
-        @doc = "Create a new database."
-        ... the code ...
+      @doc = "Create a new database."
+      # ... the code ...
     end
 {% endhighlight %}
 
-The above code should be stored in puppet/type/database.rb (within the `libpath`), because of the name of the type we're creating ("database").
+* The name of the type is the only required argument to `newtype`. The name must be a [Ruby symbol][symbol], and the name of the file containing the type must match the type's name.
+* The `newtype` method also requires a [block of code][ruby_block], specified with either curly braces (`{ ... }`) or the `do ... end` syntax. This code block will implement the type, and contains all of the properties and parameters. The block will not be passed any arguments.
 
-A normal type will define multiple properties and possibly
-some parameters. Once these are defined, as long as the type is put into
-lib/puppet/type anywhere in Ruby's search path, Puppet will
-autoload the type when you reference it in the Puppet language.
+> #### Options
+>
+> When creating a type, you may also specify options after the name. There are currently two options available, and neither is frequently used.
+>
+> Options must be specified as a hash, although Ruby method arguments allow you to leave the curly braces off of hashes.
+>
+> * `:self_refresh => true` --- Cause resources of this type to **refresh** (as if they had received an event via a notify/subscribe relationship) whenever a change is made to the resource. Most notably used in the core `mount` type.
+> * `:parent => <CLASS>` --- A parent class to use for the type; if not specified, `Puppet::Type` is used
+> as the parent class. Alternate parent classes are not used anywhere in the core Puppet types, and we are not providing examples of it at this time.
 
-We have already mentioned Puppet provides a `libdir` setting where you can copy the files outside the Ruby search path.  See also [Plugins In Modules](./plugins_in_modules.html)
+### Type Documentation
 
-All types should also provide inline documentation in the @doc class
-instance variable. The text format is in Restructured Text.
+You can and should write a string describing the resource type and assign it to the `@doc` instance variable. This string can be extracted by the `puppet doc --reference type` command (which outputs a complete type reference which will include your new type) and the `puppet describe` command (which outputs information about specific types).
+
+The string should be in [Markdown][] format (avoiding dialect-specific features that aren't universally supported). When the Puppet tools extract the string, they will strip the greatest common amount of leading whitespace from the front of each line, excluding the first line. For example:
+
+{% highlight ruby %}
+    Puppet::Type.newtype(:database) do
+      @doc = %q{Creates a new database. Depending
+        on the provider, this may create relational
+        databases or NoSQL document stores.
+
+        Example:
+
+            database {'mydatabase':
+              ensure => present,
+              owner  => root,
+            }
+      }
+    end
+{% endhighlight %}
+
+In this example, any whitespace would be trimmed from the first line (in this case, it's zero spaces), then the greatest common amount would be trimmed from remaining lines. Three lines have four leading spaces, two lines have six, and two lines have eight, so four leading spaces would be trimmed from each line. This leaves the example code block indented by four spaces, and thus doesn't break the Markdown formatting.
+
+### Properties and Parameters
+
+The bulk of a type consists of **properties** and **parameters.**
+
+Both properties and parameters will become the resource attributes available when declaring a resource of the new type. The difference between the two is subtle but important:
+
+* Properties should map more or less directly to something measurable on the target system. For example, the UID and GID of a user account would be properties, since their current state can be queried or changed. In practical terms, setting a value for a property causes a method to be called on the provider.
+* Parameters change how Puppet manages a resource, but do not necessarily map directly to something measurable. For example, the `user` type's `managehome` attribute is a parameter --- its value affects what Puppet does, but the question of whether Puppet is managing a home directory isn't an innate property of the user account.
+
+Additionally, there are a few special attributes called [metaparameters][], which are supported by all resource types. These don't need to be handled when creating new types; they're implemented elsewhere.
+
+A normal type will define **multiple properties** and must define **at least one parameter.**
+
 
 ### Properties
 
@@ -105,8 +140,8 @@ ensurable method in your type definition:
 
 {% highlight ruby %}
     Puppet::Type.newtype(:database) do
-        ensurable
-        ...
+      ensurable
+      ...
     end
 {% endhighlight %}
 
@@ -126,11 +161,11 @@ type:
 
 {% highlight ruby %}
     Puppet::Type.newtype(:database) do
-        ensurable
-        newproperty(:owner) do
-            desc "The owner of the database."
-            ...
-        end
+      ensurable
+      newproperty(:owner) do
+        desc "The owner of the database."
+        ...
+      end
     end
 {% endhighlight %}
 
@@ -148,8 +183,8 @@ but it works for other properties, too:
 
 {% highlight ruby %}
     newproperty(:enable) do
-        newvalue(:true)
-        newvalue(:false)
+      newvalue(:true)
+      newvalue(:false)
     end
 {% endhighlight %}
 
@@ -162,11 +197,11 @@ validation:
 
 {% highlight ruby %}
     newproperty(:owner) do
-        validate do |value|
-            unless value =~ /^\w+/
-                raise ArgumentError, "%s is not a valid user name" % value
-            end
+      validate do |value|
+        unless value =~ /^\w+/
+          raise ArgumentError, "%s is not a valid user name" % value
         end
+      end
     end
 {% endhighlight %}
 
@@ -188,7 +223,7 @@ job), you can declare this:
 
 {% highlight ruby %}
     newproperty(:minute, :array_matching => :all) do # :array_matching defaults to :first
-        ...
+      ...
     end
 {% endhighlight %}
 
@@ -225,34 +260,71 @@ Parameters are defined essentially exactly the same as properties;
 the only difference between them is that parameters never result in
 methods being called on providers.
 
-Like ensure, one parameter you will always want to define is the
-one used for naming the resource. This is nearly always called
-name:
+To define a new parameter, call the `newparam` method. This method takes the name of the parameter (as a symbol) as its argument, as well as a block of code. You can and should provide documentation for each parameter by calling the `desc` method inside its block. Leading whitespace is trimmed from multiline strings [as described above][inpage_whitespace].
 
 {% highlight ruby %}
     newparam(:name) do
-        desc "The name of the database."
+      desc "The name of the database."
     end
 {% endhighlight %}
 
-You can name your naming parameter something else, but you must
-declare it as the namevar:
+#### Namevar
+
+Every type must have at least **one mandatory parameter:** the [**namevar.**][namevar] This parameter will uniquely identify each resource of the type on the target system --- for example, the path of a file on disk, the name of a user account, or the name of a package.
+
+If the user doesn't specify a value for the namevar when declaring a resource, its value will default to the **title** of the resource.
+
+There are three ways to designate a namevar. Every type must have **exactly one** parameter that meets **exactly one** of these criteria:
+
+**Option 1:** Create a parameter whose name is `:name`. Since most types just use `:name` as the namevar, it gets special treatment and will automatically become the namevar.
+
+{% highlight ruby %}
+    newparam(:name) do
+      desc "The name of the database."
+    end
+{% endhighlight %}
+
+**Option 2:** Provide the `:namevar => true` option as an additional argument to the `newparam` call. This allows you to use a namevar with a different, more descriptive name (such as the `file` type's `path` parameter).
 
 {% highlight ruby %}
     newparam(:path, :namevar => true) do
-        ...
+      ...
     end
 {% endhighlight %}
 
-In this case, path and name are both accepted by Puppet, and it
-treats them equivalently.
+**Option 3:** Call the `isnamevar` method (which takes no arguments) inside the parameter's code block. This allows you to use a namevar with a different, more descriptive name. There is no practical difference between this and option 2.
+
+{% highlight ruby %}
+    newparam(:path) do
+      isnamevar
+      ...
+    end
+{% endhighlight %}
+
+> ##### Errors When Namevar is Absent
+>
+> If you try to create a type that lacks a namevar, you'll see one of two errors when declaring resources of that type, depending on the Puppet version.
+>
+> **Puppet 2.7:**
+>
+>     $ puppet apply -e "testing { h: }"
+>     Error: undefined method `merge' for []:Array
+>
+> **Puppet 3:**
+>
+>     $ puppet apply -e "testing { h: }"
+>     Error: No set of title patterns matched the title "h".
+>
+> The fact that these are not particularly helpful is tracked as [issue 5220](http://projects.puppetlabs.com/issues/5220).
+
+#### Specifying Allowed Values
 
 If your parameter has a fixed list of valid values, you can declare
 them all at once:
 
 {% highlight ruby %}
     newparam(:color) do
-        newvalues(:red, :green, :blue, :purple)
+      newvalues(:red, :green, :blue, :purple)
     end
 {% endhighlight %}
 
@@ -263,9 +335,9 @@ instance, given the following definition:
 
 {% highlight ruby %}
     newparam(:color) do
-        desc "Your color, and stuff."
+      desc "Your color, and stuff."
 
-        newvalues(:blue, :red, /.+/)
+      newvalues(:blue, :red, /.+/)
     end
 {% endhighlight %}
 
@@ -281,27 +353,27 @@ and munge hooks:
 
 {% highlight ruby %}
     newparam(:color) do
-        desc "Your color, and stuff."
+      desc "Your color, and stuff."
 
-        newvalues(:blue, :red, /.+/)
+      newvalues(:blue, :red, /.+/)
 
-        validate do |value|
-            if value == "green"
-                raise ArgumentError,
-                    "Everyone knows green databases don't have enough RAM"
-            else
-                super
-            end
+      validate do |value|
+        if value == "green"
+          raise ArgumentError,
+            "Everyone knows green databases don't have enough RAM"
+        else
+          super
         end
+      end
 
-        munge do |value|
-            case value
-            when :mauve, :violet # are these colors really any different?
-                :purple
-            else
-                super
-            end
+      munge do |value|
+        case value
+        when :mauve, :violet # are these colors really any different?
+          :purple
+        else
+          super
         end
+      end
     end
 {% endhighlight %}
 
@@ -376,12 +448,12 @@ those parameters are used with providers missing those features:
 
 {% highlight ruby %}
     newtype(:coloring) do
-        feature :paint, "The ability to paint.", :methods => [:paint]
-        feature :draw, "The ability to draw."
+      feature :paint, "The ability to paint.", :methods => [:paint]
+      feature :draw, "The ability to draw."
 
-        newparam(:color, :required_features => %w{paint}) do
-            ...
-        end
+      newparam(:color, :required_features => %w{paint}) do
+        ...
+      end
     end
 {% endhighlight %}
 
@@ -395,7 +467,7 @@ it has that feature:
 
 {% highlight ruby %}
     Puppet::Type.type(:coloring).provide(:drawer) do
-        has_feature :draw
+      has_feature :draw
     end
 {% endhighlight %}
 
