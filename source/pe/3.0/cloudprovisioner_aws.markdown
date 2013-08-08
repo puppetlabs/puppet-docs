@@ -114,13 +114,12 @@ Demo
 
 The following video demonstrates the EC2 instance creation process in more detail:
 
-<object width="560" height="315"><param name="movie"
-value="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
-value="always"></param><embed
-src="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="560" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
+<object width="560" height="315">
+<param name="movie" value="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"></param>
+<param name="allowFullScreen" value="true"></param>
+<param name="allowscriptaccess" value="always"></param>
+<embed src="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
+</object>
 
 Connecting to an EC2 instance
 -----
@@ -156,13 +155,13 @@ To terminate an instance, use the `node_aws terminate` action.
 
 
 The following video demonstrates the EC2 instance termination process in more detail:
-<object width="560" height="315"><param name="movie"
-value="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
-value="always"></param><embed
-src="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="560" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
+
+<object width="560" height="315">
+<param name="movie" value="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"></param>
+<param name="allowFullScreen" value="true"></param>
+<param name="allowscriptaccess" value="always"></param>
+<embed src="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
+</object>
 
 Getting more help
 -----
