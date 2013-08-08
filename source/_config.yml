@@ -1,7 +1,7 @@
 ---
 pygments: true
 markdown: kramdown
-include: _index.html
+include: [_index.html]
 destination: ../output
 url: "http://docs.puppetlabs.com"
 safe: false
