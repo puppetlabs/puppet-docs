@@ -255,33 +255,6 @@ For Dashboard to receive reports, there are two requirements:
           reports = store, http
           reporturl = http://dashboard.example.com:3000/reports/upload
 
-#### Configuring Reports on Puppet 0.25.x
-
-Puppet 0.25.x lacks the `http` report handler, so you'll need to do a few extra steps.
-
-* Make sure that all agents have reporting turned on:
-
-        # puppet.conf (on each agent)
-        [puppetd]
-          report = true
-* Copy Dashboard's custom report handler into puppet master's `libdir`:
-
-        # mkdir -p $(puppetmasterd --configprint libdir)/puppet/reports
-        # cp ext/puppet/puppet_dashboard.rb $(puppetmasterd --configprint libdir)/puppet/reports/
-  
-  If the puppet master is a different machine, you'll need to SCP the file to it first. Also note that you may need to edit the report processor if you're running Dashboard on a different server or port, as it assumes Dashboard is running on localhost:3000.
-* Add `puppet_dashboard` to your puppet master's `reports` setting:
-
-        # puppet.conf (on puppet master)
-        [puppetmasterd]
-          reports = store, puppet_dashboard
-* If your puppet master server is also running puppetd AND it has `pluginsync` turned on, you'll also need to change the agent's `libdir`:
-
-        # puppet.conf (on puppet master)
-        [puppetd]
-          pluginsync = true
-          libdir = $vardir/agent_lib
-
 ### Using Dashboard for Node Classification
 
 You can use Dashboard's external node classifier (ENC) alongside traditional Puppet DSL node definitions. However, if you use your own custom ENC (or LDAP nodes), you won't be able to use Dashboard's ENC.
