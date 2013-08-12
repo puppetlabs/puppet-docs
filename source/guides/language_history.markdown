@@ -30,6 +30,7 @@ Feature                                                                         
 [`$title`, `$name`, and `$module_name` available in parameter lists][titleparam] |        |            |        | X (2.6.5)                   | X                  | X   | X
 [Optional trailing comma in parameter lists][param_trail]                        |        |            |        |                             | X (2.7.8)          | X   | X
 [Hyphens/dashes allowed in variable names][hyphenvars] \*                        |        |            |        |                             | X (2.7.3 - 2.7.14) |     |
+[Automatic class parameter lookup via data bindings][auto_params]                |        |            |        |                             |                    | X   | X
 ["Unless" conditionals][unless]                                                  |        |            |        |                             |                    | X   | X
 Iteration over arrays and hashes                                                 |        |            |        |                             |                    |     | [X (future)][32_iter]
 [The modulo (`%`) operator][modulo]                                              |        |            |        |                             |                    |     | X
@@ -38,6 +39,7 @@ Iteration over arrays and hashes                                                
 
 \*\* Until Puppet 2.6.7, hashes could not be nested and hash members could not be used in selectors.
 
+[auto_params]: /hiera/1/puppet.html#automatic-parameter-lookup
 [param_trail]: /puppet/latest/reference/lang_defined_types.html#defining-a-type
 [ds]: /puppet/2.7/reference/lang_scope.html
 [plusign]: /puppet/latest/reference/lang_classes.html#appending-to-resource-attributes
