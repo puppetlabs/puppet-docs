@@ -83,6 +83,8 @@ These answers are always needed.
 `q_fail_on_unsuccessful_master_lookup`
 : **Y or N** --- Whether to quit the install if the puppet master cannot be reached.
 
+`q_skip_master_verification`
+: **Y or N** --- This is a silent install option, default is N. When set to Y, the installer will skip master verification which allows the user to deploy agents when they know the master won't be available.
 
 ### Puppet Master Answers
 
@@ -182,6 +184,10 @@ These answers are generally needed if you are installing the console role.
   * the installed version of PE
 
   If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
+  
+  `q_public_hostname` 
+: **String** ---   A publicly accessible hostname where the console can be accessed if the host name resolves  to a private interface (e.g., Amazon EC2). This is set automatically by the installer on EC2 nodes, but can be set manually in environments with multiple hostnames.
+
 
 ### Database Support Answers
 
