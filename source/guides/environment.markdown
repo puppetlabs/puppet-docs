@@ -55,7 +55,10 @@ Before you start, be aware that environments have some limitations, most of whic
 * Puppet will only read the [`modulepath`](/references/stable/configuration.html#modulepath), [`manifest`](/references/stable/configuration.html#manifest), [`manifestdir`](/references/stable/configuration.html#manifestdir), and [`templatedir`](/references/stable/configuration.html#templatedir) settings from environment config blocks; other settings in any of these blocks will be ignored in favor of settings in the `[master]` or `[main]` blocks. ([Issue 7497](http://projects.puppetlabs.com/issues/7497))
 * File serving only works well with environments if you're only serving files from modules; if you've set up custom mount points in `fileserver.conf`, they won't work in your custom environments. (Though hopefully you're only serving files from modules anyway.)
 * Prior to Puppet 3, environments set by [external node classifiers][enc] were not authoritative. If you are using Puppet 2.7 or earlier, you must set the environment in the agent node's config file.
-* Serving custom types and providers from an environment-specific modulepath sometimes fails. ([Issue 4409](http://projects.puppetlabs.com/issues/4409))
+* Serving custom ruby code via pluginsync, including custom types, providers, facts and functions is not currently functional on a per-environment basis. You can still use custom ruby code to to extend puppet, but it should be identical for all environments. Non-identical custom code across modules can result in unpredictable behavior. See the following open issues for more information:
+    * [Issue 4409](http://projects.puppetlabs.com/issues/4409)
+    * [Issue 12173](http://projects.puppetlabs.com/issues/12173)
+    * [Issue 17210](http://projects.puppetlabs.com/issues/17210)
 
 Configuring Environments on the Puppet Master
 ---------------------------------------------
