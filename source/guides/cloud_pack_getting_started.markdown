@@ -139,10 +139,6 @@ traffic from the machine running the Cloud Provisioner actions.**
 Your puppet master server will also have to be reachable from your newly
 created instances.
 
-[^platforms]: Currently, supported platforms are restricted by the install
-script chosen. Testing has only currently been done on Ubuntu 11.04 (Natty) and
-CentOS 5.4.
-
 ### Provisioning
 
 In order to use the `install` action, any newly provisioned instances will need
