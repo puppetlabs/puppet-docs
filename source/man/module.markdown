@@ -86,19 +86,6 @@ included in the module's metadata.</p>
 <p>Array of strings representing paths of modified files.</p></dd>
 <dt><code>clean</code> - Clean the module download cache.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet module clean</p>
-
-<p><code>DESCRIPTION</code></p>
-
-<p>Cleans the module download cache.</p>
-
-<p><code>RETURNS</code></p>
-
-<p>A status Hash:</p>
-
-<p>  { :status => "success", :msg => "Cleaned module cache." }</p></dd>
-<dt><code>generate</code> - Generate boilerplate for a new module.</dt><dd><p><code>SYNOPSIS</code></p>
-
 <p>puppet module generate <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
