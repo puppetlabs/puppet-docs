@@ -27,6 +27,12 @@ To allow anonymous, read-only access to the console, do the following:
 * Edit the `/etc/puppetlabs/console-auth/cas_client_config.yml` file and change the `global_unauthenticated_access` setting to `true`.
 * Restart Apache by running `sudo /etc/init.d/pe-httpd restart`.
 
+### Changing Session Duration
+
+If you wish to change the duration of a user's session before they have to re-authenticate you need to edit two settings. In `/etc/puppetlabs/rubycas-server/config.yml` change the `maximum_session_lifetime` setting by specifying, in seconds, how long the session should last. The default is "1200" (20 minutes).
+
+Next, in `/etc/puppetlabs/console_auth/cas_client_config.yml`, edit the `session_timeout` setting so it is the same as `maximum_session_lifetime`. Again, the default is 1200 seconds.
+
 
 Configuring Third-Party Authentication Services
 -----
