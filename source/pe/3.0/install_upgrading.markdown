@@ -7,12 +7,12 @@ canonical: "/pe/latest/install_upgrading.html"
 
 
 
-**Note:** These instructions refer to upgrades to PE 3.0.1. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2, refer to the [previous upgrade instructions](install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
+**Note:** These instructions refer to upgrades to PE 3.0.1 from 2.8.2 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2 or higher, refer to the [previous upgrade instructions](install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
 
 Summary
 -----
 
-The Puppet Installer script is used to perform both installations and upgrades. After [downloading][downloading]  the appropriate version of the PE packages and running `puppet-enterprise-installer`, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.0.1.
+The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.0.1.
 
 The process involves the following steps, which must be performed in order: 
 
@@ -24,7 +24,7 @@ The process involves the following steps, which must be performed in order:
  
 If more than one of these roles is present on a given node (for example your master and console run on the same node), the installer will upgrade each role in the correct order. 
 
-> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console and database nodes first.
+> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console, and database nodes first.
 
 
 Important Notes and Warnings
@@ -51,7 +51,7 @@ Important Notes and Warnings
 Downloading PE
 -----
 
-If you haven't done so already, you will need a Puppet Enterprise tarball appropriate for your system(s). See the [Installing PE][downloading] section of this guide for information on downloading Puppet Enterprise tarballs.
+If you haven't done so already, you will need a Puppet Enterprise tarball appropriate for your system(s). See the [Installing PE][downloading] section of this guide for more information on accessing Puppet Enterprise tarballs, or go directly to the [download page](http://info.puppetlabs.com/download-pe.html).
 
 [downloading]: ./install_basic.html#downloading-pe
 

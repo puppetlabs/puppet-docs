@@ -14,7 +14,7 @@ Puppet Enterprise version 3.0.1 is a feature and maintenance release. It adds ne
 
   * *SLES Support*
   
-PE 3.0.1 now fully supports all PE roles on nodes running SLES 11sp1 or higher.
+    PE 3.0.1 now fully supports all PE roles on nodes running SLES 11 SP1 or higher.
 
   * *Changes and Additions to Console Rake Tasks* 
   
