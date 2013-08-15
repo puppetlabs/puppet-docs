@@ -24,7 +24,7 @@ The process involves the following steps, which must be performed in order:
  
 If more than one of these roles is present on a given node (for example your master and console run on the same node), the installer will upgrade each role in the correct order. 
 
-> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows nodes, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html).
+> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console and database nodes first.
 
 
 Important Notes and Warnings
@@ -83,7 +83,7 @@ The upgrade script will run and provide detailed information as to what it insta
 
 #### Install PuppetDB/PostgreSQL
 
-On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from 2.8, you will need to provide some answers to the upgrader, as follows:
+On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
 
    *  `?? Install puppet master? [y/N]` Answer N. This will not be your master. The master was upgraded in the previous step.
    *  `?? Puppet master hostname to connect to? [Default: puppet]` Enter the FQDN of the master node you upgraded in the previous step.
