@@ -5,8 +5,6 @@ description: Puppet release notes for version 3.x
 ---
 
 [classes]: ./lang_classes.html
-<!-- TODO better hiera url -->
-[hiera]: https://github.com/puppetlabs/hiera
 [lang_scope]: ./lang_scope.html
 [qualified_vars]: ./lang_variables.html#accessing-out-of-scope-variables
 [auth_conf]: /guides/rest_auth_conf.html
@@ -67,6 +65,28 @@ Puppet 3.x Release Notes
 ------------------------
 
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
+
+Puppet 3.2.4
+-----
+
+Released August 15, 2013.
+
+3.2.4 is a security fix release of the Puppet 3.2 series. It has no other bug fixes or new features.
+
+### Security Fixes
+
+#### [CVE-2013-4761 (`resource_type` Remote Code Execution Vulnerability)](http://puppetlabs.com/security/cve/cve-2013-4761/)
+
+By using the `resource_type` service, an attacker could cause Puppet to load
+arbitrary Ruby files from the puppet master server's file system. While this behavior is not
+enabled by default, `auth.conf` settings could be modified to allow it. The exploit requires
+local file system access to the Puppet Master.
+
+
+#### [CVE-2013-4956 (Puppet Module Permissions Vulnerability)](http://puppetlabs.com/security/cve/cve-2013-4956/)
+
+The puppet module subcommand did not correctly control permissions of modules it installed, instead transferring permissions that existed when the module was built.
+
 
 Puppet 3.2.3
 -----

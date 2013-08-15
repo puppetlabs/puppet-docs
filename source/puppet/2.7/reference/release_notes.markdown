@@ -7,6 +7,28 @@ description: Puppet release notes for version 2.7.x.
 Puppet 2.7 Release Notes
 ------------------------
 
+Puppet 2.7.23
+-----
+
+Released August 15, 2013.
+
+2.7.23 is a security fix release of the Puppet 2.7 series. It has no other bug fixes or new features.
+
+### Security Fixes
+
+#### [CVE-2013-4761 (`resource_type` Remote Code Execution Vulnerability)](http://puppetlabs.com/security/cve/cve-2013-4761/)
+
+By using the `resource_type` service, an attacker could cause Puppet to load
+arbitrary Ruby files from the puppet master server's file system. While this behavior is not
+enabled by default, `auth.conf` settings could be modified to allow it. The exploit requires
+local file system access to the Puppet Master.
+
+
+#### [CVE-2013-4956 (Puppet Module Permissions Vulnerability)](http://puppetlabs.com/security/cve/cve-2013-4956/)
+
+The puppet module subcommand did not correctly control permissions of modules it installed, instead transferring permissions that existed when the module was built.
+
+
 ## Puppet 2.7.22
 
 2.7.22 is a security fix release of the Puppet 2.7 series. It has no other bug fixes or new features.
