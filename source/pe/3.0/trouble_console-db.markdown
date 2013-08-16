@@ -10,7 +10,7 @@ Below are some common issues that can cause trouble with the databases that supp
 PostgreSQL is Taking Up Too Much Space
 -----
 
-PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off.
+PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 
 Recovering from a Lost Console Admin Password
 -----

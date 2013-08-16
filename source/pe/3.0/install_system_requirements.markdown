@@ -10,11 +10,12 @@ Before installing Puppet Enterprise:
 * Ensure that your nodes are running a supported operating system.
 * Ensure that your puppet master and console servers are sufficiently powerful.
 * Ensure that your network, firewalls, and name resolution are configured correctly and all target servers are communicating.
-* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating roles, install in this order:
-    1. Puppet Master
-    2. Database Support
-    3. Console
-    4. Agents
+* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating roles, install them in this order:
+
+1. Puppet Master
+2. Database Support/PuppetDB
+3. Console
+4. Agents
 
 Operating System
 -----
@@ -23,13 +24,13 @@ Puppet Enterprise 3.0 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
-Red Hat Enterprise Linux     | 5 & 6                                   | x86 & x86\_64 | all roles
-CentOS                       | 5 & 6                                   | x86 & x86\_64 | all roles
-Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all roles
-Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all roles
-Oracle Linux                 | 5 & 6                                   | x86 & x86\_64 | all roles
-Scientific Linux             | 5 & 6                                   | x86 & x86\_64 | all roles
-SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | not supported (coming soon)
+Red Hat Enterprise Linux     | 5 & 6                                   | x86 & x86\_64 | all 
+CentOS                       | 5 & 6                                   | x86 & x86\_64 | all 
+Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all 
+Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all 
+Oracle Linux                 | 5 & 6                                   | x86 & x86\_64 | all 
+Scientific Linux             | 5 & 6                                   | x86 & x86\_64 | all 
+SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | all 
 Solaris                      | 10                                      | SPARC & i386  | agent
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2 7, 8, & 2012 | x86 & x86\_64 | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
@@ -121,24 +122,20 @@ cronie (RHEL 6)     |                        |                        |         
 vixie-cron (RHEL 5) |                        |                        |                          |
 virt-what           |                        |                        |                          |
 
-
-  <br>   
-***SLES***
-
-Support for SLES is delayed and will be added to the next release of PE 3.0, no later than August 15, 2013.
-<br>
-
-<!-- TODO
+  <br> 
+    
 ***SLES***
 
 All Nodes | Master Nodes   | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 ----------|----------------|---------------|--------------------------|------------------------
-pciutils  | libapr1        | libapr1       | libjpeg                  | libxslt
-pmtools   | libapr-util1   | libapr-util1  |                          | libxml2
-cron      | java-1_6_0-ibm | curl          |                          |
-libxml2   | curl           |               |                          |
+pciutils  | libapr1        | libapr1       | libjpeg                  | libxml2
+pmtools | libapr-util1   | libapr-util1  |                          | 
+cron      | libxslt | curl          |                          |
+libxml2  | curl           |               |                          |
 net-tools | libjpeg        |               |                          |
- -->
+libxslt      |
+ 
+ <br>
 
 ***Debian***
 

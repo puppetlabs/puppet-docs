@@ -6,35 +6,33 @@ canonical: "/pe/latest/install_upgrading.html"
 ---
 
 
-{% comment %}
 
-Things we don't have a place for yet, since we don't support console/etc upgrades yet: this upgrade note for systems that used to run 2.5.
-
-> **Note:** If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files.
->
-> You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
-
-We should think about how to handle diminishing returns on stuff like this that involves very old versions.
-
-{% endcomment %}
-
+**Note:** These instructions refer to upgrades to PE 3.0.1 from 2.8.2 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2 or higher, refer to the [previous upgrade instructions](install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
 
 Summary
 -----
 
-Upgrading from an existing Puppet Enterprise deployment to PE 3.0 is currently only supported for puppet *agent* nodes running PE 2.5.3 or later. All other nodes must be migrated by installing the 3.0 master, console, database and cloud provisioner (if applicable) roles on a new node (or nodes, if you have separated roles), pointing your existing agents at that new node and then upgrading them to 3.0. A complete upgrade solution will be in place no later than August 15, 2013. If you wish to upgrade now, the instructions below should help.
+The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.0.1.
 
-If you'd prefer to wait until the complete solution is available, we nonetheless recommend that you set up some isolated test environments which duplicate existing parts of your infrastructure. This will help to familiarize you with the new features and functions of PE 3.0, and to get an idea of how your particular environment will need to be adapted.
+The process involves the following steps, which must be performed in order: 
+
+ 1. Provision and prepare a node for use by PuppetDB
+ 2. Upgrade Master
+ 3. Install PuppetDB/Database support role
+ 4. Upgrade Console
+ 5. Upgrade Agents
+ 
+If more than one of these roles is present on a given node (for example your master and console run on the same node), the installer will upgrade each role in the correct order. 
+
+> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console, and database nodes first.
 
 
-> ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows nodes, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html).
+Important Notes and Warnings
+---
 
+- Upgrading is only supported from a PE 2.8.2 or newer installation. To upgrade from a version older than 2.8.2, you'll need to first upgrade to 2.8.2, make sure everything is working correctly, and then move on to upgrading to 3.0.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/).
 
-### Important Notes and Warnings
-
-- Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is installed and will then run in "install" or "upgrade" mode as appropriate.
-
-- Upgrading is currently only supported for agents. If you attempt to upgrade an existing master, console, database support, or cloud provisioner node, the installer will quit with an error.
+- Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
 
 - PE 3 uses Ruby 1.9 which is stricter about character encoding than the previous version used in PE 2.8. If your manifests contain non-ASCII characters they may fail to compile or behave unpredictably. When upgrading, make sure manifests contain only ASCII characters. For more information see the [release notes](./appendix.html#puppet-code-issues-with-utf-8-encoding).
 
@@ -46,120 +44,80 @@ If you'd prefer to wait until the complete solution is available, we nonetheless
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
 
     If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
+    
+- If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+
 
 Downloading PE
 -----
 
-If you haven't done so already, you will need a Puppet Enterprise tarball appropriate for your system(s). See the [Installing PE][downloading] section of this guide for information on downloading Puppet Enterprise tarballs.
+If you haven't done so already, you will need a Puppet Enterprise tarball appropriate for your system(s). See the [Installing PE][downloading] section of this guide for more information on accessing Puppet Enterprise tarballs, or go directly to the [download page](http://info.puppetlabs.com/download-pe.html).
 
 [downloading]: ./install_basic.html#downloading-pe
 
+Once downloaded, copy the appropriate tarball to each node you'll be upgrading.
 
-Migrating a Deployment
+
+Running the Upgrade
 -----
 
-Follow these steps to migrate your 2.8.x deployment to 3.0. For the purpose of this description, we will assume you are using a "monolithic" architecture wherein the console, database support, and master roles are all running on the same node. If your deployment uses separate roles, the steps are largely similar, except that you should remember to install the roles in this order:
+Before starting the upgrade, all of the components (agents, master, console, etc.) in your current deployment should be correctly configured and communicating with each other, and live management should be up and running with all nodes connected.
 
- 1. Master
- 2. Database support
- 3. Console
+**Important:** All installer commands should be run as `root`.
 
-Further, we assume that all of the components (agents, master, console, etc.) in your 2.8.x deployment are correctly configured and communicating with each other, and that live management is up and running with all nodes connected.
+**Note:** PE3 has moved from the MySQL implementation used in PE 2.x to PostgreSQL for all database support. PE3 also now includes PuppetDB, which requires PostgreSQL. When upgrading from 2.x to 3.x, the installer will migrate your existing data from MySQL to PostgreSQL. To do this, the installer requires a staging directory to which it can export the data before transferring it to the new PostgreSQL databases. 
 
-**Note** PE 3 uses Ruby 1.9 which is stricter about character encoding than the previous version used in PE 2.8. If your manifests contain non-ASCII characters they may fail to compile or behave unpredictably. When upgrading, make sure manifests contain only ASCII characters. For more information see the [release notes](./appendix.html#known-issues)
+#### Prepare a Node for PostgreSQL
 
-### Create a New PE 3.0 Master
-Start by installing a new master/console/database on a fresh node (do *not* use an existing 2.8.x node) as described in the [basic install instructions](./install_basic.html).
+You will need to have a node available and ready to receive an installation of PuppetDB and PostgreSQL. This can be the same node as the one running the master and console (if you have a monolithic, all-on-one implementation), or it can be a separate node (if you are running a split role implementation). This node should be up and running and contactable at a known FQDN before starting the upgrade process. The upgrader can install a pre-configured version of PostgreSQL along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the correct users and access. This also needs to be done BEFORE starting the upgrade.
 
-### Move Certificates from the Old Master to the New
+#### Upgrade Master
 
-Next, you will move and/or create new credentials as follows (substituting the correct FQDN for your 2.8 master):
+Start the upgrade by running the `puppet-enterprise-installer` script on the master node. You can use any of the flags described in the [install instructions](http://docs.puppetlabs.com/pe/latest/install_basic.html). The script will detect any previous versions of PE roles and stop any PE services that are currently running. The script will then step through the install script, providing default answers based on the roles it has detected on the node (e.g., if the script detects only an agent on a given node, it will provide "No" as the default answer to installing the master role). The installer should be able to answer all of the questions based on your current installation except for the hostname and port of the PuppetDB node you prepped before starting the install.
 
-#### Copy CA and Agents' Certificates
-First, we'll migrate the CA and agents' certificates from the old 2.8 master to the new 3.0 master.
+As with installation, the script will also check for any missing dependent vendor packages and offer to install them automatically.
 
-On the new, 3.0 master run:
+Lastly, the script will summarize the upgrade plan and ask you to go ahead and perform the upgrade. Your answers to the script will be saved as usual in `/etc/puppetlabs/installer/answers.install`. 
 
-    cp -a /etc/puppetlabs/puppet/ssl /etc/puppetlabs/puppet/ssl.orig
-    rm -fr /etc/puppetlabs/puppet/ssl/*
-    scp -r root@<2.8.x.master>:/etc/puppetlabs/puppet/ssl/* /etc/puppetlabs/puppet/ssl/
+The upgrade script will run and provide detailed information as to what it installs, what it updates and what it replaces. It will preserve existing certificates and `puppet.conf` files.
 
-#### Generate a New Cert for the 3.0 Master
-Because the new master's certificate that was initially generated during installation was signed by the now retired CA, we need to generate a new certifcate for the new master, which will get signed by the CA we copied in the previous step.
+#### Install PuppetDB/PostgreSQL
 
+On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
 
-On the new, 3.0 master, run:
+   *  `?? Install puppet master? [y/N]` Answer N. This will not be your master. The master was upgraded in the previous step.
+   *  `?? Puppet master hostname to connect to? [Default: puppet]` Enter the FQDN of the master node you upgraded in the previous step.
+   *  `?? Install PuppetDB? [y/N]` Answer Y. This is the reason we are performing this installation on this node.
+   *  `?? Install the cloud provisioner? [y/N]` Choose whether or not you would like to install the cloud provisioner role on this node.
+   *  `?? Install a PostgreSQL server locally? [Y/n]` If you want the installer to create a PostgreSQL server instance for PuppetDB data, answer 'Y'. If you are using an existing PostgresSQL instance located elsewhere, answer 'N' and be prepared to answer questions about its hostname, port, database name, database user, and password.
+   *  `?? Certname for this node? [Default: my_puppetdb_node.example.com ]` Enter the FQDN for this node.
+   *  `?? Certname for the master? [Default: hostname.entered.earlier ]` You only need to change the default if the hostname and certname of your master are different.
+   
+The installer will save auto-generated users and passwords in `/etc/puppetlabs/installer/database_info.install`. Do not delete this file, you will need its information in the next step.
+   
+#### Upgrade the Console
 
-    puppet cert clean pe-internal-broker
-    puppet cert generate 3-0master.domain --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain
-    puppet cert generate pe-internal-broker --dns_alt_names=3-0master,3-0master.domain,puppet,puppet.domain,stomp
+On the node serving the console role, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment.
 
-#### Copy Console Certificates
-Next, for the internal certificates used by the console, we also need migrate over the certificates signed by the 2.8 CA.
+**Note:** When upgrading a node running the console role, the upgrader requires access to a directory it can use as a temporary staging area to hold the data it exports from MySQL as it migrates to PostgreSQL. This directory should have enough space to accomodate roughly twice the size of the current databases. Pruning the MySQL data before starting the upgrade will make things go faster. Note that your old database and the temporary export file will NOT be deleted after the upgrade completes. 
 
-On the new, 3.0 master, run:
+When the installer asks `?? What is a staging directory for use by the export utility?` enter an absolute path to your selected directory.
 
-    scp root@2.8.x.master:/opt/puppet/share/puppet-dashboard/certs/* /opt/puppet/share/puppet-dashboard/certs/
+You will also need to tell the installer the hostname and port number for the PuppetDB node you created in the previous step. And, you will  have to provide database credentials, specifically the database names, user names, and passwords for the `console`, `console_auth`, and `pe-puppetdb` databases. These can be found in `/etc/puppetlabs/installer/database_info.install` on the PuppetDB node.
 
-#### Create New PuppetDB Certificates
-Again, we need to replace the certificate generated during installtion with a certificate signed by the 2.8 CA.
+#### Upgrade Agents and Complete the Upgrade
 
-On the new, 3.0 master, run:
+On each node with a puppet agent, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.
 
-    rm -fr /etc/puppetlabs/puppetdb/ssl/*
-    /opt/puppet/sbin/puppetdb-ssl-setup -f
-
-#### Restart Services
-To get the PE services to refresh their cached certificates, we need to restart them.
-
-On the new, 3.0 master, run `service <service name> restart` for these services: `pe-puppet`, `pe-httpd`, and `pe-puppetdb`.
-
-### Point 2.8.x Agents at the New 3.0 Master
-
-#### Update `puppet.conf`
-
-If your deployment uses a DNS CNAME to refer to the master, you'll need to update its DNS entry to reflect the new master. Otherwise, if you use FQDN's to refer to the master, you'll need to update the agents' configuration as follows.
-
-On each agent, update the `/etc/puppetlabs/puppet/puppet.conf` file to point to the new, 3.0 master. Specifically, you will make two changes:
-
-    [main]
-        archive_file_server=<fqdn of 3.0 master>
-    [agent]
-        server=<fqdn of 3.0 master>
-
-
-#### Remove Prior Installer Facts
-
-On all agents, remove the facts file generated by the previous installation:
-
-    rm -f /etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt
-
-#### Update Agent Catalogs
-
-Trigger puppet runs on each agent with `puppet agent -t` until a message is displayed which warns that the 2.8 agent cannot communicate via live management with a 3.0 master:
-
-    notice: In order for the Puppet Enterprise 3 master to communicate with an agent using MCollective, the agent must also be version 3.
-    The mynode node is running Puppet Enterprise version 2.8.1 so it cannot communicate with the PE 3 master either via the Console's Live     Management view or via the MCO command line tool
-    To fix this, upgrade the agent to Puppet Enterprise 3.
-    ...
-
-Next, verify that all the agents have reported by checking to see if they're listed in the console.
-
-###Upgrade Agents to 3.0
-
-Now that the agents are successfully pointed at the 3.0 master, they can be upgraded to 3.0 as well. This is done by running  `puppet-enterprise-installer` on each agent after the 3.0 tarball has been copied onto them and unpacked. The installer will detect that this is an upgrade, and proceed  to ask the usual install questions regarding vendor packages, symlinks, etc.
-
-The installer should do a puppet run at the end of installation, but if the new agents are not yet available in live management, you can get them connected by waiting a minute or two and then running `puppet agent -t` one more time.
-
-At this point you should have a fully functioning PE 3.0 deployment with a new master, console, and db support and upgraded agents connected to the new master and console.
-
+PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading.
 
 Checking For Updates
 -----
 
-[Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
+[Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. To see the version of PE you are currently using, you can run `puppet --version` on the command line .
 
 {% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 [updateslink]: http://info.puppetlabs.com/download-pe.html
 
 **Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** As part of the check, it passes some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable checking can be found in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers).

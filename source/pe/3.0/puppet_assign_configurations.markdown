@@ -30,7 +30,7 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [console_params]: ./console_classes_groups.html#setting-class-parameters-on-nodes
 [console_vars]: ./console_classes_groups.html#setting-variables-on-nodes
 [enc]: /guides/external_nodes.html
-[rake_api]: ./console_classes_groups.html#rake-api
+[rake_api]: ./console_rake_api.html
 [console_auth]: ./console_auth.html
 [console_classes]: ./console_classes_groups.html
 [forge]: https://forge.puppetlabs.com

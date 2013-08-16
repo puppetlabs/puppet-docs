@@ -18,6 +18,23 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### Puppet 2.8.3 (8/15/2013)
+
+#### Security Fixes
+
+*[CVE-2013-4761 `resource_type` Remote Code Execution Vulnerability](http://puppetlabs.com/security/cve/cve-2013-4761/).*
+
+The `resource_type` service could be used to load arbitrary Ruby files if auth_conf was edited to allow the behavior.
+
+*[CVE-2013-4073 Ruby SSL Vulnerability](http://puppetlabs.com/security/cve/cve-2013-4073/).*
+
+A vulnerability in Ruby's SSL client could allow an attacker to spoof SSL servers via a valid, trusted certificate.
+
+*[CVE-2013-4956 Puppet Module Permissions Vulnerability](http://puppetlabs.com/security/cve/cve-2013-4956/).*
+
+The Puppet Module Tool (PMT) incorrectly transferred a module's original permissions.
+
+
 ### Puppet 2.8.2 (6/18/2013)
 
 #### Security Fix

@@ -85,6 +85,7 @@ This section details the packages that are installed from the various OS repos. 
 | net-tools              |            
 
 *Only needed if java isn't already installed.
+<br>
 
 ***Centos***
 
@@ -99,7 +100,7 @@ This section details the packages that are installed from the various OS repos. 
 | java-1.6.0-openjdk*         
 
 *Only needed if java isn't already installed.
-
+<br>
 
 ***RHEL***
 
@@ -115,7 +116,7 @@ This section details the packages that are installed from the various OS repos. 
 | vixie-cron (RHEL 5)       
 
 *Only needed if java isn't already installed.
-
+<br>
 
 ***SLES***
 

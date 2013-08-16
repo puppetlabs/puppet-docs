@@ -5,8 +5,29 @@ subtitle: "New Features in PE 3.0"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
 
+### Version 3.0.1
+Puppet Enterprise version 3.0.1 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.0.1 release includes the following:
 
-### Overview
+  * *Complete Upgrader Functionality*
+  
+    The puppet installer script can now be used to upgrade all roles in an existing PE deployment, master, agent, console, cloud provisioner, and database support. Upgrades are supported for all PE roles running 2.8.2 or later. For complete information and instructions, visit the [upgrading PE page](install_upgrading.html).
+
+  * *SLES Support*
+  
+    PE 3.0.1 now fully supports all PE roles on nodes running SLES 11 SP1 or higher.
+
+  * *Changes and Additions to Console Rake Tasks* 
+  
+    The PE console provides a number of rake tasks that can be used as a minimal API to perform many functions of the GUI. These can be used to automate workflows, perform large-scale changes, etc. A number of these tasks have been changed (although the old syntax still works, with deprecation warning) See the [Console Rake API](console_rake_api.html) page for more information.
+
+  * *Security Patches*
+  
+    A number of vulnerabilities have been addressed in PE 3.0.1. For details, check the [release notes](appendix.html#release-notes).
+
+
+### Version 3.0.0
+
+#### Overview
 
 Puppet Enterprise (PE) 3.0 is a major release that includes many new functions and features, significant improvements in performance and scalability, many bug fixes and refinements, and upgrades to most major components.
 
@@ -21,7 +42,7 @@ The most significant changes in PE 3.0 are the upgrade to Puppet 3.2, major impr
 
 Note that orchestration tools and PuppetDB are automatically installed and configured by PE 3.0, so you can ignore any installation instructions in documentation linked above.
 
-###Component Upgrades & Additions
+#### Component Upgrades & Additions
 
 Many of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.0. Most notably these include:
 
@@ -36,7 +57,7 @@ In addition, PuppetDB 1.3.1 is now packaged and fully integrated with PE. Since 
 
 For a complete list of package upgrades, visit the [release notes](./appendix.html#release-notes).
 
-### Other Functional Changes & Noteworthy Improvements
+#### Other Functional Changes & Noteworthy Improvements
 
 * Live management and orchestration now support Windows.
 * Puppet agents are now supported on Windows Server 2012.
@@ -47,7 +68,7 @@ For a complete list of package upgrades, visit the [release notes](./appendix.ht
 * Facter 1.7 provides support for [external facts](https://puppetlabs.com/blog/facter-1-7-introduces-external-facts/), which makes writing custom Facter facts much easier than before.
 * All deprecated commands that precede Puppet 2.6.x (e.g., `puppetmasterd`, `puppetd`, `ralsh`, etc.) are now removed.
 
-### New Browser Requirements
+#### New Browser Requirements
 In 3.0, the PE console must be accessed via one of the following browsers:
 
 * Chrome (current versions)
@@ -55,7 +76,7 @@ In 3.0, the PE console must be accessed via one of the following browsers:
 * Safari 5.1 and higher
 * Internet Explorer 9, 10 (IE 8 is no longer supported)
 
-### Delayed Support for Upgrading and SLES
+#### Delayed Support for Upgrading and SLES
 
 * Full functionality for upgrades is not yet complete in 3.0. Upgrading is not yet supported for master, console and database roles, but is fully supported for agents. Visit the [upgrading page](./install_upgrading) for complete instructions on how to migrate a 2.8 deployment to PE 3.0 now. Full upgrade support will be included in the next release of PE 3.0, no later than August 15, 2013.
 * Support for nodes running the SLES operating system is not yet completed. It will be included in the next release of PE 3.0, no later than August 15, 2013.

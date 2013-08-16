@@ -27,7 +27,18 @@ The number of pending tasks shown in the console should start decreasing rapidly
 Optimizing the Database
 -----
 
-PostgreSQL should have `autovacuum=on` set by default. If you're having issues with the database growing too large and unwieldy, make sure this setting did not get turned off.
+PostgreSQL should have `autovacuum=on` set by default. If you're having issues with the database growing too large and unwieldy, make sure this setting did not get turned off. In most cases, this should suffice. In some cases, more heavyweight maintenance measures may be needed (e.g. in cases of data corruption from hardware failures). To help with this, PE provides a rake task that performs advanced database maintenance.
+
+This task, `rake db:raw:optimize[mode]`,  runs in three modes:
+
+  * `reindex` mode will run the REINDEX DATABASE command on the console database.
+  * `vacuum` model will run the VACUUM FULL command on the console database.
+  * `reindex+vacuum` will run both of the above commands on the console database. This is also the default mode if no mode is specified.
+
+To run the task, change your working directory to `/opt/puppet/share/puppet-dashboard` and make sure your PATH variable contains `/opt/puppet/bin` (or use the full path to the rake binary). Then run the task `rake db:raw:optimize[mode]`. You can disregard any error messages about insufficient privileges to vacuum certain system objects because these objects should not require vacuuming. If you believe they do, you can do so manually by logging in to psql (or your tool of choice) as a database superuser.
+
+The PostgreSQL docs contain more detailed information about [vacuuming](http://www.postgresql.org/docs/9.2/static/routine-vacuuming.html) and [reindexing](http://www.postgresql.org/docs/9.2/static/sql-reindex.html).
+
 
 Cleaning Old Reports
 ----------------
