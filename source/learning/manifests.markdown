@@ -236,9 +236,13 @@ Note that you can even leave off the `ensure` attribute, as long as you don't sp
 
 ### Directory Permissions: 644 = 755
 
-We said `/tmp/test2/` should have permissions mode 0644, but our `ls -lah` showed mode 0755. That's because Puppet groups the read bit and the traverse bit for directories.
+We said `/tmp/test2/` should have permissions mode 0644, but our `ls -lah` showed mode 0755. That's because Puppet groups the read and traverse permissions for directories.
 
-This helps with recursively managing directories (with `recurse => true`), so you can allow traversal without making all of the contents of the directory executable.
+> **Details:** With directories, the 4 bit controls whether someone can _list_ the directory and the 1 bit controls whether they can _access any files_ it contains.
+>
+> Most of the time, you want these abilities to be grouped together. However, when recursively managing directories with the `recurse` attribute, you wouldn't want to set all permissions to 0755, because any plain files contained by the directory would become executable! And if Puppet didn't automatically adjust directory permissions, recursively setting permissions of 0644 would make the files in a directory inaccessible to users who should be able to access them.
+>
+> By automatically grouping those permissions, it becomes much easier to set a directory's permissions to match the permissions of the files it contains.
 
 Destinations, Not Journeys
 ---------------
