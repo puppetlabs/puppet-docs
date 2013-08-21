@@ -31,7 +31,9 @@ Defining a Type
 - The `define` keyword
 - A **name**
 - A list of **parameters** (in parentheses, after the name)
-    - Defined types also get a special `$title` parameter without having to declare it, and its value is always set to the title of the resource instance. (The `$name` parameter acts the same way, and usually has the same value as `$title`.) Classes get these too, but they're less useful since a class will only ever have one name.
+    - Defined types always automatically get a special `$title` parameter. Its value is always set to the title of the resource instance. (The `$name` parameter acts the same way --- you can treat it as a synonym for `$title`.)
+
+        Classes get `$title` and `$name` parameters too, but they're less useful since a class only has one name.
 - A **block of Puppet code**
 
 Like this:
