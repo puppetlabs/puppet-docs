@@ -63,26 +63,28 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 Summary
 -----
 
-As described in the [Puppet Modules and Manifests](./puppet_modules_manifests.html) and [Puppet Overview](./puppet_overview.html) pages of this manual, **classes** are named chunks of Puppet code which can be assigned directly to nodes. A class generally manages a fairly limited piece of configuration.
+As we've established, **classes** are named chunks of Puppet code that generally manage a fairly limited piece of configuration. Classes can be assigned directly to nodes.  
 
 Each node's complete configuration will be composed of many classes. Puppet Enterprise (PE) provides several facilities for choosing which classes will be assigned to which nodes, as well as for configuring those classes. This page describes the basic concepts of assigning and configuring classes, and details each available source of class and configuration data in Puppet Enterprise.
+
+You can also read more about classes in [Puppet Modules and Manifests](./puppet_modules_manifests.html) and [Puppet Overview](./puppet_overview.html).
 
 Basics of Assigning and Configuring Classes
 -----
 
 ### Assigning Classes
 
-_Assigning_ a class to a node (also called _declaring_ the class, when it's done in a Puppet manifest) causes Puppet to evaluate the resources in that class and add them to that node's configuration catalog.
+_Assigning_ a class to a node (also called _declaring_ a class, when it's done in a Puppet manifest) causes Puppet to evaluate the resources in that class and add them to that node's configuration catalog.
 
-To assign a class, it must first be available to the puppet master. This means it must be present in an installed module.
+Before you can assign a class, it must first be available to the puppet master. This means it must be present in an installed module.
 
-Puppet Enterprise has several methods for assigning classes; see the section on **data sources** below.
+Puppet Enterprise has several methods for assigning classes; these are described in the section on **data sources** below.
 
 ### Configuring Classes
 
 Some classes can be assigned with no configuration, but many classes can (or must) be configured to change their behavior. This gives a class the flexibility to meet different needs for different nodes and different infrastructures.
 
-There are two main ways to configure classes in Puppet: **class parameters** and **top-scope variables.** Each module's author dictates which method to use; see the documentation of the classes you are using for local details.
+There are two main ways to configure classes in Puppet: using **class parameters** and/or **top-scope variables.** Each module's author dictates which method to use; see the documentation of the classes you are using for local details.
 
 If you are using a diverse set of modules written by many authors, you will likely need to use a mixture of these two methods.
 
@@ -123,11 +125,11 @@ In PE, Puppet will use the following **data sources** to configure classes and a
 >
 > 1. [site.pp (site manifest)](#assigning-configuration-data-with-the-site-manifest-sitepp). Can assign **classes, class parameters,** and **variables.** It is unique in that it can also declare resources outside any class.
 > 2. [Hiera](#assigning-configuration-data-with-hiera), which is composed of several levels of hierarchical data sources. Can assign **classes** and **class parameters,** and provide **arbitrary data.**
-> 3. [The PE Console](#assigning-configuration-data-with-the-pe-console), which is composed of nodes and groups. Can assign **classes, class parameters,** and **variables.**
+> 3. [The PE Console](#assigning-configuration-data-with-the-pe-console), which is composed of nodes and groups. Can assign **classes, class parameters**, and **variables.**
 > 4. [PuppetDB](#querying-puppetdb-for-supplementary-configuration-data). Can provide **exported resources** and **generated data** (via functions).
 > 5. [External CMDB](#querying-an-external-cmdb-for-supplementary-configuration-data) (shown as a cloud to indicate that it is optional and Puppet Enterprise knows nothing about it). Can provide **arbitrary data** (via functions).
 > 6. [Puppet agent](#using-puppet-agents-facts-as-hints-for-configuration-data). Can provide facts, which are assigned as top-scope **variables.**
-> 7. Puppet modules, which includes [two special sub-elements labeled "roles" and "profiles."](#assigning-configuration-data-with-role-and-profile-modules) The set of modules as a whole provides the set of **available classes** which can be assigned by other data sources. The role and profile modules can assign **classes** and **class parameters.**
+> 7. Puppet modules, which include [two special sub-elements labeled "roles" and "profiles."](#assigning-configuration-data-with-role-and-profile-modules) The set of modules as a whole provides the set of **available classes** which can be assigned by other data sources. The role and profile modules can assign **classes** and **class parameters**.
 
 
 In this diagram, we can distinguish between two kinds of data sources:
@@ -349,8 +351,8 @@ In order to use Hiera, you must do the following:
 
 Edit the `/etc/puppetlabs/puppet/hiera.yaml` file on your puppet master server, and make the following changes. For complete documentation about this file, see [the Configuring Hiera page][hiera_config] and [the Hierarchies page][hiera_hierarchies] in the Hiera documentation.
 
-1. Choose a main data backend --- yaml or json --- and configure it in [the `:backends` setting](/hiera/1/configuring.html#backends).
-2. Choose a data directory for your Hiera data source files, and configure it in [the `:datadir` sub-setting](/hiera/1/configuring.html#yaml-and-json) under the yaml or json settings:
+1. Choose a main data backend --- YAML or JSON --- and configure it in [the `:backends` setting](/hiera/1/configuring.html#backends).
+2. Choose a data directory for your Hiera data source files, and configure it in [the `:datadir` sub-setting](/hiera/1/configuring.html#yaml-and-json) under the `yaml` or `json` settings:
 
         :yaml:
           :datadir: /etc/puppetlabs/puppet/hieradata
@@ -366,7 +368,7 @@ Each file will correspond to a _possible value_ for _one level_ of the dynamic h
 
 ### Assigning Classes With Hiera
 
-* For complete details about assigning classes with Hiera, see [the Assigning Classes section][hiera_classes] of the Using Hiera with Puppet page.
+* For complete details about assigning classes with Hiera, see [the Assigning Classes section][hiera_classes] of the "Using Hiera with Puppet page."
 
 To assign classes with Hiera, you must add a `hiera_include('classes')` statement to your site.pp file, preferably outside any node definition. (The `'classes'` portion is an arbitrary string, but we recommend `'classes'` for clarity.)
 
@@ -378,7 +380,7 @@ Any classes assigned with Hiera will be evaluated with [include-like][include_li
 
 ### Assigning Class Parameters With Hiera
 
-* For complete details about assigning class parameters with Hiera, see [the Automatic Parameter Lookup section][hiera_autoparams] of the Using Hiera with Puppet page.
+* For complete details about assigning class parameters with Hiera, see [the Automatic Parameter Lookup section][hiera_autoparams] on "Using Hiera with Puppet."
 
 Hiera is capable of assigning values for any class parameter. This works for all parameters of classes assigned by any data source.
 
@@ -390,7 +392,7 @@ Puppet uses a [priority lookup][hiera_priority] to get class parameter values fr
 
 ### Providing Arbitrary Data
 
-* For complete details about retrieving arbitrary data from Hiera, see [the Hiera Lookup Functions section][hiera_functions] of the Using Hiera with Puppet page.
+* For complete details about retrieving arbitrary data from Hiera, see [the Hiera Lookup Functions section][hiera_functions] of the "Using Hiera with Puppet."
 
 Any Puppet manifest --- including site.pp and classes in modules --- can use the following functions to retrieve arbitrary data from Hiera:
 
@@ -436,7 +438,7 @@ Since role and profile modules are just normal modules, they must be used in con
 
 > ### Recommendations
 >
-> Role and profile modules are among the most flexible data sources available to PE. They reflect much of what we currently know about best configuration management practices. Although they're an incomplete solution, they offer a lot of control, and can sometimes provide a more _knowable_ source of configuration data than simply keeping everything in Hiera.
+> Role and profile modules are among the most flexible data sources available to PE. They reflect much of what we currently know about best configuration management practices. Although they're an incomplete solution, they offer a lot of control and can sometimes provide a more _knowable_ source of configuration data than simply keeping everything in Hiera.
 >
 > Since they support managing lone resources as part of a technology stack or node description, role/profile modules work especially well when using complex modules that rely heavily on defined types, such as the OpenStack modules.
 >
