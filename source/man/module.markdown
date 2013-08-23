@@ -275,13 +275,6 @@ puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz</p>
 warning: 1 files modified
 lib/puppet/provider/vcsrepo.rb</p>
 
-<p><code>clean</code></p>
-
-<p>Clean the module download cache:</p>
-
-<p>$ puppet module clean
-Cleaned module cache.</p>
-
 <p><code>generate</code></p>
 
 <p>Generate a new module in the current directory:</p>
