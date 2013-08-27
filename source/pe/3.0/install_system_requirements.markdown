@@ -47,9 +47,8 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
 * The **database support** role can be installed on the same server as the console or, optionally, on a separate, dedicated server.
     * Minimum requirements: These will vary considerably depending on the size of your deployment. However, you'll need a machine able to handle moderate network traffic, perform processor-intensive background tasks, and run a disk-intensive PostgreSQL database server.  The machine should have two to four processor cores. As a rough rule of thumb for RAM needed, start here: 1-500 nodes: 192-1024MB, 500-1000 nodes: 1-2GB, 1000-2000 nodes: 2-4 GB, 2000+ nodes, 4GB or greater. So as your deployment scales, make sure to scale RAM allocations accordingly. More information about scaling PuppetDB is available in the [PuppetDB manual's scaling guidelines](/puppetdb/1.3/scaling_recommendations.html).
 * The **console** role should usually be installed on a separate server from the puppet master, but can optionally be installed on the same server in smaller deployments.
-    * Minimum requirements:  A machine able to handle moderate network traffic, perform processor-intensive background tasks, and run a disk-intensive PostgreSQL database server. Requirements will vary significantly depending on the size and complexity of your site.
-    * Recommended Requirements:
-* The **cloud provisioner** role has very modest requirements.
+    * Minimum requirements:  A machine able to handle moderate network traffic and perform processor-intensive background tasks. It should have a very fast network connection to the database support server, which it uses for all of the console's database requirements. Requirements will vary significantly depending on the size and complexity of your site.
+* The optional **cloud provisioner** role has very modest requirements.
     * Minimum requirements: A system which provides interactive shell access for trusted users. This system should be kept very secure, as the cloud provisioning tools must be given cloud service account credentials in order to function.
 * The **puppet agent** role has very modest requirements.
     * Minimum requirements: Any hardware able to comfortably run a supported operating system.
