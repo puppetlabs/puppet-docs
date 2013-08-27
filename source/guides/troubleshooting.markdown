@@ -79,7 +79,7 @@ To fix this error, either:
     - Delete the puppet master's certificate, private key, and public key:
     
             $ sudo find $(puppet master --configprint ssldir) -name "$(puppet master --configprint certname).pem" -delete
-    - Edit the `certname` setting in the puppet master's `/etc/puppet/puppet.conf` file to match the puppet master's actual hostnames.
+    - Edit the `certname` setting in the puppet master's `/etc/puppet/puppet.conf` file to match the puppet master's actual hostname, and the `dns_alt_names` setting in that file to match any other DNS names you expect the master to need to respond to.
     - Start a non-daemonized WEBrick puppet master instance, and wait for it to generate and sign a new certificate:
     
             $ sudo puppet master --no-daemonize --verbose
