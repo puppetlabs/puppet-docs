@@ -71,7 +71,7 @@ To fix this error, either:
 
 - Modify your agent nodes' settings to point to one of the master's certified hostnames. (This may also require adjusting your site's DNS.) To see the puppet master's certified hostnames, run:
 
-        $ sudo puppet master --configprint certname,certdnsnames
+        $ sudo puppet master --configprint certname
     
     ...on the puppet master server.
 - Re-generate the puppet master's certificate: 
@@ -79,7 +79,7 @@ To fix this error, either:
     - Delete the puppet master's certificate, private key, and public key:
     
             $ sudo find $(puppet master --configprint ssldir) -name "$(puppet master --configprint certname).pem" -delete
-    - Edit the `certname` and `certdnsnames` settings in the puppet master's `/etc/puppet/puppet.conf` file to match the puppet master's actual hostnames.
+    - Edit the `certname` setting in the puppet master's `/etc/puppet/puppet.conf` file to match the puppet master's actual hostnames.
     - Start a non-daemonized WEBrick puppet master instance, and wait for it to generate and sign a new certificate:
     
             $ sudo puppet master --no-daemonize --verbose
