@@ -144,7 +144,7 @@ The following settings are available for the built-in backends:
 
 The directory in which to find data source files.
 
-You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `/etc/puppet/hieradata/%{::environment}` to keep your production and development data entirely separate.
+You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppet/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
 **Default value:** `/var/lib/hiera` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\Hiera\var` on Windows.
 

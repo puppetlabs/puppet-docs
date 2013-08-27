@@ -319,7 +319,7 @@ The `hiera_include` function requests a list of class names from [Hiera][], then
     # /etc/puppetlabs/puppet/hiera.yaml
     ...
     hierarchy:
-      - %{::clientcert}
+      - "%{::clientcert}"
       - common
 
     # /etc/puppetlabs/puppet/hieradata/web01.example.com.yaml

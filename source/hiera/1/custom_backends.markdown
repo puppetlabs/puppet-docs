@@ -388,8 +388,8 @@ class Hiera
         #
         #     ---
         #     :hierarchy:
-        #       - %{clientcert}
-        #       - %{environment}
+        #       - "%{clientcert}"
+        #       - "%{environment}"
         #       - global
         #
         # The datasources() method, being given the scope parameter and a nil
@@ -451,7 +451,7 @@ class Hiera
           #     :backends:
           #       - foo
           #     :hierarchy:
-          #       - %{clientcert}
+          #       - "%{clientcert}"
           #       - global
           #     :foo:
           #       :datadir: /etc/puppetlabs/puppet/hieradata

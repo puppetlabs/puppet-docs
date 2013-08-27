@@ -96,7 +96,7 @@ All Hiera configuration begins with `hiera.yaml`. You can read a [full discussio
 	:json:
 	  :datadir: /etc/puppet/hiera
 	:hierarchy:
-	  - node/%{::fqdn}
+	  - "node/%{::fqdn}"
 	  - common
 
 Step-by-step:
