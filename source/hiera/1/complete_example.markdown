@@ -354,9 +354,9 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
 	:json:
 	  :datadir: /etc/puppet/hieradata
 	:hierarchy:
-	  - node/%{::fqdn}
-      - virtual/%{::virtual}
-	  - osfamily/%{osfamily}
+	  - "node/%{::fqdn}"
+      - "virtual/%{::virtual}"
+	  - "osfamily/%{osfamily}"
 	  - common
 
 Next, we'll need to create directories for our two new data sources:
