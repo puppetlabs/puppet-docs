@@ -23,7 +23,7 @@ The particulars of every infrastructure will vary, but all sysadmins have some n
 
 Below, we'll run through some examples that will help a hypothetical admin meet all these needs by automating things in her infrastructure using PE (and with the assistance of pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com)).  We've tried to choose things that are low-risk but high-reward. That way you can try them out and can not only build your confidence working with PE, you can also actually start to get your infrastructure into a more automated, less on-fire condition relatively soon. Even if the specific services we discuss aren't directly applicable to your particular infrastructure, hopefully these examples will help you see methods you can apply to your specific situation and help you understand how and why PE can make you a better, less-stressed admin.
 
-### A (not-so) Fictional Scenario
+## A (not-so) Fictional Scenario
 
 Judy Argyle[^1] is a sysadmin at a mid-sized flying car manufacturing concern, the National Car Company (NCC). The company is undergoing yet another periodic reorganization, and Judy has been tasked with administering the marketing department's servers. Previously, the department had been maintaining their own machines and so each server has been provisioned and configured in idiosyncratic ways. This has left an infrastructure that is time-consuming to manage, hard to survey, and very brittle. While you might think that flying cars sell themselves, the fact is, as management is constantly reminding Judy, the marketing department is very important and needs to be up and running 24/7/365.
 
@@ -35,7 +35,7 @@ To start with, Judy [downloads PE](http://info.puppetlabs.com/download-pe.html) 
 
 Enough preamble, let's start automating infrastructure.
 
-### Three Things You Can Configuration Manage First
+## Three Things You Can Configuration Manage First
 
 Poor Judy. As we know, the infrastructure of the marketing department is an oddball collection of hardware that was set up ad hoc by a series of interns. Specifically, it consists of the following four servers:
 
@@ -51,7 +51,7 @@ Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has module
 > *Note:* In case you're not familiar with modules, they are self-contained bundles of code and data that use Puppet to express a model for a given piece of infrastructure and interact with the puppet master to build your desired configuration state. A module consists of simple structures of folders and files that deliver manifests and extensions, like custom types or custom facts.) To learn more about the Puppet Forge and the module download and installation process, visit the [installing modules page](/puppet/3/reference/modules_installing.html).
 *Important:* As of PE 2.8, the Puppet module tool is not compatible with Windows nodes, although modules themselves can be readily applied to Windows systems. In a typical Puppet environment, it is unlikely that a module would need to be installed directly on a Windows agent. However, if you encounter a corner case where installing a module directly on a Windows agent is unavoidable, you can do so by downloading tarballs. You may also need to go the tarball route to get Forge modules if local firewall rules prevent access to the Forge.
 
-#### Thing One: NTP
+### Thing One: NTP
 
 The first thing Judy wants to do is get reoriented and comfortable with PE (her Fundamentals class was several weeks and several beers ago). She needs to do something that will show her PE can quickly automate something, anything, across the marketing department's infrastructure. She needs a real-world task that will prove the concept of automation, preferably something that even her boss can see and understand. She decides to start by managing NTP on all the marketing servers.
 
@@ -96,7 +96,7 @@ She can also use the console to show her what happened. By clicking on the Nodes
 ![Events Report for web01 node](assets/web01_report.png)
 
 
-#### Thing Two: MOTD
+### Thing Two: MOTD
 
 Next, Judy decides to move on to managing MOTD on the marketing servers.
 
@@ -163,7 +163,7 @@ Easy enough. Now Judy has something to show her boss to prove that Puppet automa
 
 On to something a little more challenging: using PE to configure and manage Apache.
 
-#### Thing Three: Apache
+### Thing Three: Apache
 
 This webserver is a consistent thorn in Judy's side. A lot of people touch it, marketing people. They are constantly tweaking pages, updating forms processing, adding the latest whiz-bang metrics tools, and who knows what else. They are all very nice people, but none of them has the slightest idea how an Apache server works. The most recent problem is that someone has been mucking around in `/etc` and has deleted the Virtual Hosts config file. As a result, the site is down and only displaying the Apache default page.
 
