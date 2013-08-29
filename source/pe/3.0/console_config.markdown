@@ -151,6 +151,16 @@ authenticator:
 
 > **Note:** If your console server ever ran PE 2.5, the commented-out sections may not be present in this file. To find example config text that can be copied and pasted into place, look for a `config.yml.rpmnew` or `config.yml.dpkg-new` file in the same directory.
 
+> **Note:** The commented-out examples in the config file may or may not have a line break between after the hyphen; both are valid YAML.
+>
+>     # OK
+>     - class: CASServer::Authenticators::SQLEncrypted
+>
+>     # Also OK
+>     -
+>       class: CASServer::Authenticators::SQLEncrypted
+
+
 As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
 
 Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`; you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.

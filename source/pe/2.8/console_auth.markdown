@@ -23,7 +23,7 @@ _Read-Only Users_ can only view information on the console, but cannot perform a
 * accepting or rejecting changes to the baseline in Compliance
 * adding, editing, or removing nodes, groups, or classes
 
-_Read-Write Users_ have access to all parts of the console EXCEPT the user-management interface. Read-write users can interact with the console and use it to perform node management tasks. 
+_Read-Write Users_ have access to all parts of the console EXCEPT the user-management interface. Read-write users can interact with the console and use it to perform node management tasks.
 
 _Admin Users_ have unrestricted access to all parts of the console, including the user-management interface. Through this interface, admin users can:
 
@@ -58,7 +58,7 @@ When you're done working in the console, choose *Logout* from the user account m
 
 ### Viewing Your User Account
 
-To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar. 
+To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar.
 
 ![account menu](./images/console/user_account_menu.jpg)
 
@@ -74,7 +74,7 @@ Users with admin level access can view information about users and manage their 
 
 #### Viewing Users and Settings
 
-Selecting *Admin Tools* will open a screen showing a list of users by email address, their access role and  status. Note that users who have not yet activated their accounts by responding to the activation email and setting a password will show a status of *pending*. 
+Selecting *Admin Tools* will open a screen showing a list of users by email address, their access role and  status. Note that users who have not yet activated their accounts by responding to the activation email and setting a password will show a status of *pending*.
 
 ![user listing screen](./images/console/user_admin_screen.jpg)
 
@@ -84,7 +84,7 @@ Click on a user's row to open a pop-up pane with information about that user. Th
 
 #### Modifying User Settings
 
-To modify the settings for a given user, click on the user's row to open the pop-up pane. In this pane, you can change their role and their email address or reset their password. Don't forget to click the *Save changes* button after making your edits. 
+To modify the settings for a given user, click on the user's row to open the pop-up pane. In this pane, you can change their role and their email address or reset their password. Don't forget to click the *Save changes* button after making your edits.
 
 Note that resetting a password or changing an email address will change that user's status back to *Pending*, which will send them another validation email and require them to complete the validation and password setting process again.
 
@@ -100,7 +100,7 @@ To delete an existing user (including pending users), click on the user's name i
 
 ### Creating Users From the Command Line
 
-New console users can also be created from the command line. This can be used to automate user creation or to import large numbers of users from an external source at once. 
+New console users can also be created from the command line. This can be used to automate user creation or to import large numbers of users from an external source at once.
 
 On the console server, the following command will add a new user:
 
@@ -112,7 +112,7 @@ Thus, to add a read-write user named jones@example.com, you would run:
 
     $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="jones@example.com" PASSWORD="good_password_1" ROLE="Read-Write"
 
-You cannot currently delete or disable users or reset passwords from the command line. 
+You cannot currently delete or disable users or reset passwords from the command line.
 
 Using Third-Party Authentication Services
 ------
@@ -132,7 +132,7 @@ The account interface for an externally authenticated user differs slightly from
 Admins will also notice additional UI on the user administration page which indicates the authentication service ("Account Type") being used for a given user and a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
 
 ![user-list_legend](./images/console/user-list_legend.jpg)
- 
+
 Lastly, note that built-in auth accounts use the email address specified at the end (e.g. "a.user@example.com"), whereas AD/LDAP accounts are generally accessed using just the username (e..g "a.user"), although this may vary in your specific organization's implementation.
 
 There is more, albeit sparse and specialized, information at the [Ruby-CAS github site](http://rubycas.github.com)
@@ -156,7 +156,7 @@ The `cas_client_config.yml` file contains several commented-out lines under the 
 
 Each entry consists of the following:
 
-* A common identifier (e.g. `local`, or `ldap`, etc.) which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator. 
+* A common identifier (e.g. `local`, or `ldap`, etc.) which is used in the console\_auth database and corresponds to the classname of the RubyCAS authenticator.
 *  `default_role` which defines the role to assign to users by default
 * `description` which is simply a human readable description of the service
 
@@ -241,10 +241,19 @@ authenticator:
 
 {% endhighlight %}
 
+> **Note:** The commented-out examples in the config file may or may not have a line break between after the hyphen; both are valid YAML.
+>
+>     # OK
+>     - class: CASServer::Authenticators::SQLEncrypted
+>
+>     # Also OK
+>     -
+>       class: CASServer::Authenticators::SQLEncrypted
+
 As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
 
 Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`; you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.
 
-* * * 
+* * *
 
-- [Next: Grouping and Classifying Nodes](./console_classes_groups.html) 
+- [Next: Grouping and Classifying Nodes](./console_classes_groups.html)
