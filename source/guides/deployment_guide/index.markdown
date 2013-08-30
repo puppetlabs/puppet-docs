@@ -50,39 +50,51 @@ At some point in the not too distant future, you will want to review and regular
 
 If you need some help troubleshooting DNS, please refer to [these requirements](/pe/latest/trouble_install.html#is-dns-wrong) in the Puppet Enterprise User's Guide. Additionally, this [troubleshooting thread](https://ask.puppetlabs.com/question/25/how-can-i-troubleshoot-problems-with-puppets-ssl-layer/) on our ask.puppetlabs site has tons more useful information.
 
-### What Goes Where
+### Choosing Where to Install Each Role
 
-PE gives you a lot of flexibility in choosing where its various components can be installed. These components play various roles and include: the Puppet Agent, the Puppet Master, the Console Server, the Cloud Provisioner and the Database support role (which includes PuppetDB and databases need to support the console).
+PE consists of several components, which are grouped into a handful of **roles.**
 
-#### The Puppet Master
+* The **puppet agent** role gets installed on _every_ server you will manage with PE.
+* The **puppet master, console server,** and **database support** roles make up the central infrastructure of PE. They can either be installed on _three separate servers,_ or _all on one server._ We strongly recommend installing them on separate servers.
+* The optional **cloud provisioner** role can be installed on any puppet agent node.
 
-Start by installing the master. Typically, the puppet master (which may or may not include the console, see below)  is installed on a single node. However, under certain circumstances it may be preferable to run another master. For example, you may wish to run another master in order to provide HA or failover protection.
+Before installing, you must plan where to install these roles.
 
->Generally speaking, running multiple masters only becomes necessary when your infrastructure grows to a certain size. What that size is precisely will vary depending on how complex your infrastructure is, the number of classes and resources, etc. in your manifests, and so on. As a general rule of thumb, however, once you get to 800 nodes you will probably want to start separating out the various functions of the master, and once you get to 1200 nodes or so you will likely want to use multiple masters. In any case, you may wish to defer deploying multiple masters if you just starting out with PE and want to keep your learning environment simple and straightforward. When you're ready to set up multiple masters, see [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html).
-
-Make sure that any machine you select for the master conforms to the [hardware system requirements](/pe/latest/install_system_requirements.html#hardware) and, in particular, ensure you have plenty of disk space, especially if you will be running the console on the same hardware.
-
-While it is also possible to run masterless, this is rarely done with PE. Once you have worked with Puppet at greater length, you can evaluate some of the discussions around running masterless ([Masterless Puppet](http://jamescun.com/2012/12/14/masterless-puppet.html)).
-
-#### The Puppet Master
-
-The puppet master compiles and serves configuration catalogs to puppet agent nodes. It also issues Orchestration commands to agents. It is usually installed first, and on its own, dedicated and robust server.
-
-#### The Puppet Agent.
+#### The Puppet Agent Role
 
 This one is easy. The puppet agent will get installed on every node in your infrastructure that you want to manage with PE, including the master and any other nodes that run other PE roles. Don't be shy about installing it on existing infrastructure.
 
-#### Database Support
+#### The Puppet Master Role
 
-The console and its data sources, including PuppetDB, requiree several PostgreSQL databases and users, and of course a PostgreSQL server. The installer will create, configure and install these wherever you direct it to. You can use the same node as the console or choose a separate server to provide database support. If you want to use a separate server, you should install this role before installing the console role. The [installation instructions](/pe/latest/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases.
+The puppet master compiles and serves configuration catalogs to puppet agent nodes. It also issues orchestration commands to agents. In general, we recommend that you install the master, console, and database roles on separate servers.
+
+Start by installing the master. Typically, the puppet master is installed on a single node. However, under certain circumstances it may be preferable to run another master. For example, you may wish to run another master in order to provide HA or failover protection.
+
+> **Note:** Generally speaking, running multiple masters only becomes necessary when your infrastructure grows to a certain size. What that size is precisely will vary depending on how complex your infrastructure is, the number of classes and resources, etc. in your manifests, and so on. As a general rule of thumb, however, once you get to 800 nodes you will probably want to start separating out the various functions of the master, and once you get to 1200 nodes or so you will likely want to use multiple masters. In any case, you may wish to defer deploying multiple masters if you just starting out with PE and want to keep your learning environment simple and straightforward. When you're ready to set up multiple masters, see [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html).
+
+Make sure that any machine you select for the master conforms to the [hardware system requirements](/pe/latest/install_system_requirements.html#hardware) and, in particular, ensure you have plenty of disk space, especially if you will be running the console and database roles on the same hardware.
+
+While it is also possible to run masterless, this is rarely done with PE. Once you have worked with Puppet at greater length, you can evaluate some of the discussions around running masterless ([Masterless Puppet](http://jamescun.com/2012/12/14/masterless-puppet.html)).
+
+#### The Database Support Role
+
+The database support role runs a PosgreSQL server (which provides databases for use by the console) and PuppetDB (which enables exported resources and provides a query API for data generated by Puppet).
+
+The database support role should generally be installed on a dedicated server and be installed before installing the console role. If your infrastructure and needs are modest (around 200 nodes or less), the database role can run on the same server as the puppet master and console roles.
+
+The [installation instructions](/pe/latest/install_basic.html#console-questions) provide complete information on the various options for set up and configuration of the databases.
 
 The PostgreSQL databases and server are vital to the functioning of the console. To keep things secure and robust, you should consult one of the many available hardening guides and security best practices ([such as these guidelines](https://www.owasp.org/index.php/OWASP_Backend_Security_Project_PostgreSQL_Hardening)).
 
-It probably goes without saying that you should not use this PostgreSQL server instance for anything but the console.
+You should not use the PostgreSQL server on the database support role for anything other than Puppet Enterprise.
 
-#### The Console
+#### The Console Role
 
-If your infrastructure and needs are modest (around 200 nodes or less), the console can run on the same server as the puppet master. When running the console on a separate server, the installer will automatically also install a puppet agent to manage that machine. Be sure to give the agent the same hostname as the console.
+The PE console provides a user interface for working with the Puppet data at your site. It allows users to assign configuration data, approve new node requests, view reports and node status, and issue orchestration commands.
+
+The console role should generally be installed on a dedicated server. If your infrastructure and needs are modest (around 200 nodes or less), the console can run on the same server as the puppet master and database support roles.
+
+When running the console on a separate server, the installer will automatically also install a puppet agent to manage that machine. Be sure to give the agent the same hostname as the console.
 
 #### The Cloud Provisioner
 
