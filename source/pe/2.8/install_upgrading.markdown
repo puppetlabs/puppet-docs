@@ -11,6 +11,13 @@ Summary
 
 [upgrade_module]: https://forge.puppetlabs.com/adrien/pe_upgrade
 
+> ### Note: Upgrading to PE 3.x
+>
+> Puppet Enterprise 3 has been released, and it only supports upgrades from Puppet Enterprise 2.8.2 and higher. If you are running 2.8.1, 2.8.0, 2.7.x, or any earlier version of Puppet Enterprise, you will need to upgrade to the latest version of PE 2.8.x before you can upgrade to PE 3.
+>
+> To upgrade, [download the latest version of PE 2.8.x here](http://puppetlabs.com/misc/pe-files/previous-releases) and follow the instructions on this page. After completing the 2.8.x upgrade, you can [follow the Puppet Enterprise 3.x upgrade instructions.](/pe/latest/install_upgrading.html)
+
+
 You can upgrade PE manually or with an unofficial Puppet module.
 
 ### Upgrading Manually
