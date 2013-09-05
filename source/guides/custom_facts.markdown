@@ -218,8 +218,6 @@ On Unix/Linux:
     /etc/facter/facts.d/ # Puppet Open Source
     /etc/puppetlabs/facter/facts.d/ # Puppet Enterprise
 
-{% comment %}
-
 On Windows 2003:
 
     C:\Documents and Settings\All Users\Application Data\PuppetLabs\facter\facts.d\
@@ -228,9 +226,9 @@ On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-{% endcomment %}
-
-> **Note:** These directories will not necessarily exist by default; you may need to create them.
+> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
+to restrict access so that only Administrators can write to the
+directory.
 
 ### Executable facts --- Unix
 
@@ -260,10 +258,6 @@ STDOUT in the format:
 Using this format, a single script can return multiple facts.
 
 ### Executable facts --- Windows
-
-Executable facts are not currently supported on Windows.
-
-{% comment %}
 
 Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
@@ -303,8 +297,6 @@ Here is a sample PowerShell script which outputs facts using the required format
     Write-Host key3=val3
 
 You should be able to save and execute this PowerShell script on the command line.
-
-{% endcomment %}
 
 ### Structured Data Facts
 
