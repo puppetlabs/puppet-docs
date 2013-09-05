@@ -17,9 +17,15 @@ Puppet generated references are available for a wide range of versions.
 Available Versions
 ------------------
 
+### Puppet 3.3.x
+
+* [Latest](./3.3.latest/)
+* [3.3.0-rc2](./3.3.0-rc2/)
+
 ### Puppet 3.2.x
 
 * [Latest](./3.2.latest/)
+* [3.2.4](./3.2.4/)
 * [3.2.3](./3.2.3/)
 * [3.2.2](./3.2.2/)
 * [3.2.1](./3.2.1/)
@@ -40,6 +46,7 @@ Available Versions
 ### Puppet 2.7.x
 
 * [Latest](./2.7.latest/)
+* [2.7.23](./2.7.23/)
 * [2.7.22](./2.7.22/)
 * [2.7.21](./2.7.21/)
 * [2.7.20](./2.7.20/)
