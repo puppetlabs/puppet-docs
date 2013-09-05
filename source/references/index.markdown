@@ -3,28 +3,42 @@ layout: legacy
 title: References
 ---
 
-# References
+# Generated References
 
-Puppet generated references are available for a wide range of versions.
+Puppet's generated references include:
 
-* [Latest 3.1.x release](./3.1.latest/)
-* [Latest 3.0.x release](./3.0.latest/)
-* [Latest 2.7.x release](./2.7.latest/)
-* [Latest version, including major release candidates](./latest/)
-* [Latest stable version](./stable/)
+* [The type reference](./latest/type.html): docs for all built-in [resource types](/puppet/latest/reference/lang_resources.html)
+* [The function reference](./latest/function.html): docs for all built-in [functions](/puppet/latest/reference/lang_functions.html)
+* [The configuration reference](./latest/configuration.html): descriptions of all available puppet.conf settings
+* [The metaparameter reference](./latest/metaparameter.html): docs for the special attributes that can be set for every resource type
+* [The report reference](./latest/report.html): docs for the built-in report processors
+* [The indirection reference](./latest/indirection.html): docs for Puppet's internal object routing and compilation subsystems
+* [The developer documentation](./latest/developer): information about the Ruby classes and methods available to extension developers
 
+All of these documents are compiled from strings embedded in the Puppet code.
 
 Available Versions
 ------------------
 
+The generated references are available for a wide range of versions, including several special "versions" that map to the newest release that meets certain criteria.
+
+### Special Versions
+
+* [Stable](./stable/) --- the newest official release (that is, excluding current release candidates)
+* [Latest](./latest/) --- the newest version, including pending release candidates
+* [3.stable](./3.stable/) --- the current Puppet 3.x release
+* [3.latest](./3.latest) --- the newest Puppet 3.x version, including pending release candidates
+* 3.x.stable / 3.x.latest (see sections below) --- the newest official/unstable releases within a minor release series
+* [2.7.stable](./2.7.stable/) --- the current release in the 2.7 series, which is in security-updates-only maintenance
+
 ### Puppet 3.3.x
 
-* [Latest](./3.3.latest/)
+* [Stable](./3.3.stable) / [Latest](./3.3.latest/)
 * [3.3.0-rc2](./3.3.0-rc2/)
 
 ### Puppet 3.2.x
 
-* [Latest](./3.2.latest/)
+* [Stable](./3.2.stable) / [Latest](./3.2.latest/)
 * [3.2.4](./3.2.4/)
 * [3.2.3](./3.2.3/)
 * [3.2.2](./3.2.2/)
@@ -32,20 +46,20 @@ Available Versions
 
 ### Puppet 3.1.x
 
-* [Latest](./3.1.latest/)
+* [Stable](./3.1.stable) / [Latest](./3.1.latest/)
 * [3.1.1](./3.1.1/)
 * [3.1.0](./3.1.0/)
 
 ### Puppet 3.0.x
 
-* [Latest](./3.0.latest/)
+* [Stable](./3.0.stable) / [Latest](./3.0.latest/)
 * [3.0.2](./3.0.2/)
 * [3.0.1](./3.0.1/)
 * [3.0.0](./3.0.0/)
 
 ### Puppet 2.7.x
 
-* [Latest](./2.7.latest/)
+* [Stable](./2.7.stable) / [Latest](./2.7.latest/)
 * [2.7.23](./2.7.23/)
 * [2.7.22](./2.7.22/)
 * [2.7.21](./2.7.21/)
@@ -70,7 +84,7 @@ Available Versions
 
 ### Puppet 2.6.x
 
-* [Latest](./2.6.latest/)
+* [Stable](./2.6.stable) / [Latest](./2.6.latest/)
 * [2.6.17](./2.6.17/)
 * [2.6.16](./2.6.16/)
 * [2.6.15](./2.6.15/)
@@ -92,7 +106,7 @@ Available Versions
 
 ### Puppet 0.25.x
 
-* [Latest](./0.25.latest/)
+* [Stable](./0.25.stable) / [Latest](./0.25.latest/)
 * [0.25.5](./0.25.5/)
 * [0.25.4](./0.25.4/)
 * [0.25.3](./0.25.3/)
@@ -102,7 +116,7 @@ Available Versions
 
 ### Puppet 0.24.x
 
-* [Latest](./0.24.latest/)
+* [Stable](./0.24.stable) / [Latest](./0.24.latest/)
 * [0.24.9](./0.24.9/)
 * [0.24.8](./0.24.8/)
 * [0.24.7](./0.24.7/)

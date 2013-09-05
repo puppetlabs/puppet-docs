@@ -73,7 +73,7 @@ A major area of focus for this release was loading extension code. As people wro
 
 ### YARD API Documentation
 
-To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.1.latest/index.html) under [Developer Documentation](/references/3.1.latest/developer/).
+To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.stable/index.html) under [Developer Documentation](/references/3.stable/developer/).
 
 
 All Bugs Fixed in 3.1

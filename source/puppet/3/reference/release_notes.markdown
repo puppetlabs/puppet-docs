@@ -23,8 +23,8 @@ description: Puppet release notes for version 3.x
 [32issues]: http://projects.puppetlabs.com/versions/371
 [32splay]: /references/latest/configuration.html#splay
 [32modulo_operator]: /puppet/3/reference/lang_expressions.html#modulo
-[32profiling_setting]: /references/3.2.latest/configuration.html#profile
-[32cron_type]: /references/3.2.latest/type.html#cron
+[32profiling_setting]: /references/3.stable/configuration.html#profile
+[32cron_type]: /references/3.stable/type.html#cron
 [32hiera_auto_param]: /hiera/1/puppet.html#automatic-parameter-lookup
 [19983]: http://projects.puppetlabs.com/issues/19983 "egrammar parser loses filename in error messages"
 [11331]: http://projects.puppetlabs.com/issues/11331 "Add 'foreach' structure in manifests"
