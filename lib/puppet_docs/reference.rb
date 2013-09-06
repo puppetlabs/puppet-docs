@@ -92,14 +92,38 @@ module PuppetDocs
 
         puts "Generating #{@name} reference for #{version}."
 
+        # Handle special references
         if @name == "developer"
           Dir.chdir(puppet_dir)
           puts "(YARD documentation takes a while to generate.)"
           `bundle exec yard -o #{yard_directory}`
           return
         end
+        if @name == "type"
+          require 'puppet_docs/reference/type'
+          # Get structured data
+          typedocs = PuppetDocs::Reference::Type.get_typedocs
+          # Prep content for writing later
+          content  = PuppetDocs::Reference::Type.build_page(typedocs)
+          # Prep json
+          typejson = PuppetDocs::Reference::Type.build_json(typedocs)
+          # Write json to disk now
+          setup_destination!
+          File.open(destination_directory + 'type.json', 'w') { |f| f.write typejson }
+          puts "Wrote #{destination_directory}/type.json"
+        else
+          raw_content = `ruby #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+          title = /\# (.*)\n/.match(raw_content)[1]
+          header = <<EOT
+---
+layout: default
+title: "#{title}"
+canonical: "/references/latest/#{@name}.html"
+---
+EOT
+          content = header + "\n\n" + raw_content
+        end
 
-        content = `ruby #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
 
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
@@ -114,60 +138,10 @@ module PuppetDocs
             content.gsub!(fqdn.downcase, "(the system's fully qualified domain name)")
             # Yuck, this next one is hard to deal with when the domain is "local," like a Mac on a DNS-less network. Will have to be very specific, which makes it kind of brittle.
             content.gsub!("- *Default*: #{domain.downcase}\n", "- *Default*: (the system's own domain)\n")
-          elsif @name == "type"
-            # make the feature table headers less garbage
-            content.gsub!(/^Provider(?-m:\s+|.*)$/) {|headerline|
-              headerline.gsub('_', ' ')
-            }
-            # fix the useradd provider to be kinda-sorta-usually-true instead of
-            # locally-absolutely-true-but-useless-to-real-users. Line 95 of
-            # lib/puppet/provider/user/useradd.rb says:
-            #   has_features :manages_passwords, :manages_password_age if Puppet.features.libshadow?
-            # This means useradd can't manage passwords if you don't have ruby
-            # libshadow installed. You can't have libshadow installed on the laptops
-            # we generate the docs with. We always publish docs that say
-            # useradd can't manage passwords. This is locally true but the opposite
-            # of what nearly all real users experience.
-
-            # Then, they added the libuser feature for both user and group, and it
-            # does exactly the same awful thing.
-
-            # This depends on the specific structure of the providers table for
-            # the user type, so we're basically hoping they don't add more
-            # features (LOLLLLL). This is terrible but there's not an easy solution
-            # that's better; basically we need Puppet core to express features as
-            # data rather than as raw code. See issue #18426 in Redmine.
-
-            # We want to change cells 3, 7, and 9 of the row that starts with useradd, then
-            # cell 2 of the row that starts with groupadd.
-            content.sub!(/^useradd *\|.*$/) { |match|
-              useradd_row = match.split('|')
-              useradd_row[2].sub!(/^ {4}/, ' *X*')
-              useradd_row[6].sub!(/^ {4}/, ' *X*')
-              useradd_row[8].sub!(/^ {4}/, ' *X*')
-              useradd_row.join('|') + '|'
-            }
-            content.sub!(/^groupadd *\|.*$/) { |match|
-              groupadd_row = match.split('|')
-              groupadd_row[1].sub!(/^ {4}/, ' *X*')
-              groupadd_row.join('|') + '|'
-            }
-
           end
 
           setup_destination!
           File.open(destination_filename, 'w') { |f| f.write content }
-          File.open(destination_filename).read() =~ /\# (.*)\n/
-          title = $1
-          file = IO.read(destination_filename)
-          header = <<EOT
----
-layout: default
-title: "#{title}"
-canonical: "/references/latest/#{@name}.html"
----
-EOT
-          open(destination_filename, 'w') { |f| f << header << "\n\n" << file}
           puts "Wrote #{destination_filename}"
          else
           abort "Could not build #{@name} reference using puppetdoc at #{version}"
