@@ -5,7 +5,7 @@ canonical: "/references/latest/type.html"
 munge_header_ids: false
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on Fri Sep 06 11:43:28 -0700 2013
+> **NOTE:** This page was generated from the Puppet source code on Fri Sep 06 17:57:10 -0700 2013
 
 ## About Resource Types
 
@@ -252,6 +252,7 @@ Whether augeas should perform typechecking. Defaults to false.  Valid values are
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
+
 <h3 id="augeas-providers">Providers</h3>
 
 <h4 id="augeas-provider-augeas">augeas</h4>
@@ -268,11 +269,24 @@ Available features:
 
 Provider support:
 
-
-
-Provider | execute changes | need to run? | parse commands |
--------- | --------------- | ------------ | -------------- |
-augeas   | *X*             | *X*          | *X*            |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>execute changes</th>
+      <th>need to run?</th>
+      <th>parse commands</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>augeas</td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -368,6 +382,7 @@ The 'long' name of the computer record.
 
 ([↑ Back to computer attributes](#computer-attributes))
 
+
 <h3 id="computer-providers">Providers</h3>
 
 <h4 id="computer-provider-directoryservice">directoryservice</h4>
@@ -384,6 +399,7 @@ If you wish to manage /etc/hosts on Mac OS X, then simply use the host
 type as per other platforms.
 
 Default for `operatingsystem` == `darwin`.
+
 
 
 
@@ -611,11 +627,13 @@ Optional; if specified, must be between 0 and 7, inclusive, with
 
 ([↑ Back to cron attributes](#cron-attributes))
 
+
 <h3 id="cron-providers">Providers</h3>
 
 <h4 id="cron-provider-crontab">crontab</h4>
 
 Required binaries: `crontab`.
+
 
 
 
@@ -894,6 +912,7 @@ when using this attribute.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
+
 <h3 id="exec-providers">Providers</h3>
 
 <h4 id="exec-provider-posix">posix</h4>
@@ -947,6 +966,7 @@ command:
 
 
 Default for `operatingsystem` == `windows`.
+
 
 
 
@@ -1484,6 +1504,7 @@ A read-only state to check the file type.
 
 ([↑ Back to file attributes](#file-attributes))
 
+
 <h3 id="file-providers">Providers</h3>
 
 <h4 id="file-provider-posix">posix</h4>
@@ -1493,6 +1514,7 @@ Uses POSIX functionality to manage file ownership and permissions.
 <h4 id="file-provider-windows">windows</h4>
 
 Uses Microsoft Windows functionality to manage file ownership and permissions.
+
 
 
 
@@ -1583,6 +1605,8 @@ puppet master server).
 This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
+
+
 
 
 
@@ -1730,6 +1754,7 @@ Whether the group is a system group with lower GID.
 
 ([↑ Back to group attributes](#group-attributes))
 
+
 <h3 id="group-providers">Providers</h3>
 
 <h4 id="group-provider-aix">aix</h4>
@@ -1790,16 +1815,61 @@ Available features:
 
 Provider support:
 
-
-
-Provider         | libuser | manages aix lam | manages members | system groups |
----------------- | ------- | --------------- | --------------- | ------------- |
-aix              |         | *X*             | *X*             |               |
-directoryservice |         |                 | *X*             |               |
-groupadd         | *X*     |                 |                 | *X*           |
-ldap             |         |                 |                 |               |
-pw               |         |                 | *X*             |               |
-windows_adsi     |         |                 | *X*             |               |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>libuser</th>
+      <th>manages aix lam</th>
+      <th>manages members</th>
+      <th>system groups</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>aix</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>directoryservice</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>groupadd</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>ldap</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pw</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>windows_adsi</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1890,9 +1960,11 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 ([↑ Back to host attributes](#host-attributes))
 
+
 <h3 id="host-providers">Providers</h3>
 
 <h4 id="host-provider-parsed">parsed</h4>
+
 
 
 
@@ -2046,11 +2118,13 @@ Interface speed.  Valid values are `auto`.  Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
+
 <h3 id="interface-providers">Providers</h3>
 
 <h4 id="interface-provider-cisco">cisco</h4>
 
 Cisco switch/router provider for interface.
+
 
 
 
@@ -2121,12 +2195,14 @@ Available providers are:
 
 ([↑ Back to k5login attributes](#k5login-attributes))
 
+
 <h3 id="k5login-providers">Providers</h3>
 
 <h4 id="k5login-provider-k5login">k5login</h4>
 
 The k5login provider is the only provider for the k5login
 type.
+
 
 
 
@@ -2326,6 +2402,7 @@ The number of tries allowed.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
+
 <h3 id="macauthorization-providers">Providers</h3>
 
 <h4 id="macauthorization-provider-macauthorization">macauthorization</h4>
@@ -2335,6 +2412,7 @@ Manage Mac OS X authorization database rules and rights.
   
 
 Required binaries: `/usr/bin/security`, `/usr/bin/sw_vers`.  Default for `operatingsystem` == `darwin`.
+
 
 
 
@@ -2405,9 +2483,11 @@ those providers that write to disk.
 
 ([↑ Back to mailalias attributes](#mailalias-attributes))
 
+
 <h3 id="mailalias-providers">Providers</h3>
 
 <h4 id="mailalias-provider-aliases">aliases</h4>
+
 
 
 
@@ -2496,11 +2576,13 @@ The name of the host providing web archives and the administrative interface.
 
 ([↑ Back to maillist attributes](#maillist-attributes))
 
+
 <h3 id="maillist-providers">Providers</h3>
 
 <h4 id="maillist-provider-mailman">mailman</h4>
 
 Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `newlist`, `rmlist`.
+
 
 
 
@@ -2603,6 +2685,7 @@ Available providers are:
 
 ([↑ Back to mcx attributes](#mcx-attributes))
 
+
 <h3 id="mcx-providers">Providers</h3>
 
 <h4 id="mcx-provider-mcxcontent">mcxcontent</h4>
@@ -2632,11 +2715,20 @@ Available features:
 
 Provider support:
 
-
-
-Provider   | manages content |
----------- | --------------- |
-mcxcontent | *X*             |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>manages content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mcxcontent</td>
+      <td><em>X</em> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -2789,6 +2881,7 @@ those providers that write to disk.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
+
 <h3 id="mount-providers">Providers</h3>
 
 <h4 id="mount-provider-parsed">parsed</h4>
@@ -2803,11 +2896,20 @@ Available features:
 
 Provider support:
 
-
-
-Provider | refreshable |
--------- | ----------- |
-parsed   | *X*         |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>refreshable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>parsed</td>
+      <td><em>X</em> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -2905,9 +3007,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_command attributes](#nagios_command-attributes))
 
+
 <h3 id="nagios_command-providers">Providers</h3>
 
 <h4 id="nagios_command-provider-naginator">naginator</h4>
+
 
 
 
@@ -3187,9 +3291,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_contact attributes](#nagios_contact-attributes))
 
+
 <h3 id="nagios_contact-providers">Providers</h3>
 
 <h4 id="nagios_contact-provider-naginator">naginator</h4>
+
 
 
 
@@ -3307,9 +3413,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_contactgroup attributes](#nagios_contactgroup-attributes))
 
+
 <h3 id="nagios_contactgroup-providers">Providers</h3>
 
 <h4 id="nagios_contactgroup-provider-naginator">naginator</h4>
+
 
 
 
@@ -3796,9 +3904,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_host attributes](#nagios_host-attributes))
 
+
 <h3 id="nagios_host-providers">Providers</h3>
 
 <h4 id="nagios_host-provider-naginator">naginator</h4>
+
 
 
 
@@ -3961,9 +4071,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostdependency attributes](#nagios_hostdependency-attributes))
 
+
 <h3 id="nagios_hostdependency-providers">Providers</h3>
 
 <h4 id="nagios_hostdependency-provider-naginator">naginator</h4>
+
 
 
 
@@ -4135,9 +4247,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostescalation attributes](#nagios_hostescalation-attributes))
 
+
 <h3 id="nagios_hostescalation-providers">Providers</h3>
 
 <h4 id="nagios_hostescalation-provider-naginator">naginator</h4>
+
 
 
 
@@ -4282,9 +4396,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostextinfo attributes](#nagios_hostextinfo-attributes))
 
+
 <h3 id="nagios_hostextinfo-providers">Providers</h3>
 
 <h4 id="nagios_hostextinfo-provider-naginator">naginator</h4>
+
 
 
 
@@ -4438,9 +4554,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostgroup attributes](#nagios_hostgroup-attributes))
 
+
 <h3 id="nagios_hostgroup-providers">Providers</h3>
 
 <h4 id="nagios_hostgroup-provider-naginator">naginator</h4>
+
 
 
 
@@ -4936,9 +5054,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_service attributes](#nagios_service-attributes))
 
+
 <h3 id="nagios_service-providers">Providers</h3>
 
 <h4 id="nagios_service-provider-naginator">naginator</h4>
+
 
 
 
@@ -5119,9 +5239,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_servicedependency attributes](#nagios_servicedependency-attributes))
 
+
 <h3 id="nagios_servicedependency-providers">Providers</h3>
 
 <h4 id="nagios_servicedependency-provider-naginator">naginator</h4>
+
 
 
 
@@ -5311,9 +5433,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_serviceescalation attributes](#nagios_serviceescalation-attributes))
 
+
 <h3 id="nagios_serviceescalation-providers">Providers</h3>
 
 <h4 id="nagios_serviceescalation-provider-naginator">naginator</h4>
+
 
 
 
@@ -5467,9 +5591,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_serviceextinfo attributes](#nagios_serviceextinfo-attributes))
 
+
 <h3 id="nagios_serviceextinfo-providers">Providers</h3>
 
 <h4 id="nagios_serviceextinfo-provider-naginator">naginator</h4>
+
 
 
 
@@ -5614,9 +5740,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_servicegroup attributes](#nagios_servicegroup-attributes))
 
+
 <h3 id="nagios_servicegroup-providers">Providers</h3>
 
 <h4 id="nagios_servicegroup-provider-naginator">naginator</h4>
+
 
 
 
@@ -5788,9 +5916,11 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_timeperiod attributes](#nagios_timeperiod-attributes))
 
+
 <h3 id="nagios_timeperiod-providers">Providers</h3>
 
 <h4 id="nagios_timeperiod-provider-naginator">naginator</h4>
+
 
 
 
@@ -5835,6 +5965,8 @@ The message to be sent to the log.
 Whether to show the full object path. Defaults to false.  Valid values are `true`, `false`.
 
 ([↑ Back to notify attributes](#notify-attributes))
+
+
 
 
 
@@ -6126,6 +6258,7 @@ strings _may_ be double-escaped.
 A read-only parameter set by the package.
 
 ([↑ Back to package attributes](#package-attributes))
+
 
 <h3 id="package-providers">Providers</h3>
 
@@ -6423,45 +6556,408 @@ Available features:
 
 Provider support:
 
-
-
-Provider    | holdable | install options | installable | purgeable | uninstall options | uninstallable | upgradeable | versionable |
------------ | -------- | --------------- | ----------- | --------- | ----------------- | ------------- | ----------- | ----------- |
-aix         |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-appdmg      |          |                 | *X*         |           |                   |               |             |             |
-apple       |          |                 | *X*         |           |                   |               |             |             |
-apt         | *X*      |                 | *X*         | *X*       |                   | *X*           | *X*         | *X*         |
-aptitude    | *X*      |                 | *X*         | *X*       |                   | *X*           | *X*         | *X*         |
-aptrpm      |          |                 | *X*         | *X*       |                   | *X*           | *X*         | *X*         |
-blastwave   |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-dpkg        | *X*      |                 | *X*         | *X*       |                   | *X*           | *X*         |             |
-fink        | *X*      |                 | *X*         | *X*       |                   | *X*           | *X*         | *X*         |
-freebsd     |          |                 | *X*         | *X*       |                   | *X*           |             |             |
-gem         |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-hpux        |          |                 | *X*         |           |                   | *X*           |             |             |
-macports    |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-msi         |          | *X*             | *X*         |           | *X*               | *X*           |             |             |
-nim         |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-openbsd     |          | *X*             | *X*         | *X*       | *X*               | *X*           |             | *X*         |
-opkg        |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-pacman      |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-pip         |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-pkg         | *X*      |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-pkgdmg      |          |                 | *X*         |           |                   |               |             |             |
-pkgin       |          |                 | *X*         |           |                   | *X*           |             |             |
-pkgutil     |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-portage     |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-ports       |          |                 | *X*         | *X*       |                   | *X*           | *X*         |             |
-portupgrade |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-rpm         |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-rug         |          |                 | *X*         |           |                   | *X*           | *X*         | *X*         |
-sun         |          | *X*             | *X*         |           |                   | *X*           | *X*         |             |
-sunfreeware |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-up2date     |          |                 | *X*         |           |                   | *X*           | *X*         |             |
-urpmi       |          |                 | *X*         | *X*       |                   | *X*           | *X*         | *X*         |
-windows     |          | *X*             | *X*         |           | *X*               | *X*           |             |             |
-yum         |          |                 | *X*         | *X*       |                   | *X*           | *X*         | *X*         |
-zypper      |          | *X*             | *X*         |           |                   | *X*           | *X*         | *X*         |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>holdable</th>
+      <th>install options</th>
+      <th>installable</th>
+      <th>purgeable</th>
+      <th>uninstall options</th>
+      <th>uninstallable</th>
+      <th>upgradeable</th>
+      <th>versionable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>aix</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>appdmg</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>apple</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>apt</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>aptitude</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>aptrpm</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>blastwave</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>dpkg</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>fink</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>freebsd</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>gem</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>hpux</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>macports</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>msi</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>nim</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>openbsd</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>opkg</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pacman</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pip</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>pkg</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>pkgdmg</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pkgin</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pkgutil</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>portage</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>ports</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>portupgrade</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>rpm</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>rug</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>sun</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sunfreeware</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>up2date</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>urpmi</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>windows</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>yum</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>zypper</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -6512,6 +7008,8 @@ a different UID as the inclusive limit.  Valid values are `true`, `false`.  Valu
 
 
 
+
+
 ---------
 
 router
@@ -6537,6 +7035,8 @@ An SSH or telnet URL at which to access the router, in the form
 
 
 ([↑ Back to router attributes](#router-attributes))
+
+
 
 
 
@@ -6718,6 +7218,8 @@ at 2 AM on Saturday.
 
 
 ([↑ Back to schedule attributes](#schedule-attributes))
+
+
 
 
 
@@ -6914,6 +7416,7 @@ The full path of the directory in which to start the command.
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
+
 <h3 id="scheduled_task-providers">Providers</h3>
 
 <h4 id="scheduled_task-provider-win32_taskscheduler">win32_taskscheduler</h4>
@@ -6926,6 +7429,7 @@ previous versions can cause "Could not evaluate: The operation completed
 successfully" errors.
 
 Default for `operatingsystem` == `windows`.
+
 
 
 
@@ -6985,6 +7489,7 @@ Whether the the SELinux boolean should be enabled or disabled.  Valid values are
 
 ([↑ Back to selboolean attributes](#selboolean-attributes))
 
+
 <h3 id="selboolean-providers">Providers</h3>
 
 <h4 id="selboolean-provider-getsetsebool">getsetsebool</h4>
@@ -6992,6 +7497,7 @@ Whether the the SELinux boolean should be enabled or disabled.  Valid values are
 Manage SELinux booleans using the getsebool and setsebool binaries.
 
 Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`.
+
 
 
 
@@ -7081,6 +7587,7 @@ that will be made is if the policy is loaded at all or not.  Valid values are `t
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
+
 <h3 id="selmodule-providers">Providers</h3>
 
 <h4 id="selmodule-provider-semodule">semodule</h4>
@@ -7088,6 +7595,7 @@ that will be made is if the policy is loaded at all or not.  Valid values are `t
 Manage SELinux policy modules using the semodule binary.
 
 Required binaries: `/usr/sbin/semodule`.
+
 
 
 
@@ -7312,6 +7820,7 @@ table.
 Specify a *stop* command manually.
 
 ([↑ Back to service attributes](#service-attributes))
+
 
 <h3 id="service-providers">Providers</h3>
 
@@ -7592,28 +8101,126 @@ Available features:
 
 Provider support:
 
-
-
-Provider    | controllable | enableable | refreshable |
------------ | ------------ | ---------- | ----------- |
-base        |              |            | *X*         |
-bsd         |              | *X*        | *X*         |
-daemontools |              | *X*        | *X*         |
-debian      |              | *X*        | *X*         |
-freebsd     |              | *X*        | *X*         |
-gentoo      |              | *X*        | *X*         |
-init        |              |            | *X*         |
-launchd     |              | *X*        | *X*         |
-openrc      |              | *X*        | *X*         |
-openwrt     |              | *X*        | *X*         |
-redhat      |              | *X*        | *X*         |
-runit       |              | *X*        | *X*         |
-service     |              |            | *X*         |
-smf         |              | *X*        | *X*         |
-src         |              | *X*        | *X*         |
-systemd     |              | *X*        | *X*         |
-upstart     |              | *X*        | *X*         |
-windows     |              | *X*        | *X*         |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>controllable</th>
+      <th>enableable</th>
+      <th>refreshable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>base</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>bsd</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>daemontools</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>debian</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>freebsd</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>gentoo</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>init</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>launchd</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>openrc</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>openwrt</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>redhat</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>runit</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>service</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>smf</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>src</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>systemd</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>upstart</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>windows</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -7722,11 +8329,13 @@ The resource will automatically depend on this user.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
+
 <h3 id="ssh_authorized_key-providers">Providers</h3>
 
 <h4 id="ssh_authorized_key-provider-parsed">parsed</h4>
 
 Parse and generate authorized_keys files for SSH.
+
 
 
 
@@ -7817,11 +8426,13 @@ The encryption type used.  Probably ssh-dss or ssh-rsa.  Valid values are `ssh-d
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
+
 <h3 id="sshkey-providers">Providers</h3>
 
 <h4 id="sshkey-provider-parsed">parsed</h4>
 
 Parse and generate host-wide known hosts files for SSH.
+
 
 
 
@@ -7860,6 +8471,8 @@ _(**Namevar:** If omitted, this attribute's value defaults to the resource's tit
 The name of the stage. This will be used as the 'stage' for each resource.
 
 ([↑ Back to stage attributes](#stage-attributes))
+
+
 
 
 
@@ -7988,6 +8601,8 @@ be used.
 Set the mechanism for determining age. Default: atime.  Valid values are `atime`, `mtime`, `ctime`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
+
+
 
 
 
@@ -8360,6 +8975,7 @@ security identifier (SID).
 
 ([↑ Back to user attributes](#user-attributes))
 
+
 <h3 id="user-providers">Providers</h3>
 
 <h4 id="user-provider-aix">aix</h4>
@@ -8440,18 +9056,129 @@ Available features:
 
 Provider support:
 
-
-
-Provider         | allows duplicates | libuser | manages aix lam | manages expiry | manages homedir | manages password age | manages password salt | manages passwords | manages solaris rbac | system users |
----------------- | ----------------- | ------- | --------------- | -------------- | --------------- | -------------------- | --------------------- | ----------------- | -------------------- | ------------ |
-aix              |                   |         | *X*             | *X*            | *X*             | *X*                  |                       | *X*               |                      |              |
-directoryservice |                   |         |                 |                |                 |                      | *X*                   | *X*               |                      |              |
-hpuxuseradd      | *X*               |         |                 |                | *X*             |                      |                       | *X*               |                      |              |
-ldap             |                   |         |                 |                |                 |                      |                       | *X*               |                      |              |
-pw               | *X*               |         |                 | *X*            | *X*             |                      |                       | *X*               |                      |              |
-user_role_add    | *X*               |         |                 |                | *X*             | *X*                  |                       | *X*               | *X*                  |              |
-useradd          | *X*               | *X*     |                 | *X*            | *X*             | *X*                  |                       | *X*               |                      | *X*          |
-windows_adsi     |                   |         |                 |                | *X*             |                      |                       | *X*               |                      |              |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>allows duplicates</th>
+      <th>libuser</th>
+      <th>manages aix lam</th>
+      <th>manages expiry</th>
+      <th>manages homedir</th>
+      <th>manages password age</th>
+      <th>manages password salt</th>
+      <th>manages passwords</th>
+      <th>manages solaris rbac</th>
+      <th>system users</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>aix</td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>directoryservice</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>hpuxuseradd</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ldap</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pw</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>user_role_add</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>useradd</td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>windows_adsi</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -8518,11 +9245,13 @@ Available providers are:
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
+
 <h3 id="vlan-providers">Providers</h3>
 
 <h4 id="vlan-provider-cisco">cisco</h4>
 
 Cisco switch/router provider for vlans.
+
 
 
 
@@ -8825,6 +9554,8 @@ Number of seconds to wait for a connection before timing
 out. Set this to `absent` to remove it from the file completely.  Valid values are `absent`.  Values can match `/[0-9]+/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
+
+
 
 
 
@@ -9158,6 +9889,7 @@ The zoned property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
+
 <h3 id="zfs-providers">Providers</h3>
 
 <h4 id="zfs-provider-zfs">zfs</h4>
@@ -9165,6 +9897,7 @@ The zoned property. Valid values are `on`, `off`.
 Provider for zfs.
 
 Required binaries: `zfs`.
+
 
 
 
@@ -9377,6 +10110,7 @@ so Puppet only checks for it at that time.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
+
 <h3 id="zone-providers">Providers</h3>
 
 <h4 id="zone-provider-solaris">solaris</h4>
@@ -9384,6 +10118,7 @@ so Puppet only checks for it at that time.
 Provider for Solaris Zones.
 
 Required binaries: `/usr/sbin/zoneadm`, `/usr/sbin/zonecfg`.  Default for `osfamily` == `solaris`.
+
 
 
 
@@ -9498,6 +10233,7 @@ Spare disk(s) for this pool.
 
 ([↑ Back to zpool attributes](#zpool-attributes))
 
+
 <h3 id="zpool-providers">Providers</h3>
 
 <h4 id="zpool-provider-zpool">zpool</h4>
@@ -9506,4 +10242,5 @@ Provider for zpool.
 
 Required binaries: `zpool`.
 
-> **NOTE:** This page was generated from the Puppet source code on Fri Sep 06 11:43:28 -0700 2013
+
+> **NOTE:** This page was generated from the Puppet source code on Fri Sep 06 17:57:10 -0700 2013

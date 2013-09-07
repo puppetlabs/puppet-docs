@@ -1,0 +1,76 @@
+<%= name.to_s %>
+-----
+
+<h3 id="<%= name.to_s %>-description">Description</h3>
+
+<%= this_type[:description] %>
+
+<h3 id="<%= name.to_s %>-attributes">Attributes</h3>
+
+<pre><code><%= name.to_s %> { 'resource title':
+<% sorted_attribute_list.each do |attribute_name| -%>
+  <a href="#<%= name.to_s %>-attribute-<%= attribute_name.to_s %>"><%= attribute_name.to_s %></a><%= ' ' * (longest_attribute_name - attribute_name.to_s.length) %> =&gt; <em># <% if this_type[:attributes][attribute_name][:namevar] %><strong>(namevar)</strong> <% end %><%= this_type[:attributes][attribute_name][:description][0,49].gsub("\n", ' ').gsub('<', '&lt;').sub(/\W? \S+$/, '...') %></em>
+<% end -%>
+  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+}</code></pre>
+
+<% sorted_attribute_list.each do |attribute_name| -%>
+<h4 id="<%= name.to_s %>-attribute-<%= attribute_name.to_s %>"><%= attribute_name.to_s %></h4>
+
+<% if this_type[:attributes][attribute_name][:namevar] %>_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_<%= "\n\n" %><% end -%>
+<% if this_type[:attributes][attribute_name][:kind] == :property %>_(**Property:** This attribute represents concrete state on the target system.)_<%= "\n\n" %><% end -%>
+<%= this_type[:attributes][attribute_name][:description] %>
+
+<% if attribute_name == :provider and !this_type[:providers].empty? -%>Available providers are:<%= "\n\n" %><%= this_type[:providers].keys.sort.collect {|prov| "* [`#{prov.to_s}`](##{name.to_s}-provider-#{prov.to_s})"}.sort.join("\n") %><%= "\n\n" %><% end -%>
+([↑ Back to <%= name.to_s %> attributes](#<%= name.to_s %>-attributes))
+
+<% end # of attribute details
+-%>
+
+<% if !this_type[:providers].empty? -%>
+<h3 id="<%= name.to_s %>-providers">Providers</h3>
+
+<% end -%>
+<% this_type[:providers].keys.sort.each do |provider_name| -%>
+<h4 id="<%= name.to_s %>-provider-<%= provider_name.to_s %>"><%= provider_name.to_s %></h4>
+
+<%= this_type[:providers][provider_name][:description] %>
+
+<% end -%>
+<% if !this_type[:features].empty? -%>
+<h3 id="<%= name.to_s %>-provider-features">Provider Features</h3>
+
+Available features:
+
+<% sorted_feature_list.each do |feature| -%>
+* `<%= feature.to_s %>` --- <%= this_type[:features][feature].gsub("\n", ' ') %>
+<% end -%>
+
+<% if !this_type[:providers].empty? -%>
+Provider support:
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <%- sorted_feature_list.each do |feature| -%>
+      <th><%= feature.to_s.gsub('_', ' ') %></th>
+      <%- end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <%- this_type[:providers].keys.sort.each do |provider_name| -%>
+    <tr>
+      <td><%= provider_name.to_s %></td>
+      <%- sorted_feature_list.each do |feature| -%>
+      <td><% if this_type[:providers][provider_name][:features].include?(feature) %><em>X</em><% end %> </td>
+      <%- end -%>
+    </tr>
+    <%- end -%>
+  </tbody>
+</table>
+<% end # provider support table
+-%>
+<% end # features section
+-%>
+
