@@ -1,6 +1,14 @@
 <%= name.to_s %>
 -----
 
+* [Attributes](#<%= name.to_s %>-attributes)
+<% if !this_type[:providers].empty? -%>
+* [Providers](#<%= name.to_s %>-providers)
+<% end -%>
+<% if !this_type[:features].empty? -%>
+* [Provider Features](#<%= name.to_s %>-provider-features)
+<% end -%>
+
 <h3 id="<%= name.to_s %>-description">Description</h3>
 
 <%= this_type[:description] %>
