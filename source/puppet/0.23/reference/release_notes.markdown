@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 0.23 Release Notes"
-description: "Puppet release notes for version 0.23.x
+description: "Puppet release notes for version 0.23.x"
 ---
 
 # Puppet 0.23 Release Notes
