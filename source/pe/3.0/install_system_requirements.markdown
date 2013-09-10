@@ -183,6 +183,7 @@ In order to run the puppet agent on AIX systems, you'll need to ensure the follo
 * bash
 * zlib
 * readline
+* OpenSSL (use 0.9.8r or a more recent version)
 
 All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
 
