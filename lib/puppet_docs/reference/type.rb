@@ -12,6 +12,7 @@ layout: default
 title: "Type Reference"
 canonical: "/references/latest/type.html"
 munge_header_ids: false
+toc: false
 ---
 
 EOT
@@ -60,11 +61,26 @@ EOT
 
 EOT
 
-    header + preamble +
-      typedocs.keys.sort.collect{|name|
-        docs_for_this_type(name, typedocs[name])
-      }.join("\n\n---------\n\n") +
-      footer
+    sorted_type_list = typedocs.keys.sort
+    custom_toc = %q{
+<nav id="page-nav" class="in-page">
+<ol class="toc" style="-webkit-column-width: 13em; -webkit-column-gap: 1.5em; -moz-column-width: 13em; -moz-column-gap: 1.5em; column-width: 13em; column-gap: 1.5em;">
+} + sorted_type_list.collect{|name| %q[<li class="toc-lv2"><a href="#] + name.to_s.gsub('_','') + %q[">] + name.to_s + %q[</a></li>] }.join("\n") + %q{
+</ol></nav>} + "\n\n"
+    # Admission: I'm being lazy about generating the header IDs, since the type
+    # names are already downcased, have no spaces, and the only character the ID
+    # generator will remove is the underscore.
+
+    # Other admission: 13em width was pulled out of a butt b/c it appears to
+    # leave enough room for two digits, a dot, a space, and
+    # nagios_servicedependency.
+
+    all_type_docs = sorted_type_list.collect{|name|
+      docs_for_this_type(name, typedocs[name])
+    }.join("\n\n---------\n\n")
+
+    # And return:
+    header + custom_toc + preamble + all_type_docs + "\n\n" + footer
   end
 
   def build_json(typedocs)
