@@ -30,7 +30,7 @@ A **node definition** or **node statement** is a block of Puppet code that will 
 
 Node statements are an **optional feature** of Puppet. They can be replaced by or combined with an [external node classifier][enc], or you can eschew both and use conditional statements with [facts][] to classify nodes.
 
-Unlike more general conditional structures, node statements only match nodes by **name.** By default, the name of a node is its [certname][] (which defaults to the node's fully qualified domain name). 
+Unlike more general conditional structures, node statements only match nodes by **name.** By default, the name of a node is its [certname][] (which defaults to the node's fully qualified domain name).
 
 Location
 -----
@@ -41,11 +41,11 @@ Alternately, you can store node definitions in any number of manifest files whic
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/manifests/site.pp
-    
+
     # Import every file in /etc/puppetlabs/puppet/manifests/nodes/
     # (Usually, each file contains one node definition.)
     import 'nodes/*.pp'
-    
+
     # Import several nodes from a single file
     import 'extra_nodes.pp'
 {% endhighlight %}
@@ -70,7 +70,7 @@ Syntax
     }
 {% endhighlight %}
 
-In the example above, only `www1.example.com` would receive the apache and squid classes, and only `db1.example.com` would receive the mysql class. 
+In the example above, only `www1.example.com` would receive the apache and squid classes, and only `db1.example.com` would receive the mysql class.
 
 Node definitions look like class definitions. The general form of a node definition is:
 
@@ -92,14 +92,14 @@ Node definitions look like class definitions. The general form of a node definit
 Naming
 -----
 
-Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn resolves to the node's fully qualified domain name. 
+Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn resolves to the node's fully qualified domain name.
 
 > #### Notes on Node Names
-> 
+>
 > * The set of characters allowed in a node name is **undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes.
 > * Although it is possible to configure Puppet to use something other than the [certname][] as a node name, this is not generally recommended.
 
-A node statement's **name** must be one of the following: 
+A node statement's **name** must be one of the following:
 
 * A quoted [string][strings]
 * The bare word `default`
@@ -148,9 +148,11 @@ The above example would match `foo.example.com` and `bar.example.com`, but no ot
 
 > Make sure that node regexes do not overlap. If more than one regex statement matches a given node, the one it gets will be parse-order dependent.
 
-#### No Regex Capture Variables
+#### Regex Capture Variables
 
-Regular expression node names **do not** use numbered variables to expose captures from the pattern inside the node definition. This differs from the behavior of [conditional statements][conditional] that use regexes.
+In **Puppet 3.3.0 and later,** regex node definitions set numbered regex capture variables ($1, $2, etc.) within the body of the node definition. This is similar to the behavior of [conditional statements][conditional] that use regexes.
+
+**Prior to Puppet 3.3.0, these variables were not set.** See [issue #2628](http://projects.puppetlabs.com/issues/2628).
 
 Behavior
 -----
@@ -163,8 +165,8 @@ A given node will only get the contents of **one** node definition, even if two 
 
 1. If there is a node definition with the node's exact name, Puppet will use it.
 2. If there is at least one regular expression node statement that matches the node's whole name, Puppet will use the first one it finds.
-3. If the node's name looks like a fully qualified domain name (i.e. multiple period-separated groups of letters, numbers, underscores and dashes), Puppet will chop off the final group and start again at step 1. (That is, if a definition for `www01.example.com` isn't found, Puppet will look for a definition matching `www01.example`.) 
-4. Puppet will use the `default` node. 
+3. If the node's name looks like a fully qualified domain name (i.e. multiple period-separated groups of letters, numbers, underscores and dashes), Puppet will chop off the final group and start again at step 1. (That is, if a definition for `www01.example.com` isn't found, Puppet will look for a definition matching `www01.example`.)
+4. Puppet will use the `default` node.
 
 Thus, for the node `www01.example.com`, Puppet would try the following, in order:
 
@@ -184,22 +186,22 @@ Puppet code that is outside any node statement will be compiled for every node. 
 
 ### Node Scope
 
-Node definitions create a new anonymous scope that can override variables and defaults from top scope. See [the section on node scope][nodescope] for details. 
+Node definitions create a new anonymous scope that can override variables and defaults from top scope. See [the section on node scope][nodescope] for details.
 
 ### Merging With ENC Data
 
 Node definitions and [external node classifiers][enc] can co-exist. Puppet merges their data as follows:
 
-* Variables from an ENC are set at [top scope][topscope] and can thus be overridden by variables in a node definition. 
+* Variables from an ENC are set at [top scope][topscope] and can thus be overridden by variables in a node definition.
 * Classes from an ENC are declared at [node scope][nodescope], which means they will be affected by any variables set in the node definition.
 
-Although ENCs and node definitions can work together, we recommend that most users pick one or the other. 
+Although ENCs and node definitions can work together, we recommend that most users pick one or the other.
 
 ### Inheritance
 
 Nodes can inherit from other nodes using the `inherits` keyword. Inheritance works identically to [class inheritance][inherit]. **This feature is not recommended; see the aside below.**
 
-Example: 
+Example:
 
 {% highlight ruby %}
     node 'common' {
@@ -213,12 +215,12 @@ Example:
     }
 {% endhighlight %}
 
-In the above example, `www1.example.com` would receive the `common, ntp, apache,` and `squid` classes, and would have an `$ntpserver` of `time.example.com`. 
+In the above example, `www1.example.com` would receive the `common, ntp, apache,` and `squid` classes, and would have an `$ntpserver` of `time.example.com`.
 
 > #### Aside: Best Practices
-> 
-> You should almost certainly avoid using node inheritance. Many users attempt to do the following: 
-> 
+>
+> You should almost certainly avoid using node inheritance. Many users attempt to do the following:
+>
 {% highlight ruby %}
     node 'common' {
       $ntpserver = 'time.example.com'
@@ -230,18 +232,18 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
       $ntpserver = '0.pool.ntp.org'
     }
 {% endhighlight %}
-> 
-> This will have the opposite of the intended effect, because Puppet treats node definitions like classes. It does not mash the two together and then compile the mix; instead, it compiles the base class, **then** compiles the derived class, which gets a parent scope and special permission to modify resource attributes from the base class. 
-> 
-> In the example above, this means that by the time `node www01.example.com` has set its own value for `$ntpserver`, the `ntp` class has **already received** the value it needed and is no longer interested in that variable. For the derived node to override that variable **for classes in the base node,** it would have to be complied **before** the base node, and there is no way for Puppet's current implementation to do that. 
-> 
+>
+> This will have the opposite of the intended effect, because Puppet treats node definitions like classes. It does not mash the two together and then compile the mix; instead, it compiles the base class, **then** compiles the derived class, which gets a parent scope and special permission to modify resource attributes from the base class.
+>
+> In the example above, this means that by the time `node www01.example.com` has set its own value for `$ntpserver`, the `ntp` class has **already received** the value it needed and is no longer interested in that variable. For the derived node to override that variable **for classes in the base node,** it would have to be complied **before** the base node, and there is no way for Puppet's current implementation to do that.
+>
 > #### Alternatives to Node Inheritance
-> 
+>
 > TODO Link to hiera guides
-> 
-> * Most users who need hierarchical data should keep it in an external source and have their manifests look it up. The best solution right now is [Hiera][], which is available by default in Puppet 3 and later. See our [Hiera guides][hiera_guides] for more information about using it. 
+>
+> * Most users who need hierarchical data should keep it in an external source and have their manifests look it up. The best solution right now is [Hiera][], which is available by default in Puppet 3 and later. See our [Hiera guides][hiera_guides] for more information about using it.
 > * [ENCs][enc] can look up data from any arbitrary source, and return it to Puppet as top-scope variables.
-> * If you have node-specific data in an external CMDB, you can easily write [custom Puppet functions][custom_functions] to query it. 
-> * For very small numbers of nodes, you can copy and paste to make complete node definitions for special-case nodes. 
-> * With discipline, you can use node inheritance **only** for data lookup. The safest approach is to **only set variables** in the base nodes, then declare **all** classes in the derived nodes. This is less terse than the mix-and-match that most users try first, but is completely reliable. 
+> * If you have node-specific data in an external CMDB, you can easily write [custom Puppet functions][custom_functions] to query it.
+> * For very small numbers of nodes, you can copy and paste to make complete node definitions for special-case nodes.
+> * With discipline, you can use node inheritance **only** for data lookup. The safest approach is to **only set variables** in the base nodes, then declare **all** classes in the derived nodes. This is less terse than the mix-and-match that most users try first, but is completely reliable.
 
