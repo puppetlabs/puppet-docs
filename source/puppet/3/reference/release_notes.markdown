@@ -66,6 +66,220 @@ Puppet 3.x Release Notes
 
 For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
 
+Puppet 3.3.0
+-----
+
+**Release candidate:** This version entered RC on September 5, 2013; it has not yet been officially released. The current preview is RC3.
+
+3.3.0 is a backward-compatible feature and fix release in the Puppet 3 series.
+
+> **Note:** Although 3.3.0 is backward-compatible with all 3.x releases, its default config will cause reporting failures when ≥ 3.3.0 agent nodes connect to a sub-3.3.0 master. [See the note below on yaml deprecation for details.][yaml_deprecation]
+>
+> * This only affects newer agents + older masters; is not a problem if you [upgrade the puppet master first.](/guides/upgrading.html#always-upgrade-the-puppet-master-first)
+> * To use ≥ 3.3.0 agents with an older puppet master, set `report_serialization_format` to `yaml` in their puppet.conf files; this restores full compatibility.
+
+### Configurable Resource Ordering
+
+[(Issue 22205: Order of resource application should be selectable by a setting.)][22205]
+
+Puppet can now optionally apply unrelated resources in the order they were written in their manifest files.
+
+A [new `ordering` setting](/references/3.latest/configuration.html#ordering) configures how unrelated resources should be ordered when applying a catalog. This setting affects puppet agent and puppet apply, but not puppet master.
+
+The allowed values for this setting are `title-hash`, `manifest`, and `random`:
+
+* `title-hash` (the default) will order resources randomly, but will use
+  the same order across runs and across nodes.
+* `manifest` will use the order in which the resources were declared in
+  their manifest files.
+* `random` will order resources randomly and change their order with each
+  run. This can work like a fuzzer for shaking out undeclared dependencies.
+
+Regardless of this setting's value, Puppet will always obey explicit dependencies set with the before/require/notify/subscribe metaparameters and the `->`/`~>` chaining arrows; this setting only affects the relative ordering of _unrelated_ resources.
+
+### Data in Modules
+
+[(Issue 16856: puppet should support data in modules)][16856]
+
+This feature makes it possible to contribute data bindings from modules to a
+site-wide hierarchy of data bindings. This feature is introduced as an opt-in,
+and it is turned on by setting `binder` to `true` in puppet.conf. It is turned on by default
+when using the future parser. The implementation is based on [ARM-9
+Data in Modules](http://links.puppetlabs.com/arm9-data_in_modules), which
+contains the background, a description, and a set of examples.
+
+### Security: YAML Over the Network is Now Deprecated
+
+[yaml_deprecation]: todo
+
+[(Issue 21427: Deprecate YAML for network data transmission)][21427]
+
+YAML has been the cause of many security problems, so we are refactoring Puppet to stop sending YAML over the network. Puppet will still write YAML to disk (since that doesn't add security risks), but all data objects sent over the network will be serialized as JSON. (Or, for the time being, as "PSON," which is JSON that may sometimes contain non-UTF8 data.)
+
+As of this release:
+
+* All places where the puppet master accepts YAML are deprecated. If the master receives YAML, it will still accept it but will log a deprecation warning.
+* The puppet master can now accept reports in JSON format. (Prior to 3.3.0, puppet masters could only accept reports in YAML.)
+* The puppet agent no longer defaults to requesting YAML from the puppet master (for catalogs, node objects, etc.).
+* The puppet agent no longer defaults to sending YAML to the puppet master (for reports, query parameters like facts, etc.).
+
+> **Deprecation plan:** Currently, we plan to remove YAML over the network in Puppet 4.0. This means in cases where Puppet 3.3 would issue a deprecation warning, Puppet 4 will completely refuse the request.
+
+#### New Setting for Compatibility With Sub-3.3.0 Masters
+
+Puppet 3.3 agents now default to sending reports as JSON, and masters running Puppet 3.2.4 and earlier cannot understand JSON reports. Using an out of the box 3.3 agent with a 3.2 puppet master will therefore fail.
+
+* To avoid errors, [upgrade the puppet master first](/guides/upgrading.html#always-upgrade-the-puppet-master-first).
+* If you must use ≥ 3.3.0 agents with older puppet masters, set the new `report_serialization_format` to `yaml` in the agents' puppet.conf; this restores full compatibility.
+
+### Regex Capture Variables from Node Definitions ($1, etc.)
+
+[(Issue 2628: It would be useful if node name regexps set $1)][2628]
+
+Node definitions now set the standard regex capture variables, similar to the behavior of conditional statements that use regexes.
+
+### Redirect Response Handling
+
+[(Issue 18255: accept 301 response from fileserver)][18255]
+
+Puppet's HTTP client now follows HTTP redirects when given status codes 301 (permanent), 302 (temporary), or 307 (temporary). The new functionality includes a redirection limit, and recreates the redirected connection with the same certificates and store as the original (as long as the new location is ssl protected). Redirects are performed for GET, HEAD, and POST requests.
+
+This is mostly useful for configuring the puppet master's front end webserver to send fileserver traffic to the closest server.
+
+### Filebucket Improvements
+
+[(Issue 22375: File bucket and Puppet File resource: fails with "regexp buffer overflow" when backing up binary file)][22375]
+
+There were a number of problems with the remote filebucket functionality for
+backing up files under Puppet's management over the network. It is now possible
+to back up binary files, which previously would consume lots of memory and
+error out. Non-binary filebucket operations should also be faster as we
+eliminated an unnecessary network round-trip that echoed the entire contents
+of the file back to the agent after it was uploaded to the server.
+
+### Internal Format and API Improvements
+
+#### Report Format 4
+
+[report4]: /puppet/3/reference/format_report.html#report-format-4
+
+Puppet's [report format version][report4] has been bumped to 4. This is backward-compatible with report format 3, and adds `transaction_uuid` to reports and `containment_path` to resource statuses.
+
+#### Unique Per-run Identifier in Reports and Catalog Requests
+
+[(Issue 21831: Generate a UUID for catalog retrieval and report posts)][21831]
+
+Puppet agent now embeds a per-run UUID in its catalog requests, and embeds the same UUID in its reports after applying the catalog. This makes it possible to correlate events from reports with the catalog that provoked those events.
+
+There is currently no interface for doing this correlation, but a future version of PuppetDB will provide this functionality via catalog and report queries.
+
+#### Readable Attributes on Puppet::ModuleTool::Dependency Objects
+
+[(Issue 21749: Make attributes readable on Puppet::ModuleTool::Dependency objects)][21749]
+
+This API change enables access to module dependency information via Ruby code.
+
+### User Interface Improvements
+
+#### Improved CSS for Puppet Doc Rdoc Output
+
+[(Issue 6561: Better looking CSS for puppet doc rdoc mode)][6561]
+
+The standard skin for rdoc generated from Puppet manifests has been updated to improve
+readability. Note that puppet doc rdoc functionality remains broken on Ruby 1.9 and up.
+
+#### Improved Display of Arrays in Console Output
+
+[(Issue 20284: Output one item per line for arrays in console output)][20284]
+
+This changes the output to console from faces applications to output array
+items as one item per line.
+
+#### Configurable Module Skeleton Directory
+
+[(Issue 21170: enhancement of the module generate functionality)][21170]
+
+Previously, you could provide your own template for the `puppet module generate` action by creating a directory called `skeleton` in the directory specified by [the `module_working_dir` setting](/references/3.latest/configuration.html#module_working_dir). (The layout of the directory should match that of [`lib/puppet/module_tool/skeleton`](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/module_tool/skeleton).) This directory can now be configured independently with [the `module_skeleton_dir` setting](/references/3.latest/configuration.html#module_skeleton_dir).
+
+### Improvements to Resource Types
+
+#### Package Type: Multi-Package Removal With Urpmi Provider
+
+[(Issue 16792: permit to remove more than 1 package using urpmi provider)][16792]
+
+It was tedious to remove some packages when using the urpmi provider since it
+only allowed to remove one package at the time, and that removal must be made
+in dependency order.  Now, the urpmi provider behaves similar to the apt
+provider.
+
+
+#### Package Type: Package Descriptions in RAL
+
+[(Issue 19875: Get package descriptions from RAL)][19875]
+
+Previously, rpm and dpkg provider implementations obtained package information from the system without capturing descriptions. They now capture the single line description summary for packages as a read-only parameter.
+
+#### Package Type: OpenBSD Improvements
+
+Jasper Lievisse Adriaanse contributed several improvements and fixes
+to the OpenBSD package provider.
+
+[(Issue 21930: Enchance OpenBSD pkg.conf handling)][21930]
+
+It is now possible to use `+=` when defining the `installpath` for OpenBSD.
+Previously, an attempt to use this was ignored; now, it's possible to have
+a pkg.conf like:
+
+    installpath = foo
+    installpath += bar
+
+Which will be turned into a `PKG_PATH: foo:bar`.
+
+[(Issue 22021: Implement (un)install options feature for OpenBSD package provider)][22021]
+
+It is now possible to specify `install_options` and `uninstall_options` for the
+OpenBSD package provider. These were previously not available.
+
+[(Issue 22023: Implement purgeable feature for OpenBSD package provider)][22023]
+
+It is now possible to use the `purged` value for `ensure` with the OpenBSD package provider.
+
+
+#### Yumrepo Type: AWS S3 Repos
+
+[(Issue 21452: Add `s3_enabled` option to the yumrepo type)][21452]
+
+It is now possible to use a yum repo stored in AWS S3 (via the yum-s3-iam
+plugin) by setting the resource's `s3_enabled` attribute to `1`.
+
+
+### Special thanks to 3.3.0 Contributors
+
+Adrien Thebo, Alex Dreyer, Alexander Fortin, Alexey Lapitsky, Aman Gupta, Andrew Parker, Andy Brody, Anton Lofgren, Brice Figureau, Charlie Sharpsteen, Chris Price, Clay Caviness, David Schmitt, Dean Wilson, Duncan Phillips, Dustin J. Mitchell, Eric Sorenson, Erik Dalén, Felix Frank, Garrett Honeycutt, Henrik Lindberg, Hunter Haugen, Jasper Lievisse Adriaanse, Jeff McCune, Jeff Weiss, Jesse Hathaway, John Julien, Josh Cooper, Josh Partlow, Juan Ignacio Donoso, Kosh, Kylo Ginsberg, Mathieu Parent, Matthaus Owens, Melissa Stone, Melissa, Michael Scherer, Michal Růžička, Moses Mendoza, Neil Hemingway, Nick Fagerlund, Nick Lewis, Patrick Carlisle, Pieter van de Bruggen, Richard Clamp, Richard Pijnenburg, Richard Soderberg, Richard Stevenson, Sergey Sudakovich, Stefan Schulte, Thomas Hallgren, W. Andrew Loe III, arnoudj, floatingatoll, ironpinguin, joshrivers, phinze, superseb
+
+### All 3.3.0 Changes
+
+[See here for a list of all changes in the 3.3.0 release.](http://projects.puppetlabs.com/versions/401)
+
+[22205]: http://projects.puppetlabs.com/issues/22205
+[16856]: http://projects.puppetlabs.com/issues/16856
+[21427]: http://projects.puppetlabs.com/issues/21427
+[2628]: http://projects.puppetlabs.com/issues/2628
+[18255]: http://projects.puppetlabs.com/issues/18255
+[21831]: http://projects.puppetlabs.com/issues/21831
+[21749]: http://projects.puppetlabs.com/issues/21749
+[6561]: http://projects.puppetlabs.com/issues/6561
+[20284]: http://projects.puppetlabs.com/issues/20284
+[21170]: http://projects.puppetlabs.com/issues/21170
+[16792]: http://projects.puppetlabs.com/issues/16792
+[19875]: http://projects.puppetlabs.com/issues/19875
+[21930]: http://projects.puppetlabs.com/issues/21930
+[22021]: http://projects.puppetlabs.com/issues/22021
+[22023]: http://projects.puppetlabs.com/issues/22023
+[21452]: http://projects.puppetlabs.com/issues/21452
+[22375]: http://projects.puppetlabs.com/issues/22375
+
+
 Puppet 3.2.4
 -----
 
