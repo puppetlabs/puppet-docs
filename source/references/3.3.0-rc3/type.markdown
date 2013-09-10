@@ -3,44 +3,135 @@ layout: default
 title: "Type Reference"
 canonical: "/references/latest/type.html"
 munge_header_ids: false
+toc: false
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on Mon Sep 09 17:38:27 -0700 2013
+
+<nav id="page-nav" class="in-page">
+<ol class="toc" style="-webkit-column-width: 13em; -webkit-column-gap: 1.5em; -moz-column-width: 13em; -moz-column-gap: 1.5em; column-width: 13em; column-gap: 1.5em;">
+<li class="toc-lv2"><a href="#augeas">augeas</a></li>
+<li class="toc-lv2"><a href="#computer">computer</a></li>
+<li class="toc-lv2"><a href="#cron">cron</a></li>
+<li class="toc-lv2"><a href="#exec">exec</a></li>
+<li class="toc-lv2"><a href="#file">file</a></li>
+<li class="toc-lv2"><a href="#filebucket">filebucket</a></li>
+<li class="toc-lv2"><a href="#group">group</a></li>
+<li class="toc-lv2"><a href="#host">host</a></li>
+<li class="toc-lv2"><a href="#interface">interface</a></li>
+<li class="toc-lv2"><a href="#k5login">k5login</a></li>
+<li class="toc-lv2"><a href="#macauthorization">macauthorization</a></li>
+<li class="toc-lv2"><a href="#mailalias">mailalias</a></li>
+<li class="toc-lv2"><a href="#maillist">maillist</a></li>
+<li class="toc-lv2"><a href="#mcx">mcx</a></li>
+<li class="toc-lv2"><a href="#mount">mount</a></li>
+<li class="toc-lv2"><a href="#nagioscommand">nagios_command</a></li>
+<li class="toc-lv2"><a href="#nagioscontact">nagios_contact</a></li>
+<li class="toc-lv2"><a href="#nagioscontactgroup">nagios_contactgroup</a></li>
+<li class="toc-lv2"><a href="#nagioshost">nagios_host</a></li>
+<li class="toc-lv2"><a href="#nagioshostdependency">nagios_hostdependency</a></li>
+<li class="toc-lv2"><a href="#nagioshostescalation">nagios_hostescalation</a></li>
+<li class="toc-lv2"><a href="#nagioshostextinfo">nagios_hostextinfo</a></li>
+<li class="toc-lv2"><a href="#nagioshostgroup">nagios_hostgroup</a></li>
+<li class="toc-lv2"><a href="#nagiosservice">nagios_service</a></li>
+<li class="toc-lv2"><a href="#nagiosservicedependency">nagios_servicedependency</a></li>
+<li class="toc-lv2"><a href="#nagiosserviceescalation">nagios_serviceescalation</a></li>
+<li class="toc-lv2"><a href="#nagiosserviceextinfo">nagios_serviceextinfo</a></li>
+<li class="toc-lv2"><a href="#nagiosservicegroup">nagios_servicegroup</a></li>
+<li class="toc-lv2"><a href="#nagiostimeperiod">nagios_timeperiod</a></li>
+<li class="toc-lv2"><a href="#notify">notify</a></li>
+<li class="toc-lv2"><a href="#package">package</a></li>
+<li class="toc-lv2"><a href="#resources">resources</a></li>
+<li class="toc-lv2"><a href="#router">router</a></li>
+<li class="toc-lv2"><a href="#schedule">schedule</a></li>
+<li class="toc-lv2"><a href="#scheduledtask">scheduled_task</a></li>
+<li class="toc-lv2"><a href="#selboolean">selboolean</a></li>
+<li class="toc-lv2"><a href="#selmodule">selmodule</a></li>
+<li class="toc-lv2"><a href="#service">service</a></li>
+<li class="toc-lv2"><a href="#sshauthorizedkey">ssh_authorized_key</a></li>
+<li class="toc-lv2"><a href="#sshkey">sshkey</a></li>
+<li class="toc-lv2"><a href="#stage">stage</a></li>
+<li class="toc-lv2"><a href="#tidy">tidy</a></li>
+<li class="toc-lv2"><a href="#user">user</a></li>
+<li class="toc-lv2"><a href="#vlan">vlan</a></li>
+<li class="toc-lv2"><a href="#yumrepo">yumrepo</a></li>
+<li class="toc-lv2"><a href="#zfs">zfs</a></li>
+<li class="toc-lv2"><a href="#zone">zone</a></li>
+<li class="toc-lv2"><a href="#zpool">zpool</a></li>
+</ol></nav>
+
+> **NOTE:** This page was generated from the Puppet source code on Tue Sep 10 15:18:48 -0700 2013
 
 ## About Resource Types
 
-- All types have a special attribute called the *namevar.* This is the attribute
-  used to uniquely identify a type instance _on the target system._ If you don't
-  specifically assign a value for the namevar, its value will default to the
-  _title_ of the resource.
+### Built-in Types and Custom Types
 
-  In the following code:
+This is the documentation for the _built-in_ resource types and providers, keyed
+to a specific Puppet version. (See sidebar.) Additional resource types can be
+distributed in Puppet modules; you can find and install modules by browsing the
+[Puppet Forge](http://forge.puppetlabs.com). See each module's documentation for
+information on how to use its custom resource types.
 
-      file { "/etc/passwd":
-        owner => root,
-        group => root,
-        mode  => 644
-      }
+### Declaring Resources
 
-  `/etc/passwd` is considered the title of the file object (used for things like
-  dependency handling), and because `path` is the namevar for `file`, that
-  string is assigned to the `path` parameter.
-- The *attributes* of a resource instance determine its desired state.  They
-  either directly modify the system (internally, these are called "properties")
-  or they affect how the instance behaves (e.g., adding a search path for `exec`
-  instances or determining recursion on `file` instances).
-- *Providers* implement the same resource type on different kinds of systems.
-  They usually do this by calling out to external commands.
+To manage resources on a target system, you should declare them in Puppet
+manifests. For more details, see
+[the resources page of the Puppet language reference.](/puppet/latest/reference/lang_resources.html)
 
-  Providers often specify binaries that they require. Fully qualified binary
-  paths indicate that the binary must exist at that specific path, and
-  unqualified paths indicate that Puppet will search for the binary using the
-  shell path.
-- *Features* are abilities that some providers might not support.  You can use
-  the list of supported features to determine how a given provider can be used.
+You can also browse and manage resources interactively using the
+`puppet resource` subcommand; run `puppet resource --help` for more information.
 
-  Resource types define the set of features they can use, and providers can
-  declare which features they provide.
+### Namevars and Titles
+
+All types have a special attribute called the *namevar.* This is the attribute
+used to uniquely identify a resource _on the target system._ If you don't
+specifically assign a value for the namevar, its value will default to the
+_title_ of the resource.
+
+Example:
+
+    file { '/etc/passwd':
+      owner => root,
+      group => root,
+      mode  => 644
+    }
+
+In this code, `/etc/passwd` is the _title_ of the file resource; other Puppet
+code can refer to the resource as `File['/etc/passwd']` to declare
+relationships. Because `path` is the namevar for the file type and we did not
+provide a value for it, the value of `path` will default to `/etc/passwd`.
+
+### Attributes, Parameters, Properties
+
+The *attributes* (sometimes called *parameters*) of a resource determine its
+desired state.  They either directly modify the system (internally, these are
+called "properties") or they affect how the resource behaves (e.g., adding a
+search path for `exec` resources or controlling directory recursion on `file`
+resources).
+
+### Providers
+
+*Providers* implement the same resource type on different kinds of systems.
+They usually do this by calling out to external commands.
+
+Although Puppet will automatically select an appropriate default provider, you
+can override the default with the `provider` attribute. (For example, `package`
+resources on Red Hat systems default to the `yum` provider, but you can specify
+`provider => gem` to install Ruby libraries with the `gem` command.)
+
+Providers often specify binaries that they require. Fully qualified binary
+paths indicate that the binary must exist at that specific path, and
+unqualified paths indicate that Puppet will search for the binary using the
+shell path.
+
+### Features
+
+*Features* are abilities that some providers may not support. Generally, a
+feature will correspond to some allowed values for a resource attribute; for
+example, if a `package` provider supports the `purgeable` feature, you can
+specify `ensure => purged` to delete config files installed by the package.
+
+Resource types define the set of features they can use, and providers can
+declare which features they provide.
 
 ----------------
 
@@ -1783,7 +1874,7 @@ Whether the group is a system group with lower GID.
 
 Group management for AIX.
 
-Required binaries: `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`, `/usr/bin/mkgroup`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_members`.
+Required binaries: `/usr/bin/chgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`, `/usr/bin/mkgroup`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_members`.
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
@@ -1799,7 +1890,7 @@ Group management via `groupadd` and its ilk. The default for most platforms.
 
   
 
-Required binaries: `lgroupadd`, `groupdel`, `groupadd`, `groupmod`.  Supported features: `system_groups`.
+Required binaries: `lgroupadd`, `groupmod`, `groupdel`, `groupadd`.  Supported features: `system_groups`.
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -2445,7 +2536,7 @@ Manage Mac OS X authorization database rules and rights.
 
   
 
-Required binaries: `/usr/bin/sw_vers`, `/usr/bin/security`.  Default for `operatingsystem` == `darwin`.
+Required binaries: `/usr/bin/security`, `/usr/bin/sw_vers`.  Default for `operatingsystem` == `darwin`.
 
 
 
@@ -2621,7 +2712,7 @@ The name of the host providing web archives and the administrative interface.
 
 <h4 id="maillist-provider-mailman">mailman</h4>
 
-Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `rmlist`, `newlist`.
+Required binaries: `rmlist`, `newlist`, `/var/lib/mailman/mail/mailman`, `list_lists`.
 
 
 
@@ -6380,7 +6471,7 @@ Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`.  Default for `operati
 
 Package management which copies application bundles to a target.
 
-Required binaries: `/usr/bin/ditto`, `/usr/bin/hdiutil`, `/usr/bin/curl`.  Supported features: `installable`.
+Required binaries: `/usr/bin/hdiutil`, `/usr/bin/curl`, `/usr/bin/ditto`.  Supported features: `installable`.
 
 <h4 id="package-provider-apple">apple</h4>
 
@@ -6396,19 +6487,19 @@ Required binaries: `/usr/sbin/installer`.  Supported features: `installable`.
 
 Package management via `apt-get`.
 
-Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`.  Default for `operatingsystem` == `debian, ubuntu`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`, `/usr/bin/apt-get`.  Default for `operatingsystem` == `debian, ubuntu`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
-Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/apt-cache`, `/usr/bin/aptitude`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
-Required binaries: `apt-get`, `apt-cache`, `rpm`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `apt-cache`, `rpm`, `apt-get`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
@@ -6422,13 +6513,13 @@ Package management via `dpkg`.  Because this only uses `dpkg`
 and not `apt`, you must specify the source of any packages you want
 to manage.
 
-Required binaries: `/usr/bin/dpkg-query`, `/usr/bin/dpkg`, `/usr/bin/dpkg-deb`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`, `/usr/bin/dpkg`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-fink">fink</h4>
 
 Package management via `fink`.
 
-Required binaries: `/sw/bin/dpkg-query`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`, `/sw/bin/fink`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/sw/bin/apt-cache`, `/sw/bin/fink`, `/sw/bin/dpkg-query`, `/sw/bin/apt-get`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
@@ -6453,7 +6544,7 @@ Required binaries: `gem`.  Supported features: `installable`, `uninstallable`, `
 
 HP-UX's packaging system.
 
-Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`.  Default for `operatingsystem` == `hp-ux`.  Supported features: `installable`, `uninstallable`.
+Required binaries: `/usr/sbin/swremove`, `/usr/sbin/swinstall`, `/usr/sbin/swlist`.  Default for `operatingsystem` == `hp-ux`.  Supported features: `installable`, `uninstallable`.
 
 <h4 id="package-provider-macports">macports</h4>
 
@@ -6488,7 +6579,7 @@ Note that package downgrades are *not* supported; if your resource specifies
 a specific version number and there is already a newer version of the package
 installed on the machine, the resource will fail with an error message.
 
-Required binaries: `/usr/bin/lslpp`, `/usr/sbin/nimclient`, `rpm`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `rpm`, `/usr/bin/lslpp`, `/usr/sbin/nimclient`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-openbsd">openbsd</h4>
 
@@ -6518,7 +6609,7 @@ Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 OpenSolaris image packaging system. See pkg(5) for more information
 
-Required binaries: `/usr/bin/pkg`.  Default for `kernelrelease` == `5.11` and `osfamily` == `solaris`.  Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/pkg`.  Default for `osfamily` == `solaris` and `kernelrelease` == `5.11`.  Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
@@ -6548,13 +6639,13 @@ Required binaries: `pkgutil`.  Supported features: `installable`, `uninstallable
 
 Provides packaging support for Gentoo's portage system.
 
-Required binaries: `/usr/bin/eix-update`, `/usr/bin/emerge`, `/usr/bin/eix`.  Default for `operatingsystem` == `gentoo`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/emerge`, `/usr/bin/eix`, `/usr/bin/eix-update`.  Default for `operatingsystem` == `gentoo`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-ports">ports</h4>
 
 Support for FreeBSD's ports.  Note that this, too, mixes packages and ports.
 
-Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`.  Default for `operatingsystem` == `freebsd`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`.  Default for `operatingsystem` == `freebsd`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-portupgrade">portupgrade</h4>
 
@@ -6562,7 +6653,7 @@ Support for FreeBSD's ports using the portupgrade ports management software.
 Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
 for the portupgrade port.
 
-Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/portinstall`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -6575,14 +6666,14 @@ Required binaries: `rpm`.  Supported features: `installable`, `uninstallable`, `
 
 Support for suse `rug` package manager.
 
-Required binaries: `/usr/bin/rug`, `rpm`.  Default for `operatingsystem` == `suse, sles`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `rpm`, `/usr/bin/rug`.  Default for `operatingsystem` == `suse, sles`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-sun">sun</h4>
 
 Sun's packaging system.  Requires that you specify the source for
 the packages you're managing.
 
-Required binaries: `/usr/sbin/pkgrm`, `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`.  Default for `osfamily` == `solaris`.  Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`.  Default for `osfamily` == `solaris`.  Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
@@ -6603,7 +6694,7 @@ Required binaries: `/usr/sbin/up2date-nox`.  Default for `osfamily` == `redhat` 
 
 Support via `urpmi`.
 
-Required binaries: `urpmi`, `urpmq`, `urpme`, `rpm`.  Default for `operatingsystem` == `mandriva, mandrake`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `urpme`, `rpm`, `urpmi`, `urpmq`.  Default for `operatingsystem` == `mandriva, mandrake`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-windows">windows</h4>
 
@@ -8077,7 +8168,7 @@ Note that this provider does not support overriding 'restart' or 'status'.
 
 
 
-Required binaries: `/usr/bin/sw_vers`, `/usr/bin/plutil`, `/bin/launchctl`.  Default for `operatingsystem` == `darwin`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/bin/launchctl`, `/usr/bin/sw_vers`, `/usr/bin/plutil`.  Default for `operatingsystem` == `darwin`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -8087,7 +8178,7 @@ Uses rc-update, rc-status and rc-service to manage services.
 
 
 
-Required binaries: `/bin/rc-status`, `/sbin/rc-service`, `/sbin/rc-update`.  Default for `operatingsystem` == `funtoo`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/sbin/rc-service`, `/sbin/rc-update`, `/bin/rc-status`.  Default for `operatingsystem` == `funtoo`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
@@ -8176,7 +8267,7 @@ modifications to `/etc/inittab`. Starting and stopping groups of subsystems
 is not yet supported.
 
 
-Required binaries: `/usr/bin/startsrc`, `/usr/bin/lssrc`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/bin/refresh`, `/usr/sbin/rmitab`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`.  Default for `operatingsystem` == `aix`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/usr/sbin/mkitab`, `/usr/sbin/rmitab`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/bin/startsrc`, `/usr/bin/refresh`, `/usr/bin/lssrc`, `/usr/sbin/lsitab`.  Default for `operatingsystem` == `aix`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -8192,7 +8283,7 @@ This provider manages `upstart` jobs, which have replaced `initd` services
 on Ubuntu. For `upstart` documentation, see <http://upstart.ubuntu.com/>.
 
 
-Required binaries: `/sbin/start`, `/sbin/status`, `/sbin/restart`, `/sbin/initctl`, `/sbin/stop`.  Default for `operatingsystem` == `ubuntu`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/sbin/initctl`, `/sbin/start`, `/sbin/stop`, `/sbin/status`, `/sbin/restart`.  Default for `operatingsystem` == `ubuntu`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -9111,13 +9202,13 @@ security identifier (SID).
 
 User management for AIX.
 
-Required binaries: `/usr/sbin/lsgroup`, `/bin/chpasswd`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/usr/bin/mkuser`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`.
+Required binaries: `/bin/chpasswd`, `/usr/bin/chuser`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`, `/usr/sbin/lsgroup`, `/usr/bin/mkuser`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`.
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
 User management on OS X.
 
-Required binaries: `/usr/bin/plutil`, `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscacheutil`, `/usr/bin/dscl`.  Default for `operatingsystem` == `darwin`.  Supported features: `manages_password_salt`, `manages_passwords`.
+Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/plutil`, `/usr/bin/uuidgen`, `/usr/bin/dsimport`.  Default for `operatingsystem` == `darwin`.  Supported features: `manages_password_salt`, `manages_passwords`.
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
@@ -9125,7 +9216,7 @@ User management for HP-UX. This provider uses the undocumented `-F`
 switch to HP-UX's special `usermod` binary to work around the fact that
 its standard `usermod` cannot make changes while the user is logged in.
 
-Required binaries: `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/useradd.sam`.  Default for `operatingsystem` == `hp-ux`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
+Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`.  Default for `operatingsystem` == `hp-ux`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
 
 <h4 id="user-provider-ldap">ldap</h4>
 
@@ -9152,7 +9243,7 @@ Required binaries: `pw`.  Default for `operatingsystem` == `freebsd, dragonfly`.
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
-Required binaries: `roleadd`, `roledel`, `userdel`, `rolemod`, `useradd`, `usermod`, `passwd`.  Default for `osfamily` == `solaris`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_solaris_rbac`.
+Required binaries: `roledel`, `rolemod`, `usermod`, `userdel`, `useradd`, `passwd`, `roleadd`.  Default for `osfamily` == `solaris`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_solaris_rbac`.
 
 <h4 id="user-provider-useradd">useradd</h4>
 
@@ -9160,7 +9251,7 @@ User management via `useradd` and its ilk.  Note that you will need to
 install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
-Required binaries: `luseradd`, `userdel`, `useradd`, `usermod`, `chage`.  Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `system_users`.
+Required binaries: `luseradd`, `usermod`, `userdel`, `useradd`, `chage`.  Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
@@ -10257,7 +10348,7 @@ so Puppet only checks for it at that time.
 
 Provider for Solaris Zones.
 
-Required binaries: `/usr/sbin/zonecfg`, `/usr/sbin/zoneadm`.  Default for `osfamily` == `solaris`.
+Required binaries: `/usr/sbin/zoneadm`, `/usr/sbin/zonecfg`.  Default for `osfamily` == `solaris`.
 
 
 
@@ -10386,4 +10477,6 @@ Provider for zpool.
 Required binaries: `zpool`.
 
 
-> **NOTE:** This page was generated from the Puppet source code on Mon Sep 09 17:38:27 -0700 2013
+
+
+> **NOTE:** This page was generated from the Puppet source code on Tue Sep 10 15:18:48 -0700 2013
