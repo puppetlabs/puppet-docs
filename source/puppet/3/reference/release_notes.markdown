@@ -69,14 +69,20 @@ For a full description of the Puppet 3 release, including major changes, backwar
 Puppet 3.3.0
 -----
 
-**Release candidate:** This version entered RC on September 5, 2013; it has not yet been officially released. The current preview is RC3.
+Released September 12, 2013.
 
 3.3.0 is a backward-compatible feature and fix release in the Puppet 3 series.
 
-> **Note:** Although 3.3.0 is backward-compatible with all 3.x releases, its default config will cause reporting failures when ≥ 3.3.0 agent nodes connect to a sub-3.3.0 master. [See the note below on yaml deprecation for details.][yaml_deprecation]
->
-> * This only affects newer agents + older masters; is not a problem if you [upgrade the puppet master first.](/guides/upgrading.html#always-upgrade-the-puppet-master-first)
-> * To use ≥ 3.3.0 agents with an older puppet master, set `report_serialization_format` to `yaml` in their puppet.conf files; this restores full compatibility.
+### Upgrade Warning
+
+**Note:** Whenever possible, _upgrade your puppet masters first._
+
+Although 3.3.0 is backward-compatible, its default configuration will cause reporting failures when ≥ 3.3.0 agent nodes connect to a sub-3.3.0 master.
+
+* This only affects newer agents + older masters; it is not a problem if you [upgrade the puppet master first.](/guides/upgrading.html#always-upgrade-the-puppet-master-first)
+* To use ≥ 3.3.0 agents with an older puppet master, set `report_serialization_format` to `yaml` in their puppet.conf files; this restores full compatibility.
+
+[See the note below on yaml deprecation for details.][yaml_deprecation]
 
 ### Configurable Resource Ordering
 
@@ -110,7 +116,7 @@ contains the background, a description, and a set of examples.
 
 ### Security: YAML Over the Network is Now Deprecated
 
-[yaml_deprecation]: todo
+[yaml_deprecation]: #security-yaml-over-the-network-is-now-deprecated
 
 [(Issue 21427: Deprecate YAML for network data transmission)][21427]
 
