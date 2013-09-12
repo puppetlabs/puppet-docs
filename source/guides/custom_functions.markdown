@@ -39,9 +39,14 @@ your functions:
 -   The name of the file containing your function must be the
     same as the name of function; otherwise it won't get automatically
     loaded.
--   To use a *fact* about a client, use `lookupvar('{fact name}')`
-    instead of `Facter['{fact name}'].value`.  If the *fact* does not
-    exist, `lookupvar` returns `nil`. See examples below.
+-   To use a *fact* about a client, use `lookupvar('FACT NAME')`
+    instead of `Facter['FACT NAME'].value`.  If the *fact* does not
+    exist, `lookupvar` returns:
+
+    - `nil` (in Puppet 3.x)
+    - `:undefined` (in Puppet 2.7)
+
+    See examples below.
 
 ### Where to put your functions
 
@@ -171,11 +176,11 @@ functions.
 {% endhighlight %}
 
 Basically, to get a fact's or variable's value, you just call
-`lookupvar('{fact name}')`.
+`lookupvar('FACT NAME')`.
 
 ## Calling Functions from Functions
 
-Functions can be accessed from other functions by 
+Functions can be accessed from other functions by
 calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.  Alternatively, you can load a specific function by calling `Puppet::Parser::Functions.function('myfunc1')`
 
 Also keep in mind that when calling a puppet function from the puppet DSL, arguments are all passed in as an anonymous array.  This is not the case when calling the function from within Ruby.  To work around this, you must create the anonymous array yourself by putting the arguments (even if there is only one argument) inside square brackets like this:

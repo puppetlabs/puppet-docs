@@ -148,18 +148,13 @@ Puppet 3 introduces an easier syntax: you can use the square bracket operator (`
 
     <%= scope['::domain'] %>
 
-### Testing for Undefined variables
+### Testing for Undefined Variables
 
-Instance variables are not created for variables whose values are undefined, so you can easily test for undefined variables with `if @variable`:
+**Short version:** When testing for undefinedness, _check whether the instance variable (`@variable`) is `nil`_ -- if the corresponding Puppet variable is either undefined or explicitly set to `undef`, the instance variable will reliably have a value of `nil`.
 
-    <% if @myvar %>
-    myvar has <%= @myvar %> value
-    <% end %>
+This only works for local variables, so if you need to test variables from other scopes, you must copy them to local scope in the manifest before evaluating the template:
 
-Older templates often used the `has_variable?("myvar")` helper function, but this could yield odd results when variables were explicitly set to `undef`, and should usually be avoided.
-
-If you need to test for a variable outside the current scope, you should copy it to a local variable in the manifest before evaluating the template:
-
+{% highlight ruby %}
     # manifest:
     $in_var = $outside_scope::outside_var
 
@@ -167,6 +162,33 @@ If you need to test for a variable outside the current scope, you should copy it
     <% if @in_var %>
     outside_var has <%= @in_var %> value
     <% end %>
+{% endhighlight %}
+
+**Long version:**
+
+Testing for undefined variables in templates has always been frustrating, because the concepts of nothingness and undefinedness in Puppet have always been fraught and underspecified. See [Issue #15329 (Puppet lacks a proper "undefined" value)](http://projects.puppetlabs.com/issues/15329) for more detailed thinking about this problem. The complicating factors go pretty deep, and we can't fix the situation in anything less than a major version boundary because any fix will probably break significant Puppet code in the wild.
+
+There are three problems that caused us to recommend the conservative approach above. The first is that Puppet distinguishes between:
+
+* Variables that _were never set_
+* Variables _explicitly set to `undef`_ (usually to remove possible values from parent scopes)
+
+...and it probably should treat them equivalently. The second is that Puppet is inconsistent about the way it passes undefinedness to Ruby code. The third is that Puppet's behavior has changed between versions.
+
+In summary, here are the various values you can expect to find in templates when variables are undefined or set to undef:
+
+$variable status + Puppet ver | @variable | scope.lookupvar('variable') | has_variable?('variable')
+------------------------------|-----------|-----------------------------|--------------------------
+Never set (Puppet 3.x)        | `nil`     | `nil`                       | `false`
+Set to `undef` (Puppet 3.x)   | `nil`     | `:undef`                    | `true`
+Never set (Puppet 2.7.x)      | `nil`     | `:undefined`                | `false`
+Set to `undef` (Puppet 2.7.x) | `nil`     | `:undef`                    | `true`
+
+* The `has_variable?` helper function is useless, because it can't tell the difference between never set and `undef`.
+* `scope.lookupvar` is the same situation but worse, because it's inconsistent between Puppet versions.
+* Instance `@variables` work, but can't access variables from other scopes.
+
+Thus, testing `@variable` for `nil` is the best option available right now. The `has_variable?` function should probably just go away, but removing it will definitely break existing code.
 
 ### Getting a List of All Variables
 
