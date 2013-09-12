@@ -41,7 +41,7 @@ your functions:
     loaded.
 -   To use a *fact* about a client, use `lookupvar('{fact name}')`
     instead of `Facter['{fact name}'].value`.  If the *fact* does not
-    exist, `lookupvar` returns `:undefined`. See examples below.
+    exist, `lookupvar` returns `nil`. See examples below.
 
 ### Where to put your functions
 
@@ -165,7 +165,7 @@ functions.
 {% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:has_fact, :type => :rvalue) do |arg|
-        lookupvar(arg[0]) != :undefined
+        lookupvar(arg[0]) != nil
       end
     end
 {% endhighlight %}
