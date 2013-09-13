@@ -59,7 +59,7 @@ toc: false
 <li class="toc-lv2"><a href="#zpool">zpool</a></li>
 </ol></nav>
 
-> **NOTE:** This page was generated from the Puppet source code on Thu Sep 12 18:04:12 -0700 2013
+> **NOTE:** This page was generated from the Puppet source code on Fri Sep 13 16:26:26 -0700 2013
 
 ## About Resource Types
 
@@ -170,6 +170,7 @@ Sample usage with an array and custom lenses:
         ],
       load_path => "$/usr/share/jbossas/lenses",
     }
+
 
 
 <h3 id="augeas-attributes">Attributes</h3>
@@ -319,6 +320,7 @@ The specific backend to use for this `augeas`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`augeas`](#augeas-provider-augeas)
@@ -465,6 +467,7 @@ The specific backend to use for this `computer`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`directoryservice`](#computer-provider-directoryservice)
@@ -483,15 +486,15 @@ The 'long' name of the computer record.
 <h4 id="computer-provider-directoryservice">directoryservice</h4>
 
 Computer object management using DirectoryService on OS X.
-  Note that these are distinctly different kinds of objects to 'hosts',
-  as they require a MAC address and can have all sorts of policy attached to
-  them.
+Note that these are distinctly different kinds of objects to 'hosts',
+as they require a MAC address and can have all sorts of policy attached to
+them.
 
-  This provider only manages Computer objects in the local directory service
-  domain, not in remote directories.
+This provider only manages Computer objects in the local directory service
+domain, not in remote directories.
 
-  If you wish to manage /etc/hosts on Mac OS X, then simply use the host
-  type as per other platforms.
+If you wish to manage /etc/hosts on Mac OS X, then simply use the host
+type as per other platforms.
 
 Default for `operatingsystem` == `darwin`.
 
@@ -554,6 +557,7 @@ will not reset the minute component of the associated cronjob to `*`.
 These changes must be expressed by setting the parameter to
 `minute => absent` because Puppet only manages parameters that are out of
 sync with manifest entries.
+
 
 <h3 id="cron-attributes">Attributes</h3>
 
@@ -674,6 +678,7 @@ The specific backend to use for this `cron`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`crontab`](#cron-provider-crontab)
@@ -782,7 +787,7 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
   <a href="#exec-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `exec...</em>
   <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># How to refresh this command.  By default, the...</em>
-  <a href="#exec-attribute-refreshonly">refreshonly</a> =&gt; <em>#       The command should only be run as a     ...</em>
+  <a href="#exec-attribute-refreshonly">refreshonly</a> =&gt; <em># The command should only be run as a refresh...</em>
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected return code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
@@ -824,6 +829,7 @@ In this example, `myfile` is assumed to be a file inside
 back by re-extracting the tarball. If `important.tar` does **not**
 actually contain `myfile`, the exec will keep running every time
 Puppet runs.
+
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -883,6 +889,7 @@ Also note that onlyif can take an array as its value, e.g.:
 
 This will only run the exec if _all_ conditions in the array return true.
 
+
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-path">path</h4>
@@ -898,6 +905,7 @@ can be specified as an array or as a ':' separated list.
 The specific backend to use for this `exec`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -918,26 +926,26 @@ for refreshing.
 
 <h4 id="exec-attribute-refreshonly">refreshonly</h4>
 
-      The command should only be run as a
-      refresh mechanism for when a dependent object is changed.  It only
-      makes sense to use this option when this command depends on some
-      other object; it is useful for triggering an action:
+The command should only be run as a
+refresh mechanism for when a dependent object is changed.  It only
+makes sense to use this option when this command depends on some
+other object; it is useful for triggering an action:
 
-          # Pull down the main aliases file
-          file { "/etc/aliases":
-            source => "puppet://server/module/aliases"
-          }
+    # Pull down the main aliases file
+    file { "/etc/aliases":
+      source => "puppet://server/module/aliases"
+    }
 
-          # Rebuild the database, but only when the file changes
-          exec { newaliases:
-            path        => ["/usr/bin", "/usr/sbin"],
-            subscribe   => File["/etc/aliases"],
-            refreshonly => true
-          }
+    # Rebuild the database, but only when the file changes
+    exec { newaliases:
+      path        => ["/usr/bin", "/usr/sbin"],
+      subscribe   => File["/etc/aliases"],
+      refreshonly => true
+    }
 
-      Note that only `subscribe` and `notify` can trigger actions, not `require`,
-      so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
-Valid values are `true`, `false`.
+Note that only `subscribe` and `notify` can trigger actions, not `require`,
+so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
+  Valid values are `true`, `false`.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -992,6 +1000,7 @@ This would add `root` to the cron.allow file (on Solaris) unless
 Note that this command follows the same rules as the main command,
 which is to say that it must be fully qualified if the path is not set.
 
+
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-user">user</h4>
@@ -1012,10 +1021,10 @@ when using this attribute.
 
 <h4 id="exec-provider-posix">posix</h4>
 
-    Executes external binaries directly, without passing through a shell or
-    performing any interpolation. This is a safer and more predictable way
-    to execute most commands, but prevents the use of globbing and shell
-    built-ins (including control logic like "for" and "if" statements).
+Executes external binaries directly, without passing through a shell or
+performing any interpolation. This is a safer and more predictable way
+to execute most commands, but prevents the use of globbing and shell
+built-ins (including control logic like "for" and "if" statements).
 
 
 Default for `feature` == `posix`.
@@ -1032,30 +1041,31 @@ etc. etc.
 This provider closely resembles the behavior of the `exec` type
 in Puppet 0.25.x.
 
+
 <h4 id="exec-provider-windows">windows</h4>
 
-    Execute external binaries on Windows systems. As with the `posix`
-    provider, this provider directly calls the command with the arguments
-    given, without passing it through a shell or performing any interpolation.
-    To use shell built-ins --- that is, to emulate the `shell` provider on
-    Windows --- a command must explicitly invoke the shell:
+Execute external binaries on Windows systems. As with the `posix`
+provider, this provider directly calls the command with the arguments
+given, without passing it through a shell or performing any interpolation.
+To use shell built-ins --- that is, to emulate the `shell` provider on
+Windows --- a command must explicitly invoke the shell:
 
-        exec {'echo foo':
-          command => 'cmd.exe /c echo "foo"',
-        }
+    exec {'echo foo':
+      command => 'cmd.exe /c echo "foo"',
+    }
 
-    If no extension is specified for a command, Windows will use the `PATHEXT`
-    environment variable to locate the executable.
+If no extension is specified for a command, Windows will use the `PATHEXT`
+environment variable to locate the executable.
 
-    **Note on PowerShell scripts:** PowerShell's default `restricted`
-    execution policy doesn't allow it to run saved scripts. To run PowerShell
-    scripts, specify the `remotesigned` execution policy as part of the
-    command:
+**Note on PowerShell scripts:** PowerShell's default `restricted`
+execution policy doesn't allow it to run saved scripts. To run PowerShell
+scripts, specify the `remotesigned` execution policy as part of the
+command:
 
-        exec { 'test':
-          path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
-          command => 'powershell -executionpolicy remotesigned -file C:/test.ps1',
-        }
+    exec { 'test':
+      path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
+      command => 'powershell -executionpolicy remotesigned -file C:/test.ps1',
+    }
 
 
 
@@ -1095,7 +1105,7 @@ parent directories of a file, the file resource will autorequire them.
 
 <pre><code>file { 'resource title':
   <a href="#file-attribute-path">path</a>                    =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
-  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em>#     Whether to create files that don't currently </em>
+  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether to create files that don't currently...</em>
   <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
   <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
   <a href="#file-attribute-content">content</a>                 =&gt; <em># The desired contents of a file, as a string...</em>
@@ -1134,37 +1144,38 @@ The path to the file to manage.  Must be fully qualified.
 On Windows, the path should include the drive letter and should use `/` as
 the separator character (rather than `\\`).
 
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-ensure">ensure</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-    Whether to create files that don't currently exist.
-    Possible values are `absent`, `present`, `file`, `directory`, and `link`.
-    Specifying `present` will match any form of file existence, and
-    if the file is missing will create an empty file. Specifying
-    `absent` will delete the file (or directory, if `recurse => true` and
-    `force => true`). Specifying `link` requires that you also set the `target`
-    attribute; note that symlinks cannot be managed on Windows.
+Whether to create files that don't currently exist.
+Possible values are `absent`, `present`, `file`, `directory`, and `link`.
+Specifying `present` will match any form of file existence, and
+if the file is missing will create an empty file. Specifying
+`absent` will delete the file (or directory, if `recurse => true` and
+`force => true`). Specifying `link` requires that you also set the `target`
+attribute; note that symlinks cannot be managed on Windows.
 
-    If you specify the path to another file as the ensure value, it is
-    equivalent to specifying `link` and using that path as the `target`:
+If you specify the path to another file as the ensure value, it is
+equivalent to specifying `link` and using that path as the `target`:
 
-        # Equivalent resources:
+    # Equivalent resources:
 
-        file { "/etc/inetd.conf":
-          ensure => "/etc/inet/inetd.conf",
-        }
+    file { "/etc/inetd.conf":
+      ensure => "/etc/inet/inetd.conf",
+    }
 
-        file { "/etc/inetd.conf":
-          ensure => link,
-          target => "/etc/inet/inetd.conf",
-        }
+    file { "/etc/inetd.conf":
+      ensure => link,
+      target => "/etc/inet/inetd.conf",
+    }
 
-    However, we recommend using `link` and `target` explicitly, since this
-    behavior can be harder to read.
-Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`.  Values can match `/./`.
+However, we recommend using `link` and `target` explicitly, since this
+behavior can be harder to read.
+  Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`.  Values can match `/./`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1207,6 +1218,7 @@ balancer to direct all filebucket traffic to a single master, or use
 something like an out-of-band rsync task to synchronize the content on all
 masters.
 
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-checksum">checksum</h4>
@@ -1246,6 +1258,7 @@ the manifest...
 [template](http://docs.puppetlabs.com/references/latest/function.html#template)
 function.
 
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-ctime">ctime</h4>
@@ -1281,6 +1294,7 @@ and a group (such as "Administrators") can be set as a file's owner;
 however, a file's owner and group shouldn't be the same. (If the owner
 is also the group, files with modes like `0640` will cause log churn, as
 they will always appear out of sync.)
+
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1354,6 +1368,7 @@ On Windows, permissions are translated as follows:
   and its group can't have any permissions its owner lacks; that is, 0644
   is an acceptable mode, but 0464 is not.
 
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-mtime">mtime</h4>
@@ -1378,6 +1393,7 @@ a file's owner and group shouldn't be the same. (If the owner is also
 the group, files with modes like `0640` will cause log churn, as they
 will always appear out of sync.)
 
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-provider">provider</h4>
@@ -1385,6 +1401,7 @@ will always appear out of sync.)
 The specific backend to use for this `file`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -1550,6 +1567,7 @@ files to different system types:
 Alternately, when serving directories recursively, multiple sources can
 be combined by setting the `sourceselect` attribute to `all`.
 
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-sourceselect">sourceselect</h4>
@@ -1652,6 +1670,7 @@ Puppet master servers automatically provide the filebucket service, so
 this will work in a default configuration. If you have a heavily
 restricted `auth.conf` file, you may need to allow access to the
 `file_bucket_file` endpoint.
+
 
 <h3 id="filebucket-attributes">Attributes</h3>
 
@@ -1830,6 +1849,7 @@ The specific backend to use for this `group`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`aix`](#group-provider-aix)
@@ -1854,13 +1874,13 @@ Whether the group is a system group with lower GID.
 
 Group management for AIX.
 
-Required binaries: `/usr/bin/chgroup`, `/usr/bin/mkgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_members`.
+Required binaries: `/usr/bin/chgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`, `/usr/bin/mkgroup`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_members`.
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
 Group management using DirectoryService on OS X.
 
-
+  
 
 Required binaries: `/usr/bin/dscl`.  Default for `operatingsystem` == `darwin`.  Supported features: `manages_members`.
 
@@ -1868,9 +1888,9 @@ Required binaries: `/usr/bin/dscl`.  Default for `operatingsystem` == `darwin`. 
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
+  
 
-
-Required binaries: `groupadd`, `groupdel`, `groupmod`, `lgroupadd`.  Supported features: `system_groups`.
+Required binaries: `groupmod`, `groupdel`, `lgroupadd`, `groupadd`.  Supported features: `system_groups`.
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -2040,6 +2060,7 @@ The specific backend to use for this `host`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`parsed`](#host-provider-parsed)
@@ -2176,6 +2197,7 @@ Valid format of ip addresses are:
 
 It is also possible to supply an array of values.
 
+
 ([↑ Back to interface attributes](#interface-attributes))
 
 <h4 id="interface-attribute-mode">mode</h4>
@@ -2199,6 +2221,7 @@ Interface native vlan (for access mode only).  Values can match `/^\d+/`.
 The specific backend to use for this `interface`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -2286,6 +2309,7 @@ The principals present in the `.k5login` file. This should be specified as an ar
 The specific backend to use for this `k5login`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -2448,6 +2472,7 @@ The specific backend to use for this `macauthorization`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`macauthorization`](#macauthorization-provider-macauthorization)
@@ -2509,9 +2534,9 @@ The number of tries allowed.
 
 Manage Mac OS X authorization database rules and rights.
 
+  
 
-
-Required binaries: `/usr/bin/security`, `/usr/bin/sw_vers`.  Default for `operatingsystem` == `darwin`.
+Required binaries: `/usr/bin/sw_vers`, `/usr/bin/security`.  Default for `operatingsystem` == `darwin`.
 
 
 
@@ -2560,6 +2585,7 @@ The basic property that the resource should be in.  Valid values are `present`, 
 The specific backend to use for this `mailalias`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -2668,6 +2694,7 @@ The specific backend to use for this `maillist`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`mailman`](#maillist-provider-mailman)
@@ -2685,7 +2712,7 @@ The name of the host providing web archives and the administrative interface.
 
 <h4 id="maillist-provider-mailman">mailman</h4>
 
-Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `newlist`, `rmlist`.
+Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `rmlist`, `newlist`.
 
 
 
@@ -2714,6 +2741,7 @@ to other machines.
 
 **Autorequires:** If Puppet is managing the user, group, or computer that these
 MCX settings refer to, the MCX resource will autorequire that user, group, or computer.
+
 
 <h3 id="mcx-attributes">Attributes</h3>
 
@@ -2785,6 +2813,7 @@ The specific backend to use for this `mcx`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`mcxcontent`](#mcx-provider-mcxcontent)
@@ -2798,16 +2827,16 @@ Available providers are:
 
 MCX Settings management using DirectoryService on OS X.
 
-  This provider manages the entire MCXSettings attribute available
-  to some directory services nodes.  This management is 'all or nothing'
-  in that discrete application domain key value pairs are not managed
-  by this provider.
+This provider manages the entire MCXSettings attribute available
+to some directory services nodes.  This management is 'all or nothing'
+in that discrete application domain key value pairs are not managed
+by this provider.
 
-  It is recommended to use WorkGroup Manager to configure Users, Groups,
-  Computers, or ComputerLists, then use 'ralsh mcx' to generate a puppet
-  manifest from the resulting configuration.
+It is recommended to use WorkGroup Manager to configure Users, Groups,
+Computers, or ComputerLists, then use 'ralsh mcx' to generate a puppet
+manifest from the resulting configuration.
 
-  Original Author: Jeff McCune (mccune.jeff@gmail.com)
+Original Author: Jeff McCune (mccune.jeff@gmail.com)
 
 
 
@@ -2967,6 +2996,7 @@ The specific backend to use for this `mount`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`parsed`](#mount-provider-parsed)
@@ -3043,7 +3073,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_command-attributes">Attributes</h3>
 
@@ -3095,6 +3125,7 @@ Nagios configuration file parameter.
 The specific backend to use for this `nagios_command`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -3149,7 +3180,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_contact-attributes">Attributes</h3>
 
@@ -3326,6 +3357,7 @@ The specific backend to use for this `nagios_contact`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_contact-provider-naginator)
@@ -3435,7 +3467,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_contactgroup-attributes">Attributes</h3>
 
@@ -3498,6 +3530,7 @@ The specific backend to use for this `nagios_contactgroup`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_contactgroup-provider-naginator)
@@ -3559,7 +3592,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_host-attributes">Attributes</h3>
 
@@ -3935,6 +3968,7 @@ The specific backend to use for this `nagios_host`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_host-provider-naginator)
@@ -4052,7 +4086,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_hostdependency-attributes">Attributes</h3>
 
@@ -4160,6 +4194,7 @@ The specific backend to use for this `nagios_hostdependency`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_hostdependency-provider-naginator)
@@ -4221,7 +4256,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_hostescalation-attributes">Attributes</h3>
 
@@ -4338,6 +4373,7 @@ The specific backend to use for this `nagios_hostescalation`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_hostescalation-provider-naginator)
@@ -4399,7 +4435,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_hostextinfo-attributes">Attributes</h3>
 
@@ -4472,6 +4508,7 @@ Nagios configuration file parameter.
 The specific backend to use for this `nagios_hostextinfo`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -4550,7 +4587,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_hostgroup-attributes">Attributes</h3>
 
@@ -4641,6 +4678,7 @@ The specific backend to use for this `nagios_hostgroup`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_hostgroup-provider-naginator)
@@ -4710,7 +4748,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_service-attributes">Attributes</h3>
 
@@ -5095,6 +5133,7 @@ The specific backend to use for this `nagios_service`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_service-provider-naginator)
@@ -5212,7 +5251,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_servicedependency-attributes">Attributes</h3>
 
@@ -5330,6 +5369,7 @@ The specific backend to use for this `nagios_servicedependency`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_servicedependency-provider-naginator)
@@ -5399,7 +5439,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_serviceescalation-attributes">Attributes</h3>
 
@@ -5518,6 +5558,7 @@ The specific backend to use for this `nagios_serviceescalation`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_serviceescalation-provider-naginator)
@@ -5595,7 +5636,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_serviceextinfo-attributes">Attributes</h3>
 
@@ -5686,6 +5727,7 @@ The specific backend to use for this `nagios_serviceextinfo`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_serviceextinfo-provider-naginator)
@@ -5755,7 +5797,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_servicegroup-attributes">Attributes</h3>
 
@@ -5837,6 +5879,7 @@ The specific backend to use for this `nagios_servicegroup`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`naginator`](#nagios_servicegroup-provider-naginator)
@@ -5906,7 +5949,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-
+    
 
 <h3 id="nagios_timeperiod-attributes">Attributes</h3>
 
@@ -5982,6 +6025,7 @@ Nagios configuration file parameter.
 The specific backend to use for this `nagios_timeperiod`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -6140,14 +6184,14 @@ resource will autorequire those files.
 
 <pre><code>package { 'resource title':
   <a href="#package-attribute-name">name</a>              =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
-  <a href="#package-attribute-ensure">ensure</a>            =&gt; <em>#       What state the package should be in. On...</em>
+  <a href="#package-attribute-ensure">ensure</a>            =&gt; <em># What state the package should be in. On...</em>
   <a href="#package-attribute-adminfile">adminfile</a>         =&gt; <em># A file containing package defaults for...</em>
   <a href="#package-attribute-allowcdrom">allowcdrom</a>        =&gt; <em># Tells apt to allow cdrom sources in the...</em>
   <a href="#package-attribute-category">category</a>          =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-configfiles">configfiles</a>       =&gt; <em># Whether configfiles should be kept or replaced.  </em>
   <a href="#package-attribute-description">description</a>       =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-flavor">flavor</a>            =&gt; <em># OpenBSD supports 'flavors', which are further...</em>
-  <a href="#package-attribute-install_options">install_options</a>   =&gt; <em>#       An array of additional options to pass...</em>
+  <a href="#package-attribute-install_options">install_options</a>   =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-instance">instance</a>          =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-platform">platform</a>          =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-provider">provider</a>          =&gt; <em># The specific backend to use for this `package...</em>
@@ -6155,7 +6199,7 @@ resource will autorequire those files.
   <a href="#package-attribute-root">root</a>              =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-source">source</a>            =&gt; <em># Where to find the actual package.  This must be...</em>
   <a href="#package-attribute-status">status</a>            =&gt; <em># A read-only parameter set by the...</em>
-  <a href="#package-attribute-uninstall_options">uninstall_options</a> =&gt; <em>#       An array of additional options to pass...</em>
+  <a href="#package-attribute-uninstall_options">uninstall_options</a> =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-vendor">vendor</a>            =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -6199,19 +6243,20 @@ a common name to packages:
     }
 
 
+
 ([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-ensure">ensure</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-      What state the package should be in. On packaging systems that can
-      retrieve new packages on their own, you can choose which package to
-      retrieve by specifying a version number or `latest` as the ensure
-      value. On packaging systems that manage configuration files separately
-      from "normal" system files, you can uninstall config files by
-      specifying `purged` as the ensure value.
-Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`.  Values can match `/./`.
+What state the package should be in. On packaging systems that can
+retrieve new packages on their own, you can choose which package to
+retrieve by specifying a version number or `latest` as the ensure
+value. On packaging systems that manage configuration files separately
+from "normal" system files, you can uninstall config files by
+specifying `purged` as the ensure value.
+  Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`.  Values can match `/./`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -6260,25 +6305,25 @@ which type of package you want.
 
 <h4 id="package-attribute-install_options">install_options</h4>
 
-      An array of additional options to pass when installing a package. These
-      options are package-specific, and should be documented by the software
-      vendor.  One commonly implemented option is `INSTALLDIR`:
+An array of additional options to pass when installing a package. These
+options are package-specific, and should be documented by the software
+vendor.  One commonly implemented option is `INSTALLDIR`:
 
-          package { 'mysql':
-            ensure          => installed,
-            source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-            install_options => [ '/S', { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
-          }
+    package { 'mysql':
+      ensure          => installed,
+      source          => 'N:/packages/mysql-5.5.16-winx64.msi',
+      install_options => [ '/S', { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
+    }
 
-      Each option in the array can either be a string or a hash, where each
-      key and value pair are interpreted in a provider specific way.  Each
-      option will automatically be quoted when passed to the install command.
+Each option in the array can either be a string or a hash, where each
+key and value pair are interpreted in a provider specific way.  Each
+option will automatically be quoted when passed to the install command.
 
-      On Windows, this is the **only** place in Puppet where backslash
-      separators should be used.  Note that backslashes in double-quoted
-      strings _must_ be double-escaped and backslashes in single-quoted
-      strings _may_ be double-escaped.
-Requires features install_options.
+On Windows, this is the **only** place in Puppet where backslash
+separators should be used.  Note that backslashes in double-quoted
+strings _must_ be double-escaped and backslashes in single-quoted
+strings _may_ be double-escaped.
+  Requires features install_options.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -6299,6 +6344,7 @@ A read-only parameter set by the package.
 The specific backend to use for this `package`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -6372,25 +6418,25 @@ A read-only parameter set by the package.
 
 <h4 id="package-attribute-uninstall_options">uninstall_options</h4>
 
-      An array of additional options to pass when uninstalling a package. These
-      options are package-specific, and should be documented by the software
-      vendor.  For example:
+An array of additional options to pass when uninstalling a package. These
+options are package-specific, and should be documented by the software
+vendor.  For example:
 
-          package { 'VMware Tools':
-            ensure            => absent,
-            uninstall_options => [ { 'REMOVE' => 'Sync,VSS' } ],
-          }
+    package { 'VMware Tools':
+      ensure            => absent,
+      uninstall_options => [ { 'REMOVE' => 'Sync,VSS' } ],
+    }
 
-      Each option in the array can either be a string or a hash, where each
-      key and value pair are interpreted in a provider specific way.  Each
-      option will automatically be quoted when passed to the uninstall
-      command.
+Each option in the array can either be a string or a hash, where each
+key and value pair are interpreted in a provider specific way.  Each
+option will automatically be quoted when passed to the uninstall
+command.
 
-      On Windows, this is the **only** place in Puppet where backslash
-      separators should be used.  Note that backslashes in double-quoted
-      strings _must_ be double-escaped and backslashes in single-quoted
-      strings _may_ be double-escaped.
-Requires features uninstall_options.
+On Windows, this is the **only** place in Puppet where backslash
+separators should be used.  Note that backslashes in double-quoted
+strings _must_ be double-escaped and backslashes in single-quoted
+strings _may_ be double-escaped.
+  Requires features uninstall_options.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -6406,18 +6452,18 @@ A read-only parameter set by the package.
 <h4 id="package-provider-aix">aix</h4>
 
 Installation from an AIX software directory, using the AIX `installp`
-       command.  The `source` parameter is required for this provider, and should
-       be set to the absolute path (on the puppet agent machine) of a directory
-       containing one or more BFF package files.
+command.  The `source` parameter is required for this provider, and should
+be set to the absolute path (on the puppet agent machine) of a directory
+containing one or more BFF package files.
 
-       The `installp` command will generate a table of contents file (named `.toc`)
-       in this directory, and the `name` parameter (or resource title) that you
-       specify for your `package` resource must match a package name that exists
-       in the `.toc` file.
+The `installp` command will generate a table of contents file (named `.toc`)
+in this directory, and the `name` parameter (or resource title) that you
+specify for your `package` resource must match a package name that exists
+in the `.toc` file.
 
-       Note that package downgrades are *not* supported; if your resource specifies
-       a specific version number and there is already a newer version of the package
-       installed on the machine, the resource will fail with an error message.
+Note that package downgrades are *not* supported; if your resource specifies
+a specific version number and there is already a newer version of the package
+installed on the machine, the resource will fail with an error message.
 
 Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`.  Default for `operatingsystem` == `aix`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
@@ -6430,10 +6476,10 @@ Required binaries: `/usr/bin/curl`, `/usr/bin/ditto`, `/usr/bin/hdiutil`.  Suppo
 <h4 id="package-provider-apple">apple</h4>
 
 Package management based on OS X's builtin packaging system.  This is
-    essentially the simplest and least functional package system in existence --
-    it only supports installation; no deletion or upgrades.  The provider will
-    automatically add the `.pkg` extension, so leave that off when specifying
-    the package name.
+essentially the simplest and least functional package system in existence --
+it only supports installation; no deletion or upgrades.  The provider will
+automatically add the `.pkg` extension, so leave that off when specifying
+the package name.
 
 Required binaries: `/usr/sbin/installer`.  Supported features: `installable`.
 
@@ -6441,19 +6487,19 @@ Required binaries: `/usr/sbin/installer`.  Supported features: `installable`.
 
 Package management via `apt-get`.
 
-Required binaries: `/usr/bin/apt-cache`, `/usr/bin/apt-get`, `/usr/bin/debconf-set-selections`.  Default for `operatingsystem` == `debian, ubuntu`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`.  Default for `operatingsystem` == `debian, ubuntu`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
-Required binaries: `/usr/bin/apt-cache`, `/usr/bin/aptitude`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
-Required binaries: `apt-cache`, `apt-get`, `rpm`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `apt-get`, `apt-cache`, `rpm`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
@@ -6464,8 +6510,8 @@ Required binaries: `pkg-get`.  Supported features: `installable`, `uninstallable
 <h4 id="package-provider-dpkg">dpkg</h4>
 
 Package management via `dpkg`.  Because this only uses `dpkg`
-    and not `apt`, you must specify the source of any packages you want
-    to manage.
+and not `apt`, you must specify the source of any packages you want
+to manage.
 
 Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`, `/usr/bin/dpkg`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
@@ -6473,24 +6519,24 @@ Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`, `/usr/bin/dpkg`. 
 
 Package management via `fink`.
 
-Required binaries: `/sw/bin/apt-cache`, `/sw/bin/apt-get`, `/sw/bin/dpkg-query`, `/sw/bin/fink`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/sw/bin/fink`, `/sw/bin/dpkg-query`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`.  Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
 The specific form of package management on FreeBSD.  This is an
-    extremely quirky packaging system, in that it freely mixes between
-    ports and packages.  Apparently all of the tools are written in Ruby,
-    so there are plans to rewrite this support to directly use those
-    libraries.
+extremely quirky packaging system, in that it freely mixes between
+ports and packages.  Apparently all of the tools are written in Ruby,
+so there are plans to rewrite this support to directly use those
+libraries.
 
 Required binaries: `/usr/sbin/pkg_add`, `/usr/sbin/pkg_delete`, `/usr/sbin/pkg_info`.  Supported features: `installable`, `purgeable`, `uninstallable`.
 
 <h4 id="package-provider-gem">gem</h4>
 
 Ruby Gem support.  If a URL is passed via `source`, then that URL is used as the
-    remote gem repository; if a source is present but is not a valid URL, it will be
-    interpreted as the path to a local gem file.  If source is not present at all,
-    the gem will be installed from the default gem repositories.
+remote gem repository; if a source is present but is not a valid URL, it will be
+interpreted as the path to a local gem file.  If source is not present at all,
+the gem will be installed from the default gem repositories.
 
 Required binaries: `gem`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
@@ -6504,13 +6550,13 @@ Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremov
 
 Package management using MacPorts on OS X.
 
-    Supports MacPorts versions and revisions, but not variants.
-    Variant preferences may be specified using
-    [the MacPorts variants.conf file](http://guide.macports.org/chunked/internals.configuration-files.html#internals.configuration-files.variants-conf).
+Supports MacPorts versions and revisions, but not variants.
+Variant preferences may be specified using
+[the MacPorts variants.conf file](http://guide.macports.org/chunked/internals.configuration-files.html#internals.configuration-files.variants-conf).
 
-    When specifying a version in the Puppet DSL, only specify the version, not the revision.
-    Revisions are only used internally for ensuring the latest version/revision of a port.
-
+When specifying a version in the Puppet DSL, only specify the version, not the revision.
+Revisions are only used internally for ensuring the latest version/revision of a port.
+  
 
 Required binaries: `/opt/local/bin/port`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
@@ -6518,20 +6564,20 @@ Required binaries: `/opt/local/bin/port`.  Supported features: `installable`, `u
 
 Windows package management by installing and removing MSIs.
 
-    The `msi` provider is deprecated. Use the `windows` provider instead.
+The `msi` provider is deprecated. Use the `windows` provider instead.
 
 Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`.
 
 <h4 id="package-provider-nim">nim</h4>
 
 Installation from an AIX NIM LPP source.  The `source` parameter is required
-      for this provider, and should specify the name of a NIM `lpp_source` resource
-      that is visible to the puppet agent machine.  This provider supports the
-      management of both BFF/installp and RPM packages.
+for this provider, and should specify the name of a NIM `lpp_source` resource
+that is visible to the puppet agent machine.  This provider supports the
+management of both BFF/installp and RPM packages.
 
-      Note that package downgrades are *not* supported; if your resource specifies
-      a specific version number and there is already a newer version of the package
-      installed on the machine, the resource will fail with an error message.
+Note that package downgrades are *not* supported; if your resource specifies
+a specific version number and there is already a newer version of the package
+installed on the machine, the resource will fail with an error message.
 
 Required binaries: `/usr/bin/lslpp`, `/usr/sbin/nimclient`, `rpm`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
@@ -6563,17 +6609,17 @@ Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 OpenSolaris image packaging system. See pkg(5) for more information
 
-Required binaries: `/usr/bin/pkg`.  Default for `kernelrelease` == `5.11` and `osfamily` == `solaris`.  Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/pkg`.  Default for `osfamily` == `solaris` and `kernelrelease` == `5.11`.  Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
 Package management based on Apple's Installer.app and
-    DiskUtility.app.  This package works by checking the contents of a
-    DMG image for Apple pkg or mpkg files. Any number of pkg or mpkg
-    files may exist in the root directory of the DMG file system.
-    Subdirectories are not checked for packages.  See
-    [the wiki docs on this provider](http://projects.puppetlabs.com/projects/puppet/wiki/Package_Management_With_Dmg_Patterns)
-    for more detail.
+DiskUtility.app.  This package works by checking the contents of a
+DMG image for Apple pkg or mpkg files. Any number of pkg or mpkg
+files may exist in the root directory of the DMG file system.
+Subdirectories are not checked for packages.  See
+[the wiki docs on this provider](http://projects.puppetlabs.com/projects/puppet/wiki/Package_Management_With_Dmg_Patterns)
+for more detail.
 
 Required binaries: `/usr/bin/curl`, `/usr/bin/hdiutil`, `/usr/sbin/installer`.  Default for `operatingsystem` == `darwin`.  Supported features: `installable`.
 
@@ -6593,26 +6639,26 @@ Required binaries: `pkgutil`.  Supported features: `installable`, `uninstallable
 
 Provides packaging support for Gentoo's portage system.
 
-Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`.  Default for `operatingsystem` == `gentoo`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `/usr/bin/eix-update`, `/usr/bin/emerge`, `/usr/bin/eix`.  Default for `operatingsystem` == `gentoo`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-ports">ports</h4>
 
 Support for FreeBSD's ports.  Note that this, too, mixes packages and ports.
 
-Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/sbin/pkg_info`.  Default for `operatingsystem` == `freebsd`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`.  Default for `operatingsystem` == `freebsd`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-portupgrade">portupgrade</h4>
 
 Support for FreeBSD's ports using the portupgrade ports management software.
-    Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
-    for the portupgrade port.
+Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
+for the portupgrade port.
 
-Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/sbin/pkg_info`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/portinstall`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-rpm">rpm</h4>
 
 RPM packaging support; should work anywhere with a working `rpm`
-    binary.
+binary.
 
 Required binaries: `rpm`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
@@ -6625,56 +6671,56 @@ Required binaries: `/usr/bin/rug`, `rpm`.  Default for `operatingsystem` == `sus
 <h4 id="package-provider-sun">sun</h4>
 
 Sun's packaging system.  Requires that you specify the source for
-    the packages you're managing.
+the packages you're managing.
 
-Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`.  Default for `osfamily` == `solaris`.  Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`, `/usr/bin/pkginfo`.  Default for `osfamily` == `solaris`.  Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
 Package management using sunfreeware.com's `pkg-get` command on Solaris.
-    At this point, support is exactly the same as `blastwave` support and
-    has not actually been tested.
+At this point, support is exactly the same as `blastwave` support and
+has not actually been tested.
 
 Required binaries: `pkg-get`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-up2date">up2date</h4>
 
 Support for Red Hat's proprietary `up2date` package update
-    mechanism.
+mechanism.
 
-Required binaries: `/usr/sbin/up2date-nox`.  Default for `lsbdistrelease` == `2.1, 3, 4` and `osfamily` == `redhat`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
+Required binaries: `/usr/sbin/up2date-nox`.  Default for `osfamily` == `redhat` and `lsbdistrelease` == `2.1, 3, 4`.  Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-urpmi">urpmi</h4>
 
 Support via `urpmi`.
 
-Required binaries: `rpm`, `urpme`, `urpmi`, `urpmq`.  Default for `operatingsystem` == `mandriva, mandrake`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `urpmi`, `urpmq`, `urpme`, `rpm`.  Default for `operatingsystem` == `mandriva, mandrake`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-windows">windows</h4>
 
 Windows package management.
 
-    This provider supports either MSI or self-extracting executable installers.
+This provider supports either MSI or self-extracting executable installers.
 
-    This provider requires a `source` attribute when installing the package.
-    It accepts paths paths to local files, mapped drives, or UNC paths.
+This provider requires a `source` attribute when installing the package.
+It accepts paths paths to local files, mapped drives, or UNC paths.
 
-    If the executable requires special arguments to perform a silent install or
-    uninstall, then the appropriate arguments should be specified using the
-    `install_options` or `uninstall_options` attributes, respectively.  Puppet
-    will automatically quote any option that contains spaces.
+If the executable requires special arguments to perform a silent install or
+uninstall, then the appropriate arguments should be specified using the
+`install_options` or `uninstall_options` attributes, respectively.  Puppet
+will automatically quote any option that contains spaces.
 
-Default for `operatingsystem` == `windows`.  Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `versionable`.
+Default for `operatingsystem` == `windows`.  Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`.
 
 <h4 id="package-provider-yum">yum</h4>
 
 Support via `yum`.
 
-  Using this provider's `uninstallable` feature will not remove dependent packages. To
-  remove dependent packages with this provider use the `purgeable` feature, but note this
-  feature is destructive and should be used with the utmost care.
+Using this provider's `uninstallable` feature will not remove dependent packages. To
+remove dependent packages with this provider use the `purgeable` feature, but note this
+feature is destructive and should be used with the utmost care.
 
-Required binaries: `python`, `rpm`, `yum`.  Default for `operatingsystem` == `fedora, centos, redhat`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
+Required binaries: `yum`, `rpm`, `python`.  Default for `operatingsystem` == `fedora, centos, redhat`.  Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-zypper">zypper</h4>
 
@@ -7073,7 +7119,7 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>yum</td>
@@ -7178,6 +7224,7 @@ _(**Namevar:** If omitted, this attribute's value defaults to the resource's tit
 An SSH or telnet URL at which to access the router, in the form
 `ssh://user:pass:enable@host/` or `telnet://user:pass:enable@host/`.
 
+
 ([↑ Back to router attributes](#router-attributes))
 
 
@@ -7239,11 +7286,12 @@ default, with the following attributes:
 
 This will cause resources to be applied every 30 minutes by default.
 
+
 <h3 id="schedule-attributes">Attributes</h3>
 
 <pre><code>schedule { 'resource title':
   <a href="#schedule-attribute-name">name</a>        =&gt; <em># <strong>(namevar)</strong> The name of the schedule.  This name is used to...</em>
-  <a href="#schedule-attribute-period">period</a>      =&gt; <em>#       The period of repetition for a resource...</em>
+  <a href="#schedule-attribute-period">period</a>      =&gt; <em># The period of repetition for a resource. The...</em>
   <a href="#schedule-attribute-periodmatch">periodmatch</a> =&gt; <em># Whether periods should be matched by number...</em>
   <a href="#schedule-attribute-range">range</a>       =&gt; <em># The earliest and latest that a resource can be...</em>
   <a href="#schedule-attribute-repeat">repeat</a>      =&gt; <em># How often a given resource may be applied in...</em>
@@ -7268,38 +7316,39 @@ schedule when assigning it to an object:
     }
 
 
+
 ([↑ Back to schedule attributes](#schedule-attributes))
 
 <h4 id="schedule-attribute-period">period</h4>
 
-      The period of repetition for a resource. The default is for a resource
-      to get applied every time Puppet runs.
+The period of repetition for a resource. The default is for a resource
+to get applied every time Puppet runs.
 
-      Note that the period defines how often a given resource will get
-      applied but not when; if you would like to restrict the hours
-      that a given resource can be applied (e.g., only at night during
-      a maintenance window), then use the `range` attribute.
+Note that the period defines how often a given resource will get
+applied but not when; if you would like to restrict the hours
+that a given resource can be applied (e.g., only at night during
+a maintenance window), then use the `range` attribute.
 
-      If the provided periods are not sufficient, you can provide a
-      value to the *repeat* attribute, which will cause Puppet to
-      schedule the affected resources evenly in the period the
-      specified number of times.  Take this schedule:
+If the provided periods are not sufficient, you can provide a
+value to the *repeat* attribute, which will cause Puppet to
+schedule the affected resources evenly in the period the
+specified number of times.  Take this schedule:
 
-          schedule { 'veryoften':
-            period => hourly,
-            repeat => 6,
-          }
+    schedule { 'veryoften':
+      period => hourly,
+      repeat => 6,
+    }
 
-      This can cause Puppet to apply that resource up to every 10 minutes.
+This can cause Puppet to apply that resource up to every 10 minutes.
 
-      At the moment, Puppet cannot guarantee that level of
-      repetition; that is, it can run up to every 10 minutes, but
-      internal factors might prevent it from actually running that
-      often (e.g., long-running Puppet runs will squash conflictingly scheduled runs).
+At the moment, Puppet cannot guarantee that level of
+repetition; that is, it can run up to every 10 minutes, but
+internal factors might prevent it from actually running that
+often (e.g., long-running Puppet runs will squash conflictingly scheduled runs).
 
-      See the `periodmatch` attribute for tuning whether to match
-      times by their distance apart or by their specific value.
-Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
+See the `periodmatch` attribute for tuning whether to match
+times by their distance apart or by their specific value.
+  Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -7327,6 +7376,7 @@ This is mostly useful for restricting certain resources to being
 applied in maintenance windows or during off-peak hours. Multiple
 ranges can be applied in array context. As a convenience when specifying
 ranges, you may cross midnight (e.g.: range => "22:00 - 04:00").
+
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -7358,6 +7408,7 @@ For example, consider this schedule:
 
 This will match at 11 PM on Saturday and 2 AM on Sunday, but not
 at 2 AM on Saturday.
+
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -7455,6 +7506,7 @@ The specific backend to use for this `scheduled_task`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`win32_taskscheduler`](#scheduled_task-provider-win32_taskscheduler)
@@ -7530,6 +7582,7 @@ Examples:
     }
 
 
+
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
 <h4 id="scheduled_task-attribute-user">user</h4>
@@ -7565,11 +7618,11 @@ The full path of the directory in which to start the command.
 <h4 id="scheduled_task-provider-win32_taskscheduler">win32_taskscheduler</h4>
 
 This provider uses the win32-taskscheduler gem to manage scheduled
-    tasks on Windows.
+tasks on Windows.
 
-    Puppet requires version 0.2.1 or later of the win32-taskscheduler gem;
-    previous versions can cause "Could not evaluate: The operation completed
-    successfully" errors.
+Puppet requires version 0.2.1 or later of the win32-taskscheduler gem;
+previous versions can cause "Could not evaluate: The operation completed
+successfully" errors.
 
 Default for `operatingsystem` == `windows`.
 
@@ -7619,6 +7672,7 @@ The default is `false`.  Valid values are `true`, `false`.
 The specific backend to use for this `selboolean`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -7699,6 +7753,7 @@ The basic property that the resource should be in.  Valid values are `present`, 
 The specific backend to use for this `selmodule`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -7807,6 +7862,7 @@ have short system names and long display names, this should be the
 short name. (To take an example from Windows, you would use "wuauserv"
 rather than "Automatic Updates.")
 
+
 ([↑ Back to service attributes](#service-attributes))
 
 <h4 id="service-attribute-ensure">ensure</h4>
@@ -7909,6 +7965,7 @@ The specific backend to use for this `service`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`base`](#service-provider-base)
@@ -7977,11 +8034,11 @@ Specify a *stop* command manually.
 
 The simplest form of Unix service support.
 
-  You have to specify enough about your service for this to work; the
-  minimum you can specify is a binary for starting the process, and this
-  same binary will be searched for in the process table to stop the
-  service.  As with `init`-style services, it is preferable to specify start,
-  stop, and status commands.
+You have to specify enough about your service for this to work; the
+minimum you can specify is a binary for starting the process, and this
+same binary will be searched for in the process table to stop the
+service.  As with `init`-style services, it is preferable to specify start,
+stop, and status commands.
 
 
 
@@ -7989,9 +8046,9 @@ Required binaries: `kill`.  Supported features: `refreshable`.
 
 <h4 id="service-provider-bsd">bsd</h4>
 
-    FreeBSD's (and probably NetBSD's?) form of `init`-style service management.
+FreeBSD's (and probably NetBSD's?) form of `init`-style service management.
 
-    Uses `rc.conf.d` for service enabling and disabling.
+Uses `rc.conf.d` for service enabling and disabling.
 
 
 
@@ -7999,39 +8056,39 @@ Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-daemontools">daemontools</h4>
 
-    Daemontools service management.
+Daemontools service management.
 
-    This provider manages daemons supervised by D.J. Bernstein daemontools.
-    When detecting the service directory it will check, in order of preference:
+This provider manages daemons supervised by D.J. Bernstein daemontools.
+When detecting the service directory it will check, in order of preference:
 
-    * `/service`
-    * `/etc/service`
-    * `/var/lib/svscan`
+* `/service`
+* `/etc/service`
+* `/var/lib/svscan`
 
-    The daemon directory should be in one of the following locations:
+The daemon directory should be in one of the following locations:
 
-    * `/var/lib/service`
-    * `/etc`
+* `/var/lib/service`
+* `/etc`
 
-    ...or this can be overriden in the resource's attributes:
+...or this can be overriden in the resource's attributes:
 
-        service { "myservice":
-          provider => "daemontools",
-          path     => "/path/to/daemons",
-        }
+    service { "myservice":
+      provider => "daemontools",
+      path     => "/path/to/daemons",
+    }
 
-    This provider supports out of the box:
+This provider supports out of the box:
 
-    * start/stop (mapped to enable/disable)
-    * enable/disable
-    * restart
-    * status
+* start/stop (mapped to enable/disable)
+* enable/disable
+* restart
+* status
 
-    If a service has `ensure => "running"`, it will link /path/to/daemon to
-    /path/to/service, which will automatically enable the service.
+If a service has `ensure => "running"`, it will link /path/to/daemon to
+/path/to/service, which will automatically enable the service.
 
-    If a service has `ensure => "stopped"`, it will only shut down the service, not
-    remove the `/path/to/service` link.
+If a service has `ensure => "stopped"`, it will only shut down the service, not
+remove the `/path/to/service` link.
 
 
 
@@ -8039,15 +8096,15 @@ Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`.  Supported features: `enab
 
 <h4 id="service-provider-debian">debian</h4>
 
-    Debian's form of `init`-style management.
+Debian's form of `init`-style management.
 
-    The only differences from `init` are support for enabling and disabling
-    services via `update-rc.d` and the ability to determine enabled status via
-    `invoke-rc.d`.
+The only differences from `init` are support for enabling and disabling
+services via `update-rc.d` and the ability to determine enabled status via
+`invoke-rc.d`.
 
 
 
-Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/update-rc.d`.  Default for `operatingsystem` == `debian, ubuntu`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`.  Default for `operatingsystem` == `debian, ubuntu`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
 
@@ -8057,9 +8114,9 @@ Default for `operatingsystem` == `freebsd, dragonfly`.  Supported features: `ena
 
 <h4 id="service-provider-gentoo">gentoo</h4>
 
-    Gentoo's form of `init`-style service management.
+Gentoo's form of `init`-style service management.
 
-    Uses `rc-update` for service enabling and disabling.
+Uses `rc-update` for service enabling and disabling.
 
 
 
@@ -8073,51 +8130,51 @@ Supported features: `refreshable`.
 
 <h4 id="service-provider-launchd">launchd</h4>
 
-    This provider manages jobs with `launchd`, which is the default service
-    framework for Mac OS X (and may be available for use on other platforms).
+This provider manages jobs with `launchd`, which is the default service
+framework for Mac OS X (and may be available for use on other platforms).
 
-    For `launchd` documentation, see:
+For `launchd` documentation, see:
 
-    * <http://developer.apple.com/macosx/launchd.html>
-    * <http://launchd.macosforge.org/>
+* <http://developer.apple.com/macosx/launchd.html>
+* <http://launchd.macosforge.org/>
 
-    This provider reads plists out of the following directories:
+This provider reads plists out of the following directories:
 
-    * `/System/Library/LaunchDaemons`
-    * `/System/Library/LaunchAgents`
-    * `/Library/LaunchDaemons`
-    * `/Library/LaunchAgents`
+* `/System/Library/LaunchDaemons`
+* `/System/Library/LaunchAgents`
+* `/Library/LaunchDaemons`
+* `/Library/LaunchAgents`
 
-    ...and builds up a list of services based upon each plist's "Label" entry.
+...and builds up a list of services based upon each plist's "Label" entry.
 
-    This provider supports:
+This provider supports:
 
-    * ensure => running/stopped,
-    * enable => true/false
-    * status
-    * restart
+* ensure => running/stopped,
+* enable => true/false
+* status
+* restart
 
-    Here is how the Puppet states correspond to `launchd` states:
+Here is how the Puppet states correspond to `launchd` states:
 
-    * stopped --- job unloaded
-    * started --- job loaded
-    * enabled --- 'Disable' removed from job plist file
-    * disabled --- 'Disable' added to job plist file
+* stopped --- job unloaded
+* started --- job loaded
+* enabled --- 'Disable' removed from job plist file
+* disabled --- 'Disable' added to job plist file
 
-    Note that this allows you to do something `launchctl` can't do, which is to
-    be in a state of "stopped/enabled" or "running/disabled".
+Note that this allows you to do something `launchctl` can't do, which is to
+be in a state of "stopped/enabled" or "running/disabled".
 
-    Note that this provider does not support overriding 'restart' or 'status'.
+Note that this provider does not support overriding 'restart' or 'status'.
 
 
 
-Required binaries: `/bin/launchctl`, `/usr/bin/plutil`, `/usr/bin/sw_vers`.  Default for `operatingsystem` == `darwin`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/usr/bin/sw_vers`, `/usr/bin/plutil`, `/bin/launchctl`.  Default for `operatingsystem` == `darwin`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openrc">openrc</h4>
 
-    Support for Gentoo's OpenRC initskripts
+Support for Gentoo's OpenRC initskripts
 
-    Uses rc-update, rc-status and rc-service to manage services.
+Uses rc-update, rc-status and rc-service to manage services.
 
 
 
@@ -8125,9 +8182,9 @@ Required binaries: `/bin/rc-status`, `/sbin/rc-service`, `/sbin/rc-update`.  Def
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
-    Support for OpenWrt flavored init scripts.
+Support for OpenWrt flavored init scripts.
 
-    Uses /etc/init.d/service_name enable, disable, and enabled.
+Uses /etc/init.d/service_name enable, disable, and enabled.
 
 
 
@@ -8136,41 +8193,41 @@ Default for `operatingsystem` == `openwrt`.  Supported features: `enableable`, `
 <h4 id="service-provider-redhat">redhat</h4>
 
 Red Hat's (and probably many others') form of `init`-style service
-    management. Uses `chkconfig` for service enabling and disabling.
+management. Uses `chkconfig` for service enabling and disabling.
 
-
+  
 
 Required binaries: `/sbin/chkconfig`, `/sbin/service`.  Default for `osfamily` == `redhat, suse`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-runit">runit</h4>
 
-    Runit service management.
+Runit service management.
 
-    This provider manages daemons running supervised by Runit.
-    When detecting the service directory it will check, in order of preference:
+This provider manages daemons running supervised by Runit.
+When detecting the service directory it will check, in order of preference:
 
-    * `/service`
-    * `/etc/service`
-    * `/var/service`
+* `/service`
+* `/etc/service`
+* `/var/service`
 
-    The daemon directory should be in one of the following locations:
+The daemon directory should be in one of the following locations:
 
-    * `/etc/sv`
-    * `/var/lib/service`
+* `/etc/sv`
+* `/var/lib/service`
 
-    or this can be overriden in the service resource parameters::
+or this can be overriden in the service resource parameters::
 
-        service { "myservice":
-          provider => "runit",
-          path => "/path/to/daemons",
-        }
+    service { "myservice":
+      provider => "runit",
+      path => "/path/to/daemons",
+    }
 
-    This provider supports out of the box:
+This provider supports out of the box:
 
-    * start/stop
-    * enable/disable
-    * restart
-    * status
+* start/stop
+* enable/disable
+* restart
+* status
 
 
 
@@ -8185,32 +8242,32 @@ Supported features: `refreshable`.
 
 <h4 id="service-provider-smf">smf</h4>
 
-    Support for Sun's new Service Management Framework.
+Support for Sun's new Service Management Framework.
 
-    Starting a service is effectively equivalent to enabling it, so there is
-    only support for starting and stopping services, which also enables and
-    disables them, respectively.
+Starting a service is effectively equivalent to enabling it, so there is
+only support for starting and stopping services, which also enables and
+disables them, respectively.
 
-    By specifying `manifest => "/path/to/service.xml"`, the SMF manifest will
-    be imported if it does not exist.
+By specifying `manifest => "/path/to/service.xml"`, the SMF manifest will
+be imported if it does not exist.
 
 
 
-Required binaries: `/usr/bin/svcs`, `/usr/sbin/svcadm`, `/usr/sbin/svccfg`.  Default for `osfamily` == `solaris`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`.  Default for `osfamily` == `solaris`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-src">src</h4>
 
 Support for AIX's System Resource controller.
 
-  Services are started/stopped based on the `stopsrc` and `startsrc`
-  commands, and some services can be refreshed with `refresh` command.
+Services are started/stopped based on the `stopsrc` and `startsrc`
+commands, and some services can be refreshed with `refresh` command.
 
-  Enabling and disabling services is not supported, as it requires
-  modifications to `/etc/inittab`. Starting and stopping groups of subsystems
-  is not yet supported.
+Enabling and disabling services is not supported, as it requires
+modifications to `/etc/inittab`. Starting and stopping groups of subsystems
+is not yet supported.
 
 
-Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`.  Default for `operatingsystem` == `aix`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/usr/bin/startsrc`, `/usr/bin/lssrc`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/bin/refresh`, `/usr/sbin/rmitab`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`.  Default for `operatingsystem` == `aix`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -8222,20 +8279,20 @@ Required binaries: `systemctl`.  Default for `osfamily` == `archlinux`.  Support
 
 Ubuntu service management with `upstart`.
 
-  This provider manages `upstart` jobs, which have replaced `initd` services
-  on Ubuntu. For `upstart` documentation, see <http://upstart.ubuntu.com/>.
+This provider manages `upstart` jobs, which have replaced `initd` services
+on Ubuntu. For `upstart` documentation, see <http://upstart.ubuntu.com/>.
 
 
-Required binaries: `/sbin/initctl`, `/sbin/restart`, `/sbin/start`, `/sbin/status`, `/sbin/stop`.  Default for `operatingsystem` == `ubuntu`.  Supported features: `enableable`, `refreshable`.
+Required binaries: `/sbin/start`, `/sbin/status`, `/sbin/restart`, `/sbin/initctl`, `/sbin/stop`.  Default for `operatingsystem` == `ubuntu`.  Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-windows">windows</h4>
 
-    Support for Windows Service Control Manager (SCM). This provider can
-    start, stop, enable, and disable services, and the SCM provides working
-    status methods for all services.
+Support for Windows Service Control Manager (SCM). This provider can
+start, stop, enable, and disable services, and the SCM provides working
+status methods for all services.
 
-    Control of service groups (dependencies) is not yet supported, nor is running
-    services as a specific user.
+Control of service groups (dependencies) is not yet supported, nor is running
+services as a specific user.
 
 
 Required binaries: `net.exe`.  Default for `operatingsystem` == `windows`.  Supported features: `enableable`, `refreshable`.
@@ -8446,6 +8503,7 @@ The specific backend to use for this `ssh_authorized_key`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`parsed`](#ssh_authorized_key-provider-parsed)
@@ -8556,6 +8614,7 @@ The specific backend to use for this `sshkey`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`parsed`](#sshkey-provider-parsed)
@@ -8651,6 +8710,7 @@ This resource type works by generating a file resource for every file
 that should be deleted and then letting that resource perform the
 actual deletion.
 
+
 <h3 id="tidy-attributes">Attributes</h3>
 
 <pre><code>tidy { 'resource title':
@@ -8721,6 +8781,7 @@ for recurse if matches is used, as matches only apply to files found
 by recursion (there's no reason to use static patterns match against
 a statically determined path).  Requiering explicit recursion clears
 up a common source of confusion.
+
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -9058,6 +9119,7 @@ The specific backend to use for this `user`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`aix`](#user-provider-aix)
@@ -9140,34 +9202,34 @@ security identifier (SID).
 
 User management for AIX.
 
-Required binaries: `/bin/chpasswd`, `/usr/bin/chuser`, `/usr/bin/mkuser`, `/usr/sbin/lsgroup`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`.
+Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/chuser`, `/bin/chpasswd`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`, `/usr/bin/mkuser`.  Default for `operatingsystem` == `aix`.  Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`.
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
 User management on OS X.
 
-Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/plutil`, `/usr/bin/uuidgen`.  Default for `operatingsystem` == `darwin`.  Supported features: `manages_password_salt`, `manages_passwords`.
+Required binaries: `/usr/bin/dscl`, `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscacheutil`, `/usr/bin/plutil`.  Default for `operatingsystem` == `darwin`.  Supported features: `manages_password_salt`, `manages_passwords`.
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
 User management for HP-UX. This provider uses the undocumented `-F`
-    switch to HP-UX's special `usermod` binary to work around the fact that
-    its standard `usermod` cannot make changes while the user is logged in.
+switch to HP-UX's special `usermod` binary to work around the fact that
+its standard `usermod` cannot make changes while the user is logged in.
 
-Required binaries: `/usr/sam/lbin/useradd.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`.  Default for `operatingsystem` == `hp-ux`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
+Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`.  Default for `operatingsystem` == `hp-ux`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
 
 <h4 id="user-provider-ldap">ldap</h4>
 
 User management via LDAP.
 
-    This provider requires that you have valid values for all of the
-    LDAP-related settings in `puppet.conf`, including `ldapbase`.  You will
-    almost definitely need settings for `ldapuser` and `ldappassword` in order
-    for your clients to write to LDAP.
+This provider requires that you have valid values for all of the
+LDAP-related settings in `puppet.conf`, including `ldapbase`.  You will
+almost definitely need settings for `ldapuser` and `ldappassword` in order
+for your clients to write to LDAP.
 
-    Note that this provider will automatically generate a UID for you if
-    you do not specify one, but it is a potentially expensive operation,
-    as it iterates across all existing users to pick the appropriate next one.
+Note that this provider will automatically generate a UID for you if
+you do not specify one, but it is a potentially expensive operation,
+as it iterates across all existing users to pick the appropriate next one.
 
 Supported features: `manages_passwords`.
 
@@ -9181,15 +9243,15 @@ Required binaries: `pw`.  Default for `operatingsystem` == `freebsd, dragonfly`.
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
-Required binaries: `passwd`, `roleadd`, `roledel`, `rolemod`, `useradd`, `userdel`, `usermod`.  Default for `osfamily` == `solaris`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_solaris_rbac`.
+Required binaries: `usermod`, `roleadd`, `roledel`, `userdel`, `rolemod`, `useradd`, `passwd`.  Default for `osfamily` == `solaris`.  Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_solaris_rbac`.
 
 <h4 id="user-provider-useradd">useradd</h4>
 
 User management via `useradd` and its ilk.  Note that you will need to
-    install Ruby's shadow password library (often known as `ruby-libshadow`)
-    if you wish to manage user passwords.
+install Ruby's shadow password library (often known as `ruby-libshadow`)
+if you wish to manage user passwords.
 
-Required binaries: `chage`, `luseradd`, `useradd`, `userdel`, `usermod`.  Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `system_users`.
+Required binaries: `usermod`, `userdel`, `luseradd`, `useradd`, `chage`.  Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
@@ -9398,6 +9460,7 @@ The URL of the router or switch maintaining this VLAN.
 The specific backend to use for this `vlan`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -9673,7 +9736,7 @@ Access the repo via S3. Set this to `absent` to remove it from the file complete
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Path to the directory containing the databases of the
-        certificate authorities yum should use to verify SSL certificates.
+certificate authorities yum should use to verify SSL certificates.
 Set this to `absent` to remove it from the file completely.  Valid values are `absent`.  Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
@@ -9683,7 +9746,7 @@ Set this to `absent` to remove it from the file completely.  Valid values are `a
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Path  to the SSL client certificate yum should use to connect
-        to repos/remote sites.
+to repos/remote sites.
 Set this to `absent` to remove it from the file completely.  Valid values are `absent`.  Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
@@ -9693,7 +9756,7 @@ Set this to `absent` to remove it from the file completely.  Valid values are `a
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Path to the SSL client key yum should use to connect
-        to repos/remote sites.
+to repos/remote sites.
 Set this to `absent` to remove it from the file completely.  Valid values are `absent`.  Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
@@ -9703,7 +9766,7 @@ Set this to `absent` to remove it from the file completely.  Valid values are `a
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum verify SSL certificates/hosts at all.
-        Possible values are 'True' or 'False'.
+Possible values are 'True' or 'False'.
 Set this to `absent` to remove it from the file completely.  Valid values are `absent`.  Values can match `/True|False/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
@@ -9910,6 +9973,7 @@ The primarycache property. Valid values are `all`, `none`, `metadata`.
 The specific backend to use for this `zfs`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -10222,6 +10286,7 @@ The specific backend to use for this `zone`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
 
+
 Available providers are:
 
 * [`solaris`](#zone-provider-solaris)
@@ -10283,7 +10348,7 @@ so Puppet only checks for it at that time.
 
 Provider for Solaris Zones.
 
-Required binaries: `/usr/sbin/zoneadm`, `/usr/sbin/zonecfg`.  Default for `osfamily` == `solaris`.
+Required binaries: `/usr/sbin/zonecfg`, `/usr/sbin/zoneadm`.  Default for `osfamily` == `solaris`.
 
 
 
@@ -10359,6 +10424,7 @@ space separated string:
     mirror => ["disk1 disk2", "disk3 disk4"],
 
 
+
 ([↑ Back to zpool attributes](#zpool-attributes))
 
 <h4 id="zpool-attribute-provider">provider</h4>
@@ -10366,6 +10432,7 @@ space separated string:
 The specific backend to use for this `zpool`
 resource. You will seldom need to specify this --- Puppet will usually
 discover the appropriate provider for your platform.
+
 
 Available providers are:
 
@@ -10387,6 +10454,7 @@ List of all the devices to raid for this pool. Should be an array of
 space separated strings:
 
     raidz => ["disk1 disk2", "disk3 disk4"],
+
 
 
 ([↑ Back to zpool attributes](#zpool-attributes))
@@ -10411,4 +10479,4 @@ Required binaries: `zpool`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on Thu Sep 12 18:04:12 -0700 2013
+> **NOTE:** This page was generated from the Puppet source code on Fri Sep 13 16:26:26 -0700 2013
