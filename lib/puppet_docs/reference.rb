@@ -101,10 +101,8 @@ module PuppetDocs
         end
         if @name == "type"
           require 'puppet_docs/reference/type'
-          # Get structured data
-          typedocs = PuppetDocs::Reference::Type.get_typedocs
-          # Prep json
-          typejson = PuppetDocs::Reference::Type.build_json(typedocs)
+          # Get structured data (as JSON) from a subshell with cleaned RUBYLIB:
+          typejson = `ruby #{File.dirname(__FILE__) + '/quarantine/get_typedocs.rb'}`
           # Use json to build content; this gets written to disk later
           content  = PuppetDocs::Reference::Type.build_page(typejson)
           # Write json to disk now
@@ -234,7 +232,7 @@ EOT
         @destination_directory ||= PuppetDocs.root + "source/references" + @tag
       end
 
-     def yard_directory
+      def yard_directory
         @yard_directory ||= destination_directory + "developer"
       end
 
