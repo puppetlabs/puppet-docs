@@ -103,10 +103,10 @@ module PuppetDocs
           require 'puppet_docs/reference/type'
           # Get structured data
           typedocs = PuppetDocs::Reference::Type.get_typedocs
-          # Prep content for writing later
-          content  = PuppetDocs::Reference::Type.build_page(typedocs)
           # Prep json
           typejson = PuppetDocs::Reference::Type.build_json(typedocs)
+          # Use json to build content; this gets written to disk later
+          content  = PuppetDocs::Reference::Type.build_page(typejson)
           # Write json to disk now
           setup_destination!
           File.open(destination_directory + 'type.json', 'w') { |f| f.write typejson }

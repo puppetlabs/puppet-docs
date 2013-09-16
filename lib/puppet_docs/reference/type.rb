@@ -1,11 +1,13 @@
 module PuppetDocs::Reference::Type
+  require 'json'
   require 'puppet'
   require 'puppet/util/docs'
   extend Puppet::Util::Docs
   # We use scrub().
   require 'erb'
 
-  def build_page(typedocs)
+  def build_page(typejson)
+    typedocs = JSON.load(typejson)
     header = <<EOT
 ---
 layout: default
@@ -102,7 +104,7 @@ EOT
     custom_toc = %q{
 <nav id="page-nav" class="in-page">
 <ol class="toc" style="-webkit-column-width: 13em; -webkit-column-gap: 1.5em; -moz-column-width: 13em; -moz-column-gap: 1.5em; column-width: 13em; column-gap: 1.5em;">
-} + sorted_type_list.collect{|name| %q[<li class="toc-lv2"><a href="#] + name.to_s.gsub('_','') + %q[">] + name.to_s + %q[</a></li>] }.join("\n") + %q{
+} + sorted_type_list.collect{|name| %q[<li class="toc-lv2"><a href="#] + name.gsub('_','') + %q[">] + name + %q[</a></li>] }.join("\n") + %q{
 </ol></nav>} + "\n\n"
     # Admission: I'm being lazy about generating the header IDs, since the type
     # names are already downcased, have no spaces, and the only character the ID
@@ -121,7 +123,6 @@ EOT
   end
 
   def build_json(typedocs)
-    require 'json'
     JSON.dump(typedocs)
   end
 
@@ -238,22 +239,22 @@ EOT
   end
 
   def docs_for_this_type(name, this_type)
-    sorted_attribute_list = this_type[:attributes].keys.sort {|a,b|
+    sorted_attribute_list = this_type['attributes'].keys.sort {|a,b|
       # Float namevar to top and ensure to second-top
-      if this_type[:attributes][a][:namevar]
+      if this_type['attributes'][a]['namevar']
         -1
-      elsif this_type[:attributes][b][:namevar]
+      elsif this_type['attributes'][b]['namevar']
         1
-      elsif a == :ensure
+      elsif a == 'ensure'
         -1
-      elsif b == :ensure
+      elsif b == 'ensure'
         1
       else
         a <=> b
       end
     }
-    sorted_feature_list = this_type[:features].keys.sort
-    longest_attribute_name = sorted_attribute_list.collect{|attr| attr.to_s.length}.sort.last
+    sorted_feature_list = this_type['features'].keys.sort
+    longest_attribute_name = sorted_attribute_list.collect{|attr| attr.length}.max
 
     ERB.new(File.read(File.dirname(__FILE__) + '/type_template.erb'), nil, '-').result(binding)
   end
