@@ -247,7 +247,7 @@ To find the PackageCode from an MSI, you can use Orca, or you can get to it prog
     * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes.
 * As of Puppet 3.0, `windows` is the default provider parameter for all Windows packages. Using `msi` will result in a deprecation
 warning.
-* The package provider is versionable, so `ensure => 'version'` syntax may be used, where `'version'` may be an identifier like `'1.2.3.4'`.  Note that this version string must exactly match the one specified in the `source` parameter.  If it does not, Puppet will determine the package is out of date and will attempt to reinstall.
+* The package provider is not versionable. 
 
 ### [`service`][service]
 
