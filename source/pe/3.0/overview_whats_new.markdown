@@ -9,19 +9,19 @@ canonical: "/pe/latest/overview_whats_new.html"
 Puppet Enterprise version 3.0.1 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.0.1 release includes the following:
 
   * *Complete Upgrader Functionality*
-  
+
     The puppet installer script can now be used to upgrade all roles in an existing PE deployment, master, agent, console, cloud provisioner, and database support. Upgrades are supported for all PE roles running 2.8.2 or later. For complete information and instructions, visit the [upgrading PE page](install_upgrading.html).
 
   * *SLES Support*
-  
+
     PE 3.0.1 now fully supports all PE roles on nodes running SLES 11 SP1 or higher.
 
-  * *Changes and Additions to Console Rake Tasks* 
-  
+  * *Changes and Additions to Console Rake Tasks*
+
     The PE console provides a number of rake tasks that can be used as a minimal API to perform many functions of the GUI. These can be used to automate workflows, perform large-scale changes, etc. A number of these tasks have been changed (although the old syntax still works, with deprecation warning) See the [Console Rake API](console_rake_api.html) page for more information.
 
   * *Security Patches*
-  
+
     A number of vulnerabilities have been addressed in PE 3.0.1. For details, check the [release notes](appendix.html#release-notes).
 
 
@@ -33,7 +33,7 @@ Puppet Enterprise (PE) 3.0 is a major release that includes many new functions a
 
 The most significant changes in PE 3.0 are the upgrade to Puppet 3.2, major improvements to PE's orchestration engine with the upgrade to MCollective 2.2.4, and the integration of PuppetDB 1.3. These changes result in considerable performance increases and add major new functionality.
 
-* Information on changes in Puppet 3 versus Puppet 2.x can be found in the [Puppet 3 Reference Guide](/puppet/3/reference/whats_new.html). This [blog post](https://puppetlabs.com/blog/say-hello-to-puppet-3/) also provides a good overview of what’s new and different in Puppet 3. In particular, you’ll want to ensure your manifests do not use [dynamic scope lookup](/guides/scope_and_puppet.html) (they shouldn’t since it has been deprecated for some time). You’ll also want to get familiar with how Puppet 3 changes the way Puppet deals with [classes and class parameters](/puppet/3/reference/lang_classes.html) generally, and [automatic parameter lookup](/hiera/1/puppet.html#automatic-parameter-lookup) in particular.
+* Information on changes in Puppet 3 versus Puppet 2.x can be found in the [Puppet 3.x release notes](/puppet/3/reference/release_notes.html) --- in particular, look for items labeled "BREAK" in the table of contents. This [blog post](https://puppetlabs.com/blog/say-hello-to-puppet-3/) also provides a good overview of what’s new and different in Puppet 3. In particular, you’ll want to ensure your manifests do not use [dynamic scope lookup](/guides/scope_and_puppet.html) (they shouldn’t since it has been deprecated for some time). You’ll also want to get familiar with how Puppet 3 changes the way Puppet deals with [classes and class parameters](/puppet/3/reference/lang_classes.html) generally, and [automatic parameter lookup](/hiera/1/puppet.html#automatic-parameter-lookup) in particular.
 * For information on what you can now do with orchestration, check out the [orchestration section of this manual](./orchestration_overview.html). Specifically:
     * For an overview of what’s new in the orchestration engine, refer to this [blog post introducing MCollective version 2.0](http://puppetlabs.com/blog/announcing-the-marionette-collective-2-0/) or, for more detail, the [MCollective Release Notes](/mcollective/releasenotes.html).
     * To install new orchestration actions, see [the Adding Actions page of this manual](./orchestration_adding_actions.html). For information about writing plugins, see the [MCollective agent writing guide](/mcollective/simplerpc/agents.html). Note that if you have written custom plugins to use with MCollective 1.2.x, you may need to revise them to work with 2.2.4.

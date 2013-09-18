@@ -6,7 +6,7 @@ title: "Upgrading Puppet"
 
 [release_notes]: http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes
 [repos]: /guides/puppetlabs_package_repositories.html
-[breaking]: /puppet/3/reference/whats_new.html#backwards-incompatible-changes-in-3x
+[puppet_3_release_notes]: /puppet/3/reference/release_notes.html
 [mailing_list]: https://groups.google.com/group/puppet-users/
 [tarball]: http://downloads.puppetlabs.com/puppet/
 [mcollective]: /mcollective
@@ -64,7 +64,7 @@ Upgrading to a new major release presents more possibility for things to go wron
 When upgrading to a new major release, we recommend the following:
 
 * Avoid jumping over a whole major release. If you are on Puppet 2.6, you should upgrade to Puppet 2.7 before going to 3.x, unless you are prepared to spend a lot of time fixing your manifests without a net.
-* **Read the release notes,** in particular any sections that refer to "backwards-incompatible changes." Follow any specific recommendations for the new version. ([Backwards-incompatible changes for Puppet 3.0.][breaking])
+* **Read the release notes,** in particular any sections that refer to "backwards-incompatible changes." Follow any specific recommendations for the new version. (See the "BREAK" notes in the table of contents of [the Puppet 3.x release notes][puppet_3_release_notes] for backwards-incompatible changes in Puppet 3.0.)
 * If you tend to just upgrade everything for bug fix releases, use a more conservative roll-out plan for major ones.
 
 The definition of a "major release" has occasionally changed:

@@ -646,7 +646,7 @@ Use the Puppet issue tracker to find every bug fixed in a given version of Puppe
 
 ## Puppet 3.0.0
 
-For a full description of the Puppet 3 release, including major changes, backward incompatibilities, and focuses of development, please see the [long-form Puppet 3 "What's New" document](./whats_new.html).
+Puppet 3.0.0 is the first release of the Puppet 3 series, which includes breaking changes, new features, and bug fixes.
 
 ### Upgrade Warning: Many Breaking Changes
 
