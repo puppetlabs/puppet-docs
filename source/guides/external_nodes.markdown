@@ -61,10 +61,6 @@ To tell puppet master to use an ENC, you need to set two [configuration](./confi
 ENC Output Format
 -----------------
 
-There have been three versions of the ENC output format.
-
-### Puppet 2.6.5 and Higher
-
 ENCs must return either a [YAML](http://www.yaml.org) hash or nothing. This hash may contain `classes`, `parameters`, and `environment` keys, and must contain at least either `classes` or `parameters`. ENCs should exit with an exit code of 0 when functioning normally, and may exit with a non-zero exit code if you wish puppet master to behave as though the requested node was not found.
 
 If an ENC returns nothing or exits with a non-zero exit code, the catalog compilation will fail with a "could not find node" error, and the node will be unable to retrieve configurations.
@@ -111,7 +107,7 @@ If present, the value of the `parameters` key must be a hash of valid variable n
 
 #### Environment
 
-If present, the value of `environment` must be a string representing the desired [environment][] for this node. In Puppet 3 and later, this will become the only environment used by the node in its requests for catalogs and files. In Puppet 2.7 and earlier, ENC-set environments are not reliable, [as noted above.][above]
+If present, the value of `environment` must be a string representing the desired [environment][] for this node. In Puppet 3 and later, this will become the only environment used by the node in its requests for catalogs and files. In Puppet 2.7 ENC-set environments are not reliable, [as noted above.][above]
 
     environment: production
 
@@ -134,23 +130,6 @@ If present, the value of `environment` must be a string representing the desired
         mail_server: mail.example.com
         iburst: true
     environment: production
-
-### Puppet 0.23.0 through 2.6.4
-
-As above, with the following exception:
-
-#### Classes
-
-If present, the value of `classes` must be an array of class names. Parameterized classes cannot be used with an ENC.
-
-### Puppet 0.22.4 and Lower
-
-ENCs must return two lines of text, separated by a newline (LF). The first line must be the name of a parent node defined in the main site manifest. The second line must be a space-separated list of classes. ENCs must exit with exit code 0; Puppet's behavior when faced with a non-zero ENC exit code is undefined.
-
-#### Complete example
-
-    basenode
-    common puppet dns ntp
 
 Tricks, Notes, and Further Reading
 ----------------------------------
