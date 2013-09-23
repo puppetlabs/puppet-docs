@@ -239,7 +239,8 @@ passphrase. **Required.**
 * `--install-script` --- The install script that should be used to install
 Puppet. Currently supported options are: gems (**default**), puppet-enterprise, and puppet-enterprise-s3
 * `--installer-payload, --puppet` --- The location of the [Puppet
-Enterprise][pe] universal tarball. (Used with puppet-enterprise install script)
+Enterprise][pe] install tarball to be used for the installation. This can be a local file path or a URL. This option is only required if Puppet should be installed on the machine. The specified tarball must be gzipped.
+ Note that the specified Puppet install tarball must support the platform of the node on which the tarball is to be installed. If you are unsure about the node platform, use the universal install tarball. But be warned: it is huge.
 * `--installer-answers` --- The location of an answers file to use with the PE
 installer. (Used with puppet-enterprise and puppet-enterprise-s3 install
 scripts).
