@@ -1,5 +1,4 @@
-source "http://gems.rubyforge.org"
-source "http://gemcutter.org"
+source 'https://rubygems.org/'
 
 gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
 gem 'maruku'
