@@ -115,7 +115,9 @@ This was a regression in 3.3.0. The `apt` package provider was logging bogus war
 
 [Issue 22493: Can't start puppet agent on non english Windows][22493]
 
-This was a regression in 3.2.4, caused by a bug in one of the Ruby libraries Puppet relies on. We submitted a fix upstream, and packaged a fixed version of the gem into the Windows installer.
+This problem was probably introduced in Puppet 3.2, when our Windows installer switched to Ruby 1.9; a fix was attempted in 3.2.4, but it wasn't fully successful.
+
+The behavior was caused by a bug in one of the Ruby libraries Puppet relies on. We submitted a fix upstream, and packaged a fixed version of the gem into the Windows installer.
 
 
 ### Fixes for Long-Standing Bugs
