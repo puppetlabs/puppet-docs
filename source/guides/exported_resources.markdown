@@ -6,71 +6,13 @@ title: Exported Resource Design Patterns
 Exported Resource Design Patterns
 ==================================
 
-Exporting and collecting resources is an extension of [Virtual
-Resources](./virtual_resources.html) . Puppet provides an experimental superset of virtual
-resources, using a similar syntax. In addition to these resources
-being virtual, they're also "exported" to other hosts on your
-network.
+Exported resources allow nodes to share information with each other. This is useful when one node has information that another node needs in order to manage a resource --- the node with the information can construct and publish the resource, and the node managing the resource can collect it.
 
-* * *
+[For more information on the syntax, behavior, and prerequisites of exported resources, see the Exported Resources section of the Puppet language reference.][lang_exported]
 
-About Exported Resources
-------------------------
+[lang_exported]: /puppet/latest/reference/lang_exported.html
 
-While virtual resources can only be collected by the host that
-specified them, exported resources can be collected by any host.
-You **must** set the storeconfigs setting to true to
-enable this functionality (you can see information about stored
-configuration on the [Using Stored Configuration](http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration) wiki page, and
-Puppet will automatically create a database for storing
-configurations (using [Ruby on Rails](http://rubyonrails.org/)).
-
-    [master]
-    storeconfigs = true
-
-This allows one host to configure another host; for instance, a
-host could configure its services using Puppet, and then could
-export Nagios configurations to monitor those services.
-
-The key syntactical difference between virtual and exported
-resources is that the special sigils (`@` and `<| |>`) are doubled (`@@`
-and `<<| |>>`) when referring to an exported resource.
-
-Here is an example with exported resources:
-
-    class ssh {
-        @@sshkey { $hostname: type => dsa, key => $sshdsakey }
-        Sshkey <<| |>>
-    }
-
-As promised, we use two @ sigils here, and the angle brackets are
-doubled in the collection.
-
-The above code would have every host export its SSH public key, and
-then collect every host's key and install it in the
-ssh\_known\_hosts file (which is what the sshkey type does); this
-would include the host doing the exporting.
-
-It's important to mention here that you will only get exported
-resources from hosts whose configurations have been compiled. If
-hostB exports a resource but hostB has never connected to the
-server, then no host will get that exported resource. The act of
-compiling a given host's configuration puts the resources into the
-database, and only resources in the database are available for
-collection.
-
-Let's look at another example, this time using a File resource:
-
-    node a {
-        @@file { "/tmp/foo": content => "fjskfjs\n", tag => "foofile", }
-    }
-    node b {
-        File <<| tag == 'foofile' |>>
-    }
-
-This will create /tmp/foo on node b. Note that the tag is not
-required, it just allows you to control which resources you want to
-import.
+This page does not explain how exported resources work; instead, it covers common use cases.
 
 Exported Resources with Nagios
 ------------------------------
@@ -81,7 +23,8 @@ them. For example, you could create a class for something like
 Apache that adds a service definition on your Nagios host,
 automatically monitoring the web server:
 
-    class nagios-target {
+    # /etc/puppetlabs/puppet/modules/nagios/manifests/target/apache.pp
+    class nagios::target::apache {
        @@nagios_host { $fqdn:
             ensure => present,
             alias => $hostname,
@@ -96,7 +39,9 @@ automatically monitoring the web server:
             service_description => "${hostname}_check_ping"
        }
     }
-    class nagios-monitor {
+
+    # /etc/puppetlabs/puppet/modules/nagios/manifests/monitor.pp
+    class nagios::monitor {
         package { [ nagios, nagios-plugins ]: ensure => installed, }
         service { nagios:
             ensure => running,
@@ -108,64 +53,4 @@ automatically monitoring the web server:
         Nagios_host <<||>>
         Nagios_service <<||>>
     }
-
-Exported Resources Override
----------------------------
-
-Beginning in version 0.25, some new syntax has been introduced that
-allows creation of collections of any resources, not just virtual
-ones, based on filter conditions, and override of attributes in the
-created collection. This feature is not constrained to the override
-in inherited context, as is the case in the usual resource
-override.
-
-Ordinary resource collections can now be defined by filter
-conditions, in the same way as collections of virtual or exported
-resources. For example:
-
-    file {
-        "/tmp/testing": content => "whatever"
-    }
-
-    File<| |> {
-        mode => 0600
-    }
-
-The filter condition goes in the middle of the `<| |>` sigils. In
-the above example the condition is empty, so all file resources
-(not just virtual ones) are selected, and all file resources will
-have their modes overridden to 0600.
-
-In the past this syntax only collected virtual resources. It now
-collects all matching resources, virtual or no, and allows you to
-override attributes in any of the collection so defined.
-
-As another example, one can write:
-
-    file { "/tmp/a": content => "a" }
-    file { "/tmp/b": content => "b" }
-
-    File <| title != "/tmp/b" |> {
-        require => File["/tmp/b"]
-    }
-
-This means that every File resource requires /tmp/b, except /tmp/b
-itself. Moreover, it is now possible to define resource overriding
-without respecting the override on inheritance rule:
-
-    class a {
-        file {
-            "/tmp/testing": content => "whatever"
-        }
-    }
-
-    class b {
-        include a
-        File<| |> {
-            mode => 0600
-        }
-    }
-    include b
-
-
 
