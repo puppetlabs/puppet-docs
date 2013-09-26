@@ -42,6 +42,7 @@ Important Notes and Warnings
 
     If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
 - If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+- If you have been using activerecord storeconfigs and relying on the `puppet node clean --unexport` command, be advised that it doesn't work in PE 3; we are investigating ways to re-implement this feature in [issue 14608](http://projects.puppetlabs.com/issues/14608).
 
 
 Downloading PE
