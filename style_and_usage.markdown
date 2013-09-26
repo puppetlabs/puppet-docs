@@ -199,40 +199,31 @@ There is also at least one case where we abuse Markdown:
       effectively makes it an abandoned element.
     * The Markdown spec, such as it is, says processors should ignore any
       further Markdown formatting inside an explicit HTML block element (like
-      <aside>), so using the proper tag would entail spewing raw HTML around our
+      `<aside>`), so using the proper tag would entail spewing raw HTML around our
       documents. This can be turned off in some processors, but we would
-      prefer to not rely that heavily on implementation details, plus turning it
+      prefer to not rely that heavily on implementation details; plus turning it
       on might wreck something else.
 
 Console UI Terminology
 -----
 
-This is the current most-canonical list of the words we have for parts of the console UI, as of January 12, 2012's meeting w/ Randall. Nick F modified the LM stuff in June 2013 with some limited input from UX.
+This is the current most-canonical list of the words we have for parts of the console UI, as of January 12, 2012's meeting with Randall. Nick F modified the LM stuff in June 2013 with some limited input from UX.
 
-the bar at the very top is the MAIN NAVIGATION or PRIMARY NAVIGATION.
+ - The bar at the very top is the MAIN NAVIGATION or PRIMARY NAVIGATION.
+      - Clicking on an element in the main navigation takes you to a SECTION of the console. This word is vague and unconcrete because the divisions between the sections are vague and unconcrete.
 
-Clicking on an element in the main navigation takes you to a SECTION of the console. This word is vague and unconcrete because the divisions between the sections are vague and unconcrete.
+ - The sidebar is the SIDEBAR. It contains:
+      - the NODE STATE SUMMARY. Clicking a state takes you to the NODE LIST (changed node list, failed node list, etc.).
+      - the GROUP SUMMARY. Clicking a group takes you to that group's PAGE.
+      - the CLASS SUMMARY. Clicking a class takes you to that class's PAGE.
 
-The sidebar is the SIDEBAR. It contains:
-    - the NODE STATE SUMMARY
-        Clicking a state takes you to the <sate> NODE LIST (changed node list, failed node list, etc.).
-    - the GROUP SUMMARY
-        Clicking a group takes you to that group's PAGE.
-    - the CLASS SUMMARY
-        Clicking a class takes you to that class's PAGE.
-
-From the nodes section, or any other list of nodes, you can get to a node's DETAIL PAGE. Likewise for any class, group, or report; each individual object has its own DETAIL PAGE.
-
-A report detail page contains TABS that show different parts of the report.
-
-The landing page of the reports section is the REPORTS LIST.
-You can refer to the inventory search section as a section, a page, or just the inventory search. Likewise the file search.
-
-The live management SECTION or PAGE contains three TABS, and a FILTERABLE NODE LIST (or just NODE LIST) in the SIDEBAR.
-    The Browse Resources tab contains a RESOURCE TYPE NAVIGATION for switching between RESOURCE TYPE PAGES.
-        Resource type pages contain a search field, a "Find Resources" button, and a LIST OF RESOURCES, any of which can be clicked to reach their RESOURCE DETAIL PAGE. (These can be referred to by type: "package detail page.")
-    The Advanced Tasks tab contains a TASK NAVIGATION on the left side for switching between several ACTION LISTS. Each action list is just an MCollective agent plugin.
-        Action lists contain ACTIONS. We can also call these TASKS, but "actions" is more harmonious with the command line orchestration terminology, which cannot be changed.
-            When you click an action, it reveals a RED "RUN" BUTTON and any available ARGUMENT FIELDS.
-    The Control Puppet tab consists of a single ACTION LIST.
-
+ - From the nodes section, or any other list of nodes, you can get to a node's DETAIL PAGE. Likewise for any class, group, or report; each individual object has its own DETAIL PAGE.
+      - A report detail page contains TABS that show different parts of the report.
+ - The landing page of the reports section is the REPORTS LIST. You can refer to the inventory search section as a section, a page, or just the inventory search. Likewise for the file search.
+ - The live management SECTION or PAGE contains three TABS and a FILTERABLE NODE LIST (or just NODE LIST) in the SIDEBAR.
+      - The Browse Resources tab contains a RESOURCE TYPE NAVIGATION for switching between RESOURCE TYPE PAGES. 
+          - Resource type pages contain a search field, a "Find Resources" button, and a LIST OF RESOURCES, any of which can be clicked to reach their RESOURCE DETAIL PAGE. (These can be referred to by type: "package detail page.")
+      - The Advanced Tasks tab contains a TASK NAVIGATION on the left side for switching between several ACTION LISTS. Each action list is just an MCollective agent plugin.
+          - Action lists contain ACTIONS. We can also call these TASKS, but "actions" is more harmonious with the command line orchestration terminology, which cannot be changed.
+              - When you click an action, it reveals a RED "RUN" BUTTON and any available ARGUMENT FIELDS.
+      - The Control Puppet tab consists of a single ACTION LIST.
