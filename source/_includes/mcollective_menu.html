@@ -1,75 +1,3 @@
-{% comment %}
-
-- **Overview**
-    - `"Introduction", "/mcollective/"`
-    - `"Overview of Components", "/mcollective/overview_components.html"`
-    - `"Terminology", "/mcollective/terminology.html"`
-    - `"Screencasts", "/mcollective/screencasts.html"`
-    - `"Release Notes", "/mcollective/releasenotes.html"`
-    - `"Changelog", "/mcollective/changelog.html"`
-- **Deploying MCollective**
-    - `"Index", "/mcollective/deploy/index.html"`
-    - `"Demo", "/mcollective/deploy/demo.html"`
-    - `"Getting Started (Standard Deployment)", "/mcollective/deploy/standard.html"`
-- **Configuration / Deployment Topics**
-    - **Installation:**
-    - `"Installing MCollective", "/mcollective/deploy/install.html"`
-    - `"Installing Plugins", "/mcollective/deploy/plugins.html"`
-    - **Configuration:**
-    - `"Server Config Reference", "/mcollective/configure/server.html"`
-    - `"Client Config Reference", "/mcollective/configure/client.html"`
-    - `"Puppet Integration", "/mcollective/reference/integration/puppet.html"`
-    - `"Chef Integration", "/mcollective/reference/integration/chef.html"`
-    - **Middleware:**
-    - `"Middleware Types", "/mcollective/deploy/middleware/"`
-    - `"ActiveMQ Configs for MCollective", "/mcollective/deploy/middleware/activemq.html"`
-    - `"ActiveMQ TLS Keystore Setup", "/mcollective/deploy/middleware/activemq_keystores.html"`
-    - `"ActiveMQ Clustering", "/mcollective/reference/integration/activemq_clusters.html"`
-    - `"ActiveMQ TLS", "/mcollective/reference/integration/activemq_ssl.html"`
-    - `"ActiveMQ Security", "/mcollective/reference/integration/activemq_security.html"`
-    - **Connector Plugins:**
-    - `"The ActiveMQ Connector", "/mcollective/reference/plugins/connector_activemq.html"`
-    - `"The RabbitMQ Connector", "/mcollective/reference/plugins/connector_rabbitmq.html"`
-    - **Security Plugins:**
-    - `"Configuring SSL Validation Security", "/mcollective/reference/plugins/security_ssl.html"`
-    - **Advanced Features:**
-    - `"Subcollectives and Partitioning", "/mcollective/reference/basic/subcollectives.html"`
-    - `"Auditing", "/mcollective/simplerpc/auditing.html"` <!-- contains plugin-writing info -->
-- **Use and Administer MCollective**
-    - `"Command Line Usage Instructions", "/mcollective/reference/basic/basic_cli_usage.html"`
-    - `"Command Filtering and Discovery", "/mcollective/reference/ui/filters.html"`
-    - `"Controlling the MCollective Daemon", "/mcollective/reference/basic/daemon.html"`
-    - `"Controlling the MCollective Daemon with the rpcutil Agent", "/mcollective/reference/plugins/rpcutil.html"`
-    - `"On-Demand Node Reports", "/mcollective/reference/ui/nodereports.html"`
-- **Write Agent Plugins**
-    - `"Writing Agent Plugins", "/mcollective/simplerpc/agents.html"`
-    - `"Writing DDL Files", "/mcollective/reference/plugins/ddl.html"`
-    - `"Aggregating Results", "/mcollective/reference/plugins/aggregate.html"` <!-- mixes DDL info with info about writing aggregate plugins -->
-- **Write Clients and Applications**
-    - `"Writing Clients", "/mcollective/simplerpc/clients.html"`
-    - `"Writing New mco Subcommands", "/mcollective/reference/plugins/application.html"`
-- **Write Other Plugins**
-    - `"Writing Authorization Plugins and Enabling Authorization", "/mcollective/simplerpc/authorization.html"` <!-- contains deploy/config info -->
-    - `"Writing Data Plugins", "/mcollective/reference/plugins/data.html"`
-    - `"Writing and Using Discovery Plugins", "/mcollective/reference/plugins/discovery.html"` <!-- contains usage info -->
-    - `"Writing Facts Plugins", "/mcollective/reference/plugins/facts.html"`
-    - `"Writing Registration Plugins", "/mcollective/reference/plugins/registration.html"`
-    - `"Writing Validator Plugins", "/mcollective/reference/plugins/validator.html"`
-- [Plugin Directory](http://projects.puppetlabs.com/projects/mcollective-plugins/wiki)
-- **Internals**
-    - `"Message Flow", "/mcollective/reference/basic/messageflow.html"` <!-- needs more/needs update -->
-    - `"SimpleRPC Overview", "/mcollective/simplerpc/"`
-    - `"SimpleRPC Message Format", "/mcollective/simplerpc/messageformat.html"`
-    - `"Core Message Format", "/mcollective/reference/basic/messageformat.html"`
-    - `"Security Overview", "/mcollective/security.html"`
-- **Older and Non-Recommended Information**
-    - `"Configuring AES Security", "/mcollective/reference/plugins/security_aes.html"`
-    - `"Configuring the Generic Stomp Connector", "/mcollective/reference/plugins/connector_stomp.html"`
-    - `"Writing Old-Style Agent Plugins", "/mcollective/reference/basic/basic_agent_and_client.html"`
-    - `"Alternate Index", "/mcollective/reference/"`
-
-
-{% endcomment %}
 
 <ul>
   <li><strong>Overview</strong>
@@ -122,7 +50,7 @@
       <li>{% iflink "Command Filtering and Discovery", "/mcollective/reference/ui/filters.html" %}</li>
       <li>{% iflink "Controlling the MCollective Daemon", "/mcollective/reference/basic/daemon.html" %}</li>
       <li>{% iflink "Controlling the MCollective Daemon with the rpcutil Agent", "/mcollective/reference/plugins/rpcutil.html" %}</li>
-      <li>{% iflink "On-Demand Node Reports", "/mcollective/reference/ui/nodereports.html" %}</li>
+      <li>{% iflink "Node Inventory Reports", "/mcollective/reference/ui/nodereports.html" %}</li>
     </ul>
   </li>
   <li><strong>Write Agent Plugins</strong>
