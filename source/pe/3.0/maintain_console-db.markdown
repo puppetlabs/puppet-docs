@@ -62,6 +62,7 @@ Database backups
 
 You can back up and restore the console's database using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for the `console`, `console_auth` and `puppetdb` databases, or as dictated by your company policy.
 
+The easiest way to gain access to the PE-configured PostgreSQL database is to use the `pe-postgres` user, via `su - pe-postgres -s '/bin/bash'`. All PostgreSQL-related command should succeed as that user.
 
 Changing the Console's Database User/Password
 -----
