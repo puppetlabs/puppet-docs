@@ -12,8 +12,7 @@ GIT
       maruku (~> 0.5)
 
 GEM
-  remote: http://gems.rubyforge.org/
-  remote: http://gemcutter.org/
+  remote: https://rubygems.org/
   specs:
     activemodel (3.2.14)
       activesupport (= 3.2.14)
