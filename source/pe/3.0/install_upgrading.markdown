@@ -6,15 +6,12 @@ canonical: "/pe/latest/install_upgrading.html"
 ---
 
 
-
-**Note:** These instructions refer to upgrades to PE 3.0.1 from 2.8.2 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2 or higher, refer to the [previous upgrade instructions](./install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
-
 Summary
 -----
 
 The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.0.1.
 
-The process involves the following steps, which must be performed in order:
+The process involves the following steps, *which must be performed in order:*
 
 1. Provision and prepare a node for use by PuppetDB
 2. Upgrade Master
@@ -30,7 +27,7 @@ If more than one of these roles is present on a given node (for example your mas
 Important Notes and Warnings
 ---
 
-- Upgrading is only supported from a PE 2.8.2 or newer installation. To upgrade from a version older than 2.8.2, you'll need to first upgrade to 2.8.2, make sure everything is working correctly, and then move on to upgrading to 3.0.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/).
+- **Upgrading is only supported from a PE 2.8.2 or newer installation.** To upgrade from a version older than 2.8.2, you *must* first upgrade to 2.8.2, make sure everything is working correctly, and then move on to upgrading to 3.0.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/).
 - Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
 - After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.0. The version of the orchestration engine used in PE 3.0 is incompatible with that used by previous PE versions.
 - PE 3 uses Ruby 1.9 which is stricter about character encoding than the previous version used in PE 2.8. If your manifests contain non-ASCII characters they may fail to compile or behave unpredictably. When upgrading, make sure manifests contain only ASCII characters. For more information see the [release notes](./appendix.html#puppet-code-issues-with-utf-8-encoding).
@@ -43,6 +40,7 @@ Important Notes and Warnings
     If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
 - If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
 - If you have been using activerecord storeconfigs and relying on the `puppet node clean --unexport` command, be advised that it doesn't work in PE 3; we are investigating ways to re-implement this feature in [issue 14608](http://projects.puppetlabs.com/issues/14608).
+-These instructions refer to upgrades to PE 3.0.1 from 2.8.2 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2 or higher, refer to the [previous upgrade instructions](./install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
 
 
 Downloading PE
