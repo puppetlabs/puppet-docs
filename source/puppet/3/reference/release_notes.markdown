@@ -79,7 +79,10 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 Puppet 3.3.1
 -----
 
-> **Pre-release:** 3.3.1 has not yet been released; it entered its first release candidate on September 23, 2013.
+> **Pre-release:** 3.3.1 has not yet been released.
+>
+> * RC1: September 23, 2013
+> * RC2: September 27, 2013
 
 3.3.1 is a bug fix release in the Puppet 3.3 series. The focus of the release is fixing backwards compatibility regressions that slipped in via the YAML deprecations in 3.3.0.
 
@@ -94,12 +97,16 @@ The release of Puppet 3.3.1 supersedes the upgrade warning for Puppet 3.3.0. As 
 * [Issue 22535: puppet 3.3.0 ignores File ignore in recursive copy][22535]
 * [Issue 22608: filebucket (backup) does not work with 3.3.0 master and older clients][22608]
 * [Issue 22530: Reports no longer work for clients older than 3.3.0 when using a 3.3.0 puppet master][22530]
+* [Issue 22652: ignore doesn't work if pluginsync enabled][22652]
 
 New backward compatibility issues were discovered after the release of 3.3.0, so we changed our handling of deprecated wire formats.
 
 Starting with 3.3.1, you do not need to set additional settings in puppet.conf on your agent nodes in order to use newer agents with puppet masters running 3.2.4 or earlier. Agents will work with all 3.x masters, and they will automatically negotiate wire formats as needed. This behavior supersedes [the behavior described for 3.3.0][yaml_deprecation]; the `report_serialization_format` setting is now unnecessary.
 
-Additionally, this release fixes two situations where 3.3.0 masters would do the wrong thing with older agents. (Reports would fail unless the master had `report_serialization_format` set to `yaml`, which was not intended, and remote filebucket backups would always fail.)
+Additionally, this release fixes:
+
+* Two cases where 3.3.0 masters would do the wrong thing with older agents. (Reports would fail unless the master had `report_serialization_format` set to `yaml`, which was not intended, and remote filebucket backups would always fail.)
+* A regression where files that should have been ignored during pluginsync were being copied to agents.
 
 ### Miscellaneous Regression Fixes
 
@@ -154,7 +161,7 @@ This bug dates to 3.0.0, and could cause occasional agent run failures under Rub
 [22384]: http://projects.puppetlabs.com/issues/22384
 [22529]: http://projects.puppetlabs.com/issues/22529
 [22493]: http://projects.puppetlabs.com/issues/22493
-
+[22652]: http://projects.puppetlabs.com/issues/22652
 
 Puppet 3.3.0
 -----
