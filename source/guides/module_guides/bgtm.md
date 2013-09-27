@@ -1,12 +1,17 @@
+---
+layout: default
+nav: best_practice_guides.html
+title: Beginner's Guide to Modules
+---
+
 [structure]: ./images/bgtmclassstructure.png
 [main]: ./images/bgtmntpinit.png
 [install]: ./images/bgtmntpinstall.png
 [config]: ./images/bgtmntpconfig.png
 [service]: ./images/bgtmntpservice.png
 
-#Beginner's Guide to Modules
 
-This module guide will help you learn how to create fantastic modules by introducing Puppet Labs' module best practice [standards and architecture](http://docs.puppetlabs.com/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices. 
+This module guide will help you learn how to create fantastic modules by introducing Puppet Labs' module best practice [standards and architecture](http://docs.puppetlabs.com/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
 ##Structure of a module
 
@@ -16,35 +21,35 @@ Before reading this guide we recommend that you become familiar with [Puppet](ht
 
 ###Step One: Giving Your Module Purpose
 
-Before you begin writing your module, you must define what it will do. Defining the range of your module's work helps you avoid accidentally creating a sprawling monster of a module that is unwieldy and difficult to work with. Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL. 
+Before you begin writing your module, you must define what it will do. Defining the range of your module's work helps you avoid accidentally creating a sprawling monster of a module that is unwieldy and difficult to work with. Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL.
 
-To help plan your module appropriately, ask yourself some questions: 
+To help plan your module appropriately, ask yourself some questions:
 
-* What task do you need your module to accomplish? 
+* What task do you need your module to accomplish?
 
-* What work is your module addressing? 
+* What work is your module addressing?
 
-* What higher function should your module have within your Puppet environment? 
+* What higher function should your module have within your Puppet environment?
 
-(*Tip: If you describe the function of your module and you find yourself using the word 'and', it's time to split the module at the 'and'*.) 
+(*Tip: If you describe the function of your module and you find yourself using the word 'and', it's time to split the module at the 'and'*.)
 
-It is standard practice for Puppet users to have upwards of 200 modules in their environment. Each module in your environment should contain related resources that enable it to accomplish a task, the simpler the better. Puppet Labs best practice strongly recommends creating multiple modules when and where applicable. The practice of having many small, focused modules is encouraged, as it promotes code reuse and turns modules into building blocks rather than full solutions. 
+It is standard practice for Puppet users to have upwards of 200 modules in their environment. Each module in your environment should contain related resources that enable it to accomplish a task, the simpler the better. Puppet Labs best practice strongly recommends creating multiple modules when and where applicable. The practice of having many small, focused modules is encouraged, as it promotes code reuse and turns modules into building blocks rather than full solutions.
 
-As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppetlabs.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppetlabs.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppetlabs.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf. 
+As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppetlabs.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppetlabs.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppetlabs.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf.
 
 ###Step Two: Module Structure
 
-The ideal module is one that is designed to manage a single piece of software from installation through setup, configuration, and service management.  
+The ideal module is one that is designed to manage a single piece of software from installation through setup, configuration, and service management.
 
 We acknowledge that there are many variations in software that modules may manage. A large majority of modules should be able to follow this best practices structure. However, we acknowledge that this structure may not be appropriate for some. Where possible, we will call out this incompatibility and recommend best practice alternatives.
 
-This section will cover: 
+This section will cover:
 
 * [2a. How to design your module's classes](#class-design)
 
 * [2b. How to develop useful parameters](#parameters)
 
-* [2c. How best to order your classes (rather than resources)](#ordering), and 
+* [2c. How best to order your classes (rather than resources)](#ordering), and
 
 * [2d. How to leverage and utilize dependencies](#dependencies)
 
@@ -52,9 +57,9 @@ To demonstrate a real-world best practices standard module, we will walk through
 
 ####2a: Class Design
 
-Module development follows a similar [principle](http://www.amazon.com/dp/0201485672/?tag=stackoverfl08-20) as software development, essentially: "good software is comprised of many small, easily tested things composed together." A good module is comprised of small, self-contained classes that do one thing only. Classes within a module are similar to functions in programming, using parameters to perform related steps that create a coherent whole. 
+Module development follows a similar [principle](http://www.amazon.com/dp/0201485672/?tag=stackoverfl08-20) as software development, essentially: "good software is comprised of many small, easily tested things composed together." A good module is comprised of small, self-contained classes that do one thing only. Classes within a module are similar to functions in programming, using parameters to perform related steps that create a coherent whole.
 
-In general, best practices naming convention states that the file must be named the same as the class or definition that is contained within (with the sole exception of the [main class](#module)), and classes must be named after their function. 
+In general, best practices naming convention states that the file must be named the same as the class or definition that is contained within (with the sole exception of the [main class](#module)), and classes must be named after their function.
 
 In terms of class structure we recommend the following (more detail below):
 
@@ -68,13 +73,13 @@ The main class of any module must share the name of the module and be located in
 
 For instance, this is how the ntp module's main class is structured:
 
-![ntp init.pp][main] 
+![ntp init.pp][main]
 
 #####module::install
 
-The install class must be located in the `install.pp` file, and should contain all of the resources related to getting the software the module manages onto the node. 
+The install class must be located in the `install.pp` file, and should contain all of the resources related to getting the software the module manages onto the node.
 
-The install class must be named `module::install`, as ntp demonstrates: 
+The install class must be named `module::install`, as ntp demonstrates:
 
 ![ntp install.pp][install]
 
@@ -82,7 +87,7 @@ The install class must be named `module::install`, as ntp demonstrates:
 
 The resources related to configuring the installed software should be placed in a config class. The config class must be named `module::config` and must be located in the `config.pp` file.
 
-See, for example, the ntp module: 
+See, for example, the ntp module:
 
 ![ntp config.pp][config]
 
@@ -90,7 +95,7 @@ See, for example, the ntp module:
 
 The remaining service resources, and anything else related to the running state of the software, should be contained in the service class. The service class must be named `module::service` and must be located in the `service.pp` file.
 
-For example, 
+For example,
 
 ![ntp service.pp][service]
 
@@ -100,12 +105,12 @@ Parameters form the public API of your module.  They are the most important inte
 
 #####Naming
 
-Naming consistency is imperative for community comprehension and assists in troubleshooting and collaborating on module development. Best practices recommend the pattern of `thing_property` for naming parameters. 
+Naming consistency is imperative for community comprehension and assists in troubleshooting and collaborating on module development. Best practices recommend the pattern of `thing_property` for naming parameters.
 
 For example, in the ntp module
 
     class ntp::install {
- 
+
       package { 'ntp':
         ensure => $ntp::package_ensure,
         name   => $ntp::package_name,
@@ -114,17 +119,17 @@ For example, in the ntp module
 
 If you have a parameter that toggles an entire function on and off, the naming convention can be amended to `thing_manage`. This applies, in particular, to Boolean toogles such as managing the installation altogether. The `thing_manage` convention allows you to wrap all of the resources in an `if $package_manage {}` test.
 
-Consistent naming across modules helps with the readability and usability of your code. While Puppet Labs doesn't have a set of standards for parameters to conform to, there's a community project working to establish one. If you care about name standardization, offer issues and pull requests [here](https://github.com/stdmod/puppet-modules/blob/master/Parameters_List.md).  
+Consistent naming across modules helps with the readability and usability of your code. While Puppet Labs doesn't have a set of standards for parameters to conform to, there's a community project working to establish one. If you care about name standardization, offer issues and pull requests [here](https://github.com/stdmod/puppet-modules/blob/master/Parameters_List.md).
 
 #####Number
 
-If you want to maximize the usability of your module without requiring users to modify it, you should make it more flexible through the addition of parameters. Adding parameters enables more customized use of your module.  While this can feel frustrating as an author, best practice is to embrace parameters rather than avoid them. 
+If you want to maximize the usability of your module without requiring users to modify it, you should make it more flexible through the addition of parameters. Adding parameters enables more customized use of your module.  While this can feel frustrating as an author, best practice is to embrace parameters rather than avoid them.
 
-You must not hardcode data in your modules, and having more parameters is the best alternative. Hardcoded data results in an inflexible module that requires manifest changes in order for it to be used in slightly different circumstances.  
+You must not hardcode data in your modules, and having more parameters is the best alternative. Hardcoded data results in an inflexible module that requires manifest changes in order for it to be used in slightly different circumstances.
 
 Adding parameters that allow you to override templates is an anti-pattern to avoid.  Parameters that allow overriding templates lead to end users overriding your template with a custom template that contains hardcoded additional parameters. Hardcoding parameters in a template should be avoided, as it leads to stagnation and inhibits flexibility over time.  It is far better to create more parameters and modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
 
-For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache). 
+For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache).
 
 ####2c: Ordering
 
@@ -195,7 +200,7 @@ At Puppet Labs, we use rspec-system to do things like build a Debian virtual mac
       it { should be_running }
     end
 
-It then knows how to translate `be_running` into shell commands for different distributions.  
+It then knows how to translate `be_running` into shell commands for different distributions.
 
 ####puppetlabs-spec-helper
 
@@ -205,9 +210,9 @@ The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helpe
 
 ###Step Four: Module versioning
 
-Modules, like any other piece of software, must be versioned and released when changes are made.  We use and recommend using [SemVer](http://semver.org/). It sets out the exact rules around when to increment major versions and so forth. 
+Modules, like any other piece of software, must be versioned and released when changes are made.  We use and recommend using [SemVer](http://semver.org/). It sets out the exact rules around when to increment major versions and so forth.
 
-Once you've decided on the new version number, you must increase the version number metadata in the Modulefile. Versioning within the Modulefile allows you to build Puppet environments by picking and choosing specific versions of a module or set of modules.  
+Once you've decided on the new version number, you must increase the version number metadata in the Modulefile. Versioning within the Modulefile allows you to build Puppet environments by picking and choosing specific versions of a module or set of modules.
 
 It also allows you to create a list of dependencies in the Modulefile of your modules with specific versions of dependent modules, which ensures your module isn't used with an ancient dependency that won't work. Versioning also enables workflow management by allowing you to easily use different versions of modules in different environments.
 
