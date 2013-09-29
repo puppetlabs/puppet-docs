@@ -130,6 +130,11 @@ The version requirement in a dependency isn't limited to a single version; you c
 * `1.x` --- A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>=1.0.0 <2.0.0`.)
 * `1.2.x` --- A semantic major & minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>=1.2.0 <1.3.0`.)
 
+Note: You cannot mix semantic versioning shorthand (.x) with greater/less than versioning syntax. The following would be incorrect.
+
+* `>= 3.2.x`
+* `< 4.x`
+
 > ### A Note on Semantic Versioning
 >
 > When writing your Modulefile, you're setting a version for your own module and optionally expressing dependancies on others' module versions. We strongly recommend following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification. Doing so allows others to rely on your modules without unexpected change.
