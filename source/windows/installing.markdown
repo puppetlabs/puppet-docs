@@ -89,6 +89,7 @@ MSI Property            | Puppet Setting   | Default Value
 `PUPPET_MASTER_SERVER`  | [`server`][s]    | `puppet`
 `PUPPET_CA_SERVER`      | [`ca_server`][c] | Value of `PUPPET_MASTER_SERVER`
 `PUPPET_AGENT_CERTNAME` | [`certname`][r]  | Value of `facter fdqn` (must be lowercase)
+`PUPPET_AGENT_ENVIRONMENT` | [`environment`][e]  | `production`
 
 For example:
 
@@ -97,6 +98,7 @@ For example:
 [s]: /references/latest/configuration.html#server
 [c]: /references/latest/configuration.html#caserver
 [r]: /references/latest/configuration.html#certname
+[e]: /references/latest/configuration.html#environment
 
 Upgrading
 -----
