@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Troubleshooting » Troubleshooting the Console & Database "
+title: "PE 3.1 » Troubleshooting » Troubleshooting the Console & Database "
 subtitle: "Finding Common Problems"
 canonical: "/pe/latest/trouble_console-db.html"
 ---

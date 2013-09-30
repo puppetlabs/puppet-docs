@@ -1,9 +1,14 @@
 ---
 layout: default
-title: "PE 3.0 » Overview » What's New"
-subtitle: "New Features in PE 3.0"
+title: "PE 3.1 » Overview » What's New"
+subtitle: "New Features in PE 3.1"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
+
+### Version 3.1.0
+Puppet Enterprise version 3.1.0 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.1.0 release includes the following:
+
+
 
 ### Version 3.0.1
 Puppet Enterprise version 3.0.1 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.0.1 release includes the following:

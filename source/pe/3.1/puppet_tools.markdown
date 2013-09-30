@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Puppet » Tools"
+title: "PE 3.1 » Puppet » Tools"
 subtitle: "Puppet Tools"
 canonical: "/pe/latest/puppet_tools.html"
 ---

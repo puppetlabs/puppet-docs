@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Installing » Installing PE"
+title: "PE 3.1 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"
 canonical: "/pe/latest/install_basic.html"
 ---
@@ -18,7 +18,7 @@ Start by downloading the [current version of Puppet Enterprise from the Puppet L
 
 ### Choosing an Installer Tarball
 
-Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball.
+Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball that will install on any supported OS.
 
 > Note: The universal tarball is simpler to use but is roughly ten times the size of a version-specific tarball.
 

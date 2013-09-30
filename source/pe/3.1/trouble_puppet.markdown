@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Troubleshooting Puppet  Core » "
+title: "PE 3.1 » Troubleshooting Puppet  Core » "
 subtitle: "Tips & Solutions for Working with Puppet"
 canonical: "/pe/latest/trouble_puppet.html"
 ---

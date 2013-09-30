@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Orchestration » Controlling Puppet"
+title: "PE 3.1 » Orchestration » Controlling Puppet"
 subtitle: "Orchestration: Controlling Puppet"
 canonical: "/pe/latest/orchestration_puppet.html"
 ---

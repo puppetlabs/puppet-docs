@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Maintenance » Console"
+title: "PE 3.1 » Maintenance » Console"
 subtitle: "Maintaining the Console & Databases"
 canonical: "/pe/latest/maintain_console-db.html"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Quick Start » Writing Modules"
+title: "PE 3.1 » Quick Start » Writing Modules"
 subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Cloud Provisioning » AWS Provisioning"
+title: "PE 3.1 » Cloud Provisioning » AWS Provisioning"
 subtitle: "Provisioning With Amazon Web Services"
 canonical: "/pe/latest/cloudprovisioner_aws.html"
 ---

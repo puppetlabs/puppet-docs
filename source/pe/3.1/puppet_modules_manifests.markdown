@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Puppet » Modules and Manifests"
+title: "PE 3.1 » Puppet » Modules and Manifests"
 subtitle: "Puppet Modules and Manifests"
 canonical: "/pe/latest/puppet_modules_manifests.html"
 ---

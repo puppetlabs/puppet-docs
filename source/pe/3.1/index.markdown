@@ -1,15 +1,15 @@
 ---
 layout: default
-title: "PE 3.0 » Index"
+title: "PE 3.1 » Index"
 subtitle: "Puppet Enterprise User's Guide"
 canonical: "/pe/latest/index.html"
 ---
 
 
-Welcome! This is the user's guide for Puppet Enterprise 3.0.
+Welcome! This is the user's guide for Puppet Enterprise 3.1.0.
 
 
-* If you are new to Puppet Enterprise, begin with the [quick start guide](./quick_start.html) to create a small proof-of-concept deployment and experience the core Puppet Enterprise tools and workflows. This guided walkthrough will take approximately 30 minutes.
+* If you are new to Puppet Enterprise, begin with the [quick start guide](./quick_start.html) to create a small proof-of-concept deployment and experience the core Puppet Enterprise tools and workflows. This guided walkthrough will take approximately 30-60 minutes.
 * To install Puppet Enterprise, see the following pages:
     * [System Requirements](./install_system_requirements.html)
     * [Installing PE](./install_basic.html)

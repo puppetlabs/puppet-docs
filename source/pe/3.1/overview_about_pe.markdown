@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Overview » About Puppet Enterprise"
+title: "PE 3.1 » Overview » About Puppet Enterprise"
 subtitle: "About Puppet Enterprise"
 canonical: "/pe/latest/overview_about_pe.html"
 ---

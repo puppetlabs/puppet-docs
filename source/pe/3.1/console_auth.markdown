@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Console » User Management and Authorization"
+title: "PE 3.1 » Console » User Management and Authorization"
 subtitle: "Managing Console Users"
 canonical: "/pe/latest/console_auth.html"
 ---

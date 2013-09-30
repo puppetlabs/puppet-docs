@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.0 » Appendix"
+title: "PE 3.1 » Appendix"
 subtitle: "User's Guide Appendix"
 canonical: "/pe/latest/appendix.html"
 ---
 
 
-This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.0.
+This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.
 
 Puppet Terminology
 -----

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Troubleshooting » Installation"
+title: "PE 3.1 » Troubleshooting » Installation"
 subtitle: "Troubleshooting Installer Issues"
 canonical: "/pe/latest/trouble_install.html"
 ---

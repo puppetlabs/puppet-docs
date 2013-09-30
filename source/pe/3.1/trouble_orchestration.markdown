@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Troubleshooting » Orchestration"
+title: "PE 3.1 » Troubleshooting » Orchestration"
 subtitle: "Troubleshooting the Orchestration Engine"
 canonical: "/pe/latest/trouble_orchestration.html"
 ---

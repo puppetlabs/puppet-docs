@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Installing » System Requirements"
+title: "PE 3.1 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 canonical: "/pe/latest/install_system_requirements.html"
 ---

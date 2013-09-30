@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Console » Rake API: Environment Variable Names"
+title: "PE 3.1 » Console » Rake API: Environment Variable Names"
 subtitle: "List of Rake API Tasks with Environment Variable Argument Names"
 canonical: "/pe/latest/console_rake_api_old.html"
 ---

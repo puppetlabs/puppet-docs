@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.0 » Installing » Answer File Reference"
+title: "PE 3.1 » Installing » Answer File Reference"
 subtitle: "Answer File Reference"
 canonical: "/pe/latest/install_answer_file_reference.html"
 ---
