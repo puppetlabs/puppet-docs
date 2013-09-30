@@ -68,6 +68,9 @@ You will need to have a node available and ready to receive an installation of P
 
 The upgrader can install a pre-configured version of PostgreSQL along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the correct users and access. This also needs to be done BEFORE starting the upgrade.
 
+If provisioning a standalone PostgreSQL database, you will need to create a database for the console, for console authentication, and for puppetdb, as well as users that can access the databases remotely. You will be prompted for this information during the install process.
+
+
 ### Upgrade Master
 
 Start the upgrade by running the `puppet-enterprise-installer` script on the master node. You can use any of the flags described in the [install instructions](http://docs.puppetlabs.com/pe/latest/install_basic.html). The script will detect any previous versions of PE roles and stop any PE services that are currently running. The script will then step through the install script, providing default answers based on the roles it has detected on the node (e.g., if the script detects only an agent on a given node, it will provide "No" as the default answer to installing the master role). The installer should be able to answer all of the questions based on your current installation except for the hostname and port of the PuppetDB node you prepped before starting the install.
