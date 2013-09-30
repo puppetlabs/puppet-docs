@@ -95,18 +95,30 @@ Get Puppet up and running at your site.
 * [Configuring Puppet](/guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
 * [Setting Up Puppet](/guides/setting_up.html) --- includes server setup & testing
 
-### Basic Features and Use
+### Building and Using Modules
 
+* [Beginner's Guide to Modules](/guides/module_guides/bgtm.html) --- Learn what works best when starting to develop a new Puppet module.
 * [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html) --- nearly all Puppet code should be in modules.
 * [Installing Modules from the Puppet Forge](/puppet/2.7/reference/modules_installing.html) --- save time by using pre-existing modules
+* [Module Smoke Testing](/guides/tests_smoke.html) --- write and run basic smoke tests for your modules
+* [Publishing Modules on the Puppet Forge](/puppet/2.7/reference/modules_publishing.html) --- preparing your best modules to go public
+
+
+### Help With Writing Puppet Code
+
 * [Techniques](/guides/techniques.html) --- common design patterns, tips, and tricks
 * [Troubleshooting](/guides/troubleshooting.html) --- avoid common problems and confusions
-* [Parameterized Classes](/guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
-* [Module Smoke Testing](/guides/tests_smoke.html) --- write and run basic smoke tests for your modules
-* [Scope and Puppet](/guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
-* [Puppet File Serving](/guides/file_serving.html) --- serving files with Puppet
 * [Style Guide](/guides/style_guide.html) --- Puppet community conventions
 * [Best Practices](/guides/best_practices.html) --- use Puppet effectively
+* [Templating](/guides/templating.html) --- template out config files using ERB
+* [Virtual Resources](/guides/virtual_resources.html)
+* [Exported Resources](/guides/exported_resources.html) --- share data between hosts
+
+### Using Optional Features
+
+* [Environments](/guides/environment.html) --- separate dev, stage, & production
+* [Puppet File Serving](/guides/file_serving.html) --- Files in modules are automatically served; this guide explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
+* [Getting Started With Cloud Provisioner](/guides/cloud_pack_getting_started.html) --- create and bootstrap new nodes with the experimental cloud provisioner extension
 
 ### Puppet on Windows
 
@@ -118,38 +130,22 @@ Manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
+* [Running a Production-Grade Puppet Master Server With Passenger](/guides/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
 * [Scaling Puppet](/guides/scaling.html) --- general tips & tricks
 * [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- a guide to deployments with multiple Puppet masters
-* [Scaling With Passenger](/guides/passenger.html) --- for Puppet 0.24.6 and later
-* [Scaling With Mongrel](/guides/mongrel.html) --- for older versions of Puppet
 
-### Advanced Features
-
-Go beyond basic manifests.
-
-* [Templating](/guides/templating.html) --- template out config files using ERB
-* [Virtual Resources](/guides/virtual_resources.html)
-* [Exported Resources](/guides/exported_resources.html) --- share data between hosts
-* [Environments](/guides/environment.html) --- separate dev, stage, & production
-* [Reporting](/guides/reporting.html) --- learn what your nodes are up to
-* [Getting Started With Cloud Provisioner](/guides/cloud_pack_getting_started.html) --- create and bootstrap new nodes with the experimental cloud provisioner extension
-* [Publishing Modules on the Puppet Forge](/puppet/2.7/reference/modules_publishing.html) --- preparing your best modules to go public
-
-### Hacking and Extending
-
-Build your own tools and workflows on top of Puppet.
-
-#### Using the Puppet Data Library
+### Hacking and Extending: Using Puppet's Data
 
 * [Puppet Data Library: Overview](/guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
 * [Inventory Service](/guides/inventory_service.html) --- use Puppet's inventory of nodes at your site in your own custom applications
+* [Reporting](/guides/reporting.html) --- learn what your nodes are up to
 
-#### Using APIs and Interfaces
+### Hacking and Extending: APIs and Interfaces
 
 * [HTTP Access Control](/guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](/guides/external_nodes.html) --- specify what your machines do using external data sources
 
-#### Using Ruby Plugins
+### Hacking and Extending: Ruby Plugins
 
 * [Plugins In Modules](/guides/plugins_in_modules.html) --- where to put plugins, how to sync to clients
 * [Writing Custom Facts](/guides/custom_facts.html)
@@ -158,12 +154,22 @@ Build your own tools and workflows on top of Puppet.
 * [Complete Resource Example](/guides/complete_resource_example.html) --- more information on custom types & providers
 * [Provider Development](/guides/provider_development.html) --- more about providers
 
-#### Developing Puppet
+### Developing Puppet
 
 * [Running Puppet from Source](/guides/from_source.html) --- preview the leading edge
 * [Development Life Cycle](/guides/development_lifecycle.html) --- learn how to contribute code
 * [Puppet Internals](/guides/puppet_internals.html) --- understand how
   Puppet works internally
+
+
+### Historical Guides
+
+Puppet has gone through some transitional periods, and we've occasionally written short guides to explain major changes in its behavior.
+
+* [Parameterized Classes](/guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
+* [Scope and Puppet](/guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
+* [Scaling With Mongrel](/guides/mongrel.html) --- Running production puppet master servers with pre-0.24.6 versions of Puppet
+
 
 * * *
 
