@@ -118,7 +118,7 @@ libxml2             | curl                   | mailcap                |         
 dmidecode           | mailcap                | apr-util-ldap (RHEL 6) |                          |
 net-tools           | libjpeg                |                        |                          |
 cronie (RHEL 6)     |                        |                        |                          |
-vixie-cron (RHEL 5) |                        |                        |                          |
+vixie-cron (RHEL 4, 5) |                        |                        |                          |
 virt-what           |                        |                        |                          |
 
   <br> 
