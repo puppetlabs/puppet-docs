@@ -24,7 +24,7 @@ Puppet Enterprise 3.1 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
-Red Hat Enterprise Linux     | 5 & 6                                   | x86 & x86\_64 | all 
+Red Hat Enterprise Linux     | 4, 5 & 6                                   | x86 & x86\_64 | all (RHEL 4 supports agent only)
 CentOS                       | 5 & 6                                   | x86 & x86\_64 | all 
 Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all 
 Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all 
