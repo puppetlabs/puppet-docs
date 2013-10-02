@@ -492,7 +492,7 @@ The most notable changes are:
 * New slow catalog profiling capabilities
 * General improvements and fixes, including improved splay behavior, fixes to the cron type, improvements to the module tool, and some Hiera-related fixes
 
-> **Ruby Bug Warning:** Ruby 1.9.3-p0 has bugs that cause a number of known issues with Puppet 3.2.0 and later, and you should use a different release. To the best of our knowledge, these issues were fixed in the second public release of Ruby 1.9.3 (p125), and we are positive they are resolved in p392 (which ships with Fedora 18). Unfortunately, Ubuntu Precise ships with p0 for some reason, and there's not a lot we can do about it. If you're using Precise, we recommend using Puppet Enterprise or installing a third-party Ruby package.
+> **Ruby Bug Warning:** Ruby 1.9.3-p0 has bugs that cause a number of known issues with Puppet 3.2.0 and later, and you should use a different release. To the best of our knowledge, these issues were fixed in the second public release of Ruby 1.9.3 (p125), and we are positive they are resolved in p392 (which ships with Fedora 18). Unfortunately, Ubuntu Precise ships with p0 for some reason if you choose the system 1.9.3 package, and there's not a lot we can do about it. If you're using Precise and want to use Ruby 1.9.3, we recommend using Puppet Enterprise or installing a third-party Ruby package.
 
 ### Experimental "Future" Parser With Iteration
 
