@@ -82,7 +82,8 @@ Puppet 3.3.1
 > **Pre-release:** 3.3.1 has not yet been released.
 >
 > * RC1: September 23, 2013
-> * RC2: September 27, 2013
+> * RC2: September 27, 2013 --- Fix 22652 (Ignore doesn't work if pluginsync enabled).
+> * RC3: October 2, 2013 --- Update fix for 22529 (apt package ensure absent/purged causes warnings) to work with newer versions of apt/dpkg.
 
 3.3.1 is a bug fix release in the Puppet 3.3 series. The focus of the release is fixing backwards compatibility regressions that slipped in via the YAML deprecations in 3.3.0.
 
