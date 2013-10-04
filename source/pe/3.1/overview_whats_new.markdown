@@ -6,11 +6,35 @@ canonical: "/pe/latest/overview_whats_new.html"
 ---
 
 ### Version 3.1.0
+
 Puppet Enterprise version 3.1.0 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.1.0 release includes the following:
 
+* *Event Inspector*
+
+The Puppet Enterprise (PE) event inspector is a new reporting tool that provides multiple, dynamic ways to view the state of your infrastructure, providing both broad and specific insight into how Puppet is managing configurations. By providing information about events from the perspective of classes and resources, event inspector lets you quickly and easily find the source of configuration failures. For more information, see the [event inspector page](console_event-inspector.html).
+
+* *Discoverable Classes & Parameters*
+
+New UI and functionality in PE's console now allows you to easily add classes and parameters in the production environment by selecting them from an auto-generated list. The list also displays available documentation for the class, making it easier to know what a class does and why. For more information, see the [console documentation on classification](console_classes_groups.html#viewing-the-known-classes).
+
+ * *Red Hat Enterprise Linux 4 Support*
+
+The puppet agent can now be installed on nodes running RHEL 4. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
+
+* *License Availability*
+
+The console UI now displays how many licenses you are currently using and how many are available, so you'll know exactly how much capacity you have to expand your deployment. In addition, the "active license" count is now determined by the number of active nodes known to puppetdb. The [console navigation page](console_navigating.html) has more information. 
+
+* *Support for Google Compute Engine*
+
+PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. [TODO: cf]
+
+* *Geppetto Integration*
+Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.The [puppet modules and manifests page](puppet_modules_manifests.html) has more information.
 
 
 ### Version 3.0.1
+
 Puppet Enterprise version 3.0.1 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.0.1 release includes the following:
 
   * *Complete Upgrader Functionality*
