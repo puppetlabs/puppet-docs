@@ -40,9 +40,21 @@ Event inspector provides a better way, allowing you to understand the root cause
 
 ### Diagnosing a Failure with Event Inspector
 
-Assume you are a sysadmin and puppet developer for a large web commerce enterprise. Not surprisingly, Apache is a vital service for your organization. When you start work in the morning, you begin by checking the event inspector to see what happened overnight. In the summary pane's classes view, you note with concern that a failure has been logged for the `apache` class. 
+Assume you are a sysadmin and puppet developer for a large web commerce enterprise. Not surprisingly, Apache is a vital service for your organization. When you start work in the morning, you begin by checking event inspector to see what happened overnight. In the summary pane's classes view, you note with concern that a failure has been logged for the `testweb` class that you use for test configurations on new web server instances. 
 
+![Default view with failure events][default-failure]
 
+In the resource summary, you click on "failed", which loads the detail pane, showing failed resources. In this case, you can see in the detail view that there is an issue with a file, specifically `/var/www/first/.htaccess`.
+
+![Failed Resources view][resource-failure]
+
+Next, you drill down further by clicking on the failed resource in the detail pane. Note that the summary pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the arrow button or the bread-crumb trail at the top to step back up through the process if you wish.
+
+The detail pane now shows you all the failures for that resource on every node it failed on. You click on the most recent failure and the event detail pane shows you the specifics of the failure including the config version associated with the run and which specific line, in which manifest is causing the error. Further, you see from the error message that the manifest is trying to set the owner of the file resource to a non-existent user (`Message: Could not find user www-data`) on the intended platform.
+
+![Failed Resource Detail view][resource-detail]
+
+At this point, you now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/geppetto.html). You'll probably also be having a word with your fellow admins regarding the importance of remembering the target OS when you're working on when writing a manifest!
 
 Tips & Issues
 -----
@@ -51,12 +63,21 @@ Tips & Issues
 
 If a given puppet run restarts PuppetDB, puppet will not be able to submit a run report from that run to PuppetDB since, obviously, PuppetDB is not available. Because event inspector relies on data from PuppetDB, and PuppetDB reports are not queued, event inspector will not display any events from that run. Note that in such cases, a run report *will* be available via the console's "Reports" tab. Having a puppet run restart PuppetDB is an unlikely scenario, but one that could arise in cases where some change to, say, a parameter in the `puppetdb` class causes the `pe-puppetdb` service to restart. This is a known issue that will be fixed in a future release.
 
+#### Runs Without Events Not Displayed
+
+If a run encounters a catastrophic failure where an error prevents a catalog from compiling, event inspector will not display any failures. This is because no events actually occurred. It's important to remember that event inspector is strictly event-based, not run-based.
+
+#### Time Sync is Important
+
+Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them.
+
 
 [eventtab]: ./images/console/event_inspector/event_tab.png
 [summary]: ./images/console/event_inspector/summary_pane.png
 [time-selector]: ./images/console/event_inspector/time-period_selector.png
-
-
+[default-failure]: ./images/console/event_inspector/default-failure.png
+[resource-failure]: ./images/console/event_inspector/failed-resources.png
+[resource-detail]: ./images/console/event_inspector/resource-detail.png
 
 
 
