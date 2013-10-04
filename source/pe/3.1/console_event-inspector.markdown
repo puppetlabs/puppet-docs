@@ -69,7 +69,7 @@ If a run encounters a catastrophic failure where an error prevents a catalog fro
 
 #### Time Sync is Important
 
-Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them.
+Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them. The [PE Deployment Guide](/guides/deployment_guide/dg_define_infrastructure.html#thing-one-ntp) can walk you through one, simple method of NTP automation.
 
 
 [eventtab]: ./images/console/event_inspector/event_tab.png
