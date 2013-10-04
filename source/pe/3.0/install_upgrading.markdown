@@ -39,7 +39,10 @@ Important Notes and Warnings
 
     If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
 - If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+
 -These instructions refer to upgrades to PE 3.0.1 from 2.8.2 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2 or higher, refer to the [previous upgrade instructions](./install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
+
+- If you have been using activerecord storeconfigs and relying on the `puppet node clean --unexport` command, be advised that it doesn't work in PE 3; we are investigating ways to re-implement this feature in [issue 14608](http://projects.puppetlabs.com/issues/14608).
 
 
 Downloading PE
@@ -66,6 +69,9 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 You will need to have a node available and ready to receive an installation of PuppetDB and PostgreSQL. This can be the same node as the one running the master and console (if you have a monolithic, all-on-one implementation), or it can be a separate node (if you are running a split role implementation). In a split role implementation, **the database node must be up and running and reachable at a known hostname before starting the upgrade process on the console node.**
 
 The upgrader can install a pre-configured version of PostgreSQL along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the correct users and access. This also needs to be done BEFORE starting the upgrade.
+
+If provisioning a standalone PostgreSQL database, you will need to create a database for the console, for console authentication, and for puppetdb, as well as users that can access the databases remotely. You will be prompted for this information during the install process.
+
 
 ### Upgrade Master
 

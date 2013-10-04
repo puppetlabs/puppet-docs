@@ -211,11 +211,11 @@ These packages are usually older Puppet versions with security patches. <!-- dat
 
 Skip this step for a standalone deployment.
 
-On your puppet master node, run `sudo yum install puppet-server`. This will install Puppet and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
+On your puppet master node, run `sudo yum install puppet-server`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppetmaster.service`) for running a test-quality puppet master server.
 
 #### 3. Install Puppet on Agent Nodes
 
-On your other nodes, run `sudo yum install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
+On your other nodes, run `sudo yum install puppet`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppetagent.service`) for running the puppet agent daemon. **Note that puppet agent has a different name on Fedora than on any other platform.** This is being tracked as [issue #22660](https://projects.puppetlabs.com/issues/22660).
 
 For a standalone deployment, install this same package on all nodes.
 
@@ -414,14 +414,16 @@ Puppet's default settings are generally appropriate for standalone nodes. No add
 
 Some packages do not automatically start the puppet services after installing the software. You may need to start them manually in order to use Puppet.
 
-#### With Init Scripts
+#### With Init Scripts / Service Configs
 
-Most packages create init scripts called `puppet` and `puppetmaster`, which run the puppet agent and puppet master services.
+Most packages create init scripts or service configuration files called `puppet` and `puppetmaster`, which run the puppet agent and puppet master services.
 
 You can start and permanently enable these services using Puppet:
 
     $ sudo puppet resource service puppet ensure=running enable=true
     $ sudo puppet resource service puppetmaster ensure=running enable=true
+
+> **Note:** On Fedora, you must use `puppetagent` instead of `puppet` as the name of the puppet agent service. This is being tracked as [issue #22660](https://projects.puppetlabs.com/issues/22660).
 
 > **Note:** If you have configured puppet master to use a production web server, do not use the default init script; instead, start and stop the web server that is managing the puppet master service.
 

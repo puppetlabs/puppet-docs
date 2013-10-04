@@ -75,6 +75,95 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
+
+Puppet 3.3.1
+-----
+
+> **Pre-release:** 3.3.1 has not yet been released.
+>
+> * RC1: September 23, 2013
+> * RC2: September 27, 2013 --- Fix 22652 (Ignore doesn't work if pluginsync enabled).
+> * RC3: October 2, 2013 --- Update fix for 22529 (apt package ensure absent/purged causes warnings) to work with newer versions of apt/dpkg.
+
+3.3.1 is a bug fix release in the Puppet 3.3 series. The focus of the release is fixing backwards compatibility regressions that slipped in via the YAML deprecations in 3.3.0.
+
+### Upgrade Note
+
+The release of Puppet 3.3.1 supersedes the upgrade warning for Puppet 3.3.0. As of this release, agent nodes are compatible with all Puppet 3.x masters with no extra configuration.
+
+### Fixes for Backwards Compatibility Regressions in 3.3.0
+
+[331_compat]: #fixes-for-backwards-compatibility-regressions-in-330
+
+* [Issue 22535: puppet 3.3.0 ignores File ignore in recursive copy][22535]
+* [Issue 22608: filebucket (backup) does not work with 3.3.0 master and older clients][22608]
+* [Issue 22530: Reports no longer work for clients older than 3.3.0 when using a 3.3.0 puppet master][22530]
+* [Issue 22652: ignore doesn't work if pluginsync enabled][22652]
+
+New backward compatibility issues were discovered after the release of 3.3.0, so we changed our handling of deprecated wire formats.
+
+Starting with 3.3.1, you do not need to set additional settings in puppet.conf on your agent nodes in order to use newer agents with puppet masters running 3.2.4 or earlier. Agents will work with all 3.x masters, and they will automatically negotiate wire formats as needed. This behavior supersedes [the behavior described for 3.3.0][yaml_deprecation]; the `report_serialization_format` setting is now unnecessary.
+
+Additionally, this release fixes:
+
+* Two cases where 3.3.0 masters would do the wrong thing with older agents. (Reports would fail unless the master had `report_serialization_format` set to `yaml`, which was not intended, and remote filebucket backups would always fail.)
+* A regression where files that should have been ignored during pluginsync were being copied to agents.
+
+### Miscellaneous Regression Fixes
+
+[Issue 22384: Excessive logging for files not found][22384]
+
+This was a regression in 3.3.0.
+
+When using multiple values in an array for the file type's `source` attribute, Puppet will check them in order and use the first one it finds; whenever it doesn't find one, it will log a note at the "info" log level, which is silent when logging isn't verbose. In 3.3.0, the level was accidentally changed to the "notice" level, which was too noisy.
+
+[Issue 22529: apt package ensure absent/purged causes warnings on 3.3.0][22529]
+
+This was a regression in 3.3.0. The `apt` package provider was logging bogus warnings when processing resources with `ensure` values of `absent` or `purged`.
+
+[Issue 22493: Can't start puppet agent on non english Windows][22493]
+
+This problem was probably introduced in Puppet 3.2, when our Windows installer switched to Ruby 1.9; a fix was attempted in 3.2.4, but it wasn't fully successful.
+
+The behavior was caused by a bug in one of the Ruby libraries Puppet relies on. We submitted a fix upstream, and packaged a fixed version of the gem into the Windows installer.
+
+
+### Fixes for Long-Standing Bugs
+
+[Issue 19994: ParsedFile providers do not clear failed flush operations from their queues][19994]
+
+This bug dates to Puppet 2.6 or earlier.
+
+The bug behavior was weird. Basically:
+
+* Your manifests include multiple `ssh_authorized_key` resources for multiple user accounts.
+* _One_ of the users has messed-up permissions for their authorized keys file, and their resource fails because Puppet tries to write to the file as that user.
+* _All remaining key resources_ also fail, because Puppet tries to write the rest of them to that same user's file instead of the file they were _supposed_ to go in.
+
+[Issue 21975: Puppet Monkey patch `'def instance_variables'` clashing with SOAP Class...][21975]
+
+This bug dates to 3.0.0. It was causing problems when using plugins that use SOAP libraries, such as the types and providers in the puppetlabs/f5 module.
+
+[Issue 22474: `--no-zlib` flag doesn't prevent zlib from being required in Puppet][22474]
+
+This bug dates to 3.0.0, and caused Puppet to fail when running on a copy of Ruby without zlib compiled in.
+
+[Issue 22471: Malformed state.yaml causes puppet to fail runs with Psych yaml parser][22471]
+
+This bug dates to 3.0.0, and could cause occasional agent run failures under Ruby 1.9 or 2.0.
+
+[22535]: http://projects.puppetlabs.com/issues/22535
+[22608]: http://projects.puppetlabs.com/issues/22608
+[22530]: http://projects.puppetlabs.com/issues/22530
+[19994]: http://projects.puppetlabs.com/issues/19994
+[21975]: http://projects.puppetlabs.com/issues/21975
+[22474]: http://projects.puppetlabs.com/issues/22474
+[22471]: http://projects.puppetlabs.com/issues/22471
+[22384]: http://projects.puppetlabs.com/issues/22384
+[22529]: http://projects.puppetlabs.com/issues/22529
+[22493]: http://projects.puppetlabs.com/issues/22493
+[22652]: http://projects.puppetlabs.com/issues/22652
+
 Puppet 3.3.0
 -----
 
@@ -82,9 +171,9 @@ Released September 12, 2013.
 
 3.3.0 is a backward-compatible feature and fix release in the Puppet 3 series.
 
-### Upgrade Warning
+### Upgrade Warning (Superseded by Puppet 3.3.1)
 
-**Note:** Whenever possible, _upgrade your puppet masters first._
+> **Note:** The following is superseded by [compatibility improvements in Puppet 3.3.1][331_compat], which requires no configuration to work with older masters. If possible, you should upgrade directly to 3.3.1 instead of 3.3.0.
 
 Although 3.3.0 is backward-compatible, its default configuration will cause reporting failures when ≥ 3.3.0 agent nodes connect to a sub-3.3.0 master.
 
@@ -141,6 +230,8 @@ As of this release:
 > **Deprecation plan:** Currently, we plan to remove YAML over the network in Puppet 4.0. This means in cases where Puppet 3.3 would issue a deprecation warning, Puppet 4 will completely refuse the request.
 
 #### New Setting for Compatibility With Sub-3.3.0 Masters
+
+> **Note:** The following is superseded by [compatibility improvements in Puppet 3.3.1][331_compat], which requires no configuration to work with older masters. If possible, you should upgrade directly to 3.3.1 instead of 3.3.0.
 
 Puppet 3.3 agents now default to sending reports as JSON, and masters running Puppet 3.2.4 and earlier cannot understand JSON reports. Using an out of the box 3.3 agent with a 3.2 puppet master will therefore fail.
 

@@ -60,23 +60,23 @@ Parentheses may be used to improve readability. You can create arbitrarily compl
 
 #### `==` (equality search)
 
-This operator is non-transitive: 
+This operator is non-transitive:
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
 * The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version (2.7) of Puppet.
 
-For a given resource, this operator will **match** if the value of the attribute (or one of the value's members, if the value is an array) is identical to the search key. 
+For a given resource, this operator will **match** if the value of the attribute (or one of the value's members, if the value is an array) is identical to the search key.
 
 #### `!=` (non-equality search)
 
-This operator is non-transitive: 
+This operator is non-transitive:
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
 * The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version (2.7) of Puppet.
 
-For a given resource, this operator will **match** if the value of the attribute is **not** identical to the search key. 
+For a given resource, this operator will **match** if the value of the attribute is **not** identical to the search key.
 
-> Note: This operator will always match if the attribute's value is an array. This behavior may be undefined. 
+> Note: This operator will always match if the attribute's value is an array. This behavior may be undefined.
 
 #### `and`
 
@@ -95,7 +95,7 @@ Location
 
 Resource collectors may be used as independent statements, as the operand of a [chaining statement][chaining], or in a [collector attribute block][amend] for amending resource attributes.
 
-Notably, collectors **cannot** be used as the value of a resource attribute, the argument of a function, or the operand of an expression. 
+Notably, collectors **cannot** be used as the value of a resource attribute, the argument of a function, or the operand of an expression.
 
 
 Behavior
@@ -108,7 +108,7 @@ In addition to realizing, collectors can function as a value in two places:
 * When used in a [chaining statement][chaining], a collector will act as a proxy for every resource (virtual or non) that matches its search expression.
 * When given a block of attributes and values, a collector will [set and override][amend] those attributes for every resource (virtual or not) that matches its search expression.
 
-Note again that collectors used as values will also realize any matching virtual resources. If you use virtualized resources, you must use care when chaining collectors or using them for overrides. 
+Note again that collectors used as values will also realize any matching virtual resources. If you use virtualized resources, you must use care when chaining collectors or using them for overrides.
 
 Exported Resource Collectors
 -----
@@ -117,7 +117,7 @@ An **exported resource collector** uses a modified syntax that realizes [exporte
 
 ### Syntax
 
-Exported resource collectors are identical to collectors, except that their angle brackets are doubled. 
+Exported resource collectors are identical to collectors, except that their angle brackets are doubled.
 
 {% highlight ruby %}
     Nagios_service <<| |>> # realize all exported nagios_service resources
@@ -132,7 +132,7 @@ The general form of an exported resource collector is:
 
 ### Behavior
 
-Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have resource stashing (storeconfigs) enabled. See [Exported Resources][exported] for more details. To enable resource stashing, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
+Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have catalog storage and searching (storeconfigs) enabled. See [Exported Resources][exported] for more details. To enable exported resources, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
 
 Like normal collectors, exported resource collectors can be used with attribute blocks and chaining statements.
 

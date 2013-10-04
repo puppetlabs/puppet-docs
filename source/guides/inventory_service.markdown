@@ -70,7 +70,7 @@ Setting Up the Inventory Service
 
 There are two inventory service backends available: PuppetDB and `inventory_active_record`.
 
-* If you are using Puppet 2.7.12 or later, **use PuppetDB.** It is faster, easier to configure and maintain, and also provides resource stashing to enable [exported resources][exported]. Follow the installation and configuration instructions in the PuppetDB manual, and connect every puppet master to your PuppetDB server:
+* If you are using Puppet 2.7.12 or later, **use PuppetDB.** It is faster, easier to configure and maintain, and also provides catalog storage and searching for [exported resources][exported]. Follow the installation and configuration instructions in the PuppetDB manual, and connect every puppet master to your PuppetDB server:
     * [Install PuppetDB][puppetdb_install]
     * [Connect a puppet master to PuppetDB][puppetdb_connect]
 * If you are using an older version of Puppet, you can use the `inventory_active_record` backend and connect your other puppet masters to the designated inventory master. [See the appendix below to enable this backend](#appendix-enabling-the-inventoryactiverecord-backend).
