@@ -9,7 +9,7 @@ title: "Language: Resources"
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
 [append_attributes]: ./lang_classes.html#appending-to-resource-attributes
-[types]: /references/latest/type.html
+[types]: /references/2.7.latest/type.html
 [bareword]: ./lang_datatypes.html#bare-words
 [string]: ./lang_datatypes.html#strings
 [array]: ./lang_datatypes.html#arrays

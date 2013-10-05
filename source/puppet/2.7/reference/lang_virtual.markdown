@@ -6,7 +6,7 @@ title: "Language: Virtual Resources"
 [resources]: ./lang_resources.html
 [references]: ./lang_datatypes.html#resource-references
 [classes]: ./lang_classes.html
-[realize_function]: /references/latest/function.html#realize
+[realize_function]: /references/2.7.latest/function.html#realize
 [include]: ./lang_classes.html#declaring-a-class-with-include
 [collectors]: ./lang_collectors.html
 [search_expression]: ./lang_collectors.html#search-expressions
