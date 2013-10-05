@@ -28,9 +28,7 @@ The navigation item containing your **username** ("admin," in the screenshot abo
 
 The **help** menu leads to the Puppet Enterprise documentation.
 
-The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information.
-
-If the number of available licenses is exceeded, a warning will be displayed. However, Puppet Labs will not gather any information regarding license use,  nor will your deployment be affected.
+The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. If the number of available licenses is exceeded, a warning will be displayed. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information.
 
 > **Note:** For users limited to read-only access, some elements of the console shown here will not be visible.
 
