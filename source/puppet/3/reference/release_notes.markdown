@@ -107,6 +107,12 @@ Additionally, this release fixes:
 
 ### Miscellaneous Regression Fixes
 
+[22772]: http://projects.puppetlabs.com/issues/22772
+
+[Issue 22772: Managing an empty file causes a filebucket error][22772]
+
+This was a regression in 3.3.0, caused by deprecating YAML for content we send to remote filebuckets.
+
 [Issue 22384: Excessive logging for files not found][22384]
 
 This was a regression in 3.3.0.
