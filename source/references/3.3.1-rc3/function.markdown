@@ -68,7 +68,7 @@ a set of resources. The hash should be in the form `{title => {parameters} }`:
     $myusers = {
       'nick' => { uid    => '1330',
                   group  => allstaff,
-                  groups => ['developers', 'operations', 'release'], }
+                  groups => ['developers', 'operations', 'release'], },
       'dan'  => { uid    => '1308',
                   group  => allstaff,
                   groups => ['developers', 'prosvc', 'release'], }
