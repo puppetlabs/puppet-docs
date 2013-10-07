@@ -3,7 +3,7 @@ title: "Language: Functions"
 layout: default
 ---
 
-[func_ref]: /references/latest/function.html
+[func_ref]: /references/2.7.latest/function.html
 [compilation]: ./lang_summary.html#compilation-and-catalogs
 [forge]: http://forge.puppetlabs.com
 [custom]: /guides/custom_functions.html

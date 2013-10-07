@@ -7,7 +7,7 @@ title: "Language: Data Types"
 [conditional]: ./lang_conditional.html
 [node]: ./lang_node_definitions.html
 [attribute]: ./lang_resources.html#syntax
-[regsubst]: /references/latest/function.html#regsubst
+[regsubst]: /references/2.7.latest/function.html#regsubst
 [function]: ./lang_functions.html
 [variables]: ./lang_variables.html
 [expression]: ./lang_expressions.html
