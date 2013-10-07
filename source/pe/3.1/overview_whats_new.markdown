@@ -32,6 +32,9 @@ PE's cloud provisioner now supports Google Compute Engine virtual infrastructure
 * *Geppetto Integration*
 Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.The [puppet modules and manifests page](puppet_modules_manifests.html) has more information.
 
+* *Windows Reboot Capabilities*
+PE now includes a module that adds a type and provider for managing reboots on Windows nodes. You can now create manifests that can restart windows nodes after package updates or whenever any other resource is applied. See [TODO: cf]
+
 
 ### Version 3.0.1
 
