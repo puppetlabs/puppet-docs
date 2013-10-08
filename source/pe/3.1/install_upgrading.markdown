@@ -27,11 +27,11 @@ If more than one of these roles is present on a given node (for example your mas
 Important Notes and Warnings
 ---
 
-- **Upgrading is only supported from a PE 2.8.2 or newer installation.** To upgrade from a version older than 2.8.2, you *must* first upgrade to 2.8.2, make sure everything is working correctly, and then move on to upgrading to 3.0.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/).
+- **Upgrading is only supported from a PE 2.8.3 or newer installation.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.0.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/).
 - Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
-- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.0. The version of the orchestration engine used in PE 3.0 is incompatible with that used by previous PE versions.
+- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.1. The version of the orchestration engine used in PE 3.1 is incompatible with that used by previous PE versions.
 - PE 3 uses Ruby 1.9 which is stricter about character encoding than the previous version used in PE 2.8. If your manifests contain non-ASCII characters they may fail to compile or behave unpredictably. When upgrading, make sure manifests contain only ASCII characters. For more information see the [release notes](./appendix.html#puppet-code-issues-with-utf-8-encoding).
-- On AIX 5.3, as in PE 2.8.2, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
+- On AIX 5.3, as in PE 2.8.3, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
 - On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running:
 
         rpm -e --nodeps readline
@@ -39,7 +39,7 @@ Important Notes and Warnings
 
     If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
 - If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
-- These instructions refer to upgrades to PE 3.0.1 from 2.8.2 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.2 or higher, refer to the [previous upgrade instructions](./install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
+- These instructions refer to upgrades to PE 3.0.1 from 2.8.3 or higher. For instructions on how to upgrade to PE 3.0.0 from PE 2.8.3 or higher, refer to the [previous upgrade instructions](./install_upgrading_PE3-0-0.html). However, Puppet Labs *strongly* recommends you upgrade directly to PE 3.0.1.
 
 
 Downloading PE
