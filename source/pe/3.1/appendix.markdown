@@ -113,8 +113,7 @@ Many of the constituent components of Puppet Enterprise have been upgraded. Name
 
 The live management cloning tool is deprecated and has been removed in PE 3.0. We are continuing to improve resource inspection and interactive orchestration commands in the console. In general, we recommend managing resources with Puppet manifests instead of one-off commands.
 
-If you are using cloning, you can achieve a similar workflow by using `puppet resource` or [the puppetral plugin's `find` action](./orchestration_actions.html#find) to learn the details of resources on individual host. Then, you can use that info to write or append to a manifest. <!-- We've created an example page that shows this [alternate workflow in greater detail](./cloning_alt.html). -->
-
+If you are using cloning, you can achieve a similar workflow by using `puppet resource` or [the puppetral plugin's `find` action](./orchestration_actions.html#find) to learn the details of resources on individual host. Then, you can use that info to write or append to a manifest.
 
 #### Removal of Compliance
 
@@ -142,15 +141,19 @@ The output format and available actions of the `puppetral` orchestration plugin 
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.0 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.1 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
-To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
 
 
-The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated.
+The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
+
+### `Puppet resource` Fails When `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
+
+In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](http://docs.puppetlabs.com/puppetdb/1.5/connect_puppet_apply.html).
 
 ### BEAST Attack Mitigation
 
