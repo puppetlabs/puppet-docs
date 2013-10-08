@@ -11,7 +11,7 @@ Puppet Enterprise version 3.1.0 is a feature and maintenance release. It adds ne
 
 * *Event Inspector*
 
-The Puppet Enterprise (PE) event inspector is a new reporting tool that provides multiple, dynamic ways to view the state of your infrastructure, providing both broad and specific insight into how Puppet is managing configurations. By providing information about events from the perspective of classes and resources, event inspector lets you quickly and easily find the source of configuration failures. For more information, see the [event inspector page](console_event-inspector.html).
+Puppet Enterprise (PE) event inspector is a new reporting tool that provides multiple, dynamic ways to view the state of your infrastructure, providing both broad and specific insight into how Puppet is managing configurations. By providing information about events from the perspective of classes and resources, event inspector lets you quickly and easily find the source of configuration failures. For more information, see the [event inspector page](console_event-inspector.html).
 
 * *Discoverable Classes & Parameters*
 
