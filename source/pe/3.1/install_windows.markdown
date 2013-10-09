@@ -63,14 +63,19 @@ MSI Property            | Puppet Setting   | Default Value
 `PUPPET_MASTER_SERVER`  | [`server`][s]    | `puppet`
 `PUPPET_CA_SERVER`      | [`ca_server`][c] | Value of `PUPPET_MASTER_SERVER`
 `PUPPET_AGENT_CERTNAME` | [`certname`][r]  | Value of `facter fdqn` (must be lowercase)
+`PUPPET_AGENT _ENVIRONMENT`  | [`environment`][e]    | `production`
+
 
 For example:
 
     msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
+    
+**Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT over-ride that value.
 
 [s]: /references/3.2.latest/configuration.html#server
 [c]: /references/3.2.latest/configuration.html#caserver
 [r]: /references/3.2.latest/configuration.html#certname
+[e]: /references/3.2.latest/configuration.html#environment
 
 Upgrading
 -----
