@@ -30,11 +30,16 @@ The console UI now displays how many licenses you are currently using and how ma
 PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. [TODO: cf]
 
 * *Geppetto Integration*
+
 Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.The [puppet modules and manifests page](puppet_modules_manifests.html) has more information.
 
 * *Windows Reboot Capabilities*
+
 PE now includes a module that adds a type and provider for managing reboots on Windows nodes. You can now create manifests that can restart windows nodes after package updates or whenever any other resource is applied. Two forms of reboot are supported, a default mode for reboots required after puppet installs a package, and second mode for managing pending reboots that must be processed before further packages can be installed. For more information, see the [module documentation](https://forge.puppetlabs.com/puppetlabs/reboot).
 
+*  *Account Lockout*
+
+Security against brute force attacks has been improved by adding an account lockout mechanism. User accounts will be locked after ten failed login attempts. This occurs whether the user is using the command line or the console to attempt login. Accounts can only be unlocked by an admin user.
 
 ### Version 3.0.1
 

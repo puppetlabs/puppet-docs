@@ -9,7 +9,7 @@ The Puppet Enterprise console supports individual user management, access and au
 
 Console users can also be managed using external, third-party authentication services such as LDAP, Active Directory or Google Accounts.
 
-Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol.
+Following standard security practices, user passwords are hashed with a salt and then stored in a database separated from other console data. Authentication is built on CAS, an industry standard, single sign-on protocol. Security is further enhanced by an account lockout mechanism that locks user accounts after ten failed login attempts. This diminishes the likelihood of a successful brute force attack.
 
 **Note:** By default, CAS authentication for the console runs over port 443. If your console needs to access CAS on a different host/port, you can configure that in `/etc/puppetlabs/console-auth/cas_client_config_yml`.
 
@@ -135,7 +135,11 @@ To print a list of existing users to the screen use the db:users:list task as fo
     cd /opt/puppet/share/puppet-dashboard
     sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list
 
+#### Locked Users
 
+Users will get locked out of their accounts after ten failed authentication attempts. Once locked out, users will not be able to access the console and will see a message on the login screen letting them know their account has been locked. A similar message will appear on the command line if users are attempting access that way. Admin users will see a warning sign next to a locked user in the admin screen and a warning message will be added to a locked user's detail view. Their account status will also be set to disabled. An admin can restore a user's access by either resetting the user's password or changing the user's status back to "enabled."
+
+![Locked user warning](./images/console/locked_user.png)
 
 Using Third-Party Authentication Services
 ------
