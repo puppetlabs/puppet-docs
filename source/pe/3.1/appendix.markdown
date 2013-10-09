@@ -63,7 +63,9 @@ Several of the constituent components of Puppet Enterprise have been upgraded. N
 
 Security against brute force attacks has been improved by adding an account lockout mechanism. User accounts will be locked after ten failed login attempts. Accounts can only be unlocked by an admin user.
 
+#### Removal of Upgrade Database Staging Directory
 
+The upgrade process has been simplified by the removing the need to provide a staging directory for transferring data between the old MySQL databases used by 2.8.x and new PostgreSQL databases used in 3.x. Data is now piped directly between the old and new databases.
 
 ### PE 3.0.1 (8/15/2013)
 
