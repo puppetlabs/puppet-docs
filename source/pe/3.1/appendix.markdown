@@ -18,6 +18,53 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### PE 3.1.0 (10/15/2013)
+
+#### Event Inspector
+
+Puppet Enterprise (PE) event inspector is a new reporting tool that provides multiple, dynamic ways to view the state of your infrastructure, providing both broad and specific insight into how Puppet is managing configurations. By providing information about events from the perspective of classes and resources, event inspector lets you quickly and easily find the source of configuration failures. For more information, see the [event inspector page](console_event-inspector.html).
+
+#### Discoverable Classes & Parameters
+
+New UI and functionality in PE's console now allows you to easily add classes and parameters in the production environment by selecting them from an auto-generated list. The list also displays available documentation for the class, making it easier to know what a class does and why. For more information, see the [console documentation on classification](console_classes_groups.html#viewing-the-known-classes).
+
+ #### Red Hat Enterprise Linux 4 Support
+
+The puppet agent can now be installed on nodes running RHEL 4. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
+
+#### License Availability
+
+The console UI now displays how many licenses you are currently using and how many are available, so you'll know exactly how much capacity you have to expand your deployment.  The [console navigation page](console_navigating.html) has more information. 
+
+#### Support for Google Compute Engine
+
+PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. [TODO: cf]
+
+#### Geppetto Integration
+Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. The [puppet modules and manifests page](puppet_modules_manifests.html) has more information.
+
+#### Windows Reboot Capabilities
+PE now includes a module that adds a type and provider for managing reboots on Windows nodes. You can now create manifests that can restart windows nodes after package updates or whenever any other resource is applied. For more information, see the [module documentation](https://forge.puppetlabs.com/puppetlabs/reboot).
+
+#### Component Updates
+
+Several of the constituent components of Puppet Enterprise have been upgraded. Namely:
+
+* Ruby 1.9.3 (patch level 448)
+* Augeas 1.1.0
+* Puppet 3.3.1
+* Facter 1.7.1
+* Hiera 1.2.21
+* Passenger 4.0.18
+* Dashboard 2.0.12
+* Java 1.7.0.19
+
+#### Account Lockout
+
+Security against brute force attacks has been improved by adding an account lockout mechanism. User accounts will be locked after ten failed login attempts. Accounts can only be unlocked by an admin user.
+
+
+
 ### PE 3.0.1 (8/15/2013)
 
 #### Complete Upgrade Support
@@ -96,7 +143,7 @@ The PE console was vulnerable to UI redress attack (aka, "clickjacking"), which 
 
 #### Package and Component Upgrades
 
-Many of the constituent components of Puppet Enterprise have been upgraded. Namely:
+Several of the constituent components of Puppet Enterprise have been upgraded. Namely:
 
 * Ruby 1.9.3
 * Augeas 1.0.0
@@ -151,7 +198,7 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
-### `Puppet resource` Fails When `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
+### `Puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 
 In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](http://docs.puppetlabs.com/puppetdb/1.5/connect_puppet_apply.html).
 
@@ -195,6 +242,7 @@ PE 3 uses an updated version of Ruby, 1.9 that is much stricter about character 
 The node selected to run the PostgreSQL instance required by PuppetDB and the console must have the en_US.UTF8 locale present before starting the installation process. The installer will abort with a message about the missing locale if it is not present.
 
 ### Readline Version Issues on AIX Agents
+
 - As with PE 2.8.2,  on AIX 5.3, puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`. If you need to install it, you can [download it from IBM](ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm). Install it *before* installing the puppet agent.
 
 - On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading or installing by running
@@ -232,7 +280,7 @@ When doing the first puppet run after upgrading using the "upgrader" script incl
 
 During installation, the PE installer attempts to automatically determine the URI where the console can be reached. On EC2 (and likely all other dual-homed systems), the installer incorrectly selects the internal, non-routable URI. Instead, you should manually enter the correct, external facing URI of the system hosting the console.
 
-### Answer file required for some SMTP servers.d
+### Answer file required for some SMTP servers.
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
