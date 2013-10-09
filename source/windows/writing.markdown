@@ -182,7 +182,7 @@ Puppet can create, edit, and delete local groups, and can manage a group's membe
 
 * The group SID is available as a read-only parameter. Attempting to set the parameter will fail.
 * Group names are case-sensitive in puppet manifests, but insensitive on Windows. Make sure to consistently use the same case in manifests.
-* Nested groups are not supported. (Group members must be users, not other groups.)
+* Group members can be users or groups. **However**, this is only supported in Puppet 3.4.0 and later.
 
 ### [`scheduled_task`][scheduledtask]
 
