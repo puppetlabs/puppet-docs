@@ -34,6 +34,7 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 | `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
 | `-aix-<version and arch>.tar.gz`  | on AIX                                       |
 
+*Note:* Bindings for SELinux are available on RHEL 5 and 6. They are not installed by default but are included in the installation tarball. See [the appendix](./appendix.html) for complete information.
 
 Starting the Installer
 -----
