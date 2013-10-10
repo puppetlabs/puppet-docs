@@ -70,6 +70,10 @@ The upgrade process has been simplified by the removing the need to provide a st
 #### Support for SELinux
 PE 3.1 includes new SELinux bindings for pe-ruby on EL5 and EL6. These bindings allow you to manage SELinux attributes of files and the `seboolean` and `semodule` types. These binding are available on preview basis and are not installed by default. They are included in the installation tarball in a package named `pe-ruby-selinux`.
 
+#### Security Fixes
+
+[TODO: add CVE's]
+
 ### PE 3.0.1 (8/15/2013)
 
 #### Complete Upgrade Support

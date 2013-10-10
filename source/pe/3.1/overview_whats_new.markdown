@@ -27,7 +27,7 @@ The console UI now displays how many licenses you are currently using and how ma
 
 * *Support for Google Compute Engine*
 
-PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. [TODO: cf]
+PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. For more information, see the [GCE cloud provisioner page](cloudprovisioner_gce.html).
 
 * *Geppetto Integration*
 
@@ -39,7 +39,11 @@ PE now includes a module that adds a type and provider for managing reboots on W
 
 *  *Account Lockout*
 
-Security against brute force attacks has been improved by adding an account lockout mechanism. User accounts will be locked after ten failed login attempts. This occurs whether the user is using the command line or the console to attempt login. Accounts can only be unlocked by an admin user.
+Security against brute force attacks has been improved by adding an account lockout mechanism. User accounts will be locked after ten failed login attempts. This occurs whether the user is using the console or basic auth on the command line to attempt login. Accounts can only be unlocked by an admin user.
+
+* *Security Patches*
+
+    A number of vulnerabilities have been addressed in PE 3.1.0. For details, check the [release notes](appendix.html#release-notes).
 
 ### Version 3.0.1
 
