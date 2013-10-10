@@ -18,8 +18,8 @@ title: "Language: Reserved Words and Acceptable Names"
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
-[type_ref]: /references/latest/type.html
-[func_ref]: /references/latest/function.html
+[type_ref]: /references/2.7.latest/type.html
+[func_ref]: /references/2.7.latest/function.html
 
 Reserved Words
 -----

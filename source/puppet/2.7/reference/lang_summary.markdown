@@ -6,7 +6,7 @@ title: "Language: Summary"
 
 [autoload]: ./lang_namespaces.html#autoloader-behavior
 [config]: /guides/configuring.html
-[usecacheonfailure]: /references/latest/configuration.html#usecacheonfailure
+[usecacheonfailure]: /references/2.7.latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [sitepp]: /references/glossary.html#site-manifest
 [classes]: ./lang_classes.html
@@ -14,9 +14,9 @@ title: "Language: Summary"
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
-[package]: /references/latest/type.html#package
-[file]: /references/latest/type.html#file
-[service]: /references/latest/type.html#service
+[package]: /references/2.7.latest/type.html#package
+[file]: /references/2.7.latest/type.html#file
+[service]: /references/2.7.latest/type.html#service
 [case]: ./lang_conditional.html#case-statements
 [fact]: ./lang_variables.html#facts-and-built-in-variables
 [variables]: ./lang_variables.html

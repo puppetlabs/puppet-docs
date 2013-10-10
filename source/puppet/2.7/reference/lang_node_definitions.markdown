@@ -7,11 +7,11 @@ title: "Language: Node Definitions"
 [hiera]: https://github.com/puppetlabs/hiera
 <!-- TODO: need better link for site.pp and certname-->
 [sitepp]: lang_summary.html#files
-[certname]: /references/latest/configuration.html#certname
+[certname]: /references/2.7.latest/configuration.html#certname
 [classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope
-[extlookup]: /references/latest/function.html#extlookup
+[extlookup]: /references/2.7.latest/function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
 [import]: ./lang_import.html
 [regex]: ./lang_datatypes.html#regular-expressions
@@ -21,7 +21,7 @@ title: "Language: Node Definitions"
 [enc]: /guides/external_nodes.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[strict]: /references/latest/configuration.html#stricthostnamechecking
+[strict]: /references/2.7.latest/configuration.html#stricthostnamechecking
 [conditional]: ./lang_conditional.html
 
 

@@ -79,11 +79,7 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 Puppet 3.3.1
 -----
 
-> **Pre-release:** 3.3.1 has not yet been released.
->
-> * RC1: September 23, 2013
-> * RC2: September 27, 2013 --- Fix 22652 (Ignore doesn't work if pluginsync enabled).
-> * RC3: October 2, 2013 --- Update fix for 22529 (apt package ensure absent/purged causes warnings) to work with newer versions of apt/dpkg.
+Released October 7, 2013.
 
 3.3.1 is a bug fix release in the Puppet 3.3 series. The focus of the release is fixing backwards compatibility regressions that slipped in via the YAML deprecations in 3.3.0.
 
@@ -110,6 +106,12 @@ Additionally, this release fixes:
 * A regression where files that should have been ignored during pluginsync were being copied to agents.
 
 ### Miscellaneous Regression Fixes
+
+[22772]: http://projects.puppetlabs.com/issues/22772
+
+[Issue 22772: Managing an empty file causes a filebucket error][22772]
+
+This was a regression in 3.3.0, caused by deprecating YAML for content we send to remote filebuckets.
 
 [Issue 22384: Excessive logging for files not found][22384]
 
