@@ -170,7 +170,7 @@ This can happen if the console's authentication layer thinks it lives on a hostn
 
 To fix this:
 
-1. Open the `/etc/puppetlabs/console_auth/cas_client_config.yml` file for editing. Locate the `cas_host` line, which is likely commented-out:
+1. Open the `/etc/puppetlabs/console-auth/cas_client_config.yml` file for editing. Locate the `cas_host` line, which is likely commented-out:
 
         authentication:
 
@@ -179,7 +179,7 @@ To fix this:
           # cas_host: console.example.com:443
 
     Change its value to contain the **public hostname** of the console server, including the correct port.
-2. Open the `/etc/puppetlabs/console_auth/config.yml` file for editing. Locate the `console_hostname` line:
+2. Open the `/etc/puppetlabs/console-auth/config.yml` file for editing. Locate the `console_hostname` line:
 
         authentication:
           console_hostname: console.example.com
