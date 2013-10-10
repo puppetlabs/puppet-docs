@@ -28,7 +28,7 @@ The navigation item containing your **username** ("admin," in the screenshot abo
 
 The **help** menu leads to the Puppet Enterprise documentation.
 
-The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. If the number of available licenses is exceeded, a warning will be displayed. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information.
+The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. See below for more information on working with licenses. 
 
 > **Note:** For users limited to read-only access, some elements of the console shown here will not be visible.
 
@@ -100,6 +100,12 @@ You can use a group page to view aggregate information about its members, or to 
 #### Classes
 
 **Classes** are the main unit of Puppet configurations. You must deliberately add classes to the console with the "Add class" button before you can assign them to nodes or groups. See the [Grouping and Classifying Nodes][classify] page for information about adding classes and assigning them to nodes or groups. If you click the name of a class to see its **class detail page,** you can view a node list of every node assigned that class.
+
+### Working with Licenses
+
+The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. If the number of available licenses is exceeded, a warning will be displayed. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information. 
+
+Unused nodes will be deactivated automatically after seven days with no activity (no new facts, catalog or reports), or you can use `puppet node deactivate` for immediate results. The console will cache license information for some time, so if you have made changes to your license file (e.g. adding or renewing licenses), the changes may not show for up to 24 hours. You can restart the `pe-memcached` service in order to update the license display sooner.
 
 [certsign]: ./console_cert_mgmt.html
 [nav_group]: ./images/console/nav_group.png

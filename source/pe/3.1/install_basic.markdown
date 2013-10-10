@@ -34,6 +34,7 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 | `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
 | `-aix-<version and arch>.tar.gz`  | on AIX                                       |
 
+*Note:* Bindings for SELinux are available on RHEL 5 and 6. They are not installed by default but are included in the installation tarball. See [the appendix](./appendix.html) for complete information.
 
 Starting the Installer
 -----
@@ -159,6 +160,8 @@ This optional role can be installed on a system where administrators have shell 
 * Create new VMware and Amazon EC2 virtual machine instances.
 * Install Puppet Enterprise on any virtual or physical system.
 * Add newly provisioned nodes to a group in the console.
+
+**Note:** After completing installation, you should run puppet using `puppet agent -t` or Live Management. This helps avoid issues (e.g., sometimes the master does not report to the console until after the first run, resulting in inaccurate license counts or MCollective agents don't check in, preventing Live Management from working on those nodes). Of course, puppet will run automatically within 30 minutes of install.
 
 
 Customizing Your Installation

@@ -33,6 +33,7 @@ This task, `rake db:raw:optimize[mode]`,  runs in three modes:
 
   * `reindex` mode will run the REINDEX DATABASE command on the console database.
   * `vacuum` model will run the VACUUM FULL command on the console database.
+    * Please note that this requires free space roughly equivalent to the current size of the database on disk.
   * `reindex+vacuum` will run both of the above commands on the console database. This is also the default mode if no mode is specified.
 
 To run the task, change your working directory to `/opt/puppet/share/puppet-dashboard` and make sure your PATH variable contains `/opt/puppet/bin` (or use the full path to the rake binary). Then run the task `rake db:raw:optimize[mode]`. You can disregard any error messages about insufficient privileges to vacuum certain system objects because these objects should not require vacuuming. If you believe they do, you can do so manually by logging in to psql (or your tool of choice) as a database superuser.

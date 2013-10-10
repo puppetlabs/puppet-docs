@@ -59,7 +59,7 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 
 > **Important:** All installer commands should be run as `root`.
 
-> **Note:** PE3 has moved from the MySQL implementation used in PE 2.x to PostgreSQL for all database support. PE3 also now includes PuppetDB, which requires PostgreSQL. When upgrading from 2.x to 3.x, the installer will migrate your existing data from MySQL to PostgreSQL. To do this, the installer requires a staging directory to which it can export the data before transferring it to the new PostgreSQL databases.
+> **Note:** PE3 has moved from the MySQL implementation used in PE 2.x to PostgreSQL for all database support. PE3 also now includes PuppetDB, which requires PostgreSQL. When upgrading from 2.x to 3.x, the installer will automatically pipe your existing data from MySQL to PostgreSQL. 
 
 ### Prepare a Node for PostgreSQL
 
@@ -91,21 +91,28 @@ On the node you provisioned for PuppetDB before starting the upgrade, unpack the
 
 The installer will save auto-generated users and passwords in `/etc/puppetlabs/installer/database_info.install`. Do not delete this file, you will need its information in the next step.
 
+#### Potential Database Transfer Issues
+
+* The node running PostgreSQL must have access to the en_US.UTF8 locale. Otherwise, certain non-ASCII characters will not translate correctly and may cause issues and unpredictability.
+
+* If you have manually re-ordered the columns in your old MySQL database, the transfer may fail or may import values into inappropriate columns, leading to incorrect data and unpredictable behavior.
+
+* If some string values (e.g. for "group name") are literals written *exactly* as `NULL`, they will be transferred as as undefined values or, if the target PostgreSQL column does not have a not-null contraint, the import may fail altogether.
+
 ### Upgrade the Console
 
 On the node serving the console role, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment.
 
-> **Note:** When upgrading a node running the console role, the upgrader will dump the current MySQL databases to disk and import them into the new PostgreSQL databases. This may require additional system resources:
+> **Note:** When upgrading a node running the console role, the upgrader will pipe the current MySQL databases into the new PostgreSQL databases. If your databases contain a lot of data, this transfer may take some time to complete.
 >
-> * The upgrader requires a temporary staging directory for the exported data. This directory should have enough available space to hold roughly **twice the size** of the current databases.
-> * [Pruning the MySQL data](./maintain_console-db.html#cleaning-old-reports) before starting the upgrade will make things go faster. We recommend deleting all but two weeks to a month worth of reports.
+
+> * [Pruning the MySQL data](./maintain_console-db.html#cleaning-old-reports) before starting the upgrade will make things go faster. While not absolutely necessary, to make the transfer go faster we recommend deleting all but two-four weeks worth of reports.
 > * If you are running the console on a VM, you may also wish to temporarily increase the amount of RAM available.
 >
 > Note that your old database and the temporary export file will NOT be deleted after the upgrade completes. After you are sure the upgrade was successful, you will need to delete these files yourself to reclaim disk space.
 
-When the installer asks `?? What is a staging directory for use by the export utility?`, enter an absolute path to a directory with enough available disk space, as described above.
 
-You will also need to provide the following information:
+The installer will also ask for the following information:
 
 * The hostname and port number for the PuppetDB node you created in the previous step.
 * Database credentials; specifically, the database names, user names, and passwords for the `console`, `console_auth`, and `pe-puppetdb` databases. These can be found in `/etc/puppetlabs/installer/database_info.install` on the PuppetDB node.
@@ -114,7 +121,7 @@ You will also need to provide the following information:
 
 On each node with a puppet agent, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.
 
-PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading.
+PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading. Generally speaking, it's a good idea to run puppet right away after an upgrade to make sure everything is hooked and has gotten the latest configuration.
 
 Checking For Updates
 -----

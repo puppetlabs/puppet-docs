@@ -37,6 +37,13 @@ The console either does not have enough worker processes, or the worker processe
 * [See here to restart the worker processes](./maintain_console-db.html#restarting-the-background-tasks)
 * [See here to tune the number of worker processes](./console_config.html#fine-tuning-the-delayedjob-queue)
 
+Old "Pending Tasks" Never Expire
+-----
+
+In earlier versions of PE 3.x, failed delayed jobs did not get properly deleted. If a report for a job failed to upload (due to a problem with the report itself), a pending task would be displayed in the console in perpetuity. This has been fixed in PE 3.1. The "Background Tasks" pane in the console (upper left corner) now displays a red alert icon when a report fails to upload. Clicking the icon displays a view with information about the failure and a backtrace. You can stop the reports from showing the alert by marking them as read with the "Mark all as read" button. 
+
+Note, however, that this will not remove old failed/delayed jobs. You can clean these out by running `/opt/puppet/bin/bundle exec rails runner 'Delayed::Job.delete_all("attempts >= 3")` on the console node. This command should be run from `/opt/puppet/share/puppet-dashboard`.
+
 Console Account Confirmation Emails Have Incorrect Links
 -----
 
