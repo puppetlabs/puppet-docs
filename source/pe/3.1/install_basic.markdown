@@ -160,6 +160,8 @@ This optional role can be installed on a system where administrators have shell 
 * Install Puppet Enterprise on any virtual or physical system.
 * Add newly provisioned nodes to a group in the console.
 
+**Note:** After completing installation, you should run puppet using `puppet agent -t` or Live Management. This helps avoid issues (e.g., sometimes the master does not report to the console until after the first run, resulting in inaccurate license counts or MCollective agents don't check in, preventing Live Management from working on those nodes). Of course, puppet will run automatically within 30 minutes of install.
+
 
 Customizing Your Installation
 -----
