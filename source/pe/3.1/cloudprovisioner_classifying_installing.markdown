@@ -66,7 +66,7 @@ Use the `puppet node install` command to install PE roles onto the new instances
 This command's options specify:
 
 * The PE Installer script should be used.
-* The path to a private SSH key that can be used log in to the VM, specified with the `--keyfile` option. The `install` action uses SSH to connect to the host and so needs access to an SSH key. For Amazon EC2, point to the private key from the key pair you used to create the instance. In most cases, the private key is in the `~/.ssh` directory. (Note that for VMware, the public key should have been loaded onto the template you used to create your virtual machine.)
+* The path to a private SSH key that can be used log in to the VM, specified with the `--keyfile` option. The `install` action uses SSH to connect to the host and so needs access to an SSH key. For Amazon EC2 or GCE, point to the private key from the key pair you used to create the instance. In most cases, the private key is in the `~/.ssh` directory. (Note that for VMware, the public key should have been loaded onto the template you used to create your virtual machine.)
 * The local user account used to log in, specified with the `--login` option.
 
 For the command's argument, specify the name of the node on which you're installing Puppet Enterprise.

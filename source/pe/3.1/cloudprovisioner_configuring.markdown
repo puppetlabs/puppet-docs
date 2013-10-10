@@ -22,6 +22,7 @@ The following services and credentials are required:
 - VMware requires: VMware vSphere 4.0 (or later) and VMware vCenter
 - Amazon Web Services requires: An existing Amazon account with support for EC2
 - OpenStack requires: A standard installation of OpenStack Keystone and the accompanying EC2 credentials
+- Google Compute Engine requires: The `google-api-client` gem installed
 
 
 Installing
@@ -169,7 +170,24 @@ src="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="560" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
+###Adding Google Compute Engine Credentials
 
+To connect to Google Compute Engine, you must put your client ID and client secret in your ~/.fog file. You can see these commands below; instructions for obtaining the client ID and secret follow.
+
+`gce_cliend id`
+	
+`gce_client secret`
+
+The following steps describe how to create a Google Compute Engine account, obtain a client ID and secret, and register `node_gce` with your GCE account.
+**Note** These steps don't cover setting up a billing method for your GCE account. To set up billing, click **Billing** in the Google Cloud Console, and follow the instructions there.
+
+Go to https://cloud.google.com and sign in with your Google credentials.
+Click the **Create Project** button, and give your project a name. This creates your project in the Google Cloud Console. Some options for working with your project are displayed in the left navigation bar.
+In the left-hand navigation bar, click **APIs and auth** and then click **Registered Apps**. 
+Click the **REGISTER APP** button. Give your app a name -- it can be whatever you like-- and click **Native** as the platform.
+Click **Register**. Your app's page opens, and a CLIENT ID and CLIENT SECRET are provided. **Note** You'll need the ID and secret, so capture these for future reference.
+Now, in PE, run `puppet node_gce register <client ID> <client secret>` and follow the online instructions. You'll get a URL to visit in your browser. There, you'll log into your Google account and grant permission for your node to access GCE.
+Once permission is granted, you'll get a toke of about 64 characters. Copy this token as requested into your `node_gce` run to complete the registration.
 * * *
 
 - [Next: Classifying Cloud Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_installing.html)
