@@ -28,7 +28,7 @@ Puppet Enterprise (PE) event inspector is a new reporting tool that provides mul
 
 New UI and functionality in PE's console now allows you to easily add classes and parameters in the production environment by selecting them from an auto-generated list. The list also displays available documentation for the class, making it easier to know what a class does and why. For more information, see the [console documentation on classification](console_classes_groups.html#viewing-the-known-classes).
 
- #### Red Hat Enterprise Linux 4 Support
+#### Red Hat Enterprise Linux 4 Support
 
 The puppet agent can now be installed on nodes running RHEL 4. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
 
