@@ -63,7 +63,7 @@ For more information on working with certificates from the CLI, see the [Puppet 
 * When upgrading PE from a version before 2.7.0, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for request management. *However*, if auth.conf has been manually modified prior to the upgrade, the upgrader will NOT convert the file. Consequently, to get it working, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
 
         path  /certificate_status
-        method find, search
+        method find, search, save, destroy
         auth yes
         allow pe-internal-dashboard
 
