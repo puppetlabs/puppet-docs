@@ -193,4 +193,4 @@ For example:
 
 * * * 
 
-- [Next: Provisioning with AWS](./cloudprovisioner_aws.html) 
+- [Next: Provisioning with GCE](./cloudprovisioner_gce.html) 
