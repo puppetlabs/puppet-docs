@@ -18,7 +18,7 @@ canonical: "/pe/latest/puppet_modules_manifests.html"
 [fund]: /puppet/3/reference/modules_fundamentals.html
 [install]: /puppet/3/reference/modules_installing.html
 [forge]: http://forge.puppetlabs.com
-[geppetto]: /geppetto/4.0/index.html
+[geppetto]: ../../geppetto/4.0/index.html
 
 
 Summary
@@ -57,7 +57,7 @@ This page covers the first part of that process: writing manifests and modules. 
 > ### Geppetto IDE
 >
 > Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, content assistance, error tracing/debugging, and code completion features. Geppetto also provides integration with git, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
-
+>
 >In addition, Geppetto provides tools that integrate with Puppet products. It includes an interface to the Puppet Forge, which allows you to create modules from existing modules on the Forge as well as easily upload your custom modules. 
 > Geppetto also provides PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures. For complete information, visit the [Geppetto documentation](geppetto).
 >
