@@ -293,7 +293,7 @@ It also allows you to create a list of dependencies in the Modulefile of your mo
 
 ##Step Five: Module releasing
 
-We encourage you to publish your modules on the [Puppet Forge](http://forge.puppetlabs.com). Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules! Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module in order to avoid reinventing the wheel. If the Puppet community routinely releases and hacks on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes.
+We encourage you to publish your modules on the [Puppet Forge](http://forge.puppetlabs.com). Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules! Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module in order to avoid reinventing the wheel. If the Puppet community routinely releases and hacks on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html).
 
 ##Community Resources
 

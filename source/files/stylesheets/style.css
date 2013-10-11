@@ -406,39 +406,6 @@ cite:before {
   margin-left: -1.1em;
 }
 
-span.ampersand,
-span.alternate {
-  font-family: "Baskerville", Georgia, "Times New Roman", Times, serif;
-  font-style: italic;
-  font-weight: normal;
-  text-transform: lowercase;
-  letter-spacing: 0.1em;
-  line-height: inherit;
-}
-
-span.ampersand{
-  display: inline-block;
-  font-size: 1.33em;
-  margin-top: -0.33em;
-}
-
-code span.ampersand {
-    font-family: inherit;
-    font-size: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    text-transform: inherit;
-    margin-top: inherit;
-}
-
-span.alternate {
-  letter-spacing: normal;
-  position: relative;
-  top: -0.1em;
-}
-
 sup a:link {
   text-decoration: underline;
 }
@@ -872,10 +839,6 @@ header#header li:hover a span.subtitle {
 /* @end */
 
 
-header#header li a span.subtitle span.ampersand {
-  border: none;
-}
-
 /* @end */
 
 /* @group Masthead */
@@ -913,10 +876,6 @@ section#masthead h1 {
 .cufon-active section#masthead h1 {
 	margin-left: -8px;
 	line-height: 1em;
-}
-
-section#masthead h1 span.ampersand {
-  margin-left: 0.1em;
 }
 
 span.edit a {
@@ -1223,23 +1182,15 @@ nav.main {
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul {
-  margin-left: 1em;
+  margin-left: 2em;
+  list-style-type: circle;
+  list-style-position: outside;
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul li {
   margin-bottom: 0.67em;
-  padding-left: 1.5em;
+  padding-left: 0.5em;
   position: relative;
-}
-
-body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul li:before {
-  content: "♦";
-  font-size: 0.75em;
-  padding-right: 0.85em;
-  color: #b7d0ab;
-  position: absolute;
-  left: -1px;
-  top: 0.125em;
 }
 
 /* This adds up to the same left spacing as unordered lists get... sort of. */
@@ -1281,6 +1232,7 @@ dd > p {
 /* @group Docs TOC */
 
 ol.toc {
+  list-style-type: circle; /* Yes I know I KNOW I'm sorry -NF */
   padding-top: 1em;
   padding-bottom: 1em;
   padding-left: 0;
@@ -1301,7 +1253,6 @@ ol.toc > li > ol.toc {
   padding-left: 0;
   margin-bottom: 0;
   font-size: 0.9em;
-  list-style-type: decimal;
   color: #aaa;
   margin-left: 0;
 }
@@ -1343,33 +1294,38 @@ div#subCol ul > li > ol.toc {
   margin-bottom: 0;
 }
 
-div#subCol ul > li:before {
-  content: "♦";
+div#subCol ul > li.expanded-nav, div#subCol ul > li.hidden-nav {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+div#subCol ul > li.expanded-nav:before, div#subCol ul > li.hidden-nav:before {
   font-size: 0.75em;
   width: 5px;
   display: inline-block;
   padding-right: 0.85em;
   color: #888;
-  /*position: absolute;*/
   left: -1px;
   top: 0.125em;
+  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
 }
 
 div#subCol ul > li.expanded-nav:before {
   content: "-";
-  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
 }
 
 div#subCol ul > li.hidden-nav:before {
   content: "+";
-  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
 }
 
 div#subCol ul > li {
   font-weight: normal;
   color: #444;
-  margin-bottom: 0;
   line-height: 1.5em;
+  margin-bottom: 0;
+  margin-left: 1em;
+  list-style-type: circle;
+  list-style-position: outside;
 }
 
 div#subCol ul > li strong:hover {
@@ -1564,32 +1520,6 @@ pre > code{
 
 /* @end */
 
-
-/* @group ul.bulleted */
-/* NF: This has questionable utility -- looks like it'll never be applied? */
-
-ul.bulleted {
-  margin-left: 1em;
-  float: ;
-}
-
-ul.bulleted li {
-  margin-bottom: 0.67em;
-  padding-left: 1.5em;
-  position: relative;
-}
-
-ul.bulleted li:before {
-  content: "♦";
-  font-size: 0.85em;
-  padding-right: 0.85em;
-  color: #9491ac;
-  position: absolute;
-  left: -1px;
-  top: 0.125em;
-}
-
-/* @end */
 
 /* @group .primary-secondary-content */
 
