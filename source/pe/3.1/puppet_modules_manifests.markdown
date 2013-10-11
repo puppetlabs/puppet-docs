@@ -18,7 +18,7 @@ canonical: "/pe/latest/puppet_modules_manifests.html"
 [fund]: /puppet/3/reference/modules_fundamentals.html
 [install]: /puppet/3/reference/modules_installing.html
 [forge]: http://forge.puppetlabs.com
-[geppetto]: /../../geppetto/4.0/index.html
+[geppetto]: http://docs.puppetlabs.com/geppetto/4.0/index.html
 
 
 Summary
