@@ -34,7 +34,7 @@ Nearly all of the main Puppet and MCollective documentation also applies to Pupp
 - [The deployment guide](./guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 3.0. Documentation for previous versions can be found [here](/pe/index.html).
+The current version of PE is 3.1. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
@@ -101,7 +101,12 @@ Facter is Puppet's cross-platform system profiling library. It discovers and rep
 * [The list of core facts](/facter/1.6/core_facts.html) lists and describes every built-in fact that ships with Facter.
 * [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts.
 
+[Geppetto](/geppetto/4.0/index.html)
+-----
 
+Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.
+
+* [The Geppetto Manual](/geppetto/4.0/index.html) has installation and usage instructions.
 
 Community
 -----
