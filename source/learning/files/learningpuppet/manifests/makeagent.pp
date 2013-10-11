@@ -30,22 +30,6 @@
 # [2]: http://info.puppetlabs.com/learning-puppet-vm
 #
 class learningpuppet::makeagent ($newname = 'agent1', $deletemodules = true) {
-  # PE's orchestration features are selected with a handful of custom facts
-  # created by the installer. Changing this file switches orchestration to agent
-  # mode and keeps Puppet from bringing up an ActiveMQ server on the agent VM.
-
-  $pe_mcollective_content = "fact_stomp_port=61613
-fact_stomp_server=learn.localdomain
-fact_is_puppetagent=true
-fact_is_puppetmaster=false
-fact_is_puppetconsole=false
-"
-  file {'pe_mcollective_facts':
-    ensure  => file,
-    path    => "/etc/puppetlabs/facter/facts.d/puppet_enterprise_installer.txt",
-    content => $pe_mcollective_content,
-  }
-
   # Disable all master-only services:
 
   $puppetmaster_services = ["pe-memcached", "pe-httpd", "pe-activemq", "pe-puppet-dashboard-workers"]
@@ -70,7 +54,7 @@ fact_is_puppetconsole=false
   # activemq back to life before we have a chance to change the facts. Use a
   # resource chain to prevent that.
 
-  Service['pe-puppet'] -> File['pe_mcollective_facts'] -> Service['pe-activemq']
+  Service['pe-puppet'] -> Service['pe-activemq']
 
   # Get rid of the puppet master cron jobs. They're just scripts in the cron
   # directories, so we don't have to use the cron resource type.
