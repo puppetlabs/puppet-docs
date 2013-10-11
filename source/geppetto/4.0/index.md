@@ -4,6 +4,8 @@ title: "Geppetto"
 subtitle: "Introduction to Geppetto"
 canonical: "/geppetto/latest/geppetto.html"
 ---
+[Geppetto_install]: ./images/Geppetto_install_1.png
+[IDE_overview]: ./images/IDE_overview.png
 
 ##What is Geppetto?
 
@@ -17,7 +19,13 @@ Geppetto is packaged so it can be downloaded and used immediately. It contains a
 
 ##Basic Overview
 
-<IMAGE IDE_overview.png>
+![IDE_overview][IDE_overview]
+
+Here's how Geppetto looks with a fresh or first-time install. Your version might be a little different, either because you added Geppetto to an existing install of Eclipse that you'd already customized, or because you changed some of the panes around when you first installed. If your panes are arranged a little differently, you'll still get all the same functionality.
+
+In this image, you see some of the most common work areas:
+
+The **Project Explorer** enables you to easily navigate around in your project's file structure. 
 
 
 ##Installing Geppetto
@@ -35,7 +43,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 	This URL is for use with a download manager. It's not meaningful to visit it with a browser.
 
-	<IMAGE Geppetto_install_1.png>
+![Geppetto_install][Geppetto_install]
 
 3. Select Geppetto in the available software list, and then click **Next**.
 
