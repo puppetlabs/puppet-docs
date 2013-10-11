@@ -38,12 +38,14 @@ The console UI now displays how many licenses you are currently using and how ma
 
 #### Support for Google Compute Engine
 
-PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. [TODO: cf]
+PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. For more information, see the [GCE cloud provisioner page](cloudprovisioner_gce.html).
 
 #### Geppetto Integration
+
 Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. The [puppet modules and manifests page](puppet_modules_manifests.html) has more information.
 
 #### Windows Reboot Capabilities
+
 PE now includes a module that adds a type and provider for managing reboots on Windows nodes. You can now create manifests that can restart windows nodes after package updates or whenever any other resource is applied. For more information, see the [module documentation](https://forge.puppetlabs.com/puppetlabs/reboot).
 
 #### Component Updates
@@ -149,7 +151,6 @@ The PE console was vulnerable to UI redress attack (aka, "clickjacking"), which 
 * Full functionality for upgrades is not yet complete in 3.0. Upgrading is not yet supported for master, console and database roles, but is fully supported for agents. Visit the [upgrading page](./install_upgrading) for complete instructions on how to migrate a 2.8 deployment to PE 3.0 now. Full upgrade support will be included in the next release of PE 3.0, no later than August 15, 2013.
 * Support for nodes running the SLES operating system is not yet completed. It will be included in the next release of PE 3.0, no later than August 15, 2013.
 
-
 #### Package and Component Upgrades
 
 Several of the constituent components of Puppet Enterprise have been upgraded. Namely:
@@ -206,6 +207,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
+
+### Passenger Global Queue Error on Upgrade
+
+When upgrading a PE 2.8.3 master to PE 3.1.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
 
 ### `Puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 
