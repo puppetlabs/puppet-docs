@@ -244,4 +244,4 @@ For information about these tasks, [see the Rake API page](./console_rake_api.ht
 
 * * *
 
-- [Next: Viewing Reports and Inventory Data](./console_reports.html)
+- [Next: Using Event Inspector](./console_event-inspector.html)

@@ -85,10 +85,12 @@ If a run encounters a catastrophic failure where an error prevents a catalog fro
 Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them. The [PE Deployment Guide](/guides/deployment_guide/dg_define_infrastructure.html#thing-one-ntp) can walk you through one, simple method of NTP automation.
 
 #### Scheduled Resources Log Skips
+
 If the `schedule` metaparameter is set for a given resource, and the scheduled time has not yet arrived, that resource will log a "skip" event in event inspector.
 
 #### Simplified Display for Some Resource Types
-For some resource types (e.g. user or file resource types), when the resource is first created, event inspector will simplify what's shown in the resource detail pane by collapsing individual properties into one. If PE changes the resource later, each individual property change will be shown as a separate event.
+
+For resource types that take the `ensure` property, (e.g. user or file resource types), when the resource is first created, event inspector will only display a single event. This is because puppet has only changed one property (`ensure`) which sets all the baseline properties of that resource at once. For example, all of the properties of a given user are created when the user is added, just as they would be if the user was added manually. If PE changes that aspects of that user resource later, each individual property change will be shown as a separate event.
 
 
 [eventtab]: ./images/console/event_inspector/event_tab.png
@@ -102,4 +104,4 @@ For some resource types (e.g. user or file resource types), when the resource is
 
 * * *
 
-- [Next: Navigating the Live Management Page](./console_navigating_live_mgmt.html)
+- [Next: Viewing Reports and Inventory Data](./console_reports.html)
