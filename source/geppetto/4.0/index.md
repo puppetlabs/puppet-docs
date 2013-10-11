@@ -21,11 +21,17 @@ Geppetto is packaged so it can be downloaded and used immediately. It contains a
 
 ![IDE_overview][IDE_overview]
 
-Here's how Geppetto looks with a fresh or first-time install. Your version might be a little different, either because you added Geppetto to an existing install of Eclipse that you'd already customized, or because you changed some of the panes around when you first installed. If your panes are arranged a little differently, you'll still get all the same functionality.
+Here's how Geppetto looks with a couple of projects added to a fresh or first-time install. Your version might be a little different, either because you added Geppetto to an existing install of Eclipse that you'd already customized, or because you changed some of the views around when you first installed. If your views are arranged a little differently, you'll still get all the same functionality.
 
-In this image, you see some of the most common work areas:
+In this image, you see some of the most common work areas (this description is by no means comprehensive):
 
-The **Project Explorer** enables you to easily navigate around in your project's file structure. 
+The **Project Explorer** enables you to easily navigate around in your Puppet project's file structure. 
+
+As its name indicates, the **editor** is where you edit your code. Geppetto takes advantage of Eclipse editing capabilities, like syntax highlighting, content assistance, and error tracing and debugging for your Puppet code.
+
+The **Outline** view shows a tree version of the code you're editing. It's useful for quickly finding the elements of your classes.
+
+You can use the **Tasks** view to create your own tasks and to automatically add tasks from comments in code.   
 
 
 ##Installing Geppetto
