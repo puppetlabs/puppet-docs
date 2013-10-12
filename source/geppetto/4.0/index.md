@@ -6,6 +6,10 @@ canonical: "/geppetto/latest/geppetto.html"
 ---
 [Geppetto_install]: ./images/Geppetto_install_1.png
 [IDE_overview]: ./images/IDE_overview.png
+[prev]: ./images/geppettoprev.png
+[add]: ./images/geppettoaddpuppetdb.png
+[events]: ./images/geppettoevents.png
+[refresh]: ./images/geppettorefresh.png
 
 ##What is Geppetto?
 
@@ -172,3 +176,45 @@ Geppetto allows you to publish one or several modules, as well as allowing you t
 6. Click **Finish**.
 
 Geppetto will generate a pop up confirmation window when your modules have been uploaded successfully. Clicking **OK** on this confirmation message will bring you back to your main Geppetto screens. Otherwise, you will recieve a pop up stating there were problems. Clicking **OK** on this error message will bring you back to the *Export Wizard*.
+
+##Geppetto and PE
+
+Geppetto offers a special view for Puppet Enterprise users, the *Puppet Resource Events View*. This new view is an integration with PuppetDB which enables Geppetto to query PuppetDB instances and get information about recent events.
+
+The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to go to the exact line in the source code where the failure or success is occuring.
+
+To access the *Puppet Resource Events View*  
+
+1. Click the **Window** menu,
+2. Choose **Show View** -> **Other…**.
+3. Then, when the *Show View* window pops up, expand the Geppetto folder and select **Puppet Resource Events**,
+4. Click **OK**.
+
+The *Puppet Resource Events View* window should now be available next to the *Tasks* and *Problems* tabs. 
+
+![Puppet Resource Event View in Geppetto][prev]
+
+To set up a connection to your puppet master server, click the image with the green plus sign next to it.
+
+![Add PuppetDB connection in Geppetto][add]
+
+A setup window will pop up with the following fields:
+
+* **Hostname**: The hostname of your PuppetDB server
+* **Port**: The port to connect to PuppetDB on
+* **SSL Directory**: (Optional) 
+* **CA Cert File**:
+* **Host Cert File**:
+* **Host Private Key File**:
+
+In the *Description* column, you should see your puppet master server listed. If you expand your server, you should see *Failed Events* and *Successful Events*. Each of these can be expanded to show details of the events of the most recent puppet run. 
+
+![Failed and Successful puppet events in Geppetto][events]
+
+By hovering over any listed event detail, you will see additional information about the event. Double-clicking on a listed event detail will bring you to the line in the source code where the event is happening. 
+
+The events you see will only be events from the most recent puppet run. If you initiate a puppet run while working in Geppetto, you must refresh the *Puppet Resource Events* tab. You may do so by clicking the image with the green arrow.
+
+![Refresh Puppet Resource Events][refresh]
+
+**NOTE:** If you refresh after another puppet run, whatever you were looking at previously will be gone forever and you will see only the most recent run.
