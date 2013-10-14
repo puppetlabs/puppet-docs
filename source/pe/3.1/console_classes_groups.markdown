@@ -13,6 +13,7 @@ canonical: "/pe/latest/console_classes_groups.html"
 [modules]: /puppet/3/reference/modules_fundamentals.html
 [topscope]: /puppet/3/reference/lang_scope.html#top-scope
 [sidebar]: ./console_navigating.html#the-sidebar
+[environment]: /guides/environment.html
 
 This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
 
@@ -46,28 +47,84 @@ The console allows you to [**assign** classes](./puppet_assign_configurations.ht
 Classes
 -----
 
-The classes the console knows about are a subset of the classes available to the puppet master. You must add classes to the console manually if you want to assign them to any nodes or groups.
+The classes the console knows about are a subset of the classes available to the puppet master. You must explicitly **add** classes to the console before you can assign them to any nodes or groups.
 
-### Viewing the Known Classes
+### Adding New Classes
 
-You can view a list of classes in [the console's sidebar][sidebar], or by clicking the "Classes" item in the main navigation.
+To add a new class to the console, navigate to the "Add classes" page by clicking one of the following:
 
-You can see a **class detail page** by clicking the name of that class in the sidebar, the main class list, or any node or group detail page that includes that class. Class detail pages contain a list of nodes with the class assigned, but it **is not a complete list;** it only includes nodes which have the class **directly** assigned, and excludes nodes that receive the class from a group.
-
-### Adding a New Class
-
-Use the "Add classes" button in [the console's sidebar][sidebar], then type the new class's name in the text field and click "create." You can also add an optional description.
+* The "Add classes" button in [the console's sidebar][sidebar]
+* The "Add new classes" link in the upper right corner of [the class list page](#viewing-the-known-classes)
 
 ![The console's Add class button][classes_addclass]
 
-![The console's Add node class page][classes_typingclass]
+The "Add classes" page allows you to easily add classes that are detected on the puppet master server, as well as manually add classes that can't be autodetected.
 
-In this case, we're adding a class that manages the standard \*nix "message of the day" file; you can get a module containing this class at <http://forge.puppetlabs.com/puppetlabs/motd>.
+![The console's Add classes page][classes_adding_classes]
 
-When adding a class, you must use its complete name. (`base::centos`, for example, not just `centos`.)
+#### Adding Detected Classes
 
-Once you have added a class, you can assign it to nodes and groups.
+The "Add classes" page displays a list of classes from the puppet master server. The list **only includes classes from the default `production` [environment][]** --- classes that only exist in other environments (`test`, `dev`, etc.) will not be in the list and must be added manually (see below).
 
+To select one or more classes from the list, click the checkbox next to each class you wish to add.
+
+To browse more easily, you can use the text field above the list, which filters the list as you type. Filtering is not limited to the start of a class name; you can type substrings from anywhere within the class name.
+
+![Filtering the class list to find classes containing "auth"][classes_adding_filter]
+
+Once you have selected the classes you want, click the "Add selected classes" button at the bottom of the page to finalize your choices. The classes you added can now be assigned to nodes and groups. Note that **you must click "Add selected classes" to finish;** otherwise your classes will not be added to the console.
+
+#### Viewing Documentation for Detected Classes
+
+The list of detected classes includes short descriptions, which are extracted from comments in the Puppet code where the class is defined.
+
+To view the full documentation from these comments, you can click the "show more" link next to a description. This will display the docs for that class, formatted using RDoc markup.
+
+![Showing the RDoc-formatted documentation for a class][classes_adding_show_more]
+
+
+#### Manually Adding Classes
+
+You may need to manually add certain classes to the console. This can be necessary if you are running multiple [environments][environment], some of which contain classes that cannot be found in the `production` environment.
+
+To manually add a class, use the text fields under the "Don't see a class?" header near the bottom of the page.
+
+![Typing a name and description in order to manually add a class][classes_adding_manual_plus_button]
+
+1. Type the complete, fully qualified name of the class in the "class name" field.
+2. Optionally, type a description for the class in the "description" field.
+3. Click the green plus (+) button to the right of the text fields, which becomes enabled after you have entered a name.
+
+![The manually added class, visible in a new list below the text fields][classes_adding_manual_checked]
+
+After you click the plus (+) button, the class will appear in a new list below, with its checkbox already activated. You may now click the "Add selected classes" button at the bottom of the page to finish adding the class, or you can select additional classes, either manually or from the list of detected classes. **You must click "Add selected classes" to finish;** otherwise your classes will not be added to the console.
+
+Once you have finished adding a class, you can assign it to nodes and groups.
+
+If you change your mind about adding a class you entered manually, you can click the "remove" link next to it in the list. You can then continue selecting more classes.
+
+
+### Viewing the Known Classes
+
+There are two lists of classes in the console: One in [the console's sidebar][sidebar], and one reached by clicking the "Classes" item in the main navigation.
+
+The sidebar list also includes counts of nodes with the class assigned, but these numbers are not complete: they only includes nodes which have the class **directly** assigned, excluding nodes that receive the class from a group.
+
+### Class Detail Pages
+
+You can view an individual **class detail page** by clicking the name of that class in one of the following places:
+
+* The sidebar's class list
+* The class list page
+* A node or group detail page
+
+Class detail pages contain a description of the class, a recent run summary, and a list of all nodes to which the class is assigned. The node list includes a "source" column, which shows, for each node, whether the class was assigned directly or via a group. (When assigned via a group, the group name is a link to the group detail page.)
+
+The upper right corner of a class detail page has an "Edit" button (which can change the name and description of the class) and a "Delete" button.
+
+![A class detail page, containing a description, recent run summary, and node list][classes_class_detail]
+
+For classes added from the autodetected list, the description on the class detail page will be automatically filled in with documentation extracted from that class's Puppet code. However, this documentation will be displayed raw instead of formatted as RDoc markup.
 
 Nodes
 -----
@@ -76,7 +133,7 @@ Nodes
 
 Each **node** in a Puppet Enterprise deployment has its own **node detail page** in the PE console. You can reach a node detail page by clicking that node's name in any [node list view](./console_navigating.html#nodes-and-node-lists).
 
-From a node detail page, you can view the currently assigned configuration data for that node, or use the "Edit" button to assign new configuration data. You can also hide the node (cause it to not appear in node list views) or delete it (remove all reports and information about that node from the console; note that the node will automatically reappear if it ever submits another Puppet run report).
+From a node detail page, you can view the currently assigned configuration data for that node, or use the "Edit" button to assign new configuration data. You can also hide the node (cause it to not appear in node list views) or delete it (remove all reports and information about that node from the console; note that the node will automatically reappear if it ever submits a new Puppet run report).
 
 ![The edit button][classes_editbutton]
 
@@ -233,7 +290,6 @@ For information about these tasks, [see the Rake API page](./console_rake_api.ht
 [classes_groups_to_node]: ./images/console/classes_groups_to_node.png
 [classes_nodes_to_group]: ./images/console/classes_nodes_to_group.png
 [classes_typing_class]: ./images/console/classes_typing_class.png
-[classes_typingclass]: ./images/console/classes_typingclass.png
 [classes_add_multiple_variables]: ./images/console/classes_add_multiple_variables.png
 
 [classes_class_param_links]: ./images/console/classes_class_param_links.png
@@ -241,6 +297,13 @@ For information about these tasks, [see the Rake API page](./console_rake_api.ht
 [classes_parameters_edit]: ./images/console/classes_parameters_edit.png
 [classes_parameters_done]: ./images/console/classes_parameters_done.png
 [classes_group_detail]: ./images/console/classes_group_detail.png
+[classes_class_detail]: ./images/console/classes_class_detail.png
+[classes_adding_classes]: ./images/console/classes_adding_classes.png
+[classes_adding_filter]: ./images/console/classes_adding_filter.png
+[classes_adding_manual_plus_button]: ./images/console/classes_adding_manual_plus_button.png
+[classes_adding_manual_checked]: ./images/console/classes_adding_manual_checked.png
+[classes_adding_show_more]: ./images/console/classes_adding_show_more.png
+
 
 * * *
 
