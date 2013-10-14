@@ -35,15 +35,11 @@ Each node page has a pair of graphs: a histogram showing the number of runs per 
 
 ![The pair of graphs on a node page][reports_graphs]
 
-The daily run status histogram is broken down with the same colors that indicate run status in the console's sidebar: red for failed runs, orange for pending runs (where a change would have been made, but the resource to be changed was marked as no-op), blue for successful runs where changes were made, and green for successful runs that did nothing. You can hover over a block of color for a tooltip showing how many runs of that type occurred:
-
-![Tooltip showing two changed runs][reports_runcount]
+The daily run status histogram is broken down with the same colors that indicate run status in the console's sidebar: red for failed runs, orange for pending runs (where a change would have been made, but the resource to be changed was marked as no-op), blue for successful runs where changes were made, and green for successful runs that did nothing.
 
 **Note:** Run status histograms also appear on group pages, class pages, and run status pages.
 
-The run-time chart graphs how long each of the last 30 Puppet runs took to complete. A longer run usually means changes were made, but could also indicate heavy server load or some other circumstance. You can hover over a point on the line for a tooltip showing the number of seconds it represents:
-
-![Tooltip showing how long a run took][reports_point]
+The run-time chart graphs how long each of the last 30 Puppet runs took to complete. A longer run usually means changes were made, but could also indicate heavy server load or some other circumstance.
 
 ### Reports
 
@@ -87,9 +83,7 @@ The facts you see in the inventory can be useful when [filtering nodes in the li
 [reports_inventory]: ./images/console/reports_inventory.png
 [reports_logtab]: ./images/console/reports_logtab.png
 [reports_metricstab]: ./images/console/reports_metricstab.png
-[reports_point]: ./images/console/reports_point.png
 [reports_recent]: ./images/console/reports_recent.png
-[reports_runcount]: ./images/console/reports_runcount.png
 
 
 * * *
