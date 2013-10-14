@@ -5,7 +5,7 @@ subtitle: "Installing and Configuring Cloud Provisioning"
 canonical: "/pe/latest/cloudprovisioner_configuring.html"
 ---
 
-There are many options and actions associated with the main cloud provisioning sub-commands: `node`, `node_vmware`, `node_aws` and `node_openstack`. This page provides an overview, but check the man pages for all the details (`puppet man node_aws`, etc.).
+There are many options and actions associated with the main cloud provisioning sub-commands: `node`, `node_vmware`, `node_aws` and `node_gce`. This page provides an overview, but check the man pages for all the details (`puppet man node_aws`, etc.).
 
 Prerequisites
 -------------
@@ -13,7 +13,6 @@ Prerequisites
 ### Software
 
 - The cloud provisioning tools ship with Puppet Enterprise; they are an optional role in the PE installer. You must specifically choose to install cloud provisioner in order to run the cloud provisioner commands.
-<!-- - OpenStack tools can be installed separately. TODO need download link -->
 
 ### Services
 
@@ -21,8 +20,7 @@ The following services and credentials are required:
 
 - VMware requires: VMware vSphere 4.0 (or later) and VMware vCenter
 - Amazon Web Services requires: An existing Amazon account with support for EC2
-- OpenStack requires: A standard installation of OpenStack Keystone and the accompanying EC2 credentials
-- Google Compute Engine requires: The `google-api-client` gem installed
+- Google Compute Engine requires: An existing Google account and billing information.
 
 
 Installing
@@ -88,9 +86,9 @@ To connect to a VMware vSphere server, you must put the following information in
     ...which can then be entered as the value of this setting.
 
 
-### Adding Amazon Web Services or OpenStack Credentials
+### Adding Amazon Web Services
 
-To connect to Amazon Web Services or your OpenStack server, you must put the following information in your `~/.fog` file:
+To connect to Amazon Web Services, you must put the following information in your `~/.fog` file:
 
 `:aws_access_key_id`
 : Your AWS Access Key ID. See below for how to find this.
@@ -105,8 +103,6 @@ For *AWS installations*, you can find your Amazon Web Services credentials onlin
 Select the "Security Credentials" menu and choose "Access Credentials." Click on the "Access Keys" tab to view your Access Keys.
 
 You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, click the "Show" link under "Secret Access Key".
-
-For *OpenStack installations*, your credentials are printed to screen after running `keystone ec2-credentials-create`
 
 Put both keys in your `~/.fog` file as described above. You will also need to generate an SSH private key using Horizon, or simply import a selected public key.
 
@@ -146,15 +142,6 @@ then click "Apply Rule Changes" to save.
 
 You should also ensure that your security group allows outbound traffic on ports **8140** and **61613.** These are the ports PE uses to request configurations and listen for orchestration messages.
 
-### Additional OpenStack Configuration
-
-Before you can launch any instances with the provisioner module, you will need:
-
-- a fully functional OpenStack environment
-- at least one valid OS image
-- the URL of your Nova EC2 API server (typically, http://your.nova.api.server:8773/services/Cloud)
-- to use the Horizon console to configure the default security group to allow SSH (port 22) access
-
 
 Demonstration
 
@@ -172,22 +159,21 @@ allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 ###Adding Google Compute Engine Credentials
 
-To connect to Google Compute Engine, you must put your client ID and client secret in your ~/.fog file. You can see these commands below; instructions for obtaining the client ID and secret follow.
-
-`gce_cliend id`
-	
-`gce_client secret`
-
 The following steps describe how to create a Google Compute Engine account, obtain a client ID and secret, and register `node_gce` with your GCE account.
 **Note** These steps don't cover setting up a billing method for your GCE account. To set up billing, click **Billing** in the Google Cloud Console, and follow the instructions there.
 
 Go to https://cloud.google.com and sign in with your Google credentials.
 Click the **Create Project** button, and give your project a name. This creates your project in the Google Cloud Console. Some options for working with your project are displayed in the left navigation bar.
-In the left-hand navigation bar, click **APIs and auth** and then click **Registered Apps**. 
-Click the **REGISTER APP** button. Give your app a name -- it can be whatever you like-- and click **Native** as the platform.
+
+In the left-hand navigation bar, click **APIs and auth** and then click **Registered Apps**.
+ 
+Click the **REGISTER APP** button. Give your app a name--it can be whatever you like--and click **Native** as the platform.
+
 Click **Register**. Your app's page opens, and a CLIENT ID and CLIENT SECRET are provided. **Note** You'll need the ID and secret, so capture these for future reference.
+
 Now, in PE, run `puppet node_gce register <client ID> <client secret>` and follow the online instructions. You'll get a URL to visit in your browser. There, you'll log into your Google account and grant permission for your node to access GCE.
-Once permission is granted, you'll get a toke of about 64 characters. Copy this token as requested into your `node_gce` run to complete the registration.
+
+Once permission is granted, you'll get a token of about 64 characters. Copy this token as requested into your `node_gce` run to complete the registration.
 * * *
 
 - [Next: Classifying Cloud Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_installing.html)
