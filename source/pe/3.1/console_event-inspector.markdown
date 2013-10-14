@@ -86,7 +86,7 @@ Keeping time synchronized across your deployment will help event inspector produ
 
 #### Scheduled Resources Log Skips
 
-If the `schedule` metaparameter is set for a given resource, and the scheduled time has not yet arrived, that resource will log a "skip" event in event inspector.
+If the `schedule` metaparameter is set for a given resource, and the scheduled time has not yet arrived, that resource will log a "skip" event in event inspector. Note that this is only true for user-defined `schedule` and does not apply to built-in scheduled tasks that happen weekly, daily, etc.
 
 #### Simplified Display for Some Resource Types
 
