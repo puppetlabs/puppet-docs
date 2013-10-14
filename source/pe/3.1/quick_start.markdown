@@ -253,7 +253,7 @@ We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_deskt
 
 Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
 
-* **On the console,** click the "Add class" button in the sidebar:
+* **On the console,** click the "Add classes" button in the sidebar:
 
 ![The console's add class button][classbutton]
 

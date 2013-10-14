@@ -63,7 +63,7 @@ When you're done working in the console, choose *Logout* from the user account m
 
 To view your user information, access the user account menu by clicking on your username (the first part of your email address) at the top right of the navigation bar.
 
-![account menu](./images/console/user_account_menu.jpg)
+![account menu](./images/console/user_account_menu.png)
 
 Choose *My account* to open a page where you can see your username/email and your user access level (admin, read-write or read-only) and text boxes for changing your password.
 
