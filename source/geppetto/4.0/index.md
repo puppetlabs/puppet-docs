@@ -182,7 +182,7 @@ Geppetto will generate a pop up confirmation window when your modules have been 
 
 Geppetto offers a special view for Puppet Enterprise users, the *Puppet Resource Events View*. This new view is an integration with PuppetDB which enables Geppetto to query PuppetDB instances and get information about recent events.
 
-The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to go to the exact line in the source code where the failure or success is occuring.
+The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to go to the exact line in the source code where the failure or success is occurring.
 
 To access the *Puppet Resource Events View*  
 
@@ -195,24 +195,27 @@ The *Puppet Resource Events View* window should now be available next to the *Ta
 
 ![Puppet Resource Event View in Geppetto][prev]
 
-To set up a connection to your puppet master server, click the image with the green plus sign next to it.
+To set up a connection to your puppet master server, click the database image with the green plus sign on it.
 
 ![Add PuppetDB connection in Geppetto][add]
 
 A setup window will pop up with the following fields:
 
 * **Hostname**: The hostname of your PuppetDB server
-* **Port**: The port to connect to PuppetDB on
-* **SSL Directory**: (Optional) 
-* **CA Cert File**:
-* **Host Cert File**:
-* **Host Private Key File**:
+* **Port**: The port to connect to PuppetDB on, defaults to 8081. 
+* **SSL Directory**: (Optional) If you point to an existing directory structure where your PEM files are, the remaining fields in the setup window will be populated automatically. This is useful for default layouts.
+* **CA Cert File**: (Optional) If present, this will be your Puppet Certificate Authority's public certificate. Otherwise, the client will trust self-signed certificates for validation.
+* **Host Cert File**: This file behaves like a puppet agent for authentication, setting up your public key for the machine Geppetto is connecting as.
+* **Host Private Key File**: This file behaves like a puppet agent for authentication, setting up your private key for the machine Geppetto is connecting as.
 
-In the *Description* column, you should see your puppet master server listed. If you expand your server, you should see *Failed Events* and *Successful Events*. Each of these can be expanded to show details of the events of the most recent puppet run. 
+If any of your required information is missing, it will be listed at the top of the window next to the red button and the **OK** button will be disabled. 
 
-![Failed and Successful puppet events in Geppetto][events]
 
-By hovering over any listed event detail, you will see additional information about the event. Double-clicking on a listed event detail will bring you to the line in the source code where the event is happening. 
+In the *Description* column, you should see your PuppetDB server listed. Once added, PuppetDB connections cannot be edited. However, you may delete a connection by selecting it and clicking the database icon with the red 'x'. 
+
+If you expand your connected server, you should see *Failures* and *Changes*. Each of these can be expanded to show details of the events of the most recent puppet run. 
+
+By hovering over any listed event detail, you will see additional information about the event. Double-clicking on a listed event detail will open the source file to the place where the resource or file, etc. is defined so you can look it over to see what might be going wrong.
 
 The events you see will only be events from the most recent puppet run. If you initiate a puppet run while working in Geppetto, you must refresh the *Puppet Resource Events* tab. You may do so by clicking the image with the green arrow.
 
