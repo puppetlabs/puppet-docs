@@ -7,7 +7,7 @@ canonical: "/pe/latest/cloudprovisioner_classifying_installing.html"
 
 Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a puppet environment. You can add new nodes to pre-existing console groups, further classify and configure those nodes, and install Puppet (Enterprise or open source) on them. 
 
-Many of these tasks are accomplished using the `puppet node` subcommand. While `puppet node` can be applied to physical or virtual machines, several actions have been created specifically for working with virtual machine instances in the cloud. For complete details, view the `puppet node` man page and the [Getting Started With Cloud Provisioner page](/guides/cloud_pack_getting_started.html#usage). 
+Many of these tasks are accomplished using the `puppet node` subcommand. While `puppet node` can be applied to physical or virtual machines, several actions have been created specifically for working with virtual machine instances in the cloud. For complete details, view the `puppet node` man page. 
 
 Classifying nodes
 -----------------
