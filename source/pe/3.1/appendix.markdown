@@ -74,7 +74,18 @@ PE 3.1 includes new SELinux bindings for pe-ruby on EL5 and EL6. These bindings 
 
 #### Security Fixes
 
-[TODO: add CVE's]
+*[CVE-2013-4287 Algorithmic Complexity Vulnerability In RubyGems 2.0.7 And Older](http://puppetlabs.com/security/cve/cve-2013-4287/)*
+
+RubyGems validates versions with a regular expression that is vulnerable to attackers causing denial of service through CPU consumption. In PE 3.1, this vulnerability was adddressed by rebuilding Ruby with a fixed version. 
+
+*[CVE-2013-4957 YAML vulnerability in Puppet dashboard's report handling](http://puppetlabs.com/security/cve/cve-2013-4957/)*
+
+Systems that rely on YAML to create report-specific types were found to be at risk of code injection vulnerabilities. This vulnerability has been fixed in PE 3.1.
+
+*[CVE-2013-4965 User account not locked after numerous invalid login attempts](http://puppetlabs.com/security/cve/cve-2013-4965/)*
+
+A user's account was not locked out after the user submitted a large number of invalid login attempts, leaving the account vulnerable to brute force attack. This has been fixed in PE 3.1;  now the account is locked after 10 failed attempts.
+
 
 ### PE 3.0.1 (8/15/2013)
 
