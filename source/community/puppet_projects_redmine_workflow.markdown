@@ -22,9 +22,9 @@ In order to prevent spam and fake accounts, Puppetlabs requires users to create 
 There's a good possibility that your issue has already been reported, but the Redmine database is huge and the built-in search is not great. Here are two avenues to leverage google to make sure your bug hasn't already been reported (and potentially solved!) by someone else:
 
 1. Use google with a `site:projects.puppetlabs.com` restriction. This will cut out a ton of duplicate and junk results and allow you to narrow your search down quickly.
-2. Join and search the 'puppet-bugs' group: http://groups.google.com/group/puppet-bugs , but set your email delivery options to “none” or “abridged summary”. Every action on a bug in the Puppet redmine project will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening in Redmine. Using the Google Groups interface also lets you search through the bug traffic without pulling in any extraneous results.
+2. Join and search the 'puppet-bugs' group: http://groups.google.com/group/puppet-bugs , but set your email delivery options to "none" or "abridged summary". Every action on a bug in the Puppet redmine project will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening in Redmine. Using the Google Groups interface also lets you search through the bug traffic without pulling in any extraneous results.
 
-If you find an already-existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing. Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has. Use the ‘Vote’ field to indicate your support and optionally add yourself as a Watcher so future updates to the bug will be e-mailed to you.
+If you find an already-existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing. Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has. Use the "Vote" field to indicate your support and optionally add yourself as a Watcher so future updates to the bug will be e-mailed to you.
 
 If you find bugs similar to, but different in some important way, from what you're seeing, file a new issue and link it to the earlier bug(s) with the "Related issues" field.
 
@@ -58,7 +58,7 @@ Other relevant fields become useful through the course of the bug's lifecycle:
 * *Target version* -- the product owners for the various projects maintain a list of bugs that are going into future releases; the "Target version" field indicates the release that a work-in-progress bug is expected to be fixed in.
 * *Status* and *Assignee* -- see the "Workflow for Bugs" section below for a description of how these fields are used.
 
-The other fields aren’t used and can be left blank (Start data, estimated time, percent complete, etc).
+The other fields aren't used and can be left blank (Start data, estimated time, percent complete, etc).
 
 ### Tracking and updating bug
 
@@ -91,7 +91,7 @@ The output of the triage process should be moving the bug to one of the states i
 * *Status*: _Accepted_, *Assignee*: _Community or Puppetlabs Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Accepted_ status and be assigned to the person working on it. Tickets which are in status _Accepted_ but do not have an owner are not being actively worked on.
 * *Status*: _In Topic Branch Pending Review_, *Assignee*: _Community-Support Developer_ -- Once there is code in a pull request, and the *Branch* field indicates the URL of the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
 * *Status*: _Merged Pending Release_, *Assignee*: _Release Engineer_ -- After merging completed code, the community support developer sets the _Merged Pending Release_ status and adds a comment with the github URL of the commit that contains the merge (e.g. https://github.com/puppetlabs/puppet/commit/abcdefbadc0ffee
-* *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket (“Not to be fixed”, “Unable to reproduce”, etc)
+* *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket ("Not to be fixed", "Unable to reproduce", etc)
 * *Status*: _Requires CLA to be signed_, *Assignee*: _Author_ -- Even if the code and tests are there, we need a Contributor License Agreement on file before we can merge the code. [Sign the Contributor License Agreement here.](https://cla.puppetlabs.com/)
 
 #### Potentially Unused Statuses
@@ -127,7 +127,7 @@ I've put this ticket's status into "Needs more Information" and assigned it to y
 
 #### Code Insufficient
 
-I’ve put this ticket’s status into “Code Insufficient” and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
+I've put this ticket's status into "Code Insufficient" and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
 
 #### Contributor guidelines
 
