@@ -118,7 +118,6 @@ Get Puppet up and running at your site.
 
 * [Environments](/guides/environment.html) --- separate dev, stage, & production
 * [Puppet File Serving](/guides/file_serving.html) --- Files in modules are automatically served; this guide explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
-* [Getting Started With Cloud Provisioner](/guides/cloud_pack_getting_started.html) --- create and bootstrap new nodes with the experimental cloud provisioner extension
 
 ### Puppet on Windows
 

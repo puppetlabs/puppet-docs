@@ -4,7 +4,7 @@ title: "Geppetto"
 subtitle: "Introduction to Geppetto"
 canonical: "/geppetto/latest/geppetto.html"
 ---
-[Geppetto_install]: ./images/Geppetto_install_1.png
+<!-- [Geppetto_install]: ./images/Geppetto_install_1.png --> 
 [IDE_overview]: ./images/IDE_overview.png
 [prev]: ./images/geppettoprev.png
 [add]: ./images/geppettoaddpuppetdb.png
@@ -39,7 +39,7 @@ You can use the **Tasks** view to create your own tasks and to automatically add
 
 
 ##Installing Geppetto
-You can install Geppetto as an all-in-one download that includes GitHub or Eclipse Subversive, a project that integrates Apache Subversion with Eclipse. Or, if you're already using Eclipse, you can install Geppetto into your existing development environment.
+Geppetto is available as an all-in-one download that includes GitHub or Eclipse Subversive, a project that integrates Apache Subversion with Eclipse. Or, if you're already using Eclipse, you can install Geppetto into your existing development environment.
 
 Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows. Because the all-in-one download doesn't contain Java development tools, it's smaller than adding Geppetto to an existing Eclipse install.
 
@@ -53,7 +53,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 	This URL is for use with a download manager. It's not meaningful to visit it with a browser.
 
-![Geppetto_install][Geppetto_install]
+<!-- ![Geppetto_install][Geppetto_install] --> 
 
 3. Select Geppetto in the available software list, and then click **Next**.
 
@@ -61,10 +61,10 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 5. Close and reopen Eclipse.
 
-**Note:** Using these steps, you can get support for Ruby coding by installing the Eclipse [Dynamic Languages Toolkit](http://www.eclipse.org/dltk/). Just be aware that the DLTK isn't supported by Puppet Labs.
+	**Note:** Using these steps, you can get support for Ruby coding by installing the Eclipse [Dynamic Languages Toolkit](http://www.eclipse.org/dltk/). Just be aware that the DLTK isn't supported by Puppet Labs.
 
 ##Working with Puppet Projects in Geppetto
-Geppetto enables you to work with Puppet projects in a variety of ways. 
+Geppetto provides several options for creating and editing Puppet projects. 
 
 **Create new projects**  Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, and from GitHub or Apache Subversion.
 
@@ -103,13 +103,14 @@ The following are some basic steps to get started with Puppet projects in Geppet
 ####Add a Repositories Pane to the IDE
 To easily interact with Git or SVN repositories in Geppetto, add the repositories pane to the IDE. From the Git Repositories tab, you can:
 
-*Manage a local repo clone from Geppetto
-*Clone a remote repository to your local machine and then add it to the IDE
-*Create a new local clone
+- Manage a local repo clone from Geppetto
+- Clone a remote repository to your local machine and then add it to the IDE
+- Create a new local clone
 
 From the SVN Repositories tab, you can:
-*Set a new repository location
-*Create a repository
+
+- Set a new repository location
+- Create a repository
 
 To add the repository pane, in Geppetto, click **Window ->Show View -> Other -> Git -> Git Repositories** or **Window ->Show View -> Other -> SVN -> SVN Repositories**.
 
