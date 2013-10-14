@@ -49,7 +49,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 ###Add Geppetto to an Existing Version of Eclipse
 1. In Eclipse, click **Help** -> **Install New Software**.
-2. In the **Work with** box, add this link: http://updates.puppetlabs.com/geppetto
+2. In the **Work with** box, add this link: https://geppetto-updates.puppetlabs.com/4.x.
 
 	This URL is for use with a download manager. It's not meaningful to visit it with a browser.
 
@@ -61,7 +61,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 5. Close and reopen Eclipse.
 
-	**Note:** Using these steps, you can get support for Ruby coding by installing the Eclipse [Dynamic Languages Toolkit](http://www.eclipse.org/dltk/). Just be aware that the DLTK isn't supported by Puppet Labs.
+	**Note:** Using these same steps, you can get support for Ruby coding by installing the Eclipse [Dynamic Languages Toolkit](http://www.eclipse.org/dltk/). Just be aware that the DLTK isn't supported by Puppet Labs.
 
 ##Working with Puppet Projects in Geppetto
 Geppetto provides several options for creating and editing Puppet projects. 
@@ -70,7 +70,7 @@ Geppetto provides several options for creating and editing Puppet projects.
 
 **Create new repositories**  You can create new repositories on GitHub or Subversion, and then populate those repositories with new or existing Puppet projects.
 
-**Import and export projects**  From GitHub or Subversion, import existing Puppet projects, edit them, and then export them back to the repository that they came from. You can also publish modules directly to the Forge.
+**Import and commit projects**  From GitHub or Subversion, import existing Puppet projects, edit them, and then commit them back to the repository that they came from. You can also publish modules directly to the Forge.
 
 The following are some basic steps to get started with Puppet projects in Geppetto.
 
@@ -84,12 +84,12 @@ The following are some basic steps to get started with Puppet projects in Geppet
 
 	Now, start coding your Puppet project in Geppetto.
 
-###Create a New Module from an Existing Module
+###Create a New Project from an Existing Module
 1. Click **File -> New -> Project**.
 2. In the **Select a wizard** dialog box, expand the Puppet folder, click **Puppet Project from Existing Forge Module**, and then click **Next**.
 3. Next to the **Module** text box, click the **Select** button, enter a keyword, such as "mongodb", and then click **OK**. 
 4. Select a module from the list that's returned, and then click **OK**. 
-5. Select the folder you want to import the module to, and then click **Finish**. 
+5. Give your project a name, and then click **Finish**. 
     The module is now displayed in your Project Explorer.
 	
 ###Create New Repositories
@@ -100,19 +100,19 @@ The following are some basic steps to get started with Puppet projects in Geppet
 
 	The steps are pretty similar to set up a Subversion repository. In that case, expand the **SVN** list and click **Repository Location**. Then provide the appropriate information in the wizard.
 
-####Add a Repositories Pane to the IDE
-To easily interact with Git or SVN repositories in Geppetto, add the repositories pane to the IDE. From the Git Repositories tab, you can:
+####Add a Repositories Perspective to the IDE
+To easily interact with Git or SVN repositories in Geppetto, add the repositories perspective to the IDE. From the Git Repositories tab, you can:
 
-- Manage a local repo clone from Geppetto
-- Clone a remote repository to your local machine and then add it to the IDE
-- Create a new local clone
+- Search and select Git repositories on your local machine
+- Clone a Git repository
+- Create a new Git repository
 
 From the SVN Repositories tab, you can:
 
 - Set a new repository location
 - Create a repository
 
-To add the repository pane, in Geppetto, click **Window ->Show View -> Other -> Git -> Git Repositories** or **Window ->Show View -> Other -> SVN -> SVN Repositories**.
+To open the repository perspective, in Geppetto, click **Window ->Open Perspective -> Other** and then select **Git Repository Exploring** or **SVN Repository Exploring**.
 
 For more information about interacting with Git or SVN from Geppetto, refer to the EGit and Subversive user guides. On the Geppetto Help menu, click **Help Contents** to open the guides.
 
