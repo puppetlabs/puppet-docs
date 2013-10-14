@@ -56,7 +56,7 @@ You can see a **class detail page** by clicking the name of that class in the si
 
 ### Adding a New Class
 
-Use the "Add class" button in [the console's sidebar][sidebar], then type the new class's name in the text field and click "create." You can also add an optional description.
+Use the "Add classes" button in [the console's sidebar][sidebar], then type the new class's name in the text field and click "create." You can also add an optional description.
 
 ![The console's Add class button][classes_addclass]
 
