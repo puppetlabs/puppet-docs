@@ -13,7 +13,7 @@ Puppet Enterprise includes a suite of command-line tools you can use for provisi
 
 When used together, these tools provide quick and efficient workflows for adding and maintaining fully configured, ready-to-run virtual nodes in your Puppet Enterprise-managed cloud environment.
 
-See the sections on [VMware](./cloudprovisioner_vmware.html), [AWS](./cloudprovisioner_aws.html), and [GCE](./cloudprovisioner_GCE.html) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in a cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow.html) section.
+See the sections on [VMware](./cloudprovisioner_vmware.html), [AWS](./cloudprovisioner_aws.html), and [GCE](./cloudprovisioner_gce.html) provisioning for details about creating and destroying virtual machines in these environments. Beyond that, the section on [classifying nodes and installing PE](./cloudprovisioner_classifying_installing.html) covers actions that work on any new machine, virtual or physical, in a cloud environment. To get an idea of a typical workflow in a cloud provisioning environment, see the [workflow](./cloudprovisioner_workflow.html) section.
 
 The cloud provisioning tools can be added during an installation of Puppet Enterprise. If you have already installed PE and you want to install the cloud provisioning tools, simply run the upgrader again.
 

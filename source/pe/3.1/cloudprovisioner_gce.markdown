@@ -110,7 +110,9 @@ To delete an instance, use the `node_gce delete` action. Provide both the projec
 After you run this command, wait a few moments, and then you'll get the message, "Deleting the VM is done."
 You can confirm that the instance was deleted by checking your Google Cloud Console.
 
+The following video demonstrates using many `node_gce` subcommands. 
 
+<iframe width="560" height="315" src="//www.youtube.com/embed/8WgqawRK1q8" frameborder="0" allowfullscreen></iframe>
 
 Getting more help
 -----
