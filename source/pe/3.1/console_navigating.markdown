@@ -28,7 +28,7 @@ The navigation item containing your **username** ("admin," in the screenshot abo
 
 The **help** menu leads to the Puppet Enterprise documentation.
 
-The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. See below for more information on working with licenses. 
+The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. See below for more information on working with licenses.
 
 > **Note:** For users limited to read-only access, some elements of the console shown here will not be visible.
 
@@ -43,7 +43,7 @@ The sidebar contains the following elements:
 * The **background tasks indicator.** The console handles Puppet run reports asynchronously using several background worker processes. This element lets you monitor the health of those workers. The number of tasks increases as new reports come in, and decreases as the workers finish processing them. If the number of tasks increases rapidly and won't go down, something is wrong with the worker processes and you may need to [use the advanced tasks tab](./console_navigating_live_mgmt.html#the-advanced-tasks-tab) to restart the `pe-puppet-dashboard-workers` service on the console node. A green check-mark with the text "All systems go" means the worker processes have caught up with all available reports.
 * The **node state summary.** Depending on how its last Puppet run went, every node is in one of six states. [A description of those states is available here.](./console_reports.html#node-states) The state summary shows how many nodes are in each state, and you can click any of the states for a view of all nodes in that state. You can also click the "Radiator view" link for a high-visibility dashboard (see below for a screenshot) and the "Add node" button to add a node before it has submitted any reports. (Nodes are automatically added to the console after they have submitted their first report, so this button is only useful in certain circumstances.)
 * The **group summary,** which lists the [node groups](./console_classes_groups.html#grouping-nodes) in use and shows how many nodes are members of each. You can click each group name to view and edit that group's detail page. You can also use the "Add group" button to create a new group.
-* The **class summary,** which lists the [classes](./console_classes_groups.html#classes) in use and shows how many nodes have been **directly** assigned each class. (The summary doesn't count nodes that receive a class due to their group membership.) You can click each class name to view and edit that class's detail page. You can also use the "Add class" button to add a new class to the console.
+* The **class summary,** which lists the [classes](./console_classes_groups.html#classes) in use and shows how many nodes have been **directly** assigned each class. (The summary doesn't count nodes that receive a class due to their group membership.) You can click each class name to view and edit that class's detail page. You can also use the "Add classes" button to add a new class to the console.
 
 A screenshot of the "radiator view:"
 
@@ -99,11 +99,11 @@ You can use a group page to view aggregate information about its members, or to 
 
 #### Classes
 
-**Classes** are the main unit of Puppet configurations. You must deliberately add classes to the console with the "Add class" button before you can assign them to nodes or groups. See the [Grouping and Classifying Nodes][classify] page for information about adding classes and assigning them to nodes or groups. If you click the name of a class to see its **class detail page,** you can view a node list of every node assigned that class.
+**Classes** are the main unit of Puppet configurations. You must deliberately add classes to the console with the "Add classes" button before you can assign them to nodes or groups. See the [Grouping and Classifying Nodes][classify] page for information about adding classes and assigning them to nodes or groups. If you click the name of a class to see its **class detail page,** you can view a node list of every node assigned that class.
 
 ### Working with Licenses
 
-The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. If the number of available licenses is exceeded, a warning will be displayed. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information. 
+The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. If the number of available licenses is exceeded, a warning will be displayed. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information.
 
 Unused nodes will be deactivated automatically after seven days with no activity (no new facts, catalog or reports), or you can use `puppet node deactivate` for immediate results. The console will cache license information for some time, so if you have made changes to your license file (e.g. adding or renewing licenses), the changes may not show for up to 24 hours. You can restart the `pe-memcached` service in order to update the license display sooner.
 

@@ -56,7 +56,7 @@ To add a new class to the console, navigate to the "Add classes" page by clickin
 * The "Add classes" button in [the console's sidebar][sidebar]
 * The "Add new classes" link in the upper right corner of [the class list page](#viewing-the-known-classes)
 
-![The console's Add class button][classes_addclass]
+![The console's Add classes button][classes_addclass]
 
 The "Add classes" page allows you to easily add classes that are detected on the puppet master server, as well as manually add classes that can't be autodetected.
 
