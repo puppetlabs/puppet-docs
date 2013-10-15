@@ -15,7 +15,7 @@ canonical: "/geppetto/latest/geppetto.html"
 
 Geppetto is an integrated development environment for Puppet. In other words, it is a simplified toolset for developing and integrating Puppet modules and manifests.
 
-Built on Eclipse, Geppetto provides a puppet manifest editor that provides syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which allows you to create projects from existing modules on the Forge as well as easily upload your custom modules. Geppetto is even integrated with git and SVN, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
+Built on Eclipse, Geppetto provides a puppet manifest editor that provides syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which allows you to create projects from existing modules on the Forge as well as easily upload your custom modules. Geppetto is even integrated with GitHub (Git) and Apache Subversion with Eclipse (SVN), enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
 
 It even offers an integration with Puppet Enterprise, giving you an additional resource view and error information.
 
@@ -23,11 +23,13 @@ Geppetto is packaged so it can be downloaded and used immediately. It contains a
 
 ##Basic Overview
 
+Here's how Geppetto looks with a couple of projects added to a fresh or first-time install.
+
 ![IDE_overview][IDE_overview]
 
-Here's how Geppetto looks with a couple of projects added to a fresh or first-time install. Your version might be a little different, either because you added Geppetto to an existing install of Eclipse that you'd already customized, or because you changed some of the views around when you first installed. If your views are arranged a little differently, you'll still get all the same functionality.
+Your version might be a little different, either because you added Geppetto to an existing install of Eclipse that you'd already customized, or because you changed some of the views around when you first installed. If your views are arranged a little differently, you'll still get all the same functionality.
 
-In this image, you see some of the most common work areas (this description is by no means comprehensive):
+In the image above, you see some of the most common work areas (this description is by no means comprehensive):
 
 The **Project Explorer** enables you to easily navigate around in your Puppet project's file structure. 
 
@@ -53,7 +55,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 	This URL is for use with a download manager. It's not meaningful to visit it with a browser.
 
-<!-- ![Geppetto_install][Geppetto_install] --> 
+	<!-- ![Geppetto_install][Geppetto_install] --> 
 
 3. Select Geppetto in the available software list, and then click **Next**.
 
@@ -63,14 +65,14 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 
 	**Note:** Using these same steps, you can get support for Ruby coding by installing the Eclipse [Dynamic Languages Toolkit](http://www.eclipse.org/dltk/). Just be aware that the DLTK isn't supported by Puppet Labs.
 
-##Working with Puppet Projects in Geppetto
+##Working with Puppet Projects
 Geppetto provides several options for creating and editing Puppet projects. 
 
 **Create new projects**  Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, and from GitHub or Apache Subversion.
 
 **Create new repositories**  You can create new repositories on GitHub or Subversion, and then populate those repositories with new or existing Puppet projects.
 
-**Import and commit projects**  From GitHub or Subversion, import existing Puppet projects, edit them, and then commit them back to the repository that they came from. You can also publish modules directly to the Forge.
+**Import and commit projects**  From Git or SVN, import existing Puppet projects, edit them, and then commit them back to the repository that they came from. You can also publish modules directly to the Forge.
 
 The following are some basic steps to get started with Puppet projects in Geppetto.
 
@@ -116,7 +118,7 @@ To open the repository perspective, in Geppetto, click **Window ->Open Perspecti
 
 For more information about interacting with Git or SVN from Geppetto, refer to the EGit and Subversive user guides. On the Geppetto Help menu, click **Help Contents** to open the guides.
 
-###Editing module metadata
+###Editing Module Metadata
 
 
 All Puppet modules include a metadata file, which contains high level information about the module (version, author, license, dependencies, et cetera). Geppetto's editor provides an easy way to modify this metadata. 
@@ -159,7 +161,7 @@ To remove a dependency, simply select the module from the list of dependencies a
 
 You also have the option of editing your module's metadata within the raw json format. If you click on the *JSON* tab, you will have access to the json information and may edit it directly as you wish.
 
-###Publishing modules to the Forge
+###Publishing Modules to the Forge
 
 The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules written by the Puppet community. Using and contributing to the Forge is a great way to crowdsource your work, and Geppetto makes publishing your modules to the Forge easy! 
 
