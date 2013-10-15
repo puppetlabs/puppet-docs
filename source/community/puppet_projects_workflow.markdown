@@ -9,7 +9,7 @@ Puppetlabs uses JIRA as its bug tracker, at <http://tickets.puppetlabs.com/>.
 This guide covers the following tasks:
 
   - [How to Create a JIRA Account](#create-a-jira-account)
-  - [How to file a new bug]()
+  - [How to file a new bug](#submitting-a-bug)
   - [How to migrate a bug from Redmine]()
   - [How to help triage bugs]()
 
@@ -19,25 +19,29 @@ In order to prevent spam and fake accounts, Puppetlabs requires users to create 
 Accounts can be created by visiting <http://tickets.puppetlabs.com> and following the "Sign Up" link in the "Login" box.
 
 
-## Before you submit a bug
+## Submitting a Bug
 
+First, thank you! Conventional wisdom holds that bug reports are bad, but we think that while bugs themselves may be bad, quality bug reports are incredibly valuable and a great way to contribute back to the project.
 
 ### Search for duplicates
 
-There's a good possibility that your issue has already been reported, but the Redmine database is huge and the built-in search is not great. Here are two avenues to leverage google to make sure your bug hasn't already been reported (and potentially solved!) by someone else:
+There's a good possibility that your issue has already been reported, but the JIRA database is huge and locating similar issues can take some practice.
+Here are two strategies for finding out if your bug has already been reported (and potentially solved!) by someone else:
 
-1. Use google with a `site:projects.puppetlabs.com` restriction. This will cut out a ton of duplicate and junk results and allow you to narrow your search down quickly.
-2. Join and search the 'puppet-bugs' group: http://groups.google.com/group/puppet-bugs , but set your email delivery options to "none" or "abridged summary". Every action on a bug in the Puppet redmine project will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening in Redmine. Using the Google Groups interface also lets you search through the bug traffic without pulling in any extraneous results.
+1. Use the issue search built into JIRA which is available from the menu bar under "Issues > Search for Issues".
+   When searching, be sure to adjust the filters --- especially those available from the "Project" menu.
+   Comprehensive instructions for searching JIRA can be found on the Atlassian website: <https://confluence.atlassian.com/display/JIRA061/Searching+for+Issues>
+2. Join and search the 'puppet-bugs' group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
+   Every action on a bug in the Puppet issue trackers will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening.
+   Using the Google Groups interface also lets you search through the bug traffic without pulling in any extraneous results.
 
-If you find an already-existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing. Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has. Use the "Vote" field to indicate your support and optionally add yourself as a Watcher so future updates to the bug will be e-mailed to you.
+If you find an existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing.
+Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has.
+Use the "Vote" field in the right sidebar to indicate your support and optionally add yourself as a "Watcher" so future updates to the bug will be e-mailed to you.
 
-If you find bugs similar to, but different in some important way, from what you're seeing, file a new issue and link it to the earlier bug(s) with the "Related issues" field.
+If you find bugs similar to, but different in some important way, from what you're seeing, file a new issue and link it to the earlier bug(s) using the "Link" action which can be found under the "More" menu.
 
-Finally, if you come back empty-handed from your searching, it's probably time to file a bug.
-
-## Bug submission
-
-First, thank you! Conventional wisdom holds that bug reports are bad, but we think that while bugs themselves may be bad, quality bug reports are incredibly valuable and a great way to contribute back to the project.
+Finally, if you come back empty-handed from your searching, it's probably time to file a new bug.
 
 ### Filing a good bug
 
@@ -52,22 +56,35 @@ Simon Tatham, the developer of PuTTy, has a fantastic write-up on [How to Report
 
 ### Metadata you can use
 
-There are a number of metadata fields in Redmine, some of which are applicable to all projects while others are project specific. When filing a new issue, filling in the following fields accurately makes bug triage a lot easier:
+There are a number of metadata fields in JIRA, some of which are applicable to all projects while others are project specific.
+When filing a new issue, filling in the following fields accurately makes bug triage a lot easier:
 
-* *Keywords* -- keywords aid in searches and help categorize tickets. They are superior to the "Category" field because they can be multivalued, but are freeform text rather than a pulldown list which leads to overlapping-but-not-exact keywords. Keywords in Redmine are space-separated so connect multiple words with `_` underscores.
-* *Affected Puppet version* -- The version of Puppet in which you've experienced the bug. Generally issues that have been encountered and reproduced against the latest point release of a major version are going to get more attention than ones against older versions. (Often the first question is going to be "Have you tried this against the latest version?")
+* *Component(s)* -- components define the broad category that a ticket falls into.
+  When choosing values for this field, hovering the mouse over entries in the pull down list will display descriptions for what is covered by a given component.
+  In general, an issue should be specific enough that it is covered by a single component --- but multiple components can be assigned if necessary.
+* *Labels* -- labels aid in searches and help further categorize tickets.
+  The advantage labels offer over the "Components" field is that they are not limited to a fixed list and can be created as required.
+  However, this can lead to a proliferation of labels that overlap but are not quite duplicates.
+* *Affects Version(s)* -- The version in which you've experienced the bug.
+  Generally issues that have been encountered and reproduced against the latest point release of a major version are going to get more attention than ones against older versions.
+  (Often the first question is going to be "Have you tried this against the latest version?")
+* *Environment* -- details concerning the environment in which a bug can be re-produced.
+  At a minimum, this should be filled out with the name and version of the operating system where the bug was observed.
+  Other important details can also be added concerning related pieces of software such as Facter versions, Apache versions, etc.
 
 Other relevant fields become useful through the course of the bug's lifecycle:
 
-* *Branch* -- if your bug is associated with code on Github, this field should be set to the URL of the pull request you've submitted.
-* *Target version* -- the product owners for the various projects maintain a list of bugs that are going into future releases; the "Target version" field indicates the release that a work-in-progress bug is expected to be fixed in.
+* *Links* -- if your bug is associated with code on Github, a link should be added containing pointing to the pull request you've submitted.
+* *Fix Version(s)* -- the product owners for the various projects maintain a list of bugs that are going into future releases; the "Fix Version(s)" field indicates the release that a work-in-progress bug is expected to be fixed in.
 * *Status* and *Assignee* -- see the "Workflow for Bugs" section below for a description of how these fields are used.
 
-The other fields aren't used and can be left blank (Start data, estimated time, percent complete, etc).
+The other fields aren't used and can be left blank (due date, estimated time, etc).
 
 ### Tracking and updating bug
 
-Once you've submitted a bug, you'll be emailed on every update. If you want to receive more or less email from Redmine (perhaps you follow the puppet-bugs group very closely and don't need an individual email, or perhaps you want to be emailed on every update to any bug in the tracker (Note: this isn't a very good idea)), you can adjust those settings on the [My account](https://projects.puppetlabs.com/my/account) page. When you want to get update emails about bugs you did not create, you can add yourself as a "watcher" using the "Watch" link at the top of each bug page.
+Once you've submitted a bug, you'll be emailed on every update.
+When you want to get update emails about bugs you did not create, you can add yourself as a "watcher" using the "Watch" link in the right hand sidebar of each bug page.
+
 
 ## Workflow for bugs
 
