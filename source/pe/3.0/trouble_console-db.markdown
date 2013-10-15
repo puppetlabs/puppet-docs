@@ -7,6 +7,8 @@ canonical: "/pe/latest/trouble_console-db.html"
 
 Below are some common issues that can cause trouble with the databases that support the console.
 
+**Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+
 PostgreSQL is Taking Up Too Much Space
 -----
 

@@ -116,6 +116,8 @@ You will also need to provide the following information:
 * The hostname and port number for the PuppetDB node you created in the previous step.
 * Database credentials; specifically, the database names, user names, and passwords for the `console`, `console_auth`, and `pe-puppetdb` databases. These can be found in `/etc/puppetlabs/installer/database_info.install` on the PuppetDB node.
 
+**Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+
 ### Upgrade Agents and Complete the Upgrade
 
 On each node with a puppet agent, unpack the PE 3.0.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.

@@ -80,6 +80,10 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic. In 
 
 This section details the packages that are installed from the various OS repos.  Unless you do not have internet access, you shouldn't need to worry about installing these manually, they will be set up during PE installation.
 
+#### PostgreSQL Requirement
+
+If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+
 ***Amazon Linux AMI***
 
 All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
