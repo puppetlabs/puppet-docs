@@ -217,7 +217,7 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_desktop_shortcut`.
 
-* **On your control workstation,** . This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
+* **On your control workstation,**  navigate to [http://forge.puppetlabs.com/puppetlabs/motd](http://forge.puppetlabs.com/puppetlabs/motd). This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
 * Navigate to <https://forge.puppetlabs.com/puppetlabs/win_desktop_shortcut>. This is the Forge listing for an example module that manages a desktop shortcut on Windows.
 
 * **On the puppet master,** run `puppet module search motd`. This searches for modules from the Puppet Forge with `motd` in their names or descriptions:
