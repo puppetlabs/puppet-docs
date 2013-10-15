@@ -22,19 +22,19 @@ This lets you choose the context you want to use to help you most easily see whe
 
 An event is PE's attempt to modify an individual property of a given resource. Event inspector displays four different possible outcomes for an event:
 
-1. Change: a successful enforcement of a configuration state that resulted in a change to a resource's property
-2. Failure: an unsuccessful enforcement of a configuration state
-3. Noop: a successful simulation of enforcing a configuration state
-4. Skip: enforcement of a configuration state was not attempted due to the lack of a triggering event (such as an upstream failure to enforce a dependent state, or a scheduling event)
+1. Change: a successful enforcement of a configuration state that resulted in a change to a resource's property.
+2. Failure: an unsuccessful enforcement of a configuration state.
+3. Noop: a successful simulation of enforcing a configuration state.
+4. Skip: enforcement of a configuration state was not attempted due to the lack of a triggering event (such as an upstream failure to enforce a dependent state, or a scheduling event).
 
 Monitoring
 -----
 
 ![Accessing event inspector][eventtab]
 
-You load event inspector by clicking "Events" in the console's main navigation bar. Event inspector's summary view loads, with a summary pane on the left showing you an overview of activity in your infrastructure. Events are shown from three perspectives: events that affected classes, events that affected nodes, and events that affected resources. The summary lets you see at a glance whether or not PE has been successful at enforcing your configurations. The detail pane on the right shows you the default selection, classes with failures.
+You load event inspector by clicking "Events" in the console's main navigation bar. Event inspector's summary view loads with a summary pane on the left showing you an overview of activity in your infrastructure. Events are shown from three perspectives: events that affected classes, events that affected nodes, and events that affected resources. The summary lets you see at a glance whether or not PE has been successful at enforcing your configurations. The detail pane on the right shows you the default selection, classes with failures.
 
-Each section of the summary pane shows the number and type of events that affected nodes, classes, and resources. Events are shown both in absolute numbers and with bar graphs that show the ratio of a given type of event to the total number of events for a given perspective.. The summary helps you assess the overall state of your infrastructure quickly, and helps you easily determine the seriousness of an issue. It also provides an interface that gives access to greater detail. If anything appears amiss or you simply want to know more about a given event from a given perspective, you can click on that event type in the summary to drill down and view the event in increasing levels of detail. You can also easily access run reports if you want to see details about the puppet run that generated the event.
+Each section of the summary pane shows the number and type of events that affected nodes, classes, and resources. Events are shown both in absolute numbers and with bar graphs that show the ratio of a given type of event to the total number of events for a given perspective. The summary helps you assess the overall state of your infrastructure quickly, and helps you easily determine the seriousness of an issue. It also provides an interface that gives access to greater detail. If anything appears amiss or you simply want to know more about a given event from a given perspective, you can click on that event type in the summary to drill down and view the event in increasing levels of detail. You can also easily access run reports if you want to see details about the puppet run that generated the event.
 
 ![The summary pane][summary]
 
@@ -67,7 +67,7 @@ The detail pane now shows you all the failures for that resource on every node i
 
 ![Failed Resource Detail view][resource-detail]
 
-You now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you need help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/geppetto.html), an IDE that can help diagnosis puppet code issues. You'll probably also be having a word with your colleagues regarding the importance of remembering the target OS when you're working on a module!
+You now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you need help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/geppetto.html), an IDE that can help diagnose puppet code issues. You'll probably also be having a word with your colleagues regarding the importance of remembering the target OS when you're working on a module!
 
 Tips & Issues
 -----
