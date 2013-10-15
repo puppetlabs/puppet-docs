@@ -8,16 +8,19 @@ This document serves as a guide for managing bugs in Puppet open-souce projects 
 Puppetlabs uses JIRA as its bug tracker, at <http://tickets.puppetlabs.com/>.
 This guide covers the following tasks:
 
-  - [How to Create a JIRA Account](#create-an-account)
+  - [How to Create a JIRA Account](#create-a-jira-account)
   - [How to file a new bug]()
   - [How to migrate a bug from Redmine]()
   - [How to help triage bugs]()
 
+## Create a JIRA Account
+
+In order to prevent spam and fake accounts, Puppetlabs requires users to create an account on JIRA before commenting on or filing new tickets.
+Accounts can be created by visiting <http://tickets.puppetlabs.com> and following the "Sign Up" link in the "Login" box.
+
+
 ## Before you submit a bug
 
-### Create an account
-
-In order to prevent spam and fake accounts, Puppetlabs requires users to create an account on redmine before commenting on or filing new tickets. You can register a local account or use OpenID to short-circuit the registration process. Once you're signed in, go to [the Puppet Project homepage](http://projects.puppetlabs.com/projects/puppet) and click "Join this project" in the top-right column; this will enable you to file new bugs, comment, and vote.
 
 ### Search for duplicates
 
