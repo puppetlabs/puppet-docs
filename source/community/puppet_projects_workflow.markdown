@@ -4,12 +4,14 @@ layout: default
 ---
 
 
-This document aims to document the current practice for managing bugs in the open-souce Puppet projects (Puppet, Facter, Mcollective, Hiera). Puppetlabs uses Redmine as its bug tracker, at http://projects.puppetlabs.com/.  The goals of this document are:
+This document serves as a guide for managing bugs in Puppet open-souce projects (Puppet, Facter, Mcollective, Hiera, PuppetDB).
+Puppetlabs uses JIRA as its bug tracker, at <http://tickets.puppetlabs.com/>.
+This guide covers the following tasks:
 
-- To enable more people to participate in bug submission and triage
-- To clarify what various ticket states mean so work flows more smoothly
-- To provide transparency to our release planning and development
-
+  - [How to Create a JIRA Account](#create-an-account)
+  - [How to file a new bug]()
+  - [How to migrate a bug from Redmine]()
+  - [How to help triage bugs]()
 
 ## Before you submit a bug
 
