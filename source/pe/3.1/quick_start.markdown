@@ -255,13 +255,12 @@ Every module contains one or more **classes.** The modules you just installed co
 
 * **On the console,** click the "Add classes" button in the sidebar:
 
-![The console's add class button][classbutton]
+![The console's add classes button][classbutton]
 
-* Type the name of the `motd` class, and click the "create" button:
+* Locate the `motd` class in the list of classes, and click its checkbox to select it; do the same for the `win_desktop_shortcut` class. When both are selected, click the "Add selected classes button at the bottom of the page.
 
 ![the add class field][add_motd]
 
-* Do the same for the `win_desktop_shortcut` class.
 * Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "Update" button after you have selected it.
 
 ![assigning the motd class][assign_motd]
