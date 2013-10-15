@@ -110,6 +110,8 @@ There are two lists of classes in the console: One in [the console's sidebar][si
 
 The sidebar list also includes counts of nodes with the class assigned, but these numbers are not complete: they only includes nodes which have the class **directly** assigned, excluding nodes that receive the class from a group.
 
+In the class list page, reached by clicking the "Classes" navigation item, classes that were manually added are marked with an asterisk (\*) to show that they are not available in the puppet master's `production` environment.
+
 ### Class Detail Pages
 
 You can view an individual **class detail page** by clicking the name of that class in one of the following places:
@@ -133,64 +135,123 @@ Nodes
 
 Each **node** in a Puppet Enterprise deployment has its own **node detail page** in the PE console. You can reach a node detail page by clicking that node's name in any [node list view](./console_navigating.html#nodes-and-node-lists).
 
-From a node detail page, you can view the currently assigned configuration data for that node, or use the "Edit" button to assign new configuration data. You can also hide the node (cause it to not appear in node list views) or delete it (remove all reports and information about that node from the console; note that the node will automatically reappear if it ever submits a new Puppet run report).
+From a node detail page, you can:
+
+* View the node's current variables, groups, and classes
+* Click the "Edit" button to navigate to the node edit page
+* Hide the node, causing it to stop appearing in node list views
+* Delete the node, removing all reports and information about that node from the console (it will reappear as a new node if it submits a new Puppet run report)
+* [View the node's recent activity and run status (see "Viewing Reports & Inventory Data")][reports_etc]
+* [View the node's inventory data (see "Viewing Reports & Inventory Data")][reports_etc]
+
+[reports_etc]: ./console_reports.html
+
+![A node detail page][classes_node_detail_page]
+
+### Viewing Current Configuration Data
+
+Each node detail page has three tables near the top, which display the current **variables, groups,** and **classes** assigned to that node. Each of these tables has a **"source"** column.
+
+* If the source of an item is the node's own name, it was assigned **directly to that node.** You can change it by editing the node.
+* If the source of an item is the name of a group, the item was assigned to that group and the node inherited it. The group name is a link to the group detail page; if you need to change the item, you can navigate to the group's page.
+
+In PE 3.1, class parameters are not shown on the node detail page; to see them, you must go to the node edit page (or the group edit page, if the class is inherited from a group).
+
+### Node Edit Pages
+
+Clicking the "Edit" button on a node detail page navigates to the **node edit page,** which allows you to edit the node's classes, groups, and variables. You can also add an optional description for the node.
+
+The main functions of node edit pages are described below.
 
 ![The edit button][classes_editbutton]
 
-Each node detail page has tables to display the current **variables, groups,** and **classes** assigned to that node. Each of these tables has a **"source"** column --- if the source of an item is the node's own name, it was assigned **directly to that node;** if the source is the name of a group, the item was assigned to that group and the node inherited it by being a member of that group.
-
-Clicking the "Edit" button brings up the **node edit page,** which allows you to edit the node's variables, classes, and groups. You can also add an optional description for the node.
-
 ![Editing a node][classes_add_variable]
 
-### Assigning Classes and Groups to Nodes
+### Editing Classes on Nodes
 
-When you start typing the name of a class or group in a node's edit page, the PE console will offer an auto-completion list of the most likely choices. The list will continue to narrow as you type more.
+Assigning a class to a node will cause that node to manage the resources declared by that class. Some classes may need to be configured, by setting either variables or class parameters. [See "Puppet: Assigning Configurations to Nodes"][puppet_assign] for more background information.
 
-To finish assigning the class or group, either click a choice from the list, or use the arrow keys to select one and press enter.
+[puppet_assign]: ./puppet_assign_configurations.html
 
-Use the "Update" button to save after assigning new classes and groups.
+To assign a class, start typing the class's name into the "Add a class" text field on the node edit page. As you type, an auto-completion list of the most likely choices will appear; the list will continue to narrow as you type more. To finish selecting a class, click a choice from the list or use the arrow keys to select one and press enter.
 
-> **Note:** You can only assign classes or groups that already exist. See [Adding a New Class](#adding-a-new-class) and [Adding a New Group](#adding-a-new-group) for details.
+> **Note:** You can only assign classes that are already known to the console. See [Adding New Classes](#adding-new-classes) on this page for details.
+
+To remove a class from a node, click the "Remove class" link next to the class's name. Note that classes inherited from a group can't be modified from the node edit page --- you must either edit it from the group page, or remove the node from that group.
+
+To edit class parameters for a class, click the "Edit parameters" link next to its name. See the next section of this page for details.
+
+**After making edits, always click the "Update" button to save your changes.**
 
 ![Typing a class name][classes_typing_class]
 
-### Setting Class Parameters on Nodes
+### Editing Class Parameters on Nodes
 
-After you have assigned a class to a node, you can set [class parameters](#class-parameters) to configure it.
+After you have assigned a class to a node, you can set class parameters to configure it. (See ["Puppet: Assigning Configurations to Nodes"][puppet_assign] for more details.) Note that if the class was inherited from a group, its parameters can't be modified from the node edit page --- you must edit them from the group page, or else explicitly add the class to the node.
 
-> **Note:** You can only set class parameters **at the place where the class was assigned.**
->
-> * If the class was assigned **directly** to a node, you can set class parameters from that node's detail page.
-> * If the class was assigned **to a group** and then inherited by members of the group, you must set parameters from **that group's** detail page instead.
+To set class parameters, click the "Edit parameters" link next to a class name on a node edit page. This will bring up a **class parameters dialog.**
 
-To set class parameters, view a **node detail page** and click an enabled **parameters link,** in the "Parameters" column of the "Classes" table. Enabled parameters links are blue. (Disabled black parameters links mean that the class came from a group, and parameters can only be set in the group's page.)
+![An edit parameters link][classes_class_param_links]
 
-![An enabled class parameter link][classes_class_param_links]
+![A class parameters dialog][classes_class_param_dialog]
 
-Clicking a parameters link will take you to the **class parameters detail page** for that class _as assigned_ to that node. This page is node-specific --- each node with this class assigned will have its own similar version of this detail page if you click its parameters link.
+The class parameters dialog allows you to easily add values for any parameters that can be detected from the puppet master server. It also lets you manually add parameters that can't be autodetected.
 
-![A class parameters detail page][classes_parameters_detail]
+> **Note:** Class parameters can be strings or booleans --- the PE console will automatically convert the strings `true` and `false` to real boolean values. The console does not support setting arrays or hashes as parameters.
 
-To add or change parameters, click the "Edit" button, which will take you to a **class parameters edit page** (labeled "Edit node class membership").
+#### Adding Values for Detected Parameters
 
-![A class parameters edit page][classes_parameters_edit]
+The class parameters dialog displays a list of parameters from the puppet master server. The list **only includes the parameters this class has in the default `production` [environment][].** If a version of this class in another environment has extra parameters (or if the class doesn't exist in `production`), those parameters won't appear and must be added manually.
 
-Parameters are added with pairs of key/value fields. There will always be at least one empty pair of key/value fields on a parameters edit page. You can use the "Add parameter" button to add more empty fields, in order to add multiple parameters at once. You can also edit existing parameters, or use the red trash button to delete a parameter entirely.
+The main (autodetected) parameter list includes the names of the known parameters (under the "Key" heading) and their current values.
 
-> **Note:** Class parameters can only be strings. The PE console does not support setting arrays, hashes, or booleans as parameters.
+* Parameters which are using their default values will have that value shown in **grey text.** This value may be a literal value, or it may be a Puppet variable. (This is generally the case for modules that use the "params class" pattern, or for classes whose parameters default to fact values.) You can enter a new value if you choose.
+* Parameters which have had values set by a user are displayed with **black text** and a **blue background.** They also have a "Reset to default" control next to the value.
+* Parameters with no user-set value and no default value are displayed with a white background and no text. These parameters generally must be assigned a value before the class will work.
 
-Click the "Update" button to save your changes. The next time you view that node's detail page, you'll see a "2 Parameters" (or appropriate number) link in the "Parameters" column of the "Classes" table.
+To add or change a value for a detected parameter, type a new value in the "Value" field. Alternately, you can use the "Reset to default" control next to the value to restore the default value. Default values can be viewed in a tooltip by hovering your cursor over the "Value" field for the parameter.
 
-![After adding some parameters][classes_parameters_done]
+Remember to **click the "Done" button** to exit the dialog, and **click the "Update" button** on the node edit page to save your changes.
 
-### Setting Variables on Nodes
+
+#### Manually Adding Parameters
+
+You may need to manually add certain parameters for a class. This can be necessary if are running multiple [environments][environment] and some of them contain newer versions of certain classes, which include parameters that can't be found in the `production` versions.
+
+To manually add a parameter, use the text fields under the "Other parameters" header.
+
+![Typing a name and value for a manual class parameter][classes_class_param_manual_plus_button]
+
+Type the name of the class parameter in the "Add a parameter" field, then type a value in the "Value" field. Click the green plus (+) button to the right of the text fields, which becomes enabled after you have entered a name.
+
+![The manually added parameter, visible in a new list below the text fields][classes_class_param_manual_added]
+
+Instead of a "Reset to default" control, the list of manually-added parameters includes "Delete" links for each parameter, which will remove the parameter and its value.
+
+Remember to **click the "Done" button** to exit the dialog, and **click the "Update" button** on the node edit page to save your changes.
+
+
+### Editing Groups on Nodes
+
+Assigning a node to a group will cause that node to inherit all of the classes, class parameters, and variables assigned to that group. It will also inherit the configuration data from any group that group is a member of.
+
+Nodes can override the configuration data they inherit from their group(s); the main limitation on this is that you must explicitly add a class to a node before assigning class parameters that differ from those inherited from a group.
+
+To add a node to a group, start typing the group's name into the "Add a group" text field on the node edit page. As you type, an auto-completion list of the most likely choices will appear; the list will continue to narrow as you type more. To finish selecting a group, click a choice from the list or use the arrow keys to select one and press enter.
+
+To remove a node from a group, click the "Remove node from group" link next to the group's name. Note that groups inherited from another group can't be removed via the node edit page --- you must either remove it from the other group's page, or remove the node from the other group.
+
+Note that you can also edit group membership from a group edit page.
+
+![Adding groups to a node][classes_groups_to_node]
+
+### Editing Variables on Nodes
 
 You can also set **variables** from a node's edit page. Variables set in the console become [top-scope variables available to all Puppet manifests][topscope].
 
 To add a variable, look under the "Variables" heading. You should put the name of the variable in the "Key" field and the value in the "Value" field.
 
-There will always be at least one empty pair of variable fields on a node's edit page. You can use the "Add variable" button to add more empty fields, in order to add multiple variables at once. You can also edit existing variables, or use the red trash button to delete a variable entirely.
+There will always be at least one empty pair of variable fields on a node's edit page. You can use the "Add variable" button to add more empty fields, in order to add multiple variables at once. You can also edit existing variables, or use the grey delete (x) button to delete a variable entirely.
 
 > **Note:** Variables can only be strings. The PE console does not support setting arrays, hashes, or booleans as variables.
 
@@ -233,7 +294,7 @@ These groups are created when initially setting up a Puppet Enterprise deploymen
 
 ### Adding a New Group
 
-Use the "add group" button in the console's sidebar, then enter the group's name and any classes or variables you want to assign.
+Use the "Add group" button in the console's sidebar or the "Add group" link in the main groups page, then enter the group's name and any classes, groups, variables, and nodes you want to assign to the new group.
 
 ![The add group button][classes_group_button]
 
@@ -252,25 +313,41 @@ From a group detail page, you can view the currently assigned configuration data
 Group detail pages also show any groups of which that group is a member (under the "Groups" header) and any groups that are members of that group (under the "Derived groups" header).
 
 
-### Adding Nodes to a Group
+### Editing Nodes on Groups
 
-You can change the membership of a group from both node detail views and group detail views. Click the edit button and use the "groups" or "nodes" fields, as needed. These fields will offer auto-completions the same way the classes field does.
+You can change the membership of a group from both node edit pages and group edit pages.
 
-Editing a node to join a new group:
-
-![Adding groups to a node][classes_groups_to_node]
-
-Editing a group to include a new node:
+To add a node to a group from a group edit page, start typing into the "Add a node" text field. As you type, an auto-completion list of the most likely choices will appear; the list will continue to narrow as you type more. To finish selecting a node, click a choice from the list or use the arrow keys to select one and press enter.
 
 ![Adding nodes to a group][classes_nodes_to_group]
 
-### Assigning Classes, Class Parameters, and Variables to a Group
+### Editing Classes, Class Parameters, and Variables on Groups
 
-Editing the configuration data assigned to a group works identically to editing a single node. See the following sections above for details:
+Editing classes, class parameters, and variables for a group works much the same way as editing them for a single node. See the following sections above for details:
 
 * [Assigning classes](#assigning-classes-and-groups-to-nodes)
 * [Setting class parameters](#setting-class-parameters-on-nodes)
 * [Setting variables](#setting-variables-on-nodes)
+
+The one major difference involves **variable and class parameter conflicts.** Since nodes can belong to multiple groups, and since groups are not necessarily arranged in a strict hierarchy, it's possible for two equal groups to contribute **conflicting values** for variables and for class parameters.
+
+If you attempt to set values that would cause a conflict, the PE console will warn you and give you a chance to back out. The warning will show where the conflict is arising, and which nodes are affected:
+
+![A value conflict warning][classes_group_value_conflict]
+
+If you choose to go ahead and create a conflict, **any affected nodes will receive reduced configurations** from the puppet master --- the console will decline to provide any configuration data for that node until you resolve the conflict. **Note that this will not necessarily appear as a run failure** --- the node will simply not attempt to manage resources that would have been managed by classes from the PE console. To restore the nodes to full management, you must fix the conflict.
+
+When viewing a node page, conflicts are shown as red warning (!) icons next to the affected variables or classes. You can click the icon to bring up a summary of the conflict, showing the sources of the conflicting values.
+
+![A conflict warning icon][classes_node_value_conflict_icon]
+
+![A summary of the conflict][classes_node_value_conflict_popup]
+
+### Editing Groups on Groups
+
+Groups can also be members of other groups. Nodes that belong to a group will also inherit configuration data from any groups that group belongs to.
+
+Adding group membership from a group works the same way as [adding group membership from a node](#editing-groups-on-nodes).
 
 
 Automating Class and Group Edits
@@ -293,9 +370,6 @@ For information about these tasks, [see the Rake API page](./console_rake_api.ht
 [classes_add_multiple_variables]: ./images/console/classes_add_multiple_variables.png
 
 [classes_class_param_links]: ./images/console/classes_class_param_links.png
-[classes_parameters_detail]: ./images/console/classes_parameters_detail.png
-[classes_parameters_edit]: ./images/console/classes_parameters_edit.png
-[classes_parameters_done]: ./images/console/classes_parameters_done.png
 [classes_group_detail]: ./images/console/classes_group_detail.png
 [classes_class_detail]: ./images/console/classes_class_detail.png
 [classes_adding_classes]: ./images/console/classes_adding_classes.png
@@ -303,7 +377,13 @@ For information about these tasks, [see the Rake API page](./console_rake_api.ht
 [classes_adding_manual_plus_button]: ./images/console/classes_adding_manual_plus_button.png
 [classes_adding_manual_checked]: ./images/console/classes_adding_manual_checked.png
 [classes_adding_show_more]: ./images/console/classes_adding_show_more.png
-
+[classes_node_detail_page]: ./images/console/classes_node_detail_page.png
+[classes_class_param_dialog]: ./images/console/classes_class_param_dialog.png
+[classes_class_param_manual_plus_button]: ./images/console/classes_class_param_manual_plus_button.png
+[classes_class_param_manual_added]: ./images/console/classes_class_param_manual_added.png
+[classes_node_value_conflict_popup]: ./images/console/classes_node_value_conflict_popup.png
+[classes_node_value_conflict_icon]: ./images/console/classes_node_value_conflict_icon.png
+[classes_group_value_conflict]: ./images/console/classes_group_value_conflict.png
 
 * * *
 
