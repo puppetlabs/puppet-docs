@@ -3,7 +3,7 @@ title: "Community Guidelines and Code of Conduct for Puppet Communities"
 layout: default
 ---
 
-[redmine]: /community/puppet_projects_redmine_workflow.html
+[issue_tracker_workflow]: /community/puppet_projects_workflow.html
 
 We want to keep the Puppet communities awesome, and we need your help to keep it that way. While we have specific guidelines for various tools (see links below), in general, you should:
 
@@ -168,7 +168,7 @@ Here are a few guidelines:
 ### Bug Guidelines
 
 
-You can lodge bug reports and support tickets for Puppet at the [Redmine ticketing system](http://projects.puppetlabs.com/projects/puppet). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
+You can log bug reports and support tickets for Puppet using our [ticketing system](http://projects.puppetlabs.com/projects/puppet). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
 
 
 Here are a few guidelines that apply specifically to our bug tracker:
@@ -178,8 +178,8 @@ Here are a few guidelines that apply specifically to our bug tracker:
 * Don't start endless debates on topics not directly related to the scope of a specific bug report. We have mailing lists and other places for longer discussions.
 * Avoid quoting complete previous comments by stripping unneeded lines.
 * Please double check to make sure that the information you are including is public (not confidential), especially in attached log files or screenshots.
-* We encourage community members to help us triage bugs, and this is a great way for anyone to get involved without ever writing a line of code. For more details, see our [Redmine Workflow][redmine] document.
-* Refer to our [Redmine Workflow][redmine] document for more details about the process for filing bugs.
+* We encourage community members to help us triage bugs, and this is a great way for anyone to get involved without ever writing a line of code.
+  Refer to our [Workflow for Puppet Open-Source Projects][issue_tracker_workflow] document for more details about the process for filing and triaging bugs.
 
 
 ### Documentation Guidelines
