@@ -178,7 +178,7 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 ### Discovering Resources
 
-* Note that you are currently in the "Browse Resources" tab. Click "user resources" list of resource types, then click the "Find Resources" button:
+* Note that you are currently in the "Browse Resources" tab. Choose "user resources" from the list of resource types, then click the "Find Resources" button:
 
 ![the find resources button](./images/quick/find_resources.png)
 
@@ -202,9 +202,9 @@ Rather than using the command line to kick off puppet runs with `puppet agent -t
 
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
-> You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
->
-> In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
+You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
+
+In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
 Installing a Puppet Module
 -----
