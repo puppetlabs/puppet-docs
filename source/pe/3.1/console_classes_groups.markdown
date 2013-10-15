@@ -26,7 +26,7 @@ Overview: Assigning Configurations With the PE Console
 >
 > For a complete description of Puppet Enterprise's configuration data sources, see [the Assigning Configurations to Nodes page][puppet_assign] of the Puppet section of this manual.
 
-**Puppet classes** are the primary unit of node configuration in PE.  [Classes are named blocks of Puppet code][lang_classes] which can be either **declared** by other Puppet code or **directly assigned** to nodes or groups of nodes.
+**Puppet classes** are the primary unit of node configuration in PE.  [Classes are named blocks of Puppet code][lang_classes] that can be either **declared** by other Puppet code or **directly assigned** to nodes or groups of nodes.
 
 The console allows you to [**assign** classes](./puppet_assign_configurations.html#assigning-classes) and [**configure** their behavior](./puppet_assign_configurations.html#configuring-classes).
 
@@ -97,7 +97,7 @@ To manually add a class, use the text fields under the "Don't see a class?" head
 
 ![The manually added class, visible in a new list below the text fields][classes_adding_manual_checked]
 
-After you click the plus (+) button, the class will appear in a new list below, with its checkbox already activated. You may now click the "Add selected classes" button at the bottom of the page to finish adding the class, or you can select additional classes, either manually or from the list of detected classes. **You must click "Add selected classes" to finish;** otherwise your classes will not be added to the console.
+After you click the plus (+) button, the class will appear in a new list below, with its checkbox already selected. You may now click the "Add selected classes" button at the bottom of the page to finish adding the class, or you can select additional classes, either manually or from the list of detected classes. **You must click "Add selected classes" to finish;** otherwise, your classes will not be added to the console.
 
 Once you have finished adding a class, you can assign it to nodes and groups.
 
@@ -108,7 +108,7 @@ If you change your mind about adding a class you entered manually, you can click
 
 There are two lists of classes in the console: One in [the console's sidebar][sidebar], and one reached by clicking the "Classes" item in the main navigation.
 
-The sidebar list also includes counts of nodes with the class assigned, but these numbers are not complete: they only includes nodes which have the class **directly** assigned, excluding nodes that receive the class from a group.
+The sidebar list also includes counts of nodes with the class assigned, but these numbers are not complete: they only include nodes that have the class **directly** assigned, excluding nodes that receive the class from a group.
 
 In the class list page, reached by clicking the "Classes" navigation item, classes that were manually added are marked with an asterisk (\*) to show that they are not available in the puppet master's `production` environment.
 
@@ -122,7 +122,7 @@ You can view an individual **class detail page** by clicking the name of that cl
 
 Class detail pages contain a description of the class, a recent run summary, and a list of all nodes to which the class is assigned. The node list includes a "source" column, which shows, for each node, whether the class was assigned directly or via a group. (When assigned via a group, the group name is a link to the group detail page.)
 
-The upper right corner of a class detail page has an "Edit" button (which can change the name and description of the class) and a "Delete" button.
+The upper right corner of a class detail page has an "Edit" button, which can change the name and description of the class, and a "Delete" button.
 
 ![A class detail page, containing a description, recent run summary, and node list][classes_class_detail]
 
@@ -155,7 +155,7 @@ Each node detail page has three tables near the top, which display the current *
 * If the source of an item is the node's own name, it was assigned **directly to that node.** You can change it by editing the node.
 * If the source of an item is the name of a group, the item was assigned to that group and the node inherited it. The group name is a link to the group detail page; if you need to change the item, you can navigate to the group's page.
 
-In PE 3.1, class parameters are not shown on the node detail page; to see them, you must go to the node edit page (or the group edit page, if the class is inherited from a group).
+In PE 3.1, class parameters are not shown on the node detail page; to see them, you must go to the node edit page or the group edit page, if the class is inherited from a group.
 
 ### Node Edit Pages
 
@@ -169,11 +169,11 @@ The main functions of node edit pages are described below.
 
 ### Editing Classes on Nodes
 
-Assigning a class to a node will cause that node to manage the resources declared by that class. Some classes may need to be configured, by setting either variables or class parameters. [See "Puppet: Assigning Configurations to Nodes"][puppet_assign] for more background information.
+Assigning a class to a node will cause that node to manage the resources declared by that class. Some classes may need to be configured by setting either variables or class parameters. See [Puppet: Assigning Configurations to Nodes][puppet_assign] for more background information.
 
 [puppet_assign]: ./puppet_assign_configurations.html
 
-To assign a class, start typing the class's name into the "Add a class" text field on the node edit page. As you type, an auto-completion list of the most likely choices will appear; the list will continue to narrow as you type more. To finish selecting a class, click a choice from the list or use the arrow keys to select one and press enter.
+To assign a class, start typing the class's name into the "Add a class" text field on the node edit page. As you type, an auto-completion list of the most likely choices appears; the list  continues to narrow as you type more. To finish selecting a class, click a choice from the list or use the arrow keys to select one and press enter.
 
 > **Note:** You can only assign classes that are already known to the console. See [Adding New Classes](#adding-new-classes) on this page for details.
 
@@ -201,12 +201,12 @@ The class parameters dialog allows you to easily add values for any parameters t
 
 #### Adding Values for Detected Parameters
 
-The class parameters dialog displays a list of parameters from the puppet master server. The list **only includes the parameters this class has in the default `production` [environment][].** If a version of this class in another environment has extra parameters (or if the class doesn't exist in `production`), those parameters won't appear and must be added manually.
+The class parameters dialog displays a list of parameters from the puppet master server. The list **only includes the parameters this class has in the default `production` [environment][].** If a version of this class in another environment has extra parameters, or if the class doesn't exist in `production`, those parameters won't appear and must be added manually.
 
-The main (autodetected) parameter list includes the names of the known parameters (under the "Key" heading) and their current values.
+The main (autodetected) parameter list includes the names of the known parameters under the "Key" heading, and their current values.
 
-* Parameters which are using their default values will have that value shown in **grey text.** This value may be a literal value, or it may be a Puppet variable. (This is generally the case for modules that use the "params class" pattern, or for classes whose parameters default to fact values.) You can enter a new value if you choose.
-* Parameters which have had values set by a user are displayed with **black text** and a **blue background.** They also have a "Reset to default" control next to the value.
+* Parameters that are using their default values will have that value shown in **grey text.** This value may be a literal value, or it may be a Puppet variable. (This is generally the case for modules that use the "params class" pattern, or for classes whose parameters default to fact values.) You can enter a new value if you choose.
+* Parameters that have had values set by a user are displayed with **black text** and a **blue background.** They also have a "Reset to default" control next to the value.
 * Parameters with no user-set value and no default value are displayed with a white background and no text. These parameters generally must be assigned a value before the class will work.
 
 To add or change a value for a detected parameter, type a new value in the "Value" field. Alternately, you can use the "Reset to default" control next to the value to restore the default value. Default values can be viewed in a tooltip by hovering your cursor over the "Value" field for the parameter.
@@ -216,7 +216,7 @@ Remember to **click the "Done" button** to exit the dialog, and **click the "Upd
 
 #### Manually Adding Parameters
 
-You may need to manually add certain parameters for a class. This can be necessary if are running multiple [environments][environment] and some of them contain newer versions of certain classes, which include parameters that can't be found in the `production` versions.
+You may need to manually add certain parameters for a class. This can be necessary if you are running multiple [environments][environment] and some of them contain newer versions of certain classes, which include parameters that can't be found in the `production` versions.
 
 To manually add a parameter, use the text fields under the "Other parameters" header.
 
@@ -237,7 +237,7 @@ Assigning a node to a group will cause that node to inherit all of the classes, 
 
 Nodes can override the configuration data they inherit from their group(s); the main limitation on this is that you must explicitly add a class to a node before assigning class parameters that differ from those inherited from a group.
 
-To add a node to a group, start typing the group's name into the "Add a group" text field on the node edit page. As you type, an auto-completion list of the most likely choices will appear; the list will continue to narrow as you type more. To finish selecting a group, click a choice from the list or use the arrow keys to select one and press enter.
+To add a node to a group, start typing the group's name into the "Add a group" text field on the node edit page. As you type, an auto-completion list of the most likely choices appears; the list continues to narrow as you type more. To finish selecting a group, click a choice from the list or use the arrow keys to select one and press enter.
 
 To remove a node from a group, click the "Remove node from group" link next to the group's name. Note that groups inherited from another group can't be removed via the node edit page --- you must either remove it from the other group's page, or remove the node from the other group.
 
@@ -279,8 +279,8 @@ Nodes are added to the default group by a periodic background task, so it may ta
 
 These groups are used to manage Puppet Enterprise's [orchestration engine](./orchestration_overview.html).
 
-* The `no mcollective` group is **manually** managed by the admin user. You can add any node which **should not** have orchestration features enabled to this group. This is generally used for non-PE nodes like network devices, which cannot support orchestration.
-* The `mcollective` group is **automatically** managed by a periodic background task; it contains every node which **is not** a member of the `no mcollective` group. The admin user can add classes to this group if they have any third-party classes that should be assigned to every node that has orchestration enabled. However, you **should not** remove the `pe_mcollective` class from this group.
+* The `no mcollective` group is **manually** managed by the admin user. You can add any node that **should not** have orchestration features enabled to this group. This is generally used for non-PE nodes like network devices, which cannot support orchestration.
+* The `mcollective` group is **automatically** managed by a periodic background task; it contains every node that **is not** a member of the `no mcollective` group. Admin users can add classes to this group if they have any third-party classes that should be assigned to every node that has orchestration enabled. However, you **should not** remove the `pe_mcollective` class from this group.
 
 
 #### The Master, Console, and PuppetDB Groups
@@ -317,7 +317,7 @@ Group detail pages also show any groups of which that group is a member (under t
 
 You can change the membership of a group from both node edit pages and group edit pages.
 
-To add a node to a group from a group edit page, start typing into the "Add a node" text field. As you type, an auto-completion list of the most likely choices will appear; the list will continue to narrow as you type more. To finish selecting a node, click a choice from the list or use the arrow keys to select one and press enter.
+To add a node to a group from a group edit page, start typing into the "Add a node" text field. As you type, an auto-completion list of the most likely choices appears; the list continues to narrow as you type more. To finish selecting a node, click a choice from the list or use the arrow keys to select one and press enter.
 
 ![Adding nodes to a group][classes_nodes_to_group]
 
