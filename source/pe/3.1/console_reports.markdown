@@ -5,19 +5,19 @@ subtitle: "Viewing Reports and Inventory Data"
 canonical: "/pe/latest/console_reports.html"
 ---
 
-When nodes fetch their configurations from the puppet master, they send back inventory data and a report of their run. These end up in the console, where you can view them in that node's page.
+When nodes fetch their configurations from the puppet master, they send back inventory data and a report of their run. These end up in the console, where you can view them in that node's detail page.
 
 Node States
 -----
 
 Depending on how its last Puppet run went, every node is in one of six states. Each state is indicated by a specific color in graphs and the [node state summary](./console_navigating.html#the-sidebar), and by an icon beside the report or the node name in a report list or node list view.
 
-- <span style="font-family: Helvetica, Arial, Verdana; color: #888;">Unresponsive:</span> The node hasn't reported to the puppet master recently; something may be wrong. The cutoff for considering a node unresponsive defaults to one hour, and can be configured in `settings.yml` with the `no_longer_reporting_cutoff` setting. Represented by dark grey text. This state has no icon; the node retains whatever icon the last report used.
-- <span style="font-family: Helvetica, Arial, Verdana; color: #c21;">Failed:</span> During its last Puppet run, this node encountered some error from which it couldn't recover. Something is probably wrong, and investigation is recommended. Represented by red text or the ![failed][failed] failed icon.
-- <span style="font-family: Helvetica, Arial, Verdana; color: #e72;">Pending:</span> During its last Puppet run, this node _would_ have made changes, but since it was either running in no-op mode or found a discrepancy in a resource whose `noop` metaparameter was set to `true`, it _simulated_ the changes instead of enforcing them. See the node's last report for more details. Represented by orange text or the ![pending][pending] pending icon.
-- <span style="font-family: Helvetica, Arial, Verdana; color: #069;">Changed:</span> This node's last Puppet run was successful, and changes were made to bring the node into compliance. Represented by blue text or the ![changed][changed] changed icon.
-- <span style="font-family: Helvetica, Arial, Verdana; color: #093;">Unchanged:</span> This node's last Puppet run was successful, and it was fully compliant; no changes were necessary. Represented by green text or the ![unchanged][unchanged] unchanged icon.
-- <span style="font-family: Helvetica, Arial, Verdana; color: #aaa;">Unreported:</span> Although Dashboard is aware of this node's existence, it has never submitted a Puppet report. It may be a newly-commissioned node, it may have never come online, or its copy of Puppet may not be configured correctly. Represented by light grey text or the ![error][error] error icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #818285;">Unresponsive:</span> The node hasn't reported to the puppet master recently; something may be wrong. The cutoff for considering a node unresponsive defaults to one hour, and can be configured in `settings.yml` with the `no_longer_reporting_cutoff` setting. Represented by dark grey text. This state has no icon; the node retains whatever icon the last report used.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #D93129;">Failed:</span> During its last Puppet run, this node encountered some error from which it couldn't recover. Something is probably wrong, and investigation is recommended. Represented by red text or the ![failed][failed] failed icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #EFA92D;">Pending:</span> During its last Puppet run, this node _would_ have made changes, but since it was either running in no-op mode or found a discrepancy in a resource whose `noop` metaparameter was set to `true`, it _simulated_ the changes instead of enforcing them. See the node's last report for more details. Represented by orange text or the ![pending][pending] pending icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #78B7D2;">Changed:</span> This node's last Puppet run was successful, and changes were made to bring the node into compliance. Represented by blue text or the ![changed][changed] changed icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #78C145;">Unchanged:</span> This node's last Puppet run was successful, and it was fully compliant; no changes were necessary. Represented by green text or the ![unchanged][unchanged] unchanged icon.
+- <span style="font-family: Helvetica, Arial, Verdana; color: #818285;">Unreported:</span> Although Dashboard is aware of this node's existence, it has never submitted a Puppet report. It may be a newly-commissioned node, it may have never come online, or its copy of Puppet may not be configured correctly. Represented by light grey text or the ![error][error] error icon.
 
 [changed]: ./images/console/icon_changed.png
 [error]: ./images/console/icon_error.png
@@ -31,13 +31,11 @@ Reading Reports
 
 ### Graphs
 
-Each node page has a pair of graphs: a histogram showing the number of runs per day and the results of those runs, and a line chart tracking how long each run took.
+Each **node detail page** has a pair of graphs: a histogram showing the number of runs per day and the results of those runs, and a line chart tracking how long each run took. (Run status histograms also appear on class detail pages, group detail pages, and last-run-status pages.)
 
 ![The pair of graphs on a node page][reports_graphs]
 
 The daily run status histogram is broken down with the same colors that indicate run status in the console's sidebar: red for failed runs, orange for pending runs (where a change would have been made, but the resource to be changed was marked as no-op), blue for successful runs where changes were made, and green for successful runs that did nothing.
-
-**Note:** Run status histograms also appear on group pages, class pages, and run status pages.
 
 The run-time chart graphs how long each of the last 30 Puppet runs took to complete. A longer run usually means changes were made, but could also indicate heavy server load or some other circumstance.
 
