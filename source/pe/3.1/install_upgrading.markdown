@@ -97,7 +97,7 @@ The installer will save auto-generated users and passwords in `/etc/puppetlabs/i
 
 * If you have manually re-ordered the columns in your old MySQL database, the transfer may fail or may import values into inappropriate columns, leading to incorrect data and unpredictable behavior.
 
-* If some string values (e.g. for "group name") are literals written *exactly* as `NULL`, they will be transferred as as undefined values or, if the target PostgreSQL column does not have a not-null contraint, the import may fail altogether.
+* If some string values (e.g. for "group name") are literals written *exactly* as `NULL`, they will be transferred as undefined values or, if the target PostgreSQL column does not have a not-null contraint, the import may fail altogether.
 
 ### Upgrade the Console
 

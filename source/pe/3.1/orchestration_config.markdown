@@ -50,7 +50,7 @@ Adding new orchestration users is not supported in Puppet Enterprise 3.0. Future
 In the meantime, if you need to add a new orchestration user in order to integrate an application with Puppet Enterprise, you can:
 
 * Obtain client credentials and a config file [as described in the standard MCollective deployment guide][config_client].
-* Write a Puppet module to distribute the new client's public key into the the `${pe_mcollective::params::mco_etc}/ssl/clients/` directory. This class must use `include pe_mcollective` to ensure that the directory can be located.
+* Write a Puppet module to distribute the new client's public key into the `${pe_mcollective::params::mco_etc}/ssl/clients/` directory. This class must use `include pe_mcollective` to ensure that the directory can be located.
 * Assign that Puppet class to the `mcollective` group in the PE console.
 
 Again, this process is _unsupported_ and may require additional work during a future upgrade.
@@ -95,7 +95,7 @@ You can later delete the variable to revert to the default setting.
 
 ### Orchestration SSL
 
-By default, the orchestration engine uses SSL to encrypt all orchestration messages. You can disable this in order to investigate problems, but should **never** disable it in a production deployment where business-critical orchestration commands are are being run.
+By default, the orchestration engine uses SSL to encrypt all orchestration messages. You can disable this in order to investigate problems, but should **never** disable it in a production deployment where business-critical orchestration commands are being run.
 
 To disable SSL:
 
