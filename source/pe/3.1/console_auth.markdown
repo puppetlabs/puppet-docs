@@ -55,7 +55,7 @@ You will encounter the login screen whenever you try to access a protected part 
 
 When you're done working in the console, choose *Logout* from the user account menu. Note that you will be logged out automatically after 48 hours.
 
-![login screen](./images/console/login.jpg)
+![login screen](./images/console/login.png)
 
 *Note:* User authentication services rely on a PostgreSQL database. If this database is restarted for any reason, you may get an error message when trying to log in or out. See [known issues](./appendix.html#known-issues) for more information.
 
