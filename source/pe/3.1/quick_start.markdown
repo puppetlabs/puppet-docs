@@ -14,6 +14,7 @@ Welcome to the Puppet Enterprise 3.1 quick start guide. This document is a short
 * Examine and control nodes in real time with live management
 * Install a third-party Puppet module
 * Apply Puppet classes to nodes with the console
+* View the results of configuration changes in the console
 
 > Following this walkthrough will take approximately 30 minutes.
 
@@ -199,7 +200,7 @@ Rather than using the command line to kick off puppet runs with `puppet agent -t
 * Click the `runonce` action to reveal the red "Run" button and additional options. Click the "Run" button to run Puppet on the selected nodes.
 
 > **Note:** You can't always use the `runonce` action's additional options --- with \*nix nodes, you must stop the `pe-puppet` service before you can use options like `noop`. [See this note in the orchestration section of the manual](./orchestration_puppet.html#behavior-differences-running-vs-stopped) for more details.
-
+<br>
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
 You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
@@ -217,7 +218,7 @@ Puppet classes are **distributed in the form of modules.** You can save time by 
 
 We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_desktop_shortcut`.
 
-* **On your control workstation,** . This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
+* **On your control workstation,** point your browser to [http://forge.puppetlabs.com/puppetlabs/motd](http://forge.puppetlabs.com/puppetlabs/motd). This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
 * Navigate to <https://forge.puppetlabs.com/puppetlabs/win_desktop_shortcut>. This is the Forge listing for an example module that manages a desktop shortcut on Windows.
 
 * **On the puppet master,** run `puppet module search motd`. This searches for modules from the Puppet Forge with `motd` in their names or descriptions:
@@ -229,9 +230,7 @@ We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_deskt
         dhoppe-motd       This module manages motd                                   @dhoppe       debian ubuntu motd
         saz-motd         Manage 'Message Of The Day' via Puppet                      @saz          motd
 
-    We want `puppetlabs-motd`, which is an example module that sets the message of the day file (`/etc/motd`) on \*nix systems.
-
-    You can view detailed info about the module by navigating to <http://forge.puppetlabs.com/puppetlabs/motd> in your web browser, or by using the search field on the Forge website.
+We want `puppetlabs-motd`, which is an example module that sets the message of the day file (`/etc/motd`) on \*nix systems. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/motd>. You can also use the Search feature on the Forge site.
 
     You can also do a similar search for `desktop_shortcut`, which should find the other module we'll be using.
 * Install the first module by running `puppet module install puppetlabs-motd`:
@@ -281,6 +280,25 @@ Every module contains one or more **classes.** The modules you just installed co
 >
 > For more recommended modules, [search the Forge](http://forge.puppetlabs.com) or check out the [Module of the Week series on the Puppet Labs blog.](http://puppetlabs.com/category/blog/module-of-the-week-blog/)
 
+### Viewing Changes with Event Inspector
+
+[EI-default]: ./images/quick/EI_default.png
+[EI-class_change]: ./images/quick/EI_class-change.png
+[EI-detail]: ./images/quick/EI_detail.png
+
+Click on the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Classes, Nodes, and Resources.
+
+![The default event inspector view][EI-default]
+
+You can click on events in the summary pane to inspect them in detail. For example, if you click on "With Changes" in the "Classes With Events" summary view, the main pane will show you that the MOTD class was successfully added when you triggered the last puppet run. 
+
+![Viewing a successful change][EI-class_change]
+
+You can keep clicking to drill down and see more detail. You can click the back arrow left of the summary pane or the bread-crumb trail at the top of the page if you want to go back up a level. Eventually, you will end up at a run summary that shows you the details of the event. Note that you can see exactly which piece of puppet code was responsible for generating the event; in this case, it was line 21 of the `init.pp` manifest.
+
+![Event detail][EI-detail]
+
+If there had been a problem with applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing the `/etc/motd` file.
 
 Summary
 -----
@@ -292,6 +310,7 @@ You have now experienced the core features and workflows of Puppet Enterprise. I
 * [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
 * [Allow nodes to be managed by regularly scheduled Puppet runs.](./puppet_overview.html#when-new-configurations-take-effect)
 * Use [live management](./console_navigating_live_mgmt.html) to [inspect and compare nodes](./orchestration_resources.html), and to [trigger on-demand puppet agent](./orchestration_puppet.html) runs when necessary.
+* Use [event inspector](./console_event-inspector.html) to learn more about events that occurred during puppet runs, such as what was changed or why something failed.
 
 ### Next
 
