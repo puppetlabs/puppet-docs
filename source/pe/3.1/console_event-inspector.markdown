@@ -90,7 +90,7 @@ If the `schedule` metaparameter is set for a given resource, and the scheduled t
 
 #### Simplified Display for Some Resource Types
 
-For resource types that take the `ensure` property, (e.g. user or file resource types), when the resource is first created, event inspector will only display a single event. This is because puppet has only changed one property (`ensure`) which sets all the baseline properties of that resource at once. For example, all of the properties of a given user are created when the user is added, just as they would be if the user was added manually. If PE changes that aspects of that user resource later, each individual property change will be shown as a separate event.
+For resource types that take the `ensure` property, (e.g. user or file resource types), when the resource is first created, event inspector will only display a single event. This is because puppet has only changed one property (`ensure`) which sets all the baseline properties of that resource at once. For example, all of the properties of a given user are created when the user is added, just as they would be if the user was added manually. If a PE run changes properties of that user resource later, each individual property change will be shown as a separate event.
 
 
 [eventtab]: ./images/console/event_inspector/event_tab.png

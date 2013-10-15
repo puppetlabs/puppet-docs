@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "PE 3.1 » Quick Start » Using PE"
-subtitle: "Quick Start: Using PE 3.0"
+subtitle: "Quick Start: Using PE 3.1"
 canonical: "/pe/latest/quick_start.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.0 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
+Welcome to the Puppet Enterprise 3.1 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
@@ -101,7 +101,7 @@ During installation, the agent node contacted the puppet master and requested a 
 * You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
 * Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
 
-![The console login screen](./images/quick/login.jpg)
+![The console login screen](./images/quick/login.png)
 
 * The console GUI loads in your browser. Note the pending "node requests" indicator in the upper right corner. Click it to load a list of pending node requests.
 
