@@ -198,7 +198,7 @@ While the compliance app has been removed,  none of the associated data will be 
 Related to the removal of compliance, the File Search section of the console has been removed. This section was able to display file contents when given an MD5 checksum, but was no longer relevant once compliance was removed.
 
 #### Puppet Agent Service Rename
-Previously, the puppet agent service was known by several names, depending on platform (e.g. `puppetagent` on Solaris, `pe-puppet-agent` on Debian/Ubuntu, etc.). As of PE 3, it is called `'pe-puppet` on all platforms.
+Previously, the puppet agent service was known by several names, depending on platform (e.g. `puppetagent` on Solaris, `pe-puppet-agent` on Debian/Ubuntu, etc.). As of PE 3, it is called `pe-puppet` on all platforms.
 
 #### Change to Orchestration Engine's Authentication Backend
 
