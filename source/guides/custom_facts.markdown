@@ -259,6 +259,8 @@ Using this format, a single script can return multiple facts.
 
 ### Executable facts --- Windows
 
+> **Note:** Executable facts on Windows are supported in Facter 1.7.3 and later; if you are using 1.7.0 through 1.7.2, you must upgrade in order to use them.
+
 Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
 -   `.com` and `.exe`: binary executables
