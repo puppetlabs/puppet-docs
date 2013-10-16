@@ -10,7 +10,7 @@ This guide covers the following tasks:
 
   - [How to Create a JIRA Account](#create-a-jira-account)
   - [How to file a new bug](#submitting-a-bug)
-  - [How to migrate a bug from Redmine]()
+  - [How to migrate a bug from Redmine](#migrating-tickets-from-redmine)
   - [How to help triage bugs]()
 
 ## Create a JIRA Account
@@ -34,6 +34,7 @@ Here are two strategies for finding out if your bug has already been reported (a
 2. Join and search the 'puppet-bugs' group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
    Every action on a bug in the Puppet issue trackers will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening.
    Using the Google Groups interface also lets you search through the bug traffic without pulling in any extraneous results.
+   If the Google search turns up an open ticket in the old Redmine tracking system, please follow the directions under [Migrating Tickets from Redmine](#migrating-tickets-from-redmin) to ensure the old ticket is copied over to JIRA.
 
 If you find an existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing.
 Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has.
@@ -84,6 +85,24 @@ The other fields aren't used and can be left blank (due date, estimated time, et
 
 Once you've submitted a bug, you'll be emailed on every update.
 When you want to get update emails about bugs you did not create, you can add yourself as a "watcher" using the "Watch" link in the right hand sidebar of each bug page.
+
+
+## Migrating Tickets from Redmine
+
+Bug tracking for Puppet projects was managed for many years using the Redmine bugtracker hosted at <http://projects.puppetlabs.com>.
+Going forward, all ticket activity has shifted to JIRA and Redmine has been placed in read-only mode.
+Unclosed tickets in the following Redmine projects may be automatically exported to JIRA:
+
+- [Puppet](http://projects.puppetlabs.com/projects/puppet/issues)
+- [Puppet Enterprise](http://projects.puppetlabs.com/projects/puppet-enterprise/issues)
+- [Facter](http://projects.puppetlabs.com/projects/facter/issues)
+- [Hiera](http://projects.puppetlabs.com/projects/hiera/issues)
+- [MCollective](http://projects.puppetlabs.com/projects/mcollective/issues)
+
+Open tickets in the above projects may be migrated by clicking on the "Export this ticket to JIRA" button located above the ticket description.
+If export is successful, the button will be replaced by a link to a newly created JIRA ticket.
+If you are experiencing an issue that appears to be covered by a closed ticket in Redmine, please submit a new ticket to JIRA by following the steps under [Submitting a Bug](#submitting-a-bug).
+After filing a new JIRA ticket, please add a link to the closed Redmine ticket you believe is related.
 
 
 ## Workflow for bugs
