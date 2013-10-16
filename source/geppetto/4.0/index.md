@@ -4,7 +4,7 @@ title: "Geppetto"
 subtitle: "Introduction to Geppetto"
 canonical: "/geppetto/latest/geppetto.html"
 ---
-<!-- [Geppetto_install]: ./images/Geppetto_install_1.png --> 
+[geppetto_install]: ./images/geppetto_install.png
 [IDE_overview]: ./images/IDE_overview.png
 [prev]: ./images/geppettoprev.png
 [add]: ./images/geppettoaddpuppetdb.png
@@ -15,7 +15,7 @@ canonical: "/geppetto/latest/geppetto.html"
 
 Geppetto is an integrated development environment for Puppet. In other words, it is a simplified toolset for developing and integrating Puppet modules and manifests.
 
-Built on Eclipse, Geppetto provides a puppet manifest editor that provides syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which allows you to create projects from existing modules on the Forge as well as easily upload your custom modules. Geppetto is even integrated with GitHub (Git) and Apache Subversion (SVN) with Eclipse, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
+Built on Eclipse, Geppetto provides a puppet manifest editor that provides syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which allows you to create projects from existing modules on the Forge as well as easily upload your custom modules. Geppetto is even integrated with GitHub (Git) and Subversion (SVN) with Eclipse, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
 
 Geppetto also offers [integration with Puppet Enterprise][#geppetto-and-pe], giving you an additional resource view and error information based on PuppetDB data from the last puppet run.
 
@@ -53,7 +53,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 2. In the **Work with** box, add this link: https://geppetto-updates.puppetlabs.com/4.x.
 This URL is for use with a download manager. It's not meaningful to visit it with a browser.
 
-	<!-- ![Geppetto_install][Geppetto_install] --> 
+	![Geppetto install in Eclipse][geppetto_install] 
 
 3. Select Geppetto in the available software list, and then click **Next**.
 
@@ -66,9 +66,9 @@ This URL is for use with a download manager. It's not meaningful to visit it wit
 ##Working with Puppet Projects
 Geppetto provides several options for creating and editing Puppet projects. 
 
-* **Create new projects**  Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, and from GitHub or SVN.
+* **Create new projects**  Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, and from Git or SVN.
 
-* **Create new repositories**  You can create new repositories on GitHub or SVN, and then populate those repositories with new or existing Puppet projects.
+* **Create new repositories**  You can create new repositories on Git or SVN, and then populate those repositories with new or existing Puppet projects.
 
 * **Import and commit projects**  From Git or SVN, import existing Puppet projects, edit them, and then commit them back to the repository that they came from. You can also publish modules directly to the Forge.
 
@@ -139,7 +139,7 @@ Within *Details*:
 * **Source**: The repo where the module lives. If you used Geppetto to create your module, you can ignore this. 
 * **Project Page**: The GitHub page where the module's source code is published. 
 * **Summary**: A brief description of the module's functionality.
-* **Description**: Originally, this was a space to give some more detailed information about your module, but this feature is being deprecated. Please enter detailed information about your module in the [README](http://docs.puppetlabs.com/puppet/3/reference/modules_documentation.html).
+* **Description**: Originally, this was a space to give some more detailed information about your module, but this feature is being deprecated. Information you put in this field will be lost. Please enter detailed information about your module in the [README](http://docs.puppetlabs.com/puppet/3/reference/modules_documentation.html) instead.
 
 If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module. From the *Dependencies* tab, you can add, delete, or edit dependencies for your module. 
 
@@ -165,14 +165,14 @@ The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules wri
 
 Geppetto allows you to publish one or several modules, as well as allowing you to publish only specific parts of a module. To get started publishing modules to the Forge, make sure the *Project Explorer* window is open. Then, 
 
-1. Right-click anywhere in the *Project Explorer* window OR choose **File** -> **Export…** to open the Export Wizard.
-2. In the *Export Wizard*, you can either type 'Forge' in text box OR expand the Puppet folder. 
+1. Right-click (or control+click) anywhere in the *Project Explorer* window and on the shortcut menu, click **Export**. OR, choose **File** -> **Export…** to open the Export Wizard.
+2. In the *Export Wizard*, you can either type 'Forge' in the text box OR expand the Puppet folder. 
 3. Then choose **Export Modules to Forge** and click **Next**.
 4. From here, you can choose to publish one or several modules, as well as choose what parts of the modules you would like to publish. 
     * To publish all of one or more modules, simply click the checkbox(es) next to the name of the project(s) housing the module. 
     * To publish only part of a module:
-        1. Select the project name and choose the individual files to include by clicking the checkboxes next to those filenames, OR
-        2. Click the arrow next to the project name and choose the individual folders/files by clicking the checkboxes next to the folder or filenames. 
+        * Select the project name and choose the individual files to include by clicking the checkboxes next to those filenames, OR
+        * Click the arrow next to the project name and choose the individual folders/files by clicking the checkboxes next to the folder or filenames. 
 5. Enter your Forge username and password in the text boxes below the pane where you selected your modules. (If you do not have a Forge username, see the instructions [here](http://docs.puppetlabs.com/puppet/3/reference/modules_publishing.html#create-a-puppet-forge-account).)
 6. Click **Finish**.
 
