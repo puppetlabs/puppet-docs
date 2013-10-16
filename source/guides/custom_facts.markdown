@@ -203,7 +203,7 @@ If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventor
 External Facts
 --------------
 
-**External facts are available only in Facter 1.7 and later.**
+**External facts are available only in Facter 1.7 and later for all operating systems except Windows, in which they are available only in Facter 1.7.3.**
 
 ### What are external facts?
 
