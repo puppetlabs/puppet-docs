@@ -1,10 +1,12 @@
-module PuppetDocs::Reference::Type
-  require 'json'
-  require 'erb'
+module PuppetDocs
+  module Reference
+    module Type
+      require 'json'
+      require 'erb'
 
-  def build_page(typejson)
-    typedocs = JSON.load(typejson)
-    header = <<EOT
+      def build_page(typejson)
+        typedocs = JSON.load(typejson)
+        header = <<EOT
 ---
 layout: default
 title: "Type Reference"
@@ -15,9 +17,9 @@ toc: false
 
 EOT
 
-    generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
-    footer = generated_at
-    preamble = <<EOT
+        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
+        footer = generated_at
+        preamble = <<EOT
 #{generated_at}
 
 ## About Resource Types
@@ -96,51 +98,53 @@ declare which features they provide.
 
 EOT
 
-    sorted_type_list = typedocs.keys.sort
-    custom_toc = %q{
+        sorted_type_list = typedocs.keys.sort
+        custom_toc = %q{
 <nav id="page-nav" class="in-page">
 <ol class="toc" style="-webkit-column-width: 13em; -webkit-column-gap: 1.5em; -moz-column-width: 13em; -moz-column-gap: 1.5em; column-width: 13em; column-gap: 1.5em;">
 } + sorted_type_list.collect{|name| %q[<li class="toc-lv2"><a href="#] + name.gsub('_','') + %q[">] + name + %q[</a></li>] }.join("\n") + %q{
 </ol></nav>} + "\n\n"
-    # Admission: I'm being lazy about generating the header IDs, since the type
-    # names are already downcased, have no spaces, and the only character the ID
-    # generator will remove is the underscore.
+        # Admission: I'm being lazy about generating the header IDs, since the type
+        # names are already downcased, have no spaces, and the only character the ID
+        # generator will remove is the underscore.
 
-    # Other admission: 13em width was pulled out of a butt b/c it appears to
-    # leave enough room for two digits, a dot, a space, and
-    # nagios_servicedependency.
+        # Other admission: 13em width was pulled out of a butt b/c it appears to
+        # leave enough room for two digits, a dot, a space, and
+        # nagios_servicedependency.
 
-    all_type_docs = sorted_type_list.collect{|name|
-      docs_for_this_type(name, typedocs[name])
-    }.join("\n\n---------\n\n")
+        all_type_docs = sorted_type_list.collect{|name|
+          docs_for_this_type(name, typedocs[name])
+        }.join("\n\n---------\n\n")
 
-    # And return:
-    header + custom_toc + preamble + all_type_docs + "\n\n" + footer
-  end
-
-  def docs_for_this_type(name, this_type)
-    sorted_attribute_list = this_type['attributes'].keys.sort {|a,b|
-      # Float namevar to top and ensure to second-top
-      if this_type['attributes'][a]['namevar']
-        -1
-      elsif this_type['attributes'][b]['namevar']
-        1
-      elsif a == 'ensure'
-        -1
-      elsif b == 'ensure'
-        1
-      else
-        a <=> b
+        # And return:
+        header + custom_toc + preamble + all_type_docs + "\n\n" + footer
       end
-    }
-    sorted_feature_list = this_type['features'].keys.sort
-    longest_attribute_name = sorted_attribute_list.collect{|attr| attr.length}.max
 
-    ERB.new(File.read(File.dirname(__FILE__) + '/type_template.erb'), nil, '-').result(binding)
+      def docs_for_this_type(name, this_type)
+        sorted_attribute_list = this_type['attributes'].keys.sort {|a,b|
+          # Float namevar to top and ensure to second-top
+          if this_type['attributes'][a]['namevar']
+            -1
+          elsif this_type['attributes'][b]['namevar']
+            1
+          elsif a == 'ensure'
+            -1
+          elsif b == 'ensure'
+            1
+          else
+            a <=> b
+          end
+        }
+        sorted_feature_list = this_type['features'].keys.sort
+        longest_attribute_name = sorted_attribute_list.collect{|attr| attr.length}.max
+
+        ERB.new(File.read(File.dirname(__FILE__) + '/type_template.erb'), nil, '-').result(binding)
+      end
+
+
+      module_function :build_page
+      module_function :docs_for_this_type
+
+    end
   end
-
-
-  module_function :build_page
-  module_function :docs_for_this_type
-
 end
