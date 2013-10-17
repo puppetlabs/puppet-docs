@@ -96,7 +96,7 @@ The installer will save auto-generated users and passwords in `/etc/puppetlabs/i
 
 * If you have manually re-ordered the columns in your old MySQL database, the transfer may fail or may import values into inappropriate columns, leading to incorrect data and unpredictable behavior.
 
-* If some string values (e.g. for "group name") are literals written *exactly* as `NULL`, they will be transferred as undefined values or, if the target PostgreSQL column does not have a not-null contraint, the import may fail altogether.
+* If some string values (e.g. for "group name") are literals written *exactly* as `NULL`, they will be transferred as undefined values or, if the target PostgreSQL column has a not-null constraint, the import may fail altogether.
 
 ### Upgrade the Console
 
@@ -107,7 +107,7 @@ On the node serving the console role, unpack the PE 3.1 tarball and run the `pup
 > * [Pruning the MySQL data](./maintain_console-db.html#cleaning-old-reports) before starting the upgrade will make things go faster. While not absolutely necessary, to make the transfer go faster we recommend deleting all but two-four weeks worth of reports.
 > * If you are running the console on a VM, you may also wish to temporarily increase the amount of RAM available.
 >
-> Note that your old database and the temporary export file will NOT be deleted after the upgrade completes. After you are sure the upgrade was successful, you will need to delete these files yourself to reclaim disk space.
+> Note that your old database will NOT be deleted after the upgrade completes. After you are sure the upgrade was successful, you will need to delete the database files yourself to reclaim disk space.
 
 
 The installer will also ask for the following information:
