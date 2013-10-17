@@ -26,7 +26,7 @@ Puppet Enterprise (PE) event inspector is a new reporting tool that provides mul
 
 #### Discoverable Classes & Parameters
 
-New UI and functionality in PE's console now allows you to easily add classes and parameters in the production environment by selecting them from an auto-generated list. The list also displays available documentation for the class, making it easier to know what a class does and why. For more information, see the [console documentation on classification](console_classes_groups.html#viewing-the-known-classes).
+New UI and functionality in PE's console now allow you to easily add classes and parameters in the production environment by selecting them from an auto-generated list. The list also displays available documentation for the class, making it easier to know what a class does and why. For more information, see the [console documentation on classification](console_classes_groups.html#viewing-the-known-classes).
 
 #### Red Hat Enterprise Linux 4 Support
 
@@ -42,7 +42,7 @@ PE's cloud provisioner now supports Google Compute Engine virtual infrastructure
 
 #### Geppetto Integration
 
-Geppetto is an integrated development environment (IDE) for Puppet. It is integrated with PE and provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. For more information, visit the [puppet modules and manifests page](puppet_modules_manifests.html) or the [Geppetto Documentation](./geppetto/4.0/index.html).
+Geppetto is an integrated development environment (IDE) for Puppet. It is integrated with PE and provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. For more information, visit the [Geppetto Documentation](./geppetto/4.0/index.html) or the [puppet modules and manifests page](puppet_modules_manifests.html).
 
 #### Windows Reboot Capabilities
 
@@ -67,10 +67,10 @@ Security against brute force attacks has been improved by adding an account lock
 
 #### Removal of Upgrade Database Staging Directory
 
-The upgrade process has been simplified by the removing the need to provide a staging directory for transferring data between the old MySQL databases used by 2.8.x and new PostgreSQL databases used in 3.x. Data is now piped directly between the old and new databases.
+The upgrade process has been simplified by removing the need to provide a staging directory for transferring data between the old MySQL databases used by 2.8.x and new PostgreSQL databases used in 3.x. Data is now piped directly between the old and new databases.
 
 #### Support for SELinux
-PE 3.1 includes new SELinux bindings for pe-ruby on EL5 and EL6. These bindings allow you to manage SELinux attributes of files and the `seboolean` and `semodule` types. These binding are available on preview basis and are not installed by default. They are included in the installation tarball in a package named `pe-ruby-selinux`.
+PE 3.1 includes new SELinux bindings for pe-ruby on EL5 and EL6. These bindings allow you to manage SELinux attributes of files and the `seboolean` and `semodule` types. These bindings are available on a preview basis and are not installed by default. They are included in the installation tarball in a package named `pe-ruby-selinux`.
 
 #### Security Fixes
 
