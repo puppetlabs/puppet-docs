@@ -182,7 +182,7 @@ Geppetto will generate a pop-up confirmation window when your modules have been 
 
 Geppetto offers a special view for Puppet Enterprise users, the *Puppet Resource Events View*. This new view is an integration with PuppetDB which enables Geppetto to query PuppetDB instances and get information about recent events.
 
-The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to go to the exact line in the source code where the failure or success is occurring.
+The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to view the resource, file, etc. in the source code to help determine why the failure or success is occurring.
 
 To access the *Puppet Resource Events View*  
 
