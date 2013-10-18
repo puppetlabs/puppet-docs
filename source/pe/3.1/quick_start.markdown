@@ -232,7 +232,8 @@ We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_deskt
 
 We want `puppetlabs-motd`, which is an example module that sets the message of the day file (`/etc/motd`) on \*nix systems. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/motd>. You can also use the Search feature on the Forge site.
 
-    You can also do a similar search for `desktop_shortcut`, which should find the other module we'll be using.
+You can also do a similar search for `desktop_shortcut`, which should find the other module we'll be using.
+
 * Install the first module by running `puppet module install puppetlabs-motd`:
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
@@ -240,6 +241,7 @@ We want `puppetlabs-motd`, which is an example module that sets the message of t
         Installing -- do not interrupt ...
         /etc/puppetlabs/puppet/modules
         └── puppetlabs-motd (v1.0.0)
+
 * Install the second module by running `puppet module install puppetlabs-win_desktop_shortcut`. (If you are not using any Windows nodes, this module is inert; you can install it or skip it.)
 
 > You have just installed multiple Puppet modules. All of the classes in them are now available to be added to the console and assigned to nodes.
@@ -290,7 +292,7 @@ Click on the "Events" tab in the main navigation bar. The event inspector window
 
 ![The default event inspector view][EI-default]
 
-You can click on events in the summary pane to inspect them in detail. For example, if you click on "With Changes" in the "Classes With Events" summary view, the main pane will show you that the MOTD class was successfully added when you triggered the last puppet run. 
+You can click on events in the summary pane to inspect them in detail. For example, if you click on "With Changes" in the "Classes With Events" summary view, the main pane will show you that the MOTD class was successfully added when you triggered the last puppet run.
 
 ![Viewing a successful change][EI-class_change]
 
