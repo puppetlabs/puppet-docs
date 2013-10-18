@@ -11,7 +11,7 @@ This guide covers the following tasks:
   - [How to Create a JIRA Account](#create-a-jira-account)
   - [How to file a new bug](#submitting-a-bug)
   - [How to migrate a bug from Redmine](#migrating-tickets-from-redmine)
-  - [How to help triage bugs]()
+  - [How to help triage bugs](#workflow-for-bugs)
 
 ## Create a JIRA Account
 
@@ -105,19 +105,21 @@ If you are experiencing an issue that appears to be covered by a closed ticket i
 After filing a new JIRA ticket, please add a link to the closed Redmine ticket you believe is related.
 
 
-## Workflow for bugs
+## Workflow for Bugs
 
 ### Initial triage
 
-Bugs that are in *Status*: _Unreviewed_ are said to need triage. There's a [Pre-made query for Unreviewed tickets](https://projects.puppetlabs.com/projects/puppet/issues?query_id=19) that will bring up tickets for Puppet and all its sub-projects. Anyone can triage a ticket! Here's how:
+Bugs that are in *Status*: _Open_ are said to need triage.
+There's a [Pre-made query for Unreviewed tickets](https://projects.puppetlabs.com/projects/puppet/issues?query_id=19) that will bring up tickets for all open source projects.
+Anyone can triage a ticket! Here's how:
 
 1. Check the ticket makes sense - is it clear what the requester wants?
     * Is the problem description detailed enough?
     * Is there a description of what is broken and how to replicate the problem?
     * Is it clear what the affected version(s)/platform/feature this affects?
-    * Is it assigned to the right category and does it have descriptive keywords?
-    * Is the output/code/log data clear and structured (you can edit this by updating the ticket and clicking the "More" button next to the "Change properties" line)
-2. Is it assigned to the right tracker - is this a Bug or a Feature?
+    * Is it assigned to the right component and does it have descriptive labels?
+    * Is the output/code/log data clear and structured (you can edit this by clicking on the description)
+2. Check that the ticket "Type" is correct - is this a Bug or a Feature?
 3. Can you replicate the problem?
 4. Can you fix the problem?  Patches and tests are very welcome! See our [Contribution Guidelines](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md) for how to get started.
 
@@ -125,24 +127,28 @@ The output of the triage process should be moving the bug to one of the states i
 
 ### Ticket Status Workflow
 
-* *Status*: _Needs more information_, *Assignee*: _Author_ -- Appropriate if the author needs to provide more information to make the issue reproducible.
-* *Status*: _Duplicate_, *Related Issues*: _Duplicates: (Original Bug)_ -- If the author did not find an earlier bug which describes their issue, but one exists, the newer bug should be closed as a duplicate by setting its status to _Duplicate_ and using the *Related Issues* field to indicate the original bug number.
-* *Status*: _Investigating_, *Assignee*: _Triager_ -- If you make some progress on the ticket but cannot come to immediate resolution, make yourself the *Assignee* and set the state to _Investigating_.
-* *Status*: _Needs decision_, *Assignee*: _Product Owner_ -- Often, the problem described in the ticket is not obviously a bug. It might be a request for a new feature or a change in existing behaviour. In this case the product owner for the project needs to make a decision about whether the change fits into the product direction or perform further investigation and discovery into what the right solution ought to be. Setting the *Status* to _Needs decision_ and *Assignee* to the product owner will ensure it gets to the right people (even if, as often happens, the product owner him- or herself is not the final decision-maker, part of the job is to make sure the right eyes see the issue).
-* *Status*: _Accepted_, *Assignee*: _Community or Puppetlabs Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Accepted_ status and be assigned to the person working on it. Tickets which are in status _Accepted_ but do not have an owner are not being actively worked on.
-* *Status*: _In Topic Branch Pending Review_, *Assignee*: _Community-Support Developer_ -- Once there is code in a pull request, and the *Branch* field indicates the URL of the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
-* *Status*: _Merged Pending Release_, *Assignee*: _Release Engineer_ -- After merging completed code, the community support developer sets the _Merged Pending Release_ status and adds a comment with the github URL of the commit that contains the merge (e.g. https://github.com/puppetlabs/puppet/commit/abcdefbadc0ffee
+The status of an issue can be changed using the "Workflow" menu at the top of the ticket page.
+Links to other JIRA tickets and external web pages can be created using the "Link" entry under the "More" menu.
+
+* *Status*: _Needs Information_, *Assignee*: _Author_ -- Appropriate if the author needs to provide more information to make the issue reproducible.
+* *Status*: _Resolved_, *Resolution:* _Duplicate_, *Link Issues*: _Duplicates: (Original Bug)_ -- If the author did not find an earlier bug which describes their issue, but one exists, the newer bug should be closed as a duplicate by setting its status to _Resolved_ and choosing a resolution of _Duplicate_.
+  A link to the earlier bug should be added.
+* *Status*: _Assessing_, *Assignee*: _Triager_ -- If you make some progress on the ticket but cannot come to immediate resolution, make yourself the *Assignee* and set the state to _Assessing_.
+* *Status*: _Needs Information_, *Assignee*: _Product Owner_ -- Often, the problem described in the ticket is not obviously a bug.
+  It might be a request for a new feature or a change in existing behaviour.
+  In this case the product owner for the project needs to make a decision about whether the change fits into the product direction or perform further investigation and discovery into what the right solution ought to be.
+  Setting the *Status* to _Needs Information_ and *Assignee* to the product owner will ensure it gets to the right people (even if, as often happens, the product owner him- or herself is not the final decision-maker, part of the job is to make sure the right eyes see the issue).
+* *Status*: _Ready for Engineering_, *Assignee*: _Community or Puppet Labs Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Ready for Engineering_ status and be assigned to the person working on it.
+  Tickets which are in status _Ready for Engineering_ but do not have a target release assigned by the product owner are not being actively worked on by Puppet Labs.
+* *Status*: _Ready for Merge_, *Assignee*: _Puppet Labs Developer_ -- Once there is code in a pull request, and a *Link* has been created pointing to the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
+* *Status*: _Ready for Delivery_, *Assignee*: _Release Engineer_ -- After merging completed code, the Puppet Labs Developer sets the _Ready for Delivery_ status and adds a comment with the github URL of the commit that contains the merge (e.g. https://github.com/puppetlabs/puppet/commit/abcdefbadc0ffee).
 * *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket ("Not to be fixed", "Unable to reproduce", etc)
-* *Status*: _Requires CLA to be signed_, *Assignee*: _Author_ -- Even if the code and tests are there, we need a Contributor License Agreement on file before we can merge the code. [Sign the Contributor License Agreement here.](https://cla.puppetlabs.com/)
-
-#### Potentially Unused Statuses
-
-* _Code Insufficient_, _Tests Insufficient_ -- With the development workflow on github, these should come up as part of pull request code review/comments and don't require synchronizing to redmine
-* _Rejected_ -- Sounds harsher than it needs to be! Nobody likes being rejected. Why not just "Closed"?
 
 ### Communicating during investigation
 
-Change *Assignee* to the person who has the next action on the bug. For example if a community member triages a bug and determines that the submitter didn't include enough detail to reproduce the problem, she should assign the ticket back to the originator and set the *Status* to _Needs more Information_. When the originator supplies the additional info, he should set *Assignee* back to the person who asked the question and update status to *Investigating*.
+Change *Assignee* to the person who has the next action on the bug.
+For example if a community member triages a bug and determines that the submitter didn't include enough detail to reproduce the problem, they should assign the ticket back to the originator and set the *Status* to _Needs Information_.
+When the originator supplies the additional info, they should set *Assignee* back to the person who asked the question and update the status to *Assessing*.
 
 ### Release Planning and Workflow
 
