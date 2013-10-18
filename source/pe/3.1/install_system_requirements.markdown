@@ -25,12 +25,12 @@ Puppet Enterprise 3.1 supports the following systems:
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
 Red Hat Enterprise Linux     | 4, 5 & 6                                   | x86 & x86\_64 | all (RHEL 4 supports agent only)
-CentOS                       | 5 & 6                                   | x86 & x86\_64 | all 
-Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all 
-Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all 
-Oracle Linux                 | 5 & 6                                   | x86 & x86\_64 | all 
-Scientific Linux             | 5 & 6                                   | x86 & x86\_64 | all 
-SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | all 
+CentOS                       | 5 & 6                                   | x86 & x86\_64 | all
+Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all
+Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all
+Oracle Linux                 | 5 & 6                                   | x86 & x86\_64 | all
+Scientific Linux             | 5 & 6                                   | x86 & x86\_64 | all
+SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | all
 Solaris                      | 10 (Update 9 or later)                                      | SPARC & i386  | agent
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2 7, 8, & 2012 | x86 & x86\_64 | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
@@ -125,19 +125,19 @@ cronie (RHEL 6)     |                        |                        |         
 vixie-cron (RHEL 4, 5) |                        |                        |                          |
 virt-what           |                        |                        |                          |
 
-  <br> 
-    
+  <br>
+
 ***SLES***
 
 All Nodes | Master Nodes   | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 ----------|----------------|---------------|--------------------------|------------------------
 pciutils  | libapr1        | libapr1       | libjpeg                  | libxml2
-pmtools | libapr-util1   | libapr-util1  |                          | 
+pmtools | libapr-util1   | libapr-util1  |                          |
 cron      | libxslt | curl          |                          |
 libxml2  | curl           |               |                          |
 net-tools | libjpeg        |               |                          |
 libxslt      |
- 
+
  <br>
 
 ***Debian***
@@ -202,7 +202,7 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 
 *Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
 
-The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](/references/3.2.latest/type.html#package) for technical details on these providers.
+The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](/references/3.3.latest/type.html#package) for technical details on these providers.
 
 ***Solaris***
 

@@ -12,7 +12,7 @@ All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on
 ## References
 
 - For an exhaustive description of puppet's configuration settings and auxiliary configuration files, refer to the [Configuring Puppet Guide](http://docs.puppetlabs.com/guides/configuring.html).
-- For details, syntax and options for the available configuration settings, visit the [configuration reference](http://docs.puppetlabs.com/references/3.2.latest/configuration.html).
+- For details, syntax and options for the available configuration settings, visit the [configuration reference](http://docs.puppetlabs.com/references/3.3.latest/configuration.html).
 - For details on how to configure access to Puppet's pseudo-RESTful HTTP API, refer to the [Access Control Guide](http://docs.puppetlabs.com/guides/rest_auth_conf.html).
 
     > **Note:** If you haven't modified the `auth.conf` file, it may occasionally be modified when upgrading between Puppet Enterprise versions. However, if you HAVE modified it, the upgrader will not automatically overwrite your changes, and you may need to manually update `auth.conf` to accomodate new Puppet Enterprise features. Be sure to read the upgrade notes when upgrading your puppet master to new versions of PE.
