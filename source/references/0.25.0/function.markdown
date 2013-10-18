@@ -114,7 +114,7 @@ can be passed, and the first file that exists will be read in.</p>
 ### fqdn_rand
 
 <p>Generates random numbers based on the node's fqdn. The first argument
-sets the range.  The second argument specifies a number to add to the
+sets the range.  The second argument specifies a number or string to add to the
 seed and is optional.</p>
 <ul>
 <li><strong>Type</strong>: rvalue</li>

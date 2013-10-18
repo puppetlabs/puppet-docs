@@ -102,7 +102,7 @@ statement.</p>
 
 ### fqdn_rand
 
-<p>Generates random  numbers based on the node's fqdn. The first argument sets the range. The second argument specifies a number to add to the seed and is optional.</p>
+<p>Generates random  numbers based on the node's fqdn. The first argument sets the range. The second argument specifies a number or string to add to the seed and is optional.</p>
 <ul>
 <li><strong>Type</strong>: rvalue</li>
 </ul>
