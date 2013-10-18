@@ -9,15 +9,15 @@ canonical: "/pe/latest/cloudprovisioner_gce.html"
 
 Puppet Enterprise provides support for working with Google Compute Engine, a service built on the Google infrastructure that provides Linux virtual machines for large-scale computing. Using the `puppet node_gce` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
 
-The main actions used for GCE cloud provisioning include:
+The main actions for GCE cloud provisioning include:
 
 *  `puppet node_gce list` for viewing existing instances
 *  `puppet node_gce create` for creating new instances
 *  `puppet node_gce delete` for destroying no longer needed instances
-*  `puppet node_gce bootstrap` for creating a new GCE VM, and then installing PE via SSH
-*  `puppet node_gce register` for registering your cloud provisioner GCE client with Google Cloud.
+*  `puppet node_gce bootstrap` for creating a new GCE VM, then installing PE via SSH
+*  `puppet node_gce register` for registering your cloud provisioner GCE client with Google Cloud
 *  `puppet node_gce ssh` to SSH to a GCE VM
-*  `puppet node_gce user` to manage user login accounts and SSH keys on an instance
+*  `puppet node_gce user` for managing user login accounts and SSH keys on an instance
 
 If you're new to Google Compute Engine, we recommend reading their [Getting Started
 documentation](https://developers.google.com/compute/docs/getting-started-with-compute).
@@ -27,9 +27,12 @@ Below, we take a quick look at these actions and their associated options. For c
 Viewing existing GCE instances
 -----
 
-Let's start by finding out about the currently running GCE instances.  You do this by running the `puppet node_gce list` command and including `project` and the project name as follows.
+Let's start by finding out about currently-running GCE instances. Run the `puppet node_gce list` command with the  `project` subcommand and the project name. For example, a project named 'cloud-provisioner-testing-1' would look like:
 
     $ puppet node_gce list --project cloud-provisioner-testing-1
+    
+And the output would look like:
+    
     #### zone: zones/europe-west1-a
     <no instances in zone>
     
@@ -44,16 +47,14 @@ Let's start by finding out about the currently running GCE instances.  You do th
     networks: nic0: 10.240.229.40
     disks: : scratch read-write
     
-
-The result gives you a list of the instances running in each geographical zone (this example only shows two of the available zones). You can see that there is one registered instance on GCE. The information that's provided for the instance includes the SSH key used to establish the connection, the type of project--in this case, n1-standard-1--which was set during registration, and the image that the instance contains. Here, the image is a Debian Wheezy OS.
-
+The output gives you a list of instances running in each geographical zone (this example only shows two of the available zones). You can see that there is one registered instance on GCE. The information that's provided for the instance includes the SSH key used to establish the connection, the type of project--in this case, n1-standard-1--which was set during registration, and the image that the instance contains. Here, the image is a Debian Wheezy OS.
 
 **Note:** If you have no instances running, each zone that's listed will give the message, "no instances in zone."
 
 Creating a new GCE instance
 -----
 
-New instances are created using the `node_gce create` or the `node_gce bootstrap` actions. The `create` action simply builds a new GCE machine instance. The `bootstrap` "wrapper" action creates, classifies, and then initializes the node all in one command.
+New instances are created using the `node_gce create` or the `node_gce bootstrap` actions. The `create` action simply builds a new GCE machine instance, whereas `bootstrap` is a "wrapper" action that creates, classifies, and then initializes the node all in one command.
 
 ### Using `create`
 
