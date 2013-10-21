@@ -52,7 +52,7 @@ Windows nodes cannot serve as puppet master servers.
 Installing Puppet
 -----
 
-To install Puppet, simply download and run the installer, which is a standard Windows .msi package and will run as a graphical wizard.
+To install Puppet, simply download and run the installer, which is a standard Windows .msi package and will run as a graphical wizard. Alternately, you can run the installer unattended; [see "Automated Installation" below.](#automated-installation)
 
 The installer must be run with elevated privileges. Installing Puppet **does not** require a system reboot.
 
@@ -66,11 +66,11 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 
 Once the installer finishes:
 
-* Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes. You can now assign classes to the node on your puppet master or console server. Puppet agent can be started and stopped with the Service Control Manager or the `sc.exe` utility; see [Running Puppet on Windows](./running.html#configuring-the-agent-service) for more details.
-* The Start menu will contain a Puppet folder, with shortcuts for running puppet agent manually, for running Facter, and for opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details. The Start menu folder also contains documentation links.
+* Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes (by default). You can now assign classes to the node on your puppet master or console server. The puppet agent service can be started and stopped with the Service Control Manager or the `sc.exe` utility; see [Running Puppet on Windows](./running.html#configuring-the-agent-service) for more details.
+* The Start menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details. The Start menu folder also contains documentation links.
 
     ![Start Menu icons][startmenu]
-
+* Starting with version `3.3.1` of Puppet and `3.1.0` of Puppet Enterprise, Puppet is automatically added to the machine's PATH environment variable. This means you can open any command line and call `puppet`, `facter` and the few other batch files that are in the `bin` directory of the [Puppet installation](#program-directory). This will also add necessary items for the Puppet environment to the shell, but only for the duration of execution of each of the particular commands.
 
 Automated Installation
 -----
@@ -83,20 +83,28 @@ You can also specify `/l*v install.txt` to log the progress of the installation 
 
 The following public MSI properties can also be specified:
 
-MSI Property            | Puppet Setting   | Default Value
-------------------------|------------------|--------------
-`INSTALLDIR`            | n/a              | Version-dependent, [see below](#program-directory)
-`PUPPET_MASTER_SERVER`  | [`server`][s]    | `puppet`
-`PUPPET_CA_SERVER`      | [`ca_server`][c] | Value of `PUPPET_MASTER_SERVER`
-`PUPPET_AGENT_CERTNAME` | [`certname`][r]  | Value of `facter fdqn` (must be lowercase)
+Minimum Version      | MSI Property                  | Puppet Setting    | Default Value
+---------------------|-------------------------------|-------------------|--------------
+2.7.12 / PE 2.5.0    |`INSTALLDIR`                   | n/a               | Version-dependent; [see below](#program-directory)
+2.7.12 / PE 2.5.0    |`PUPPET_MASTER_SERVER`         | [`server`][s]     | `puppet`
+2.7.12 / PE 2.5.0    |`PUPPET_CA_SERVER`             | [`ca_server`][c]  | Value of `PUPPET_MASTER_SERVER`
+2.7.12 / PE 2.5.0    |`PUPPET_AGENT_CERTNAME`        | [`certname`][r]   | Value of `facter fdqn` (must be lowercase)
+3.3.1  / PE 3.1.0    |`PUPPET_AGENT_ENVIRONMENT`     | [`environment`][e]| `production`
+3.4.0 (unreleased)   |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
+3.4.0 (unreleased)   |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
+3.4.0 (unreleased)   |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
+3.4.0 (unreleased)   |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
 
 For example:
 
     msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
 
+**Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT override that value.
+
 [s]: /references/latest/configuration.html#server
 [c]: /references/latest/configuration.html#caserver
 [r]: /references/latest/configuration.html#certname
+[e]: /references/latest/configuration.html#environment
 
 Upgrading
 -----
@@ -108,7 +116,7 @@ When upgrading, the installer will not replace any settings in the main puppet.c
 Uninstalling
 -----
 
-Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface, or from the command line.
+Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface or from the command line.
 
 To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 
@@ -129,7 +137,7 @@ These prerequisites are used only for Puppet and do not interfere with other loc
 
 ### Program Directory
 
-Unless overridden during installation, Puppet and its dependencies are installed into the standard Program Files directory for 32-bit applications.
+Unless overridden during installation, Puppet and its dependencies are installed into the standard Program Files directory for 32-bit applications and the Program Files(x86) directory for 64-bit applications.
 
 For Puppet Enterprise, the default installation path is:
 
@@ -149,7 +157,7 @@ OS type  | Default Install Path
 64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
 
 
-The program files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
+The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
 
 Puppet's program directory contains the following subdirectories:
 
@@ -157,11 +165,23 @@ Directory | Description
 ----------|------------
 bin       | scripts for running Puppet and Facter
 facter    | Facter source
+hiera     | Hiera source
 misc      | resources
 puppet    | Puppet source
 service   | code to run puppet agent as a service
 sys       | Ruby and other tools
 
+### Agent Startup Mode
+
+The agent is set to `Automatic` startup by default, but allows for you to pass `Manual` or `Disabled` as well.
+
+ * `Automatic` means that the Puppet agent will start with windows and be running all the time in the background. This is the what you would choose when you want to run Puppet with a master.
+ * `Manual` means that the agent will start up only when it is started in the services console or through `net start` on the command line. Typically this used in advanced usages of Puppet.
+ * `Disabled` means that the agent will be installed but disabled and will not be able to start in the services console (unless you change the start up type in the services console first). This is desirable when you want to install puppet but you only want to invoke it as you specify and not use it with a master.
+
+### Agent Account
+
+By default, Puppet installs the agent with the built in `SYSTEM` account. This account does not have access to the network, therefore it is suggested that another account that has network access be specified. The account must be an existing account. In the case of a domain user, the account does not need to have accessed the box. If this account is not a local administrator and it is specified as part of the install, it will be added to the `Administrators` group on that particular node. The account will also be granted [`Logon as Service`](http://msdn.microsoft.com/en-us/library/ms813948.aspx) as part of the installation process. As an example, if you wanted to set the agent account to a domain user `AbcCorp\bob` you would call the installer from the command line appending the following items: `PUPPET_AGENT_ACCOUNT_DOMAIN=AbcCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password`.
 
 ### Data Directory
 
@@ -178,7 +198,7 @@ Windows' <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb7624
 
 OS Version| Path                                 | Default
 ----------|--------------------------------------|-----------------
-7, 2008   | `%PROGRAMDATA%`                      | `C:\ProgramData`
+7+, 2008+ | `%PROGRAMDATA%`                      | `C:\ProgramData`
 2003      | `%ALLUSERSPROFILE%\Application Data` | `C:\Documents and Settings\All Users\Application Data`
 
 Since the CommonAppData directory is a system folder, it is hidden by default. See <http://support.microsoft.com/kb/812003> for steps to show system and hidden files and folders.

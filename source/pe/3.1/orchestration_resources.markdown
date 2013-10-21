@@ -32,11 +32,11 @@ The Browse Resources tab contains a **resource type navigation** list in its lef
 
 The Browse Resources tab can inspect the following resource types:
 
-- [group](/references/3.2.latest/type.html#group)
-- [host](/references/3.2.latest/type.html#host)
-- [package](/references/3.2.latest/type.html#package)
-- [service](/references/3.2.latest/type.html#service)
-- [user](/references/3.2.latest/type.html#user)
+- [group](/references/3.3.latest/type.html#group)
+- [host](/references/3.3.latest/type.html#host)
+- [package](/references/3.3.latest/type.html#package)
+- [service](/references/3.3.latest/type.html#service)
+- [user](/references/3.3.latest/type.html#user)
 
 For an introduction to resources and types, please see [the Resources chapter of Learning Puppet](/learning/ral.html).
 

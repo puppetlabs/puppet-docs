@@ -124,7 +124,7 @@ body {
 }
 
 /* @group Accessiblity */
-
+/* anything with `display: none` will actually _not_ be announced by AT, but it looks like this is only used for the "Skip navigation" links. */
 .screen-reader-content {
   display: none !important;
 }
@@ -1202,8 +1202,8 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 section#content div.primary-secondary-content div.primary-content p img {
   border: solid 1px #ccc;
   box-shadow: 0px 0px 8px #999;
-  /* Also, images should be limited to 640px wide so they don't blow up the page layout. */
-  max-width: 640px;
+  /* Image width should be constrained by the <p> width in all browsers that are supported (lets images expand to 740px on a wide screen) */
+  max-width: 100%;
 }
 
 /* NF: Also, images that are the only thing in their paragraph should be centered. */

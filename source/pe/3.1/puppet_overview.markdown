@@ -72,7 +72,7 @@ In a default PE deployment:
 
 You can change the run interval by setting a new value for [the `runinterval` setting][runinterval] in each agent node's puppet.conf file.
 
-[runinterval]: /references/3.2.latest/configuration.html#runinterval
+[runinterval]: /references/3.3.latest/configuration.html#runinterval
 
 * This file is located at `/etc/puppetlabs/puppet/puppet.conf` on \*nix nodes, and [`<DATADIR>`](http://docs.puppetlabs.com/windows/installing.html#data-directory)`\puppet.conf` on Windows.
 * Make sure you put this setting in [the `[agent]` or `[main]` block of puppet.conf](/guides/configuring.html#config-blocks).
