@@ -44,24 +44,27 @@ Here are two strategies for finding out if your bug has already been reported (a
      - Using `author:tickets@puppetlabs.com` to return tickets reported to the old Redmine Tracker.
    If your search turns up an open ticket in the old Redmine tracking system, please follow the directions under [Migrating Tickets from Redmine](#migrating-tickets-from-redmin) to copy the old ticket over to JIRA.
 
-If you find an existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing.
+If you find an existing bug within JIRA that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing.
 Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has.
 Use the "Vote" field in the right sidebar to indicate your support and optionally add yourself as a "Watcher" so future updates to the bug will be e-mailed to you.
 
-If you find bugs similar to, but different in some important way, from what you're seeing, file a new issue and link it to the earlier bug(s) using the "Link" action which can be found under the "More" menu.
-
-Finally, if you come back empty-handed from your searching, it's probably time to file a new bug.
+If you find bugs similar to, but different in some important way, from what you're seeing, open a new issue and link it to the earlier bug(s) using the "Link" action which can be found in the "More" menu located below the ticket title.
+Finally, if you come back empty-handed from your searching, it's time to file a new bug using the steps described in the next section.
 
 ### Filing a good bug
 
-Simon Tatham, the developer of PuTTy, has a fantastic write-up on [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html). It ought to be required reading for anyone participating in a software project, especially so for open-source projects like Puppet. Even if you don't go all the way through the process he describes, please provide:
+Simon Tatham, the developer of PuTTy, has a fantastic write-up on [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html). It ought to be required reading for anyone participating in a software project, especially so for open-source projects like Puppet.
+
+New tickets can be opened on JIRA by following [this link](https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa) or by clicking on the "Create Issue" button in the JIRA menu bar.
+After selecting the appropriate "Project" and issue "Type" (usually Bug or New Feature), please fill out the following fields:
 
 * Summary -- A short, accurate description of the problem. As Simon's article says, describe the facts of what you see ("Puppet gives the error message 'x' when I do 'y'") rather than opinion ("Puppet needs to stop printing 'y'").
 * Environment -- Due to the huge range of system configurations that Puppet works on, your operating system distribution and version, Ruby version and packager, Puppet and Facter versions and means by which you installed them, can all be highly relevant information that can make the difference between reproducibility and mystification for the next person to look at the bug report.
-* Steps to reproduce -- What can another Puppet user do to reproduce the error? If the problem is from a manifest, it's very helpful to extract the relevant code down to as small a section of Puppet code as possible. As a bug reporter, just the process of disentangling the problematic Puppet code from your environment (classes, external node classifier, etc) can sometimes help you solve the problem yourself; however, even if it doesn't, it will greatly aid the developers and community members who are trying to help fix the problem.
-* Expected results -- What is the original problem you are trying to solve? It's possible that there's an avenue to solve your problem that is better supported or more well-understood and therefore won't trigger the bug. Additionally, having this information about _intent_ will help future people who might be searching for help solving the same problem.
-* Actual results -- Please provide specific, cut-and-pasted error messages from the output of Puppet/Facter/Ruby etc. Particularly for puppet, it's helpful to run with the `--debug --trace` options because those provide Ruby backtraces in event of an error.
-* Regression -- did this work in an earlier version and break when you upgraded? Regressions are a very real problem in a codebase as complicated as Puppet's, because it's very difficult to predict the side-effects of a change somewhere deep in the guts of the code. If you are conversant with Git, it can be hugely helpful to run a `git bisect` on the problem to determine exactly where the regression was introduced. Scott Chacon's [Pro Git section on bisect](http://git-scm.com/book/en/Git-Tools-Debugging-with-Git) is a great introduction to `git bisect`.
+* Description -- A good description provides the information required for effect troubleshooting. The following elements are particularly important:
+  * Steps to reproduce -- What can another Puppet user do to reproduce the error? If the problem is from a manifest, it's very helpful to extract the relevant code down to as small a section of Puppet code as possible. As a bug reporter, just the process of disentangling the problematic Puppet code from your environment (classes, external node classifier, etc) can sometimes help you solve the problem yourself; however, even if it doesn't, it will greatly aid the developers and community members who are trying to help fix the problem.
+  * Expected results -- What is the original problem you are trying to solve? It's possible that there's an avenue to solve your problem that is better supported or more well-understood and therefore won't trigger the bug. Additionally, having this information about _intent_ will help future people who might be searching for help solving the same problem.
+  * Actual results -- Please provide specific, cut-and-pasted error messages from the output of Puppet/Facter/Ruby etc. Particularly for puppet, it's helpful to run with the `--debug --trace` options because those provide Ruby backtraces in event of an error.
+  * Regression -- did this work in an earlier version and break when you upgraded? Regressions are a very real problem in a codebase as complicated as Puppet's, because it's very difficult to predict the side-effects of a change somewhere deep in the guts of the code. If you are conversant with Git, it can be hugely helpful to run a `git bisect` on the problem to determine exactly where the regression was introduced. Scott Chacon's [Pro Git section on bisect](http://git-scm.com/book/en/Git-Tools-Debugging-with-Git) is a great introduction to `git bisect`.
 
 ### Metadata you can use
 
@@ -76,7 +79,7 @@ When filing a new issue, filling in the following fields accurately makes bug tr
   However, this can lead to a proliferation of labels that overlap but are not quite duplicates.
 * *Affects Version(s)* -- The version in which you've experienced the bug.
   Generally issues that have been encountered and reproduced against the latest point release of a major version are going to get more attention than ones against older versions.
-  (Often the first question is going to be "Have you tried this against the latest version?")
+  If you do not see your version of Puppet listed, please try reproducing the bug against a newer version.
 * *Environment* -- details concerning the environment in which a bug can be re-produced.
   At a minimum, this should be filled out with the name and version of the operating system where the bug was observed.
   Other important details can also be added concerning related pieces of software such as Facter versions, Apache versions, etc.
@@ -150,8 +153,8 @@ Links to other JIRA tickets and external web pages can be created using the "Lin
 * *Status*: _Ready for Engineering_, *Assignee*: _Community or Puppet Labs Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Ready for Engineering_ status and be assigned to the person working on it.
   Tickets which are in status _Ready for Engineering_ but do not have a target release assigned by the product owner are not being actively worked on by Puppet Labs.
 * *Status*: _Ready for Merge_, *Assignee*: _Puppet Labs Developer_ -- Once there is code in a pull request, and a *Link* has been created pointing to the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
-* *Status*: _Ready for Delivery_, *Assignee*: _Release Engineer_ -- After merging completed code, the Puppet Labs Developer sets the _Ready for Delivery_ status and adds a comment with the github URL of the commit that contains the merge (e.g. https://github.com/puppetlabs/puppet/commit/abcdefbadc0ffee).
-* *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket ("Not to be fixed", "Unable to reproduce", etc)
+* *Status*: _Resolved_, *Resolution*: _Fixed_ -- This status is set when a fix for an issue has been merged, but is pending validation and release.
+* *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket ("Fixed", "Duplicate", "Cannot Reproduce", etc)
 
 ### Communicating during investigation
 
@@ -171,11 +174,12 @@ There is an open pull request which fixes this issue  -- it would be wonderful i
 
 #### Needs more information
 
-I've put this ticket's status into "Needs more Information" and assigned it to you. Please either (a) update it with the information I've requested and re-assign it to me if you need more help, or (b) change the status to "Closed" if you were able to resolve the issue on your own.
+I've put this ticket's status into "Needs Information" and assigned it to you.
+Please either (a) update it with the information I've requested and re-assign it to me if you need more help, or (b) change the status to "Closed" if you were able to resolve the issue on your own.
 
 #### Code Insufficient
 
-I've put this ticket's status into "Code Insufficient" and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
+I've put this ticket's status into "Failed Review" and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
 
 #### Contributor guidelines
 
