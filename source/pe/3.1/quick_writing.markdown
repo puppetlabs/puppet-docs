@@ -5,7 +5,7 @@ subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---
 
-Welcome to the PE 3.0 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
+Welcome to the PE 3.1 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
 
 * Modify modules obtained from the Forge
 * Write your own Puppet module
@@ -19,11 +19,11 @@ Welcome to the PE 3.0 advanced quick start guide. This document is a continuatio
 Editing a Forge Module
 -----
 
-Although many Forge modules are exact solutions that fit your site, many more are _almost_ what you need. Most users will edit many of their Forge modules.
+Although many Forge modules are exact solutions that fit your site, many more are _almost_ what you need. Typically, users will edit many of their Forge modules.
 
 ### Module Basics
 
-Modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. Their basic structure looks like this:
 
@@ -138,7 +138,7 @@ Third-party modules save time, but **most users will also write their own module
 
 This exercise will create a class that manages the permissions of the `fstab`, `passwd`, and `crontab` files.
 
-* Run `mkdir -p core_permissions/manifests` to create the module directory and manifests directory.
+* **On the puppet master**, run `mkdir -p core_permissions/manifests` to create the module directory and manifests directory.
 * Use your text editor to create and begin editing the `core_permissions/manifests/init.pp` file.
 * Edit the init.pp file so it contains the following, then save it and exit the editor:
 
