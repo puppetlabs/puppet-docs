@@ -5,9 +5,9 @@ subtitle: "Using Event Inspector"
 canonical: "/pe/latest/console_event-inspector.html"
 ---
 
-Puppet Enterprise (PE) event inspector is a data tool for **investigating the current state of your infrastructure.** Its focus is on **correlating information** and presenting it from multiple perspectives, in order to reduce noise and reveal common causes behind related events.
+Puppet Enterprise (PE) event inspector is a reporting tool that provides data for **investigating the current state of your infrastructure.** Its focus is on **correlating information** and presenting it from multiple perspectives, in order to reveal common causes behind related events. Event inspector provides insight into *how* Puppet is managing configurations, and *what* is happening *where* when events occur.
 
-The event inspector is most useful for **monitoring** a summary of your infrastructure's activity and **analyzing** important changes and failures.
+Event inspector lets you accomplish two important tasks: **monitoring** a summary of your infrastructure's activity and **analyzing** the details of important changes and failures. Event inspector lets you analyze events from several different perspectives, so you can reject noise and choose the context that best allows you to understand events that concern you.
 
 Structure and Terminology
 -----
@@ -18,7 +18,7 @@ Event inspector can be reached by clicking "Events" in the console's main naviga
 
 ![Accessing event inspector][eventtab]
 
-The event inspector page displays two panes of data. Clicking an item will show its details (and any sub-items) in the right pane. The left pane always shows the list of items from which the one in the right pane was chosen, to let you easily view similar items and compare their states.
+The event inspector page displays two panes of data. Clicking an item will show its details (and any sub-items) in the detail pane on the right. The context pane on the left always shows the list of items from which the one in the right pane was chosen, to let you easily view similar items and compare their states.
 
 To backtrack out of the current list of items, you can use the breadcrumb navigation or the in-page back button (appearing left of the left pane after you've clicked at least one item). _Do not use your web browser's back button;_ this can cause event inspector to reload and lose your place.
 
@@ -27,7 +27,7 @@ To backtrack out of the current list of items, you can use the breadcrumb naviga
 
 > ### Note: Refreshing and Time Periods
 >
-> The event inspector page does not refresh automatically; it fetches data once when loading, and uses the same batch of data until the page is closed or reloaded. This ensures that shifting data won't accidentally disrupt an investigation.
+> The event inspector page does not refresh automatically; it fetches data once when loading, and uses this same batch of data until the page is closed or reloaded. This ensures that shifting data won't accidentally disrupt an investigation.
 >
 > You can see how old the current data is by checking the timestamp at the top of the page. Reload the page in your browser to update the data to the most recent events.
 >
@@ -37,7 +37,7 @@ To backtrack out of the current list of items, you can use the breadcrumb naviga
 
 ### Events
 
-During a Puppet run, Puppet compares the _current state_ of each property on each resource to the _desired state_ for that property. If Puppet successfully compares them and the property is already in sync (the current state is the desired state), Puppet moves on to the next without noting anything. Otherwise, it will attempt some action and record an **event,** which will appear in the report it sends to the puppet master at the end of the run.
+An "event" is PE’s attempt to modify an individual property of a given resource. During a Puppet run, Puppet compares the _current state_ of each property on each resource to the _desired state_ for that property. If Puppet successfully compares them and the property is already in sync (the current state is the desired state), Puppet moves on to the next without noting anything. Otherwise, it will attempt some action and record an event, which will appear in the report it sends to the puppet master at the end of the run. These reports provide the data event inspector presents.
 
 There are four kinds of events, all of which are shown in event inspector:
 
@@ -49,7 +49,7 @@ There are four kinds of events, all of which are shown in event inspector:
 
 ### Perspectives
 
-Event inspector can use three perspectives to correlate information about events:
+Event inspector can use three perspectives to correlate and contextualize information about events:
 
 * Classes
 * Nodes
@@ -59,14 +59,14 @@ For example, if you were concerned about a failed service, say Apache or MongoDB
 
 Switching between perspectives can help you find the common threads among a group of failures, and follow them to a root cause. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about.
 
-Summary View: Monitoring the Whole Infrastructure
+Summary View: Monitoring Infrastructure
 -----
 
 When event inspector first loads, the left pane contains the **summary view.** This list is an overview of recent Puppet activity across your whole infrastructure, and can help you rapidly assess the magnitude of any issues.
 
-The summary view is split into three sub-lists, with one for each perspective (classes, nodes, and resources). Each sub-list shows the number of events for that perspective, both as per-event-type counts and as bar graphs (which measure against the total event count from that perspective).
+The summary view is split into three sub-lists, with one for each perspective (classes, nodes, and resources). Each sub-list shows the number of events for that perspective, both as per-event-type counts and as bar graphs which measure against the total event count from that perspective. (For example, if four classes have events, and two of those classes have events that are failures, the "Clases with events" bar graph will be at 50%.)
 
-You can click any item in the sub-lists (classes with failures, nodes with events, etc.) to load details into the right pane and begin looking for the causes of notable events. Until an item is selected, the right pane defaults to showing classes with failures.
+You can click any item in the sub-lists (classes with failures, nodes with events, etc.) to load more specific info into the detail pane and begin looking for the causes of notable events. Until an item is selected, the right pane defaults to showing classes with failures.
 
 
 ![The summary pane][summary]
@@ -76,7 +76,7 @@ You can click any item in the sub-lists (classes with failures, nodes with event
 Analyzing Changes and Failures
 -----
 
-Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes. To see how this works in a practical sense, let's work through an example.
+Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about.To see how this works in a practical sense, let's work through an example.
 
 Assume you are a sysadmin and Puppet developer for a large web commerce enterprise. While you were in a meeting, your team started rolling out a new deployment of web servers. In the summary pane's default initial classes view, you note that a failure has been logged for the `testweb` class that you use for test configurations on new web server instances.
 
