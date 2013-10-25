@@ -90,10 +90,15 @@ Minimum Version      | MSI Property                  | Puppet Setting    | Defau
 2.7.12 / PE 2.5.0    |`PUPPET_CA_SERVER`             | [`ca_server`][c]  | Value of `PUPPET_MASTER_SERVER`
 2.7.12 / PE 2.5.0    |`PUPPET_AGENT_CERTNAME`        | [`certname`][r]   | Value of `facter fdqn` (must be lowercase)
 3.3.1  / PE 3.1.0    |`PUPPET_AGENT_ENVIRONMENT`     | [`environment`][e]| `production`
-3.4.0 (unreleased)   |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
-3.4.0 (unreleased)   |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
-3.4.0 (unreleased)   |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
-3.4.0 (unreleased)   |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
+
+{% comment %}
+
+3.4.0 / unreleased   |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
+3.4.0 / unreleased   |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
+3.4.0 / unreleased   |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
+3.4.0 / unreleased   |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
+
+{% endcomment %}
 
 For example:
 
@@ -171,6 +176,8 @@ puppet    | Puppet source
 service   | code to run puppet agent as a service
 sys       | Ruby and other tools
 
+{% comment %}
+
 ### Agent Startup Mode
 
 The agent is set to `Automatic` startup by default, but allows for you to pass `Manual` or `Disabled` as well.
@@ -182,6 +189,8 @@ The agent is set to `Automatic` startup by default, but allows for you to pass `
 ### Agent Account
 
 By default, Puppet installs the agent with the built in `SYSTEM` account. This account does not have access to the network, therefore it is suggested that another account that has network access be specified. The account must be an existing account. In the case of a domain user, the account does not need to have accessed the box. If this account is not a local administrator and it is specified as part of the install, it will be added to the `Administrators` group on that particular node. The account will also be granted [`Logon as Service`](http://msdn.microsoft.com/en-us/library/ms813948.aspx) as part of the installation process. As an example, if you wanted to set the agent account to a domain user `AbcCorp\bob` you would call the installer from the command line appending the following items: `PUPPET_AGENT_ACCOUNT_DOMAIN=AbcCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password`.
+
+{% endcomment %}
 
 ### Data Directory
 
