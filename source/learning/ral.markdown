@@ -136,7 +136,7 @@ Not all resource types are equally common or useful, so we've made a printable c
 
 Experienced Puppet users spend most of their time in [the type reference][types].
 
-This page list _all_ of Puppet's built-in resource types, in extreme detail. It can be a bit overwhelming for a new user, but it has most of the info you'll need in a normal day of writing Puppet code.
+This page lists _all_ of Puppet's built-in resource types, in extreme detail. It can be a bit overwhelming for a new user, but it has most of the info you'll need in a normal day of writing Puppet code.
 
 We generate a new type reference for every new version of Puppet, to help ensure that the descriptions stay accurate.
 
