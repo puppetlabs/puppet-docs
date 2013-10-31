@@ -5,15 +5,15 @@ subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---
 
-Welcome to the PE 3.1 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
+Welcome to the PE 3.1 advanced quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
 
 * Modify modules obtained from the Forge
 * Write your own Puppet module
-* Examine reports in the console
+* Investigate events and view run reports in the console
 * Create a site module that composes other modules into machine roles
 * Apply Puppet classes to groups with the console
 
-> Before starting this walkthrough, you should have completed the [previous quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
+> Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 
 Editing a Forge Module
@@ -51,6 +51,7 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
 * Note that the desktop shortcut is being managed as a `file` resource, and its content is being set with the `content` attribute:
 
 {% highlight ruby %}
+
     class win_desktop_shortcut {
 
       if $osfamily == "windows" {
@@ -65,9 +66,10 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
       }
 
     }
+    
 {% endhighlight %}
 
-For more on resource declarations, [see the manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, [see the page on writing manifests for Windows](/windows/writing.html).
+For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
 
 * Change the `ensure` attribute of the `file` resource to `absent`.
 * Delete the `content` line of the `file` resource.
@@ -116,7 +118,7 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
 * Close the manifest file, then open and begin editing `motd/templates/motd.erb`.
 * Add the line `Welcome to <%= hostname %>` at the beginning of the template file.
 * Save and close the file.
-* Use the console to invoke the "runonce" action on the Agent. Then, go to the agent node and log out and back in again.
+* Use the console to invoke the "runonce" action on the agent. Then, go to the agent node and log out and back in again.
 * Note that the message of the day has changed to show the machine's hostname.
 
 > Your copy of the `motd` module now behaves differently.
@@ -132,14 +134,14 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
 Writing a Puppet Module
 -----
 
-Third-party modules save time, but **most users will also write their own modules.**
+Third-party modules save time, but at some point **most users will also need to write their own modules.**
 
 ### Writing a Class in a Module
 
 This exercise will create a class that manages the permissions of the `fstab`, `passwd`, and `crontab` files.
 
-* **On the puppet master**, run `mkdir -p core_permissions/manifests` to create the module directory and manifests directory.
-* Use your text editor to create and begin editing the `core_permissions/manifests/init.pp` file.
+* **On the puppet master**, make sure you're still in the modules directory, `cd /etc/puppetlabs/puppet/modules`, and then run `mkdir -p core_permissions/manifests` to create the new module directory and its manifests directory.
+* Use your text editor to create and open the `core_permissions/manifests/init.pp` file.
 * Edit the init.pp file so it contains the following, then save it and exit the editor:
 
 {% highlight ruby %}
@@ -192,7 +194,7 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 [file_type]: /references/3.3.latest/type.html#file
 [conditional]: /puppet/3/reference/lang_conditional.html
 
-See the Puppet documentation for more information about writing classes:
+For more information about writing classes, refer to the following documentation:
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
 * For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3/reference/lang_summary.html).
@@ -201,8 +203,8 @@ See the Puppet documentation for more information about writing classes:
 
 ### Using a Homemade Module in the Console
 
-* **On the console,** use the "add class" button to make the class available, just as in the [previous example](./quick_start.html#using-modules-in-the-console).
-* Instead of assigning the class to a single node, **assign it to a group.** Navigate to the default group and use the edit button, then **add the `core_permissions` class to its list of classes.** Do not delete the existing classes, which are necessary for configuring new nodes.
+* **On the console,** use the "Add classes" button to choose the core_permissions class from the list and make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
+* Instead of assigning the class to a single node, **assign it to a group.** Navigate to the default group and use the edit button, then **add the `core_permissions` class to its list of classes.** Click "Update" to assign the class to the group. Do not delete the existing classes, which are necessary for configuring new nodes.
 
 ![adding the `core_permissions` class](./images/quick/add_core_permissions.png)
 
@@ -217,9 +219,9 @@ See the Puppet documentation for more information about writing classes:
 
         # chmod 0666 /etc/fstab
         # ls -lah /etc/crontab /etc/passwd /etc/fstab
-        -rw-rw-r-- 1 root root  255 Jan  6  2007 /etc/crontab
+        -rw-r--r-- 1 root root  255 Jan  6  2007 /etc/crontab
         -rw-rw-rw- 1 root root  534 Aug 22  2011 /etc/fstab
-        -rw-rw-r-- 1 root root 2.3K Mar 26 08:18 /etc/passwd
+        -rw-r--r-- 1 root root 2.3K Mar 26 08:18 /etc/passwd
 * **Run puppet agent once on every node.** You can do this by:
     * Doing nothing and waiting 30 minutes
     * Using live management to run the "runonce" action on the agent nodes
@@ -231,25 +233,36 @@ See the Puppet documentation for more information about writing classes:
         -rw-r--r-- 1 root root  534 Aug 22  2011 /etc/fstab
         -rw-r--r-- 1 root root 2.3K Mar 26 08:18 /etc/passwd
 * **On the Windows node,** note that the class has safely done nothing, and has not accidentally created any files in `C:\etc\`.
-* **On the console,** navigate to `master.example.com`, by clicking "Nodes" in the primary navigation bar and then clicking on the node's name. Scroll down to the list of recent reports, and note that the most recent one is blue, signifying that changes were made:
-
-![blue report link][report_link]
-
-* Click on the topmost report, then navigate to the "log" tab of the report:
-
-![the report tabs, with the log tab circled][report_tabs]
-
-* Note the two changes made to the file permissions:
-
-![events logged in the node's report][report_log]
-
-[report_link]: ./images/quick/master_report_link.png
-[report_tabs]: ./images/quick/report_tabs.png
-[report_log]: ./images/quick/report_log.png
 
 > You have created a new class from scratch and used it to manage the security of critical files on your \*nix servers.
 >
 > Instead assigning it directly to nodes, you assigned it to a group. Using node groups can save you time and allow better visibility into your site. They are also crucial for taking advantage of the [cloud provisioning tools](./cloudprovisioner_overview.html). You can create new groups in the console with the "New group" button, and add new nodes to them using the "Edit" button on a group's page.
+
+### Analyzing Your Changes With Event Inspector
+
+**On the console,** load the event inspector by clicking "Events" in the main nav bar. Note the summary pane on the left is showing change events for Classes, Nodes, and Resources. Explore these changes by clicking on "With Changes" in each group. 
+
+![Change Event Summary][event_change_summary-node]
+
+For example, if you click "Nodes... With Changes", you can see that two nodes, agent1.example.com and master.example.com, had successful changes to resources. Two resources were changed on master (specifically, the crontab and passwd files in `/etc/`).  If you drill down further by clicking on one of the changes, you can see the specifics of the change event. Under "Event location" you can see which manifest generated the change, down to the specific line number where the setting is defined. 
+
+![Details of the Change Event][change_event_detail]
+
+To view the run report that logs the puppet run which generated the change, click the "View run report" link at the top of the summary pane. Note that the report header is blue, signifying that changes were made. The run report shows metrics and what happened during that run. The "Log" tab will show the two changes made to file permissions.
+
+![the report tabs, with the log tab circled][report_tabs]
+
+![events logged in the node's report][report_log]
+
+[event_change_summary-node]: ./images/quick/event_summary-node.png
+[change_event_detail]: ./images/quick/change_event_detail.png
+[report_tabs]: ./images/quick/report_tabs.png
+[report_log]: ./images/quick/report_log.png
+
+> You have explored a change event brought about by applying classes created by a new module. You now know how to discover how changes take place, what effects those changes have, and how to find the exact cause of those changes. 
+>
+> With this knowledge, you have the basics of how to analyze Puppet events with Event Inspector, which will allow you to monitor and troubleshoot in the future. For more details, look at the [event inspector documentation](./console_event-inspector).
+
 
 
 Using a Site Module
@@ -280,7 +293,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 * **On the console,** remove all of the previous example classes from your nodes and groups, using the "edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
-* Add the `site::basic` class to the console with the "add class" button in the sidebar.
+* Add the `site::basic` class to the console with the "add classes" button in the sidebar as before.
 * Assign the `site::basic` class to the default group.
 
 > Your nodes are now receiving the same configurations as before, but with a simplified interface in the console. Instead of deciding which classes a new node should receive, you can decide what _type_ of node it is and take advantage of decisions you made earlier.
@@ -294,6 +307,7 @@ You have now performed the core workflows of an intermediate Puppet user. In the
 * Download and modify Forge modules that almost (but not quite) fit their deployment's needs.
 * Create new modules and write new classes to manage many types of resources, including files, services, packages, user accounts, and more.
 * Build and curate a site module to safely empower junior admins and simplify the decisions involved in deploying new machines.
+* Monitor and troubleshoot events that affect your infrastructure.
 
 * * *
 
