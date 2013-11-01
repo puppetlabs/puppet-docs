@@ -25,11 +25,11 @@ Puppet Enterprise 3.1 supports the following systems:
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
 Red Hat Enterprise Linux     | 4, 5 & 6                                   | x86 & x86\_64 | all (RHEL 4 supports agent only)
-CentOS                       | 5 & 6                                   | x86 & x86\_64 | all
+CentOS                       | 4, 5 & 6                                   | x86 & x86\_64 | all (CentOS 4 supports agent only)
 Ubuntu LTS                   | 10.04 & 12.04                           | i386 & amd64  | all
 Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all
-Oracle Linux                 | 5 & 6                                   | x86 & x86\_64 | all
-Scientific Linux             | 5 & 6                                   | x86 & x86\_64 | all
+Oracle Linux                 | 4, 5 & 6                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
+Scientific Linux             | 4, 5 & 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
 SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | all
 Solaris                      | 10 (Update 9 or later)                                      | SPARC & i386  | agent
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2 7, 8, & 2012 | x86 & x86\_64 | agent
