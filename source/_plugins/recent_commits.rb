@@ -16,7 +16,7 @@ class RecentCommits < Liquid::Tag
       htmlfragment = ''
       htmlfragment << "<h3>Recent commits to the puppet-docs repo:</h3>\n<ul>\n"
       commits = %x(git log --oneline --no-merges -n #{@limit} --no-abbrev-commit)
-      commits.each do |line|
+      commits.each_line do |line|
         fields = line.split(' ', 2)
         sha = fields[0]
         message = fields[1].chomp.gsub(/[<>]/, '')
