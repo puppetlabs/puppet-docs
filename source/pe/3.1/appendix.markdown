@@ -329,6 +329,22 @@ To improve the display of Puppet man pages, you can use your system `gem` comman
 
     $ sudo gem install ronn
 
+### Under certain circumstances deleted nodes can reappear in the console.
+
+Due to the fact that the console will create a node listing for any node found via the inventory search function, nodes deleted from the console can sometimes reappear. See the [console bug report describing the issue](https://projects.puppetlabs.com/issues/11210).
+
+The nodes will reappear after deletion if data for that node has not yet expired from PuppetDB, and you perform an inventory search in the console that returns information for that node.
+
+You can avoid the reappearance of nodes by removing them with the following steps:
+
+1. `puppet node clean <node_certname>`
+1. `puppet node deactivate <node_certname>`
+1. `sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node_certname>]`
+
+The above steps will remove the node's cert, purge information about the node from PuppetDB, and delete the node from the console.
+The last step is equivalent to logging into the console and deleting the node.
+
+
 
 * * *
 
