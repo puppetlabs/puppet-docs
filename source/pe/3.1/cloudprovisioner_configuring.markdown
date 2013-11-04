@@ -30,14 +30,14 @@ Cloud provisioning tools can be installed on any puppet master or agent node.
 
 The Puppet Enterprise installer will ask whether or not to install cloud provisioning during installation. Answer 'yes' to enable cloud provisioning actions on a given node.
 
-If you have already installed PE without installing the cloud provisioning tools, run the upgrader script `puppet-enterprise-upgrader` and answer "yes" when prompted to install the tools. Running the upgrader script will have no ill effects on your current installation, even if the upgrader is for the version currently installed. (No user-configured files will get overwritten, and the installer backs up all relevant files as well.)
+If you have already installed PE without installing the cloud provisioning tools, re-run the installer script `puppet-enterprise-installer` and answer "yes" when prompted to install the cloud provisioning tools. Re-running the installer script will have no ill effects on your current installation. (No user-configured files will get overwritten, and the installer backs up all relevant files as well.)
 
-If you're using an answer file to install Puppet Enterprise, you can install cloud provisioning by setting the `q_puppet_cloud_install` option to `y`.
+If you're using an answer file to install Puppet Enterprise, you can install the cloud provisioning tools by setting the `q_puppet_cloud_install` option to `y`.
 
 Configuring
 -----------
 
-To create new virtual machines with Puppet Enterprise,  you'll need to first configure the services you'll be using.
+To create new virtual machines with Puppet Enterprise, you'll need to first configure the services you'll be using.
 
 Start by creating a file called `.fog` in the home directory of the user who will be provisioning new nodes.
 
