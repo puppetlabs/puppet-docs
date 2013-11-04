@@ -116,7 +116,7 @@ namespace :externalsources do
       externalsources.each do |name, info|
         unless File.directory?(name)
           puts "Making new working directory for #{name}"
-          system ("#{top_dir}/vendor/bin/git-new-workdir #{repo_unique_id(info['repo'])} #{name} #{info['commit']}")
+          system ("#{top_dir}/vendor/bin/git-new-workdir '#{repo_unique_id(info['repo'])}' '#{name}' '#{info['commit']}'")
         end
         Dir.chdir(name) do
           puts "Updating #{name}"
@@ -153,7 +153,10 @@ namespace :externalsources do
 
   # "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source.
   task :clean do
-    system("find ./source -type l -print0 | xargs -0 rm")
+    allsymlinks = FileList.new('source/**/*').select{|f| File.symlink?(f)}
+    allsymlinks.each do |f|
+      File.delete(f)
+    end
   end
 end
 
