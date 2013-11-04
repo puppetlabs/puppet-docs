@@ -307,7 +307,7 @@ When doing the first puppet run after upgrading using the "upgrader" script incl
 
 During installation, the PE installer attempts to automatically determine the URI where the console can be reached. On EC2 (and likely all other dual-homed systems), the installer incorrectly selects the internal, non-routable URI. Instead, you should manually enter the correct, external facing URI of the system hosting the console.
 
-### Answer file required for some SMTP servers.
+### Answer File Required for Some SMTP servers.
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
@@ -321,7 +321,7 @@ After using `puppet cert revoke` or `puppet cert clean` to revoke a certificate,
 
     $ sudo /etc/init.d/pe-httpd restart
 
-### Dynamic Man Pages are Incorrectly Formatted
+### Dynamic Man Pages Are Incorrectly Formatted
 
 Man pages generated with the `puppet man` subcommand are not formatted as proper man pages, and are instead displayed as Markdown source text. This is a purely cosmetic issue, and the pages are still fully readable.
 
@@ -329,20 +329,19 @@ To improve the display of Puppet man pages, you can use your system `gem` comman
 
     $ sudo gem install ronn
 
-### Under certain circumstances deleted nodes can reappear in the console.
+### Deleted Nodes Can Reappear in the Console.
 
 Due to the fact that the console will create a node listing for any node found via the inventory search function, nodes deleted from the console can sometimes reappear. See the [console bug report describing the issue](https://projects.puppetlabs.com/issues/11210).
 
-The nodes will reappear after deletion if data for that node has not yet expired from PuppetDB, and you perform an inventory search in the console that returns information for that node.
+The nodes will reappear after deletion if PuppetDB data for that node has not yet expired, and you perform an inventory search in the console that returns information for that node.
 
-You can avoid the reappearance of nodes by removing them with the following steps:
+You can avoid the reappearance of nodes by removing them with the following procedure:
 
 1. `puppet node clean <node_certname>`
 1. `puppet node deactivate <node_certname>`
 1. `sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node_certname>]`
 
-The above steps will remove the node's cert, purge information about the node from PuppetDB, and delete the node from the console.
-The last step is equivalent to logging into the console and deleting the node.
+These steps will remove the node's certificate, purge information about the node from PuppetDB, and delete the node from the console. The last command is equivalent to logging into the console and deleting the node via the UI.
 
 
 
