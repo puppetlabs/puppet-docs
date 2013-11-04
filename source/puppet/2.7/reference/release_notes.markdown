@@ -131,31 +131,32 @@ Puppet 2.7.20 introduces a new configuration option, `allow_variables_with_dashe
 `true` to allow variables with dashes. The option is set to false by default to maintain existing behavior. The
 following commit message includes additional information:
 
-     (#10146) `-` in variable names should be deprecated!
+> Commit 5ee2558
+>
+> (#10146) `-` in variable names should be deprecated!
+>
+> In commit b26699a2 I fixed an accidentally introduced change to the lexer,
+> allowing `-` to be part of a variable name.  That had lasted for a while and
+> was surprisingly popular.  It was also hugely ambiguous around `-` as minus,
+> and led to all sorts of failures - unexpected interpolations to nothing -
+> because of that.
+>
+> A much better strategy would have been to deprecate the feature, issue proper
+> warnings, and include an option to allow users to toggle the behaviour.
+>
+> Initially defaulting that to "permit", and eventually toggling over to "deny",
+> would have made the whole experience much smoother - even if this was totally
+> documented as not working, and was a clear bug that it changed.
+>
+> So, thanks to prompting from Benjamin Irizarry, we do just that: introduce the
+> configuration option, default it to "deny" to match current behaviour, but
+> allow users the choice to change this back.
+>
+> Please be aware that allowing variables with `-` might break all sorts of
+> things around, for example, Forge modules though.  Most people write code to
+> the documented standard, and their code might well totally fail to work with
+> this changed away from the default!
 
-     In commit b26699a2 I fixed an accidentally introduced change to the lexer,
-     allowing `-` to be part of a variable name.  That had lasted for a while and
-     was surprisingly popular.  It was also hugely ambiguous around `-` as minus,
-     and led to all sorts of failures - unexpected interpolations to nothing -
-     because of that.
-
-     A much better strategy would have been to deprecate the feature, issue proper
-     warnings, and include an option to allow users to toggle the behaviour.
-
-     Initially defaulting that to "permit", and eventually toggling over to "deny",
-     would have made the whole experience much smoother - even if this was totally
-     documented as not working, and was a clear bug that it changed.
-
-     So, thanks to prompting from Benjamin Irizarry, we do just that: introduce the
-     configuration option, default it to "deny" to match current behaviour, but
-     allow users the choice to change this back.
-
-     Please be aware that allowing variables with `-` might break all sorts of
-     things around, for example, Forge modules though.  Most people write code to
-     the documented standard, and their code might well totally fail to work with
-     this changed away from the default!
-
-     Signed-off-by: Daniel Pittman <daniel@puppetlabs.com>
 
 ### Contributors
 Adrien Thebo, Andrew Parker, Ashley Penney, Branan Purvine-Riley, Dan Bode, Daniel Pittman, Dominic Cleal, Dustin J. Mitchell, Eric Sorenson, Eric Stonfer, Gleb Arshinov, James Turnbull, Jeff McCune, Jeff Weiss, Josh Cooper, Ken Barber, Ken Dreyer, Lee Lowder, Markus Roberts, Matthaus Owens, Michael Stahnke, Moses Mendoza, Neil Hemingway, Nick Fagerlund, Patrick Carlisle, Roman Barczyński, S. Zachariah Sprackett, Sean E. Millichamp, Stefan Schulte, Todd Zullinger
