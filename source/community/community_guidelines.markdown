@@ -210,7 +210,7 @@ The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, wri
 
 ### Event Code of Conduct
 
-Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of participants in any form.
+Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, and we do not tolerate harassment of participants in any form.
 
 We ask you to be considerate of others and behave professionally and respectfully to all other participants. Remember that sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the organizers or Puppet Labs staff members.
 
