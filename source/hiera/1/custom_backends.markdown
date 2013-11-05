@@ -165,7 +165,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
 {% endhighlight %}
 
 
-#### `Backend.parse_answer(data, scope)`
+#### `Backend.parse_answer(data, scope, [extra_data])`
 
 [parse_answer]: #backendparseanswerdata-scope
 
@@ -191,6 +191,8 @@ The `Backend.parse_answer` method returns its first argument, but with any [inte
       end
     end
 {% endhighlight %}
+
+You can also pass a hash of extra data as an optional third argument. This hash will be used like the scope to provide variables for interpolation, but _only_ if the scope fails to produce a match for that variable. Your backend can use this to provide fallback data from some other source.
 
 #### `Backend.merge_answer(new_answer,answer)`
 
