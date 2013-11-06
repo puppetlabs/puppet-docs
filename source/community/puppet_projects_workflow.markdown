@@ -98,6 +98,7 @@ Unclosed tickets in the following Redmine projects may be automatically exported
 - [Facter](http://projects.puppetlabs.com/projects/facter/issues)
 - [Hiera](http://projects.puppetlabs.com/projects/hiera/issues)
 - [MCollective](http://projects.puppetlabs.com/projects/mcollective/issues)
+- [PuppetDB](http://projects.puppetlabs.com/projects/puppetdb/issues)
 
 Open tickets in the above projects may be migrated by clicking on the "Export this ticket to JIRA" button located above the ticket description.
 If export is successful, the button will be replaced by a link to a newly created JIRA ticket.
