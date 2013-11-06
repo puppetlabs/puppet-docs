@@ -45,6 +45,11 @@ Security against brute force attacks has been improved by adding an account lock
 
 A number of vulnerabilities have been addressed in PE 3.1.0. For details, check the [release notes](appendix.html#release-notes).
 
+* *Component Version Bumps*
+
+    * Puppet 3.3.1
+    * Facter 1.7.3
+
 ### Version 3.0.1
 
 Puppet Enterprise version 3.0.1 is a feature and maintenance release. It adds new features, fixes bugs and addresses security issues. Specifically, the 3.0.1 release includes the following:
