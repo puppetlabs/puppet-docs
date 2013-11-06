@@ -151,14 +151,6 @@ Change *Assignee* to the person who has the next action on the bug.
 For example if a community member triages a bug and determines that the submitter didn't include enough detail to reproduce the problem, they should assign the ticket back to the originator and set the *Status* to _Needs Information_.
 When the originator supplies the additional info, they should set *Assignee* back to the person who asked the question and update the status to *Assessing*.
 
-### Release Planning and Workflow
-
-As the development, product, and UX team members for a project plan for an upcoming release, they organize the pile of potential work into a _backlog_ that becomes a sorted list of features to add and bugs to fix before the release is ready. Each work item will be associated with one or more Redmine bugs, which will get their *Target version* set to the [semantically-versioned](http://semver.org) release number. Tickets that are targeted at a `x` release, like `3.x`, are roughly sorted but not being actively worked on. (Tickets that have no target version and no owner are essentially in the "pile" and almost certainly not being worked on).
-
-This workflow enables the "Versions" view of Redmine, linked off the ["Roadmap"](http://projects.puppetlabs.com/projects/puppet/roadmap) for each project, to act as a burn-down chart for the work remaining for a particular release. The teams will periodically scrub the bugs intended for a particular release and either bring in new issues or retarget bugs that, due to time or scope changes, won't be addressed. Once all the tickets for a release are in *Status*: _Merged Pending Release_, the release is unblocked and the Release Engineering team can begin building packages and updating the repositories.
-
-Once a release is out in the wild, the release engineer sweeps through the bugs that were merged in that release, marks them Closed and sets the *Released in* field to the version number of the freshly released software.
-
 ### Boilerplate text for ticket triage
 
 #### Duplicate issue
