@@ -114,7 +114,7 @@ This example would let you use completely separate data directories for your pro
 
 ### In Data
 
-Within a data source, you can interpolate variables into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
+Within a data source, you can interpolate values into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
 
     # /var/lib/hiera/common.yaml
     ---
@@ -122,7 +122,31 @@ Within a data source, you can interpolate variables into any string, whether it'
 
 In this example, instead of creating a `%{::domain}` hierarchy level and a data source for each domain, you can get a similar result with one line in the `common` data source.
 
+**In Hiera 1.3 and later,** you can also interpolate values into hash keys:
 
+    # /var/lib/hiera/common.yaml
+    ---
+    bacula::jobs:
+      "%{::hostname}_Cyrus":
+        fileset: MailServer
+        bacula_schedule: 'CycleStandard'
+      "%{::hostname}_LDAP":
+        fileset: LDAP
+        bacula_schedule: 'CycleStandard'
+
+This generally only useful when building something complicated with [the `create_resources` function](/references/latest/function.html#createresources), as it lets you interpolate values into resource titles.
+
+**Note:** With YAML data sources, interpolating into hash keys means those hash keys must be quoted.
+
+**Note:** This _only works for keys that are part of a value;_ that is, you can't use interpolation to dynamically create new Hiera lookup keys at the root of a data source.
+
+    # /var/lib/hiera/common.yaml
+    ---
+    # This isn't legal:
+    "%{::hostname}_bacula_jobs":
+      "%{::hostname}_Cyrus":
+        fileset: MailServer
+        bacula_schedule: 'CycleStandard'
 
 Passing Variables to Hiera
 -----
