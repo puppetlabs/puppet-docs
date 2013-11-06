@@ -1,6 +1,6 @@
 ---
 layout: legacy
-title: Puppet Open Source » Supported Platforms
+title: Puppet Open Source » Supported Platforms and System Requirements
 ---
 
 [pe-requirements]: /pe/latest/install_system_requirements.html
@@ -73,7 +73,7 @@ Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
 -------------|------------|------------|-----------
 1.8.5\*      | Supported  | Supported  | No
 1.8.7        | Supported  | Supported  | Supported
-2.0.0\*\*    | No         | No         | Supported (3.2 and higher)
+2.0.0        | No         | No         | Supported (3.2 and higher)
 1.9.3\*\*    | No         | No         | Supported
 1.9.2        | No         | No         | No
 1.9.1        | No         | No         | No
