@@ -183,11 +183,12 @@ The console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job
 
 Currently, to manage the `delayed_job` workers, you must either use the provided monitor script or start non-daemonized workers individually with the provided rake task.
 
-### Using the monitor script
+### Changing the Number of delayed_job Worker Processes
 
-The console ships with a worker process manager, which can be found at `script/delayed_job`. This tool's interface resembles an init script, but it can launch any number of worker processes as well as a monitor process to babysit these workers; run it with `--help` for more details. `delayed_job` requires that you specify `RAILS_ENV` as an environment variable. To start four worker processes and the monitor process:
+You can increase the number of workers by changing the following setting:
 
-    # env RAILS_ENV=production script/delayed_job -p dashboard -n 4 -m start
+ - `CPUS` in `/etc/sysconfig/pe-puppet-dashboard-workers` on Red-Hat based systems
+ - `NUM_DELAYED_JOB_WORKERS` in `/etc/default/pe-puppet-dashboard-workers` on Ubuntu and Debian
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 

@@ -185,8 +185,8 @@ The console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job
 
 You can increase the number of workers by changing the following setting:
 
- - CPUS in `/etc/sysconfig/pe-puppet-dashboard-workers` on Red-Hat based systems
- - NUM_DELAYED_JOB_WORKERS in `/etc/default/pe-puppet-dashboard-workers` on Ubuntu and Debian
+ - `CPUS` in `/etc/sysconfig/pe-puppet-dashboard-workers` on Red-Hat based systems
+ - `NUM_DELAYED_JOB_WORKERS` in `/etc/default/pe-puppet-dashboard-workers` on Ubuntu and Debian
 
 In most configurations, you should run exactly as many workers as the machine has CPU cores.
 
