@@ -93,7 +93,7 @@ A backend's lookup method can construct its own arbitrary hierarchy and do anyth
 
 * You will usually want to iterate over Hiera's normal configured [hierarchy](./hierarchy.html).
 * You may want to locate data files in a directory.
-* You may want to allow values in the looked-up data to [interpolate variables](./variables.html#in-data).
+* You may want to allow values in the looked-up data to [interpolate dynamic values](./variables.html#in-data).
 * You may want to accommodate hash merge lookups.
 * You may want to log messages to assist debugging.
 
@@ -105,7 +105,7 @@ The Hiera::Backend module provides helper methods for the first four, and the Hi
 
 The `Backend.datasources` method finds a [hierarchy](./hierarchy.html) (usually from the config file), interpolates any dynamic values, removes any empty hierarchy levels, then iterates over it with a provided block of code, calling the block once for each hierarchy level. You will almost always want to use this method, as it's the easiest way to take advantage of the configured hierarchy.
 
-The **block** passed to this method must take one argument (which will be a hierarchy level, with any variable interpolation already performed). It does not need to return anything, and will usually modify an existing variable outside its scope in order to set an answer. This block will do most of the heavy lifting in your backend, accessing any data sources you need to consult.
+The **block** passed to this method must take one argument (which will be a hierarchy level, with any interpolation already performed). It does not need to return anything, and will usually modify an existing variable outside its scope in order to set an answer. This block will do most of the heavy lifting in your backend, accessing any data sources you need to consult.
 
 The **arguments** passed to this method are a scope, an order override (optional), and a replacement hierarchy (optional). Usually, you will pass along the `scope` and `order_override` values that your `lookup` method received and omit the hierarchy argument, so that you can use the normal hierarchy from the config file.
 
@@ -169,7 +169,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
 
 [parse_answer]: #backendparseanswerdata-scope
 
-The `Backend.parse_answer` method returns its first argument, but with any [interpolation tokens](./variables.html) replaced by variables from the scope passed as its second argument. Use it if you want to support interpolation of variables into data with your backend. (This is optional.)
+The `Backend.parse_answer` method returns its first argument, but with any [interpolation tokens](./variables.html) replaced by variables from the scope passed as its second argument. Use it if you want to support interpolation of dynamic values into data with your backend. (This is optional.)
 
 {% highlight ruby %}
     class Hiera
@@ -399,12 +399,12 @@ class Hiera
         #
         #     [ "client01.example.com", "development", "global" ]
         #
-        # Note that variable interpolation of the %{clientcert} and
-        # %{environment} has been performed, using values from the scope
-        # parameter. If a value is given for order_override that value will
-        # be inserted at the top of the hierarchy. For example, given an
-        # order_override value of "custom", the datasources() method will
-        # return something like:
+        # Note that interpolation of the %{clientcert} and %{environment}
+        # tokens has been performed, using values from the scope
+        # parameter. If a value is given for order_override that value will be
+        # inserted at the top of the hierarchy. For example, given an
+        # order_override value of "custom", the datasources() method will return
+        # something like:
         #
         #     [ "custom", "client01.example.com", "development", "global" ]
         #
@@ -495,7 +495,7 @@ class Hiera
 
           # Using the parse_answer() method is important if we want to be able
           # to use templated or scoped data. Calling parse_answer() on the data
-          # will cause Hiera to perform variable interpolation, looking for
+          # will cause Hiera to perform interpolation, looking for
           # instances of the %{} syntax. Any instance found will be replaced
           # with the value from the scope. Finally, the "break" statement is
           # used to stop traversing datasources, as we have found and set our

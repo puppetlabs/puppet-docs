@@ -60,7 +60,7 @@ Puppet Variables Passed to Hiera
 
 Whenever a Hiera lookup is triggered from Puppet, Hiera receives a copy of **all** of the variables currently available to Puppet, including both top scope and local variables.
 
-Hiera can then use any of these variables in the [variable interpolation tokens][variable_tokens] scattered throughout its [hierarchy][] and [data sources][data_sources]. You can enable more flexible hierarchies by creating [custom facts][custom_facts] for things like datacenter location and server purpose.
+Hiera can then use any of these variables in the [interpolation tokens][variable_tokens] scattered throughout its [hierarchy][] and [data sources][data_sources]. You can enable more flexible hierarchies by creating [custom facts][custom_facts] for things like datacenter location and server purpose.
 
 ### Special Pseudo-Variables
 
