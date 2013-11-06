@@ -372,7 +372,7 @@ prefix of `FACTER_` will be converted into a fact when Facter runs. For example:
 The value of the `FACTER_FOO` environment variable would now be
 available in your Puppet manifests as $foo, and would have a value of 'bar'.
 Using shell scripting to export an arbitrary subset of environment variables as
-facts is left as as exercise for the reader.
+facts is left as an exercise for the reader.
 
 ### Why shouldn't I use autosign for all my clients?
 
