@@ -1,6 +1,6 @@
 ---
 title: "Redmine Workflow for Puppet Open-Source Projects"
-layout: legacy
+layout: default
 ---
 
 
@@ -131,5 +131,5 @@ I’ve put this ticket’s status into “Code Insufficient” and assigned it t
 
 #### Contributor guidelines
 
-Our guidelines for patch submission are described in the [CONTRIBUTING.md](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md) 
+Our guidelines for patch submission are described in the [CONTRIBUTING.md](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md)
 in the puppetlabs/puppet github repo.

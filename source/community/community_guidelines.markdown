@@ -1,6 +1,6 @@
 ---
 title: "Community Guidelines and Code of Conduct for Puppet Communities"
-layout: legacy
+layout: default
 ---
 
 [redmine]: /community/puppet_projects_redmine_workflow.html

@@ -6,7 +6,7 @@ defaultnav:
   /: quick_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
-  /pe/3.1: pe31.html 
+  /pe/3.1: pe31.html
   /pe/3.0: pe30.html
   /pe/2.8: pe28.html
   /pe/2.7: pe27.html
@@ -31,6 +31,7 @@ defaultnav:
   /guides/deployment_guide:  deploy_guide.html
   /release_notes: release_notes.html
   /learning: learning_nav.html
+  /community: community_nav.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 #Anatomy of an external source:
