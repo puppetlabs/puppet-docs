@@ -795,6 +795,12 @@ Unchanged:
       vhostdir => '/etc/apache2/conf.d',
     }
 
+### BREAK: `puppet:///` URLs Pointing to Module Files Must Contain `modules/`
+
+Since 0.25, Puppet URLs pointing to source files in the `files` directory of a module have had to start with `puppet:///modules/`; however, the old way has continued to work (while logging deprecation warnings), ostensibly for compatibility with 0.24 clients.
+
+Support for 0.24-style URLs has now been removed, and the `modules/` portion is mandatory.
+
 ### BREAK: Deprecated Commands Are Removed
 
 The legacy standalone executables, which were replaced by subcommands in Puppet 2.6, have been removed. Additionally, running `puppet` without a subcommand no longer defaults to `puppet apply`.
