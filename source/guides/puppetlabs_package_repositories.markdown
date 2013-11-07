@@ -1,6 +1,6 @@
 ---
 title: "Using the Puppet Labs Package Repositories"
-layout: legacy
+layout: default
 ---
 
 
@@ -25,15 +25,27 @@ The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports the foll
 
 Enabling this repository will let you install Puppet without requiring any other external repositories like EPEL.
 
-To enable the repository, run the command below that corresponds to your OS version:
+To enable the repository, run the command below that corresponds to your OS version and architecture:
 
 #### Enterprise Linux 5
 
+##### i386
+
     $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm
 
 #### Enterprise Linux 6
 
+##### i386
+
     $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
 
 ### For Debian and Ubuntu
 
@@ -45,7 +57,9 @@ To enable the repository:
 
 1. Download the "puppetlabs-release" package for your OS version.
     * You can see a full list of these packages on the front page of <http://apt.puppetlabs.com/>. They are all named `puppetlabs-release-<CODE NAME>.deb`. (For Ubuntu releases, the code name is the adjective, not the animal.)
+    * Architecture is handled automatically; there is only one package per OS version.
 2. Install the package by running `dpkg -i <PACKAGE NAME>`.
+3. Run `apt-get update` to get the new list of available packages.
 
 For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
@@ -59,19 +73,37 @@ The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports the foll
 
 {% include platforms_fedora.markdown %}
 
-To enable the repository, run the command below that corresponds to your OS version:
+To enable the repository, run the command below that corresponds to your OS version and architecture:
 
 #### Fedora 17
 
+##### i386
+
     $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-7.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/x86_64/puppetlabs-release-17-7.noarch.rpm
 
 #### Fedora 18
 
+##### i386
+
     $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f18/products/x86_64/puppetlabs-release-18-7.noarch.rpm
 
 #### Fedora 19
 
+##### i386
+
     $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f19/products/i386/puppetlabs-release-19-2.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f19/products/x86_64/puppetlabs-release-19-2.noarch.rpm
 
 Enabling the Prerelease Repos
 -----
@@ -101,7 +133,7 @@ After installing the repos, open your `/etc/yum.repos.d/puppetlabs.repo` file fo
 
 To disable the prerelease repo, change the value back to `0`.
 
-Puppet Enterprise Repositories
+Puppet Enterprise 2.8 Repositories
 -----
 
 Use these repositories to install PE-compatible versions of PuppetDB and the Ruby development headers. **These repositories should only be used with Puppet Enterprise 2.8 and earlier;** PE 3 includes PuppetDB and the Ruby dev libraries by default.
@@ -114,11 +146,23 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 #### Enterprise Linux 5
 
+##### i386
+
     $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/5/extras/i386/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/5/extras/x86_64/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
 
 #### Enterprise Linux 6
 
+##### i386
+
     $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/6/extras/i386/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/6/extras/x86_64/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
 
 ### For Debian and Ubuntu
 
