@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 1: Variables and Interpolation"
+title: "Hiera 1: Interpolation Tokens, Variables, and Lookup Functions"
 ---
 
 [config]: ./configuring.html
@@ -12,19 +12,82 @@ title: "Hiera 1: Variables and Interpolation"
 [hierarchy]: ./hierarchy.html
 
 
-Hiera receives a set of variables whenever it is invoked, and the [config file][config] and [data sources][data] can insert these variables into settings and data. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data.
+When writing Hiera's [settings][config] and [data][], you can instruct it to look up values at run-time and insert them into strings. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data.
 
 
-Inserting Variable Values
+Interpolation Tokens
 -----
 
-**Interpolation tokens** look like `%{variable}` --- a percent sign (`%`) followed by a pair of curly braces (`{}`) containing a variable name.
+**Interpolation tokens** look like `%{variable}` or `%{function("input")}`. That is, they consist of:
 
-If any [setting in the config file][config] or [value in a data source][data] contains an interpolation token, Hiera will replace the token with the value of the variable. Interpolation tokens can appear alone or as part of a string.
+* A percent sign (`%`)
+* An opening curly brace (`{`)
+* One of:
+    * A variable name
+    * A lookup function and its input _(Hiera 1.3 and later)_
+* A closing curly brace
 
-* Hiera can only interpolate variables whose values are **strings.** (**Numbers** from Puppet are also passed as strings and can be used safely.) You cannot interpolate variables whose values are booleans, numbers not from Puppet, arrays, hashes, resource references, or an explicit `undef` value.
-* Additionally, Hiera cannot interpolate an individual **element** of any array or hash, even if that element's value is a string.
-* In YAML files, **any string containing an interpolation token must be quoted** in order to comply with the YAML spec. (Under Ruby 1.8, interpolation tokens in unquoted strings will sometimes work anyway, but this can't be relied on.)
+If any [setting in the config file][config] or [value in a data source][data] contains an interpolation token, Hiera will replace the token with the value it refers to at run time.
+
+> **Notes:**
+>
+> * Hiera can only interpolate variables whose values are **strings.** (**Numbers** from Puppet are also passed as strings and can be used safely.) You cannot interpolate variables whose values are booleans, numbers not from Puppet, arrays, hashes, resource references, or an explicit `undef` value.
+> * Additionally, Hiera cannot interpolate an individual **element** of any array or hash, even if that element's value is a string.
+> * In YAML files, **any string containing an interpolation token must be quoted** in order to comply with the YAML spec. (Under Ruby 1.8, interpolation tokens in unquoted strings will sometimes work anyway, but this can't be relied on.)
+
+### Interpolating Normal Variables
+
+Hiera receives a set of variables whenever it is invoked, and it can insert them by name into any string. This is the default behavior; if the content of the interpolation token doesn't match one of the lookup functions listed below, Hiera will treat it as a variable name.
+
+    smtpserver: "mail.%{::domain}"
+
+See ["Passing Variables to Hiera"](#passing-variables-to-hiera) below for details on how Hiera receives these variables.
+
+### Using Lookup Functions
+
+Hiera currently has two lookup functions: [`scope()`](#the-scope-lookup-function) and [`hiera()`](#the-hiera-lookup-function). These are described in their own sections below.
+
+To use a lookup function in an interpolation token, write the name of the function plus a pair of parentheses containing a quoted input value:
+
+    wordpress::database_server: "%{hiera('instances::mysql::public_hostname')}"
+
+Notes on this syntax:
+
+* The input value must be surrounded by either single quotes (`'`) or double quotes (`"`).
+    * In YAML or JSON, the quotes may be escaped with a backslash if they are embedded in the same kind of quotes; however, the unescaping is handled by the parser and not by Hiera itself.
+* The parentheses surrounding the quoted input are mandatory.
+* There must be **no spaces** between:
+    * The function and the interpolation token's curly braces
+    * The function name and the opening parenthesis
+    * The parentheses and the quoted input value
+    * The quotes and the input value itself
+
+### The `hiera()` Lookup Function
+
+**Only available in Hiera 1.3 and later.**
+
+The `hiera()` lookup function performs a Hiera lookup, using its input as the lookup key. The result of the lookup must be a string; any other result will cause an error.
+
+This is generally nonsensical and not useful in Hiera's _settings._ However, it can be very powerful in _data._ By storing a fragment of data in one place and then using sub-lookups wherever it needs to be used, you can avoid repetition and make it easier to change your data.
+
+    wordpress::database_server: "%{hiera('instances::mysql::public_hostname')}"
+
+The value looked up by the `hiera()` function may itself contain a `hiera()` lookup. (The function will detect any circular lookups and fail with an error instead of looping infinitely.)
+
+### The `scope()` Lookup Function
+
+**Only available in Hiera 1.3 and later.**
+
+The `scope()` lookup function interpolates variables; it works identically to variable interpolation as described above. The function's input is the name of a variable surrounded by single or double quotes.
+
+The following two values would be identical:
+
+    smtpserver: "mail.%{::domain}"
+    smtpserver: "mail.%{scope('::domain')}"
+
+
+Where to Interpolate Data
+-----
 
 ### In Data Sources
 
@@ -51,7 +114,7 @@ This example would let you use completely separate data directories for your pro
 
 ### In Data
 
-Within a data source, you can interpolate variables into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
+Within a data source, you can interpolate values into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
 
     # /var/lib/hiera/common.yaml
     ---
@@ -59,7 +122,31 @@ Within a data source, you can interpolate variables into any string, whether it'
 
 In this example, instead of creating a `%{::domain}` hierarchy level and a data source for each domain, you can get a similar result with one line in the `common` data source.
 
+**In Hiera 1.3 and later,** you can also interpolate values into hash keys:
 
+    # /var/lib/hiera/common.yaml
+    ---
+    bacula::jobs:
+      "%{::hostname}_Cyrus":
+        fileset: MailServer
+        bacula_schedule: 'CycleStandard'
+      "%{::hostname}_LDAP":
+        fileset: LDAP
+        bacula_schedule: 'CycleStandard'
+
+This generally only useful when building something complicated with [the `create_resources` function](/references/latest/function.html#createresources), as it lets you interpolate values into resource titles.
+
+**Note:** With YAML data sources, interpolating into hash keys means those hash keys must be quoted.
+
+**Note:** This _only works for keys that are part of a value;_ that is, you can't use interpolation to dynamically create new Hiera lookup keys at the root of a data source.
+
+    # /var/lib/hiera/common.yaml
+    ---
+    # This isn't legal:
+    "%{::hostname}_bacula_jobs":
+      "%{::hostname}_Cyrus":
+        fileset: MailServer
+        bacula_schedule: 'CycleStandard'
 
 Passing Variables to Hiera
 -----

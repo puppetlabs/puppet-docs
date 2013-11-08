@@ -37,7 +37,7 @@ String  | Quoted scalar or non-boolean unquoted scalar
 Number  | Integer or float
 Boolean | Boolean (note: includes `on` and `off`, `yes` and `no` in addition to `true` and `false`)
 
-Any string may include any number of [variable interpolation tokens][variables].
+Any string may include any number of [interpolation tokens][variables].
 
 > **Important note:** The "psych" YAML parser, which is used by many Ruby versions, **requires** that any strings containing a `%` be quoted.
 
@@ -93,7 +93,7 @@ String  | String
 Number  | Number
 Boolean | `true` / `false`
 
-Any string may include any number of [variable interpolation tokens][variables].
+Any string may include any number of [interpolation tokens][variables].
 
 ### Example
 {% highlight json %}
@@ -114,8 +114,3 @@ Any string may include any number of [variable interpolation tokens][variables].
 }
 {% endhighlight %}
 
-
-Puppet
------
-
-Coming soon. <!-- TODO -->

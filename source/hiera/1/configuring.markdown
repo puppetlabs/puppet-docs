@@ -142,7 +142,7 @@ The following settings are available for the built-in backends:
 
 #### `:datadir`
 
-The directory in which to find data source files.
+The directory in which to find data source files. This must be a string.
 
 You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppet/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
