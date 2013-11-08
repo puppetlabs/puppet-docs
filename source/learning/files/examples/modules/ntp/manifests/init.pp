@@ -48,10 +48,10 @@ class ntp ($servers = undef, $enable = true, $ensure = running) {
   }
   
   if $servers == undef {
-    $servers_real = $default_servers
+    $_servers = $default_servers
   }
   else {
-    $servers_real = $servers
+    $_servers = $servers
   }
   
   package { 'ntp':
@@ -65,6 +65,7 @@ class ntp ($servers = undef, $enable = true, $ensure = running) {
     subscribe => File['ntp.conf'],
   }
   
+  # Template uses $_servers
   file { 'ntp.conf':
     path    => '/etc/ntp.conf',
     ensure  => file,
