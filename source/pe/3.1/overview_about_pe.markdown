@@ -18,7 +18,7 @@ This user's guide will help you start using Puppet Enterprise 3.1, and will serv
 > For Returning Users
 > -----
 >
-> See the [what's new page](./overview_whats_new.html) for the new features in this release of Puppet Enterprise. You can find detailed release notes for updates within the 3.0.x series in the [appendix of this guide](./appendix.html).
+> See the [what's new page](./overview_whats_new.html) for the new features in this release of Puppet Enterprise. You can find detailed release notes for updates within the 3.1.x series in the [appendix of this guide](./appendix.html).
 
 About Puppet Enterprise
 -----
@@ -26,11 +26,11 @@ About Puppet Enterprise
 Puppet Enterprise is a comprehensive tool for enterprise systems configuration management. Specifically, PE offers:
 
 * Configuration management tools that let sysadmins define a desired state for their infrastructure and then automatically enforce that state.
-* A web-based console UI, for analyzing events, managing your Puppet systems and users, and editing resources on the fly.
+* A web-based console UI for analyzing events, managing your Puppet systems and users, and editing resources on the fly.
 * Powerful orchestration capabilities.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-Puppet Enterprise consists of a complete stack of Puppet Labs technologies, which are automatically installed and connected. Specifically PE 3.1 includes all of the following Puppet Labs software:
+Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically PE 3.1 includes all of the following Puppet Labs software:
 
  * Puppet 3.3.1
  * PuppetDB 1.5.1
@@ -57,7 +57,7 @@ PE's console is the web front-end for managing your systems. The console can:
 
 * Trigger immediate puppet runs on an arbitrary subset of your nodes
 * Browse and compare resources on your nodes in real time
-* Analyze events and reports to help visualize your infrastructure over time
+* Analyze events and reports to help you visualize your infrastructure over time
 * Browse inventory data and backed-up file contents from your nodes
 * Group similar nodes and control the Puppet classes they receive in their catalogs
 * Run advanced orchestration tasks
