@@ -75,6 +75,30 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
+Puppet 3.3.2
+-----
+
+Released November 12, 2013
+
+3.3.2 is a bug fix release in the Puppet 3.3 series. The most important fix was a bug causing problems with NetApp devices.
+
+### Bug Fixes
+
+[Issue 22804: NetApp network device failing with Puppet >3.2.1 - "Could not intern..."](http://projects.puppetlabs.com/issues/22804)
+
+This caused failures when using the puppet device subcommand with NetApp network devices. It could also cause failures with any custom functions, types, or providers that used the Ruby REXML library to do heavy lifting, if they happened to call `include REXML` outside any module or class.
+
+[Issue 22810: RPM provider query method returns leading quote in package names](http://projects.puppetlabs.com/issues/22810)
+
+This was causing strange interactions with MCollective when querying packages on RPM-based systems.
+
+[Issue 22847: Windows Puppet::Util::ADSI::User and Puppet::Util::ADSI::Group issues WMI queries that hang Puppet in a domain environment](http://projects.puppetlabs.com/issues/22847)
+
+When getting a list of existing user accounts on a Windows machine, Puppet was putting out a query that could seem to take forever in a large ActiveDirectory environment. It was fixed by limiting the query to the local objects that Puppet actually cares about.
+
+[Issue 22878: Running processes on windows (through mcollective) cause private CloseHandle to be called instead of public method](http://projects.puppetlabs.com/issues/22878)
+
+This didn't affect most users, due to the way Puppet is packaged on Windows, but it could cause major failures of many resource types for people running Puppet from source.
 
 Puppet 3.3.1
 -----
