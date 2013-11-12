@@ -70,7 +70,7 @@ Once the installer finishes:
 * The Start menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details. The Start menu folder also contains documentation links.
 
     ![Start Menu icons][startmenu]
-* Starting with version `3.3.1` of Puppet and `3.1.0` of Puppet Enterprise, Puppet is automatically added to the machine's PATH environment variable. This means you can open any command line and call `puppet`, `facter` and the few other batch files that are in the `bin` directory of the [Puppet installation](#program-directory). This will also add necessary items for the Puppet environment to the shell, but only for the duration of execution of each of the particular commands.
+* Starting with version 3.3.1 of Puppet and 3.1.0 of Puppet Enterprise, Puppet is automatically added to the machine's PATH environment variable. This means you can open any command line and call `puppet`, `facter` and the few other batch files that are in the `bin` directory of the [Puppet installation](#program-directory). This will also add necessary items for the Puppet environment to the shell, but only for the duration of execution of each of the particular commands.
 
 Automated Installation
 -----
@@ -90,21 +90,21 @@ Minimum Version      | MSI Property                  | Puppet Setting    | Defau
 2.7.12 / PE 2.5.0    |`PUPPET_CA_SERVER`             | [`ca_server`][c]  | Value of `PUPPET_MASTER_SERVER`
 2.7.12 / PE 2.5.0    |`PUPPET_AGENT_CERTNAME`        | [`certname`][r]   | Value of `facter fdqn` (must be lowercase)
 3.3.1  / PE 3.1.0    |`PUPPET_AGENT_ENVIRONMENT`     | [`environment`][e]| `production`
-
-{% comment %}
-
-3.4.0 / unreleased   |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
-3.4.0 / unreleased   |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
-3.4.0 / unreleased   |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
-3.4.0 / unreleased   |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
-
-{% endcomment %}
+3.4.0  / pending     |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
+3.4.0  / pending     |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
+3.4.0  / pending     |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
+3.4.0  / pending     |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
 
 For example:
 
     msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
 
-**Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT override that value.
+### Modifying puppet.conf With MSI Properties
+
+If values for Puppet settings are specified with MSI properties during an install or upgrade, the installer will set them in the `[main]` section of puppet.conf.
+
+**Starting with Puppet 3.4.0,** the installer will replace existing values in puppet.conf if a new value is provided on the command line. Additionally, if a value has been provided on the command line once, it will be remembered in the registry and future upgrades will re-set it in puppet.conf if necessary. This means that if you need to change the `server`, `ca_server`, `certname`, or `environment` settings after setting them via the installer, you should do so by running the installer on the command line again with new values. This "memory effect" doesn't happen with the default values for the MSI properties; it only happens if a value is explicitly set.
+
 
 [s]: /references/latest/configuration.html#server
 [c]: /references/latest/configuration.html#caserver
@@ -176,8 +176,6 @@ puppet    | Puppet source
 service   | code to run puppet agent as a service
 sys       | Ruby and other tools
 
-{% comment %}
-
 ### Agent Startup Mode
 
 The agent is set to `Automatic` startup by default, but allows for you to pass `Manual` or `Disabled` as well.
@@ -189,8 +187,6 @@ The agent is set to `Automatic` startup by default, but allows for you to pass `
 ### Agent Account
 
 By default, Puppet installs the agent with the built in `SYSTEM` account. This account does not have access to the network, therefore it is suggested that another account that has network access be specified. The account must be an existing account. In the case of a domain user, the account does not need to have accessed the box. If this account is not a local administrator and it is specified as part of the install, it will be added to the `Administrators` group on that particular node. The account will also be granted [`Logon as Service`](http://msdn.microsoft.com/en-us/library/ms813948.aspx) as part of the installation process. As an example, if you wanted to set the agent account to a domain user `AbcCorp\bob` you would call the installer from the command line appending the following items: `PUPPET_AGENT_ACCOUNT_DOMAIN=AbcCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password`.
-
-{% endcomment %}
 
 ### Data Directory
 
