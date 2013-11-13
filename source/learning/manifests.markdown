@@ -133,7 +133,7 @@ Now that you know resource declarations, let's play with the file type some more
 
     file {'/tmp/test1':
       ensure  => file,
-      content => "Hi.",
+      content => "Hi.\n",
     }
 
     file {'/tmp/test2':
