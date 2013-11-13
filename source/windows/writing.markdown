@@ -140,27 +140,44 @@ Puppet can manage the following resource types on Windows nodes:
 {% highlight ruby %}
     file { 'c:/mysql/my.ini':
       ensure => 'file',
-      mode => '0660',
-      owner => 'mysql',
-      group => 'Administrators',
+      mode   => '0660',
+      owner  => 'mysql',
+      group  => 'Administrators',
       source => 'N:/software/mysql/my.ini',
     }
 {% endhighlight %}
 
-Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported.
+Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/3.latest/type.html#file-attribute-ensure).
 
-* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file).
+#### Naming Files
+
 * Windows NTFS filesystems are case-preserving, but case-insensitive; Puppet is case-sensitive. Thus, you should be consistent in the case you use when referring to a file resource in multiple places in a manifest.
+
+#### Required User Permissions
+
+By default, Puppet's installer sets puppet agent to run as the Administrator user. If you want to run it as a different user (see ["Automated Installation" in the installing page](./installing.html#automated-installation)), you must ensure Puppet has the following permissions:
+
 * In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
+* To manage symlinks, Puppet's user also needs the "Create Symbolic Links" privilege, which the Administrators group has by default.
+
+#### Managing File Permissions
+
 * Permissions modes are set as though they were \*nix-like octal modes; Puppet translates these to the equivalent access controls on Windows.
     * The read, write, and execute permissions translate to the `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights.
     * The owner of a file/directory always has the `FULL_CONTROL` access right.
     * The `Everyone` SID is used to represent users other than the owner and group.
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
-* The source of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+* Puppet does not currently manage ACLs on Windows, but Puppet Labs and the Puppet community are collaborating on a design for managing them as a new resource type. [See the in-progress ACLs proposal for more details.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
 * When downloading a file from a puppet master with a `puppet:///` URI, Puppet will set the permissions mode to match that of the remote file. Be sure to set the proper mode on any remote files.
 
+#### File Sources
+
+* The `source` attribute of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+
+> #### Known Issues in Older Puppet Versions: pre-3.4.0
+>
+> * Prior to Puppet 3.4.0, if an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
 
 ### [`user`][user]
 
