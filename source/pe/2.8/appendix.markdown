@@ -204,5 +204,24 @@ To improve the display of Puppet man pages, you can use your system `gem` comman
 
     $ sudo gem install ronn
 
+### Installing or Upgrading to PE 2.8.3 on Ubuntu Results in an Inaccessible Console
 
+Due to a bug with the console packages for PE 2.8.3, several lines of necessary configuration are missing
+when PE is installed on Ubuntu.
+
+The following errors will appear in `/var/log/pe-puppet-dashboard/production.log` when this issue occurs:
+
+    ActionView::TemplateError (`per_page` setting cannot be less than 1 (0 given)) on line #2 of app/views/nodes/_nodes.html.haml:
+    1: - node_count = local_assigns[:nodes].count
+    2: - nodes = paginate_scope(local_assigns[:nodes])
+    3: - container = local_assigns[:container]
+    4: - selected_status = local_assigns[:selected_status]
+    5: - more_link = local_assigns[:more_link]
+
+The issue can be resolved by appending these four configuration lines to the file `/etc/puppetlabs/puppet-dashboard/settings.yml`:
+
+    nodes_per_page: 20
+    classes_per_page: 50
+    groups_per_page: 50
+    reports_per_page: 20
 
