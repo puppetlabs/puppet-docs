@@ -181,7 +181,7 @@ By default, Puppet's installer sets puppet agent to run as the Administrator use
 
 ### [`user`][user]
 
-Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups.
+Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups (in Puppet 3.4.0 and later).
 
 * The `comment`, `home`, and `password` attributes can be managed, as well as groups to which the user belongs.
 * Passwords can only be specified in cleartext. Windows does not provide an API for setting the password hash.
