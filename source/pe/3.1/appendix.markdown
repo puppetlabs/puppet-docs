@@ -224,7 +224,20 @@ You can avoid the reappearance of nodes by removing them with the following proc
 
 These steps will remove the node's certificate, purge information about the node from PuppetDB, and delete the node from the console. The last command is equivalent to logging into the console and deleting the node via the UI.
 
+### Errors Related to Stopping `pe-postresql` Service
 
+If for any reason the `pe-postresql` service is stopped, agents will receive several different error messages, for example:
+
+    Warning: Unable to fetch my node definition, but the agent run will continue:
+    Warning: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
+    
+or, when attempting to request a catalog:
+
+    Error: Could not retrieve catalog from remote server: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
+    Warning: Not using cache on failed catalog
+    Error: Could not retrieve catalog; skipping run
+    
+If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 * * *
 
