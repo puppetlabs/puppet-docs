@@ -225,46 +225,77 @@ Puppet can create, edit, and delete scheduled tasks. It can manage the task name
 
 ### [`package`][package]
 
+Puppet can install and remove two types of packages on Windows:
+
+* MSI packages
+* Executable installers
+
+Both of these use the default `windows` package provider. (There is an older `msi` provider included, but it is deprecated as of Puppet 3.0.)
+
+When managing packages on Windows, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
+
+#### Examples
+
+MSI example:
+
 {% highlight ruby %}
     package { 'mysql':
-      ensure          => installed,
-      provider        => 'msi', # deprecated in Puppet 3.0
+      ensure          => '5.5.16',
       source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-      install_options => { 'INSTALLDIR' => 'C:\mysql-5.5' },
+      install_options => [ { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
     }
 {% endhighlight %}
 
-Puppet can install and remove MSI packages, including specifying package-specific install options, e.g. install directory.
-
-#### Identifying Packages
-
-The `title` or name of the package must match the value of the `DisplayName` property in the registry, which is also the value displayed in Add/Remove Programs. Alternately, when a package name is not unique across versions (e.g. VMWare Tools, or where there are 32- and 64-bit versions with the same name), we provide the ability to specify the package's PackageCode as the package name. This is a GUID that's unique across all MSI builds. For instance:
+Self-extracting EXE example:
 
 {% highlight ruby %}
-	package { '{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}':
-	  ensure => installed,
-	  source => 'the.msi',
-	  provider => windows
-	}
+    package { "Git version 1.8.4-preview20130916":
+     ensure   => installed,
+     source   => 'C:\\code\\puppetlabs\\temp\\windowsexample\\Git-1.8.4-preview20130916.exe',
+     install_options => ['/VERYSILENT']
+    }
 {% endhighlight %}
 
-To find the PackageCode from an MSI, you can use Orca, or you can get to it programmatically with Ruby:
+#### Package Names
 
-{% highlight ruby %}
-	require 'win32ole'
-	installer = WIN32OLE.new('WindowsInstaller.Installer')
-	db = installer.OpenDatabase(path, 0) # where 'path' is the path to the MSI
-	puts db.SummaryInformation.Property(9)
-{% endhighlight %}
+The title (or `name`) of the package must match the value of the package's `DisplayName` property in the registry, which is also the value displayed in the "Add/Remove Programs" or "Programs and Features" control panel. If the provided name and installed name don't match, Puppet will believe the package is not installed and try to install it again.
 
-#### Additional Notes on Windows Packages
+The easiest way to copy a package's name is to:
 
-* The source parameter is required, and must refer to a local .msi file, a file from a mapped drive, or a UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
-* The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install.
-    * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes.
-* As of Puppet 3.0, `windows` is the default provider parameter for all Windows packages. Using `msi` will result in a deprecation
-warning.
-* The Windows package provider is versionable as of Puppet 3.4.0 (unreleased at the time of this writing; see [the Puppet release notes](/puppet/latest/reference/release_notes.html) and/or [the Puppet Enterprise release notes](/pe/latest/appendix.html#release-notes) for up-to-date info). This means the `ensure => 'version'` syntax may be used, where `'version'` may be an identifier like `'1.2.3.4'`.  Note that this version string must exactly match the reported version of the package specified in the `source` parameter.  If it does not, Puppet will determine the package is out of date and will attempt to reinstall.
+* Install the package on an example system
+* Run `puppet resource package` to see a list of installed packages
+* Locate the package you just installed, and copy the name that `puppet resource` reported for it
+
+Some packages (Git is a notable example) will change their display names with every version released. In these cases, you must update the name or title whenever you change the package `source`.
+
+#### Install and Uninstall Options
+
+The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of hashes and/or strings. (MSI properties can be specified as hashes, with the name of the property as the key; you should use one hash per property. Command line flags to executable installers can be specified as strings, with one string per flag.)
+
+Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately.
+
+#### Versioning and Upgrades
+
+The Windows package provider is versionable (as of Puppet 3.4.0). This means the `ensure => 'version'` syntax may be used, where `'version'` may be an identifier like `'1.2.3.4'`.  Note that this version string must exactly match what the package file reports itself as; if it does not, Puppet will determine the package is out of date and will attempt to reinstall. You can use `puppet resource package` to see the currently reported versions for all packages on a given system.
+
+Versioning can interact with the package name, since some packages (Git, e.g.) change their DisplayName with each version. Thus, in practice, you'll need a combination of two ways to handle versions:
+
+* If a package's name is the same for all versions and you want to change the version you're managing on your nodes, change the source file and set `ensure => 'new version'` on the resource.
+* If a package's name changes with each version, change the source file and update the resource's title or `name` to the new name. You can leave `ensure` set to `present`; Puppet will upgrade the package if the installed name doesn't match the desired one.
+
+Finally: Setting `ensure => latest` (which requires the `upgradeable` feature) doesn't work on Windows, as it doesn't support the sort of central package repositories you see on most Linuxes.
+
+> #### Versioning Workarounds in pre-3.4.0
+>
+> Prior to Puppet 3.4.0, you couldn't specify package versions in the `ensure` attribute. This meant that upgrades worked fine for packages that changed their name with every version, but there wasn't an easy way to upgrade packages with stable names.
+>
+> A workaround was to specify the package's PackageCode as the name/title, instead of using the DisplayName. The PackageCode is a GUID that's unique per MSI file. To find the PackageCode from an MSI, you can use Orca, or you can get to it programmatically with Ruby:
+>
+> 	require 'win32ole'
+> 	installer = WIN32OLE.new('WindowsInstaller.Installer')
+> 	db = installer.OpenDatabase(path, 0) # where 'path' is the path to the MSI
+> 	puts db.SummaryInformation.Property(9)
+
 
 ### [`service`][service]
 
