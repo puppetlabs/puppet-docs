@@ -22,9 +22,8 @@ Welcome to Learning Puppet! This series covers the basics of writing Puppet code
 Begin
 -----
 
-Log into the Learning Puppet VM as root, and run the following command:
+Log into the Learning Puppet VM as root, and run `puppet resource service`. This command will return something like the following:
 
-    # puppet resource service
 
     service { 'NetworkManager':
       ensure => 'stopped',
