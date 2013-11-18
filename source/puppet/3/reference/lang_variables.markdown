@@ -32,11 +32,11 @@ Syntax
     $content = "some content\n"
 {% endhighlight %}
 
-Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator. 
+Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator.
 
-Any value of any of the normal (i.e. non-regex) [data types][datatype] can be assigned to a variable. Any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) can be used in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement. 
+Any value of any of the normal (i.e. non-regex) [data types][datatype] can be assigned to a variable. Any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) can be used in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement.
 
-Variables can only be assigned using their [short name](#naming). That is, a given [scope][] cannot assign values to variables in a foreign scope. 
+Variables can only be assigned using their [short name](#naming). That is, a given [scope][] cannot assign values to variables in a foreign scope.
 
 ### Resolution
 
@@ -45,11 +45,11 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
       ensure  => file,
       content => $content,
     }
-    
+
     $address_array = [$address1, $address2, $address3]
 {% endhighlight %}
 
-The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value. 
+The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value.
 
 ### Interpolation
 
@@ -67,7 +67,7 @@ Inside a double-quoted string, you can optionally surround the name of the varia
 
 ### Appending Assignment
 
-When creating a local variable with the same name as a variable in [top scope, node scope, or a parent scope][scope], you can optionally append to the received value with the `+=` (plus-equals) appending assignment operator. 
+When creating a local variable with the same name as a variable in [top scope, node scope, or a parent scope][scope], you can optionally append to the received value with the `+=` (plus-equals) appending assignment operator.
 
 {% highlight ruby %}
     $ssh_users = ['myself', 'someone']
@@ -77,7 +77,7 @@ When creating a local variable with the same name as a variable in [top scope, n
     }
 {% endhighlight %}
 
-In the example above, the value of `$ssh_users` inside class `test` would be `['myself', 'someone', 'someone_else']`. 
+In the example above, the value of `$ssh_users` inside class `test` would be `['myself', 'someone', 'someone_else']`.
 
 The value appended with the `+=` operator **must** be the same [data type][datatype] as the received value. This operator can only be used with strings, arrays, and hashes:
 
@@ -91,9 +91,9 @@ Behavior
 
 ### Scope
 
-The area of code where a given variable is visible is dictated by its [scope][]. Variables in a given scope are only available within that scope and its child scopes, and any local scope can locally override the variables it receives from its parents. 
+The area of code where a given variable is visible is dictated by its [scope][]. Variables in a given scope are only available within that scope and its child scopes, and any local scope can locally override the variables it receives from its parents.
 
-See the [section on scope][scope] for complete details. 
+See the [section on scope][scope] for complete details.
 
 ### Accessing Out-of-Scope Variables
 
@@ -103,7 +103,7 @@ You can access out-of-scope variables from named scopes by using their [qualifie
     $vhostdir = $apache::params::vhostdir
 {% endhighlight %}
 
-Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details. 
+Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details.
 
 ### No Reassignment
 
@@ -128,13 +128,13 @@ Unlike most other languages, Puppet only allows a given variable to be assigned 
     }
 {% endhighlight %}
 
-In the example above, `$myvar` has several different values, but only one value will apply to any given scope. 
+In the example above, `$myvar` has several different values, but only one value will apply to any given scope.
 
 > Note: Due to insufficient protection of the scope object that gets passed into templates, it is possible to reassign a variable inside a template and have the new value persist in the Puppet scope after the template is evaluated. **Do not do this.** This behavior is considered a bug rather than designed behavior and may be removed at any point without a deprecation period.
 
 ### Parse-Order Dependence
 
-Unlike [resource declarations][resource], variable assignments are parse-order dependent. This means you cannot resolve a variable before it has been assigned. 
+Unlike [resource declarations][resource], variable assignments are parse-order dependent. This means you cannot resolve a variable before it has been assigned.
 
 This is the main way in which the Puppet language fails to be fully declarative.
 
@@ -143,7 +143,7 @@ This is the main way in which the Puppet language fails to be fully declarative.
 Naming
 -----
 
-Variable names are case-sensitive and can include alphanumeric characters and underscores. 
+Variable names are case-sensitive and can include alphanumeric characters and underscores.
 
 Qualified variable names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 
@@ -157,18 +157,41 @@ Puppet provides several built-in [top-scope][topscope] variables, which you can 
 
 ### Facts
 
-Each node submits a very large number of [facts][] (as discovered by [Facter][]) when requesting its [catalog][], and all of them are available as top-scope variables in your manifests. In addition to the built-in facts, you can create and distribute custom facts as plugins. 
+Each node submits a very large number of [facts][] (as discovered by [Facter][]) when requesting its [catalog][], and all of them are available as top-scope variables in your manifests. In addition to the built-in facts, you can create and distribute custom facts as plugins.
 
 * [See here for a complete list of built-in facts][facts].
 * [See here for a guide to writing custom facts][customfacts].
-* Run `facter -p` on one of your nodes to get a complete report of the facts that node will report to the master.
+* Run `facter -p` on one of your nodes to get a complete report of the facts that node will report to the master. In Puppet Enterprise, each node detail page in the PE console contains a list of that node's facts.
+
+### Trusted Node Data
+
+In **Puppet 3.4.0 and later,** you can enable a `$trusted` variable, which is a hash containing _verified_ node data. Instead of being self-reported by an agent node, this data is extracted from the node's cryptographic credentials by the puppet master, which makes it resistant to spoofing and suitable for assigning sensitive data to certain nodes.
+
+To enable `$trusted`, set `trusted_node_data = true` in your puppet master's puppet.conf file. (For standalone puppet apply nodes, set it to true in each node's puppet.conf.)
+
+The `$trusted` variable is a hash containing the following keys:
+
+* `$trusted['authenticated']` --- an indication of whether the catalog request was authenticated, as well as how it was authenticated. The value will be one of:
+    * `remote` for authenticated remote requests (as with agent/master Puppet configurations)
+    * `local` for all local requests (as with standalone puppet apply nodes)
+    * `false` for unauthenticated remote requests (generally only possible if you've configured auth.conf to allow unauthenticated catalog requests)
+* `$trusted['certname']` --- the node's certificate name, usually set via the `certname` setting.
+    * For remote agent/master requests, this is the subject CN extracted from the node's certificate.
+    * For local catalog compilation, this is read directly from the `certname` setting.
+    * If the value of the `authenticated` key is `false`, the value of this key will be an empty string.
+
+If the `$trusted` hash is enabled with the `trusted_node_data` setting, Puppet will prevent you from accidentally modifying it. This means you can't assign new values to `$trusted` in local scopes, you can't add new keys to it, and you can't overwrite its existing keys in a template. Trying to do any of these things will fail compilation with an error.
+
+The `trusted_node_data` setting defaults to `false` in Puppet 3.x; it will default to `true` in Puppet 4.
 
 ### Agent-Set Variables
 
-Puppet agent sets several additional variables for a node which are available when compiling that node's catalog:
+Puppet agent (and puppet apply) sets several additional variables for a node which are available when compiling that node's catalog:
 
-* `$clientcert` --- the node's certname setting.
+* `$clientcert` --- the value of the node's certname setting.
 * `$clientversion` --- the current version of puppet agent.
+
+These variables are self-reported, so they shouldn't be used to decide whether a node receives sensitive data in its catalog. For that, see the `$trusted['certname']` variable above.
 
 ### Master-Set Variables
 
@@ -182,8 +205,8 @@ These variables are set by the puppet master and are most useful when managing P
 
 ### Parser-Set Variables
 
-These variables are set in every [local scope][scope] by the parser during compilation. These are mostly useful when implementing complex [defined types][definedtype]. 
+These variables are set in every [local scope][scope] by the parser during compilation. These are mostly useful when implementing complex [defined types][definedtype].
 
-* `$module_name` --- the name of the module that contains the current class or defined type. 
-* `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules. 
+* `$module_name` --- the name of the module that contains the current class or defined type.
+* `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules.
 
