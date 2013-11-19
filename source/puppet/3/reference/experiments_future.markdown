@@ -5,9 +5,11 @@ title: "Experimental Features: The Future Parser"
 
 [parser_setting]: /references/latest/configuration.html#parser
 
-> **Important note:** Before using anything on this page, please see [the Experimental Features Overview page](./experiments_overview.html) for information about the support level for these features. Any features marked as experimental are used at your own risk.
+> **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
+
+> **Status:** The future parser is available in Puppet 3.2.0 and later. Currently, we recommend _against_ enabling the future parser in a production deployment. As of Puppet 3.4, it still carries a massive performance penalty in catalog compilation compared to the default parser. It can be used to experiment with new features in a small environment, but it shouldn't bear the weight of a full-scale Puppet site.
 >
-> Currently, we recommend _against_ enabling the future parser in a production deployment. As of Puppet 3.4, it still carries a massive performance penalty in catalog compilation compared to the default parser. It can be used to experiment with new features in a small environment, but it shouldn't bear the weight of a full-scale Puppet site.
+> The new language features in the future parser are still being designed and considered, and there is ongoing debate over how they should work and whether they should be an official part of Puppet.
 
 Starting with Puppet 3.2, you can set `parser = future` in puppet.conf to enable experimental new language features, which may or may not be included in a future Puppet version.
 
