@@ -167,9 +167,10 @@ Older OS versions will have outdated Puppet versions, which are updated only wit
 
 Skip this step for a standalone deployment.
 
-On your puppet master node, run `sudo apt-get install puppetmaster`. This will install Puppet, its prerequisites, and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
+On your puppet master node, run one of the following:
 
-**If you are using vendor packages,** a `puppetmaster-passenger` package may be available. If you install this package instead of `puppetmaster`, it will automatically configure a production-capacity web server for the Puppet master, using Passenger and Apache. In this configuration, do not use the puppetmaster init script; instead, control the puppet master by turning the Apache web server on and off or by disabling the puppet master vhost.
+* `sudo apt-get install puppetmaster` --- This will install Puppet, its prerequisites, and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
+* `sudo apt-get install puppetmaster-passenger` --- (May not be available for all OS versions.) This will automatically configure a production-capacity web server for the Puppet master, using Passenger and Apache. In this configuration, do not use the puppetmaster init script; instead, control the puppet master by turning the Apache web server on and off or by disabling the puppet master vhost.
 
 #### 3. Install Puppet on Agent Nodes
 
