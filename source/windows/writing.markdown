@@ -246,7 +246,7 @@ MSI example:
     }
 {% endhighlight %}
 
-Self-extracting EXE example:
+Executable installer example:
 
 {% highlight ruby %}
     package { "Git version 1.8.4-preview20130916":
