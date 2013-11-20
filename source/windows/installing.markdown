@@ -116,7 +116,10 @@ Upgrading
 
 Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
-When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
+Note that, **starting with Puppet 3.4.0,** upgrading may replace existing values in puppet.conf:
+
+* Providing a value on the command line (see [Automated Installation](#automated-installation) above) will overwrite the previous value.
+* If a value was provided during a previous installation, it will be remembered and re-instated during the upgrade. This means that if you have changed your mind about the value of that setting since installation, you will need to re-confirm the new value on the command line for the upgrade.
 
 Uninstalling
 -----
