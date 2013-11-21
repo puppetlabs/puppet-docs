@@ -40,3 +40,10 @@ When a feature has experienced major changes across minor versions, we will note
 
 Each feature's page will attempt to give some context about the status of that feature and its prospects for official release.
 
+Giving Feedback on Experimental Features
+-----
+
+If you are testing Puppet's experimental features: Thank you! Please tell us more about your experience, so we can keep making Puppet better.
+
+* The best places to talk about experimental features are the [puppet-users](https://groups.google.com/group/puppet-users) and [puppet-dev](https://groups.google.com/group/puppet-dev) mailing lists. This tells us what's working and what isn't, while also helping others learn from your experience. For more information about the Puppet Labs mailing lists, please see [the community guidelines for mailing lists](/community/community_guidelines.html#mailing-list-guidelines).
+* For more immediate conversations, you can use the #puppet and #puppet-dev channels on irc.freenode.net. For more information about these channels, please see [the community guidelines for IRC](/community/community_guidelines.html#irc-guidelines).
