@@ -130,10 +130,10 @@ Windows uses CRLF line endings instead of \*nix's LF line endings.
     > Note: When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
 
-Resource Types
+Core Resource Types
 -----
 
-Puppet can manage the following resource types on Windows nodes:
+By default, Puppet can manage the following resource types on Windows nodes:
 
 ### [`file`][file]
 
@@ -330,3 +330,19 @@ Puppet can execute binaries (exe, com, bat, etc.), and can log the child process
 ### [`host`][host]
 
 Puppet can manage entries in the hosts file in the same way that is supported on Unix platforms.
+
+
+Plugin Resource Types
+-----
+
+In addition to the resource types included with Puppet's core, you can install custom resource types as Puppet modules from [the Puppet Forge](http://forge.puppetlabs.com). This can let you manage other types of resources that are specific to Windows.
+
+**Note that plugins from the Puppet Forge may not have the same amount of QA and test coverage as Puppet's core types.**
+
+The best way to find new resource types is by [searching for "windows" on the Puppet Forge](http://forge.puppetlabs.com/modules?sort=rank&q=windows&pop) and exploring the results. You may also want to start with these modules:
+
+* [puppetlabs/registry](http://forge.puppetlabs.com/puppetlabs/registry) --- A resource type for managing arbitrary registry keys.
+* [puppetlabs/reboot](http://forge.puppetlabs.com/puppetlabs/reboot) --- A resource type for managing conditional reboots, which may be necessary for installing certain software.
+* [puppetlabs/dism](http://forge.puppetlabs.com/puppetlabs/dism) --- A resource type for enabling and disabling Windows features (on Windows 7/2008 R2 and newer).
+* [joshcooper/powershell](http://forge.puppetlabs.com/joshcooper/powershell) --- An alternate `exec` provider that can directly execute powershell commands.
+
