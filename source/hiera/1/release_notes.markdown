@@ -8,7 +8,7 @@ title: "Hiera 1: Release Notes"
 Hiera 1.3.0
 -----
 
-> **Release candidate:** Hiera 1.3.0 hasn't yet been released. RC1 was never published; RC2 was published on November 8, 2013.
+Released November 21, 2013. (RC1: never published; RC2: November 8, 2013.)
 
 Hiera 1.3.0 contains three new features, including Hiera lookups in interpolation tokens. It also contains bug fixes and packaging improvements.
 
