@@ -12,7 +12,7 @@ title: "Language: Containment of Resources"
 Containment
 -----
 
-[Classes][] and [defined type][definedtype] instances **contain** the resources they declare. This means that if any resource or class forms a [relationship][] with the container, it will form the same relationship with every resource inside the container. 
+[Classes][] and [defined type][definedtype] instances **contain** the resources they declare. This means that if any resource or class forms a [relationship][] with the container, it will form the same relationship with every resource inside the container.
 
 {% highlight ruby %}
     class ntp {
@@ -28,7 +28,7 @@ Containment
         ...
       }
     }
-    
+
     include ntp
     exec {'/usr/local/bin/update_custom_timestamps.sh':
       require => Class['ntp'],
@@ -37,7 +37,7 @@ Containment
 
 In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happen after _every_ resource in the ntp class, including the package, the file, and the service.
 
-This feature also allows you to [notify and subscribe to][notify] classes and defined resource types as though they were a single resource. 
+This feature also allows you to [notify and subscribe to][notify] classes and defined resource types as though they were a single resource.
 
 Known Issues
 -----
@@ -47,7 +47,7 @@ Known Issues
 {% highlight ruby %}
     class ntp {
       include ntp::conf_file
-      
+
       service {'ntp':
         ...
       }
@@ -61,32 +61,44 @@ In the above example, a resource with a `require => Class['ntp']` metaparameter 
 
 ### Context and Plans
 
-Containment is a singleton and is absolute: a resource can only be contained by one container (although the container, in turn, may be contained). However, classes can be declared in multiple places with the `include` function. A naïve interpretation would thus imply that classes can be in multiple containers at once. 
+Containment is a singleton and is absolute: a resource can only be contained by one container (although the container, in turn, may be contained). However, classes can be declared in multiple places with the `include` function. A naïve interpretation would thus imply that classes can be in multiple containers at once.
 
 Puppet 0.25 and prior would establish a containment edge with the _first_ container in which a class was declared. This made containment dependent on parse-order, which was bad. However, fixing this unpredictability in 2.6 left no native way for the main "public" class in a module to completely own its subordinate implementation classes. This makes it hard to keep very large modules readable, since it complicates and obscures logical relationships in large blocks of code.
 
-Puppet Labs is investigating ways to resolve this for a future Puppet version. 
+This is resolved as of Puppet 3.4.0, which adds a special `contain` function for forming class-to-class containment relationships.
 
 ### Workaround: The Anchor Pattern
 
-You can cause a class to act like it's contained in another class by "holding it in place" with both a `require` and `before` relationship to resources that ARE contained:
+To mimic class containment in Puppet 2.7, you must use the **anchor pattern.**
+
+> **Note:** To use the anchor pattern, [the `puppetlabs/stdlib` module][stdlib] must be installed. This module includes the dummy `anchor` resource type.
+
+To use the anchor pattern:
+
+* The _containing_ class must include two uniquely-named `anchor` resources. (Anchor resources don't have any effect on the target system, and only exist to form relationships with.)
+* Any _contained_ classes must have relationships ensuring they happen _after_ one anchor and _before_ the other.
+
+In an example NTP module where service configuration is moved out into its own class:
 
 {% highlight ruby %}
     class ntp {
-      include ntp::conf_file
-      
-      package {'ntp':
+      file { '/etc/ntp.conf':
         ...
-        before => Class['ntp::conf_file'],
+        require => Package['ntp'],
+        notify  => Class['ntp::service'],
       }
-      service {'ntp':
+      include ntp::service
+      anchor { 'ntp_first': } -> Class['ntp::service'] -> anchor { 'ntp_last': }
+      package { 'ntp':
         ...
-        subscribe => Class['ntp::conf_file'], 
-        # Remember that 'subscribe' is effectively 'require, and also...'
       }
+    }
+
+    include ntp
+    exec { '/usr/local/bin/update_custom_timestamps.sh':
+      require => Class['ntp'],
     }
 {% endhighlight %}
 
-In this case, the `ntp::conf_file` class still isn't technically contained, but any resource can safely form a relationship with the `ntp` class and rest assured that the relationship will propagate into all relevant resources. 
+In this case, the `ntp::service` class still isn't technically contained, but any resource can safely form a relationship with the `ntp` class and be assured that the relationship will propagate into all relevant resources.
 
-Since this anchoring behavior is effectively an invisible side effect of the relationships inside the class, you should not rely on relationships with normal resources. Instead, you should use the `anchor` resource type included in the [puppetlabs-stdlib module][stdlib], which exists solely for this purpose. 
