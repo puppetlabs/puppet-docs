@@ -166,6 +166,8 @@ By default, Puppet's installer sets puppet agent to run as the Administrator use
     * The read, write, and execute permissions translate to the `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights.
     * The owner of a file/directory always has the `FULL_CONTROL` access right.
     * The `Everyone` SID is used to represent users other than the owner and group.
+* When a permissions mode is set with Puppet, it causes the security descriptor to be _protected._ This prevents that file from inheriting any more permissive access controls from the directory that contains it.
+* When copying files from a puppet master using the `source` attribute, Puppet defaults to applying the ownership and permissions from the source files. This is generally **not** desired on Windows, and the default behavior is now deprecated, scheduled for change in Puppet 4. In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to use a resource default in site.pp to set `source_permissions => ignore`.
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
 * Puppet does not currently manage ACLs on Windows, but Puppet Labs and the Puppet community are collaborating on a design for managing them as a new resource type. [See the in-progress ACLs proposal for more details.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
@@ -177,7 +179,11 @@ By default, Puppet's installer sets puppet agent to run as the Administrator use
 
 > #### Known Issues in Older Puppet Versions: pre-3.4.0
 >
-> * Prior to Puppet 3.4.0, if an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
+> Prior to Puppet 3.4, the `file` type had several limitations and problems. These were fixed as part of an NTFS support cleanup in 3.4.0. If you are writing manifests for Windows machines running an older version of Puppet, please be aware:
+>
+> * If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
+> * Setting a permissions mode can prevent the SYSTEM user from accessing the file (if SYSTEM isn't the file's owner or part of its group). This can make it so Puppet can access the file when run by a user, but can't access it when run as a service. In 3.4 and later, this is fixed, and Puppet will always ensure the SYSTEM user has the `FULL_CONTROL` access right (unless SYSTEM is specified as the owner or group for that file, in which case it will have the rights specified by the permissions mode).
+> * Puppet will copy file permissions from the remote `source`; this isn't ideal, since the \*nix permissions on the puppet master are unlikely to match what you want on your Windows machines. The only way to prevent this is to specify ownership, group, and mode for every file (or with a resource default). In 3.4 and up, the `source_permissions` attribute provides a way to turn this behavior off.
 
 ### [`user`][user]
 
