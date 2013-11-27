@@ -162,6 +162,10 @@ This is illegal:
 
 It is ok to use names with digits 0-9 as long as one character is not a digit.
 
+### Capitalized Variable Names Not Allowed
+
+Variable names may not contain capital letters. They are limited to lowercase letters, numbers, and underscores.
+
 ### "Bare Words" May Not Start with a Digit
 
 The positive effect of this is that numbers entered without quotes can be validated to be correct decimal, hex or octal values.
