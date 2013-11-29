@@ -146,6 +146,8 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
 
         DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
+        PassengerAppRoot /usr/share/puppet/rack/puppetmasterd
+
         <Directory /usr/share/puppet/rack/puppetmasterd/>
             Options None
             AllowOverride None
