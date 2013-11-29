@@ -116,7 +116,6 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
 
     # And the passenger performance tuning settings:
     PassengerHighPerformance On
-    PassengerUseGlobalQueue On
     # Set this to about 1.5 times the number of CPU cores in your master:
     PassengerMaxPoolSize 12
     # Recycle master processes after they service 1000 requests
