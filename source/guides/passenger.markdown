@@ -105,13 +105,13 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
     # you're using, as well as the installed version of Passenger.
 
     # Debian/Ubuntu:
-    #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
-    #PassengerRoot /var/lib/gems/1.8/gems/passenger-3.0.x
+    #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-4.0.x/ext/apache2/mod_passenger.so
+    #PassengerRoot /var/lib/gems/1.8/gems/passenger-4.0.x
     #PassengerRuby /usr/bin/ruby1.8
 
     # RHEL/CentOS:
-    #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
-    #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x
+    #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-4.0.x/ext/apache2/mod_passenger.so
+    #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-4.0.x
     #PassengerRuby /usr/bin/ruby
 
     # And the passenger performance tuning settings:
