@@ -149,11 +149,20 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         PassengerAppRoot /usr/share/puppet/rack/puppetmasterd
 
         <Directory /usr/share/puppet/rack/puppetmasterd/>
-            Options None
-            AllowOverride None
-            Order Allow,Deny
-            Allow from All
+          Options None
+          AllowOverride None
+          # Apply the right behavior depending on Apache version.
+          <IfVersion < 2.4>
+            Order allow,deny
+            Allow from all
+          </IfVersion>
+          <IfVersion >= 2.4>
+            Require all granted
+          </IfVersion>
         </Directory>
+
+        ErrorLog /var/log/httpd/puppet-server.example.com_ssl_error.log
+        CustomLog /var/log/httpd/puppet-server.example.com_ssl_access.log combined
     </VirtualHost>
 
 If this puppet master is not the certificate authority, you will
