@@ -145,7 +145,6 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
 
-        RackAutoDetect On
         DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
         <Directory /usr/share/puppet/rack/puppetmasterd/>
             Options None
