@@ -78,7 +78,14 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 Puppet 3.4.0
 -----
 
-> **Release Candidate:** Puppet 3.4.0 is not yet released. It entered RC 1 on November 27, 2013.
+> **Release Candidate:** Puppet 3.4.0 is not yet released. It entered RC 1 on December 2, 2013.
+
+3.4.0 is a backward-compatible feature and fix release in the Puppet 3 series. The main foci of this release are:
+
+* New certificate autosigning behavior, to help quickly and securely add new nodes in elastic environments
+* Fixes for some high-profile bugs and annoyances, including the "anchor pattern" issue and broken Rdoc on Ruby 1.9+
+* Windows improvements, especially for `file` resources
+* Trusted node data in the compiler
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
@@ -89,18 +96,39 @@ Puppet now includes [a `contain` function](/references/3.latest/function.html#co
 
 ([Issue 8040](http://projects.puppetlabs.com/issues/8040)) <!-- [https://jira.puppetlabs.com/browse/PP-99] -->
 
-### TODO Programmatic Certificate Autosigning
-- CSRs should be able to include custom attributes <!-- [https://jira.puppetlabs.com/browse/PP-664] -->
+### Policy-Based Certificate Autosigning
 
-### TODO Custom Attributes in Certificates and Requests
-- CSRs should be able to specify additional Extension Requests <!-- [https://jira.puppetlabs.com/browse/PP-669] -->
-- CSR extension requests should be conditionally copied to signed certificates <!-- [https://jira.puppetlabs.com/browse/PP-670] -->
+[ssl_policy_autosign]: ./ssl_autosign.html#policy-based-autosigning
 
-- CSRs should be able to include custom attributes <!-- [https://jira.puppetlabs.com/browse/PP-664] -->
+Puppet can now use site-specific logic to decide which certificate signing requests (CSRs) should be autosigned. This feature is based on custom executables, which can examine each CSR as it arrives and use any decision-making criteria you choose.
 
-### TODO New `puppet cert reinventory` Command
+Prior to 3.4, Puppet would accept a whitelist of nodes whose requests should be autosigned. This wasn't very flexible, and didn't allow things like using a preshared key to verify the legitimacy of a node. This is now very possible, and works especially well when combined with the next new feature (custom CSR attributes).
 
-PP-637
+For details, see:
+
+* [The "Policy-Based Autosigning" section of the autosigning reference page][ssl_policy_autosign]
+* [Documentation for the `autosign` setting](/references/3.latest/configuration.html#autosign)
+
+([Issue 7244](https://projects.puppetlabs.com/issues/7244))
+<!-- [https://jira.puppetlabs.com/browse/PP-664, https://jira.puppetlabs.com/browse/PP-453] -->
+
+### Custom Data in CSRs and Certificates
+
+[ssl_attributes]: ./ssl_attributes_extensions.html
+
+It is now possible for puppet agent nodes to insert arbitrary data into their certificate signing requests (CSRs). This data can be used as verification for policy-based autosigning (see above), and may have more applications in the future.
+
+Two kinds of custom data are available: "custom attributes," which are discarded once the certificate is signed, and "certificate extensions," which persist in the signed certificate.
+
+For details on custom CSR data, see:
+
+* [The "CSR Attributes and Certificate Extensions" reference page][ssl_attributes]
+* [Documentation for the `csr_attributes` setting](/references/3.latest/configuration.html#csrattributes)
+
+([Issue 7243](http://projects.puppetlabs.com/issues/7243))
+<!-- [https://jira.puppetlabs.com/browse/PP-669] -->
+<!-- [https://jira.puppetlabs.com/browse/PP-670] -->
+<!-- [https://jira.puppetlabs.com/browse/PP-664] -->
 
 ### Priority Level Can Be Set for Puppet Processes
 
@@ -120,6 +148,14 @@ Note that any existing problems with the puppet doc command still apply --- it s
 
 ([Issue 22180](https://projects.puppetlabs.com/issues/22180)) <!-- [https://jira.puppetlabs.com/browse/PP-568] -->
 
+### New `$trusted` Hash With Trusted Node Data
+
+A node's certificate name is available to the Puppet compiler in the special `$clientcert` variable. However, this variable was self-reported by the agent and was never verified by the puppet master, which meant it could contain more or less anything and couldn't be trusted when deciding whether to insert sensitive information into the catalog.
+
+As of 3.4, you can configure the puppet master to verify each agent node's certname and make it available to the compiler as `$trusted['certname']`. To do this, you must set the `trusted_node_data` setting to `true` in the master's puppet.conf. [See the language documentation about special variables for more details.](/puppet/3/reference/lang_variables.html#trusted-node-data)
+
+([Issue 19514](http://projects.puppetlabs.com/issues/19514)) <!-- [https://jira.puppetlabs.com/browse/PP-122] -->
+
 ### File Resources Can Opt Out of Source Permissions
 
 Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mode` permissions explicitly specified and were using a `source` file, they would set the permissions on the target system to match those of the `source`. This could cause weirdness on Windows systems being managed by a Linux puppet master, and wasn't always desired in all-\*nix environments either.
@@ -129,20 +165,6 @@ Now, you can opt out of source permissions using [the `file` type's `source_perm
 As part of this, the current default behavior (`source_permissions => use`) is now deprecated on Windows; the default for Windows is expected to change to `ignore` in Puppet 4.0.
 
 ([Issue 5240](https://projects.puppetlabs.com/issues/5240), [Issue 18931](https://projects.puppetlabs.com/issues/18931))
-
-### New `$trusted` Hash With Trusted Node Data
-
-A node's certificate name is available to the Puppet compiler in the special `$clientcert` variable. However, this variable was self-reported by the agent and was never verified by the puppet master, which meant it could contain more or less anything and couldn't be trusted when deciding whether to insert sensitive information into the catalog.
-
-As of 3.4, you can configure the puppet master to verify each agent node's certname and make it available to the compiler as `$trusted['certname']`. To do this, you must set the `trusted_node_data` setting to `true` in the master's puppet.conf. [See the language documentation about special variables for more details.](/puppet/3/reference/lang_variables.html#trusted-node-data)
-
-([Issue 19514](http://projects.puppetlabs.com/issues/19514)) <!-- [https://jira.puppetlabs.com/browse/PP-122] -->
-
-### Msgpack Serialization (Experimental)
-
-Puppet agents and masters can now optionally use [Msgpack](http://msgpack.org/) for all communications. This is an experimental feature and is disabled by default; see [the Msgpack experiment page](/puppet/3/reference/experiments_msgpack.html) for details about it.
-
-([Issue 22849](http://projects.puppetlabs.com/issues/22849)) <!-- [https://jira.puppetlabs.com/browse/PP-472] -->
 
 ### Windows Improvements
 
@@ -174,6 +196,15 @@ Puppet's Windows support continues to get better, with improvements to resource 
 - The Windows installer now puts Puppet on the PATH, so a special command prompt is no longer necessary. ([Issue 22700](http://projects.puppetlabs.com/issues/22700)) <!-- [https://jira.puppetlabs.com/browse/PP-415] -->
 - Windows installer options can now override existing settings. ([Issue 20281](https://projects.puppetlabs.com/issues/20281)) <!-- [https://jira.puppetlabs.com/browse/PP-388] -->
 
+### New `puppet cert reinventory` Command
+
+As part of the fix for issue [693](https://projects.puppetlabs.com/issues/693)/[23074](http://projects.puppetlabs.com/issues/23074), the Puppet CA no longer rebuilds the certificate inventory for each new certificate.
+
+However, rebuilding the inventory can still be helpful, generally when you have a large inventory file with a high percentage of old revoked certificates. When necessary, it can now be done manually by running `puppet cert reinventory` when your puppet master is stopped.
+
+([Issue 23074](http://projects.puppetlabs.com/issues/23074))
+<!-- [https://jira.puppetlabs.com/browse/PP-637] -->
+
 
 ### RPM Package Provider Now Supports `install_options`
 
@@ -200,6 +231,12 @@ Puppet's HTTP API endpoints now have extensive documentation for the formatting 
 <!-- [https://jira.puppetlabs.com/browse/PP-138] -->
 <!-- [https://jira.puppetlabs.com/browse/PP-139] -->
 
+### Msgpack Serialization (Experimental)
+
+Puppet agents and masters can now optionally use [Msgpack](http://msgpack.org/) for all communications. This is an experimental feature and is disabled by default; see [the Msgpack experiment page](/puppet/3/reference/experiments_msgpack.html) for details about it.
+
+([Issue 22849](http://projects.puppetlabs.com/issues/22849)) <!-- [https://jira.puppetlabs.com/browse/PP-472] -->
+
 ### Changes to Experimental Future Parser
 
 Several changes were made to [the experimental lambda and iteration support](./experiments_lambdas.html) included in the future parser. The documentation has been updated to reflect the changes; see the "Experimental Features" section in the navigation sidebar to the left.
@@ -222,8 +259,8 @@ Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-fa
 ### Miscellaneous Improvements
 
 - Allow profiling on puppet apply. Previously, the profiling features added for Puppet 3.2 were only available to puppet agent; now, puppet apply can log profiling information when run with `--profile` or `profile = true` in puppet.conf. ([Issue 22581](https://projects.puppetlabs.com/issues/22581)) <!-- [https://jira.puppetlabs.com/browse/PP-341] -->
-- Mount resources now autorequire parent mounts. https://projects.puppetlabs.com/issues/22665 <!-- [https://jira.puppetlabs.com/browse/PP-450] -->
-- Class main now appears in containment paths in reports. Previously, it was represented by an empty string, which could be confusing. This is mostly useful for PuppetDB. http://projects.puppetlabs.com/issues/23131 <!-- [https://jira.puppetlabs.com/browse/PP-278] -->
+- Mount resources now autorequire parent mounts. ([Issue 22665](https://projects.puppetlabs.com/issues/22665)) <!-- [https://jira.puppetlabs.com/browse/PP-450] -->
+- Class main now appears in containment paths in reports. Previously, it was represented by an empty string, which could be confusing. This is mostly useful for PuppetDB. ([Issue 23131](http://projects.puppetlabs.com/issues/23131)) <!-- [https://jira.puppetlabs.com/browse/PP-278] -->
 - `Puppet::Util.execute` now offers a way to get the exit status of the command --- the object it returns, which was previously a String containing the command's output, is now a subclass of String with an `#exitstatus` method that returns the exit status. This can be useful for type and provider developers. ([Issue 2538](http://projects.puppetlabs.com/issues/2538))
 
 ### Bug Fixes
@@ -272,7 +309,7 @@ The usual grab bag of clean-ups and fixes. As of 3.4.0, Puppet will:
 
 ### All 3.4.0 Changes
 
-[See here for a list of all changes in the 3.3.0 release.](http://projects.puppetlabs.com/versions/425) <!-- https://jira.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=10503 and/or https://jira.puppetlabs.com/browse/PP/fixforversion/10503 -->
+[See here for a list of all changes in the 3.4.0 release.](http://projects.puppetlabs.com/versions/425) <!-- https://jira.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=10503 and/or https://jira.puppetlabs.com/browse/PP/fixforversion/10503 -->
 
 Puppet 3.3.2
 -----
