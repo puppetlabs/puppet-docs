@@ -226,15 +226,15 @@ Example:
 
 ### `autosign.conf`
 
-The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or certname globs (one per line) whose certificate requests will automatically be signed.
+The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or domain name globs (one per line) whose certificate requests will automatically be signed.
 
     rebuilt.example.com
     *.scratch.example.com
     *.local
 
-Note that certname globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
+Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
 
-As any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
+Since any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
 
 ### `device.conf`
 
