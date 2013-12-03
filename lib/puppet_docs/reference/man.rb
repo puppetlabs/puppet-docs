@@ -7,25 +7,41 @@ module PuppetDocs
       # This implements man page building for puppet versions.
       def self.write_manpages(puppet_dir, destination_dir)
         Dir.mkdir(destination_dir) unless File.directory?(destination_dir)
-#         Dir.chdir(destination_dir) do
-#           File.open("./this_would_be_the_man_page.txt", 'w') {|f| f.puts "Okay, here it is"}
-#         end
 
-        # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
-        puppet = ENV['PUPPETDIR']
-        applications  = Dir.glob(%Q{#{puppet}/lib/puppet/application/*})
-        ronn = %x{which ronn}.chomp
-        unless File.executable?(ronn) then fail("Ronn does not appear to be installed.") end
-        applications.each do |app|
-          app.gsub!( /^#{puppet}\/lib\/puppet\/application\/(.*?)\.rb/, '\1')
-          headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\npuppet #{app} Manual Page\n======\n\n"
-          manstring = %x{RUBYLIB=#{puppet}/lib:$RUBYLIB #{puppet}/bin/puppet #{app} --help | #{ronn} --pipe -f}
-          File.open(%Q{./source/man/#{app}.markdown}, 'w') do |file|
-            file.puts("#{headerstring}#{manstring}")
-          end
+        # Note that there's no index.
+        applications = Dir.glob(%Q{#{puppet_dir}/lib/puppet/application/*}).collect{ |app_file|
+          app_file.sub(/^#{puppet_dir}\/lib\/puppet\/application\/([\w_]+)\.rb$/, '\1')
+        }
+        require 'puppet/face'
+        # All four lines below are terrible. See puppet/tasks/manpages.rake for details.
+        Puppet.initialize_settings()
+        helpface = Puppet::Face[:help, '0.0.1']
+        manface  = Puppet::Face[:man, '0.0.1']
+        Puppet::Util::Instrumentation.init()
+
+        non_face_applications = helpface.legacy_applications
+        faces = Puppet::Face.faces
+        faces.delete(:resource)
+
+
+
+
+        Dir.chdir(destination_dir) do
+          File.open("./this_would_be_the_man_page.txt", 'w') {|f| f.puts non_face_applications.join(', '); f.puts faces.join(', ')}
         end
 
-      end
+#         ronn = 'bundle exec ronn'
+#         applications.each do |app|
+#           headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\n"
+#           # RUBYLIB is already cleaned out and initialized in the Generator#generate method.
+#           manstring = %x{ruby #{puppet_dir}/bin/puppet #{app} --help | #{ronn} --pipe -f}
+#           # `ruby #{puppet_dir}/bin/puppet doc --modulepath /tmp/nothing --libdir /tmp/alsonothing -m text -r #{@name}`
+#           File.open("#{destination_dir}/#{app}.markdown", 'w') do |file|
+#             file.puts("#{headerstring}#{manstring}")
+#           end
+#         end
+
+      end # self.write_manpages
     end
   end
 end
