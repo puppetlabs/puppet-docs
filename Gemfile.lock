@@ -14,34 +14,35 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (3.2.14)
-      activesupport (= 3.2.14)
+    activemodel (3.2.16)
+      activesupport (= 3.2.16)
       builder (~> 3.0.0)
-    activerecord (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
+    activerecord (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activesupport (3.2.14)
+    activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     albino (1.3.3)
       posix-spawn (>= 0.3.6)
-    arel (3.0.2)
+    arel (3.0.3)
     blockenspiel (0.4.5)
     builder (3.0.4)
     classifier (1.3.3)
       fast-stemmer (>= 1.0.0)
     directory_watcher (1.5.1)
-    facter (1.7.2)
+    facter (1.7.3)
     fast-stemmer (1.0.2)
-    i18n (0.6.5)
-    json (1.8.0)
+    hpricot (0.8.6)
+    i18n (0.6.8)
+    json (1.8.1)
     kramdown (0.14.2)
-    liquid (2.5.1)
-    maruku (0.6.1)
-      syntax (>= 1.0.0)
-    multi_json (1.7.9)
+    liquid (2.6.0)
+    maruku (0.7.0)
+    multi_json (1.8.2)
+    mustache (0.99.5)
     open4 (1.3.0)
     posix-spawn (0.3.6)
     rack (1.5.2)
@@ -49,10 +50,14 @@ GEM
     rake-remote_task (2.2.1)
       open4 (~> 1.0)
       rake (>= 0.8, < 11.0)
+    rdiscount (2.1.7)
     rdoc (4.0.1)
       json (~> 1.4)
-    syntax (1.0.0)
-    tzinfo (0.3.37)
+    ronn (0.7.3)
+      hpricot (>= 0.8.2)
+      mustache (>= 0.7.0)
+      rdiscount (>= 1.5.8)
+    tzinfo (0.3.38)
     versionomy (0.4.4)
       blockenspiel (>= 0.4.5)
     vlad (2.6.2)
@@ -60,7 +65,7 @@ GEM
       rake-remote_task (~> 2.1)
     vlad-git (2.2.0)
       vlad (>= 2.1.0)
-    yard (0.8.7)
+    yard (0.8.7.3)
 
 PLATFORMS
   ruby
@@ -74,6 +79,7 @@ DEPENDENCIES
   rack
   rake
   rdoc
+  ronn
   versionomy
   vlad
   vlad-git
