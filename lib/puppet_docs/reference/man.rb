@@ -34,7 +34,7 @@ module PuppetDocs
         # Generate and cache all man strings (raw with no header, etc.)
         non_face_applications.each do |app|
           # RUBYLIB is already cleaned out and initialized in the Generator#generate method.
-          man_strings[app] = %x{ruby #{puppet_dir}/bin/puppet #{app} --help | bundle exec ronn --pipe -f}
+          man_strings[app] = %x{ruby #{puppet_dir}/bin/puppet #{app} --help}
         end
         faces.each do |face|
           man_strings[face] = manface.man("#{face}")
@@ -43,8 +43,15 @@ module PuppetDocs
         # Write files
         man_strings.each do |name, man_string|
           headerstring = "---\nlayout: default\ntitle: puppet #{name} Manual Page\n---\n\n"
+
+          ronn = IO.popen("bundle exec ronn --pipe -f", "r+")
+          ronn.write(man_string)
+          ronn.close_write
+          processed_man_string = ronn.read
+          ronn.close
+
           File.open("#{destination_dir}/#{name}.markdown", 'w') do |file|
-            file.puts("#{headerstring}#{man_string}")
+            file.puts("#{headerstring}#{processed_man_string}")
           end
         end
 
