@@ -319,7 +319,7 @@ task :build do
   Rake::Task['tarball'].invoke
 end
 
-desc "Build all references and man pages for a new Puppet version"
+desc "Build all references for a new Puppet version"
 task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc']
 
 namespace :references do
@@ -406,23 +406,6 @@ namespace :references do
     Dir.chdir("vendor/puppet") do
       sh "git fetch --tags"
     end
-  end
-
-  desc "Update the contents of source/man/{app}.markdown" # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
-  task :update_manpages do
-    puppet = ENV['PUPPETDIR']
-    applications  = Dir.glob(%Q{#{puppet}/lib/puppet/application/*})
-    ronn = %x{which ronn}.chomp
-    unless File.executable?(ronn) then fail("Ronn does not appear to be installed.") end
-    applications.each do |app|
-      app.gsub!( /^#{puppet}\/lib\/puppet\/application\/(.*?)\.rb/, '\1')
-      headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\npuppet #{app} Manual Page\n======\n\n"
-      manstring = %x{RUBYLIB=#{puppet}/lib:$RUBYLIB #{puppet}/bin/puppet #{app} --help | #{ronn} --pipe -f}
-      File.open(%Q{./source/man/#{app}.markdown}, 'w') do |file|
-        file.puts("#{headerstring}#{manstring}")
-      end
-    end
-
   end
 
 end
