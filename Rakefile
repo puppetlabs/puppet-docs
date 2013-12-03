@@ -19,7 +19,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-references = %w(configuration function indirection metaparameter report type developer)
+references = %w(configuration function indirection metaparameter report type developer man)
 top_dir = Dir.pwd
 
 source_dir = "#{top_dir}/source"
@@ -389,7 +389,7 @@ namespace :references do
           unless name=="developer"
             f.puts "* [#{name.capitalize}](#{name}.html)"
           else
-            f.puts "* [Developer Documentation](developer/index.html)"
+            f.puts "* [Developer Documentation](developer/index.html)\n* [Man Pages](./man/index.html)"
           end
         end
       end

@@ -4,7 +4,7 @@
 
 <p>These pages are generated from the Puppet source code. You are looking at the references for:</p>
 
-<h4 id="puppet--referenceversion-">Puppet {% reference_version %}</h4>
+<h4 id="puppet--referenceversion-">Puppet {{ version }}</h4>
 
 <ul>
   <li>{% iflink "Type Reference", "./type.html" %}</li>
@@ -13,10 +13,12 @@
   <li>{% iflink "Metaparameter Reference", "./metaparameter.html" %}</li>
   <li>{% iflink "Report Reference", "./report.html" %}</li>
   <li>{% iflink "Indirection Reference", "./indirection.html" %}</li>
- {% unless version < "3.1" %}
-   <li>{% iflink "Developer Documentation", "./developer/index.html" %}</li>
- {% endunless %}
-
+{% unless version < "3.1" %}
+  <li>{% iflink "Developer Documentation", "./developer/index.html" %}</li>
+{% endunless %}
+{% unless version < "3.4" %}
+  <li>{% iflink "Man Pages", "./man/index.html" %}</li>
+{% endunless %}
 </ul>
 
 

@@ -99,6 +99,12 @@ module PuppetDocs
           `bundle exec yard -o #{yard_directory}`
           return
         end
+        if @name == "man"
+          require 'puppet_docs/reference/man'
+          # gotta pass in the puppet dir and the destination dir
+          PuppetDocs::Reference::Man.write_manpages(puppet_dir, man_directory)
+          return
+        end
         if @name == "type"
           require 'puppet_docs/reference/type'
           # Get structured data (as JSON) from a subshell with cleaned RUBYLIB:
@@ -234,6 +240,10 @@ EOT
 
       def yard_directory
         @yard_directory ||= destination_directory + "developer"
+      end
+
+      def man_directory
+        @yard_directory ||= destination_directory + "man"
       end
 
       def setup_destination!
