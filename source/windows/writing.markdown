@@ -130,41 +130,64 @@ Windows uses CRLF line endings instead of \*nix's LF line endings.
     > Note: When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
 
-Resource Types
+Core Resource Types
 -----
 
-Puppet can manage the following resource types on Windows nodes:
+By default, Puppet can manage the following resource types on Windows nodes:
 
 ### [`file`][file]
 
 {% highlight ruby %}
     file { 'c:/mysql/my.ini':
       ensure => 'file',
-      mode => '0660',
-      owner => 'mysql',
-      group => 'Administrators',
+      mode   => '0660',
+      owner  => 'mysql',
+      group  => 'Administrators',
       source => 'N:/software/mysql/my.ini',
     }
 {% endhighlight %}
 
-Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are not supported.
+Puppet can manage files and directories, including owner, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/3.latest/type.html#file-attribute-ensure).
 
-* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file).
+#### Naming Files
+
 * Windows NTFS filesystems are case-preserving, but case-insensitive; Puppet is case-sensitive. Thus, you should be consistent in the case you use when referring to a file resource in multiple places in a manifest.
+
+#### Required User Permissions
+
+By default, Puppet's installer sets puppet agent to run as the Administrator user. If you want to run it as a different user (see ["Automated Installation" in the installing page](./installing.html#automated-installation)), you must ensure Puppet has the following permissions:
+
 * In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
+* To manage symlinks, Puppet's user also needs the "Create Symbolic Links" privilege, which the Administrators group has by default.
+
+#### Managing File Permissions
+
 * Permissions modes are set as though they were \*nix-like octal modes; Puppet translates these to the equivalent access controls on Windows.
     * The read, write, and execute permissions translate to the `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights.
     * The owner of a file/directory always has the `FULL_CONTROL` access right.
     * The `Everyone` SID is used to represent users other than the owner and group.
+* When a permissions mode is set with Puppet, it causes the security descriptor to be _protected._ This prevents that file from inheriting any more permissive access controls from the directory that contains it.
+* When copying files from a puppet master using the `source` attribute, Puppet defaults to applying the ownership and permissions from the source files. This is generally **not** desired on Windows, and the default behavior is now deprecated, scheduled for change in Puppet 4. In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to use a resource default in site.pp to set `source_permissions => ignore`.
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
-* The source of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+* Puppet does not currently manage ACLs on Windows, but Puppet Labs and the Puppet community are collaborating on a design for managing them as a new resource type. [See the in-progress ACLs proposal for more details.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
 * When downloading a file from a puppet master with a `puppet:///` URI, Puppet will set the permissions mode to match that of the remote file. Be sure to set the proper mode on any remote files.
 
+#### File Sources
+
+* The `source` attribute of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+
+> #### Known Issues in Older Puppet Versions: pre-3.4.0
+>
+> Prior to Puppet 3.4, the `file` type had several limitations and problems. These were fixed as part of an NTFS support cleanup in 3.4.0. If you are writing manifests for Windows machines running an older version of Puppet, please be aware:
+>
+> * If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
+> * Setting a permissions mode can prevent the SYSTEM user from accessing the file (if SYSTEM isn't the file's owner or part of its group). This can make it so Puppet can access the file when run by a user, but can't access it when run as a service. In 3.4 and later, this is fixed, and Puppet will always ensure the SYSTEM user has the `FULL_CONTROL` access right (unless SYSTEM is specified as the owner or group for that file, in which case it will have the rights specified by the permissions mode).
+> * Puppet will copy file permissions from the remote `source`; this isn't ideal, since the \*nix permissions on the puppet master are unlikely to match what you want on your Windows machines. The only way to prevent this is to specify ownership, group, and mode for every file (or with a resource default). In 3.4 and up, the `source_permissions` attribute provides a way to turn this behavior off.
 
 ### [`user`][user]
 
-Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups.
+Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups (in Puppet 3.4.0 and later).
 
 * The `comment`, `home`, and `password` attributes can be managed, as well as groups to which the user belongs.
 * Passwords can only be specified in cleartext. Windows does not provide an API for setting the password hash.
@@ -208,46 +231,77 @@ Puppet can create, edit, and delete scheduled tasks. It can manage the task name
 
 ### [`package`][package]
 
+Puppet can install and remove two types of packages on Windows:
+
+* MSI packages
+* Executable installers
+
+Both of these use the default `windows` package provider. (There is an older `msi` provider included, but it is deprecated as of Puppet 3.0.)
+
+When managing packages on Windows, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
+
+#### Examples
+
+MSI example:
+
 {% highlight ruby %}
     package { 'mysql':
-      ensure          => installed,
-      provider        => 'msi', # deprecated in Puppet 3.0
+      ensure          => '5.5.16',
       source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-      install_options => { 'INSTALLDIR' => 'C:\mysql-5.5' },
+      install_options => [ { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
     }
 {% endhighlight %}
 
-Puppet can install and remove MSI packages, including specifying package-specific install options, e.g. install directory.
-
-#### Identifying Packages
-
-The `title` or name of the package must match the value of the `DisplayName` property in the registry, which is also the value displayed in Add/Remove Programs. Alternately, when a package name is not unique across versions (e.g. VMWare Tools, or where there are 32- and 64-bit versions with the same name), we provide the ability to specify the package's PackageCode as the package name. This is a GUID that's unique across all MSI builds. For instance:
+Executable installer example:
 
 {% highlight ruby %}
-	package { '{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}':
-	  ensure => installed,
-	  source => 'the.msi',
-	  provider => windows
-	}
+    package { "Git version 1.8.4-preview20130916":
+     ensure   => installed,
+     source   => 'C:\\code\\puppetlabs\\temp\\windowsexample\\Git-1.8.4-preview20130916.exe',
+     install_options => ['/VERYSILENT']
+    }
 {% endhighlight %}
 
-To find the PackageCode from an MSI, you can use Orca, or you can get to it programmatically with Ruby:
+#### Package Names
 
-{% highlight ruby %}
-	require 'win32ole'
-	installer = WIN32OLE.new('WindowsInstaller.Installer')
-	db = installer.OpenDatabase(path, 0) # where 'path' is the path to the MSI
-	puts db.SummaryInformation.Property(9)
-{% endhighlight %}
+The title (or `name`) of the package must match the value of the package's `DisplayName` property in the registry, which is also the value displayed in the "Add/Remove Programs" or "Programs and Features" control panel. If the provided name and installed name don't match, Puppet will believe the package is not installed and try to install it again.
 
-#### Additional Notes on Windows Packages
+The easiest way to copy a package's name is to:
 
-* The source parameter is required, and must refer to a local .msi file, a file from a mapped drive, or a UNC path. You can distribute packages as `file` resources. Puppet URLs are not currently supported for the `package` type's `source` attribute.
-* The `install_options` attribute is package-specific; refer to the documentation for the package you are trying to install.
-    * Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes.
-* As of Puppet 3.0, `windows` is the default provider parameter for all Windows packages. Using `msi` will result in a deprecation
-warning.
-* The Windows package provider is versionable as of Puppet 3.4.0 (unreleased at the time of this writing; see [the Puppet release notes](/puppet/latest/reference/release_notes.html) and/or [the Puppet Enterprise release notes](/pe/latest/appendix.html#release-notes) for up-to-date info). This means the `ensure => 'version'` syntax may be used, where `'version'` may be an identifier like `'1.2.3.4'`.  Note that this version string must exactly match the reported version of the package specified in the `source` parameter.  If it does not, Puppet will determine the package is out of date and will attempt to reinstall.
+* Install the package on an example system
+* Run `puppet resource package` to see a list of installed packages
+* Locate the package you just installed, and copy the name that `puppet resource` reported for it
+
+Some packages (Git is a notable example) will change their display names with every version released. In these cases, you must update the name or title whenever you change the package `source`.
+
+#### Install and Uninstall Options
+
+The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of hashes and/or strings. (MSI properties can be specified as hashes, with the name of the property as the key; you should use one hash per property. Command line flags to executable installers can be specified as strings, with one string per flag.)
+
+Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately.
+
+#### Versioning and Upgrades
+
+The Windows package provider is versionable (as of Puppet 3.4.0). This means the `ensure => 'version'` syntax may be used, where `'version'` may be an identifier like `'1.2.3.4'`.  Note that this version string must exactly match what the package file reports itself as; if it does not, Puppet will determine the package is out of date and will attempt to reinstall. You can use `puppet resource package` to see the currently reported versions for all packages on a given system.
+
+Versioning can interact with the package name, since some packages (Git, e.g.) change their DisplayName with each version. Thus, in practice, you'll need a combination of two ways to handle versions:
+
+* If a package's name is the same for all versions and you want to change the version you're managing on your nodes, change the source file and set `ensure => 'new version'` on the resource.
+* If a package's name changes with each version, change the source file and update the resource's title or `name` to the new name. You can leave `ensure` set to `present`; Puppet will upgrade the package if the installed name doesn't match the desired one.
+
+Finally: Setting `ensure => latest` (which requires the `upgradeable` feature) doesn't work on Windows, as it doesn't support the sort of central package repositories you see on most Linuxes.
+
+> #### Versioning Workarounds in pre-3.4.0
+>
+> Prior to Puppet 3.4.0, you couldn't specify package versions in the `ensure` attribute. This meant that upgrades worked fine for packages that changed their name with every version, but there wasn't an easy way to upgrade packages with stable names.
+>
+> A workaround was to specify the package's PackageCode as the name/title, instead of using the DisplayName. The PackageCode is a GUID that's unique per MSI file. To find the PackageCode from an MSI, you can use Orca, or you can get to it programmatically with Ruby:
+>
+> 	require 'win32ole'
+> 	installer = WIN32OLE.new('WindowsInstaller.Installer')
+> 	db = installer.OpenDatabase(path, 0) # where 'path' is the path to the MSI
+> 	puts db.SummaryInformation.Property(9)
+
 
 ### [`service`][service]
 
@@ -268,8 +322,8 @@ Puppet can start, stop, enable, disable, list, query and configure services. It 
 Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status.
 
 * If an extension for the `command` is not specified (for example, `ruby` instead of `ruby.exe`), Puppet will use the `PATHEXT` environment variable to resolve the appropriate binary. `PATHEXT` is a Windows-specific variable that lists the valid file extensions for executables.
-* Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.)
-* When executing Powershell scripts, you must specify the `remotesigned` execution policy as part of the `powershell.exe` invocation:
+* Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.) However, a Powershell provider is available as a plugin; [see "Plugin Resource Types" below](#plugin-resource-types).
+* When executing inline Powershell scripts, you must specify the `remotesigned` execution policy as part of the `powershell.exe` invocation:
 
 {% highlight ruby %}
     exec { 'test':
@@ -277,8 +331,26 @@ Puppet can execute binaries (exe, com, bat, etc.), and can log the child process
     }
 {% endhighlight %}
 
-
+> #### Version Note: Exit Code Problems Prior to Puppet 3.4
+>
+> Before Puppet 3.4, Puppet would truncate the exit codes of `exec` resources if they were over 255. (For example, an exit code of 3090 would be reported as 194 --- i.e. 3090 mod 256.) In 3.4 and later, exit codes are reported accurately.
 
 ### [`host`][host]
 
 Puppet can manage entries in the hosts file in the same way that is supported on Unix platforms.
+
+
+Plugin Resource Types
+-----
+
+In addition to the resource types included with Puppet's core, you can install custom resource types as Puppet modules from [the Puppet Forge](http://forge.puppetlabs.com). This can let you manage other types of resources that are specific to Windows.
+
+**Note that plugins from the Puppet Forge may not have the same amount of QA and test coverage as Puppet's core types.**
+
+The best way to find new resource types is by [searching for "windows" on the Puppet Forge](http://forge.puppetlabs.com/modules?sort=rank&q=windows&pop) and exploring the results. You may also want to start with these modules:
+
+* [puppetlabs/registry](http://forge.puppetlabs.com/puppetlabs/registry) --- A resource type for managing arbitrary registry keys.
+* [puppetlabs/reboot](http://forge.puppetlabs.com/puppetlabs/reboot) --- A resource type for managing conditional reboots, which may be necessary for installing certain software.
+* [puppetlabs/dism](http://forge.puppetlabs.com/puppetlabs/dism) --- A resource type for enabling and disabling Windows features (on Windows 7/2008 R2 and newer).
+* [joshcooper/powershell](http://forge.puppetlabs.com/joshcooper/powershell) --- An alternate `exec` provider that can directly execute powershell commands.
+

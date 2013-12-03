@@ -216,10 +216,9 @@ On your puppet master node, run `sudo yum install puppet-server`. This will inst
 
 #### 3. Install Puppet on Agent Nodes
 
-On your other nodes, run `sudo yum install puppet`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppetagent.service`) for running the puppet agent daemon. **Note that puppet agent has a different name on Fedora than on any other platform.** This is being tracked as [issue #22660](https://projects.puppetlabs.com/issues/22660).
+On your other nodes, run `sudo yum install puppet`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppet.service`) for running the puppet agent daemon. (Note that prior to Puppet 3.4.0, the agent service name on Fedora ≥ 17 was `puppetagent` instead of puppet. This name will continue to work until Puppet 4, but you should use the more consistent `puppet` instead.)
 
 For a standalone deployment, install this same package on all nodes.
-
 
 #### 4. Configure and Enable
 
@@ -424,7 +423,7 @@ You can start and permanently enable these services using Puppet:
     $ sudo puppet resource service puppet ensure=running enable=true
     $ sudo puppet resource service puppetmaster ensure=running enable=true
 
-> **Note:** On Fedora, you must use `puppetagent` instead of `puppet` as the name of the puppet agent service. This is being tracked as [issue #22660](https://projects.puppetlabs.com/issues/22660).
+> **Note:** On Fedora prior to Puppet 3.4.0, the agent service name was `puppetagent` instead of puppet.
 
 > **Note:** If you have configured puppet master to use a production web server, do not use the default init script; instead, start and stop the web server that is managing the puppet master service.
 

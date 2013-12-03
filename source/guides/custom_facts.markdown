@@ -329,16 +329,12 @@ Structured data files must use one of the supported data types and must have the
 
 As with executable facts, structured data files can set multiple facts at once.
 
-{% comment %}
-
 #### Structured Data Facts on Windows
 
 All of the above types are supported on Windows with the following caveats:
 
- * The line endings can be either `LF` or `CRLF`.
- * The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
-
-{% endcomment %}
+* The line endings can be either `LF` or `CRLF`.
+* The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
 
 ### Troubleshooting
 
