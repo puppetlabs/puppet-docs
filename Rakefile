@@ -386,12 +386,11 @@ namespace :references do
         f.puts "# #{ENV['VERSION']} References\n"
         f.puts "* * *\n\n"
         references.each do |name|
-          unless name=="developer"
-            f.puts "* [#{name.capitalize}](#{name}.html)"
-          else
-            f.puts "* [Developer Documentation](developer/index.html)\n* [Man Pages](./man/index.html)"
+          unless name=="developer" or name=="man"
+            f.puts "* [#{name.capitalize}](./#{name}.html)"
           end
         end
+        f.puts "* [Developer Documentation](./developer/index.html)\n* [Man Pages](./man/index.html)"
       end
       puts "Wrote #{filename}"
     end
