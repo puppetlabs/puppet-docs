@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parser::TemplateWrapper
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -105,7 +105,7 @@
   <strong>This class is part of a private API.</strong>
   You should avoid using this class if possible, as it may be removed or be changed in the future.
 </p>
-<p>A simple wrapper for templates, so they don&#8217;t have full access to
+<p>A simple wrapper for templates, so they don't have full access to
 the scope objects.</p>
 
 
@@ -404,7 +404,7 @@ the scope objects.</p>
     <p>Ruby treats variables like methods, so we used to expose variables
 within scope to the ERB code via method_missing.  As per RedMine #1427,
 though, this means that conflicts between methods in our inheritance
-tree (Kernel#fork) and variable names (fork =&gt; &#8220;yes/no&#8221;) could arise.</p>
+tree (Kernel#fork) and variable names (fork => "yes/no") could arise.</p>
 
 <p>Worse, /new/ conflicts could pop up when a new kernel or object method
 was added to Ruby, causing templates to suddenly fail mysteriously when
@@ -1026,9 +1026,9 @@ dead.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:13 2013 by
+  Generated on Wed Dec  4 10:54:48 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

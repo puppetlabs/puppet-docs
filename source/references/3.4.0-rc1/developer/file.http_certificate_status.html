@@ -6,7 +6,7 @@
 <title>
   File: http_certificate_status
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,7 +61,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="certificate-status">Certificate Status</h1>
+    <div id="content"><div id='filecontents'><h1>Certificate Status</h1>
 
 <p>The <code>certificate status</code> endpoint allows a client to read or alter the
 status of a certificate or pending certificate request. It is only
@@ -70,7 +70,7 @@ useful on the CA.</p>
 <p>In all requests the <code>:environment</code> must be given, but it has no bearing
 on the request. Certificates are global.</p>
 
-<h2 id="find">Find</h2>
+<h2>Find</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_certificate_status identifier id'>certificate_status</span><span class='div op'>/</span><span class='symbol val'>:certname</span>
 <span class='rubyid_Accept constant id'>Accept</span><span class='colon op'>:</span> <span class='rubyid_pson identifier id'>pson</span>
@@ -79,7 +79,7 @@ on the request. Certificates are global.</p>
 <p>Retrieve information about the specified certificate. Similar to <code>puppet
 cert --list :certname</code>.</p>
 
-<h2 id="search">Search</h2>
+<h2>Search</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_certificate_statuses identifier id'>certificate_statuses</span><span class='div op'>/</span><span class='symbol val'>:any_key</span>
 <span class='rubyid_Accept constant id'>Accept</span><span class='colon op'>:</span> <span class='rubyid_pson identifier id'>pson</span>
@@ -88,7 +88,7 @@ cert --list :certname</code>.</p>
 <p>Retrieve information about all known certificates. Similar to <code>puppet
 cert --list --all</code>. A key is required but is ignored.</p>
 
-<h2 id="save">Save</h2>
+<h2>Save</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_PUT constant id'>PUT</span> <span class='regexp val'>/:environment/</span><span class='rubyid_certificate_status identifier id'>certificate_status</span><span class='div op'>/</span><span class='symbol val'>:certname</span>
 <span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_pson identifier id'>pson</span>
@@ -104,7 +104,7 @@ certificate signing request; similar to <code>puppet cert --sign</code>) and
 <p>When revoking certificates, you may wish to use a DELETE request
 instead, which will also clean up other info about the host.</p>
 
-<h2 id="delete">Delete</h2>
+<h2>Delete</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_DELETE constant id'>DELETE</span> <span class='regexp val'>/:environment/</span><span class='rubyid_certificate_status identifier id'>certificate_status</span><span class='div op'>/</span><span class='symbol val'>:hostname</span>
 <span class='rubyid_Accept constant id'>Accept</span><span class='colon op'>:</span> <span class='rubyid_pson identifier id'>pson</span>
@@ -127,7 +127,7 @@ classes like</p>
 <pre class="code ruby"><code class="ruby"><span class='string val'>&quot;Nothing was deleted&quot;</span>
 </code></pre>
 
-<h3 id="supported-http-methods">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>This endpoint is disabled in the default configuration. It is
 recommended to be careful with this endpoint, as it can allow control
@@ -135,16 +135,16 @@ over the certificates used by the puppet master.</p>
 
 <p>GET, PUT, DELETE</p>
 
-<h3 id="supported-response-formats">Supported Response Formats</h3>
+<h3>Supported Response Formats</h3>
 
 <p>PSON</p>
 
 <p>This endpoint can produce yaml as well, but the returned data is
 incomplete.</p>
 
-<h3 id="examples">Examples</h3>
+<h3>Examples</h3>
 
-<h4 id="certificate-information">Certificate information</h4>
+<h4>Certificate information</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate_status identifier id'>certificate_status</span><span class='div op'>/</span><span class='rubyid_mycertname identifier id'>mycertname</span>
 
@@ -165,7 +165,7 @@ incomplete.</p>
 <span class='rbrace token'>}</span>
 </code></pre>
 
-<h4 id="revoking-a-certificate">Revoking a certificate</h4>
+<h4>Revoking a certificate</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_PUT constant id'>PUT</span> <span class='regexp val'>/production/</span><span class='rubyid_certificate_status identifier id'>certificate_status</span><span class='div op'>/</span><span class='rubyid_mycertname identifier id'>mycertname</span> <span class='rubyid_HTTP constant id'>HTTP</span><span class='div op'>/</span><span class='float val'>1.1</span>
 <span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_pson identifier id'>pson</span>
@@ -176,7 +176,7 @@ incomplete.</p>
 
 <p>This has no meaningful return value.</p>
 
-<h4 id="deleting-the-certificate-information">Deleting the certificate information</h4>
+<h4>Deleting the certificate information</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_DELETE constant id'>DELETE</span> <span class='regexp val'>/production/</span><span class='rubyid_certificate_status identifier id'>certificate_status</span><span class='div op'>/</span><span class='rubyid_mycertname identifier id'>mycertname</span> <span class='rubyid_HTTP constant id'>HTTP</span><span class='div op'>/</span><span class='float val'>1.1</span>
 </code></pre>
@@ -186,16 +186,16 @@ incomplete.</p>
 <pre class="code ruby"><code class="ruby"><span class='string val'>&quot;Deleted for mycertname: Puppet::SSL::Certificate, Puppet::SSL::Key&quot;</span>
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2>Schema</h2>
 
 <p>Find and search operations return objects which
 conform to the json schema at <a href="file.host.html" title="api/schemas/host.json">api/schemas/host.json</a>.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:32 2013 by
+  Generated on Wed Dec  4 10:54:10 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

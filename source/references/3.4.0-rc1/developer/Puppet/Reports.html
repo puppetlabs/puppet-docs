@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Reports
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -111,11 +111,13 @@ block that performs setup, and defines a method called <code>process</code>. The
 are called in the context where <code>self</code> is an instance of <span class='object_link'><a href="Transaction/Report.html" title="Puppet::Transaction::Report (class)">Transaction::Report</a></span> which provides the actual
 data for the report via its methods.</p>
 
-<h2 id="required-configuration">Required configuration:</h2>
+<h2>Required configuration:</h2>
+
 <ul>
-  <li>A .rb file that defines a new report should be placed in the master&#8217;s directory <code>lib/puppet/reports</code></li>
-  <li>The <code>puppet.conf</code> file must have <code>report = true</code> in the <code>[agent]</code> section</li>
+<li>A .rb file that defines a new report should be placed in the master's directory <code>lib/puppet/reports</code></li>
+<li>The <code>puppet.conf</code> file must have <code>report = true</code> in the <code>[agent]</code> section</li>
 </ul>
+
 
 
   </div>
@@ -126,7 +128,7 @@ data for the report via its methods.</p>
     <p class="tag_title">Examples:</p>
     
       
-        <p class="example_title"><div class='inline'><p>Minimal scaffolding for a report&#8230;</p>
+        <p class="example_title"><div class='inline'><p>Minimal scaffolding for a report...</p>
 </div></p>
       
       <pre class="example code"><code><span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Reports constant id'>Reports</span><span class='colon2 op'>::</span><span class='dot token'>.</span><span class='rubyid_register_report identifier id'>register_report</span><span class='lparen token'>(</span><span class='symbol val'>:myreport</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
@@ -478,9 +480,9 @@ data for the report via its methods.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:46 2013 by
+  Generated on Wed Dec  4 10:54:22 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

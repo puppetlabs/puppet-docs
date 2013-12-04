@@ -6,7 +6,7 @@
 <title>
   Module: Puppet
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -170,7 +170,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Initialize puppet&#8217;s settings.</p>
+    <span class="summary_desc"><div class='inline'><p>Initialize puppet's settings.</p>
 </div></span>
   
 </li>
@@ -195,7 +195,7 @@
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>read_version_file reads the content of the &#8220;VERSION&#8221; file that lives in the same directory as this source code file.</p>
+    <span class="summary_desc"><div class='inline'><p>read_version_file reads the content of the "VERSION" file that lives in the same directory as this source code file.</p>
 </div></span>
   
 </li>
@@ -343,7 +343,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Initialize puppet&#8217;s settings. This is intended only for use by external tools that are not
+    <p class="note returns_void">This method returns an undefined value.</p><p>Initialize puppet's settings. This is intended only for use by external tools that are not
  built off of the Faces API or the Puppet::Util::Application class. It may also be used
  to initialize state so that a Face may be used programatically, rather than as a stand-alone
  command-line tool.</p>
@@ -412,7 +412,7 @@
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>read_version_file reads the content of the &#8220;VERSION&#8221; file that lives in the
+<p>read_version_file reads the content of the "VERSION" file that lives in the
 same directory as this source code file.</p>
 
 
@@ -431,7 +431,7 @@ same directory as this source code file.</p>
       
       
         &mdash;
-        <div class='inline'><p>for example: &#8220;1.6.14-6-gea42046&#8221; or nil if the VERSION
+        <div class='inline'><p>for example: "1.6.14-6-gea42046" or nil if the VERSION
 file does not exist.</p>
 </div>
       
@@ -491,19 +491,20 @@ is designed to facilitate automated packaging tasks by simply writing to
 the VERSION file in the same directory as this source file.</p>
 
 <ol>
-  <li>If a version has been explicitly assigned using the Puppet.version=
+<li>If a version has been explicitly assigned using the Puppet.version=
 method, return that version.</li>
-  <li>If there is a VERSION file, read the contents, trim any
+<li>If there is a VERSION file, read the contents, trim any
 trailing whitespace, and return that version string.</li>
-  <li>Return the value of the Puppet::PUPPETVERSION constant hard-coded into
+<li>Return the value of the Puppet::PUPPETVERSION constant hard-coded into
 the source code.</li>
 </ol>
+
 
 <p>If there is no VERSION file, the method must return the version string of
 the nearest parent version that is an officially released version.  That is
 to say, if a branch named 3.1.x contains 25 patches on top of the most
 recent official release of 3.1.1, then the version method must return the
-string &#8220;3.1.1&#8221; if no &#8220;VERSION&#8221; file is present.</p>
+string "3.1.1" if no "VERSION" file is present.</p>
 
 <p>By design the version identifier is <em>not</em> intended to vary during the life
 a process.  There is no guarantee provided that writing to the VERSION file
@@ -519,7 +520,7 @@ related tasks, and as such should not reside in version control.  The
 PUPPETVERSION constant is intended to be version controlled in history.</p>
 
 <p>Ideally, this behavior will allow package maintainers to precisely specify
-the version of the software they&#8217;re packaging as in the following example:</p>
+the version of the software they're packaging as in the following example:</p>
 
 <pre class="code ruby18"><code class="ruby18">$ git describe --match &quot;3.0.*&quot; &gt; lib/puppet/VERSION
 $ ruby -r puppet -e 'puts Puppet.version'
@@ -542,7 +543,7 @@ $ ruby -r puppet -e 'puts Puppet.version'
       
       
         &mdash;
-        <div class='inline'><p>containing the puppet version, e.g. &#8220;3.0.1&#8221;</p>
+        <div class='inline'><p>containing the puppet version, e.g. "3.0.1"</p>
 </div>
       
     </li>
@@ -586,9 +587,9 @@ $ ruby -r puppet -e 'puts Puppet.version'
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:34 2013 by
+  Generated on Wed Dec  4 10:54:12 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

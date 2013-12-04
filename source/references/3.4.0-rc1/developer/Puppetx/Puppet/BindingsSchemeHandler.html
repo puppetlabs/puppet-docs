@@ -6,7 +6,7 @@
 <title>
   Class: Puppetx::Puppet::BindingsSchemeHandler
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -111,39 +111,44 @@ handler of a URI scheme used in the Puppet Bindings / Injector system.
 The intended use is to create a class derived from this class and then register it with the
 Puppet Binder.</p>
 
-<h2 id="creating-the-extension-class">Creating the Extension Class</h2>
+<h2>Creating the Extension Class</h2>
+
 <p>As an example, a class for getting LDAP data and transforming into bindings based on an LDAP URI scheme (such as RFC 2255, 4516)
-may be authored in say a puppet module called &#8216;exampleorg/ldap&#8217;. The name of the class should start with <code>Puppetx::&lt;user&gt;::&lt;module&gt;</code>,
-e.g. &#8216;Puppetx::Exampleorg::Ldap::LdapBindingsSchemeHandler&#8221; and
+may be authored in say a puppet module called 'exampleorg/ldap'. The name of the class should start with <code>Puppetx::&lt;user&gt;::&lt;module&gt;</code>,
+e.g. 'Puppetx::Exampleorg::Ldap::LdapBindingsSchemeHandler" and
 be located in <code>lib/puppetx/exampleorg/Ldap/LdapBindingsSchemeHandler.rb</code>. (These rules are not enforced, but it make the class
 both auto-loadable, and guaranteed to not have a name that clashes with some other LdapBindingsSchemeHandler from some other
 author/organization.</p>
 
 <p>The Puppet Binder will auto-load the file when it
 has a binding to the class <code>Puppetx::Exampleorg::Ldap::LdapBindingsSchemeHandler'
-The Ruby Module </code>Puppetx` is created by Puppet, the remaining modules should be created by the loaded logic - e.g.:</p>
+The Ruby Module</code>Puppetx` is created by Puppet, the remaining modules should be created by the loaded logic - e.g.:</p>
 
-<h2 id="the-expandincluded-method">The expand_included method</h2>
-<p>This method is given a URI (as entred by a user in a bindings configuration) and the handler&#8217;s first task is to
+<h2>The expand_included method</h2>
+
+<p>This method is given a URI (as entred by a user in a bindings configuration) and the handler's first task is to
 perform checking, transformation, and possible expansion into multiple URIs for loading. The result is always an array
 of URIs. This method allows users to enter wild-cards, or to represent something symbolic that is transformed into one or
-more &#8220;real URIs&#8221; to load. (It is allowed to change scheme!).
-If the &#8220;optional&#8221; feature is supported, the handler should not include the URI in the result unless it will be able to produce
+more "real URIs" to load. (It is allowed to change scheme!).
+If the "optional" feature is supported, the handler should not include the URI in the result unless it will be able to produce
 bindings for the given URI (as an option it may produce an empty set of bindings).</p>
 
-<h2 id="the-expandexcluded-method">The expand_excluded method</h2>
-<p>This method is given an URI (as entered by the user in a bindings configuration), and it is the handler&#8217;s second task
+<h2>The expand_excluded method</h2>
+
+<p>This method is given an URI (as entered by the user in a bindings configuration), and it is the handler's second task
 to perform checking, transformation, and possible expansion into multiple URIs that should not be loaded. The result is always
 an array of URIs. The user may be allowed to enter wild-cards etc. The URIs produced by this method should have the same syntax
 as those produced by <span class='object_link'><a href="#expand_included-instance_method" title="Puppetx::Puppet::BindingsSchemeHandler#expand_included (method)">#expand_included</a></span> since they are excluded by comparison.</p>
 
-<h2 id="the-contributedbindings-method">The contributed_bindings method</h2>
+<h2>The contributed_bindings method</h2>
+
 <p>As the last step, the handler is being called once per URI that was included, and not later excluded to produce the
 contributed bindings. It is given three arguments, uri (the uri to load), scope (to provide access to the rest of the
 environment), and an acceptor (of issues), on which issues can be recorded.</p>
 
-<h2 id="reporting-errorsissues">Reporting Errors/Issues</h2>
-<p>Issues are reported by calling the given composer&#8217;s acceptor, which takes a severity (e.g. <code>:error</code>,
+<h2>Reporting Errors/Issues</h2>
+
+<p>Issues are reported by calling the given composer's acceptor, which takes a severity (e.g. <code>:error</code>,
 <code>:warning</code>, or <code>:ignore</code>), an <span class='object_link'>Issue</span> instance, and a <span class='object_link'>SourcePosAdapter</span> (which describes details about linenumber, position, and length of the problem area). If the scheme is
 not based on file, line, pos - nil can be passed. The URI itself can be passed as file.</p>
 
@@ -609,9 +614,9 @@ in an Array.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:28 2013 by
+  Generated on Wed Dec  4 10:55:02 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

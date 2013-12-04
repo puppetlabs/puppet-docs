@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Provider
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -123,34 +123,37 @@ The instance methods are however called for each resource.</p>
 <p>A Provider is an implementation of the actions that manage resources (of some type) on a system.
 This class is the base class for all implementation of a Puppet Provider.</p>
 
-<h2 id="concepts">Concepts:</h2>
+<h2>Concepts:</h2>
+
 <ul>
-  <li><strong>Confinement</strong> - confinement restricts providers to only be applicable under certain conditions.
+<li><strong>Confinement</strong> - confinement restricts providers to only be applicable under certain conditions.
  It is possible to confine a provider several different ways:
-    <ul>
-      <li>the included <span class='object_link'><a href="Confiner.html#confine-instance_method" title="Puppet::Confiner#confine (method)">Confiner#confine</a></span> method which provides filtering on fact, feature, existence of files, or a free form
+
+<ul>
+<li>the included <span class='object_link'><a href="Confiner.html#confine-instance_method" title="Puppet::Confiner#confine (method)">Confiner#confine</a></span> method which provides filtering on fact, feature, existence of files, or a free form
 predicate.</li>
-      <li>the <span class='object_link'><a href="#commands-class_method" title="Puppet::Provider.commands (method)">Provider.commands</a></span> method that filters on the availability of given system commands.</li>
-    </ul>
-  </li>
-  <li><strong>Property hash</strong> - the important instance variable <code>@property_hash</code> contains all current state values
+<li>the <span class='object_link'><a href="#commands-class_method" title="Puppet::Provider.commands (method)">Provider.commands</a></span> method that filters on the availability of given system commands.</li>
+</ul>
+</li>
+<li><strong>Property hash</strong> - the important instance variable <code>@property_hash</code> contains all current state values
 for properties (it is lazily built). It is important that these values are managed appropriately in the
 methods <span class='object_link'>Provider.instances</span>, <span class='object_link'><a href="#prefetch-class_method" title="Puppet::Provider.prefetch (method)">Provider.prefetch</a></span>, and in methods that alters the current state (those that change the
 lifecycle (creates, destroys), or alters some value reflected backed by a property).</li>
-  <li><strong>Flush</strong> - is a hook that is called once per resource when everything has been applied. The intent is
+<li><strong>Flush</strong> - is a hook that is called once per resource when everything has been applied. The intent is
 that an implementation may defer modification of the current state typically done in property setters
 and instead record information that allows flush to perform the changes more efficiently.</li>
-  <li><strong>Execution Methods</strong> -  The execution methods provides access to execution of arbitrary commands.
+<li><strong>Execution Methods</strong> -  The execution methods provides access to execution of arbitrary commands.
 As a convenience execution methods are available on both the instance and the class of a provider since a
 lot of provider logic switch between these contexts fairly freely.</li>
-  <li><strong>System Entity/Resource</strong> - this documentation uses the term &#8220;system entity&#8221; for system resources to make
+<li><strong>System Entity/Resource</strong> - this documentation uses the term "system entity" for system resources to make
 it clear if talking about a resource on the system being managed (e.g. a file in the file system)
 or about a description of such a resource (e.g. a Puppet Resource).</li>
-  <li><strong>Resource Type</strong> - this is an instance of Type that describes a classification of instances of Resource (e.g.
+<li><strong>Resource Type</strong> - this is an instance of Type that describes a classification of instances of Resource (e.g.
 the <code>File</code> resource type describes all instances of <code>file</code> resources).
-(The term is used to contrast with &#8220;type&#8221; in general, and specifically to contrast with the implementation
+(The term is used to contrast with "type" in general, and specifically to contrast with the implementation
 class of Resource or a specific Type).</li>
 </ul>
+
 
 
   </div>
@@ -549,7 +552,7 @@ class of Resource or a specific Type).</li>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>This method may be implemented by a provider in order to flush properties that has not been individually applied to the managed entity&#8217;s current state.</p>
+    <span class="summary_desc"><div class='inline'><p>This method may be implemented by a provider in order to flush properties that has not been individually applied to the managed entity's current state.</p>
 </div></span>
   
 </li>
@@ -643,7 +646,7 @@ class of Resource or a specific Type).</li>
 
   <div class="note todo">
     <strong>TODO:</strong>
-    <div class='inline'><p>Original = <em>&#8220;LAK 2007-05-09: Keep the model stuff around for backward compatibility&#8221;</em>
+    <div class='inline'><p>Original = <em>"LAK 2007-05-09: Keep the model stuff around for backward compatibility"</em>
 Is this really needed? The comment about backwards compatibility was made in 2007.</p>
 </div>
   </div>
@@ -1894,7 +1897,7 @@ fetched state (i.e. what is returned from the <span class='object_link'>instance
 </div>
 </div>
 <p class="note returns_void">This method returns an undefined value.</p><p>This method may be implemented by a provider in order to flush properties that has not been individually
-applied to the managed entity&#8217;s current state.</p>
+applied to the managed entity's current state.</p>
 
 
   </div>
@@ -1937,9 +1940,9 @@ applied to the managed entity&#8217;s current state.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:50 2013 by
+  Generated on Wed Dec  4 10:54:26 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

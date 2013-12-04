@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Property
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -123,20 +123,20 @@ of the methods involved.</p>
     <strong>Note:</strong>
     <div class='inline'><p>Properties of Types are expressed using subclasses of this class. Such a class describes one
 named property of a particular Type (as opposed to describing a type of property in general). This
-limits the use of one (concrete) property class instance to occur only once for a given type&#8217;s inheritance
+limits the use of one (concrete) property class instance to occur only once for a given type's inheritance
 chain. An instance of a Property class is the value holder of one instance of the resource type (e.g. the
 mode of a file resource instance).
 A Property class may server as the superclass <em>(parent)</em> of another; e.g. a Size property that describes
 handling of measurements such as kb, mb, gb. If a type requires two different size measurements it requires
-one concrete class per such measure; e.g. MinSize (:parent =&gt; Size), and MaxSize (:parent =&gt; Size).</p>
+one concrete class per such measure; e.g. MinSize (:parent => Size), and MaxSize (:parent => Size).</p>
 </div>
   </div>
 
-<p>The Property class is the implementation of a resource&#8217;s attributes of <em>property</em> kind.
-A Property is a specialized Resource Type Parameter that has both an &#8216;is&#8217; (current) state, and
-a &#8216;should&#8217; (wanted state). However, even if this is conceptually true, the current <em>is</em> value is
+<p>The Property class is the implementation of a resource's attributes of <em>property</em> kind.
+A Property is a specialized Resource Type Parameter that has both an 'is' (current) state, and
+a 'should' (wanted state). However, even if this is conceptually true, the current <em>is</em> value is
 obtained by asking the associated provider for the value, and hence it is not actually part of a
-property&#8217;s state, and only available when a provider has been selected and can obtain the value (i.e. when
+property's state, and only available when a provider has been selected and can obtain the value (i.e. when
 running on an agent).</p>
 
 <p>A Property (also in contrast to a parameter) is intended to describe a managed attribute of
@@ -311,7 +311,7 @@ that is operated on.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Looks up a value&#8217;s name among valid values, to enable option lookup with result as a key.</p>
+    <span class="summary_desc"><div class='inline'><p>Looks up a value's name among valid values, to enable option lookup with result as a key.</p>
 </div></span>
   
 </li>
@@ -336,7 +336,7 @@ that is operated on.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of the given option (set when a valid value with the given &#8220;name&#8221; was defined).</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the value of the given option (set when a valid value with the given "name" was defined).</p>
 </div></span>
   
 </li>
@@ -395,7 +395,7 @@ that is operated on.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Sets the value of this property to the given value by calling the dynamically created setter method associated with the &#8220;valid value&#8221; referenced by the given name.</p>
+    <span class="summary_desc"><div class='inline'><p>Sets the value of this property to the given value by calling the dynamically created setter method associated with the "valid value" referenced by the given name.</p>
 </div></span>
   
 </li>
@@ -711,7 +711,7 @@ that is operated on.</p>
   <div class="note todo">
     <strong>TODO:</strong>
     <div class='inline'><p>There is some special initialization when a property is not a metaparameter but
-Puppet::Type.metaparamclass(for this class&#8217;s name) is not nil - if that is the case a
+Puppet::Type.metaparamclass(for this class's name) is not nil - if that is the case a
 setup_shadow is performed for that class.</p>
 </div>
   </div>
@@ -818,20 +818,16 @@ on what constitutes a positive match. A derived property may override that metho
 
 <p>The <code>is</code> vs&#46; <code>should</code> array matching mode; <code>:first</code>, or <code>:all</code>.</p>
 
-<ul>
-  <li><code>:first</code>
-This is primarily used for single value properties. When matched against an array of values
-a match is true if the <code>is</code> value matches any of the values in the <code>should</code> array. When the <code>is</code> value
-is also an array, the matching is performed against the entire array as the <code>is</code> value.</li>
-  <li>
-    <dl>
-      <dt><code>:all</code></dt>
-      <dd>This is primarily used for multi-valued properties. When matched against an array of
+<dl>
+<dt>* <code>:first</code></dt>
+<dt>  This is primarily used for single value properties. When matched against an array of values</dt>
+<dt>  a match is true if the <code>is</code> value matches any of the values in the <code>should</code> array. When the <code>is</code> value</dt>
+<dt>  is also an array, the matching is performed against the entire array as the <code>is</code> value.</dt>
+<dt>* <code>:all</code></dt>
+<dd>This is primarily used for multi-valued properties. When matched against an array of
 <code>should</code> values, the size of <code>is</code> and <code>should</code> must be the same, and all values in <code>is</code> must match
 a value in <code>should</code>.</dd>
-    </dl>
-  </li>
-</ul>
+</dl>
 
 
   </div>
@@ -983,7 +979,7 @@ a value in <code>should</code>.</dd>
     
   <div class="note todo">
     <strong>TODO:</strong>
-    <div class='inline'><p>Option :event original comment says &#8220;event should be returned&#8230;&#8221;, is &#8220;returned&#8221; the correct word
+    <div class='inline'><p>Option :event original comment says "event should be returned...", is "returned" the correct word
 to use?</p>
 </div>
   </div>
@@ -1107,7 +1103,7 @@ then the scheduled refresh would be deleted.</p>
           </span>
           
             &mdash; <div class='inline'><p>Any other option is treated as a call to a setter having the given
-option name (e.g. <code>:required_features</code> calls <code>required_features=</code> with the option&#8217;s value as an
+option name (e.g. <code>:required_features</code> calls <code>required_features=</code> with the option's value as an
 argument).</p>
 </div>
           
@@ -1177,7 +1173,7 @@ argument).</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Looks up a value&#8217;s name among valid values, to enable option lookup with result as a key.</p>
+<p>Looks up a value's name among valid values, to enable option lookup with result as a key.</p>
 
 
   </div>
@@ -1269,7 +1265,7 @@ argument).</p>
 </div>
   </div>
 
-<p>Returns the value of the given option (set when a valid value with the given &#8220;name&#8221; was defined).</p>
+<p>Returns the value of the given option (set when a valid value with the given "name" was defined).</p>
 
 
   </div>
@@ -1410,7 +1406,7 @@ argument).</p>
       
       
         &mdash;
-        <div class='inline'><p>what the provider returns when calling a setter for this property&#8217;s name</p>
+        <div class='inline'><p>what the provider returns when calling a setter for this property's name</p>
 </div>
       
     </li>
@@ -1495,7 +1491,7 @@ be investigated. (Bug, or documentation needs to be changed).</p>
 </div>
   </div>
 
-<p>Sets the value of this property to the given value by calling the dynamically created setter method associated with the &#8220;valid value&#8221; referenced by the given name.</p>
+<p>Sets the value of this property to the given value by calling the dynamically created setter method associated with the "valid value" referenced by the given name.</p>
 
 
   </div>
@@ -1514,7 +1510,7 @@ be investigated. (Bug, or documentation needs to be changed).</p>
       
       
         &mdash;
-        <div class='inline'><p>a valid value &#8220;name&#8221; as returned by <span class='object_link'><a href="#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span></p>
+        <div class='inline'><p>a valid value "name" as returned by <span class='object_link'><a href="#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span></p>
 </div>
       
     </li>
@@ -1934,7 +1930,7 @@ This is no longer supported.</p>
   </div>
 
 <p>Sets the current <em>(is)</em> value of this property.
-The value is set using the provider&#8217;s setter method for this property (<span class='object_link'><a href="#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span>) if nothing
+The value is set using the provider's setter method for this property (<span class='object_link'><a href="#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span>) if nothing
 else has been specified. If the <em>valid value</em> for the given value defines a <code>:call</code> option with the
 value <code>:instead</code>, the
 value is set with <span class='object_link'><a href="#call_valuemethod-instance_method" title="Puppet::Property#call_valuemethod (method)">#call_valuemethod</a></span> which invokes a block specified for the valid value.</p>
@@ -2288,7 +2284,7 @@ This method also sets the cached original <em>should</em> values returned by <sp
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
 <p class="note returns_void">This method returns an undefined value.</p><p>Asserts that the given value is valid.
-If the developer uses a &#8216;validate&#8217; hook, this method will get overridden.</p>
+If the developer uses a 'validate' hook, this method will get overridden.</p>
 
 
   </div>
@@ -2491,9 +2487,9 @@ This method also sets the cached original <em>should</em> values returned by <sp
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:48 2013 by
+  Generated on Wed Dec  4 10:54:24 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

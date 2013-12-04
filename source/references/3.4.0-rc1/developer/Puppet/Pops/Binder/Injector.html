@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::Injector
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -101,13 +101,15 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>The injector is the &#8220;lookup service&#8221; class</p>
+    <p>The injector is the "lookup service" class</p>
 
-<h2 id="initialization">Initialization</h2>
+<h2>Initialization</h2>
+
 <p>The injector is initialized with a configured <span class='object_link'><a href="Binder.html" title="Puppet::Pops::Binder::Binder (class)">Binder</a></span>. The Binder instance contains a resolved set of
 <code>key =&gt; "binding information"</code> that is used to setup the injector.</p>
 
-<h2 id="lookup">Lookup</h2>
+<h2>Lookup</h2>
+
 <p>It is possible to lookup either the value, or a producer of the value. The <span class='object_link'><a href="#lookup-instance_method" title="Puppet::Pops::Binder::Injector#lookup (method)">#lookup</a></span> method looks up a value, and the
 <span class='object_link'><a href="#lookup_producer-instance_method" title="Puppet::Pops::Binder::Injector#lookup_producer (method)">#lookup_producer</a></span> looks up a producer.
 Both of these methods can be called with three different signatures; <code>lookup(key)</code>, <code>lookup(type, name)</code>, and <code>lookup(name)</code>,
@@ -116,7 +118,8 @@ with the corresponding calls to obtain a producer; <code>lookup_producer(key)</c
 <p>It is possible to pass a block to <span class='object_link'><a href="#lookup-instance_method" title="Puppet::Pops::Binder::Injector#lookup (method)">#lookup</a></span> and <span class='object_link'><a href="#lookup_producer-instance_method" title="Puppet::Pops::Binder::Injector#lookup_producer (method)">#lookup_producer</a></span>, the block is passed the result of the lookup
 and the result of the block is returned as the value of the lookup. This is useful in order to provide a default value.</p>
 
-<h2 id="singleton-or-not">Singleton or Not</h2>
+<h2>Singleton or Not</h2>
+
 <p>The lookup of a value is always based on the lookup of a producer. For <em>singleton producers</em> this means that the value is
 determined by the first value lookup. Subsequent lookups via <code>lookup</code> or <code>lookup_producer</code> will produce the same instance.</p>
 
@@ -131,18 +134,21 @@ producer (hence, typically, restarting the series). However, the producer return
 recreate the producer on each call to <code>produce</code>; i.e. each <code>lookup_producer</code> returns a producer capable of returning
 a series of objects.</p>
 
-<h2 id="assisted-inject">Assisted Inject</h2>
+<h2>Assisted Inject</h2>
+
 <p>The injector supports lookup of instances of classes <em>even if the requested class is not explicitly bound</em>.
 This is possible for classes that have a zero argument <code>initialize</code> method, or that has a class method called
 <code>inject</code> that takes two arguments; <code>injector</code>, and <code>scope</code>.
 This is useful in ruby logic as a class can then use the given injector to inject details.
 An <code>inject</code> class method wins over a zero argument <code>initialize</code> in all cases.</p>
 
-<h2 id="access-to-key-factory-and-type-calculator">Access to key factory and type calculator</h2>
+<h2>Access to key factory and type calculator</h2>
+
 <p>It is important to use the same key factory, and type calculator as the binder. It is therefor possible to obtaint
 these with the methods <span class='object_link'><a href="#key_factory-instance_method" title="Puppet::Pops::Binder::Injector#key_factory (method)">#key_factory</a></span>, and <span class='object_link'><a href="#type_calculator-instance_method" title="Puppet::Pops::Binder::Injector#type_calculator (method)">#type_calculator</a></span>.</p>
 
-<h2 id="special-support-for-producers">Special support for producers</h2>
+<h2>Special support for producers</h2>
+
 <p>There is one method specially designed for producers. The <span class='object_link'><a href="#get_contributions-instance_method" title="Puppet::Pops::Binder::Injector#get_contributions (method)">#get_contributions</a></span> method returns an array of all contributions
 to a given <em>contributions key</em>. This key is obtained from the <span class='object_link'><a href="#key_factory-instance_method" title="Puppet::Pops::Binder::Injector#key_factory (method)">#key_factory</a></span> for a given multibinding. The returned set of
 contributed bindings is sorted in descending precedence order. Any conflicts, merges, etc. is performed by the multibinding
@@ -327,7 +333,7 @@ producer configured for a multibinding.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Lookup (a.k.a &#8220;inject&#8221;) of a value given a key.</p>
+    <span class="summary_desc"><div class='inline'><p>Lookup (a.k.a "inject") of a value given a key.</p>
 </div></span>
   
 </li>
@@ -377,7 +383,7 @@ producer configured for a multibinding.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Lookup (a.k.a &#8220;inject&#8221;) producer of a value given a key.</p>
+    <span class="summary_desc"><div class='inline'><p>Lookup (a.k.a "inject") producer of a value given a key.</p>
 </div></span>
   
 </li>
@@ -594,7 +600,7 @@ of nil creates an injector that returns or yields nil on all lookup requests.</p
 </h3><div class="docstring">
   <div class="discussion">
     <p>Returns the contributions to a multibind given its contribution key (as produced by the KeyFactory).
-This method is typically used by multibind value producers, but may be used for introspection of the injector&#8217;s state.</p>
+This method is typically used by multibind value producers, but may be used for introspection of the injector's state.</p>
 
 
   </div>
@@ -752,7 +758,7 @@ A compatible type calculator can also be obtained from the key factory.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Lookup (a.k.a &#8220;inject&#8221;) of a value given a key.
+    <p>Lookup (a.k.a "inject") of a value given a key.
 The lookup may be called with different parameters. This method is a convenience method that
 dispatches to one of #lookup_key or #lookup_type depending on the arguments. It also provides
 the ability to use an optional block that is called with the looked up value, or scope and value if the
@@ -1162,7 +1168,7 @@ if this is wanted, or use #lookup_type.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Lookup (a.k.a &#8220;inject&#8221;) producer of a value given a key.
+    <p>Lookup (a.k.a "inject") producer of a value given a key.
 The producer lookup may be called with different parameters. This method is a convenience method that
 dispatches to one of #lookup_producer_key or #lookup_producer_type depending on the arguments. It also provides
 the ability to use an optional block that is called with the looked up producer, or scope and producer if the
@@ -1776,9 +1782,9 @@ to check type conformance, or infer the type of Ruby objects.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:05 2013 by
+  Generated on Wed Dec  4 10:54:41 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

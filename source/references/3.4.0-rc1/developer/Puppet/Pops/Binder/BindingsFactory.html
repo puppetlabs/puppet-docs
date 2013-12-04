@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Pops::Binder::BindingsFactory
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -88,7 +88,8 @@
   <div class="discussion">
     <p>A helper class that makes it easier to construct a Bindings model.</p>
 
-<h2 id="the-bindings-model">The Bindings Model</h2>
+<h2>The Bindings Model</h2>
+
 <p>The BindingsModel (defined in <span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span> is a model that is intended to be generally free from Ruby concerns.
 This means that it is possible for system integrators to create and serialize such models using other technologies than
 Ruby. This manifests itself in the model in that producers are described using instances of a <code>ProducerDescriptor</code> rather than
@@ -97,22 +98,26 @@ to describe all types.</p>
 
 <p>This class, the <code>BindingsFactory</code> is a concrete Ruby API for constructing instances of classes in the model.</p>
 
-<h2 id="named-bindings">Named Bindings</h2>
+<h2>Named Bindings</h2>
+
 <p>The typical usage of the factory is to call <span class='object_link'><a href="#named_bindings-class_method" title="Puppet::Pops::Binder::BindingsFactory.named_bindings (method)">BindingsFactory.named_bindings</a></span> which creates a container of bindings wrapped in a <em>build object</em>
 equipped with convenience methods to define the details of the just created named bindings.
 The returned builder is an instance of <span class='object_link'><a href="BindingsFactory/BindingsContainerBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsContainerBuilder (class)">BindingsContainerBuilder</a></span>.</p>
 
-<h2 id="binding">Binding</h2>
+<h2>Binding</h2>
+
 <p>A Binding binds a type/name key to a producer of a value. A binding is conveniently created by calling <code>bind</code> on a
 <code>BindingsContainerBuilder</code>. The call to bind, produces a binding wrapped in a build object equipped with convenience methods
 to define the details of the just created binding. The returned builder is an instance of
 <span class='object_link'><a href="BindingsFactory/BindingsBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder (class)">BindingsBuilder</a></span>.</p>
 
-<h2 id="multibinding">Multibinding</h2>
+<h2>Multibinding</h2>
+
 <p>A multibinding works like a binding, but it requires an additional ID. It also places constraints on the type of the binding;
 it must be a collection type (Hash or Array).</p>
 
-<h2 id="constructing-and-contributing-bindings-from-ruby">Constructing and Contributing Bindings from Ruby</h2>
+<h2>Constructing and Contributing Bindings from Ruby</h2>
+
 <p>The bindings system is used by referencing bindings symbolically; these are then specified in a Ruby file which is autoloaded
 by Puppet. The entry point for user code that creates bindings is described in <span class='object_link'><a href="../../Bindings.html" title="Puppet::Bindings (class)">Bindings</a></span>.
 That class makes use of a BindingsFactory, and the builder objects to make it easy to construct bindings.</p>
@@ -122,7 +127,8 @@ If something advanced is wanted, use of one of the helper class methods on the B
 <span class='object_link'><a href="../Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span> will be required to create and configure objects that are not handled by
 the methods in the builder objects.</p>
 
-<h2 id="chaining-of-calls">Chaining of calls</h2>
+<h2>Chaining of calls</h2>
+
 <p>Since all the build methods return the build object it is easy to stack on additional calls. The intention is to
 do this in an order that is readable from left to right: <code>bind.string.name('thename').to(42)</code>, but there is nothing preventing
 making the calls in some other order e.g. <code>bind.to(42).name('thename').string</code>, the second is quite unreadable but produces
@@ -131,7 +137,8 @@ the same result.</p>
 <p>For sake of human readability, the method <code>name</code> is alsp available as <code>named</code>, with the intention that it is used after a type,
 e.g. <code>bind.integer.named('the meaning of life').to(42)</code></p>
 
-<h2 id="methods-taking-blocks">Methods taking blocks</h2>
+<h2>Methods taking blocks</h2>
+
 <p>Several methods take an optional block. The block evaluates with the builder object as <code>self</code>. This means that there is no
 need to chain the methods calls, they can instead be made in sequence - e.g.</p>
 
@@ -150,7 +157,8 @@ need to chain the methods calls, they can instead be made in sequence - e.g.</p>
 <span class='rubyid_end end kw'>end</span>
 </code></pre>
 
-<h2 id="unwrapping-the-result">Unwrapping the result</h2>
+<h2>Unwrapping the result</h2>
+
 <p>The result from all methods is a builder object. Call the method <code>model</code> to unwrap the constructed bindings model object.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_bindings identifier id'>bindings</span> <span class='assign token'>=</span> <span class='rubyid_BindingsFactory constant id'>BindingsFactory</span><span class='dot token'>.</span><span class='rubyid_named_bindings identifier id'>named_bindings</span><span class='lparen token'>(</span><span class='string val'>'my named bindings'</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
@@ -991,7 +999,7 @@ is called.</p>
       
       
         &mdash;
-        <div class='inline'><p>arguments to the class&#8217; <code>new</code> method.</p>
+        <div class='inline'><p>arguments to the class' <code>new</code> method.</p>
 </div>
       
     </li>
@@ -1596,7 +1604,7 @@ Unwrap the built result when done.</p>
       
       
         &mdash;
-        <div class='inline'><p>puppet source e.g. &#8220;1 + 2&#8221;</p>
+        <div class='inline'><p>puppet source e.g. "1 + 2"</p>
 </div>
       
     </li>
@@ -1671,8 +1679,8 @@ Unwrap the built result when done.</p>
   <div class="discussion">
     <p>Parses and produces a puppet string expression from the given string.
 The string will automatically be quoted and special characters escaped.
-As an example if given the (ruby) string &#8220;Hi\nMary&#8221; it is transformed to
-the puppet string (illustrated with a ruby string) &#8220;"Hi\nMary\”&#8221; before being
+As an example if given the (ruby) string "Hi\nMary" it is transformed to
+the puppet string (illustrated with a ruby string) "\"Hi\nMary\”" before being
 parsed.</p>
 
 
@@ -1692,7 +1700,7 @@ parsed.</p>
       
       
         &mdash;
-        <div class='inline'><p>puppet source e.g. &#8220;On node ${fqdn}&#8221;</p>
+        <div class='inline'><p>puppet source e.g. "On node ${fqdn}"</p>
 </div>
       
     </li>
@@ -1836,9 +1844,9 @@ the base class (BindingsContainerBuilder).</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:42 2013 by
+  Generated on Wed Dec  4 10:54:18 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

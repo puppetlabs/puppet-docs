@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::Producers::ArrayMultibindProducer
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -110,7 +110,7 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>Collection accepts elements that comply with the array&#8217;s element type, or the entire type (i.e. Array[element_type]).
+    <div class='inline'><p>Collection accepts elements that comply with the array's element type, or the entire type (i.e. Array[element_type]).
 If the type is restrictive - e.g. Array[String] and an Array[String] is contributed, the result will not be type
 compliant without also using the <code>:flatten</code> option, and a type error will be raised. For an array with relaxed typing
 i.e. Array[Data], it it valid to produce a result such as <code>['a', ['b', 'c'], 'd']</code> and no flattening is required
@@ -124,14 +124,15 @@ The use of the option <code>:flatten</code> controls how the result is flattened
 <p>This implementation collects all contributions to the multibind and then combines them using the following rules:</p>
 
 <ul>
-  <li>all <em>unnamed</em> entries are added unless the option <code>:priority_on_unnamed</code> is set to true, in which case the unnamed
+<li>all <em>unnamed</em> entries are added unless the option <code>:priority_on_unnamed</code> is set to true, in which case the unnamed
 contribution with the highest priority is added, and the rest are ignored (unless they have the same priority in which
 case an error is raised).</li>
-  <li>all <em>named</em> entries are handled the same way as <em>unnamed</em> but the option <code>:priority_on_named</code> controls their handling.</li>
-  <li>the option <code>:uniq</code> post processes the result to only contain unique entries</li>
-  <li>the option <code>:flatten</code> post processes the result by flattening all nested arrays.</li>
-  <li>If both <code>:flatten</code> and <code>:uniq</code> are true, flattening is done first.</li>
+<li>all <em>named</em> entries are handled the same way as <em>unnamed</em> but the option <code>:priority_on_named</code> controls their handling.</li>
+<li>the option <code>:uniq</code> post processes the result to only contain unique entries</li>
+<li>the option <code>:flatten</code> post processes the result by flattening all nested arrays.</li>
+<li>If both <code>:flatten</code> and <code>:uniq</code> are true, flattening is done first.</li>
 </ul>
+
 
 
   </div>
@@ -1053,9 +1054,9 @@ are flattened. May be set to an Integer value to indicate the level of recursion
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:11 2013 by
+  Generated on Wed Dec  4 10:54:46 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

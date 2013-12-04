@@ -6,7 +6,7 @@
 <title>
   File: http_node
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,30 +61,30 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="node">Node</h1>
+    <div id="content"><div id='filecontents'><h1>Node</h1>
 
 <p>The <code>node</code> endpoint is used by the puppet agent to get basic information
 about a node. The returned information includes the node name and
 environment, and optionally any classes set by an External Node
-Classifier and a hash of parameters which may include the node&#8217;s facts.
+Classifier and a hash of parameters which may include the node's facts.
 The returned node may have a different environment from the one given in
 the request if Puppet is configured with an ENC.</p>
 
-<h2 id="find">Find</h2>
+<h2>Find</h2>
 
 <p>Retrieve data for a node</p>
 
-<p>GET /:environment/node/:certname</p>
+<p>  GET /:environment/node/:certname</p>
 
-<h3 id="supported-http-methods">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>GET</p>
 
-<h3 id="supported-response-formats">Supported Response Formats</h3>
+<h3>Supported Response Formats</h3>
 
 <p>PSON</p>
 
-<h3 id="examples">Examples</h3>
+<h3>Examples</h3>
 
 <pre class="code ruby"><code class="ruby"><span class='gt op'>&gt;</span> <span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/production/n</span><span class='rubyid_ode identifier id'>ode</span><span class='div op'>/</span><span class='rubyid_mycertname identifier id'>mycertname</span> <span class='rubyid_HTTP constant id'>HTTP</span><span class='div op'>/</span><span class='float val'>1.1</span>
 <span class='gt op'>&gt;</span> <span class='rubyid_Accept constant id'>Accept</span><span class='colon op'>:</span> <span class='rubyid_pson identifier id'>pson</span><span class='comma token'>,</span> <span class='rubyid_b64_zlib_yaml identifier id'>b64_zlib_yaml</span><span class='comma token'>,</span> <span class='rubyid_yaml identifier id'>yaml</span><span class='comma token'>,</span> <span class='rubyid_raw identifier id'>raw</span>
@@ -111,16 +111,16 @@ the request if Puppet is configured with an ENC.</p>
 <span class='rbrace token'>}</span>
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2>Schema</h2>
 
 <p>Returned node objects conform to the json schema at
 <a href="file.node.html" title="api/schemas/node.json">api/schemas/node.json</a>.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:33 2013 by
+  Generated on Wed Dec  4 10:54:10 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::SSL::Oids
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -99,14 +99,14 @@
 <p>puppetCertExtensions OBJECT IDENTIFIER ::= identified-organization(3)
    dod(6) internet(1) private(4) enterprise(1) 34380 1</p>
 
-<p>&#8211; the tree under registeredExtensions &#8216;belongs&#8217; to puppetlabs
-&#8211; privateExtensions can be extended by enterprises to suit their own needs
+<p>-- the tree under registeredExtensions 'belongs' to puppetlabs
+-- privateExtensions can be extended by enterprises to suit their own needs
 registeredExtensions OBJECT IDENTIFIER ::= { puppetCertExtensions 1 }
 privateExtensions OBJECT IDENTIFIER ::= { puppetCertExtensions 2 }</p>
 
-<p>&#8211; subtree of common registered extensions
-&#8211; The short names for these OIDs are intentionally lowercased and formatted
-&#8211; since they may be exposed inside the Puppet DSL as variables.
+<p>-- subtree of common registered extensions
+-- The short names for these OIDs are intentionally lowercased and formatted
+-- since they may be exposed inside the Puppet DSL as variables.
 pp_uuid  OBJECT IDENTIFIER ::= { registeredExtensions 1 }
 pp_instance_id OBJECT IDENTIFIER ::= { registeredExtensions 2 }
 pp_image_name OBJECT IDENTIFIER ::= { registeredExtensions 3 }
@@ -133,9 +133,9 @@ pp_preshared_key OBJECT IDENTIFIER ::= { registeredExtensions 4 }</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:35 2013 by
+  Generated on Wed Dec  4 10:54:12 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>
