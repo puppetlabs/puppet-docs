@@ -55,7 +55,6 @@ A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of
 
 * [HTTP API](/guides/rest_api.html) --- reference of API-accessible resources
 * [History of the Puppet Language](/guides/language_history.html) --- a table showing which language features were added and removed in which Puppet versions
-* [Puppet Manpages](/man/) --- detailed help for each Puppet application
 
 ### Generated References
 
@@ -66,6 +65,7 @@ Complete and up-to-date references for Puppet's resource types, functions, metap
 * [Metaparameters](/references/stable/metaparameter.html) --- all type-independent resource attributes
 * [Configuration](/references/stable/configuration.html) --- all configuration file settings
 * [Report](/references/stable/report.html) --- all available report handlers
+* [Puppet Manpages](/references/stable/man/) --- detailed help for each Puppet application
 
 These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
 

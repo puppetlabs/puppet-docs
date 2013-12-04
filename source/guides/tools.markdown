@@ -13,7 +13,7 @@ This guide covers the major tools that comprise Puppet.
 Single binary
 -------------
 
-**Starting with Puppet 2.6,** Puppet uses a single `puppet` binary with multiple subcommands, in the style of Git. Each of the pre-2.6 commands corresponds directly to one of the new subcommands. 
+**Starting with Puppet 2.6,** Puppet uses a single `puppet` binary with multiple subcommands, in the style of Git. Each of the pre-2.6 commands corresponds directly to one of the new subcommands.
 
 > **Note:** As of Puppet 3, the old standalone commands have been removed completely. Note also that `puppet` without any subcommand will no longer default to puppet apply.
 
@@ -35,12 +35,12 @@ This also results in a change in the puppet.conf configuration file. The section
 Manpage documentation
 ---------------------
 
-Additional information about each tool is provided in the relevant manpage. You can consult the local version of each manpage, or [view the web versions of the manuals](/man/).
+Additional information about each tool is provided in the relevant manpage. You can consult the local version of each manpage, or [view the web versions of the manuals](/references/stable/man/).
 
 puppet master (or puppetmasterd)
 --------------------------------
 
-[Puppet master](/man/master.html) is a central management daemon.  In most installations, you'll have one puppet master
+[Puppet master](/references/stable/man/master.html) is a central management daemon.  In most installations, you'll have one puppet master
 server and each managed machine will run puppet agent.   By default, puppet master operates a certificate
 authority, which can be managed using puppet cert.
 
@@ -52,7 +52,7 @@ which has sections for each application.
 puppet agent (or puppetd)
 -------------------------
 
-[Puppet agent](/man/agent.html) runs on each managed node.   By default, it will wake up every 30 minutes (configurable),
+[Puppet agent](/references/stable/man/agent.html) runs on each managed node.   By default, it will wake up every 30 minutes (configurable),
 check in with puppetmasterd, send puppetmasterd new information about the system (facts), and receive a 'compiled catalog' describing the desired system configuration. Puppet agent is then responsible for making the system match the compiled catalog. If `pluginsync` is enabled in a given node's configuration, custom plugins stored on the Puppet Master server are transferred to it automatically.
 
 The puppet master server determines what information a given managed node should see based on its unique identifier ("certname"); that node will not be able to see configurations intended for other machines.
@@ -60,12 +60,12 @@ The puppet master server determines what information a given managed node should
 puppet apply (or puppet)
 ------------------------
 
-When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), [puppet apply](/man/apply.html) is run instead of puppet agent.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppet agent.
+When running Puppet locally (for instance, to test manifests, or in a non-networked disconnected case), [puppet apply](/references/stable/man/apply.html) is run instead of puppet agent.  It then uses local files, and does not try to contact the central server.  Otherwise, it behaves the same as puppet agent.
 
 puppet cert (or puppetca)
 -------------------------
 
-The [puppet cert](/man/cert.html) command is used to sign, list and examine certificates used by Puppet to secure the connection between the Puppet master and agents.  The most common usage is to sign the certificates of Puppet agents awaiting authorisation:
+The [puppet cert](/references/stable/man/cert.html) command is used to sign, list and examine certificates used by Puppet to secure the connection between the Puppet master and agents.  The most common usage is to sign the certificates of Puppet agents awaiting authorisation:
 
     > puppet cert --list
     agent.example.com
@@ -83,12 +83,12 @@ Certificates with a + next to them are signed.  All others are awaiting signatur
 puppet doc (or puppetdoc)
 -------------------------
 
-[Puppet doc](/man/doc.html) generates documentation about Puppet and your manifests, which it can output in HTML, Markdown and RDoc.
+[Puppet doc](/references/stable/man/doc.html) generates documentation about Puppet and your manifests, which it can output in HTML, Markdown and RDoc.
 
 puppet resource (or ralsh)
 --------------------------
 
-[Puppet resource](/man/resource.html) (also known as `ralsh`, for "Resource Abstraction Layer SHell") uses Puppet's resource abstraction layer to interactively view and manipulate your local system.
+[Puppet resource](/references/stable/man/resource.html) (also known as `ralsh`, for "Resource Abstraction Layer SHell") uses Puppet's resource abstraction layer to interactively view and manipulate your local system.
 
 For example, to list information about the user 'xyz':
 
@@ -129,7 +129,7 @@ Puppet resource is most frequently used as a learning tool, but it can also be u
 puppet inspect
 --------------
 
-[Puppet inspect](/man/inspect.html) generates an inspection report and sends it to the puppet master. It cannot be run as a daemon.
+[Puppet inspect](/references/stable/man/inspect.html) generates an inspection report and sends it to the puppet master. It cannot be run as a daemon.
 
 Inspection reports differ from standard Puppet reports, as they do not record the actions taken by Puppet when applying a catalog; instead, they document the current state of all resource attributes which have been marked as auditable with the [`audit` metaparameter](http://docs.puppetlabs.com/references/stable/metaparameter.html#audit). (The most recent cached catalog is used to determine which resource attributes are auditable.)
 
