@@ -55,6 +55,105 @@ module PuppetDocs
           end
         end
 
+        # Categorize subcommands
+        categories = {}
+        categories[:core] = %w(
+          agent
+          apply
+          cert
+          master
+          module
+          resource
+        )
+        categories[:occasional] = %w(
+          describe
+          device
+          doc
+          help
+          man
+          node
+          parser
+          plugin
+        )
+        categories[:deprecated] = %w(
+          kick
+          queue
+        )
+        categories[:weird] = %w(
+          ca
+          catalog
+          certificate
+          certificate_request
+          certificate_revocation_list
+          config
+          facts
+          file
+          filebucket
+          inspect
+          instrumentation_data
+          instrumentation_listener
+          instrumentation_probe
+          key
+          report
+          resource_type
+          secret_agent
+          status
+        )
+        all_in_categories = categories.reduce( [] ) {|total, (cat, items)| total = total + items}
+        leftovers = (non_face_applications + faces.collect{|sym| sym.to_s}) - all_in_categories
+
+        index_text = <<EOT
+---
+title: Puppet Man Pages
+layout: default
+---
+
+Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:
+
+Core Tools
+-----
+
+These subcommands form the core of Puppet's tool set, and every user should understand what they do.
+
+#{ categories[:core].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+
+Occasionally Useful Subcommands
+-----
+
+Many or most users will need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
+
+#{ categories[:occasional].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+
+Niche Subcommands
+-----
+
+Most users can ignore these subcommands. They're only useful for certain niche workflows, and most of them are interfaces to Puppet's internal subsystems.
+
+#{ categories[:weird].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+
+Deprecated Subcommands
+-----
+
+These subcommands were needed for older functionality, and will be removed in a future version of Puppet.
+
+#{ categories[:deprecated].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+
+EOT
+        if !leftovers.empty?
+          index_text << <<EOADDENDUM
+Unknown or New Subcommands
+-----
+
+These subcommands have not yet been added to any of the categories above.
+
+#{ leftovers.reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+EOADDENDUM
+        end
+        # write index
+        File.open("#{destination_dir}/index.markdown", 'w') do |file|
+          file.puts(index_text)
+        end
+
       end # self.write_manpages
     end
   end
