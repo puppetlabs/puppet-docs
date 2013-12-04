@@ -78,12 +78,14 @@ module PuppetDocs
 
     class Generator
 
-      def initialize(tag, name)
+      def initialize(tag, name, commit = nil)
         @tag = tag
         @name = name
+        @commit = commit
+        @real_commit = @commit || @tag
         setup_repository!
         validate!
-        change_to_tag!
+        checkout_puppet!
       end
 
       def generate
@@ -161,15 +163,15 @@ EOT
 
       def version
         @version ||=
-          at @tag do
+          at @real_commit do
             raw = `ruby  -rpuppet -e 'puts Puppet::PUPPETVERSION'`.strip
             Versionomy.parse(raw)
           end
       end
 
       def validate!
-        unless valid_tags.include?(@tag)
-          abort "Invalid puppet tag: #{@tag}"
+        if !valid_tags.include?(@tag)
+          abort "Invalid puppet tag: #{@tag}, and explicit commit not provided" if @commit.nil?
         end
       end
 
@@ -226,8 +228,8 @@ EOT
 
       end
 
-      def change_to_tag!
-        at @tag
+      def checkout_puppet!
+        at @real_commit
       end
 
       def destination_filename

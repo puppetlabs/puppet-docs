@@ -363,13 +363,13 @@ namespace :references do
       # "Write references/VERSION/#{name}"
       task name => 'references:check_version' do
         require 'puppet_docs'
-        PuppetDocs::Reference::Generator.new(ENV['VERSION'], name).generate
+        PuppetDocs::Reference::Generator.new(ENV['VERSION'], name, ENV['COMMIT']).generate
       end
     end
 
   end
 
-  desc "Write all references for VERSION"
+  desc "Write all references for VERSION (from optional COMMIT if tag doesn't yet exist)"
   task :puppetdoc => references.map { |r| "puppetdoc:#{r}" }
 
   namespace :index do
