@@ -320,7 +320,7 @@ task :build do
 end
 
 desc "Build all references for a new Puppet version"
-task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc']
+task :references => [ 'references:check_version', 'references:index:stub', 'references:puppetdoc']
 
 namespace :references do
 
@@ -398,13 +398,7 @@ namespace :references do
   end
 
   task :check_version do
-    abort "No VERSION given (must be a valid repo tag)" unless ENV['VERSION']
-  end
-
-  task :fetch_tags do
-    Dir.chdir("vendor/puppet") do
-      sh "git fetch --tags"
-    end
+    abort "No VERSION given to build references for" unless ENV['VERSION']
   end
 
 end
