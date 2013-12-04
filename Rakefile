@@ -19,7 +19,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-references = %w(configuration function indirection metaparameter report type developer)
+references = %w(configuration function indirection metaparameter report type developer man)
 top_dir = Dir.pwd
 
 source_dir = "#{top_dir}/source"
@@ -319,8 +319,8 @@ task :build do
   Rake::Task['tarball'].invoke
 end
 
-desc "Build all references and man pages for a new Puppet version"
-task :references => [ 'references:check_version', 'references:fetch_tags', 'references:index:stub', 'references:puppetdoc']
+desc "Build all references for a new Puppet version"
+task :references => [ 'references:check_version', 'references:index:stub', 'references:puppetdoc']
 
 namespace :references do
 
@@ -363,13 +363,13 @@ namespace :references do
       # "Write references/VERSION/#{name}"
       task name => 'references:check_version' do
         require 'puppet_docs'
-        PuppetDocs::Reference::Generator.new(ENV['VERSION'], name).generate
+        PuppetDocs::Reference::Generator.new(ENV['VERSION'], name, ENV['COMMIT']).generate
       end
     end
 
   end
 
-  desc "Write all references for VERSION"
+  desc "Write all references for VERSION (from optional COMMIT if tag doesn't yet exist)"
   task :puppetdoc => references.map { |r| "puppetdoc:#{r}" }
 
   namespace :index do
@@ -386,12 +386,11 @@ namespace :references do
         f.puts "# #{ENV['VERSION']} References\n"
         f.puts "* * *\n\n"
         references.each do |name|
-          unless name=="developer"
-            f.puts "* [#{name.capitalize}](#{name}.html)"
-          else
-            f.puts "* [Developer Documentation](developer/index.html)"
+          unless name=="developer" or name=="man"
+            f.puts "* [#{name.capitalize}](./#{name}.html)"
           end
         end
+        f.puts "* [Developer Documentation](./developer/index.html)\n* [Man Pages](./man/index.html)"
       end
       puts "Wrote #{filename}"
     end
@@ -399,30 +398,7 @@ namespace :references do
   end
 
   task :check_version do
-    abort "No VERSION given (must be a valid repo tag)" unless ENV['VERSION']
-  end
-
-  task :fetch_tags do
-    Dir.chdir("vendor/puppet") do
-      sh "git fetch --tags"
-    end
-  end
-
-  desc "Update the contents of source/man/{app}.markdown" # Note that the index must be built manually if new applications are added. Also, let's not ever have a `puppet index` command.
-  task :update_manpages do
-    puppet = ENV['PUPPETDIR']
-    applications  = Dir.glob(%Q{#{puppet}/lib/puppet/application/*})
-    ronn = %x{which ronn}.chomp
-    unless File.executable?(ronn) then fail("Ronn does not appear to be installed.") end
-    applications.each do |app|
-      app.gsub!( /^#{puppet}\/lib\/puppet\/application\/(.*?)\.rb/, '\1')
-      headerstring = "---\nlayout: default\ntitle: puppet #{app} Manual Page\n---\n\npuppet #{app} Manual Page\n======\n\n"
-      manstring = %x{RUBYLIB=#{puppet}/lib:$RUBYLIB #{puppet}/bin/puppet #{app} --help | #{ronn} --pipe -f}
-      File.open(%Q{./source/man/#{app}.markdown}, 'w') do |file|
-        file.puts("#{headerstring}#{manstring}")
-      end
-    end
-
+    abort "No VERSION given to build references for" unless ENV['VERSION']
   end
 
 end

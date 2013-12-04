@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parameter
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -105,7 +105,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>The Parameter class is the implementation of a resource&#8217;s attributes of <em>parameter</em> kind.
+    <p>The Parameter class is the implementation of a resource's attributes of <em>parameter</em> kind.
 The Parameter class is also the base class for <span class='object_link'><a href="Property.html" title="Puppet::Property (class)">Property</a></span>, and is used to describe meta-parameters
 (parameters that apply to all resource types).
 A Parameter (in contrast to a Property) has a single value where a property has both a current and a wanted value.
@@ -305,7 +305,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>A reference to the parameter&#8217;s parent kept for backwards compatibility.</p>
+    <span class="summary_desc"><div class='inline'><p>A reference to the parameter's parent kept for backwards compatibility.</p>
 </div></span>
   
 </li>
@@ -713,7 +713,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Defines an optional method that is used to validate the parameter&#8217;s DSL/string value.</p>
+    <span class="summary_desc"><div class='inline'><p>Defines an optional method that is used to validate the parameter's DSL/string value.</p>
 </div></span>
   
 </li>
@@ -774,7 +774,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Writes the given <code>msg</code> to the log with the loglevel indicated by the associated resource&#8217;s <code>loglevel</code> parameter.</p>
+    <span class="summary_desc"><div class='inline'><p>Writes the given <code>msg</code> to the log with the loglevel indicated by the associated resource's <code>loglevel</code> parameter.</p>
 </div></span>
   
 </li>
@@ -1084,7 +1084,7 @@ the name of the attribute to set, and the value as the value to set.</p>
 
   <div class="note todo">
     <strong>TODO:</strong>
-    <div class='inline'><p>The term &#8220;munger&#8221; only appears in this location in the Puppet code base. There is munge and unmunge
+    <div class='inline'><p>The term "munger" only appears in this location in the Puppet code base. There is munge and unmunge
 and they seem to work perfectly fine without this attribute declaration.</p>
 </div>
   </div>
@@ -1277,7 +1277,7 @@ the returned names are always all lower case symbols.</p>
 
   <div class="note todo">
     <strong>TODO:</strong>
-    <div class='inline'><p>The term &#8220;validater&#8221; only appears in this location in the Puppet code base. There is <code>validate</code>
+    <div class='inline'><p>The term "validater" only appears in this location in the Puppet code base. There is <code>validate</code>
 which seems to works fine without this attribute declaration.</p>
 </div>
   </div>
@@ -1398,7 +1398,7 @@ which seems to works fine without this attribute declaration.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Returns A reference to the parameter&#8217;s parent kept for backwards compatibility.</p>
+<p>Returns A reference to the parameter's parent kept for backwards compatibility.</p>
 
 
   </div>
@@ -1416,7 +1416,7 @@ which seems to works fine without this attribute declaration.</p>
       
       
         &mdash;
-        <div class='inline'><p>A reference to the parameter&#8217;s parent kept for backwards compatibility.</p>
+        <div class='inline'><p>A reference to the parameter's parent kept for backwards compatibility.</p>
 </div>
       
     </li>
@@ -1465,7 +1465,7 @@ which seems to works fine without this attribute declaration.</p>
   <div class="discussion">
     <p>Makes the given <code>name</code> an alias for the given <code>other</code> name.
 Or said differently, the valid value <code>other</code> can now also be referred to via the given <code>name</code>.
-Aliasing may affect how the parameter&#8217;s value is serialized/stored (it may store the <code>other</code> value
+Aliasing may affect how the parameter's value is serialized/stored (it may store the <code>other</code> value
 instead of the alias).</p>
 
 
@@ -1527,7 +1527,7 @@ instead of the alias).</p>
 </h3><div class="docstring">
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p><p>Defines how the <code>default</code> value of a parameter is computed.
-The computation of the parameter&#8217;s default value is defined by providing a value or a block.
+The computation of the parameter's default value is defined by providing a value or a block.
 A default of <code>nil</code> can not be used.</p>
 
 
@@ -2500,7 +2500,7 @@ If an <code>unmunge</code> method is not defined, the internal form is used.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p><p>Defines an optional method that is used to validate the parameter&#8217;s DSL/string value.
+    <p class="note returns_void">This method returns an undefined value.</p><p>Defines an optional method that is used to validate the parameter's DSL/string value.
 Validation should raise appropriate exceptions, the return value of the given block is ignored.
 The easiest way to raise an appropriate exception is to call the method Util::Errors.fail with
 the message as an argument.
@@ -2575,7 +2575,7 @@ To validate the munged value instead, just munge the value (<code>munge(value)</
 </div>
   </div>
 
-<p class="note returns_void">This method returns an undefined value.</p><p>Writes the given <code>msg</code> to the log with the loglevel indicated by the associated resource&#8217;s
+<p class="note returns_void">This method returns an undefined value.</p><p>Writes the given <code>msg</code> to the log with the loglevel indicated by the associated resource's
 <code>loglevel</code> parameter.</p>
 
 
@@ -2878,9 +2878,9 @@ A protected validation method that only ever raises useful exceptions.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:52 2013 by
+  Generated on Wed Dec  4 10:54:27 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

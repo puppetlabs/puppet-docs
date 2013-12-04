@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Type
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -119,64 +119,70 @@ or Ruby DSL) with its <em>resource type</em> (i.e. an instance of Type) to enabl
 of the behavior that constitutes how a particular Type behaves on a particular type of system (e.g. how
 commands are executed on a flavor of Linux, on Windows, etc.). This means that as you are reading through the
 documentation of this class, you will be switching between these concepts, as well as switching between
-the conceptual level &#8220;a resource is an instance of a resource-type&#8221; and the actual implementation classes
+the conceptual level "a resource is an instance of a resource-type" and the actual implementation classes
 (Type, Resource, Provider, and various utility and helper classes).</p>
 </div>
   </div>
 
 <p>The base class for all Puppet types.</p>
 
-<h2 id="a-type-describes">A type describes:</h2>
+<h2>A type describes:</h2>
+
 <ul>
-  <li><strong>Attributes</strong> - properties, parameters, and meta-parameters are different types of attributes of a type.
-    <ul>
-      <li><strong>Properties</strong> - these are the properties of the managed resource (attributes of the entity being managed; like
-a file&#8217;s owner, group and mode). A property describes two states; the &#8216;is&#8217; (current state) and the &#8216;should&#8217; (wanted
+<li><strong>Attributes</strong> - properties, parameters, and meta-parameters are different types of attributes of a type.
+
+<ul>
+<li><strong>Properties</strong> - these are the properties of the managed resource (attributes of the entity being managed; like
+a file's owner, group and mode). A property describes two states; the 'is' (current state) and the 'should' (wanted
 state).
-        <ul>
-          <li><strong>Ensurable</strong> - a set of traits that control the lifecycle (create, remove, etc.) of a managed entity.
+
+<ul>
+<li><strong>Ensurable</strong> - a set of traits that control the lifecycle (create, remove, etc.) of a managed entity.
 There is a default set of operations associated with being <em>ensurable</em>, but this can be changed.</li>
-          <li><strong>Name/Identity</strong> - one property is the name/identity of a resource, the <em>namevar</em> that uniquely identifies
+<li><strong>Name/Identity</strong> - one property is the name/identity of a resource, the <em>namevar</em> that uniquely identifies
 one instance of a type from all others.</li>
-        </ul>
-      </li>
-      <li><strong>Parameters</strong> - additional attributes of the type (that does not directly related to an instance of the managed
+</ul>
+</li>
+<li><strong>Parameters</strong> - additional attributes of the type (that does not directly related to an instance of the managed
 resource; if an operation is recursive or not, where to look for things, etc.). A Parameter (in contrast to Property)
 has one current value where a Property has two (current-state and wanted-state).</li>
-      <li><strong>Meta-Parameters</strong> - parameters that are available across all types. A meta-parameter typically has
+<li><strong>Meta-Parameters</strong> - parameters that are available across all types. A meta-parameter typically has
 additional semantics; like the <code>require</code> meta-parameter. A new type typically does not add new meta-parameters,
 but you need to be aware of their existence so you do not inadvertently shadow an existing meta-parameters.</li>
-    </ul>
-  </li>
-  <li><strong>Parent</strong> - a type can have a super type (that it inherits from).</li>
-  <li><strong>Validation</strong> - If not just a basic data type, or an enumeration of symbolic values, it is possible to provide
+</ul>
+</li>
+<li><strong>Parent</strong> - a type can have a super type (that it inherits from).</li>
+<li><strong>Validation</strong> - If not just a basic data type, or an enumeration of symbolic values, it is possible to provide
   validation logic for a type, properties and parameters.</li>
-  <li><strong>Munging</strong> - munging/unmunging is the process of turning a value in external representation (as used
+<li><strong>Munging</strong> - munging/unmunging is the process of turning a value in external representation (as used
   by a provider) into an internal representation and vice versa. A Type supports adding custom logic for these.</li>
-  <li><strong>Auto Requirements</strong> - a type can specify automatic relationships to resources to ensure that if they are being
+<li><strong>Auto Requirements</strong> - a type can specify automatic relationships to resources to ensure that if they are being
   managed, they will be processed before this type.</li>
-  <li><strong>Providers</strong> - a provider is an implementation of a type&#8217;s behavior - the management of a resource in the
+<li><strong>Providers</strong> - a provider is an implementation of a type's behavior - the management of a resource in the
   system being managed. A provider is often platform specific and is selected at runtime based on
   criteria/predicates specified in the configured providers. See <span class='object_link'><a href="Provider.html" title="Puppet::Provider (class)">Provider</a></span> for details.</li>
-  <li><strong>Device Support</strong> - A type has some support for being applied to a device; i.e. something that is managed
+<li><strong>Device Support</strong> - A type has some support for being applied to a device; i.e. something that is managed
   by running logic external to the device itself. There are several methods that deals with type
   applicability for these special cases such as <span class='object_link'><a href="#apply_to_device-class_method" title="Puppet::Type.apply_to_device (method)">Type.apply_to_device</a></span>.</li>
 </ul>
 
-<h2 id="additional-concepts">Additional Concepts:</h2>
+
+<h2>Additional Concepts:</h2>
+
 <ul>
-  <li><strong>Resource-type</strong> - A <em>resource type</em> is a term used to denote the type of a resource; internally a resource
-  is really an instance of a Ruby class i.e. <span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Resource</a></span> which defines its behavior as &#8220;resource data&#8221;.
+<li><strong>Resource-type</strong> - A <em>resource type</em> is a term used to denote the type of a resource; internally a resource
+  is really an instance of a Ruby class i.e. <span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Resource</a></span> which defines its behavior as "resource data".
   Conceptually however, a resource is an instance of a subclass of Type (e.g. File), where such a class describes
   its interface (what can be said/what is known about a resource of this type),</li>
-  <li><strong>Managed Entity</strong> - This is not a term in general use, but is used here when there is a need to make
+<li><strong>Managed Entity</strong> - This is not a term in general use, but is used here when there is a need to make
   a distinction between a resource (a description of what/how something should be managed), and what it is
-  managing (a file in the file system). The term <em>managed entity</em> is a reference to the &#8220;file in the file system&#8221;</li>
-  <li><strong>Isomorphism</strong> - the quality of being <em>isomorphic</em> means that two resource instances with the same name
+  managing (a file in the file system). The term <em>managed entity</em> is a reference to the "file in the file system"</li>
+<li><strong>Isomorphism</strong> - the quality of being <em>isomorphic</em> means that two resource instances with the same name
   refers to the same managed entity. Or put differently; <em>an isomorphic name is the identity of a resource</em>.
   As an example, <code>exec</code> resources (that executes some command) have the command (i.e. the command line string) as
   their name, and these resources are said to be non-isomorphic.</li>
 </ul>
+
 
 
   </div>
@@ -610,7 +616,7 @@ but you need to be aware of their existence so you do not inadvertently shadow a
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns true if a resource of this type can be evaluated on a &#8216;network device&#8217; kind of hosts.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns true if a resource of this type can be evaluated on a 'network device' kind of hosts.</p>
 </div></span>
   
 </li>
@@ -1181,8 +1187,8 @@ and should not be changed thereafter.</p>
     
   <div class="note todo">
     <strong>TODO:</strong>
-    <div class='inline'><p>original = <em>&#8220;Specify a block for generating a list of objects to autorequire.
-This makes it so that you don&#8217;t have to manually specify things that you clearly require.&#8221;</em></p>
+    <div class='inline'><p>original = <em>"Specify a block for generating a list of objects to autorequire.
+This makes it so that you don't have to manually specify things that you clearly require."</em></p>
 </div>
   </div>
 
@@ -1197,7 +1203,7 @@ This makes it so that you don&#8217;t have to manually specify things that you c
     <p class="tag_title">Examples:</p>
     
       
-        <p class="example_title"><div class='inline'><p>Autorequire the files File[&#8216;foo&#8217;, &#8216;bar&#8217;]</p>
+        <p class="example_title"><div class='inline'><p>Autorequire the files File['foo', 'bar']</p>
 </div></p>
       
       <pre class="example code"><code><span class='rubyid_autorequire identifier id'>autorequire</span><span class='lparen token'>(</span> <span class='string val'>'file'</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='orop op'>||</span></code></pre>
@@ -1216,7 +1222,7 @@ This makes it so that you don&#8217;t have to manually specify things that you c
       
       
         &mdash;
-        <div class='inline'><p>the name of a type of which one or several resources should be autorequired e.g. &#8220;file&#8221;</p>
+        <div class='inline'><p>the name of a type of which one or several resources should be autorequired e.g. "file"</p>
 </div>
       
     </li>
@@ -1588,7 +1594,7 @@ This creates a new meta-parameter that is added to all types.</p>
           </span>
           
             &mdash; <div class='inline'><p>a hash that is applied to the generated class
-by calling setter methods corresponding to this hash&#8217;s keys/value pairs. This is done before the given
+by calling setter methods corresponding to this hash's keys/value pairs. This is done before the given
 block is evaluated.</p>
 </div>
           
@@ -1838,7 +1844,7 @@ block is evaluated.</p>
           </span>
           
             &mdash; <div class='inline'><p>a hash that is applied to the generated class
-by calling setter methods corresponding to this hash&#8217;s keys/value pairs. This is done before the given
+by calling setter methods corresponding to this hash's keys/value pairs. This is done before the given
 block is evaluated.</p>
 </div>
           
@@ -2100,7 +2106,7 @@ the wanted state. Use <code>:first</code> if the property is single valued, and 
           </span>
           
             &mdash; <div class='inline'><p>a hash that is applied to the generated class
-by calling setter methods corresponding to this hash&#8217;s keys/value pairs. This is done before the given
+by calling setter methods corresponding to this hash's keys/value pairs. This is done before the given
 block is evaluated.</p>
 </div>
           
@@ -2342,7 +2348,7 @@ implemented in a straight forward way. For these reasons, this method has been m
 
 <p>Returns a mapping from the title string to setting of attribute value(s).
 This default implementation provides a mapping of title to the one and only <em>namevar</em> present
-in the type&#8217;s definition.</p>
+in the type's definition.</p>
 
 
   </div>
@@ -2516,7 +2522,7 @@ the message as an argument.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Returns true if a resource of this type can be evaluated on a &#8216;network device&#8217; kind
+<p>Returns true if a resource of this type can be evaluated on a 'network device' kind
 of hosts.</p>
 
 
@@ -2757,9 +2763,9 @@ of the system.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:46 2013 by
+  Generated on Wed Dec  4 10:54:22 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

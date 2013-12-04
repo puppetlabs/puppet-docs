@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::TypeCalculator
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -120,39 +120,47 @@ is an abstract type that includes all literal types, as well as Array with an el
 compatible with Literal and elements compatible with Data. Expressed differently; Data is what you typically express using JSON (with
 the exception that the Puppet type system also includes Pattern (regular expression) as a literal.</p>
 
-<h2 id="inference">Inference</h2>
+<h2>Inference</h2>
+
 <p>The <code>infer(o)</code> method infers a Puppet type for literal Ruby objects, and for Arrays and Hashes.</p>
 
-<h2 id="assignability">Assignability</h2>
+<h2>Assignability</h2>
+
 <p>The <code>assignable?(t1, t2)</code> method answers if t2 conforms to t1. The type t2 may be an instance, in which case
 its type is inferred, or a type.</p>
 
-<h2 id="instance">Instance?</h2>
+<h2>Instance?</h2>
+
 <p>The <code>instance?(t, o)</code> method answers if the given object (instance) is an instance that is assignable to the given type.</p>
 
-<h2 id="string">String</h2>
+<h2>String</h2>
+
 <p>Creates a string representation of a type.</p>
 
-<h2 id="creation-of-type-instances">Creation of Type instances</h2>
+<h2>Creation of Type instances</h2>
+
 <p>Instance of the classes in the <span class='object_link'><a href="../Types.html" title="Puppet::Pops::Types (module)">type model</a></span> are used to denote a specific type. It is most convenient
 to use the <span class='object_link'><a href="TypeFactory.html" title="Puppet::Pops::Types::TypeFactory (module)">TypeFactory</a></span> when creating instances.</p>
 
-<h2 id="equality-and-hash">Equality and Hash</h2>
+<h2>Equality and Hash</h2>
+
 <p>Type instances are equal in terms of Ruby eql? and <code>==</code> if they describe the same type, but they are not <code>equal?</code> if they are not
 the same type instance. Two types that describe the same type have identical hash - this makes them usable as hash keys.</p>
 
-<h2 id="types-and-subclasses">Types and Subclasses</h2>
+<h2>Types and Subclasses</h2>
+
 <p>In general, the type calculator should be used to answer questions if a type is a subtype of another (using <span class='object_link'><a href="#assignable%3F-instance_method" title="Puppet::Pops::Types::TypeCalculator#assignable? (method)">#assignable?</a></span>, or
 <span class='object_link'><a href="#instance%3F-instance_method" title="Puppet::Pops::Types::TypeCalculator#instance? (method)">#instance?</a></span> if the question is if a given object is an instance of a given type (or is a subtype thereof).
 Many of the types also have a Ruby subtype relationship; e.g. PHashType and PArrayType are both subtypes of PCollectionType, and
-PIntegerType, PFloatType, PStringType,&#8230; are subtypes of PLiteralType. Even if it is possible to answer certain questions about
+PIntegerType, PFloatType, PStringType,... are subtypes of PLiteralType. Even if it is possible to answer certain questions about
 type by looking at the Ruby class of the types this is considered an implementation detail, and such checks should in general
 be performed by the type_calculator which implements the type system semantics.</p>
 
-<h2 id="the-prubytype">The PRubyType</h2>
+<h2>The PRubyType</h2>
+
 <p>The PRubyType corresponds to a Ruby Class, except for the puppet types that are specialized (i.e. PRubyType should not be
 used for Integer, String, etc. since there are specialized types for those).
-When the type calculator deals with PRubyTypes and checks for assignability, it determines the &#8220;common ancestor class&#8221; of two classes.
+When the type calculator deals with PRubyTypes and checks for assignability, it determines the "common ancestor class" of two classes.
 This check is made based on the superclasses of the two classes being compared. In order to perform this, the classes must be present
 (i.e. they are resolved from the string form in the PRubyType to a loaded, instantiated Ruby Class). In general this is not a problem,
 since the question to produce the common super type for two objects means that the classes must be present or there would have been
@@ -213,7 +221,7 @@ the two types at least have Object in common.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Answers &#8216;can an instance of type t2 be assigned to a variable of type t&#8217;.</p>
+    <span class="summary_desc"><div class='inline'><p>Answers 'can an instance of type t2 be assigned to a variable of type t'.</p>
 </div></span>
   
 </li>
@@ -263,7 +271,7 @@ the two types at least have Object in common.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Array is assignable if t2 is an Array and t2&#8217;s element type is assignable.</p>
+    <span class="summary_desc"><div class='inline'><p>Array is assignable if t2 is an Array and t2's element type is assignable.</p>
 </div></span>
   
 </li>
@@ -388,7 +396,7 @@ the two types at least have Object in common.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Hash is assignable if t2 is a Hash and t2&#8217;s key and element types are assignable.</p>
+    <span class="summary_desc"><div class='inline'><p>Hash is assignable if t2 is a Hash and t2's key and element types are assignable.</p>
 </div></span>
   
 </li>
@@ -538,7 +546,7 @@ the two types at least have Object in common.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Assignable if t2&#8217;s ruby class is same or subclass of t1&#8217;s ruby class.</p>
+    <span class="summary_desc"><div class='inline'><p>Assignable if t2's ruby class is same or subclass of t1's ruby class.</p>
 </div></span>
   
 </li>
@@ -588,7 +596,7 @@ the two types at least have Object in common.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Answers, &#8216;What is the common type of t1 and t2?&#8217;.</p>
+    <span class="summary_desc"><div class='inline'><p>Answers, 'What is the common type of t1 and t2?'.</p>
 </div></span>
   
 </li>
@@ -613,7 +621,7 @@ the two types at least have Object in common.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Answers &#8216;what is the Puppet Type of o&#8217;.</p>
+    <span class="summary_desc"><div class='inline'><p>Answers 'what is the Puppet Type of o'.</p>
 </div></span>
   
 </li>
@@ -1015,7 +1023,7 @@ the two types at least have Object in common.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Answers the question &#8216;is it possible to inject an instance of the given class&#8217; A class is injectable if it has a special <em>assisted inject</em> class method called <code>inject</code> taking an injector and a scope as argument, or if it has a zero args <code>initialize</code> method.</p>
+    <span class="summary_desc"><div class='inline'><p>Answers the question 'is it possible to inject an instance of the given class' A class is injectable if it has a special <em>assisted inject</em> class method called <code>inject</code> taking an injector and a scope as argument, or if it has a zero args <code>initialize</code> method.</p>
 </div></span>
   
 </li>
@@ -1040,7 +1048,7 @@ the two types at least have Object in common.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Answers &#8216;is o an instance of type t&#8217;.</p>
+    <span class="summary_desc"><div class='inline'><p>Answers 'is o an instance of type t'.</p>
 </div></span>
   
 </li>
@@ -1490,7 +1498,7 @@ the two types at least have Object in common.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Answers &#8216;what is the Puppet Type corresponding to the given Ruby class&#8217;.</p>
+    <span class="summary_desc"><div class='inline'><p>Answers 'what is the Puppet Type corresponding to the given Ruby class'.</p>
 </div></span>
   
 </li>
@@ -1593,7 +1601,7 @@ the two types at least have Object in common.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Answers &#8216;can an instance of type t2 be assigned to a variable of type t&#8217;</p>
+    <p>Answers 'can an instance of type t2 be assigned to a variable of type t'</p>
 
 
   </div>
@@ -1722,7 +1730,7 @@ the two types at least have Object in common.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Array is assignable if t2 is an Array and t2&#8217;s element type is assignable</p>
+<p>Array is assignable if t2 is an Array and t2's element type is assignable</p>
 
 
   </div>
@@ -1949,7 +1957,7 @@ the two types at least have Object in common.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Hash is assignable if t2 is a Hash and t2&#8217;s key and element types are assignable</p>
+<p>Hash is assignable if t2 is a Hash and t2's key and element types are assignable</p>
 
 
   </div>
@@ -2221,7 +2229,7 @@ the two types at least have Object in common.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Assignable if t2&#8217;s ruby class is same or subclass of t1&#8217;s ruby class</p>
+<p>Assignable if t2's ruby class is same or subclass of t1's ruby class</p>
 
 
   </div>
@@ -2315,7 +2323,7 @@ the two types at least have Object in common.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Answers, &#8216;What is the common type of t1 and t2?&#8217;</p>
+    <p>Answers, 'What is the common type of t1 and t2?'</p>
 
 
   </div>
@@ -2505,7 +2513,7 @@ the two types at least have Object in common.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Answers &#8216;what is the Puppet Type of o&#8217;</p>
+    <p>Answers 'what is the Puppet Type of o'</p>
 
 
   </div>
@@ -3209,7 +3217,7 @@ This is the metatype short circuit.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Answers the question &#8216;is it possible to inject an instance of the given class&#8217;
+    <p>Answers the question 'is it possible to inject an instance of the given class'
 A class is injectable if it has a special <em>assisted inject</em> class method called <code>inject</code> taking
 an injector and a scope as argument, or if it has a zero args <code>initialize</code> method.</p>
 
@@ -3310,7 +3318,7 @@ an injector and a scope as argument, or if it has a zero args <code>initialize</
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Answers &#8216;is o an instance of type t&#8217;</p>
+    <p>Answers 'is o an instance of type t'</p>
 
 
   </div>
@@ -4095,7 +4103,7 @@ an injector and a scope as argument, or if it has a zero args <code>initialize</
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Answers &#8216;what is the Puppet Type corresponding to the given Ruby class&#8217;</p>
+    <p>Answers 'what is the Puppet Type corresponding to the given Ruby class'</p>
 
 
   </div>
@@ -4228,9 +4236,9 @@ an injector and a scope as argument, or if it has a zero args <code>initialize</
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:23 2013 by
+  Generated on Wed Dec  4 10:54:57 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

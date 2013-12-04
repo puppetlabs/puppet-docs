@@ -6,7 +6,7 @@
 <title>
   File: pson
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,21 +61,21 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="pson">PSON</h1>
+    <div id="content"><div id='filecontents'><h1>PSON</h1>
 
 <p>PSON is a variant of <a href="http://json.org" target="_parent" title="JSON">JSON</a> that puppet uses for serializing
 data to transmit across the network or store on disk. Whereas JSON requires
 that the serialized form is valid unicode (usually UTF-8), PSON is 8-bit ASCII,
 which allows it to represent arbitrary byte sequences in strings.</p>
 
-<p>Puppet uses the MIME types &#8220;pson&#8221; and &#8220;text/pson&#8221; to refer to PSON.</p>
+<p>Puppet uses the MIME types "pson" and "text/pson" to refer to PSON.</p>
 
-<h2 id="differences-from-json">Differences from JSON</h2>
+<h2>Differences from JSON</h2>
 
 <p>PSON does <em>not differ</em> from JSON in its representation of objects, arrays, numbers, booleans, and null values. PSON <em>does</em> serialize strings differently from JSON.</p>
 
 <p>A PSON string is a sequence of 8-bit ASCII encoded data. It must start and end
-with &#8220; (ASCII 0x22) characters. Between these characters it may contain any
+with " (ASCII 0x22) characters. Between these characters it may contain any
 byte sequence. Some individual characters are represented by a sequence of
 characters:</p>
 
@@ -96,7 +96,7 @@ digits of the hex number of the desired character.  For example the ASCII
 Record Separator character (0x1E) is represented as \u001E (0x5C, 0x75, 0x30,
 0x30, 0x31, 0x45).</p>
 
-<h2 id="decoding-pson-using-json-parsers">Decoding PSON Using JSON Parsers</h2>
+<h2>Decoding PSON Using JSON Parsers</h2>
 
 <p>Many languages have JSON parsers already, which can often be used to parse PSON
 data. Although JSON requires that it is encoded as unicode most parsers will
@@ -125,9 +125,9 @@ PSON (the value is an invalid unicode sequence). In bytes the data is:</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:33 2013 by
+  Generated on Wed Dec  4 10:54:11 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

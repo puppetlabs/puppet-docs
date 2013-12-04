@@ -6,7 +6,7 @@
 <title>
   File: COMMITTERS
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,16 +61,16 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="committing-changes-to-puppet">Committing changes to Puppet</h1>
+    <div id="content"><div id='filecontents'><h1>Committing changes to Puppet</h1>
 
 <p>We would like to make it easier for community members to contribute to Puppet
 using pull requests, even if it makes the task of reviewing and committing
 these changes a little harder.  Pull requests are only ever based on a single
 branch, however, we maintain more than one active branch.  As a result
 contributors should target their changes at the master branch. This makes the
-process of contributing a little easier for the contributor since they don&#8217;t
-need to concern themselves with the question, &#8220;What branch do I base my changes
-on?&#8221;  This is already called out in the <a href="http://goo.gl/XRH2J">CONTRIBUTING.md</a>.</p>
+process of contributing a little easier for the contributor since they don't
+need to concern themselves with the question, "What branch do I base my changes
+on?"  This is already called out in the <a href="http://goo.gl/XRH2J">CONTRIBUTING.md</a>.</p>
 
 <p>Therefore, it is the responsibility of the committer to re-base the change set
 on the appropriate branch which should receive the contribution.</p>
@@ -92,7 +92,7 @@ a contribution on top of.  This document also describes our branch management
 strategy, which is closely related to the decision of what branch to commit
 changes into.</p>
 
-<h1 id="terminology">Terminology</h1>
+<h1>Terminology</h1>
 
 <p>Many of these terms have more than one meaning.  For the purposes of this
 document, the following terms refer to specific things.</p>
@@ -121,16 +121,16 @@ release candidate are merged.</p>
 <p><strong>security</strong> - Where critical security fixes are merged.  These change sets
 will then be merged into release branches independently from one another. (i.e.
 no merging up).  Please do not submit pull requests against the security branch
-and instead report all security related issues to security@puppetlabs.com as
+and instead report all security related issues to <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x73;&#x65;&#x63;&#x75;&#114;&#x69;&#116;&#121;&#x40;&#x70;&#117;&#112;&#112;&#101;&#x74;&#108;&#x61;&#98;&#115;&#x2e;&#99;&#111;&#109;">&#115;&#101;&#x63;&#117;&#114;&#x69;&#x74;&#x79;&#x40;&#x70;&#117;&#112;&#x70;&#x65;&#116;&#x6c;&#x61;&#x62;&#x73;&#x2e;&#x63;&#111;&#109;</a> as
 per our security policy published at
 <a href="https://puppetlabs.com/security/">https://puppetlabs.com/security/</a>.</p>
 
-<h1 id="committer-guide">Committer Guide</h1>
+<h1>Committer Guide</h1>
 
 <p>This section provides a guide to follow while committing change sets to Puppet
 base branches.</p>
 
-<h2 id="how-to-decide-what-releases-should-be-patched">How to decide what release(s) should be patched</h2>
+<h2>How to decide what release(s) should be patched</h2>
 
 <p>This section provides a guide to help a committer decide the specific base
 branch that a change set should be merged into.</p>
@@ -150,14 +150,14 @@ applied to earlier minor releases of a major release, but the patches should
 first be merged into the <code>security</code> branch.  Security patches should be merged
 by Puppet Labs staff members.  Pull requests should not be submitted with the
 security branch as the base branch.  Please send all security related
-information or patches to security@puppetlabs.com as per our <a href="https://puppetlabs.com/security/">Security
+information or patches to <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x73;&#x65;&#99;&#117;&#x72;&#105;&#116;&#x79;&#x40;&#x70;&#117;&#112;&#x70;&#x65;&#x74;&#x6c;&#97;&#98;&#115;&#46;&#x63;&#x6f;&#109;">&#115;&#x65;&#x63;&#x75;&#114;&#105;&#116;&#121;&#x40;&#x70;&#x75;&#x70;&#112;&#x65;&#x74;&#x6c;&#x61;&#98;&#x73;&#x2e;&#x63;&#111;&#109;</a> as per our <a href="https://puppetlabs.com/security/">Security
 Policy</a>.</p>
 
 <p>The CI systems are configured to run against <code>master</code> and <code>stable</code>.  Over time,
 these branches will refer to different versions, but their name will remain
 fixed to avoid having to update CI jobs and tasks as new versions are released.</p>
 
-<h2 id="how-to-commit-a-change-set-to-multiple-base-branches">How to commit a change set to multiple base branches</h2>
+<h2>How to commit a change set to multiple base branches</h2>
 
 <p>A change set may apply to multiple branches, for example a bug fix should be
 applied to the stable release and the development branch.  In this situation
@@ -188,48 +188,50 @@ directly from the <code>master</code> branch.  Upon release of a new major or mi
 version all of the changes in the <code>master</code> branch will be merged into the
 <code>stable</code> branch.</p>
 
-<h2 id="code-review-checklist">Code review checklist</h2>
+<h2>Code review checklist</h2>
 
 <p>This section aims to provide a checklist of things to look for when reviewing a
 pull request and determining if the change set should be merged into a base
 branch:</p>
 
 <ul>
-  <li>All tests pass</li>
-  <li>Are there any platform gotchas? (Does a change make an assumption about
+<li>All tests pass</li>
+<li>Are there any platform gotchas? (Does a change make an assumption about
 platform specific behavior that is incompatible with other platforms?  e.g.
 Windows paths vs. POSIX paths.)</li>
-  <li>Is the change backwards compatible? (It should be)</li>
-  <li>Are there YARD docs for API changes?</li>
-  <li>Does the change set also require documentation changes? If so is the
+<li>Is the change backwards compatible? (It should be)</li>
+<li>Are there YARD docs for API changes?</li>
+<li>Does the change set also require documentation changes? If so is the
 documentation being kept up to date?</li>
-  <li>Does the change set include clean code?  (software code that is formatted
+<li>Does the change set include clean code?  (software code that is formatted
 correctly and in an organized manner so that another coder can easily read
 or modify it.)  HINT: <code>git diff master --check</code></li>
-  <li>Does the change set conform to the contributing guide?</li>
+<li>Does the change set conform to the contributing guide?</li>
 </ul>
 
-<h2 id="commit-citizen-guidelines">Commit citizen guidelines:</h2>
+
+<h2>Commit citizen guidelines:</h2>
 
 <p>This section aims to provide guidelines for being a good commit citizen by
 paying attention to our automated build tools.</p>
 
 <ul>
-  <li>Don’t push on a broken build.  (A broken build is defined as a failing job
+<li>Don’t push on a broken build.  (A broken build is defined as a failing job
 in the <a href="https://jenkins.puppetlabs.com/view/Puppet%20FOSS/">Puppet FOSS</a>
 page.)</li>
-  <li>Watch the build until your changes have gone through green</li>
-  <li>Update the ticket status and target version.  The target version field in
+<li>Watch the build until your changes have gone through green</li>
+<li>Update the ticket status and target version.  The target version field in
 our issue tracker should be updated to be the next release of Puppet.  For
 example, if the most recent release of Puppet is 3.1.1 and you merge a
 backwards compatible change set into master, then the target version should
 be 3.2.0 in the issue tracker.)</li>
-  <li>Ensure the pull request is closed (Hint: amend your merge commit to contain
+<li>Ensure the pull request is closed (Hint: amend your merge commit to contain
 the string <code>closes #123</code> where 123 is the pull request number and github
 will automatically close the pull request when the branch is pushed.)</li>
 </ul>
 
-<h1 id="example-procedure">Example Procedure</h1>
+
+<h1>Example Procedure</h1>
 
 <p>This section helps a committer rebase a contribution onto an earlier base
 branch, then merge into the base branch and up through all active base
@@ -260,7 +262,7 @@ $ <span class='rubyid_git identifier id'>git</span> <span class='rubyid_rebase i
 <span class='rubyid_Applying constant id'>Applying</span><span class='colon op'>:</span> <span class='lparen token'>(</span><span class='comment val'>#23456) Fix FooError that always bites users in 3.1.1</span>
 </code></pre>
 
-<p>The <code>git rebase</code> command may be interpreted as, &#8220;First, check out the branch
+<p>The <code>git rebase</code> command may be interpreted as, "First, check out the branch
 named <code>bug/stable/fix_foo_error</code>, then take the changes that were previously
 based on <code>master</code> and re-base them onto <code>stable</code>.</p>
 
@@ -289,29 +291,29 @@ $ <span class='rubyid_git identifier id'>git</span> <span class='rubyid_merge id
 </code></pre>
 
 <p>Once the change set has been merged into one base branch, the change set should
-not be modified in order to keep the history clean, avoid &#8220;double&#8221; commits, and
+not be modified in order to keep the history clean, avoid "double" commits, and
 preserve the usefulness of <code>git branch --contains</code>.  If there are any merge
 conflicts, they are to be resolved in the merge commit itself and not by
 re-writing (rebasing) the patches for one base branch, but not another.</p>
 
 <p>Once the change set has been merged into <code>stable</code> and into <code>master</code>, the
 committer pushes.  Please note, the checklist should be complete at this point.
-It&#8217;s helpful to make sure your local branches are up to date to avoid one of
+It's helpful to make sure your local branches are up to date to avoid one of
 the branches failing to fast forward while the other succeeds.  Both the
 <code>stable</code> and <code>master</code> branches are being pushed at the same time.</p>
 
 <pre class="code ruby"><code class="ruby">$ <span class='rubyid_git identifier id'>git</span> <span class='rubyid_push identifier id'>push</span> <span class='rubyid_puppetlabs identifier id'>puppetlabs</span> <span class='label val'>master:</span><span class='rubyid_master identifier id'>master</span> <span class='label val'>stable:</span><span class='rubyid_stable identifier id'>stable</span>
 </code></pre>
 
-<p>That&#8217;s it!  The committer then updates the pull request, updates the issue in
+<p>That's it!  The committer then updates the pull request, updates the issue in
 our issue tracker, and keeps an eye on the <a href="http://jenkins.puppetlabs.com">build
 status</a>.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:32 2013 by
+  Generated on Wed Dec  4 10:54:09 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

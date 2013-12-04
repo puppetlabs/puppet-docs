@@ -6,7 +6,7 @@
 <title>
   File: http_catalog
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,11 +61,11 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="catalog">Catalog</h1>
+    <div id="content"><div id='filecontents'><h1>Catalog</h1>
 
 <p>The <code>catalog</code> endpoint returns a catalog for the specified node name given the provided facts.</p>
 
-<h2 id="find">Find</h2>
+<h2>Find</h2>
 
 <p>Retrieve a catalog.</p>
 
@@ -73,15 +73,15 @@
 <span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_catalog identifier id'>catalog</span><span class='div op'>/</span><span class='symbol val'>:nodename</span>
 </code></pre>
 
-<h3 id="supported-http-methods">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>POST, GET</p>
 
-<h3 id="supported-response-formats">Supported Response Formats</h3>
+<h3>Supported Response Formats</h3>
 
 <p>PSON</p>
 
-<h3 id="notes">Notes</h3>
+<h3>Notes</h3>
 
 <p>The POST and GET methods are functionally equivalent. Both provide the 3 parameters specified below: the POST in the
 request body, the GET in the query string.</p>
@@ -91,7 +91,7 @@ request body, the GET in the query string.</p>
 
 <p>The examples below use the POST method.</p>
 
-<h3 id="parameters">Parameters</h3>
+<h3>Parameters</h3>
 
 <p>Three parameters should be provided to the POST or GET:
 - <code>facts_format</code>: must be <code>pson</code>
@@ -100,9 +100,9 @@ request body, the GET in the query string.</p>
            escaping is still used/supported.
 - <code>transaction_uuid</code>: a transaction uuid identifying the entire transaction (shows up in the report as well)</p>
 
-<h3 id="example-response">Example Response</h3>
+<h3>Example Response</h3>
 
-<h4 id="catalog-found">Catalog found</h4>
+<h4>Catalog found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_POST constant id'>POST</span> <span class='regexp val'>/env/</span><span class='rubyid_catalog identifier id'>catalog</span><span class='div op'>/</span><span class='rubyid_elmo identifier id'>elmo</span><span class='dot token'>.</span><span class='rubyid_mydomain identifier id'>mydomain</span><span class='dot token'>.</span><span class='rubyid_com identifier id'>com</span>
 
@@ -213,7 +213,7 @@ request body, the GET in the query string.</p>
 <span class='rbrace token'>}</span>
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2>Schema</h2>
 
 <p>In the POST request body (or the GET query), the facts parameter should adhere to the
 <a href="file.facts.html" title="api/schemas/facts.json">api/schemas/facts.json</a> schema.</p>
@@ -222,9 +222,9 @@ request body, the GET in the query string.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:32 2013 by
+  Generated on Wed Dec  4 10:54:09 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

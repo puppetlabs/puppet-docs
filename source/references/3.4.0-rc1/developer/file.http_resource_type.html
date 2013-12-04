@@ -6,7 +6,7 @@
 <title>
   File: http_resource_type
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,16 +61,17 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="resource-type">Resource Type</h1>
+    <div id="content"><div id='filecontents'><h1>Resource Type</h1>
 
 <p>The <code>resource_type</code> and <code>resource_types</code> endpoints return information about the
 following kinds of objects available to the puppet master:</p>
 
 <ul>
-  <li>Classes (<code>class myclass { ... }</code>)</li>
-  <li>Defined types (<code>define mytype ($parameter) { ... }</code>)</li>
-  <li>Node definitions (<code>node 'web01.example.com' { ... }</code>)</li>
+<li>Classes (<code>class myclass { ... }</code>)</li>
+<li>Defined types (<code>define mytype ($parameter) { ... }</code>)</li>
+<li>Node definitions (<code>node 'web01.example.com' { ... }</code>)</li>
 </ul>
+
 
 <p>For an object to be available to the puppet master, it must be present in the
 site manifest (configured by the <code>manifest</code> setting) or in a module located in
@@ -83,37 +84,35 @@ types written in Ruby.</p>
 <p>See the end of this page for the source manifest used to generate all example
 responses.</p>
 
-<h2 id="find">Find</h2>
+<h2>Find</h2>
 
 <p>Get info about a specific class, defined type, or node, by name. Returns a
-single resource_type response object (see &#8220;Schema&#8221; below).</p>
+single resource_type response object (see "Schema" below).</p>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_resource_type identifier id'>resource_type</span><span class='div op'>/</span><span class='symbol val'>:nodename</span>
 </code></pre>
 
-<blockquote>
-  <p><strong>Note:</strong> Although no two classes or defined types may have the same name,
-it&#8217;s possible for a node definition to have the same name as a class or
+<blockquote><p><strong>Note:</strong> Although no two classes or defined types may have the same name,
+it's possible for a node definition to have the same name as a class or
 defined type. If this happens, the class or defined type will be returned
 instead of the node definition. The order in which kinds of objects are
-searched is classes, then defined types, then node definitions.</p>
-</blockquote>
+searched is classes, then defined types, then node definitions.</p></blockquote>
 
-<h3 id="supported-http-methods">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>GET</p>
 
-<h3 id="supported-formats">Supported Formats</h3>
+<h3>Supported Formats</h3>
 
 <p>PSON</p>
 
-<h3 id="parameters">Parameters</h3>
+<h3>Parameters</h3>
 
 <p>None</p>
 
-<h3 id="responses">Responses</h3>
+<h3>Responses</h3>
 
-<h4 id="resource-type-found">Resource Type Found</h4>
+<h4>Resource Type Found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_type identifier id'>resource_type</span><span class='div op'>/</span><span class='rubyid_athing identifier id'>athing</span>
 
@@ -128,7 +127,7 @@ searched is classes, then defined types, then node definitions.</p>
 <span class='rbrace token'>}</span>
 </code></pre>
 
-<h4 id="resource-type-not-found">Resource Type Not Found</h4>
+<h4>Resource Type Not Found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_type identifier id'>resource_type</span><span class='div op'>/</span><span class='rubyid_resource_type_does_not_exist identifier id'>resource_type_does_not_exist</span>
 
@@ -138,7 +137,7 @@ searched is classes, then defined types, then node definitions.</p>
 <span class='rubyid_Not constant id'>Not</span> <span class='rubyid_Found constant id'>Found</span><span class='colon op'>:</span> <span class='rubyid_Could constant id'>Could</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_find identifier id'>find</span> <span class='rubyid_resource_type identifier id'>resource_type</span> <span class='rubyid_resource_type_does_not_exist identifier id'>resource_type_does_not_exist</span>
 </code></pre>
 
-<h4 id="no-resource-type-name-given">No Resource Type Name Given</h4>
+<h4>No Resource Type Name Given</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_type identifier id'>resource_type</span><span class='div op'>/</span>
 
@@ -148,10 +147,10 @@ searched is classes, then defined types, then node definitions.</p>
 <span class='rubyid_No constant id'>No</span> <span class='rubyid_request identifier id'>request</span> <span class='rubyid_key identifier id'>key</span> <span class='rubyid_specified identifier id'>specified</span> <span class='rubyid_in in kw'>in</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_type identifier id'>resource_type</span><span class='div op'>/</span>
 </code></pre>
 
-<h2 id="search">Search</h2>
+<h2>Search</h2>
 
 <p>List all resource types matching a regular expression. Returns an array of
-resource_type response objects (see &#8220;Schema&#8221; below).</p>
+resource_type response objects (see "Schema" below).</p>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_resource_types identifier id'>resource_types</span><span class='div op'>/</span><span class='symbol val'>:search_string</span>
 </code></pre>
@@ -161,24 +160,25 @@ the string <code>*</code> (which will match all resource types). Surrounding sla
 stripped. Note that if you want to use the <code>?</code> character in a regular
 expression, it must be escaped as <code>%3F</code>.</p>
 
-<h3 id="supported-http-methods-1">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>GET</p>
 
-<h3 id="supported-formats-1">Supported Formats</h3>
+<h3>Supported Formats</h3>
 
 <p>Accept: pson, text/pson</p>
 
-<h3 id="parameters-1">Parameters</h3>
+<h3>Parameters</h3>
 
 <ul>
-  <li><code>kind</code>: Optional. Filter the returned resource types by the <code>kind</code> field.
+<li><code>kind</code>: Optional. Filter the returned resource types by the <code>kind</code> field.
 Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</code>.</li>
 </ul>
 
-<h3 id="responses-1">Responses</h3>
 
-<h4 id="search-with-results">Search With Results</h4>
+<h3>Responses</h3>
+
+<h4>Search With Results</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_types identifier id'>resource_types</span><span class='div op'>/</span><span class='mult op'>*</span>
 
@@ -225,7 +225,7 @@ Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</
 <span class='rbrack token'>]</span>
 </code></pre>
 
-<h4 id="search-not-found">Search Not Found</h4>
+<h4>Search Not Found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_types identifier id'>resource_types</span><span class='div op'>/</span><span class='rubyid_pattern identifier id'>pattern</span><span class='dot token'>.</span><span class='rubyid_that identifier id'>that</span><span class='dot token'>.</span><span class='rubyid_finds identifier id'>finds</span><span class='dot token'>.</span><span class='rubyid_no identifier id'>no</span><span class='dot token'>.</span><span class='rubyid_resources identifier id'>resources</span>
 
@@ -235,7 +235,7 @@ Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</
 <span class='rubyid_Not constant id'>Not</span> <span class='rubyid_Found constant id'>Found</span><span class='colon op'>:</span> <span class='rubyid_Could constant id'>Could</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_find identifier id'>find</span> <span class='rubyid_instances identifier id'>instances</span> <span class='rubyid_in in kw'>in</span> <span class='rubyid_resource_type identifier id'>resource_type</span> <span class='rubyid_with identifier id'>with</span> <span class='string val'>'pattern.that.finds.no.resources'</span>
 </code></pre>
 
-<h4 id="no-search-term-given">No Search Term Given</h4>
+<h4>No Search Term Given</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_types identifier id'>resource_types</span><span class='div op'>/</span>
 
@@ -245,7 +245,7 @@ Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</
 <span class='rubyid_No constant id'>No</span> <span class='rubyid_request identifier id'>request</span> <span class='rubyid_key identifier id'>key</span> <span class='rubyid_specified identifier id'>specified</span> <span class='rubyid_in in kw'>in</span> <span class='regexp val'>/env/</span><span class='rubyid_resource_types identifier id'>resource_types</span><span class='div op'>/</span>
 </code></pre>
 
-<h4 id="search-term-is-an-invalid-regular-expression">Search Term Is an Invalid Regular Expression</h4>
+<h4>Search Term Is an Invalid Regular Expression</h4>
 
 <p>Searching on <code>[-</code> for instance.</p>
 
@@ -257,7 +257,7 @@ Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</
 <span class='rubyid_Invalid constant id'>Invalid</span> <span class='rubyid_regex identifier id'>regex</span> <span class='string val'>'[-'</span><span class='colon op'>:</span> <span class='rubyid_premature identifier id'>premature</span> <span class='rubyid_end end kw'>end</span> <span class='rubyid_of identifier id'>of</span> <span class='rubyid_char identifier id'>char</span><span class='minus op'>-</span><span class='rubyid_class class kw'>class</span><span class='colon op'>:</span> <span class='regexp val'>/[-/</span>
 </code></pre>
 
-<h3 id="examples">Examples</h3>
+<h3>Examples</h3>
 
 <p>List all classes:</p>
 
@@ -269,11 +269,11 @@ Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_resource_types identifier id'>resource_types</span><span class='div op'>/</span><span class='rubyid_foo identifier id'>foo</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='rubyid_bar identifier id'>bar</span>
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2>Schema</h2>
 
 <p>A <code>resource_type</code> response body conforms to the schema at <a href="file.resource_type.html" title="api/schemas/resource_type.json">api/schemas/resource_type.json</a>.</p>
 
-<h2 id="source">Source</h2>
+<h2>Source</h2>
 
 <p>Example site.pp used to generate all the responses in this file:</p>
 
@@ -296,9 +296,9 @@ Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:33 2013 by
+  Generated on Wed Dec  4 10:54:11 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

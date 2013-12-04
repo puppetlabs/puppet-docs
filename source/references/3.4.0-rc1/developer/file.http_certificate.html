@@ -6,7 +6,7 @@
 <title>
   File: http_certificate
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,39 +61,39 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="certificate">Certificate</h1>
+    <div id="content"><div id='filecontents'><h1>Certificate</h1>
 
 <p>The <code>certificate</code> endpoint returns the certificate for the specified name,
 which might be either a standard certname or <code>ca</code>.</p>
 
-<h2 id="find">Find</h2>
+<h2>Find</h2>
 
 <p>Get a certificate.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='symbol val'>:nodename</span>
 </code></pre>
 
-<h3 id="supported-http-methods">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>GET</p>
 
-<h3 id="supported-response-formats">Supported Response Formats</h3>
+<h3>Supported Response Formats</h3>
 
 <p>s (denotes a string of text)</p>
 
 <p>The returned certificate is always in the <code>.pem</code> format.</p>
 
-<h3 id="parameters">Parameters</h3>
+<h3>Parameters</h3>
 
 <p>None</p>
 
-<h3 id="notes">Notes</h3>
+<h3>Notes</h3>
 
 <p>The environment field is ignored.</p>
 
-<h3 id="responses">Responses</h3>
+<h3>Responses</h3>
 
-<h4 id="certificate-found">Certificate found</h4>
+<h4>Certificate found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='rubyid_elmo identifier id'>elmo</span><span class='dot token'>.</span><span class='rubyid_mydomain identifier id'>mydomain</span><span class='dot token'>.</span><span class='rubyid_com identifier id'>com</span>
 
@@ -135,7 +135,7 @@ tg1+DuYTn+d54OHi/</span><span class='rubyid_GZEnvutgrDZyrJDrrb constant id'>GZEn
 <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_END lend kw'>END</span> <span class='rubyid_CERTIFICATE constant id'>CERTIFICATE</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
 </code></pre>
 
-<h4 id="certificate-not-found">Certificate not found</h4>
+<h4>Certificate not found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='rubyid_certificate_does_not_exist identifier id'>certificate_does_not_exist</span>
 
@@ -145,7 +145,7 @@ tg1+DuYTn+d54OHi/</span><span class='rubyid_GZEnvutgrDZyrJDrrb constant id'>GZEn
 <span class='rubyid_Not constant id'>Not</span> <span class='rubyid_Found constant id'>Found</span><span class='colon op'>:</span> <span class='rubyid_Could constant id'>Could</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_find identifier id'>find</span> <span class='rubyid_certificate identifier id'>certificate</span> <span class='rubyid_certificate_does_not_exist identifier id'>certificate_does_not_exist</span>
 </code></pre>
 
-<h4 id="no-certificate-name-given">No Certificate name given</h4>
+<h4>No Certificate name given</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span>
 
@@ -155,7 +155,7 @@ tg1+DuYTn+d54OHi/</span><span class='rubyid_GZEnvutgrDZyrJDrrb constant id'>GZEn
 <span class='rubyid_No constant id'>No</span> <span class='rubyid_request identifier id'>request</span> <span class='rubyid_key identifier id'>key</span> <span class='rubyid_specified identifier id'>specified</span> <span class='rubyid_in in kw'>in</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span>
 </code></pre>
 
-<h4 id="master-is-not-a-ca">Master is not a CA</h4>
+<h4>Master is not a CA</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='rubyid_valid_certificate identifier id'>valid_certificate</span>
 
@@ -165,16 +165,16 @@ tg1+DuYTn+d54OHi/</span><span class='rubyid_GZEnvutgrDZyrJDrrb constant id'>GZEn
 <span class='rubyid_this identifier id'>this</span> <span class='rubyid_master identifier id'>master</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_CA constant id'>CA</span>
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2>Schema</h2>
 
 <p>A <code>certificate</code> response body is not structured data according to any standard scheme such as
 json/pson/yaml, so no schema is applicable.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:32 2013 by
+  Generated on Wed Dec  4 10:54:09 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

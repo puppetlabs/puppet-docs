@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::Producers::Producer
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -114,14 +114,16 @@ return a series of values, which makes this especially useful).</p>
 <p>When looking up a producer, it is of importance to only use the API of the Producer class
 unless it is known that a particular custom producer class has been bound.</p>
 
-<h2 id="custom-producers">Custom Producers</h2>
+<h2>Custom Producers</h2>
+
 <p>The intent is that this class is derived for custom producers that require additional
 options/arguments when producing an instance. Such a custom producer may raise an error if called
 with too few arguments, or may implement specific <code>produce</code> methods and always raise an
 error on #produce indicating that this producer requires custom calls and that it can not
 be used as an implicit producer.</p>
 
-<h2 id="features-of-producer">Features of Producer</h2>
+<h2>Features of Producer</h2>
+
 <p>The Producer class is abstract, but offers the ability to transform the produced result
 by passing the option <code>:transformer</code> which should be a Puppet Lambda Expression taking one argument
 and producing the transformed (wanted) result.</p>
@@ -900,9 +902,9 @@ a producer is requested.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:07 2013 by
+  Generated on Wed Dec  4 10:54:43 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

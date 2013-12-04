@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::Producers::HashMultibindProducer
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -493,12 +493,14 @@ ignored unless they have the same priority which is an error.</p>
           </span>
           
             &mdash; <div class='inline'><p>One of <code>:error</code>, <code>:merge</code>, <code>:append</code>, <code>:priority</code>, <code>:ignore</code></p>
+
 <ul><li> `ignore` the first found highest priority contribution is used, the rest are ignored</li>
 <li>`error` any duplicate key is an error</li>
 <li>`append` element type must be compatible with Array, makes elements be arrays and appends all found</li>
 <li>`merge` element type must be compatible with hash, merges hashes with retention of highest priority hash content</li>
 <li>`priority` the first found highest priority contribution is used, duplicates with same priority raises and error, the rest are
   ignored.</li></ul>
+
 </div>
           
         </li>
@@ -1097,9 +1099,9 @@ ignored unless they have the same priority which is an error.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:12 2013 by
+  Generated on Wed Dec  4 10:54:46 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

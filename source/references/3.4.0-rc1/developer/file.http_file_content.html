@@ -6,7 +6,7 @@
 <title>
   File: http_file_content
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -61,11 +61,11 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1 id="file-content">File Content</h1>
+    <div id="content"><div id='filecontents'><h1>File Content</h1>
 
 <p>The <code>file_content</code> endpoint returns the contents of the specified file.</p>
 
-<h2 id="find">Find</h2>
+<h2>Find</h2>
 
 <p>Get a file.</p>
 
@@ -78,23 +78,23 @@ for more information about how mount points work.</p>
 
 <p><code>:name</code> is the path to the file within the <code>:mount_point</code> that is requested.</p>
 
-<h3 id="supported-http-methods">Supported HTTP Methods</h3>
+<h3>Supported HTTP Methods</h3>
 
 <p>GET</p>
 
-<h3 id="supported-response-formats">Supported Response Formats</h3>
+<h3>Supported Response Formats</h3>
 
 <p>raw (the raw binary content)</p>
 
-<h3 id="parameters">Parameters</h3>
+<h3>Parameters</h3>
 
 <p>None</p>
 
-<h3 id="notes">Notes</h3>
+<h3>Notes</h3>
 
-<h3 id="responses">Responses</h3>
+<h3>Responses</h3>
 
-<h4 id="file-found">File found</h4>
+<h4>File found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_file_content identifier id'>file_content</span><span class='div op'>/</span><span class='rubyid_modules identifier id'>modules</span><span class='div op'>/</span><span class='rubyid_example identifier id'>example</span><span class='div op'>/</span><span class='rubyid_my_file identifier id'>my_file</span>
 <span class='rubyid_Accept constant id'>Accept</span><span class='colon op'>:</span> <span class='rubyid_raw identifier id'>raw</span>
@@ -106,7 +106,7 @@ for more information about how mount points work.</p>
 <span class='rubyid_this identifier id'>this</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_my identifier id'>my</span> <span class='rubyid_file identifier id'>file</span>
 </code></pre>
 
-<h4 id="file-not-found">File not found</h4>
+<h4>File not found</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_file_content identifier id'>file_content</span><span class='div op'>/</span><span class='rubyid_modules identifier id'>modules</span><span class='div op'>/</span><span class='rubyid_example identifier id'>example</span><span class='div op'>/</span><span class='rubyid_not_found identifier id'>not_found</span>
 <span class='rubyid_Accept constant id'>Accept</span><span class='colon op'>:</span> <span class='rubyid_raw identifier id'>raw</span>
@@ -115,7 +115,7 @@ for more information about how mount points work.</p>
 <span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_plain identifier id'>plain</span>
 </code></pre>
 
-<h4 id="no-file-name-given">No file name given</h4>
+<h4>No file name given</h4>
 
 <pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_file_content identifier id'>file_content</span><span class='div op'>/</span>
 
@@ -123,16 +123,16 @@ for more information about how mount points work.</p>
 <span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_plain identifier id'>plain</span>
 </code></pre>
 
-<h2 id="schema">Schema</h2>
+<h2>Schema</h2>
 
 <p>A <code>file_content</code> response body is not structured data according to any standard scheme such as
 json/pson/yaml, so no schema is applicable.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:33:33 2013 by
+  Generated on Wed Dec  4 10:54:10 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>

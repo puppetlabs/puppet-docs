@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Transaction::Report
   
-    &mdash; Documentation by YARD 0.8.7
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -105,43 +105,48 @@
 There are two types of data in a report; <em>Logs</em> and <em>Metrics</em>.</p>
 
 <ul>
-  <li><strong>Logs</strong> - are the output that each change produces.</li>
-  <li><strong>Metrics</strong> - are all of the numerical data involved in the transaction.</li>
+<li><strong>Logs</strong> - are the output that each change produces.</li>
+<li><strong>Metrics</strong> - are all of the numerical data involved in the transaction.</li>
 </ul>
+
 
 <p>Use <span class='object_link'><a href="../Reports.html" title="Puppet::Reports (class)">Reports</a></span> class to create a new custom report type. This class is indirectly used
 as a source of data to report in such a registered report.</p>
 
-<h2 id="metrics">Metrics</h2>
+<h2>Metrics</h2>
+
 <p>There are three types of metrics in each report, and each type of metric has one or more values.</p>
 
 <ul>
-  <li>Time: Keeps track of how long things took.
-    <ul>
-      <li>Total: Total time for the configuration run</li>
-      <li>File:</li>
-      <li>Exec:</li>
-      <li>User:</li>
-      <li>Group:</li>
-      <li>Config Retrieval: How long the configuration took to retrieve</li>
-      <li>Service:</li>
-      <li>Package:</li>
-    </ul>
-  </li>
-  <li>Resources: Keeps track of the following stats:
-    <ul>
-      <li>Total: The total number of resources being managed</li>
-      <li>Skipped: How many resources were skipped, because of either tagging or scheduling restrictions</li>
-      <li>Scheduled: How many resources met any scheduling restrictions</li>
-      <li>Out of Sync: How many resources were out of sync</li>
-      <li>Applied: How many resources were attempted to be fixed</li>
-      <li>Failed: How many resources were not successfully fixed</li>
-      <li>Restarted: How many resources were restarted because their dependencies changed</li>
-      <li>Failed Restarts: How many resources could not be restarted</li>
-    </ul>
-  </li>
-  <li>Changes: The total number of changes in the transaction.</li>
+<li>Time: Keeps track of how long things took.
+
+<ul>
+<li>Total: Total time for the configuration run</li>
+<li>File:</li>
+<li>Exec:</li>
+<li>User:</li>
+<li>Group:</li>
+<li>Config Retrieval: How long the configuration took to retrieve</li>
+<li>Service:</li>
+<li>Package:</li>
 </ul>
+</li>
+<li>Resources: Keeps track of the following stats:
+
+<ul>
+<li>Total: The total number of resources being managed</li>
+<li>Skipped: How many resources were skipped, because of either tagging or scheduling restrictions</li>
+<li>Scheduled: How many resources met any scheduling restrictions</li>
+<li>Out of Sync: How many resources were out of sync</li>
+<li>Applied: How many resources were attempted to be fixed</li>
+<li>Failed: How many resources were not successfully fixed</li>
+<li>Restarted: How many resources were restarted because their dependencies changed</li>
+<li>Failed Restarts: How many resources could not be restarted</li>
+</ul>
+</li>
+<li>Changes: The total number of changes in the transaction.</li>
+</ul>
+
 
 
   </div>
@@ -308,7 +313,7 @@ as a source of data to report in such a registered report.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Computes a single number that represents the report&#8217;s status.</p>
+    <span class="summary_desc"><div class='inline'><p>Computes a single number that represents the report's status.</p>
 </div></span>
   
 </li>
@@ -868,15 +873,16 @@ as a source of data to report in such a registered report.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Computes a single number that represents the report&#8217;s status.
-The computation is based on the contents of this report&#8217;s metrics.
+    <p>Computes a single number that represents the report's status.
+The computation is based on the contents of this report's metrics.
 The resulting number is a bitmask where
 individual bits represent the presence of different metrics.</p>
 
 <ul>
-  <li>0x2 set if there are changes</li>
-  <li>0x4 set if there are resource failures or resources that failed to restart</li>
+<li>0x2 set if there are changes</li>
+<li>0x4 set if there are resource failures or resources that failed to restart</li>
 </ul>
+
 
 
   </div>
@@ -1437,9 +1443,9 @@ individual bits represent the presence of different metrics.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Dec  2 15:34:02 2013 by
+  Generated on Wed Dec  4 10:54:38 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7 (ruby-1.8.7).
+  0.8.7.3 (ruby-1.8.7).
 </div>
 
   </body>
