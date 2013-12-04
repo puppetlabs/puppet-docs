@@ -100,7 +100,13 @@ module PuppetDocs
           status
         )
         all_in_categories = categories.reduce( [] ) {|total, (cat, items)| total = total + items}
-        leftovers = (non_face_applications + faces.collect{|sym| sym.to_s}) - all_in_categories
+        all_in_source = non_face_applications + faces.collect{|sym| sym.to_s}
+        # Don't let new commands drop off into The Nothing:
+        leftovers = all_in_source - all_in_categories
+        # Clean up any commands that don't exist in this version of Puppet:
+        categories.values.each do |list|
+          list.reject! {|sub| !all_in_source.include?(sub)}
+        end
 
         index_text = <<EOT
 ---
@@ -140,6 +146,7 @@ These subcommands were needed for older functionality, and will be removed in a 
 #{ categories[:deprecated].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
 EOT
+        # Handle any leftovers that aren't in categories
         if !leftovers.empty?
           index_text << <<EOADDENDUM
 Unknown or New Subcommands
