@@ -24,9 +24,9 @@ module PuppetDocs
         faces.delete(:resource)
 
         # Dump the application names to a file
-        Dir.chdir(destination_dir) do
-          File.open("./this_would_be_the_man_page.txt", 'w') {|f| f.puts non_face_applications.join(', '); f.puts faces.join(', ')}
-        end
+#         Dir.chdir(destination_dir) do
+#           File.open("./this_would_be_the_man_page.txt", 'w') {|f| f.puts non_face_applications.join(', '); f.puts faces.join(', ')}
+#         end
 
         man_strings = {}
 
