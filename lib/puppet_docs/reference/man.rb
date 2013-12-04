@@ -42,7 +42,7 @@ module PuppetDocs
 
         # Write files
         man_strings.each do |name, man_string|
-          headerstring = "---\nlayout: default\ntitle: puppet #{name} Manual Page\n---\n\n"
+          headerstring = "---\nlayout: default\nnav: references_man.html\ntitle: puppet #{name} Man Page\n---\n\n"
 
           ronn = IO.popen("bundle exec ronn --pipe -f", "r+")
           ronn.write(man_string)
@@ -106,6 +106,7 @@ module PuppetDocs
 ---
 title: Puppet Man Pages
 layout: default
+nav: references_man.html
 ---
 
 Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:
