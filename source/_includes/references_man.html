@@ -14,9 +14,9 @@
   <li>{% iflink "Report Reference", "../report.html" %}</li>
   <li>{% iflink "Indirection Reference", "../indirection.html" %}</li>
 {% unless version < "3.1" %}
-  <li>{% iflink "Developer Documentation", "../developer/index.html" %}</li>
+  <li><a href="./developer/index.html">Developer Documentation</a></li>
 {% endunless %}
-{% unless version < "3.4" %}
+{% unless version < "3.3.1" and version != "2.7.23" %}
   <li><span class="currentpage">Man Pages (<a href="./index.html">index</a>)</span></li>
 {% endunless %}
 </ul>
