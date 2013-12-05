@@ -7,7 +7,7 @@ title: "Hiera 1: Command Line Usage"
 [hash_lookup]: ./lookup_types.html#hash-merge
 [array_lookup]: ./lookup_types.html#array-merge
 
-Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data 
+Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data
 sources are returning the values you expect. You'll typically run the Hiera command line tool on a puppet master, mocking up the facts agents would would normally provide the puppet master using a variety of [fact sources](#fact-sources).
 
 ## Invocation
@@ -22,12 +22,12 @@ A more standard invocation will provide a set of variables for Hiera to use, so 
 
 ### Order of Arguments
 
-Hiera is sensitive to the position of its command-line arguments: 
+Hiera is sensitive to the position of its command-line arguments:
 
-- The first value is always the key to look up. 
-- The first argument after the key that does not include an equals sign (`=`) becomes the default value, which Hiera will return if no key is found. Without a default value and in the absence of a matching key from the hierarchy, Hiera returns `nil`. 
+- The first value is always the key to look up.
+- The first argument after the key that does not include an equals sign (`=`) becomes the default value, which Hiera will return if no key is found. Without a default value and in the absence of a matching key from the hierarchy, Hiera returns `nil`.
 - Remaining arguments should be `variable=value` pairs.
-- **Options** may be placed anywhere. 
+- **Options** may be placed anywhere.
 
 ### Options
 
@@ -39,7 +39,7 @@ Argument                              | Use
 `-c`, `--config FILE`                 | Specify an alternate configuration file location
 `-d`, `--debug`                       | Show debugging information
 `-a`, `--array`                       | Return all values as a flattened array of unique values
-`-h`, `--hash`                        | Return all hash values as a merged hash 
+`-h`, `--hash`                        | Return all hash values as a merged hash
 `-j`, `--json FILE`                   | JSON file to load scope from
 `-y`, `--yaml FILE`                   | YAML file to load scope from
 `-m`, `--mcollective IDENTITY`        | Use facts from a node (via mcollective) as scope
@@ -53,7 +53,9 @@ The Hiera command line tool looks for its configuration in `/etc/hiera.yaml`. Yo
 
 ## Fact Sources
 
-When used from Puppet, Hiera automatically receives all of the facts it needs. On the command line, you'll need to manually pass it those facts. 
+When used from Puppet, Hiera automatically receives all of the facts it needs. On the command line, you'll need to manually pass it those facts.
+
+> **Note:** When Puppet is doing Hiera lookups, you can use `::variable` to refer to the top-scope value of a variable. However, this doesn't work when manually supplying facts to Hiera; you'll need to change your interpolations to use the unqualified names of variables, or somehow munge the facts you're passing.
 
 You'll typically run the Hiera command line tool on your puppet master node, where it will expect the facts to be either:
 
@@ -66,7 +68,7 @@ Descriptions of these choices are below.
 
 ### Command Line Variables
 
-Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server osfamily=Debian clientcert="web01.example.com"`. Variable values must be strings and must be quoted if they contain spaces. 
+Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server osfamily=Debian clientcert="web01.example.com"`. Variable values must be strings and must be quoted if they contain spaces.
 
 This is useful if the values you're testing only rely on a few facts. It can become unweildy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
 
@@ -107,7 +109,7 @@ timezone: CST
 
 
 
-### MCollective 
+### MCollective
 
 If you're using hiera on a machine that is allowed to issue MCollective commands, you can ask any node running MCollective to send you its facts. Hiera will then use those facts to drive the lookup.
 
@@ -116,28 +118,55 @@ Example coming soon.
 
 ### Inventory Service
 
-If you are using Puppet's [inventory service](/guides/inventory_service.html), you can query the puppet master for any node's facts. Hiera will then use those facts to drive the lookup.
+If your puppet master is connected to a PuppetDB server (or has the older ActiveRecord inventory service enabled), you can get Hiera lookups using the actual facts reported by an actual puppet agent node. This goes through Puppet's [inventory service](/guides/inventory_service.html) API.
 
-Example coming soon.
+To do this, use the `-i` or `--inventory_service` flag and give it the name of a Puppet node as an argument:
 
+    $ hiera ntp_server -i balancer01.example.com
+
+> #### Note: Known Bug With Puppet 3.x
+>
+> In Hiera 1.3 and earlier, inventory lookups will fail when Puppet 3.x is present. This is a bug in Hiera, which will be fixed in a future release.
+
+<!-- https://tickets.puppetlabs.com/browse/HI-69 -->
+
+#### Allowing Lookups on the Puppet Master
+
+[authconf]: /guides/rest_auth_conf.html
+
+Before you can do Hiera lookups via the inventory, you'll need to enable access in [the puppet master's `auth.conf` file.][authconf] You must ensure that the node you will be doing lookups from can call the `find` method on the `/facts` path. This will probably look something like this:
+
+    path  /facts
+    method find, search
+    auth yes
+    allow pe-internal-dashboard, puppet.example.com
+
+When choosing the name and certificate to use when contacting the puppet master, Hiera uses the existing puppet.conf and agent certificate on the node. If you are running as root, it will impersonate the agent node you are running on; if you are running as another user, it will use configuration and credentials in `~/.puppet/` instead.
+
+To run as a different user, you may need to request a separate certificate, since the master won't sign two certificates with the same certname. To do this:
+
+1. Create a `~/.puppet/puppet.conf` file and set the `certname` setting to something unique.
+2. Run `puppet agent --test` to request a certificate.
+3. On the puppet master, sign the certificate.
+4. Run `puppet agent --test` again.
 
 ## Lookup Types
 
-By default, the Hiera command line tool will use a [priority lookup][priority_lookup], which returns a single value --- the first value found in the hierarchy. There are two other lookup types available: array merge and hash merge. 
+By default, the Hiera command line tool will use a [priority lookup][priority_lookup], which returns a single value --- the first value found in the hierarchy. There are two other lookup types available: array merge and hash merge.
 
 ### Array Merge
 
-An array merge lookup assembles a value by merging every value it finds in the hierarchy into a flattened array of unique values. [See "Array Merge Lookup"][array_lookup] for more details. 
+An array merge lookup assembles a value by merging every value it finds in the hierarchy into a flattened array of unique values. [See "Array Merge Lookup"][array_lookup] for more details.
 
 Use the `--array` option to do an array merge lookup.
 
-If any of the values found in the data sources are hashes, the `--array` option will cause Hiera to return an error. 
+If any of the values found in the data sources are hashes, the `--array` option will cause Hiera to return an error.
 
 ### Hash
 
-A hash merge lookup assembles a value by merging the top-level keys of each hash it finds in the hierarchy into a single hash. [See "Hash Merge Lookup"][hash_lookup] for more details. 
+A hash merge lookup assembles a value by merging the top-level keys of each hash it finds in the hierarchy into a single hash. [See "Hash Merge Lookup"][hash_lookup] for more details.
 
 Use the `--hash` option to do a hash merge lookup.
 
-If any of the values found in the data sources are strings or arrays, the `--hash` option will cause Hiera to return an error. 
+If any of the values found in the data sources are strings or arrays, the `--hash` option will cause Hiera to return an error.
 
