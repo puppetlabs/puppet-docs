@@ -5,6 +5,15 @@ The documentation project's conventions, best practices, and general habits.
 
 * * *
 
+Link Text and Image Descriptions
+-----
+
+The text of a link should always describe the destination of the link; we should never use something like "see here" as the full text of a link.
+
+Relatedly, image tags should always contain alt text that describes the content of the image. (E.g. `![Diagram: four agents connected to a single puppet master](./agent-master.png)`.)
+
+Both of these are mostly for accessibility reasons, but they also help friendly robots like search engines. [This page has more about screen readers](http://www.webcredible.co.uk/user-friendly-resources/web-accessibility/screen-readers.shtml) and how they render web pages.
+
 Version Issues
 --------------
 
@@ -221,7 +230,7 @@ This is the current most-canonical list of the words we have for parts of the co
       - A report detail page contains TABS that show different parts of the report.
  - The landing page of the reports section is the REPORTS LIST. You can refer to the inventory search section as a section, a page, or just the inventory search. Likewise for the file search.
  - The live management SECTION or PAGE contains three TABS and a FILTERABLE NODE LIST (or just NODE LIST) in the SIDEBAR.
-      - The Browse Resources tab contains a RESOURCE TYPE NAVIGATION for switching between RESOURCE TYPE PAGES. 
+      - The Browse Resources tab contains a RESOURCE TYPE NAVIGATION for switching between RESOURCE TYPE PAGES.
           - Resource type pages contain a search field, a "Find Resources" button, and a LIST OF RESOURCES, any of which can be clicked to reach their RESOURCE DETAIL PAGE. (These can be referred to by type: "package detail page.")
       - The Advanced Tasks tab contains a TASK NAVIGATION on the left side for switching between several ACTION LISTS. Each action list is just an MCollective agent plugin.
           - Action lists contain ACTIONS. We can also call these TASKS, but "actions" is more harmonious with the command line orchestration terminology, which cannot be changed.
