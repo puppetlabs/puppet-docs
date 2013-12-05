@@ -84,18 +84,18 @@ Puppet 3.4.0
 >
 > * An existing but empty `csr_attributes.yaml` file will cause puppet agent to fail with `Error: Could not request certificate: undefined method 'delete' for false:FalseClass` when attempting to generate a keypair. To avoid this problem, make sure the `csr_attributes.yaml` file is either properly filled or completely absent. <!-- [https://jira.puppetlabs.com/browse/PP-913] -->
 
-3.4.0 is a backward-compatible feature and fix release in the Puppet 3 series. The main foci of this release are:
+3.4.0 is a backward-compatible feature and fix release in the Puppet 3 series. The main improvements of this release are:
 
-* New certificate autosigning behavior, to help quickly and securely add new nodes in elastic environments
-* Fixes for some high-profile bugs and annoyances, including the "anchor pattern" issue and broken Rdoc on Ruby 1.9+
+* Fixes for some high-profile bugs, including the "anchor pattern" issue and broken RDoc on Ruby 1.9+
+* New certificate autosigning behavior to help quickly and securely add new nodes in elastic environments
 * Windows improvements, especially for `file` resources
 * Trusted node data in the compiler
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
-Puppet now includes [a `contain` function](/references/3.latest/function.html#contain) to allow classes to contain other classes. It functions similarly to the `include` function, with the added effect of creating a containment relationship. For more information, see:
+Puppet now includes [a `contain` function](/references/3.latest/function.html#contain) to allow classes to contain other classes. It works similarly to the `include` function, with the added effect of creating a containment relationship. For more information, see:
 
-* [The containment page of the language reference](/puppet/3/reference/lang_containment.html), for background information about class containment issues and an explanation of the anchor pattern
+* [The containment page of the language reference](/puppet/3/reference/lang_containment.html), for background information about class containment issues and an explanation of the anchor pattern.
 * [The classes page of the language reference](/puppet/3/reference/lang_classes.html), for complete information on declaring classes with `contain`, `include`, and more.
 
 ([Issue 8040](http://projects.puppetlabs.com/issues/8040)) <!-- [https://jira.puppetlabs.com/browse/PP-99] -->
@@ -166,7 +166,7 @@ Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mo
 
 Now, you can opt out of source permissions using [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions). This can be done per-resource, or globally with a [resource default](/puppet/3/reference/lang_defaults.html) in site.pp.
 
-As part of this, the current default behavior (`source_permissions => use`) is now deprecated on Windows; the default for Windows is expected to change to `ignore` in Puppet 4.0.
+As part of this, the previous default behavior (`source_permissions => use`) is now deprecated on Windows; the default for Windows is expected to change to `ignore` in Puppet 4.0.
 
 ([Issue 5240](https://projects.puppetlabs.com/issues/5240), [Issue 18931](https://projects.puppetlabs.com/issues/18931))
 
@@ -191,7 +191,7 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### Exec Type Improvements
 
-- Puppet will now accurately capture exit codes from exec resources on Windows. (Previously, exit codes higher than 255 could get truncated.) ([Issue 23124](https://projects.puppetlabs.com/issues/23124)) <!-- [https://jira.puppetlabs.com/browse/PP-434] -->
+- Puppet will now accurately capture  exit codes from exec resources on Windows. (Previously, exit codes higher than 255 could get truncated.) ([Issue 23124](https://projects.puppetlabs.com/issues/23124)) <!-- [https://jira.puppetlabs.com/browse/PP-434] -->
 
 
 #### Packaging and Installer Improvements
@@ -255,7 +255,7 @@ Several changes were made to [the experimental lambda and iteration support](./e
 
 ### Preparations for Syncing External Facts
 
-Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-facts) to agent nodes... but it's not very useful yet, since Facter can't yet _load_ those facts. End-to-end support is coming next quarter, in Facter 2.0.
+Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-facts) to agent nodes... but it's not very useful yet, since Facter can't yet _load_ those facts. End-to-end support is planned for next quarter, in Facter 2.0.
 
 ([Issue 9546](http://projects.puppetlabs.com/issues/9546)) <!-- [https://jira.puppetlabs.com/browse/PP-578] -->
 
@@ -273,7 +273,7 @@ Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-fa
 
 As part of improving certificate autosigning for elastic cloud environments, we found a series of bugs involving the certificate inventory --- when too many certificates were being signed at once (impossible in manual signing, but easy when testing autosigning at large scales), the CA might assign a serial number to a node, start rebuilding the inventory, then assign the same number to another node (if it came in before the rebuild was finished).
 
-This is now fixed, and the cert inventory is handled more safely. To accomodate the need to occasionally rebuild the inventory, a `puppet cert reinventory` command was added (see above).
+This is now fixed, and the cert inventory is handled more safely. To accommodate the need to occasionally rebuild the inventory, a `puppet cert reinventory` command was added (see above).
 
 ([Issue 693](https://projects.puppetlabs.com/issues/693), [Issue 23074](http://projects.puppetlabs.com/issues/23074))
 <!-- [https://jira.puppetlabs.com/browse/PP-277] -->
@@ -283,7 +283,7 @@ This is now fixed, and the cert inventory is handled more safely. To accomodate 
 
 #### Cached Catalogs Work Again
 
-This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](/references/3.latest/configuration.html#usecacheonfailure).
+This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke the puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](/references/3.latest/configuration.html#usecacheonfailure).
 
 ([Issue 22925](http://projects.puppetlabs.com/issues/22925)) <!-- [https://jira.puppetlabs.com/browse/PP-580] -->
 
@@ -297,19 +297,19 @@ This was a regression from Puppet 3.0.0, as an unintended consequence of making 
 
 The usual grab bag of clean-ups and fixes. As of 3.4.0, Puppet will:
 
-- Manage the vardir's owner and group. This could sometimes cause the puppet master or CA tools to fail, if the ownership of the vardir got messed up. <!-- [https://jira.puppetlabs.com/browse/PP-319] -->
-- Don't overaggressively use resource-like class evaluation for ENCs that assign classes with the hash syntax. [ENCs can use two methods for assigning classes to nodes](/guides/external_nodes.html#enc-output-format), one of which allows class parameters to be specified. If class parameters ARE specified, the class has to be evaluated like a resource to prevent parameter conflicts, but Puppet was being a little overeager and wasn't checking whether parameters were actually present. ([Issue 23096](https://projects.puppetlabs.com/issues/23096)) <!-- [https://jira.puppetlabs.com/browse/PP-268] -->
-- Make Puppet init scripts report run status correctly even if they aren't configured to start. If the puppet master init script was configured to never run and a Puppet manifest was also ensuring the service was stopped, this could cause Puppet to try to stop the service every single run. ([Issue 23033](https://projects.puppetlabs.com/issues/23033)) <!-- [https://jira.puppetlabs.com/browse/PP-642] -->
-- Skip module metadata that cannot be parsed. This could cause the puppet master to fail catalog serving if a module with bad metadata was installed.  ([Issue 22818](http://projects.puppetlabs.com/issues/22818), [Issue 20728](http://projects.puppetlabs.com/issues/20728), [Issue 15856](http://projects.puppetlabs.com/issues/15856)) <!-- [https://jira.puppetlabs.com/browse/PP-614] -->
-- Use FFI native windows root certs code. This cleaned up some potential puppet agent crashes on Windows by using the Win32 APIs better. ([Issue 23183](http://projects.puppetlabs.com/issues/23183)) <!-- [https://jira.puppetlabs.com/browse/PP-766] -->
-- Guard against duplicate Windows root certs. This could cause unnecessary run failures. ([Issue 21817](https://projects.puppetlabs.com/issues/21817)) <!-- [https://jira.puppetlabs.com/browse/PP-734] -->
-- Make Debian user/group resources report their proper containment path. This was causing Puppet events from Debian to show in Puppet Enterprise's event inspector as "unclassified." ([Issue 22943](https://projects.puppetlabs.com/issues/22943)) <!-- [https://jira.puppetlabs.com/browse/PP-565] -->
-- Fix race condition in filebucket. This one was causing unnecessary run failures when multiple nodes were trying to write to a puppet master's filebucket. ([Issue 22918](https://projects.puppetlabs.com/issues/22918)) <!-- [https://jira.puppetlabs.com/browse/PP-538] -->
-- Force encoding of `user` comment values to ASCII-8BIT. This could cause run failures under Ruby 1.9 and higher when `user` resources were present. ([Issue 22703](https://projects.puppetlabs.com/issues/22703)) <!-- [https://jira.puppetlabs.com/browse/PP-451] -->
-- Don't serialize transient vars in Puppet::Resource. This was causing Puppet to write YAML data that couldn't be deserialized by other tools.  ([Issue 4506](https://projects.puppetlabs.com/issues/4506)) <!-- [https://jira.puppetlabs.com/browse/PP-447] -->
-- Validate the `name` attribute for package resources to disallow arrays. This was causing inconsistent behavior between dpkg and the other package providers. ([Issue 22557](http://projects.puppetlabs.com/issues/22557)) <!-- [https://jira.puppetlabs.com/browse/PP-403] -->
+- Manage the vardir's owner and group. Before, not managing the vardir's owner and group could sometimes cause the puppet master or CA tools to fail, if the ownership of the vardir got messed up. <!-- [https://jira.puppetlabs.com/browse/PP-319] -->
+- Don't overaggressively use resource-like class evaluation for ENCs that assign classes with the hash syntax. [ENCs can use two methods for assigning classes to nodes](/guides/external_nodes.html#enc-output-format), one of which allows class parameters to be specified. If class parameters ARE specified, the class has to be evaluated like a resource to prevent parameter conflicts. This fixed the problem that Puppet was being a little overeager and wasn't checking whether parameters were actually present. ([Issue 23096](https://projects.puppetlabs.com/issues/23096)) <!-- [https://jira.puppetlabs.com/browse/PP-268] -->
+- Make Puppet init scripts report run status correctly even if they aren't configured to start. Previously, if the puppet master init script was configured to never run and a Puppet manifest was also ensuring the service was stopped, this could cause Puppet to try to stop the service every single run. ([Issue 23033](https://projects.puppetlabs.com/issues/23033)) <!-- [https://jira.puppetlabs.com/browse/PP-642] -->
+- Skip module metadata that cannot be parsed. Previously, module metadata that couldn't be parsed was not skipped and could cause the puppet master to fail catalog serving if a module with bad metadata was installed.  ([Issue 22818](http://projects.puppetlabs.com/issues/22818), [Issue 20728](http://projects.puppetlabs.com/issues/20728), [Issue 15856](http://projects.puppetlabs.com/issues/15856)) <!-- [https://jira.puppetlabs.com/browse/PP-614] -->
+- Use FFI native windows root certs code. This fix cleaned up some potential puppet agent crashes on Windows by using the Win32 APIs better. ([Issue 23183](http://projects.puppetlabs.com/issues/23183)) <!-- [https://jira.puppetlabs.com/browse/PP-766] -->
+- Guard against duplicate Windows root certs. Previously, duplicates could cause unnecessary run failures. ([Issue 21817](https://projects.puppetlabs.com/issues/21817)) <!-- [https://jira.puppetlabs.com/browse/PP-734] -->
+- Make Debian user/group resources report their proper containment path. Previously, Puppet events from Debian showed in Puppet Enterprise's event inspector as "unclassified." ([Issue 22943](https://projects.puppetlabs.com/issues/22943)) <!-- [https://jira.puppetlabs.com/browse/PP-565] -->
+- Fix race condition in filebucket. Before the fix, there were unnecessary run failures when multiple nodes were trying to write to a puppet master's filebucket. ([Issue 22918](https://projects.puppetlabs.com/issues/22918)) <!-- [https://jira.puppetlabs.com/browse/PP-538] -->
+- Force encoding of `user` comment values to ASCII-8BIT. Previously, there were run failures under Ruby 1.9 and higher when `user` resources were present. ([Issue 22703](https://projects.puppetlabs.com/issues/22703)) <!-- [https://jira.puppetlabs.com/browse/PP-451] -->
+- Don't serialize transient vars in Puppet::Resource. Previously, Puppet would write YAML data that couldn't be deserialized by other tools.  ([Issue 4506](https://projects.puppetlabs.com/issues/4506)) <!-- [https://jira.puppetlabs.com/browse/PP-447] -->
+- Validate the `name` attribute for package resources to disallow arrays. Previously, there was inconsistent behavior between dpkg and the other package providers. ([Issue 22557](http://projects.puppetlabs.com/issues/22557)) <!-- [https://jira.puppetlabs.com/browse/PP-403] -->
 - Use the most preferred supported serialization format over HTTP. Puppet had been choosing a format at random whenever there were multiple acceptable formats. ([Issue 22891](http://projects.puppetlabs.com/issues/22891)) <!-- [https://jira.puppetlabs.com/browse/PP-570] -->
-- Set `value_collection` for boolean params. This was causing boolean resource attributes to display badly in the type reference. https://projects.puppetlabs.com/search?q=22699 <!-- [https://jira.puppetlabs.com/browse/PP-446] -->
+- Set `value_collection` for boolean params. Before the fix, boolean resource attributes were displayed badly in the type reference. https://projects.puppetlabs.com/search?q=22699 <!-- [https://jira.puppetlabs.com/browse/PP-446] -->
 
 ### All 3.4.0 Changes
 
