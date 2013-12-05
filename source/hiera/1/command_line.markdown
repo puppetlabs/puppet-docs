@@ -111,10 +111,22 @@ timezone: CST
 
 ### MCollective
 
-If you're using hiera on a machine that is allowed to issue MCollective commands, you can ask any node running MCollective to send you its facts. Hiera will then use those facts to drive the lookup.
+If you're using Hiera from a user account that is allowed to issue MCollective commands, you can ask any node running MCollective to send you its facts. Hiera will then use those facts to drive the lookup.
 
-Example coming soon.
+To do this, use the `-m` or `--mcollective` flag and give it the name of an MCollective node as an argument:
 
+    $ hiera ntp_server -m balancer01.example.com
+
+Note that you must be running the Hiera command from a user account that is authorized and configured to send MCollective commands, and is also able to read the Hiera configuration and data files.
+
+#### Puppet Enterprise Example
+
+In Puppet Enterprise 2.x or 3.x, you can do Hiera lookups with MCollective by switching to the `peadmin` account on the puppet master server, which is authorized to issue orchestration commands.
+
+    # sudo -iu peadmin
+    $ hiera ntp_server -m balancer01.example.com
+
+Make sure that the `peadmin` user is allowed to read the Hiera config and data files.
 
 ### Inventory Service
 
