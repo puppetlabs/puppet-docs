@@ -437,7 +437,7 @@ setters for each property.
 
 ### Provider Features
 
-A recent development in Puppet (around 0.22.3) is the ability to
+Puppet allows you to
 declare what features providers can have. The type declares the
 features and what's required to make them work, and then the
 providers can either be tested for whether they suffice or they can
