@@ -130,7 +130,7 @@ Puppet's main `puppet.conf` configuration file can be found at [`<data directory
 
 * See [Configuring Puppet](/guides/configuring.html) for more details about Puppet's main config file. (Puppet's secondary config files are not used on Windows.)
 * See [the configuration reference](/references/latest/configuration.html) for a complete list of `puppet.conf` settings.
-* In a command window opened with the **"Start Command Prompt with Puppet"** Start menu item, you can use `puppet --configprint <SETTING>` to see the current value of any setting.
+* In a command window opened with the **"Start Command Prompt with Puppet"** Start menu item, you can use `puppet agent --configprint <SETTING>` to see the current value of any setting.
 
 > Note: **You must restart the puppet agent service after making any changes to Puppet's config file.** Restart the service using the Services control panel item.
 
