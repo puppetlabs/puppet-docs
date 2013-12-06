@@ -14,7 +14,7 @@ Before puppet agent nodes can retrieve their configuration catalogs, they need a
 
 By default, these CSRs must be manually signed by an admin user, using either the `puppet cert` command or the "node requests" page of the Puppet Enterprise console.
 
-Alternately, you can configure the CA puppet master to automatically sign certain CSRs, in order to speed up the process of bringing new agent nodes into the deployment.
+Alternately, you can configure the CA puppet master to automatically sign certain CSRs to speed up the process of bringing new agent nodes into the deployment.
 
 
 > **Important security note:** Autosigning CSRs will change the nature of your deployment's security, and you should be sure you understand the implications before configuring it. Each kind of autosigning has its own security impact.
@@ -49,9 +49,9 @@ In basic autosigning, the CA uses a config file containing a whitelist of certif
 
 ### Enabling Basic Autosigning
 
-To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` block of the CA puppet master's puppet.conf. The whitelist file must **not** be executable by the user puppet master is running as; otherwise it will be treated as a policy executable.
+To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` block of the CA puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the puppet master; otherwise it will be treated as a policy executable.
 
-> **Note:** Basic autosigning is enabled by default, looking for a whitelist located at `$confdir/autosign.conf`. See ["Configuring Puppet"](/guides/configuring.html) for details about Puppet's confdir.
+> **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. See ["Configuring Puppet"](/guides/configuring.html) for details about Puppet's confdir.
 
 ### The `autosign.conf` File
 
@@ -65,9 +65,9 @@ Note that domain name globs do not function as normal globs: an asterisk can onl
 
 ### Security Implications of Basic Autosigning
 
-Since any host can provide any certname when requesting a certificate, basic autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
+Since any host can provide any certname when requesting a certificate, basic autosigning should only be used in situations where you fully trust any computer able to connect to the puppet master.
 
-With basic autosigning turned on, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the puppet master. They would then be able to obtain a configuration catalog, which may or may not contain sensitive information (depending on your deployment's Puppet code and node classification).
+With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the puppet master. They would then be able to obtain a configuration catalog, which may or may not contain sensitive information (depending on your deployment's Puppet code and node classification).
 
 
 Policy-Based Autosigning
@@ -81,7 +81,7 @@ In policy-based autosigning, the CA will run an external policy executable every
 
 To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` block of the CA puppet master's puppet.conf.
 
-The policy executable file **must be executable by the user puppet master is running as.** If not, it will be treated as a certname whitelist file.
+The policy executable file **must be executable by the same user as the puppet master.** If not, it will be treated as a certname whitelist file.
 
 ### Custom Policy Executables
 
@@ -95,10 +95,10 @@ If you aren't embedding additional data, the CSR will contain only the node's ce
 
 Policy-based autosigning can be both fast and extremely secure, _depending on how you manage the information the policy executable is using._ For example:
 
-* If you embed a unique pre-shared key in each node when you provision it and provide your policy executable with a database of these keys, your autosigning security will be as good as your handling of the keys --- as long as it's impractical for an attacker to acquire a PSK, it will be impractical for them to acquire a signed certificate.
+* If you embed a unique pre-shared key in each node when you provision it, and provide your policy executable with a database of these keys, your autosigning security will be as good as your handling of the keys --- as long as it's impractical for an attacker to acquire a PSK, it will be impractical for them to acquire a signed certificate.
 * If nodes running on a cloud service embed their instance UUIDs in their CSRs, and your executable queries the cloud provider's API to check that a node with that UUID exists in your account, your autosigning security will be as good as the security of the cloud provider's API. If an attacker can impersonate a legit user to the API and get a list of node UUIDs, or if they can create a rogue node in your account, they can acquire a signed certificate.
 
-As you can see, you must think things through carefully when designing your CSR data and your signing policy. As long as you can arrange reasonable end-to-end security for secret data on your nodes, you should be able to rig up a secure autosigning system.
+As you can see, you must think things through carefully when designing your CSR data and signing policy. As long as you can arrange reasonable end-to-end security for secret data on your nodes, you should be able to rig up a secure autosigning system.
 
 
 ### Policy Executable API
@@ -106,7 +106,7 @@ As you can see, you must think things through carefully when designing your CSR 
 The API for policy executables is as follows:
 
 * **Run environment:** The executable will be run once for each incoming CSR.
-    * It will be executed by the puppet master process, and will run as the same user as the puppet master.
+    * It will be executed by the puppet master process and will run as the same user as the puppet master.
     * The puppet master process will _block until the executable finishes running._ We expect policy executables to finish in a timely fashion; if they do not, it's possible for them to tie up all available puppet master threads and deny service to other agent nodes. If an executable needs to perform network requests or other potentially expensive operations, the author is in charge of implementing any necessary timeouts, possibly bailing and exiting non-zero in the event of failure.
     * (Note that under a Rack server like Passenger, there are generally multiple puppet master processes available at any given time, so policy executables have a little bit of leeway.)
 * **Arguments:** The executable must allow a single command line argument. This argument will be the Subject CN (certname) of the incoming CSR.
