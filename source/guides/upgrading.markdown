@@ -119,7 +119,7 @@ You can also run a second instance of puppet master on your production puppet ma
 2. Open a root shell, which should stay open for the duration of this test. (`sudo -i`)
 3. Change directory into the source tarball. (`cd puppet-<version>`)
 4. Add the lib directory to your shell's RUBYLIB. (`export RUBYLIB=$(pwd)/lib:$RUBYLIB`)
-5. Run `puppet master --no-daemonize --verbose --masterport 8141`. This will run a puppet master **on a different port** in the foreground so you can easily see log messages and warnings. Use care to limit concurrent checkins on your test nodes; this WEBrick puppet master cannot handle sustained load.
+5. Run `./bin/puppet master --no-daemonize --verbose --masterport 8141`. This will run a puppet master **on a different port** in the foreground so you can easily see log messages and warnings. Use care to limit concurrent checkins on your test nodes; this WEBrick puppet master cannot handle sustained load.
 6. Choose a subset of your nodes to test with the new master, or spin up new nodes. Upgrade Puppet to the new version on them, and change their `masterport` setting to point to 8141.
 7. Trigger a `puppet agent --test` run on every test node, so you can see log messages in the foreground. **Look for changes to their resources;** if you see anything you didn't expect, investigate it. If something seems dangerous and you can't figure it out, you may want to post to the [Puppet users list][mailing_list] or ask other users in #puppet on Freenode.
 8. Check the log messages in the terminal window on your puppet master. Look for warnings and deprecation notices.
