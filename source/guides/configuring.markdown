@@ -79,7 +79,12 @@ You can interpolate the value of a setting by using its name as a `$variable`. (
 
 If a setting has multiple values, they should be a comma-separated list. "Path"-type settings made up of multiple directories should use the system path separator (colon, on most Unices).
 
-Finally, for settings that accept only a single file or directory, you can set the owner, group, and/or mode by putting their desired states in curly braces after the value.
+Finally, for settings that accept only a single file or directory, you can set the owner, group, and/or mode by putting their desired states in curly braces after the value. **However,** you can only set the owner or group to two predefined values:
+
+* `root` --- the root user or group should own the file.
+* `service` --- the user or group that the Puppet service is running as should own the file. (This will be the value of the `user` and `group` settings, which, for a puppet master, default to `puppet`.)
+
+Setting ownership and mode for file settings isn't supported on Windows.
 
 Putting that all together:
 
@@ -100,7 +105,7 @@ Putting that all together:
       modulepath = /etc/puppet/modules:/usr/share/puppet/modules
 
       # setting owner and mode for a directory:
-      vardir = /Volumes/zfs/vardir {owner = puppet, mode = 644}
+      vardir = /Volumes/zfs/vardir {owner = service, mode = 644}
 
 ### Config Blocks
 
