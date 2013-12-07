@@ -1131,6 +1131,7 @@ Puppet master's `config.ru` file has changed slightly; see `ext/rack/files/confi
 
      ARGV << "--rack"
     +ARGV << "--confdir" << "/etc/puppet"
+    +ARGV << "--vardir" << "/var/lib/puppet"
     +
     -require 'puppet/application/master'
     +require 'puppet/util/command_line'
