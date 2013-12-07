@@ -15,6 +15,14 @@ The main actions used for vSphere cloud provisioning include:
 *  `puppet node_vmware create` for creating new instances
 *  `puppet node_vmware terminate` for destroying no longer needed instances.
 
+**Note:** The command `puppet node_vmware` assumes that data centers are located at the very top level of the inventory hierarchy. Any data centers deeper down in the hierarchy (and in effect all objects hosted by these data centers) are ignored by the command.
+
+The current fix for this problem is as follows:
+
+    1. Move (temporarily) the data center(s) hosting the involved VMs/templates to the top level of the inventory hierarchy.
+    2. Perform the desired `node_vmware` actions. (Both `puppet node_vmware list` and `puppet node_vmware create` should see the VMs/templates hosted on the moved data centers.)
+    3. Move the data centers back.
+
 If you're new to VMware vSphere, you should start by looking at the [vSphere
 documentation](http://pubs.vmware.com/vsphere-50/index.jsp).
 
