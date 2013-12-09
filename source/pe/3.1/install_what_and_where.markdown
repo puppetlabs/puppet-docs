@@ -121,7 +121,7 @@ For more details, you can also refer to the man page for a given command or subc
 
 PE uses the following services:
 
-- **`pe-puppet`** (on EL platforms) and **`pe-puppet-agent`** (on Debian-based platforms) --- The puppet agent daemon. Runs on every agent node.
+- **`pe-puppet`** (on EL and Debian-based platforms) --- The puppet agent daemon. Runs on every agent node.
 - **`pe-httpd`** --- Apache 2, which manages and serves puppet master and the console on servers with those roles. (Note that PE uses Passenger to run puppet master, instead of running it as a standalone daemon.)
 - **`pe-mcollective`** --- The orchestration (MCollective) daemon, which listens for orchestration messages and invokes actions. Runs on every agent node.
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console role.
