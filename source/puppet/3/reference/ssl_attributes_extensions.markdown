@@ -61,7 +61,7 @@ See the respective sections below for information about how each hash is used an
 Custom Attributes (Transient CSR Data)
 -----
 
-**Custom Attributes** are pieces of data that are _only_ embedded into the CSR. They can be used by the CA when deciding whether or not to sign the certificate, but are discarded after that, and will not be transferred to the final certificate.
+**Custom Attributes** are pieces of data that are _only_ embedded into the CSR. They can be used by the CA when deciding whether or not to sign the certificate, but they are discarded after that and will not be transferred to the final certificate.
 
 ### Default Behavior
 
@@ -69,9 +69,9 @@ By default, Puppet's CA tools don't do anything with custom attributes. The `pup
 
 ### Configurable Behavior
 
-If you are using [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the custom attributes, and can use them when deciding whether to sign the certificate.
+If you are using [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the custom attributes, and it can use them when deciding whether to sign the certificate.
 
-The simplest use is to embed a pre-shared key of some kind in the custom attributes. A policy executable can compare it to a list of known keys, and autosign certificates for any pre-authorized nodes.
+The simplest use is to embed a pre-shared key of some kind in the custom attributes. A policy executable can compare it to a list of known keys and autosign certificates for any pre-authorized nodes.
 
 A more complex use might be to embed an instance-specific ID, and write a policy executable that can check it against a list of your recently requested instances on a public cloud like EC2 or GCE.
 
@@ -114,7 +114,7 @@ Puppet's compiler, server, and authorization systems do not (as of Puppet 3.4) u
 
 ### Configurable Behavior
 
-If you are using [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the extension requests, and can use them when deciding whether to sign the certificate.
+If you are using [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the extension requests, and it can use them when deciding whether to sign the certificate.
 
 As of Puppet 3.4, there is not yet any practical difference between extension requests and custom attributes. We expect the differences to expand later (see next subheader).
 
@@ -212,9 +212,9 @@ Troubleshooting
 
 ### Recovering From Failed Data Embedding
 
-When first testing this feature, you might fail to embed the right information in a CSR or certificate and want to start over for your test node(s). (This is not really a problem once your provisioning system is changed to populate the data, but can happen pretty easily when doing things manually.)
+When first testing this feature, you might fail to embed the right information in a CSR or certificate and want to start over for your test node(s). (This is not really a problem once your provisioning system is changed to populate the data, but it can happen pretty easily when doing things manually.)
 
-In order to start over, you'll need to do the following.
+In order to start over, you'll need to do the following:
 
 **On the test node:**
 
