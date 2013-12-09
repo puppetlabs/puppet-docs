@@ -2,6 +2,7 @@
 layout: default
 title: Facter 1.7 Release Notes
 description: Facter release notes for all 1.7 versions
+nav: facter17.html
 ---
 
 This page documents the history of the Facter 1.7 series.
