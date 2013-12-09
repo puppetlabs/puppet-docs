@@ -211,7 +211,11 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 ### Fact Locations
 
-External facts must go in a standard directory. The location of this directory varies depending on whether you're using Puppet Enterprise or an open source release of Facter.
+External facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator.
+
+> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
+to restrict access so that only Administrators can write to the
+directory.
 
 On Unix/Linux:
 
@@ -226,9 +230,9 @@ On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
-to restrict access so that only Administrators can write to the
-directory.
+When running as a non-root / non-Administrator user: (Facter 1.7.4 or later, on both \*nix and Windows)
+
+    <HOME DIRECTORY>/.facter/facts.d/
 
 ### Executable facts --- Unix
 
