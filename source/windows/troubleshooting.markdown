@@ -175,6 +175,8 @@ Windows services support a short name and a display name. Make sure to use the s
 
     This error can occur when the agent cannot resolve a DNS name into an IP address (for example the `server`, `ca_server`, etc properties). To verify that there is a DNS issue, check that you can run `nslookup <dns>`. If this fails, there is a problem with the DNS settings on the Windows agent (for example, the primary dns suffix is not set). See <http://technet.microsoft.com/en-us/library/cc959322.aspx>
 
+    This error can also occur if the reverse DNS entry for the agent is wrong.
+
 * "`err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred.`"
 
     This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups. Although Active Directory supports <a href="http://msdn.microsoft.com/en-us/library/cc246068(v=prot.13).aspx">nested groups</a> for certain types of domain group accounts, Windows does not support nesting of local group accounts. As a result, you must only specify user accounts as members of a group.
