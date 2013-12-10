@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Upgrading Puppet Enterprise"
 canonical: "/pe/latest/install_upgrading.html"
 ---

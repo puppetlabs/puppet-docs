@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: The accounts Class"
 canonical: "/pe/latest/accounts_class.html"
 ---

@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Installing Puppet Enterprise"
 canonical: "/pe/latest/install_basic.html"
 ---

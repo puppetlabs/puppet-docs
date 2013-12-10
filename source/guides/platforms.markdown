@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Puppet Open Source » Supported Platforms and System Requirements
 ---
 

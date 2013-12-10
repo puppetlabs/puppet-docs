@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Index"
 canonical: "/pe/latest/index.html"
 ---

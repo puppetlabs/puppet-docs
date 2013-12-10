@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Puppet Dashboard 1.2 Manual: Index"
 ---
 

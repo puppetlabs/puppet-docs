@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Known Issues"
 canonical: "/pe/latest/appendix.html"
 ---

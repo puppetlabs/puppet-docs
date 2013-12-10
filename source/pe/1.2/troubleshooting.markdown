@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Troubleshooting"
 canonical: "/pe/latest/trouble_install.html"
 ---
