@@ -5,15 +5,12 @@ title: The LDAP Node Classifier
 
 ## Storing Node Information in LDAP
 
-By default, puppetmasterd looks for nodes in its normal manifests,
-but you can additionally or instead have it look in LDAP. This
-works especially well if you are already storing your host
-information in LDAP.
+For background on Puppet's main sources of node data, see [the page on external node classifiers](./external_nodes.html).
 
-I've only used [OpenLDAP](http://www.openldap.org) to do this, but
-it should work just as well with
-[Fedora Directory Server](http://directory.fedora.redhat.com/wiki/Features)
-(confirmed working with Fedora Directory by Larry Ludwig) or
+This page describes a special node terminus in Puppet for storing node information in an LDAP directory. It works similarly to an ENC, and allows you to retrieve much of the same data as an ENC, but it is implemented as a node terminus rather than as an external binary.
+
+This information is most well-tested with [OpenLDAP](http://www.openldap.org). It should work just as well with
+[Fedora Directory Server](http://directory.fedora.redhat.com/wiki/Features) or
 [Sun's Directory Server](http://www.sun.com/software/products/directory_srvr/home_directory.xml),
 although you'll have to translate the schema to work with them.
 
@@ -22,12 +19,10 @@ OpenLDAP setup; please check
 [OpenLDAP's documentation](http://www.openldap.org/doc/admin/quickstart.html)
 to get to that point.
 
-NOTE: You can use node entries in your manifests together with LDAP
-nodes. External or LDAP nodes will be used before node entries. You
-cannot however use LDAP nodes and external nodes together. You must
-use one of these two types.
+NOTE: You can use node definitions in your manifests together with LDAP
+nodes, but you can't combine LDAP nodes with an ENC --- they take up the same slot in Puppet's configuration, and are mutually exclusive.
 
-## Why You'd Do This
+### Why You'd Do This
 
 There are multiple benefits to storing nodes in LDAP instead of
 using Puppet's built-in node support:
@@ -113,10 +108,9 @@ In this case, the final result for the node will be the following
     - solaris
     :dn: cn=testserver,ou=Hosts,dc=madstop,dc=com
 
-For this node LDAP has assigned the node name, testserver, its
-environment, testing (support for environments in LDAP is in
-release 0.24.3 and later), a description and assigned a list of
-classes. The class list will be testing, solaris, and baseclass;
+For this node, LDAP has assigned the node name (`testserver`), its
+environment (`testing`), a description, and a list of
+classes. The class list will be `testing`, `solaris`, and `baseclass`;
 note that the node's class list only has the individual classes
 assigned to that node. The class list evaluated by Puppet will
 include parent node classes too.
@@ -150,12 +144,12 @@ set.
 
 ## Loading Nodes Into LDAP
 
-In my opinion, the LDAP tool space is still depressingly spare. I
-generally use my own [ldapsh](/projects/ldapsh) tool to manage
-LDAP, but that does not work well for data loading. However you
+Loading data into LDAP is up to you; presumably, if you're deciding to use this feature in the first place, you already have plenty of LDAP tooling appropriate for your site. We don't have any particular recomendations.
+
+However you
 decide to load the data, you need to create host entries (usually
 device entries, probably with ipHost as an auxiliary class) and
-then add the Puppet data. This is what my workstation definition
+then add the Puppet data. This is what an example workstation definition
 looks like in LDAP:
 
     dn: cn=culain,ou=Hosts,dc=madstop,dc=com
@@ -171,67 +165,52 @@ looks like in LDAP:
     puppetclass: mailserver
     parentnode: basenode
 
-The DN I'm using for my host follows the model that I recommend for
-all LDAP repositories. This will work well if you decide to start
+The DN for the host follows a model that should also work well if you decide to start
 using LDAP as an nsswitch source. It doesn't really matter to
 Puppet, though; it just does a query against the search base you
-specify, it doesn't try to guess your DN.
+specify and doesn't try to guess your DN.
 
 ## Configuring Puppet to use LDAP
 
 Once you have your data in LDAP, you just need to configure Puppet
-to look there. It's pretty much always puppetmasterd that will be
-looking in LDAP so we need to configure the [puppetmasterd] section
-of the puppet.conf configuration file. In Puppet version 0.24 and
-later this means selecting the appropriate node terminus, the
-earlier ldapnodes option is fully deprecated and should not be
-used. For LDAP nodes we use ldap as the terminus in the
-node\_terminus configuration option:
+to look there.
 
-    [puppetmasterd]
+* If you are using agent/master Puppet, the master will be the one accessing LDAP. Put the configuration in the `[master]` block of its puppet.conf file.
+* If you are using standalone puppet apply nodes, each one will need to access it. Put the configuration in the `[main]` block of their puppet.conf files.
+
+To configure LDAP nodes, set the `node_terminus` to `ldap`:
+
+    [master]
     node_terminus = ldap
     ldapserver = ldapserver.yourdomain.com
     ldapbase = dc=puppet
 
-There is only one required settings: ldapbase for where to search
-for LDAP nodes. You'll probably also want to specify ldapserver,
-since the default is ldap, which likely won't work for most
-people.
+The only other required setting is `ldapbase`, which specifies where to search
+for LDAP nodes. It's a good idea to specify the Hosts
+tree as your search base (e.g., `ldapbase = ou=Hosts,dc=madstop,dc=com`).
 
-In other words, enable searching for nodes in LDAP by setting the
-node\_terminus to ldap, and then provide the information necessary
-to make it work. It's a good idea to actually specify the Hosts
-tree as your search base (e.g., ldapbase =
-ou=Hosts,dc=madstop,dc=com), but my database is small enough that
-it doesn't matter.
+However, you'll probably also want to specify several other settings, including where to find the server, how to authenticate to it, and more. The following is a full list of settings related to LDAP nodes; click any of them for descriptions in the configuration reference.
 
-With version 0.23.2 and later you should not need to restart the
-puppetmasterd daemon but it's probably sensible.
+* [`ldapattrs`](/references/latest/configuration.html#ldapattrs)
+* [`ldapbase`](/references/latest/configuration.html#ldapbase)
+* [`ldapclassattrs`](/references/latest/configuration.html#ldapclassattrs)
+* [`ldapparentattr`](/references/latest/configuration.html#ldapparentattr)
+* [`ldappassword`](/references/latest/configuration.html#ldappassword)
+* [`ldapport`](/references/latest/configuration.html#ldapport)
+* [`ldapserver`](/references/latest/configuration.html#ldapserver)
+* [`ldapssl`](/references/latest/configuration.html#ldapssl)
+* [`ldapstackedattrs`](/references/latest/configuration.html#ldapstackedattrs)
+* [`ldapstring`](/references/latest/configuration.html#ldapstring)
+* [`ldaptls`](/references/latest/configuration.html#ldaptls)
+* [`ldapuser`](/references/latest/configuration.html#ldapuser)
 
-### Configuring LDAP Nodes in pre-0.24 releases
 
-In versions of Puppet prior to 0.24 configuring LDAP in Puppet used
-the ldapnodes configuration option in the puppet.conf configuration
-file.:
-
-    [puppetmasterd]
-    ldapnodes = true
-    ldapserver = ldapserver.yourdomain.com
-    ldapbase = dc=puppet
-
-In the pre-0.24 versions there are two required settings: ldapnodes
-to indicate you want to look for nodes in LDAP and ldapbase for
-where to search for LDAP nodes. Like later versions you'll probably
-also want to specify ldapserver, since the default is ldap, which
-likely won't work for most people.
-
-With earlier versions you'll also need to restart the daemon.
 
 ## Using Arrays with LDAP
 
 By default the puppetVar LDAP attribute does not support arrays. In
 order to support an array with puppetVar you must add these two
-functions to your puppetmaster.
+functions to your puppet master.
 
 /usr/lib/ruby/site\_ruby/1.8/puppet/parser/functions/get\_var.rb:
 
