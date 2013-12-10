@@ -74,7 +74,7 @@ Now you should be able to run the `puppet node_vmware list` command and see a li
     ipaddress:  192.168.100.218
     template:   false
 
-This shows that you're connected to your vSphere server and shows an available VMware template ( at `master_template`). Two virtual machines are also shown (puppetmaster.example.com and agent.example.com). VMware templates contain the information needed to build new virtual machines, such as the operating system, hardware configuration, and other details. 
+This shows that you're connected to your vSphere server, and lists an available VMware template ( at `master_template`) and one virtual machine (agent.example.com). VMware templates contain the information needed to build new virtual machines, such as the operating system, hardware configuration, and other details.
 
 
 Specifically, `list` will return all of the following information:
