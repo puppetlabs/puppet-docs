@@ -31,10 +31,13 @@ Here are two strategies for finding out if your bug has already been reported (a
 1. Use the issue search built into JIRA which is available from the menu bar under "Issues > Search for Issues".
    When searching, be sure to adjust the filters --- especially those available from the "Project" menu.
    Comprehensive instructions for searching JIRA can be found on the Atlassian website: <https://confluence.atlassian.com/display/JIRA061/Searching+for+Issues>
-2. Join and search the 'puppet-bugs' group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
+2. Join and search the "puppet-bugs" group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
    Every action on a bug in the Puppet issue trackers will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening.
-   Using the Google Groups interface also lets you search through the bug traffic without pulling in any extraneous results.
-   If the Google search turns up an open ticket in the old Redmine tracking system, please follow the directions under [Migrating Tickets from Redmine](#migrating-tickets-from-redmin) to ensure the old ticket is copied over to JIRA.
+   Searches in the puppet-bugs archive can be refined using [Search Terms](https://support.google.com/groups/answer/2371405).
+   Two useful refinements are:
+     - Using `author:issue-updates@puppetlabs.com` to return tickets reported to the JIRA tracker.
+     - Using `author:tickets@puppetlabs.com` to return tickets reported to the old Redmine Tracker.
+   If your search turns up an open ticket in the old Redmine tracking system, please follow the directions under [Migrating Tickets from Redmine](#migrating-tickets-from-redmin) to copy the old ticket over to JIRA.
 
 If you find an existing bug that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing.
 Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has.
