@@ -12,6 +12,7 @@ title: "Language: Relationships and Ordering"
 [event]: ./lang_resources.html#behavior
 [service]: /references/latest/type.html#service
 [exec]: /references/latest/type.html#exec
+[type]: /references/latest/type.html
 [mount]: /references/latest/type.html#mount
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
@@ -203,6 +204,14 @@ A notification relationship does the same, but **also** sends the latter resourc
 Only certain resource types can refresh themselves. Of the built-in types, these are [service][], [mount][], and [exec][].
 
 Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
+
+### Autorequire
+
+Certain resource types can **autorequire** other resources. This creates an ordering relationship without the user explicitly stating one. Autorequiring is done when applying a catalog. (That is, the autorequire relationship is not already present in the catalog.)
+
+When Puppet is preparing to sync a resource whose type supports autorequire, it will search the catalog for any resources that match certain rules. If it finds any, it will process them _before_ that resource. If Puppet _doesn't_ find any resources that could be autorequired, that's fine; they won't be considered a failed dependency.
+
+The [type reference][type] contains information on which types can autorequire other resources. Each type's description should state its autorequire behavior, if any. For an example, see the "Autorequires" section near the end of [the exec type][exec]'s description.
 
 ### Parse-Order Independence
 
