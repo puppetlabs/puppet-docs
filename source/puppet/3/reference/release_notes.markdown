@@ -78,11 +78,13 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 Puppet 3.4.0
 -----
 
-> **Release Candidate:** Puppet 3.4.0 is not yet released. It entered RC 1 on December 3, 2013.
+> **Release Candidate:** Puppet 3.4.0 is not yet released. It entered RC 1 on December 3, 2013, and RC 2 on December 10.
 >
-> At least one more RC is planned. Known issues with RC 1:
+> RC 2 fixed some new regressions and problems with new features:
 >
-> * An existing but empty `csr_attributes.yaml` file will cause puppet agent to fail with `Error: Could not request certificate: undefined method 'delete' for false:FalseClass` when attempting to generate a keypair. To avoid this problem, make sure the `csr_attributes.yaml` file is either properly filled or completely absent. <!-- [https://jira.puppetlabs.com/browse/PP-913] -->
+> * [Issue 23369](https://projects.puppetlabs.com/issues/23369): An existing but empty `csr_attributes.yaml` file could cause puppet agent to fail with `Error: Could not request certificate: undefined method 'delete' for false:FalseClass` when attempting to generate a keypair. <!-- [https://jira.puppetlabs.com/browse/PP-913] -->
+> * [Issue 23349](http://projects.puppetlabs.com/issues/23349): There was a regression when referencing `$confdir` from other settings in puppet.conf. <!-- https://tickets.puppetlabs.com/browse/PUP-932 -->
+> * [Issue 23366](https://projects.puppetlabs.com/issues/23366): On Windows, there was a load-order bug causing run failures. <!-- https://tickets.puppetlabs.com/browse/PUP-943 -->
 
 3.4.0 is a backward-compatible feature and fix release in the Puppet 3 series. The main improvements of this release are:
 
