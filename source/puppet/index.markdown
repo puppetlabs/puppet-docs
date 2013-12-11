@@ -113,6 +113,7 @@ Get Puppet up and running at your site.
 * [Templating](/guides/templating.html) --- template out config files using ERB
 * [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) --- share data between hosts
+* [Using the Augeas Resource Type](/guides/augeas.html) --- safely edit many types of config files
 
 ### Using Optional Features
 
