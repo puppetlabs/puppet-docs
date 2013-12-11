@@ -119,7 +119,7 @@ After filing a new JIRA ticket, please add a link to the closed Redmine ticket y
 ### Initial triage
 
 Bugs that are in *Status*: _Open_ are said to need triage.
-There's a [Pre-made query for Unreviewed tickets](https://projects.puppetlabs.com/projects/puppet/issues?query_id=19) that will bring up tickets for all open source projects.
+There's a [Pre-made query for Unreviewed tickets](https://tickets.puppetlabs.com/issues/?filter=11300) that will bring up tickets for all open source projects.
 Anyone can triage a ticket! Here's how:
 
 1. Check the ticket makes sense - is it clear what the requester wants?
