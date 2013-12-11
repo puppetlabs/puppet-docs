@@ -29,8 +29,13 @@ There's a good possibility that your issue has already been reported, but the JI
 Here are two strategies for finding out if your bug has already been reported (and potentially solved!) by someone else:
 
 1. Use the issue search built into JIRA which is available from the menu bar under "Issues > Search for Issues".
-   When searching, be sure to adjust the filters --- especially those available from the "Project" menu.
-   Comprehensive instructions for searching JIRA can be found on the Atlassian website: <https://confluence.atlassian.com/display/JIRA061/Searching+for+Issues>
+   The search interface contains several drop down menus that can be used to filter issues using fields such as project or assignee in addition to matching words or phrases.
+   The search interface can also be toggled to "advanced" mode, which allows queries to be specified using JQL (JIRA Query Language).
+   For example, the following JQL query could be used to find all unresolved bugs in the Puppet project that contain a certain phrase:
+
+        type = Bug AND resolution = Empty AND project = "Puppet" AND text ~ "some phrase"
+
+   Comprehensive instructions for searching JIRA, including tips for using JQL, can be found on the Atlassian website: <https://confluence.atlassian.com/display/JIRA061/Searching+for+Issues>
 2. Join and search the "puppet-bugs" group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
    Every action on a bug in the Puppet issue trackers will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening.
    Searches in the puppet-bugs archive can be refined using [Search Terms](https://support.google.com/groups/answer/2371405).
