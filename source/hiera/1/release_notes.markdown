@@ -4,6 +4,14 @@ title: "Hiera 1: Release Notes"
 ---
 
 
+Hiera 1.3.1
+-----
+
+**Pre-release:** Hiera 1.3.1 is not yet released. It entered RC1 on December 12, 2013.
+
+Hiera 1.3.1 is a bug fix release in the 1.3 series. It fixes one bug:
+
+[HI-65](https://tickets.puppetlabs.com/browse/HI-65): Empty YAML files can raise an exception (backported to stable as [HI-71](https://tickets.puppetlabs.com/browse/HI-71))
 
 Hiera 1.3.0
 -----
