@@ -17,9 +17,9 @@ The main actions used for vSphere cloud provisioning include:
 
 The current fix for this problem is as follows:
 
-    1. Move (temporarily) the data center(s) hosting the involved VMs/templates to the top level of the inventory hierarchy.
-    2. Perform the desired `node_vmware` actions. (Both `puppet node_vmware list` and `puppet node_vmware create` should see the VMs/templates hosted on the moved data centers.)
-    3. Move the data centers back.
+1. Move the data centers hosting the involved VMs/templates to the top level of the inventory hierarchy. This can be a temporary move.
+2. Perform the desired `node_vmware` actions. Both `puppet node_vmware` and `puppet node_vmware create` should see the VMs/templates hosted on the moved data centers.
+3. Move the data centers back, if desired.
 
 If you're new to VMware vSphere, you should start by looking at the [vSphere
 documentation](http://pubs.vmware.com/vsphere-50/index.jsp).
