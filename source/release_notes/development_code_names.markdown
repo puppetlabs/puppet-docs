@@ -6,7 +6,7 @@ description: "Historic code names of Puppet releases"
 
 # Puppet Development Code Names
 
-Since bugs are associated with milestones in [Redmine](http://projects.reductivelabs.com/projects/show/puppet), it is useful to know the planned order of releases and the code names for each release.
+Since bugs are associated with milestones in [JIRA](https://tickets.puppetlabs.com/browse/PUP), it is useful to know the planned order of releases and the code names for each release.
 
 ## 3.x Series
 

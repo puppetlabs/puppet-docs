@@ -53,7 +53,7 @@ We also strongly recommend that you upgrade your master first and then your agen
 
 ### Finding Specific Fixes
 
-The [Roadmap Tracker](http://projects.puppetlabs.com/projects/puppet/roadmap?tracker_ids%5B%5D=1&tracker_ids%5B%5D=2&tracker_ids%5B%5D=4&completed=1&with_subprojects=0&with_subprojects=0) lists tickets closed for each release.
+The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
 
 [semver]: http://semver.org
