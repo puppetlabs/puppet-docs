@@ -199,6 +199,8 @@ An ordering relationship ensures that one resource will be managed before anothe
 
 A notification relationship does the same, but **also** sends the latter resource a **refresh event** if Puppet [changes the first resource's state][event]. A refresh event causes the recipient to refresh itself.
 
+If a resource receives multiple refresh events, they will be combined and the resource will only refresh once.
+
 ### Refreshing
 
 Only certain resource types can refresh themselves. Of the built-in types, these are [service][], [mount][], and [exec][].
