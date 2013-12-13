@@ -114,8 +114,7 @@ style and usage guide, which are both in the root of this project.
 * [Submit a ticket][1] requesting your contribution be added, and make
   sure you note the location of the repository and branch.
 
-[1]: http://projects.puppetlabs.com/projects/puppet-docs
-[2]: http://projects.puppetlabs.com/projects/puppet/wiki/
+[1]: http://tickets.puppetlabs.com/browse/DOCUMENT
 [3]: http://github.com
 [4]: http://docs.puppetlabs.com/guides/style_and_usage.html
 [rvm]: https://rvm.io

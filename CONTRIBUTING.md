@@ -8,7 +8,7 @@ Thank you for helping us improve our docs! Here are some non-obvious things you 
 
 These files are all **automatically generated** from strings in the Puppet source code. If you edit the old frozen versions, we will generate a fresh page of "wrong" text when the next version of Puppet comes out!
 
-Instead, please edit the text [in the Puppet source code](https://github.com/puppetlabs/puppet) (see below for a list of locations) and submit a pull request to the Puppet project. Be careful about quoting and escaping, and be sure to read Puppet's [contributing guidelines](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md). For minor docs edits, you can skip filing a Redmine ticket and instead begin your commit message with `(docs)`.
+Instead, please edit the text [in the Puppet source code](https://github.com/puppetlabs/puppet) (see below for a list of locations) and submit a pull request to the Puppet project. Be careful about quoting and escaping, and be sure to read Puppet's [contributing guidelines](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md). For minor docs edits, you can skip filing a JIRA ticket and instead begin your commit message with `(docs)`.
 
 ## Locations of Docs Text in the Puppet Source
 
@@ -18,7 +18,7 @@ Instead, please edit the text [in the Puppet source code](https://github.com/pup
 * For metaparameter.html, look in `lib/puppet/type.rb` and search for `newmetaparam(:NAME)`.
 * For report.html, look in `lib/puppet/reports/NAME.rb`.
 * For type.html, look in `lib/puppet/type/NAME.rb` or `lib/puppet/provider/NAME/PROVIDER.rb`.
-    * If you find something wrong with the **provider features** (the big tables with Xs in them), please just file a bug report instead; fixing them is kind of complicated. (See [Puppet issue 18426](https://projects.puppetlabs.com/issues/18426) and commit 5563d0c2 in this repo.)
+    * If you find something wrong with the **provider features** (the big tables with Xs in them), please just file a bug report instead; fixing them is kind of complicated. 
 
 ## Should I Also Edit the Old Frozen Versions?
 
