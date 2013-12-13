@@ -13,9 +13,10 @@ The main actions used for vSphere cloud provisioning include:
 *  `puppet node_vmware create` for creating new instances
 *  `puppet node_vmware terminate` for destroying no longer needed instances.
 
+
 **Note:** The command `puppet node_vmware` assumes that data centers are located at the very top level of the inventory hierarchy. Any data centers deeper down in the hierarchy (and in effect all objects hosted by these data centers) are ignored by the command.
 
-The current fix for this problem is as follows:
+Here's a fix:
 
 1. Move the data centers hosting the involved VMs/templates to the top level of the inventory hierarchy. This can be a temporary move.
 2. Perform the desired `node_vmware` actions. Both `puppet node_vmware` and `puppet node_vmware create` should see the VMs/templates hosted on the moved data centers.
@@ -23,6 +24,20 @@ The current fix for this problem is as follows:
 
 If you're new to VMware vSphere, you should start by looking at the [vSphere
 documentation](http://pubs.vmware.com/vsphere-50/index.jsp).
+
+Permissions Required for Provisioning with VMWare 
+-----
+
+The following are the lowest level permissions needed to provision with VMWare, listed according to subcommand. 
+
+
++ `list` – Lists any VM with read-only permissions or better.
++ `find` – Requires read-only permissions or better on the target data center, data store, network, or computer, as well as the full VM folder path that contains the VM in question.
++ `start` – Requires `find` permissions + `VirtualMachine.Interact.PowerOn` on the VM in question.
++ `stop` – Requires `find` permissions + `VirtualMachine.Interact.PowerOff` on the VM in question.
++ `terminate` – Requires `find` permissions + `VirtualMachine.Inventory.Remove` on the VM in question and its parent folder.
++ `create` – Requires `find` permissions + `VirtualMachine.Inventory.CreateFromExisting`, `VirtualMachine.Provisioning.DeployTemplate`, `VirtualMachine.Inventory.CreateFromExisting` on the template in question, as well as `Datastore.AllocateSpace` on the target data store, and `Resource.AssignVMToPool` on the target resource pool (the target cluster in non-DRS enabled vCenters).
+
 
 Listing VMware vSphere Instances
 -----
