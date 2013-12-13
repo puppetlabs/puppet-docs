@@ -16,7 +16,7 @@ For help with Puppet specific terms and language, visit [the glossary](/referenc
 Release Notes
 -----
 
-Changes to Puppet's core are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.10). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
+Changes to Puppet's core are documented in the [Puppet Release notes](http://docs.puppetlabs.com/puppet/2.7/reference/release_notes.html#puppet-2710). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
 
 
 ### Puppet Enterprise 2.5.3
@@ -159,8 +159,8 @@ As we discover them, this page will be updated with known issues in Puppet Enter
 
 To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.12 (Puppet Enterprise 2.5.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
-[peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
-[puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
+[peissues]: https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa
+[puppetissues]: https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 
