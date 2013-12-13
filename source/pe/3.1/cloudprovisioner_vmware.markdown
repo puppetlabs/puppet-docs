@@ -28,7 +28,7 @@ documentation](http://pubs.vmware.com/vsphere-50/index.jsp).
 Permissions Required for Provisioning with VMWare 
 -----
 
-The following are the lowest level permissions needed to provision with VMWare, listed according to subcommand. 
+The following are the permissions needed to provision with VMWare, listed according to subcommand. In addition, you should have full admin access to your vSphere pool. 
 
 
 + `list` – Lists any VM with read-only permissions or better.
