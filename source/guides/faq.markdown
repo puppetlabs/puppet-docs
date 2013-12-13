@@ -138,9 +138,8 @@ desktops.
 
 Yes.  As of Puppet 2.7.6 basic types and providers do run on Windows, and the test
 suite is being run on Windows to ensure future compatibility.  More information
-can be found on the
-[Puppet Windows wiki](http://projects.puppetlabs.com/projects/1/wiki/Puppet_Windows), and
-[bug reports](http://projects.puppetlabs.com/projects/puppet/issues/new) and
+can be found on the *Puppet on Windows* [page](http://docs.puppetlabs.com/windows/), and
+[bug reports](https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa) and
 [patches](./development_lifecycle.html) are welcome.
 
 ### What size organizations should use Puppet?
@@ -217,12 +216,12 @@ most days (and nights).
 
 If you are interested in helping with Puppet's development, you can
 read about how it is developed and how to submit patches and fixes
-on the [Development Lifecycle](http://projects.puppetlabs.com/projects/puppet/wiki/Development_Development_Lifecycle) wiki page.
+on the [Development Lifecycle](http://docs.puppetlabs.com/guides/development_lifecycle.html) page.
 
 The most valuable contribution you can make, though, is to use
 Puppet and submit your feedback, either directly on IRC or through
 the mailing list, or by reporting to the
-[bug database](http://projects.puppetlabs.com/projects/show/puppet).
+[bug database](https://tickets.puppetlabs.com/secure/IssueNavigator.jspa?reset=true&mode=hide&jqlQuery=project+%3D+PUP+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC).
 We're always looking for great ideas to incorporate into Puppet.
 
 Installation
@@ -270,7 +269,7 @@ be left in place between installs.
 The best way to find out what's changed in Puppet is to read the release notes,
 which are posted to the
 [puppet-announce mailing list](http://groups.google.com/group/puppet-announce) and
-[archived on the Puppet wiki](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes).
+on the [release notes page](http://docs.puppetlabs.com/release_notes/).
 
 
 Configuration
@@ -463,10 +462,7 @@ the Apache 2.0 license.
 
 As part of this license change, Puppet Labs has approached every
 existing contributor to the project and asked them to sign a
-[Contributor License Agreement or CLA](https://puppetlabs.com/wp-content/uploads/2011/10/cla.txt).
-
-Puppet Labs has adapted the standard Apache Foundation’s CLA for
-this purpose.  
+[Contributor License Agreement or CLA](https://cla.puppetlabs.com/).
 
 Signing this CLA for yourself or your company provides both you and
 Puppet Labs with additional legal protections, and confirms:
