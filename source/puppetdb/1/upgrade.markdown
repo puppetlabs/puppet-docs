@@ -8,7 +8,7 @@ canonical: "/puppetdb/latest/upgrade.html"
 [dashboard]: ./maintain_and_tune.html#monitor-the-performance-dashboard
 [connect_master]: ./connect_puppet_master.html
 [connect_apply]: ./connect_puppet_apply.html
-[redmine]: http://projects.puppetlabs.com/projects/puppetdb/issues
+[jira]: https://tickets.puppetlabs.com/browse/PDB-16?jql=project%20%3D%20PDB%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20priority%20DESC
 [start_source]: ./install_from_source.html#step-6-start-the-puppetdb-service
 [plugin_source]: ./connect_puppet_master.html#on-platforms-without-packages
 
@@ -49,7 +49,7 @@ Upgrading PuppetDB
 
 ### On Platforms Without Packages
 
-If you installed PuppetDB by running `rake install`, you should obtain a fresh copy of the source, stop the service, and run `rake install` again. Note that this workflow is not well tested; if you run into problems, please report them on the [PuppetDB issue tracker][redmine].
+If you installed PuppetDB by running `rake install`, you should obtain a fresh copy of the source, stop the service, and run `rake install` again. Note that this workflow is not well tested; if you run into problems, please report them on the [PuppetDB issue tracker][jira].
 
 If you are running PuppetDB from source, you should stop the service, replace the source, and [start the service as described in the advanced installation guide][start_source].
 
