@@ -98,7 +98,9 @@ When filing a new issue, filling in the following fields accurately makes bug tr
 
 Other relevant fields become useful through the course of the bug's lifecycle:
 
-* *Links* -- if your bug is associated with code on Github, a link should be added containing pointing to the pull request you've submitted.
+* *Links* -- Issue links are used to reference other JIRA tickets or external web pages.
+  If your bug is associated with code on Github, a link should be added pointing to the pull request you've submitted.
+  Additionally, if your bug is related to a ticket in the old Redmine tracker, a link should be added pointing to the old bug report.
 * *Fix Version(s)* -- the product owners for the various projects maintain a list of bugs that are going into future releases; the "Fix Version(s)" field indicates the release that a work-in-progress bug is expected to be fixed in.
 * *Status* and *Assignee* -- see the "Workflow for Bugs" section below for a description of how these fields are used.
 
