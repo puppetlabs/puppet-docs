@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Configuring Puppet
 ---
 
@@ -79,7 +79,12 @@ You can interpolate the value of a setting by using its name as a `$variable`. (
 
 If a setting has multiple values, they should be a comma-separated list. "Path"-type settings made up of multiple directories should use the system path separator (colon, on most Unices).
 
-Finally, for settings that accept only a single file or directory, you can set the owner, group, and/or mode by putting their desired states in curly braces after the value.
+Finally, for settings that accept only a single file or directory, you can set the owner, group, and/or mode by putting their desired states in curly braces after the value. **However,** you can only set the owner or group to two predefined values:
+
+* `root` --- the root user or group should own the file.
+* `service` --- the user or group that the Puppet service is running as should own the file. (This will be the value of the `user` and `group` settings, which, for a puppet master, default to `puppet`.)
+
+Setting ownership and mode for file settings isn't supported on Windows.
 
 Putting that all together:
 
@@ -100,7 +105,7 @@ Putting that all together:
       modulepath = /etc/puppet/modules:/usr/share/puppet/modules
 
       # setting owner and mode for a directory:
-      vardir = /Volumes/zfs/vardir {owner = puppet, mode = 644}
+      vardir = /Volumes/zfs/vardir {owner = service, mode = 644}
 
 ### Config Blocks
 
@@ -226,15 +231,15 @@ Example:
 
 ### `autosign.conf`
 
-The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or certname globs (one per line) whose certificate requests will automatically be signed.
+The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or domain name globs (one per line) whose certificate requests will automatically be signed.
 
     rebuilt.example.com
     *.scratch.example.com
     *.local
 
-Note that certname globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
+Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
 
-As any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
+Since any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
 
 ### `device.conf`
 

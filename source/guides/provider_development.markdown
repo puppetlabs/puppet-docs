@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Provider Development
 ---
 

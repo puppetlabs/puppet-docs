@@ -41,7 +41,7 @@ Puppet may fail to install when trying to perform an unattended install from the
 To get troubleshooting data, specify an installation log, e.g. /l*v install.txt. Look in the log for entries like the following:
 
     MSI (s) (7C:D0) [17:24:15:870]: Rejecting product '{D07C45E2-A53E-4D7B-844F-F8F608AFF7C8}': Non-assigned apps are disabled for non-admin users.
-    MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708 
+    MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708
     MSI (s) (7C:D0) [17:24:15:870]: Product: Puppet -- Installation failed.
     MSI (s) (7C:D0) [17:24:15:870]: Windows Installer installed the product. Product Name: Puppet. Product Version: 2.7.12. Product Language: 1033. Manufacturer: Puppet Labs. Installation success or error status: 1625.
     MSI (s) (7C:D0) [17:24:15:870]: MainEngineThread is returning 1625
@@ -83,7 +83,7 @@ UNC paths are not currently supported. However, the path can be mapped as a netw
 Several resources are case-insensitive on Windows (file, user, group). When establishing dependencies among resources, make sure to specify the case consistently. Otherwise, puppet may not be able to resolve dependencies correctly. For example, applying the following manifest will fail, because puppet does not recognize that FOOBAR and foobar are the same user:
 
     file { 'c:\foo\bar':
-      ensure => directory, 
+      ensure => directory,
       owner => 'FOOBAR'
     }
     user { 'foobar':
@@ -98,31 +98,6 @@ Puppet does not show diffs on Windows (e.g., `puppet agent --show_diff`) unless 
 
 ## Resource Errors and Quirks
 
-### File
-
-If the owner and/or group are specified in a file resource on Windows, the mode must also be specified. So this is okay:
-
-    file { 'c:/path/to/file.bat':
-      ensure => present,
-      owner => 'Administrator',
-      group => 'Administrators',
-      mode => 0770
-    }
-
-But this is not:
-
-    file { 'c:/path/to/file.bat':
-      ensure => present,
-      owner => 'Administrator',
-      group => 'Adminstrators',
-    }
-
-The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!
-
-To get out of this state, have Puppet execute the following (with an exec resource) to reset the file permissions:
-
-    takeown /f c:/path/to/file.bat && icacls c:/path/to/file.bat /reset
-
 ### Exec
 
 When declaring a Windows exec resource, the path to the resource typically depends on the %WINDIR% environment variable. Since this may vary from system to system, you can use the `path` fact in the exec resource:
@@ -135,7 +110,7 @@ When declaring a Windows exec resource, the path to the resource typically depen
 
 Puppet does not currently support a shell provider on Windows, so executing shell builtins directly will fail:
 
-    exec { 'echo foo': 
+    exec { 'echo foo':
       path => 'c:\windows\system32;c:\windows'
     }
     ...
@@ -143,13 +118,13 @@ Puppet does not currently support a shell provider on Windows, so executing shel
 
 Instead, wrap the builtin in `cmd.exe`:
 
-    exec { 'cmd.exe /c echo foo': 
+    exec { 'cmd.exe /c echo foo':
       path => 'c:\windows\system32;c:\windows'
     }
 
 Or, better still, use the tip from above:
 
-    exec { 'cmd.exe /c echo foo': 
+    exec { 'cmd.exe /c echo foo':
       path => $::path
     }
 
@@ -191,7 +166,7 @@ Windows services support a short name and a display name. Make sure to use the s
         file { "C:/tmp/foo.exe":
           source => "puppet:///modules/foo/foo.exe",
         }
-    
+
         exec { 'C:/tmp/foo.exe':
           logoutput => true
         }
@@ -199,7 +174,9 @@ Windows services support a short name and a display name. Make sure to use the s
 * "`err: getaddrinfo: The storage control blocks were destroyed.`"
 
     This error can occur when the agent cannot resolve a DNS name into an IP address (for example the `server`, `ca_server`, etc properties). To verify that there is a DNS issue, check that you can run `nslookup <dns>`. If this fails, there is a problem with the DNS settings on the Windows agent (for example, the primary dns suffix is not set). See <http://technet.microsoft.com/en-us/library/cc959322.aspx>
-    
+
+    This error can also occur if the reverse DNS entry for the agent is wrong.
+
 * "`err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred.`"
 
     This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups. Although Active Directory supports <a href="http://msdn.microsoft.com/en-us/library/cc246068(v=prot.13).aspx">nested groups</a> for certain types of domain group accounts, Windows does not support nesting of local group accounts. As a result, you must only specify user accounts as members of a group.
@@ -219,7 +196,7 @@ Windows services support a short name and a display name. Make sure to use the s
 * "`err: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed. This is often because the time is out of sync on the server or client.`"
 
     Windows agents that are part of an Active Directory domain should automatically have their time synchronized with AD. For agents that are not part of an AD domain, you may need to enable and add the Windows time service manually:
-    
+
         w32tm /register
         net start w32time
         w32tm /config /manualpeerlist:<ntpserver> /syncfromflags:manual /update
@@ -232,3 +209,29 @@ Windows services support a short name and a display name. Make sure to use the s
 * "Error: Could not parse for environment production: Syntax error at '='; expected '}'"
 
     This error will usually occur if `puppet apply -e` is used from the command line and the supplied command is surrounded with single quotes ('), which will cause `cmd.exe` to interpret any `=>` in the command as a redirect. To solve this surround the command with double quotes (") instead. See <https://projects.puppetlabs.com/issues/20528>.
+
+### File (pre-3.4.0)
+
+If the owner and/or group are specified in a file resource on Windows, the mode must also be specified. So this is okay:
+
+    file { 'c:/path/to/file.bat':
+      ensure => present,
+      owner => 'Administrator',
+      group => 'Administrators',
+      mode => 0770
+    }
+
+But this is not:
+
+    file { 'c:/path/to/file.bat':
+      ensure => present,
+      owner => 'Administrator',
+      group => 'Adminstrators',
+    }
+
+The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!
+
+To get out of this state, have Puppet execute the following (with an exec resource) to reset the file permissions:
+
+    takeown /f c:/path/to/file.bat && icacls c:/path/to/file.bat /reset
+

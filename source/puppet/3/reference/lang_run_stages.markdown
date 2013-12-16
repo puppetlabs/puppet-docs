@@ -58,7 +58,7 @@ Limitations and Known Issues
 
 * You cannot assign a class to a run stage when declaring it with `include`.
 * You cannot subscribe to or notify resources across a stage boundary.
-* Due to the "anchor pattern issue" with [containment][], classes that declare other classes will behave badly if declared with a run stage. (The second-order classes will "float off" into the main stage, and since the first-order class likely depended on their resources, this will likely cause failures.)
+* Classes that [contain][containment] other classes (with either the `contain` function or the anchor pattern) can sometimes behave badly if declared with a run stage --- if the contained class is **only** declared by its container, it will work fine, but if it is also declared anywhere outside its container, it will often create a dependency cycle that will prevent the involved classes from being applied.
 
 Due to these limitations, **stages should only be used with the simplest of classes,** and only when absolutely necessary. Mass dependencies like package repositories are effectively the only valid use case.
 

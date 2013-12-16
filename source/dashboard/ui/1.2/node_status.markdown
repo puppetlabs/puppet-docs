@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Dashboard UI — Node Status
 ---
 

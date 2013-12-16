@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Answer File Reference"
 canonical: "/pe/latest/install_answer_file_reference.html"
 ---

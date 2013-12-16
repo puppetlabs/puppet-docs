@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Custom Facts
 ---
 
@@ -211,7 +211,11 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 ### Fact Locations
 
-External facts must go in a standard directory. The location of this directory varies depending on whether you're using Puppet Enterprise or an open source release of Facter.
+External facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator.
+
+> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
+to restrict access so that only Administrators can write to the
+directory.
 
 On Unix/Linux:
 
@@ -226,9 +230,9 @@ On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
-to restrict access so that only Administrators can write to the
-directory.
+When running as a non-root / non-Administrator user: (Facter 1.7.4 or later, on both \*nix and Windows)
+
+    <HOME DIRECTORY>/.facter/facts.d/
 
 ### Executable facts --- Unix
 
@@ -329,16 +333,12 @@ Structured data files must use one of the supported data types and must have the
 
 As with executable facts, structured data files can set multiple facts at once.
 
-{% comment %}
-
 #### Structured Data Facts on Windows
 
 All of the above types are supported on Windows with the following caveats:
 
- * The line endings can be either `LF` or `CRLF`.
- * The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
-
-{% endcomment %}
+* The line endings can be either `LF` or `CRLF`.
+* The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
 
 ### Troubleshooting
 

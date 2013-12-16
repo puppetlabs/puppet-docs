@@ -15,7 +15,7 @@ title: "Language: Classes"
 [function]: ./lang_functions.html
 [modules]: ./modules_fundamentals.html
 [contains]: ./lang_containment.html
-[contains_float]: ./lang_containment.html#known-issues
+[contain_classes]: ./lang_containment.html#containing-classes
 [function]: ./lang_functions.html
 [multi_ref]: ./lang_datatypes.html#multi-resource-references
 [add_attribute]: ./lang_resources.html#adding-or-modifying-attributes
@@ -137,7 +137,7 @@ Classes should be stored in their module's `manifests/` directory as one class p
 
 A class [contains][] all of its resources. This means any [relationships][] formed with the class as a whole will be extended to every resource in the class.
 
-Note that classes cannot contain other classes. This is a known design issue; [see the relevant note on the "Containment" page][contains_float] for more details.
+Classes can also contain other classes (or mimic containment, in pre-3.4.0 versions), but _you must manually specify that a class should be contained._ For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
 
 ### Auto-Tagging
 
@@ -241,7 +241,7 @@ Puppet has two main ways to declare classes: include-like and resource-like.
 
 [include-like]: #include-like-behavior
 
-The `include`, `require`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node may have more than one role.
+The `include`, `require`, `contain`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node may have more than one role.
 
 Include-like behavior relies on [external data][external_data] and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:
 
@@ -307,6 +307,34 @@ The `require` function (not to be confused with the [`require` metaparameter][re
 In the above example, Puppet will ensure that every resource in the `apache` class gets applied before every resource in **any** `apache::vhost` instance.
 
 The `require` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
+
+* A single class
+* A comma-separated list of classes
+* An array of classes
+
+### Using `contain`
+
+> **Version note:** `contain` is only available in Puppet 3.4.0 and later.
+
+The `contain` function is meant to be used _inside another class definition._ It declares one or more classes, then causes them to become [contained][contains] by the surrounding class. For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
+
+{% highlight ruby %}
+    class ntp {
+      file { '/etc/ntp.conf':
+        ...
+        require => Package['ntp'],
+        notify  => Class['ntp::service'],
+      }
+      contain ntp::service
+      package { 'ntp':
+        ...
+      }
+    }
+{% endhighlight %}
+
+In the above example, any resource that forms a `before` or `require` relationship with class `ntp` will also be applied before or after class `ntp::service`, respectively.
+
+The `contain` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
 * A single class
 * A comma-separated list of classes

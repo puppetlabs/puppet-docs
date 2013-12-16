@@ -213,11 +213,13 @@ Best practices recommend basing your requires, befores, and other ordering-relat
 
 Rather than making a require to several packages,  the above ordering allows you to refactor and improve `module::install` without having to adjust the manifests of other classes to match the changes.
 
-####Anchoring
+####Containment and Anchoring
 
-Due to a long-standing Puppet bug ([#8040](https://projects.puppetlabs.com/issues/8040)), there is a need to anchor classes within a module to stop them floating around in the ordering graph and potentially doing things in the wrong order.
+Classes do not _automatically_ contain the classes they declare. (This is because classes may be declared in several places via `include` and similar functions. Most of these places shouldn't contain the class, and trying to contain it everywhere would cause huge problems.)
 
-To this end we recommend you anchor classes in the `init.pp` file for your module. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.) See below for an example of anchoring.
+Thus, if you want to allow other modules to form ordering relationships with your module, you should ensure that your main class(es) will explicitly _contain_ any subordinate classes they declare. For more information and context, you can see [the Containment page of the Puppet reference manual](/puppet/latest/reference/lang_containment.html).
+
+In Puppet 3.4.0 and later, you can contain classes by using [the `contain` function](/references/latest/function.html#contain) on them. To support versions prior to 3.4.0, you must use the **anchor pattern** to hold those classes in place. See below for an example of anchoring. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.)
 
 Two resources to anchor things to:
 

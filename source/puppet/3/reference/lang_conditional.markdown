@@ -247,7 +247,7 @@ You may use a comma-separated list of cases to associate more than one case with
 
 Normal values are compared to the control expression using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control expression.
 
-Cases are compared in the order that they are written in the manifest; thus, the `default` case (if any) must be at the end of the list.
+Cases are compared in the order that they are written in the manifest --- if more than one case might match for a given node, the first one will win. The one exception is the special `default` case, which will only be used as a last resort regardless of its position in the list.
 
 #### Regex Capture Variables
 

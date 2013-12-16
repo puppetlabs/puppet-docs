@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Puppet Documentation Index
 ---
 
@@ -55,7 +55,6 @@ A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of
 
 * [HTTP API](/guides/rest_api.html) --- reference of API-accessible resources
 * [History of the Puppet Language](/guides/language_history.html) --- a table showing which language features were added and removed in which Puppet versions
-* [Puppet Manpages](/man/) --- detailed help for each Puppet application
 
 ### Generated References
 
@@ -66,6 +65,7 @@ Complete and up-to-date references for Puppet's resource types, functions, metap
 * [Metaparameters](/references/stable/metaparameter.html) --- all type-independent resource attributes
 * [Configuration](/references/stable/configuration.html) --- all configuration file settings
 * [Report](/references/stable/report.html) --- all available report handlers
+* [Puppet Manpages](/references/stable/man/) --- detailed help for each Puppet application
 
 These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
 
@@ -113,6 +113,7 @@ Get Puppet up and running at your site.
 * [Templating](/guides/templating.html) --- template out config files using ERB
 * [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) --- share data between hosts
+* [Using the Augeas Resource Type](/guides/augeas.html) --- safely edit many types of config files
 
 ### Using Optional Features
 
@@ -143,6 +144,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 * [HTTP Access Control](/guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](/guides/external_nodes.html) --- specify what your machines do using external data sources
+    * [LDAP Nodes](/guides/ldap_nodes.html) --- a special-case tool for keeping node information in your LDAP directory
 
 ### Hacking and Extending: Ruby Plugins
 

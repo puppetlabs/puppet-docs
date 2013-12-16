@@ -82,7 +82,7 @@ For nearly all purposes, **you must start this command window with elevated priv
 
 ### Applying Manifests Locally
 
-[man_apply]: /man/apply.html
+[man_apply]: /references/stable/man/apply.html
 
 The `puppet apply` subcommand accepts a [puppet manifest](/learning/manifests.html) file, and immediately compiles and applies a configuration from it:
 
@@ -104,7 +104,7 @@ To learn more about using modules, see [Module Fundamentals](/puppet/latest/refe
 
 ### Interactively Modifying Puppet Resources
 
-[man_resource]: /man/resource.html
+[man_resource]: /references/stable/man/resource.html
 
 The `puppet resource` subcommand can interactively view and modify a system's state using Puppet's resource types. (For example, it can be used as an alternate interface for creating or modifying user accounts.)
 
@@ -130,7 +130,7 @@ Puppet's main `puppet.conf` configuration file can be found at [`<data directory
 
 * See [Configuring Puppet](/guides/configuring.html) for more details about Puppet's main config file. (Puppet's secondary config files are not used on Windows.)
 * See [the configuration reference](/references/latest/configuration.html) for a complete list of `puppet.conf` settings.
-* In a command window opened with the **"Start Command Prompt with Puppet"** Start menu item, you can use `puppet --configprint <SETTING>` to see the current value of any setting.
+* In a command window opened with the **"Start Command Prompt with Puppet"** Start menu item, you can use `puppet agent --configprint <SETTING>` to see the current value of any setting.
 
 > Note: **You must restart the puppet agent service after making any changes to Puppet's config file.** Restart the service using the Services control panel item.
 

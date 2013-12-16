@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Puppet Release Code Names
 description: "Historic code names of Puppet releases"
 ---

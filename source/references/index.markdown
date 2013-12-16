@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: References
 ---
 
@@ -30,6 +30,11 @@ The generated references are available for a wide range of versions, including s
 * [3.latest](./3.latest) --- the newest Puppet 3.x version, including pending release candidates
 * 3.x.stable / 3.x.latest (see sections below) --- the newest official/unstable releases within a minor release series
 * [2.7.stable](./2.7.stable/) --- the current release in the 2.7 series, which is in security-updates-only maintenance
+
+### Puppet 3.4.x
+
+* [Stable](./3.4.stable) / [Latest](./3.4.latest/)
+* [3.4.0-rc2](./3.4.0-rc2/)
 
 ### Puppet 3.3.x
 

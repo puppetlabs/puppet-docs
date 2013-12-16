@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Frequently Asked Questions
 ---
 
@@ -325,7 +325,11 @@ resulting files will be created in `.dot` format, which is readable by
 or [graphviz](http://www.graphviz.org/).   To generate an image from
 a dot file using the `dot` utility included with graphviz, run the following:
 
-    dot -Tpng /var/puppet/state/graphs/resources.dot -o /tmp/configuration.png
+    dot -Tpng /var/lib/puppet/state/graphs/resources.dot -o /tmp/configuration.png
+
+Graphing support is also available with puppet apply. It will generate the graphs in the `graphdir` if you pass the `--graph` option.
+
+    puppet apply --graph example.pp
 
 ### How do all of these variables, like $operatingsystem, get set?
 

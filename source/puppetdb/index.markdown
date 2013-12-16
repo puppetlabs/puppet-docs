@@ -1,6 +1,6 @@
 ---
 title: "PuppetDB » Overview"
-layout: legacy
+layout: default
 ---
 
 

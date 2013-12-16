@@ -21,12 +21,12 @@ title: "Language: Relationships and Ordering"
 
 The order of [resources][] in a Puppet manifest does not matter. Puppet assumes that most resources are not related to each other and will manage the resources in whatever order is most efficient.
 
-If a group of resources should be managed in a specific order, you must explicitly declare the relationships. 
+If a group of resources should be managed in a specific order, you must explicitly declare the relationships.
 
 Syntax
 -----
 
-Relationships can be declared with the relationship metaparameters, chaining arrows, and the `require` function. 
+Relationships can be declared with the relationship metaparameters, chaining arrows, and the `require` function.
 
 ### Relationship Metaparameters
 
@@ -37,7 +37,7 @@ Relationships can be declared with the relationship metaparameters, chaining arr
     }
 {% endhighlight %}
 
-Puppet uses four [metaparameters][] to establish relationships. Each of them can be set as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources.** 
+Puppet uses four [metaparameters][] to establish relationships. Each of them can be set as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources.**
 
 `before`
 : Causes a resource to be applied **before** the target resource.
@@ -49,9 +49,9 @@ Puppet uses four [metaparameters][] to establish relationships. Each of them can
 : Causes a resource to be applied **before** the target resource. The target resource will refresh if the notifying resource changes.
 
 `subscribe`
-: Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes. 
+: Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes.
 
-If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach will create the same relationship. The same is true of `notify` and `subscribe`. 
+If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach will create the same relationship. The same is true of `notify` and `subscribe`.
 
 The two examples below create the same ordering relationship:
 
@@ -146,17 +146,19 @@ And since collectors can be chained, you can create many-to-many relationships:
     Yumrepo <| |> -> Package <| |>
 {% endhighlight %}
 
-This example would apply all yum repository resources before applying any package resources, which protects any packages that rely on custom repos. 
+This example would apply all yum repository resources before applying any package resources, which protects any packages that rely on custom repos.
 
-> Note: Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles) and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.  
+> Note: Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles) and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.
+
+> Note: Although you can usually chain many resources and/or collectors together (`File['one'] -> File['two'] -> File['three']`), the chain can be broken if it includes a collector whose search expression doesn't match any resources. This is [Puppet bug #18399](http://projects.puppetlabs.com/issues/18399).
 
 > Note: Collectors can only search on attributes which are present in the manifests and cannot see properties that must be read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests. It would not affect any packages that didn't specify a provider but would end up using Yum.
 
 #### Reversed Forms
 
-Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their shape, these forms operate in reverse, causing the resource on their right to be applied before the resource on their left. 
+Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their shape, these forms operate in reverse, causing the resource on their right to be applied before the resource on their left.
 
-> Note: As the majority of Puppet's syntax is written left-to-right, these reversed forms can be confusing and are not recommended. 
+> Note: As the majority of Puppet's syntax is written left-to-right, these reversed forms can be confusing and are not recommended.
 
 ### The `require` Function
 
@@ -170,7 +172,7 @@ Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their s
     }
 {% endhighlight %}
 
-The above example would cause every resource in the `apache` and `mysql` classes to be applied before any of the resources in the `wordpress` class. 
+The above example would cause every resource in the `apache` and `mysql` classes to be applied before any of the resources in the `wordpress` class.
 
 Unlike the relationship metaparameters and chaining arrows, the `require` function does not have a reciprocal form or a notifying form. However, more complex behavior can be obtained by combining `include` and chaining arrows inside a class definition:
 
@@ -187,24 +189,26 @@ Behavior
 
 ### Ordering and Notification
 
-Puppet has two types of resource relationships: 
+Puppet has two types of resource relationships:
 
 * Ordering
 * Ordering with notification
 
-An ordering relationship ensures that one resource will be managed before another. 
+An ordering relationship ensures that one resource will be managed before another.
 
-A notification relationship does the same, but **also** sends the latter resource a **refresh event** if Puppet [changes the first resource's state][event]. A refresh event causes the recipient to refresh itself. 
+A notification relationship does the same, but **also** sends the latter resource a **refresh event** if Puppet [changes the first resource's state][event]. A refresh event causes the recipient to refresh itself.
+
+If a resource receives multiple refresh events, they will be combined and the resource will only refresh once.
 
 ### Refreshing
 
-Only certain resource types can refresh themselves. Of the built-in types, these are [service][], [mount][], and [exec][]. 
+Only certain resource types can refresh themselves. Of the built-in types, these are [service][], [mount][], and [exec][].
 
 Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
 
 ### Parse-Order Independence
 
-Relationships are not limited by parse-order. You can declare a relationship with a resource before that resource has been declared. 
+Relationships are not limited by parse-order. You can declare a relationship with a resource before that resource has been declared.
 
 ### Missing Dependencies
 
@@ -220,11 +224,11 @@ If Puppet fails to apply the prior resource in a relationship, it will skip the 
     notice: <RESOURCE>: Dependency <OTHER RESOURCE> has failures: true
     warning: <RESOURCE>: Skipping because of failed dependencies
 
-It will then continue to apply any unrelated resources. Any resources that depend on the skipped resource will also be skipped. 
+It will then continue to apply any unrelated resources. Any resources that depend on the skipped resource will also be skipped.
 
-This helps prevent inconsistent system state by causing a "clean" failure instead of attempting to apply a resource whose prerequisites may be broken. 
+This helps prevent inconsistent system state by causing a "clean" failure instead of attempting to apply a resource whose prerequisites may be broken.
 
-> Note: Although a resource won't be applied if a dependency fails, it can still receive and respond to refresh events from other, successful, dependencies. This is because refreshes are handled semi-independently of the normal resource sync process. It is an outstanding design issue, and may be tracked at [issue #7486](http://projects.puppetlabs.com/issues/7486). 
+> Note: Although a resource won't be applied if a dependency fails, it can still receive and respond to refresh events from other, successful, dependencies. This is because refreshes are handled semi-independently of the normal resource sync process. It is an outstanding design issue, and may be tracked at [issue #7486](http://projects.puppetlabs.com/issues/7486).
 
 ### Dependency Cycles
 

@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: HTTP Access Control
 ---
 
@@ -67,11 +67,11 @@ An ACL's `path` is interpreted as either a regular expression (with tilde) or a 
 
 ### Environment
 
-The `environment` directive can contain a single [environment](./environment.html) or a list. If environment isn't explicitly specified, it will default to all environments.
+The `environment` directive can contain a single [environment](./environment.html) or a comma-separated list (spaces after commas OK). If environment isn't explicitly specified, it will default to all environments.
 
 ### Method
 
-Available methods are `find`, `search`, `save`, and `destroy`; you can specify one method or a list of them. If method isn't explicitly specified, it will default to all methods.
+Available methods are `find`, `search`, `save`, and `destroy`; you can specify one method or a comma-separated list (spaces after commas OK). If method isn't explicitly specified, it will default to all methods.
 
 ### Auth
 
@@ -87,9 +87,9 @@ The value of `auth` must be **one** of the above options; it cannot be a list. I
 
 ### `allow`
 
-The node or nodes allowed to access this type of request. Can be a hostname, a certificate common name, a list of hostnames/certnames, or `*` (which matches all nodes). If the path for this ACL was a regular expression, `allow` directives may include backreferences to captured groups (e.g. `$1`).
+The node or nodes allowed to access this type of request. Can be a hostname, a certificate common name, a comma-separated list of hostnames/certnames (spaces after commas OK), or `*` (which matches all nodes). If the path for this ACL was a regular expression, `allow` directives may include backreferences to captured groups (e.g. `$1`).
 
-An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a list.
+An ACL may include multiple `allow` directives, which has the same effect as a single `allow` directive with a comma-separated list.
 
 **Behavior in 0.25.x through 2.7.0:** No fine-grained globbing of hostnames/certnames is available in allow directives; you must specify exact host/certnames, or a single asterisk that matches everything.
 

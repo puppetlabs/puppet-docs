@@ -1,6 +1,6 @@
 ---
 title: Glossary
-layout: legacy
+layout: default
 ---
 
 # Glossary of Puppet Vocabulary

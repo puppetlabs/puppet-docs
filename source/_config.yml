@@ -3,7 +3,7 @@ pygments: true
 markdown: kramdown
 include: _index.html
 defaultnav:
-  /: quick_nav.html
+  /: fallback_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
   /pe/3.1: pe31.html

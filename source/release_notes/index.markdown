@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Puppet Release Notes
 description: Links to Puppet and Puppet Enterprise release notes
 ---
