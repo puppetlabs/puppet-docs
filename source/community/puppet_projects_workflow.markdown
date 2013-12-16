@@ -3,9 +3,8 @@ title: "Redmine Workflow for Puppet Open-Source Projects"
 layout: default
 ---
 
-
-This document serves as a guide for managing bugs in Puppet open-souce projects (Puppet, Facter, Mcollective, Hiera, PuppetDB).
-Puppetlabs uses JIRA as its bug tracker, at <http://tickets.puppetlabs.com/>.
+This is a guide for managing bugs in Puppet open-source projects, including Puppet, Facter, MCollective, Hiera, and PuppetDB.
+The official Puppet Labs bug tracker is run through JIRA and is located at <http://tickets.puppetlabs.com/>.
 This guide covers the following tasks:
 
   - [How to Create a JIRA Account](#create-a-jira-account)
@@ -15,20 +14,22 @@ This guide covers the following tasks:
 
 ## Create a JIRA Account
 
-In order to prevent spam and fake accounts, Puppetlabs requires users to create an account on JIRA before commenting on or filing new tickets.
+In order to prevent spam and fake accounts, Puppet Labs requires users to create an account on JIRA before filing new tickets or commenting on existing ones.
 Accounts can be created by visiting <http://tickets.puppetlabs.com> and following the "Sign Up" link in the "Login" box.
 
 
 ## Submitting a Bug
 
-First, thank you! Conventional wisdom holds that bug reports are bad, but we think that while bugs themselves may be bad, quality bug reports are incredibly valuable and a great way to contribute back to the project.
+First, thank you!
+While bugs themselves may be bad, quality bug reports are incredibly valuable and a great way to contribute back to the project.
 
 ### Search for duplicates
 
 There's a good possibility that your issue has already been reported, but the JIRA database is huge and locating similar issues can take some practice.
-Here are two strategies for finding out if your bug has already been reported (and potentially solved!) by someone else:
+Here are two strategies for finding out whether your bug has already been reported (and potentially solved!) by someone else:
 
-1. Use the issue search built into JIRA which is available from the menu bar under "Issues > Search for Issues".
+1. _JIRA Search_:
+   In JIRA, access the issue search by going to the menu bar and choosing "Issues > Search for Issues".
    The search interface contains several drop down menus that can be used to filter issues using fields such as project or assignee in addition to matching words or phrases.
    The search interface can also be toggled to "advanced" mode, which allows queries to be specified using JQL (JIRA Query Language).
    For example, the following JQL query could be used to find all unresolved bugs in the Puppet project that contain a certain phrase:
@@ -36,7 +37,8 @@ Here are two strategies for finding out if your bug has already been reported (a
         type = Bug AND resolution = Empty AND project = "Puppet" AND text ~ "some phrase"
 
    Comprehensive instructions for searching JIRA, including tips for using JQL, can be found on the Atlassian website: <https://confluence.atlassian.com/display/JIRA061/Searching+for+Issues>
-2. Join and search the "puppet-bugs" group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
+2. _User Group_:
+   Join and search the "puppet-bugs" group: <http://groups.google.com/group/puppet-bugs> , but set your email delivery options to "none" or "abridged summary".
    Every action on a bug in the Puppet issue trackers will generate an email to this group, so it's a handy, date-ordered way to keep tabs on what's happening.
    Searches in the puppet-bugs archive can be refined using [Search Terms](https://support.google.com/groups/answer/2371405).
    Two useful refinements are:
@@ -53,30 +55,40 @@ Finally, if you come back empty-handed from your searching, it's time to file a 
 
 ### Filing a good bug
 
-Simon Tatham, the developer of PuTTy, has a fantastic write-up on [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html). It ought to be required reading for anyone participating in a software project, especially so for open-source projects like Puppet.
+Simon Tatham, the developer of PuTTy, has a fantastic write-up on [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html).
+It is highly recommended reading for anyone participating in the Puppet open-source project.
 
-New tickets can be opened on JIRA by following [this link](https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa) or by clicking on the "Create Issue" button in the JIRA menu bar.
+New tickets can be opened in JIRA by following [this link](https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa) or by clicking on the "Create Issue" button in the JIRA menu bar.
 After selecting the appropriate "Project" and issue "Type" (usually Bug or New Feature), please fill out the following fields:
 
 * Summary -- A short, accurate description of the problem. As Simon's article says, describe the facts of what you see ("Puppet gives the error message 'x' when I do 'y'") rather than opinion ("Puppet needs to stop printing 'y'").
-* Environment -- Due to the huge range of system configurations that Puppet works on, your operating system distribution and version, Ruby version and packager, Puppet and Facter versions and means by which you installed them, can all be highly relevant information that can make the difference between reproducibility and mystification for the next person to look at the bug report.
-* Description -- A good description provides the information required for effect troubleshooting. The following elements are particularly important:
-  * Steps to reproduce -- What can another Puppet user do to reproduce the error? If the problem is from a manifest, it's very helpful to extract the relevant code down to as small a section of Puppet code as possible. As a bug reporter, just the process of disentangling the problematic Puppet code from your environment (classes, external node classifier, etc) can sometimes help you solve the problem yourself; however, even if it doesn't, it will greatly aid the developers and community members who are trying to help fix the problem.
-  * Expected results -- What is the original problem you are trying to solve? It's possible that there's an avenue to solve your problem that is better supported or more well-understood and therefore won't trigger the bug. Additionally, having this information about _intent_ will help future people who might be searching for help solving the same problem.
-  * Actual results -- Please provide specific, cut-and-pasted error messages from the output of Puppet/Facter/Ruby etc. Particularly for puppet, it's helpful to run with the `--debug --trace` options because those provide Ruby backtraces in event of an error.
-  * Regression -- did this work in an earlier version and break when you upgraded? Regressions are a very real problem in a codebase as complicated as Puppet's, because it's very difficult to predict the side-effects of a change somewhere deep in the guts of the code. If you are conversant with Git, it can be hugely helpful to run a `git bisect` on the problem to determine exactly where the regression was introduced. Scott Chacon's [Pro Git section on bisect](http://git-scm.com/book/en/Git-Tools-Debugging-with-Git) is a great introduction to `git bisect`.
+* Environment -- Due to the huge range of system configurations that Puppet works on, information about your operating system distribution and version, Ruby version and packager, as well as Puppet and Facter versions and the means by which you installed them, can all be highly relevant information that can make the difference between reproducibility and mystification for the next person to look at the bug report.
+* Description -- A good description provides the information required for effective troubleshooting.
+  The following elements are particularly important:
+  * Steps to reproduce -- What can another Puppet user do to reproduce the error?
+    If the problem is from a manifest, it's very helpful to extract the relevant Puppet code down to as small a section as possible.
+    As a bug reporter, just the process of disentangling the problematic Puppet code from your environment (classes, external node classifier, etc) can sometimes help you solve the problem yourself; however, even if it doesn't, it will greatly aid the developers and community members who are trying to help fix the problem.
+  * Expected results -- What is the original problem you are trying to solve?
+    It's possible that there's an avenue to solve your problem that is better supported or more well-understood and therefore won't trigger the bug.
+    Additionally, having this information about _intent_ will help users in the future who might be searching for help solving the same problem.
+  * Actual results -- Please provide specific, cut-and-pasted error messages from the output of Puppet/Facter/Ruby etc.
+    Particularly for Puppet, it's helpful to run with the `--debug --trace` options because they will provide Ruby backtraces in event of an error.
+  * Regression -- did this work in an earlier version and break when you upgraded?
+    Regressions are a very real problem in a codebase as complicated as Puppet's, as it's very difficult to predict the side-effects of a change somewhere deep in the guts of the code.
+    If you are conversant with Git, it can be hugely helpful to run a `git bisect` on the problem to determine exactly where the regression was introduced.
+    Scott Chacon's [Pro Git section on bisect](http://git-scm.com/book/en/Git-Tools-Debugging-with-Git) is a great introduction to `git bisect`.
 
 ### Metadata you can use
 
-There are a number of metadata fields in JIRA, some of which are applicable to all projects while others are project specific.
-When filing a new issue, filling in the following fields accurately makes bug triage a lot easier:
+There are a number of metadata fields in JIRA, some of which are applicable to all projects and othersi that are project specific.
+When filing a new issue, filling in the following fields accurately makes bug triage a lot easier for all projects:
 
 * *Component(s)* -- components define the broad category that a ticket falls into.
-  When choosing values for this field, hovering the mouse over entries in the pull down list will display descriptions for what is covered by a given component.
-  In general, an issue should be specific enough that it is covered by a single component --- but multiple components can be assigned if necessary.
+  When choosing values for this field, hover the mouse over entries in the pull down list to display descriptions for what is covered by a given component.
+  In general, an issue should be specific enough that it is covered by a single component, but multiple components can be assigned if necessary.
 * *Labels* -- labels aid in searches and help further categorize tickets.
   The advantage labels offer over the "Components" field is that they are not limited to a fixed list and can be created as required.
-  However, this can lead to a proliferation of labels that overlap but are not quite duplicates.
+  However, this can lead to a proliferation of labels that overlap but are not quite duplicates, so take care when affixing labels to your bug.
 * *Affects Version(s)* -- The version in which you've experienced the bug.
   Generally issues that have been encountered and reproduced against the latest point release of a major version are going to get more attention than ones against older versions.
   If you do not see your version of Puppet listed, please try reproducing the bug against a newer version.
@@ -90,7 +102,7 @@ Other relevant fields become useful through the course of the bug's lifecycle:
 * *Fix Version(s)* -- the product owners for the various projects maintain a list of bugs that are going into future releases; the "Fix Version(s)" field indicates the release that a work-in-progress bug is expected to be fixed in.
 * *Status* and *Assignee* -- see the "Workflow for Bugs" section below for a description of how these fields are used.
 
-The other fields aren't used and can be left blank (due date, estimated time, etc).
+The other fields aren't used and ought to be left blank (due date, estimated time, etc).
 
 ### Tracking and updating bug
 
@@ -112,7 +124,7 @@ Unclosed tickets in the following Redmine projects may be automatically exported
 - [PuppetDB](http://projects.puppetlabs.com/projects/puppetdb/issues)
 
 Open tickets in the above projects may be migrated by clicking on the "Export this ticket to JIRA" button located above the ticket description.
-If export is successful, the button will be replaced by a link to a newly created JIRA ticket.
+If the export is successful, the button will be replaced by a link to a newly created JIRA ticket.
 If you are experiencing an issue that appears to be covered by a closed ticket in Redmine, please submit a new ticket to JIRA by following the steps under [Submitting a Bug](#submitting-a-bug).
 After filing a new JIRA ticket, please add a link to the closed Redmine ticket you believe is related.
 
@@ -125,10 +137,10 @@ Bugs that are in *Status*: _Open_ are said to need triage.
 There's a [Pre-made query for Unreviewed tickets](https://tickets.puppetlabs.com/issues/?filter=11300) that will bring up tickets for all open source projects.
 Anyone can triage a ticket! Here's how:
 
-1. Check the ticket makes sense - is it clear what the requester wants?
+1. Check that the ticket makes sense - is it clear what the requester wants?
     * Is the problem description detailed enough?
     * Is there a description of what is broken and how to replicate the problem?
-    * Is it clear what the affected version(s)/platform/feature this affects?
+    * Is it clear what the affected version(s)/platform/feature is?
     * Is it assigned to the right component and does it have descriptive labels?
     * Is the output/code/log data clear and structured (you can edit this by clicking on the description)
 2. Check that the ticket "Type" is correct - is this a Bug or a Feature?
