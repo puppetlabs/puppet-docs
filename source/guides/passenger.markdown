@@ -105,18 +105,17 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
     # you're using, as well as the installed version of Passenger.
 
     # Debian/Ubuntu:
-    #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
-    #PassengerRoot /var/lib/gems/1.8/gems/passenger-3.0.x
+    #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-4.0.x/ext/apache2/mod_passenger.so
+    #PassengerRoot /var/lib/gems/1.8/gems/passenger-4.0.x
     #PassengerRuby /usr/bin/ruby1.8
 
     # RHEL/CentOS:
-    #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
-    #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x
+    #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-4.0.x/ext/apache2/mod_passenger.so
+    #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-4.0.x
     #PassengerRuby /usr/bin/ruby
 
     # And the passenger performance tuning settings:
     PassengerHighPerformance On
-    PassengerUseGlobalQueue On
     # Set this to about 1.5 times the number of CPU cores in your master:
     PassengerMaxPoolSize 12
     # Recycle master processes after they service 1000 requests
@@ -146,14 +145,24 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
 
-        RackAutoDetect On
         DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
+        PassengerAppRoot /usr/share/puppet/rack/puppetmasterd
+
         <Directory /usr/share/puppet/rack/puppetmasterd/>
-            Options None
-            AllowOverride None
-            Order Allow,Deny
-            Allow from All
+          Options None
+          AllowOverride None
+          # Apply the right behavior depending on Apache version.
+          <IfVersion < 2.4>
+            Order allow,deny
+            Allow from all
+          </IfVersion>
+          <IfVersion >= 2.4>
+            Require all granted
+          </IfVersion>
         </Directory>
+
+        ErrorLog /var/log/httpd/puppet-server.example.com_ssl_error.log
+        CustomLog /var/log/httpd/puppet-server.example.com_ssl_access.log combined
     </VirtualHost>
 
 If this puppet master is not the certificate authority, you will
