@@ -177,5 +177,5 @@ Puppet has gone through some transitional periods, and we've occasionally writte
 Other Resources
 ---------------
 
-* [Puppet Wiki & Bug Tracker](http://projects.puppetlabs.com/)
+* [Puppet Bug Tracker](https://tickets.puppetlabs.com/browse/PUP)
 * [Puppet Patterns (Recipes)](http://projects.puppetlabs.com/projects/puppet/wiki/Recipes)

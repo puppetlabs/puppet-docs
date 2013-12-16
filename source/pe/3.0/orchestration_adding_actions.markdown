@@ -237,7 +237,7 @@ Example: This code would completely disable the package plugin's `update` option
     }
 {% endhighlight %}
 
-[actionpolicy]: http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/AuthorizationActionPolicy
+[actionpolicy]: https://github.com/puppetlabs/mcollective-actionpolicy-auth#readme
 
 ### Step 5: Assign the Class to Nodes
 
