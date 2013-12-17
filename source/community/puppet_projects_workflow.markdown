@@ -1,5 +1,5 @@
 ---
-title: "Redmine Workflow for Puppet Open-Source Projects"
+title: "JIRA Workflow for Puppet Open-Source Projects"
 layout: default
 ---
 
