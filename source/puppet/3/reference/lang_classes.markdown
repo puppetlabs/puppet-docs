@@ -455,3 +455,86 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 > ### Avoid Class Parameters
 >
 > Prior to Puppet 2.6, classes could only request data by reading arbitrary variables outside their local [scope][]. It is still possible to design classes like this. **However,** since dynamic scope was removed in Puppet 3, old-style classes can only read **top-scope or node-scope** variables, which makes them less flexible than they were in previous versions. Your best options for using old-style classes with Puppet 3 are to use an ENC to set your classes' variables, or to manually insert `$special_variable = hiera('class::special_variable')` calls at top scope in your site manifest.
+
+
+
+Appendix: Smart Parameter Defaults
+------------------------------------
+
+This design pattern can make for significantly cleaner code while enabling some really sophisticated behavior around default values.
+
+{% highlight ruby %}
+    # /etc/puppet/modules/webserver/manifests/params.pp
+    
+    class webserver::params {
+     $packages = $operatingsystem ? {
+       /(?i-mx:ubuntu|debian)/        => 'apache2',
+       /(?i-mx:centos|fedora|redhat)/ => 'httpd',
+     }
+     $vhost_dir = $operatingsystem ? {
+       /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
+       /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
+     }
+    }
+    
+    # /etc/puppet/modules/webserver/manifests/init.pp
+    
+    class webserver(
+     $packages  = $webserver::params::packages,
+     $vhost_dir = $webserver::params::vhost_dir
+    ) inherits webserver::params {
+    
+     package { $packages: ensure => present }
+    
+     file { 'vhost_dir':
+       path   => $vhost_dir,
+       ensure => directory,
+       mode   => '0750',
+       owner  => 'www-data',
+       group  => 'root',
+     }
+    }
+{% endhighlight %}
+
+To summarize what's happening here: When a class inherits from another class, it implicitly declares the base class. Since the base class's local scope already exists before the new class's parameters get declared, those parameters can be set based on information in the base class. 
+
+This is functionally equivalent to doing the following:
+
+{% highlight ruby %}
+    # /etc/puppet/modules/webserver/manifests/init.pp
+    
+    class webserver( $packages = 'UNSET', $vhost_dir = 'UNSET' ) {
+     
+     if $packages == 'UNSET' {
+       $real_packages = $operatingsystem ? {
+         /(?i-mx:ubuntu|debian)/        => 'apache2',
+         /(?i-mx:centos|fedora|redhat)/ => 'httpd',
+       }
+     }
+     else {
+        $real_packages = $packages
+     }
+     
+     if $vhost_dir == 'UNSET' {
+       $real_vhost_dir = $operatingsystem ? {
+         /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
+         /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
+       }
+     }
+     else {
+        $real_vhost_dir = $vhost_dir
+    }
+     
+     package { $real_packages: ensure => present }
+    
+     file { 'vhost_dir':
+       path   => $real_vhost_dir,
+       ensure => directory,
+       mode   => '0750',
+       owner  => 'www-data',
+       group  => 'root',
+     }
+    }
+{% endhighlight %}
+
+... but it's a significant readability win, especially if the amount of logic or the number of parameters gets any higher than what's shown in the example.
