@@ -69,7 +69,7 @@ There are many ways to compose these classes, and you'll have to decide based on
 
 Wrapper classes are also necessary for working with [parameterized classes][paramclass] --- you can declare parameters in nodes and groups, then have your wrapper classes pass them through when they declare each smaller class.
 
-[paramclass]: /guides/parameterized_classes.html
+[paramclass]: /puppet/latest/reference/lang_classes.html#class-parameters-and-variables
 
 Grouping Nodes
 -----

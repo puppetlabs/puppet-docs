@@ -167,7 +167,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 Puppet has gone through some transitional periods, and we've occasionally written short guides to explain major changes in its behavior.
 
-* [Parameterized Classes](/guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
 * [Scope and Puppet](/guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
 * [Scaling With Mongrel](/guides/mongrel.html) --- Running production puppet master servers with pre-0.24.6 versions of Puppet
 
