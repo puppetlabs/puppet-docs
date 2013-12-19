@@ -6,7 +6,7 @@ canonical: "/pe/latest/appendix.html"
 ---
 
 
-This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.
+This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.1.
 
 Puppet Terminology
 -----
@@ -17,6 +17,41 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 
 Release Notes
 -----
+### PE 3.1.1 (12/19/2013)
+
+#### Security Fixes
+
+*[CVE-2013-6414 Action View vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-6414/)*
+
+Assessed Risk Level: medium. Ruby on Rails is vulnerable to headers containing an invalid MIME type that allows attackers to issue  denial of service through memory consumption, which leads to excessive caching. This has been fixed in PE 3.1.1.
+
+*[CVE-2013-6415 Cross-site scripting (XSS) vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-6415)*
+
+Assessed Risk Level: medium. An XSS vulnerability in the number_to_currrency helper allows remote attackers to add web script or HTML via the unit parameter. This vulnerability has been fixed in PE 3.1.1.
+
+*[CVE-2013-4491 XSS vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-4491)* 
+
+Assed Risk Level: medium. An XXS vulnerability in the translation helper allows remote attackers to add web script or HTML that triggers generation of a fallback string in the i18n gem. This has been fixed in PE 3.1.1.
+
+*[CVE-2013-6417 Improper consideration of differences in parameter handling between Rack and Rails requests](http://puppetlabs.com/security/cve/cve-2013-6417)*
+
+Assessed Risk Level: medium. Differences in parameter handling between Rack and Rails requests allow remote attackers to bypass database query restrictions and perform NULL checks or trigger missing WHERE clauses via requests using third-party or custom Rack middleware. This has been fixed in PE 3.1.1. 
+**Note:** This vulnerability was due to an incomplete fix for CVE-2013-0155.
+
+*[CVE-2013-4363 Algorithmic Complexity Vulnerability in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4363)*
+
+Assessed Risk Level: low. RubyGems validates versions with a regular expression that is vulnerable to attackers causing denial of service through CPU consumption. This is resolved in PE 2.8.4 and PE 3.1.1. 
+**Note:** This vulnerability was due to an incomplete fix for CVE-2013-4287.
+
+*[CVE-2013-4164 Heap overflow in floating point parsing in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4164)*
+
+Assessed Risk Level: medium. Converting strings of unknown origin to floating point values can cause heap overflow and allow attackers to create denial of service attacks. This has been fixed in PE 3.1.1.
+
+
+*[CVE-2013-4969 Unsafe use of temp files in file type](http://puppetlabs.com/security/cve/cve-2013-4969)*
+
+Assessed Risk Level: medium. Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file, creating a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something that it did not intend to. This has been fixed in PE 3.1.1.
+
 
 ### PE 3.1.0 (10/15/2013)
 
@@ -92,7 +127,7 @@ A user's account was not locked out after the user submitted a large number of i
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.1 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.1.1 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 

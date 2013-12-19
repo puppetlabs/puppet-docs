@@ -17,8 +17,31 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 
 Release Notes
 -----
+### PE 2.8.4 (12/19/2013)
 
-### Puppet 2.8.3 (8/15/2013)
+#### Security Fixes
+
+*[CVE-2013-6414 Action View vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-6414)*
+
+Assessed Risk Level: medium. Ruby on Rails is vulnerable to headers containing an invalid MIME type that allows attackers to issue  denial of service through memory consumption, which leads to excessive caching. This has been fixed in PE 2.8.4.
+
+*[CVE-2013-4491 XSS vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-4491)* 
+
+Assed Risk Level: medium. An XXS vulnerability in the translation helper allows remote attackers to add web script or HTML that triggers generation of a fallback string in the i18n gem. This has been fixed in PE 2.8.4.
+
+*[CVE-2013-4363 Algorithmic Complexity Vulnerability in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4363)*
+
+Assessed Risk Level: low. RubyGems validates versions with a regular expression that is vulnerable to attackers causing denial of service through CPU consumption. This is resolved in PE 2.8.4. 
+**Note:** This vulnerability was due to an incomplete fix for CVE-2013-4287.
+
+*[CVE-2013-4164 Heap overflow in floating point parsing in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4164)*
+
+Assessed Risk Level: Medium. Converting strings of unknown origin to floating point values can cause heap overflow and allow attackers to create denial of service attacks. This has been fixed in PE 2.8.4.
+
+*[CVE-2013-4969 Unsafe use of temp files in `file_type`](http://puppetlabs.com/security/cve/cve-2013-4969)*
+
+Assessed Risk Level: medium. Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file, creating a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something that it did not intend to. This has been fixed in PE 2.8.4.
+### PE 2.8.3 (8/15/2013)
 
 #### Security Fixes
 
@@ -35,7 +58,7 @@ A vulnerability in Ruby's SSL client could allow an attacker to spoof SSL server
 The Puppet Module Tool (PMT) incorrectly transferred a module's original permissions.
 
 
-### Puppet 2.8.2 (6/18/2013)
+### PE 2.8.2 (6/18/2013)
 
 #### Security Fix
 

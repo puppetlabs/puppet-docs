@@ -4,6 +4,9 @@ title: "PE 3.1 » Overview » What's New"
 subtitle: "New Features in PE 3.1"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
+### Version 3.1.1
+
+PE 3.1.1 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes)):
 
 ### Version 3.1.0
 

@@ -155,7 +155,7 @@ Each node detail page has three tables near the top, which display the current *
 * If the source of an item is the node's own name, it was assigned **directly to that node.** You can change it by editing the node.
 * If the source of an item is the name of a group, the item was assigned to that group and the node inherited it. The group name is a link to the group detail page; if you need to change the item, you can navigate to the group's page.
 
-In PE 3.1, class parameters are not shown on the node detail page; to see them, you must go to the node edit page or the group edit page, if the class is inherited from a group.
+In PE 3.1.1, class parameters are not shown on the node detail page; to see them, you must go to the node edit page or the group edit page, if the class is inherited from a group.
 
 ### Node Edit Pages
 
