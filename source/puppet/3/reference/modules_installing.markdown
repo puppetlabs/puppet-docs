@@ -97,15 +97,10 @@ After setting the repository, follow the instructions above for installing from 
 
 ### Installing From a Release Tarball
 
-At this time, the module subcommand cannot properly install from local tarball files. [Follow issue #13542](http://projects.puppetlabs.com/issues/13542) for more details about the progress of this feature.
+To install a module from a release tarball, specify the path to the tarball instead of the module name. Make sure to use the `--ignore-dependencies` if you are installing modules without a connection to the Puppet Forge or are not yet published to the Forge. This flag will tell the puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies. 
 
-{% comment %} Uncomment this when we finally fix the bug.
-To install a module from a release tarball, specify the path to the tarball instead of the module name:
+    # puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
 
-    # puppet module install ~/pmtacceptance-apache-0.0.1.tar.gz
-
-This is useful when installing modules downloaded directly from the developer's site, or local modules which haven't yet been published to the forge.
-{% endcomment %}
 
 Finding Modules
 -----
