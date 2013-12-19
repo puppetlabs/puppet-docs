@@ -97,7 +97,9 @@ After setting the repository, follow the instructions above for installing from 
 
 ### Installing From a Release Tarball
 
-To install a module from a release tarball, specify the path to the tarball instead of the module name. Make sure to use the `--ignore-dependencies` if you are installing modules without a connection to the Puppet Forge or are not yet published to the Forge. This flag will tell the puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies. 
+To install a module from a release tarball, specify the path to the tarball instead of the module name.
+
+Make sure to use the `--ignore-dependencies` flag if you cannot currently reach the Puppet Forge or are installing modules that have not yet been published to the Forge. This flag will tell the puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies.
 
     # puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
 
