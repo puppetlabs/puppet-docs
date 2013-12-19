@@ -78,13 +78,7 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 Puppet 3.4.0
 -----
 
-> **Release Candidate:** Puppet 3.4.0 is not yet released. It entered RC 1 on December 3, 2013, and RC 2 on December 10.
->
-> RC 2 fixed some new regressions and problems with new features:
->
-> * [Issue 23369](https://projects.puppetlabs.com/issues/23369): An existing but empty `csr_attributes.yaml` file could cause puppet agent to fail with `Error: Could not request certificate: undefined method 'delete' for false:FalseClass` when attempting to generate a keypair. <!-- [https://jira.puppetlabs.com/browse/PP-913] -->
-> * [Issue 23349](http://projects.puppetlabs.com/issues/23349): There was a regression when referencing `$confdir` from other settings in puppet.conf. <!-- https://tickets.puppetlabs.com/browse/PUP-932 -->
-> * [Issue 23366](https://projects.puppetlabs.com/issues/23366): On Windows, there was a load-order bug causing run failures. <!-- https://tickets.puppetlabs.com/browse/PUP-943 -->
+Released December 19, 2013. (RC1: Dec. 3. RC2: Dec. 10.)
 
 3.4.0 is a backward-compatible feature and fix release in the Puppet 3 series. The main improvements of this release are:
 
@@ -92,6 +86,8 @@ Puppet 3.4.0
 * New certificate autosigning behavior to help quickly and securely add new nodes in elastic environments
 * Windows improvements, especially for `file` resources
 * Trusted node data in the compiler
+
+It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/browse/PUP-1015), for users who use Foreman's provisioning tools. If you use Foreman for provisioning, you should wait and upgrade to 3.4.1.
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
