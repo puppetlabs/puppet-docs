@@ -165,7 +165,7 @@ If these promises change, we need a notification in pre-docs. Docs team will:
 
 ### Step 3: Put Files in Place
 
-First, set file defaults: all of these files should be owned by root and only writable by root (or the Administrators user, on Windows). The `pe_mcollective` module has helpful variables for setting these:
+First, set file defaults: all of these files should be owned by root and only writable by root (or the Administrators user on Windows). The `pe_mcollective` module has helpful variables for setting these:
 
 {% highlight ruby %}
     File {
@@ -261,7 +261,7 @@ Follow [the instructions in the MCollective documentation][mco_deploy_verify] to
 Other Kinds of Plugins
 -----
 
-In addition to installing MCollective agent plugins, you may occasionally need to install other kinds of plugin, such as data plugins. This process is effectively identical to installing agent plugins, although the concerns about restricting distribution of certain plugins to special nodes are generally not relevant.
+In addition to installing MCollective agent plugins, you may occasionally need to install other kinds of plugins, such as data plugins. This process is effectively identical to installing agent plugins, although the concerns about restricting distribution of certain plugins to special nodes are generally not relevant.
 
 Example
 -----
