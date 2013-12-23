@@ -139,7 +139,7 @@ To invoke an action, you must be viewing an **action list.**
 2. Enter any arguments you wish to use.
 3. Press the "Run" button; Puppet Enterprise will show that the action is running, then display any results from the action.
 
-If several nodes have similar results, they'll be collapsed to save space; you can click any result group to see which nodes had that result.
+If several nodes have similar results, they'll be collapsed to save space; you can click any result group to see which nodes have that result.
 
 Invoking an action with an argument:
 
