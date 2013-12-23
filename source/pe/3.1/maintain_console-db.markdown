@@ -54,7 +54,7 @@ For example, to delete reports more than one month old:
 
 Although this task **should be run regularly as a cron job,** the actual frequency at which you set it to run will depend on your site's policies.
 
-If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `mon`, `yr`, `day`, `min`, `wk`, and `hr`.
+If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `yr`, `mon`, `wk`, `day`, `hr`, and `min`.
 
 
 Database backups
