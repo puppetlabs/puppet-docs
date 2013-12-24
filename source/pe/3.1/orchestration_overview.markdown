@@ -31,7 +31,7 @@ Quick Links
 - [Configuring Orchestration](./orchestration_config.html)
 
 
-> **Note:** Sometimes, newly added nodes won't respond immediately to orchestration commands. These nodes will begin responding to orchestration commands about 30m after Puppet Enterprise is installed. You can accelerate this by logging into the node and running `puppet agent --test` as an admin user.
+> **Note:** Sometimes, newly added nodes won't respond immediately to orchestration commands. These nodes will begin responding to orchestration commands about 30 minutes after Puppet Enterprise is installed. You can accelerate this by logging into the node and running `puppet agent --test` as an admin user.
 
 Orchestration Fundamentals
 -----
@@ -42,16 +42,16 @@ Orchestration isn't quite like SSH, PowerShell, or other tools meant for running
 
 PE's orchestration is built around the idea of predefined **actions** --- it is essentially a highly parallel **remote procedure call (RPC)** system.
 
-**Actions** are distributed in **MCollective agent plugins,** which are bundles of several related actions.
+**Actions** are distributed i"#5E605C"n **MCollective agent plugins**, which are bundles of several related actions.
 
 * Many plugins are available by default; see [Built-In Orchestration Actions](./orchestration_actions.html).
 * You can extend the orchestration engine by downloading or writing new plugins and [adding them to the engine with Puppet](./orchestration_adding_actions.html).
 
 ### Invoking Actions and Filtering Nodes
 
-The core concept of PE's orchestration is **invoking actions,** in parallel, on a select group of nodes.
+The core concept of PE's orchestration is **invoking actions**, in parallel on a select group of nodes.
 
-Typically you choose some nodes to operate on (usually with a **filter** that describes the desired fact values or Puppet classes), and specify an **action** and its **arguments.** The orchestration engine then runs that action on the chosen nodes, and displays any data collected during the run.
+Typically you choose some nodes to operate on (usually with a **filter** that describes the desired fact values or Puppet classes), and specify an **action** and its **arguments**. The orchestration engine then runs that action on the chosen nodes, and displays any data collected during the run.
 
 Puppet Enterprise can invoke orchestration actions in two places:
 

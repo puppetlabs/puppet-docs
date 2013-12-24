@@ -24,7 +24,7 @@ canonical: "/pe/latest/orchestration_puppet.html"
 [live_puppet_status]: ./images/console/live_puppet_status.png
 
 
-Puppet Enterprise (PE)'s configuration management features rely on the **puppet agent service,** which runs on every node and fetches configurations from the puppet master server. [(See the Puppet section of this manual for more details.)](./puppet_tools.html)
+Puppet Enterprise (PE)'s configuration management features rely on the **puppet agent service**, which runs on every node and fetches configurations from the puppet master server. [(See the Puppet section of this manual for more details.)](./puppet_tools.html)
 
 By default, puppet agent idles in the background and performs a run every 30 minutes, but the orchestration engine can give complete control over this behavior. See the table of contents above for an overview of the available features.
 
@@ -64,7 +64,7 @@ Puppet agent can be in many possible states, which are represented by three attr
 * **Applying,** **idling,** or **neither** --- whether puppet agent is in the process of applying a configuration. Idling is only applicable if the service is running, but Puppet may be applying an on-demand configuration even if the service is stopped.
 * **Enabled** or **disabled** --- whether there's a lockfile preventing puppet agent from performing _any_ configuration runs. If puppet agent is disabled, the service can idle in the background but no configurations can be applied --- even on-demand runs will be rejected until the agent is re-enabled.
 
-The orchestration engine can trigger on-demand Puppet runs unless the agent is **applying** or **disabled.** Scheduled runs will only take place if the agent is both **running** and **enabled.**
+The orchestration engine can trigger on-demand Puppet runs unless the agent is **applying** or **disabled**. Scheduled runs will only take place if the agent is both **running** and **enabled**.
 
 [↑ Back to top](#content)
 
@@ -73,7 +73,7 @@ The orchestration engine can trigger on-demand Puppet runs unless the agent is *
 Run Puppet on Demand
 -----
 
-Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If you need to run Puppet on many nodes (more than about 10), you should see [the "many nodes" section below](#run-puppet-on-many-nodes-in-a-controlled-series).
+Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If you need to run Puppet on many nodes (more than 10), you should see [the "many nodes" section below](#run-puppet-on-many-nodes-in-a-controlled-series).
 
 [options]: #behavior-differences-running-vs-stopped
 
@@ -81,8 +81,8 @@ Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If y
 >
 > You can trigger on-demand Puppet runs whether the `pe-puppet` service is running or stopped, but on \*nix nodes these cases will behave slightly differently:
 >
-> * When the service is **running,** all of the selected nodes will begin a run _immediately,_ and you _cannot_ specify any special options like `noop` or `tags`; they will be ignored. This behavior is usually fine but sometimes undesirable.
-> * When the service is **stopped,** the selected nodes will randomly stagger the start of their runs ("splay") over a default interval of _two minutes._ If you wish, you _can_ specify special options, including a longer interval ("splaylimit"). You can also set the `force` option to `true` if you want the selected nodes to start immediately. This behavior is more flexible and resilient.
+> * When the service is **running**, all of the selected nodes will begin a run _immediately_ and you _cannot_ specify any special options like `noop` or `tags`; they will be ignored. This behavior is usually fine but sometimes undesirable.
+> * When the service is **stopped**, the selected nodes will randomly stagger the start of their runs ("splay") over a default interval of _two minutes_. If you wish, you _can_ specify special options, including a longer interval ("splaylimit"). You can also set the `force` option to `true` if you want the selected nodes to start immediately. This behavior is more flexible and resilient.
 >
 > This difference only affects \*nix nodes; Windows nodes always behave like a **stopped** \*nix node. The difference will be addressed in a future version of PE; for now, you may wish to [stop the `pe-puppet` service][inpage_stop] before trying to do `noop` or `tags` runs.
 
@@ -132,7 +132,7 @@ If the agent service is stopped (on affected \*nix nodes; [see above][options]),
 
 The most useful options are:
 
-* `--noop`, which causes puppet agent to only _simulate_ changes, and submit a report describing what _would_ have changed in a real run. Useful for safely testing new manifests. If you have configured puppet agent to _always_ run in no-op mode (via `/etc/puppetlabs/puppet/puppet.conf`), you can use `--no-noop` to do an enforcing Puppet run.
+* `--noop`, which causes puppet agent to only _simulate_ changes, and submit a report describing what _would_ have changed in a real run. Useful for safely testing new manifests. If you have configured puppet agent to _always_ run in no-op mode (via `/etc/puppetlabs/puppet/puppet.conf`), you can use `--no-noop`, to do an enforcing Puppet run.
 * `--environment ENVIRONMENT`, which causes puppet agent to run in the specified [environment][]. Also useful for testing new manifests on a subset of nodes.
 * `--tags TAGS`, which takes a comma-separated list of [tags][] and applies only resources with those tags. Tags can be class names, and this is a fast way to test changes to a single class without performing an entire Puppet run.
 * `--server SERVER`, which causes puppet agent to contact a different puppet master than normal. Also useful for testing new manifests (or a new version of PE) on a subset of nodes.
@@ -146,13 +146,13 @@ Run Puppet on Many Nodes in a Controlled Series
 
 > **Note:** In PE 3.0, this feature is only available on the command line; you cannot do a controlled run series in the console.
 
-If you want to trigger a run on a large number of nodes --- more than about 10 --- the `runonce` action isn't always the best tool. You can splay or [batch][] the runs, but this requires you to guess how long each run is going to take, and a wrong guess can either waste time or temporarily overwhelm the puppet master server.
+If you want to trigger a run on a large number of nodes --- more than 10 --- the `runonce` action isn't always the best tool. You can splay or [batch][] the runs, but this requires you to guess how long each run is going to take, and a wrong guess can either waste time or temporarily overwhelm the puppet master server.
 
 Instead, use the special `runall` action of the `mco puppet` subcommand.
 
     $ mco puppet runall 5 -F operatingsystem=CentOS -F operatingsystemrelease=6.4
 
-This action requires an argument, which must be the number of nodes allowed to run at once. It invokes a run on that many nodes, then only starts the next node when one has finished. This prevents your puppet master from being overwhelmed by the herd, and will delay only as long as is necessary. The ideal concurrency will vary from site to site, depending on how powerful your puppet master server is and how complex your configurations are.
+This action requires an argument, which must be the number of nodes allowed to run at once. It invokes a run on that many nodes, then only starts the next node when one has finished. This prevents your puppet master from being overwhelmed by the herd and will delay only as long as is necessary. The ideal concurrency will vary from site to site, depending on how powerful your puppet master server is and how complex your configurations are.
 
 The `runall` action can take extra options like `--noop` [as described for the `runonce` action](#extra-options); however, note that [restrictions still apply for \*nix nodes where the pe-puppet service is running][options].
 
@@ -226,7 +226,7 @@ Note that on disabled nodes, the reason for disabling is shown in the `disable_m
 
 #### Aggregate Status
 
-While [logged in to the puppet master server as `peadmin`][peadmin], run `mco puppet status` with or without a filter. This returns an abbreviated status for each node, and a summarized breakdown of how many nodes are in which conditions.
+While [logged in to the puppet master server as `peadmin`][peadmin], run `mco puppet status` with or without a filter. This returns an abbreviated status for each node and a summarized breakdown of how many nodes are in which conditions.
 
     $ mco puppet status
 
