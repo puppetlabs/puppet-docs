@@ -86,7 +86,7 @@ Released December 26, 2013.
 
 #### [CVE-2013-4969 (Unsafe use of temp files in file type)](http://puppetlabs.com/security/cve/cve-2013-4969)
 
-Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file. This create a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something it did not intend to.
+Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file. This created a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something it did not intend to.
 
 Puppet 3.4.0
 -----
