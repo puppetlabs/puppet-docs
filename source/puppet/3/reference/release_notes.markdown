@@ -75,6 +75,19 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
+Puppet 3.4.1
+-----
+
+Released December 26, 2013.
+
+3.4.1 is a security fix release of the Puppet 3.4 series. It has no other bug fixes or new features.
+
+### Security Fixes
+
+#### [CVE-2013-4969 (Unsafe use of temp files in file type)](http://puppetlabs.com/security/cve/cve-2013-4969)
+
+Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file. This create a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something it did not intend to.
+
 Puppet 3.4.0
 -----
 
