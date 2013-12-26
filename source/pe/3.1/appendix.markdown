@@ -32,7 +32,7 @@ Assessed Risk Level: medium. An XSS vulnerability in the number_to_currrency hel
 
 *[CVE-2013-4491 XSS vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-4491)* 
 
-Assed Risk Level: medium. An XXS vulnerability in the translation helper could allow remote attackers to add web script or HTML that triggers generation of a fallback string in the i18n gem. This has been fixed in PE 3.1.1.
+Assessed Risk Level: medium. An XXS vulnerability in the translation helper could allow remote attackers to add web script or HTML that triggers generation of a fallback string in the i18n gem. This has been fixed in PE 3.1.1.
 
 *[CVE-2013-6417 Improper consideration of parameter handling in Rack and Rails requests](http://puppetlabs.com/security/cve/cve-2013-6417)*
 
@@ -50,7 +50,7 @@ Assessed Risk Level: medium. Converting strings of unknown origin to floating po
 
 *[CVE-2013-4969 Unsafe use of temp files in file type](http://puppetlabs.com/security/cve/cve-2013-4969)*
 
-Assessed Risk Level: medium. Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file. This create a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something it did not intend to. This has been fixed in PE 3.1.1.
+Assessed Risk Level: medium. Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file. This creates a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something it did not intend to. This has been fixed in PE 3.1.1.
 
 
 ### PE 3.1.0 (10/15/2013)
