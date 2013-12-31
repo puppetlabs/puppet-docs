@@ -83,6 +83,16 @@ You will use the same procedure to change the console_auth database user's passw
 
 The same procedure is also used for the PuppetDB user's password, except you'll edit `/etc/puppetlabs/puppetdb/conf.d/database.ini` and will restart the `pe-puppetdb` service.
 
+Changing PuppetDB’s Parameters
+------------------------------
+
+PuppetDB parameters are set in the jetty.ini file, which is contained in the pe-puppetdb module. Jetty.ini is managed by PE, so if you change any PuppetDB parameters directly in the file, those changes will be overwritten on the next puppet run. 
+
+Instead, you should use the console to make changes to the parameters of the `pe-puppetdb` class. For example, the [PuppetDB performance dashboard](/puppetdb/latest/maintain_and_tune.html) requires the `listen_address` parameter to be set to “0.0.0.0”. So, in the console, you would edit the `pe_puppetdb` class so that the value of the `listen_address` parameter is set to “0.0.0.0”. 
+
+> **Warning**: This procedure will enable insecure access to the PuppetDB instance on your server.
+
+If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](pe/3.1/console_classes_groups.html#editing-class-parameters-on-nodes).
 
 
 * * * 
