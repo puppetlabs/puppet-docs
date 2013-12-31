@@ -181,6 +181,12 @@ This will set the order of ciphers to:
     
 Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 may leave you vulnerable to other types of attacks.
 
+### Vacuum Task not Updated for PostgreSQL
+The vacuum database task was not updated for PostgreSQL for PE 3.0; this is fixed in PE 3.0.1.
+
+### Installation of Database Support Role Fails During PE Install if PostgreSQL is Already Installed
+Installation of the Database Support role can fail if your system already has PostgreSQL client tools installed. This is fixed in PE 3.0.1 and later. For PE 3.0 users, the workaround is to uninstall PE, remove the previously installed PostgreSQL packages and configs, and then reinstall PE.
+
 ### PE Install Fails if Port 8080 or 8081 is in Use
 PuppetDB requires access to port 8080 and 8081. The installer will check to make sure these ports are available and if they are not, the install will fail with an error message. To fix this, either disable the service currently using 8080/8081 or install the database role on a different node that has port 8080 available. A slightly more complicated workaround is to temporaily disable the service running on 8080/8081, complete the PE installation and then add a class parameter for puppetDB that makes it use a different, available port. Note that you will still need to temporarily disable the service using the ports even if you implement this class parameter workaround.
 
