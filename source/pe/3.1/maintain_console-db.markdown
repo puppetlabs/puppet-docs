@@ -92,7 +92,7 @@ Instead, you should use the console to make changes to the parameters of the `pe
 
 > **Warning**: This procedure will enable insecure access to the PuppetDB instance on your server.
 
-If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](pe/3.1/console_classes_groups.html#editing-class-parameters-on-nodes).
+If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](/pe/latest/console_classes_groups.html#editing-class-parameters-on-nodes).
 
 
 * * * 
