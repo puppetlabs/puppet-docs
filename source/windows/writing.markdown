@@ -238,7 +238,7 @@ Puppet can install and remove two types of packages on Windows:
 
 Both of these use the default `windows` package provider. (There is an older `msi` provider included, but it is deprecated as of Puppet 3.0.)
 
-When managing packages on Windows, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
+When managing packages using the `windows` package provider, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
 
 #### Examples
 
