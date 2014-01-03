@@ -16,7 +16,7 @@ restrict -6 ::1
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 
 # Managed by puppet class { "ntp": servers => [ ... ] }
-<% servers_real.each do |server| -%>
+<% @_servers.each do |server| -%>
 server <%= server %>
 <% end -%>
 
