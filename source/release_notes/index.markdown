@@ -11,11 +11,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 ### Current Release
 - [Puppet 3][3.x]
 
-### Maintenance and Security Branches
-- [Puppet 2.7][2.7]
-- [Puppet 2.6][2.6] (security fixes only)
+<!-- ### Maintenance and Security Branches -->
 
 ### Unsupported Releases
+- [Puppet 2.7][]
+- [Puppet 2.6][]
 - [Puppet 0.25][]
 - [Puppet 0.24][]
 - [Puppet 0.23][]
