@@ -128,7 +128,7 @@ Report Formats
 
 Puppet creates reports as Puppet::Transaction::Report objects, which have changed format several times over the course of Puppet's history. We have report format references for the following Puppet versions:
 
-* [Puppet 3.x](/puppet/3/reference/format_report.html) (report format 3)
+* [Puppet 3.x](/puppet/3/reference/format_report.html) (report formats 3 and 4)
 * [Puppet 2.7.x](/puppet/2.7/reference/format_report.html) (report formats 3 and 2)
 * [Puppet 2.6.x](/puppet/2.6/format_report.html) (report formats 2 and 1)
 * [Puppet 0.25.5](/puppet/0.25/format_report.html) (report format 0)
