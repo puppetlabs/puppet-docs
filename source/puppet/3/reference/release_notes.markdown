@@ -75,6 +75,35 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
+Puppet 3.4.2
+-----
+
+Released January 6, 2014.
+
+3.4.2 is a bug fix release in the Puppet 3.4 series. 
+
+### Bug Fixes
+
+[PUP-724: Could not autoload puppet /util /instrumentation /listeners /log"](https://tickets.puppetlabs.com/browse/PUP-724)
+
+This bug could cause a failure while autoloading `puppet/util/instrumentation/listeners/log.rb`. It was related to the way that puppet compared Ruby Time instances, which would sometimes differ when they shouldn't. 
+
+[PUP-1015: Could not intialize global default settings...](https://tickets.puppetlabs.com/browse/PUP-1015)
+
+This regression was introduced in Puppet 3.4.0 and prevented Foreman from functioning properly.
+
+[PUP-1099: Incorrect permissions in RPMs](https://tickets.puppetlabs.com/browse/PUP-1099)
+
+This caused some example file permissions to be set incorrectly on RHEL6.
+
+[PUP-1144: No longer allows variables with leading underscores](https://tickets.puppetlabs.com/browse/PUP-1144)
+
+This caused the the experimental future parser to reject variable names that started with `$_`. It was introduced in Puppet 3.4.0.
+
+[PUP-1255: Default file mode is now 0600 instead of 0644](https://tickets.puppetlabs.com/browse/PUP-1255)
+
+The default mode for file resources was changed from 0644 to 0600 in Puppet 3.4.1. This release restores the previous behavior. 
+
 Puppet 3.4.1
 -----
 
@@ -100,7 +129,7 @@ Released December 19, 2013. (RC1: Dec. 3. RC2: Dec. 10.)
 * Windows improvements, especially for `file` resources
 * Trusted node data in the compiler
 
-It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/browse/PUP-1015), for users who use Foreman's provisioning tools. If you use Foreman for provisioning, you should wait and upgrade to 3.4.1.
+It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/browse/PUP-1015), for users who use Foreman's provisioning tools. If you use Foreman for provisioning, you should wait and upgrade to 3.4.2.
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
