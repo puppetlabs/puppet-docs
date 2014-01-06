@@ -80,13 +80,13 @@ Puppet 3.4.2
 
 Released January 6, 2014.
 
-3.4.2 is a bug fix release in the Puppet 3.4 series. 
+3.4.2 is a bug fix release in the Puppet 3.4 series.
 
 ### Bug Fixes
 
 [PUP-724: Could not autoload puppet /util /instrumentation /listeners /log"](https://tickets.puppetlabs.com/browse/PUP-724)
 
-This bug could cause a failure while autoloading `puppet/util/instrumentation/listeners/log.rb`. It was related to the way that puppet compared Ruby Time instances, which would sometimes differ when they shouldn't. 
+This bug could cause a failure while autoloading `puppet/util/instrumentation/listeners/log.rb`. It was related to the way that puppet compared Ruby Time instances, which would sometimes differ when they shouldn't.
 
 [PUP-1015: Could not intialize global default settings...](https://tickets.puppetlabs.com/browse/PUP-1015)
 
@@ -102,7 +102,7 @@ This caused the the experimental future parser to reject variable names that sta
 
 [PUP-1255: Default file mode is now 0600 instead of 0644](https://tickets.puppetlabs.com/browse/PUP-1255)
 
-The default mode for file resources was changed from 0644 to 0600 in Puppet 3.4.1. This release restores the previous behavior. 
+The default mode for file resources was changed from 0644 to 0600 in Puppet 3.4.1. This release restores the previous behavior.
 
 Puppet 3.4.1
 -----
@@ -194,7 +194,7 @@ Note that any existing problems with the puppet doc command still apply --- it s
 
 ### New `$trusted` Hash With Trusted Node Data
 
-A node's certificate name is available to the Puppet compiler in the special `$clientcert` variable. However, this variable was self-reported by the agent and was never verified by the puppet master, which meant it could contain more or less anything and couldn't be trusted when deciding whether to insert sensitive information into the catalog.
+Since at least Puppet 2.6, the Puppet compiler receives a special `$clientcert` variable that contains the node's certificate name. However, this variable is self-reported by agent nodes and is not verified by the puppet master. This means `$clientcert` might contain more or less anything, and can't be trusted when deciding whether to insert sensitive information into the catalog.
 
 As of 3.4, you can configure the puppet master to verify each agent node's certname and make it available to the compiler as `$trusted['certname']`. To do this, you must set the `trusted_node_data` setting to `true` in the master's puppet.conf. [See the language documentation about special variables for more details.](/puppet/3/reference/lang_variables.html#trusted-node-data)
 
@@ -202,7 +202,7 @@ As of 3.4, you can configure the puppet master to verify each agent node's certn
 
 ### File Resources Can Opt Out of Source Permissions
 
-Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mode` permissions explicitly specified and were using a `source` file, they would set the permissions on the target system to match those of the `source`. This could cause weirdness on Windows systems being managed by a Linux puppet master, and wasn't always desired in all-\*nix environments either.
+Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mode` permissions explicitly specified and were using a `source` file, they would set the permissions on the target system to match those of the `source`. This could cause files to be insecure or too secure on Windows systems being managed by a Linux puppet master. (And even in all-\*nix environments, it often isn't the desired behavior.)
 
 Now, you can opt out of source permissions using [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions). This can be done per-resource, or globally with a [resource default](/puppet/3/reference/lang_defaults.html) in site.pp.
 
@@ -231,7 +231,7 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### Exec Type Improvements
 
-- Puppet will now accurately capture  exit codes from exec resources on Windows. (Previously, exit codes higher than 255 could get truncated.) ([Issue 23124](https://projects.puppetlabs.com/issues/23124)) <!-- [https://jira.puppetlabs.com/browse/PP-434] -->
+- Puppet will now accurately capture  exit codes from exec resources on Windows. (Previously, exit codes higher than 255 were mangled: Puppet would report modulo 255 of the actual exit code, such that exit code 257 would appear as 2.) ([Issue 23124](https://projects.puppetlabs.com/issues/23124)) <!-- [https://jira.puppetlabs.com/browse/PP-434] -->
 
 
 #### Packaging and Installer Improvements
@@ -305,7 +305,7 @@ Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-fa
 - Allow profiling on puppet apply. Previously, the profiling features added for Puppet 3.2 were only available to puppet agent; now, puppet apply can log profiling information when run with `--profile` or `profile = true` in puppet.conf. ([Issue 22581](https://projects.puppetlabs.com/issues/22581)) <!-- [https://jira.puppetlabs.com/browse/PP-341] -->
 - Mount resources now autorequire parent mounts. ([Issue 22665](https://projects.puppetlabs.com/issues/22665)) <!-- [https://jira.puppetlabs.com/browse/PP-450] -->
 - Class main now appears in containment paths in reports. Previously, it was represented by an empty string, which could be confusing. This is mostly useful for PuppetDB. ([Issue 23131](http://projects.puppetlabs.com/issues/23131)) <!-- [https://jira.puppetlabs.com/browse/PP-278] -->
-- `Puppet::Util.execute` now offers a way to get the exit status of the command --- the object it returns, which was previously a String containing the command's output, is now a subclass of String with an `#exitstatus` method that returns the exit status. This can be useful for type and provider developers. ([Issue 2538](http://projects.puppetlabs.com/issues/2538))
+- `Puppet::Util.execute` now offers a way to get the exit status of the command --- the object it returns, which was previously a `String` containing the command's output, is now a subclass of `String` with an `#exitstatus` method that returns the exit status. This can be useful for type and provider developers. ([Issue 2538](http://projects.puppetlabs.com/issues/2538))
 
 ### Bug Fixes
 
