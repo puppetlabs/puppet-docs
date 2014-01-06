@@ -197,7 +197,8 @@ that fact and move on.
 ## Viewing Fact Values
 
 [inventory]: /guides/inventory_service.html
-[puppetdb]:
+[puppetdb]: /puppetdb/latest
+
 If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info.
 
 External Facts
