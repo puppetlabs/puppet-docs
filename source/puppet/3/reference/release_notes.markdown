@@ -75,6 +75,35 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
+Puppet 3.4.2
+-----
+
+Released January 6, 2014.
+
+3.4.2 is a bug fix release in the Puppet 3.4 series.
+
+### Bug Fixes
+
+[PUP-724: Could not autoload puppet /util /instrumentation /listeners /log"](https://tickets.puppetlabs.com/browse/PUP-724)
+
+This bug could cause a failure while autoloading `puppet/util/instrumentation/listeners/log.rb`. It was related to the way that puppet compared Ruby Time instances, which would sometimes differ when they shouldn't.
+
+[PUP-1015: Could not intialize global default settings...](https://tickets.puppetlabs.com/browse/PUP-1015)
+
+This regression was introduced in Puppet 3.4.0 and prevented Foreman from functioning properly.
+
+[PUP-1099: Incorrect permissions in RPMs](https://tickets.puppetlabs.com/browse/PUP-1099)
+
+This caused some example file permissions to be set incorrectly on RHEL6.
+
+[PUP-1144: No longer allows variables with leading underscores](https://tickets.puppetlabs.com/browse/PUP-1144)
+
+This caused the the experimental future parser to reject variable names that started with `$_`. It was introduced in Puppet 3.4.0.
+
+[PUP-1255: Default file mode is now 0600 instead of 0644](https://tickets.puppetlabs.com/browse/PUP-1255)
+
+The default mode for file resources was changed from 0644 to 0600 in Puppet 3.4.1. This release restores the previous behavior.
+
 Puppet 3.4.1
 -----
 
@@ -100,7 +129,7 @@ Released December 19, 2013. (RC1: Dec. 3. RC2: Dec. 10.)
 * Windows improvements, especially for `file` resources
 * Trusted node data in the compiler
 
-It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/browse/PUP-1015), for users who use Foreman's provisioning tools. If you use Foreman for provisioning, you should wait and upgrade to 3.4.1.
+It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/browse/PUP-1015), for users who use Foreman's provisioning tools. If you use Foreman for provisioning, you should wait and upgrade to 3.4.2.
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
@@ -109,7 +138,7 @@ Puppet now includes [a `contain` function](/references/3.latest/function.html#co
 * [The containment page of the language reference](/puppet/3/reference/lang_containment.html), for background information about class containment issues and an explanation of the anchor pattern.
 * [The classes page of the language reference](/puppet/3/reference/lang_classes.html), for complete information on declaring classes with `contain`, `include`, and more.
 
-([Issue 8040](http://projects.puppetlabs.com/issues/8040)) <!-- [https://jira.puppetlabs.com/browse/PP-99] -->
+([Issue 8040](http://projects.puppetlabs.com/issues/8040),  [PUP-99](https://tickets.puppetlabs.com/browse/PUP-99))
 
 ### Policy-Based Certificate Autosigning
 
@@ -124,8 +153,8 @@ For details, see:
 * [The "Policy-Based Autosigning" section of the autosigning reference page][ssl_policy_autosign]
 * [Documentation for the `autosign` setting](/references/3.latest/configuration.html#autosign)
 
-([Issue 7244](https://projects.puppetlabs.com/issues/7244))
-<!-- [https://jira.puppetlabs.com/browse/PP-664, https://jira.puppetlabs.com/browse/PP-453] -->
+([Issue 7244](https://projects.puppetlabs.com/issues/7244), [PUP-664](https://tickets.puppetlabs.com/browse/PUP-664), [PUP-453](https://tickets.puppetlabs.com/browse/PUP-453))
+
 
 ### Custom Data in CSRs and Certificates
 
@@ -140,10 +169,10 @@ For details on custom CSR data, see:
 * [The "CSR Attributes and Certificate Extensions" reference page][ssl_attributes]
 * [Documentation for the `csr_attributes` setting](/references/3.latest/configuration.html#csrattributes)
 
-([Issue 7243](http://projects.puppetlabs.com/issues/7243))
-<!-- [https://jira.puppetlabs.com/browse/PP-669] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-670] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-664] -->
+([Issue 7243](http://projects.puppetlabs.com/issues/7243),
+[PUP-669](https://tickets.puppetlabs.com/browse/PUP-669),
+[PUP-670](https://tickets.puppetlabs.com/browse/PUP-670),
+[PUP-664](https://tickets.puppetlabs.com/browse/PUP-664))
 
 ### Priority Level Can Be Set for Puppet Processes
 
@@ -151,7 +180,7 @@ Puppet's processes, including puppet agent and puppet apply, can now lower or ra
 
 This is especially useful for making sure resource-intensive Puppet runs don't interfere with a machine's real duties.
 
-([Issue 21241](https://projects.puppetlabs.com/issues/21241)) <!-- [https://jira.puppetlabs.com/browse/PP-39] -->
+([Issue 21241](https://projects.puppetlabs.com/issues/21241), [PUP-39](https://tickets.puppetlabs.com/browse/PUP-39))
 
 ### Manifest Documentation (RDoc/Puppetdoc) Works on Ruby 1.9+
 
@@ -161,19 +190,19 @@ As of this release, building documentation sites with puppet doc works under Rub
 
 Note that any existing problems with the puppet doc command still apply --- it sometimes skips certain classes with no clear reason, and there are various formatting glitches. We are still investigating more reliable and convenient ways to display Puppet code documentation, and will probably be using [Geppetto](http://puppetlabs.github.io/geppetto/) as a foundation for future efforts.
 
-([Issue 22180](https://projects.puppetlabs.com/issues/22180)) <!-- [https://jira.puppetlabs.com/browse/PP-568] -->
+([Issue 22180](https://projects.puppetlabs.com/issues/22180), [PUP-568](https://tickets.puppetlabs.com/browse/PUP-568))
 
 ### New `$trusted` Hash With Trusted Node Data
 
-A node's certificate name is available to the Puppet compiler in the special `$clientcert` variable. However, this variable was self-reported by the agent and was never verified by the puppet master, which meant it could contain more or less anything and couldn't be trusted when deciding whether to insert sensitive information into the catalog.
+Since at least Puppet 2.6, the Puppet compiler receives a special `$clientcert` variable that contains the node's certificate name. However, this variable is self-reported by agent nodes and is not verified by the puppet master. This means `$clientcert` might contain more or less anything, and can't be trusted when deciding whether to insert sensitive information into the catalog.
 
 As of 3.4, you can configure the puppet master to verify each agent node's certname and make it available to the compiler as `$trusted['certname']`. To do this, you must set the `trusted_node_data` setting to `true` in the master's puppet.conf. [See the language documentation about special variables for more details.](/puppet/3/reference/lang_variables.html#trusted-node-data)
 
-([Issue 19514](http://projects.puppetlabs.com/issues/19514)) <!-- [https://jira.puppetlabs.com/browse/PP-122] -->
+([Issue 19514](http://projects.puppetlabs.com/issues/19514), [PUP-122](https://tickets.puppetlabs.com/browse/PUP-122))
 
 ### File Resources Can Opt Out of Source Permissions
 
-Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mode` permissions explicitly specified and were using a `source` file, they would set the permissions on the target system to match those of the `source`. This could cause weirdness on Windows systems being managed by a Linux puppet master, and wasn't always desired in all-\*nix environments either.
+Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mode` permissions explicitly specified and were using a `source` file, they would set the permissions on the target system to match those of the `source`. This could cause files to be insecure or too secure on Windows systems being managed by a Linux puppet master. (And even in all-\*nix environments, it often isn't the desired behavior.)
 
 Now, you can opt out of source permissions using [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions). This can be done per-resource, or globally with a [resource default](/puppet/3/reference/lang_defaults.html) in site.pp.
 
@@ -187,10 +216,10 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### File Type Improvements
 
-- Puppet now supports managing symlinks on Windows. ([Issue 19447](https://projects.puppetlabs.com/issues/19447)) See [the tips for using file resources on Windows](/windows/writing.html#filefile) for more information. <!-- [https://jira.puppetlabs.com/browse/PP-262] -->
-- A permissions mode is no longer required when specifying the file owner and group. ([Issue 11563](https://projects.puppetlabs.com/issues/11563)) <!-- [https://jira.puppetlabs.com/browse/PP-264] -->
-- You can now opt out of source file owner/group/mode permissions ([see above](#file-resources-can-opt-out-of-source-permissions)). ([Issue 5240](https://projects.puppetlabs.com/issues/5240)) <!-- [https://jira.puppetlabs.com/browse/PP-265] -->
-- Puppet will no longer create files it can't edit. ([Issue 15559](https://projects.puppetlabs.com/issues/15559)) <!-- [https://jira.puppetlabs.com/browse/PP-263] -->
+- Puppet now supports managing symlinks on Windows. ([Issue 19447](https://projects.puppetlabs.com/issues/19447), [PUP-262](https://tickets.puppetlabs.com/browse/PUP-262)) See [the tips for using file resources on Windows](/windows/writing.html#filefile) for more information.
+- A permissions mode is no longer required when specifying the file owner and group. ([Issue 11563](https://projects.puppetlabs.com/issues/11563), [PUP-264](https://tickets.puppetlabs.com/browse/PUP-264))
+- You can now opt out of source file owner/group/mode permissions ([see above](#file-resources-can-opt-out-of-source-permissions)). ([Issue 5240](https://projects.puppetlabs.com/issues/5240), [PUP-265](https://tickets.puppetlabs.com/browse/PUP-265))
+- Puppet will no longer create files it can't edit. ([Issue 15559](https://projects.puppetlabs.com/issues/15559), [PUP-263](https://tickets.puppetlabs.com/browse/PUP-263))
 
 #### Package Type Improvements
 
@@ -198,18 +227,18 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### Group Type Improvements
 
-- You can now add domain users to the local Administrators group. ([Issue 17031](https://projects.puppetlabs.com/issues/17031)) <!-- [https://jira.puppetlabs.com/browse/PP-255] -->
+- You can now add domain users to the local Administrators group. ([Issue 17031](https://projects.puppetlabs.com/issues/17031), [PUP-255](https://tickets.puppetlabs.com/browse/PUP-255))
 
 #### Exec Type Improvements
 
-- Puppet will now accurately capture  exit codes from exec resources on Windows. (Previously, exit codes higher than 255 could get truncated.) ([Issue 23124](https://projects.puppetlabs.com/issues/23124)) <!-- [https://jira.puppetlabs.com/browse/PP-434] -->
+- Puppet will now accurately capture  exit codes from exec resources on Windows. (Previously, exit codes higher than 255 were mangled: Puppet would report modulo 255 of the actual exit code, such that exit code 257 would appear as 2.) ([Issue 23124](https://projects.puppetlabs.com/issues/23124), [PUP-434](https://tickets.puppetlabs.com/browse/PUP-434))
 
 
 #### Packaging and Installer Improvements
 
-- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. See [the docs on automated installation on Windows](/windows/installing.html#automated-installation) for details. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268)) <!-- [https://jira.puppetlabs.com/browse/PP-386] --> <!-- [https://jira.puppetlabs.com/browse/PP-387] -->
-- The Windows installer now puts Puppet on the PATH, so a special command prompt is no longer necessary. ([Issue 22700](http://projects.puppetlabs.com/issues/22700)) <!-- [https://jira.puppetlabs.com/browse/PP-415] -->
-- Windows installer options can now override existing settings. ([Issue 20281](https://projects.puppetlabs.com/issues/20281)) <!-- [https://jira.puppetlabs.com/browse/PP-388] -->
+- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. See [the docs on automated installation on Windows](/windows/installing.html#automated-installation) for details. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
+- The Windows installer now puts Puppet on the PATH, so a special command prompt is no longer necessary. ([Issue 22700](http://projects.puppetlabs.com/issues/22700), [PUP-415](https://tickets.puppetlabs.com/browse/PUP-415))
+- Windows installer options can now override existing settings. ([Issue 20281](https://projects.puppetlabs.com/issues/20281), [PUP-388](https://tickets.puppetlabs.com/browse/PUP-388))
 
 ### New `puppet cert reinventory` Command
 
@@ -217,66 +246,66 @@ As part of the fix for issue [693](https://projects.puppetlabs.com/issues/693)/[
 
 However, rebuilding the inventory can still be helpful, generally when you have a large inventory file with a high percentage of old revoked certificates. When necessary, it can now be done manually by running `puppet cert reinventory` when your puppet master is stopped.
 
-([Issue 23074](http://projects.puppetlabs.com/issues/23074))
-<!-- [https://jira.puppetlabs.com/browse/PP-637] -->
+([Issue 23074](http://projects.puppetlabs.com/issues/23074), [PUP-637](https://tickets.puppetlabs.com/browse/PUP-637))
+
 
 
 ### RPM Package Provider Now Supports `install_options`
 
 Package resources using the `rpm` package provider can now specify command-line flags to pass to the RPM binary. This is generally useful for specifying a `--prefix`, or for overriding macros like `arch`.
 
-([Issue 22642](http://projects.puppetlabs.com/issues/22642)) <!-- [https://jira.puppetlabs.com/browse/PP-444] -->
+([Issue 22642](http://projects.puppetlabs.com/issues/22642), [PUP-444](https://tickets.puppetlabs.com/browse/PUP-444))
 
 
 ### HTTP API Documentation
 
 Puppet's HTTP API endpoints now have extensive documentation for the formatting of their requests and the objects they return. For version-specific endpoint documentation, see [the HTTP API section of the developer docs](/references/3.latest/developer/file.http_api_index.html).
 
-<!-- [https://jira.puppetlabs.com/browse/PP-124] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-125] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-126] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-127] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-128] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-131] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-133] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-134] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-135] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-136] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-137] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-138] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-139] -->
+([PUP-124](https://tickets.puppetlabs.com/browse/PUP-124),
+[PUP-125](https://tickets.puppetlabs.com/browse/PUP-125),
+[PUP-126](https://tickets.puppetlabs.com/browse/PUP-126),
+[PUP-127](https://tickets.puppetlabs.com/browse/PUP-127),
+[PUP-128](https://tickets.puppetlabs.com/browse/PUP-128),
+[PUP-131](https://tickets.puppetlabs.com/browse/PUP-131),
+[PUP-133](https://tickets.puppetlabs.com/browse/PUP-133),
+[PUP-134](https://tickets.puppetlabs.com/browse/PUP-134),
+[PUP-135](https://tickets.puppetlabs.com/browse/PUP-135),
+[PUP-136](https://tickets.puppetlabs.com/browse/PUP-136),
+[PUP-137](https://tickets.puppetlabs.com/browse/PUP-137),
+[PUP-138](https://tickets.puppetlabs.com/browse/PUP-138),
+[PUP-139](https://tickets.puppetlabs.com/browse/PUP-139))
 
 ### Msgpack Serialization (Experimental)
 
 Puppet agents and masters can now optionally use [Msgpack](http://msgpack.org/) for all communications. This is an experimental feature and is disabled by default; see [the Msgpack experiment page](/puppet/3/reference/experiments_msgpack.html) for details about it.
 
-([Issue 22849](http://projects.puppetlabs.com/issues/22849)) <!-- [https://jira.puppetlabs.com/browse/PP-472] -->
+([Issue 22849](http://projects.puppetlabs.com/issues/22849), [PUP-472](https://tickets.puppetlabs.com/browse/PUP-472))
 
 ### Changes to Experimental Future Parser
 
 Several changes were made to [the experimental lambda and iteration support](./experiments_lambdas.html) included in the future parser. The documentation has been updated to reflect the changes; see the "Experimental Features" section in the navigation sidebar to the left.
 
-- Remove alternative lambda syntaxes ([Issue 22962](https://projects.puppetlabs.com/issues/22962)) <!-- [https://jira.puppetlabs.com/browse/PP-354] -->
-- Remove "foreach" function ([Issue 22784](https://projects.puppetlabs.com/issues/22784)) <!-- [https://jira.puppetlabs.com/browse/PP-503] -->
-- Fix mixed naming of map/collect - reduce ([Issue 22785](https://projects.puppetlabs.com/issues/22785)) <!-- [https://jira.puppetlabs.com/browse/PP-504] -->
-- Remove the iterative 'reject' function ([Issue 22729](https://projects.puppetlabs.com/issues/22729)) <!-- [https://jira.puppetlabs.com/browse/PP-505] -->
-- Iterative function 'select' should be renamed to 'filter' ([Issue 22792](https://projects.puppetlabs.com/issues/22792)) <!-- [https://jira.puppetlabs.com/browse/PP-537] -->
-- Future parser lexer does not handle all kinds of interpolated expressions ([Issue 22593](https://projects.puppetlabs.com/issues/22593)) <!-- [https://jira.puppetlabs.com/browse/PP-352] -->
+- Remove alternative lambda syntaxes ([Issue 22962](https://projects.puppetlabs.com/issues/22962), [PUP-354](https://tickets.puppetlabs.com/browse/PUP-354))
+- Remove "foreach" function ([Issue 22784](https://projects.puppetlabs.com/issues/22784), [PUP-503](https://tickets.puppetlabs.com/browse/PUP-503))
+- Fix mixed naming of map/collect - reduce ([Issue 22785](https://projects.puppetlabs.com/issues/22785), [PUP-504](https://tickets.puppetlabs.com/browse/PUP-504))
+- Remove the iterative 'reject' function ([Issue 22729](https://projects.puppetlabs.com/issues/22729), [PUP-505](https://tickets.puppetlabs.com/browse/PUP-505))
+- Iterative function 'select' should be renamed to 'filter' ([Issue 22792](https://projects.puppetlabs.com/issues/22792), [PUP-537](https://tickets.puppetlabs.com/browse/PUP-537))
+- Future parser lexer does not handle all kinds of interpolated expressions ([Issue 22593](https://projects.puppetlabs.com/issues/22593), [PUP-352](https://tickets.puppetlabs.com/browse/PUP-352))
 - Variable names with uppercase letters are not allowed ([Issue 22442](https://projects.puppetlabs.com/issues/22442))
 
 ### Preparations for Syncing External Facts
 
 Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-facts) to agent nodes... but it's not very useful yet, since Facter can't yet _load_ those facts. End-to-end support is planned for next quarter, in Facter 2.0.
 
-([Issue 9546](http://projects.puppetlabs.com/issues/9546)) <!-- [https://jira.puppetlabs.com/browse/PP-578] -->
+([Issue 9546](http://projects.puppetlabs.com/issues/9546), [PUP-578](https://tickets.puppetlabs.com/browse/PUP-578))
 
 
 ### Miscellaneous Improvements
 
-- Allow profiling on puppet apply. Previously, the profiling features added for Puppet 3.2 were only available to puppet agent; now, puppet apply can log profiling information when run with `--profile` or `profile = true` in puppet.conf. ([Issue 22581](https://projects.puppetlabs.com/issues/22581)) <!-- [https://jira.puppetlabs.com/browse/PP-341] -->
-- Mount resources now autorequire parent mounts. ([Issue 22665](https://projects.puppetlabs.com/issues/22665)) <!-- [https://jira.puppetlabs.com/browse/PP-450] -->
-- Class main now appears in containment paths in reports. Previously, it was represented by an empty string, which could be confusing. This is mostly useful for PuppetDB. ([Issue 23131](http://projects.puppetlabs.com/issues/23131)) <!-- [https://jira.puppetlabs.com/browse/PP-278] -->
-- `Puppet::Util.execute` now offers a way to get the exit status of the command --- the object it returns, which was previously a String containing the command's output, is now a subclass of String with an `#exitstatus` method that returns the exit status. This can be useful for type and provider developers. ([Issue 2538](http://projects.puppetlabs.com/issues/2538))
+- Allow profiling on puppet apply. Previously, the profiling features added for Puppet 3.2 were only available to puppet agent; now, puppet apply can log profiling information when run with `--profile` or `profile = true` in puppet.conf. ([Issue 22581](https://projects.puppetlabs.com/issues/22581), [PUP-341](https://tickets.puppetlabs.com/browse/PUP-341))
+- Mount resources now autorequire parent mounts. ([Issue 22665](https://projects.puppetlabs.com/issues/22665), [PUP-450](https://tickets.puppetlabs.com/browse/PUP-450))
+- Class main now appears in containment paths in reports. Previously, it was represented by an empty string, which could be confusing. This is mostly useful for PuppetDB. ([Issue 23131](http://projects.puppetlabs.com/issues/23131), [PUP-278](https://tickets.puppetlabs.com/browse/PUP-278))
+- `Puppet::Util.execute` now offers a way to get the exit status of the command --- the object it returns, which was previously a `String` containing the command's output, is now a subclass of `String` with an `#exitstatus` method that returns the exit status. This can be useful for type and provider developers. ([Issue 2538](http://projects.puppetlabs.com/issues/2538))
 
 ### Bug Fixes
 
@@ -286,45 +315,48 @@ As part of improving certificate autosigning for elastic cloud environments, we 
 
 This is now fixed, and the cert inventory is handled more safely. To accommodate the need to occasionally rebuild the inventory, a `puppet cert reinventory` command was added (see above).
 
-([Issue 693](https://projects.puppetlabs.com/issues/693), [Issue 23074](http://projects.puppetlabs.com/issues/23074))
-<!-- [https://jira.puppetlabs.com/browse/PP-277] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-635] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-636] -->
-<!-- [https://jira.puppetlabs.com/browse/PP-637] -->
+([Issue 693](https://projects.puppetlabs.com/issues/693), [Issue 23074](http://projects.puppetlabs.com/issues/23074),
+[PUP-277](https://tickets.puppetlabs.com/browse/PUP-277),
+[PUP-635](https://tickets.puppetlabs.com/browse/PUP-635),
+[PUP-636](https://tickets.puppetlabs.com/browse/PUP-636),
+[PUP-637](https://tickets.puppetlabs.com/browse/PUP-637))
 
 #### Cached Catalogs Work Again
 
 This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke the puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](/references/3.latest/configuration.html#usecacheonfailure).
 
-([Issue 22925](http://projects.puppetlabs.com/issues/22925)) <!-- [https://jira.puppetlabs.com/browse/PP-580] -->
+([Issue 22925](http://projects.puppetlabs.com/issues/22925), [PUP-580](https://tickets.puppetlabs.com/browse/PUP-580))
 
 
 #### Hiera Bugs
 
-- Errors from automatic class parameter lookups were not clearly indicating that Hiera was the source of the problem. This was made more informative. ([Issue 19955](http://projects.puppetlabs.com/issues/19955)) <!-- [https://jira.puppetlabs.com/browse/PP-176] -->
-- Automatic class parameter lookups weren't setting the special `calling_module` / `calling_class` variables. This has been fixed. ([Issue 21198](http://projects.puppetlabs.com/issues/21198)) <!-- [https://jira.puppetlabs.com/browse/PP-83] -->
+- Errors from automatic class parameter lookups were not clearly indicating that Hiera was the source of the problem. This was made more informative. ([Issue 19955](http://projects.puppetlabs.com/issues/19955), [PUP-176](https://tickets.puppetlabs.com/browse/PUP-176))
+- Automatic class parameter lookups weren't setting the special `calling_module` / `calling_class` variables. This has been fixed. ([Issue 21198](http://projects.puppetlabs.com/issues/21198), [PUP-83](https://tickets.puppetlabs.com/browse/PUP-83))
 
 #### Misc Bug Fixes
 
 The usual grab bag of clean-ups and fixes. As of 3.4.0, Puppet will:
 
-- Manage the vardir's owner and group. Before, not managing the vardir's owner and group could sometimes cause the puppet master or CA tools to fail, if the ownership of the vardir got messed up. <!-- [https://jira.puppetlabs.com/browse/PP-319] -->
-- Don't overaggressively use resource-like class evaluation for ENCs that assign classes with the hash syntax. [ENCs can use two methods for assigning classes to nodes](/guides/external_nodes.html#enc-output-format), one of which allows class parameters to be specified. If class parameters ARE specified, the class has to be evaluated like a resource to prevent parameter conflicts. This fixed the problem that Puppet was being a little overeager and wasn't checking whether parameters were actually present. ([Issue 23096](https://projects.puppetlabs.com/issues/23096)) <!-- [https://jira.puppetlabs.com/browse/PP-268] -->
-- Make Puppet init scripts report run status correctly even if they aren't configured to start. Previously, if the puppet master init script was configured to never run and a Puppet manifest was also ensuring the service was stopped, this could cause Puppet to try to stop the service every single run. ([Issue 23033](https://projects.puppetlabs.com/issues/23033)) <!-- [https://jira.puppetlabs.com/browse/PP-642] -->
-- Skip module metadata that cannot be parsed. Previously, module metadata that couldn't be parsed was not skipped and could cause the puppet master to fail catalog serving if a module with bad metadata was installed.  ([Issue 22818](http://projects.puppetlabs.com/issues/22818), [Issue 20728](http://projects.puppetlabs.com/issues/20728), [Issue 15856](http://projects.puppetlabs.com/issues/15856)) <!-- [https://jira.puppetlabs.com/browse/PP-614] -->
-- Use FFI native windows root certs code. This fix cleaned up some potential puppet agent crashes on Windows by using the Win32 APIs better. ([Issue 23183](http://projects.puppetlabs.com/issues/23183)) <!-- [https://jira.puppetlabs.com/browse/PP-766] -->
-- Guard against duplicate Windows root certs. Previously, duplicates could cause unnecessary run failures. ([Issue 21817](https://projects.puppetlabs.com/issues/21817)) <!-- [https://jira.puppetlabs.com/browse/PP-734] -->
-- Make Debian user/group resources report their proper containment path. Previously, Puppet events from Debian showed in Puppet Enterprise's event inspector as "unclassified." ([Issue 22943](https://projects.puppetlabs.com/issues/22943)) <!-- [https://jira.puppetlabs.com/browse/PP-565] -->
-- Fix race condition in filebucket. Before the fix, there were unnecessary run failures when multiple nodes were trying to write to a puppet master's filebucket. ([Issue 22918](https://projects.puppetlabs.com/issues/22918)) <!-- [https://jira.puppetlabs.com/browse/PP-538] -->
-- Force encoding of `user` comment values to ASCII-8BIT. Previously, there were run failures under Ruby 1.9 and higher when `user` resources were present. ([Issue 22703](https://projects.puppetlabs.com/issues/22703)) <!-- [https://jira.puppetlabs.com/browse/PP-451] -->
-- Don't serialize transient vars in Puppet::Resource. Previously, Puppet would write YAML data that couldn't be deserialized by other tools.  ([Issue 4506](https://projects.puppetlabs.com/issues/4506)) <!-- [https://jira.puppetlabs.com/browse/PP-447] -->
-- Validate the `name` attribute for package resources to disallow arrays. Previously, there was inconsistent behavior between dpkg and the other package providers. ([Issue 22557](http://projects.puppetlabs.com/issues/22557)) <!-- [https://jira.puppetlabs.com/browse/PP-403] -->
-- Use the most preferred supported serialization format over HTTP. Puppet had been choosing a format at random whenever there were multiple acceptable formats. ([Issue 22891](http://projects.puppetlabs.com/issues/22891)) <!-- [https://jira.puppetlabs.com/browse/PP-570] -->
-- Set `value_collection` for boolean params. Before the fix, boolean resource attributes were displayed badly in the type reference. https://projects.puppetlabs.com/search?q=22699 <!-- [https://jira.puppetlabs.com/browse/PP-446] -->
+- Manage the vardir's owner and group. Before, not managing the vardir's owner and group could sometimes cause the puppet master or CA tools to fail, if the ownership of the vardir got messed up. ([PUP-319](https://tickets.puppetlabs.com/browse/PUP-319))
+- Don't overaggressively use resource-like class evaluation for ENCs that assign classes with the hash syntax. [ENCs can use two methods for assigning classes to nodes](/guides/external_nodes.html#enc-output-format), one of which allows class parameters to be specified. If class parameters ARE specified, the class has to be evaluated like a resource to prevent parameter conflicts. This fixed the problem that Puppet was being a little overeager and wasn't checking whether parameters were actually present. ([Issue 23096](https://projects.puppetlabs.com/issues/23096), [PUP-268](https://tickets.puppetlabs.com/browse/PUP-268))
+- Make Puppet init scripts report run status correctly even if they aren't configured to start. Previously, if the puppet master init script was configured to never run and a Puppet manifest was also ensuring the service was stopped, this could cause Puppet to try to stop the service every single run. ([Issue 23033](https://projects.puppetlabs.com/issues/23033), [PUP-642](https://tickets.puppetlabs.com/browse/PUP-642))
+- Skip module metadata that cannot be parsed. Previously, module metadata that couldn't be parsed was not skipped and could cause the puppet master to fail catalog serving if a module with bad metadata was installed.  ([Issue 22818](http://projects.puppetlabs.com/issues/22818), [Issue 20728](http://projects.puppetlabs.com/issues/20728), [Issue 15856](http://projects.puppetlabs.com/issues/15856), [PUP-614](https://tickets.puppetlabs.com/browse/PUP-614))
+- Use FFI native windows root certs code. This fix cleaned up some potential puppet agent crashes on Windows by using the Win32 APIs better. ([Issue 23183](http://projects.puppetlabs.com/issues/23183), [PUP-766](https://tickets.puppetlabs.com/browse/PUP-766))
+- Guard against duplicate Windows root certs. Previously, duplicates could cause unnecessary run failures. ([Issue 21817](https://projects.puppetlabs.com/issues/21817), [PUP-734](https://tickets.puppetlabs.com/browse/PUP-734))
+- Make Debian user/group resources report their proper containment path. Previously, Puppet events from Debian showed in Puppet Enterprise's event inspector as "unclassified." ([Issue 22943](https://projects.puppetlabs.com/issues/22943), [PUP-565](https://tickets.puppetlabs.com/browse/PUP-565))
+- Fix race condition in filebucket. Before the fix, there were unnecessary run failures when multiple nodes were trying to write to a puppet master's filebucket. ([Issue 22918](https://projects.puppetlabs.com/issues/22918), [PUP-538](https://tickets.puppetlabs.com/browse/PUP-538))
+- Force encoding of `user` comment values to ASCII-8BIT. Previously, there were run failures under Ruby 1.9 and higher when `user` resources were present. ([Issue 22703](https://projects.puppetlabs.com/issues/22703), [PUP-451](https://tickets.puppetlabs.com/browse/PUP-451))
+- Don't serialize transient vars in Puppet::Resource. Previously, Puppet would write YAML data that couldn't be deserialized by other tools.  ([Issue 4506](https://projects.puppetlabs.com/issues/4506), [PUP-447](https://tickets.puppetlabs.com/browse/PUP-447))
+- Validate the `name` attribute for package resources to disallow arrays. Previously, there was inconsistent behavior between dpkg and the other package providers. ([Issue 22557](http://projects.puppetlabs.com/issues/22557), [PUP-403](https://tickets.puppetlabs.com/browse/PUP-403))
+- Use the most preferred supported serialization format over HTTP. Puppet had been choosing a format at random whenever there were multiple acceptable formats. ([Issue 22891](http://projects.puppetlabs.com/issues/22891), [PUP-570](https://tickets.puppetlabs.com/browse/PUP-570))
+- Set `value_collection` for boolean params. Before the fix, boolean resource attributes were displayed badly in the type reference. ([Issue 22699](https://projects.puppetlabs.com/issues/22699),  [PUP-446](https://tickets.puppetlabs.com/browse/PUP-446))
 
 ### All 3.4.0 Changes
 
-[See here for a list of all changes in the 3.4.0 release.](http://projects.puppetlabs.com/versions/425) <!-- https://jira.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=10503 and/or https://jira.puppetlabs.com/browse/PP/fixforversion/10503 -->
+For a list of all changes in the 3.4.0 release, see:
+
+* [Redmine version](http://projects.puppetlabs.com/versions/425)
+* [Jira version](https://tickets.puppetlabs.com/browse/PUP/fixforversion/10503)
 
 Puppet 3.3.2
 -----

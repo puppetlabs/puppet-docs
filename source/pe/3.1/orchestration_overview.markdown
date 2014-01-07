@@ -42,7 +42,7 @@ Orchestration isn't quite like SSH, PowerShell, or other tools meant for running
 
 PE's orchestration is built around the idea of predefined **actions** --- it is essentially a highly parallel **remote procedure call (RPC)** system.
 
-**Actions** are distributed i"#5E605C"n **MCollective agent plugins**, which are bundles of several related actions.
+**Actions** are distributed in **MCollective agent plugins**, which are bundles of several related actions.
 
 * Many plugins are available by default; see [Built-In Orchestration Actions](./orchestration_actions.html).
 * You can extend the orchestration engine by downloading or writing new plugins and [adding them to the engine with Puppet](./orchestration_adding_actions.html).

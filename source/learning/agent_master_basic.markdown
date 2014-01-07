@@ -152,8 +152,7 @@ Node definitions work almost exactly like class definitions:
       include apache
 
       class {'ntp':
-        enable => false,
-        ensure => stopped,
+        servers => [ "ntp1.example.com dynamic", "ntp2.example.com dynamic", ],
       }
 
     }

@@ -239,8 +239,6 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
 >
 > #### Alternatives to Node Inheritance
 >
-> TODO Link to hiera guides
->
 > * Most users who need hierarchical data should keep it in an external source and have their manifests look it up. The best solution right now is [Hiera][], which is available by default in Puppet 3 and later. See our [Hiera guides][hiera_guides] for more information about using it.
 > * [ENCs][enc] can look up data from any arbitrary source, and return it to Puppet as top-scope variables.
 > * If you have node-specific data in an external CMDB, you can easily write [custom Puppet functions][custom_functions] to query it.

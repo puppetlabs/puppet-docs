@@ -113,14 +113,14 @@ So let's get back to our NTP module. The first thing we talked about wanting to 
       ...
 {% endhighlight %}
 
-Next, we'll change how we set that `$servers_real` variable that the template uses:
+Next, we'll change how we set that `$_servers` variable that the template uses:
 
 {% highlight ruby %}
       if $servers == undef {
-        $servers_real = $default_servers
+        $_servers = $default_servers
       }
       else {
-        $servers_real = $servers
+        $_servers = $servers
       }
 {% endhighlight %}
 
@@ -144,7 +144,7 @@ And... that's all it takes. If you declare the class with no attributes...
 
 There's a bit of trickery to notice: setting a variable or parameter to `undef` might seem odd, and we're only doing it because we want to be able to get the default servers without asking for them. (Remember, parameters can't be optional without an explicit default value.)
 
-Also, remember the business with the `$servers_real` variable? That was because the Puppet language won't let us re-assign the `$servers` variable within a given scope. If the default value we wanted was the same regardless of OS, we could just use it as the parameter default, but the extra logic to accomodate the per-OS defaults means we have to make a copy of the variable.
+Also, remember the business with the `$_servers` variable? That was because the Puppet language won't let us re-assign the `$servers` variable within a given scope. If the default value we wanted was the same regardless of OS, we could just use it as the parameter default, but the extra logic to accomodate the per-OS defaults means we have to make a copy of the variable.
 
 While we're in the NTP module, what else could we make into a parameter? Well, let's say you sometimes wanted to prevent the NTP daemon from being used as a server by other nodes. Or maybe you want to install and configure NTP, but not keep the daemon running. You could expose all of these as extra class parameters, and make changes in the manifest or the templates to use them.
 

@@ -76,7 +76,7 @@ But this is an invalid path, because \p, \t, \f will be interpreted as escape se
 
 ### UNC Paths
 
-UNC paths are not currently supported. However, the path can be mapped as a network drive and accessed that way.
+UNC paths are supported for **package resources** on Windows as of Puppet 2.7.12, using the typical `\\servername\directory\package.msi` format. Support for UNC paths for **file resources** was added in Puppet 3.4.0.
 
 ### Case-insensitivity
 
@@ -139,7 +139,7 @@ By default, powershell enforces a restricted execution policy which prevents the
 
 ### Package
 
-The source of an MSI package must be a file on either a local filesystem or on a network mapped drive. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master and then defining a package whose source is the local file.
+The source of an MSI or EXE package must be a file on either a local filesystem, a network mapped drive, or a UNC path. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master and then defining a package whose source is the local file.
 
 ### Service
 
@@ -183,7 +183,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 
-    This error can occur when attempting to install a non-MSI package. Puppet only supports MSI packages. To install non-MSI packages, use an exec resource with an `onlyif` parameter.
+    This error can occur when attempting to install a non-MSI package on Puppet versions prior to 3.0. Puppet 2.7 and earlier only support MSI packages. To install non-MSI packages, use an exec resource with an `onlyif` parameter or upgrade to Puppet 3 and use the `windows` package provider, which supports executable installers.
 
 * "`err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.`"
 
