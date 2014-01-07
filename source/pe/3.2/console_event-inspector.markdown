@@ -20,7 +20,9 @@ Event inspector can be reached by clicking "Events" in the console's main naviga
 
 The event inspector page displays two panes of data. Clicking an item will show its details (and any sub-items) in the detail pane on the right. The context pane on the left always shows the list of items from which the one in the right pane was chosen, to let you easily view similar items and compare their states.
 
-To backtrack out of the current list of items, you can use the breadcrumb navigation or the in-page back button (appearing left of the left pane after you've clicked at least one item). _Do not use your web browser's back button;_ this can cause event inspector to reload and lose your place.
+To backtrack out of the current list of items, you can use the breadcrumb navigation or the previous button (appearing left of the left pane after you've clicked at least one item). The back and forward buttons in your browser will behave normally, showing pages based on your browser's history. 
+
+You can also bookmark pages as you investigate events on classes, nodes, and resources. However, after subsequent Puppet runs, the contents of the bookmarked pages may be different when you revisit them. Also, if there are no changes for a selected time period, the bookmarks may show default text indicating there were no events on that class, node, or resource.   
 
 ![The full event inspector page][full_page]
 
@@ -86,9 +88,10 @@ In the resource summary, you click on "failed", which loads a detail view showin
 
 ![Failed Resources view][resource-failure]
 
-Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the arrow button next to the left pane or the breadcrumb trail at the top to step back through the process if you wish. (Note that the back button on your browser may not give you the expected result.)
 
-After clicking the failed resource, the detail pane now shows every node it failed on. You click on the most recent failure, and the detail pane loads the specifics of the failure including the config version associated with the run and the specific line of code and manifest where the error occurs. You see from the error message that the error was caused by the manifest trying to set the owner of the file resource to a non-existent user (`Message: Could not find user www-data`) on the intended platform.
+Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the arrow button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish. 
+
+After clicking the failed resource, the detail pane now shows every node it failed on. You bookmark this page and email the link to your team so they can see the specifics of the failure. You click on the most recent failure, and the detail pane loads the specifics of the failure including the config version associated with the run and the specific line of code and manifest where the error occurs. You see from the error message that the error was caused by the manifest trying to set the owner of the file resource to a non-existent user (`Message: Could not find user www-data`) on the intended platform.
 
 ![Failed Resource Detail view][resource-detail]
 
