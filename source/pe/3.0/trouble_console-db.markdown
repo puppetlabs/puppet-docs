@@ -56,6 +56,15 @@ To fix this:
           console_hostname: console.example.com
 
     Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
+    
+Correcting Broken URLs in the Console
+----------------
+
+Starting with PE 3.0 and later, group names with periods in them (e.g., group.name) will generate a "page doesn't exist" error. To remove broken groups, you can use the following nodegroup:del rake task:
+
+	$ sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production nodegroup:del name={bad.group.name.here}
+	
+After you remove the broken group names, you can create new groups with valid names and re-add your nodes as needed.
 
 * * *
 
