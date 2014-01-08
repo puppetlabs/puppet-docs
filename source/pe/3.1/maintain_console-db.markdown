@@ -37,6 +37,8 @@ This task, `rake db:raw:optimize[mode]`,  runs in three modes:
 
 To run the task, change your working directory to `/opt/puppet/share/puppet-dashboard` and make sure your PATH variable contains `/opt/puppet/bin` (or use the full path to the rake binary). Then run the task `rake db:raw:optimize[mode]`. You can disregard any error messages about insufficient privileges to vacuum certain system objects because these objects should not require vacuuming. If you believe they do, you can do so manually by logging in to psql (or your tool of choice) as a database superuser.
 
+Please note that you should have at least as much free space available as is curently in use, on the partition where your postgresql data is stored, prior to attempting a full vacuum. If you are using the PE-vendored postgresql, the postgres data is kept in `/opt/puppet/var/lib/pgsql/`.
+
 The PostgreSQL docs contain more detailed information about [vacuuming](http://www.postgresql.org/docs/9.2/static/routine-vacuuming.html) and [reindexing](http://www.postgresql.org/docs/9.2/static/sql-reindex.html).
 
 
