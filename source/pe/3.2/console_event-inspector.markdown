@@ -84,7 +84,7 @@ Assume you are a sysadmin and Puppet developer for a large web commerce enterpri
 
 ![Default view with failure events][default-failure]
 
-After you click `testweb`, you can select the "nodes with failures" tab or the "resources with failures" tab, depending on how you want to investigate the failure on the class. 
+After you click `testweb`, you can select the "Nodes with failures" tab or the "Resources with failures" tab, depending on how you want to investigate the failure on the class. 
 
 You click the "Resources with failures" tab, which loads a detail view showing failed resources. In this case, you can see in the detail pane that there is an issue with a file resource, specifically `/var/www/first/.htaccess`.
 
@@ -92,7 +92,7 @@ You click the "Resources with failures" tab, which loads a detail view showing f
 
 Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the "previous" button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish. 
 
-After clicking the failed resource, the detail pane now show the node it failed on. 
+After clicking the failed resource, the detail pane now shows the node it failed on. 
 
 ![Resource Failed Node view][resource-node-failure-detail]
 
