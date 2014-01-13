@@ -301,7 +301,7 @@ We encourage you to publish your modules on the [Puppet Forge](http://forge.pupp
 
 [All the module basics](http://docs.puppetlabs.com/puppet/3/reference/modules_fundamentals.html) (part of the Puppet Reference Guide)
 
-[Pro Puppet](http://www.amazon.com/Pro-Puppet-James-Turnbull/dp/1430230576) (an in-depth guide to Puppet by Jeff McCune and James Turnbull)
+[Pro Puppet](http://www.apress.com/9781430260400) (an in-depth guide to Puppet by Spencer Kurm, Ben Kero, William Van Hevelingen, Jeff McCune and James Turnbull)
 
 [Puppet Types and Providers](http://shop.oreilly.com/product/0636920026860.do) (a book on extending Puppet's resource model by Dan Bode & Nan Liu)
 
