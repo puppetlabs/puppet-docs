@@ -222,7 +222,7 @@ We will install two example modules: `puppetlabs-ntp` and `puppetlabs-registry`.
 
 * Navigate to <https://forge.puppetlabs.com/puppetlabs/registry>. This is the Forge listing for a module that enables you to manage your Windows Registry from your *nix puppet master.
 
-* **On the puppet master,** run `puppet module search ntp`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions:
+* **On the puppet master**, run `puppet module search ntp`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions:
 
         Searching http://forge.puppetlabs.com ...
         NAME             DESCRIPTION                                                 AUTHOR        KEYWORDS
@@ -231,9 +231,9 @@ We will install two example modules: `puppetlabs-ntp` and `puppetlabs-registry`.
         thias-ntp        Network Time Protocol...                                    @thias        ntp ntpd
         warriornew-ntp   ntp setup                                                   @warriornew   ntp      
 
-    We want `puppetlabs-ntp`, which is a module that is supported on the PE platform. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. You can also use the Search feature on the Forge site.
+We want `puppetlabs-ntp`, which is a module that is a PE-supported module. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. 
 
-    You can also do a similar search for `registry`, which should find the other module we'll be using.
+You can also do a similar search for `registry`, which should find the other module we'll be using.
 * Install the first module by running `puppet module install puppetlabs-ntp`:
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
@@ -251,9 +251,9 @@ We will install two example modules: `puppetlabs-ntp` and `puppetlabs-registry`.
 [add_ntp]: ./images/quick/add_ntp.png
 [assign_ntp]: ./images/quick/assign_ntp.png
 
-Every module contains one or more **classes.** The modules you just installed contain classes called `ntp` and `registry`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
+Every module contains one or more **classes**. The modules you just installed contain classes called `ntp` and `registry`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes**.
 
-* **On the console,** click the "Add classes" button in the sidebar:
+* **On the console**, click the "Add classes" button in the sidebar:
 
 ![The console's add classes button][classbutton]
 
@@ -265,12 +265,12 @@ Every module contains one or more **classes.** The modules you just installed co
 
 ![assigning the ntp class][assign_ntp]
 
-* Note that the `ntp` class now appears in the list of `agent1`'s classes.
-* Navigate to `windows.example.com`, click the edit button, and begin typing "`registry`" in the "Classes" field; select the class and click the "Update" button.
-* Note that the `registry` class now appears in the list of `windows.example.com`'s classes.
+* Note that the `ntp` class now appears in the list of classes on `agent1`.
+* Navigate to `windows.example.com`, click the "Edit" button, and, in the "Classes" field, begin typing "`registry`"; select the class and click the "Update" button.
+* Note that the `registry` class now appears in the list of classes on `windows.example.com`.
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
->Puppet is now managing NTP on the `agent.1` node. So, for example, if another sysadmin stops the NTP service while troubleshooting a network issue and forgets to restart it, PE will automatically restart it on the next puppet run. Puppet is also managing the registry on your Windows machine, and will restore the registry if it is ever deleted or modified.
+>Puppet is now managing NTP on the `agent.1` node. So, for example, if another sysadmin stops the NTP service while troubleshooting a network issue and forgets to restart it, PE will automatically restart it on the next puppet run. Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
 >
 > For more recommended modules, [visit the Forge](http://forge.puppetlabs.com).
 
