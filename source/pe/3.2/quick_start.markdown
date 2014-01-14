@@ -96,10 +96,10 @@ After installing, the agent nodes are **not yet allowed** to fetch configuration
 
 [console_cert]: ./console_accessing.html#accepting-the-consoles-certificate
 
-During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, you'll need to **approve its request on the puppet master.** This is most easily done via the console.
+During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, you'll need to **approve its request on the puppet master**. This is most easily done via the console.
 
-* **On your control workstation,** open a web browser and point it to https://master.example.com.
-* You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
+* **On your control workstation**, open a web browser and point it to https://master.example.com.
+* You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate**. The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
 * Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
 
 ![The console login screen](./images/quick/login.png)
@@ -119,9 +119,9 @@ During this walkthrough, we will be running puppet agent interactively. Normally
 
 * **On the first agent node,** run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging.
 
-    > **Note:** If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
+    > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
-* **On the Windows node,** open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
+* **On the Windows node**, open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
 * Note the similar string of log messages.
 
 
@@ -133,21 +133,21 @@ During this walkthrough, we will be running puppet agent interactively. Normally
 [console_nav]: ./console_navigating.html
 
 
-* Click on "Nodes" in the primary navigation bar. You'll see various UI elements, which show a summary of your deployment's recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
+* Click "Nodes" in the primary navigation bar. You'll see various UI elements, which show a summary of your deployment's recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
 
 ![The console front page](./images/quick/front.png)
 
-* **Explore the console.** Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
+* **Explore the console**. Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
 
 > You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last Puppet run.
 
 ### Avoiding the Wait
 
-Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. This is because Puppet Enterprise **uses Puppet to configure itself.**
+Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following:
 
-* **On the console,** use the sidebar to navigate to the "mcollective" group:
+* **On the console**, use the sidebar to navigate to the "mcollective" group:
 
 ![the mcollective group link](./images/quick/mcollective_link.png)
 
@@ -280,7 +280,7 @@ Every module contains one or more **classes.** The modules you just installed co
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-Click on the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for  Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
+Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for  Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
 
 ![The default event inspector view][EI-default]
 
