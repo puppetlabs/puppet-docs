@@ -1,50 +1,36 @@
 ---
 layout: default
-title: "PE 3.1 » Overview » What's New"
-subtitle: "New Features in PE 3.1"
+title: "PE 3.2 » Overview » What's New"
+subtitle: "New Features in PE 3.2"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
 
-### Version 3.1.0
+### Version 3.2.0
 
-Puppet Enterprise (PE) version 3.1.0 is a feature and maintenance release. It adds new features, fixes bugs, and addresses security issues. Specifically, the 3.1.0 release includes the following major changes and additions (a comprehensive list of updates, changes and additions can be found in the [release notes](appendix.html#release-notes)):
+Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It adds new features and improvements, fixes bugs, and addresses security issues. Specifically, the 3.1.0 release includes the following major changes and additions (a comprehensive list of updates, changes and additions can be found in the [release notes](appendix.html#release-notes)):
 
-* *Event Inspector*
+* *Network Device Support*
 
-Event inspector is a new reporting tool that provides multiple, dynamic ways to view the state of your infrastructure, providing both broad and specific insight into how Puppet is managing configurations. By providing information about events from the perspective of nodes, classes, and resources, event inspector lets you quickly and easily find the source of configuration failures. For more information, see the [event inspector page](console_event-inspector.html).
+* *Puppet Labs Supported Modules*
 
-* *Discoverable Classes & Parameters*
+* *Razor Provisioning Tech Preview*
 
-New UI and functionality in PE's console now allows you to easily add classes and parameters in the production environment by selecting them from an auto-generated list. The list also displays available documentation for the class, making it easier to know what a class does and why. For more information, see the [console documentation on classification](console_classes_groups.html#viewing-the-known-classes).
+* *Puppet Agent with Non-Root Privileges*
 
- * *Red Hat Enterprise Linux 4 Support*
+In some situations, it may be desirable for a development team to manage their infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](/guides/nonroot_agent.html).
 
-The puppet agent can now be installed on nodes running RHEL 4. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
+*  *Support for Solaris 11*
 
-* *License Availability*
-
-The console UI now displays how many licenses you are currently using and how many are available, so you'll know exactly how much capacity you have to expand your deployment. In addition, the "active license" count is now determined by the number of active nodes known to puppetdb rather than by the number of un-revoked certs. The [console navigation page](console_navigating.html) has more information. 
-
-* *Support for Google Compute Engine*
-
-PE's cloud provisioner now supports Google Compute Engine virtual infrastructure. For more information, see the [GCE cloud provisioner page](cloudprovisioner_gce.html).
-
-* *Geppetto Integration*
-
-Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting to show you where in your code an error occurred. This allows you to quickly find and fix the problems that are causing configuration failures.The [puppet modules and manifests page](puppet_modules_manifests.html) and the [Geppetto manual](/geppetto/4.0/index.html) have more information.
-
-* *Windows Reboot Capabilities*
-
-PE now includes a module that adds a type and provider for managing reboots on Windows nodes. You can now create manifests that can restart windows nodes after package updates or whenever any other resource is applied. Two forms of reboot are supported, a default mode for reboots required after puppet installs a package, and a second mode for managing pending reboots that must be processed before further packages can be installed. For more information, see the [module documentation](https://forge.puppetlabs.com/puppetlabs/reboot).
-
-*  *Account Lockout*
-
-Security against brute force attacks has been improved by adding an account lockout mechanism. User accounts will be locked after ten failed login attempts. This occurs whether the user is using the console or basic auth on the command line to attempt login. Accounts can only be unlocked by an admin user.
+* *Enable/Disable Live Management*
 
 * *Security Patches*
 
-A number of vulnerabilities have been addressed in PE 3.1.0. For details, check the [release notes](appendix.html#release-notes).
+A handful of vulnerabilities have been addressed in PE 3.2.0. For details, check the [release notes](appendix.html#release-notes).
 
+* *Component Package Upgrades*
+
+Several of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.2. Most notably these include:
+* 
 
 * * *
 
