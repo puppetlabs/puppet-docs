@@ -1172,6 +1172,23 @@ Returns the total seconds of uptime.
 
 * * *
 
+## `uuid`
+
+
+Returns the universally unique identifier on systems where it is available.
+
+**Resolution:**
+
+Parses the output of `dmidecode`.
+
+**Caveats:**
+
+Only available on some versions of Linux, including RHEL/CentOS. 
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `virtual`
 
 
