@@ -17,7 +17,7 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 
 * *Puppet Agent with Non-Root Privileges*
 
-In some situations, it may be desirable for a development team to manage their infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](/guides/nonroot_agent.html).
+In some situations, it may be desirable for a development team to manage their infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](./guides/nonroot_agent.html).
 
 *  *Support for Solaris 11*
 
