@@ -9,8 +9,17 @@ Below are some common issues that can cause trouble with the databases that supp
 
 **Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
+
+Disabling/Enabling Live Management
+-------
+
+Live management is enabled in the console by default when you install PE, but you can configure your installation to disable it. In addition, live management can be disabled/enabled during [upgrades][install_upgrade] or [normal operations][normal_operations]. 
+
+[install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
+[normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management				
+
 PostgreSQL is Taking Up Too Much Space
------
+-----			
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 

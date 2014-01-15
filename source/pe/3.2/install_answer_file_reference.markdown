@@ -128,6 +128,12 @@ These answers are generally needed if you are installing the console role.
 `q_pe_database`
 :**Y or N** "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
+`q_disable_live_manangement`
+: **Y or N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
+
+`q_pe_database`
+:**Y or N** -- "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
+
 `q_puppet_enterpriseconsole_master_hostname`
 : **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
 

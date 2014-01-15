@@ -136,9 +136,9 @@ If you want to set up a PuppetDB database manually, the [PuppetDB configuration 
 
 If you choose to use a database server separate from the PuppetDB server, you must configure it manually. The installer cannot install and configure postgres on a remote server without PuppetDB.
 
-**Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+**Note**: If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
-**IMPORTANT** The node you choose to run database support must have the en_US.UTF8 locale present before you begin installation. The installer will abort with a message if the locale is not present.
+**IMPORTANT**: The node you choose to run database support must have the en_US.UTF8 locale present before you begin installation. The installer will abort with a message if the locale is not present.
 
 ### The Console Role
 
@@ -222,6 +222,15 @@ The console's account management tools will send activation emails to new users 
 
 [smtpconfig]: ./console_config.html#configuring-the-smtp-server
 
+
+#### Disabling/Enabling Live Management During Installation
+
+You can disable live management during the installation process (it's enabled by default), but you must first create an answer file and then manually add `q_disable_live_management={y|n}` to the file. You can then use the answer file to [perform an automated installation of PE](./install_automated.html). 
+
+Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` (located on the puppet master) will be set to either `true` or `false` after the installation is complete.
+
+(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `service pe-httpd restart`.)
+                                                                           
 #### Databases
 
 The console needs multiple PostgresSQL databases and PostgresSQL users in order to operate, but these can be automatically created and configured by the installer. It can also automatically install the PostgreSQL server if it isn't already present on the system.

@@ -109,13 +109,21 @@ On the node serving the console role, unpack the PE 3.1 tarball and run the `pup
 >
 > Note that your old database will NOT be deleted after the upgrade completes. After you are sure the upgrade was successful, you will need to delete the database files yourself to reclaim disk space.
 
-
 The installer will also ask for the following information:
 
 * The hostname and port number for the PuppetDB node you created in the previous step.
 * Database credentials; specifically, the database names, user names, and passwords for the `console`, `console_auth`, and `pe-puppetdb` databases. These can be found in `/etc/puppetlabs/installer/database_info.install` on the PuppetDB node.
 
 **Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+
+
+#### Disabling/Enabling Live Management During an Upgrade
+
+The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file. 
+
+Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master will be set to either `true` or `false` after the upgrade is complete.
+
+(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `service pe-httpd restart`.)
 
 ### Upgrade Agents and Complete the Upgrade
 
