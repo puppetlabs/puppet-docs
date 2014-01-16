@@ -211,6 +211,13 @@ Solaris support is agent only. The following packages are required:
   * libgcc_s.so.1
   * In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
 
+For Solaris 11 the following packages are required:
+
+  * system/readline
+  * system/library/gcc-45-runtime
+  * library/security/openssl
+
+These packages are available in the Oracle Solaris release repository (enabled by default on Solaris 11). The PE installer will automatically install them; however, if the release repository is not enabled, the packages will need to be installed manually.
 
 Next
 ----
