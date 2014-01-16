@@ -28,11 +28,11 @@ To verify the PE installer, you can import the Puppet Labs public key and run a 
 
 To import the Puppet Labs public key, run:
 
-	$ gpg --recv-key 4BD6EC30
+	$ gpg --keyserver=pgp.mit.edu --recv-key 4BD6EC30
 
 The result should be similar to
 
-	gpg: requesting key 4BD6EC30 from hkp server pool.sks-keyservers.net
+	gpg: requesting key 4BD6EC30 from hkp server pgp.mit.edu
 	gpg: key 4BD6EC30: public key "Puppet Labs Release Key " imported
     gpg: no ultimately trusted keys found
     gpg: Total number processed: 1
@@ -40,7 +40,7 @@ The result should be similar to
      
 Next, verify the release signature on the tarball by running:
 
-	$ gpg --verify puppet-<platform>.tar.gz.asc
+	$ gpg --verify puppet-enterprise-<version>-<platform>.tar.gz.asc
 	
 The result should be similar to
 
