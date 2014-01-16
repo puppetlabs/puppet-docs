@@ -744,6 +744,18 @@ Returns the name of the operating system.
 
 * * *
 
+## `operatingsystemmajrelease`
+
+Returns the major release of the operating system.
+
+**Resolution:**
+
+Splits the version number from the `operatingsystemrelease` fact by `.` and returns the first element. Only available if `operatingsystem` returns `Amazon`, `Centos`, `CloudLinux`, `CumulusLinux`, `Debian`, `Fedora`, `OEL`, `OracleLinux`, `OVS`, `RedHat`, `Scientific`, or `SLC`.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `operatingsystemrelease`
 
 Returns the release of the operating system.
