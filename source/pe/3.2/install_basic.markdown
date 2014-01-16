@@ -22,7 +22,39 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 
 > Note: The universal tarball is simpler to use but is roughly ten times the size of a version-specific tarball.
 
+### Verifying the Installer
 
+To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by several puppet developers and should be available from public keyservers, such as `pgp.mit.edu`. You'll also need to download the GPG Signature (.asc file) associated with your PE version from the PE downloads page and have GNuPG installed.
+
+To import the Puppet Labs public key, run:
+
+	$ gpg --recv-key 4BD6EC30
+
+The result should be similar to
+
+	gpg: requesting key 4BD6EC30 from hkp server pool.sks-keyservers.net
+	gpg: key 4BD6EC30: public key "Puppet Labs Release Key " imported
+    gpg: no ultimately trusted keys found
+    gpg: Total number processed: 1
+    gpg:               imported: 1  (RSA: 1)
+     
+Next, verify the release signature on the tarball by running:
+
+	$ gpg --verify puppet-<platform>.tar.gz.asc
+	
+The result should be similar to
+
+	 gpg: Signature made Tue 18 Jun 2013 10:05:25 AM PDT using RSA key ID 4BD6EC30
+     gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
+
+> **Note**: When you verify the signature but do not have a trusted path to one of the signatures on the release key, you will see a warning similar to
+
+>	 	Could not find a valid trust path to the key.
+      	gpg: WARNING: This key is not certified with a trusted signature!
+      	gpg:          There is no indication that the signature belongs to the owner.
+
+>This warning is generated because you have not created a trust path to certify who signed the release key; it can be ignored.
+    
 #### Available \*nix Tarballs
 
 |      Filename ends with...        |                     Will install...                 |
