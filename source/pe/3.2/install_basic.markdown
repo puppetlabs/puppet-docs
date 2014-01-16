@@ -257,7 +257,7 @@ The console's account management tools will send activation emails to new users 
 
 #### Disabling/Enabling Live Management During Installation
 
-You can disable live management during the installation process (it's enabled by default), but you must first create an answer file and then manually add `q_disable_live_management={y|n}` to the file. You can then use the answer file to [perform an automated installation of PE](./install_automated.html). 
+If necessary, you can disable live management during the installation process (it's enabled by default), but you must first create an answer file and then manually add `q_disable_live_management={y|n}` to the file. You can then use the answer file to [perform an automated installation of PE](./install_automated.html). 
 
 Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` (located on the puppet master) will be set to either `true` or `false` after the installation is complete.
 
