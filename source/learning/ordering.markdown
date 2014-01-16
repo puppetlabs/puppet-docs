@@ -235,7 +235,7 @@ Now manually restart the sshd service:
 
 ### Fix
 
-Actually, now that you've added those resources to site.pp, Puppet will fix this automatically within about half an hour. But if you're impatient, you can [log in to the Puppet Enterprise console](./ral.html#logging-in), then [trigger a puppet agent run](/pe/latest/console_live_puppet.html) in the live management page.
+Actually, now that you've added those resources to site.pp, Puppet will fix this automatically within about half an hour. But if you're impatient, you can [log in to the Puppet Enterprise console](./ral.html#logging-in), then [trigger a puppet agent run](/pe/latest/orchestration_puppet.html) in the live management page.
 
 And that'll do it! After the Puppet run has completed and you can see the report appear in the console (it will have a blue icon, to show that changes were made), you should be able to log in as root via SSH again. _Victory._
 
