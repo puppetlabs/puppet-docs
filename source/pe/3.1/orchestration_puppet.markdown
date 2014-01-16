@@ -122,8 +122,8 @@ If the agent service is stopped (on affected \*nix nodes; [see above][options]),
     --force                      Bypass splay options when running
     --server SERVER              Connect to a specific server or port
     --tags, --tag TAG            Restrict the run to specific tags
-    --noop                       Do a noop run
-    --no-noop                    Do a run with noop disabled
+    --noop                       Do a no-op run
+    --no-noop                    Do a run with no-op disabled
     --environment ENVIRONMENT    Place the node in a specific environment for this run
     --splay                      Splay the run by up to splaylimit seconds
     --no-splay                   Do a run with splay disabled
@@ -188,7 +188,7 @@ While [logged in to the puppet master server as `peadmin`][peadmin], run `mco pu
 Start and Stop the Puppet Agent Service
 -----
 
-You can start or stop the `pe-puppet` service with the `start` and `stop` actions of the `service` plugin. This can be useful if you need to do noop runs, or if you wish to stop all scheduled runs and only run puppet agent on demand.
+You can start or stop the `pe-puppet` service with the `start` and `stop` actions of the `service` plugin. This can be useful if you need to do no-op runs, or if you wish to stop all scheduled runs and only run puppet agent on demand.
 
 ### In the Console
 
