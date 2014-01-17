@@ -93,6 +93,7 @@ symlink_latest:
   - puppet
   - puppetdb
   - hiera
+  - geppetto
   - facter
   - pe
   - dashboard/manual
