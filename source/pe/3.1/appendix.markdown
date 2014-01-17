@@ -137,6 +137,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
+### Events on Debian systems are not correctly associated with a class in event inspector
+
+When there are events on a Debian node, event inspector shows the affected resources as "unclassified." The events will not show up in the "classes" detail view but will be counted and appear in the "nodes" and "resources" details views.
+
 ### Passenger Global Queue Error on Upgrade
 
 When upgrading a PE 2.8.3 master to PE 3.1.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
