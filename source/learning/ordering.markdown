@@ -51,6 +51,7 @@ So when dealing with related resources, Puppet has ways to express those relatio
 > * You can also declare relationships outside a resource with the `->` and `~>` chaining arrows.
 > * Relationships can be either ordering (this before that) or ordering-with-notification (this before that, and tell that whether this was changed).
 > * Puppet's relationship behaviors and syntaxes are documented in [the Puppet reference manual page on relationships.][lang_relationships]
+> * The `ordering` setting in `puppet.conf` determines the order in which unrelated resources are applied.
 
 Metaparameters, Resource References, and Ordering
 -------------------------------------------------
@@ -171,6 +172,13 @@ Autorequire
 Some of Puppet's resource types will notice when an instance is related to other resources, and they'll set up automatic dependencies. The one you'll use most often is between files and their parent directories: if a given file and its parent directory are both being managed as resources, Puppet will make sure to sync the parent directory before the file. **This never creates new resources;** it only adds dependencies to resources that are already being managed.
 
 Don't sweat much about the details of autorequiring; it's fairly conservative and should generally do the right thing without getting in your way. If you forget it's there and make explicit dependencies, your code will still work. Explicit dependencies will also override autorequires, if they conflict.
+
+Unrelated Resources and the `ordering` Setting
+-----
+
+For resources that are not associated with metaparameters, chaining arrows, or autorequire, Puppet assumes that they can be applied in any order at all. The idea is that any logical restrictions on resource ordering should be declared explicitly and not simply implied by, say, the order in which they appear in a manifest.
+
+That said, you can set `ordering = manifest` in `/etc/puppetlabs/puppet/puppet.conf` to have Puppet follow manifest ordering **as a fallback** for unrelated resources. All of the above metaparameters will still work as described, but if nothing else gives one resource priority over another, then the resource that appears first in the manifest will be applied first.
 
 
 Example: sshd
