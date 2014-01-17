@@ -26,9 +26,7 @@ The number of pending tasks shown in the console should start decreasing rapidly
 
 Optimizing the Database
 -----
->**Note**: The following task is only available in PE 3.0.1. PE 3.0.0 users should refer to the [PostgreSQL workaround provided in the Known Issues][postgresql_work].
-
-[postgresql_work](./appendix.html#db:raw:optimize-Rake-Task-does-not-Work-in-PE-3.0.0)
+>**Note**: The following task is only available in PE 3.0.1. PE 3.0.0 users should refer to the [PostgreSQL workaround provided in the Known Issues](./appendix.html#db:raw:optimize-Rake-Task-does-not-Work-in-PE-3.0.0).
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having issues with the database growing too large and unwieldy, make sure this setting did not get turned off. In most cases, this should suffice. In some cases, more heavyweight maintenance measures may be needed (e.g. in cases of data corruption from hardware failures). To help with this, PE provides a rake task that performs advanced database maintenance.
 
