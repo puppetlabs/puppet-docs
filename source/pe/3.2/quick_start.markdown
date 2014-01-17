@@ -12,7 +12,11 @@ Welcome to the Puppet Enterprise 3.1 quick start guide. This document is a short
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
 * Examine and control nodes in real time with live management
+<<<<<<< HEAD
 * Install a PE-supported Puppet module
+=======
+* Install a third-party Puppet module
+>>>>>>> private/pe32-stateful-urls
 * Apply Puppet classes to nodes with the console
 * View the results of configuration changes in the console
 
@@ -280,6 +284,7 @@ Every module contains one or more **classes**. The modules you just installed co
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
+<<<<<<< HEAD
 Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for  Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
 
 ![The default event inspector view][EI-default]
@@ -300,7 +305,7 @@ Summary
 You have now experienced the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
 * Deploy new nodes, install PE on them ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add them to their deployment by approving their certificate requests](./console_cert_mgmt.html).
-* Use [pre-built, PE-supported modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
+* Use [pre-built modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
 * [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
 * [Allow nodes to be managed by regularly scheduled Puppet runs.](./puppet_overview.html#when-new-configurations-take-effect)
 * Use [live management](./console_navigating_live_mgmt.html) to [inspect and compare nodes](./orchestration_resources.html), and to [trigger on-demand puppet agent](./orchestration_puppet.html) runs when necessary.
