@@ -7,6 +7,16 @@ nav: facter17.html
 
 This page documents the history of the Facter 1.7 series.
 
+Facter 1.7.5
+-----
+
+Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on Mac OS X 10.9 (Mavericks).
+
+[FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
+
+Previously, Facter would not run on OS X 10.9 when installed from the pre-built package, although installing through RubyGems would still work. Now, it runs properly either way.
+
+
 Facter 1.7.4
 -----
 
