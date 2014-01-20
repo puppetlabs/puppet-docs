@@ -30,7 +30,7 @@ Debian                       | Squeeze (6) & Wheezy (7)                | i386 & 
 Oracle Linux                 | 4, 5 & 6                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
 Scientific Linux             | 4, 5 & 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
 SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | all
-Solaris                      | 11 and 10 (Update 9 or later)          | SPARC & i386   | agent
+Solaris                      | 11 & 10 (Update 9 or later)          | SPARC & i386   | agent
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2, 7, 8, & 2012 | x86 & x86\_64 | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 

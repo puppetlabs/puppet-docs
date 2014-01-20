@@ -8,9 +8,9 @@ canonical: "/puppetdb/latest/known_issues.html"
 Bugs and Feature Requests
 -----
 
-[redmine]: http://projects.puppetlabs.com/projects/puppetdb/issues
+[JIRA]: https://tickets.puppetlabs.com/browse/PDB-16?jql=project%20%3D%20PDB%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20priority%20DESC
 
-PuppetDB's bugs and feature requests are managed in [Puppet Labs's issue tracker][redmine]. Search this database if you're having problems and please report any new issues to us!
+PuppetDB's bugs and feature requests are managed in [Puppet Labs's issue tracker][JIRA]. Search this database if you're having problems and please report any new issues to us!
 
 Broader Issues
 -----

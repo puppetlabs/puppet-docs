@@ -130,11 +130,11 @@ The initial release of PE 2.7.
 
 #### Puppet Core Patches
 
-Changes to the current version of Puppet's core are documented in the [Puppet Release notes](http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.19). PE 2.7 uses a specially patched version of Puppet 2.7.19. These patches address the following:
+Changes to the current version of Puppet's core are documented in the [Puppet Release notes](http://docs.puppetlabs.com/puppet/2.7/reference/release_notes.html#puppet-2719). PE 2.7 uses a specially patched version of Puppet 2.7.19. These patches address the following:
 
 * In some cases, an improperly functioning alias between scope and named_scope could cause inventory service to fail. This has been fixed. For details, see [Issue 16376](http://projects.puppetlabs.com/issues/16376).
 
-*  The REST API does not return correct metadata for `GET certificate_request/{certname}` or `GET /certificate_status/{certname}`.This has been corrected. For details, see [Issue 15731](http://projects.puppetlabs.com/issues/15731).
+*  The REST API does not return correct metadata for `GET certificate_request/{certname}` or `GET /certificate_status/{certname}`. This has been corrected. For details, see [Issue 15731](http://projects.puppetlabs.com/issues/15731).
 
 * A bug related to the use of hyphens in variable names caused unpredictable behavior when interpolating variables. This has been fixed. There are numerous tickets associated with this issue. See the related issues listed on [Issue 10146](http://projects.puppetlabs.com/issues/10146).
 
@@ -146,8 +146,8 @@ As we discover them, this page will be updated with known issues in Puppet Enter
 
 To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.19 (Puppet Enterprise 2.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
-[peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
-[puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
+[peissues]: https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa
+[puppetissues]: https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa
 
 
 The following issues affect the currently shipped version of PE and all prior releases in the 2.x.x series, unless otherwise stated. 

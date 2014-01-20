@@ -20,11 +20,11 @@ Use these repositories to install open source releases of Puppet, Facter, MColle
 
 ### For Red Hat Enterprise Linux and Derivatives
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports the following versions of Red Hat Enterprise Linux and distributions based on it:
+The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following versions of Red Hat Enterprise Linux and distributions based on it:
 
 {% include platforms_redhat_like.markdown %}
 
-Enabling this repository will let you install Puppet without requiring any other external repositories like EPEL.
+Enabling this repository will let you install Puppet in Enterprise Linux 5 without requiring any other external repositories like EPEL. For Enterprise Linux 6, you will need to [enable the Optional Channel](https://access.redhat.com/site/documentation/en-US/OpenShift_Enterprise/1/html/Client_Tools_Installation_Guide/Installing_Using_the_Red_Hat_Enterprise_Linux_Optional_Channel.html) for the rubygems dependency.
 
 To enable the repository, run the command below that corresponds to your OS version and architecture:
 
@@ -32,45 +32,45 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm
 
 #### Enterprise Linux 6
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
 
 ### For Debian and Ubuntu
 
-The [apt.puppetlabs.com](http://apt.puppetlabs.com) repository supports the following OS versions:
+The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
 
 {% include platforms_debian_like.markdown %}
 
 To enable the repository:
 
 1. Download the "puppetlabs-release" package for your OS version.
-    * You can see a full list of these packages on the front page of <http://apt.puppetlabs.com/>. They are all named `puppetlabs-release-<CODE NAME>.deb`. (For Ubuntu releases, the code name is the adjective, not the animal.)
+    * You can see a full list of these packages on the front page of <https://apt.puppetlabs.com/>. They are all named `puppetlabs-release-<CODE NAME>.deb`. (For Ubuntu releases, the code name is the adjective, not the animal.)
     * Architecture is handled automatically; there is only one package per OS version.
 2. Install the package by running `dpkg -i <PACKAGE NAME>`.
 3. Run `apt-get update` to get the new list of available packages.
 
 For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
-    $ wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+    $ wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
     $ sudo dpkg -i puppetlabs-release-precise.deb
     $ sudo apt-get update
 
 ### For Fedora
 
-The [yum.puppetlabs.com](http://yum.puppetlabs.com) repository supports the following Fedora versions:
+The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following Fedora versions:
 
 {% include platforms_fedora.markdown %}
 
@@ -80,31 +80,31 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f17/products/i386/puppetlabs-release-17-7.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f17/products/x86_64/puppetlabs-release-17-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f17/products/x86_64/puppetlabs-release-17-7.noarch.rpm
 
 #### Fedora 18
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f18/products/x86_64/puppetlabs-release-18-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f18/products/x86_64/puppetlabs-release-18-7.noarch.rpm
 
 #### Fedora 19
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f19/products/i386/puppetlabs-release-19-2.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f19/products/i386/puppetlabs-release-19-2.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/fedora/f19/products/x86_64/puppetlabs-release-19-2.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f19/products/x86_64/puppetlabs-release-19-2.noarch.rpm
 
 Enabling the Prerelease Repos
 -----
@@ -141,7 +141,7 @@ Use these repositories to install PE-compatible versions of PuppetDB and the Rub
 
 ### For Red Hat Enterprise Linux and Derivatives
 
-The [yum-enterprise.puppetlabs.com](http://yum-enterprise.puppetlabs.com) repository supports versions 5 and 6 of Red Hat Enterprise Linux and distributions based on it, including but not limited to CentOS, Scientific Linux, and Ascendos. It contains additional components and add-ons compatible with Puppet Enterprise's installation layout.
+The [yum-enterprise.puppetlabs.com](https://yum-enterprise.puppetlabs.com) repository supports versions 5 and 6 of Red Hat Enterprise Linux and distributions based on it, including but not limited to CentOS, Scientific Linux, and Ascendos. It contains additional components and add-ons compatible with Puppet Enterprise's installation layout.
 
 To enable the repository, run the command below that corresponds to your OS version:
 
@@ -149,25 +149,25 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/5/extras/i386/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
+    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/5/extras/i386/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/5/extras/x86_64/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
+    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/5/extras/x86_64/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
 
 #### Enterprise Linux 6
 
 ##### i386
 
-    $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/6/extras/i386/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
+    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/6/extras/i386/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
 
 ##### x86_64
 
-    $ sudo rpm -ivh http://yum-enterprise.puppetlabs.com/el/6/extras/x86_64/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
+    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/6/extras/x86_64/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
 
 ### For Debian and Ubuntu
 
-The [apt-enterprise.puppetlabs.com](http://apt-enterprise.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS.
+The [apt-enterprise.puppetlabs.com](https://apt-enterprise.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS.
 
 To enable the repository, run the commands below:
 

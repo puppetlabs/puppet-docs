@@ -61,7 +61,7 @@ For a complete list of package upgrades, visit the [release notes](./appendix.ht
 
 * Live management and orchestration now support Windows.
 * Puppet agents are now supported on Windows Server 2012.
-* The addition of [parameterized class](/guides/parameterized_classes.html) support in the console makes it easier to use pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com/).
+* The addition of [parameterized class](/puppet/latest/reference/lang_classes.html#class-parameters-and-variables) support in the console makes it easier to use pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com/).
 * A new resource type, [service](/references/3.2.latest/type.html#service), is now available for browsing in live management.
 * Live management cloning is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, the [release notes](./appendix.html#release-notes) contain suggestions.
 * Compliance is deprecated and has been removed from the console. For alternate ways to accomplish similar functionality, visit this page that describes an [alternate workflow in greater detail](./compliance_alt.html).

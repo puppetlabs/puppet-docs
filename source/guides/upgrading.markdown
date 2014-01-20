@@ -4,13 +4,13 @@ nav: puppet_general.html
 title: "Upgrading Puppet"
 ---
 
-[release_notes]: http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes
+[release_notes]: http://docs.puppetlabs.com/release_notes/
 [repos]: /guides/puppetlabs_package_repositories.html
 [puppet_3_release_notes]: /puppet/3/reference/release_notes.html
 [mailing_list]: https://groups.google.com/group/puppet-users/
 [tarball]: http://downloads.puppetlabs.com/puppet/
 [mcollective]: /mcollective
-[mco_puppetd]: http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/AgentPuppetd
+[mco_puppetd]: http://docs.puppetlabs.com/mcollective/reference/basic/basic_cli_usage.html#discovering-available-agents
 
 Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care.** This page describes our recommendations for upgrading Puppet.
 

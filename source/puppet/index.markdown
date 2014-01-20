@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Puppet Documentation Index
 ---
 
@@ -113,6 +113,7 @@ Get Puppet up and running at your site.
 * [Templating](/guides/templating.html) --- template out config files using ERB
 * [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) --- share data between hosts
+* [Using the Augeas Resource Type](/guides/augeas.html) --- safely edit many types of config files
 
 ### Using Optional Features
 
@@ -143,6 +144,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 * [HTTP Access Control](/guides/rest_auth_conf.html) --- secure API access with `auth.conf`
 * [External Nodes](/guides/external_nodes.html) --- specify what your machines do using external data sources
+    * [LDAP Nodes](/guides/ldap_nodes.html) --- a special-case tool for keeping node information in your LDAP directory
 
 ### Hacking and Extending: Ruby Plugins
 
@@ -165,7 +167,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 Puppet has gone through some transitional periods, and we've occasionally written short guides to explain major changes in its behavior.
 
-* [Parameterized Classes](/guides/parameterized_classes.html) --- use parameterized classes to write more effective, versatile, and encapsulated code
 * [Scope and Puppet](/guides/scope_and_puppet.html) --- understand and banish dynamic lookup warnings with Puppet 2.7
 * [Scaling With Mongrel](/guides/mongrel.html) --- Running production puppet master servers with pre-0.24.6 versions of Puppet
 
@@ -175,5 +176,5 @@ Puppet has gone through some transitional periods, and we've occasionally writte
 Other Resources
 ---------------
 
-* [Puppet Wiki & Bug Tracker](http://projects.puppetlabs.com/)
+* [Puppet Bug Tracker](https://tickets.puppetlabs.com/browse/PUP)
 * [Puppet Patterns (Recipes)](http://projects.puppetlabs.com/projects/puppet/wiki/Recipes)

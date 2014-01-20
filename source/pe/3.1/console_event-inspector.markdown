@@ -43,7 +43,7 @@ There are four kinds of events, all of which are shown in event inspector:
 
 * **Change:** a property was out of sync, and Puppet had to make changes to reach the desired state.
 * **Failure:** a property was out of sync; Puppet tried to make changes, but was unsuccessful.
-* **Noop:** a property was out of sync, but Puppet was previously instructed to not make changes on this resource (via either the `--noop` command-line option, the `noop` setting, or the `noop => true` metaparameter). Instead of making changes, Puppet will log a noop event and report the changes it _would_ have made.
+* **Noop:** a property was out of sync, but Puppet was previously instructed to not make changes on this resource (via either the `--noop` command-line option, the `noop` setting, or the `noop => true` metaparameter). Instead of making changes, Puppet will log a no-op event and report the changes it _would_ have made.
 * **Skip:** a prerequisite for this resource was not met, so Puppet did not compare its current state to the desired state. (This prerequisite is either a failure in one of the resource's dependencies or a timing limitation set with [the `schedule` metaparameter](/references/3.3.latest/metaparameter.html#schedule).) The resource may be in sync or out of sync; Puppet doesn't know yet.
 
 
@@ -76,9 +76,9 @@ You can click any item in the sub-lists (classes with failures, nodes with event
 Analyzing Changes and Failures
 -----
 
-Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about.To see how this works in a practical sense, let's work through an example.
+Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about. To see how this works in a practical sense, let's work through an example.
 
-Assume you are a sysadmin and Puppet developer for a large web commerce enterprise. While you were in a meeting, your team started rolling out a new deployment of web servers. In the summary pane's default initial classes view, you note that a failure has been logged for the `testweb` class that you use for test configurations on new web server instances.
+Assume you are a sysadmin and Puppet developer for a large web commerce enterprise. While you were in a meeting, your team started rolling out a new deployment of web servers. In the summary pane's default initial classes view, you note that a failure has been logged for the `Testweb` class that you use for test configurations on new web server instances.
 
 ![Default view with failure events][default-failure]
 

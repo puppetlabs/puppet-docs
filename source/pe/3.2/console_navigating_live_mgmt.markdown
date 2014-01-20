@@ -175,7 +175,6 @@ Although all arguments are presented as text fields, some arguments have specifi
 
 
 
-
 [live_advanced_args]: ./images/console/live_advanced_args.png
 [live_advanced_main]: ./images/console/live_advanced_main.png
 [live_advanced_results]: ./images/console/live_advanced_results.png

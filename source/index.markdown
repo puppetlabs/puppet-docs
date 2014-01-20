@@ -26,8 +26,9 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 
 Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.
 
-Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration, see [the current Puppet Enterprise user's guide](/pe/latest/), or go directly to:
+Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration:
 
+- [Puppet Enterprise user's guide](/pe/latest/)
 - [The system requirements](/pe/latest/install_system_requirements.html)
 - [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
 - [The quick start guide](/pe/latest/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
@@ -117,7 +118,7 @@ Puppet has a large community and many resources for users.
 - [Community Guidelines and Code of Conduct](/community/community_guidelines.html) --- General info about how to navigate our community and get help.
 - [Yum and Apt repositories](/guides/puppetlabs_package_repositories.html) --- Easily install Puppet Labs's software on the most popular Linux distributions.
 - [The Puppet Forge](http://forge.puppetlabs.com) --- A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS.
-- [Redmine Workflow for Puppet Open-Source Projects](/community/puppet_projects_redmine_workflow.html) --- Info about how the Puppet projects use their issue tracker, and how you can help.
+- [Workflow for Puppet Open-Source Projects](/community/puppet_projects_workflow.html) --- Info about how the Puppet projects use their issue trackers, and how you can help.
 - [Trivial Patch Exemption Policy](/community/trivial_patch_exemption.html) --- Details about which contributions are exempted from our contributor agreement.
 
 

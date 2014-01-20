@@ -22,7 +22,7 @@ Release Notes
 
 #### Live Management Toggle
 
-This version of Puppet Enterprise (PE) allows you to create a question in your answer file to disable/enable live management during installations or upgrades. You can also disable/enable live management during normal operations. For more information, refer to the [live management page](console_navigating_live_mgmt.html#disabling/enabling-live-management).
+This version of Puppet Enterprise (PE) allows you to add a question to your answer file to disable/enable live management during installations or upgrades. You can also disable/enable live management during normal operations. For more information, refer to the [live management page](console_navigating_live_mgmt.html#disabling/enabling-live-management).
                
 Known Issues
 -----

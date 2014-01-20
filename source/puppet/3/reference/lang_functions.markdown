@@ -44,7 +44,7 @@ In the examples above, `template`, `include`, and `str2bool` are all functions. 
 The general form of a function call is:
 
 * The name of the function, as a bare word
-* An optional opening parenthesis
+* An opening parenthesis, which is optional for statements but mandatory for rvalues
 * Any number of **arguments,** separated with commas; the number and type of arguments are controlled by the function
 * A closing parenthesis, if an open parenthesis was used
 

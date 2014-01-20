@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Scope and Puppet
 ---
 
@@ -111,9 +111,9 @@ All told, it's more likely that defaults have been traveling through scopes with
 
 ### Use Parameterized Classes!
 
-If you need a class to dynamically change its behavior depending on where and how you declare it, it should be rewritten as a parameterized class; see our [guide to using parameterized classes][parameterized] for more details. 
+If you need a class to dynamically change its behavior depending on where and how you declare it, it should be written as a parameterized class; see our [reference page for classes][classes] for more details. 
 
-[parameterized]: ./parameterized_classes.html
+[classes]: /puppet/latest/reference/lang_classes.html
 
 Appendix: How Scope Works in Puppet ≤ 2.7.x
 -------------------------------------------

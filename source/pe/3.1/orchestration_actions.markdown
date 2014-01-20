@@ -51,7 +51,7 @@ Check for APT updates
 
   The exitcode from the apt command
 
-`oudated_packages`
+`outdated_packages`
 : (Appears as "Outdated Packages" on CLI)
 
   Outdated packages
@@ -665,7 +665,7 @@ Invoke a single Puppet run
   - **Length:** 50
 
 `force`
-: Will force a run immediately else subject to default splay time
+: Will force a run immediately, else is subject to default splay time
 
   - **Type:** boolean
 

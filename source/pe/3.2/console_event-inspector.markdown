@@ -20,7 +20,9 @@ Event inspector can be reached by clicking "Events" in the console's main naviga
 
 The event inspector page displays two panes of data. Clicking an item will show its details (and any sub-items) in the detail pane on the right. The context pane on the left always shows the list of items from which the one in the right pane was chosen, to let you easily view similar items and compare their states.
 
-To backtrack out of the current list of items, you can use the breadcrumb navigation or the in-page back button (appearing left of the left pane after you've clicked at least one item). _Do not use your web browser's back button;_ this can cause event inspector to reload and lose your place.
+To backtrack out of the current list of items, you can use the breadcrumb navigation or the "previous" button (appearing left of the left pane after you've clicked at least one item). The back and forward buttons in your browser will behave normally, returning you to the previously loaded URL. 
+
+You can also bookmark pages as you investigate events on classes, nodes, and resources, allowing you to return to a previous set of events. However, after subsequent Puppet runs, the contents of the bookmarked pages may be different when you revisit them. Also, if there are no changes for a selected time period, the bookmarks may show default text indicating there were no events on that class, node, or resource.   
 
 ![The full event inspector page][full_page]
 
@@ -76,19 +78,25 @@ You can click any item in the sub-lists (classes with failures, nodes with event
 Analyzing Changes and Failures
 -----
 
-Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about.To see how this works in a practical sense, let's work through an example.
+Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about. To see how this works in a practical sense, let's work through an example.
 
 Assume you are a sysadmin and Puppet developer for a large web commerce enterprise. While you were in a meeting, your team started rolling out a new deployment of web servers. In the summary pane's default initial classes view, you note that a failure has been logged for the `testweb` class that you use for test configurations on new web server instances.
 
 ![Default view with failure events][default-failure]
 
-In the resource summary, you click on "failed", which loads a detail view showing failed resources. In this case, you can see in the detail pane that there is an issue with a file resource, specifically `/var/www/first/.htaccess`.
+After you click `Testweb`, you can select the "Nodes with failures" tab or the "Resources with failures" tab, depending on how you want to investigate the failure on the class. 
+
+You click the "Resources with failures" tab, which loads a detail view showing failed resources. In this case, you can see in the detail pane that there is an issue with a file resource, specifically `/var/www/first/.htaccess`.
 
 ![Failed Resources view][resource-failure]
 
-Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the arrow button next to the left pane or the breadcrumb trail at the top to step back through the process if you wish. (Note that the back button on your browser may not give you the expected result.)
+Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the "previous" button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish. 
 
-After clicking the failed resource, the detail pane now shows every node it failed on. You click on the most recent failure, and the detail pane loads the specifics of the failure including the config version associated with the run and the specific line of code and manifest where the error occurs. You see from the error message that the error was caused by the manifest trying to set the owner of the file resource to a non-existent user (`Message: Could not find user www-data`) on the intended platform.
+After clicking the failed resource, the detail pane now shows the node it failed on. 
+
+![Resource Failed Node view][resource-node-failure-detail]
+
+You bookmark this page and email the link to your team so they can see the specifics of the failure. You click on the failure, and the detail pane loads the specifics of the failure including the config version associated with the run and the specific line of code and manifest where the error occurs. You see from the error message that the error was caused by the manifest trying to set the owner of the file resource to a non-existent user (`Message: Could not find user www-data`) on the intended platform.
 
 ![Failed Resource Detail view][resource-detail]
 
@@ -125,6 +133,7 @@ For resource types that take the `ensure` property, (e.g. user or file resource 
 [resource-failure]: ./images/console/event_inspector/failed-resources.png
 [resource-detail]: ./images/console/event_inspector/resource-detail.png
 [full_page]: ./images/console/event_inspector/full_page.png
+[resource-node-failure-detail]: ./images/console/event_inspector/resource-node-failure-detail.png
 
 
 

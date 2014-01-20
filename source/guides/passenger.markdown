@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Passenger
 ---
 
@@ -32,7 +32,12 @@ of puppet masters, but you may run into compatibility issues with
 Puppet versions older than 0.24.6 and Passenger versions older than
 2.2.5.
 
-* * *
+### Relevant Pages in the Passenger Docs
+
+[passenger_apache_guide]: http://www.modrails.com/documentation/Users%20guide%20Apache.html
+
+* [The Apache version of the Passenger user's guide][passenger_apache_guide] covers the Passenger-specific configuration directives we use below in much greater detail.
+
 
 Apache and Passenger Installation
 ---------------------------------
@@ -69,15 +74,24 @@ To configure Apache to run the puppet master application, you must:
 
 ### Install the Puppet Master Rack Application
 
-Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. Create a directory for it, then copy the `ext/rack/files/config.ru` file from the Puppet source code into that directory:
+Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. To install this Rack application in a form Passenger can use, you'll need to:
+
+* Create three directories for the application (a parent directory, a "public" directory, and a "tmp" directory)
+* Copy the `ext/rack/files/config.ru` file from the Puppet source code into the parent directory
+* Set the ownership of the config.ru file
+
+> **Note:** The `chown` step is important --- the owner of this file is the user the puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
+>
+> Also, make sure the Apache user (which may vary by platform) can both read and traverse all three directories, can traverse all of its parent directories, and can write to the "tmp" directory.
+
+These steps will look something like this:
 
     $ sudo mkdir -p /usr/share/puppet/rack/puppetmasterd
     $ sudo mkdir /usr/share/puppet/rack/puppetmasterd/public /usr/share/puppet/rack/puppetmasterd/tmp
-    $ sudo cp /usr/share/puppet/ext/rack/files/config.ru /usr/share/puppet/rack/puppetmasterd/
-    $ sudo chown puppet /usr/share/puppet/rack/puppetmasterd/config.ru
+    $ sudo cp /usr/share/puppet/ext/rack/config.ru /usr/share/puppet/rack/puppetmasterd/
+    $ sudo chown puppet:puppet /usr/share/puppet/rack/puppetmasterd/config.ru
 
-> Note: The `chown` step is important --- the owner of this file is the user the puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
-
+The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/master/ext/rack/config.ru).
 
 ### Create and Enable the Puppet Master Vhost
 
@@ -105,18 +119,17 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
     # you're using, as well as the installed version of Passenger.
 
     # Debian/Ubuntu:
-    #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
-    #PassengerRoot /var/lib/gems/1.8/gems/passenger-3.0.x
+    #LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-4.0.x/ext/apache2/mod_passenger.so
+    #PassengerRoot /var/lib/gems/1.8/gems/passenger-4.0.x
     #PassengerRuby /usr/bin/ruby1.8
 
     # RHEL/CentOS:
-    #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x/ext/apache2/mod_passenger.so
-    #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-3.0.x
+    #LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-4.0.x/ext/apache2/mod_passenger.so
+    #PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-4.0.x
     #PassengerRuby /usr/bin/ruby
 
     # And the passenger performance tuning settings:
     PassengerHighPerformance On
-    PassengerUseGlobalQueue On
     # Set this to about 1.5 times the number of CPU cores in your master:
     PassengerMaxPoolSize 12
     # Recycle master processes after they service 1000 requests
@@ -146,14 +159,23 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
 
-        RackAutoDetect On
-        DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
+        DocumentRoot /usr/share/puppet/rack/puppetmasterd/public
+
         <Directory /usr/share/puppet/rack/puppetmasterd/>
-            Options None
-            AllowOverride None
-            Order Allow,Deny
-            Allow from All
+          Options None
+          AllowOverride None
+          # Apply the right behavior depending on Apache version.
+          <IfVersion < 2.4>
+            Order allow,deny
+            Allow from all
+          </IfVersion>
+          <IfVersion >= 2.4>
+            Require all granted
+          </IfVersion>
         </Directory>
+
+        ErrorLog /var/log/httpd/puppet-server.example.com_ssl_error.log
+        CustomLog /var/log/httpd/puppet-server.example.com_ssl_access.log combined
     </VirtualHost>
 
 If this puppet master is not the certificate authority, you will
@@ -164,7 +186,15 @@ need to use different paths to the CA certificate and CRL:
     SSLCARevocationFile     /var/lib/puppet/ssl/crl.pem
 
 For additional details about enabling and configuring Passenger, see the
-[Passenger install guide](http://www.modrails.com/install.html).
+[Passenger install guide](http://www.modrails.com/install.html) and the [Apache version of the Passenger user's guide][passenger_apache_guide].
+
+> ### Notes on DocumentRoot and PassengerAppRoot
+>
+> Passenger usually uses Apache's DocumentRoot directive to guess where to find its config.ru file --- it assumes config.ru will be right beside the `public` directory.
+>
+> This generally works fine, but some users have seen Passenger fail to guess. If Passenger fails to load the puppet master app and is displaying a generic error message, our first suggestion is to double-check the directory permissions (remember the Apache user must be able to read and traverse all puppet master application directories), but you can also try explicitly telling Passenger where to find the config.ru file with the PassengerAppRoot directive:
+>
+>     PassengerAppRoot /usr/share/puppet/rack/puppetmasterd
 
 > ### Notes on SSL Verification
 >

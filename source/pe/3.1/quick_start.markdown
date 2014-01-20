@@ -16,7 +16,7 @@ Welcome to the Puppet Enterprise 3.1 quick start guide. This document is a short
 * Apply Puppet classes to nodes with the console
 * View the results of configuration changes in the console
 
-> Following this walkthrough will take approximately 30 minutes.
+> Following this walkthrough will take approximately 30-60 minutes.
 
 Creating a Deployment
 -----
@@ -40,6 +40,7 @@ For this deployment, the puppet master, the console and database support server 
 > * Optionally, a computer running a version of Microsoft Windows [supported by Puppet Enterprise](./install_system_requirements.html).
 > * [Puppet Enterprise installer tarballs][downloads] suitable for the OS and architecture your nodes are using.
 > * A network --- all of your nodes should be able to reach each other.
+> * All of the nodes you intend to use should have their system clocks set to within a minute of each other.
 > * An internet connection or a local mirror of your operating system's package repositories, for downloading additional software that Puppet Enterprise may require.
 > * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
 >     * For demonstration purposes, all nodes should allow **all traffic on ports 8140, 61613, and 443.** (Production deployments can and should partially restrict this traffic.)
@@ -117,7 +118,7 @@ During installation, the agent node contacted the puppet master and requested a 
 During this walkthrough, we will be running puppet agent interactively. Normally, puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a puppet run manually from the command line.
 
 
-* **On the first agent node,** run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging.
+* **On the first agent node,** log in as root and run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging.
 
     > **Note:** If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
@@ -260,7 +261,7 @@ Every module contains one or more **classes.** The modules you just installed co
 
 ![the add class field][add_motd]
 
-* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. Click the "Update" button after you have selected it.
+* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. After you select "motd" from the drop-down, it will appear in the "Classes" list. Click the "Update" button to save the changes.
 
 ![assigning the motd class][assign_motd]
 

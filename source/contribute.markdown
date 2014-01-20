@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Contribute
 ---
 
@@ -17,7 +17,7 @@ Filing Tickets
 The Puppet documentation is managed like a software project, and you can file
 bug reports and feature requests in its
 [issue tracker](http://projects.puppetlabs.com/projects/puppet-docs/).
-You'll need to create a [Redmine account](http://projects.puppetlabs.com/account/register)
+You'll need to create a [JIRA account](https://tickets.puppetlabs.com/secure/Signup!default.jspa)
 if you don't already have one.
 
 In your ticket, please give as much information as possible about what's
@@ -88,9 +88,9 @@ screencasts](http://learn.github.com/).
 
 ### Submit a Ticket
 
-Visit the [Puppet Documentation Project](http://projects.puppetlabs.com/projects/puppet-docs/)
-in Redmine and submit a ticket describing the problem and your proposed
-changes; you'll need to create a [Redmine account](http://projects.puppetlabs.com/account/register)
+Visit the [Puppet Documentation Project](https://tickets.puppetlabs.com/browse/DOCUMENT)
+in JIRA and submit a ticket describing the problem and your proposed
+changes; you'll need to create a [JIRA account](tickets.puppetlabs.com/secure/Signup!default.jspa)
 if you don't already have one. Be sure to provide the background on
 your change, the versions of Puppet (or supporting project)
 to which the change pertains, and (if you're using GitHub or another

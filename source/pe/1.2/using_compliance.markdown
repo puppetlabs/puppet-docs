@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Using the Puppet Compliance Workflow"
 canonical: "/pe/latest/compliance_alt.html"
 ---

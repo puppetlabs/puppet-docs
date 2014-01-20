@@ -7,6 +7,90 @@ nav: facter17.html
 
 This page documents the history of the Facter 1.7 series.
 
+Facter 1.7.4
+-----
+
+Facter 1.7.4 is a bug fix release in the 1.7 series.
+
+### External Fact Fixes
+
+This release fixes several issues related to external facts:
+
+[Bug #22944: External facts are evaluated many times](https://projects.puppetlabs.com/issues/22944)
+
+Facter was evaluating each external fact several times per run, which could cause significant slowdowns. This is now fixed, and Facter will load each external fact once.
+<!-- https://tickets.puppetlabs.com/browse/FACT-90 -->
+
+[Bug #22349: Facter fails to run as a non-root user when /etc/facter/facts.d is not readable](https://projects.puppetlabs.com/issues/22349)
+
+When running as a non-root user, Facter will now load external facts from a `.facter/facts.d/` directory in the current user's home directory. This works on both Windows and \*nix. (Prior to this fix, Facter would try to load external facts from the system-wide external facts directory, and would bail with an error if that directory wasn't readable.)
+
+[Bug #22622: Facter (and Puppet) broken when executable external facts return no output](https://projects.puppetlabs.com/issues/22622)
+
+Facter was making a bad assumption that the output of an executable external fact would always consist of at least one line of text. What this fix presupposes is... maybe it doesn't??
+<!-- https://tickets.puppetlabs.com/browse/FACT-75 -->
+
+Maint: Do not execute com, cmd, exe, or bat files if not on windows
+
+In preparation for pluginsync support for external facts, Facter needed a bit of defense for situations where Windows external facts may be present on non-Windows systems.
+<!-- https://tickets.puppetlabs.com/browse/FACT-85 -->
+
+### Windows Fixes
+
+[Bug #22619: Error when NetConnectionId is missing on NetworkAdapter](https://projects.puppetlabs.com/issues/22619)
+
+This was a regression in Facter 1.7.3 --- Facter would fail and quit on systems where a network adapter was configured in a specific way.
+<!-- https://tickets.puppetlabs.com/browse/FACT-67 -->
+
+[Bug #23368: Executable external facts fail on Windows 2003](https://projects.puppetlabs.com/issues/23368) <!-- https://tickets.puppetlabs.com/browse/FACT-124 -->
+
+This was a problem with file paths containing a space, which included the default directory for external facts under Windows 2003.
+
+### Miscellaneous Fixes
+
+[Bug #15586: 'facter --help' does not work with Ruby 1.9.3](https://projects.puppetlabs.com/issues/15586)
+
+Facter was using an Rdoc feature that went away, so we replaced it with something else. You can now get help on the command line when running Facter under Ruby 1.9.3.
+<!-- https://tickets.puppetlabs.com/browse/FACT-44 -->
+
+[Bug #22322: facter should suppress stderr from "swap" commands on Solaris](https://projects.puppetlabs.com/issues/22322)
+
+This was causing noisy logging on Solaris.
+
+[Bug #22334: Facter outputs information to stderr regardless of whether --debug is enabled](https://projects.puppetlabs.com/issues/22334)
+
+This was causing noisy logging everywhere.
+
+### Fact Resolution Fixes (Various OSes)
+
+This release fixes several bugs where facts reported incorrect values on certain operating systems.
+
+[Bug #21604: Xen virtual fact doesn't work on Windows](https://projects.puppetlabs.com/issues/21604) <!-- https://tickets.puppetlabs.com/browse/FACT-20 -->
+
+[Bug #16081: Facter reports bogus arch on AIX](https://projects.puppetlabs.com/issues/16081)
+
+[Bug #12504: operatingsystemrelease doesn't work for Ubuntu LTS 12.04](https://projects.puppetlabs.com/issues/12504)
+
+[Bug #18215: processorcount counting CPU cores on Solaris](https://projects.puppetlabs.com/issues/18215)
+
+[Bug #20739: processorX facts fail on HP superdome servers](https://projects.puppetlabs.com/issues/20739)
+
+[Bug #20994: memoryfree and memorysize facts are set to 0 on AIX](https://projects.puppetlabs.com/issues/20994)
+
+[Bug #22844: The 'virtual' and 'is_virtual' facts are incorrect for Windows guests hosted on kvm](https://projects.puppetlabs.com/issues/22844)
+
+[Bug #22789: is_virtual incorrectly shows true for vserver_host](https://projects.puppetlabs.com/issues/22789)
+
+
+### Testing Fixes and Administrivia
+
+[Refactor #22651: add fixture access methods for example /proc/cpuinfo files](https://projects.puppetlabs.com/issues/22651)
+
+[Bug #22238: Remove Fedora 17 from build_defaults.yaml](https://projects.puppetlabs.com/issues/22238)
+
+[Bug #23135: Update Facter Master Windows/Solaris jobs to use vcloud.](https://projects.puppetlabs.com/issues/23135)
+
+
 Facter 1.7.3
 -----
 

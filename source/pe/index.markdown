@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "Puppet Enterprise User's Guides"
 ---
 

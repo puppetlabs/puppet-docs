@@ -20,10 +20,10 @@ to 2.6.18.
 * Debs: <https://apt.puppetlabs.com>
 
 See the Verifying Puppet Download section at:  
-<https://projects.puppetlabs.com/projects/puppet/wiki/Downloading_Puppet>
+<http://puppetlabs.com/misc/download-options>
 
-Please report feedback via the Puppet Labs Redmine site, using an affected puppet version of 2.6.18:  
-<http://projects.puppetlabs.com/projects/puppet/>
+Please report feedback via the Puppet Labs JIRA site, using an affected puppet version of 2.6.18:  
+<https://tickets.puppetlabs.com/browse/PUP>
 
 ### 2.6.18 Changelog
 

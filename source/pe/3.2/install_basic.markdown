@@ -168,9 +168,9 @@ If you want to set up a PuppetDB database manually, the [PuppetDB configuration 
 
 If you choose to use a database server separate from the PuppetDB server, you must configure it manually. The installer cannot install and configure postgres on a remote server without PuppetDB.
 
-**Note**: If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+**Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
-**IMPORTANT**: The node you choose to run database support must have the en_US.UTF8 locale present before you begin installation. The installer will abort with a message if the locale is not present.
+**IMPORTANT** The node you choose to run database support must have the en_US.UTF8 locale present before you begin installation. The installer will abort with a message if the locale is not present.
 
 ### The Console Role
 

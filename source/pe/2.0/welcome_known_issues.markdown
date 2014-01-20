@@ -19,8 +19,8 @@ As we discover them, this page will be updated with known issues in each mainten
 
 To find out which of these issues you are affected by, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `2.7.9 (Puppet Enterprise 2.0.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
-[peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
-[puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
+[peissues]: https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa
+[puppetissues]: https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa
 
 
 Issues Still Outstanding

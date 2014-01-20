@@ -8,7 +8,7 @@ canonical: "/pe/latest/overview_about_pe.html"
 
 Thank you for choosing Puppet Enterprise (PE), IT automation software that allows system administrators to programmatically provision, configure, and manage servers, network devices and storage, in the data center or in the cloud.
 
-This user's guide will help you start using Puppet Enterprise 3.1, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and the orchestration engine. Use the **navigation at left** to move between the guide's sections and chapters.
+This user's guide will help you start using Puppet Enterprise 3.1.1, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and the orchestration engine. Use the **navigation at left** to move between the guide's sections and chapters.
 
 > For New Users
 > -----
@@ -30,7 +30,7 @@ Puppet Enterprise is a comprehensive tool for enterprise systems configuration m
 * Powerful orchestration capabilities.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically PE 3.1 includes all of the following Puppet Labs software:
+Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically PE 3.1.1 includes all of the following Puppet Labs software:
 
  * Puppet 3.3.1
  * PuppetDB 1.5.1

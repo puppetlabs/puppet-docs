@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Using Puppet Enterprise"
 canonical: "/pe/latest/quick_start.html"
 ---

@@ -4,6 +4,8 @@ title: "PE 2.8  » Overview » What's New"
 subtitle: "New Features in PE 2.8"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
+### Version 2.8.4
+PE 2.8.4 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes)
 
 ### Version 2.8.3
 PE 2.8.3 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](http://docs.puppetlabs.com/pe/2.8/appendix.html#release-notes).

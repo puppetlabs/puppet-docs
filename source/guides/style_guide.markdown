@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Style Guide
 ---
 
@@ -451,7 +451,7 @@ The following example follows the recommended style:
     class myservice($ensure='running') {
 
       if $ensure in [ running, stopped ] {
-        $ensure_real = $ensure
+        $_ensure = $ensure
       } else {
         fail('ensure parameter must be running or stopped')
       }
@@ -481,7 +481,7 @@ The following example follows the recommended style:
       }
 
       service { 'myservice':
-        ensure    => $ensure_real,
+        ensure    => $_ensure,
         hasstatus => true,
       }
     }
@@ -699,13 +699,13 @@ For example:
 
       include ntp::params
 
-      $server_real = $server ? {
+      $_server = $server ? {
         'UNSET' => $::ntp::params::server,
         default => $server,
       }
 
       notify { 'ntp':
-        message => "server=[$server_real]",
+        message => "server=[$_server]",
       }
 
     }
@@ -729,7 +729,7 @@ class ntp(
 
 Other SHOULD recommendations:
 
- * SHOULD use the \_real suffix to indicate a scope local variable for
+ * SHOULD use the `_` preffix to indicate a scope local variable for
    maintainability over time.
  * SHOULD use fully qualified namespace variables when pulling the value
    from the module params class to avoid namespace collisions.
@@ -757,13 +757,13 @@ how to switch from one to the other.
     +  $param = 'UNSET'
     +) {
     +  include paramstest::params
-    +  $param\_real = $param ? {
+    +  $\_param = $param ? {
     +    'UNSET' => $::paramstest::params::param,
     +    default => $param,
     +  }
        notify { 'TEST':
     -    message => " param=[$param] mandatory=[$mandatory]",
-    +    message => " param=[$param\_real] mandatory=[$mandatory]",
+    +    message => " param=[$\_param] mandatory=[$mandatory]",
        }
      }
 {% endhighlight %}

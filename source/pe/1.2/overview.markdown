@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: "PE 1.2 Manual: Overview"
 canonical: "/pe/latest/overview_about_pe.html"
 ---

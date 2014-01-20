@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Custom Facts
 ---
 
@@ -197,7 +197,8 @@ that fact and move on.
 ## Viewing Fact Values
 
 [inventory]: /guides/inventory_service.html
-[puppetdb]:
+[puppetdb]: /puppetdb/latest
+
 If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventory service][inventory], you can view and search all of the facts for any node, including custom facts. See the PuppetDB or inventory service docs for more info.
 
 External Facts
@@ -211,9 +212,13 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 ### Fact Locations
 
-External facts must go in a standard directory. The location of this directory varies depending on whether you're using Puppet Enterprise or an open source release of Facter.
+External facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
 
-On Unix/Linux:
+> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
+to restrict access so that only Administrators can write to the
+directory.
+
+On Unix/Linux/Mac OS X:
 
     /etc/facter/facts.d/ # Puppet Open Source
     /etc/puppetlabs/facter/facts.d/ # Puppet Enterprise
@@ -226,9 +231,9 @@ On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
-to restrict access so that only Administrators can write to the
-directory.
+When running as a non-root / non-Administrator user: (Facter 1.7.4 or later, on both \*nix and Windows)
+
+    <HOME DIRECTORY>/.facter/facts.d/
 
 ### Executable facts --- Unix
 

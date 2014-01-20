@@ -69,7 +69,7 @@ It also copies the following files:
 
 If you are evaluating Puppet Enterprise, we also offer support during your evaluation period.  During this period you can report issues with Puppet Enterprise to our public support portal. Please be aware that all issues filed here are viewable by all other users.
 
-**Public support portal: <http://projects.puppetlabs.com/projects/puppet-enterprise>**
+**Public support portal: <https://tickets.puppetlabs.com/browse/ENTERPRISE>**
 
 Join the Puppet Enterprise User Group
 -----
@@ -97,7 +97,7 @@ As a Puppet Enterprise customer you are more than welcome to participate in our 
     <http://groups.google.com/group/puppet-dev>
 - Report issues with the open source Puppet project:
 
-    <http://projects.puppetlabs.com/projects/puppet>
+    <https://tickets.puppetlabs.com/browse/PUP>
 
 
 

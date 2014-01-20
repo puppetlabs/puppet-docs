@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Custom Functions
 ---
 
@@ -28,25 +28,27 @@ understanding of the language before you begin.
 There are a few things that can trip you up when you're writing
 your functions:
 
--   Your function will be executed on the server. This means that
-    any files or other resources you reference must be available on the
-    server, and you can't do anything that requires direct access to
-    the client machine.
--   There are actually two completely different types of functions
-    available --- *rvalues* (which return a value) and *statements*
-    (which do not). If you are writing an rvalue function, you must pass
-    `:type => :rvalue` when creating the function; see the examples below.
--   The name of the file containing your function must be the
-    same as the name of function; otherwise it won't get automatically
-    loaded.
--   To use a *fact* about a client, use `lookupvar('FACT NAME')`
-    instead of `Facter['FACT NAME'].value`.  If the *fact* does not
-    exist, `lookupvar` returns:
+- Functions are executed by the _compiler_ --- in an agent/master Puppet environment, this means they run on the puppet master server, and can't access files or resources on any agent node. Functions can only interact with agent-provided information in the form of facts.
+- The puppet master caches custom functions. If you edit an existing function (e.g. while you're developing it), you'll need to restart the puppet master before the new version can be used.
+- Your function will be executed on the server. This means that
+  any files or other resources you reference must be available on the
+  server, and you can't do anything that requires direct access to
+  the client machine.
+- There are actually two completely different types of functions
+  available --- *rvalues* (which return a value) and *statements*
+  (which do not). If you are writing an rvalue function, you must pass
+  `:type => :rvalue` when creating the function; see the examples below.
+- The name of the file containing your function must be the
+  same as the name of function; otherwise it won't get automatically
+  loaded.
+- To use a *fact* about a client, use `lookupvar('FACT NAME')`
+  instead of `Facter['FACT NAME'].value`.  If the *fact* does not
+  exist, `lookupvar` returns:
 
-    - `nil` (in Puppet 3.x)
-    - `:undefined` (in Puppet 2.7)
+  - `nil` (in Puppet 3.x)
+  - `:undefined` (in Puppet 2.7)
 
-    See examples below.
+  See examples below.
 
 ### Where to put your functions
 
@@ -100,7 +102,7 @@ function like this:
 {% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:rand, :type => :rvalue) do |args|
-        rand(vals.empty? ? 0 : args[0])
+        rand(args.empty? ? 0 : args[0])
       end
     end
 {% endhighlight %}

@@ -161,7 +161,7 @@ To **declare** a class, use the `include` function with the class's name:
 
 This time, Puppet will actually apply all those resources:
 
-    # puppet apply /root/examples/ntp-class1.pp
+    # puppet apply /root/examples/ntp-class2.pp
 
     notice: /Stage[main]/Ntp/File[ntp.conf]/content: content changed '{md5}5baec8bdbf90f877a05f88ba99e63685' to '{md5}dc20e83b436a358997041a4d8282c1b8'
     notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'running'

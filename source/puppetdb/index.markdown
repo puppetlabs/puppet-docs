@@ -1,6 +1,6 @@
 ---
 title: "PuppetDB » Overview"
-layout: legacy
+layout: default
 ---
 
 
@@ -23,9 +23,10 @@ The following documentation links are no longer actively maintained. You should 
 * [PuppetDB 1](./1)
 * [PuppetDB 0.9](./0.9)
 
-Development Versions
+Development and Pre-release Versions
 -----
 
-This version of the documentation represents a future feature or major release. This content only applies to the code available in the master branch of the PuppetDB git repository, so if you have downloaded a stable release you should consult the documentation above.
+This version of the documentation represents a future feature or major release. This content only applies to the code available in the master branch of the PuppetDB git repository or a release candidate, so if you have downloaded a stable release you should consult the documentation above.
 
+* [PuppetDB 1.6](./1.6)
 * [PuppetDB (master)](./master)

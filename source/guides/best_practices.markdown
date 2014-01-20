@@ -1,12 +1,12 @@
 ---
-layout: legacy
+layout: default
 title: Best Practices
 ---
 
 Best Practices
 ==============
 
-This guide includes some tips to getting the most out of Puppet.  It is derived from the best practices section of the [Wiki](http://projects.puppetlabs.com/projects/puppet/wiki/) and other sources.  It is intended to cover high-level best practices and may not extend into lower level details.
+This guide includes some tips to getting the most out of Puppet.  It is derived from a variety of sources.  It is intended to cover high-level best practices and may not extend into lower level details.
 
 * * *
 

@@ -132,8 +132,8 @@ PE creates the following users:
 PE generates a number of certificates at install. These are:
 
 - **`pe-internal-dashboard`** ---  The certificate for the puppet dashboard.
-- **`q_puppet_enterpriseconsole_install`** ---  The certificate for the PE console. Only generated if the user has chosen to install the console.
-- **` q_puppetmaster_install `** --- This certificate is either generated at install if the puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
+- **`<user entered console certname>`** ---  The certificate for the PE console. Only generated if the user has chosen to install the console.
+- **`  <user entered master certname> `** --- This certificate is either generated at install if the puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
 - **`pe-internal-mcollective-servers`** --- A shared certificate generated on the puppet master and shared to all Mcollective servers. 
 - **`pe-internal-peadmin-mcollective-client`** --- The certificate for the peadmin account on the puppet master.
 - **`pe-internal-puppet-console-mcollective-client`** --- The certificate for the PE Console/Live Management

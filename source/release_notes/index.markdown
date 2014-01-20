@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: Puppet Release Notes
 description: Links to Puppet and Puppet Enterprise release notes
 ---
@@ -11,11 +11,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 ### Current Release
 - [Puppet 3][3.x]
 
-### Maintenance and Security Branches
-- [Puppet 2.7][2.7]
-- [Puppet 2.6][2.6] (security fixes only)
+<!-- ### Maintenance and Security Branches -->
 
 ### Unsupported Releases
+- [Puppet 2.7][]
+- [Puppet 2.6][]
 - [Puppet 0.25][]
 - [Puppet 0.24][]
 - [Puppet 0.23][]
@@ -53,13 +53,11 @@ We also strongly recommend that you upgrade your master first and then your agen
 
 ### Finding Specific Fixes
 
-The [Roadmap Tracker](http://projects.puppetlabs.com/projects/puppet/roadmap?tracker_ids%5B%5D=1&tracker_ids%5B%5D=2&tracker_ids%5B%5D=4&completed=1&with_subprojects=0&with_subprojects=0) lists tickets closed for each release.
+The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
 
 [semver]: http://semver.org
 [3.x]: /puppet/3/reference/release_notes.html
-[2.7]: /puppet/2.7/reference/release_notes.html
-[2.6]: /puppet/2.6/reference/release_notes.html
 [pe3.1]: /pe/3.1/appendix.html#release-notes
 [pe2.8]: /pe/2.8/appendix.html#release-notes
 [pe2.7]: /pe/2.7/appendix.html#release-notes
@@ -67,6 +65,8 @@ The [Roadmap Tracker](http://projects.puppetlabs.com/projects/puppet/roadmap?tra
 [pe2.5]: /pe/2.5/appendix.html#release-notes
 [pe2.0]: /pe/2.0/welcome_whats_new.html
 [pe1.2]: /pe/1.2/upgrading.html
+[Puppet 2.7]: /puppet/2.7/reference/release_notes.html
+[Puppet 2.6]: /puppet/2.6/reference/release_notes.html
 [Puppet 0.25]: /puppet/0.25/reference/release_notes.html
 [Puppet 0.24]: /puppet/0.24/reference/release_notes.html
 [Puppet 0.23]: /puppet/0.23/reference/release_notes.html

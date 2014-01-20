@@ -238,7 +238,7 @@ Puppet can install and remove two types of packages on Windows:
 
 Both of these use the default `windows` package provider. (There is an older `msi` provider included, but it is deprecated as of Puppet 3.0.)
 
-When managing packages on Windows, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
+When managing packages using the `windows` package provider, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
 
 #### Examples
 
@@ -248,7 +248,7 @@ MSI example:
     package { 'mysql':
       ensure          => '5.5.16',
       source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-      install_options => [ { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
+      install_options => ['INSTALLDIR=C:\mysql-5.5'],
     }
 {% endhighlight %}
 
@@ -276,7 +276,9 @@ Some packages (Git is a notable example) will change their display names with ev
 
 #### Install and Uninstall Options
 
-The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of hashes and/or strings. (MSI properties can be specified as hashes, with the name of the property as the key; you should use one hash per property. Command line flags to executable installers can be specified as strings, with one string per flag.)
+The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings. 
+
+MSI properties can be specified as an array of strings following the 'property=key' pattern; you should use one string per property. Command line flags to executable installers can be specified as an array of strings, with one string per flag.
 
 Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately.
 

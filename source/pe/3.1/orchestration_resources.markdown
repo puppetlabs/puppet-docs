@@ -42,7 +42,7 @@ For an introduction to resources and types, please see [the Resources chapter of
 
 ### The "Inspect All" Button
 
-The summary view's "Inspect All" button scans all resources of all types and reports on their **similarity.** This is mostly useful when you think you've selected a group of very similar nodes but want to make sure.
+The summary view's "Inspect All" button scans all resources of all types and reports on their **similarity**. This is mostly useful when you think you've selected a group of very similar nodes but want to make sure.
 
 ![Similarity for resources after clicking "inspect all"][live_resources_all_similarity]
 
@@ -50,7 +50,7 @@ After clicking "Inspect All," the Browse Resources tab will use the lists of res
 
 ### Resource Type Pages
 
-Resource type pages contain a **search field,** a **Find Resources button,** and (if the Find Resources button has been used) a list of resources labeled with their nodes and number of variants.
+Resource type pages contain a **search field**, a **Find Resources button**, and (if the Find Resources button has been used) a list of resources labeled with their nodes and number of variants.
 
 ![An empty list of user resources][live_resources_none]
 

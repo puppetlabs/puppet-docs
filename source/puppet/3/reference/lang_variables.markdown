@@ -20,7 +20,7 @@ title: "Language: Variables"
 [facter]: /facter
 [customfacts]: /guides/custom_facts.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-
+[enc]: /guides/external_nodes.html
 
 
 Syntax
