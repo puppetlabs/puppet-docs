@@ -83,7 +83,7 @@ Selecting *Admin Tools* will open a screen showing a list of users by email addr
 
 Click on a user's row to open a pop-up pane with information about that user. The pop-up will show the user's name/email, their current role, their status and other information. If the user has not yet validated their account, you will also see the link that was generated and included in the validation email. Note that if there is an SMTP issue and the email fails to send, you can manually send this link to the user.
 
-![user listing screen](./images/console/user_popup_pending.jpg)
+![user listing screen](./images/console/user_popup_pending.png)
 
 #### Modifying User Settings
 
@@ -93,7 +93,7 @@ Note that resetting a password or changing an email address will change that use
 
 For users who have completed the validation process, you can also enable or disable a user's account. Disabling the account will prevent that user from accessing the console, but will not remove them from the users database.
 
-![user listing screen](./images/console/user_popup_active.jpg)
+![user listing screen](./images/console/user_popup_active.png)
 
 #### Adding/Deleting Users
 
@@ -160,7 +160,7 @@ Third-party services are only used for _authenticating_ users; the console's RBA
 
 The account interface for an externally authenticated user differs slightly from internal users in that external users do not have UI for changing their passwords or deleting accounts.
 
-![ext-user](./images/console/ext-auth_user.jpg)
+![ext-user](./images/console/ext-auth_user.png)
 
 There will also be additional text on the user administration page which indicates the authentication service ("Account Type") being used for a given user and a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
 
