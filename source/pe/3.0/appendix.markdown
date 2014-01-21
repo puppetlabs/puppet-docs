@@ -181,8 +181,14 @@ This will set the order of ciphers to:
     
 Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 may leave you vulnerable to other types of attacks.
 
-### Vacuum Task not Updated for PostgreSQL
-The vacuum database task was not updated for PostgreSQL for PE 3.0; this is fixed in PE 3.0.1.
+### db:raw:optimize Rake Task does not Work in PE 3.0.0
+
+To re-index and vacuum the console database, you can use the following PostgreSQL commands:
+
+`su - pe-postgres -s /bin/bash -c "reindexdb console"`
+`su - pe-postgres -s /bin/bash -c "vacuumdb --ful --verbose console"`
+
+The default mode of the db:raw:optimize rake task runs re-index and vacuum in the same command. This task is fixed in PE 3.0.1.
 
 ### Installation of Database Support Role Fails During PE Install if PostgreSQL is Already Installed
 Installation of the Database Support role can fail if your system already has PostgreSQL client tools installed. This is fixed in PE 3.0.1 and later. For PE 3.0 users, the workaround is to uninstall PE, remove the previously installed PostgreSQL packages and configs, and then reinstall PE.

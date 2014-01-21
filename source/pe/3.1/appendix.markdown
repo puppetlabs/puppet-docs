@@ -137,7 +137,14 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
-### Events on Debian systems are not correctly associated with a class in event inspector
+### Creating Node Names with Upper-case Letters Fails
+
+If you try to create a node  with upper-case letters in its name, the creation will fail and raise an "Oops, something went wrong error! Error: Internal Server Error" message. This is due to the fact that when you create a node, the name is automatically converted to downcase before the node is stored, but nodes_controller searches for your new node using the specific name you gave it. Upper-case letters can break this process. 
+
+You can prevent this by making the following change to line 36 of `/opt/puppet/share/puppet-dashboard/app/controllers/nodes_controller.rb`.
+Replace `node = Node.find_by_name(params[:node][:name])` with `node = Node.find_by_name(params[:node][:name].downcase)`.
+
+### Events on Debian Systems are not Correctly Associated with a Class in Event Inspector
 
 When there are events on a Debian node, event inspector shows the affected resources as "unclassified." The events will not show up in the "classes" detail view but will be counted and appear in the "nodes" and "resources" details views.
 

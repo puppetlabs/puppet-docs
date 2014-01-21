@@ -16,7 +16,7 @@ Filing Tickets
 
 The Puppet documentation is managed like a software project, and you can file
 bug reports and feature requests in its
-[issue tracker](http://projects.puppetlabs.com/projects/puppet-docs/).
+[issue tracker](https://tickets.puppetlabs.com/browse/DOCUMENT).
 You'll need to create a [JIRA account](https://tickets.puppetlabs.com/secure/Signup!default.jspa)
 if you don't already have one.
 
