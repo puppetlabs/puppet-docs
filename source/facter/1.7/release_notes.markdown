@@ -10,6 +10,8 @@ This page documents the history of the Facter 1.7 series.
 Facter 1.7.5
 -----
 
+**Pre-release:** Facter 1.7.5 is not yet released. It entered RC1 on January 21, 2014.
+
 Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on OS X 10.9.
 
 ### Support for OS X 10.9
