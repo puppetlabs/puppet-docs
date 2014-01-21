@@ -10,7 +10,9 @@ This page documents the history of the Facter 1.7 series.
 Facter 1.7.5
 -----
 
-Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on Mac OS X 10.9 (Mavericks).
+Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on OS X 10.9.
+
+### Support for OS X 10.9
 
 [FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
 
