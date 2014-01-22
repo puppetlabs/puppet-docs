@@ -32,8 +32,7 @@ You can use the following command-line flags to change the uninstaller's behavio
 : Display a help message.
 
 `-n`
-: Run in `noop` mode; show commands that would have been run
-  during uninstallation without running them.
+: Run in `noop` mode; show commands that would have been run during uninstallation without actually running them.
 
 `-y`
 : Don't ask to confirm uninstallation, assuming an answer of yes.

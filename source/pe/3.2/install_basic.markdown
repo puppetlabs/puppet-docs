@@ -162,15 +162,17 @@ This role provides required database support for PuppetDB and the console:
 
 You can install database support on the same node as the console or onto a separate node. When installing the database support role on a separate node, you should install it BEFORE installing the console role.
 
+>**Tip**: Avoid mixed case when entering your server hostnames (e.g., ServerName). Since certificates are generated using the hostnames you provide for the servers, using all lowercase hostnames will minimize the chances of installation issues.
+
 Installing this role will auto-generate database user passwords. You will need these user passwords to answer some questions you'll be asked during the console installation interview. For more information, see the Console Role section below.
 
 If you want to set up a PuppetDB database manually, the [PuppetDB configuration documentation](/puppetdb/1.3/configure.html#using-postgresql) has more information. Otherwise, the console requires two databases, one for the console and one for console_auth (used for user management), with separate admin user access for each.
 
 If you choose to use a database server separate from the PuppetDB server, you must configure it manually. The installer cannot install and configure postgres on a remote server without PuppetDB.
 
-**Note:** If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+**Note**: If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
-**IMPORTANT** The node you choose to run database support must have the en_US.UTF8 locale present before you begin installation. The installer will abort with a message if the locale is not present.
+**IMPORTANT**: The node you choose to run database support must have the en_US.UTF8 locale present before you begin installation. The installer will abort with a message if the locale is not present.
 
 ### The Console Role
 

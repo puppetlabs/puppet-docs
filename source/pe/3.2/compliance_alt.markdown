@@ -25,7 +25,7 @@ Compliance Alternate Workflow
 
  Puppet resources or catalogs can be marked as "no-op" before they are applied by the agent nodes. This means that the user describes a desired state for the resource, and Puppet will detect and report any divergence from this desired state. Puppet will report what _should_ change to bring the resource into the desired state, but it will not _make_ those changes automatically.
 
- * To set an individual resource as no-op, set [the `noop` metaparameter](/references/latest/metaparameter.html#no-op) to `true`.
+ * To set an individual resource as no-op, set [the `noop` metaparameter](/references/latest/metaparameter.html#noop) to `true`.
 
          file {'/etc/sudoers':
            owner => root,

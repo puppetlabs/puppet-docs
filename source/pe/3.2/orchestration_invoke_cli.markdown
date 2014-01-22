@@ -103,7 +103,7 @@ These subcommands can retrieve and summarize information from Puppet Enterprise 
 Getting Help on the Command Line
 -----
 
-You can get information about **subcommands,** **actions,** and **other plugins** on the command line.
+You can get information about **subcommands**, **actions**, and **other plugins** on the command line.
 
 ### Subcommand Help
 
@@ -118,9 +118,9 @@ To get a list of the available plugins, which includes MCollective agent plugins
 
 ### Agent Plugin Help
 
-Related orchestration **actions** are bundled together in **MCollective agent plugins.** (Puppet-related actions are all in the `puppet` plugin, etc.)
+Related orchestration **actions** are bundled together in **MCollective agent plugins**. (Puppet-related actions are all in the `puppet` plugin, etc.)
 
-To get detailed info on a given plugin's **actions** and their required **inputs,** run:
+To get detailed info on a given plugin's **actions** and their required **inputs**, run:
 
     $ mco plugin doc <PLUGIN>
 
@@ -133,11 +133,11 @@ Invoking Actions
 
 [actions]: ./orchestration_actions.html
 
-Orchestration actions are invoked with either the general purpose `rpc` subcommand or one of the special-purpose subcommands. Note that _unless you specify a filter,_ orchestration commands will be run on **every server in your Puppet Enterprise deployment;** make sure you know what will happen before confirming any potentially disruptive commands. For more info on filters, [see "Filtering Actions" below.](#filtering-actions)
+Orchestration actions are invoked with either the general purpose `rpc` subcommand or one of the special-purpose subcommands. Note that _unless you specify a filter,_ orchestration commands will be run on **every server in your Puppet Enterprise deployment**; make sure you know what will happen before confirming any potentially disruptive commands. For more info on filters, [see "Filtering Actions" below.](#filtering-actions)
 
 ### The `rpc` Subcommand
 
-The most useful subcommand is `mco rpc`. This is **the general purpose orchestration client,** which can invoke actions from **any** MCollective agent plugin. [See "List of Built-In Actions" for more information about agent plugins.][actions]
+The most useful subcommand is `mco rpc`. This is **the general purpose orchestration client**, which can invoke actions from **any** MCollective agent plugin. [See "List of Built-In Actions" for more information about agent plugins.][actions]
 
 **Example:**
 
@@ -196,7 +196,7 @@ Any number of fact, class, and agent filters can also be combined in a single co
 
 ### Matching Strings and Regular Expressions
 
-Filter values are usually simple strings. These must match _exactly,_ and are case-sensitive.
+Filter values are usually simple strings. These must match _exactly_ and are case-sensitive.
 
 Most filters can also accept regular expressions as their values; these are surrounded by forward slashes, and are interpreted as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html). (You can even turn on various options for a subpattern, such as case insensitivity --- `-F "osfamily=/(?i:redhat)/"`.) Unlike plain strings, they accept partial matches.
 
@@ -263,7 +263,7 @@ Batching and Limiting Actions
 By default, orchestration actions run **simultaneously** on all of the targeted nodes. This is fast and powerful, but is sometimes not what you want:
 
 * Sometimes you want the option to cancel out of an action with control-C before all nodes have run it.
-* Sometimes, like when retrieving inventory data, you want to run a command on just a sample of nodes, and don't need to see the results from everything that matches the filter.
+* Sometimes, like when retrieving inventory data, you want to run a command on just a sample of nodes and don't need to see the results from everything that matches the filter.
 * Certain actions may consume limited capacity on a shared resource (such as the puppet master server), and invoking them on a "thundering herd" of nodes can disrupt that resource.
 
 In these cases, you can **batch** actions, to run all of the matching nodes in a controlled series, or **limit** them, to run only a subset of the matching nodes.

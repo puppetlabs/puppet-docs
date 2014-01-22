@@ -237,7 +237,7 @@ Example: This code would completely disable the package plugin's `update` option
     }
 {% endhighlight %}
 
-[actionpolicy]: http://projects.puppetlabs.com/projects/mcollective-plugins/wiki/AuthorizationActionPolicy
+[actionpolicy]: https://github.com/puppetlabs/mcollective-actionpolicy-auth#readme
 
 ### Step 5: Assign the Class to Nodes
 
@@ -261,7 +261,7 @@ Follow [the instructions in the MCollective documentation][mco_deploy_verify] to
 Other Kinds of Plugins
 -----
 
-In addition to installing MCollective agent plugins, you may occasionally need to install other kinds of plugin, such as data plugins. This process is effectively identical to installing agent plugins, although the concerns about restricting distribution of certain plugins to special nodes are generally not relevant.
+In addition to installing MCollective agent plugins, you may occasionally need to install other kinds of plugins, such as data plugins. This process is effectively identical to installing agent plugins, although the concerns about restricting distribution of certain plugins to special nodes are generally not relevant.
 
 Example
 -----

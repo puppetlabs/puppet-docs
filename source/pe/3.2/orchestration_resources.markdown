@@ -42,7 +42,7 @@ For an introduction to resources and types, please see [the Resources chapter of
 
 ### The "Inspect All" Button
 
-The summary view's "Inspect All" button scans all resources of all types and reports on their **similarity.** This is mostly useful when you think you've selected a group of very similar nodes but want to make sure.
+The summary view's "Inspect All" button scans all resources of all types and reports on their **similarity**. This is mostly useful when you think you've selected a group of very similar nodes but want to make sure.
 
 ![Similarity for resources after clicking "inspect all"][live_resources_all_similarity]
 

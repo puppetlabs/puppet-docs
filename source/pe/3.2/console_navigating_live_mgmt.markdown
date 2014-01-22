@@ -16,7 +16,7 @@ Related pages:
 * [See the Orchestration: Overview page](./orchestration_overview.html) for background information about the orchestration engine.
 * [See the Orchestration: Invoking Actions page](./orchestration_invoke_cli.html) to invoke the same orchestration actions on the command line.
 
-> **Notes:** To invoke orchestration actions, you must be logged in as a [read-write or admin level user](./console_auth.html#user-access-and-privileges). Read-only users can browse resources, but cannot invoke actions.
+> **Notes**: To invoke orchestration actions, you must be logged in as a [read-write or admin level user](./console_auth.html#user-access-and-privileges). Read-only users can browse resources, but cannot invoke actions.
 >
 > Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console.
 
@@ -66,7 +66,7 @@ You can use the following wildcards in the node filter field:
 
 Use the "filter" button or the enter key to confirm your search, then wait for the node list to be updated.
 
-> **Hint:** Use the "Wildcards allowed" link for a quick pop-over reminder.
+> **Hint**: Use the "Wildcards allowed" link for a quick pop-over reminder.
 
 ### Advanced Search
 
@@ -74,7 +74,7 @@ You can also filter by Puppet class or by the value of any fact on your nodes. C
 
 ![The advanced search fields, filtering by the operatingsystem fact][live_nav_advancedsearch]
 
-> **Hint:** Use the "common fact names" link for a pop-over list of the most useful facts. Click a fact name to copy it to the filter field.
+> **Hint**: Use the "common fact names" link for a pop-over list of the most useful facts. Click a fact name to copy it to the filter field.
 >
 > ![The common fact names popover][live_nav_factlist]
 
@@ -92,7 +92,7 @@ Filtering by Puppet class can be the most powerful filtering tool on this page, 
 Tabs
 -----
 
-The live management page is split into three **tabs.**
+The live management page is split into three **tabs**.
 
 ![The live management tabs][live_nav_tabs]
 
@@ -142,13 +142,13 @@ Invoking Actions
 
 You can invoke actions from the [Control Puppet](#the-control-puppet-tab) and [Advanced Tasks](#the-advanced-tasks-tab) tabs.
 
-To invoke an action, you must be viewing an **action list.**
+To invoke an action, you must be viewing an **action list**.
 
 1. Click the name of the action you want. It will reveal a red **"Run"** button and any available **argument fields** ([see below](#argument-fields)). Some actions do not have arguments.
 2. Enter any arguments you wish to use.
 3. Press the "Run" button; Puppet Enterprise will show that the action is running, then display any results from the action.
 
-If several nodes have similar results, they'll be collapsed to save space; you can click any result group to see which nodes had that result.
+If several nodes have similar results, they'll be collapsed to save space; you can click any result group to see which nodes have that result.
 
 Invoking an action with an argument:
 
