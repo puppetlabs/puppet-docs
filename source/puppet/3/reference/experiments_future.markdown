@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Experimental Features: The Future Parser"
+canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
 [parser_setting]: /references/latest/configuration.html#parser

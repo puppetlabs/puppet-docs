@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Experimental Features: Overview"
+canonical: "/puppet/latest/reference/experiments_overview.html"
 ---
 
 [puppet_semver]: ./release_notes.html#puppet-3x-release-notes

@@ -1,6 +1,7 @@
 ---
 title: "Subsystems: Agent/Master HTTPS Communications"
 layout: default
+canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 ---
 
 [rest_api]: /guides/rest_api.html

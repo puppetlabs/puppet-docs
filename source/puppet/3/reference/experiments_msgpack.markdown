@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Experimental Features: Msgpack Support (Puppet 3.4+)"
+canonical: "/puppet/latest/reference/experiments_msgpack.html"
 ---
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.

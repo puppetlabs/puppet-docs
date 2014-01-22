@@ -2,6 +2,7 @@
 layout: default
 title: Puppet 3 Release Notes
 description: Puppet release notes for version 3.x
+canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
 [classes]: ./lang_classes.html

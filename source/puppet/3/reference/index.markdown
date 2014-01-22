@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Puppet 3 Reference Manual"
+canonical: "/puppet/latest/reference/index.html"
 ---
 
 

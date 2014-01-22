@@ -1,6 +1,7 @@
 ---
 title: "Language: Expressions"
 layout: default
+canonical: "/puppet/latest/reference/lang_expressions.html"
 ---
 
 [conditional]: ./lang_conditional.html

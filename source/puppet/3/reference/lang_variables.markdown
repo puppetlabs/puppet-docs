@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Variables"
+canonical: "/puppet/latest/reference/lang_variables.html"
 ---
 
 

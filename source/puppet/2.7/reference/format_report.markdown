@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Formats: Reports"
+canonical: "/puppet/latest/reference/format_report.html"
 ---
 
 The Puppet 2.7 series uses the following report formats:

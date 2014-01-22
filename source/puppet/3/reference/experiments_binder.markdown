@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Experimental Features: The Data Binder"
+canonical: "/puppet/latest/reference/experiments_binder.html"
 ---
 
 [binder_arm]: https://github.com/puppetlabs/armatures/blob/master/arm-9.data_in_modules/index.md

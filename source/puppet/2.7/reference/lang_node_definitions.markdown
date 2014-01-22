@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Node Definitions"
+canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
 <!-- TODO: Need better link for hiera -->

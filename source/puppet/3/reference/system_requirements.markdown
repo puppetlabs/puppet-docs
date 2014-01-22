@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Puppet 3 System Requirements"
+canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
 > To install Puppet 3, see [the Puppet installation guide](/guides/installation.html).

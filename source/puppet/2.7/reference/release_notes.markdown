@@ -2,6 +2,7 @@
 layout: default
 title: Puppet 2.7 Release Notes
 description: Puppet release notes for version 2.7.x.
+canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
 Puppet 2.7 Release Notes

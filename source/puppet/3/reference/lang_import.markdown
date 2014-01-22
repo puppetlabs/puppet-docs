@@ -1,6 +1,7 @@
 ---
 title: "Language: Importing Manifests"
 layout: default
+canonical: "/puppet/latest/reference/lang_import.html"
 ---
 
 <!-- TODO: need better link for site.pp and certname-->

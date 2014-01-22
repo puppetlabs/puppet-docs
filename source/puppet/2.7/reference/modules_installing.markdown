@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Installing Modules"
+canonical: "/puppet/latest/reference/modules_installing.html"
 ---
 
 [forge]: http://forge.puppetlabs.com

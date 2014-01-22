@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Resource Defaults"
+canonical: "/puppet/latest/reference/lang_defaults.html"
 ---
 
 <!-- TODO: need better link for site.pp -->

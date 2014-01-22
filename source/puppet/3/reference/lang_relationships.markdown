@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Relationships and Ordering"
+canonical: "/puppet/latest/reference/lang_relationships.html"
 ---
 
 [virtual]: ./lang_virtual.html

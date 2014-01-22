@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Experimental Features (Puppet 3.2)"
+canonical: "/puppet/latest/reference/lang_experimental_3_2.html"
 ---
 
 

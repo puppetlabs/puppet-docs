@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Exported Resources"
+canonical: "/puppet/latest/reference/lang_exported.html"
 ---
 
 [resources]: ./lang_resources.html

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Summary"
+canonical: "/puppet/latest/reference/lang_summary.html"
 ---
 
 

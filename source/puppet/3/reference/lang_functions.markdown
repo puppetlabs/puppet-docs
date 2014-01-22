@@ -1,6 +1,7 @@
 ---
 title: "Language: Functions"
 layout: default
+canonical: "/puppet/latest/reference/lang_functions.html"
 ---
 
 [func_ref]: /references/latest/function.html

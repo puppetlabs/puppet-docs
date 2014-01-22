@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Containment of Resources"
+canonical: "/puppet/latest/reference/lang_containment.html"
 ---
 
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib

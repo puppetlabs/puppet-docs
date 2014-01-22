@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Experimental Features: Lambdas and Iteration"
+canonical: "/puppet/latest/reference/experiments_lambdas.html"
 ---
 
 [arm2]: https://github.com/puppetlabs/armatures/tree/master/arm-2.iteration
