@@ -207,6 +207,19 @@ By default, a new installation of PE will serve the console on port 443. However
 * Start the `pe-httpd` service:
 
         $ sudo /etc/init.d/pe-httpd start
+        
+Configuring the Console Location
+------
+
+By default, the puppet master finds the console by reading the contents of `/etc/puppetlabs/puppet/console.conf`, which contains the following:
+
+		[main]
+ 		server = <console hostname>
+ 		port = <console port>
+ 		certificate_name = pe-internal-dashboard
+ 	
+ To change the location of the console, you'll need to specify the console hostname, port, and certificate name.
+
 
 Disabling Update Checking
 -----
