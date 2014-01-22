@@ -74,15 +74,8 @@ This will set the order of ciphers to:
 
 Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 may leave you vulnerable to other types of attacks.
 
-### PE Install Fails if Port 8080 or 8081 is in Use
-PuppetDB requires access to port 8080 and 8081. The installer will check to make sure these ports are available and if they are not, the install will fail with an error message. To fix this, either disable the service currently using 8080/8081 or install the database role on a different node that has port 8080 available. A slightly more complicated workaround is to temporaily disable the service running on 8080/8081, complete the PE installation and then add a class parameter for puppetDB that makes it use a different, available port. Note that you will still need to temporarily disable the service using the ports even if you implement this class parameter workaround.
-
 ### Puppet Code Issues with UTF-8 Encoding
 PE 3 uses an updated version of Ruby, 1.9 that is much stricter about character encodings than the version of Ruby used in PE 2.8. As a result, puppet code that contains UTF-8 characters such as accents or other non-ASCII characters can fail or act unpredictably. There are a number of ways UTF-8 characters can make it into puppet code, including, but not limited to, downloading a Forge module where some piece of metadata (e.g., author's name) contains UTF-8 characters. With apologies to our international customers, the current solution is to strictly limit puppet code to the ASCII character set only, including any code comments or metadata. Puppet Labs is working on cleaning up character encoding issues in Puppet and the various libraries it interfaces with.
-
-### PostgreSQL Requires the en_US.UTF8 Locale Prior to Installation
-
-The node selected to run the PostgreSQL instance required by PuppetDB and the console must have the en_US.UTF8 locale present before starting the installation process. The installer will abort with a message about the missing locale if it is not present.
 
 ### Readline Version Issues on AIX Agents
 
@@ -118,11 +111,7 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 ### After Upgrading, Nodes Report a "Not a PE Agent" Error
 
 When doing the first puppet run after upgrading using the "upgrader" script included in PE tarballs, agents are reporting an error: "&lt;node.name&gt; is not a Puppet Enterprise agent." This was caused by a bug in the upgrader that has since been fixed. If you downloaded a tarball prior to November 28, 2012, simply download the tarball again to get the fixed upgrader. If you prefer, you can download the [latest upgrader module](http://forge.puppetlabs.com/adrien/pe_upgrade/0.4.0-rc1) from the Forge. Alternatively, you can fix it by changing `/etc/puppetlabs/facter/facts.d/is_pe.txt`  to contain: `is_pe=true`.
-
-### EC2/Dual-homed Systems Report Incorrect URIs for the Console.
-
-During installation, the PE installer attempts to automatically determine the URI where the console can be reached. On EC2 (and likely all other dual-homed systems), the installer incorrectly selects the internal, non-routable URI. Instead, you should manually enter the correct, external facing URI of the system hosting the console.
-
+ 
 ### Answer File Required for Some SMTP servers.
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
