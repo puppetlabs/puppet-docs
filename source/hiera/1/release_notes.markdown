@@ -7,7 +7,7 @@ title: "Hiera 1: Release Notes"
 Hiera 1.3.1
 -----
 
-Released January 21, 2014. (RC1: December 12, 2013.)
+Released January 23, 2014. (RC1: December 12, 2013.)
 
 Hiera 1.3.1 is a bug fix release in the 1.3 series. It fixes one bug:
 
