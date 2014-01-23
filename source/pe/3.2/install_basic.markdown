@@ -15,12 +15,21 @@ Downloading PE
 
 Start by downloading the [current version of Puppet Enterprise from the Puppet Labs website][downloadpe].
 
-
 ### Choosing an Installer Tarball
 
-Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture, or as a universal tarball that will install on any supported OS.
+Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture.
+    
+#### Available \*nix Tarballs
 
-> Note: The universal tarball is simpler to use but is roughly ten times the size of a version-specific tarball.
+|      Filename ends with...        |                     Will install...                 |
+|-----------------------------------|-----------------------------------------------------|  |
+| `-debian-<version and arch>.tar.gz`  | on Debian                                           |
+| `-el-<version and arch>.tar.gz`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux  |
+| `-solaris-<version and arch>.tar.gz` | on Solaris                                          |
+| `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
+| `-aix-<version and arch>.tar.gz`  | on AIX                                       |
+
+*Note:* Bindings for SELinux are available on RHEL 5 and 6. They are not installed by default but are included in the installation tarball. See [the appendix](./appendix.html) for complete information.
 
 ### Verifying the Installer
 
@@ -54,19 +63,6 @@ The result should be similar to
       	gpg:          There is no indication that the signature belongs to the owner.
 
 >This warning is generated because you have not created a trust path to certify who signed the release key; it can be ignored.
-    
-#### Available \*nix Tarballs
-
-|      Filename ends with...        |                     Will install...                 |
-|-----------------------------------|-----------------------------------------------------|
-| `-all.tar`                        | anywhere                                            |
-| `-debian-<version and arch>.tar.gz`  | on Debian                                           |
-| `-el-<version and arch>.tar.gz`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux  |
-| `-solaris-<version and arch>.tar.gz` | on Solaris                                          |
-| `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
-| `-aix-<version and arch>.tar.gz`  | on AIX                                       |
-
-*Note:* Bindings for SELinux are available on RHEL 5 and 6. They are not installed by default but are included in the installation tarball. See [the appendix](./appendix.html) for complete information.
 
 Starting the Installer
 -----
