@@ -57,17 +57,17 @@ The first thing Judy wants to do is get reoriented and comfortable with PE (her 
 
 Managing NTP is useful in a Puppet Enterprise deployment because it reduces the possibility of certificate expiration. In order to provide the most robust security possible, Puppet's certificates have short expiration times. This helps guard against things like replay attacks. Syncing time across all nodes reduces the possibility of certificates expiring unintentionally. In addition, having time synced across nodes will help ensure logs are correct and accurate, with events logged in the right order.
 
-Okay, then. Judy starts by ssh'ing into her master and getting her [selected module](http://forge.puppetlabs.com/saz/ntp) from the Forge by entering `sudo /opt/puppet/bin/puppet module install saz-ntp`. The module downloads and installs automatically, as seen on the command line:
+Okay, then. Judy starts by ssh'ing into her master and getting her [selected module](http://forge.puppetlabs.com/puppetlabs/ntp) from the Forge by entering `sudo /opt/puppet/bin/puppet module install puppetlabs-ntp`. The module downloads and installs automatically, as seen on the command line:
 
-    [jargyle@puppet ~]$ sudo /opt/puppet/bin/puppet module install saz-ntp
+    [jargyle@puppet ~]$ sudo /opt/puppet/bin/puppet module install puppetlabs-ntp
     [sudo] password for jargyle:
     Preparing to install into /etc/puppetlabs/puppet/modules ...
     Downloading from http://forge.puppetlabs.com ...
     Installing -- do not interrupt ...
     /etc/puppetlabs/puppet/modules
-    └── saz-ntp (v2.0.3)
+    └── puppetlabs-ntp (v3.0.1)
 
-Next, Judy opens up the PE console in a [supported browser](/pe/latest/console_accessing.html#browser-requirements) and, using the "Class" tool in the sidebar at the lower left, she clicks the "Add class" button. She names the class "ntp" and clicks the "Create" button.
+Next, Judy opens up the PE console in a [supported browser](/pe/latest/console_accessing.html#browser-requirements) and, using the "Class" tool in the sidebar at the lower left, she clicks the "Add classes" button. She sees that Puppet has created of list of classes that are available on her system, and she uses the filter tool to locate the NTP class. She then finishes the process by clicking the "Add selected classes" button.
 
 ![Adding the NTP Class](assets/add_ntp_class.png)
 
