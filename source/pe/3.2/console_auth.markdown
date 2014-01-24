@@ -172,4 +172,4 @@ Lastly, note that built-in auth accounts use the email address specified at the 
 
 * * *
 
-- [Next: Searching for Nodes by Fact](./console_inventory_search.html)
+- [Next: Beginners Guide to Modules](../guides/module_guides/bgtm.html)
