@@ -16,3 +16,6 @@ puppetdocs-latest.tar.gz*
 externalsources
 _cache
 Gemfile.lock
+.*.swo
+.*.swp
+.*.un~
