@@ -600,7 +600,6 @@ Parses the lsbdistrelease fact for numbers preceded by a period and returns thos
 
 If the version number has three components (e.g., '1.2.3'), only the second will be included in the fact.
 
-
 ([↑ Back to top](#page-nav))
 
 * * *
