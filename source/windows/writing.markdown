@@ -167,7 +167,11 @@ By default, Puppet's installer sets puppet agent to run as the Administrator use
     * The owner of a file/directory always has the `FULL_CONTROL` access right.
     * The `Everyone` SID is used to represent users other than the owner and group.
 * When a permissions mode is set with Puppet, it causes the security descriptor to be _protected._ This prevents that file from inheriting any more permissive access controls from the directory that contains it.
-* When copying files from a puppet master using the `source` attribute, Puppet defaults to applying the ownership and permissions from the source files. This is generally **not** desired on Windows, and the default behavior is now deprecated, scheduled for change in Puppet 4. In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to use a resource default in site.pp to set `source_permissions => ignore`.
+* When copying files from a puppet master using the `source` attribute, Puppet defaults to applying the ownership and permissions from the source files. This is generally **not** desired on Windows, and the default behavior is now deprecated, scheduled for change in Puppet 4. In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to set it to `ignore` with a resource default in site.pp:
+
+        if $osfamily == 'windows' {
+          File { source_permissions => ignore }
+        }
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
 * Puppet does not currently manage ACLs on Windows, but Puppet Labs and the Puppet community are collaborating on a design for managing them as a new resource type. [See the in-progress ACLs proposal for more details.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
@@ -276,7 +280,7 @@ Some packages (Git is a notable example) will change their display names with ev
 
 #### Install and Uninstall Options
 
-The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings. 
+The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings.
 
 MSI properties can be specified as an array of strings following the 'property=key' pattern; you should use one string per property. Command line flags to executable installers can be specified as an array of strings, with one string per flag.
 
