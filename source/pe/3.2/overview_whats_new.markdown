@@ -31,7 +31,7 @@ In some situations, it may be desirable for a development team to manage their i
 
 *  *Support for Solaris 11*
 
-PE now supports agents on nodes running Solaris 11.
+The puppet agent can now be installed on nodes running Solaris 11. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
 
 * *Enable/Disable Live Management*
 

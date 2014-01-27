@@ -38,7 +38,7 @@ Some workflows require that you have live management disabled in your PE console
 
 #### Support for Solaris 11
 
-
+The puppet agent can now be installed on nodes running Solaris 11. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
                
 Known Issues
 -----
