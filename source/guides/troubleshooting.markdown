@@ -197,7 +197,7 @@ be the correct syntax.
 ### Syntax error at '.'; expected '}' at manifest.pp:nnn
 
 This error happens when you use unquoted comparators with dots in
-them, a'la:
+them, as in:
 
     class autofs {
 
@@ -291,7 +291,7 @@ This confusing error is a result of improper (or rather lack of any) capitalizat
 ### err: Exported resource Blah[$some\_title] cannot override local resource on node $nodename
 
 While this is not a classic "syntax" error, it is a annoying error
-none-the-less. The actual error tells you that you have a local
+nonetheless. The actual error tells you that you have a local
 resource Blah[$some\_title] that puppet refuses to overwrite with a
 collected resource of the same name. What most often happens, that
 the same resource is exported by two nodes. One of them is
