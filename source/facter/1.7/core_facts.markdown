@@ -284,6 +284,19 @@ either.
 
 * * *
 
+## `gid`
+
+
+Returns the group ID of the user running the puppet process.
+
+**Resolution**
+
+Uses the output of `gid -ng`.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `hardwareisa`
 
 
