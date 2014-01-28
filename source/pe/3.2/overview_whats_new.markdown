@@ -11,11 +11,18 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 
 * *Simplified Agent Install*
 
-Installing agents on all platforms can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
+On platforms that support remote package repos, installing agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
 
 * *Puppet Labs Supported Modules*
 
-PE 3.2 introduces Puppet Labs supported modules. (TODO: link)
+PE 3.2 introduces Puppet Labs supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are:
+
+* Rigorously tested with PE
+* Supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)
+* Maintained for a long-term lifecycle
+* Compatible with multiple platforms and architectures.
+
+Visit the [Supported Modules page](TODO: link) to learn more. You can also check out the Read Me for the supported modules being released with PE 3.2: Apache, NTP, MySQL, Windows Registry, PostgreSQL, stdlib, reboot, pe_accounts, firewall, APT, Inifile, Java_KS, concat.(TODO: readme links)
 
 * *Razor Provisioning Tech Preview*
 
@@ -35,7 +42,7 @@ PE now supports agents on nodes running Solaris 11.
 
 * *Enable/Disable Live Management*
 
-In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either bychanging a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html) and the [installation instructions](install_basic.html).
+In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html) and the [installation instructions](install_basic.html).
 
 
 * *Security Patches*
@@ -45,6 +52,7 @@ A handful of vulnerabilities have been addressed in PE 3.2.0. For details, check
 * *Component Package Upgrades*
 
 Several of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.2. Most notably these include:
+
 * 
 
 * * *
