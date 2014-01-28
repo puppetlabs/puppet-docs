@@ -17,7 +17,7 @@ Start by downloading the [current version of Puppet Enterprise from the Puppet L
 
 ### Choosing an Installer Tarball
 
-Puppet Enterprise can be downloaded in tarballs specific to your OS version and architecture.
+Puppet Enterprise is distributed in tarballs specific to your OS version and architecture.
     
 #### Available \*nix Tarballs
 
@@ -56,22 +56,22 @@ The result should be similar to
 	 gpg: Signature made Tue 18 Jun 2013 10:05:25 AM PDT using RSA key ID 4BD6EC30
      gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
-> **Note**: When you verify the signature but do not have a trusted path to one of the signatures on the release key, you will see a warning similar to
+ **Note**: When you verify the signature but do not have a trusted path to one of the signatures on the release key, you will see a warning similar to
 
->	 	Could not find a valid trust path to the key.
+	 	Could not find a valid trust path to the key.
       	gpg: WARNING: This key is not certified with a trusted signature!
       	gpg:          There is no indication that the signature belongs to the owner.
 
->This warning is generated because you have not created a trust path to certify who signed the release key; it can be ignored.
+This warning is generated because you have not created a trust path to certify who signed the release key; it can be ignored.
 
-Starting the Installer
+Installation: Overview
 -----
 
 Installation will go more smoothly if you know a few things in advance. Puppet Enterprise's functions are spread across several different "roles" which get installed and configured when you run the installer. You can choose to install multiple roles on a single node or spread the roles across nodes (except for the "agent" role, which gets installed on every node). You should decide on this architecture before starting the install process. For each node where you will be installing a PE role, you should know the fully qualified domain name where that node can be reached and you should ensure that firewall rules are set up to allow access to the [required ports](./install_system_requirements.html#firewall-configuration).
 
 When separating the roles across nodes, you should install in the following order:
 
-  1. Master Role
+  1. Master Role:
   2. Database Support Role
   3. Console Role
   4. Cloud Provisioner Role
@@ -79,7 +79,11 @@ When separating the roles across nodes, you should install in the following orde
 
 The [Puppet Enterprise Deployment Guide](/guides/deployment_guide/index.html) contains more information about the installation process and how to set up the various roles.
 
-With that knowledge in hand, the installation process on each node is as follows:
+With that knowledge in hand, the installation process will proceed in *two stages*. First you will install the main components of PE (Master, Database Support, Console, Provisioner) by running the installer script. Next, you will install a PE agent on each node you wish to manage. For most modern OS's, this can be done with a package manager (Satellite, Spacewalk, whatever you're using currently), otherwise the installer script is again used.
+
+#### Initial Installation of Main Components
+
+First, you will complete the initial installation of the Master, Database, Console, and Provisioner roles.
 
 * Unarchive the installer tarball, usually with `tar -xzf <TARBALL FILE>`.
 * Navigate to the resulting directory in your shell.
@@ -95,7 +99,14 @@ Note that after the installer has finished installing and configuring PE, it wil
 
 [automated]: ./install_automated.html
 
-Using the Installer
+#### Agent Installation
+
+Next, you will install the PE agent on all the nodes you wish to manage with PE. Starting with PE 3.2, agents can now be managed using the package manager of your choice (e.g. Satellite, Spacewalk, etc.). This approach can be used on any modern *nix system that supports remote package repos. To install the agent on other systems (Solaris, RHEL 4, AIX, Windows), you can still use the tarball and installer script method as you did for the other components.
+
+You can use an existing package repository or, if you don't have one, the master installer will create one for the OS and architecture on which it is installed.
+
+
+Initial Installation: Using the Installer Script
 -----
 
 The PE installer installs and configures Puppet Enterprise by asking a series of questions. Most questions have a default answer (displayed in brackets), which you can accept by pressing enter without typing a replacement. For questions with a yes or no answer, the default answer is capitalized (e.g. "`[y/N]`").
@@ -124,7 +135,7 @@ The installer will accept the following command-line flags:
 : Log commands and results to file.
 
 `-n`
-: Run in 'noop' mode; show commands that would have been run during installation without running them.
+: Run in 'no-op' mode; show commands that would have been run during installation without running them.
 
 
 Selecting Roles
@@ -134,11 +145,13 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 
 ### The Puppet Agent Role
 
-This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (If you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically.) Nodes with the puppet agent role can:
+This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (If you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
 
 * Run the puppet agent daemon, which pulls configurations from the puppet master and applies them.
 * Listen for orchestration messages and invoke orchestration actions when they receive a valid command.
 * Send data to the master for use by PuppetDB.
+
+The agent role is most easily installed using a package manager (See [agent installation](TODO: anchor) below). On platforms that do not support remote package repos, the installer script is used.
 
 ### The Puppet Master Role
 
@@ -199,7 +212,7 @@ This optional role can be installed on a system where administrators have shell 
 Customizing Your Installation
 -----
 
-After you choose the roles for the target node, the installer will ask questions to configure those roles.
+After you choose the roles for the target node, the installer will ask questions needed to configure those roles.
 
 ### Passwords
 The following characters are forbidden in all passwords: `\` (backslash), `'` (single quote),  `"` (double quote), `,` (comma), `()` (right and left parentheses), `|` (pipe), `&` (ampersand), and `$` (dollar sign). For all passwords used during installation, we recommend using only alphanumeric characters.
