@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.1 » Appendix"
+title: "PE 3.2 » Appendix"
 subtitle: "User's Guide Appendix"
 canonical: "/pe/latest/appendix.html"
 ---
 
 
-This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.
+This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.2.
 
 Puppet Terminology
 -----
@@ -43,9 +43,9 @@ The puppet agent can now be installed on nodes running Solaris 11. Support is on
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.1 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.2 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
 
-To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.1)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.2 (Puppet Enterprise 3.2)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](./install_upgrading.html).
 
 [peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
 [puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
@@ -55,7 +55,7 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Passenger Global Queue Error on Upgrade
 
-When upgrading a PE 2.8.3 master to PE 3.1.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
+When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
 
 ### `Puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 

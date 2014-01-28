@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Overview » Getting Support"
+title: "PE 3.2 » Overview » Getting Support"
 subtitle: "Getting Support for Puppet Enterprise"
 canonical: "/pe/latest/overview_getting_support.html"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Orchestration » List of Built-In Actions"
+title: "PE 3.2 » Orchestration » List of Built-In Actions"
 subtitle: "List of Built-In Orchestration Actions"
 canonical: "/pe/latest/orchestration_actions.html"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Console » Rake API"
+title: "PE 3.2 » Console » Rake API"
 subtitle: "Rake API for Querying and Modifying Console Data"
 canonical: "/pe/latest/console_rake_api.html"
 ---

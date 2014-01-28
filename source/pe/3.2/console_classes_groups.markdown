@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Console » Grouping and Classifying Nodes"
+title: "PE 3.2 » Console » Grouping and Classifying Nodes"
 subtitle: "Grouping and Classifying Nodes"
 canonical: "/pe/latest/console_classes_groups.html"
 ---
