@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 »  » "
+title: "PE 3.2 »  » "
 subtitle: " "
 canonical: "/pe/latest/maintain_puppet.html"
 ---

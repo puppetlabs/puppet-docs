@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » Answer File Reference"
+title: "PE 3.2 » Installing » Answer File Reference"
 subtitle: "Answer File Reference"
 canonical: "/pe/latest/install_answer_file_reference.html"
 ---
@@ -114,6 +114,8 @@ These answers are generally needed if you are installing the puppet master role.
 
   If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
 
+`q_tarball_server`
+: **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see [the PE installation instructions](./install_basic.html)
 
 ### Console Answers
 
@@ -231,6 +233,9 @@ These answers are only needed if you are installing the database support role.
 
 `q_puppetdb_port`
 : **Integer** --- The port where the PuppetDB server can be reached.
+
+`q_puppetdb_plaintext_port`
+: **Integer** --- The port on which PuppetDB accepts plain-text HTTP connections (default port is 8080).
 
 
 Uninstaller Answers

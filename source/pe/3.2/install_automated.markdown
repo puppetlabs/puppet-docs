@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » Automated Installation"
+title: "PE 3.2 » Installing » Automated Installation"
 subtitle: "Automated Installation"
 canonical: "/pe/latest/install_automated.html"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Troubleshooting » Cloud Provisioner"
+title: "PE 3.2 » Troubleshooting » Cloud Provisioner"
 subtitle: "Finding Common Problems "
 canonical: "/pe/latest/trouble_cloudprovisioner.html"
 ---

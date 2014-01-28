@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Orchestration » Configuration"
+title: "PE 3.2 » Orchestration » Configuration"
 subtitle: "Configuring Orchestration"
 canonical: "/pe/latest/orchestration_config.html"
 ---

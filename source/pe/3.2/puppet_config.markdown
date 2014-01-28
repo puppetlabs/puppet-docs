@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Puppet Core » Configuring"
+title: "PE 3.2 » Puppet Core » Configuring"
 subtitle: "Configuring Puppet Core"
 canonical: "/pe/latest/puppet_config.html"
 ---

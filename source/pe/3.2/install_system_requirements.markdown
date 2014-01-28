@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » System Requirements"
+title: "PE 3.2 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 canonical: "/pe/latest/install_system_requirements.html"
 ---
@@ -19,7 +19,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 3.1 supports the following systems:
+Puppet Enterprise 3.2 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------

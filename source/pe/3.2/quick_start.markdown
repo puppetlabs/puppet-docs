@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "PE 3.1 » Quick Start » Using PE"
-subtitle: "Quick Start: Using PE 3.1"
+title: "PE 3.2 » Quick Start » Using PE"
+subtitle: "Quick Start: Using PE 3.2"
 canonical: "/pe/latest/quick_start.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.1 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
+Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
@@ -270,9 +270,19 @@ Every module contains one or more **classes**. The modules you just installed co
 * Navigate to `windows.example.com`, click the "Edit" button, and, in the "Classes" field, begin typing "`registry`"; select the class and click the "Update" button.
 * Note that the `registry` class now appears in the list of classes on `windows.example.com`.
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+* On the first agent node, run the following commands:
 
->Puppet is now managing NTP on the `agent.1` node. So, for example, if another sysadmin stops the NTP service while troubleshooting a network issue and forgets to restart it, PE will automatically restart it on the next puppet run. Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
->
+	***Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
+		
+ 		service ntpd stop
+ 		ntpdate us.pool.ntp.org. 
+ The result should resemble the following:
+
+		28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec
+ Finally, run `service ntpd start`.
+ 		
+>Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
+
 > For more recommended modules, [visit the Forge](http://forge.puppetlabs.com).
 
 ### Viewing Changes with Event Inspector

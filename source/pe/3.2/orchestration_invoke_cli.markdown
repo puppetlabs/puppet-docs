@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Orchestration » Invoking Actions"
+title: "PE 3.2 » Orchestration » Invoking Actions"
 subtitle: "Invoking Orchestration Actions"
 canonical: "/pe/latest/orchestration_invoke_cli.html"
 ---

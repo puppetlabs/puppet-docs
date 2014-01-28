@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » Installing PE"
+title: "PE 3.2 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise"
 canonical: "/pe/latest/install_basic.html"
 ---

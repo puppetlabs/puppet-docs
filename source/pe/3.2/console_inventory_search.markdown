@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Console » Inventory Search"
+title: "PE 3.2 » Console » Inventory Search"
 subtitle: "Searching for Nodes by Fact"
 canonical: "/pe/latest/console_inventory_search.html"
 ---
