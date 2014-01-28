@@ -34,7 +34,7 @@ Puppet Labs provides two levels of [commercial support offerings for Puppet Ente
 
 #### The PE Support Script
 
-When seeking support, you may be asked to run the information-gathering support script included with in the Puppet Enterprise installer tarball. This script is located in the root of the unzipped tarball and is named simply "`support`."
+When seeking support, you may be asked to run an information-gathering support script named, "`puppet-enterprise-support`". The script is located in the root of the unzipped Puppet Enterprise installer tarball; it is also installed on any master, PuppetDB, or console node and can be run via `/opt/puppet/bin/puppet-enterprise-support`.
 
 This script will collect a large amount of system information, compress it, and print the location of the zipped tarball when it finishes running; an uncompressed directory (named `support`) containing the same data will be left in the same directory as the compressed copy. We recommend that you examine the collected data before forwarding it to Puppet Labs, as it may contain sensitive information that you will wish to redact.
 
@@ -57,6 +57,9 @@ The information collected by the support script includes:
 - current environment variables
 - whether the puppet master is reachable
 - the output of `mco ping` and `mco inventory`
+- a list of all modules on the system
+- the output of `puppet module changes` (shows if any modules installed by PE have been modified)
+- the output of `/nodes.csv` from the console (includes a list of known nodes and metadata about their most recent puppet runs)
 
 It also copies the following files:
 
