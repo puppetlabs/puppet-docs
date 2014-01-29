@@ -28,6 +28,18 @@ Important Notes and Warnings
 ---
 
 - **Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.1.1. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.1.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+- If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
+
+  Before upgrading, remove the following:
+  	 * `/etc/puppetlabs/puppet/routes.yaml`
+	 * `/etc/puppetlabs/puppet/puppetdb.conf`
+	 * PostgreSQL (if installed on the master), including any data and config directories
+	
+  Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
+      * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
+      * make sure the `facts_terminus` parameter is set to inventory_active_record.
+
+  Finally, perform your upgrade.
 - Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
 - After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.1. The version of the orchestration engine used in PE 3.x is incompatible with that used by PE 2.x.
 - For PE 3.0 and later, URLs pointing to module files must contain `modules/`, as in `puppet:///modules/`.
