@@ -36,13 +36,26 @@ To automate the upgrades of your agent nodes, you can use [the `adrien/pe_upgrad
 
 ### Important Notes and Warnings
 
-Upgrade the master first, then the console, then other agent nodes.
+- Upgrade the master first, then the console, then other agent nodes.
 
-Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version.
+- Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version.
 
-{% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
+- {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
-**Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
+- **Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
+
+- **Warning:** If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
+
+  Before upgrading, remove the following:
+  	 * `/etc/puppetlabs/puppet/routes.yaml`
+	 * `/etc/puppetlabs/puppet/puppetdb.conf`
+	 * PostgreSQL (if installed on the master), including any data and config directories
+	
+  Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
+      * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
+      * make sure the `facts_terminus` parameter is set to inventory_active_record.
+
+  Finally, perform your upgrade.
 
 
 Checking For Updates
