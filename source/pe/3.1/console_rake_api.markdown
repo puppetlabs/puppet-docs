@@ -301,9 +301,11 @@ List variables for a node group.
 Group Tasks: Modifying Info
 -----
 
-### `nodegroup:add[name,(classes),(onexists)]`
+### `nodegroup:add[name,(onexists)] (classes=class1,class2...)`
 
-Create a new node group. Classes can be specified as a comma-separated list.
+Create a new node group.
+
+Classes can be specified in an environment variable as a comma-separated list. Unfortunately, this means that if you are doing multiple of invocations of `nodegroup:add` in one command, they must all use the same list of classes.
 
 **Parameters:**
 
