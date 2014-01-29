@@ -53,7 +53,7 @@ In some situations, it may be desirable for a development team to manage their i
 
 The puppet agent can now be installed on nodes running Solaris 11. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
 
-#### Enable/Disable Live Management
+#### Disable/Enable Live Management
 
 In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html) and the [installation instructions](install_basic.html).
 

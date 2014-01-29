@@ -60,9 +60,9 @@ Razor is an advanced provisioning application that can deploy both bare metal an
 
 In some situations, it may be desirable for a development team to manage their infrastructure on nodes in which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](./guides/nonroot_agent.html).
 
-#### Enable/Disable Live Management
+#### Disable/Enable Live Management
 
-In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html#disabling/enabling-live-management).
+In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html#disabling_enabling-live-management).
 
 #### Support for Solaris 11
 

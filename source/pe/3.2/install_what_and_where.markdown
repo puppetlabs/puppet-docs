@@ -103,6 +103,12 @@ This log is maintained by the orchestration service, which is installed on all n
 - `/var/log/pe-puppet-dashboard/delayed_job.log`
 - `/var/log/pe-puppet-dashboard/mcollective_client.log`
 - `/var/log/pe-puppet-dashboard/production.log`
+- `/var/log/pe-puppet-dashboard/event-inspector.log`
+- `/var/log/pe-puppet-dashboard/certificate_manager.log`
+- `/var/log/pe-puppet-dashboard/live-management.log`
+- `/var/log/pe-console-auth/auth.log`
+- `/var/log/pe-console-auth/cas_client.log`
+- `/var/log/pe-console-auth/cas.log`
 
 ### Database Log
 
