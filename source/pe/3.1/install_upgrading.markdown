@@ -37,7 +37,7 @@ Important Notes and Warnings
 	
   Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
       * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
-      * make sure the `facts_terminus` parameter is set to inventory_active_record.
+      * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
 
   Finally, perform your upgrade.
 - Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
