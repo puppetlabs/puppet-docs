@@ -79,7 +79,9 @@ When separating the roles across nodes, you should install in the following orde
 
 The [Puppet Enterprise Deployment Guide](/guides/deployment_guide/index.html) contains more information about the installation process and how to set up the various roles.
 
-With that knowledge in hand, the installation process will proceed in *two stages*. First you will install the main components of PE (Master, Database Support, Console, Provisioner) by running the installer script. Next, you will install a PE agent on each node you wish to manage. For most modern OS's, this can be done with a package manager (Satellite, Spacewalk, whatever you're using currently), otherwise the installer script is again used.
+With that knowledge in hand, the installation process will proceed in *two stages*:
+* First you will install the main components of PE (Master, Database Support, Console, Provisioner) by running the installer script. 
+* Next, you will install a PE agent on each node you wish to manage. For most modern OS's, this can be done with a package manager like yum or apt (or with tools like Satellite, Spacewalk, etc.).  the installer script is again used.
 
 #### Initial Installation of Main Components
 
@@ -145,13 +147,13 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 
 ### The Puppet Agent Role
 
+The agent role is most easily installed using a package manager (See [agent installation](TODO: anchor) below). On platforms that do not support remote package repos, the installer script is used.
+
 This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (If you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
 
 * Run the puppet agent daemon, which pulls configurations from the puppet master and applies them.
 * Listen for orchestration messages and invoke orchestration actions when they receive a valid command.
 * Send data to the master for use by PuppetDB.
-
-The agent role is most easily installed using a package manager (See [agent installation](TODO: anchor) below). On platforms that do not support remote package repos, the installer script is used.
 
 ### The Puppet Master Role
 
@@ -359,6 +361,49 @@ After Installing
 
 After finishing, the installer will print a message telling you where it saved the answer file. If you automatically configured console databases, **you should save and secure this file,** as it will contain the randomly-generated root user PostgreSQL passwords. When installing the database support role, the answers file will contain the auto-generated passwords that you will need to answer questions regarding the console role.
 
+### Verifying Your License
+
+When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
+
+Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
+
+Installing Agents
+-----
+
+On any supported OS that is capable of using remote package repos, the easiest way to install the Agent is with standard *nix package management tools. For other OS's (Solaris, AIX, RHEL 4, Windows) you use the installer script as above. 
+
+### Installing Agents with Your Package Management Tools
+
+If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you simply need to add the `pe-agent` package to the appropriate repo, configure your tool to point at that repo, and install the package as you would any other. You can find an agent package (that corresponds to the master's OS/architecture) in `opt/puppet/packages/public`. 
+
+For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package.
+
+### Installing Agents using PE Package Management
+
+If your infrastructure does not currently have a package repository, the master installer will create a package repo on the master that corresponds to the OS/architecture of the master node. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they need to communicate with the master.
+
+Once installed, the master also hosts an agent installation script that can be used to install agents on your selected nodes. The script can be found at https://<master>:8140/packages/current/<platform>.bash, where <platform> uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` package, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
+
+You can use any method you like to run the agent installation script, manual or automatic. For example, you can SSH into agent node
+
+You can use this same method for any supported OS/architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`)you can add to your master in order to create a repo for that platform. Simply [classify the master](TODO: link) using the appropriate platform and on the next puppet run the new repo will be created. Platform names are the same as those used for the PE tarballs: 
+
+    el-{5,6}-{i386,x86_64}
+    debian-{6,7}-{i386,amd64}
+    ubuntu-{10.04,12.04}-{i386,amd64}
+    sles-11-{i386,x86_64}
+
+#### Example Script Usage
+
+Let's say you are running your master on a node running Debian 7 and you want to add an agent node running EL6.
+
+(TODO: complete walkthrough)
+
+
+### Configuring Agents
+
+Once the agent is installed it can be configured by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the [`puppet config set` sub-command](TODO: link).  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
+
 ### Signing Agent Certificates
 
 Before nodes with the puppet agent role can fetch configurations or appear in the console, an administrator has to sign their certificate requests. This helps prevent unauthorized nodes from intercepting sensitive configuration data.
@@ -368,7 +413,6 @@ After the first puppet run (which the installer should trigger at the end of ins
 Node requests can be approved or rejected using the console's [certificate management capability](./console_cert_mgmt.html). Pending node requests are indicated in the main navigation bar. Click on this indicator to go to a page where you can see current requests and approve or reject them as needed.
 
 ![request management view](./images/console/request_mgmt_view.png)
-
 
 Alternatively, you can use the command line interface (CLI). **Certificate signing with the CLI is done on the puppet master node.** To view the list of pending certificate requests, run:
 
@@ -381,12 +425,6 @@ To sign one of the pending requests, run:
 After signing a new node's certificate, it may take up to 30 minutes before that node appears in the console and begins retrieving configurations. You can use live management or the CLI to trigger a puppet run manually on the node if you want to see it right away.
 
 If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command on the CLI.
-
-### Verifying Your License
-
-When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
-
-Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 
 * * *
 
