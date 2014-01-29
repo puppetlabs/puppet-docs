@@ -20,9 +20,37 @@ Release Notes
 
 ### PE 3.2.0 [TODO: date]
 
+#### Simplified Agent Install
+
+On platforms that support remote package repos, installing agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
+
 #### Puppet Labs Supported Modules
 
+PE 3.2 introduces Puppet Labs supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
+
+* rigorously tested with PE
+* supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)
+* maintained for a long-term lifecycle
+* compatible with multiple platforms and architectures.
+
+Visit the [Supported Modules page](TODO: link) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [Concat][pe-concat].
+
+[pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
+[pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
+[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/ntp
+[windows-registry]: http://forge.puppetlabs.com/puppetlabs/registry
+[pe-postgresql]: http://forge.puppetlabs.com/puppetlabs/postgresql
+[pe-stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[pe-reboot]: http://forge.puppetlabs.com/puppetlabs/reboot
+[pe-firewall]: http://forge.puppetlabs.com/puppetlabs/firewall
+[pe-apt]: http://forge.puppetlabs.com/puppetlabs/apt
+[pe-inifile]: http://forge.puppetlabs.com/puppetlabs/inifile
+[pe-javaks]: http://forge.puppetlabs.com/puppetlabs/java_ks
+[pe-concat]: http://forge.puppetlabs.com/puppetlabs/concat
+
 #### Razor Provisioning Tech Preview
+
+PE 3.2 offers a preview of new, bare-metal provisioning capabilities using Razor technology. 
 
 Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
 
@@ -34,11 +62,22 @@ In some situations, it may be desirable for a development team to manage their i
 
 #### Enable/Disable Live Management
 
-Some workflows require that you have live management disabled in your PE console. PE 3.2 allows you to add a question to your answer file to disable/enable live management during installations or upgrades. You can also disable/enable live management during normal operations. For more details, refer to the [live management page](console_navigating_live_mgmt.html#disabling/enabling-live-management).
+In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html#disabling/enabling-live-management).
 
 #### Support for Solaris 11
 
 The puppet agent can now be installed on nodes running Solaris 11. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
+
+#### Component Package Upgrades
+
+Several of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.2. Most notably these include:
+
+* Puppet 3.4.2
+* PuppetDB 1.5.2
+* Facter 1.7.4.
+* MCollective 2.2.4
+* Hiera 1.3.0.
+* Dashboard 2.1.0
                
 Known Issues
 -----

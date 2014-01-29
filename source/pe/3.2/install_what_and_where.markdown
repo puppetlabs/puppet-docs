@@ -19,7 +19,14 @@ To purchase a license, please see the [Puppet Enterprise pricing page](http://ww
 
 ###<i>What</i>
 
-All functional components of PE, excluding configuration files. You are not likely to need to change these components.
+All functional components of PE, excluding configuration files. You are not likely to need to change these components. The following software components are installed:
+
+ * Puppet 
+ * PuppetDB 
+ * Facter 
+ * MCollective
+ * Hiera 
+ * Puppet Dashboard
 
 ###<i>Where</i>
 
@@ -30,6 +37,14 @@ On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdir
 * Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`. Optionally, at install time, you can choose to symlink the most common binaries into `/usr/local/bin`.
 * The Puppet modules included with PE are installed on the puppet master server in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
 * Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective`. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
+
+## Dependencies
+
+### PostgreSQL Requirement
+If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+
+### OpenSSL Requirement
+OpenSSL is a ruby dependency that PE installs on RHEL 4, Windows, and Solaris 10 nodes. Manual installation of OpenSSL is required for all other PE-supported platforms. Version 0.9.8l or higher is required.
 
 ##Configuration Files
 
