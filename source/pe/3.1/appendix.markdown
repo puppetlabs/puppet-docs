@@ -6,7 +6,7 @@ canonical: "/pe/latest/appendix.html"
 ---
 
 
-This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.1.
+This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.2.
 
 Puppet Terminology
 -----
@@ -17,6 +17,18 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 
 Release Notes
 -----
+
+### PE 3.1.2 (1/30/2014)
+
+#### Security Fixes
+
+*[CVE-2013-6450 OpenSSL DTLS retransmission vulnerability](http://puppetlabs.com/security/cve/cve-2013-6450/)*
+
+Assessed Risk Level: medium. The DTLS retransmission implementation in OpenSSL through 0.9.8y and 1.x through 1.0.1e does not properly maintain data structures for digest and encryption contexts, which might allow man-in-the-middle attackers to trigger the use of a different context by interfering with packet delivery, related to ssl/d1_both.c and ssl/t1_enc.c. This has been fixed in PE 3.1.2 by updating OpenSSL to 1.0.0.l
+
+#### Bug Fixes
+
+Several minor bugs in puppet core have been fixed in this release.
 
 ### PE 3.1.1 (12/26/2013)
 
