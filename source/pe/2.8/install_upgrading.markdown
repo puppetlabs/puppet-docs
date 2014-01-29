@@ -44,7 +44,7 @@ To automate the upgrades of your agent nodes, you can use [the `adrien/pe_upgrad
 
 - **Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
 
-- **Warning:** If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
+- **Warning:** If you are upgrading to 3.0.x from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
 
   Before upgrading, remove the following:
   	 * `/etc/puppetlabs/puppet/routes.yaml`
