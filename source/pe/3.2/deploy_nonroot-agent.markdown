@@ -54,7 +54,7 @@ We now need to ensure that any new agents that are added will not get added to t
 In the console, navigate to the “Groups” tab, select the “default” group and click “Edit”.
 Add the “no mcollective” group and click “Update”.
 
-![Add the No MCO Group][add_no_mco]
+![Add the No MCO Group][add_no_mco_group]
 
 #### Install and Configure PE Agents and Create Non-Root Users
 
@@ -87,7 +87,7 @@ Add the “no mcollective” group and click “Update”.
 
 8. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent as the non-root user and run `puppet agent -t`. PE should now run and apply the configuration specified in the catalog. Keep an eye on the output from the run, if you see Facter facts being created in the non-root user’s home directory, you know that you have successfully created a functional non-root agent. 
 
-![non-root user first run output][non root user first run]
+![non-root user first run output][nonrootuser_first_run]
 
 #### Verification
 Check the following to make sure the agent is properly connected and functioning as desired:
