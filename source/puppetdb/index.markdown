@@ -9,6 +9,7 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 Stable Versions
 -----
 
+* [PuppetDB 1.6](./1.6)
 * [PuppetDB 1.5](./1.5)
 
 Legacy Versions
@@ -28,5 +29,4 @@ Development and Pre-release Versions
 
 This version of the documentation represents a future feature or major release. This content only applies to the code available in the master branch of the PuppetDB git repository or a release candidate, so if you have downloaded a stable release you should consult the documentation above.
 
-* [PuppetDB 1.6](./1.6)
 * [PuppetDB (master)](./master)
