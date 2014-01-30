@@ -175,4 +175,4 @@ Now, in PE, run `puppet node_gce register <client ID> <client secret>` and follo
 Once permission is granted, you'll get a token of about 64 characters. Copy this token as requested into your `node_gce` run to complete the registration.
 * * *
 
-- [Next: Classifying Cloud Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_installing.html)
+- [Next: Provisioning with VMware](./cloudprovisioner_vmware.html)
