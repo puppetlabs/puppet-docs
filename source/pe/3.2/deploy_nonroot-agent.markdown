@@ -136,8 +136,8 @@ Non-root users can only use a subset of PE’s functionality. Basically, any ope
 [TODO: walk through a couple of real-life use cases]
 
 
-[add_no_mco]: .images/console/add_no_mco_group.png
-[non root user first run]: .images/console/nonrootuser_first_run.png
+[add_no_mco_group]: .images/console/add_no_mco_group.png
+[nonrootuser_first_run]: .images/console/nonrootuser_first_run.png
 
 * * *
 
