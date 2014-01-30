@@ -128,7 +128,7 @@ Depending on your answer, the `disable_live_management` setting in `/etc/puppetl
 
 ### Upgrade Agents and Complete the Upgrade
 
-The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then use the agent install script to upgrade your agent.
+The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management)as usual to upgrade your agent.
 
 For nodes running an OS that doesn't support remote package repos (e.g., RHEL 4, AIX) you'll need to use the installer script on the PE tarball as you did for the master, etc. On each node with a puppet agent, unpack the PE 3.2 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.
 
