@@ -1,18 +1,18 @@
 ---
 layout: default
-title: "PE 3.1 » Quick Start » Using PE"
-subtitle: "Quick Start: Using PE 3.1"
+title: "PE 3.2 » Quick Start » Using PE"
+subtitle: "Quick Start: Using PE 3.2"
 canonical: "/pe/latest/quick_start.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.1 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
+Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. Follow along to learn how to:
 
 * Install a small proof-of-concept deployment
 * Add nodes to your deployment
 * Examine and control nodes in real time with live management
-* Install a third-party Puppet module
+* Install a PE-supported Puppet module
 * Apply Puppet classes to nodes with the console
 * View the results of configuration changes in the console
 
@@ -97,10 +97,10 @@ After installing, the agent nodes are **not yet allowed** to fetch configuration
 
 [console_cert]: ./console_accessing.html#accepting-the-consoles-certificate
 
-During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, you'll need to **approve its request on the puppet master.** This is most easily done via the console.
+During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, you'll need to **approve its request on the puppet master**. This is most easily done via the console.
 
-* **On your control workstation,** open a web browser and point it to https://master.example.com.
-* You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate.** The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
+* **On your control workstation**, open a web browser and point it to https://master.example.com.
+* You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate**. The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
 * Next, you will see a login screen for the console. **Log in** with the email address and password you provided when installing the puppet master.
 
 ![The console login screen](./images/quick/login.png)
@@ -120,9 +120,9 @@ During this walkthrough, we will be running puppet agent interactively. Normally
 
 * **On the first agent node,** log in as root and run `puppet agent --test`. This will trigger a single puppet agent run with verbose logging.
 
-    > **Note:** If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
+    > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
-* **On the Windows node,** open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
+* **On the Windows node**, open the start menu, navigate to the Puppet Enterprise folder, and choose "Run Puppet Agent," elevating privileges if necessary.
 * Note the similar string of log messages.
 
 
@@ -134,21 +134,21 @@ During this walkthrough, we will be running puppet agent interactively. Normally
 [console_nav]: ./console_navigating.html
 
 
-* Click on "Nodes" in the primary navigation bar. You'll see various UI elements, which show a summary of your deployment's recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
+* Click "Nodes" in the primary navigation bar. You'll see various UI elements, which show a summary of your deployment's recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
 
 ![The console front page](./images/quick/front.png)
 
-* **Explore the console.** Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
+* **Explore the console**. Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
 
 > You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last Puppet run.
 
 ### Avoiding the Wait
 
-Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. This is because Puppet Enterprise **uses Puppet to configure itself.**
+Although puppet agent is now fully functional on any agent nodes, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following:
 
-* **On the console,** use the sidebar to navigate to the "mcollective" group:
+* **On the console**, use the sidebar to navigate to the "mcollective" group:
 
 ![the mcollective group link](./images/quick/mcollective_link.png)
 
@@ -161,7 +161,7 @@ Puppet Enterprise does this automatically within 30 minutes of a node's first ch
 
 ![the nodes field](./images/quick/default_nodes.png)
 
-* **On each agent node,** run `puppet agent --test` again, [as described above](#testing-the-agent-nodes). Note the long string of log messages related to the `pe_mcollective` class.
+* **On each agent node**, run `puppet agent --test` again, [as described above](#testing-the-agent-nodes). Note the long string of log messages related to the `pe_mcollective` class.
 
 In a normal environment, you would usually skip these steps and allow orchestration to come on-line automatically.
 
@@ -172,7 +172,7 @@ Using Live Management to Control Agent Nodes
 
 Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger Puppet runs and orchestration tasks.
 
-* **On the console,** click the "Live Management" tab in the top navigation.
+* **On the console**, click the "Live Management" tab in the top navigation.
 
 ![live management](./images/quick/live_mgmt.png)
 
@@ -196,11 +196,11 @@ The other resource types work in a similar manner. Choose the nodes whose resour
 
 Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use live management to run puppet on several selected nodes.
 
-* **On the console, in the live management page,** click the "Control Puppet" tab.
+* **On the console, in the live management page**, click the "Control Puppet" tab.
 * Make sure one or more nodes are selected with node selector on the left.
 * Click the `runonce` action to reveal the red "Run" button and additional options. Click the "Run" button to run Puppet on the selected nodes.
 
-> **Note:** You can't always use the `runonce` action's additional options --- with \*nix nodes, you must stop the `pe-puppet` service before you can use options like `noop`. [See this note in the orchestration section of the manual](./orchestration_puppet.html#behavior-differences-running-vs-stopped) for more details.
+> **Note**: You can't always use the `runonce` action's additional options --- with \*nix nodes, you must stop the `pe-puppet` service before you can use options like `noop`. [See this note in the orchestration section of the manual](./orchestration_puppet.html#behavior-differences-running-vs-stopped) for more details.
 <br>
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
@@ -213,73 +213,77 @@ Installing a Puppet Module
 
 Puppet configures nodes by applying classes to them. Classes are chunks of Puppet code that configure a specific aspect or feature of a machine.
 
-Puppet classes are **distributed in the form of modules.** You can save time by **using pre-existing modules.** Pre-existing modules are distributed on the [Puppet Forge](http://forge.puppetlabs.com), and **can be installed with the `puppet module` subcommand.** Any module installed on the puppet master can be used to configure agent nodes.
+Puppet classes are **distributed in the form of modules**. You can save time by **using pre-existing modules**. Pre-existing modules are distributed on the [Puppet Forge](http://forge.puppetlabs.com), and **can be installed with the `puppet module` subcommand**. Any module installed on the puppet master can be used to configure agent nodes.
 
 ### Installing two Forge Modules
 
-We will install two example modules: `puppetlabs-motd` and `puppetlabs-win_desktop_shortcut`.
+We will install two example modules: `puppetlabs-ntp` and `puppetlabs-registry`.
 
-* **On your control workstation,** point your browser to [http://forge.puppetlabs.com/puppetlabs/motd](http://forge.puppetlabs.com/puppetlabs/motd). This is the Forge listing for an example module that sets the message of the day file (`/etc/motd`), which is displayed to users when they log into a \*nix system.
-* Navigate to <https://forge.puppetlabs.com/puppetlabs/win_desktop_shortcut>. This is the Forge listing for an example module that manages a desktop shortcut on Windows.
+* **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/nto). This is the Forge listing for a module that installs, configures, and manages the ntp service.
 
-* **On the puppet master,** run `puppet module search motd`. This searches for modules from the Puppet Forge with `motd` in their names or descriptions:
+* Navigate to <https://forge.puppetlabs.com/puppetlabs/registry>. This is the Forge listing for a module that enables you to manage your Windows Registry from your *nix puppet master.
+
+* **On the puppet master**, run `puppet module search ntp`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions:
 
         Searching http://forge.puppetlabs.com ...
         NAME             DESCRIPTION                                                 AUTHOR        KEYWORDS
-        puppetlabs-motd  This module populates `/etc/motd` with the contents of ...  @puppetlabs   Testing
-        jeffmccune-motd  This manages a basic message of the day based on useful...  @jeffmccune   motd
-        dhoppe-motd       This module manages motd                                   @dhoppe       debian ubuntu motd
-        saz-motd         Manage 'Message Of The Day' via Puppet                      @saz          motd
+        puppetlabs-ntp   NTP Module                                                  @puppetlabs   ntp aix
+        saz-ntp          UNKNOWN                                                     @saz          ntp OEL
+        thias-ntp        Network Time Protocol...                                    @thias        ntp ntpd
+        warriornew-ntp   ntp setup                                                   @warriornew   ntp      
 
-    We want `puppetlabs-motd`, which is an example module that sets the message of the day file (`/etc/motd`) on \*nix systems. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/motd>. You can also use the Search feature on the Forge site.
+We want `puppetlabs-ntp`, which is a module that is a PE-supported module. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. 
 
-    You can also do a similar search for `desktop_shortcut`, which should find the other module we'll be using.
-* Install the first module by running `puppet module install puppetlabs-motd`:
+You can also do a similar search for `registry`, which should find the other module we'll be using.
+* Install the first module by running `puppet module install puppetlabs-ntp`:
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
-        Downloading from http://forge.puppetlabs.com ...
-        Installing -- do not interrupt ...
+        Notice: Downloading from http://forge.puppetlabs.com ...
+        Notice: Installing -- do not interrupt ...
         /etc/puppetlabs/puppet/modules
-        └── puppetlabs-motd (v1.0.0)
-* Install the second module by running `puppet module install puppetlabs-win_desktop_shortcut`. (If you are not using any Windows nodes, this module is inert; you can install it or skip it.)
+        └── puppetlabs-ntp (v3.0.1)
+* Install the second module by running `puppet module install puppetlabs-registry`. (If you are not using any Windows nodes, this module is inert; you can install it or skip it.)
 
 > You have just installed multiple Puppet modules. All of the classes in them are now available to be added to the console and assigned to nodes.
 
 ### Using Modules in the PE Console
 
 [classbutton]: ./images/quick/add_class_button.png
-[add_motd]: ./images/quick/add_motd.png
-[assign_motd]: ./images/quick/assign_motd.png
+[add_ntp]: ./images/quick/add_ntp.png
+[assign_ntp]: ./images/quick/assign_ntp.png
 
-Every module contains one or more **classes.** The modules you just installed contain classes called `motd` and `win_desktop_shortcut`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes.**
+Every module contains one or more **classes**. The modules you just installed contain classes called `ntp` and `registry`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes**.
 
-* **On the console,** click the "Add classes" button in the sidebar:
+* **On the console**, click the "Add classes" button in the sidebar:
 
 ![The console's add classes button][classbutton]
 
-* Locate the `motd` class in the list of classes, and click its checkbox to select it; do the same for the `win_desktop_shortcut` class. When both are selected, click the "Add selected classes button at the bottom of the page.
+* Locate the `ntp` class in the list of classes, and click its checkbox to select it; do the same for the `registry` class. When both are selected, click the "Add selected classes" button at the bottom of the page.
 
-![the add class field][add_motd]
+![the add class field][add_ntp]
 
-* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "motd" in the "classes" field; you can select the `motd` class from the list of autocomplete suggestions. After you select "motd" from the drop-down, it will appear in the "Classes" list. Click the "Update" button to save the changes.
+* Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "`ntp`" in the "Classes" field; you can select the `ntp` class from the list of autocomplete suggestions. Click the "Update" button after you have selected it.
 
-![assigning the motd class][assign_motd]
+![assigning the ntp class][assign_ntp]
 
-* Note that the `motd` class now appears in the list of `agent1`'s classes.
-* Navigate to `windows.example.com`, click the edit button, and begin typing "`win_desktop_shortcut`" in the "classes" field; select the class and click the "Update" button.
-* Note that the `win_desktop_shortcut` class now appears in the list of `windows.example.com`'s classes.
+* Note that the `ntp` class now appears in the list of classes on `agent1`.
+* Navigate to `windows.example.com`, click the "Edit" button, and, in the "Classes" field, begin typing "`registry`"; select the class and click the "Update" button.
+* Note that the `registry` class now appears in the list of classes on `windows.example.com`.
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
-* **On the first agent node,** run `cat /etc/motd`. Note that its contents resemble the following:
+* On the first agent node, run the following commands:
 
-        The operating system is CentOS
-        The free memory is 82.27 MB
-        The domain is example.com
-* **On the puppet master,** run `cat /etc/motd`. Note that its contents are either empty or the operating system's default, since the `motd` class wasn't applied to it.
-* **On the Windows node,** note that there is now a shortcut to the Puppet Labs website on the desktop.
+	***Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
+		
+ 		service ntpd stop
+ 		ntpdate us.pool.ntp.org. 
+ The result should resemble the following:
 
-> Puppet is now managing the first agent node's message of the day file, and will revert it to the specified state if it is ever modified. Puppet is also managing the desktop shortcut on the Windows machine, and will restore it if it is ever deleted or modified.
->
-> For more recommended modules, [search the Forge](http://forge.puppetlabs.com) or check out the [Module of the Week series on the Puppet Labs blog.](http://puppetlabs.com/category/blog/module-of-the-week-blog/)
+		28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec
+ Finally, run `service ntpd start`.
+ 		
+>Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
+
+> For more recommended modules, [visit the Forge](http://forge.puppetlabs.com).
 
 ### Viewing Changes with Event Inspector
 
@@ -287,19 +291,19 @@ Every module contains one or more **classes.** The modules you just installed co
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-Click on the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Classes, Nodes, and Resources.
+Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for  Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
 
 ![The default event inspector view][EI-default]
 
-You can click on events in the summary pane to inspect them in detail. For example, if you click on "With Changes" in the "Classes With Events" summary view, the main pane will show you that the MOTD class was successfully added when you triggered the last puppet run.
+You can click on events in the summary pane to inspect them in detail. For example, if you click "With Changes" in the "Classes With Events" summary view, the main pane will show you that the `Ntp::Config` and `Ntp::Service` classes were successfully added when you triggered the last puppet run.
 
 ![Viewing a successful change][EI-class_change]
 
-You can keep clicking to drill down and see more detail. You can click the back arrow left of the summary pane or the bread-crumb trail at the top of the page if you want to go back up a level. Eventually, you will end up at a run summary that shows you the details of the event. Note that you can see exactly which piece of puppet code was responsible for generating the event; in this case, it was line 21 of the `init.pp` manifest.
+You can keep clicking to drill down and see more detail. You can click the previous arrow (left of the summary pane), the bread-crumb trail at the top of the page, or bookmark a page for later reference (but note that after subsequent puppet runs, the bookmarks may be different when you revisit them). Eventually, you will end up at a run summary that shows you the details of the event. Note that you can see exactly which piece of puppet code was responsible for generating the event; in this case, it was line 15 of the `service.pp` manifest and line 21 of the `config.pp` manifest.
 
 ![Event detail][EI-detail]
 
-If there had been a problem with applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing the `/etc/motd` file.
+If there had been a problem with applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing NTP.
 
 Summary
 -----
@@ -307,7 +311,7 @@ Summary
 You have now experienced the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
 * Deploy new nodes, install PE on them ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add them to their deployment by approving their certificate requests](./console_cert_mgmt.html).
-* Use [pre-built modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
+* Use [pre-built, PE-supported modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
 * [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
 * [Allow nodes to be managed by regularly scheduled Puppet runs.](./puppet_overview.html#when-new-configurations-take-effect)
 * Use [live management](./console_navigating_live_mgmt.html) to [inspect and compare nodes](./orchestration_resources.html), and to [trigger on-demand puppet agent](./orchestration_puppet.html) runs when necessary.

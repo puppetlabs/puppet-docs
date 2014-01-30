@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » System Requirements"
+title: "PE 3.2 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 canonical: "/pe/latest/install_system_requirements.html"
 ---
@@ -19,7 +19,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 3.1 supports the following systems:
+Puppet Enterprise 3.2 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
@@ -82,6 +82,9 @@ This section details the packages that are installed from the various OS repos. 
 #### PostgreSQL Requirement
 
 If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
+
+#### OpenSSL Requirement
+OpenSSL is a ruby dependency that PE installs on RHEL 4, Windows, and Solaris 10 nodes. Manual installation of OpenSSL is required for all other PE-supported platforms. Version 0.9.8l or higher is required.
 
 ***Amazon Linux AMI***
 

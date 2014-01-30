@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Console » Navigating Live Management"
+title: "PE 3.2 » Console » Navigating Live Management"
 subtitle: "Navigating Live Management"
 canonical: "/pe/latest/console_navigating_live_mgmt.html"
 ---
@@ -30,8 +30,8 @@ In some cases, after you install PE, you may find that your workflow requires li
 
 By default, `disable_live_managment` is set to `false`, but you can also configure your [installations][basic_install] or [upgrades][install_upgrading] to disable/enable live management as needed during installation or upgrade.
 
-[basic_install]: ./install_basic.html#enabling/disabling-live-manangement-during-install
-[install_upgrading]: ./install_upgrading.html#enabling/disabling-live-management-during-an-upgrade
+[basic_install]: ./install_basic.html#enabling_disabling-live-manangement-during-install
+[install_upgrading]: ./install_upgrading.html#enabling_disabling-live-management-during-an-upgrade
 
 The Node List
 -----

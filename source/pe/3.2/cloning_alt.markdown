@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Cloning » Alternate Workflow"
+title: "PE 3.2 » Cloning » Alternate Workflow"
 subtitle: "Alternate Workflow to Replace Cloning Tool"
 canonical: "/pe/latest/cloning_alt.html"
 ---

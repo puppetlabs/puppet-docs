@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Console »  Configuration"
+title: "PE 3.2 » Console »  Configuration"
 subtitle: "Configuring & Tuning the Console & Databases"
 canonical: "/pe/latest/console_config.html"
 ---

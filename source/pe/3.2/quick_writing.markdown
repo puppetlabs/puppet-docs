@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "PE 3.1 » Quick Start » Writing Modules"
+title: "PE 3.2 » Quick Start » Writing Modules"
 subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---
 
-Welcome to the PE 3.1 advanced quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
+Welcome to the PE 3.2 advanced quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
 
 * Modify modules obtained from the Forge
 * Write your own Puppet module

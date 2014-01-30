@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » Upgrading"
+title: "PE 3.2 » Installing » Upgrading"
 subtitle: "Upgrading Puppet Enterprise"
 canonical: "/pe/latest/install_upgrading.html"
 ---
@@ -9,7 +9,7 @@ canonical: "/pe/latest/install_upgrading.html"
 Summary
 -----
 
-The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.1.
+The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.2.
 
 The process involves the following steps, which *must be performed in the following order:*
 
@@ -27,9 +27,21 @@ If more than one of these roles is present on a given node (for example your mas
 Important Notes and Warnings
 ---
 
-- **Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.1. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+- **Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.2. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.2. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+- If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
+
+  Before upgrading, remove the following:
+  	 * `/etc/puppetlabs/puppet/routes.yaml`
+	 * `/etc/puppetlabs/puppet/puppetdb.conf`
+	 * PostgreSQL (if installed on the master), including any data and config directories
+	
+  Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
+      * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
+      * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
+
+  Finally, perform your upgrade.
 - Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
-- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.1. The version of the orchestration engine used in PE 3.x is incompatible with that used by PE 2.x.
+- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.2. The version of the orchestration engine used in PE 3.x is incompatible with that used by PE 2.x.
 - For PE 3.0 and later, URLs pointing to module files must contain `modules/`, as in `puppet:///modules/`.
 - PE 3 uses Ruby 1.9 which is stricter about character encoding than the previous version used in PE 2.8. If your manifests contain non-ASCII characters they may fail to compile or behave unpredictably. When upgrading, make sure manifests contain only ASCII characters. For more information see the [release notes](./appendix.html#puppet-code-issues-with-utf-8-encoding).
 - On AIX 5.3, as in PE 2.8.3, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
@@ -79,7 +91,7 @@ The upgrade script will run and provide detailed information as to what it insta
 
 ### Install PuppetDB/PostgreSQL
 
-On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.1 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
+On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.2 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
 
 *  `?? Install puppet master? [y/N]` Answer N. This will not be your master. The master was upgraded in the previous step.
 *  `?? Puppet master hostname to connect to? [Default: puppet]` Enter the FQDN of the master node you upgraded in the previous step.
@@ -101,7 +113,7 @@ The installer will save auto-generated users and passwords in `/etc/puppetlabs/i
 
 ### Upgrade the Console
 
-On the node serving the console role, unpack the PE 3.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment.
+On the node serving the console role, unpack the PE 3.2 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment.
 
 > **Note:** When upgrading a node running the console role, the upgrader will pipe the current MySQL databases into the new PostgreSQL databases. If your databases contain a lot of data, this transfer may take some time to complete.
 >
@@ -128,7 +140,9 @@ Depending on your answer, the `disable_live_management` setting in `/etc/puppetl
 
 ### Upgrade Agents and Complete the Upgrade
 
-On each node with a puppet agent, unpack the PE 3.1 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.
+The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management)as usual to upgrade your agent.
+
+For nodes running an OS that doesn't support remote package repos (e.g., RHEL 4, AIX) you'll need to use the installer script on the PE tarball as you did for the master, etc. On each node with a puppet agent, unpack the PE 3.2 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.
 
 PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading. Generally speaking, it's a good idea to run puppet right away after an upgrade to make sure everything is hooked and has gotten the latest configuration.
 

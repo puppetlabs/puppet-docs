@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Troubleshooting » Windows"
+title: "PE 3.2 » Troubleshooting » Windows"
 subtitle: "Troubleshooting Puppet on Windows"
 canonical: "/pe/latest/trouble_windows.html"
 ---

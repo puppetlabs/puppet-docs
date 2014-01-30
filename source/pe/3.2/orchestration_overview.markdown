@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Orchestration » Overview"
+title: "PE 3.2 » Orchestration » Overview"
 subtitle: "Overview of Orchestration Topics"
 canonical: "/pe/latest/orchestration_overview.html"
 ---

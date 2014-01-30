@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Troubleshooting » Connections & Communications"
+title: "PE 3.2 » Troubleshooting » Connections & Communications"
 subtitle: "Troubleshooting Connections Between Components "
 canonical: "/pe/latest/trouble_comms.html"
 ---

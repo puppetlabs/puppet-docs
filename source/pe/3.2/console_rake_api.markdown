@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Console » Rake API"
+title: "PE 3.2 » Console » Rake API"
 subtitle: "Rake API for Querying and Modifying Console Data"
 canonical: "/pe/latest/console_rake_api.html"
 ---
@@ -38,7 +38,7 @@ Specifically, you should provide:
         * Each task requires its arguments in a specific order; [see the list of tasks below](#node-tasks-getting-info).
         * Some arguments are optional. To skip an optional argument but provide a later optional argument, provide an empty string. (For example, `node:add['web06.example.com',,'linux::base']`.)
         * Nearly all values should be quoted for safety, although values that consist of only alphanumeric characters with no spaces may be left unquoted.
-        * Both single and double quotes are okay, but see "Escaping" below.
+        * Both single and double quotes are okay, but see [Escaping](#Escaping) below.
 * A closing square bracket (`]`)
 
 To run multiple tasks, simply put multiple tasks and their arguments in the same command line, in the order they should run. For example:
@@ -62,9 +62,9 @@ The examples below would both set a value of `no mcollective,network devices` fo
 
 In two tasks (`node:variables` and `nodegroup:variables`), the value of an argument might consist of a comma-separated list whose terms, themselves, contain commas. In these cases, the interior commas should be escaped with three backslashes for single-quoted strings, and six backslashes for double-quoted strings. The examples below would both set the value of the `haproxy_application_servers` variable to `web04.example.com,web05.example.com,web06.example.com`:
 
-    nodegroup:variables['load balancers','haproxy_application_port=3000,haproxy_application_servers=web04.example.com\\\,web05.example.com\\\,web06.example.com']
+    nodegroup:variables['load balancers','haproxy_application_port=3000\,haproxy_application_servers=web04.example.com\\\,web05.example.com\\\,web06.example.com']
 
-    nodegroup:variables["load balancers","haproxy_application_port=3000,haproxy_application_servers=web04.example.com\\\\\\,web05.example.com\\\\\\,web06.example.com"]
+    nodegroup:variables["load balancers","haproxy_application_port=3000\\,haproxy_application_servers=web04.example.com\\\\\\,web05.example.com\\\\\\,web06.example.com"]
 
 
 ### Task Arguments as Environment Variables (`task argument=value argument=value`)

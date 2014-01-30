@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Installing » Uninstalling"
+title: "PE 3.2 » Installing » Uninstalling"
 subtitle: "Uninstalling Puppet Enterprise"
 canonical: "/pe/latest/install_uninstalling.html"
 ---
