@@ -80,12 +80,16 @@ When separating the roles across nodes, you should install in the following orde
 The [Puppet Enterprise Deployment Guide](/guides/deployment_guide/index.html) contains more information about the installation process and how to set up the various roles.
 
 With that knowledge in hand, the installation process will proceed in *two stages*:
-* First you will install the main components of PE (Master, Database Support, Console, Provisioner) by running the installer script. 
-* Next, you will install a PE agent on each node you wish to manage. For most modern OS's, this can be done with a package manager like yum or apt (or with tools like Satellite, Spacewalk, etc.).  the installer script is again used.
 
-#### Initial Installation of Main Components
+* Initially, you will install the main components of PE (Master, Database Support, Console, Provisioner) by running the installer script that is included on the installation tarball. 
+* Next, you will install the PE agent on all the nodes you wish to manage with PE. Starting with PE 3.2, agents can now be installed  just as you would any other package by using a package manager of your choice (e.g. Satellite, Spacewalk, etc.). This approach can be used on any modern *nix system that supports remote package repos. You can use an existing package repository or, if you don't have one, the master installer will create one for the OS and architecture on which it is installed.
 
-First, you will complete the initial installation of the Master, Database, Console, and Provisioner roles.
+To install the agent on other systems (Solaris, RHEL 4, AIX, Windows), you can still use the tarball and installer script method as you did for the other components.
+
+Initial Installation: Using the Installer Script
+-----
+
+The installation process begins with the initial installation of the Master, Database, Console, and Provisioner roles.
 
 * Unarchive the installer tarball, usually with `tar -xzf <TARBALL FILE>`.
 * Navigate to the resulting directory in your shell.
@@ -101,16 +105,6 @@ Note that after the installer has finished installing and configuring PE, it wil
 
 [automated]: ./install_automated.html
 
-#### Agent Installation
-
-Next, you will install the PE agent on all the nodes you wish to manage with PE. Starting with PE 3.2, agents can now be managed using the package manager of your choice (e.g. Satellite, Spacewalk, etc.). This approach can be used on any modern *nix system that supports remote package repos. To install the agent on other systems (Solaris, RHEL 4, AIX, Windows), you can still use the tarball and installer script method as you did for the other components.
-
-You can use an existing package repository or, if you don't have one, the master installer will create one for the OS and architecture on which it is installed.
-
-
-Initial Installation: Using the Installer Script
------
-
 The PE installer installs and configures Puppet Enterprise by asking a series of questions. Most questions have a default answer (displayed in brackets), which you can accept by pressing enter without typing a replacement. For questions with a yes or no answer, the default answer is capitalized (e.g. "`[y/N]`").
 
 
@@ -118,26 +112,19 @@ The PE installer installs and configures Puppet Enterprise by asking a series of
 
 The installer will accept the following command-line flags:
 
-`-h`
-: Display a brief help message.
+`-h`: Display a brief help message.
 
-`-s <ANSWER FILE>`
-: Save answers to a file and quit without installing.
+`-s <ANSWER FILE>`: Save answers to a file and quit without actually installing.
 
-`-a <ANSWER FILE>`
-: Read answers from a file and fail if an answer is missing.
+`-a <ANSWER FILE>`: Read answers from a file and fail if an answer is missing.
 
-`-A <ANSWER FILE>`
-: Read answers from a file and prompt for input if an answer is missing.
+`-A <ANSWER FILE>`: Read answers from a file and prompt for input if an answer is missing.
 
-`-D`
-: Display debugging information.
+`-D`: Display debugging information.
 
-`-l <LOG FILE>`
-: Log commands and results to file.
+`-l <LOG FILE>`: Log commands and results to file.
 
-`-n`
-: Run in 'no-op' mode; show commands that would have been run during installation without running them.
+`-n`: Run in 'no-op' mode; show commands that would have been run during installation without running them.
 
 
 Selecting Roles
@@ -147,9 +134,9 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 
 ### The Puppet Agent Role
 
-The agent role is most easily installed using a package manager (See [agent installation](TODO: anchor) below). On platforms that do not support remote package repos, the installer script is used.
+The agent role is most easily installed using a package manager (See [installing agents](#Installing Agents) below). On platforms that do not support remote package repos, the installer script is used.
 
-This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (If you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
+This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (When you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
 
 * Run the puppet agent daemon, which pulls configurations from the puppet master and applies them.
 * Listen for orchestration messages and invoke orchestration actions when they receive a valid command.
@@ -354,7 +341,7 @@ PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren
 
 The installer will offer a final chance to confirm your answers before installing.
 
-After Installing
+Finishing and Cleaning Up
 -----
 
 ### Securing the Answer File
@@ -370,23 +357,21 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 Installing Agents
 -----
 
-On any supported OS that is capable of using remote package repos, the easiest way to install the Agent is with standard *nix package management tools. For other OS's (Solaris, AIX, RHEL 4, Windows) you use the installer script as above. 
+If you are using any supported OS that is capable of using remote package repos, the easiest way to install the PE agent is with standard *nix package management tools. To install the agent on other OS's (Solaris, AIX, RHEL 4, Windows) you'll need to use the installer script just as you did above. 
 
 ### Installing Agents with Your Package Management Tools
 
 If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you simply need to add the `pe-agent` package to the appropriate repo, configure your tool to point at that repo, and install the package as you would any other. You can find an agent package (that corresponds to the master's OS/architecture) in `opt/puppet/packages/public`. 
 
-For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package.
+For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package. Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent package will be generated in `opt/puppet/packages/public`.
 
 ### Installing Agents using PE Package Management
 
-If your infrastructure does not currently have a package repository, the master installer will create a package repo on the master that corresponds to the OS/architecture of the master node. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they need to communicate with the master.
+If your infrastructure does not currently have a package repository, PE also hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created by the installer script during installation of the master. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
 
-Once installed, the master also hosts an agent installation script that can be used to install agents on your selected nodes. The script can be found at https://<master>:8140/packages/current/<platform>.bash, where <platform> uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` package, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
+Once installed, the master also hosts an agent installation script that can be used to install agent packages on your selected nodes. The script can be found at `\https://<master>:8140/packages/current/<platform>.bash\`, where `\<platform>\` uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` package, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
 
-You can use any method you like to run the agent installation script, manual or automatic. For example, you can SSH into agent node
-
-You can use this same method for any supported OS/architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`)you can add to your master in order to create a repo for that platform. Simply [classify the master](TODO: link) using the appropriate platform and on the next puppet run the new repo will be created. Platform names are the same as those used for the PE tarballs: 
+You can use this same method for any supported OS and architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`)you can add to your master in order to create a repo for that platform. Simply [classify the master](./console_classes_groups.html#classes) using the appropriate platform and on the next puppet run the new repo will be created. Platform names are the same as those used for the PE tarballs: 
 
     el-{5,6}-{i386,x86_64}
     debian-{6,7}-{i386,amd64}
@@ -395,9 +380,11 @@ You can use this same method for any supported OS/architecture by creating a new
 
 #### Example Script Usage
 
-Let's say you are running your master on a node running Debian 7 and you want to add an agent node running EL6.
+Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware. Start by going to the console and adding the `pe_repo::debian_6_amd64` class. Add the class to your master node and kick off a puppet run with live management. 
 
-(TODO: complete walkthrough)
+The class will create a new package in `opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`. 
+
+Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/debian-6-amd64.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the `pe-agent` package, create a basic `puppet.conf`, and kick off a puppet run.
 
 
 ### Configuring Agents
