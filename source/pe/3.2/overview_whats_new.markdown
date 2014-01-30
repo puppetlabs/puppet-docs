@@ -11,7 +11,7 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 
 #### Simplified Agent Install
 
-On platforms that support remote package repos, installing agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
+On platforms that support remote package repos, installing agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html#installing-agents).
 
 #### Puppet Labs Supported Modules
 
@@ -22,7 +22,7 @@ PE 3.2 introduces Puppet Labs supported modules. Supported modules will allow yo
 * maintained for a long-term lifecycle
 * compatible with multiple platforms and architectures.
 
-Visit the [Supported Modules page](TODO: link) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [Concat][pe-concat].
+Visit the [Supported Modules page](TODO: link) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [concat][pe-concat].
 
 [pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
 [pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
@@ -41,13 +41,13 @@ Visit the [Supported Modules page](TODO: link) to learn more. You can also check
 
 PE 3.2 offers a preview of new, bare-metal provisioning capabilities using Razor technology. 
 
-Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
+Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over. For more information, refer to the [Razor documentation](./razor_intro.html).
 
-*Note*: This is a Technical Preview release of Razor. For more information about Razor and what constitutes a Technical Preview, please see the [Razor documentation](./razor_intro.html).
+*Note*: This is a Technical Preview release of Razor. For more information, see the [Puppet Labs Technical Previews Info Page](TODO: link).
 
 #### Puppet Agent with Non-Root Privileges
 
-In some situations, it may be desirable for a development team to manage their infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](./guides/deploy_nonroot-agent.html).
+In some situations, it may be desirable for a development team to manage their infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](deploy_nonroot-agent.html).
 
 #### Support for Solaris 11
 
