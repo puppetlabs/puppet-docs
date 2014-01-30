@@ -114,4 +114,5 @@ Alternatively, if your CA puppet master has the `autosign` setting configured, i
 
 * * *
 
-- [Next: Provisioning with VMware](./cloudprovisioner_vmware.html)
+- [Next: Sample Cloud Provisioning Workflow](./cloudprovisioner_workflow.html)
+
