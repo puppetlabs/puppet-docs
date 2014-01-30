@@ -21,13 +21,13 @@ Puppet Enterprise is distributed in tarballs specific to your OS version and arc
     
 #### Available \*nix Tarballs
 
-|      Filename ends with...        |                     Will install...                 |
+|      Filename ends with...        |                     Will install on...                 |
 |-----------------------------------|-----------------------------------------------------|  |
-| `-debian-<version and arch>.tar.gz`  | on Debian                                           |
-| `-el-<version and arch>.tar.gz`      | on RHEL, CentOS, Scientific Linux, or Oracle Linux  |
-| `-solaris-<version and arch>.tar.gz` | on Solaris                                          |
-| `-ubuntu-<version and arch>.tar.gz`  | on Ubuntu LTS                                       |
-| `-aix-<version and arch>.tar.gz`  | on AIX                                       |
+| `-debian-<version and arch>.tar.gz`  | Debian                                           |
+| `-el-<version and arch>.tar.gz`      | RHEL, CentOS, Scientific Linux, or Oracle Linux  |
+| `-solaris-<version and arch>.tar.gz` | Solaris                                          |
+| `-ubuntu-<version and arch>.tar.gz`  | Ubuntu LTS                                       |
+| `-aix-<version and arch>.tar.gz`     | AIX                                              |
 
 *Note:* Bindings for SELinux are available on RHEL 5 and 6. They are not installed by default but are included in the installation tarball. See [the appendix](./appendix.html) for complete information.
 
@@ -134,7 +134,7 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 
 ### The Puppet Agent Role
 
-The agent role is most easily installed using a package manager (See [installing agents](#Installing Agents) below). On platforms that do not support remote package repos, the installer script is used.
+The agent role is most easily installed using a package manager (see [installing agents](#Installing_Agents) below). On platforms that do not support remote package repos, the installer script is used.
 
 This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (When you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
 
@@ -150,7 +150,7 @@ In most deployments, this role should be installed on **one node;** installing m
 * Route orchestration messages through its ActiveMQ server.
 * Issue valid orchestration commands (from an administrator logged in as the `peadmin` user).
 
-**Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts.** In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers). If an update is available, a message alert you.
+**Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts**. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable upgrade checking can be found in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers). If an update is available, a message alert you.
 
 ### The Database Support Role
 This role provides required database support for PuppetDB and the console:
@@ -357,7 +357,7 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 Installing Agents
 -----
 
-If you are using any supported OS that is capable of using remote package repos, the easiest way to install the PE agent is with standard *nix package management tools. To install the agent on other OS's (Solaris, AIX, RHEL 4, Windows) you'll need to use the installer script just as you did above. 
+If you are using a supported OS that is capable of using remote package repos, the easiest way to install the PE agent is with standard *nix package management tools. To install the agent on other OS's (Solaris, AIX, RHEL 4, Windows) you'll need to use the installer script just as you did above. 
 
 ### Installing Agents with Your Package Management Tools
 
