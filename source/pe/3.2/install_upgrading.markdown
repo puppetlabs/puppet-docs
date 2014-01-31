@@ -27,7 +27,18 @@ If more than one of these roles is present on a given node (for example your mas
 Important Notes and Warnings
 ---
 
-- **Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.2. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.2. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+- **Upgrading Split Console and Custom PostgreSQL Databases**  When upgrading from 3.1 to 3.2, the console database tables are upgraded from 32-bit integers to 64-bit. This helps to avoid ID overflows in large databases. In order to migrate the database, the upgrader will temporarily require disc space equivalent to 20% more than the largest table in the console's database (by default, located here: `/opt/puppet/var/lib/pgsqul/9.2/console`). If the database is in this default location, on the same node as the console, the upgrader can successfully determine the amount of disc space needed and provide warnings if needed. However, there are certain circumstances in which the upgrader cannot make this determination automatically. Specifically, the installer cannot determine the disc space requirement if:
+
+    1. The console database is installed on a different node than the console.
+    2. The console database is a custom instance, not the database installed byPE.
+
+In case 1, the installer can determine how much space is needed, but it will be up to the user to determine if sufficient free-space exists.
+In case 2, the installer is unable to obtain any information about the size or state of the database. The user will not to locate the large console database table 
+
+- **Upgrading from the 2 series of PE  is only supported from 2.8.5 or later.** To upgrade from a version older than 2.8.5 to any version of the PE 3 series, you *must* first upgrade to 2.8.5, make sure everything is working correctly, and then move on to upgrading to the later version 
+
+- **PE 3.0.0 Upgrade Limitations** PE3.0.0 had limited upgrade capabilities. To upgrade from 3.0.0 to any later version in the PE 3 series, you *must* first upgrade to 3.0.1, make sure everything is working, and then move on to upgrading to the later version. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+
 - If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
 
   Before upgrading, remove the following:
@@ -40,10 +51,15 @@ Important Notes and Warnings
       * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
 
   Finally, perform your upgrade.
-- Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
-- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.2. The version of the orchestration engine used in PE 3.x is incompatible with that used by PE 2.x.
+  
+- Upgrading is handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
+
+- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2 series agent nodes until they have been upgraded to the PE 3 series. The version of the orchestration engine used in PE 3 is incompatible with that used by PE 2.
+
 - For PE 3.0 and later, URLs pointing to module files must contain `modules/`, as in `puppet:///modules/`.
-- On AIX 5.3, as in PE 2.8.3, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
+
+- On AIX 5.3, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
+
 - On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running:
 
         rpm -e --nodeps readline

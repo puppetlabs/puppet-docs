@@ -361,9 +361,9 @@ If you are using a supported OS that is capable of using remote package repos, t
 
 ### Installing Agents with Your Package Management Tools
 
-If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you simply need to add the `pe-agent` package to the appropriate repo, configure your tool to point at that repo, and install the package as you would any other. You can find an agent package (that corresponds to the master's OS/architecture) in `opt/puppet/packages/public`. 
+If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you just need to add the agent packages to the appropriate repo, configure your package manager (yum, apt,) to point at that repo, and then install the packages as you would any other. You can find an agent packages (that corresponds to the master's OS/architecture) in `/opt/puppet/packages/public`. 
 
-For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package. Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent package will be generated in `opt/puppet/packages/public`.
+For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package. Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent package will be generated in `/opt/puppet/packages/public`.
 
 ### Installing Agents using PE Package Management
 
@@ -380,7 +380,7 @@ You can use this same method for any supported OS and architecture by creating a
 
 #### Example Script Usage
 
-Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware. Start by going to the console and adding the `pe_repo::debian_6_amd64` class. Add the class to your master node and kick off a puppet run with live management. 
+Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware. Start by going to the console and adding the `pe_repo::platform::debian_6_amd64` class. Add the class to your master node and kick off a puppet run with live management. 
 
 The class will create a new package in `opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`. 
 
