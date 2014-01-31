@@ -37,20 +37,24 @@ In case 2, the installer is unable to obtain any information about the size or s
 
 - **Upgrading from the 2 series of PE  is only supported from 2.8.5 or later.** To upgrade from a version older than 2.8.5 to any version of the PE 3 series, you *must* first upgrade to 2.8.5, make sure everything is working correctly, and then move on to upgrading to the later version 
 
-- **PE 3.0.0 Upgrade Limitations** PE3.0.0 had limited upgrade capabilities. To upgrade from 3.0.0 to any later version in the PE 3 series, you *must* first upgrade to 3.0.1, make sure everything is working, and then move on to upgrading to the later version. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+- **PE 3.0.0 Upgrade Limitations** PE 3.0.0 had limited upgrade capabilities. To upgrade from 3.0.0 to any later version in the PE 3 series, you *must* first upgrade to 3.0.1, make sure everything is working, and then move on to upgrading to the later version. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
 
 - If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
 
   Before upgrading, remove the following:
-  	 * `/etc/puppetlabs/puppet/routes.yaml`
-	 * `/etc/puppetlabs/puppet/puppetdb.conf`
+  
+    * `/etc/puppetlabs/puppet/routes.yaml`
+	
+    * `/etc/puppetlabs/puppet/puppetdb.conf`
+	
 	 * PostgreSQL (if installed on the master), including any data and config directories
 	
   Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
-      * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
-      * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
+  
+    * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
+    * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
 
-  Finally, perform your upgrade.
+  Lastly, perform your upgrade.
   
 - Upgrading is handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
 
