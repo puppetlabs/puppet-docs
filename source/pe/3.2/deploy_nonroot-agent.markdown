@@ -40,7 +40,7 @@ In this scenario, the platform team needs to:
 
 The platform team starts by having a privileged (i.e., root) user install and configure a monolithic PE master with orchestration disabled. (To learn more about installing PE, refer to Installing Puppet Enterprise in the PE user’s manual.)
 
-Disabling orchestration is done by automating the install with an [answers file](../pe/latest/install_automated.html). Once you have [downloaded the appropriate tarball](http://info.puppetlabs.com/download-pe.html) for your hardware onto the node you’ll be using for the master, generate an answers file by doing a dry-run of the installer with `puppet-installer -s puppet_answers.txt`.  It is not necessary to install the optional cloud provisioner, but you can if you wish.
+Disabling orchestration is done by automating the install with an [answers file](../pe/latest/install_automated.html). Once you have [downloaded the appropriate tarball](http://info.puppetlabs.com/download-pe.html) for your hardware onto the node you’ll be using for the master, generate an answers file by doing a dry-run of the installer with `puppet-enterprise-installer -s puppet_answers.txt`.  It is not necessary to install the optional cloud provisioner, but you can if you wish.
 
 Once the answer file has been generated, edit it by adding an answer that disables Live Management: `q_disable_live_management=y`.
 
