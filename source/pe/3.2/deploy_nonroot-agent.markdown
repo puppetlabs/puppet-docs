@@ -31,7 +31,7 @@ Note that the application team will not be able to use PE’s orchestration capa
 In this scenario, the platform team needs to:
 
    * Install and configure a monolithic PE master
-   * Disable the live management
+   * Disable live management
    * Install the puppet agent on the nodes the application team wants to manage with PE
    * Create and configure a non-root user account
    * Disable the `pe-puppet` service on all nodes
