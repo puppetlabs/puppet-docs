@@ -31,7 +31,7 @@ Note that the application team will not be able to use PE’s orchestration capa
 In this scenario, the platform team needs to:
 
    * Install and configure a monolithic PE master
-   * Disable the orchestration engine (MCollective)
+   * Disable live management
    * Install the puppet agent on the nodes the application team wants to manage with PE
    * Create and configure a non-root user account
    * Disable the `pe-puppet` service on all nodes
@@ -40,9 +40,9 @@ In this scenario, the platform team needs to:
 
 The platform team starts by having a privileged (i.e., root) user install and configure a monolithic PE master with orchestration disabled. (To learn more about installing PE, refer to Installing Puppet Enterprise in the PE user’s manual.)
 
-Disabling orchestration is done by automating the install with an [answers file](../pe/latest/install_automated.html). Once you have [downloaded the appropriate tarball](http://info.puppetlabs.com/download-pe.html) for your hardware onto the node you’ll be using for the master, generate an answers file by doing a dry-run of the installer with `puppet-installer -s puppet_answers.txt`.  It is not necessary to install the optional cloud provisioner, but you can if you wish.
+Disabling orchestration is done by automating the install with an [answers file](../pe/latest/install_automated.html). Once you have [downloaded the appropriate tarball](http://info.puppetlabs.com/download-pe.html) for your hardware onto the node you’ll be using for the master, generate an answers file by doing a dry-run of the installer with `puppet-enterprise-installer -s puppet_answers.txt`.  It is not necessary to install the optional cloud provisioner, but you can if you wish.
 
-Once the answer file has been generated, edit it by adding an answer that disables Live Management: `q_disable_live_management=y`.
+Once the answer file has been generated, edit it by adding an answer that disables live management: `q_disable_live_management=y`.
 
 Now you can run the installer using the newly generated answer file: `puppet-installer -a puppet_answers.txt`. 
 
