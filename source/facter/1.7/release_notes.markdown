@@ -34,7 +34,7 @@ Previously, Facter would not run on OS X 10.9 when installed from the pre-built 
 
 [FACT-82: Force ASCII-8BIT encoding on raw data in property lists](https://tickets.puppetlabs.com/browse/FACT-82)
 
-Facter now forces ASCII-8BIT encoding when reading from property lists whenever possible, which allows it to read strings encoded in binary plists. This fix primarily affects Mac OS X Mavericks.
+Facter now forces ASCII-8BIT encoding when reading from property lists whenever possible, which allows it to read strings encoded in binary plists. This fix primarily affects OS X Mavericks.
 
 
 Facter 1.7.4
