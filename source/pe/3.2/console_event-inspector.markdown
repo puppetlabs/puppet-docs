@@ -20,9 +20,9 @@ Event inspector can be reached by clicking "Events" in the console's main naviga
 
 The event inspector page displays two panes of data. Clicking an item will show its details (and any sub-items) in the detail pane on the right. The context pane on the left always shows the list of items from which the one in the right pane was chosen, to let you easily view similar items and compare their states.
 
-To backtrack out of the current list of items, you can use the breadcrumb navigation or the "previous" button (appearing left of the left pane after you've clicked at least one item). The back and forward buttons in your browser will behave normally, returning you to the previously loaded URL. 
+To backtrack out of the current list of items, you can use the breadcrumb navigation or the "previous" button (appearing left of the left pane after you've drilled in at least one level). The back and forward buttons in your browser will behave normally, returning you to the previously loaded URL.
 
-You can also bookmark pages as you investigate events on classes, nodes, and resources, allowing you to return to a previous set of events. However, after subsequent Puppet runs, the contents of the bookmarked pages may be different when you revisit them. Also, if there are no changes for a selected time period, the bookmarks may show default text indicating there were no events on that class, node, or resource.   
+You can also bookmark pages as you investigate events on classes, nodes, and resources, allowing you to return to a previous set of events. However, after subsequent Puppet runs, the contents of the bookmarked pages may be different when you revisit them. Also, if there are no changes for a selected time period, the bookmarks may show default text indicating there were no events on that class, node, or resource.
 
 ![The full event inspector page][full_page]
 
@@ -33,7 +33,7 @@ You can also bookmark pages as you investigate events on classes, nodes, and res
 >
 > You can see how old the current data is by checking the timestamp at the top of the page. Reload the page in your browser to update the data to the most recent events.
 >
-> You can also restrict the time period over which event inspector is reporting by using the drop-down time period restriction menu. Event inspector cannot display events that happened more than 24 hours in the past.
+> You can also restrict the time period over which event inspector is reporting by using the drop-down time period restriction menu. Event inspector does not display events that happened more than 24 hours in the past.
 >
 > ![Time period selector][time-selector]
 
@@ -84,15 +84,15 @@ Assume you are a sysadmin and Puppet developer for a large web commerce enterpri
 
 ![Default view with failure events][default-failure]
 
-After you click `Testweb`, you can select the "Nodes with failures" tab or the "Resources with failures" tab, depending on how you want to investigate the failure on the class. 
+After you click `Testweb`, you can select the "Nodes with failures" tab or the "Resources with failures" tab, depending on how you want to investigate the failure on the class.
 
 You click the "Resources with failures" tab, which loads a detail view showing failed resources. In this case, you can see in the detail pane that there is an issue with a file resource, specifically `/var/www/first/.htaccess`.
 
 ![Failed Resources view][resource-failure]
 
-Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the "previous" button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish. 
+Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the "previous" button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish.
 
-After clicking the failed resource, the detail pane now shows the node it failed on. 
+After clicking the failed resource, the detail pane now shows the node it failed on.
 
 ![Resource Failed Node view][resource-node-failure-detail]
 
