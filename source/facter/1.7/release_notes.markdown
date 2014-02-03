@@ -10,15 +10,31 @@ This page documents the history of the Facter 1.7 series.
 Facter 1.7.5
 -----
 
-**Pre-release:** Facter 1.7.5 is not yet released. It entered RC1 on January 21, 2014.
+**Pre-release:** Facter 1.7.5 is not yet released. It entered RC2 on February 3, 2014.
 
-Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on OS X 10.9.
+Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on OS X 10.9, adds support for Red Hat Enterprise Linux 7,
+
+### Support for Red Hat Enterprise Linux 7
+
+[RE-815: Update mocks for Facter, build for EL7](https://tickets.puppetlabs.com/browse/RE-815)
+
+Facter now supports RHEL 7, although it is currently limited to x86_64.
 
 ### Support for OS X 10.9
+
+[RE-828: Facter DMG packages on OSX will attempt to load Facter from rbenv PATH and fail](https://tickets.puppetlabs.com/browse/RE-828)
+
+The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`.  
 
 [FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
 
 Previously, Facter would not run on OS X 10.9 when installed from the pre-built package, although installing through RubyGems would still work. Now, it runs properly either way.
+
+### Miscellaneous Fixes
+
+[FACT-82: Force ASCII-8BIT encoding on raw data in property lists](https://tickets.puppetlabs.com/browse/FACT-82)
+
+Facter now forces ASCII-8BIT encoding when reading from property lists whenever possible, which allows it to read strings encoded in binary plists. This fix primarily affects Mac OS X Mavericks.
 
 
 Facter 1.7.4
