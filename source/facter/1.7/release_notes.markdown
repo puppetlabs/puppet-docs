@@ -16,15 +16,13 @@ Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes two issues with th
 
 ### Support for Red Hat Enterprise Linux 7
 
-[RE-815: Update mocks for Facter, build for EL7](https://tickets.puppetlabs.com/browse/RE-815)
-
-Facter now supports RHEL 7, although it is currently limited to x86_64.
+Facter now supports RHEL 7, although it is currently limited to x86_64. <!-- RE-815 -->
 
 ### Support for OS X 10.9
 
-[RE-828: Facter DMG packages on OSX will attempt to load Facter from rbenv PATH and fail](https://tickets.puppetlabs.com/browse/RE-828)
+**Facter DMG packages on OSX will attempt to load Facter from rbenv PATH and fail**
 
-The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`.  
+The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`. <!-- RE-828 --> 
 
 [FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
 
