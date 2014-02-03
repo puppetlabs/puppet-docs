@@ -12,7 +12,7 @@ Facter 1.7.5
 
 **Pre-release:** Facter 1.7.5 is not yet released. It entered RC2 on February 3, 2014.
 
-Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes an issue with the packaged installer on OS X 10.9, adds support for Red Hat Enterprise Linux 7,
+Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes two issues with the packaged installer on OS X 10.9 and adds support for Red Hat Enterprise Linux 7.
 
 ### Support for Red Hat Enterprise Linux 7
 
