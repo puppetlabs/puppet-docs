@@ -31,10 +31,9 @@ Note that the application team will not be able to use PE’s orchestration capa
 In this scenario, the platform team needs to:
 
    * Install and configure a monolithic PE master
-   * Disable live management
-   * Install the puppet agent on the nodes the application team wants to manage with PE
-   * Create and configure a non-root user account
-   * Disable the `pe-puppet` service on all nodes
+   * Modify the "default" group to exclude live management
+   * Install and configure PE agents, disable the `pe-puppet` service on all nodes, and create non-root users 
+   * Verify the non-root configuration
 
 #### Install and Configure a Monolithic Master
 
@@ -78,6 +77,9 @@ Add the “no mcollective” group and click “Update”.
     [main]
      certname = <non-root username>
      server = <master hostname>
+     .
+     .
+     .
 {% endhighlight %}     
 
 7. Log into the console on the master and navigate to the [pending node requests](./console_cert_mgmt.html). If you think you’ll ever need to run the agent WITH root privileges, you can accept all the pending requests. If you think you will never need to run the agent with root privileges, you should reject those requests coming from root user agents and only accept the requests from non-root user agents.
@@ -86,8 +88,9 @@ Add the “no mcollective” group and click “Update”.
 
 ![non-root user first run output][nonrootuser_first_run]
 
-#### Verification
-Check the following to make sure the agent is properly connected and functioning as desired:
+#### Verify the Non-Root Configuration 
+
+Check the following to make sure the agent is properly configured and functioning as desired:
 
 - The non-root agent node should be able to request certificates and be able to download and apply the catalog from the master without issue when a non-privileged user executes `puppet agent -t`.
 - The puppet agent service should not be running. Check it with `service pe-puppet status`.
