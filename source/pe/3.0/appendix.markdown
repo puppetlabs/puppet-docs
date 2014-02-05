@@ -181,6 +181,10 @@ This will set the order of ciphers to:
     
 Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 may leave you vulnerable to other types of attacks.
 
+### PostgreSQL Module Conflict
+
+For PE versions 3.0.x, the Puppet Labs PostgreSQL module (included in the PE tarball) is used to manage PuppetDB. However, using your own PostgreSQL module in addition to the Puppet Labs PostgreSQL module will impact the operation of PuppetDB. This issue will be fixed in PE 3.2, but you can also contact the [PE customer support portal](https://support.puppetlabs.com) to discuss potential workarounds.
+
 ### db:raw:optimize Rake Task does not Work in PE 3.0.0
 
 To re-index and vacuum the console database, you can use the following PostgreSQL commands:

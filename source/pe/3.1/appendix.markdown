@@ -168,6 +168,10 @@ When upgrading a PE 2.8.3 master to PE 3.1.0, restarting `pe-httpd` produces a w
 
 In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](http://docs.puppetlabs.com/puppetdb/1.5/connect_puppet_apply.html).
 
+### PostgreSQL Module Conflict
+
+For PE versions 3.1.x, the Puppet Labs PostgreSQL module (included in the PE tarball) is used to manage PuppetDB. However, using your own PostgreSQL module in addition to the Puppet Labs PostgreSQL module will impact the operation of PuppetDB. This issue will be fixed in PE 3.2, but you can also contact the [PE customer support portal](https://support.puppetlabs.com) to discuss potential workarounds.
+
 ### BEAST Attack Mitigation
 
 A known weakness in Apache HTTPD leaves it vulnerable to a man-in-the-middle attack known as the BEAST (Browser Exploit Against SSL/TLS) attack. The vulnerability exists because Apache HTTPD uses a FIPS compliant cipher suite that can be cracked via a brute force attack that can discover the decryption key. If FIPS compliance is not required for your infrastructure, we recommend you mitigate vulnerability to the BEAST attack by using a cipher suite that includes stronger ciphers. This can be done as follows:
