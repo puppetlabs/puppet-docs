@@ -217,7 +217,7 @@ Puppet classes are **distributed in the form of modules**. You can save time by 
 
 ### Installing two Forge Modules
 
-We will install two example modules: `puppetlabs-ntp` and `puppetlabs-registry`.
+We will install two Puppet Labs supported modules: `puppetlabs-ntp` and `puppetlabs-registry`. Supported modules are tested and maintained by Puppet Labs. 
 
 * **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/nto). This is the Forge listing for a module that installs, configures, and manages the ntp service.
 
@@ -232,9 +232,10 @@ We will install two example modules: `puppetlabs-ntp` and `puppetlabs-registry`.
         thias-ntp        Network Time Protocol...                                    @thias        ntp ntpd
         warriornew-ntp   ntp setup                                                   @warriornew   ntp      
 
-We want `puppetlabs-ntp`, which is a module that is a PE-supported module. You can view detailed info about the module on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. 
+We want `puppetlabs-ntp`, which is the Puppet Labs supported ntp module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. 
 
 You can also do a similar search for `registry`, which should find the other module we'll be using.
+
 * Install the first module by running `puppet module install puppetlabs-ntp`:
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
@@ -242,6 +243,7 @@ You can also do a similar search for `registry`, which should find the other mod
         Notice: Installing -- do not interrupt ...
         /etc/puppetlabs/puppet/modules
         └── puppetlabs-ntp (v3.0.1)
+        
 * Install the second module by running `puppet module install puppetlabs-registry`. (If you are not using any Windows nodes, this module is inert; you can install it or skip it.)
 
 > You have just installed multiple Puppet modules. All of the classes in them are now available to be added to the console and assigned to nodes.
@@ -252,7 +254,7 @@ You can also do a similar search for `registry`, which should find the other mod
 [add_ntp]: ./images/quick/add_ntp.png
 [assign_ntp]: ./images/quick/assign_ntp.png
 
-Every module contains one or more **classes**. The modules you just installed contain classes called `ntp` and `registry`. To use any class, you must **tell the console about it** and then **assign it to one or more nodes**.
+Every module contains one or more **classes**. The modules you just installed contain classes called `ntp` and `registry`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
 
 * **On the console**, click the "Add classes" button in the sidebar:
 
