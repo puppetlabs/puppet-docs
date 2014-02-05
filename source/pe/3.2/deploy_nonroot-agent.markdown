@@ -73,14 +73,12 @@ Add the “no mcollective” group and click “Update”.
 
 6. As the non-root user, create a Puppet configuration file (`~/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
 
-{% highlight ruby %}
-    [main]
-     certname = <non-root username>
-     server = <master hostname>
-     .
-     .
-     .
-{% endhighlight %}     
+		[main]
+		 certname = <non-root username>
+		 server = <master hostname>
+		 .
+		 .
+		 .
 
 7. Log into the console on the master and navigate to the [pending node requests](./console_cert_mgmt.html). If you think you’ll ever need to run the agent WITH root privileges, you can accept all the pending requests. If you think you will never need to run the agent with root privileges, you should reject those requests coming from root user agents and only accept the requests from non-root user agents.
 
@@ -114,20 +112,19 @@ If you need to run agents on nodes running a Windows OS, take the following step
 
 4. Log out of the Windows agent machine and log back in as the non-root user, and then run the following command:
 
-		puppet agent -t --certname "<non-root username>" --server "<master hostname>"
+   `puppet agent -t --certname "<non-root username>" --server "<master hostname>"`
 		
-	This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
+   This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
 
 5. As the non-root user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
 
-{% highlight ruby %}
-    [main]
-     certname = <non-root username>
-     server = <master hostname>
-     .
-     .
-     .
-{% endhighlight %}
+    	[main]
+     	 certname = <non-root username>
+         server = <master hostname>
+        .
+        .
+        .
+
 
 6. While still connected as the non-privileged user, send a cert request to the master by running puppet with `puppet agent -t`. 
 
