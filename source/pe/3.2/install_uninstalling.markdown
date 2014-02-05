@@ -10,7 +10,7 @@ Use the `puppet-enterprise-uninstaller` script to uninstall PE roles on a given 
 Using the Uninstaller
 -----
 
-The `puppet-enterprise-uninstaller` script is installed on the master, PuppetDB, and console nodes; you can run it with `opt/puppet/bin/puppet-enterprise-uninstaller`.  
+The `puppet-enterprise-uninstaller` script is installed on the master, PuppetDB, and console nodes; you can run it with `/opt/puppet/bin/puppet-enterprise-uninstaller`.  
 
 You can also run the uninstaller from the same directory as the installer script; run it with root privileges from the command line:
 
