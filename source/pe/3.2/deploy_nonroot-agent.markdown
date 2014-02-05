@@ -118,7 +118,7 @@ If you need to run agents on nodes running a Windows OS, take the following step
 		
 	This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
 
-5. As the non-root user, create a Puppet configuration file (`~/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
+5. As the non-root user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
 
 {% highlight ruby %}
     [main]
