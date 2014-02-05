@@ -96,7 +96,7 @@ Check the following to make sure the agent is properly configured and functionin
 - The puppet agent service should not be running. Check it with `service pe-puppet status`.
 - The non-root agent node should not receive the “pe-mcollective” class. You can check the console to ensure that `nonrootuser` is part of the `no mcollective` group. 
 
-![non-root node not in mcollective group][nonroot_no_mcgroup]
+![non-root node not in mcollective group][nonroot_no_mco_group]
 
 [TODO:Other tests a user should run to verify?
 
@@ -145,6 +145,7 @@ Non-root users can only use a subset of PE’s functionality. Basically, any ope
 
 [add_no_mco_group]: ./images/console/add_no_mco_group.png
 [nonrootuser_first_run]: ./images/console/nonrootuser_first_run.png
+[nonroot_no_mco_group]: ./images/console/nonroot_no_mco_group.png
 
 * * *
 
