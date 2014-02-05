@@ -138,7 +138,7 @@ Node Tasks: Modifying Info
 
 ### `node:add[name,(groups),(classes),(onexists)]`
 
-Add a new node. Classes and groups can be specified as comma-separated lists.
+Add a new node. Classes and groups can be specified as [comma-separated lists](#Escaping).
 
 **Parameters:**
 
@@ -157,7 +157,7 @@ Delete a node.
 
 ### `node:classes[name,classes]`
 
-**Replace** the list of classes assigned to a node. This task **will destroy existing data.** Classes must be specified as a comma-separated list.
+**Replace** the list of classes assigned to a node. This task **will destroy existing data.** Classes must be specified as a [comma-separated list](#Escaping).
 
 **Parameters:**
 
@@ -166,7 +166,7 @@ Delete a node.
 
 ### `node:groups[name,groups]`
 
-**Replace** the list of groups a node belongs to. This task **will destroy existing data.** Groups must be specified as a comma-separated list.
+**Replace** the list of groups a node belongs to. This task **will destroy existing data.** Groups must be specified as a [comma-separated list](#Escaping).
 
 **Parameters:**
 
@@ -214,7 +214,7 @@ Remove a class param from a node.
 
 ### `node:variables[name,variables]`
 
-Add (or edit, if they exist) variables for a node. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and the commas must be escaped.
+Add (or edit, if they exist) variables for a node. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and [the commas must be escaped](#Escaping).
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ Group Tasks: Modifying Info
 
 ### `nodegroup:add[name,(classes),(onexists)]`
 
-Create a new node group. Classes can be specified as a comma-separated list.
+Create a new node group. Classes can be specified as a [comma-separated list](#Escaping).
 
 **Parameters:**
 
@@ -338,7 +338,7 @@ Assign a class to a group without overwriting its existing classes.
 
 ### `nodegroup:edit[name,classes]`
 
-**Replace** the classes assigned to a node group. This task **will destroy existing data.** Classes must be specified as a comma-separated list.
+**Replace** the classes assigned to a node group. This task **will destroy existing data.** Classes must be specified as a [comma-separated list](#Escaping).
 
 **Parameters:**
 
@@ -393,7 +393,7 @@ Remove a child group from a nodegroup.
 
 ### `nodegroup:variables[name,variables]`
 
-Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and the commas must be escaped.
+Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and [the commas must be escaped](#Escaping).
 
 **Parameters:**
 
