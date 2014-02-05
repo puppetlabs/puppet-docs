@@ -18,7 +18,7 @@ For security or organizational reasons, your infrastructure’s platform is main
 Configuration
 ------
 
-### Overview:
+### Overview
 
 PE *must* be installed with root privileges, so the platform team will need to set up and provide non-root access to a monolithic PE master. That is, the master, console, and database roles will all be installed on a single node. Similarly, the puppet agent will be installed on the application team’s nodes by a privileged user with root access. A non-root user account will also be set up at this time.
  
@@ -31,14 +31,13 @@ Note that the application team will not be able to use PE’s orchestration capa
 In this scenario, the platform team needs to:
 
    * Install and configure a monolithic PE master
-   * Disable live management
-   * Install the puppet agent on the nodes the application team wants to manage with PE
-   * Create and configure a non-root user account
-   * Disable the `pe-puppet` service on all nodes
+   * Modify the "default" group to exclude live management
+   * Install and configure PE agents, disable the `pe-puppet` service on all nodes, and create non-root users 
+   * Verify the non-root configuration
 
 #### Install and Configure a Monolithic Master
 
-The platform team starts by having a privileged (i.e., root) user install and configure a monolithic PE master with orchestration disabled. (To learn more about installing PE, refer to Installing Puppet Enterprise in the PE user’s manual.)
+The platform team starts by having a root (i.e., privileged) user install and configure a monolithic PE master with orchestration disabled. (To learn more about installing PE, refer to Installing Puppet Enterprise in the PE user’s manual.)
 
 Disabling orchestration is done by automating the install with an [answers file](../pe/latest/install_automated.html). Once you have [downloaded the appropriate tarball](http://info.puppetlabs.com/download-pe.html) for your hardware onto the node you’ll be using for the master, generate an answers file by doing a dry-run of the installer with `puppet-enterprise-installer -s puppet_answers.txt`.  It is not necessary to install the optional cloud provisioner, but you can if you wish.
 
@@ -58,46 +57,48 @@ Add the “no mcollective” group and click “Update”.
 
 #### Install and Configure PE Agents and Create Non-Root Users
 
-1. For each agent node, install a PE agent while logged in as a privileged (root) user. You can do this using the installer (or with `puppet node install` if cloud provisioner was installed) on the master (TODO: might need to modify/add frictionless agent stuff).
+1. For each agent node, install a PE agent while logged in as a root user. You can do this using the installer (or with `puppet node install` if cloud provisioner was installed) on the master (TODO: might need to modify/add frictionless agent stuff).
 
-2. Add the non-root user to the node with: `puppet resource user <username> ensure=present managehome=true`.
+2. Add the non-root user to the node with `puppet resource user <non-root username> ensure=present managehome=true`.
 
 3. Set the non-root user’s password. For example, on most *nix systems you would run `passwd <username>`.
 
-4. By default, the `pe-puppet` service runs automatically as a root user, so it needs to be disabled. As a privileged user on the agent node, stop the pe-puppet service by running `puppet resource service pe-puppet ensure=stopped enable=false`.
+4. By default, the `pe-puppet` service runs automatically as a root user, so it needs to be disabled. As a root user on the agent node, stop the pe-puppet service by running `puppet resource service pe-puppet ensure=stopped enable=false`.
 
-5. Generate and submit the cert for the agent node as the non-root user.  Log into the agent node as the non-privileged user and execute the following command: 
+5. As the non-root user, generate and submit the cert for the agent node. Log into the agent node and execute the following command: 
 
     `puppet agent -t --certname "<non-root username>" --server "<master hostname>"`
 
-    This puppet run will submit a cert request to the master and will create a ‘~/puppet` directory structure in the non-root user’s home directory.
+    This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
 
-6. Add the non-root user to the agent by modifying the puppet.conf file. On the agent node, as a non-privileged user, create a Puppet configuration file (`~/.puppet/puppet.conf`) and edit it to include  the following:
+6. As the non-root user, create a Puppet configuration file (`~/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
 
 {% highlight ruby %}
     [main]
-    certname = nonrootuser
-    server = master
+     certname = <non-root username>
+     server = <master hostname>
      .
      .
      .
 {% endhighlight %}     
 
-7. Log into the console on the master and navigate to the pending node requests [TODO: link]. If you think you’ll ever need to run the agent WITH root privileges, you can Accept all the pending requests. If you think you will never need to run the agent with root privileges, you should Reject those requests coming from root user agents and only Accept the requests from non-root user agents.
+7. Log into the console on the master and navigate to the [pending node requests](./console_cert_mgmt.html). If you think you’ll ever need to run the agent WITH root privileges, you can accept all the pending requests. If you think you will never need to run the agent with root privileges, you should reject those requests coming from root user agents and only accept the requests from non-root user agents.
 
 8. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent as the non-root user and run `puppet agent -t`. PE should now run and apply the configuration specified in the catalog. Keep an eye on the output from the run, if you see Facter facts being created in the non-root user’s home directory, you know that you have successfully created a functional non-root agent. 
 
 ![non-root user first run output][nonrootuser_first_run]
 
-#### Verification
-Check the following to make sure the agent is properly connected and functioning as desired:
+#### Verify the Non-Root Configuration 
 
-- The agent should be able to download and apply the catalog from the master without issue when a non-privileged user executes `puppet agent -t`.
-The puppet agent service should not be running. Check it with `service pe-puppet status`.
-Nodes running non-root agents should not receive the “pe-mcollective” class. Once the agent is connected to the master, run `/etc/puppetlabs/puppet-dashboard/external_node AGENT_CERT`. The agent should not receive the “pe mcollective” class. You can also check the console and ensure that `nonrootuser` is part of the `no mcollective` group. [TODO screenshot]
-Other tests a user should run to verify?
+Check the following to make sure the agent is properly configured and functioning as desired:
 
-- At this point, a non-root agent should be able to request certificates and complete puppet runs. Non-root agents should be able to process catalogs from the master without error. 
+- The non-root agent node should be able to request certificates and be able to download and apply the catalog from the master without issue when a non-privileged user executes `puppet agent -t`.
+- The puppet agent service should not be running. Check it with `service pe-puppet status`.
+- The non-root agent node should not receive the “pe-mcollective” class. You can check the console to ensure that `nonrootuser` is part of the `no mcollective` group. 
+
+![non-root node not in mcollective group][nonroot_no_mcgroup]
+
+[TODO:Other tests a user should run to verify?
 
 - Non-privileged users should be able to collect facts existing facts by running `facter` on agents, and they should be able to define new, external Facter facts.
 
@@ -105,28 +106,34 @@ Other tests a user should run to verify?
 
 If you need to run agents on nodes running a Windows OS, take the following steps:
 
-1. Connect to the agent node as a privileged user and installing the agent as an Administrator. 
+1. Connect to the agent node as a privileged user and install the [Windows agent](./install_windows.html). 
 
-2. On the command line, run the following to add the non-root user: `puppet resource user nonrootuser ensure=present managehome=true password="puppet" groups="Users"`.
+2. As a privileged user, add the non-root user with the following command: `puppet resource user <non-root username> ensure=present managehome=true password="puppet" groups="Users"`.
 
 3. While still connected as a privileged user, disable the pe-puppet service with `puppet resource service pe-puppet ensure=stopped enable=false`.
 
-4. Log out of the Windows agent machine and log back in again, this time as the non-privileged user. Then, edit the puppet configuration file (`%USERPROFILE%\.puppet\puppet.conf`) as follows:
+4. Log out of the Windows agent machine and log back in as the non-root user, and then run the following command:
+
+		puppet agent -t --certname "<non-root username>" --server "<master hostname>"
+		
+	This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
+
+5. As the non-root user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
 
 {% highlight ruby %}
     [main]
-    certname = nonrootuser
-    server = master
-    .
-    .
-    .
+     certname = <non-root username>
+     server = <master hostname>
+     .
+     .
+     .
 {% endhighlight %}
 
-5. While still connected as the non-privileged user, send a cert request to the master by running puppet with `puppet agent -t`. 
+6. While still connected as the non-privileged user, send a cert request to the master by running puppet with `puppet agent -t`. 
 
-6. On the master node, as a privileged user, sign the certificate request using the console or by running `puppet cert sign nonrootuser`. 
+7. On the master node, as a privileged user, sign the certificate request using the console or by running `puppet cert sign nonrootuser`. 
 
-7. On the agent node, verify that the agent is connected and working by again starting a puppet run while logged in as the non-privileged user. Running `puppet agent -t` should download and process the catalog from the master without issue.
+8. On the agent node, verify that the agent is connected and working by again starting a puppet run while logged in as the non-privileged user. Running `puppet agent -t` should download and process the catalog from the master without issue.
 
 ###Usage
 
