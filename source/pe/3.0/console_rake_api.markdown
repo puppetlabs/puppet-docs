@@ -38,7 +38,7 @@ Specifically, you should provide:
         * Each task requires its arguments in a specific order; [see the list of tasks below](#node-tasks-getting-info).
         * Some arguments are optional. To skip an optional argument but provide a later optional argument, provide an empty string. (For example, `node:add['web06.example.com',,'linux::base']`.)
         * Nearly all values should be quoted for safety, although values that consist of only alphanumeric characters with no spaces may be left unquoted.
-        * Both single and double quotes are okay, but see "Escaping" below.
+        * Both single and double quotes are okay, but see [Escaping](#escaping) below.
 * A closing square bracket (`]`)
 
 To run multiple tasks, simply put multiple tasks and their arguments in the same command line, in the order they should run. For example:
@@ -138,7 +138,7 @@ Node Tasks: Modifying Info
 
 ### `node:add[name,(groups),(classes),(onexists)]`
 
-Add a new node. Classes and groups can be specified as comma-separated lists.
+Add a new node. Classes and groups can be specified as [comma-separated lists](#escaping).
 
 **Parameters:**
 
@@ -157,7 +157,7 @@ Delete a node.
 
 ### `node:classes[name,classes]`
 
-**Replace** the list of classes assigned to a node. This task **will destroy existing data.** Classes must be specified as a comma-separated list.
+**Replace** the list of classes assigned to a node. This task **will destroy existing data.** Classes must be specified as a [comma-separated list](#escaping).
 
 **Parameters:**
 
@@ -166,7 +166,7 @@ Delete a node.
 
 ### `node:groups[name,groups]`
 
-**Replace** the list of groups a node belongs to. This task **will destroy existing data.** Groups must be specified as a comma-separated list.
+**Replace** the list of groups a node belongs to. This task **will destroy existing data.** Groups must be specified as a [comma-separated list](#escaping).
 
 **Parameters:**
 
@@ -214,7 +214,7 @@ Remove a class param from a node.
 
 ### `node:variables[name,variables]`
 
-Add (or edit, if they exist) variables for a node. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and the commas must be escaped.
+Add (or edit, if they exist) variables for a node. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and the [commas must be escaped](#escaping).
 
 **Parameters:**
 
@@ -305,7 +305,7 @@ Group Tasks: Modifying Info
 
 Create a new node group.
 
-Classes can be specified in an environment variable as a comma-separated list. Unfortunately, this means that if you are doing multiple of invocations of `nodegroup:add` in one command, they must all use the same list of classes.
+Classes can be specified in an environment variable as a [comma-separated list](#escaping). Unfortunately, this means that if you are doing multiple of invocations of `nodegroup:add` in one command, they must all use the same list of classes.
 
 **Parameters:**
 
@@ -340,7 +340,7 @@ Assign a class to a group without overwriting its existing classes.
 
 ### `nodegroup:edit[name,classes]`
 
-**Replace** the classes assigned to a node group. This task **will destroy existing data.** Classes must be specified as a comma-separated list.
+**Replace** the classes assigned to a node group. This task **will destroy existing data.** Classes must be specified as a [comma-separated list](#escaping).
 
 **Parameters:**
 
@@ -395,7 +395,7 @@ Remove a child group from a nodegroup.
 
 ### `nodegroup:variables[name,variables]`
 
-Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and the commas must be escaped.
+Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and the [commas must be escaped](#escaping).
 
 **Parameters:**
 
