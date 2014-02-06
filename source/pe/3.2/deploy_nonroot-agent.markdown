@@ -76,10 +76,7 @@ Add the “no mcollective” group and click “Update”.
 		[main]
 		 certname = <non-root username>
 		 server = <master hostname>
-		 .
-		 .
-		 .
-
+		
 7. Log into the console on the master and navigate to the [pending node requests](./console_cert_mgmt.html). If you think you’ll ever need to run the agent WITH root privileges, you can accept all the pending requests. If you think you will never need to run the agent with root privileges, you should reject those requests coming from root user agents and only accept the requests from non-root user agents.
 
 8. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent as the non-root user and run `puppet agent -t`. PE should now run and apply the configuration specified in the catalog. Keep an eye on the output from the run, if you see Facter facts being created in the non-root user’s home directory, you know that you have successfully created a functional non-root agent. 
@@ -106,26 +103,24 @@ If you need to run agents on nodes running a Windows OS, take the following step
 
 1. Connect to the agent node as a privileged user and install the [Windows agent](./install_windows.html). 
 
-2. As a privileged user, add the non-root user with the following command: `puppet resource user <non-root username> ensure=present managehome=true password="puppet" groups="Users"`.
+2. As a privileged user, add the non-privileged user with the following command: `puppet resource user <non-privileged username> ensure=present managehome=true password="puppet" groups="Users"`.
+
+  **Note**: If the non-privileged user needs remote desktop access, edit the user resource to include the "Remote Desktop Users" group.
 
 3. While still connected as a privileged user, disable the pe-puppet service with `puppet resource service pe-puppet ensure=stopped enable=false`.
 
-4. Log out of the Windows agent machine and log back in as the non-root user, and then run the following command:
+4. Log out of the Windows agent machine and log back in as the non-privileged user, and then run the following command:
 
-   `puppet agent -t --certname "<non-root username>" --server "<master hostname>"`
+   `puppet agent -t --certname "<non-privileged username>" --server "<master hostname>"`
 		
    This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
 
-5. As the non-root user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
+5. As the non-privileged user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master: 
 
     	[main]
-     	 certname = <non-root username>
+     	 certname = <non-privileged username>
          server = <master hostname>
-        .
-        .
-        .
-
-
+        
 6. While still connected as the non-privileged user, send a cert request to the master by running puppet with `puppet agent -t`. 
 
 7. On the master node, as a privileged user, sign the certificate request using the console or by running `puppet cert sign nonrootuser`. 
