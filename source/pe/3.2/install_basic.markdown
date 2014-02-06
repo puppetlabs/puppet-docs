@@ -107,6 +107,10 @@ Note that after the installer has finished installing and configuring PE, it wil
 
 The PE installer installs and configures Puppet Enterprise by asking a series of questions. Most questions have a default answer (displayed in brackets), which you can accept by pressing enter without typing a replacement. For questions with a yes or no answer, the default answer is capitalized (e.g. "`[y/N]`").
 
+> ### Using Answer Files
+
+> Answer files are used for customized, automated installations of PE. You create an answer file by performing a dry run of the installer, using the `-s <ANSWER FILE>` flag. After creating the answer file, you can edit it for further customizations. Consult the [answers file reference](./install_answer_file_reference.html) and [automated installation](./install_automated.html) sections of this guide for more information.
+
 
 ### Installer Options
 
