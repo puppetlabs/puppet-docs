@@ -109,7 +109,7 @@ The PE installer installs and configures Puppet Enterprise by asking a series of
 
 > ### Using Answer Files
 
-> Answer files are used for customized, automated installations of PE. You create an answer file by performing a dry run of the installer, using the `-s <ANSWER FILE>` flag. After you create the answer file, you can edit it for further customizations. Consult the [answers file reference](./install_answer_file_reference.html) and [automated installation](./install_automated.html) sections of this guide for more information.
+> Answer files are used for customized, automated installations of PE. You create an answer file by performing a dry run of the installer, using the `-s <ANSWER FILE>` flag. After you create the answer file, you can edit it for further customization and then use it in any of your node deployments; additionally, you can create a separate answer file for each PE role. Consult the [answers file reference](./install_answer_file_reference.html) and [automated installation](./install_automated.html) sections of this guide for more information.
 
 
 ### Installer Options
