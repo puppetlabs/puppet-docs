@@ -75,10 +75,9 @@ The software distributed with Puppet Enterprise generates the following log file
 ### Puppet Master Logs
 
 - `/var/log/pe-httpd/access.log`
-- `/var/log/pe-httpd/error.log`
-
-These logs are solely for HTTP activity; the puppet master service logs most of its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
-
+- `/var/log/pe-httpd/puppetmasteraccess.log` contains all the endpoints that have been accessed with the puppet master REST API.
+- `/var/log/pe-httpd/puppetmasteraccess.log` contains all the endpoints that have been accessed with the puppet master REST API.
+ 
 ### Puppet Agent Logs
 
 The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
@@ -92,13 +91,12 @@ The puppet agent service logs its activity to the syslog service. Your syslog co
 
 ### Orchestration Service Log
 
-This log is maintained by the orchestration service, which is installed on all nodes.
+- `/var/log/pe-mcollective/mcollective.log` maintained by the orchestration service, which is installed on all nodes.
+- `/var/log/pe-mcollective/mcollective_audit.log/` exists on all nodes that have mcollective installed; logs any mcollective actions run on the node, including information about the client that called the node
 
-- `/var/log/pe-mcollective/mcollective.log`
 
 ### Console Logs
 
-- `/var/log/pe-httpd/puppetdashboard.access.log`
 - `/var/log/pe-httpd/puppetdashboard.error.log`
 - `/var/log/pe-puppet-dashboard/delayed_job.log`
 - `/var/log/pe-puppet-dashboard/mcollective_client.log`
@@ -109,10 +107,13 @@ This log is maintained by the orchestration service, which is installed on all n
 - `/var/log/pe-console-auth/auth.log`
 - `/var/log/pe-console-auth/cas_client.log`
 - `/var/log/pe-console-auth/cas.log`
+- `/var/log/pe-httpd/puppetdashboard.access.log` contains all the endpoints that have been accessed in the console.
+- `var/log/pe-puppet-dasboard/failed_reports/` contains a collection of any reports that fail to upload the to the dashboard.
+- `/var/log/pe-httpd/error.log` contains errors related to Passenger. Console errors that don't get logged anywhere else can be found in this log. If you have problems with the console or Puppet, this log may be useful.
 
 ### Database Log
 
--`/var/log/pe-puppetdb/pe-puppetdb.log`
+- `/var/log/pe-puppetdb/pe-puppetdb.log`
 
 ### Miscellaneous Logs
 
