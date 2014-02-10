@@ -495,8 +495,7 @@ group
 
 logoutput
 : Whether to log output.  Defaults to `on_failure`, which only logs
-  the output when the command has a non-zero exit code.  In addition to
-  the values below, you may set this attribute to any legal log level.  Valid values are `true`, `false`, `on_failure`.
+  the output when the command has a non-zero exit code.  Valid values are `true`, `false`, `on_failure`.
 
 onlyif
 : If this parameter is set, then this `exec` will only run if

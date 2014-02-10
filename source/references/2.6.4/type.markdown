@@ -466,8 +466,7 @@ group
 logoutput
 : Whether to log output.  Defaults to logging output at the
     loglevel for the `exec` resource. Use *on_failure* to only
-    log the output when the command reports an error.  Values are
-    **true**, *false*, *on_failure*, and any legal log level.  Valid values are `true`, `false`, `on_failure`.
+    log the output when the command reports an error.  Valid values are `true`, `false`, `on_failure`.
 
 onlyif
 : If this parameter is set, then this `exec` will only run if
