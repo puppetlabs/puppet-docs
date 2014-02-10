@@ -19,7 +19,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 3.1.2 supports the following systems:
+Puppet Enterprise 3.1.3 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
