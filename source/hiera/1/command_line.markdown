@@ -55,11 +55,9 @@ The Hiera command line tool looks for its configuration in `/etc/hiera.yaml`. Yo
 
 When used from Puppet, Hiera automatically receives all of the facts it needs. On the command line, you'll need to manually pass it those facts.
 
-> **Note:** When Puppet is doing Hiera lookups, you can use `::variable` to refer to the top-scope value of a variable. However, this doesn't work when manually supplying facts to Hiera; you'll need to change your interpolations to use the unqualified names of variables, or somehow munge the facts you're passing.
-
 You'll typically run the Hiera command line tool on your puppet master node, where it will expect the facts to be either:
 
-* Included on the command line as variables (e.g. `operatingsystem=Debian`)
+* Included on the command line as variables (e.g. `::operatingsystem=Debian`)
 * Given as a [YAML or JSON scope file](#json-and-yaml-scopes)
 * Retrieved on the fly from [MCollective](#mcollective) data
 * Looked up from [Puppet's inventory service](#inventory-service)
@@ -68,7 +66,7 @@ Descriptions of these choices are below.
 
 ### Command Line Variables
 
-Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server osfamily=Debian clientcert="web01.example.com"`. Variable values must be strings and must be quoted if they contain spaces.
+Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Facts and other top-scope variables should be preceded with the usual `::`. Variable values must be strings and must be quoted if they contain spaces.
 
 This is useful if the values you're testing only rely on a few facts. It can become unweildy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
 
@@ -78,7 +76,7 @@ Rather than passing a list of variables to Hiera as command line arguments, you 
 
 Given this command using command line variable assignments:
 
-`$ hiera ntp_server osfamily=Debian timezone=CST`
+`$ hiera ntp_server ::osfamily=Debian ::timezone=CST`
 
 The following YAML and JSON examples provide equivalent results:
 
