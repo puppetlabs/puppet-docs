@@ -54,7 +54,7 @@ PE 3.2 offers a preview of new, bare-metal provisioning capabilities using Razor
 
 Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
 
-*Note*: This is a Technical Preview release of Razor. For more information about Razor and what constitutes a Technical Preview, please see the [Razor documentation](./razor_intro.html).
+*Note*: This is a Tech Preview release of Razor. For more information, see the see the [Puppet Labs Tech Previews Info Page](TODO: link).
 
 #### Puppet Agent with Non-Root Privileges 
 
