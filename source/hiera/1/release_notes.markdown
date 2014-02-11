@@ -7,7 +7,7 @@ title: "Hiera 1: Release Notes"
 Hiera 1.3.2
 -----
 
-**Pre-release:** Hiera 1.3.2 is not yet released. It entered RC1 on February 10, 2014.
+**Pre-release:** Hiera 1.3.2 is not yet released. It entered RC1 on February 11, 2014.
 
 Hiera 1.3.2 is a bug fix release in the 1.3 series. It adds packages for Red Hat Enterprise Linux 7, support for deploying to Solaris and Windows vCloud instances, and fixes a bug on Debian.
 
