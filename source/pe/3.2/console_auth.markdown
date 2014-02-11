@@ -73,7 +73,7 @@ Choose *My account* to open a page where you can see your username/email and you
 
 Users with admin level access can view information about users and manage their access, including adding and deleting users as needed. Admin level users will see an additional menu choice in the user account menu: *Admin Tools*. Users with read-write or read-only accounts will NOT see the *Admin Tools* menu item.
 
-![admin account menu](./images/console/admin_account_menu.jpg)
+![admin account menu](./images/console/admin_account_menu.png)
 
 #### Viewing Users and Settings
 
