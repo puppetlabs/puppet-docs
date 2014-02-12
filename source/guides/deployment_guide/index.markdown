@@ -62,7 +62,7 @@ Before installing, you must plan where to install these roles.
 
 #### The Puppet Agent Role
 
-This one is easy. The puppet agent will get installed on every node in your infrastructure that you want to manage with PE, including the master and any other nodes that run other PE roles. Don't be shy about installing it on existing infrastructure.
+This one is easy. The puppet agent will get installed on every node in your infrastructure that you want to manage with PE, including the master and any other nodes that run other PE roles. Don't be shy about installing it on existing infrastructure. And remember, if you are using a supported OS that is capable of using remote package repos, the easiest way to install PE agent is with standard *nix package management tools. To install the agent on other OS's (Solaris, AIX, RHEL 4, Windows) you'll need to use the installer script in the PE tarball.
 
 #### The Puppet Master Role
 

@@ -29,22 +29,22 @@ Judy Argyle[^1] is a sysadmin at a mid-sized flying car manufacturing concern, t
 
 This new responsibility is not exactly welcome. Judy already has 14 things that consistently set her hair on fire. In addition, NCC is rolling out a new model, the "Enterprise 1701," which means lots of people are making heavy demands on the IT infrastructure. She needs help. That help is Puppet Enterprise which, luckily, her manager has just approved implementing on a trial basis (since PE is free for up to 10 nodes, getting the approval wasn't all that hard). If PE can work for the marketing department, Judy will get the go-ahead to deploy it across the enterprise.
 
-To start with, Judy [downloads PE](http://info.puppetlabs.com/download-pe.html) and, following the first two sections of this guide and the additional documentation it references, she gets a master, console and database support installed on a spare RHEL box and agents installed on the four servers that constitute the marketing department's infrastructure. After signing the various certificates and kicking off a puppet run on each agent, she can look at the console to confirm that all the agents are talking to the master. All of this feels pretty familiar to Judy since she took the [Puppet Fundamentals Course](https://puppetlabs.com/category/events/upcoming/) a few weeks back.
+The infrastructure of the marketing department is an oddball collection of hardware that was set up ad hoc by a series of interns—poor Judy. Specifically, it consists of the following four servers:
+
+1. An Ubuntu box named "web01" that runs Apache to serve up NCC's main website
+2. An old RHEL 5 FTP server named "ftp01" that provides NCC's employees with access to marketing materials
+3. A Debian server, "crm01", running customer relationship software, SugarCRM
+4. A Windows database server, "sql01", running an SQL db containing customer info
+
+In addition, there is also a spare RHEL 6 box, on which she'll install the puppet master and name "puppet."
+
+To start with, Judy [downloads PE](http://info.puppetlabs.com/download-pe.html) and, following the first two sections of this guide and the additional documentation it references, she gets a master, console and database support installed on her RHEL box. For the Ubuntu, RHEL, and Debian agents, Judy uses the simplified agent installation method. To do this she first uses the console to classify the master with the remote package repos she'll need to create agents on those operating systems. Once the master is classified for the repos, she uses the agent installation script, hosted on the master, to install the OS packages on each agent. (On the Windows agent, she downloads and installs the Windows installer separately since Windows does not support remote package repos.) Once she gets all the agents installed, she uses the console to accept the various certificate requests, and kicks off a puppet run on each agent. Finally, she checks the console to confirm that all the agents are talking to the master. All of this feels pretty familiar to Judy since she took the [Puppet Fundamentals Course](https://puppetlabs.com/category/events/upcoming/) a few weeks back.
 
 ![NCC Marketing Dept. console](assets/NCC_console.png)
 
 Enough preamble, let's start automating infrastructure.
 
 ## Three Things You Can Configuration Manage First
-
-Poor Judy. As we know, the infrastructure of the marketing department is an oddball collection of hardware that was set up ad hoc by a series of interns. Specifically, it consists of the following four servers:
-
-1. An Ubuntu box named "web01" that runs Apache to serve up NCC's main website
-2. An old RHEL 5 FTP server named "ftp01" that provides NCC's employees with access to marketing materials
-3. A Debian server, "crm01", running customer relationship software, SugarCRM
-4. A Windows database server, "sql01", running an SQL db containing customer info.
-
-In addition, there is also the puppet master server, a RHEL box named "puppet."
 
 Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines. For the fourth, the SugarCRM box (crm01), Judy decides she will write her own module.
 
