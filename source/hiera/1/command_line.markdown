@@ -66,7 +66,7 @@ Descriptions of these choices are below.
 
 ### Command Line Variables
 
-Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Facts and other top-scope variables should be preceded with the usual `::`. Variable values must be strings and must be quoted if they contain spaces.
+Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Variables on the command line must be specified in a way that matches how they appear in `hiera.yaml`, including the leading `::` for facts and other top-scope variables. Variable values must be strings and must be quoted if they contain spaces.
 
 This is useful if the values you're testing only rely on a few facts. It can become unweildy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
 
@@ -76,7 +76,9 @@ Rather than passing a list of variables to Hiera as command line arguments, you 
 
 Given this command using command line variable assignments:
 
-`$ hiera ntp_server ::osfamily=Debian ::timezone=CST`
+`$ hiera ntp_server osfamily=Debian timezone=CST`
+
+**Note:** For puppet, facts are top-scope variables, so their fully-qualified form is `$::fact_name`. Facter's command-line output doesn't follow this convention--top-level facts are simply called `fact_name`. That means you'll run into trouble in this section if hiera is expecting `::fact_name`.
 
 The following YAML and JSON examples provide equivalent results:
 
