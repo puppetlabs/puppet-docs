@@ -520,8 +520,7 @@ running commands as different users in the shell.</p>
 
 <p>Whether to log output.  Defaults to logging output at the
 loglevel for the <code>exec</code> resource. Use <em>on_failure</em> to only
-log the output when the command reports an error.  Values are
-<strong>true</strong>, <em>false</em>, <em>on_failure</em>, and any legal log level.  Valid values are <code>true</code>, <code>false</code>, <code>on_failure</code>.</p>
+log the output when the command reports an error.  Valid values are <code>true</code>, <code>false</code>, <code>on_failure</code>.</p>
 
 
 ##### onlyif

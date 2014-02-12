@@ -6,7 +6,7 @@ canonical: "/pe/latest/appendix.html"
 ---
 
 
-This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.2.
+This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.1.3.
 
 Puppet Terminology
 -----
@@ -17,6 +17,14 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 
 Release Notes
 -----
+
+### PE 3.1.3 (2/11/2014)
+
+#### Security Fixes
+
+*[CVE-2013-6393 Libyaml: Heap-based buffer overflow vulnerability](http://puppetlabs.com/security/cve/cve-2013-6393/)*
+
+Assessed Risk Level: high. A flaw in the way `libyaml` parsed YAML tags could lead to a heap-based buffer overflow. An attacker could submit a YAML document that, when parsed by an application using `libyaml`, would cause the application to crash or potentially execute malicious code. This has been patched in PE 3.1.3.
 
 ### PE 3.1.2 (1/30/2014)
 
