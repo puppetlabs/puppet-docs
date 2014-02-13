@@ -71,9 +71,13 @@ When doing any Hiera lookup, with both automatic parameter lookup and the Hiera 
 
 > **Note:** These variables were broken in some versions of Puppet.
 >
-> * Puppet 2.7.x: **Good**
-> * Puppet 3.0.x and 3.1.x: **Bad**
-> * Puppet 3.2.x and later: **Good**
+> Version                                        | Status
+> -----------------------------------------------|-----------
+> Puppet 2.7.x / PE 2.x                          | **Good**
+> Puppet 3.0.x -- 3.3.x / PE 3.0 -- 3.1          | **Broken**
+> Puppet 3.4.x and later / unreleased PE version | **Good**
+
+<!-- Name 3.2 when it comes out. -->
 
 [module_name]: /puppet/latest/reference/lang_variables.html#parser-set-variables
 
