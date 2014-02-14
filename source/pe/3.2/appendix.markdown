@@ -92,6 +92,18 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
+### Safari Certificate Handling May Prevent Console Access for PE 3.2
+
+Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.2 users avoid using Safari to access the PE console. 
+
+If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.2: 
+
+![Safari Certificate Dialog][client_cert_dialog]
+
+If you are presented with this dialog box, click "Cancel" to access the console. (In some cases, you may need to click "Cancel" several times.)
+
+This issue will be fixed in a future release.
+
 ### Passenger Global Queue Error on Upgrade
 
 When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
@@ -214,6 +226,8 @@ or, when attempting to request a catalog:
     Error: Could not retrieve catalog; skipping run
     
 If you encounter these errors, simply re-start the `pe-postgresql` service.
+
+[client_cert_dialog]: ./images/client_cert_dialog.png
 
 * * *
 
