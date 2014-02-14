@@ -103,12 +103,12 @@ Facter is Puppet's cross-platform system profiling library. It discovers and rep
 * [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts.
 
 
-[Geppetto](/geppetto/4.0/index.html)
+[Geppetto](/geppetto/latest/index.html)
 -----
 
 Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.
 
-* [The Geppetto Manual](/geppetto/4.0/index.html) has installation and usage instructions.
+* [The Geppetto Manual](/geppetto/latest/index.html) has installation and usage instructions.
 
 Community
 -----
