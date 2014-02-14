@@ -20,6 +20,10 @@ A more standard invocation will provide a set of variables for Hiera to use, so 
 
 `$ hiera ntp_server --yaml web01.example.com.yaml`
 
+## Configuration File Location
+
+The Hiera command line tool looks for its configuration in `/etc/hiera.yaml`, which is different from both Puppet Enterprise and open source Puppet. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for notes on where to find this file depending on your Puppet version and operating system, and consider either reconfiguring Puppet to use `/etc/hiera.yaml` (Puppet 3) or set a symlink to `/etc/hiera.yaml` (Puppet 2.7).
+
 ### Order of Arguments
 
 Hiera is sensitive to the position of its command-line arguments:
@@ -46,10 +50,6 @@ Argument                              | Use
 `-i`, `--inventory_service IDENTITY`  | Use facts from a node (via Puppet's inventory service) as scope
 
 
-
-## Configuration File Location
-
-The Hiera command line tool looks for its configuration in `/etc/hiera.yaml`. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for notes on where to find this file depending on your Puppet version and operating system, and consider either reconfiguring Puppet to use `/etc/hiera.yaml` (Puppet 3) or set a symlink to `/etc/hiera.yaml` (Puppet 2.7).
 
 ## Fact Sources
 
