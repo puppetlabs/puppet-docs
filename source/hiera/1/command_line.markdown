@@ -78,7 +78,7 @@ Given this command using command line variable assignments:
 
 `$ hiera ntp_server osfamily=Debian timezone=CST`
 
->**Note:** For puppet, [facts are top-scope variables](/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables), so their [fully-qualified](/puppet/latest/reference/lang_scope.html#accessing-out-of-scope-variables) form is `$::fact_name`. When called from within puppet, hiera will correctly interpolate `%{::fact_name}`. Facter's command-line output doesn't follow this convention --- top-level facts are simply called `fact_name`. That means you'll run into trouble in this section if hiera is expecting `::fact_name`.
+>**Note:** For Puppet, [facts are top-scope variables](/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables), so their [fully-qualified](/puppet/latest/reference/lang_scope.html#accessing-out-of-scope-variables) form is `$::fact_name`. When called from within Puppet, Hiera will correctly interpolate `%{::fact_name}`. However, Facter's command-line output doesn't follow this convention --- top-level facts are simply called `fact_name`. That means you'll run into trouble in this section if you have `%{::fact_name}` in your hierarchy.
 
 The following YAML and JSON examples provide equivalent results:
 
