@@ -168,6 +168,10 @@ Replace `node = Node.find_by_name(params[:node][:name])` with `node = Node.find_
 
 When there are events on a Debian node, event inspector shows the affected resources as "unclassified." The events will not show up in the "classes" detail view but will be counted and appear in the "nodes" and "resources" details views.
 
+### Event Inspector Logout Alert Hidden Behind headers
+
+When you have event inspector page open for a period of time and your session times out (or you log out in a different tab), an alert is raised to indicate that "You are no longer logged into the console." However, in PE 3.1, the alert is hidden behind the header. Reloading the page will take you to the console login page, as normal.
+
 ### Passenger Global Queue Error on Upgrade
 
 When upgrading a PE 2.8.3 master to PE 3.1.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
