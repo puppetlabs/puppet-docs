@@ -170,7 +170,7 @@ When there are events on a Debian node, event inspector shows the affected resou
 
 ### Event Inspector Logout Alert Hidden Behind headers
 
-When you have event inspector page open for a period of time and your session times out (or you log out in a different tab), an alert is raised to indicate that "You are no longer logged into the console." However, in PE 3.1, the alert is hidden behind the header. Reloading the page will take you to the console login page, as normal.
+When you have an event inspector page open for a period of time and your session times out (or you log out in a different tab), an alert is raised to indicate that "You are no longer logged into the console." However, in PE 3.1, the alert is hidden behind the header. Reloading the page will take you to the console login page, as normal.
 
 ### Passenger Global Queue Error on Upgrade
 
