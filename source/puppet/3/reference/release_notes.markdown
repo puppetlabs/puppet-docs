@@ -76,6 +76,24 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
+Puppet 3.4.3
+-----
+
+**Release Candidate:** Puppet 3.4.3 is not yet released. It entered RC 1 on February 19, 2014.
+
+3.4.3 is a bug fix release in the Puppet 3.4 series.
+
+### RHEL 7 Support
+
+[PUP-1687: ](https://tickets.puppetlabs.com/browse/PUP-1694)
+
+Packages are now provided for Red Hat Enterprise Linux 7.
+
+### Bug Fixes
+
+
+
+
 Puppet 3.4.2
 -----
 
