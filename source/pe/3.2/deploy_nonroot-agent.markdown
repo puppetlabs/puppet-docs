@@ -57,7 +57,7 @@ Add the “no mcollective” group and click “Update”.
 
 #### Install and Configure PE Agents and Create Non-Root Users
 
-1. For each agent node, install a PE agent while logged in as a root user. You can do this using the installer (or with `puppet node install` if cloud provisioner was installed) on the master (TODO: might need to modify/add frictionless agent stuff).
+1. For each agent node, install a PE agent while logged in as a root user. You can do this using your usual package management tools, the installer script, or with `puppet node install` if cloud provisioner was installed on the master.  If you need to, review the [instructions for installing agents](../pe/latest/install_basic.html#installing-agents).
 
 2. Add the non-root user to the node with `puppet resource user <non-root username> ensure=present managehome=true`.
 

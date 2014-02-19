@@ -328,36 +328,6 @@ This setting defaults to `puppet`. The FQDN of the master is probably a better c
 
 The installer will attempt to contact the puppet master before completing the installation. If it isn't able to reach the master, it will give you a choice between correcting the puppet master hostname or continuing anyway.
 
-Final Questions
------
-
-### Vendor Packages
-
-Puppet Enterprise may need some extra system software from your OS vendor's package repositories.
-
-If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
-
-### Convenience Links
-
-PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. If you want to make the Puppet tools more visible to all users, the installer can make symlinks in `/usr/local/bin` for the `facter, puppet, pe-man`, and `mco` binaries.
-
-### Confirming Installation
-
-The installer will offer a final chance to confirm your answers before installing.
-
-Finishing and Cleaning Up
------
-
-### Securing the Answer File
-
-After finishing, the installer will print a message telling you where it saved the answer file. If you automatically configured console databases, **you should save and secure this file,** as it will contain the randomly-generated root user PostgreSQL passwords. When installing the database support role, the answers file will contain the auto-generated passwords that you will need to answer questions regarding the console role.
-
-### Verifying Your License
-
-When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
-
-Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
-
 Installing Agents
 -----
 
@@ -365,9 +335,9 @@ If you are using a supported OS that is capable of using remote package repos, t
 
 ### Installing Agents with Your Package Management Tools
 
-If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you just need to add the agent packages to the appropriate repo, configure your package manager (yum, apt,) to point at that repo, and then install the packages as you would any other. You can find an agent packages (that corresponds to the master's OS/architecture) in `/opt/puppet/packages/public`. 
+If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you just need to add the agent packages to the appropriate repo, configure your package manager (yum, apt,) to point at that repo, and then install the packages as you would any other. You can find an agent package (that corresponds to the master's OS/architecture) in `/opt/puppet/packages/public`. 
 
-For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package. Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent package will be generated in `/opt/puppet/packages/public`.
+For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package. Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent package will be generated and stored in `/opt/puppet/packages/public`.
 
 ### Installing Agents using PE Package Management
 
@@ -375,7 +345,7 @@ If your infrastructure does not currently have a package repository, PE also hos
 
 Once installed, the master also hosts an agent installation script that can be used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` package, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
 
-You can use this same method for any supported OS and architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`)you can add to your master in order to create a repo for that platform. Simply [classify the master](./console_classes_groups.html#classes) using the appropriate platform and on the next puppet run the new repo will be created. Platform names are the same as those used for the PE tarballs: 
+You can use this same method for any supported OS and architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`) you can add to your master in order to create a repo for that platform. Simply [classify the master](./console_classes_groups.html#classes) using the appropriate platform and on the next puppet run the new repo will be created. Platform names are the same as those used for the PE tarballs: 
 
     el-{5,6}-{i386,x86_64}
     debian-{6,7}-{i386,amd64}
@@ -416,6 +386,37 @@ To sign one of the pending requests, run:
 After signing a new node's certificate, it may take up to 30 minutes before that node appears in the console and begins retrieving configurations. You can use live management or the CLI to trigger a puppet run manually on the node if you want to see it right away.
 
 If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command on the CLI.
+
+
+Final Questions
+-----
+
+### Vendor Packages
+
+Puppet Enterprise may need some extra system software from your OS vendor's package repositories.
+
+If these aren't already present, the installer will offer to automatically install them. If you decline, it will exit, and you will need to install them manually before running the installer again.
+
+### Convenience Links
+
+PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. If you want to make the Puppet tools more visible to all users, the installer can make symlinks in `/usr/local/bin` for the `facter, puppet, pe-man`, and `mco` binaries.
+
+### Confirming Installation
+
+The installer will offer a final chance to confirm your answers before installing.
+
+Finishing and Cleaning Up
+-----
+
+### Securing the Answer File
+
+After finishing, the installer will print a message telling you where it saved the answer file. If you automatically configured console databases, **you should save and secure this file,** as it will contain the randomly-generated root user PostgreSQL passwords. When installing the database support role, the answers file will contain the auto-generated passwords that you will need to answer questions regarding the console role.
+
+### Verifying Your License
+
+When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
+
+Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 
 * * *
 
