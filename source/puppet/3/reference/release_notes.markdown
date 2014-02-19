@@ -87,7 +87,7 @@ Released February 19, 2014.
 
 [PUP-1473: User resource fails on UTF-8 comment](https://tickets.puppetlabs.com/browse/PUP-1473)
 
-Puppet's `user` resource previously now supports UTF-8 characters for the `comment` attribute, rather than just ASCII. 
+Puppet's `user` resource now supports UTF-8 characters for the `comment` attribute, rather than just ASCII. 
 
 [PUP-736: Encoding mis-matches cause package prefetching to fail](https://tickets.puppetlabs.com/browse/PUP-736)
 
@@ -95,11 +95,11 @@ Previously, puppet could fail to process a package resource if it referred to an
 
 [PUP-1524: Duplicate events since 3.4.0](https://tickets.puppetlabs.com/browse/PUP-1524)
 
-Since Puppet 3.4.0, failed resources would sometimes be logged twice. These duplicate events were particularly problematic for Puppet DB, since they could force the whole transaction to be rolled back. This release fixes the issue.
+Since Puppet 3.4.0, failed resources would sometimes be logged twice. These duplicate events were particularly problematic for PuppetDB, since they could cause the whole transaction to be rolled back. This release fixes the issue.
 
 [PUP-1485: test agent/fallback_to_cached_catalog.rb assumes no master is running by default](https://tickets.puppetlabs.com/browse/PUP-1485)
 
-The acceptance test for falling back to a cached catalog would still run with a puppet master, even though the functionality assumed that the puppet master was unreachable. The test now guarantees that the master will be unreachable by specifying a bogus server.
+The acceptance test for falling back to a cached catalog would still run with a puppet master, even though the functionality assumed that the puppet master was unavailable. The test now guarantees that the master will be unreachable by specifying a bogus server.
 
 [PUP-1322: Puppet REST API always fails if there's at least one broken manifest](https://tickets.puppetlabs.com/browse/PUP-1322)
 
@@ -107,7 +107,7 @@ Previously, REST API calls to `<host>/production/resource_types/*?kind=class` wo
 
 [PUP-1529: Usability regression caused by PUP-1322](https://tickets.puppetlabs.com/browse/PUP-1529)
 
-This regression was caused by the fix for PUP-1322: syntax errors reached while loading an include would be squelched, which would eventually result in a misleading "class not found" error.
+Fixes a regression caused by the fix for PUP-1322: syntax errors reached while loading an include would be squelched, which would eventually result in a misleading "class not found" error.
 
 [PUP-751: Performance regression due to excessive file watching](https://tickets.puppetlabs.com/browse/PUP-751)
 
@@ -121,7 +121,7 @@ Acceptance testing on Debian Sid (unstable) was failing regularly due to factors
 
 [PUP-1211: Puppet Resource Package fails](https://tickets.puppetlabs.com/browse/PUP-1211)
 
-On Windows, the `puppet resource package` command would fail immediately if any installed packages had non-ASCII characters in their names. Puppet will now use the correct string encoding on Windows, which fixes this bug.
+On Windows, the `puppet resource package` command would fail immediately if at least one of the installed packages had non-ASCII characters in its display name. Puppet will now use the correct string encoding on Windows, which fixes this bug.
 
 [PUP-1389: Windows File resources generating 0 byte files when title has "-"](https://tickets.puppetlabs.com/browse/PUP-1389)
 
