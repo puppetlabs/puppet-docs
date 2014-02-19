@@ -27,7 +27,7 @@ in manifests.
 ## The Concept
 
 You can add new facts by writing a snippet of Ruby code on the
-Puppet master. We then use [Plugins In Modules](./plugins_in_modules.html) to distribute our
+Puppet master. We then use [Plugins In Modules](/guides/plugins_in_modules.html) to distribute our
 facts to the client.
 
 ## An Example
@@ -46,9 +46,7 @@ Puppet master server:
       end
     end
 
-> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.)
-
-We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
+We then use the instructions in [Plugins In Modules](/guides/plugins_in_modules.html) page to copy
 our new fact to a module and distribute it. During your next Puppet
 run the value of our new fact will be available to use in your
 manifests.
@@ -120,7 +118,7 @@ Facter can also easily load fact files distributed using pluginsync. Running
 so if you're using a lot of custom facts inside puppet, you can easily use
 these facts with standalone facter.
 
-Custom facts can be distributed to clients using the [Plugins In Modules](./plugins_in_modules.html) method.
+Custom facts can be distributed to clients using the [Plugins In Modules](/guides/plugins_in_modules.html) method.
 
 ## Configuring Facts
 
@@ -204,8 +202,6 @@ If your puppet master(s) are configured to use [PuppetDB][] and/or the [inventor
 External Facts
 --------------
 
-**External facts are available only in Facter 1.7 and later.**
-
 ### What are external facts?
 
 External facts provide a way to use arbitrary executables or scripts as facts, or set facts statically with structured data. If you've ever wanted to write a custom fact in Perl, C, or a one-line text file, this is how.
@@ -231,7 +227,7 @@ On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-When running as a non-root / non-Administrator user: (Facter 1.7.4 or later, on both \*nix and Windows)
+When running as a non-root / non-Administrator user:
 
     <HOME DIRECTORY>/.facter/facts.d/
 
@@ -263,8 +259,6 @@ STDOUT in the format:
 Using this format, a single script can return multiple facts.
 
 ### Executable facts --- Windows
-
-> **Note:** Executable facts on Windows are supported in Facter 1.7.3 and later; if you are using 1.7.0 through 1.7.2, you must upgrade in order to use them.
 
 Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
