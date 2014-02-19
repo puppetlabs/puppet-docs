@@ -79,20 +79,51 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 Puppet 3.4.3
 -----
 
-**Release Candidate:** Puppet 3.4.3 is not yet released. It entered RC 1 on February 19, 2014.
-
 3.4.3 is a bug fix release in the Puppet 3.4 series.
-
-### RHEL 7 Support
-
-[PUP-1687: ](https://tickets.puppetlabs.com/browse/PUP-1694)
-
-Packages are now provided for Red Hat Enterprise Linux 7.
 
 ### Bug Fixes
 
+[PUP-1524: Duplicate events since 3.4.0](https://tickets.puppetlabs.com/browse/PUP-1524)
 
+Since Puppet 3.4.0, failed resources would sometimes be logged twice. These duplicate events were particularly problematic for Puppet DB, since they could force the whole transaction to be rolled back. This release fixes the issue.
 
+[PUP-1485: test agent/fallback_to_cached_catalog.rb assumes no master is running by default](https://tickets.puppetlabs.com/browse/PUP-1485)
+
+The acceptance test for falling back to a cached catalog would still run with a puppet master, even though the functionality assumed that the puppet master was unreachable. The test now guarantees that the master will be unreachable by specifying a bogus server.
+
+[PUP-1473: User resource fails on UTF-8 comment](https://tickets.puppetlabs.com/browse/PUP-1473)
+
+Puppet's `user` resource previously now supports UTF-8 characters for the `comment` attribute, rather than just ASCII. 
+
+[PUP-1322: Puppet REST API always fails if there's at least one broken manifest](https://tickets.puppetlabs.com/browse/PUP-1322)
+
+Previously, REST API calls to `<host>/production/resource_types/*?kind=class` would fail completely if there was a syntax error in one or more manifests in the module path. This release changes that behavior so that the call will succeed and list all parseable classes.
+
+[PUP-1529: Usability regression caused by PUP-1322](https://tickets.puppetlabs.com/browse/PUP-1529)
+
+This regression was caused by the fix for PUP-1322: syntax errors reached while loading an include would be squelched, which would eventually result in a misleading "class not found" error.
+
+[PUP-751: Measure stat() calls](https://tickets.puppetlabs.com/browse/PUP-751)
+
+Improves benchmarking by adding tasks to measure the loading of defined types.
+
+[PUP-736: Encoding mis-matches cause package prefetching to fail](https://tickets.puppetlabs.com/browse/PUP-736)
+
+Previously, puppet could fail to process a package resource if it referred to an RPM whose description contained non-ASCII characters. Puppet now handles these resources correctly.
+
+#### Windows-Specific Fixes
+
+[PUP-1211: Puppet Resource Package fails](https://tickets.puppetlabs.com/browse/PUP-1211)
+
+On Windows, the `puppet resource package` command would fail immediately if any installed packages had non-ASCII characters in their names. Puppet will now use the correct string encoding on Windows, which fixes this bug.
+
+[PUP-1411: Windows agents experience intermittent SSL_connect failures in acceptance testing](https://tickets.puppetlabs.com/browse/PUP-1411)
+
+Acceptance tests would intermittently fail on Windows due to a bug involving OpenSSL and WEBrick that would cause the connection to time out after 6.2 seconds. This release improves the OpenSSL initialization process and extends the timeout interval to 10 seconds, which fixes the bug.
+
+[PUP-1389: Windows File resources generating 0 byte files when title has "-"](https://tickets.puppetlabs.com/browse/PUP-1389)
+
+This bug prevented puppet from properly managing the content of file resources with "-" in their titles on Windows. This release fixes the bug.
 
 Puppet 3.4.2
 -----
