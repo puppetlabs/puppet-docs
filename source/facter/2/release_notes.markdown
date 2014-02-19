@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Facter 2 Release Notes
+title: Facter 2.0 Release Notes
 description: Facter release notes for all 2.0 versions
 nav: facter2.html
 ---
@@ -18,3 +18,8 @@ Facter 2.0.0 is a major release in the Facter series.
 
 Placeholder. Not a real feature.
 
+### Bug Fixes
+
+[FACT-MCMVXII: Roman Bug](https://tickets.puppetlabs.com/browse/FACT-MCMVXII)
+
+Placeholder. Not a real bug.  
