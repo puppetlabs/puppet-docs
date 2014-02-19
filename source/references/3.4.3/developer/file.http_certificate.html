@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  File: http_certificate
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_certificate</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Certificate</h1>
+
+<p>The <code>certificate</code> endpoint returns the certificate for the specified name,
+which might be either a standard certname or <code>ca</code>.</p>
+
+<h2>Find</h2>
+
+<p>Get a certificate.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='symbol val'>:nodename</span>
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>s (denotes a string of text)</p>
+
+<p>The returned certificate is always in the <code>.pem</code> format.</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Notes</h3>
+
+<p>The environment field is ignored.</p>
+
+<h3>Responses</h3>
+
+<h4>Certificate found</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='rubyid_elmo identifier id'>elmo</span><span class='dot token'>.</span><span class='rubyid_mydomain identifier id'>mydomain</span><span class='dot token'>.</span><span class='rubyid_com identifier id'>com</span>
+
+<span class='rubyid_HTTP constant id'>HTTP</span> <span class='integer val'>200</span> <span class='rubyid_OK constant id'>OK</span>
+<span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_plain identifier id'>plain</span>
+
+<span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_BEGIN lbegin kw'>BEGIN</span> <span class='rubyid_CERTIFICATE constant id'>CERTIFICATE</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
+<span class='rubyid_MIIFujCCA6KgAwIBAgIBATANBgkqhkiG9w0BAQsFADBiMWAwXgYDVQQDDFdQdXBw constant id'>MIIFujCCA6KgAwIBAgIBATANBgkqhkiG9w0BAQsFADBiMWAwXgYDVQQDDFdQdXBw</span>
+<span class='rubyid_ZXQgQ0EgZ2VuZXJhdGVkIG9uIGRoY3A1MC5reWxvLmJhY2tsaW5lLnB1cHBldGxh constant id'>ZXQgQ0EgZ2VuZXJhdGVkIG9uIGRoY3A1MC5reWxvLmJhY2tsaW5lLnB1cHBldGxh</span>
+<span class='rubyid_YnMubmV0IGF0IDIwMTMtMDYtMjQgMTY6MzA6MTcgLTA3MDAwHhcNMTMwNjIzMjMz constant id'>YnMubmV0IGF0IDIwMTMtMDYtMjQgMTY6MzA6MTcgLTA3MDAwHhcNMTMwNjIzMjMz</span>
+<span class='rubyid_MDE5WhcNMTgwNjIzMjMzMDE5WjBiMWAwXgYDVQQDDFdQdXBwZXQgQ0EgZ2VuZXJh constant id'>MDE5WhcNMTgwNjIzMjMzMDE5WjBiMWAwXgYDVQQDDFdQdXBwZXQgQ0EgZ2VuZXJh</span>
+<span class='rubyid_dGVkIG9uIGRoY3A1MC5reWxvLmJhY2tsaW5lLnB1cHBldGxhYnMubmV0IGF0IDIw identifier id'>dGVkIG9uIGRoY3A1MC5reWxvLmJhY2tsaW5lLnB1cHBldGxhYnMubmV0IGF0IDIw</span>
+<span class='rubyid_MTMtMDYtMjQgMTY6MzA6MTcgLTA3MDAwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAw constant id'>MTMtMDYtMjQgMTY6MzA6MTcgLTA3MDAwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAw</span>
+<span class='rubyid_ggIKAoICAQDABq1lmzccjuRmnCdXvTmdeXJGb9S8r8 identifier id'>ggIKAoICAQDABq1lmzccjuRmnCdXvTmdeXJGb9S8r8</span><span class='plus op'>+</span><span class='rubyid_I constant id'>I</span><span class='plus op'>+</span><span class='rubyid_G6fkHTa1WKDSob9PZpS constant id'>G6fkHTa1WKDSob9PZpS</span>
+<span class='rubyid_eXJtanbl0zNws9yBt1Dko2zhKDKctBRWf5CT42nDxBZPY7SaD7KaCzb07g9wfWgU identifier id'>eXJtanbl0zNws9yBt1Dko2zhKDKctBRWf5CT42nDxBZPY7SaD7KaCzb07g9wfWgU</span>
+<span class='rubyid_BOb constant id'>BOb</span><span class='div op'>/</span><span class='integer val'>6</span><span class='rubyid_smyl identifier id'>smyl</span><span class='div op'>/</span><span class='rubyid_iySEmQzzFLRgZbo5A9WLiy identifier id'>iySEmQzzFLRgZbo5A9WLiy</span><span class='div op'>/</span><span class='rubyid_UdyQim1faakevRme2Xi constant id'>UdyQim1faakevRme2Xi</span><span class='div op'>/</span><span class='rubyid_l identifier id'>l</span><span class='div op'>/</span><span class='rubyid_i0TKbpu27 identifier id'>i0TKbpu27</span>
+<span class='rubyid_DhCS constant id'>DhCS</span><span class='plus op'>+</span><span class='rubyid_E8aC8Bvaj0ph0T constant id'>E8aC8Bvaj0ph0T</span><span class='plus op'>+</span><span class='rubyid_TzYphTR76pP5Kps6G7Jyk constant id'>TzYphTR76pP5Kps6G7Jyk</span><span class='div op'>/</span><span class='rubyid_HFYrVXnY44X2PEt2mgkEXp constant id'>HFYrVXnY44X2PEt2mgkEXp</span>
+<span class='rubyid_xHCbU identifier id'>xHCbU</span><span class='plus op'>+</span><span class='rubyid_qCFMtTLMG identifier id'>qCFMtTLMG</span><span class='plus op'>+</span><span class='rubyid_ZArA constant id'>ZArA</span><span class='div op'>/</span><span class='rubyid_noM3I identifier id'>noM3I</span><span class='div op'>/</span><span class='rubyid_O6W5LhLSzApjut constant id'>O6W5LhLSzApjut</span><span class='div op'>/</span><span class='rubyid_M7UdMlpZ45PGDrsvf2R306 constant id'>M7UdMlpZ45PGDrsvf2R306</span>
+<span class='rubyid_NcOh constant id'>NcOh</span><span class='plus op'>+</span><span class='rubyid_zbbkhxuIaGqaxeaenYzbOlA3gXhZvYaV6EKjXNtm7BslpsvhLi0U identifier id'>zbbkhxuIaGqaxeaenYzbOlA3gXhZvYaV6EKjXNtm7BslpsvhLi0U</span><span class='plus op'>+</span><span class='rubyid_CWyb3C constant id'>CWyb3C</span>
+<span class='rubyid_qRkpex0MgxJgxoqViJ4TDVA identifier id'>qRkpex0MgxJgxoqViJ4TDVA</span><span class='plus op'>+</span><span class='rubyid_EmztOnK86 constant id'>EmztOnK86</span><span class='plus op'>+</span><span class='rubyid_G4HGeJqTPQloYO constant id'>G4HGeJqTPQloYO</span><span class='div op'>/</span><span class='rubyid_Td1wMT1Txh9T5Ue constant id'>Td1wMT1Txh9T5Ue</span>
+<span class='rubyid_Wctw constant id'>Wctw</span><span class='div op'>/</span><span class='rubyid_g identifier id'>g</span><span class='plus op'>+</span><span class='integer val'>4</span><span class='rubyid_o22EyJQRo identifier id'>o22EyJQRo</span><span class='plus op'>+</span><span class='rubyid_vxxzHNRIfe7EHAerMUtLT5u9MJeQb9N1iUR2ATNAN identifier id'>vxxzHNRIfe7EHAerMUtLT5u9MJeQb9N1iUR2ATNAN</span><span class='plus op'>+</span><span class='rubyid_QiB2 constant id'>QiB2</span>
+<span class='rubyid_KEqyc9eMapK6QUZFV23Xvbdup1WCrgsWXBqyRWKV7x0sc9Wv8RMRKEFYaBeHEVXU constant id'>KEqyc9eMapK6QUZFV23Xvbdup1WCrgsWXBqyRWKV7x0sc9Wv8RMRKEFYaBeHEVXU</span>
+<span class='rubyid_m0hGgF34Z8Rzphq2H1FjkLD identifier id'>m0hGgF34Z8Rzphq2H1FjkLD</span><span class='plus op'>+</span><span class='rubyid_xbtGOjrA1Mb2De81Hfvrf18497X5UMPtsuzOt identifier id'>xbtGOjrA1Mb2De81Hfvrf18497X5UMPtsuzOt</span><span class='div op'>/</span><span class='rubyid_XU constant id'>XU</span>
+<span class='rubyid_PHbbSCy constant id'>PHbbSCy</span><span class='plus op'>+</span><span class='integer val'>05</span><span class='rubyid_J7VNZ constant id'>J7VNZ</span><span class='div op'>/</span><span class='rubyid_gaiGqgpHfcG5yiqCdj1LIzhFuuvm identifier id'>gaiGqgpHfcG5yiqCdj1LIzhFuuvm</span><span class='plus op'>+</span><span class='rubyid_fADPxK38wIDAQABo3sw identifier id'>fADPxK38wIDAQABo3sw</span>
+<span class='rubyid_eTA3BglghkgBhvhCAQ0EKhYoUHVwcGV0IFJ1YnkvT3BlblNTTCBJbnRlcm5hbCBD identifier id'>eTA3BglghkgBhvhCAQ0EKhYoUHVwcGV0IFJ1YnkvT3BlblNTTCBJbnRlcm5hbCBD</span>
+<span class='rubyid_ZXJ0aWZpY2F0ZTAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH constant id'>ZXJ0aWZpY2F0ZTAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH</span><span class='div op'>/</span><span class='rubyid_BAUwAwEB constant id'>BAUwAwEB</span><span class='div op'>/</span><span class='rubyid_zAdBgNV identifier id'>zAdBgNV</span>
+<span class='rubyid_HQ4EFgQUEhn constant id'>HQ4EFgQUEhn</span><span class='div op'>/</span><span class='rubyid_MqSDtuxg12klWosCGenxf1cwDQYJKoZIhvcNAQELBQADggIBAH1G constant id'>MqSDtuxg12klWosCGenxf1cwDQYJKoZIhvcNAQELBQADggIBAH1G</span>
+<span class='rubyid_L3FG constant id'>L3FG</span><span class='div op'>/</span><span class='rubyid_keKlGqs70PxxvR1wCo4VM3K identifier id'>keKlGqs70PxxvR1wCo4VM3K</span><span class='div op'>/</span><span class='rubyid_C constant id'>C</span><span class='plus op'>+</span><span class='integer val'>5</span><span class='rubyid_uxnzm1MHEAd96nhtwE6YSkUe identifier id'>uxnzm1MHEAd96nhtwE6YSkUe</span><span class='plus op'>+</span><span class='rubyid_XgDiXfC constant id'>XgDiXfC</span>
+<span class='plus op'>+</span><span class='rubyid_NXS2C4TeTQAEo6grREapWDjhJvrhrgqTZmb4lTKzb91II3 constant id'>NXS2C4TeTQAEo6grREapWDjhJvrhrgqTZmb4lTKzb91II3</span><span class='div op'>/</span><span class='rubyid_VGYzG5UXxID262zy constant id'>VGYzG5UXxID262zy</span>
+<span class='rubyid_QLoX constant id'>QLoX</span><span class='div op'>/</span><span class='rubyid_IBN constant id'>IBN</span><span class='div op'>/</span><span class='rubyid_xDJ5ds0wF2adUbnHUssEGGljgngewH identifier id'>xDJ5ds0wF2adUbnHUssEGGljgngewH</span><span class='div op'>/</span><span class='integer val'>7</span><span class='rubyid_kjeW identifier id'>kjeW</span><span class='div op'>/</span><span class='rubyid_L5iL constant id'>L5iL</span><span class='plus op'>+</span><span class='rubyid_USXZnKHPSggjM constant id'>USXZnKHPSggjM</span>
+<span class='rubyid_RAEjlucE constant id'>RAEjlucE</span><span class='div op'>/</span><span class='rubyid_rDqDNoxhOS4K2PjseFm7krW4cZ0gNmxdrhc7OhmJ56dH92F4M9jn7Qy identifier id'>rDqDNoxhOS4K2PjseFm7krW4cZ0gNmxdrhc7OhmJ56dH92F4M9jn7Qy</span>
+<span class='rubyid_EqxWB304U constant id'>EqxWB304U</span><span class='div op'>/</span><span class='rubyid_aMcO3NJxTQc7AreL identifier id'>aMcO3NJxTQc7AreL</span><span class='div op'>/</span><span class='rubyid_pUtjtI6hxM4miHbjSh6RfNBqhzRyJvxA6gc6g identifier id'>pUtjtI6hxM4miHbjSh6RfNBqhzRyJvxA6gc6g</span>
+<span class='rubyid_m3kumdw04KZFSs identifier id'>m3kumdw04KZFSs</span><span class='div op'>/</span><span class='integer val'>6</span><span class='rubyid_fPFFbI60i5K identifier id'>fPFFbI60i5K</span><span class='plus op'>+</span><span class='rubyid_vioB4CnUWpj identifier id'>vioB4CnUWpj</span><span class='plus op'>+</span><span class='integer val'>3</span><span class='rubyid_Z constant id'>Z</span><span class='plus op'>+</span><span class='rubyid_OnDEvhQJEACR1JC8A67Ih constant id'>OnDEvhQJEACR1JC8A67Ih</span>
+<span class='rubyid_x identifier id'>x</span><span class='plus op'>+</span><span class='rubyid_GDlbHLU1BWonwZzSMJz constant id'>GDlbHLU1BWonwZzSMJz</span><span class='plus op'>+</span><span class='rubyid_ABXV3dwIrOSFHI0UmDXg constant id'>ABXV3dwIrOSFHI0UmDXg</span><span class='plus op'>+</span><span class='rubyid_cIdZ identifier id'>cIdZ</span><span class='plus op'>+</span><span class='rubyid_SaL93qMjUVU4v9nu constant id'>SaL93qMjUVU4v9nu</span>
+<span class='rubyid_gR9yJGMqNuzLjgfbD identifier id'>gR9yJGMqNuzLjgfbD</span><span class='div op'>/</span><span class='rubyid_KGCEEAITKBwPvCVd constant id'>KGCEEAITKBwPvCVd</span><span class='div op'>/</span><span class='regexp val'>/OMlWVrXr7vvt+yo6STIlTJxABJDp
+CSLyHUtT++CsPXsPADxgRctpIbh1eMFEivkK9Oy+W/</span><span class='rubyid_CZYIZnARVysUpMWg7TkXqx constant id'>CZYIZnARVysUpMWg7TkXqx</span>
+<span class='rubyid_mSCXy9ZXLWqU identifier id'>mSCXy9ZXLWqU</span><span class='div op'>/</span><span class='rubyid_ssVhbLS9vFVa5pvxcyfiRpsFg0XZsx8mnZP6OaWcL8FjF identifier id'>ssVhbLS9vFVa5pvxcyfiRpsFg0XZsx8mnZP6OaWcL8FjF</span><span class='plus op'>+</span><span class='regexp val'>/NwNP
+tg1+DuYTn+d54OHi/</span><span class='rubyid_GZEnvutgrDZyrJDrrb constant id'>GZEnvutgrDZyrJDrrb</span><span class='div op'>/</span><span class='rubyid_Czm9 constant id'>Czm9</span>
+<span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_END lend kw'>END</span> <span class='rubyid_CERTIFICATE constant id'>CERTIFICATE</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
+</code></pre>
+
+<h4>Certificate not found</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='rubyid_certificate_does_not_exist identifier id'>certificate_does_not_exist</span>
+
+<span class='rubyid_HTTP constant id'>HTTP</span> <span class='integer val'>404</span> <span class='rubyid_Not constant id'>Not</span> <span class='rubyid_Found constant id'>Found</span><span class='colon op'>:</span> <span class='rubyid_Could constant id'>Could</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_find identifier id'>find</span> <span class='rubyid_certificate identifier id'>certificate</span> <span class='rubyid_certificate_does_not_exist identifier id'>certificate_does_not_exist</span>
+<span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_plain identifier id'>plain</span>
+
+<span class='rubyid_Not constant id'>Not</span> <span class='rubyid_Found constant id'>Found</span><span class='colon op'>:</span> <span class='rubyid_Could constant id'>Could</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_find identifier id'>find</span> <span class='rubyid_certificate identifier id'>certificate</span> <span class='rubyid_certificate_does_not_exist identifier id'>certificate_does_not_exist</span>
+</code></pre>
+
+<h4>No Certificate name given</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span>
+
+<span class='rubyid_HTTP constant id'>HTTP</span><span class='div op'>/</span><span class='float val'>1.1</span> <span class='integer val'>400</span> <span class='rubyid_No constant id'>No</span> <span class='rubyid_request identifier id'>request</span> <span class='rubyid_key identifier id'>key</span> <span class='rubyid_specified identifier id'>specified</span> <span class='rubyid_in in kw'>in</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span>
+<span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_plain identifier id'>plain</span>
+
+<span class='rubyid_No constant id'>No</span> <span class='rubyid_request identifier id'>request</span> <span class='rubyid_key identifier id'>key</span> <span class='rubyid_specified identifier id'>specified</span> <span class='rubyid_in in kw'>in</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span>
+</code></pre>
+
+<h4>Master is not a CA</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/env/</span><span class='rubyid_certificate identifier id'>certificate</span><span class='div op'>/</span><span class='rubyid_valid_certificate identifier id'>valid_certificate</span>
+
+<span class='rubyid_HTTP constant id'>HTTP</span><span class='div op'>/</span><span class='float val'>1.1</span> <span class='integer val'>400</span> <span class='rubyid_this identifier id'>this</span> <span class='rubyid_master identifier id'>master</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_CA constant id'>CA</span>
+<span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_plain identifier id'>plain</span>
+
+<span class='rubyid_this identifier id'>this</span> <span class='rubyid_master identifier id'>master</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_CA constant id'>CA</span>
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>A <code>certificate</code> response body is not structured data according to any standard scheme such as
+json/pson/yaml, so no schema is applicable.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:51:59 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
