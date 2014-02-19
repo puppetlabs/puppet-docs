@@ -23,6 +23,12 @@ PostgreSQL is Taking Up Too Much Space
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 
+
+PuppetDB's Default Port Conflicts with Another Service
+-----
+
+By default, PuppetDB communicates over port 8081. In some cases, this may conflict with existing services (e.g., McAfee's ePO). You can work around this issue by installing with an answer file that specifies a different port with `q_puppetdb_port`. For more information on using answer files, take a look at the [documentation for automated installs](./install_automated.html) 
+
 Recovering from a Lost Console Admin Password
 -----
 
