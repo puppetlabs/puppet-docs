@@ -1,14 +1,12 @@
 ---
 layout: default
 title: " PE 3.2 » Razor » Provision Machines"
-subtitle: "Provision with Razor"
+subtitle: "Provision With Razor"
 canonical: "/pe/latest/razor_using.html"
 
 ---
 
-The sections above describe the process for provisioning machines with Razor. 
-
-You must first create some initial objects: 
+This page describes the process for provisioning machines with Razor. You must first create some initial objects: 
 
 + Repo - The container for the objects you install with Razor, such as operating systems.
 + Broker - The connector between a node and a configuration management system.
@@ -21,11 +19,7 @@ After creating these objects, you register a node on the Razor server. To work t
 Create Repos
 -------------
 
-A repo contains all of the objects you use with Razor, and is identified by a unique name, such as 'sles-11'. The repo contains the actual bits that are used when installing a node. The instructions for an installation are contained in *tasks*. Razor comes with some predefined tasks that can be found in the tasks/ directory in the razor-server repo, and can all be used by simply mentioning their name in a policy. You can also [write your own tasks](./razor_tasks.html). 
-
-Creating a policy is described below, and includes the vmware_esxi installer. 
-
-**Note** - The process for setting up the Windows installer requires additional steps. These are described <WHERE ARE THEY DESCRIBED>
+A repo contains all of the objects you use with Razor, and is identified by a unique name, such as 'centos-6.4'. The repo contains the actual bits that are used when installing a node. The instructions for an installation are contained in *tasks*. Razor comes with some predefined tasks that can be found in the tasks/ directory in the razor-server repo, and can all be used by simply mentioning their name in a policy. You can also [write your own tasks](./razor_tasks.html). 
 
 To load a repo onto the server, run the following command. It can take several minutes  because the server has to download the ISO and unpack the contents.
 
@@ -51,7 +45,7 @@ You create brokers with the `create-broker` command. For example, the following 
 
 **Stock Brokers**
 
-Razor ships with these stock brokers (pun intended) for your use:  puppet-pe.broker, noop.broker, and puppet.broker. 	
+Razor ships with these stock brokers (pun intended) for your use:  puppet-pe, noop, and puppet. 	
 
 ####Create a PE Broker
 
@@ -71,12 +65,12 @@ Razor ships with these stock brokers (pun intended) for your use:  puppet-pe.bro
 4. If your broker type requires configuration data, add a configuration.yaml to your sample.broker directory.
 
 
-Create Tasks
+Include Tasks
 -------------
 
 Tasks describe a process or collection of actions that should be performed while provisioning machines. They can be used to designate an operating system or other software that should be installed, where to get it, and the configuration details for the installation.
  
-Tasks are structurally simple. They consist of a YAML metadata file, and any number of ERB templates. You include the tasks you want to run in your policies, which are described below.
+Tasks are structurally simple. They consist of a YAML metadata file, and any number of ERB templates. You include the tasks you want to run in your policies (policies are described in the next section).
 
 Razor provides a handful of existing tasks, or you can create your own. To learn more about tasks, see [Writing Tasks and Templates](./razor_tasks.html). 
 
@@ -99,7 +93,6 @@ Because policies contain a good deal of information, it's handy to save them in 
 		"hostname": "host${id}.example.com",
 		"root_password": "secret",
 		"max_count": "20",
-		"rule_number": "100",
 		"tags": [{ "name": "small", "rule": ["<=", ["num", ["fact", "processorcount"]], 2]}]
 	}
 
@@ -107,7 +100,7 @@ Because policies contain a good deal of information, it's handy to save them in 
 
 1. Create a file called “policy.json” and copy the following template text into it:
 
-		{
+		{	
   			"name": "test_<NODE_ID>",
   			"repo": { "name": "<OS>" },
   			"task": { "name": "<INSTALLER>" },
@@ -116,9 +109,8 @@ Because policies contain a good deal of information, it's handy to save them in 
   			"hostname": "node${id}.vm",
   			"root_password": "puppet",
   			"max_count": "20",
-  			"rule_number": "100",
   			"tags": [{ "name": "<TAG_NAME>", "rule": ["in",["fact", "macaddress"],"<NODE_MAC_ADDRESS>"]}]
-		}
+  		}
 
 2. Edit the options in the policy.json template with information specific to  your environment. 
 3. Apply the policy by executing the following command:

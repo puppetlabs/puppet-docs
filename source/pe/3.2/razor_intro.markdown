@@ -7,7 +7,9 @@ canonical: "/pe/latest/razor_intro.html"
 ---
 Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management system, Puppet Enterprise for example, can then take over. 
 
-###High-level Overview
+##High-level Overview
+
+<description + graphic>
 
 The process for provisioning with Razor roughly follows these steps:
 
@@ -21,11 +23,11 @@ In addition to the above processes, learn more about:
 + [Razor reference](./razor_reference.html)
 
  
-###Razor As Technical Preview
+###Razor As Tech Preview
 
-This is a Technical Preview release of Razor. This means you are getting early access to Razor technology during the development process so you can test the functionality and provide feedback. However, this Technical Preview version of Razor is not intended for production use because Puppet Labs cannot guarantee Razor's stability. As Razor is further developed, functionality might be added, removed or change that is not backward compatible with this Technical Preview version.
+This is a Tech Preview release of Razor. This means you are getting early access to Razor technology during the development process so you can test the functionality and provide feedback. However, this Tech Preview version of Razor is not intended for production use because Puppet Labs cannot guarantee Razor's stability. As Razor is further developed, functionality might be added, removed or change that is not backward compatible with this Tech Preview version.
 
-For more information about Technical Preview software from Puppet Labs, see <link to be written>.
+For more information about Tech Preview software from Puppet Labs, see <link to be written>.
 
 
 
