@@ -4,7 +4,7 @@ title: "Config Files: autosign.conf"
 ---
 
 [autosigning]: ./ssl_autosign.html
-[autosign]: /references/3.latest/configuration.html#autosign
+[autosign]: /references/3.stable/configuration.html#autosign
 
 The `autosign.conf` file can allow certain certificate requests to be automatically signed. It is only valid on the CA puppet master server; a puppet master that is not serving as a CA will not consult `autosign.conf`.
 

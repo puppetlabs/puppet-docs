@@ -3,7 +3,7 @@ layout: default
 title: "Config Files: device.conf"
 ---
 
-[deviceconfig]: /references/3.latest/configuration.html#deviceconfig
+[deviceconfig]: /references/3.stable/configuration.html#deviceconfig
 
 The puppet device subcommand, added in Puppet 2.7, configures network hardware using a catalog downloaded from the puppet master; in order to function, it requires that the relevant devices be configured.
 

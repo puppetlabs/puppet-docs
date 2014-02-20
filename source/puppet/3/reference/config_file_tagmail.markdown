@@ -5,13 +5,13 @@ title: "Config Files: tagmail.conf"
 
 [tags]: ./lang_tags.html
 [tagmail_reference]: /references/3.stable/report.html#tagmail
-[report_server]: /references/3.latest/configuration.html#reportserver
-[report]: /references/3.latest/configuration.html#report
-[reports]: /references/3.latest/configuration.html#reports
-[reportfrom]: /references/3.latest/configuration.html#reportfrom
-[smtpserver]: /references/3.latest/configuration.html#smtpserver
-[sendmail]: /references/3.latest/configuration.html#sendmail
-[tagmap]: /references/3.latest/configuration.html#tagmap
+[report_server]: /references/3.stable/configuration.html#reportserver
+[report]: /references/3.stable/configuration.html#report
+[reports]: /references/3.stable/configuration.html#reports
+[reportfrom]: /references/3.stable/configuration.html#reportfrom
+[smtpserver]: /references/3.stable/configuration.html#smtpserver
+[sendmail]: /references/3.stable/configuration.html#sendmail
+[tagmap]: /references/3.stable/configuration.html#tagmap
 
 
 The `tagmail.conf` file configures the optional [`tagmail` report processor][tagmail_reference].
