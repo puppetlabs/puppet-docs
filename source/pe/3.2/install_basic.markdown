@@ -138,7 +138,7 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 
 ### The Puppet Agent Role
 
-The agent role is most easily installed using a package manager (see [installing agents](#Installing_Agents) below). On platforms that do not support remote package repos, the installer script is used.
+The agent role is most easily installed using a package manager (see [installing agents](#Installing_Agents) below). On platforms that do not support remote package repos, the installer script can be used.
 
 This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (When you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
 
@@ -335,17 +335,17 @@ If you are using a supported OS that is capable of using remote package repos, t
 
 ### Installing Agents with Your Package Management Tools
 
-If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you just need to add the agent packages to the appropriate repo, configure your package manager (yum, apt,) to point at that repo, and then install the packages as you would any other. You can find an agent package (that corresponds to the master's OS/architecture) in `/opt/puppet/packages/public`. 
+If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you just need to add the agent packages to the appropriate repo, configure your package manager (yum, apt,) to point at that repo, and then install the packages as you would any other. You can find agent packages (that correspond to the master's OS/architecture) in `/opt/puppet/packages/public`. In that directory you will find  `<installed version of PE & platform>-agent/agent_packages` directory which in turn contains a directory with all the packages needed to install an agent and a json file listing the versions of those packages.
 
-For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the `pe-agent` package into the appropriate repo and install it on your nodes just as you would any other package. Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent package will be generated and stored in `/opt/puppet/packages/public`.
+For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
 ### Installing Agents using PE Package Management
 
-If your infrastructure does not currently have a package repository, PE also hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created by the installer script during installation of the master. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
+If your infrastructure does not currently host a package repository, PE also hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created by the installer script during installation of the master. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
 
-Once installed, the master also hosts an agent installation script that can be used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` package, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
+Once installed, the master also includes an agent installation script that can be used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` packages, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
 
-You can use this same method for any supported OS and architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`) you can add to your master in order to create a repo for that platform. Simply [classify the master](./console_classes_groups.html#classes) using the appropriate platform and on the next puppet run the new repo will be created. Platform names are the same as those used for the PE tarballs: 
+You can use this same method for any supported OS and architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`) you can add to your master in order to create a repo for that platform. Simply [classify the master](./console_classes_groups.html#classes) using the desired platform and on the next puppet run the new repo will be created and populated with the appropriate agent packages. Platform names are the same as those used for the PE tarballs: 
 
     el-{5,6}-{i386,x86_64}
     debian-{6,7}-{i386,amd64}
@@ -358,7 +358,7 @@ Let's say your master is on a node running EL6 and you want to add an agent node
 
 The class will create a new package in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`. 
 
-Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/debian-6-amd64.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the `pe-agent` package, create a basic `puppet.conf`, and kick off a puppet run.
+Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/debian-6-amd64.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the `pe-agent` packages, create a basic `puppet.conf`, and kick off a puppet run.
 
 
 ### Configuring Agents
@@ -385,7 +385,7 @@ To sign one of the pending requests, run:
 
 After signing a new node's certificate, it may take up to 30 minutes before that node appears in the console and begins retrieving configurations. You can use live management or the CLI to trigger a puppet run manually on the node if you want to see it right away.
 
-If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command on the CLI.
+If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command.
 
 
 Final Questions
