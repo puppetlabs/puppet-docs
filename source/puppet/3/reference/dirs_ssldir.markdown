@@ -30,6 +30,7 @@ title: "Directories: The SSLdir"
 [hostpubkey]: /references/3.stable/configuration.html#hostpubkey
 [vardir]: ./dirs_vardir.html
 [confdir]: ./dirs_confdir.html
+[certname]: /references/3.stable/configuration.html#certname
 [print_settings]: TODO
 
 
@@ -50,13 +51,13 @@ By default, the `ssldir` is located at `$confdir/ssl`. ([See here for info about
 
 The ssldir contains Puppet's certificates, private keys, certificate signing requests (CSRs), and other cryptographic documents.
 
-**Agent nodes and puppet masters** require a private key (`private_keys/<certname>.pem`), a public key (`public_keys/<certname.pem>`), a signed certificate (`certs/<certname>.pem`), a copy of the CA certificate (`certs/ca.pem`), and a copy of the certificate revocation list (CRL) (`crl.pem`). They usually also retain a copy of their CSR after submitting it to the CA puppet master (`certificate_requests/<certname>.pem`).
+**Agent nodes and puppet masters** require a private key (`private_keys/<certname>.pem`), a public key (`public_keys/<certname.pem>`), a signed certificate (`certs/<certname>.pem`), a copy of the CA certificate (`certs/ca.pem`), and a copy of the certificate revocation list (CRL) (`crl.pem`). They usually also retain a copy of their CSR after submitting it (`certificate_requests/<certname>.pem`). If these files don't exist, they are either generated locally or requested from the CA puppet master.
 
-Since agent and master credentials are identified by certname, a puppet agent process and puppet master process running on the same server may use the same credentials (unless they have different ssldirs configured in puppet.conf).
+Since agent and master credentials are identified by [certname][], a puppet agent process and puppet master process running on the same server may use the same credentials.
 
-**The Puppet CA,** which runs on the CA puppet master server, requires similar credentials (private and public key, certificate, master copy of the CRL), although they're formatted differently and can't be used for normal Puppet runs. It also maintains a list of all signed certificates in the deployment, a copy of each signed certificate, and an incrementing serial number for new certificates. All of the CA's data is stored in the `ca` subdirectory, to keep it separated from any normal Puppet credentials on the same server.
+**The Puppet CA,** which runs on the CA puppet master server, requires similar credentials (private/public key, certificate, master copy of the CRL). It also maintains a list of all signed certificates in the deployment, a copy of each signed certificate, and an incrementing serial number for new certificates. All of the CA's data is stored in the `ca` subdirectory, to keep it separated from any normal Puppet credentials on the same server.
 
-All of the files and directories in the ssldir have corresponding Puppet settings, which can be used to individually change their locations. However, this is generally not recommended; there's no good reason to not use the default ssldir layout.
+All of the files and directories in the ssldir have corresponding Puppet settings, which can be used to individually change their locations. However, this is generally not recommended.
 
 
 ## Detailed Contents
