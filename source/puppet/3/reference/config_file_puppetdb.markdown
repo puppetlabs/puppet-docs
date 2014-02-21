@@ -9,9 +9,11 @@ The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppe
 
 ## Location
 
-The `puppetdb.conf` file is always located at `$confdir/puppetdb.conf`. (`/etc/puppetlabs/puppet/puppetdb.conf` in Puppet Enterprise, and `/etc/puppet/puppetdb.conf` in open source Puppet.)
+The `puppetdb.conf` file is always located at `$confdir/puppetdb.conf`. Its location is **not** configurable.
 
-Its location is **not** configurable.
+The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+
+[confdir]: ./dirs_confdir.html
 
 ## Example
 

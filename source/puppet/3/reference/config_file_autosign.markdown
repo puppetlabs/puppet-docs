@@ -16,9 +16,11 @@ For more details, see [the reference page about certificate autosigning][autosig
 
 ## Location
 
-The `autosign.conf` file is located at `$confdir/autosign.conf` by default. (`/etc/puppetlabs/puppet/autosign.conf` in Puppet Enterprise, and `/etc/puppet/autosign.conf` in open source Puppet.)
+The `autosign.conf` file is located at `$confdir/autosign.conf` by default. Its location is configurable with the [`autosign` setting][autosign].
 
-Its location is configurable with the [`autosign` setting][autosign].
+The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+
+[confdir]: ./dirs_confdir.html
 
 ## Format
 

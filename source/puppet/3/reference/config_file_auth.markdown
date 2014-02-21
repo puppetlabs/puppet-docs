@@ -24,9 +24,11 @@ Since not all agent nodes should have access to all services, and since certain 
 
 ## Location
 
-The `auth.conf` file is located at `$confdir/auth.conf` by default. (`/etc/puppetlabs/puppet/auth.conf` in Puppet Enterprise, and `/etc/puppet/auth.conf` in open source Puppet.)
+The `auth.conf` file is located at `$confdir/auth.conf` by default. Its location is configurable with the [`rest_authconfig` setting][rest_authconfig].
 
-Its location is configurable with the [`rest_authconfig` setting][rest_authconfig].
+The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+
+[confdir]: ./dirs_confdir.html
 
 ## Example
 

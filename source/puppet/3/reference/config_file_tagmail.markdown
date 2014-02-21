@@ -37,9 +37,11 @@ To enable tagmail, you must:
 
 ### Location
 
-The `tagmail.conf` file is located at `$confdir/tagmail.conf` by default. (`/etc/puppetlabs/puppet/tagmail.conf` in Puppet Enterprise, and `/etc/puppet/tagmail.conf` in open source Puppet.)
+The `tagmail.conf` file is located at `$confdir/tagmail.conf` by default. Its location is configurable with the [`tagmap` setting][tagmap].
 
-Its location is configurable with the [`tagmap` setting][tagmap].
+The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+
+[confdir]: ./dirs_confdir.html
 
 ### Example
 
