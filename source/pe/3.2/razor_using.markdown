@@ -6,7 +6,7 @@ canonical: "/pe/latest/razor_using.html"
 
 ---
 
-This page describes the process for provisioning machines with Razor. You must first create some initial objects: 
+This page describes the provisioning setup process. You must first create some initial objects: 
 
 + Repo - The container for the objects you install with Razor, such as operating systems.
 + Broker - The connector between a node and a configuration management system.
@@ -16,7 +16,7 @@ This page describes the process for provisioning machines with Razor. You must f
 After creating these objects, you register a node on the Razor server. To work through these steps, you must already have a Razor server up and running, as described in [Install and Set Up Razor](./razor_install.html).
 
 
-Create Repos
+Include Repos
 -------------
 
 A repo contains all of the objects you use with Razor, and is identified by a unique name, such as 'centos-6.4'. The repo contains the actual bits that are used when installing a node. The instructions for an installation are contained in *tasks*. Razor comes with some predefined tasks that can be found in the tasks/ directory in the razor-server repo, and can all be used by simply mentioning their name in a policy. You can also [write your own tasks](./razor_tasks.html). 
@@ -30,7 +30,7 @@ For example:
 	razor create-repo --name=centos-6.4 --iso-url http://some.where/centos.iso
 
 
-Create Brokers
+Include Brokers
 -------------
 
 Brokers are responsible for handing a node off to a config management system, such as Puppet Enterprise. Brokers consist of two parts: a *broker type* and information that is specific for the broker type. 
@@ -42,27 +42,14 @@ For the Puppet Enterprise broker type, this information consists of the node's s
 You create brokers with the `create-broker` command. For example, the following sets up a simple noop broker that does nothing:
 
 	razor create-broker --name=noop --broker-type=noop
+	
+This sets up the PE broker:
+
+	razor create-broker --name foo --broker-type pe-puppet --configuration '{ "server": "puppet.example.com" }
 
 **Stock Brokers**
 
 Razor ships with these stock brokers (pun intended) for your use:  puppet-pe, noop, and puppet. 	
-
-####Create a PE Broker
-
-1. Create a directory on the broker_path that is set in your config.yaml file. You can call it something like sample.broker. By default, the brokers directory in Razor.root is on that path.
-2. Write a template for your broker install script. For example, create a file called broker.json and add the following:
-
-		{
-			"name": "pe",
-			"configuration": {
-				"server": "<PUPPET_MASTER_HOST>"
-			},
-			"broker-type": "puppet-pe"
-		}
-
-3. Save broker.json to install.erb in the sample.broker directory. 
-
-4. If your broker type requires configuration data, add a configuration.yaml to your sample.broker directory.
 
 
 Include Tasks

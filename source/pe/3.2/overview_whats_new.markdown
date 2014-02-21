@@ -18,7 +18,7 @@ On platforms that support remote package repos, installing agents can now be don
 PE 3.2 introduces Puppet Labs supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
 
 * rigorously tested with PE
-* supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)
+* supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support)
 * maintained for a long-term lifecycle
 * compatible with multiple platforms and architectures.
 

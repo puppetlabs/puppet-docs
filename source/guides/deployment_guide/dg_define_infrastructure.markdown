@@ -11,15 +11,15 @@ How Can Puppet Enterprise Help You?
 
 The particulars of every infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, they want to spend less time fixing recurring problems, and they want keen, timely insight into their infrastructure. In this chapter, we identify some specific needs and provide examples of ways to meet them by using [Puppet Enterprise][pe_dl] (PE) to automate stuff. If you've been an admin for any period of time, these wants should be all too familiar:
 
-1. I want to learn how to use a tool that will make me a more efficient sysadmin, so I can go home earlier (or get to the pub, or my kids' soccer game, or the weekly gaming session, dragon boat race, naked knitting club meeting, etc.). If you're reading this, it's safe to assume the tool you want to learn is PE.
+- I want to learn how to use a tool that will make me a more efficient sysadmin, so I can go home earlier (or get to the pub, or my kids' soccer game, or the weekly gaming session, dragon boat race, naked knitting club meeting, etc.). If you're reading this, it's safe to assume the tool you want to learn is PE.
 
-2. I want to know beyond a shadow of a doubt that I can always securely access any machine in my infrastructure to fix things, perform maintenance, or reconfigure something. I don't want to spend much time on this. I just want it to work.
+- I want to know beyond a shadow of a doubt that I can always securely access any machine in my infrastructure to fix things, perform maintenance, or reconfigure something. I don't want to spend much time on this. I just want it to work.
 
-3. I don't want to get repeated requests at all hours to fix simple mistakes. I want my infrastructure to care for itself, or at least be highly resistant to stupid.
+- I don't want to get repeated requests at all hours to fix simple mistakes. I want my infrastructure to care for itself, or at least be highly resistant to stupid.
 
-4. I want fast, accurate reporting so that I know what's going on and can recover from issues quickly, with minimal downtime. I want my post-mortems to read: "I saw what was broken, I ran PE to restore it, the node was down for two minutes."
+- I want fast, accurate reporting so that I know what's going on and can recover from issues quickly, with minimal downtime. I want my post-mortems to read: "I saw what was broken, I ran PE to restore it, the node was down for two minutes."
 
-5. I want to be able to implement changes quickly and repeatably. Pushing out a new website (shopping cart app, WordPress template, customer database) should be trivial, fast, and reliable (see above re: getting to the pub, etc.).
+- I want to be able to implement changes quickly and repeatably. Pushing out a new website (shopping cart app, WordPress template, customer database) should be trivial, fast, and reliable (see above re: getting to the pub, etc.).
 
 Below, we'll run through some examples that will help a hypothetical admin meet all these needs by automating things in her infrastructure using PE (and with the assistance of pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com)).  We've tried to choose things that are low-risk but high-reward. That way you can try them out and can not only build your confidence working with PE, you can also actually start to get your infrastructure into a more automated, less on-fire condition relatively soon. Even if the specific services we discuss aren't directly applicable to your particular infrastructure, hopefully these examples will help you see methods you can apply to your specific situation and help you understand how and why PE can make you a better, less-stressed admin.
 
@@ -46,7 +46,7 @@ Enough preamble, let's start automating infrastructure.
 
 ## Three Things You Can Configuration Manage First
 
-Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines. For the fourth, the SugarCRM box (crm01), Judy decides she will write her own module.
+Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines, and two of those modules (NTP and Apache) are Puppet Labs supported modules, which means they have been rigorously tested with PE. For the fourth, the SugarCRM box (crm01), Judy decides she will write her own module.
 
 > *Note:* In case you're not familiar with modules, they are self-contained bundles of code and data that use Puppet to express a model for a given piece of infrastructure and interact with the puppet master to build your desired configuration state. A module consists of simple structures of folders and files that deliver manifests and extensions, like custom types or custom facts.) To learn more about the Puppet Forge and the module download and installation process, visit the [installing modules page](/puppet/3/reference/modules_installing.html).
 *Important:* As of PE 2.8, the Puppet module tool is not compatible with Windows nodes, although modules themselves can be readily applied to Windows systems. In a typical Puppet environment, it is unlikely that a module would need to be installed directly on a Windows agent. However, if you encounter a corner case where installing a module directly on a Windows agent is unavoidable, you can do so by downloading tarballs. You may also need to go the tarball route to get Forge modules if local firewall rules prevent access to the Forge.

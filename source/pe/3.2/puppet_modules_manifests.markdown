@@ -196,6 +196,7 @@ This example module, named "`my_module`," shows the standard module layout:
 You can search for pre-built modules on [the Puppet Forge][forge] and use them in your own infrastructure.
 
 * Use the `puppet module search` command to locate modules, or [browse the Puppet Forge's web interface][forge].
+* The Puppet Forge provides Puppet Labs supported modules; these modules are rigorously tested with PE, supported via the usual [support channels](http://puppetlabs.com/services/customer-support), maintained for a long-term lifecycle, and are compatible with multiple platforms and architectures. 
 * On your puppet master server, use the `puppet module install` command to install modules from the Forge.
 * See [the Installing Modules page][install] for details about installing pre-built modules.
 
