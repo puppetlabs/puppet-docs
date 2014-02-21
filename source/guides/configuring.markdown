@@ -181,13 +181,14 @@ You can also inspect settings for specific environments with the `--environment`
 Other configuration files
 -------------------------
 
-In addition to the main configuration file, there are eight special-purpose config files you might need to interact with:
+In addition to the main configuration file, there are nine special-purpose config files you might need to interact with:
 
 * [`auth.conf`](/puppet/latest/reference/config_file_auth.html)
 * [`autosign.conf`](/puppet/latest/reference/config_file_autosign.html)
 * [`csr_attributes.yaml`](/puppet/latest/reference/config_file_csr_attributes.html)
 * [`device.conf`](/puppet/latest/reference/config_file_device.html)
 * [`fileserver.conf`](/puppet/latest/reference/config_file_fileserver.html)
+* [`hiera.yaml`](/puppet/latest/reference/config_file_hiera.html)
 * [`puppetdb.conf`](/puppet/latest/reference/config_file_puppetdb.html)
 * [`routes.yaml`](/puppet/latest/reference/config_file_routes.html)
 * [`tagmail.conf`](/puppet/latest/reference/config_file_tagmail.html)
