@@ -34,7 +34,7 @@ The console allows you to [**assign** classes](./puppet_assign_configurations.ht
 >
 > Before you can assign classes in the console, the classes need to be available to the puppet master server. This means they must be located in an installed [module][modules]. There are several ways to get modules:
 >
-> * [Download modules from the Puppet Forge][forge] --- there are many public modules available for free, with instructions for how to use them.
+> * [Download modules from the Puppet Forge][forge] --- in addition to the many public modules available for free, the Puppet Forge provides Puppet Labs supported modules. Puppet Labs supported modules are rigorously tested with PE and are supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support).
 > * [Write your own classes][lang_classes], and put them in a [module][modules].
 > * If you are new to Puppet and have not written Puppet code before, [follow the Learning Puppet tutorial][learn], which walks you through the basics of Puppet code, classes, and modules.
 
