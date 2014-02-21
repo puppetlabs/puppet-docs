@@ -15,8 +15,7 @@ templating some of the things that your task does. Check out the
 [stock tasks](https://github.com/puppetlabs/razor-server/tree/master/tasks)
 that ship with Razor to see some examples.
 
-Tasks can either be stored in the file system or in the database. To
-get started, and especially while you're developing a task, we recommend storing tasks in the file system. The configuration
+Tasks are stored in the file system. The configuration
 setting `task_path` determines where in the file system Razor looks
 for tasks and can be a colon-separated list of paths. Relative paths
 in that list are taken to be relative to the top-level Razor directory. For
