@@ -40,7 +40,7 @@ Puppet stores its certificate infrastructure in the `ssldir`. This directory is 
 
 The location of the `ssldir` can be configured with the [`ssldir` setting][ssldir].
 
-By default, the `ssldir` is located at `$confdir/ssl`. (`/etc/puppetlabs/puppet/ssl` in Puppet Enterprise, and `/etc/puppet/ssl` in open source Puppet.)
+By default, the `ssldir` is located at `$confdir/ssl`. ([See here for info about the confdir][confdir].)
 
 > **Note:** Many open-source Puppet packages for Linux put the ssldir in the [vardir][] instead of the [confdir][]. (The right place for it under the FHS is debatable; the contents are automatically generated and will tend to grow, but are also important, relatively difficult to replace, and can be considered configuration.)
 >
