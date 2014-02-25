@@ -1,17 +1,17 @@
 ---
 layout: default
 title: " PE 3.2 » Razor » Setup Recommendations and Known Issues"
-subtitle: "Setup Recommendations and Known Issues"
+subtitle: "Setup Information and Known Issues"
 canonical: "/pe/latest/razor_knownissues.html"
 
 ---
-##Recommended Setup
+##Important Setup Information
 
 Razor has been tested in the following setups/environments:
 
 + RHEL/CentOS 6.4 
 
-Razor supports 64-bit systems only. This means that you can only provision 64-bit machines with Razor as well.
+The Razor microkernal is 64-bit only. Razor can only provision 64-bit machines.
 
 
 ##Known Issues
@@ -22,6 +22,6 @@ Razor supports 64-bit systems only. This means that you can only provision 64-bi
 
 This situation is completely harmless. However, if you're using Ruby 1.8.7, you can install a separate JSON library, such as json_pure, to make the warning go away.
 
-**Razor hangs in VirtualBox 4.3.6** We are finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem  with VirtualBox 4.2.22. 
+**Razor hangs in VirtualBox 4.3.6** We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem  with VirtualBox 4.2.22. 
 
 **Using Razor on Windows** Windows support is ALPHA quality. The purpose of the current Windows installer is to get real world experience with Windows installation automation, and to discover the missing features required to truly support the Windows world.

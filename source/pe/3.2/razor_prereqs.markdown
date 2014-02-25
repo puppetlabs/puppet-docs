@@ -6,47 +6,57 @@ canonical: "/pe/latest/razor_prereqs.html"
 
 ---
 
-Razor is a powerful tool created to automatically discover bare-metal hardware and dynamically configure operating systems and/or hypervisors. With this power comes the responsibility to use Razor with caution, and to test it carefully before moving it into a production environment. Razor is also in [tech preview mode](LINK). For these reasons, we highly recommend that you install and test Razor in a completely isolated virtual test environment. 
+Razor is a powerful tool created to automatically discover bare-metal hardware and dynamically configure operating systems and/or hypervisors. With this power comes the responsibility to test Razor carefully. Razor is also in [Tech Preview mode](LINK). For these reasons, we highly recommend that you install and test Razor in a completely isolated test environment. 
 
-The following sections provide the steps for a basic setup that you can use to evaluate Razor. We've included dnsmasq because it's easy to set up. However, you can just use a DHCP/DNS/TFTP service.
+The following sections provide the steps for a basic setup that you can use to evaluate Razor. The setup steps below use dnsmasq; however, you can use any DHCP and TFTP service with Razor. 
 
+**Warning:** Proceed with caution. We recommend testing on a completely isolated test environment because running a second DCHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernal and register with the server has a bigger risk. In a case like this, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. 
 
-**Also Note**: CentOS 6.4 is the only supported operating system for the Razor server at this time.  
+###Before You Begin
 
-**Note:** Razor supports 64-bit systems only. This means that you can only provision 64-bit machines with Razor as well.
+Things you should know before you set up provisioning:
 
-These are the essential steps to create a virtual test environment. Each of these steps is described in more detail below.
++ Razor has been specifically validated on RHEL/CentOS 6.4, but should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
++ The Razor microkernal is 64-bit only. Razor can only provision 64-bit machines.
+
+##Install Overview
+
+Below are the essential steps to create a virtual test environment. Each of these steps is described in more detail in the following sections.
 
 1. Install PE in your virtual environment.
 2. Install and configure DHCP/DNS/TFTP service.
 	We've chosen dnsmasq for this example setup.
 3. Configure SELinux to enable PXE boot.
+
 	**Note** - you download iPXE software in the steps for installing and setting up Razor.
 4. Optional: If you installed dnsmasq, then configure dnsmasq for PXE booting and TFTP
 
-When you finish this section, go on to [Install and Set Up Razor](./razor_install.html). For specific steps for a sample test environment setup that we used to test Razor, see [Set Up a Virtual Environment](LINK).
+When you finish this section, go on to [Install and Set Up Razor](./razor_install.html). 
 
-####Install PE in Your Virtual Environment
+###Install PE in Your Virtual Environment
 
 In your virtual testing environment, set up a puppet master running a standard install of Puppet Enterprise 3.2. For information about installing PE 3.2, see [Installing Puppet Enterprise](./install_basic.html).
 
-**Note** We are finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem  with VirtualBox 4.2.22. 
+**Note** We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem  with VirtualBox 4.2.22. 
 
 
-####Install and Configure dnsmasq DHCP/TFTP Service
+###Install and Configure dnsmasq DHCP/TFTP Service
 
-The installation that's described here, particularly these prerequisites, are one way to configure your Razor test environment. We're providing explicit instructions for this setup because it's been tested and is relatively straightforward.
+The installation that's described here, particularly these prerequisites, are one way to configure your Razor test environment. We're providing explicit instructions for this setup because it's been tested and is relatively straightforward. 
 
-1.Install dnsmasq from YUM with this command:
+As stated in the **Warning** above, you should be working with a completely separate test environment to avoid breaking your company network or inadvertently overwriting machines or servers on your network. 
+
+
+1. Install dnsmasq from YUM with this command:
 
 		yum install dnsmasq
-
+	
 2. Create the directory /var/lib/tftpboot if it doesn't already exist.
 3. Change the permission for /var/lib/tftpboot with this command:
-	
+
 		chmod 655 /var/lib/tftpboot
 	
-####Temporarily Disable SELinux to Enable PXE Boot
+###Temporarily Disable SELinux to Enable PXE Boot
 
 1. Disable SELinux by changing the following setting in the file /etc/sysconfig/selinux:
 
@@ -58,7 +68,7 @@ The installation that's described here, particularly these prerequisites, are on
 	
 2. Restart the computer and log in again. 
 
-####Edit the dnsmasq Configuration File to Enable PXE Boot
+###Edit the dnsmasq Configuration File to Enable PXE Boot
 
 1. Edit the file /etc/dnsmasq.conf, by adding the following line at the bottom of the file:
 

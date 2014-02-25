@@ -1,7 +1,7 @@
 ---
 layout: default
-title: " PE 3.2 » Razor » Provision Machines"
-subtitle: "Provision With Razor"
+title: " PE 3.2 » Razor » Provisioning Setup"
+subtitle: "Set Up Razor Provisioning"
 canonical: "/pe/latest/razor_using.html"
 
 ---
@@ -19,18 +19,18 @@ After creating these objects, you register a node on the Razor server. To work t
 Include Repos
 -------------
 
-A repo contains all of the objects you use with Razor, and is identified by a unique name, such as 'centos-6.4'. The repo contains the actual bits that are used when installing a node. The instructions for an installation are contained in *tasks*. Razor comes with some predefined tasks that can be found in the tasks/ directory in the razor-server repo, and can all be used by simply mentioning their name in a policy. You can also [write your own tasks](./razor_tasks.html). 
+A repo contains all of the bits you use with Razor, the actual bits used when installing a node, and is identified by a unique name, such as 'centos-6.4'. The instructions for an installation are contained in *tasks*, which are described below.
 
-To load a repo onto the server, run the following command. It can take several minutes  because the server has to download the ISO and unpack the contents.
+To load a repo onto the server, run the following command. It can take five or so minutes plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the log file.
 
 	razor create-repo --name=<repo name> --iso-url <URL>
 	
 For example:
 
-	razor create-repo --name=centos-6.4 --iso-url http://some.where/centos.iso
+	razor create-repo --name=centos-6.4 --iso-url http://mirrors.usc.edu/pub/linux/distributions/centos/6.4/isos/x86_64/ 
 
 
-Include Brokers
+Include Broker
 -------------
 
 Brokers are responsible for handing a node off to a config management system, such as Puppet Enterprise. Brokers consist of two parts: a *broker type* and information that is specific for the broker type. 
@@ -43,13 +43,15 @@ You create brokers with the `create-broker` command. For example, the following 
 
 	razor create-broker --name=noop --broker-type=noop
 	
-This sets up the PE broker:
+This command sets up the PE broker, which requires the server parameter. 
 
 	razor create-broker --name foo --broker-type pe-puppet --configuration '{ "server": "puppet.example.com" }
 
-**Stock Brokers**
+**Stock Broker Types**
 
-Razor ships with these stock brokers (pun intended) for your use:  puppet-pe, noop, and puppet. 	
+Razor ships with some stock broker types for your use:  puppet-pe, noop, and puppet.
+
+**Note:** The puppet-pe broker type depends on the new simplified agent install. For details, see  [Installing Agents](./install_basic.html#installing-agents). 	
 
 
 Include Tasks
