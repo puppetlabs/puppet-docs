@@ -101,7 +101,7 @@ The installation process begins with the initial installation of the Master, Dat
 * If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
 * Wait 30 minutes for the next puppet run, or kick off a run manually, to get all the agents checked in.  
 
-Note that after the installer has finished installing and configuring PE, it will save your interview answers to a file called `answers.lastrun`. This file can be used as the basis for future, automated installations. For details [see the chapter on automated installation][automated].
+Note that after the installer has finished installing and configuring PE, it will save your interview answers to a file called `answers.lastrun`. This file can be used as the basis for future, automated installations. For details [see the section on automated installation][automated].
 
 [automated]: ./install_automated.html
 
@@ -138,7 +138,7 @@ First, the installer will ask which of PE's **roles** to install. The role(s) yo
 
 ### The Puppet Agent Role
 
-The agent role is most easily installed using a package manager (see [installing agents](#Installing_Agents) below). On platforms that do not support remote package repos, the installer script can be used.
+The agent role is most easily installed using a package manager (see [installing agents](#installing-agents) below). On platforms that do not support remote package repos, the installer script can be used.
 
 This role should be installed on **every node** in your deployment, including the master, database support, and console nodes. (When you choose the puppet master, database support, or console roles, the puppet agent role will be installed automatically at the same time.) Nodes with the puppet agent role can:
 
