@@ -212,6 +212,8 @@ You can avoid the reappearance of nodes by removing them with the following proc
 
 These steps will remove the node's certificate, purge information about the node from PuppetDB, and delete the node from the console. The last command is equivalent to logging into the console and deleting the node via the UI.
 
+For instructions on completely deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html).
+
 ### Errors Related to Stopping `pe-postresql` Service
 
 If for any reason the `pe-postresql` service is stopped, agents will receive several different error messages, for example:
