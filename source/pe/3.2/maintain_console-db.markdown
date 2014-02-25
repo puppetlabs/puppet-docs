@@ -8,6 +8,24 @@ canonical: "/pe/latest/maintain_console-db.html"
 
 If PE's console becomes sluggish or begins taking up too much disk space, there are several maintenance tasks that can improve its performance. 
 
+Pruning the Console Database with a Cron Job
+-------------
+
+For new PE installs (3.2 and later), a cron job, managed by a class in the `puppetlabs-pe_console_prune` module, is installed that will prevent bloating in the console database by deleting old data (mainly uploaded puppet run reports) after a set number of days. You can tweak the parameters of this class as needed, primarily the `prune_upto` parameter, which sets the time to keep records in the database. This parameter is set to 30 days by default.
+
+However, to prevent users from deleting data without notice, the cron job is not installed on upgrades from versions earlier than 3.2.
+
+To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `puppet_console` group after upgrading to PE 3.2.  
+
+To access the `prune_upto` parameter:
+1. In the PE console, navigate to the "Groups" page.
+2. Select the `puppet_console` group.
+3. From the `puppet_console` group page, click the "Edit" button.
+4. From the class list, select `pe_console_prune`.
+5. From the `pe_console_prune parameters` dialog, edit the parameters as needed. The `prune_upto` parameter is at the bottom of the list.  
+6. Click the "Done" button when finished.
+
+
 Restarting the Background Tasks
 -----
 
@@ -54,7 +72,7 @@ For example, to delete reports more than one month old:
     RAILS_ENV=production \
     reports:prune upto=1 unit=mon
 
-Although this task **should be run regularly as a cron job,** the actual frequency at which you set it to run will depend on your site's policies.
+Although this task [**should be run regularly as a cron job,**](#Pruning_the_console_database_with_a_cron_job) the actual frequency at which you set it to run will depend on your site's policies.
 
 If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `yr`, `mon`, `wk`, `day`, `hr`, and `min`.
 
