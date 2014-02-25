@@ -19,10 +19,15 @@ To prevent bloating in the console database, we recommend adding the `pe_console
 
 To access the `prune_upto` parameter:
 1. In the PE console, navigate to the "Groups" page.
+
 2. Select the `puppet_console` group.
+
 3. From the `puppet_console` group page, click the "Edit" button.
+
 4. From the class list, select `pe_console_prune`.
+
 5. From the `pe_console_prune parameters` dialog, edit the parameters as needed. The `prune_upto` parameter is at the bottom of the list.  
+
 6. Click the "Done" button when finished.
 
 
