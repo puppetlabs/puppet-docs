@@ -11,7 +11,7 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 
 #### Simplified Agent Install
 
-On platforms that support remote package repos, installing agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html#installing-agents).
+On platforms that support remote package repos, installing agents can now be done via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
 
 #### Puppet Labs Supported Modules
 

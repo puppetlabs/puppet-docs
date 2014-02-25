@@ -339,6 +339,8 @@ If you are currently using a tool like Satellite, Spacewalk, etc. to manage pack
 
 For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
+Once the agent has been installed on the target node, it can be configured using `puppet config set`. See [Configuring Agents](#Configuring-Agents) below. 
+
 ### Installing Agents using PE Package Management
 
 If your infrastructure does not currently host a package repository, PE also hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created by the installer script during installation of the master. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
@@ -351,6 +353,8 @@ You can use this same method for any supported OS and architecture by creating a
     debian-{6,7}-{i386,amd64}
     ubuntu-{10.04,12.04}-{i386,amd64}
     sles-11-{i386,x86_64}
+    
+Once the agent has been installed on the target node, it can be configured using `puppet config set`. See [Configuring Agents](#Configuring-Agents) below. 
 
 #### Example Script Usage
 
@@ -358,12 +362,14 @@ Let's say your master is on a node running EL6 and you want to add an agent node
 
 The class will create a new package in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`. 
 
-Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/debian-6-amd64.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the `pe-agent` packages, create a basic `puppet.conf`, and kick off a puppet run.
+Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/debian-6-amd64.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
+
+(TODO: get the correct, auto-detecting, Razor team's script in here.)
 
 
 ### Configuring Agents
 
-Once the agent is installed it can be configured by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the [`puppet config set` sub-command](TODO: link).  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
+Once the agent is installed it can be configured (pointed to the correct master, assigned a certname, etc.) by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the [`puppet config set` sub-command](TODO: link) which will edit `puppet.conf` automatically.  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
 
 ### Signing Agent Certificates
 
