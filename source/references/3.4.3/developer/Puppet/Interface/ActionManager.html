@@ -1,0 +1,763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Interface::ActionManager
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span>
+     &raquo; 
+    <span class="title">ActionManager</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Interface::ActionManager
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Puppet::Interface</a></span>, <span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Puppet::Interface</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/interface/action_manager.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class is not actually public API, but the method
+<span class='object_link'><a href="#action-instance_method" title="Puppet::Interface::ActionManager#action (method)">action</a></span> is public when used
+as part of the Faces DSL (i.e. from within a
+<span class='object_link'><a href="../Interface.html#define-class_method" title="Puppet::Interface.define (method)">define</a></span> block).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#action-instance_method" title="#action (instance method)">- <strong>action</strong>(name, {|| block}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Defines a new action.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#action%3F-instance_method" title="#action? (instance method)">- (Boolean) <strong>action?</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actions-instance_method" title="#actions (instance method)">- (Array&lt;Symbol&gt;) <strong>actions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the list of available actions for this face.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_action-instance_method" title="#get_action (instance method)">- (Puppet::Interface::Action) <strong>get_action</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieves a named action.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_default_action-instance_method" title="#get_default_action (instance method)">- (Puppet::Interface::Action) <strong>get_default_action</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieves the default action for the face.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#script-instance_method" title="#script (instance method)">- (Object) <strong>script</strong>(name, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="action-instance_method">
+  
+    - <strong>action</strong>(name, {|| block}) &nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Defines a new action. This takes a block to build the action using
+the methods on <span class='object_link'><a href="ActionBuilder.html" title="Puppet::Interface::ActionBuilder (class)">Puppet::Interface::ActionBuilder</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name that will be used to invoke the
+action</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Faces</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_manager.rb', line 18</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_action identifier id'>action</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_@actions ivar id'>@actions</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_warning identifier id'>warning</span> <span class='dstring node'>&quot;Redefining action #{name} for #{self}&quot;</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_action? fid id'>action?</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_action identifier id'>action</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Interface constant id'>Interface</span><span class='colon2 op'>::</span><span class='rubyid_ActionBuilder constant id'>ActionBuilder</span><span class='dot token'>.</span><span class='rubyid_build identifier id'>build</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='comma token'>,</span> <span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># REVISIT: (#18042) doesn't this mean we can't redefine the default action? -- josh</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_action identifier id'>action</span><span class='dot token'>.</span><span class='rubyid_default identifier id'>default</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_current identifier id'>current</span> <span class='assign token'>=</span> <span class='rubyid_get_default_action identifier id'>get_default_action</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='dstring node'>&quot;Actions #{current.name} and #{name} cannot both be default&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_@actions ivar id'>@actions</span><span class='lbrack token'>[</span><span class='rubyid_action identifier id'>action</span><span class='dot token'>.</span><span class='rubyid_name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='rubyid_action identifier id'>action</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="action?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>action?</strong>(name) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_manager.rb', line 98</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_action? fid id'>action?</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='rubyid_actions identifier id'>actions</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="actions-instance_method">
+  
+    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>) <strong>actions</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns the list of available actions for this face.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The names of the actions for this face</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_manager.rb', line 47</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_actions identifier id'>actions</span>
+  <span class='rubyid_@actions ivar id'>@actions</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_result identifier id'>result</span> <span class='assign token'>=</span> <span class='rubyid_@actions ivar id'>@actions</span><span class='dot token'>.</span><span class='rubyid_keys identifier id'>keys</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Class constant id'>Class</span><span class='rparen token'>)</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:actions</span><span class='rparen token'>)</span>
+    <span class='rubyid_result identifier id'>result</span> <span class='opasgn op'>+=</span> <span class='rubyid_superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='rubyid_actions identifier id'>actions</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:actions</span><span class='rparen token'>)</span>
+    <span class='rubyid_result identifier id'>result</span> <span class='opasgn op'>+=</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_actions identifier id'>actions</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='comment val'># We need to uniq the result, because we duplicate actions when they are</span>
+  <span class='comment val'># fetched to ensure that they have the correct bindings; they shadow the</span>
+  <span class='comment val'># parent, and uniq implements that. --daniel 2011-06-01</span>
+  <span class='rubyid_result identifier id'>result</span><span class='dot token'>.</span><span class='rubyid_uniq identifier id'>uniq</span><span class='dot token'>.</span><span class='rubyid_sort identifier id'>sort</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_action-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Action.html" title="Puppet::Interface::Action (class)">Puppet::Interface::Action</a></span></tt>) <strong>get_action</strong>(name) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Retrieves a named action</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the action</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Action.html" title="Puppet::Interface::Action (class)">Puppet::Interface::Action</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The action object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_manager.rb', line 66</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_get_action identifier id'>get_action</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='rubyid_@actions ivar id'>@actions</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_result identifier id'>result</span> <span class='assign token'>=</span> <span class='rubyid_@actions ivar id'>@actions</span><span class='lbrack token'>[</span><span class='rubyid_name identifier id'>name</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span><span class='rbrack token'>]</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_result identifier id'>result</span><span class='dot token'>.</span><span class='rubyid_nil? fid id'>nil?</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Class constant id'>Class</span><span class='rparen token'>)</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:get_action</span><span class='rparen token'>)</span>
+      <span class='rubyid_found identifier id'>found</span> <span class='assign token'>=</span> <span class='rubyid_superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='rubyid_get_action identifier id'>get_action</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+    <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:get_action</span><span class='rparen token'>)</span>
+      <span class='rubyid_found identifier id'>found</span> <span class='assign token'>=</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_get_action identifier id'>get_action</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_found identifier id'>found</span> <span class='rubyid_then then kw'>then</span>
+      <span class='comment val'># This is not the nicest way to make action equivalent to the Ruby</span>
+      <span class='comment val'># Method object, rather than UnboundMethod, but it will do for now,</span>
+      <span class='comment val'># and we only have to make this change in *one* place. --daniel 2011-04-12</span>
+      <span class='rubyid_result identifier id'>result</span> <span class='assign token'>=</span> <span class='rubyid_@actions ivar id'>@actions</span><span class='lbrack token'>[</span><span class='rubyid_name identifier id'>name</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='rubyid_found identifier id'>found</span><span class='dot token'>.</span><span class='rubyid___dup_and_rebind_to identifier id'>__dup_and_rebind_to</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_result identifier id'>result</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_default_action-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Action.html" title="Puppet::Interface::Action (class)">Puppet::Interface::Action</a></span></tt>) <strong>get_default_action</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Retrieves the default action for the face</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Action.html" title="Puppet::Interface::Action (class)">Puppet::Interface::Action</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_manager.rb', line 89</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_get_default_action identifier id'>get_default_action</span>
+  <span class='rubyid_default identifier id'>default</span> <span class='assign token'>=</span> <span class='rubyid_actions identifier id'>actions</span><span class='dot token'>.</span><span class='rubyid_map identifier id'>map</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_x identifier id'>x</span><span class='bitor op'>|</span> <span class='rubyid_get_action identifier id'>get_action</span><span class='lparen token'>(</span><span class='rubyid_x identifier id'>x</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='rubyid_select identifier id'>select</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_x identifier id'>x</span><span class='bitor op'>|</span> <span class='rubyid_x identifier id'>x</span><span class='dot token'>.</span><span class='rubyid_default identifier id'>default</span> <span class='rbrace token'>}</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_default identifier id'>default</span><span class='dot token'>.</span><span class='rubyid_length identifier id'>length</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='dstring node'>&quot;The actions #{default.map(&amp;:name).join(&quot;, &quot;)} cannot all be default&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_default identifier id'>default</span><span class='dot token'>.</span><span class='rubyid_first identifier id'>first</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="script-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>script</strong>(name, &amp;block) &nbsp;<span class="deprecated note title">deprecated</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
+</div></div>
+<p>Defines an action without using ActionBuilder. The block given is
+the code that will be executed when the action is invoked.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_manager.rb', line 36</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_script identifier id'>script</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_@actions ivar id'>@actions</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_warning identifier id'>warning</span> <span class='dstring node'>&quot;Redefining action #{name} for #{self}&quot;</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_action? fid id'>action?</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># REVISIT: (#18048) it's possible to create multiple default actions</span>
+  <span class='rubyid_@actions ivar id'>@actions</span><span class='lbrack token'>[</span><span class='rubyid_name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Interface constant id'>Interface</span><span class='colon2 op'>::</span><span class='rubyid_Action constant id'>Action</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='comma token'>,</span> <span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='symbol val'>:when_invoked</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:07 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

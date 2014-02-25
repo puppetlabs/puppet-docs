@@ -1,0 +1,2772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Type
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
+     &raquo; 
+    <span class="title">Type</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Type
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Type</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2">Enumerable, <span class='object_link'><a href="Util/ClassGen.html" title="Puppet::Util::ClassGen (module)">Util::ClassGen</a></span></dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1">Comparable, Enumerable, <span class='object_link'><a href="Util/Errors.html" title="Puppet::Util::Errors (module)">Util::Errors</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/type.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>The Type class deals with multiple concerns; some methods provide an internal DSL for convenient definition
+of types, other methods deal with various aspects while running; wiring up a resource (expressed in Puppet DSL
+or Ruby DSL) with its <em>resource type</em> (i.e. an instance of Type) to enable validation, transformation of values
+(munge/unmunge), etc. Lastly, Type is also responsible for dealing with Providers; the concrete implementations
+of the behavior that constitutes how a particular Type behaves on a particular type of system (e.g. how
+commands are executed on a flavor of Linux, on Windows, etc.). This means that as you are reading through the
+documentation of this class, you will be switching between these concepts, as well as switching between
+the conceptual level "a resource is an instance of a resource-type" and the actual implementation classes
+(Type, Resource, Provider, and various utility and helper classes).</p>
+</div>
+  </div>
+
+<p>The base class for all Puppet types.</p>
+
+<h2>A type describes:</h2>
+
+<ul>
+<li><strong>Attributes</strong> - properties, parameters, and meta-parameters are different types of attributes of a type.
+
+<ul>
+<li><strong>Properties</strong> - these are the properties of the managed resource (attributes of the entity being managed; like
+a file's owner, group and mode). A property describes two states; the 'is' (current state) and the 'should' (wanted
+state).
+
+<ul>
+<li><strong>Ensurable</strong> - a set of traits that control the lifecycle (create, remove, etc.) of a managed entity.
+There is a default set of operations associated with being <em>ensurable</em>, but this can be changed.</li>
+<li><strong>Name/Identity</strong> - one property is the name/identity of a resource, the <em>namevar</em> that uniquely identifies
+one instance of a type from all others.</li>
+</ul>
+</li>
+<li><strong>Parameters</strong> - additional attributes of the type (that does not directly related to an instance of the managed
+resource; if an operation is recursive or not, where to look for things, etc.). A Parameter (in contrast to Property)
+has one current value where a Property has two (current-state and wanted-state).</li>
+<li><strong>Meta-Parameters</strong> - parameters that are available across all types. A meta-parameter typically has
+additional semantics; like the <code>require</code> meta-parameter. A new type typically does not add new meta-parameters,
+but you need to be aware of their existence so you do not inadvertently shadow an existing meta-parameters.</li>
+</ul>
+</li>
+<li><strong>Parent</strong> - a type can have a super type (that it inherits from).</li>
+<li><strong>Validation</strong> - If not just a basic data type, or an enumeration of symbolic values, it is possible to provide
+  validation logic for a type, properties and parameters.</li>
+<li><strong>Munging</strong> - munging/unmunging is the process of turning a value in external representation (as used
+  by a provider) into an internal representation and vice versa. A Type supports adding custom logic for these.</li>
+<li><strong>Auto Requirements</strong> - a type can specify automatic relationships to resources to ensure that if they are being
+  managed, they will be processed before this type.</li>
+<li><strong>Providers</strong> - a provider is an implementation of a type's behavior - the management of a resource in the
+  system being managed. A provider is often platform specific and is selected at runtime based on
+  criteria/predicates specified in the configured providers. See <span class='object_link'><a href="Provider.html" title="Puppet::Provider (class)">Provider</a></span> for details.</li>
+<li><strong>Device Support</strong> - A type has some support for being applied to a device; i.e. something that is managed
+  by running logic external to the device itself. There are several methods that deals with type
+  applicability for these special cases such as <span class='object_link'><a href="#apply_to_device-class_method" title="Puppet::Type.apply_to_device (method)">Type.apply_to_device</a></span>.</li>
+</ul>
+
+
+<h2>Additional Concepts:</h2>
+
+<ul>
+<li><strong>Resource-type</strong> - A <em>resource type</em> is a term used to denote the type of a resource; internally a resource
+  is really an instance of a Ruby class i.e. <span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Resource</a></span> which defines its behavior as "resource data".
+  Conceptually however, a resource is an instance of a subclass of Type (e.g. File), where such a class describes
+  its interface (what can be said/what is known about a resource of this type),</li>
+<li><strong>Managed Entity</strong> - This is not a term in general use, but is used here when there is a need to make
+  a distinction between a resource (a description of what/how something should be managed), and what it is
+  managing (a file in the file system). The term <em>managed entity</em> is a reference to the "file in the file system"</li>
+<li><strong>Isomorphism</strong> - the quality of being <em>isomorphic</em> means that two resource instances with the same name
+  refers to the same managed entity. Or put differently; <em>an isomorphic name is the identity of a resource</em>.
+  As an example, <code>exec</code> resources (that executes some command) have the command (i.e. the command line string) as
+  their name, and these resources are said to be non-isomorphic.</li>
+</ul>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#providerloader-class_method" title="providerloader (class method)">+ (Object) <strong>providerloader</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The loader of providers to use when loading providers from disk.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#original_parameters-instance_method" title="#original_parameters (instance method)">- (Hash) <strong>original_parameters</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Hash of parameters originally defined.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply_to-class_method" title="apply_to (class method)">+ (Symbol) <strong>apply_to</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Makes this type apply to <code>:host</code> if not already applied to something else.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply_to_all-class_method" title="apply_to_all (class method)">+ (Symbol) <strong>apply_to_all</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Makes this type applicable to <code>:both</code> (i.e. <code>:host</code> and <code>:device</code>).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply_to_device-class_method" title="apply_to_device (class method)">+ (Symbol) <strong>apply_to_device</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Makes this type applicable to <code>:device</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply_to_host-class_method" title="apply_to_host (class method)">+ (Symbol) <strong>apply_to_host</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Makes this type applicable to <code>:host</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#autorequire-class_method" title="autorequire (class method)">+ <strong>autorequire</strong>(name) {| | ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Adds a block producing a single name (or list of names) of the given resource type name to autorequire.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#can_apply_to-class_method" title="can_apply_to (class method)">+ (Boolean) <strong>can_apply_to</strong>(target) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns true if this type is applicable to the given target.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ensurable-class_method" title="ensurable (class method)">+ <strong>ensurable</strong> {|| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new <code>ensure</code> property with configured default values or with configuration by an optional block.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#newmetaparam-class_method" title="newmetaparam (class method)">+ (Class&lt;inherits Puppet::Parameter&gt;) <strong>newmetaparam</strong>(name, options = {}) {|| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new meta-parameter.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#newparam-class_method" title="newparam (class method)">+ (Class&lt;inherits Puppet::Parameter&gt;) <strong>newparam</strong>(name, options = {}) {|| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new parameter.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#newproperty-class_method" title="newproperty (class method)">+ (Class&lt;inherits Puppet::Property&gt;) <strong>newproperty</strong>(name, options = {}) {|| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new property.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_patterns-class_method" title="title_patterns (class method)">+ (Array&lt;Array&lt;Regexp, Array&lt;Array &lt;Symbol, Proc&gt;&gt;&gt;&gt;<sup>?</sup>) <strong>title_patterns</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns a mapping from the title string to setting of attribute value(s).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate-class_method" title="validate (class method)">+ <strong>validate</strong> {|| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a <code>validate</code> method that is used to validate a resource before it is operated on.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#appliable_to_device%3F-instance_method" title="#appliable_to_device? (instance method)">- (Boolean) <strong>appliable_to_device?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns true if a resource of this type can be evaluated on a 'network device' kind of hosts.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#appliable_to_host%3F-instance_method" title="#appliable_to_host? (instance method)">- (Boolean) <strong>appliable_to_host?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns true if a resource of this type can be evaluated on a regular generalized computer (ie not an appliance like a network device).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pathbuilder-instance_method" title="#pathbuilder (instance method)">- (Object) <strong>pathbuilder</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns an array of strings representing the containment heirarchy (types/classes) that make up the path to the resource from the root of the catalog.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#retrieve_resource-instance_method" title="#retrieve_resource (instance method)">- (Puppet::Resource) <strong>retrieve_resource</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieve the current state of the system as a Puppet::Resource.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
+  <p class="inherited"><span class='object_link'><a href="Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="Util.html#which-instance_method" title="Puppet::Util#which (method)">which</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>MetaType::Manager</span></h3>
+  <p class="inherited"><span class='object_link'><a href="MetaType/Manager.html#allclear-instance_method" title="Puppet::MetaType::Manager#allclear (method)">allclear</a></span>, <span class='object_link'><a href="MetaType/Manager.html#newtype-instance_method" title="Puppet::MetaType::Manager#newtype (method)">newtype</a></span>, <span class='object_link'><a href="MetaType/Manager.html#rmtype-instance_method" title="Puppet::MetaType::Manager#rmtype (method)">rmtype</a></span>, <span class='object_link'><a href="MetaType/Manager.html#typeloader-instance_method" title="Puppet::MetaType::Manager#typeloader (method)">typeloader</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Util/ClassGen.html" title="Puppet::Util::ClassGen (module)">Util::ClassGen</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Util/ClassGen.html#genconst_string-instance_method" title="Puppet::Util::ClassGen#genconst_string (method)">genconst_string</a></span>, <span class='object_link'><a href="Util/ClassGen.html#genthing-instance_method" title="Puppet::Util::ClassGen#genthing (method)">genthing</a></span>, <span class='object_link'><a href="Util/ClassGen.html#handleclassconst-instance_method" title="Puppet::Util::ClassGen#handleclassconst (method)">handleclassconst</a></span>, <span class='object_link'><a href="Util/ClassGen.html#initclass-instance_method" title="Puppet::Util::ClassGen#initclass (method)">initclass</a></span>, <span class='object_link'><a href="Util/ClassGen.html#is_constant_defined%3F-instance_method" title="Puppet::Util::ClassGen#is_constant_defined? (method)">is_constant_defined?</a></span>, <span class='object_link'><a href="Util/ClassGen.html#name2const-instance_method" title="Puppet::Util::ClassGen#name2const (method)">name2const</a></span>, <span class='object_link'><a href="Util/ClassGen.html#storeclass-instance_method" title="Puppet::Util::ClassGen#storeclass (method)">storeclass</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util::ProviderFeatures</span></h3>
+  <p class="inherited"><span class='object_link'><a href="Util/ProviderFeatures.html#provider_feature-instance_method" title="Puppet::Util::ProviderFeatures#provider_feature (method)">provider_feature</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id="providerloader=-class_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="providerloader-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>providerloader</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The loader of providers to use when loading providers from disk.
+Although it looks like this attribute provides a way to operate with different loaders of
+providers that is not the case; the attribute is written when a new type is created,
+and should not be changed thereafter.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1633
+1634
+1635</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1633</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_providerloader identifier id'>providerloader</span>
+  <span class='rubyid_@providerloader ivar id'>@providerloader</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="original_parameters-instance_method">
+  
+    - (<tt><span class='object_link'>Hash</span></tt>) <strong>original_parameters</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns hash of parameters originally defined</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>hash of parameters originally defined</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2151
+2152
+2153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2151</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_original_parameters identifier id'>original_parameters</span>
+  <span class='rubyid_@original_parameters ivar id'>@original_parameters</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="apply_to-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Makes this type apply to <code>:host</code> if not already applied to something else.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a <code>:device</code>, <code>:host</code>, or <code>:both</code> enumeration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+243
+244
+245</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 243</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_apply_to identifier id'>apply_to</span>
+  <span class='rubyid_@apply_to ivar id'>@apply_to</span> <span class='opasgn op'>||=</span> <span class='symbol val'>:host</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="apply_to_all-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to_all</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Makes this type applicable to <code>:both</code> (i.e. <code>:host</code> and <code>:device</code>).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns <code>:both</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 236</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_apply_to_all identifier id'>apply_to_all</span>
+  <span class='rubyid_@apply_to ivar id'>@apply_to</span> <span class='assign token'>=</span> <span class='symbol val'>:both</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="apply_to_device-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to_device</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Makes this type applicable to <code>:device</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns <code>:device</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+220
+221
+222</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 220</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_apply_to_device identifier id'>apply_to_device</span>
+  <span class='rubyid_@apply_to ivar id'>@apply_to</span> <span class='assign token'>=</span> <span class='symbol val'>:device</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="apply_to_host-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to_host</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Makes this type applicable to <code>:host</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns <code>:host</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+228
+229
+230</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 228</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_apply_to_host identifier id'>apply_to_host</span>
+  <span class='rubyid_@apply_to ivar id'>@apply_to</span> <span class='assign token'>=</span> <span class='symbol val'>:host</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="autorequire-class_method">
+  
+    + <strong>autorequire</strong>(name) {| | ... }&nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong>
+    <div class='inline'><p>original = <em>"Specify a block for generating a list of objects to autorequire.
+This makes it so that you don't have to manually specify things that you clearly require."</em></p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p><p>Adds a block producing a single name (or list of names) of the given resource type name to autorequire.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Autorequire the files File['foo', 'bar']</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='rubyid_autorequire identifier id'>autorequire</span><span class='lparen token'>(</span> <span class='string val'>'file'</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='orop op'>||</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of a type of which one or several resources should be autorequired e.g. "file"</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt> </tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a block returning list of names of given type to auto require</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>, <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>String</span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>one or several resource names for the named type</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1927
+1928
+1929
+1930</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1927</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_autorequire identifier id'>autorequire</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_@autorequires ivar id'>@autorequires</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_@autorequires ivar id'>@autorequires</span><span class='lbrack token'>[</span><span class='rubyid_name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='rubyid_block identifier id'>block</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="can_apply_to-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>can_apply_to</strong>(target) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns true if this type is applicable to the given target.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>target</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>should be :device, :host or :target, if anything else, :host is enforced</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+252
+253
+254</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 252</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_can_apply_to identifier id'>can_apply_to</span><span class='lparen token'>(</span><span class='rubyid_target identifier id'>target</span><span class='rparen token'>)</span>
+  <span class='lbrack token'>[</span> <span class='rubyid_target identifier id'>target</span> <span class='eq op'>==</span> <span class='symbol val'>:device</span> <span class='question op'>?</span> <span class='symbol val'>:device</span> <span class='colon op'>:</span> <span class='symbol val'>:host</span><span class='comma token'>,</span> <span class='symbol val'>:both</span> <span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_apply_to identifier id'>apply_to</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ensurable-class_method">
+  
+    
+      <span class="overload">+ <strong>ensurable</strong> &nbsp;<span class="note title readonly">DSL</span></span>
+    
+      <span class="overload">+ <strong>ensurable</strong>({|| ... }) &nbsp;<span class="note title readonly">DSL</span></span>
+    
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method will be automatically called without a block if the type implements the methods
+specified by <span class='object_link'>ensurable?</span>. It is recommended to always call this method and not rely on this automatic
+specification to clearly state that the type is ensurable.</p>
+</div>
+  </div>
+
+<p class="note returns_void">This method returns an undefined value.</p><p>Creates a new <code>ensure</code> property with configured default values or with configuration by an optional block.
+This method is a convenience method for creating a property <code>ensure</code> with default accepted values.
+If no block is specified, the new <code>ensure</code> property will accept the default symbolic
+values <code>:present</code>, and <code>:absent</code> - see <span class='object_link'><a href="Property/Ensure.html" title="Puppet::Property::Ensure (class)">Property::Ensure</a></span>.
+If something else is wanted, pass a block and make calls to <span class='object_link'><a href="Property.html#newvalue-class_method" title="Puppet::Property.newvalue (method)">Property.newvalue</a></span> from this block
+to define each possible value. If a block is passed, the defaults are not automatically added to the set of
+valid values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A block evaluated in scope of the new Parameter</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>void</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186
+187
+188
+189
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 184</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_ensurable identifier id'>ensurable</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_block_given? fid id'>block_given?</span>
+    <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_newproperty identifier id'>newproperty</span><span class='lparen token'>(</span><span class='symbol val'>:ensure</span><span class='comma token'>,</span> <span class='symbol val'>:parent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Property constant id'>Property</span><span class='colon2 op'>::</span><span class='rubyid_Ensure constant id'>Ensure</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_newproperty identifier id'>newproperty</span><span class='lparen token'>(</span><span class='symbol val'>:ensure</span><span class='comma token'>,</span> <span class='symbol val'>:parent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Property constant id'>Property</span><span class='colon2 op'>::</span><span class='rubyid_Ensure constant id'>Ensure</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_defaultvalues identifier id'>defaultvalues</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="newmetaparam-class_method">
+  
+    + (<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>) <strong>newmetaparam</strong>(name, options = {}) {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong>
+    <div class='inline'><p>Verify that this description is ok</p>
+</div>
+  </div>
+
+<p>Creates a new meta-parameter.
+This creates a new meta-parameter that is added to all types.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the parameter</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a hash with options.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:parent</span>
+          <span class="type">(<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>Puppet::Parameter</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the super class of this parameter</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:attributes</span>
+          <span class="type">(<tt><span class='object_link'>Hash</span>{<span class='object_link'>String</span> =&gt; <span class='object_link'>Object</span>}</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a hash that is applied to the generated class
+by calling setter methods corresponding to this hash's keys/value pairs. This is done before the given
+block is evaluated.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:boolean</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies if this is a boolean parameter</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:namevar</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies if this parameter is the namevar</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:required_features</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>, <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies required provider features by name</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a required block that is evaluated in the scope of the new meta-parameter</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the created parameter</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 327</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_newmetaparam identifier id'>newmetaparam</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_@@metaparams ivar id'>@@metaparams</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='rubyid_@@metaparamhash ivar id'>@@metaparamhash</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_name identifier id'>name</span> <span class='assign token'>=</span> <span class='rubyid_name identifier id'>name</span><span class='dot token'>.</span><span class='rubyid_intern identifier id'>intern</span>
+
+  <span class='rubyid_param identifier id'>param</span> <span class='assign token'>=</span> <span class='rubyid_genclass identifier id'>genclass</span><span class='lparen token'>(</span>
+    <span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span>
+    <span class='symbol val'>:parent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:parent</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Parameter constant id'>Parameter</span><span class='comma token'>,</span>
+    <span class='symbol val'>:prefix</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;MetaParam&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:hash</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_@@metaparamhash ivar id'>@@metaparamhash</span><span class='comma token'>,</span>
+    <span class='symbol val'>:array</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_@@metaparams ivar id'>@@metaparams</span><span class='comma token'>,</span>
+    <span class='symbol val'>:attributes</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:attributes</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span>
+  <span class='rparen token'>)</span>
+
+  <span class='comment val'># Grr.</span>
+  <span class='rubyid_param identifier id'>param</span><span class='dot token'>.</span><span class='rubyid_required_features identifier id'>required_features</span> <span class='assign token'>=</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:required_features</span><span class='rbrack token'>]</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:required_features</span><span class='rbrack token'>]</span>
+
+  <span class='rubyid_handle_param_options identifier id'>handle_param_options</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_param identifier id'>param</span><span class='dot token'>.</span><span class='rubyid_metaparam identifier id'>metaparam</span> <span class='assign token'>=</span> <span class='rubyid_true true kw'>true</span>
+
+  <span class='rubyid_param identifier id'>param</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="newparam-class_method">
+  
+    + (<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>) <strong>newparam</strong>(name, options = {}) {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new parameter.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the parameter</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a hash with options.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:parent</span>
+          <span class="type">(<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>Puppet::Parameter</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the super class of this parameter</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:attributes</span>
+          <span class="type">(<tt><span class='object_link'>Hash</span>{<span class='object_link'>String</span> =&gt; <span class='object_link'>Object</span>}</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a hash that is applied to the generated class
+by calling setter methods corresponding to this hash's keys/value pairs. This is done before the given
+block is evaluated.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:boolean</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies if this is a boolean parameter</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:namevar</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies if this parameter is the namevar</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:required_features</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>, <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies required provider features by name</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a required block that is evaluated in the scope of the new parameter</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the created parameter</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 434</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_newparam identifier id'>newparam</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:attributes</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+
+  <span class='rubyid_param identifier id'>param</span> <span class='assign token'>=</span> <span class='rubyid_genclass identifier id'>genclass</span><span class='lparen token'>(</span>
+    <span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span>
+    <span class='symbol val'>:parent</span>     <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:parent</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Parameter constant id'>Parameter</span><span class='comma token'>,</span>
+    <span class='symbol val'>:attributes</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:attributes</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='symbol val'>:block</span>      <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_block identifier id'>block</span><span class='comma token'>,</span>
+    <span class='symbol val'>:prefix</span>     <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Parameter&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:array</span>      <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_@parameters ivar id'>@parameters</span><span class='comma token'>,</span>
+    <span class='symbol val'>:hash</span>       <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_@paramhash ivar id'>@paramhash</span>
+  <span class='rparen token'>)</span>
+
+  <span class='rubyid_handle_param_options identifier id'>handle_param_options</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># Grr.</span>
+  <span class='rubyid_param identifier id'>param</span><span class='dot token'>.</span><span class='rubyid_required_features identifier id'>required_features</span> <span class='assign token'>=</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:required_features</span><span class='rbrack token'>]</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:required_features</span><span class='rbrack token'>]</span>
+
+  <span class='rubyid_param identifier id'>param</span><span class='dot token'>.</span><span class='rubyid_isnamevar identifier id'>isnamevar</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:namevar</span><span class='rbrack token'>]</span>
+
+  <span class='rubyid_param identifier id'>param</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="newproperty-class_method">
+  
+    + (<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Property.html" title="Puppet::Property (class)">Puppet::Property</a></span>&gt;</tt>) <strong>newproperty</strong>(name, options = {}) {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new property.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the property</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a hash with options.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:array_matching</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:first</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies how the current state is matched against
+the wanted state. Use <code>:first</code> if the property is single valued, and (<code>:all</code>) otherwise.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:parent</span>
+          <span class="type">(<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Property.html" title="Puppet::Property (class)">Puppet::Property</a></span>&gt;</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>Puppet::Property</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the super class of this property</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:attributes</span>
+          <span class="type">(<tt><span class='object_link'>Hash</span>{<span class='object_link'>String</span> =&gt; <span class='object_link'>Object</span>}</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a hash that is applied to the generated class
+by calling setter methods corresponding to this hash's keys/value pairs. This is done before the given
+block is evaluated.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:boolean</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies if this is a boolean parameter</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:retrieve</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the method to call on the provider (or <code>parent</code> if <code>provider</code> is not set)
+to retrieve the current value of this property.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:required_features</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>, <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>specifies required provider features by name</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a required block that is evaluated in the scope of the new property</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Property.html" title="Puppet::Property (class)">Puppet::Property</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the created property</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 475</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_newproperty identifier id'>newproperty</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_name identifier id'>name</span> <span class='assign token'>=</span> <span class='rubyid_name identifier id'>name</span><span class='dot token'>.</span><span class='rubyid_intern identifier id'>intern</span>
+
+  <span class='comment val'># This is here for types that might still have the old method of defining</span>
+  <span class='comment val'># a parent class.</span>
+  <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_options identifier id'>options</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span> <span class='rubyid_Hash constant id'>Hash</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_DevError constant id'>DevError</span><span class='comma token'>,</span>
+      <span class='dstring node'>&quot;Options must be a hash, not #{options.inspect}&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_DevError constant id'>DevError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Class #{self.name} already has a property named #{name}&quot;</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_@validproperties ivar id'>@validproperties</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_parent identifier id'>parent</span> <span class='assign token'>=</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:parent</span><span class='rbrack token'>]</span>
+    <span class='rubyid_options identifier id'>options</span><span class='dot token'>.</span><span class='rubyid_delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:parent</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_parent identifier id'>parent</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Property constant id'>Property</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># We have to create our own, new block here because we want to define</span>
+  <span class='comment val'># an initial :retrieve method, if told to, and then eval the passed</span>
+  <span class='comment val'># block if available.</span>
+  <span class='rubyid_prop identifier id'>prop</span> <span class='assign token'>=</span> <span class='rubyid_genclass identifier id'>genclass</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='symbol val'>:parent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_parent identifier id'>parent</span><span class='comma token'>,</span> <span class='symbol val'>:hash</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_@validproperties ivar id'>@validproperties</span><span class='comma token'>,</span> <span class='symbol val'>:attributes</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_options identifier id'>options</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='comment val'># If they've passed a retrieve method, then override the retrieve</span>
+    <span class='comment val'># method on the class.</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:retrieve</span><span class='rbrack token'>]</span>
+      <span class='rubyid_define_method identifier id'>define_method</span><span class='lparen token'>(</span><span class='symbol val'>:retrieve</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+        <span class='rubyid_provider identifier id'>provider</span><span class='dot token'>.</span><span class='rubyid_send identifier id'>send</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:retrieve</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='rubyid_end end kw'>end</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_class_eval identifier id'>class_eval</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_block identifier id'>block</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># If it's the 'ensure' property, always put it first.</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_name identifier id'>name</span> <span class='eq op'>==</span> <span class='symbol val'>:ensure</span>
+    <span class='rubyid_@properties ivar id'>@properties</span><span class='dot token'>.</span><span class='rubyid_unshift identifier id'>unshift</span> <span class='rubyid_prop identifier id'>prop</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_@properties ivar id'>@properties</span> <span class='lshft op'>&lt;&lt;</span> <span class='rubyid_prop identifier id'>prop</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_prop identifier id'>prop</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="title_patterns-class_method">
+  
+    + (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span>&lt;<span class='object_link'>Regexp</span>, <span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span> &lt;<span class='object_link'>Symbol</span>, Proc&gt;&gt;&gt;&gt;</tt><sup>?</sup>) <strong>title_patterns</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Advanced: some logic requires this mapping to be done differently, using a different
+validation/pattern, breaking up the title
+into several parts assigning each to an individual attribute, or even use a composite identity where
+all namevars are seen as part of the unique identity (such computation is done by the #uniqueness method.
+These advanced options are rarely used (only one of the built in puppet types use this, and then only
+a small part of the available functionality), and the support for these advanced mappings is not
+implemented in a straight forward way. For these reasons, this method has been marked as private).</p>
+</div>
+  </div>
+
+<p>Returns a mapping from the title string to setting of attribute value(s).
+This default implementation provides a mapping of title to the one and only <em>namevar</em> present
+in the type's definition.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span>&lt;<span class='object_link'>Regexp</span>, <span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span> &lt;<span class='object_link'>Symbol</span>, Proc&gt;&gt;&gt;&gt;</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a structure with a regexp and the first key_attribute ???</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if there is no title pattern and there are two or more key attributes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+401
+402
+403
+404
+405
+406
+407
+408
+409</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 401</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_title_patterns identifier id'>title_patterns</span>
+  <span class='rubyid_case case kw'>case</span> <span class='rubyid_key_attributes identifier id'>key_attributes</span><span class='dot token'>.</span><span class='rubyid_length identifier id'>length</span>
+  <span class='rubyid_when when kw'>when</span> <span class='integer val'>0</span><span class='semicolon token'>;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='rubyid_when when kw'>when</span> <span class='integer val'>1</span><span class='semicolon token'>;</span>
+    <span class='lbrack token'>[</span> <span class='lbrack token'>[</span> <span class='regexp val'>/(.*)/</span><span class='rubyid_m identifier id'>m</span><span class='comma token'>,</span> <span class='lbrack token'>[</span> <span class='lbrack token'>[</span><span class='rubyid_key_attributes identifier id'>key_attributes</span><span class='dot token'>.</span><span class='rubyid_first identifier id'>first</span><span class='rbrack token'>]</span> <span class='rbrack token'>]</span> <span class='rbrack token'>]</span> <span class='rbrack token'>]</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_DevError constant id'>DevError</span><span class='comma token'>,</span><span class='string val'>&quot;you must specify title patterns when there are two or more key attributes&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate-class_method">
+  
+    + <strong>validate</strong> {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Creates a <code>validate</code> method that is used to validate a resource before it is operated on.
+The validation should raise exceptions if the validation finds errors. (It is not recommended to
+issue warnings as this typically just ends up in a logfile - you should fail if a validation fails).
+The easiest way to raise an appropriate exception is to call the method Util::Errors.fail with
+the message as an argument.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a required block called with self set to the instance of a Type class representing a resource.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2108
+2109
+2110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2108</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_validate identifier id'>validate</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_define_method identifier id'>define_method</span><span class='lparen token'>(</span><span class='symbol val'>:validate</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="appliable_to_device?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>appliable_to_device?</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns true if a resource of this type can be evaluated on a 'network device' kind
+of hosts.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns whether the resource is applicable to <code>:device</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2417
+2418
+2419</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2417</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_appliable_to_device? fid id'>appliable_to_device?</span>
+  <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_can_apply_to identifier id'>can_apply_to</span><span class='lparen token'>(</span><span class='symbol val'>:device</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="appliable_to_host?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>appliable_to_host?</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns true if a resource of this type can be evaluated on a regular generalized computer (ie not an appliance like a network device)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns whether the resource is applicable to <code>:host</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2424
+2425
+2426</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2424</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_appliable_to_host? fid id'>appliable_to_host?</span>
+  <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_can_apply_to identifier id'>can_apply_to</span><span class='lparen token'>(</span><span class='symbol val'>:host</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pathbuilder-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>pathbuilder</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns an array of strings representing the containment heirarchy
+(types/classes) that make up the path to the resource from the root
+of the catalog.  This is mostly used for logging purposes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1198
+1199
+1200
+1201
+1202
+1203
+1204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1198</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_pathbuilder identifier id'>pathbuilder</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_p identifier id'>p</span> <span class='assign token'>=</span> <span class='rubyid_parent identifier id'>parent</span>
+    <span class='lbrack token'>[</span><span class='rubyid_p identifier id'>p</span><span class='dot token'>.</span><span class='rubyid_pathbuilder identifier id'>pathbuilder</span><span class='comma token'>,</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_ref identifier id'>ref</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_flatten identifier id'>flatten</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='lbrack token'>[</span><span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_ref identifier id'>ref</span><span class='rbrack token'>]</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="retrieve_resource-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Puppet::Resource</a></span></tt>) <strong>retrieve_resource</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Retrieve the current state of the system as a Puppet::Resource. For
+the base Puppet::Type this does the same thing as #retrieve, but
+specific types are free to implement #retrieve as returning a hash,
+and this will call #retrieve and convert the hash to a resource.
+This is used when determining when syncing a resource.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Puppet::Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A resource representing the current state
+of the system.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1062
+1063
+1064
+1065
+1066</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1062</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_retrieve_resource identifier id'>retrieve_resource</span>
+  <span class='rubyid_resource identifier id'>resource</span> <span class='assign token'>=</span> <span class='rubyid_retrieve identifier id'>retrieve</span>
+  <span class='rubyid_resource identifier id'>resource</span> <span class='assign token'>=</span> <span class='rubyid_Resource constant id'>Resource</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_type identifier id'>type</span><span class='comma token'>,</span> <span class='rubyid_title identifier id'>title</span><span class='comma token'>,</span> <span class='symbol val'>:parameters</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_resource identifier id'>resource</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_resource identifier id'>resource</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span> <span class='rubyid_Hash constant id'>Hash</span>
+  <span class='rubyid_resource identifier id'>resource</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:12 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
