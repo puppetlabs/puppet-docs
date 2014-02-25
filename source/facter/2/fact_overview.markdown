@@ -25,15 +25,58 @@ There are two major categories of facts: flat and structured. **Flat facts** are
 
 {% highlight ruby %}
 	
-	# Interpolating flat facts
-	notify { "This agent node is running $::operatingsystem version $::operatingsystemrelease": }
+				# Interpolating flat facts
+				notify { "This agent node is running $::operatingsystem version $::operatingsystemrelease": }
 
 {% endhighlight %}
 
 Flat facts are great when you have a neat one-to-one mapping between facts and strings, but they're not ideal for examining parts of the system that may have multiple parts. The classic example for this is IP addresses, since a node could have several of them. Earlier versions of Facter generated individual facts with unique suffixes for cases like this, but Facter 2 introduced **structured facts**. Now, all IP addresses are stored in a single fact that's structured like a whatnow?:
 
 
-## Fact Locations
+## Examples
 
+### Facts in Puppet
 
+{% highlight ruby %}
 
+    # Facts are always strings
+    case $::is_virtual {
+     true: { notice "This will never be evaluated because it attempts to match a fact to a boolean." }
+     "true": { notice "But this could be, since we're matching 'true' as a string." }
+    }
+
+{% endhighlight %}
+
+{% highlight ruby %}
+
+    # Pulling out part of a structured fact
+    # No idea how to do this yet
+
+{% endhighlight %}
+
+{% highlight ruby %}
+
+    # Iterating through a structured fact
+    # No idea how to do this yet
+
+{% endhighlight %}
+### Facter on the Command Line
+
+It's not the most common way to use Facter, but the `facter` command-line tool is very useful for quickly checking what the value of a fact is on a particular system. If you run it without any arguments, you'll get a listing of every available fact and its value:
+
+    root@master$ facter
+    architecture => x86_64
+    augeasversion => 1.1.0
+    bios_release_date => 12/01/2006
+    bios_vendor => innotek GmbH
+    bios_version => VirtualBox
+    ...
+    virtual => virtualbox
+
+If you pass facter the name of a fact, it will return only the value for that fact. If the fact is not available on the system, facter will exit silently:
+
+    root@master$ facter not_a_real_fact
+    root@master$ facter is_virtual
+    true
+
+You can get more usage information by running `facter --help`.
