@@ -18,6 +18,7 @@ However, to prevent users from deleting data without notice, the cron job is not
 To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `puppet_console` group after upgrading to PE 3.2.  
 
 To access the `prune_upto` parameter:
+
 1. In the PE console, navigate to the "Groups" page.
 
 2. Select the `puppet_console` group.
