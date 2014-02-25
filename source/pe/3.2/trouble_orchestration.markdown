@@ -25,6 +25,28 @@ If you alter an agent's name in `puppet.conf` or make other changes that affect 
  
  
 
+Accessing the ActiveMQ Console
+----------
+
+In some cases, you may need to access the ActiveMQ console to troubleshoot orchestration messages, which are handled by the `pe-activemq` service. To do this, you will need to enable the ActiveMQ console from within the PE console by editing the `activemq_enable_web_console` parameter of the `pe_mcollective::role::master` class. The ActiveMQ node can be reached from whichever node has the `pe_mcollective::role::master` class. 
+
+To activate the ActiveMQ console:
+
+1. In the PE console, navigate to the "Groups" page.
+
+2. Select the `puppet_master` group.
+
+3. From the `puppet_master` group page, click the "Edit" button.
+
+4. From the class list, select `pe_mcollective::role::master`.
+
+5. From the `pe_mcollective::role::master parameters` dialog, set the `activemq_enable_web_console` parameter to `true`. 
+
+6. Click the "Done" button when finished.
+
+You can access the ActiveMQ console on port 8161.
+
+
 AIX Agents Not Registering with Live Management After 3.0 Upgrade
 -----
 
