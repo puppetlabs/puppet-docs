@@ -59,14 +59,14 @@ Event inspector can use three perspectives to correlate and contextualize inform
 
 For example, if you were concerned about a failed service, say Apache or MongoDB, you could start by looking into failed resources or classes. On the other hand, if you were experiencing a geographic outage, you might start by drilling into failed node events.
 
-Switching between perspectives can help you find the common threads among a group of failures, and follow them to a root cause. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about.
+Switching between perspectives can help you find the common threads among a group of failures, and follow them to a root cause. One way to think about this is to see the node as *where* an event takes place while a class shows *what* was changed, and a resource shows *how* that change came about.
 
 Summary View: Monitoring Infrastructure
 -----
 
 When event inspector first loads, the left pane contains the **summary view.** This list is an overview of recent Puppet activity across your whole infrastructure, and can help you rapidly assess the magnitude of any issues.
 
-The summary view is split into three sub-lists, with one for each perspective (classes, nodes, and resources). Each sub-list shows the number of events for that perspective, both as per-event-type counts and as bar graphs which measure against the total event count from that perspective. (For example, if four classes have events, and two of those classes have events that are failures, the "Clases with events" bar graph will be at 50%.)
+The summary view is split into three sub-lists, with one for each perspective (classes, nodes, and resources). Each sub-list shows the number of events for that perspective, both as per-event-type counts and as bar graphs which measure against the total event count from that perspective. (For example, if four classes have events, and two of those classes have events that are failures, the "Classes with events" bar graph will be at 50%.)
 
 You can click any item in the sub-lists (classes with failures, nodes with events, etc.) to load more specific info into the detail pane and begin looking for the causes of notable events. Until an item is selected, the right pane defaults to showing classes with failures.
 
@@ -78,7 +78,7 @@ You can click any item in the sub-lists (classes with failures, nodes with event
 Analyzing Changes and Failures
 -----
 
-Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place, while a class shows *what* was changed and a resource shows *how* that change came about. To see how this works in a practical sense, let's work through an example.
+Once the summary view has brought a group of events to your attention, you can use event inspector to analyze their root causes.  Event inspector groups events into types based on their role in Puppet’s configuration code. Instead of taking a node-centric perspective on a deployment, event inspector takes a more holistic approach by adding the class and resource views. One way to think about this is to see the node as *where* an event takes place while a class shows *what* was changed, and a resource shows *how* that change came about. To see how this works in a practical sense, let's work through an example.
 
 Assume you are a sysadmin and Puppet developer for a large web commerce enterprise. While you were in a meeting, your team started rolling out a new deployment of web servers. In the summary pane's default initial classes view, you note that a failure has been logged for the `Testweb` class that you use for test configurations on new web server instances.
 
@@ -100,7 +100,7 @@ You bookmark this page and email the link to your team so they can see the speci
 
 ![Failed Resource Detail view][resource-detail]
 
-You now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you need help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/geppetto.html), an IDE that can help diagnose puppet code issues. You'll probably also be having a word with your colleagues regarding the importance of remembering the target OS when working on a module!
+You now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you need help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/4.0/index.html), an IDE that can help diagnose puppet code issues. You'll probably also be having a word with your colleagues regarding the importance of remembering the target OS when working on a module!
 
 Tips & Issues
 -----
@@ -115,7 +115,7 @@ If a run encounters a catastrophic failure where an error prevents a catalog fro
 
 #### Time Sync is Important
 
-Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them. The [PE Deployment Guide](/guides/deployment_guide/dg_define_infrastructure.html#thing-one-ntp) can walk you through one, simple method of NTP automation.
+Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them. The [PE Deployment Guide](/guides/deployment_guide/dg_define_infrastructure.html#thing-one-ntp) can walk you through one simple method of NTP automation.
 
 #### Scheduled Resources Log Skips
 
