@@ -13,9 +13,9 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 
 On platforms that support remote package repos, installing agents can now be done via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
 
-#### Puppet Labs Supported Modules
+#### Puppet Enterprise Supported Modules
 
-PE 3.2 introduces Puppet Labs supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
+PE 3.2 introduces Puppet Enterprise supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
 
 * rigorously tested with PE
 * supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support)
