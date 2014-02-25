@@ -228,8 +228,20 @@ Type the name of the class parameter in the "Add a parameter" field, then type a
 
 Instead of a "Reset to default" control, the list of manually-added parameters includes "Delete" links for each parameter, which will remove the parameter and its value.
 
-Remember to **click the "Done" button** to exit the dialog, and **click the "Update" button** on the node edit page to save your changes.
+Remember to **click the "Done" button** to exit the dialog, and then **click the "Update" button** on the node edit page to save your changes.
 
+
+#### Supported Data Types
+
+Class parameters support the following data types:
+
+    * Strings (e.g., "centos" or centos)
+    * Booleans (e.g., true or false)
+    * Numbers (e.g., 123)
+    * Hashes (e.g., `{'a'=>1}`
+    * Arrays (e.g., [1,2.3]
+    
+Any data type not recognized as a boolean, number, hash or array will be treated as a string.
 
 ### Editing Groups on Nodes
 
