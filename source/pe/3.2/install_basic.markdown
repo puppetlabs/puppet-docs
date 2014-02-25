@@ -178,7 +178,7 @@ If you choose to use a database server separate from the PuppetDB server, you mu
 
 ### The Console Role
 
-This role should be installed on **one node.** It should usually run on its own dedicated server, but it can run on the same server as the puppet master. The console server can:
+This role should be installed on **one node.** It should usually run on its own dedicated server, but it can run on the same server as the puppet master if that server is also running the database support role. The console server can:
 
 * Serve the console web interface, which enables administrators to directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, and invoke orchestration actions.
 * Collect reports from and serve node information to the puppet master.
