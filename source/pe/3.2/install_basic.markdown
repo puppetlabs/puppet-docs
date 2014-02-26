@@ -354,6 +354,7 @@ Note that if install.bash can't find agent packages corresponding to the agent's
 Once the agent has been installed on the target node, it can be configured using [`puppet config set`](../../puppet/3/reference/config_print_and_set.html). See [Configuring Agents](#Configuring-Agents) below. 
 
 > #### Platform Specific Install Script
+>
 > The `install.bash` script actually uses a secondary script to retrieve and install an agent package repo once it has detected the platform on which it is running. You can use this secondary script if you want to manually specify the platform of the agent packages. You can also use this script as an example or as the basis for your own custom scripts.
 > The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. Platform names are the same as those used for the PE tarballs: 
 >
