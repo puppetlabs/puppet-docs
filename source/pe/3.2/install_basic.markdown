@@ -354,7 +354,7 @@ You can use this same method for any supported OS and architecture by creating a
     ubuntu-{10.04,12.04}-{i386,amd64}
     sles-11-{i386,x86_64}
     
-Once the agent has been installed on the target node, it can be configured using `puppet config set`. See [Configuring Agents](#Configuring-Agents) below. 
+Once the agent has been installed on the target node, it can be configured using [`puppet config set`](../../puppet/3/reference/config_print_and_set.html). See [Configuring Agents](#Configuring-Agents) below. 
 
 #### Example Script Usage
 
@@ -369,7 +369,7 @@ Now you can SSH into the node where you want to install the agent and run `curl 
 
 ### Configuring Agents
 
-Once the agent is installed it can be configured (pointed to the correct master, assigned a certname, etc.) by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the [`puppet config set` sub-command](TODO: link) which will edit `puppet.conf` automatically.  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
+Once the agent is installed it can be configured (pointed to the correct master, assigned a certname, etc.) by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the [`puppet config set` sub-command](../../puppet/3/reference/config_print_and_set.html) which will edit `puppet.conf` automatically.  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
 
 ### Signing Agent Certificates
 
