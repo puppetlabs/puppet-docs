@@ -18,7 +18,7 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### PE 3.2.0 [TODO: date]
+### PE 3.2.0 (3/4/13)
 
 #### Simplified Agent Install
 
@@ -78,6 +78,25 @@ Several of the “under the hood” constituent parts of Puppet Enterprise have 
 * MCollective 2.2.4
 * Hiera 1.3.0.
 * Dashboard 2.1.0
+
+#### Security Fixes
+
+[*CVE-2014-0082 ActionView vulnerability in Ruby on Rails*](http://puppetlabs.com/security/cve/cve-2014-0082)
+
+Assessed Risk Level: medium. The text rendering component of ActionView is vulnerable to denial of service attacks. Strings in specially crafted headers are converted to symbols, but since the symbols are not removed by ruby's garbage collector, they can outgrow the heap and bring down the rails process. This has been fixed in PE 3.2.
+
+[*CVE-2014-0060 PostgreSQL security bypass vulnerability*](http://puppetlabs.com/security/cve/cve-2014-0060)
+
+Assessed Risk Level: medium. PostgreSQL did not properly enforce the WITH ADMIN OPTION permission for role management, which allowed any member of a role the ability to grant others access to the same role regardless if the member was given the WITH ADMIN OPTION permission. This is fixed in PE 3.2.
+
+[*CVE-2013-4966 Master external node classification script vulnerable to console impersonation*](http://puppetlabs.com/security/cve/cve-2013-4966)
+
+Assessed Risk Level: medium. The script that the PE master uses to contact the PE console for node classification does not verify the identity of the console. This introduces a vulnerability in which an attacker can impersonate the console and can submit malicious classification to the master.
+
+[*CVE-2013-4971 Unathenticated read access to node endpoints could cause information leakage*](http://puppetlabs.com/security/cve/cve-2013-4971)
+
+Assessed Risk Level: medium. Unauthenticated read access to the node endpoint in the console could result in information leakage in PE versions earlier than 3.2. This is resolved in PE 3.2.
+
                
 Known Issues
 -----
