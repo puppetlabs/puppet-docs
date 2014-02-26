@@ -337,7 +337,7 @@ If you are using a supported OS that is capable of using remote package repos, t
 
 If you are currently using a tool like Satellite, Spacewalk, etc. to manage packages, you just need to add the agent packages to the appropriate repo, configure your package manager (yum, apt,) to point at that repo, and then install the packages as you would any other. You can find agent packages (that correspond to the master's OS/architecture) in `/opt/puppet/packages/public`. In that directory you will find  `<installed version of PE & platform>-agent/agent_packages` directory which in turn contains a directory with all the packages needed to install an agent and a json file listing the versions of those packages.
 
-For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
+For nodes running an OS and/or architecture different than the master, simply [download the appropriate agent tarball](TODO: link). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
 Once the agent has been installed on the target node, it can be configured using `puppet config set`. See [Configuring Agents](#Configuring-Agents) below. 
 
@@ -345,26 +345,28 @@ Once the agent has been installed on the target node, it can be configured using
 
 If your infrastructure does not currently host a package repository, PE also hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created by the installer script during installation of the master. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
 
-Once installed, the master also includes an agent installation script that can be used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. When you run it on your selected agent (for example, by using `curl`), the script will set up an apt (or yum, or zypper) repo that refers back to the master, install the `pe-agent` packages, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
+You can also add repos for any PE supported OS and architecture by creating a new repository for that platform. This is done by adding a new class to your master, `pe_repo::platform::<platform>` for each platform you'll be running an agent on. Simply [classify the master](./console_classes_groups.html#classes) using the desired platform and on the next puppet run the new repo will be created and populated with the appropriate agent packages for that platform. 
 
-You can use this same method for any supported OS and architecture by creating a new repository for that platform. For each platform, there is a corresponding class (`pe_repo::platform::<platform>`) you can add to your master in order to create a repo for that platform. Simply [classify the master](./console_classes_groups.html#classes) using the desired platform and on the next puppet run the new repo will be created and populated with the appropriate agent packages. Platform names are the same as those used for the PE tarballs: 
+Once installed, the master also includes an agent installation script that can be used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/install.bash`. When you run it on your selected agent (for example, by using `curl`), the script will detect the OS on which it is running, set up an apt (or yum, or zypper) repo that refers back to the master, pull down and install the `pe-agent` packages, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`. 
 
-    el-{5,6}-{i386,x86_64}
-    debian-{6,7}-{i386,amd64}
-    ubuntu-{10.04,12.04}-{i386,amd64}
-    sles-11-{i386,x86_64}
-    
+Note that if install.bash can't find agent packages corresponding to the agent's platform it will fail with an error message telling you which `pe_repo` class needs to get added to the master.
+
 Once the agent has been installed on the target node, it can be configured using [`puppet config set`](../../puppet/3/reference/config_print_and_set.html). See [Configuring Agents](#Configuring-Agents) below. 
+
+> #### Platform Specific Install Script
+> The `install.bash` script actually uses a secondary script to retrieve and install an agent package repo once it has detected the platform on which it is running. You can use this secondary script if you want to manually specify the platform of the agent packages. You can also use this script as an example or as the basis for your own custom scripts.
+> The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. Platform names are the same as those used for the PE tarballs: 
+>
+ >   el-{5,6}-{i386,x86_64}
+ >   debian-{6,7}-{i386,amd64}
+ >   ubuntu-{10.04,12.04}-{i386,amd64}
+ >   sles-11-{i386,x86_64}
 
 #### Example Script Usage
 
-Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware. Start by going to the console and adding the `pe_repo::platform::debian_6_amd64` class. Add the class to your master node and kick off a puppet run with live management. 
+Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware. Start by going to the console and adding the `pe_repo::platform::debian_6_amd64` class. Next, kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`. 
 
-The class will create a new package in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`. 
-
-Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/debian-6-amd64.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
-
-(TODO: get the correct, auto-detecting, Razor team's script in here.)
+Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`. The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since puppet and its SSL infrastructure have not yet been set up on the node. The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
 
 
 ### Configuring Agents
