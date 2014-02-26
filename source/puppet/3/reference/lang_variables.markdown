@@ -22,7 +22,8 @@ canonical: "/puppet/latest/reference/lang_variables.html"
 [customfacts]: /guides/custom_facts.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [enc]: /guides/external_nodes.html
-
+[noop]: /references/3.stable/configuration.html#noop
+[certname]: /references/3.stable/configuration.html#certname
 
 Syntax
 -----
@@ -189,8 +190,9 @@ The `trusted_node_data` setting defaults to `false` in Puppet 3.x; it will defau
 
 Puppet agent (and puppet apply) sets several additional variables for a node which are available when compiling that node's catalog:
 
-* `$clientcert` --- the value of the node's certname setting.
+* `$clientcert` --- the value of the node's [`certname` setting][certname].
 * `$clientversion` --- the current version of puppet agent.
+* `$clientnoop` --- available in Puppet 3.3.0 (Puppet Enterprise 3.1) and later. The value of the node's [`noop` setting][noop] (true or false) at the time of the run.
 
 These variables are self-reported, so they shouldn't be used to decide whether a node receives sensitive data in its catalog. For that, see the `$trusted['certname']` variable above.
 

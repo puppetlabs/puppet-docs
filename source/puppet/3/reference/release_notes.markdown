@@ -511,6 +511,10 @@ The allowed values for this setting are `title-hash`, `manifest`, and `random`:
 
 Regardless of this setting's value, Puppet will always obey explicit dependencies set with the before/require/notify/subscribe metaparameters and the `->`/`~>` chaining arrows; this setting only affects the relative ordering of _unrelated_ resources.
 
+### New `$clientnoop` Variable
+
+Along with the `$clientcert` and `$clientversion` variables (see [agent-set variables](./lang_variables.html#agent-set-variables)), the puppet agent will also provide a `$clientnoop` variable containing the current value of the [`noop` setting](/references/3.stable/configuration.html#noop).
+
 ### Data in Modules
 
 [(Issue 16856: puppet should support data in modules)][16856]
