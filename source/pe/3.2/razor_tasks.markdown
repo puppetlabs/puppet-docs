@@ -20,7 +20,7 @@ setting `task_path` determines where in the file system Razor looks
 for tasks and can be a colon-separated list of paths. Relative paths
 in that list are taken to be relative to the top-level Razor directory. For
 example, setting `task_path` to
-`/usr/local/razor/tasks:/home/me/task:tasks` will make
+`/opt/puppet/share/razor-server/tasks:/home/me/task:tasks` will make
 Razor search these three directories in that order for tasks.
 
 ## Task Metadata

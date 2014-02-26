@@ -26,7 +26,7 @@ The following navigation items all lead to their respective **sections** of the 
 
 The navigation item containing your **username** ("admin," in the screenshot above) is a menu which provides access to your account information and (for admin users) [the user management tools](./console_auth.html).
 
-The **help** menu leads to the Puppet Enterprise documentation.
+The **Resources** menu leads to the Puppet Enterprise documentation and also provides links to the Puppet Forge, Geppetto IDE documentation, and Puppet Labs Support and Feedback portals.
 
 The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. See below for more information on working with licenses.
 

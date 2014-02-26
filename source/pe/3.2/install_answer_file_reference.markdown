@@ -111,6 +111,7 @@ These answers are generally needed if you are installing the puppet master role.
   * the IP address of the client
   * the type and version of the client's OS
   * the installed version of PE
+  * the number of nodes licensed and the number of nodes used
 
   If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
 

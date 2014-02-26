@@ -244,7 +244,7 @@ For more information about writing classes, refer to the following documentation
 
 ![Change Event Summary][event_change_summary-node]
 
-For example, if you click "Nodes... With Changes", you can see that two nodes, agent1.example.com and master.example.com, had successful changes to resources. Two resources were changed on master (specifically, the crontab and passwd files in `/etc/`).  If you drill down further by clicking on one of the changes, you can see the specifics of the change event. Under "Event location" you can see which manifest generated the change, down to the specific line number where the setting is defined. 
+For example, if you click "Nodes... With Changes", you can see that two nodes, "sles11a" and "puppet", had successful changes to resources. Two resources were changed on master ("puppet"), specifically, the crontab and passwd files in `/etc/`.  If you drill down further by clicking on one of the changes, you can see the specifics of the change event. Under "Event location" you can see which manifest generated the change, down to the specific line number where the setting is defined. 
 
 ![Details of the Change Event][change_event_detail]
 

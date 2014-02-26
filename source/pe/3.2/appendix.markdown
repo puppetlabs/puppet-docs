@@ -24,9 +24,9 @@ Release Notes
 
 On platforms that support remote package repos, installing PE agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
 
-#### Puppet Labs Supported Modules
+#### Puppet Enterprise Supported Modules
 
-PE 3.2 introduces Puppet Labs supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
+PE 3.2 introduces PE supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
 
 * rigorously tested with PE
 * supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)
@@ -211,6 +211,8 @@ You can avoid the reappearance of nodes by removing them with the following proc
 1. `sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node_certname>]`
 
 These steps will remove the node's certificate, purge information about the node from PuppetDB, and delete the node from the console. The last command is equivalent to logging into the console and deleting the node via the UI.
+
+For instructions on completely deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html).
 
 ### Errors Related to Stopping `pe-postresql` Service
 
