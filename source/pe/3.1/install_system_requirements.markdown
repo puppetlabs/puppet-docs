@@ -208,7 +208,7 @@ The PE AIX implementation supports the NIM, BFF, and RPM package providers. Chec
 Solaris support is agent only. The following packages are required:
 
   * SUNWgccruntime
-  * libgcc_s.so.1
+  * SUNWzlib
   * In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
 
 
