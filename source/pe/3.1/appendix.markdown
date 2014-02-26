@@ -157,6 +157,14 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
+### Puppet Enterprise 3.1.2 and 3.1.3 are not functional on Solaris 10 x86
+
+Due to a misconfiguration in our Solaris 10 x86 build infrastructure, libraries were compiled to link against incorrect dependencies, which would not always be present on user systems. This rendered the PE installation unusable in PE 3.1.2 and 3.1.3. Until then, we recommend users with Solaris 10 x86 nodes continue running PE 3.1.1 on those nodes, in the interim. It is safe to upgrade masters, and other non-Solaris 10 x86 nodes to PE 3.1.3.
+
+This will be resolved in the next release of Puppet Enterprise.
+
+Solaris 10 SPARC systems are not affected by this issue.
+
 ### Creating Node Names with Upper-case Letters Fails
 
 If you try to create a node  with upper-case letters in its name, the creation will fail and raise an "Oops, something went wrong error! Error: Internal Server Error" message. This is due to the fact that when you create a node, the name is automatically converted to downcase before the node is stored, but nodes_controller searches for your new node using the specific name you gave it. Upper-case letters can break this process. 
