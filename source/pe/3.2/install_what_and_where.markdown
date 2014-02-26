@@ -126,6 +126,8 @@ These files may or may not be present.
 
 ## Puppet Enterprise Components
 
+Visit the overview [about Puppet Enterprise](./overview_about_pe.html#about-puppet-enterprise) for a list of all the Puppet Labs technologies and their release versions that are included with PE 3.2.
+
 ### Tools
 
 Puppet Enterprise installs several suites of command line tools to help you work with the major components of the software. These include:

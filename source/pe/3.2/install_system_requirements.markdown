@@ -222,8 +222,9 @@ For Solaris 11 the following packages are required:
 
 These packages are available in the Oracle Solaris release repository (enabled by default on Solaris 11). The PE installer will automatically install them; however, if the release repository is not enabled, the packages will need to be installed manually.
 
-#### Next Steps
+* * *
 
+Next Steps
 
 * To install Puppet Enterprise on \*nix nodes, continue to [Installing Puppet Enterprise](./install_basic.html).
 * To install Puppet Enterprise on Windows nodes, continue to [Installing Windows Agents](./install_windows.html).
