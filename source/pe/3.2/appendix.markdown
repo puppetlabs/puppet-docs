@@ -50,13 +50,13 @@ Visit the [Supported Modules page](TODO: link) to learn more. You can also check
 
 #### Razor Provisioning Tech Preview
 
-PE 3.2 offers a preview of new, bare-metal provisioning capabilities using Razor technology. 
+PE 3.2 offers a preview of new, bare-metal provisioning capabilities using Razor technology.
 
 Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
 
 *Note*: This is a Tech Preview release of Razor. For more information, see the see the [Puppet Labs Tech Previews Info Page](TODO: link).
 
-#### Puppet Agent with Non-Root Privileges 
+#### Puppet Agent with Non-Root Privileges
 
 In some situations, it may be desirable for a development team to manage their infrastructure on nodes in which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](./guides/nonroot_agent.html).
 
@@ -97,7 +97,7 @@ Assessed Risk Level: medium. The script that the PE master used to contact the P
 
 Assessed Risk Level: medium. Unauthenticated read access to the node endpoint in the console could result in information leakage in PE versions earlier than 3.2.
 
-               
+
 Known Issues
 -----
 
@@ -113,9 +113,9 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Safari Certificate Handling May Prevent Console Access for PE 3.2
 
-Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.2 users avoid using Safari to access the PE console. 
+Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.2 users avoid using Safari to access the PE console.
 
-If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.2: 
+If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.2:
 
 ![Safari Certificate Dialog][client_cert_dialog]
 
@@ -130,6 +130,10 @@ When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a w
 ### `Puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 
 In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](http://docs.puppetlabs.com/puppetdb/1.5/connect_puppet_apply.html).
+
+### Puppet Agent on Windows Requires `--onetime`
+
+On Windows systems, puppet agent runs started locally from the command line require either the `--onetime` or `--test` option to be set. This is due to Puppet bug [PUP-1275](https://tickets.puppetlabs.com/browse/PUP-1275).
 
 ### BEAST Attack Mitigation
 
@@ -194,7 +198,7 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 ### After Upgrading, Nodes Report a "Not a PE Agent" Error
 
 When doing the first puppet run after upgrading using the "upgrader" script included in PE tarballs, agents are reporting an error: "&lt;node.name&gt; is not a Puppet Enterprise agent." This was caused by a bug in the upgrader that has since been fixed. If you downloaded a tarball prior to November 28, 2012, simply download the tarball again to get the fixed upgrader. If you prefer, you can download the [latest upgrader module](http://forge.puppetlabs.com/adrien/pe_upgrade/0.4.0-rc1) from the Forge. Alternatively, you can fix it by changing `/etc/puppetlabs/facter/facts.d/is_pe.txt`  to contain: `is_pe=true`.
- 
+
 ### Answer File Required for Some SMTP servers.
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
@@ -239,13 +243,13 @@ If for any reason the `pe-postresql` service is stopped, agents will receive sev
 
     Warning: Unable to fetch my node definition, but the agent run will continue:
     Warning: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
-    
+
 or, when attempting to request a catalog:
 
     Error: Could not retrieve catalog from remote server: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
     Warning: Not using cache on failed catalog
     Error: Could not retrieve catalog; skipping run
-    
+
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
