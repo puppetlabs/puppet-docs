@@ -123,6 +123,19 @@ If you are presented with this dialog box, click "Cancel" to access the console.
 
 This issue will be fixed in a future release.
 
+### `puppet module list --tree` Doesn't Work Without `metadata.json`
+
+If you run `puppet module generate <module name>` or manually create a module directory on the PE module path (`/etc/puppetlabs/puppet/module`) you will get a module structure that does not include `metadata.json`, which is required to run `puppet module list --tree`. 
+
+Running the `--tree` command in this situation will generate the following error:
+
+	Error: undefined method 'tr' for nil:NilClass
+	Error: Try 'puppet help module list' for usage
+
+If using the `--tree` command is necessary, a suggested workaround is to run `puppet module generate <module name>` and then `puppet module build <module name>` from a different location, which will generate `metadata.json`. You can then move the module to the PE module path and use `puppet module list --tree` as normal.  
+
+This will be fixed in a future release.
+
 ### Passenger Global Queue Error on Upgrade
 
 When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
