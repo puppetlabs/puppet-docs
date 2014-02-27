@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Facter 1.7: Core Facts"
-nav: facter17.html
 ---
 
 ## Summary
@@ -1219,7 +1218,7 @@ Parses the output of `dmidecode`.
 
 **Caveats:**
 
-Only available on some versions of Linux, including RHEL/CentOS. 
+Only available on some versions of Linux, including RHEL/CentOS.
 
 ([↑ Back to top](#page-nav))
 

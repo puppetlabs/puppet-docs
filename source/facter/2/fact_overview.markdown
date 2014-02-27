@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Overview of Facter Facts"
-nav: facter2.html
 ---
 
 Overview of Facts in Facter
@@ -24,7 +23,7 @@ Facts are always strings. That includes facts like `$operatingsystemrelease` and
 There are two major categories of facts: flat and structured. **Flat facts** are those that return a single string corresponding to one piece of data, like all of the examples above. All facts were flat prior to Facter 2, and most core facts still are. You can refer to them in puppet manifests just like any other string variable:
 
 {% highlight ruby %}
-	
+
 				# Interpolating flat facts
 				notify { "This agent node is running $::operatingsystem version $::operatingsystemrelease": }
 

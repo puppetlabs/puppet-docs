@@ -2,7 +2,6 @@
 layout: default
 title: Facter 1.6 Release Notes
 description: Facter release notes for all 1.6 versions
-nav: facter16.html
 ---
 
 This page documents the history of the Facter 1.6 series.

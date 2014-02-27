@@ -2,7 +2,6 @@
 layout: default
 title: Facter 2.0 Release Notes
 description: Facter release notes for all 2.0 versions
-nav: facter2.html
 ---
 
 This page documents the history of the Facter 2.0 series.
@@ -100,4 +99,4 @@ One of the possible resolutions for the `macaddress` fact would incorrectly retu
 
 [FACT-326: Facter 2 throws NameError using uninitialized constant](https://tickets.puppetlabs.com/browse/FACT-326)
 
-This bug caused facter to throw a NameError during acceptance tests due to an uninitialized constant. The bug has been fixed. 
+This bug caused facter to throw a NameError during acceptance tests due to an uninitialized constant. The bug has been fixed.

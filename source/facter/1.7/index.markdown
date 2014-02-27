@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Facter 1.7 Documentation"
-nav: facter17.html
 ---
 
 Facter is Puppet's cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables.

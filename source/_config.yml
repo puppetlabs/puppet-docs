@@ -4,6 +4,9 @@ markdown: kramdown
 include: _index.html
 defaultnav:
   /: fallback_nav.html
+  /facter/1.6: facter16.html
+  /facter/1.7: facter17.html
+  /facter/2: facter2.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
   /pe/3.1: pe31.html

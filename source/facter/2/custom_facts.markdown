@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Custom Facts
-nav: facter2.html
 ---
 
 Custom Facts
