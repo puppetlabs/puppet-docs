@@ -83,19 +83,19 @@ Several of the “under the hood” constituent parts of Puppet Enterprise have 
 
 [*CVE-2014-0082 ActionView vulnerability in Ruby on Rails*](http://puppetlabs.com/security/cve/cve-2014-0082)
 
-Assessed Risk Level: medium. The text rendering component of ActionView is vulnerable to denial of service attacks. Strings in specially crafted headers are converted to symbols, but since the symbols are not removed by ruby's garbage collector, they can outgrow the heap and bring down the rails process. This has been fixed in PE 3.2.
+Assessed Risk Level: medium. The text rendering component of ActionView is vulnerable to denial of service attacks. Strings in specially crafted headers are converted to symbols, but since the symbols are not removed by ruby's garbage collector, they can outgrow the heap and bring down the rails process. For more information, please visit the [ruby security Google group](https://groups.google.com/forum/#!topic/ruby-security-ann/ZaQ0-g1gUpc).
 
 [*CVE-2014-0060 PostgreSQL security bypass vulnerability*](http://puppetlabs.com/security/cve/cve-2014-0060)
 
-Assessed Risk Level: medium. PostgreSQL did not properly enforce the WITH ADMIN OPTION permission for role management, which allowed any member of a role the ability to grant others access to the same role regardless if the member was given the WITH ADMIN OPTION permission. This is fixed in PE 3.2.
+Assessed Risk Level: medium. PostgreSQL did not properly enforce the `WITH ADMIN OPTION` permission for role management, which allowed any member of a role the ability to grant others access to the same role regardless if the member was given the `WITH ADMIN OPTION` permission. For complete details, please see the ["SET ROLE bypasses lack of ADMIN OPTION" entry on the PostgreSQL wiki](http://wiki.postgresql.org/wiki/20140220securityrelease)
 
 [*CVE-2013-4966 Master external node classification script vulnerable to console impersonation*](http://puppetlabs.com/security/cve/cve-2013-4966)
 
-Assessed Risk Level: medium. The script that the PE master uses to contact the PE console for node classification does not verify the identity of the console. This introduces a vulnerability in which an attacker can impersonate the console and can submit malicious classification to the master.
+Assessed Risk Level: medium. The script that the PE master used to contact the PE console for node classification did not verify the identity of the console. This introduced a vulnerability in which an attacker could impersonate the console and submit malicious classification to the master.
 
 [*CVE-2013-4971 Unathenticated read access to node endpoints could cause information leakage*](http://puppetlabs.com/security/cve/cve-2013-4971)
 
-Assessed Risk Level: medium. Unauthenticated read access to the node endpoint in the console could result in information leakage in PE versions earlier than 3.2. This is resolved in PE 3.2.
+Assessed Risk Level: medium. Unauthenticated read access to the node endpoint in the console could result in information leakage in PE versions earlier than 3.2.
 
                
 Known Issues
