@@ -6,10 +6,12 @@ description: Facter release notes for all 2.0 versions
 
 This page documents the history of the Facter 2.0 series.
 
-Facter 2.0.0
+Facter 2.0.1
 -----
 
-Facter 2.0.0 is a major release in the Facter series.
+**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC 1 on February 27, 2014.
+
+Facter 2.0.1 is the first release in the Facter 2 series. (See the [note below](#facter-200) about Facter 2.0.0.)
 
 ### Features
 
@@ -100,3 +102,13 @@ One of the possible resolutions for the `macaddress` fact would incorrectly retu
 [FACT-326: Facter 2 throws NameError using uninitialized constant](https://tickets.puppetlabs.com/browse/FACT-326)
 
 This bug caused facter to throw a NameError during acceptance tests due to an uninitialized constant. The bug has been fixed.
+
+
+Facter 2.0.0
+-----
+
+For historical reasons, Facter 2.0.0 was never released. Facter 2.0.1 is the first release in the Facter 2 series.
+
+In May 2012, several release candidates were published for a Facter 2.0.0 release, using code that had diverged from the 1.6 series. After testing it, the Puppet community and developers decided that this code wasn't yet usable and the release was cancelled, in favor of continuing work that became the Facter 1.7 series.
+
+Since the 2.0.0rc1 tag in the Facter repo was already occupied by that cancelled release, and since issuing a RC5 out of nowhere might have been confusing, we decided to go directly to 2.0.1 instead.
