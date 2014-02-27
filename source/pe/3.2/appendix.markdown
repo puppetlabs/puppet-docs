@@ -136,6 +136,10 @@ If using the `--tree` command is necessary, a suggested workaround is to run `pu
 
 This will be fixed in a future release.
 
+### `puppet module list --tree` Shows Incorrect Dependencies after Uninstalling Modules
+
+If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. Be sure to check module dependencies before uninstalling modules.
+
 ### Passenger Global Queue Error on Upgrade
 
 When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
