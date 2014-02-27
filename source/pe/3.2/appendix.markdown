@@ -138,7 +138,7 @@ This will be fixed in a future release.
 
 ### `puppet module list --tree` Shows Incorrect Dependencies after Uninstalling Modules
 
-If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. Be sure to check module dependencies before uninstalling modules.
+If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. 
 
 ### Passenger Global Queue Error on Upgrade
 
