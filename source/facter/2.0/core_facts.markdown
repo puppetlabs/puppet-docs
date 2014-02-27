@@ -5,7 +5,7 @@ title: "Facter 2.0: Core Facts"
 
 ## Summary
 
-This is a list of all of the built-in facts that ship with Facter 2.0.x. Not all of them apply to every system, and your site may use many [custom facts](/facter/2/custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
+This is a list of all of the built-in facts that ship with Facter 2.0.x. Not all of them apply to every system, and your site may use many [custom facts](./custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 
 Facts appear in Puppet as normal top-scope variables. This means you can access any fact for a node in your manifests with `$<fact name>`. (E.g. `$osfamily`, `$memorysize`, etc.)
 
