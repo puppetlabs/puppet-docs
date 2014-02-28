@@ -29,7 +29,7 @@ From time to time, you may need to completely deactivate an agent node in your P
 
    Alternatively, you can also run the following rake command:
 
-  `/opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node name>]`
+ 	 /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node name>]
 
    This action does **NOT** disable MCollective/live management on the node. 
 
@@ -37,4 +37,4 @@ From time to time, you may need to completely deactivate an agent node in your P
 
 6. To disable MCollective/live management on the node, [uninstall the puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
 
-  > **Important**: You should also manually remove the node certificates in `/etc/pupuppetlabs/mcollective/ssl/clients`. 
+7. You should also manually remove the node certificates in `/etc/pupuppetlabs/mcollective/ssl/clients`. 
