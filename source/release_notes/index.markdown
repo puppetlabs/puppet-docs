@@ -8,12 +8,14 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ## Puppet Open Source
 
-### Current Release
-- [Puppet 3][3.x]
+### Current Releases
+
+- [Puppet 3.5][3.5]
 
 <!-- ### Maintenance and Security Branches -->
 
 ### Unsupported Releases
+- [Puppet 3.0 through 3.4][3.x]
 - [Puppet 2.7][]
 - [Puppet 2.6][]
 - [Puppet 0.25][]
@@ -57,6 +59,7 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 
 
 [semver]: http://semver.org
+[3.5]: /puppet/3.5/reference/release_notes.html
 [3.x]: /puppet/3/reference/release_notes.html
 [pe3.1]: /pe/3.1/appendix.html#release-notes
 [pe2.8]: /pe/2.8/appendix.html#release-notes

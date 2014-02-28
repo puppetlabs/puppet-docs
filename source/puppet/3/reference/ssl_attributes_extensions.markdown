@@ -5,8 +5,8 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 ---
 
 [cert_request]: ./subsystem_agent_master_comm.html#check-for-keys-and-certificates
-[csr_attributes]: /references/3.stable/configuration.html#csrattributes
-[confdir]: /references/3.stable/configuration.html#confdir
+[csr_attributes]: /references/3.latest/configuration.html#csrattributes
+[confdir]: /references/3.latest/configuration.html#confdir
 [autosign_policy]: ./ssl_autosign.html#policy-based-autosigning
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
@@ -52,7 +52,7 @@ The `csr_attributes` file must be a YAML hash containing one or both of the foll
 * `custom_attributes`
 * `extension_requests`
 
-The value of each key must also be a hash, where:
+The value of either key must also be a hash, where:
 
 * Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier) --- [Puppet-specific OIDs][puppet_oids] may optionally be referenced by short name instead of by numeric ID.
 * Each value is an object that can be cast to a string (that is, numbers are allowed but arrays are not).
