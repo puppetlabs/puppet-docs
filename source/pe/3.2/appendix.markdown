@@ -18,7 +18,7 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### PE 3.2.0 [TODO: date]
+### PE 3.2.0 (3/4/2014)
 
 #### Simplified Agent Install
 
@@ -26,14 +26,14 @@ On platforms that support remote package repos, installing PE agents can now be 
 
 #### Puppet Enterprise Supported Modules
 
-PE 3.2 introduces PE supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. Supported modules are
+PE 3.2 introduces PE supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
 
 * rigorously tested with PE
 * supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)
 * maintained for a long-term lifecycle
 * compatible with multiple platforms and architectures.
 
-Visit the [Supported Modules page](TODO: link) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [Concat][pe-concat].
+Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [Concat][pe-concat].
 
 [pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
 [pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
@@ -50,11 +50,11 @@ Visit the [Supported Modules page](TODO: link) to learn more. You can also check
 
 #### Razor Provisioning Tech Preview
 
-PE 3.2 offers a preview of new, bare-metal provisioning capabilities using Razor technology. 
+PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. 
 
 Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
 
-*Note*: This is a Tech Preview release of Razor. For more information, see the see the [Puppet Labs Tech Previews Info Page](TODO: link).
+*Note*: This is a tech preview release of Razor. For more information, see the see the [Puppet Labs Tech Previews Info Page](http://puppetlabs.com/services/tech-preview).
 
 #### Puppet Agent with Non-Root Privileges 
 
