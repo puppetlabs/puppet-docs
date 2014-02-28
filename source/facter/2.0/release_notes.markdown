@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Facter 2.0 Release Notes
+title: Facter 2.0: Release Notes
 description: Facter release notes for all 2.0 versions
 ---
 

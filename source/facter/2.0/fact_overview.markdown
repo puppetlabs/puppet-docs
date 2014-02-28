@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Overview of Facter Facts"
+title: "Facter 2.0: Overview of Facter Facts"
 ---
 
 Overview of Facts in Facter
