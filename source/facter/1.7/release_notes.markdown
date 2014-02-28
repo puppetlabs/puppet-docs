@@ -2,7 +2,6 @@
 layout: default
 title: Facter 1.7 Release Notes
 description: Facter release notes for all 1.7 versions
-nav: facter17.html
 ---
 
 This page documents the history of the Facter 1.7 series.
@@ -20,7 +19,7 @@ Facter now supports RHEL 7, although it is currently limited to x86_64.<!-- RE-8
 
 **Facter DMG packages on OSX will attempt to load Facter from rbenv PATH and fail**
 
-The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`. <!-- RE-828 --> 
+The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`. <!-- RE-828 -->
 
 [FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
 
