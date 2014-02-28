@@ -50,18 +50,18 @@ Assessed Risk Level: medium. Ruby on Rails is vulnerable to headers containing a
 
 Assessed Risk Level: medium. An XSS vulnerability in the number_to_currrency helper could allow remote attackers to add web script or HTML via the "unit" parameter. This vulnerability has been fixed in PE 3.1.1.
 
-*[CVE-2013-4491 XSS vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-4491)* 
+*[CVE-2013-4491 XSS vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-4491)*
 
 Assessed Risk Level: medium. An XXS vulnerability in the translation helper could allow remote attackers to add web script or HTML that triggers generation of a fallback string in the i18n gem. This has been fixed in PE 3.1.1.
 
 *[CVE-2013-6417 Improper consideration of parameter handling in Rack and Rails requests](http://puppetlabs.com/security/cve/cve-2013-6417)*
 
-Assessed Risk Level: medium. Differences in parameter handling between Rack and Rails requests could allow remote attackers to bypass database query restrictions. This could allow an attacker to perform NULL checks or trigger missing WHERE clauses via requests using third-party or custom Rack middleware. This has been fixed in PE 3.1.1. 
+Assessed Risk Level: medium. Differences in parameter handling between Rack and Rails requests could allow remote attackers to bypass database query restrictions. This could allow an attacker to perform NULL checks or trigger missing WHERE clauses via requests using third-party or custom Rack middleware. This has been fixed in PE 3.1.1.
 **Note:** This vulnerability was due to an incomplete fix for [CVE-2013-0155](http://puppetlabs.com/security/cve/cve-2013-0155).
 
 *[CVE-2013-4363 Algorithmic Complexity Vulnerability in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4363)*
 
-Assessed Risk Level: low. RubyGems validates versions with a regular expression. This regex is vulnerable to attackers causing denial of service through CPU consumption. This is resolved in PE 2.8.4 and PE 3.1.1. 
+Assessed Risk Level: low. RubyGems validates versions with a regular expression. This regex is vulnerable to attackers causing denial of service through CPU consumption. This is resolved in PE 2.8.4 and PE 3.1.1.
 **Note:** This vulnerability was due to an incomplete fix for CVE-2013-4287.
 
 *[CVE-2013-4164 Heap overflow in floating point parsing in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4164)*
@@ -89,7 +89,7 @@ The puppet agent can now be installed on nodes running RHEL 4. Support is only f
 
 #### License Availability
 
-The console UI now displays how many licenses you are currently using and how many are available, so you'll know exactly how much capacity you have to expand your deployment.  The [console navigation page](console_navigating.html) has more information. 
+The console UI now displays how many licenses you are currently using and how many are available, so you'll know exactly how much capacity you have to expand your deployment.  The [console navigation page](console_navigating.html) has more information.
 
 #### Support for Google Compute Engine
 
@@ -131,17 +131,17 @@ PE 3.1 includes new SELinux bindings for pe-ruby on EL5 and EL6. These bindings 
 
 *[CVE-2013-4287 Algorithmic Complexity Vulnerability In RubyGems 2.0.7 And Older](http://puppetlabs.com/security/cve/cve-2013-4287/)*
 
-Assessed Risk Level: low. 
+Assessed Risk Level: low.
 RubyGems validates versions with a regular expression that is vulnerable to attackers causing denial of service through CPU consumption. This is resolved in PE 3.1.
 
 *[CVE-2013-4957 YAML vulnerability in Puppet dashboard's report handling](http://puppetlabs.com/security/cve/cve-2013-4957/)*
 
-Assessed Risk Level: medium. 
+Assessed Risk Level: medium.
 Systems that rely on YAML to create report-specific types were found to be at risk of arbitrary code execution vulnerabilities. This vulnerability has been fixed in PE 3.1.
 
 *[CVE-2013-4965 User account not locked after numerous invalid login attempts](http://puppetlabs.com/security/cve/cve-2013-4965/)*
 
-Assessed Risk Level: low. 
+Assessed Risk Level: low.
 A user's account was not locked out after the user submitted a large number of invalid login attempts, leaving the account vulnerable to brute force attack. This has been fixed in PE 3.1;  now the account is locked after 10 failed attempts.
 
 Known Issues
@@ -157,9 +157,21 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
+### Puppet Enterprise 3.1.2 and 3.1.3 are not functional on Solaris 10 x86
+
+Due to a misconfiguration in our Solaris 10 x86 build infrastructure, libraries were compiled to link against incorrect dependencies, which would not always be present on user systems. This rendered the PE installation unusable in PE 3.1.2 and 3.1.3. Until then, we recommend users with Solaris 10 x86 nodes continue running PE 3.1.1 on those nodes, in the interim. It is safe to upgrade masters, and other non-Solaris 10 x86 nodes to PE 3.1.3.
+
+This will be resolved in the next release of Puppet Enterprise.
+
+Solaris 10 SPARC systems are not affected by this issue.
+
+### Puppet Agent on Windows Requires `--onetime`
+
+On Windows systems, puppet agent runs started locally from the command line require either the `--onetime` or `--test` option to be set. This is due to Puppet bug [PUP-1275](https://tickets.puppetlabs.com/browse/PUP-1275).
+
 ### Creating Node Names with Upper-case Letters Fails
 
-If you try to create a node  with upper-case letters in its name, the creation will fail and raise an "Oops, something went wrong error! Error: Internal Server Error" message. This is due to the fact that when you create a node, the name is automatically converted to downcase before the node is stored, but nodes_controller searches for your new node using the specific name you gave it. Upper-case letters can break this process. 
+If you try to create a node  with upper-case letters in its name, the creation will fail and raise an "Oops, something went wrong error! Error: Internal Server Error" message. This is due to the fact that when you create a node, the name is automatically converted to downcase before the node is stored, but nodes_controller searches for your new node using the specific name you gave it. Upper-case letters can break this process.
 
 You can prevent this by making the following change to line 36 of `/opt/puppet/share/puppet-dashboard/app/controllers/nodes_controller.rb`.
 Replace `node = Node.find_by_name(params[:node][:name])` with `node = Node.find_by_name(params[:node][:name].downcase)`.
@@ -304,13 +316,13 @@ If for any reason the `pe-postresql` service is stopped, agents will receive sev
 
     Warning: Unable to fetch my node definition, but the agent run will continue:
     Warning: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
-    
+
 or, when attempting to request a catalog:
 
     Error: Could not retrieve catalog from remote server: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
     Warning: Not using cache on failed catalog
     Error: Could not retrieve catalog; skipping run
-    
+
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 * * *

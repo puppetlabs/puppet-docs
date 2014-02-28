@@ -144,7 +144,7 @@ If you choose to use a database server separate from the PuppetDB server, you mu
 
 ### The Console Role
 
-This role should be installed on **one node.** It should usually run on its own dedicated server, but it can run on the same server as the puppet master. The console server can:
+This role should be installed on **one node.** It should usually run on its own dedicated server, but it can run on the same server as the puppet master if that server is also running the database support role. The console server can:
 
 * Serve the console web interface, which enables administrators to directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, and invoke orchestration actions.
 * Collect reports from and serve node information to the puppet master.
@@ -253,16 +253,14 @@ If you are manually configuring your databases, the installer will ask you to pr
 
 You will also need to make sure the databases and users actually exist. The SQL commands you need will resemble the following:
 
-
-    CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';
-    CREATE USER "console_auth" PASSWORD 'password';
-    CREATE DATABASE "console_auth" OWNER "console_auth" TABLESPACE "console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
-    CREATE USER "console" PASSWORD 'password';
-    CREATE DATABASE "console" OWNER "console" TABLESPACE "console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
-     LC_COLLATE 'en_US.utf8' template template0;
-    CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
-    CREATE USER "pe-puppetdb" PASSWORD 'password';
-    CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+	CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';
+	CREATE USER "console" PASSWORD 'password';
+	CREATE DATABASE "console" OWNER "console" TABLESPACE "pe-console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+	CREATE USER "console_auth" PASSWORD 'password';
+	CREATE DATABASE "console_auth" OWNER "console_auth" TABLESPACE "pe-console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+	CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
+	CREATE USER "pe-puppetdb" PASSWORD 'password';
+	CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
 Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
 

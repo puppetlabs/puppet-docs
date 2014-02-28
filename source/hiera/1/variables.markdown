@@ -68,11 +68,13 @@ Notes on this syntax:
 
 The `hiera()` lookup function performs a Hiera lookup, using its input as the lookup key. The result of the lookup must be a string; any other result will cause an error.
 
-This is generally nonsensical and not useful in Hiera's _settings._ However, it can be very powerful in _data._ By storing a fragment of data in one place and then using sub-lookups wherever it needs to be used, you can avoid repetition and make it easier to change your data.
+This can be very powerful in Hiera's data sources. By storing a fragment of data in one place and then using sub-lookups wherever it needs to be used, you can avoid repetition and make it easier to change your data.
 
     wordpress::database_server: "%{hiera('instances::mysql::public_hostname')}"
 
 The value looked up by the `hiera()` function may itself contain a `hiera()` lookup. (The function will detect any circular lookups and fail with an error instead of looping infinitely.)
+
+> **Note:** Using recursive lookups in Hiera's config file is untested and can potentially cause infinite recursion. (See [HI-220](https://tickets.puppetlabs.com/browse/HI-220).) You should only use the `hiera()` function in data sources.
 
 ### The `scope()` Lookup Function
 

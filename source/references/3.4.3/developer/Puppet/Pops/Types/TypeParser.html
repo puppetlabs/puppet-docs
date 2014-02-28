@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Types::TypeParser
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Types.html" title="Puppet::Pops::Types (module)">Types</a></span></span>
+     &raquo; 
+    <span class="title">TypeParser</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Types::TypeParser
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Types::TypeParser</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/types/type_parser.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class provides parsing of Type Specification from a string into the Type
+Model that is produced by the Puppet::Pops::Types::TypeFactory.</p>
+
+<p>The Type Specifications that are parsed are the same as the stringified forms
+of types produced by the <span class='object_link'><a href="TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="TYPES-constant" class="">TYPES =
+          <div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This constant is part of a private API.</strong>
+  You should avoid using this constant if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_TypeFactory constant id'>TypeFactory</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (TypeParser) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of TypeParser.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret-instance_method" title="#interpret (instance method)">- (Object) <strong>interpret</strong>(ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_AccessExpression-instance_method" title="#interpret_AccessExpression (instance method)">- (Object) <strong>interpret_AccessExpression</strong>(parameterized_ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_Object-instance_method" title="#interpret_Object (instance method)">- (Object) <strong>interpret_Object</strong>(anything) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_QualifiedReference-instance_method" title="#interpret_QualifiedReference (instance method)">- (Object) <strong>interpret_QualifiedReference</strong>(name_ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-instance_method" title="#parse (instance method)">- (Puppet::Pops::Types::PObjectType) <strong>parse</strong>(string) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Produces a <em>puppet type</em> based on the given string.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Types::TypeParser (class)">TypeParser</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of TypeParser</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 13</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_initialize identifier id'>initialize</span>
+  <span class='rubyid_@parser ivar id'>@parser</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Parser constant id'>Parser</span><span class='colon2 op'>::</span><span class='rubyid_Parser constant id'>Parser</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_@type_transformer ivar id'>@type_transformer</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Visitor constant id'>Visitor</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span> <span class='string val'>&quot;interpret&quot;</span><span class='comma token'>,</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="interpret-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret</strong>(ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 42</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_interpret identifier id'>interpret</span><span class='lparen token'>(</span><span class='rubyid_ast identifier id'>ast</span><span class='rparen token'>)</span>
+  <span class='rubyid_@type_transformer ivar id'>@type_transformer</span><span class='dot token'>.</span><span class='rubyid_visit_this identifier id'>visit_this</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='comma token'>,</span> <span class='rubyid_ast identifier id'>ast</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_AccessExpression-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_AccessExpression</strong>(parameterized_ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 76</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_interpret_AccessExpression identifier id'>interpret_AccessExpression</span><span class='lparen token'>(</span><span class='rubyid_parameterized_ast identifier id'>parameterized_ast</span><span class='rparen token'>)</span>
+  <span class='rubyid_parameters identifier id'>parameters</span> <span class='assign token'>=</span> <span class='rubyid_parameterized_ast identifier id'>parameterized_ast</span><span class='dot token'>.</span><span class='rubyid_keys identifier id'>keys</span><span class='dot token'>.</span><span class='rubyid_collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_param identifier id'>param</span><span class='bitor op'>|</span> <span class='rubyid_interpret identifier id'>interpret</span><span class='lparen token'>(</span><span class='rubyid_param identifier id'>param</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='rubyid_case case kw'>case</span> <span class='rubyid_parameterized_ast identifier id'>parameterized_ast</span><span class='dot token'>.</span><span class='rubyid_left_expr identifier id'>left_expr</span><span class='dot token'>.</span><span class='rubyid_value identifier id'>value</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;array&quot;</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_parameters identifier id'>parameters</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span> <span class='neq op'>!=</span> <span class='integer val'>1</span>
+      <span class='rubyid_raise_invalid_parameters_error identifier id'>raise_invalid_parameters_error</span><span class='lparen token'>(</span><span class='string val'>&quot;Array&quot;</span><span class='comma token'>,</span> <span class='integer val'>1</span><span class='comma token'>,</span> <span class='rubyid_parameters identifier id'>parameters</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_array_of identifier id'>array_of</span><span class='lparen token'>(</span><span class='rubyid_parameters identifier id'>parameters</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;hash&quot;</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_parameters identifier id'>parameters</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span>
+      <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_hash_of identifier id'>hash_of</span><span class='lparen token'>(</span><span class='rubyid_parameters identifier id'>parameters</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_parameters identifier id'>parameters</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span> <span class='neq op'>!=</span> <span class='integer val'>2</span>
+      <span class='rubyid_raise_invalid_parameters_error identifier id'>raise_invalid_parameters_error</span><span class='lparen token'>(</span><span class='string val'>&quot;Hash&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;1 or 2&quot;</span><span class='comma token'>,</span> <span class='rubyid_parameters identifier id'>parameters</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span><span class='rparen token'>)</span>
+    <span class='rubyid_else else kw'>else</span>
+      <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_hash_of identifier id'>hash_of</span><span class='lparen token'>(</span><span class='rubyid_parameters identifier id'>parameters</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='rubyid_parameters identifier id'>parameters</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_raise_unknown_type_error identifier id'>raise_unknown_type_error</span><span class='lparen token'>(</span><span class='rubyid_parameterized_ast identifier id'>parameterized_ast</span><span class='dot token'>.</span><span class='rubyid_left_expr identifier id'>left_expr</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_Object-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_Object</strong>(anything) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 47</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_interpret_Object identifier id'>interpret_Object</span><span class='lparen token'>(</span><span class='rubyid_anything identifier id'>anything</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise_invalid_type_specification_error identifier id'>raise_invalid_type_specification_error</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_QualifiedReference-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_QualifiedReference</strong>(name_ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 52</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_interpret_QualifiedReference identifier id'>interpret_QualifiedReference</span><span class='lparen token'>(</span><span class='rubyid_name_ast identifier id'>name_ast</span><span class='rparen token'>)</span>
+  <span class='rubyid_case case kw'>case</span> <span class='rubyid_name_ast identifier id'>name_ast</span><span class='dot token'>.</span><span class='rubyid_value identifier id'>value</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;integer&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_integer identifier id'>integer</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;float&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_float identifier id'>float</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;string&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_string identifier id'>string</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;boolean&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_boolean identifier id'>boolean</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;pattern&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_pattern identifier id'>pattern</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;data&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_data identifier id'>data</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;array&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_array_of_data identifier id'>array_of_data</span>
+  <span class='rubyid_when when kw'>when</span> <span class='string val'>&quot;hash&quot;</span>
+    <span class='rubyid_TYPES constant id'>TYPES</span><span class='dot token'>.</span><span class='rubyid_hash_of_data identifier id'>hash_of_data</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_raise_unknown_type_error identifier id'>raise_unknown_type_error</span><span class='lparen token'>(</span><span class='rubyid_name_ast identifier id'>name_ast</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse-instance_method">
+  
+    - (<tt><span class='object_link'><a href="PObjectType.html" title="Puppet::Pops::Types::PObjectType (class)">Puppet::Pops::Types::PObjectType</a></span></tt>) <strong>parse</strong>(string) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Produces a <em>puppet type</em> based on the given string.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='rubyid_parser identifier id'>parser</span><span class='dot token'>.</span><span class='rubyid_parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>'Integer'</span><span class='rparen token'>)</span>
+<span class='rubyid_parser identifier id'>parser</span><span class='dot token'>.</span><span class='rubyid_parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>'Array[String]'</span><span class='rparen token'>)</span>
+<span class='rubyid_parser identifier id'>parser</span><span class='dot token'>.</span><span class='rubyid_parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>'Hash[Integer, Array[String]]'</span><span class='rparen token'>)</span>
+</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>string</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a string with the type expressed in stringified form as produced by the
+<span class='object_link'><a href="TypeCalculator.html#string-instance_method" title="Puppet::Pops::Types::TypeCalculator#string (method)">TypeCalculator#string</a></span> method.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="PObjectType.html" title="Puppet::Pops::Types::PObjectType (class)">Puppet::Pops::Types::PObjectType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a specialization of the PObjectType representing the type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 31</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_parse identifier id'>parse</span><span class='lparen token'>(</span><span class='rubyid_string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='rubyid_@string ivar id'>@string</span> <span class='assign token'>=</span> <span class='rubyid_string identifier id'>string</span>
+  <span class='rubyid_model identifier id'>model</span> <span class='assign token'>=</span> <span class='rubyid_@parser ivar id'>@parser</span><span class='dot token'>.</span><span class='rubyid_parse_string identifier id'>parse_string</span><span class='lparen token'>(</span><span class='rubyid_@string ivar id'>@string</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_model identifier id'>model</span>
+    <span class='rubyid_interpret identifier id'>interpret</span><span class='lparen token'>(</span><span class='rubyid_model identifier id'>model</span><span class='dot token'>.</span><span class='rubyid_current identifier id'>current</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_raise_invalid_type_specification_error identifier id'>raise_invalid_type_specification_error</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:39 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

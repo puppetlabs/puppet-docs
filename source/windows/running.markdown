@@ -39,6 +39,9 @@ Triggering an agent run **requires elevated privileges,** and must be performed 
 
 ![UAC dialog][uac]
 
+> **Note:** In Puppet 3.0.2 and later, puppet agent runs started locally from the command line require either the `--onetime` or `--test` option to be set. This is due to Puppet bug [PUP-1275](https://tickets.puppetlabs.com/browse/PUP-1275).
+
+
 #### Configuring the Agent Service
 
 By default, the puppet agent service starts automatically at boot, runs every 30 minutes, and contacts the puppet master specified during installation.
