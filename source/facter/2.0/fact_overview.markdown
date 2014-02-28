@@ -1,3 +1,5 @@
+Delaying YAML frontmatter, to prevent Jekyll from building this file.
+
 ---
 layout: default
 title: "Facter 2.0: Overview of Facter Facts"
