@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Facter 2.0: Release Notes
-description: Facter release notes for all 2.0 versions
+title: "Facter 2.0: Release Notes"
+description: "Facter release notes for all 2.0 versions"
 ---
 
 This page documents the history of the Facter 2.0 series.
