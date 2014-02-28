@@ -9,13 +9,9 @@ canonical: "/pe/latest/overview_whats_new.html"
 
 Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It adds new features and improvements, fixes bugs, and addresses security issues. Specifically, the 3.2.0 release includes the following major changes and additions (a comprehensive list of updates, changes and additions can be found in the [release notes](appendix.html#release-notes)):
 
-#### Simplified Agent Install
-
-On platforms that support remote package repos, installing agents can now be done via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
-
 #### Puppet Enterprise Supported Modules
 
-PE 3.2 introduces Puppet Enterprise supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
+PE 3.2 introduces Puppet Enterprise supported modules. PE supported modules allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
 
 * rigorously tested with PE
 * supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support)
@@ -37,9 +33,13 @@ Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to lea
 [pe-javaks]: http://forge.puppetlabs.com/puppetlabs/java_ks
 [pe-concat]: http://forge.puppetlabs.com/puppetlabs/concat
 
+#### Simplified Agent Install
+
+On platforms that support remote package repos, installing agents can now be done via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
+
 #### Razor Provisioning Tech Preview
 
-PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. Tech previews allow 
+PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. Tech previews provide early access to new technology still under development. As such, it should only be used for evaluation purposes and not in production environments. You can find more information on Puppet Labs tech previews on the [Tech Preview Support Scope page](http://puppetlabs.com/services/tech-preview).
 
 Razor offers advanced provisioning capabilities that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal, be it in your machine room or in the cloud, into a state that your existing configuration management systems, PE for example, can then take over. For more information, refer to the [Razor documentation](./razor_intro.html).
 
@@ -56,7 +56,6 @@ The puppet agent can now be installed on nodes running Solaris 11. Other roles (
 #### Disable/Enable Live Management
 
 In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html) and the [installation instructions](install_basic.html).
-
 
 #### Security Patches
 
