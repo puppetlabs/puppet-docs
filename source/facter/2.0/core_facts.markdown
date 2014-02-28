@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Facter 1.6: Core Facts"
+title: "Facter 2.0: Core Facts"
 ---
 
 ## Summary
 
-This is a list of all of the built-in facts that ship with Facter 1.6.x. Not all of them apply to every system, and your site may use many [custom facts](/guides/custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
+This is a list of all of the built-in facts that ship with Facter 2.0.x. Not all of them apply to every system, and your site may use many [custom facts](./custom_facts.html) delivered via Puppet modules. To see the actual available facts (including plugins) and their values on any of your systems, run `facter -p` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 
 Facts appear in Puppet as normal top-scope variables. This means you can access any fact for a node in your manifests with `$<fact name>`. (E.g. `$osfamily`, `$memorysize`, etc.)
 
@@ -22,28 +22,13 @@ Returns the CPU hardware architecture.
 
 ([↑ Back to top](#page-nav))
 
-* * *
-
-## `arp`
-
-Undocumented.
-
-([↑ Back to top](#page-nav))
-
-* * *
-
-## `arp_{NETWORK INTERFACE}`
-
-Undocumented.
-
-([↑ Back to top](#page-nav))
 
 * * *
 
 ## `augeasversion`
 
 
-Report the version of the Augeas library
+Returns the version of the Augeas library.
 
 **Resolution:**
 
@@ -58,6 +43,75 @@ which may affect support for the Puppet Augeas provider.
 Versions prior to 0.3.6 cannot be interrogated for their version.
 
 ([↑ Back to top](#page-nav))
+
+* * *
+
+## `blockdevice_{devicename}_size`
+
+
+Returns the size of a block device in bytes.
+
+**Resolution:**
+
+Parse the contents of `/sys/block/{device}/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
+
+**Caveats:**
+
+Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## blockdevice_{devicename}_vendor
+
+
+Returns the vendor name of block devices attached to the system.
+
+**Resolution:**
+
+Parse the contents of `/sys/block/{device}/device/vendor` to retrieve the vendor for a device.
+
+**Caveats:**
+
+Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## blockdevice_{devicename}_model
+
+
+Returns the model name of block devices attached to the system.
+
+**Resolution:**
+
+Parse the contents of `/sys/block/{device}/device/model` to retrieve the model name/number for a device.
+
+**Caveats:**
+
+Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## blockdevices
+
+
+Returns a comma-separated list of block devices.
+
+**Resolution:**
+
+Retrieve the block devices that were identified and iterated over in the creation of the blockdevice_ facts.
+
+**Caveats:**
+
+Block devices must have been identified using sysfs information
+
+([↑ Back to top](#page-nav))
+
 
 * * *
 
@@ -169,6 +223,46 @@ Uses the version constant.
 
 * * *
 
+## `filesystems`
+
+
+Provides an alphabetic list of file systems for use by block devices such as hard drives, media cards, etc.
+
+**Resolution:**
+
+Returns a comma-delimited list.
+
+**Caveats:**
+
+Linux only. FUSE will not be reported.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `ldom`
+
+
+Returns a list of dynamic facts that describe the attributes of a Solaris logical domain.
+
+The facts returned will include:
+
+- `DOMAINROLE`
+- `DOMAINNAME`
+- `DOMAINUUID`
+- `DOMAINCONTROL`
+- `DOMAINCHASSIS`
+
+**Resolution:**
+
+Uses the output of `virtinfo -ap`.
+
+**Caveats:**
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `fqdn`
 
 
@@ -189,6 +283,19 @@ either.
 
 * * *
 
+## `gid`
+
+
+Returns the group ID of the user running the puppet process.
+
+**Resolution**
+
+Uses the output of `gid -ng`.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `hardwareisa`
 
 
@@ -196,7 +303,7 @@ Returns hardware processor type.
 
 **Resolution:**
 
-On Solaris, Linux and the BSDs simply uses the output of "uname -p"
+On Solaris, Linux and the BSDs simply uses the output of "uname -p".
 
 **Caveats:**
 
@@ -398,7 +505,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -417,7 +524,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -436,7 +543,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -455,7 +562,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -475,10 +582,22 @@ Returns the major version of the operation system version as gleaned from the ls
 
 Parses the lsbdistrelease fact for numbers followed by a period and returns those, or just the lsbdistrelease fact if none were found.
 
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `lsbminordistrelease`
+
+
+Returns the minor version of the operation system version as gleaned from the lsbdistrelease fact.
+
+**Resolution:**
+
+Parses the lsbdistrelease fact for numbers preceded by a period and returns those. If there is no match, the fact is not present.
+
 **Caveats:**
 
-lsbmajdistrelease.rb
-
+If the version number has three components (e.g., '1.2.3'), only the second will be included in the fact.
 
 ([↑ Back to top](#page-nav))
 
@@ -491,7 +610,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -644,6 +763,18 @@ Returns the name of the operating system.
 * If the kernel is a Linux kernel, check for the existence of a selection of files in /etc/ to find the specific flavour.
 * On SunOS based kernels, return Solaris.
 * On systems other than Linux, use the kernel value.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `operatingsystemmajrelease`
+
+Returns the major release of the operating system.
+
+**Resolution:**
+
+Splits the version number from the `operatingsystemrelease` fact by `.` and returns the first element. Only available if `operatingsystem` returns `Amazon`, `Centos`, `CloudLinux`, `CumulusLinux`, `Debian`, `Fedora`, `OEL`, `OracleLinux`, `OVS`, `RedHat`, `Scientific`, or `SLC`.
 
 ([↑ Back to top](#page-nav))
 
@@ -822,7 +953,7 @@ and returns `true` if `/proc/self/attr/current` does not contain `kernel`.
 
 ## `selinux_config_mode`
 
-Returns the configured SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`).
+Returns the configured SE Linux mode (e.g., `enforcing`, `permissive`, or `disabled`).
 
 **Resolution:**
 
@@ -835,7 +966,7 @@ Parses the output of `sestatus_cmd` and returns the value of the line beginning 
 ## `selinux_config_policy`
 
 
-Returns the configured SE Linux policy (e.g. `targeted`, `MLS`, or `minimum`).
+Returns the configured SE Linux policy (e.g., `targeted`, `MLS`, or `minimum`).
 
 **Resolution:**
 
@@ -849,7 +980,7 @@ Parses the output of `sestatus_cmd` and returns the value of the line beginning 
 ## `selinux_current_mode`
 
 
-Returns the current SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`).
+Returns the current SE Linux mode (e.g., `enforcing`, `permissive`, or `disabled`).
 
 **Resolution:**
 
@@ -888,7 +1019,7 @@ Returns the current SE Linux policy version.
 
 **Resolution:**
 
-Reads the content of the `policyvers` file found under the SE Linux mount point, e.g. (`/selinux/policyvers`).
+Reads the content of the `policyvers` file found under the SE Linux mount point, e.g. `/selinux/policyvers`.
 
 ([↑ Back to top](#page-nav))
 
@@ -1069,8 +1200,25 @@ Returns the total seconds of uptime.
 
 **Resolution:**
 
-* Using the 'facter/util/uptime.rb' module, try a verity of methods to acquire the uptime on Unix.
+* Using the 'facter/util/uptime.rb' module, try a variety of methods to acquire the uptime on Unix.
 * On Windows, the module calculates the uptime by the "LastBootupTime" Windows management value.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `uuid`
+
+
+Returns the universally unique identifier on systems where it is available.
+
+**Resolution:**
+
+Parses the output of `dmidecode`.
+
+**Caveats:**
+
+Only available on some versions of Linux, including RHEL/CentOS.
 
 ([↑ Back to top](#page-nav))
 
@@ -1115,7 +1263,65 @@ Returns the list of Xen domains on the Dom0.
 **Resolution:**
 
 On a Xen Dom0 host, return a list of Xen domains using the 'util/xendomains' library.
+
+([↑ Back to top](#page-nav))
+
+
+* * *
+
+## `zfs_version`
+
+Returns the version of zfs in use on the system.
+
+**Resolution:**
+
+Uses the output of `zfs upgrade -v`.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `zonename`
+
+Returns the name of the Solaris zone.
+
+**Resolution:**
+
+Uses `zonename` to return the name of the Solaris zone.
+
+**Caveats:**
+
 No support for Solaris 9 and below, where zones are not available.
 
 ([↑ Back to top](#page-nav))
 
+* * *
+
+## `zones`
+
+**Purpose:**
+
+Returns the list of zones on the system and adds one `zones_` fact for each zone, with its state (e.g. "running," "incomplete," or "installed.")
+
+**Resolution:**
+
+Uses `usr/sbin/zoneadm list -cp` to get the list of zones in separate parsable lines with a delimeter of ':', which is used to split the line string and get the zone details.
+
+**Caveats:**
+
+No support for Solaris 9 and below, where zones are not available.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `zpool_version`
+
+Returns the version number for the ZFS storage pool.
+
+**Resolution:**
+
+Uses `zpool upgrade -v` to return the ZFS storage pool version number.
+
+
+([↑ Back to top](#page-nav))
