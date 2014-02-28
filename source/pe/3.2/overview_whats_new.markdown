@@ -39,9 +39,9 @@ Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to lea
 
 #### Razor Provisioning Tech Preview
 
-PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. 
+PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. Tech previews allow 
 
-Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal, be it in your machine room or in the cloud, into a state that your existing configuration management systems, PE for example, can then take over. For more information, refer to the [Razor documentation](./razor_intro.html).
+Razor offers advanced provisioning capabilities that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal, be it in your machine room or in the cloud, into a state that your existing configuration management systems, PE for example, can then take over. For more information, refer to the [Razor documentation](./razor_intro.html).
 
 *Note*: This is a tech preview release of Razor. For more information, see the [Puppet Labs Tech Previews Info Page](http://puppetlabs.com/services/tech-preview).
 
@@ -49,9 +49,9 @@ Razor is an advanced provisioning application that can deploy both bare metal an
 
 In some situations, a development team may wish to manage their infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](deploy_nonroot-agent.html).
 
-#### Support for Solaris 11
+#### Agent Support for Solaris 11
 
-The puppet agent can now be installed on nodes running Solaris 11. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
+The puppet agent can now be installed on nodes running Solaris 11. Other roles (e.g., master, console) are not supported. For more information, see the [system requirements](install_system_requirements.html).
 
 #### Disable/Enable Live Management
 
@@ -66,12 +66,12 @@ A handful of vulnerabilities have been addressed in PE 3.2.0. For details, check
 
 Several of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.2. Most notably these include:
 
-* Puppet 3.4.2
+* Puppet 3.4.3
 * PuppetDB 1.5.2
-* Facter 1.7.4.
+* Facter 1.7.5
 * MCollective 2.2.4
-* Hiera 1.3.0.
-* Dashboard 2.1.0
+* Hiera 1.3.2
+* Dashboard 2.1.1
 
 * * *
 
