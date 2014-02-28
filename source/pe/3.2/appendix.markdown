@@ -18,7 +18,11 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+<<<<<<< HEAD
 ### PE 3.2.0 (3/4/2014)
+=======
+### PE 3.2.0 (3/4/13)
+>>>>>>> 4146611b946019c00f0b0c15f95f18fe2648945d
 
 #### Simplified Agent Install
 
@@ -56,7 +60,7 @@ Razor is an advanced provisioning application that can deploy both bare metal an
 
 *Note*: This is a tech preview release of Razor. For more information, see the see the [Puppet Labs Tech Previews Info Page](http://puppetlabs.com/services/tech-preview).
 
-#### Puppet Agent with Non-Root Privileges 
+#### Puppet Agent with Non-Root Privileges
 
 In some situations, it may be desirable for a development team to manage their infrastructure on nodes in which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](./guides/nonroot_agent.html).
 
@@ -78,7 +82,26 @@ Several of the “under the hood” constituent parts of Puppet Enterprise have 
 * MCollective 2.2.4
 * Hiera 1.3.0.
 * Dashboard 2.1.0
-               
+
+#### Security Fixes
+
+[*CVE-2014-0082 ActionView vulnerability in Ruby on Rails*](http://puppetlabs.com/security/cve/cve-2014-0082)
+
+Assessed Risk Level: medium. The text rendering component of ActionView is vulnerable to denial of service attacks. Strings in specially crafted headers are converted to symbols, but since the symbols are not removed by ruby's garbage collector, they can outgrow the heap and bring down the rails process. For more information, please visit the [ruby security Google group](https://groups.google.com/forum/#!topic/ruby-security-ann/ZaQ0-g1gUpc).
+
+[*CVE-2014-0060 PostgreSQL security bypass vulnerability*](http://puppetlabs.com/security/cve/cve-2014-0060)
+
+Assessed Risk Level: medium. PostgreSQL did not properly enforce the `WITH ADMIN OPTION` permission for role management, which allowed any member of a role the ability to grant others access to the same role regardless if the member was given the `WITH ADMIN OPTION` permission. For complete details, please see the ["SET ROLE bypasses lack of ADMIN OPTION" entry on the PostgreSQL wiki](http://wiki.postgresql.org/wiki/20140220securityrelease)
+
+[*CVE-2013-4966 Master external node classification script vulnerable to console impersonation*](http://puppetlabs.com/security/cve/cve-2013-4966)
+
+Assessed Risk Level: medium. The script that the PE master used to contact the PE console for node classification did not verify the identity of the console. This introduced a vulnerability in which an attacker could impersonate the console and submit malicious classification to the master.
+
+[*CVE-2013-4971 Unathenticated read access to node endpoints could cause information leakage*](http://puppetlabs.com/security/cve/cve-2013-4971)
+
+Assessed Risk Level: medium. Unauthenticated read access to the node endpoint in the console could result in information leakage in PE versions earlier than 3.2.
+
+
 Known Issues
 -----
 
@@ -94,15 +117,32 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Safari Certificate Handling May Prevent Console Access for PE 3.2
 
-Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.2 users avoid using Safari to access the PE console. 
+Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.2 users avoid using Safari to access the PE console.
 
-If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.2: 
+If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.2:
 
 ![Safari Certificate Dialog][client_cert_dialog]
 
 If you are presented with this dialog box, click "Cancel" to access the console. (In some cases, you may need to click "Cancel" several times.)
 
 This issue will be fixed in a future release.
+
+### `puppet module list --tree` Doesn't Work Without `metadata.json`
+
+If you run `puppet module generate <module name>` or manually create a module directory on the PE module path (`/etc/puppetlabs/puppet/module`) you will get a module structure that does not include `metadata.json`, which is required to run `puppet module list --tree`. 
+
+Running the `--tree` command in this situation will generate the following error:
+
+	Error: undefined method 'tr' for nil:NilClass
+	Error: Try 'puppet help module list' for usage
+
+If using the `--tree` command is necessary, a suggested workaround is to run `puppet module generate <module name>` and then `puppet module build <module name>` from a different location, which will generate `metadata.json`. You can then move the module to the PE module path and use `puppet module list --tree` as normal.  
+
+This will be fixed in a future release.
+
+### `puppet module list --tree` Shows Incorrect Dependencies after Uninstalling Modules
+
+If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. 
 
 ### Passenger Global Queue Error on Upgrade
 
@@ -111,6 +151,10 @@ When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a w
 ### `Puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 
 In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](http://docs.puppetlabs.com/puppetdb/1.5/connect_puppet_apply.html).
+
+### Puppet Agent on Windows Requires `--onetime`
+
+On Windows systems, puppet agent runs started locally from the command line require either the `--onetime` or `--test` option to be set. This is due to Puppet bug [PUP-1275](https://tickets.puppetlabs.com/browse/PUP-1275).
 
 ### BEAST Attack Mitigation
 
@@ -175,7 +219,7 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 ### After Upgrading, Nodes Report a "Not a PE Agent" Error
 
 When doing the first puppet run after upgrading using the "upgrader" script included in PE tarballs, agents are reporting an error: "&lt;node.name&gt; is not a Puppet Enterprise agent." This was caused by a bug in the upgrader that has since been fixed. If you downloaded a tarball prior to November 28, 2012, simply download the tarball again to get the fixed upgrader. If you prefer, you can download the [latest upgrader module](http://forge.puppetlabs.com/adrien/pe_upgrade/0.4.0-rc1) from the Forge. Alternatively, you can fix it by changing `/etc/puppetlabs/facter/facts.d/is_pe.txt`  to contain: `is_pe=true`.
- 
+
 ### Answer File Required for Some SMTP servers.
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
@@ -220,13 +264,13 @@ If for any reason the `pe-postresql` service is stopped, agents will receive sev
 
     Warning: Unable to fetch my node definition, but the agent run will continue:
     Warning: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
-    
+
 or, when attempting to request a catalog:
 
     Error: Could not retrieve catalog from remote server: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
     Warning: Not using cache on failed catalog
     Error: Could not retrieve catalog; skipping run
-    
+
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
