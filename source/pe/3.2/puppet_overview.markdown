@@ -68,6 +68,10 @@ In a default PE deployment:
 
 ### Alternate Run Behaviors
 
+#### Prioritizing Processes
+
+You can change the priority of Puppet processes (`puppet agent`, `puppet apply`) using the [priority setting](http://docs.puppetlabs.com/references/3.latest/configuration.html#priority). This can be helpful if you want to manage resource-intensive loads on busy nodes. Note that the process must be running as privileged user if it is going to *raise* its priority.
+
 #### Different Run Interval
 
 You can change the run interval by setting a new value for [the `runinterval` setting][runinterval] in each agent node's puppet.conf file.
