@@ -6,7 +6,7 @@ canonical: "/pe/latest/deploy_nonroot-agent.html"
 ---
 
 
-**IMPORTANT**: these procedures assume some degree of experience with Puppet Enterprise (PE). If you are new to PE, Puppet Labs strongly recommends you work through the [Quick Start Guide](./quick_start.html) and some of our other educational resources before attempting to implement non-root agent capability.
+**IMPORTANT**: these procedures assume some degree of experience with Puppet Enterprise (PE). If you are new to PE, we strongly recommend you work through the [Quick Start Guide](./quick_start.html) and some of our other educational resources before attempting to implement non-root agent capability.
 
 Summary
 ------
@@ -15,16 +15,18 @@ In some circumstances, users without root access privileges may need to run the 
 
 For security or organizational reasons, your infrastructure’s platform is maintained by one team with root privileges while your infrastructure’s applications are managed by a separate team (or teams) with diminished privileges. The applications team would like to be able to manage their part of the infrastructure using Puppet Enterprise, but the platform team cannot give them root privileges. So, the applications team needs a way to run Puppet without root privileges. In this scenario, PE is only used for application management, which will be performed by a single (applications) team. The platform team will not be using PE to manage any of the application team’s nodes.
 
+The instructions below are tailored to setting up non-root agents for this scenario. You may be able to adapt them to other scenarios, but in all cases you will need to make sure you are still adhering to these instructions in order for non-root agents to function correctly.
+
 Configuration
 ------
 
 ### Overview
 
-PE *must* be installed with root privileges, so the platform team will need to set up and provide non-root access to a monolithic PE master. That is, the master, console, and database roles will all be installed on a single node. Similarly, the puppet agent will be installed on the application team’s nodes by a privileged user with root access. A non-root user account will also be set up at this time.
+PE *must* be installed with root privileges, so the platform team will need to set up and provide non-root access to a monolithic PE master. That is, the master, console, and database roles will all be installed on a single node by a user with root privileges. Similarly, the puppet agent must also be installed on the application team’s nodes by a privileged user. A non-root user account will also be set up at this time.
  
 This will provide a reduced set of configuration management tasks available for the application team’s nodes. Application team members will be able to configure puppet settings (i.e., edit `~/.puppet/puppet.conf`), configure Facter external facts, and run `puppet agent --test` on their nodes. Alternatively, the application team can run puppet via non-privileged cron jobs (or a similar scheduling service). The application team will classify their nodes by writing or editing manifests in the directories where they have write privileges.
 
-Note that the application team will not be able to use PE’s orchestration capabilities to manage their nodes and Mcollective will be disabled on all nodes. 
+Note that the application team will not be able to use PE’s orchestration capabilities to manage their nodes and Mcollective must be disabled on all nodes. 
 
 ### Installation & Configuration
 
