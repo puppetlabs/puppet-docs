@@ -18,22 +18,18 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-<<<<<<< HEAD
 ### PE 3.2.0 (3/4/2014)
-=======
-### PE 3.2.0 (3/4/13)
->>>>>>> 4146611b946019c00f0b0c15f95f18fe2648945d
 
 #### Simplified Agent Install
 
-On platforms that support remote package repos, installing PE agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
+On platforms that natively support remote package repos, installing PE agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
 
 #### Puppet Enterprise Supported Modules
 
 PE 3.2 introduces PE supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
 
 * rigorously tested with PE
-* supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)
+* supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)(PE customers only)
 * maintained for a long-term lifecycle
 * compatible with multiple platforms and architectures.
 

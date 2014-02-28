@@ -14,7 +14,7 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 PE 3.2 introduces Puppet Enterprise supported modules. PE supported modules allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
 
 * rigorously tested with PE
-* supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support)
+* supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support) (PE customers only)
 * maintained for a long-term lifecycle
 * compatible with multiple platforms and architectures.
 
@@ -35,13 +35,13 @@ Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to lea
 
 #### Simplified Agent Install
 
-On platforms that support remote package repos, installing agents can now be done via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
+On platforms that natively support remote package repos, installing agents can now be done via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
 
 #### Razor Provisioning Tech Preview
 
 PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. Tech previews provide early access to new technology still under development. As such, it should only be used for evaluation purposes and not in production environments. You can find more information on Puppet Labs tech previews on the [Tech Preview Support Scope page](http://puppetlabs.com/services/tech-preview).
 
-Razor offers advanced provisioning capabilities that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal, be it in your machine room or in the cloud, into a state that your existing configuration management systems, PE for example, can then take over. For more information, refer to the [Razor documentation](./razor_intro.html).
+Razor offers advanced provisioning capabilities that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal, be it in your machine room or in the cloud, into a state that PE can then take over and manage. Razor does this by discovering bare metal machines and installing and configuring operating systems and hypervisors on them. For more information, refer to the [Razor documentation](./razor_intro.html).
 
 *Note*: This is a tech preview release of Razor. For more information, see the [Puppet Labs Tech Previews Info Page](http://puppetlabs.com/services/tech-preview).
 

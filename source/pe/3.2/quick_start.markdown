@@ -76,7 +76,9 @@ For this deployment, the puppet master, the console and database support server 
     * **Install** the puppet agent role. The cloud provisioner role is optional and is not used in this exercise.
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `agent1.example.com`.)
     * **Accept the default responses for every other question** by hitting enter.
-* The installer will then install and configure Puppet Enterprise.
+* The installer will then install and configure Puppet Enterprise. 
+
+**Note**: In a production environment there are other ways to install agents that may be faster or simpler. For more information, see the [complete installation instructions](./install_basic.html).
 
 > You have now installed the puppet agent node. Stay logged in as root for further exercises.
 
@@ -208,7 +210,7 @@ You have just triggered a puppet agent run on several agents at once; in this ca
 
 In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
-Installing a Puppet Module
+Installing Modules
 -----
 
 Puppet configures nodes by applying classes to them. Classes are chunks of Puppet code that configure a specific aspect or feature of a machine.
@@ -217,11 +219,11 @@ Puppet classes are **distributed in the form of modules**. You can save time by 
 
 ### Installing two Forge Modules
 
-We will install two Puppet Enterprise supported modules: `puppetlabs-ntp` and `puppetlabs-registry`. Supported modules are tested and maintained by Puppet Labs. 
+We will install two Puppet Enterprise supported modules: `puppetlabs-ntp` and `puppetlabs-registry`. While you can use any module available on the Forge, PE customers can use [supported modules](http://forge.puppetlabs.com/supported) which are tested and maintained by Puppet Labs. 
 
 * **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/nto). This is the Forge listing for a module that installs, configures, and manages the ntp service.
 
-* Navigate to <https://forge.puppetlabs.com/puppetlabs/registry>. This is the Forge listing for a module that enables you to manage your Windows Registry from your *nix puppet master.
+* Navigate to <https://forge.puppetlabs.com/puppetlabs/registry>. This is the Forge listing for a PE supported module that enables you to manage your Windows Registry from your *nix puppet master.
 
 * **On the puppet master**, run `puppet module search ntp`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions:
 
@@ -278,14 +280,19 @@ Every module contains one or more **classes**. The modules you just installed co
 		
  		service ntpd stop
  		ntpdate us.pool.ntp.org. 
+ 
  The result should resemble the following:
 
 		28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec
+ 
  Finally, run `service ntpd start`.
  		
->Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
+> Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. 
+> Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
 
-> For more recommended modules, [visit the Forge](http://forge.puppetlabs.com).
+You can adjust the parameters of classes present on nodes directly in the console by selecting a node and then clicking "Edit parameters" in the list of classes. For more information, see the page on [classifying nodes with the console](./console_classes_groups.html). 
+
+There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com).
 
 ### Viewing Changes with Event Inspector
 
@@ -321,9 +328,9 @@ You have now experienced the core features and workflows of Puppet Enterprise. I
 
 ### Next
 
-In addition to what this walkthrough has covered, most users will also:
+In addition to what this brief walkthrough has covered, most users will go on to:
 
-* Edit modules from the Forge to make them better suit the deployment.
+* Edit Forge modules to customize them to the deployment.
 * Create new modules from scratch by writing classes that manage resources.
 * Examine reports in the PE console.
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
