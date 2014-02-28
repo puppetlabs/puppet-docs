@@ -52,7 +52,7 @@ The `csr_attributes` file must be a YAML hash containing one or both of the foll
 * `custom_attributes`
 * `extension_requests`
 
-The value of either key must also be a hash, where:
+The value of each key must also be a hash, where:
 
 * Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier) --- [Puppet-specific OIDs][puppet_oids] may optionally be referenced by short name instead of by numeric ID.
 * Each value is an object that can be cast to a string (that is, numbers are allowed but arrays are not).
