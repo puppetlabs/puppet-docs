@@ -8,11 +8,11 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
-> **Status:** The future parser is available in Puppet 3.2.0 and later. Currently, we recommend _against_ enabling the future parser in a production deployment. As of Puppet 3.4, it still carries a massive performance penalty in catalog compilation compared to the default parser. It can be used to experiment with new features in a small environment, but it shouldn't bear the weight of a full-scale Puppet site.
+> **Status:** Currently, we recommend _against_ enabling the future parser in a production deployment. As of Puppet 3.5, it still carries a massive performance penalty in catalog compilation compared to the default parser. It can be used to experiment with new features in a small environment, but it shouldn't bear the weight of a full-scale Puppet site.
 >
 > The new language features in the future parser are still being designed and considered, and there is ongoing debate over how they should work and whether they should be an official part of Puppet.
 
-Starting with Puppet 3.2, you can set `parser = future` in puppet.conf to enable experimental new language features, which may or may not be included in a future Puppet version.
+You can set `parser = future` in puppet.conf to enable experimental new language features, which may or may not be included in a future Puppet version.
 
 Under the hood, the "future" parser is a ground-up reimplementation of the Puppet grammar. In addition to the experimental features it includes, the "future" parser makes some other changes and clean-ups to the language.
 
@@ -22,7 +22,6 @@ Enabling the Future Parser
 
 To enable the future parser:
 
-* Make sure you are using Puppet 3.2.0 or later.
 * On your puppet master(s) (or each node, if running puppet apply), ensure the `rgen` gem is installed. If you installed Puppet from the official packages, this was already installed as a dependency; otherwise, you may need to install it manually.
 * On your puppet master(s) (or each node, if running puppet apply), set [`parser = future`][parser_setting] in the `[master]` or `[main]` block of puppet.conf. (In a masterless "puppet apply" deployment, use `[main]`.)
     * Alternately, for one-off tests, you can set `--parser future` on the command line when running puppet apply.

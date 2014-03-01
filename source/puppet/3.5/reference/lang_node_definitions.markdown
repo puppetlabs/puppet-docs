@@ -149,12 +149,6 @@ The above example would match `foo.example.com` and `bar.example.com`, but no ot
 
 > Make sure that node regexes do not overlap. If more than one regex statement matches a given node, the one it gets will be parse-order dependent.
 
-#### Regex Capture Variables
-
-In **Puppet 3.3.0 and later,** regex node definitions set numbered regex capture variables ($1, $2, etc.) within the body of the node definition. This is similar to the behavior of [conditional statements][conditional] that use regexes.
-
-**Prior to Puppet 3.3.0, these variables were not set.** See [issue #2628](http://projects.puppetlabs.com/issues/2628).
-
 Behavior
 -----
 
@@ -180,6 +174,10 @@ Thus, for the node `www01.example.com`, Puppet would try the following, in order
 * `default`
 
 You can turn off this fuzzy name matching by changing the puppet master's [`strict_hostname_checking`][strict] setting to `true`. This will cause Puppet to skip step 3 and only use the node's full name before resorting to `default`.
+
+### Regex Capture Variables
+
+Regex node definitions will set numbered regex capture variables ($1, $2, etc.) within the body of the node definition. This is similar to the behavior of [conditional statements][conditional] that use regexes.
 
 ### Code Outside Node Statements
 

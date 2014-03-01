@@ -74,8 +74,6 @@ With basic autosigning enabled, an attacker able to guess an unused certname all
 Policy-Based Autosigning
 -----
 
-> **Version note:** Policy-based autosigning is only available in Puppet 3.4 and later.
-
 In policy-based autosigning, the CA will run an external policy executable every time it receives a CSR. This executable will examine the CSR and tell the CA whether the certificate is approved for autosigning. If the executable approves, the certificate is autosigned; if not, it is left for manual review.
 
 ### Enabling Policy-Based Autosigning

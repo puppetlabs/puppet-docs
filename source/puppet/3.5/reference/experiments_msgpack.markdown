@@ -1,17 +1,17 @@
 ---
 layout: default
-title: "Experimental Features: Msgpack Support (Puppet 3.4+)"
+title: "Experimental Features: Msgpack Support"
 canonical: "/puppet/latest/reference/experiments_msgpack.html"
 ---
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
-> **Status:** Msgpack support is available in Puppet 3.4.0 and later. We think it's probably superior to our existing serialization formats, but we aren't sure yet and haven't tested all edge cases. If it proves to do well under real-world loads, we may eventually adopt it as our default wire format.
+> **Status:** We think Msgpack is probably superior to our existing serialization formats, but we aren't sure yet and haven't tested all edge cases. If it proves to do well under real-world loads, we may eventually adopt it as our default wire format.
 
 Background on Msgpack
 -----
 
-Puppet agents and masters communicate over HTTPS, exchanging structured data in some serialization format. Traditionally, this has been a mix of YAML and JSON (or actually "PSON," which allows binary data); more recently (Puppet 3.3), we've been trying to deprecate YAML and move entirely to PSON.
+Puppet agents and masters communicate over HTTPS, exchanging structured data in some serialization format. Traditionally, this has been a mix of YAML and JSON (or actually "PSON," which allows binary data); more recently, we've been trying to deprecate YAML and move entirely to PSON.
 
 [Msgpack](http://msgpack.org/) is an efficient (in space and time) serialization protocol that behaves similarly to JSON. It should provide faster and more robust serialization for agent/master communications, without requiring many changes in our code.
 

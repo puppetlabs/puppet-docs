@@ -10,7 +10,7 @@ The `autosign.conf` file can allow certain certificate requests to be automatica
 
 ## More About Autosigning
 
-The `autosign.conf` file is not the only way to configure autosigning. Puppet 3.4 and later offer a policy-based interface for autosigning that can be more flexible and secure.
+Puppet also provides a policy-based interface for autosigning, which can be more flexible and secure. The `autosign.conf` file is the simpler and less secure method.
 
 For more details, see [the reference page about certificate autosigning][autosigning].
 

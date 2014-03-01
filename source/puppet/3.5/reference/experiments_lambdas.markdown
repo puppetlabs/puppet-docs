@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/experiments_lambdas.html"
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
-> **Status:** The future parser is available in Puppet 3.2.0 and later. Currently, we recommend _against_ enabling the future parser in a production deployment. As of Puppet 3.4, it still carries a massive performance penalty in catalog compilation compared to the default parser. It can be used to experiment with new features in a small environment, but it shouldn't bear the weight of a full-scale Puppet site.
+> **Status:** Currently, we recommend _against_ enabling the future parser in a production deployment. As of Puppet 3.5, it still carries a massive performance penalty in catalog compilation compared to the default parser. It can be used to experiment with new features in a small environment, but it shouldn't bear the weight of a full-scale Puppet site.
 >
 > The new language features in the future parser are still being designed and considered, and there is ongoing debate over how they should work and whether they should be an official part of Puppet.
 
@@ -159,40 +159,4 @@ Statements in a Lambda Body
 
 The statements in a lambda body can be anything legal in Puppet except definition of classes, resource types (i.e. 'define'), or nodes. This is the same rule as for any conditional construct in Puppet.
 
-
-Removed and Altered Functionality (as of Puppet 3.4)
------
-
-The new language features in the future parser are still being designed and considered, and some functionality that was added in Puppet 3.2 was removed in Puppet 3.4.
-
-### Alternative Syntax for Lambdas
-
-Lambda syntax is now limited to the standard style with piped arguments outside the lambda body. Prior to Puppet 3.4, there were two additional syntaxes available, which made the following three expressions equivalent:
-
-    # Alternative 0 (as shown): Parameters are outside the lambda block.
-    [1,2,3].each |$value| { notice $value }
-
-    # Alternative 1: Parameters are inside the lambda block.
-    [1,2,3].each { |$value| notice $value }
-
-    # Alternative 2: A fat arrow is placed after the parameters.
-    [1,2,3].each |$value| => { notice $value }
-
-The second and third syntax will no longer work.
-
-
-### Renamed Functions
-
-Two iteration functions were renamed in Puppet 3.4:
-
-* `collect` was renamed to `map`
-* `select` was renamed to `filter`
-
-
-### Removed Functions
-
-Two iteration functions were removed entirely in Puppet 3.4, since their functionality was redundant:
-
-* `foreach` --- this function was simply a duplicate of `each`. Use `each` instead.
-* `reject` --- this function was like `filter` (previously `select`), but inverted the filtering criteria. Instead, use `filter` with an inverted criteria. (Instead of `[1,2,3].reject |$val| { $val > 2 }`, use `[1,2,3].filter |$val| { $val <= 2 }`.)
 

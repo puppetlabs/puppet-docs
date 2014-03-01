@@ -27,7 +27,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering option]: /references/3.stable/configuration.html#ordering
+[ordering]: /references/3.stable/configuration.html#ordering
 <!-- TODO improve hiera link -->
 [hiera]: https://github.com/puppetlabs/hiera
 
@@ -54,7 +54,13 @@ The resources in a manifest can be freely ordered --- they will not necessarily 
 
 Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced.
 
-Puppet 3.3 introduced the [ordering option][], which provides an alternative to the effectively random order for unrelated resources. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply resources in the order in which they appear in the manifest **if the order is not otherwise determined,** e.g., by metaparameters like `before` or `require`. 
+### Configurable Ordering
+
+The [ordering setting][ordering] allows you to configure how resources are ordered when relationships are not present.
+
+By default, the order of unrelated resources is effectively random. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply unrelated resources in the order in which they appear in the manifest.
+
+This setting only affects resources whose relative order **is not otherwise determined,** e.g., by metaparameters like `before` or `require`. See [the language page on relationships](./lang_relationships.html) for more information.
 
 Files
 -----

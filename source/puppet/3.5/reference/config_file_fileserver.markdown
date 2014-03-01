@@ -44,7 +44,7 @@ A `fileserver.conf` file consists of a collection of mount-point stanzas, and lo
 
 ### Security Directives
 
-The `allow` and `deny` directives in a mount point stanza can be used to control which nodes may access the files in it. However, this feature predates the `auth.conf` file used in this version of Puppet, and we recommend against using it. If possible, you should keep all authorization rules centralized in `auth.conf`. To do this, put a single `allow *` rule in each custom mount point.
+The `allow` and `deny` directives in a mount point stanza can be used to control which nodes may access the files in it. However, this feature predates the `auth.conf` file used in this version of Puppet, and **we recommend against using it.** If possible, you should keep all authorization rules centralized in `auth.conf`. To do this, put a single `allow *` rule in each custom mount point.
 
 By default, `auth.conf` will allow all agent nodes with valid certificates to access files, and will block access for any client that doesn't have a certificate. For most use cases, this is good enough. However, if you are serving sensitive credentials via custom mount points, you may wish to add more restrictive rules to `auth.conf`. To do this, add a rule to `auth.conf` for each mount point. These rules should begin with:
 

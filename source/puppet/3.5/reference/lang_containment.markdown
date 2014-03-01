@@ -56,7 +56,7 @@ However, unlike resources, Puppet does not _automatically_ contain classes when 
 
 Instead, you must _manually_ contain any classes that need to be contained.
 
-### In Puppet 3.4.0 and Later
+### The `contain` Function
 
 Use the `contain` function when a class should be contained. The `contain` function will declare the class with include-like behavior if it isn't already declared, and will cause it to be contained by the surrounding class.
 
@@ -96,7 +96,7 @@ To contain classes that are declared with the resource-like declaration syntax, 
     }
 {% endhighlight %}
 
-### Prior to Puppet 3.4.0
+### Faux Containment (for Compatibility With Puppet ≤ 3.4.0)
 
 Versions prior to Puppet 3.4.0 do not ship with the `contain` function. To support these versions, you must mimic containment with the **anchor pattern.**
 

@@ -10,19 +10,17 @@ canonical: "/puppet/latest/reference/config_ssl_external_ca.html"
 [ca_auth]: /references/latest/configuration.html#sslclientcaauth
 [puppetdb]: /puppetdb/latest
 
-Starting with **Puppet 3.2.0 and later,** Puppet can use an existing external CA for all of its SSL communications. This page describes the supported configurations for external CAs.
+In lieu of its built-in CA and PKI tools, Puppet can use an existing external CA for all of its SSL communications.
+
+This page describes the supported and tested configurations for external CAs in this version of Puppet. If you have an external CA use case that isn't covered here, please get in touch with Puppet Labs so we can learn more about it.
 
 > **Note:** This page uses RFC 2119 style semantics for MUST, SHOULD, MAY.
-
-> **Historical note:** Using an external CA with Puppet has sometimes worked (or appeared to), but it frequently broke, and there was never a concerted effort to keep it working. Most recently, a security fix in Puppet 2.7.18 broke nearly all external CAs, and prevented a lot of people from upgrading through the early 3.x series. (See [issue #15561](https://projects.puppetlabs.com/issues/15561).)
->
-> Starting with Puppet 3.2, Puppet Labs officially supports and tests external CAs in certain configurations. We're hoping that 15561 will be the last total external CA breakage. Thanks for your patience, and please get in touch if your use case isn't covered.
 
 
 Supported External CA Configurations
 -----
 
-Puppet ≥ 3.2 supports _some_ external CA configurations, but not every possible arrangement. We fully support the following setups:
+Puppet 3.5 supports _some_ external CA configurations, but not every possible arrangement. We fully support the following setups:
 
 1. [Single self-signed CA which directly issues SSL certificates.](#option-1-single-ca)
 2. [Single, intermediate CA issued by a root self-signed CA.](#option-2-single-intermediate-ca)  The intermediate
@@ -192,7 +190,7 @@ An example of this configuration for Apache:
 {% capture master_config_ru %}
 The `config.ru` file for rack has no special configuration when using an
 external CA.  Please follow the standard rack documentation for using Puppet
-with rack.  The following example will work with Puppet 3.2.
+with rack.  The following example will work with this version of Puppet:
 
     {% highlight ruby %}
     $0 = "master"

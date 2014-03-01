@@ -232,8 +232,6 @@ Resolves to the product of the two operands.
 
 ### `%` (modulo)
 
-> **Added in Puppet 3.2.0.** Puppet 3.0.x and 3.1.x releases do not have this operator.
-
 Resolves to the **remainder** of dividing the first operand by the second operand. (E.g. `5 % 2` would resolve to `1`.)
 
 ### `<<` (left shift)

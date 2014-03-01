@@ -167,9 +167,11 @@ Each node submits a very large number of [facts][] (as discovered by [Facter][])
 
 ### Trusted Node Data
 
-In **Puppet 3.4.0 and later,** you can enable a `$trusted` variable, which is a hash containing _verified_ node data. Instead of being self-reported by an agent node, this data is extracted from the node's cryptographic credentials by the puppet master, which makes it resistant to spoofing and suitable for assigning sensitive data to certain nodes.
+Optionally, you can enable a `$trusted` variable, which is a hash containing _verified_ node data. To do so, set `trusted_node_data = true` in your puppet master's puppet.conf file. (For standalone puppet apply nodes, set it to true in each node's puppet.conf.)
 
-To enable `$trusted`, set `trusted_node_data = true` in your puppet master's puppet.conf file. (For standalone puppet apply nodes, set it to true in each node's puppet.conf.)
+> **Recommendation:** Yes, you should enable this feature. It's only disabled by default because someone might be using `$trusted` for something else, and we didn't want to break their use case midway through the 3.x series. It will be enabled by default in Puppet 4.
+
+Instead of being self-reported by an agent node, trusted data is extracted from the node's SSL credentials by the puppet master, which makes it resistant to spoofing and suitable for assigning sensitive data to certain nodes.
 
 The `$trusted` variable is a hash containing the following keys:
 
@@ -192,7 +194,7 @@ Puppet agent (and puppet apply) sets several additional variables for a node whi
 
 * `$clientcert` --- the value of the node's [`certname` setting][certname].
 * `$clientversion` --- the current version of puppet agent.
-* `$clientnoop` --- available in Puppet 3.3.0 (Puppet Enterprise 3.1) and later. The value of the node's [`noop` setting][noop] (true or false) at the time of the run.
+* `$clientnoop` --- the value of the node's [`noop` setting][noop] (true or false) at the time of the run.
 
 These variables are self-reported, so they shouldn't be used to decide whether a node receives sensitive data in its catalog. For that, see the `$trusted['certname']` variable above.
 
