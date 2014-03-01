@@ -262,7 +262,7 @@ Every module contains one or more **classes**. The modules you just installed co
 
 ![The console's add classes button][classbutton]
 
-* Locate the `ntp` class in the list of classes, and click its checkbox to select it; do the same for the `registry` class. When both are selected, click the "Add selected classes" button at the bottom of the page.
+* Locate the `ntp` class in the list of classes, and click its checkbox to select it. Click the "Add selected classes" button at the bottom of the page.
 
 ![the add class field][add_ntp]
 
@@ -271,8 +271,6 @@ Every module contains one or more **classes**. The modules you just installed co
 ![assigning the ntp class][assign_ntp]
 
 * Note that the `ntp` class now appears in the list of classes on `agent1`.
-* Navigate to `windows.example.com`, click the "Edit" button, and, in the "Classes" field, begin typing "`registry`"; select the class and click the "Update" button.
-* Note that the `registry` class now appears in the list of classes on `windows.example.com`.
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * On the first agent node, run the following commands:
 
@@ -288,7 +286,7 @@ Every module contains one or more **classes**. The modules you just installed co
  Finally, run `service ntpd start`.
  		
 > Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. 
-> Puppet is also managing the registry on your Windows machine and will restore the registry if it is ever deleted or modified.
+> You can also now write Puppet code that will allow you to manage the registry on your windows nodes.
 
 You can adjust the parameters of classes present on nodes directly in the console by selecting a node and then clicking "Edit parameters" in the list of classes. For more information, see the page on [classifying nodes with the console](./console_classes_groups.html). 
 
