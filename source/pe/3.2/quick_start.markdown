@@ -273,11 +273,13 @@ Every module contains one or more **classes**. The modules you just installed co
 * Note that the `ntp` class now appears in the list of classes on `agent1`.
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * On the first agent node, run the following commands:
-
-	***Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
 		
- 		`service ntpd stop1
- 		`ntpdate us.pool.ntp.org` 
+{% highlight ruby %}
+ 		service ntpd stop1
+ 		ntpdate us.pool.ntp.org
+{% endhighlight %} 
+ 
+ **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
  
  The result should resemble the following:
 
