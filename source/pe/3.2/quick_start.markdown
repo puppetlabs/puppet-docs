@@ -276,8 +276,8 @@ Every module contains one or more **classes**. The modules you just installed co
 
 	***Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
 		
- 		service ntpd stop
- 		ntpdate us.pool.ntp.org. 
+ 		`service ntpd stop1
+ 		`ntpdate us.pool.ntp.org` 
  
  The result should resemble the following:
 
@@ -298,7 +298,7 @@ There are many more modules, including PE supported modules, on [the Forge](http
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for  Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
+Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
 
 ![The default event inspector view][EI-default]
 
