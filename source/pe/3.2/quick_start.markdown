@@ -302,11 +302,10 @@ You can adjust the parameters of classes present on nodes directly in the consol
     
 ![the node class list][edit-params]
     
-    * Enter a value for the parameter you wish to set. For instance if you want to set a specific server you would enter `ntp1.example.com` next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset to default" control that appears next to the value after you have entered a custom value.
+    * Enter a value for the parameter you wish to set. For instance, if you want to set a specific server you would enter `ntp1.example.com` next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset to default" control that appears next to the value after you have entered a custom value.
     
 ![the NTP parameters list][ntp-params]
     
-
 
 ### Viewing Changes with Event Inspector
 
@@ -336,21 +335,29 @@ You have now experienced the core features and workflows of Puppet Enterprise. I
 * Deploy new nodes, install PE on them ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add them to their deployment by approving their certificate requests](./console_cert_mgmt.html).
 * Use [pre-built, PE supported modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
 * [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
+* [Use the console to set values for class parameters.](./console_classes_groups.html)
 * [Allow nodes to be managed by regularly scheduled Puppet runs.](./puppet_overview.html#when-new-configurations-take-effect)
 * Use [live management](./console_navigating_live_mgmt.html) to [inspect and compare nodes](./orchestration_resources.html), and to [trigger on-demand puppet agent](./orchestration_puppet.html) runs when necessary.
 * Use [event inspector](./console_event-inspector.html) to learn more about events that occurred during puppet runs, such as what was changed or why something failed.
 
-### Next
+### Next Steps
 
-In addition to what this brief walkthrough has covered, most users will go on to:
+Beyond what this brief walkthrough has covered, most users will go on to:
 
 * Edit Forge modules to customize them to the deployment.
 * Create new modules from scratch by writing classes that manage resources.
-* Examine reports in the PE console.
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
-* Assign classes to groups in the console instead of individual nodes.
+* Configure multiple nodes at once by adding classes to groups in the console instead of individual nodes.
 
-To learn about these workflows, continue to the [writing modules quick start guide](./quick_writing.html).
+To learn about these workflows, continue to part two, the [advanced quick start guide](./quick_writing.html).
+
+#### Other Resources
+
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to learn more.
+
+    * [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of lessons on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
+    * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
+
 
 To explore the rest of the PE user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
 
