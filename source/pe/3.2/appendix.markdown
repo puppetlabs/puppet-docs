@@ -20,24 +20,20 @@ Release Notes
 
 ### PE 3.2.0 (3/4/2014)
 
-#### Simplified Agent Install
-
-On platforms that natively support remote package repos, installing PE agents can now be done via package manager, making the installation process faster and simpler. For details, visit the [PE installation page](install_basic.html).
-
 #### Puppet Enterprise Supported Modules
 
-PE 3.2 introduces PE supported modules. Supported modules will allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
+PE 3.2 introduces Puppet Enterprise supported modules. PE supported modules allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
 
 * rigorously tested with PE
-* supported by PL via the usual [support channels](http://puppetlabs.com/services/customer-support)(PE customers only)
+* supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support) (PE customers only)
 * maintained for a long-term lifecycle
 * compatible with multiple platforms and architectures.
 
-Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [Concat][pe-concat].
+Visit the [supported modules page](http://forge.puppetlabs.com/supported) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [concat][pe-concat].
 
 [pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
 [pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
-[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/ntp
+[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/mysql
 [windows-registry]: http://forge.puppetlabs.com/puppetlabs/registry
 [pe-postgresql]: http://forge.puppetlabs.com/puppetlabs/postgresql
 [pe-stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
@@ -48,36 +44,43 @@ Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to lea
 [pe-javaks]: http://forge.puppetlabs.com/puppetlabs/java_ks
 [pe-concat]: http://forge.puppetlabs.com/puppetlabs/concat
 
+#### Simplified Agent Install
+
+On platforms that natively support remote package repos, agents can now be installed via package management tools, making the installation process faster and simpler. This will be especially useful for highly dynamic, virtualized infrastructures. For details, visit the [PE installation page](install_basic.html#installing-agents).
+
 #### Razor Provisioning Tech Preview
 
-PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. 
+PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. Razor aims to solve the problem of how to bring new metal, be it in your machine room or in the cloud, into a state that PE can then take over and manage. It does this by discovering bare metal machines and then installing and configuring operating systems and/or hypervisors on them. For more information, refer to the [Razor documentation](./razor_intro.html).
 
-Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
+> *Note*: Razor is included in Puppet Enterprise 3.2 as a tech preview. Puppet Labs tech previews provide early access to new technology still under development. As such, you should only use them for evaluation purposes and not in production environments. You can find more information on tech previews on the [tech preview support scope page](http://puppetlabs.com/services/tech-preview).
 
-*Note*: This is a tech preview release of Razor. For more information, see the see the [Puppet Labs Tech Previews Info Page](http://puppetlabs.com/services/tech-preview).
 
 #### Puppet Agent with Non-Root Privileges
 
-In some situations, it may be desirable for a development team to manage their infrastructure on nodes in which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. Details can be found in the new [guide to non-root agents](./guides/nonroot_agent.html).
+In some situations, a development team may wish to manage infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. You can learn more in the new [guide to non-root agents](deploy_nonroot-agent.html).
+
+#### Agent Support for Solaris 11
+
+The puppet agent can now be installed on nodes running Solaris 11. Other roles (e.g., master, console) are not supported. For more information, see the [system requirements](install_system_requirements.html).
 
 #### Disable/Enable Live Management
 
-In some cases, it may be desirable to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html#disabling_enabling-live-management).
+In some cases, you may want to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html) and the [installation instructions](install_basic.html).
 
-#### Support for Solaris 11
+#### Security Patches
 
-The puppet agent can now be installed on nodes running Solaris 11. Support is only for agents. For more information, see the [system requirements](install_system_requirements.html).
+A handful of vulnerabilities have been addressed in PE 3.2.0. For details, check the [release notes](appendix.html#release-notes).
 
 #### Component Package Upgrades
 
-Several of the “under the hood” constituent parts of Puppet Enterprise have been updated in version 3.2. Most notably these include:
+Several of the "under the hood" constituent parts of Puppet Enterprise have been updated in version 3.2. Most notably these include:
 
-* Puppet 3.4.2
+* Puppet 3.4.3
 * PuppetDB 1.5.2
-* Facter 1.7.4.
+* Facter 1.7.5
 * MCollective 2.2.4
-* Hiera 1.3.0.
-* Dashboard 2.1.0
+* Hiera 1.3.2
+* Dashboard 2.1.1
 
 #### Security Fixes
 
@@ -136,7 +139,7 @@ If using the `--tree` command is necessary, a suggested workaround is to run `pu
 
 This will be fixed in a future release.
 
-### `puppet module list --tree` Shows Incorrect Dependencies after Uninstalling Modules
+### `puppet module list --tree` Shows Incorrect Dependencies After Uninstalling Modules
 
 If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. 
 
@@ -144,7 +147,7 @@ If you uninstall a module with `puppet module uninstall <module name>` and then 
 
 When upgrading a PE 2.8.3 master to PE 3.2.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
 
-### `Puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
+### `puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 
 In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](http://docs.puppetlabs.com/puppetdb/1.5/connect_puppet_apply.html).
 
@@ -154,7 +157,7 @@ On Windows systems, puppet agent runs started locally from the command line requ
 
 ### BEAST Attack Mitigation
 
-A known weakness in Apache HTTPD leaves it vulnerable to a man-in-the-middle attack known as the BEAST (Browser Exploit Against SSL/TLS) attack. The vulnerability exists because Apache HTTPD uses a FIPS compliant cipher suite that can be cracked via a brute force attack that can discover the decryption key. If FIPS compliance is not required for your infrastructure, we recommend you mitigate vulnerability to the BEAST attack by using a cipher suite that includes stronger ciphers. This can be done as follows:
+A known weakness in Apache HTTPD leaves it vulnerable to a man-in-the-middle attack known as the BEAST (Browser Exploit Against SSL/TLS) attack. The vulnerability exists because Apache HTTPD uses a FIPS-compliant cipher suite that can be cracked via a brute force attack that can discover the decryption key. If FIPS compliance is not required for your infrastructure, we recommend you mitigate vulnerability to the BEAST attack by using a cipher suite that includes stronger ciphers. This can be done as follows:
 
 In `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf`, edit the `SSLCipherSuite` and `SSLProtocol` options to:
 
@@ -187,7 +190,7 @@ Note that unless your system contains OpenSSL v1.0.1d (the version that correctl
 
 - On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading or installing by running
 
-         rpm -e --nodeps readline
+        rpm -e --nodeps readline
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
 
 If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the installation or upgrade (you can verify the installation with  `rpm -q readline`).
@@ -197,7 +200,8 @@ On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an ent
 
 To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. However, if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
 
-### Console_auth Fails After PostgreSQL Restart
+### console_auth Fails After PostgreSQL Restart
+
 RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`.
 
 ### Inconsistent Counts When Comparing Service Resources in Live Management
@@ -216,7 +220,7 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 
 When doing the first puppet run after upgrading using the "upgrader" script included in PE tarballs, agents are reporting an error: "&lt;node.name&gt; is not a Puppet Enterprise agent." This was caused by a bug in the upgrader that has since been fixed. If you downloaded a tarball prior to November 28, 2012, simply download the tarball again to get the fixed upgrader. If you prefer, you can download the [latest upgrader module](http://forge.puppetlabs.com/adrien/pe_upgrade/0.4.0-rc1) from the Forge. Alternatively, you can fix it by changing `/etc/puppetlabs/facter/facts.d/is_pe.txt`  to contain: `is_pe=true`.
 
-### Answer File Required for Some SMTP servers.
+### Answer File Required for Some SMTP Servers
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
