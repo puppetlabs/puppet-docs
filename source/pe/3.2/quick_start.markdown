@@ -76,7 +76,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `master.example.com`.)
     * You will need the **email address and console password** it requests in order to use the console; **choose something memorable.**
     * None of the **other passwords** are relevant to this quick start guide. **Choose something random.**
-    * **Accept the default responses for every other question** by hitting enter.
+    * **Accept the default responses for every other question** by hitting enter. For this walkthrough, when prompted for an SMTP server you can enter `localhost` or other inert text.
 * The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take 10-15 minutes.**
 
 > You have now installed the puppet master node. As indicated by the installer, the puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
@@ -125,7 +125,7 @@ During installation, the agent node contacted the puppet master and requested a 
 
 ### Testing the Agent Nodes
 
-During this walkthrough, we will be running puppet agent interactively. By default, the puppet agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a puppet run manually from the command line.
+During this walkthrough, we will be running the Puppet agent interactively. By default, the agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a Puppet run manually from the command line.
 
 * **On the agent node,** log in as root and run `puppet agent --test` on the command line. This will trigger a single puppet agent run with verbose logging.
 
@@ -151,7 +151,7 @@ During this walkthrough, we will be running puppet agent interactively. By defau
 
 ### Avoiding the Wait
 
-Although the puppet agent is now fully functional on the agent node, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not yet configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
+Although the Puppet agent is now fully functional on the agent node, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not yet configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following:
 
@@ -170,14 +170,14 @@ Puppet Enterprise does this automatically within 30 minutes of a node's first ch
 
 * **On each agent node**, run `puppet agent --test` again, [as described above](#testing-the-agent-nodes). Note the long string of log messages related to the `pe_mcollective` class.
 
-In a normal environment, you would usually skip these steps and allow orchestration to come on-line when puppet runs automatically.
+In a normal environment, you would usually skip these steps and allow orchestration to come on-line when Puppet runs automatically.
 
-> Both the agent node can now respond to orchestration messages, and its resources can be viewed live in the console.
+> The agent node can now respond to orchestration messages and its resources can be viewed live in the console.
 
 Using Live Management to Control Agent Nodes
 -----
 
-Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger Puppet runs and orchestration tasks.
+Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger Puppet runs and perform other orchestration tasks.
 
 * **On the console**, click the "Live Management" tab in the top navigation.
 
@@ -191,17 +191,17 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 ![the find resources button](./images/quick/find_resources.png)
 
-* Examine the **complete list of user accounts** found on all of the nodes currently selected in the sidebar node list. (In this case, both the master and the first agent node are selected.) Most of the users will be identical, as these machines are very close to a default OS install, but some users related to the puppet master's functionality are only on one node:
+* Examine the **complete list of user accounts** found on all of the nodes currently selected in the sidebar node list. (In this case, both the master and the agent node are selected.) Most of the users will be identical, as these machines are very close to a default OS install, but some users related to the puppet master's functionality are only on one node:
 
 ![different users](./images/quick/different_users.png)
 
 * Note that you can click on a user to view details about its properties and where it is present.
 
-The other resource types work in a similar manner. Choose the nodes whose resources you wish to browse. Select a resource type, click "Find Resources" to discover the resource on the selected nodes, click on one of the resulting found resources to see details about it.
+The other resource types work in a similar manner. Choose the node(s) whose resources you wish to browse. Select a resource type, click "Find Resources" to discover the resource on the selected nodes, click on one of the resulting found resources to see details about it.
 
 ### Triggering Puppet Runs
 
-Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use live management to run puppet on several selected nodes.
+Rather than using the command line to kick off Puppet runs with `puppet agent -t` one at a time, you can use live management to run Puppet on several selected nodes.
 
 * **On the console, in the live management page**, click the "Control Puppet" tab.
 * Make sure one or more nodes are selected with node selector on the left.
@@ -211,26 +211,24 @@ Rather than using the command line to kick off puppet runs with `puppet agent -t
 <br>
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
-You have just triggered a puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
+You have just triggered a Puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
 
-In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
+In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the Puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
 Installing Modules
 -----
 
 Puppet configures nodes by applying classes to them. Classes are chunks of Puppet code that configure a specific aspect or feature of a machine.
 
-Puppet classes are **distributed in the form of modules**. You can save time by **using pre-existing modules**. Pre-existing modules are distributed on the [Puppet Forge](http://forge.puppetlabs.com), and **can be installed with the `puppet module` subcommand**. Any module installed on the puppet master can be used to configure agent nodes.
+Puppet classes are **distributed in the form of modules**. You can save time by **using pre-existing modules**. Pre-existing modules are distributed on the [Puppet Forge](http://forge.puppetlabs.com), and **can be installed with the `puppet module` subcommand**. Any module installed on the Puppet master can be used to configure agent nodes.
 
-### Installing two Forge Modules
+### Installing a Forge Module
 
-We will install two Puppet Enterprise supported modules: `puppetlabs-ntp` and `puppetlabs-registry`. While you can use any module available on the Forge, PE customers can use [supported modules](http://forge.puppetlabs.com/supported) which are tested and maintained by Puppet Labs. 
+We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While you can use any module available on the Forge, PE customers can use [supported modules](http://forge.puppetlabs.com/supported) which are supported, tested, and maintained by Puppet Labs. 
 
-* **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/nto). This is the Forge listing for a module that installs, configures, and manages the ntp service.
+* **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). This is the Forge listing for a module that installs, configures, and manages the ntp service.
 
-* Navigate to <https://forge.puppetlabs.com/puppetlabs/registry>. This is the Forge listing for a PE supported module that enables you to manage your Windows Registry from your *nix puppet master.
-
-* **On the puppet master**, run `puppet module search ntp`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions:
+* **On the puppet master**, run `puppet module search ntp`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions and results in something like:
 
         Searching http://forge.puppetlabs.com ...
         NAME             DESCRIPTION                                                 AUTHOR        KEYWORDS
@@ -241,9 +239,7 @@ We will install two Puppet Enterprise supported modules: `puppetlabs-ntp` and `p
 
 We want `puppetlabs-ntp`, which is the Puppet Labs supported ntp module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. 
 
-You can also do a similar search for `registry`, which should find the other module we'll be using.
-
-* Install the first module by running `puppet module install puppetlabs-ntp`:
+* Install the module by running `puppet module install puppetlabs-ntp`:
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
         Notice: Downloading from http://forge.puppetlabs.com ...
@@ -251,17 +247,19 @@ You can also do a similar search for `registry`, which should find the other mod
         /etc/puppetlabs/puppet/modules
         └── puppetlabs-ntp (v3.0.1)
         
-* Install the second module by running `puppet module install puppetlabs-registry`. (If you are not using any Windows nodes, this module is inert; you can install it or skip it.)
+> You have just installed a Puppet module. All of the classes in it are now available to be added to the console and assigned to nodes.
 
-> You have just installed multiple Puppet modules. All of the classes in them are now available to be added to the console and assigned to nodes.
+There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com). In [part two](./quick_writing.html) of this guide you'll learn more about modules, including customizing and writing your own modules.
 
 ### Using Modules in the PE Console
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_ntp]: ./images/quick/add_ntp.png
 [assign_ntp]: ./images/quick/assign_ntp.png
+[edit-params]: ./images/quick/edit-parameters.png
+[ntp-params]: ./images/quick/ntp-params.png
 
-Every module contains one or more **classes**. The modules you just installed contain classes called `ntp` and `registry`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
+Every module contains one or more **classes**. The module you just installed contains a class called `ntp`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
 
 * **On the console**, click the "Add classes" button in the sidebar:
 
@@ -276,8 +274,8 @@ Every module contains one or more **classes**. The modules you just installed co
 ![assigning the ntp class][assign_ntp]
 
 * Note that the `ntp` class now appears in the list of classes on `agent1`.
-* Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agents. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
-* On the first agent node, run the following commands:
+* Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+* On the agent node, run the following commands:
 		
 {% highlight ruby %}
  		service ntpd stop1
@@ -293,11 +291,21 @@ Every module contains one or more **classes**. The modules you just installed co
  Finally, run `service ntpd start`.
  		
 > Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. 
-> You can also now write Puppet code that will allow you to manage the registry on your windows nodes.
 
-You can adjust the parameters of classes present on nodes directly in the console by selecting a node and then clicking "Edit parameters" in the list of classes. For more information, see the page on [classifying nodes with the console](./console_classes_groups.html). 
+#### Setting Class Parameters
 
-There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com).
+You can adjust the parameters of classes present on nodes directly in the console by selecting a node and then clicking "Edit parameters" in the list of classes. For more information, see the page on [classifying nodes with the console](./console_classes_groups.html). For example, if you wanted to specify an NTP server for a given node you would:
+
+    * Click on the node in the node list
+    * Click the edit button on the node's view
+    * Click on "Edit Parameters" next to "ntp" in the class list
+    
+![the node class list][edit-params]
+    
+    * Enter a value for the parameter you wish to set. For instance, if you want to set a specific server you would enter `ntp1.example.com` next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset to default" control that appears next to the value after you have entered a custom value.
+    
+![the NTP parameters list][ntp-params]
+    
 
 ### Viewing Changes with Event Inspector
 
@@ -327,21 +335,29 @@ You have now experienced the core features and workflows of Puppet Enterprise. I
 * Deploy new nodes, install PE on them ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add them to their deployment by approving their certificate requests](./console_cert_mgmt.html).
 * Use [pre-built, PE supported modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
 * [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
+* [Use the console to set values for class parameters.](./console_classes_groups.html)
 * [Allow nodes to be managed by regularly scheduled Puppet runs.](./puppet_overview.html#when-new-configurations-take-effect)
 * Use [live management](./console_navigating_live_mgmt.html) to [inspect and compare nodes](./orchestration_resources.html), and to [trigger on-demand puppet agent](./orchestration_puppet.html) runs when necessary.
 * Use [event inspector](./console_event-inspector.html) to learn more about events that occurred during puppet runs, such as what was changed or why something failed.
 
-### Next
+### Next Steps
 
-In addition to what this brief walkthrough has covered, most users will go on to:
+Beyond what this brief walkthrough has covered, most users will go on to:
 
 * Edit Forge modules to customize them to the deployment.
 * Create new modules from scratch by writing classes that manage resources.
-* Examine reports in the PE console.
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
-* Assign classes to groups in the console instead of individual nodes.
+* Configure multiple nodes at once by adding classes to groups in the console instead of individual nodes.
 
-To learn about these workflows, continue to the [writing modules quick start guide](./quick_writing.html).
+To learn about these workflows, continue to part two, the [advanced quick start guide](./quick_writing.html).
+
+#### Other Resources
+
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to learn more.
+
+    * [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of lessons on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
+    * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
+
 
 To explore the rest of the PE user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
 
