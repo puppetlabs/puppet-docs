@@ -7,10 +7,10 @@ canonical: "/pe/latest/razor_tasks.html"
 ---
 Tasks describe a process or collection of actions that should be performed while provisioning machines. They can be used to designate an operating system or other software that should be installed, where to get it, and the configuration details for the installation.
 
-Tasks are structurally very simple: they consist of a YAML metadata
+Tasks are structurally basic: they consist of a YAML metadata
 file, and any number of templates. Once you've automated the install for
 your operating system, for example, via kickstart or preseed, turning that
-into a task is a simple exercise in writing a bit of metadata and
+into a task is a matter of writing a bit of metadata and
 templating some of the things that your task does. Check out the
 [stock tasks](https://github.com/puppetlabs/razor-server/tree/master/tasks)
 that ship with Razor to see some examples.

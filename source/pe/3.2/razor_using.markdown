@@ -85,20 +85,28 @@ Because policies contain a good deal of information, it's handy to save them in 
 		"tags": [{ "name": "small", "rule": ["<=", ["num", ["fact", "processorcount"]], 2]}]
 	}
 
+**Policy Tables**
+You might create multiple policies, and then retrieve the policies collection. The policies are listed in order in a policy table. You can influence the order of policies as follows:
+
++ When you create a policy, you can include a `before` or `after` parameter in the request to indicate where the new policy should appear in the policy table.
++ Using the `move-policy` command with `before` and `after` parameters, you can put an existing policy before or after another one.
+
+See [Razor Command Reference](./razor_reference.markdown) for more information.
+
 ####Create a Policy
 
 1. Create a file called “policy.json” and copy the following template text into it:
 
 		{	
-  			"name": "test_<NODE_ID>",
-  			"repo": { "name": "<OS>" },
-  			"task": { "name": "<INSTALLER>" },
-  			"broker": { "name": "pe" },
-  			"enabled": true,
-  			"hostname": "node${id}.vm",
-  			"root_password": "puppet",
-  			"max_count": "20",
-  			"tags": [{ "name": "<TAG_NAME>", "rule": ["in",["fact", "macaddress"],"<NODE_MAC_ADDRESS>"]}]
+  		"name": "test_<NODE_ID>",
+  		"repo": { "name": "<OS>" },
+  		"task": { "name": "<INSTALLER>" },
+  		"broker": { "name": "pe" },
+  		"enabled": true,
+  		"hostname": "node${id}.vm",
+  		"root_password": "puppet",
+  		"max_count": "20",
+  		"tags": [{ "name": "<TAG_NAME>", "rule": ["in",["fact", "macaddress"],"<NODE_MAC_ADDRESS>"]}]
   		}
 
 2. Edit the options in the policy.json template with information specific to  your environment. 
@@ -133,6 +141,6 @@ The following command opens a specific node's log:
 	razor nodes <node name> log 
 
 
-- [Next: Writing Tasks](./razor_tasks.html)
+- [Next: Razor Command Reference](./razor_reference.html)
 
 

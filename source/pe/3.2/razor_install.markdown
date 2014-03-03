@@ -64,14 +64,14 @@ Razor provides a specific iPXE boot image to ensure the version you use has been
 	**Note** - Make sure you don't use localhost as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script
 from, or it isn't going to work.
 
-		wget http://<RAZOR_HOST_NAME>:<RAZOR_PORT>/api/microkernel/bootstrap?nic_max=1 -O /var/lib/tftpboot/bootstrap.ipxe
+		wget http://${$RAZOR_SERVER}:${RAZOR_SERVER}/api/microkernel/bootstrap?nic_max=1 -O /var/lib/tftpboot/bootstrap.ipxe
 		
 		
 ###Verify the Razor Server 
 
 Test the new Razor configuration with the following command:
 
-	wget http://<RAZOR_HOST_NAME>:<RAZOR_PORT>/api -O test.out
+	wget http://${$RAZOR_SERVER}:${RAZOR_SERVER}/api -O test.out
 	
 The command should execute successfully, and the output JSON file "test.out" should contain a list of available Razor commands.
 
@@ -83,15 +83,22 @@ The Razor client is installed as a Ruby gem.
 
 1. Install the client with this command:
 
-		gem install razor-client --version 0.14.0
+		gem install pe-razor-client --version 0.14.0
 		
 2. You can verify that the Razor client is installed by printing Razor help:
 
-		razor -u http://<RAZOR_HOST_NAME>:<RAZOR_PORT>/api
+		razor -u http://${$RAZOR_SERVER}:${RAZOR_SERVER}/api
 
 3. You'll likely get this warning message about JSON: "MultiJson is using the default adapter (ok_json). We recommend loading a different JSON library to improve performance."  This message is harmless, but you can get rid of it with this command:
 
 		gem install json_pure
+
+**Note:** There is also a `razor-client` gem that contains the client for
+the open source Razor client. It is strongly recommended to not install the
+two clients simultaneously, and only use `pe-razor-client` with the Razor
+shipped as part of Puppet Enterprise. If you already have `razor-client`
+installed, or are not sure if you do, run `gem uninstall razor-client`
+prior to step (1) above.
 		
 
 [Next: Razor Provisioning Setup](./razor_using.html)

@@ -10,14 +10,14 @@ Razor is a powerful tool created to automatically discover bare-metal hardware a
 
 The following sections provide the steps for a basic setup that you can use to evaluate Razor. The setup steps below use dnsmasq; however, you can use any DHCP and TFTP service with Razor. 
 
-**Warning:** Proceed with caution. We recommend testing on a completely isolated test environment because running a second DCHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernal and register with the server has a bigger risk. In a case like this, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. 
+>**Warning:** Proceed with caution. We recommend testing on a completely isolated test environment because running a second DCHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In a case like this, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. 
 
 ###Before You Begin
 
 Things you should know before you set up provisioning:
 
 + Razor has been specifically validated on RHEL/CentOS 6.4, but should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
-+ The Razor microkernal is 64-bit only. Razor can only provision 64-bit machines.
++ The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 
 ##Install Overview
 
