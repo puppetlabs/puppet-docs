@@ -32,13 +32,14 @@ Puppet Enterprise is a comprehensive tool for enterprise systems configuration m
 
 Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically, PE 3.2 includes all of the following Puppet Labs software:
 
- * Puppet 3.4.2
+ * Puppet 3.4.3
  * PuppetDB 1.5.2
- * Facter 1.7.4.
+ * Facter 1.7.5
  * MCollective 2.2.4
- * Hiera 1.3.0.
- * Dashboard 2.1.0
+ * Hiera 1.3.2
+ * Dashboard 2.1.1
 
+The "What Gets Installed Where" page includes a [list of all the major packages that comprise PE 3.2](./overview_about_pe.html#about-puppet-enterprise).
 
 About Puppet
 -----

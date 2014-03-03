@@ -124,9 +124,25 @@ These files may or may not be present.
 - `/var/log/pe-puppet/rails.log`
 
 
-## Puppet Enterprise Components
+### Puppet Enterprise Components
 
-Visit the overview [about Puppet Enterprise](./overview_about_pe.html#about-puppet-enterprise) for a list of all the Puppet Labs technologies and their release versions that are included with PE 3.2.
+PE 3.2 includes the following major components:
+
+ * Puppet 3.4.3
+ * PuppetDB 1.5.2
+ * Facter 1.7.5
+ * MCollective 2.2.4
+ * ActiveMQ 5.9.0
+ * Live Management: 1.3.0
+ * Cloud Provisioner 1.1.6
+ * Hiera 1.3.2
+ * Dashboard 2.1.1
+ * PostgreSQL 9.2.7
+ * Ruby 1.9.3
+ * Augeas 1.1.0
+ * Passenger 4.0.29
+ * Java 1.7.0
+ * OpenSSL 1.0.01
 
 ### Tools
 
