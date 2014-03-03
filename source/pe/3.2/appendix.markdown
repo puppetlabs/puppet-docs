@@ -54,7 +54,7 @@ Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to lea
 
 #### Razor Provisioning Tech Preview
 
-PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of new, bare-metal provisioning capabilities using Razor technology. 
+PE 3.2 offers a tech preview of new, bare-metal provisioning capabilities using []Razor technology](./razor_intro.html). 
 
 Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. It's aimed at solving the problem of how to bring new metal into a state that your existing configuration management systems, PE for example, can then take over.
 
@@ -272,6 +272,9 @@ or, when attempting to request a catalog:
     Error: Could not retrieve catalog; skipping run
 
 If you encounter these errors, simply re-start the `pe-postgresql` service.
+
+### Razor Known Issues
+Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html). 
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
 
