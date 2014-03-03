@@ -29,7 +29,7 @@ From time to time, you may need to completely deactivate an agent node in your P
 
    Alternatively, you can also run the following rake command:
 
- 	 /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node name>]
+ 	 	/opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node name>]
 
    This action does **NOT** disable MCollective/live management on the node. 
 
