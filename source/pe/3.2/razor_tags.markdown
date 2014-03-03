@@ -47,9 +47,7 @@ Operator                       |Returns                                         
 
 
 
-**Note:**  The `fact` and `metadata` operators take an optional second
+>**Note:**  The `fact` and `metadata` operators take an optional second
   argument. If `arg2` is passed, it is returned if the fact/metadata entry
   `arg1` is not found. If the fact/metadata entry `arg1` is not found and
   no second argument is given, a `RuleEvaluationError` is raised.
-
-Clearly, many more operators can and should be added.

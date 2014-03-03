@@ -273,6 +273,9 @@ or, when attempting to request a catalog:
 
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
+### Razor Known Issues
+Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html). 
+
 [client_cert_dialog]: ./images/client_cert_dialog.png
 
 * * *
