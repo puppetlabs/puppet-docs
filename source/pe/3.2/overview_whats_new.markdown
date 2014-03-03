@@ -22,7 +22,7 @@ Visit the [Supported Modules page](http://forge.puppetlabs.com/supported) to lea
 
 [pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
 [pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
-[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/ntp
+[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/mysql
 [windows-registry]: http://forge.puppetlabs.com/puppetlabs/registry
 [pe-postgresql]: http://forge.puppetlabs.com/puppetlabs/postgresql
 [pe-stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
