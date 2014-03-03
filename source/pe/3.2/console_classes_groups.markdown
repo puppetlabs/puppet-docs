@@ -197,7 +197,7 @@ To set class parameters, click the "Edit parameters" link next to a class name o
 
 The class parameters dialog allows you to easily add values for any parameters that can be detected from the puppet master server. It also lets you manually add parameters that can't be autodetected.
 
-> **Note:** Class parameters can be strings or booleans --- the PE console will automatically convert the strings `true` and `false` to real boolean values. The console does not support setting arrays or hashes as parameters.
+> **Note:** Class parameters can be strings, booleans, numbers, hashes or arrays. --- the PE console will automatically convert the strings `true` and `false` to real boolean values. Hashes and arrays should be expressed using Ruby-style syntax.
 
 #### Adding Values for Detected Parameters
 
@@ -241,7 +241,7 @@ Class parameters support the following data types:
     * Hashes (e.g., `{'a'=>1}`
     * Arrays (e.g., [1,2.3]
     
-Any data type not recognized as a boolean, number, hash or array will be treated as a string.
+Any data type not recognized as a boolean, number, hash or array will be treated as a string. Hashes and arrays are expressed using Ruby-style syntax.
 
 ### Editing Groups on Nodes
 
