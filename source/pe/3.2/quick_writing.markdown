@@ -67,7 +67,9 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
     		  command      => 'C:\PuppetExample2.bat',
     		  start        => 'disabled',    
     	 }
-   	  	}     
+   	  	}   
+   	  	
+   	{% endhighlight %}  	  
 
 4. Remove the "PuppetExample2" `registry::service` resource, and add the following `file` resource:
 
@@ -88,7 +90,7 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
     	    notify  => registry::service['PuppetExample1'],
   		  }	
 	    }
-    {% end highlight %}
+    {% endhighlight %}
  
  The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
 
