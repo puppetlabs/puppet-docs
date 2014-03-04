@@ -5,7 +5,7 @@ subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---
 
-Welcome to the PE 3.2 part two of the quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
+Welcome to part two of the PE 3.2 quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
 
 * Modify a module obtained from the Forge
 * Write your own Puppet module
@@ -13,8 +13,13 @@ Welcome to the PE 3.2 part two of the quick start guide. This document is a cont
 * Apply Puppet classes to groups with the console
 
 > Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
->
-> Also, If you haven't already done so, you will need to have a [Windows agent](./install_windows.html) and the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) installed. Be sure you install the module on the puppet master. 
+
+Getting Started
+-----
+
+First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of MS Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the agent node in part one of this guide.
+
+Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on the puppet master. The process is identical to how you installed the NTP module in part one. 
 
 Editing a Forge Module
 -----
@@ -49,48 +54,46 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
 	* If you do not have a preferred Unix text editor, run `nano registry/manifests/service_example.pp`.	
     * If Nano is not installed, run `puppet resource package nano ensure=installed` to install it from your OS's package repositories.
 
- `service_example.pp` has the following contents:
+ `service_example.pp` contains the following:
 
-	{% highlight ruby %}
 	
-		class registry::service_example {
-			# Define a new service named "Puppet Test" that is disabled.
-  			registry::service { 'PuppetExample1':
-    		   display_name => "Puppet Example 1",
-    		   description  => "This is a simple example managing the registry entries for a Windows Service",
-    		   command      => 'C:\PuppetExample1.bat',
-    		   start        => 'disabled',
-	 	 }
-  		   registry::service { 'PuppetExample2':
-    		  display_name => "Puppet Example 2",
-    		  description  => "This is a simple example managing the registry entries for a Windows Service",
-    		  command      => 'C:\PuppetExample2.bat',
-    		  start        => 'disabled',    
-    	 }
-   	  	}   
+    class registry::service_example {
+    # Define a new service named "Puppet Test" that is disabled.
+    registry::service { 'PuppetExample1':
+        display_name => "Puppet Example 1",
+        description  => "This is a simple example managing the registry entries for a Windows Service",
+        command      => 'C:\PuppetExample1.bat',
+        start        => 'disabled',
+    }
+    registry::service { 'PuppetExample2':
+      display_name => "Puppet Example 2",
+      description  => "This is a simple example managing the registry entries for a Windows Service",
+      command      => 'C:\PuppetExample2.bat',
+      start        => 'disabled',    
+      }
+    }   
    	  	
-   	{% endhighlight %}  	  
-
+	  
 4. Remove the "PuppetExample2" `registry::service` resource, and add the following `file` resource:
 
- 	  {% highlight ruby %}
  	
- 	    class registry::service_example {
-		   # Define a new service named "Puppet Test" that is disabled.
-		   registry::service { 'PuppetExample1':
-    	      display_name => "Puppet Example 1",
-    	      description  => "This is a simple example managing the registry entries for a Windows Service",
-     	      command      => 'C:\PuppetExample1.bat',
-    		  start        => 'disabled',
-	 	 }
- 	
-  		  file { 'C:\PuppetExample1.bat':
-    	    ensure  => file,
-    	    content => ":loop\r\nTIMEOUT /T 300\r\ngoto loop\r\n",
-    	    notify  => registry::service['PuppetExample1'],
-  		  }	
-	    }
-    {% endhighlight %}
+    class registry::service_example {
+    # Define a new service named "Puppet Test" that is disabled.
+      registry::service { 'PuppetExample1':
+        display_name => "Puppet Example 1",
+        description  => "This is a simple example managing the registry entries for a Windows Service",
+        command      => 'C:\PuppetExample1.bat',
+        start        => 'disabled',
+        }
+      
+    file { 'C:\PuppetExample1.bat':
+        ensure  => file,
+        content => ":loop\r\nTIMEOUT /T 300\r\ngoto loop\r\n",
+        notify  => registry::service['PuppetExample1'],
+        }	
+    }
+   
+
  
  The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
 
@@ -124,33 +127,31 @@ This exercise will create a class called `critical_policy` that manages a set of
 2. Use your text editor to create and open the `critical_policy/manifests/init.pp` file.
 3. Edit the init.pp file so it contains the following puppet code, and then save it and exit the editor:
 
-{% highlight ruby %}
 
     class critical_policy {
-	
- 		registry::value { 'Legal notice caption':
-      	   key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
-      	   value => 'legalnoticecaption',
-      	   data  => 'Legal Notice',
-    	}
+        
+      registry::value { 'Legal notice caption':
+        key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
+        value => 'legalnoticecaption',
+        data  => 'Legal Notice',
+        }
  
-		registry::value { 'Legal notice text':
-    	   key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
-      	   value => 'legalnoticetext',
-      	   data  => 'Login constitutes acceptance of the End User Agreement',
-    	}
+      registry::value { 'Legal notice text':
+        key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
+        value => 'legalnoticetext',
+        data  => 'Login constitutes acceptance of the End User Agreement',
+        }
  
-		registry::value { 'Allow Windows Update to Forcibly reboot':
-		   key   => 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU',
-      	   value => 'NoAutoRebootWithLoggedOnUsers',
-      	   type  => 'dword',
-      	   data  => '0',
-    	}
- 	}
+      registry::value { 'Allow Windows Update to Forcibly reboot':
+        key   => 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU',
+        value => 'NoAutoRebootWithLoggedOnUsers',
+        type  => 'dword',
+        data  => '0',
+        }
+      }
   
-{% endhighlight %}
 
-> You have now created a new module containing a single class. Puppet now knows about this class, and it can be added to the console and assigned to your Windows nodes.
+> You have written a new module containing a single class. Puppet now knows about this class, and it can be added to the console and assigned to your Windows nodes, just as you did in part one of this guide.
 >
 > Note the following about this new class:
 >
@@ -207,17 +208,17 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 * **On the puppet master,** create the `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp` file, and edit it to contain the following:
 
-{% highlight ruby %}
-    class site::basic {
-      if $osfamily == 'windows' {
-        include critical_policy
-      }
-      else {
-        include motd
-        include core_permissions
-      }
-    }
-{% endhighlight %}
+
+        class site::basic {
+          if $osfamily == 'windows' {
+            include critical_policy
+          }
+          else {
+            include motd
+            include core_permissions
+          }
+        }
+
 
 This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
