@@ -5,6 +5,20 @@ subtitle: "User's Guide Appendix"
 canonical: "/pe/latest/appendix.html"
 ---
 
+[client_cert_dialog]: ./images/client_cert_dialog.png
+
+[pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
+[pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
+[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/mysql
+[windows-registry]: http://forge.puppetlabs.com/puppetlabs/registry
+[pe-postgresql]: http://forge.puppetlabs.com/puppetlabs/postgresql
+[pe-stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[pe-reboot]: http://forge.puppetlabs.com/puppetlabs/reboot
+[pe-firewall]: http://forge.puppetlabs.com/puppetlabs/firewall
+[pe-apt]: http://forge.puppetlabs.com/puppetlabs/apt
+[pe-inifile]: http://forge.puppetlabs.com/puppetlabs/inifile
+[pe-javaks]: http://forge.puppetlabs.com/puppetlabs/java_ks
+[pe-concat]: http://forge.puppetlabs.com/puppetlabs/concat
 
 This page contains additional miscellaneous information about Puppet Enterprise (PE) 3.2.
 
@@ -31,18 +45,6 @@ PE 3.2 introduces Puppet Enterprise supported modules. PE supported modules allo
 
 Visit the [supported modules page](http://forge.puppetlabs.com/supported) to learn more. You can also check out the Read Me for each supported module being released with PE 3.2: [Apache][pe-apache], [NTP][pe-ntp], [MySQL][pe-mysql], [Windows Registry][windows-registry], [PostgreSQL][pe-postgresql], [stdlib][pe-stdlib], [reboot][pe-reboot], [firewall][pe-firewall], [apt][pe-apt], [INI-file][pe-inifile], [java_ks][pe-javaks], [concat][pe-concat].
 
-[pe-apache]: http://forge.puppetlabs.com/puppetlabs/apache
-[pe-ntp]: http://forge.puppetlabs.com/puppetlabs/ntp
-[pe-mysql]: http://forge.puppetlabs.com/puppetlabs/mysql
-[windows-registry]: http://forge.puppetlabs.com/puppetlabs/registry
-[pe-postgresql]: http://forge.puppetlabs.com/puppetlabs/postgresql
-[pe-stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[pe-reboot]: http://forge.puppetlabs.com/puppetlabs/reboot
-[pe-firewall]: http://forge.puppetlabs.com/puppetlabs/firewall
-[pe-apt]: http://forge.puppetlabs.com/puppetlabs/apt
-[pe-inifile]: http://forge.puppetlabs.com/puppetlabs/inifile
-[pe-javaks]: http://forge.puppetlabs.com/puppetlabs/java_ks
-[pe-concat]: http://forge.puppetlabs.com/puppetlabs/concat
 
 #### Simplified Agent Install
 
@@ -114,6 +116,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
+### `pe_mcollective` Module Integer Parameter Issue
+
+The `pe_mcollective` module includes a parameter for the ActiveMQ heap size (`activemq_heap_mb`). A bug prevents this parameter from correctly accepting an integer when one is entered in the console. The problem can be avoided by placing the integer inside quote marks (e.g., `"10"`). This will cause Puppet to correctly validate the value when it is passed from the console.
+
 ### Safari Certificate Handling May Prevent Console Access for PE 3.2
 
 Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.2 users avoid using Safari to access the PE console.
@@ -122,7 +128,7 @@ If you need to use Safari, you may encounter the following dialog box the first 
 
 ![Safari Certificate Dialog][client_cert_dialog]
 
-If you are presented with this dialog box, click "Cancel" to access the console. (In some cases, you may need to click "Cancel" several times.)
+If this happens, click "Cancel" to access the console. (In some cases, you may need to click "Cancel" several times.)
 
 This issue will be fixed in a future release.
 
@@ -276,7 +282,6 @@ If you encounter these errors, simply re-start the `pe-postgresql` service.
 ### Razor Known Issues
 Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html). 
 
-[client_cert_dialog]: ./images/client_cert_dialog.png
 
 * * *
 

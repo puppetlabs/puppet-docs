@@ -7,9 +7,9 @@ canonical: "/pe/latest/quick_start.html"
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) and an [advanced guide](./quick_writing.html) where you can build on the concepts you learned in the introduction.
+Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) and an [advanced guide](./quick_writing.html) where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules.
 
-#### Quick Start Introduction
+#### Quick Start Part One: Introduction
 
 In this first part, follow along to learn how to:
 
@@ -21,7 +21,7 @@ In this first part, follow along to learn how to:
 * Set the parameters of classes using the console
 * Use the console to inspect and analyze the results of configuration events
 
-#### Advanced Quick Start
+####  Quick Start Part Two: Developing Modules
 
 In the [second part](./quick_writing.html), you'll learn about:
 
@@ -37,14 +37,14 @@ In the [second part](./quick_writing.html), you'll learn about:
 Creating a Deployment
 -----
 
-A standard Puppet Enterprise deployment consists of:
+A typical Puppet Enterprise deployment consists of:
 
 * A number of **agent nodes,** which are computers (physical or virtual) managed by Puppet.
 * At least one **puppet master server,** which serves configurations to agent nodes.
 * At least one **console server,** which analyzes agent reports and presents a GUI for managing your site. (This may or may not be the same server as the master.)
 * At least one **database support server** which runs PuppetDB and databases that support the console. (This may or may not be the same server as the console server.)
 
-For this walk-through, you will create a simple deployment where the puppet master, the console, and database support roles will run on one machine. This machine will manage one or two agent nodes. In a production environment you have total flexibility in how you deploy and distribute and your master, console, and database support roles, but we're keeping things simple for the purposes of this guide.
+For this walk-through, you will create a simple deployment where the puppet master, the console, and database support roles will run on one machine (a.k.a, a monolithic master). This machine will manage one or two agent nodes. In a production environment you have total flexibility in how you deploy and distribute and your master, console, and database support roles, but for the purposes of this guide we're keeping things simple.
 
 > ### Preparing Your Proof-of-Concept Systems
 >
@@ -53,7 +53,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 > * At least two computers ("nodes") running a \*nix operating system [supported by Puppet Enterprise](./install_system_requirements.html).
 >     * These can be virtual machines or physical servers.
 >     * One of these nodes (the puppet master server) should have at least 1 GB of RAM. **Note:** For actual production use, a puppet master node should have at least 4 GB of RAM.
-> * Optionally, for part two, a computer running a version of Microsoft Windows [supported by Puppet Enterprise](./install_system_requirements.html).
+> * For part two, a computer running a version of Microsoft Windows [supported by Puppet Enterprise](./install_system_requirements.html).
 > * [Puppet Enterprise installer tarballs][downloads] suitable for the OS and architecture your nodes are using.
 > * A network --- all of your nodes should be able to reach each other.
 > * All of the nodes you intend to use should have their system clocks set to within a minute of each other.
@@ -84,7 +84,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 ### Installing the Agent Node
 
 * **On the agent node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled.)
-* [Copy or download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
+* Copy or [download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
 * Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
     * **Skip** the puppet master role by answering "No" in the installer script.
     * Provide the puppet master hostname; in this case, **`master.example.com`**. If you configured the master to be reachable at `puppet`, you can alternately accept the default.
@@ -94,7 +94,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
     * **Accept the default responses for every other question** by hitting enter.
 * The installer will then install and configure the Puppet Enterprise agent. 
 
-**Note**: In a production environment there are other ways to install agents that are faster or simpler. For more information, see the [complete installation instructions](./install_basic.html).
+**Note**: In a production environment there are other ways to install agents that are faster and easier. For more information, see the [complete installation instructions](./install_basic.html).
 
 > You have now installed the puppet agent node. Stay logged in as root for further exercises.
 
@@ -125,9 +125,9 @@ During installation, the agent node contacted the puppet master and requested a 
 
 ### Testing the Agent Nodes
 
-During this walkthrough, we will be running the Puppet agent interactively. By default, the agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a Puppet run manually from the command line.
+During this walkthrough, we will be running the puppet agent interactively. By default, the agent runs in the background and fetches configurations from the puppet master every 30 minutes. (This interval is configurable with the `runinterval` setting in puppet.conf.) However, you can also trigger a puppet run manually from the command line.
 
-* **On the agent node,** log in as root and run `puppet agent --test` on the command line. This will trigger a single puppet agent run with verbose logging.
+* **On the agent node,** log in as root and run `puppet agent --test` on the command line. This will trigger a single puppet run on the agent with verbose logging.
 
     > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
@@ -151,7 +151,7 @@ During this walkthrough, we will be running the Puppet agent interactively. By d
 
 ### Avoiding the Wait
 
-Although the Puppet agent is now fully functional on the agent node, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not yet configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
+Although the puppet agent is now fully functional on the agent node, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not yet configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following:
 
@@ -164,7 +164,7 @@ Puppet Enterprise does this automatically within 30 minutes of a node's first ch
 
 ![the edit button](./images/quick/mcollective_edit.png)
 
-* In the "nodes" field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the update button after you have selected it.
+* In the "nodes" field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the "Update" button after you have selected it.
 
 ![the nodes field](./images/quick/default_nodes.png)
 
@@ -177,7 +177,7 @@ In a normal environment, you would usually skip these steps and allow orchestrat
 Using Live Management to Control Agent Nodes
 -----
 
-Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger Puppet runs and perform other orchestration tasks.
+Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger puppet runs and perform other orchestration tasks.
 
 * **On the console**, click the "Live Management" tab in the top navigation.
 
@@ -201,7 +201,7 @@ The other resource types work in a similar manner. Choose the node(s) whose reso
 
 ### Triggering Puppet Runs
 
-Rather than using the command line to kick off Puppet runs with `puppet agent -t` one at a time, you can use live management to run Puppet on several selected nodes.
+Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use live management to run Puppet on several selected nodes.
 
 * **On the console, in the live management page**, click the "Control Puppet" tab.
 * Make sure one or more nodes are selected with node selector on the left.
@@ -211,7 +211,7 @@ Rather than using the command line to kick off Puppet runs with `puppet agent -t
 <br>
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
-You have just triggered a Puppet agent run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
+You have just triggered a puppet run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
 
 In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the Puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
@@ -224,7 +224,7 @@ Puppet classes are **distributed in the form of modules**. You can save time by 
 
 ### Installing a Forge Module
 
-We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While you can use any module available on the Forge, PE customers can use [supported modules](http://forge.puppetlabs.com/supported) which are supported, tested, and maintained by Puppet Labs. 
+We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While you can use any module available on the Forge, PE customers can take advantage of [supported modules](http://forge.puppetlabs.com/supported) which are supported, tested, and maintained by Puppet Labs. 
 
 * **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). This is the Forge listing for a module that installs, configures, and manages the ntp service.
 
@@ -276,11 +276,9 @@ Every module contains one or more **classes**. The module you just installed con
 * Note that the `ntp` class now appears in the list of classes on `agent1`.
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * On the agent node, run the following commands:
-		
-{% highlight ruby %}
- 		service ntpd stop1
- 		ntpdate us.pool.ntp.org
-{% endhighlight %} 
+ 
+        service ntpd stop1
+        ntpdate us.pool.ntp.org
  
  **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
  
@@ -296,13 +294,13 @@ Every module contains one or more **classes**. The module you just installed con
 
 You can adjust the parameters of classes present on nodes directly in the console by selecting a node and then clicking "Edit parameters" in the list of classes. For more information, see the page on [classifying nodes with the console](./console_classes_groups.html). For example, if you wanted to specify an NTP server for a given node you would:
 
-    * Click on the node in the node list
-    * Click the edit button on the node's view
-    * Click on "Edit Parameters" next to "ntp" in the class list
+* Click on the node in the node list
+* Click the edit button on the node's view
+ * Click on "Edit Parameters" next to "ntp" in the class list
     
 ![the node class list][edit-params]
     
-    * Enter a value for the parameter you wish to set. For instance, if you want to set a specific server you would enter `ntp1.example.com` next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset to default" control that appears next to the value after you have entered a custom value.
+* Enter a value for the parameter you wish to set. For instance, if you want to set a specific server, you would enter `ntp1.example.com` next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset to default" control that appears next to the value after you have entered a custom value.
     
 ![the NTP parameters list][ntp-params]
     
@@ -313,7 +311,7 @@ You can adjust the parameters of classes present on nodes directly in the consol
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources, and this is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP and a class that handles the NTP service.
+Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
 
 ![The default event inspector view][EI-default]
 
@@ -321,11 +319,13 @@ You can click on events in the summary pane to inspect them in detail. For examp
 
 ![Viewing a successful change][EI-class_change]
 
-You can keep clicking to drill down and see more detail. You can click the previous arrow (left of the summary pane), the bread-crumb trail at the top of the page, or bookmark a page for later reference (but note that after subsequent puppet runs, the bookmarks may be different when you revisit them). Eventually, you will end up at a run summary that shows you the details of the event. Note that you can see exactly which piece of puppet code was responsible for generating the event; in this case, it was line 15 of the `service.pp` manifest and line 21 of the `config.pp` manifest.
+You can keep clicking to drill down and see more detail. You can click the previous arrow (left of the summary pane), the bread-crumb trail at the top of the page, or bookmark a page for later reference (but note that after subsequent puppet runs, the bookmarks may be different when you revisit them). Eventually, you will end up at a run summary that shows you the details of the event. For example, you can see exactly which piece of puppet code was responsible for generating the event; in this case, it was line 15 of the `service.pp` manifest and line 21 of the `config.pp` manifest.
 
 ![Event detail][EI-detail]
 
 If there had been a problem with applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing NTP.
+
+In the upper right corner of the detail pane is a link to a run report which contains information about the puppet run that made the change, including metrics about the run, logs, and more information. Visit the [reports page](./console_reports.html#reading-reports) for more information.
 
 Summary
 -----
@@ -349,17 +349,15 @@ Beyond what this brief walkthrough has covered, most users will go on to:
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
 * Configure multiple nodes at once by adding classes to groups in the console instead of individual nodes.
 
-To learn about these workflows, continue to part two, the [advanced quick start guide](./quick_writing.html).
+To learn about these workflows, continue to [part two of this quick start guide](./quick_writing.html).
 
 #### Other Resources
 
-Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to learn more.
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-    * [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of lessons on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
-    * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
-
-
-To explore the rest of the PE user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
+* The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
+* To explore the rest of the PE user's manual, use the sidebar at the top of this page, or [return to the index](./index.html).
 
 * * *
 
