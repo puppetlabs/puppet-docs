@@ -35,7 +35,7 @@ Install the Razor Server
 
 The actual Razor software is stored in an external location. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes. 
 
-1. To add the `pe_razor` class and classify the `pe_razor` mdoule using the PE Console, see the [Adding New Classes](./console_classes_groups.html#adding-new-classes.html) and [Editing Classes on Nodes](./console_classes_groups.html#editing-classes-on-nodes) sections of this guide.
+1. To add the `pe_razor` class and classify the Razor server using the PE Console, see the [Adding New Classes](./console_classes_groups.html#adding-new-classes.html) and [Editing Classes on Nodes](./console_classes_groups.html#editing-classes-on-nodes) sections of this guide.
 
 	**Note**: You can also use the following command in site.pp:
 	
