@@ -6,17 +6,17 @@ canonical: "/pe/latest/razor_prereqs.html"
 
 ---
 
-Razor is a powerful tool created to automatically discover bare-metal hardware and dynamically configure operating systems and/or hypervisors. With this power comes the responsibility to test Razor carefully. Razor is also in [Tech Preview mode](LINK). For these reasons, we highly recommend that you install and test Razor in a completely isolated test environment. 
+Razor is a powerful tool created to automatically discover bare-metal hardware and dynamically configure operating systems and/or hypervisors. With this power comes the responsibility to test Razor carefully. Razor is also in [Tech Preview mode](http://puppetlabs.com/services/tech-preview). For these reasons, we highly recommend that you install and test Razor in a completely isolated test environment. 
 
 The following sections provide the steps for a basic setup that you can use to evaluate Razor. The setup steps below use dnsmasq; however, you can use any DHCP and TFTP service with Razor. 
 
->**Warning:** Proceed with caution. We recommend testing on a completely isolated test environment because running a second DCHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In a case like this, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. 
+>**Warning**: Proceed with caution. We recommend testing on a completely isolated test environment because running a second DCHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In a case like this, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. 
 
 ###Before You Begin
 
 Things you should know before you set up provisioning:
 
-+ Razor has been specifically validated on RHEL/CentOS 6.4, but should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
++ Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 
 ##Install Overview
@@ -28,7 +28,7 @@ Below are the essential steps to create a virtual test environment. Each of thes
 	We've chosen dnsmasq for this example setup.
 3. Configure SELinux to enable PXE boot.
 
-	**Note** - you download iPXE software in the steps for installing and setting up Razor.
+	**Note**: you download iPXE software in the steps for installing and setting up Razor.
 4. Optional: If you installed dnsmasq, then configure dnsmasq for PXE booting and TFTP
 
 When you finish this section, go on to [Install and Set Up Razor](./razor_install.html). 
@@ -37,7 +37,7 @@ When you finish this section, go on to [Install and Set Up Razor](./razor_instal
 
 In your virtual testing environment, set up a puppet master running a standard install of Puppet Enterprise 3.2. For information about installing PE 3.2, see [Installing Puppet Enterprise](./install_basic.html).
 
-**Note** We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem  with VirtualBox 4.2.22. 
+**Note**: We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem  with VirtualBox 4.2.22. 
 
 
 ###Install and Configure dnsmasq DHCP/TFTP Service
@@ -51,18 +51,18 @@ As stated in the **Warning** above, you should be working with a completely sepa
 
 		yum install dnsmasq
 	
-2. Create the directory /var/lib/tftpboot if it doesn't already exist.
-3. Change the permission for /var/lib/tftpboot with this command:
+2. Create the directory `/var/lib/tftpboot` if it doesn't already exist.
+3. Change the permission for `/var/lib/tftpboot` with this command:
 
 		chmod 655 /var/lib/tftpboot
 	
 ###Temporarily Disable SELinux to Enable PXE Boot
 
-1. Disable SELinux by changing the following setting in the file /etc/sysconfig/selinux:
+1. Disable SELinux by changing the following setting in the file `/etc/sysconfig/selinux`:
 
 		SELINUX=disabled
  
-	**Note** - Disabling SELinux is highly insecure and should only be done for testing  purposes. 
+	**Note**: Disabling SELinux is highly insecure and should only be done for testing  purposes. 
 	
 	Another option is to craft an enforcement rule for SELinux that will enable PXE boot but will not completely disable SElinux. 
 	
@@ -70,12 +70,12 @@ As stated in the **Warning** above, you should be working with a completely sepa
 
 ###Edit the dnsmasq Configuration File to Enable PXE Boot
 
-1. Edit the file /etc/dnsmasq.conf, by adding the following line at the bottom of the file:
+1. Edit the file `/etc/dnsmasq.conf`, by adding the following line at the bottom of the file:
 
 		conf-dir=/etc/dnsmasq.d
 
 2. Save and close the file.
-3. Create the file /etc/dnsmasq.d/razor and add the following configuration information:
+3. Create the file `/etc/dnsmasq.d/razor` and add the following configuration information:
 
 		# This works for dnsmasq 2.45
 		# iPXE sets option 175, mark it for network IPXEBOOT
@@ -86,11 +86,11 @@ As stated in the **Warning** above, you should be working with a completely sepa
 		enable-tftp
 		tftp-root=/var/lib/tftpboot
 
-4. Enable "dnsmasq on boot:
+4. Enable dnsmasq on boot:
 
 		chkconfig dnsmasq on
 
-5. Start the “dnsmasq” service:
+5. Start the dnsmasq service:
 
 		service dnsmasq start	
 		
