@@ -7,9 +7,9 @@ canonical: "/pe/latest/quick_start.html"
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) and an [advanced guide](./quick_writing.html) where you can build on the concepts you learned in the introduction.
+Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) and an [advanced guide](./quick_writing.html) where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules.
 
-#### Quick Start Introduction
+#### Quick Start Part One: Introduction
 
 In this first part, follow along to learn how to:
 
@@ -21,7 +21,7 @@ In this first part, follow along to learn how to:
 * Set the parameters of classes using the console
 * Use the console to inspect and analyze the results of configuration events
 
-#### Advanced Quick Start
+####  Quick Start Part Two: Developing Modules
 
 In the [second part](./quick_writing.html), you'll learn about:
 
@@ -277,8 +277,8 @@ Every module contains one or more **classes**. The module you just installed con
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * On the agent node, run the following commands:
  
-    service ntpd stop1
-    ntpdate us.pool.ntp.org
+        service ntpd stop1
+        ntpdate us.pool.ntp.org
  
  **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
  
@@ -349,17 +349,15 @@ Beyond what this brief walkthrough has covered, most users will go on to:
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
 * Configure multiple nodes at once by adding classes to groups in the console instead of individual nodes.
 
-To learn about these workflows, continue to part two, the [advanced quick start guide](./quick_writing.html).
+To learn about these workflows, continue to [part two of this quick start guide](./quick_writing.html).
 
 #### Other Resources
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of lessons on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
-
-
-To explore the rest of the PE user's guide, use the sidebar at the top of this page, or [return to the index](./index.html).
+* To explore the rest of the PE user's manual, use the sidebar at the top of this page, or [return to the index](./index.html).
 
 * * *
 
