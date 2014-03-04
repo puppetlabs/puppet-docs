@@ -11,7 +11,7 @@ Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It ad
 
 #### Puppet Enterprise Supported Modules
 
-PE 3.2 introduces Puppet Enterprise supported modules. PE supported modules allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
+PE 3.2 introduces [Puppet Enterprise supported modules](http://forge.puppetlabs.com/supported). PE supported modules allow you to manage core services quickly and easily, with very little need for you to write any code. PE supported modules are:
 
 * rigorously tested with PE
 * supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support) (PE customers only)

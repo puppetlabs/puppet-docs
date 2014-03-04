@@ -7,7 +7,7 @@ canonical: "/pe/latest/quick_start.html"
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) and an [advanced guide](./quick_writing.html) where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules.
+Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) that demonstrates basic use and concepts and a [follow-up guide](./quick_writing.html) where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules.
 
 #### Quick Start Part One: Introduction
 
@@ -44,7 +44,7 @@ A typical Puppet Enterprise deployment consists of:
 * At least one **console server,** which analyzes agent reports and presents a GUI for managing your site. (This may or may not be the same server as the master.)
 * At least one **database support server** which runs PuppetDB and databases that support the console. (This may or may not be the same server as the console server.)
 
-For this walk-through, you will create a simple deployment where the puppet master, the console, and database support roles will run on one machine (a.k.a, a monolithic master). This machine will manage one or two agent nodes. In a production environment you have total flexibility in how you deploy and distribute and your master, console, and database support roles, but for the purposes of this guide we're keeping things simple.
+For this walk-through, you will create a simple deployment where the puppet master, the console, and database support roles will run on one machine (a.k.a., a monolithic master). This machine will manage one or two agent nodes. In a production environment you have total flexibility in how you deploy and distribute your master, console, and database support roles, but for the purposes of this guide we're keeping things simple.
 
 > ### Preparing Your Proof-of-Concept Systems
 >
@@ -61,9 +61,9 @@ For this walk-through, you will create a simple deployment where the puppet mast
 > * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
 >     * For demonstration purposes, all nodes should allow **all traffic on ports 8140, 61613, and 443.** (Production deployments can and should partially restrict this traffic.)
 > * [Properly configured name resolution](./install_system_requirements.html#name-resolution).
->     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com`, the first agent node as `agent1.example.com`, and the Windows node as `windows.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.
->     * All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the hostname command and one or more configuration files, while the exact method varies by platform.
->     * All nodes must be able to **reach each other by name.** This can be done with a local DNS server, or by editing the `/etc/hosts` file on each node to point to the proper IP addresses. Test this by running `ping master.example.com` and `ping agent1.example.com` on every node, including the Windows node if present.
+>     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com` and the agent node as `agent1.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.
+>     * All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the `hostname` command and one or more configuration files, while the exact method varies by platform.
+>     * All nodes must be able to **reach each other by name.** This can be done with a local DNS server, or by editing the `/etc/hosts` file on each node to point to the proper IP addresses. Test this by running `ping master.example.com` and `ping agent1.example.com` on every node.
 >     * Optionally, to simplify configuration later, all nodes should also be able to **reach the puppet master node at the hostname `puppet`.** This can be done with DNS or with hosts files. Test this by running `ping puppet` on every node.
 >     * The **control workstation** from which you are carrying out these instructions must be able to **reach every node in the deployment by name.**
 
@@ -133,7 +133,7 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 * Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 
 
-> You are now fully managing the agent node. It has checked in with the puppet master for the first time, and received its configuration info. It will continue to check in and fetch new configurations every 30 minutes. The node will also appear in the console, where you can make changes to its configuration by assigning classes and modifying parameters.
+> You are now fully managing the agent node. It has checked in with the puppet master for the first time and received its configuration info. It will continue to check in and fetch new configurations every 30 minutes. The node will also appear in the console, where you can make changes to its configuration by assigning classes and modifying the values of class parameters.
 
 ### Viewing the Agent Node in the Console
 
@@ -147,7 +147,7 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 
 * **Explore the console**. Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
 
-> You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last Puppet run.
+> You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last puppet run.
 
 ### Avoiding the Wait
 
@@ -209,11 +209,12 @@ Rather than using the command line to kick off puppet runs with `puppet agent -t
 
 > **Note**: You can't always use the `runonce` action's additional options --- with \*nix nodes, you must stop the `pe-puppet` service before you can use options like `noop`. [See this note in the orchestration section of the manual](./orchestration_puppet.html#behavior-differences-running-vs-stopped) for more details.
 <br>
+
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
-You have just triggered a puppet run on several agents at once; in this case, the master and the first agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
+You have just triggered a puppet run on several agents at once; in this case, the master and the agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
 
-In production deployments, select target nodes carefully, as running this action on dozens or hundreds of nodes at once can put strain on the Puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
+When using this action in production deployments, select target nodes carefully, as running it on dozens or hundreds of nodes at once can strain  the Puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
 Installing Modules
 -----
@@ -237,7 +238,7 @@ We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While yo
         thias-ntp        Network Time Protocol...                                    @thias        ntp ntpd
         warriornew-ntp   ntp setup                                                   @warriornew   ntp      
 
-We want `puppetlabs-ntp`, which is the Puppet Labs supported ntp module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited <http://forge.puppetlabs.com/puppetlabs/ntp>. 
+We want `puppetlabs-ntp`, which is the PE supported ntp module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited: <http://forge.puppetlabs.com/puppetlabs/ntp>. 
 
 * Install the module by running `puppet module install puppetlabs-ntp`:
 
@@ -259,7 +260,7 @@ There are many more modules, including PE supported modules, on [the Forge](http
 [edit-params]: ./images/quick/edit-parameters.png
 [ntp-params]: ./images/quick/ntp-params.png
 
-Every module contains one or more **classes**. The module you just installed contains a class called `ntp`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
+Every module contains one or more **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet configures nodes. The module you just installed contains a class called `ntp`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
 
 * **On the console**, click the "Add classes" button in the sidebar:
 
@@ -280,7 +281,7 @@ Every module contains one or more **classes**. The module you just installed con
         service ntpd stop1
         ntpdate us.pool.ntp.org
  
- **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."*
+ **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."
  
  The result should resemble the following:
 
@@ -292,7 +293,7 @@ Every module contains one or more **classes**. The module you just installed con
 
 #### Setting Class Parameters
 
-You can adjust the parameters of classes present on nodes directly in the console by selecting a node and then clicking "Edit parameters" in the list of classes. For more information, see the page on [classifying nodes with the console](./console_classes_groups.html). For example, if you wanted to specify an NTP server for a given node you would:
+You can use the console to set the values of the class parameters of nodes by selecting a node and then clicking "Edit parameters" in the list of classes. For example, if you wanted to specify an NTP server for a given node you would:
 
 * Click on the node in the node list
 * Click the edit button on the node's view
@@ -300,10 +301,11 @@ You can adjust the parameters of classes present on nodes directly in the consol
     
 ![the node class list][edit-params]
     
-* Enter a value for the parameter you wish to set. For instance, if you want to set a specific server, you would enter `ntp1.example.com` next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset to default" control that appears next to the value after you have entered a custom value.
+* Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the "servers" parameter. The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset value" control that appears next to the value after you have entered a custom value.
     
 ![the NTP parameters list][ntp-params]
     
+For more information, see the page on [classifying nodes with the console](./console_classes_groups.html).
 
 ### Viewing Changes with Event Inspector
 
@@ -311,7 +313,7 @@ You can adjust the parameters of classes present on nodes directly in the consol
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
+The event inspector lets you view and research changes and other eventsClick the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
 
 ![The default event inspector view][EI-default]
 
