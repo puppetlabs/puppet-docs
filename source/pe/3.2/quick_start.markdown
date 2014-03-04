@@ -278,7 +278,7 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 * Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 * On the agent node, run the following commands:
  
-        service ntpd stop1
+        service ntpd stop
         ntpdate us.pool.ntp.org
  
  **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."
