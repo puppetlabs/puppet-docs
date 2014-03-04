@@ -15,15 +15,15 @@ brokers with the
 [`create-broker` command](https://github.com/puppetlabs/razor-server/blob/master/doc/api.md)
 
 The broker type is closely tied to the configuration management system that
-the node should be handed off to. Generally, it consists of a (templated)
-shell script that does that, and a description of what additional
+the node should be handed off to. Generally, it consists of two things: a (templated)
+shell script that performs the handoff and a description of what additional
 information must be specified to create a broker from that broker
 type.
 
 ####Create a PE Broker
 
-1. Create a directory on the broker_path that is set in your config.yaml file. You can call it something like sample.broker. By default, the brokers directory in Razor.root is on that path.
-2. Write a template for your broker install script. For example, create a file called broker.json and add the following:
+1. Create a directory on the broker_path that is set in your `config.yaml` file. You can call it something like `sample.broker`. By default, the brokers directory in Razor.root is on that path.
+2. Write a template for your broker install script. For example, create a file called `broker.json` and add the following:
 
 		{
 			"name": "pe",
@@ -33,9 +33,9 @@ type.
 			"broker-type": "puppet-pe"
 		}
 
-3. Save broker.json to install.erb in the sample.broker directory. 
+3. Save `broker.json` to `install.erb` in the `sample.broker` directory. 
 
-4. If your broker type requires configuration data, add a configuration.yaml to your sample.broker directory.
+4. If your broker type requires configuration data, add a `configuration.yaml` file to your `sample.broker` directory.
 
 
 To see examples of brokers, have a look at the
@@ -45,16 +45,16 @@ To see examples of brokers, have a look at the
 ## Writing the broker install script
 
 The broker install script is generated from the `install.erb` template of
-your broker, and should generally return a valid shell script, since
+your broker and should return a valid shell script since
 tasks generally perform the handoff to the broker by running a command
-like `curl -s <%= broker_install_url %> | /bin/bash`; the server makes sure
+like, `curl -s <%= broker_install_url %> | /bin/bash`. The server makes sure
 that the `GET` request to `broker_install_url` returns the broker's install
-script, after interpolating the template.
+script after interpolating the template.
 
 In the `install.erb` template, you have access to two objects: `node` and
 `broker`. The `node` object gives you access to things like the node's
-facts as `node.facts["foo"]`, the node's tags via `node.tags`,
-etc. 
+facts (via `node.facts["foo"]`) and the node's tags (via `node.tags`),
+etc.
 
 The `broker` object gives you access to the configuration settings: if your
 `configuration.yaml` specifies that a setting `version` must be provided
