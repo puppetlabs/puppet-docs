@@ -54,48 +54,44 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
 	* If you do not have a preferred Unix text editor, run `nano registry/manifests/service_example.pp`.	
     * If Nano is not installed, run `puppet resource package nano ensure=installed` to install it from your OS's package repositories.
 
- `service_example.pp` contains the following:
+    `service_example.pp` contains the following:
 
 	
-    class registry::service_example {
-    # Define a new service named "Puppet Test" that is disabled.
-    registry::service { 'PuppetExample1':
-        display_name => "Puppet Example 1",
-        description  => "This is a simple example managing the registry entries for a Windows Service",
-        command      => 'C:\PuppetExample1.bat',
-        start        => 'disabled',
-    }
-    registry::service { 'PuppetExample2':
-      display_name => "Puppet Example 2",
-      description  => "This is a simple example managing the registry entries for a Windows Service",
-      command      => 'C:\PuppetExample2.bat',
-      start        => 'disabled',    
-      }
-    }   
-   	  	
-	  
-4. Remove the "PuppetExample2" `registry::service` resource, and add the following `file` resource:
-
- 	
-    class registry::service_example {
-    # Define a new service named "Puppet Test" that is disabled.
-      registry::service { 'PuppetExample1':
-        display_name => "Puppet Example 1",
-        description  => "This is a simple example managing the registry entries for a Windows Service",
-        command      => 'C:\PuppetExample1.bat',
-        start        => 'disabled',
+        class registry::service_example {
+        # Define a new service named "Puppet Test" that is disabled.
+        registry::service { 'PuppetExample1':
+            display_name => "Puppet Example 1",
+            description  => "This is a simple example managing the registry entries for a Windows Service",
+            command      => 'C:\PuppetExample1.bat',
+            start        => 'disabled',
         }
+        registry::service { 'PuppetExample2':
+          display_name => "Puppet Example 2",
+          description  => "This is a simple example managing the registry entries for a Windows Service",
+          command      => 'C:\PuppetExample2.bat',
+          start        => 'disabled',    
+          }
+        }   
+  
+4. Remove the "PuppetExample2" `registry::service` resource, and add the following `file` resource:
+ 	
+        class registry::service_example {
+        # Define a new service named "Puppet Test" that is disabled.
+          registry::service { 'PuppetExample1':
+            display_name => "Puppet Example 1",
+            description  => "This is a simple example managing the registry entries for a Windows Service",
+            command      => 'C:\PuppetExample1.bat',
+            start        => 'disabled',
+            }
       
-    file { 'C:\PuppetExample1.bat':
-        ensure  => file,
-        content => ":loop\r\nTIMEOUT /T 300\r\ngoto loop\r\n",
-        notify  => registry::service['PuppetExample1'],
-        }	
-    }
+        file { 'C:\PuppetExample1.bat':
+            ensure  => file,
+            content => ":loop\r\nTIMEOUT /T 300\r\ngoto loop\r\n",
+            notify  => registry::service['PuppetExample1'],
+            }	
+        }
    
-
- 
- The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
+    The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
 
 5. Save and close the file.
 6. **On the console**, add `registry::service_example` to the available classes, and then add that class to the Windows agent node. Refer to [the introductory section of this guide if you need help adding classes](./quick_start#using_modules_in_the_pe_console).
@@ -127,28 +123,27 @@ This exercise will create a class called `critical_policy` that manages a set of
 2. Use your text editor to create and open the `critical_policy/manifests/init.pp` file.
 3. Edit the init.pp file so it contains the following puppet code, and then save it and exit the editor:
 
-
-    class critical_policy {
+        class critical_policy {
         
-      registry::value { 'Legal notice caption':
-        key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
-        value => 'legalnoticecaption',
-        data  => 'Legal Notice',
-        }
+          registry::value { 'Legal notice caption':
+            key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
+            value => 'legalnoticecaption',
+            data  => 'Legal Notice',
+            }
  
-      registry::value { 'Legal notice text':
-        key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
-        value => 'legalnoticetext',
-        data  => 'Login constitutes acceptance of the End User Agreement',
-        }
+          registry::value { 'Legal notice text':
+            key   => 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System',
+            value => 'legalnoticetext',
+            data  => 'Login constitutes acceptance of the End User Agreement',
+            }
  
-      registry::value { 'Allow Windows Update to Forcibly reboot':
-        key   => 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU',
-        value => 'NoAutoRebootWithLoggedOnUsers',
-        type  => 'dword',
-        data  => '0',
-        }
-      }
+          registry::value { 'Allow Windows Update to Forcibly reboot':
+            key   => 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU',
+            value => 'NoAutoRebootWithLoggedOnUsers',
+            type  => 'dword',
+            data  => '0',
+            }
+          }
   
 
 > You have written a new module containing a single class. Puppet now knows about this class, and it can be added to the console and assigned to your Windows nodes, just as you did in part one of this guide.
@@ -171,14 +166,13 @@ For more information about writing classes, refer to the following documentation
 * For complete documentation of the available resource types, [see the type reference](/references/3.3.latest/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
-### Using Your Homemade Module in the Console
+### Using Your Custom Module in the Console
 
 [legal_notice_text_larry]: ./images/quick/legal_notice_larry.png
 [legal_notice_text_values]: ./images/quick/legal_notice_values.png
 
-1. **On the console,** use the "Add classes" button to choose the `critical_policy`qiu class from the list and make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
+1. **On the console,** use the "Add classes" button to choose the `critical_policy` class from the list and make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
 
- ![adding the `core_permissions` class](./images/quick/add_core_permissions.png)
 
 2. **On the Windows agent node,** manually set the data values of `legalnoticecaption` and `legalnoticetext` to some other values. For example, set `legalnoticecaption` to "Larry's Computer" and set `legalnoticetext` to "This is Larry's computer."
 
