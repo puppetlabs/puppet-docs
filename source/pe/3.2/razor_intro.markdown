@@ -19,26 +19,36 @@ Razor's policy-based bare-metal provisioning enables you to inventory and manage
 
 Razor policies use discovered characteristic of the underlying hardware and on user-provided data to make provisioning decisions. The following steps show a high-level view of provisioning a node with Razor.
 
-**1 - Razor identifies a new node**
+###1 - Razor identifies a new node
 
 ![bare node][razor-1]
 
-**2 - The node is tagged**
+When a new node appears, Razor discovers its characteristics by booting it into the Razor microkernel and inventorying its facts.
+
+###2 - The node is tagged
 
 ![tags applied][razor-2]
 
-**3 - The node tags match a Razor policy**
+The node is tagged based on its characteristics. Tags contain a match condition &#8212; a Boolean expression that has access to the node's facts and determines whether the tag should be applied to the node or not.
+
+###3 - The node tags match a Razor policy
 
 ![tags compared to policies][razor-3]
 
-**4 - Policies pull together all the provisioning elements**
+Node tags are compared to tags in the policy table. The first policy with tags that match the node's tags is applied to the node.
+
+###4 - Policies pull together all the provisioning elements
 
 ![policies][razor-4]
 
-**5 - The node is provisioned with the designated OS and managed with PE**
+
+###5 - The node is provisioned with the designated OS and managed with PE
 
 ![policy applied][razor-5]
 
+The node is now installed and managed by Puppet Enterprise.
+
+**In This Section**
 
 Provisioning with Razor roughly entails these steps:
 
@@ -57,7 +67,7 @@ In addition to the above processes, learn more about:
 + [Razor command reference](./razor_reference.html)
 
  
-###Razor As Tech Preview
+##Razor As Tech Preview
 
 This is a Tech Preview release of Razor. This means you are getting early access to Razor technology so you can test the functionality and provide feedback. However, this Tech Preview version of Razor is not intended for production use because Puppet Labs cannot guarantee Razor's stability. As Razor is further developed, functionality might be added, removed or changed in a way that is not backward compatible with this Tech Preview version.
 
