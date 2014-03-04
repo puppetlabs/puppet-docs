@@ -71,6 +71,8 @@ Several of the "under the hood" constituent parts of Puppet Enterprise have been
 * Hiera 1.3.2
 * Dashboard 2.1.1
 
+Visit the [What Gets Installed page](./install_what_and_where.html#puppet-enterprise-components) for a comprehensive list of packages installed by PE.
+
 * * *
 
-- [Next: Getting Support](./overview_getting_support.html)
+[Next: Getting Support](./overview_getting_support.html)
