@@ -44,7 +44,7 @@ There are several resources you can turn to in order to test your manifests and 
 
 [This guide](http://docs.puppetlabs.com/guides/tests_smoke.html) will give you some basic ideas for simple smoke testing of manifests and modules. Below we'll briefly list a few tools and resources which can help you further test your PE implementation. For a more in-depth discussion, take a look at this [blog post on syntax checking and automated testing](http://puppetlabs.com/blog/verifying-puppet-checking-syntax-and-writing-automated-tests/).
 
-However, all of that said, when you are first deploying Puppet, your best bet is to rely heavily on modules you can get from [the Puppet Forge](http://forge.puppetlabs.com). Forge modules, especially those from frequent contributors or "Modules of the Week", are proven solutions for the most common things sysadmins need to automate and they can save you a ton of time.
+However, all of that said, when you are first deploying Puppet, your best bet is to rely heavily on modules you can get from [the Puppet Forge](http://forge.puppetlabs.com). Forge modules, especially those officially supported by Puppet Labs are proven solutions for the most common things sysadmins need to automate, and they can save you a ton of time. Puppet Enterprise supported modules are rigorously tested with PE and are supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support). 
 
 ### No-op
 

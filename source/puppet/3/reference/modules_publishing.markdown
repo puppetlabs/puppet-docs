@@ -42,7 +42,7 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 
 > ### A Note on Module Names
 >
-> Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Puppet Forge as `puppetlabs-mysql`.
+> Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Puppet Forge as `puppetlabs-mysql`. Valid usernames use only lower/uppercase letters or numbers, and are at least one character long.
 >
 > **Be sure to use this long name in your module's [Modulefile](#write-a-modulefile).** However, you do not have to rename the module's directory, and can leave the module in your active modulepath --- the build action will do the right thing as long as the Modulefile is correct.
 
