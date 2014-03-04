@@ -37,7 +37,7 @@ Modules are directory trees. Their basic structure looks like this:
         - `init.pp` (contains the `motd` class)
         - `public.pp` (contains the `motd::public` class)
 
-Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` will contain a class with the same name as the module, `<NAME>.pp` will contain a class called `<MODULE NAME>::<NAME>`, and `<NAME>/<OTHER NAME>.pp` will contain `<MODULE NAME>::<NAME>::<OTHER NAME>`.
+Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` will contain a class with the same name as the module; `<NAME>.pp` will contain a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` will contain `<MODULE NAME>::<NAME>::<OTHER NAME>`.
 
 Many modules contain directories other than `manifests`; these will not be covered in this guide.
 
@@ -94,7 +94,7 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
     The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
 
 5. Save and close the file.
-6. **On the console**, add `registry::service_example` to the available classes, and then add that class to the Windows agent node. Refer to [the introductory section of this guide if you need help adding classes](./quick_start#using_modules_in_the_pe_console).
+6. **On the console**, add `registry::service_example` to the available classes, and then add that class to the Windows agent node. Refer to [the introductory section of this guide if you need help adding classes in the console](./quick_start#using_modules_in_the_pe_console).
 7. Kick off a puppet run. 
 
 On the windows agent node, navigate to your `C:\` directory. Puppet has created the `file` resource `PuppetExample1.bat`, which one of the resources puppet manages when it applies the class `registry::service_example`. 
@@ -117,7 +117,7 @@ Puppet Labs modules save time, but at some point **most users will also need to 
 
 ### Writing a Class in a Module
 
-This exercise will create a class called `critical_policy` that manages a set of services in your Windows registry. 
+During this exercise, you will create a class called `critical_policy` that will manage a collection of important settings and options in your Windows registry, most notably the legal caption and text users will see before the login screen. 
 
 1. **On the puppet master**, make sure you're still in the modules directory, `cd /etc/puppetlabs/puppet/modules`, and then run `mkdir -p critical_policy/manifests` to create the new module directory and its manifests directory.
 2. Use your text editor to create and open the `critical_policy/manifests/init.pp` file.
@@ -186,6 +186,8 @@ For more information about writing classes, refer to the following documentation
 4. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
 
 ![Legal notice text original value][legal_notice_text_values]
+
+Also, if you reboot your Windows machine, you will see the legal caption and text before you log in again. 
        
 > You have created a new class from scratch and used it to manage registry settings on your Window server.
 
@@ -214,7 +216,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node does not have a Windows OS, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. **On the console,** remove all of the previous example classes from your nodes and groups, using the "edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
 2. Add the `site::basic` class to the console with the "add classes" button in the sidebar as before.
