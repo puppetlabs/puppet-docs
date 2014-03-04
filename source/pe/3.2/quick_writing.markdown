@@ -176,7 +176,7 @@ For more information about writing classes, refer to the following documentation
 
 2. **On the Windows agent node,** manually set the data values of `legalnoticecaption` and `legalnoticetext` to some other values. For example, set `legalnoticecaption` to "Larry's Computer" and set `legalnoticetext` to "This is Larry's computer."
 
- ![Legal notice text larry][legal_notice_text_larry]
+  ![Legal notice text larry][legal_notice_text_larry]
     
 3. **Run puppet agent on your Windows agent node.** You can do this by
     * Doing nothing and waiting 30 minutes
@@ -185,7 +185,7 @@ For more information about writing classes, refer to the following documentation
     
 4. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
 
-![Legal notice text original value][legal_notice_text_values]
+ ![Legal notice text original value][legal_notice_text_values]
 
 Also, if you reboot your Windows machine, you will see the legal caption and text before you log in again. 
        
