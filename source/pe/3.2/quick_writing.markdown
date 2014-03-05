@@ -34,8 +34,12 @@ Modules are directory trees. Their basic structure looks like this:
 
 - `registry/` (the module name)
     - `manifests/`
-        - `init.pp` (contains the `motd` class)
-        - `public.pp` (contains the `motd::public` class)
+        - `init.pp` (contains the `registry` class)
+        - `service_example.pp` (contains the `registry::service` class we will use in an example below)
+        - `compliance_example.pp` (provides an example `registry::compliance_example` class)
+        - `purge_example.pp` (provides an example `registry::purge_example` class)
+        - `service.pp` (defines `registry::service`)
+        - `value.pp` (defines `registry::value`)
 
 Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` will contain a class with the same name as the module; `<NAME>.pp` will contain a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` will contain `<MODULE NAME>::<NAME>::<OTHER NAME>`.
 
