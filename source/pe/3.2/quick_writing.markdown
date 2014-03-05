@@ -45,9 +45,10 @@ Modules are directory trees. Their basic structure looks like this:
 
 Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` will contain a class with the same name as the module; `<NAME>.pp` will contain a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` will contain `<MODULE NAME>::<NAME>::<OTHER NAME>`.
 
-Many modules contain directories other than `manifests`; these will not be covered in this guide.
+Many modules contain directories other than `manifests`; for simplicity's sake, we will not be cover them in this introductory guide.
 
 * For more on how modules work, see [Module Fundamentals](/puppet/3/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html)
 * For a more detailed guided tour, see [the module chapters of Learning Puppet](/learning/modules1.html).
 
 ### Editing a Manifest
