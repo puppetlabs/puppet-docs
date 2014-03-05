@@ -5,21 +5,23 @@ subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---
 
-Welcome to part two of the PE 3.2 quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:
+Welcome to part two of the PE 3.2 quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with Puppet modules, module development, and additional PE features. Follow along to learn how to:
 
 * Modify a module obtained from the Forge
 * Write your own Puppet module
 * Create a site module that composes other modules into machine roles
 * Apply Puppet classes to groups with the console
 
+For a comprehensive introduction to module writing, visit the 
+
 > Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 Getting Started
 -----
 
-First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of MS Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the agent node in part one of this guide.
+First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of MS Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the first agent node in part one of this guide.
 
-Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on the puppet master. The process is identical to how you installed the NTP module in part one. 
+Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you installed the NTP module in part one. Once the module has been installed, add its class
 
 Editing a Forge Module
 -----
@@ -34,8 +36,12 @@ Modules are directory trees. Their basic structure looks like this:
 
 - `registry/` (the module name)
     - `manifests/`
-        - `init.pp` (contains the `motd` class)
-        - `public.pp` (contains the `motd::public` class)
+        - `init.pp` (contains the `registry` class)
+        - `service_example.pp` (contains the `registry::service` class we will use in an example below)
+        - `compliance_example.pp` (provides an example `registry::compliance_example` class)
+        - `purge_example.pp` (provides an example `registry::purge_example` class)
+        - `service.pp` (defines `registry::service`)
+        - `value.pp` (defines `registry::value`)
 
 Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` will contain a class with the same name as the module; `<NAME>.pp` will contain a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` will contain `<MODULE NAME>::<NAME>::<OTHER NAME>`.
 
