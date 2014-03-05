@@ -11,9 +11,16 @@ canonical: "/pe/latest/razor_intro.html"
 [razor-4]: ./images/razor/razor-4.png
 [razor-5]: ./images/razor/razor-5.png
 
-Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. Razor makes it easy to provision a node with no previously installed operating system and bring it under the management of Puppet Enterprise. 
+##Razor As Tech Preview
 
-##High-level Overview
+This is a Tech Preview release of Razor. This means you are getting early access to Razor technology so you can test the functionality and provide feedback. However, this Tech Preview version of Razor is not intended for production use because Puppet Labs cannot guarantee Razor's stability. As Razor is further developed, functionality might be added, removed or changed in a way that is not backward compatible with this Tech Preview version.
+
+For more information about Tech Preview software from Puppet Labs, see [Tech Preview](
+http://puppetlabs.com/services/tech-preview).
+
+##Introducing Razor
+
+Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. Razor makes it easy to provision a node with no previously installed operating system and bring it under the management of Puppet Enterprise. 
 
 Razor's policy-based bare-metal provisioning enables you to inventory and manage the lifecycle of your physical machines. With Razor, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors and hand nodes off to Puppet Enterprise for workload configuration. 
 
@@ -48,7 +55,7 @@ Node tags are compared to tags in the policy table. The first policy with tags t
 
 The node is now installed and managed by Puppet Enterprise.
 
-**In This Section**
+###Get Started With Razor
 
 Provisioning with Razor roughly entails these steps:
 
@@ -67,12 +74,6 @@ In addition to the above processes, learn more about:
 + [Razor command reference](./razor_reference.html)
 
  
-##Razor As Tech Preview
-
-This is a Tech Preview release of Razor. This means you are getting early access to Razor technology so you can test the functionality and provide feedback. However, this Tech Preview version of Razor is not intended for production use because Puppet Labs cannot guarantee Razor's stability. As Razor is further developed, functionality might be added, removed or changed in a way that is not backward compatible with this Tech Preview version.
-
-For more information about Tech Preview software from Puppet Labs, see [Tech Preview](
-http://puppetlabs.com/services/tech-preview).
 
 
 
