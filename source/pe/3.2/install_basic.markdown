@@ -353,7 +353,7 @@ Note that if install.bash can't find agent packages corresponding to the agent's
 
 Once the agent has been installed on the target node, it can be configured using [`puppet config set`][config_set]. See [Configuring Agents](#Configuring-Agents) below.
 
->**Important** During the initial install of the master, the install script will attempt to download the agent tarball from a remote Puppet Labs repo. If the script cannot access the repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first puppet run. These do not mean the installation failed, only the retrieval of the tarball. 
+>**Important** During the initial installation of the master, the install script will attempt to connect to the internet in order to download the agent tarball from a Puppet Labs maintained repo. If the script cannot access the repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first puppet run on the master. These do not mean the installation failed, only the retrieval of the tarball. 
 >
 >You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
 
