@@ -335,7 +335,7 @@ If you are using a supported OS that is capable of using remote package repos, t
 
 ### Installing Agents with Your Package Management Tools
 
-If you are currently using native package management, you just need to add the agent packages to the appropriate repo, configure your package manager (Yum, APT) to point at that repo, and then install the packages as you would any other. You can find agent packages that correspond to the master's OS/architecture in `/opt/puppet/packages/public` on the master. In that directory you will find a `<installed version of PE & platform>-agent/agent_packages` directory which in turn contains a directory with all the packages needed to install an agent (as well as a JSON file that lists the versions of those packages).
+If you are currently using native package management, you just need to add the agent packages to the appropriate repo, configure your package manager (Yum, apt) to point at that repo, and then install the packages as you would any other. You can find agent packages that correspond to the master's OS/architecture in `/opt/puppet/packages/public` on the master. In that directory you will find a `<installed version of PE & platform>-agent/agent_packages` directory which in turn contains a directory with all the packages needed to install an agent (as well as a JSON file that lists the versions of those packages).
 
 For nodes running an OS and/or architecture different from the master, [download the appropriate agent tarball](http://puppetlabs.com/misc/pe-files). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
@@ -345,13 +345,13 @@ Once the agent has been installed on the target node, it can be configured using
 
 If your infrastructure does not currently host a package repository, PE also hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created by the installer script during installation of the master. The repo serves packages over HTTPS using the same port as the puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
 
-You can also add repos for any PE-supported OS and architecture by creating a new repository for that platform. This is done by adding a new class to your master, `pe_repo::platform::<platform>` for each platform you'll be running an agent on. Simply [classify the master](./console_classes_groups.html#classes) using the desired platform and on the next puppet run the new repo will be created and populated with the appropriate agent packages for that platform. 
+You can also add repos for any PE-supported OS and architecture by creating a new repository for that platform. This is done by adding a new class to your master, `pe_repo::platform::<platform>` for each platform you'll be running an agent on.  [Classify the master](./console_classes_groups.html#classes) using the desired platform and on the next puppet run the new repo will be created and populated with the appropriate agent packages for that platform. 
 
 Once installed, the master hosts an agent installation script that is used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/install.bash`. When you run it on your selected agent (for example, with `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`), the script will detect the OS on which it is running, set up an apt (or yum, or zypper) repo that refers back to the master, pull down and install the `pe-agent` packages, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`. 
 
 Note that if install.bash can't find agent packages corresponding to the agent's platform it will fail with an error message telling you which `pe_repo` class needs to get added to the master so the packages are accessible.
 
-Once the agent has been installed on the target node, it can be configured using [`puppet config set`](../../puppet/3/reference/config_print_and_set.html). See [Configuring Agents](#Configuring-Agents) below. 
+Once the agent has been installed on the target node, it can be configured using `puppet config set`<!-- (../../puppet/3/reference/config_print_and_set.html) -->. See [Configuring Agents](#Configuring-Agents) below. 
 
 > #### Platform Specific Install Script
 >
@@ -375,7 +375,7 @@ The `-k` flag is needed in order to get curl to trust the master, which it would
 
 ### Configuring Agents
 
-Once the agent is installed it can be configured (pointed to the correct master, assigned a certname, etc.) by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the [`puppet config set` sub-command](../../puppet/3/reference/config_print_and_set.html) which will edit `puppet.conf` automatically.  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
+Once the agent is installed it can be configured (pointed to the correct master, assigned a certname, etc.) by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using the `puppet config set` sub-command<!-- (../../puppet/3/reference/config_print_and_set.html) --> which will edit `puppet.conf` automatically.  For example, to point the agent at a master called "puppetmaster.example.com" you would run `puppet config set server puppetmaster.example.com --section agent`. This will add the setting `server = puppetmaster.example.com` to the `[agent]` section of `puppet.conf`. If you don't specify a section, the default is `main`. 
 
 ### Signing Agent Certificates
 
