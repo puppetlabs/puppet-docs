@@ -33,7 +33,7 @@ Puppet Enterprise is distributed in tarballs specific to your OS version and arc
 
 ### Verifying the Installer
 
-To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by several Puppet developers and should be available from public keyservers, such as `pgp.mit.edu`. You'll also need to have GNuPG installed and download the GPG signature (.asc file) associated with your PE version from the PE downloads page.
+To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by Puppet and is available from public keyservers, such as `pgp.mit.edu`. You'll need to have GNuPG installed and you'll need to download the GPG signature (.asc file) associated with your PE version from the PE downloads page.
 
 To import the Puppet Labs public key, run:
 
@@ -355,7 +355,7 @@ Once the agent has been installed on the target node, it can be configured using
 
 >**Important** During the initial installation of the master, the install script will attempt to connect to the internet in order to download the agent tarball from a Puppet Labs maintained repo. If the script cannot access the repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first puppet run on the master. These do not mean the installation failed, only the retrieval of the tarball. 
 >
->You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
+>You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder.  For example, if want to add Debian agent support to a RHEL master, you would put `puppet-enterprise-3.2.0-debian-7-amd64-agent.tar.gz` in `opt/staging/pe_repo`. Then you only need to classify the master with `pe_repo::platform::debian-7-amd64` and the repo is ready for use. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
 
 #### Example Script Usage
 
