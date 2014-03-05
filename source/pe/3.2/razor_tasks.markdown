@@ -8,8 +8,8 @@ canonical: "/pe/latest/razor_tasks.html"
 Tasks describe a process or collection of actions that should be performed while provisioning machines. They can be used to designate an operating system or other software that should be installed, where to get it, and the configuration details for the installation.
 
 Tasks are structurally basic: they consist of a YAML metadata
-file, and any number of templates. Once you've automated the install for
-your operating system, for example, via kickstart or preseed, turning that
+file and any number of templates. Once you've automated the install for
+your operating system (for example, via kickstart or preseed), turning that
 into a task is a matter of writing a bit of metadata and
 templating some of the things that your task does. Check out the
 [stock tasks](https://github.com/puppetlabs/razor-server/tree/master/tasks)
@@ -38,7 +38,7 @@ Tasks can include the following metadata in the task's YAML file. This file is c
       default: boot_local
 
 Only `os_version` and `boot_sequence` are required. `base` allows you to 
-derive one task from another, by reusing some of the `base` metadata and
+derive one task from another by reusing some of the `base` metadata and
 templates. If the derived task has metadata that's different from the metadata in `base`, the derived metadata overrides the base task's metadata.
 
 The `boot_sequence` hash indicates which templates to use when a node using
@@ -72,7 +72,7 @@ make changes on the server:
 * `store_url(VARS)`: the URL that will store the values in the hash `VARS`
   in the node. Currently only changing the node's IP address is
   supported. Use `store_url("ip" => "192.168.0.1")` for that.
-* `stage_done_url`: tells the server that this stage of the
+* `stage_done_url`: the URL that tells the server that this stage of the
   boot sequence is finished, and that the next boot sequence should begin upon reboot.
 * `broker_install_url`: a URL from which the install script for the node's
   broker can be retrieved. You can see an example in the script, [os_complete.erb](https://github.com/puppetlabs/razor-server/blob/master/tasks/common/os_complete.erb), which is used by most tasks.

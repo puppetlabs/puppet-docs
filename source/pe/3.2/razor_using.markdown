@@ -8,10 +8,10 @@ canonical: "/pe/latest/razor_using.html"
 
 This page describes the provisioning setup process. You must first create some initial objects: 
 
-+ Repo - The container for the objects you install with Razor, such as operating systems.
-+ Broker - The connector between a node and a configuration management system.
-+ Tasks - The installation and configuration instructions. 
-+ Policy - The instructions that tell Razor which repos, brokers, and tasks to use for provisioning.
++ **Repo**: the container for the objects you install with Razor, such as operating systems.
++ **Broker**: the connector between a node and a configuration management system.
++ **Tasks**: the installation and configuration instructions. 
++ **Policy**: the instructions that tell Razor which repos, brokers, and tasks to use for provisioning.
 
 After creating these objects, you register a node on the Razor server. To work through these steps, you must already have a Razor server up and running, as described in [Install and Set Up Razor](./razor_install.html).
 
@@ -19,9 +19,9 @@ After creating these objects, you register a node on the Razor server. To work t
 Include Repos
 -------------
 
-A repo contains all of the bits you use with Razor, the actual bits used when installing a node, and is identified by a unique name, such as 'centos-6.4'. The instructions for an installation are contained in *tasks*, which are described below.
+A repo contains all of the bits you use with Razor, the actual bits used when installing a node. The repo is identified by a unique name, such as 'centos-6.4'. The instructions for an installation are contained in *tasks*, which are described below.
 
-To load a repo onto the server, run the following command. It can take five or so minutes plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the log file.
+To load a repo onto the server, run the following command. 
 
 	razor create-repo --name=<repo name> --iso-url <URL>
 	
@@ -29,8 +29,10 @@ For example:
 
 	razor create-repo --name=centos-6.4 --iso-url http://mirrors.usc.edu/pub/linux/distributions/centos/6.4/isos/x86_64/ 
 
+**Note**: It can take five or so minutes, plus however long it takes to download the ISO and unpack the contents, to create the repo. Currently, the best way to find out the status is to check the log file.
 
-Include Broker
+
+Include Brokers
 -------------
 
 Brokers are responsible for handing a node off to a config management system, such as Puppet Enterprise. Brokers consist of two parts: a *broker type* and information that is specific for the broker type. 
@@ -59,7 +61,7 @@ Include Tasks
 
 Tasks describe a process or collection of actions that should be performed while provisioning machines. They can be used to designate an operating system or other software that should be installed, where to get it, and the configuration details for the installation.
  
-Tasks are structurally simple. They consist of a YAML metadata file, and any number of ERB templates. You include the tasks you want to run in your policies (policies are described in the next section).
+Tasks are structurally simple. They consist of a YAML metadata file and any number of ERB templates. You include the tasks you want to run in your policies (policies are described in the next section).
 
 Razor provides a handful of existing tasks, or you can create your own. To learn more about tasks, see [Writing Tasks and Templates](./razor_tasks.html). 
 
@@ -69,7 +71,7 @@ Create Policies
 
 Policies orchestrate the repos, brokers, and tasks for Razor to tell Razor what bits to install, where to get the bits, how they should be configured, and how to communicate between a node and PE.  
 
-**Note** - Tags are named rule sets that identify which nodes should be attached to the given policy.
+**Note**: Tags are named rule sets that identify which nodes should be attached to the given policy.
 
 Because policies contain a good deal of information, it's handy to save them in a JSON file that you run when you create the policy. Here's an example of a policy called "centos-for-small." This policy stipulates that it should be applied to the first 20 nodes that have no more than two processors that boot. 
 
@@ -91,7 +93,7 @@ You might create multiple policies, and then retrieve the policies collection. T
 + When you create a policy, you can include a `before` or `after` parameter in the request to indicate where the new policy should appear in the policy table.
 + Using the `move-policy` command with `before` and `after` parameters, you can put an existing policy before or after another one.
 
-See [Razor Command Reference](./razor_reference.markdown) for more information.
+See [Razor Command Reference](./razor_reference.html) for more information.
 
 ####Create a Policy
 
