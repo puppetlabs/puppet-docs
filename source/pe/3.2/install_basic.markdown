@@ -351,6 +351,10 @@ Once installed, the master hosts an agent installation script that is used to in
 
 Note that if install.bash can't find agent packages corresponding to the agent's platform it will fail with an error message telling you which `pe_repo` class needs to get added to the master so the packages are accessible.
 
+>**Important** During the initial install of the master, the install script will attempt to download the agent tarball from a remote Puppet Labs repo. If the script cannot access the repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first puppet run. These do not mean the installation failed, only the retrieval of the tarball. 
+>
+>You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
+
 Once the agent has been installed on the target node, it can be configured using `puppet config set`<!-- (../../puppet/3/reference/config_print_and_set.html) -->. See [Configuring Agents](#Configuring-Agents) below. 
 
 > #### Platform Specific Install Script
@@ -358,10 +362,10 @@ Once the agent has been installed on the target node, it can be configured using
 > The `install.bash` script actually uses a secondary script to retrieve and install an agent package repo once it has detected the platform on which it is running. You can use this secondary script if you want to manually specify the platform of the agent packages. You can also use this script as an example or as the basis for your own custom scripts.
 > The script can be found at `https://<master>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6 x86_64`. Platform names are the same as those used for the PE tarballs: 
 >
- >   - el-{5,6}-{i386,x86_64}
- >   - debian-{6,7}-{i386,amd64}
- >   - ubuntu-{10.04,12.04}-{i386,amd64}
- >   - sles-11-{i386,x86_64}
+ >   - el-{5, 6}-{i386, x86_64}
+ >   - debian-{6, 7}-{i386, amd64}
+ >   - ubuntu-{10.04, 12.04}-{i386, amd64}
+ >   - sles-11-{i386, x86_64}
 
 #### Example Script Usage
 
