@@ -57,9 +57,7 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
 
 1. **On the puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
 2. Run `ls` to view the currently installed modules; note that `registry` is present.
-3. Open `registry/manifests/service_example.pp`, using the text editor of your choice.
-	* If you do not have a preferred Unix text editor, run `nano registry/manifests/service_example.pp`.	
-    * If Nano is not installed, run `puppet resource package nano ensure=installed` to install it from your OS's package repositories.
+3. Open `registry/manifests/service_example.pp`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors.
 
     `service_example.pp` contains the following:
 
