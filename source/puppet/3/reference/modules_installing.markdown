@@ -20,17 +20,12 @@ Installing Modules
 > ![Windows note](/images/windows-logo-small.jpg) The puppet module tool does not currently work on Windows.
 >
 > * Windows nodes which pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
-<<<<<<< HEAD
-> * On Windows nodes which compile their own catalogs, you can install a Forge module by downloading and extracting the module's release tarball from the module's page on the Forge (you will also need to download each module listed in the Dependencies tab). Then run the following command in PowerShell or Command Prompt: `puppet module install <path to tarball> --ignore-dependencies`.
-
->**Solaris Note**
-=======
 > * On Windows nodes which compile their own catalogs, you can install a Forge module by:
-    > 1. Downloading and extracting the module's release tarball from the module's page on the Forge (you will also need to download each module listed in the Dependencies tab);
-    > 2. Running the following command in PowerShell or Command Prompt: `puppet module install <path to tarball> --ignore-dependencies`.
-
+>     1. Downloading and extracting the module's release tarball from the module's page on the Forge (you will also need to download each module listed in the Dependencies tab);
+>     2. Running the following command in PowerShell or Command Prompt: `puppet module install <path to tarball> --ignore-dependencies`.
+    
+>**Solaris Note**
 >**Note**
->>>>>>> f876285... Updates to reflect PMT work for PE 3.2
 >To use the puppet module tool on Solaris systems, you must first install gtar.
 
 The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems so using them can save you time and effort.
