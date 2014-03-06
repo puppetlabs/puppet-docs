@@ -158,6 +158,12 @@ In most deployments, this role should be installed on **one node;** installing m
 
 **Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts**. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will alert you.
 
+>**Important** During the initial installation of the master, the install script will attempt to connect to the internet in order to download an agent tarball from a Puppet Labs maintained repo on Amazon S3, which it will then store in a repo hosted on the master node. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet run on the master. These do not mean the installation failed, only the retrieval of the tarball. 
+>
+>You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder.  For example, if want to add Debian agent support to a RHEL master, you would put `puppet-enterprise-3.2.0-debian-7-amd64-agent.tar.gz` in `/opt/staging/pe_repo`. Then you only need to classify the master with `pe_repo::platform::debian-7-amd64` and the repo is ready for use. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
+> If you simply do not need the PE-hosted repo feature at all, you can disable it altogether by removing the `pe-repo` class from your master.
+
+
 ### The Database Support Role
 This role provides required database support for PuppetDB and the console:
 
@@ -352,10 +358,6 @@ Once installed, the master hosts an agent installation script that is used to in
 Note that if install.bash can't find agent packages corresponding to the agent's platform it will fail with an error message telling you which `pe_repo` class needs to get added to the master so the packages are accessible.
 
 Once the agent has been installed on the target node, it can be configured using [`puppet config set`][config_set]. See [Configuring Agents](#Configuring-Agents) below.
-
->**Important** During the initial installation of the master, the install script will attempt to connect to the internet in order to download the agent tarball from a Puppet Labs maintained repo. If the script cannot access the repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first puppet run on the master. These do not mean the installation failed, only the retrieval of the tarball. 
->
->You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder.  For example, if want to add Debian agent support to a RHEL master, you would put `puppet-enterprise-3.2.0-debian-7-amd64-agent.tar.gz` in `opt/staging/pe_repo`. Then you only need to classify the master with `pe_repo::platform::debian-7-amd64` and the repo is ready for use. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
 
 #### Example Script Usage
 
