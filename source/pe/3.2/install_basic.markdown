@@ -84,9 +84,9 @@ With that knowledge in hand, the installation process will proceed in *two stage
 * Initially, you will install the main components of PE (master, database support, console, provisioner) by running the installer script included on the installation tarball.
 * Next, you will install the PE agent on all the nodes you wish to manage with PE.
 
-> **Note:** Starting with PE 3.2 you can install agents just as you would any other package, using the node's native package manager (e.g. Yum or APT). This approach can be used on any modern *nix system that supports remote package repos. You can use an existing package repository or, if you don't have one, the master installer will create one for the OS and architecture on which it is installed.
-
-> To install the agent on systems with no native support for remote package repositories (Solaris, RHEL 4, AIX, Windows), you can still use the tarball and installer script method as you did for the other components.
+> **Note:** Starting with PE 3.2 you can install agents just as you would any other package, using the node's native package manager (e.g. yum or apt). This approach can be used on any modern *nix system that supports remote package repos. You can use an existing package repository or, if you don't have one, the master installer will create one (called `pe_repo`) for the OS and architecture on which it is installed.
+>
+> To install the agent on systems with no native support for remote package repositories (Solaris, RHEL 4, AIX, Windows), you can still use the tarball and installer script method as with the other components.
 
 Initial Installation: Using the Installer Script
 -----
@@ -158,10 +158,15 @@ In most deployments, this role should be installed on **one node;** installing m
 
 **Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts**. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will alert you.
 
->**Important** During the initial installation of the master, the install script will attempt to connect to the internet in order to download an agent tarball from a Puppet Labs maintained repo on Amazon S3, which it will then store in a repo hosted on the master node. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet run on the master. These do not mean the installation failed, only the retrieval of the tarball. 
+>**Important**: By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet in order to access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
 >
->You can solve this issue by manually retrieving the tarball, and distributing it to masters manually or via a symlinked shared folder.  For example, if want to add Debian agent support to a RHEL master, you would put `puppet-enterprise-3.2.0-debian-7-amd64-agent.tar.gz` in `/opt/staging/pe_repo`. Then you only need to classify the master with `pe_repo::platform::debian-7-amd64` and the repo is ready for use. Alternatively, you can run master installs with an answers file with `q_tarball_server` set to an accessible server containing the tarball.
-> If you simply do not need the PE-hosted repo feature at all, you can disable it altogether by removing the `pe-repo` class from your master.
+> Depending on your particular deployment there are three ways you can resolve this issue. In each case, you will need to procure the agent tarball beforehand. 
+
+>    * If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
+
+>    * If you would like to use PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so the master won't attempt to download it. This will prevent the error message from reoccurring on subsequent puppet runs.
+
+>    * Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
 
 ### The Database Support Role
