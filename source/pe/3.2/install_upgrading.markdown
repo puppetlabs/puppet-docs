@@ -9,7 +9,7 @@ canonical: "/pe/latest/install_upgrading.html"
 Summary
 -----
 
-The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.2.
+The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.2.
 
 The process involves the following steps, which *must be performed in the following order:*
 
@@ -35,42 +35,22 @@ Important Notes and Warnings
 In case 1, the installer can determine how much space is needed, but it will be up to the user to determine if sufficient free-space exists.
 In case 2, the installer is unable to obtain any information about the size or state of the database. The user will not to locate the large console database table 
 
-- **Upgrading from the 2 series of PE  is only supported from 2.8.5 or later.** To upgrade from a version older than 2.8.5 to any version of the PE 3 series, you *must* first upgrade to 2.8.5, make sure everything is working correctly, and then move on to upgrading to the later version 
+- **Upgrading from PE 2.x or 3.0.0?** Check the [upgrade instructions for PE 3.1](../3.1/install_upgrading.html) for specific instructions, issues, and warnings.
 
-- **PE 3.0.0 Upgrade Limitations** PE 3.0.0 had limited upgrade capabilities. To upgrade from 3.0.0 to any later version in the PE 3 series, you *must* first upgrade to 3.0.1, make sure everything is working, and then move on to upgrading to the later version. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
-
-- If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
-
-  Before upgrading, remove the following:
-  
-    * `/etc/puppetlabs/puppet/routes.yaml`
-	
-    * `/etc/puppetlabs/puppet/puppetdb.conf`
-	
-	 * PostgreSQL (if installed on the master), including any data and config directories
-	
-  Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
-  
-    * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
-    * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
-
-  Lastly, perform your upgrade.
-  
-- Upgrading is handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
-
-- After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2 series agent nodes until they have been upgraded to the PE 3 series. The version of the orchestration engine used in PE 3 is incompatible with that used by PE 2.
-
-- For PE 3.0 and later, URLs pointing to module files must contain `modules/`, as in `puppet:///modules/`.
-
-- On AIX 5.3, puppet agents still depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`.
-
-- On AIX 6.1 and 7.1, the default version of readline, 4-3.2, is insufficient. You need to replace it *before* upgrading by running:
-
-        rpm -e --nodeps readline
-        rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
-
-    If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
-- If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+-**Upgrading a Master with Separated `/var` and `/opt` Directories** In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during upgrades. See the following to find out how to prevent the issues and/or recover from a failed upgrade.
+    
+* **To prevent a failed upgrade** follow these steps:  
+   1. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
+    2. Define the directory created above as the `module_working_dir` by adding the following to `/etc/puppetlabs/puppet/puppet.conf [main]`: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
+        
+* **To recover from a failed upgrade** follow these steps:
+    1. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
+    2. Define the directory created above as the `module_working_dir` by adding the following to `/etc/puppetlabs/puppet/puppet.conf [main]`: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
+    3. To prevent the installer from detecting that PE 3.2.0 is already installed, first echo the version of the existing PE version (e.g. '3.1.3') into the `pe_version` file
+`echo '3.1.3' > /opt/puppet/pe_version` Then, delete the `pe_build` file: `rm /opt/puppet/pe_build`.
+    4. Rerun the installer: 
+        `cd /<path to puppet-enterprise-3.2.0-installer>`
+        `./puppet-enterprise-installer `       
 
 
 Downloading PE

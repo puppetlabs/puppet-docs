@@ -116,6 +116,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
+### Install and Upgrade Failures on Nodes with Separated `/var` and `/opt`. 
+
+In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the the [installation](./install_basic.html) or [upgrading](./install_b.htm) instructions to find out how to prevent the issues and/or recover from a failed upgrade or installation.
+
 ### `pe_mcollective` Module Integer Parameter Issue
 
 The `pe_mcollective` module includes a parameter for the ActiveMQ heap size (`activemq_heap_mb`). A bug prevents this parameter from correctly accepting an integer when one is entered in the console. The problem can be avoided by placing the integer inside quote marks (e.g., `"10"`). This will cause Puppet to correctly validate the value when it is passed from the console.

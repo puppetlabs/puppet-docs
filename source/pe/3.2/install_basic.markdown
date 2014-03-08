@@ -10,6 +10,8 @@ canonical: "/pe/latest/install_basic.html"
 
 > ![windows logo](./images/windows-logo-small.jpg) This chapter covers \*nix operating systems. To install PE on Windows, see [Installing Windows Agents](./install_windows.html).
 
+
+    
 Downloading PE
 -----
 
@@ -157,16 +159,6 @@ In most deployments, this role should be installed on **one node;** installing m
 * Issue valid orchestration commands (from an administrator logged in as the `peadmin` user).
 
 **Note: By default, the puppet master will check for the availability of updates whenever the `pe-httpd` service restarts**. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers). If an update is available, a message will alert you.
-
->**Important**: By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet in order to access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
->
-> Depending on your particular deployment there are three ways you can resolve this issue. In each case, you will need to procure the agent tarball beforehand. 
-
->    * If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
-
->    * If you would like to use PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so the master won't attempt to download it. This will prevent the error message from reoccurring on subsequent puppet runs.
-
->    * Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
 
 ### The Database Support Role
@@ -443,6 +435,35 @@ After finishing, the installer will print a message telling you where it saved t
 When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, **you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`.** If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 
 Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
+
+Important Notes & Warnings
+-----
+
+**Installing Without Internet Connectivity**: 
+
+By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet in order to access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
+
+Depending on your particular deployment there are three ways you can resolve this issue. In each case, you will need to procure the agent tarball beforehand. 
+
+* If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
+
+* If you would like to use PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so the master won't attempt to download it. This will prevent the error message from recurring on subsequent puppet runs.
+
+* Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
+
+**Installing on to a Master with Separated `/var` and `/opt` Directories** 
+
+In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the following to find out how to prevent the issues and/or recover from a failed upgrade.
+    
+* **To prevent a failed installation** follow these steps:  
+  1. Unpack the PE tarball.
+  2. Edit `erb/puppet.conf.erb [main]` by adding: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
+  3. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
+  4. Run the installer in the standard manner.
+        
+* **To recover from a failed installation** follow these steps:
+    1. Run the [uninstaller](./install_uninstalling.html).
+    2. Follow the preventative steps above.
 
 * * *
 
