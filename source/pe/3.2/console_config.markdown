@@ -54,6 +54,8 @@ To use external authentication, the following two files must be correctly config
 
 After editing these files you must restart the `pe-httpd` and `pe-puppet-dashboard-workers` services via their `init.d` scripts.
 
+>**Note**: if you are using two-factor authentication with Google accounts, you must first create an ["application-specific"](https://accounts.google.com/b/2/IssuedAuthSubTokens?hide_authsub=1) password in order to successfully log into the console.
+
 
 ### Configuring `cas_client_config.yml`
 

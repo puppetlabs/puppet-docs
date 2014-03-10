@@ -151,8 +151,7 @@ User access can be managed with external, third-party authentication services. T
 * Google accounts
 
 > **Note:** To use a third-party authentication system, you must configure two files on the console server.
->
-> * See [the "Configuring Third-Party Authentication Services" section of the console config page][conf_thirdparty] for details.
+> See [the "Configuring Third-Party Authentication Services" section of the console config page][conf_thirdparty] for details.
 
 [conf_thirdparty]: ./console_config.html#configuring-third-party-authentication-services
 
@@ -162,11 +161,11 @@ The account interface for an externally authenticated user differs slightly from
 
 ![ext-user](./images/console/ext-auth_user.png)
 
-There will also be additional text on the user administration page which indicates the authentication service ("Account Type") being used for a given user and a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
+The user administration page will also indicate the authentication service ("Account Type") being used for a given user and provide a link to a legend that lists the external authentication services and the default access privileges given to users of a given service.
 
 ![user-list_legend](./images/console/user-list_legend.jpg)
 
-Lastly, note that built-in auth accounts use the email address specified at the end (e.g. "a.user@example.com"), whereas AD/LDAP accounts are generally accessed using just the username (e..g "a.user"), although this may vary in your specific organization's implementation.
+Lastly, note that while built-in auth accounts use the email address provided, AD/LDAP accounts are generally accessed using just the username (e..g "a.user"), although this may vary in your organization's specific implementation.
 
 
 
