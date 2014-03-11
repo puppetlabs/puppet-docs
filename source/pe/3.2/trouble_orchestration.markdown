@@ -8,7 +8,7 @@ canonical: "/pe/latest/trouble_orchestration.html"
 Agents Not Appearing in Live Management
 -----
 
-If you alter an agent's name in `puppet.conf` or make other changes that affect how an agent is represented on the network, you may find that while the console shows the agent certificate request and, subsequently, shows it in node views, you still cannot perform orchestration tasks on it using live management. In such cases, you can often force it to reconnect by waiting a minute or two and then running `puppet agent -t` until you see ouput indicating  the mcollective server has picked up the node. The output should look similar to:
+If you alter an agent's name in `puppet.conf` or make other changes that affect how an agent is represented on the network, you may find that while the console shows the agent certificate request and, subsequently, shows it in node views, you still cannot perform orchestration tasks on it using live management. In such cases, you can often force it to reconnect by waiting a minute or two and then running `puppet agent -t` until you see output indicating the mcollective server has picked up the node. The output should look similar to:
 
     Notice: /Stage[main]/Pe_mcollective::Server/File[/etc/puppetlabs/mcollective/server.cfg]/content:
     --- /etc/puppetlabs/mcollective/server.cfg	2013-06-14 15:53:41.251544110 -0700
@@ -23,7 +23,7 @@ If you alter an agent's name in `puppet.conf` or make other changes that affect 
     securityprovider           = ssl
     plugin.ssl_server_private = /etc/puppetlabs/mcollective/ssl/mcollective-private.pem
  
- 
+>**Tip**: You should also run NTP to verify that time is in sync across your deployment.  
 
 Accessing the ActiveMQ Console
 ----------
