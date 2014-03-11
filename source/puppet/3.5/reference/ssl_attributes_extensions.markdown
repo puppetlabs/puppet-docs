@@ -11,24 +11,29 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
 [trusted_hash]: ./lang_variables.html#trusted-node-data
+[enable_trusted]: ./config_important_settings.html#getting-new-features-early
 
 Summary
 -----
 
 When puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy]. In future Puppet versions, extensions may also be passed to the compiler as trusted facts.
 
-### Status as of Late 2013
+### Status as of Early 2014
 
-Today, embedding additional data into CSRs is only useful in deployments where:
+In Puppet 3.5, embedding additional data into CSRs is mostly useful in deployments where:
 
 * Large numbers of nodes are regularly created and destroyed as part of an elastic scaling system.
-* Infrastructure designers are willing to build custom tooling to make certificate autosigning more secure and useful.
+* You are willing to build custom tooling to make certificate autosigning more secure and useful.
 
-If your deployment doesn't match this description, you may not need this feature.
+It may also be useful in deployments where:
+
+* Puppet is used to deploy private keys or other sensitive information, and you want extra control over which nodes receive this data.
+
+If your deployment doesn't match one of these descriptions, you may not need this feature.
 
 > ### Version Note
 >
-> CSR attributes and certificate extensions are only available in Puppet 3.4.0 and newer.
+> CSR attributes and certificate extensions are only available in Puppet 3.4 and newer. Access to extensions in the `$trusted` hash is available in 3.5 and newer.
 
 
 Timing: When Data Can be Added to CSRs / Certificates
@@ -106,24 +111,18 @@ They may also be used by the CA when deciding whether or not to sign the certifi
 
 When signing a certificate, Puppet's CA tools will transfer any extension requests into the final certificate.
 
+If [trusted facts are enabled][enable_trusted], any cert extensions can be accessed in manifests as `$trusted[extensions][<EXTENSION OID>]`. Any OIDs in the ppRegCertExt range ([see below][puppet_oids]) will appear using their short names, and other OIDs will appear as plain dotted numbers. See [the page on facts and special variables][trusted_hash] for more information about `$trusted`.
+
 Visibility of extensions is somewhat limited:
 
-* The `puppet cert list` command _will not_ display custom attributes for any pending CSRs, and [basic autosigning (autosign.conf)][autosign_basic] will not check them before signing.
+* The `puppet cert list` command _will not_ display custom attributes for any pending CSRs, and [basic autosigning (autosign.conf)][autosign_basic] will not check them before signing. You'll need to either use [policy-based autosigning][autosign_policy] or inspect CSRs manually with the `openssl` command (see below).
 * The `puppet cert print` command _will_ display any extensions in a signed certificate, under the "X509v3 extensions" section.
 
-Puppet's compiler, server, and authorization systems do not (as of Puppet 3.4) use certificate extensions for anything.
+Puppet's authorization system (auth.conf) does not use certificate extensions for anything.
 
 ### Configurable Behavior
 
 If you are using [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the extension requests, and it can use them when deciding whether to sign the certificate.
-
-As of Puppet 3.4, there is not yet any practical difference between extension requests and custom attributes. We expect the differences to expand later (see next subheader).
-
-### Future Behavior
-
-Future behavior of certificate extensions is not yet finalized. However, the tentative plan is to make extension data available to the Puppet compiler in [the `$trusted` hash][trusted_hash].
-
-This would allow users to embed arbitrary data in a node when provisioning it, then treat it as trusted information for the lifetime of the node.
 
 ### Manually Checking For Extensions in CSRs and Certificates
 
