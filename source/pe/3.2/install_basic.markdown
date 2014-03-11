@@ -453,18 +453,8 @@ Depending on your particular deployment there are three ways you can resolve thi
 
 **Installing on to a Master with Separated `/var` and `/opt` Directories** 
 
-In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the following to find out how to prevent the issues and/or recover from a failed upgrade.
+In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, in some cases this may cause serious problems during installation. Contact [Puppet Labs Support](http://puppetlabs.com/services/customer-support) if you experience these issues.
     
-* **To prevent a failed installation** follow these steps:  
-  1. Unpack the PE tarball.
-  2. Edit `erb/puppet.conf.erb [main]` by adding: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
-  3. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
-  4. Run the installer in the standard manner.
-        
-* **To recover from a failed installation** follow these steps:
-    1. Run the [uninstaller](./install_uninstalling.html).
-    2. Follow the preventative steps above.
-
 * * *
 
 - [Next: Upgrading](./install_upgrading.html)
