@@ -118,7 +118,7 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Install and Upgrade Failures on Nodes with Separated `/var` and `/opt`. 
 
-In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the the [installation](./install_basic.html) or [upgrading](./install_b.htm) instructions to find out how to prevent the issues and/or recover from a failed upgrade or installation.
+In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the the [installation](./install_basic.html) or [upgrading](./install_upgrading.htm) instructions to find out how to prevent the issues and/or recover from a failed upgrade or installation.
 
 ### `pe_mcollective` Module Integer Parameter Issue
 
