@@ -175,3 +175,9 @@ Resource names (or namevars) may be limited by the underlying system being manag
 ### Nodes
 
 **The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/\A[a-z0-9._-]+\Z/`.)
+
+### Environments
+
+[Environment][] names may contain only numbers and lowercase letters. That is, they must match the following regular expression:
+
+    \A[a-z0-9]+\Z
