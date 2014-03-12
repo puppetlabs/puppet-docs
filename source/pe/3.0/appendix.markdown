@@ -158,6 +158,14 @@ On Windows systems, puppet agent runs started locally from the command line requ
 
 This issue only affects PE 3.0 and later.
 
+### MCollective `server.cfg` File May Have Wrong Owner Permissions on Windows Agents 
+
+In some cases, `server.cfg`, managed by the pe-mcollective module, may have file owner permissions set to "Administrator" instead of "Administrators", which will prevent MCollective from functioning correctly. If this happens, you will need to manually change the file permissions for this file. 
+
+On Windows 2008 and 7 agents, you can locate this file at `C:\PROGRAMDATA\PuppetLabs\mcollective\etc\server.cfg`.
+
+On Windows 2003 agents, you can locate this file at `C:\Documents and Settings\All Users\My Application Data\mcollective\etc\server.cfg`.
+
 ### BEAST Attack Mitigation
 
 A known weakness in Apache HTTPD leaves it vulnerable to a man-in-the-middle attack known as the BEAST (Browser Exploit Against SSL/TLS) attack. The vulnerability exists because Apache HTTPD uses a FIPS compliant cipher suite that can be cracked via a brute force attack that can discover the decryption key. If FIPS compliance is not required for your infrastructure, we recommend you mitigate vulnerability to the BEAST attack by using a cipher suite that includes stronger ciphers. This can be done as follows:
