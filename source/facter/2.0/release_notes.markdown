@@ -9,7 +9,7 @@ This page documents the history of the Facter 2.0 series.
 Facter 2.0.1
 -----
 
-**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC 1 on February 28, 2014.
+**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC 2 on March 12, 2014.
 
 Facter 2.0.1 is the first release in the Facter 2 series. (See the [note below](#facter-200) about Facter 2.0.0.)
 
@@ -32,7 +32,6 @@ fact values.
 On Windows, the `operatingsystemrelease` fact now returns `XP`,`2003`, `2003 R2`, `Vista`, `2008`, `7`, `2008 R2`, `8`, or `2012`, depending on the version reportedy by WMI.
 
 ### Improvements
-
 
 [FACT-94: Unvendor CFPropertyList](https://tickets.puppetlabs.com/browse/FACT-94)
 
@@ -66,18 +65,33 @@ Adds pluginsync support for external facts to Facter 2.
 
 Removes all instances of `ldapname`, completing its deprecation.
 
+[FACT-242: Remove Fedora 18 from default build targets](https://tickets.puppetlabs.com/browse/FACT-242)
+
+Fedora 18 has reached end-of-life and will no longer be supported. This release removes F18 as a build target.
+
 [FACT-272: Update Facter man page for 2.0](https://tickets.puppetlabs.com/browse/FACT-272)
 
 The man page for Facter 2 now includes the new command line options.
 
-<!-- [FACT-339: Pull in backwards incompatible fact changes for Facter 2](https://tickets.puppetlabs.com/browse/FACT-339) According to the comment on Jira, this ticket == FACT-341 -->
+[FACT-342: Add Ubuntu 14.04 (Trusty Tahr) support](https://tickets.puppetlabs.com/browse/FACT-342)
 
+This release adds spec and accceptance tests for Ubuntu 14.04, also known as Trusty Tahr.
 
 ### Bug Fixes
 
 [FACT-202: Fix undefined path in macaddress.rb](https://tickets.puppetlabs.com/browse/FACT-202)
 
 One of the possible resolutions for the `macaddress` fact would incorrectly return `nil`. This release fixes the bug.
+
+[FACT-351: undefined method 'ipaddress' for Facter:Module](https://tickets.puppetlabs.com/browse/FACT-351)
+
+This bug would cause the netmask fact to fail on Darwin under some circumstances. This release fixes the bug.
+
+[FACT-356: vlan fact returns the empty string when undefined](https://tickets.puppetlabs.com/browse/FACT-356)
+
+[FACT-357: lsb facts return the empty string when undefined](https://tickets.puppetlabs.com/browse/FACT-357)
+
+These two bugs were caused by [FACT-322](https://tickets.puppetlabs.com/browse/FACT-322) (remove special casing of the empty string). Previous versions of facter would ignore facts that returned `""`, and the LSB and VLAN facts depended on this behavior to ensure that they wouldn't appear on systems where they weren't relevant. Once the special casing of the empty string was removed in Facter 2.0.1, facts that returned `""` would show up in facter's output as `""`, rather than not showing up at all. The LSB and VLAN facts have been updated to fix this bug.
 
 
 Facter 2.0.0

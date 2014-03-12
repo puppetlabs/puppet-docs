@@ -3606,9 +3606,8 @@ trigger
         first become active. Several time formats will work, but we
         suggest 24-hour time formatted as HH:MM.
       * `start_date` ---  The date when the trigger should first become active.
-        Defaults to "today." Several date formats will work, including
-        special dates like "today," but we suggest formatting dates as
-        YYYY-MM-DD.
+        Defaults to the current date. You should format dates as YYYY-MM-DD,
+        although other date formats may work. (Under the hood, this uses `Date.parse`.)
   * For daily triggers:
       * `every` --- How often the task should run, as a number of days. Defaults
         to 1. ("2" means every other day, "3" means every three days, etc.)
