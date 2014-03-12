@@ -87,9 +87,9 @@ One of the possible resolutions for the `macaddress` fact would incorrectly retu
 
 This bug would cause the netmask fact to fail on Darwin under some circumstances. This release fixes the bug.
 
-[FACT-357: lsb facts return the empty string when undefined](https://tickets.puppetlabs.com/browse/FACT-357)
+[FACT-356: vlan fact returns the empty string when undefined](https://tickets.puppetlabs.com/browse/FACT-356)
 
-[FACT-357: vlan fact returns the empty string when undefined](https://tickets.puppetlabs.com/browse/FACT-356)
+[FACT-357: lsb facts return the empty string when undefined](https://tickets.puppetlabs.com/browse/FACT-357)
 
 These two bugs were caused by [FACT-322](https://tickets.puppetlabs.com/browse/FACT-322) (remove special casing of the empty string). Previous versions of facter would ignore facts that returned `""`, and the LSB and VLAN facts depended on this behavior to ensure that they wouldn't appear on systems where they weren't relevant. Once the special casing of the empty string was removed in Facter 2.0.1, facts that returned `""` would show up in facter's output as `""`, rather than not showing up at all. The LSB and VLAN facts have been updated to fix this bug.
 
