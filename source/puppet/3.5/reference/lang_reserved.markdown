@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 Reserved Words
 -----
 
-Several words in the Puppet language are **reserved**. This means they: 
+Several words in the Puppet language are **reserved**. This means they:
 
 * Cannot be used as bare word strings --- you must quote these words if you wish to use them as strings.
 * Cannot be used as names for custom functions.
@@ -33,7 +33,7 @@ Several words in the Puppet language are **reserved**. This means they:
 
 > **Note:** As of Puppet 3, reserved words MAY be used as names for attributes in custom resource types. This is a change from the behavior of 2.7 and earlier.
 
-The following words are reserved: 
+The following words are reserved:
 
 * `and` --- expression operator
 * `case` --- language keyword
@@ -50,7 +50,7 @@ The following words are reserved:
 * `node` --- language keyword
 * `or` --- expression operator
 * `true` --- boolean value
-* `undef` --- special value 
+* `undef` --- special value
 * `unless` --- language keyword
 
 Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
@@ -61,7 +61,7 @@ Reserved Class Names
 The following are built-in namespaces used by Puppet and so must not be used as class names:
 
 * `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
-* `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings). 
+* `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings).
 
 Reserved Variable Names
 -----
@@ -69,8 +69,12 @@ Reserved Variable Names
 The following variable names are reserved, and you **must not** assign values to them:
 
 * `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug rather than a deliberate design, and can be tracked at [issue #14093](http://projects.puppetlabs.com/issues/14093).
-* Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined. 
+* Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined.
 * Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely re-used at node or local scope.
+* If [enabled][trusted_on], the `$trusted` and `$facts` variables are reserved for facts and cannot be reassigned at local scopes.
+
+[trusted_on]: ./config_important_settings.html#getting-new-features-early
+
 
 Acceptable Characters in Names
 -----
@@ -93,7 +97,7 @@ Variable names should match the following regular expression:
 
     \A\$[a-zA-Z0-9_]+\Z
 
-Variable names can be [fully qualified][qualified_var] to refer to variables from foreign [scopes][]. Qualified variable names look like `$class::name::variable_name`. They begin with `$`, the name of the class that contains the variable, and the `::` (double colon) [namespace][] separator, and end with the variable's local name. 
+Variable names can be [fully qualified][qualified_var] to refer to variables from foreign [scopes][]. Qualified variable names look like `$class::name::variable_name`. They begin with `$`, the name of the class that contains the variable, and the `::` (double colon) [namespace][] separator, and end with the variable's local name.
 
 Qualified variable names should match the following regular expression:
 
@@ -113,7 +117,7 @@ Namespace segments should match the following regular expression:
 
 The one exception is the top namespace, whose name is the empty string.
 
-Multiple namespace segments can be joined together in a class or type name with the `::` (double colon) [namespace][] separator. 
+Multiple namespace segments can be joined together in a class or type name with the `::` (double colon) [namespace][] separator.
 
 Class names with multiple namespaces should match the following regular expression:
 
@@ -158,13 +162,13 @@ Parameter names should match the following regular expression:
 * Periods
 * Hyphens
 
-Tag names should match the following regular expression: 
+Tag names should match the following regular expression:
 
     \A[a-z0-9_][a-z0-9_:\.\-]*\Z
 
 ### Resources
 
-Resource **titles** may contain any characters whatsoever. They are case-sensitive. 
+Resource **titles** may contain any characters whatsoever. They are case-sensitive.
 
 Resource names (or namevars) may be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing the name limits on the platforms they manage.
 
