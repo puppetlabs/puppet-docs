@@ -196,6 +196,14 @@ In an effort to make `puppet apply` work with PuppetDB in masterless puppet scen
 
 For PE versions 3.1.x, the Puppet Labs PostgreSQL module (included in the PE tarball) is used to manage PuppetDB. However, using your own PostgreSQL module in addition to the Puppet Labs PostgreSQL module will impact the operation of PuppetDB. This issue will be fixed in PE 3.2, but you can also contact the [PE customer support portal](https://support.puppetlabs.com) to discuss potential workarounds.
 
+### MCollective `server.cfg` File May Have Wrong Owner Permissions on Windows Agents 
+
+In some cases, `server.cfg`, managed by the pe-mcollective module, may have file owner permissions set to "Administrator" instead of "Administrators", which will prevent MCollective from functioning correctly. If this happens, you will need to manually change the file permissions for this file. 
+
+On Windows 2008 and 7 agents, you can locate this file at `C:\PROGRAMDATA\PuppetLabs\mcollective\etc\server.cfg`.
+
+On Windows 2003 agents, you can locate this file at `C:\Documents and Settings\All Users\My Application Data\mcollective\etc\server.cfg`.
+
 ### BEAST Attack Mitigation
 
 A known weakness in Apache HTTPD leaves it vulnerable to a man-in-the-middle attack known as the BEAST (Browser Exploit Against SSL/TLS) attack. The vulnerability exists because Apache HTTPD uses a FIPS compliant cipher suite that can be cracked via a brute force attack that can discover the decryption key. If FIPS compliance is not required for your infrastructure, we recommend you mitigate vulnerability to the BEAST attack by using a cipher suite that includes stronger ciphers. This can be done as follows:

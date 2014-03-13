@@ -18,23 +18,25 @@ Ruby Facts
 ## Adding Custom Facts to Facter
 
 Sometimes you need to be able to write conditional expressions
-based on site-specific data that just isn't available via Facter (or use
-a variable in a template that isn't there).
-A solution can be achieved by adding a new fact to Facter. These additional facts
+based on site-specific data that just isn't available via Facter, 
+or perhaps you'd like to include it in a template.
+
+Since you can't include arbitrary Ruby code in your manifests,
+the best solution is to a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
-in manifests.
+in manifests and templates, just like any other fact would be.
 
 ## The Concept
 
-You can add new facts by writing a snippet of Ruby code on the
-Puppet master. We then use [Plugins In Modules](./plugins_in_modules.html) to distribute our
-facts to the client.
+You can add new facts by writing snippets of Ruby code on the
+Puppet master. Puppet will then use [Plugins in Modules](./plugins_in_modules.html)
+to distribute the facts to the client.
 
 ## An Example
 
-Let's say we need to get the output of uname -i to single out a
-specific type of workstation. To do these we create a fact. We
-start by giving the fact a name, in this case, `hardware_platform`,
+Let's say you need to get the output of `uname --hardware-platform` to single out a
+specific type of workstation. To do this, you would create a new custom
+fact. Start by giving the fact a name, in this case, `hardware_platform`,
 and create our new fact in a file, `hardware_platform.rb`, on the
 Puppet master server:
 
@@ -42,25 +44,25 @@ Puppet master server:
 
     Facter.add("hardware_platform") do
       setcode do
-        Facter::Util::Resolution.exec('/bin/uname -i')
+        Facter::Util::Resolution.exec('/bin/uname --hardware-platform')
       end
     end
 
-> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname -i').chomp`.)
+> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname --hardware-platform').chomp`.)
 
-We then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
-our new fact to a module and distribute it. During your next Puppet
-run the value of our new fact will be available to use in your
-manifests.
+You can then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
+the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
+will be available to use in your manifests.
 
-The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code. You will find lots of examples of how to interpret different types of system data and return useful facts.
+The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code.
+You will find lots of examples of how to interpret different types of system data and return useful facts.
 
 ## Using other facts
 
 You can write a fact which uses other facts by accessing
-Facter.value("somefact") or simply Facter.somefact. The former will
-return nil for unknown facts, the latter will raise an exception.
-An example:
+Facter.value("somefact").
+
+For example:
 
     Facter.add("osfamily") do
       setcode do
@@ -85,7 +87,7 @@ Facter offers a few methods of loading facts:
  * Facts distributed using pluginsync
 
 You can use these methods of loading facts do to things like test files locally
-before distributing them, or have a specific set of facts available on certain
+before distributing them, or you can arrange to have a specific set of facts available on certain
 machines.
 
 Facter will search all directories in the ruby $LOAD\_PATH variable for
@@ -102,7 +104,7 @@ this:
 Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
 'facter/rackspace.rb'.
 
-Facter also will check the environment variable `FACTERLIB` for a colon delimited
+Facter also will check the environment variable `FACTERLIB` for a colon-delimited
 set of directories, and will try to load all ruby files in those directories.
 This allows you to do something like this:
 
@@ -147,11 +149,23 @@ systems that don't support this type of enumeration.
 
 ### Fact precedence
 
-Another property of facts is the `weight` property. Facts with a higher weight
-are run earlier, which allows you to either override or provide fallbacks to
-existing facts, or ensure that facts are evaluated in a specific order.
-By default, the weight of a fact is the number of confines for that fact, so
-that more specific facts are evaluated first.
+A single fact can have multiple **resolutions**, each of which is a different way
+of ascertaining what the value of the fact should be. It's very common to have 
+different resolutions for different operating systems, for example. It's easy to
+confuse facts and resolutions because they are superficially identical --- to add
+a new resolution to a fact, you simply add the fact again, only with a different
+`setcode` statement.
+
+When a fact does have more than one resolution, you'll want to make sure that only one of them
+gets executed. Otherwise, each subsequent resolution would override the one before it,
+and you might not get the value that you want.
+
+The way that Facter decides the issue of precedence is the `weight` property.
+Once Facter rules out any resolutions that are excluded because of `confine` statments,
+the resolution with the highest weight is the one that will actually be executed.
+
+By default, the weight of a fact is the number of confines for that resolution, so
+that more specific resolutions will take priority over less specific resolutions.
 
     # Check to see if this server has been marked as a postgres server
     Facter.add(:role) do
