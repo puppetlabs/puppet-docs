@@ -12,71 +12,22 @@ Extend facter by writing your own custom facts to provide information to Puppet.
 
 [executionpolicy]: http://technet.microsoft.com/en-us/library/ee176949.aspx
 
-Ruby Facts
-----------
-
 ## Adding Custom Facts to Facter
 
 Sometimes you need to be able to write conditional expressions
 based on site-specific data that just isn't available via Facter, 
 or perhaps you'd like to include it in a template.
 
-Since you can't include arbitrary Ruby code in your manifests,
+Since you can't include arbitrary ruby code in your manifests,
 the best solution is to a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
 in manifests and templates, just like any other fact would be.
 
 ## The Concept
 
-You can add new facts by writing snippets of Ruby code on the
+You can add new facts by writing snippets of ruby code on the
 Puppet master. Puppet will then use [Plugins in Modules](./plugins_in_modules.html)
 to distribute the facts to the client.
-
-## An Example
-
-Let's say you need to get the output of `uname --hardware-platform` to single out a
-specific type of workstation. To do this, you would create a new custom
-fact. Start by giving the fact a name, in this case, `hardware_platform`,
-and create our new fact in a file, `hardware_platform.rb`, on the
-Puppet master server:
-
-    # hardware_platform.rb
-
-    Facter.add("hardware_platform") do
-      setcode do
-        Facter::Util::Resolution.exec('/bin/uname --hardware-platform')
-      end
-    end
-
-> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname --hardware-platform').chomp`.)
-
-You can then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
-the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
-will be available to use in your manifests.
-
-The best place to get ideas about how to write your own custom facts is to look at the existing Facter fact code.
-You will find lots of examples of how to interpret different types of system data and return useful facts.
-
-## Using other facts
-
-You can write a fact which uses other facts by accessing
-Facter.value("somefact").
-
-For example:
-
-    Facter.add("osfamily") do
-      setcode do
-        distid = Facter.value('lsbdistid')
-        case distid
-        when /RedHatEnterprise|CentOS|Fedora/
-          "redhat"
-        when "ubuntu"
-          "debian"
-        else
-          distid
-        end
-      end
-    end
 
 ## Loading Custom Facts
 
@@ -95,7 +46,7 @@ subdirectories named 'facter', and will load all ruby files in those directories
 If you had some directory in your $LOAD\_PATH like ~/lib/ruby, set up like
 this:
 
-    {~/lib/ruby}
+    #~/lib/ruby
     └── facter
         ├── rackspace.rb
         ├── system_load.rb
@@ -124,6 +75,77 @@ these facts with standalone facter.
 
 Custom facts can be distributed to clients using the [Plugins In Modules](./plugins_in_modules.html) method.
 
+## Two Parts of Every Fact
+
+Setting aside external facts for now, every fact has at least two elements:
+
+ 1. a call to `Facter.add('fact_name')`, which determines the name of the fact
+ 2. a `setcode` statement, which will be evaluated to determine the fact's value.
+
+Facts *can* get a lot more complicated than that, but those two together are the
+minimum that you will see in every fact.
+
+## Executing Shell Commands in Facts
+
+Puppet gets information about a system from Facter, and the most common way for Facter to
+get that information is by executing shell commands. You can then parse and manipulate the
+output from those commands using standard ruby code. The Facter API gives you two ways to
+execute shell commands:
+
+  * if all you want to do is run the command and use the output, verbatim, as your fact's value,
+  you can pass the command into `setcode` directly. For example: `setcode "uname --hardware-platform"`
+  * if your fact is any more complicated than that, you'll have to call `Facter::Util::Resolution.exec('uname --hardware-platform')`
+  from within the `setcode do`...`end` block.
+
+### An Example
+
+Let's say you need to get the output of `uname --hardware-platform` to single out a
+specific type of workstation. To do this, you would create a new custom
+fact. Start by giving the fact a name, in this case, `hardware_platform`,
+and create your new fact in a file, `hardware_platform.rb`, on the
+Puppet master server:
+
+{% highlight ruby %}
+    # hardware_platform.rb
+
+    Facter.add("hardware_platform") do
+      setcode do
+        Facter::Util::Resolution.exec('/bin/uname --hardware-platform')
+      end
+    end
+{% endhighlight %}
+
+> **Note:** Prior to Facter 1.5.8, values returned by `Facter::Util::Resolution.exec` often had trailing newlines. If your custom fact will also be used by older versions of Facter, you may need to call `chomp` on these values. (In the example above, this would look like `Facter::Util::Resolution.exec('/bin/uname --hardware-platform').chomp`.)
+
+You can then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
+the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
+will be available to use in your manifests and templates.
+
+The best place to get ideas about how to write your own custom facts is to look at the [code for Facter's core facts](https://github.com/puppetlabs/facter/tree/master/lib/facter). There you will find a wealth of examples of how to retrieve different types of system data and return useful facts.
+
+## Using other facts
+
+You can write a fact which uses other facts by accessing
+`Facter.value("somefact")`.
+
+For example:
+
+{% highlight ruby %}
+    Facter.add("osfamily") do
+      setcode do
+        distid = Facter.value('lsbdistid')
+        case distid
+        when /RedHatEnterprise|CentOS|Fedora/
+          "redhat"
+        when "ubuntu"
+          "debian"
+        else
+          distid
+        end
+      end
+    end
+{% endhighlight %}
+
 ## Configuring Facts
 
 Facts have a few properties that you can use to customize how facts are evaluated.
@@ -135,12 +157,14 @@ restricts the fact to only run on systems that matches another given fact.
 
 An example of the confine statement would be something like the following:
 
+{% highlight ruby %}
     Facter.add(:powerstates) do
       confine :kernel => "Linux"
       setcode do
         Facter::Util::Resolution.exec('cat /sys/power/states')
       end
     end
+{% endhighlight %}
 
 This fact uses sysfs on linux to get a list of the power states that are
 available on the given system. Since this is only available on Linux systems,
@@ -160,13 +184,16 @@ When a fact does have more than one resolution, you'll want to make sure that on
 gets executed. Otherwise, each subsequent resolution would override the one before it,
 and you might not get the value that you want.
 
-The way that Facter decides the issue of precedence is the `weight` property.
+The way that Facter decides the issue of precedence is the weight property.
 Once Facter rules out any resolutions that are excluded because of `confine` statments,
-the resolution with the highest weight is the one that will actually be executed.
+the resolution with the highest weight will be executed. If that resolution doesn't return
+a value, Facter will move on to the next resolution (by descending weight) until it gets
+a suitable value for the fact.
 
 By default, the weight of a fact is the number of confines for that resolution, so
 that more specific resolutions will take priority over less specific resolutions.
 
+{% highlight ruby %}
     # Check to see if this server has been marked as a postgres server
     Facter.add(:role) do
       has_weight 100
@@ -193,6 +220,7 @@ that more specific resolutions will take priority over less specific resolutions
         "desktop"
       end
     end
+{% endhighlight %}
 
 ### Timing out
 
@@ -201,12 +229,14 @@ the `timeout` property. If a fact is defined with a timeout and the evaluation
 of the setcode block exceeds the timeout, Facter will halt the resolution of
 that fact and move on.
 
+{% highlight ruby %}
     # Sleep
     Facter.add(:sleep, :timeout => 10) do
       setcode do
           sleep 999999
       end
     end
+{% endhighlight %}
 
 ## Viewing Fact Values
 
@@ -256,11 +286,13 @@ external fact path above.
 
 An example external fact written in Python:
 
+{% highlight python %}
     #!/usr/bin/env python
     data = {"key1" : "value1", "key2" : "value2" }
 
     for k in data:
             print "%s=%s" % (k,data[k])
+{% endhighlight %}
 
 
 You must ensure that the script has its execute bit set:
@@ -327,18 +359,22 @@ Structured data files must use one of the supported data types and must have the
 
 * `.yaml`: YAML data, in the following format:
 
+{% highlight yaml %}
         ---
         key1: val1
         key2: val2
         key3: val3
+{% endhighlight %}
 
 * `.json`: JSON data, in the following format:
 
+{% highlight javascript %}
         {
             "key1": "val1",
             "key2": "val2",
             "key3": "val3"
         }
+{% endhighlight %}
 
 * `.txt`: Key value pairs, in the following format:
 
@@ -381,7 +417,7 @@ external facts:
 
     facter --timing
 
-The output should look similar to the timing for Ruby facts, but will name external facts with their full paths. For example:
+The output should look similar to the timing for ruby facts, but will name external facts with their full paths. For example:
 
     $ facter --timing
     kernel: 14.81ms
@@ -401,7 +437,7 @@ found in the stdlib module.
 
 While external facts provide a mostly-equal way to create variables for Puppet, they have a few drawbacks:
 
-* An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
+* An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a ruby fact.
 * External executable facts are forked instead of executed within the same process.
 * Although we plan to allow distribution of external facts through Puppet's pluginsync capability, this is not yet supported. See [ticket #9546](https://projects.puppetlabs.com/issues/9546)
 
