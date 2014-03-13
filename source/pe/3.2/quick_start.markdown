@@ -76,7 +76,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `master.example.com`.)
     * You will need the **email address and console password** it requests in order to use the console; **choose something memorable.**
     * None of the **other passwords** are relevant to this quick start guide. **Choose something random.**
-    * **Accept the default responses for every other question** by hitting enter. For this walkthrough, when prompted for an SMTP server you can enter `localhost` or other inert text.
+    * For purposes of this walkthrough, when prompted for an SMTP server you can enter `localhost` or other inert text. Otherwise, you can **accept the default responses for every other question** by hitting enter. 
 * The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take 10-15 minutes.**
 
 > You have now installed the puppet master node. As indicated by the installer, the puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
