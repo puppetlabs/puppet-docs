@@ -16,13 +16,13 @@ canonical: "/geppetto/latest/geppetto.html"
 
 Geppetto is an integrated development environment for Puppet. In other words, it is a simplified toolset for developing and integrating Puppet modules and manifests.
 
-Built on Eclipse, Geppetto provides a puppet manifest editor that supplies syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which enable you to create projects from existing modules on the Forge as well as to easily upload your custom modules directly to the Forge. 
+Built on Eclipse, Geppetto provides a puppet manifest editor that supplies syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which enable you to create projects from existing modules on the Forge as well as to easily upload your custom modules directly to the Forge.
 
-Geppetto is even integrated with GitHub (Git) and with Subversion (SVN) via Eclipse Subversive. This means you can manage your projects' version control from within Geppetto. You can also compare versions of your code side-by-side, complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
+Geppetto is even integrated with GitHub (Git) and with Subversion (SVN) via Eclipse Subversive. This means you can manage your projects' version control from within Geppetto. You can also compare versions of your code side-by-side, complete with highlighting, code validation, syntax error parsing, and expression troubleshooting.
 
 Geppetto also offers [integration with Puppet Enterprise](#geppetto-and-pe), giving you an additional resource view and error information based on PuppetDB data from the last puppet run.
 
-Geppetto is packaged so it can be downloaded and used immediately. It contains a full installation of Eclipse, meaning you can install tools as you would with the regular Eclipse IDE. If you already have Eclipse installed, you can install Geppetto into your existing Eclipse environment. 
+Geppetto is packaged so it can be downloaded and used immediately. It contains a full installation of Eclipse, meaning you can install tools as you would with the regular Eclipse IDE. If you already have Eclipse installed, you can install Geppetto into your existing Eclipse environment.
 
 And Geppetto handles multiple versions of Puppet, allowing you set the version that you're working with.
 
@@ -36,13 +36,13 @@ Your version of Geppetto might be a little different, either because you added G
 
 In the image above, you can see some of the most common work areas (this description is by no means comprehensive):
 
-* The **Project Explorer** lets you easily navigate your Puppet project's file structure. 
+* The **Project Explorer** lets you easily navigate your Puppet project's file structure.
 
 * As its name indicates, the **editor** is where you edit your code. Geppetto takes advantage of Eclipse's editing capabilities, like syntax highlighting, content assistance, and error tracing and debugging for your Puppet code.
 
 * The **Outline** view shows a tree version of the code you're editing. It's useful for quickly finding the elements of your classes.
 
-* You can use the **Tasks** view to create your own tasks and to automatically add tasks from comments in code.   
+* You can use the **Tasks** view to create your own tasks and to automatically add tasks from comments in code.
 
 ##Installing Geppetto
 Geppetto is available as an all-in-one download that includes GitHub or Eclipse Subversive, a project that integrates SVN with Eclipse. Or, if you're already using Eclipse, you can install Geppetto into your existing development environment.
@@ -58,7 +58,7 @@ Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows
 2. In the **Work with** box, add this link: https://geppetto-updates.puppetlabs.com/4.x.
 This URL is for use with a download manager. It's not meaningful to visit it with a browser.
 
-	![Geppetto install in Eclipse][geppetto_install] 
+	![Geppetto install in Eclipse][geppetto_install]
 
 3. Select Geppetto in the available software list, and then click **Next**.
 
@@ -69,11 +69,11 @@ This URL is for use with a download manager. It's not meaningful to visit it wit
 **Note:** Using these same steps, you can get support for Ruby coding by installing the Eclipse [Dynamic Languages Toolkit](http://www.eclipse.org/dltk/). Just be aware that the DLTK isn't supported by Puppet Labs.
 
 ##Working with Puppet Projects
-Geppetto provides several options for creating and editing Puppet projects. 
+Geppetto provides several options for creating and editing Puppet projects.
 
 * **Create new projects**  Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, and from Git or SVN.
 
-* **Manage project versioning with Git or SVN**  You can create new repositories on Git or SVN, and then populate them with new or existing Puppet projects. You can also import existing Puppet projects, edit them, and then commit them back to the repository that they came from. 
+* **Manage project versioning with Git or SVN**  You can create new repositories on Git or SVN, and then populate them with new or existing Puppet projects. You can also import existing Puppet projects, edit them, and then commit them back to the repository that they came from.
 
 * **Import and export Forge projects**  In addition to creating projects based on Forge modules, you can publish modules directly to the Forge.
 
@@ -101,16 +101,16 @@ Now, start coding your Puppet project in Geppetto.
 ###Create a New Project from an Existing Module
 1. Click **File -> New -> Project**.
 2. In the **Select a wizard** dialog box, expand the Puppet folder, click **Puppet Project from Existing Forge Module**, and then click **Next**.
-3. Next to the **Module** text box, click the **Select** button, enter a keyword, such as "mongodb", and then click **OK**. 
-4. Select a module from the list that's returned, and then click **OK**. 
-5. Give your project a name, and then click **Finish**. 
+3. Next to the **Module** text box, click the **Select** button, enter a keyword, such as "mongodb", and then click **OK**.
+4. Select a module from the list that's returned, and then click **OK**.
+5. Give your project a name, and then click **Finish**.
     The module is now displayed in your Project Explorer.
-	
+
 ##Manage Project Versioning with Git and SVN
-The following sections describe creating repos and handling versions from within Geppetto. Once you create or add repos in Geppetto, you can import your projects into the Project Explorer and then use **Add Puppet Project Nature** to take advantage of Geppetto editor offerings like syntax highlighting, spell check, file cross-referencing and so on. 
+The following sections describe creating repos and handling versions from within Geppetto. Once you create or add repos in Geppetto, you can import your projects into the Project Explorer and then use **Add Puppet Project Nature** to take advantage of Geppetto editor offerings like syntax highlighting, spell check, file cross-referencing and so on.
 
 If you have a repository that contains several modules, you need to map each module into an individual project when you import into Project Explorer. However, if the modules already contain a .project file, this mapping happens automatically when you choose **Import Existing Projects**. Working with individual module projects means that Geppetto will recognize the modules and be able to resolve declared dependencies and validate cross-references.
- 
+
 ####Create New Repos
 1. Click **File -> New -> Other**.
 2. In the **Select a wizard** dialog box, expand the **Git** folder, click **Git Repository**, and click **Next**.
@@ -144,7 +144,7 @@ To open the repository perspective, in Geppetto, click **Window ->Open Perspecti
 
 
 ####Import Modules From Git Repository Into Project Editor
-You might have a repo that is a single module or your repo might contain several modules. If your repo contains several modules and none of the modules contain .project files, then you have to import each module one-by-one using **Import as general project**. Otherwise, Geppetto has no way of recognizing the module as a project. You also have to add puppet project nature.  
+You might have a repo that is a single module or your repo might contain several modules. If your repo contains several modules and none of the modules contain .project files, then you have to import each module one-by-one using **Import as general project**. Otherwise, Geppetto has no way of recognizing the module as a project. You also have to add puppet project nature.
 
 If your repo contains modules that already have .project files, then you can import all the modules at once using **Import existing projects**. Puppet project nature will then be added automatically. For more about .project files, see [About Geppetto Project Files](./index.html#aboutgeppettoprojecttfiles).
 
@@ -152,12 +152,12 @@ If your repo contains modules that already have .project files, then you can imp
 
 1. Expand your repository and expand the **Working Directory** folder.
 2. Right-click the **Working Directory** or a specific module in the **Working Directory** folder, and choose **Import projects**.
-3. In the wizard, choose **Import as general project** or, if the projects already have a .project file, choose **Import existing projects**. Click **Finish**. 
+3. In the wizard, choose **Import as general project** or, if the projects already have a .project file, choose **Import existing projects**. Click **Finish**.
 
 	The project now shows up in the Project Explorer view.
 
 4. For each project imported as a new general project, right-click the project in the Project Explorer and choose **Add Puppet Project Nature**.
-    
+
     Repeat these steps as needed for each module you want to import.
 
 
@@ -174,18 +174,18 @@ For more information about interacting with Git or SVN from Geppetto, refer to t
 
 ###Editing Module Metadata
 
-All Puppet modules include a metadata file, which contains high-level information about the module (version, author, license, dependencies, et cetera). Geppetto's editor provides an easy way to modify this metadata. 
+All Puppet modules include a metadata file, which contains high-level information about the module (version, author, license, dependencies, et cetera). Geppetto's editor provides an easy way to modify this metadata.
 
-If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor through either the Modulefile or metadata.json. 
+If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor through either the Modulefile or metadata.json.
 
-If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a Git/SVN repo, you may edit the metadata via Modulefile or metadata.json, whichever is available. Whether there will be a Modulefile or not depends on how that module was built. Upon pulling a module from the Puppet Forge, Geppetto will open the Modulefile or metadata.json in the editor automatically. 
+If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a Git/SVN repo, you may edit the metadata via Modulefile or metadata.json, whichever is available. Whether there will be a Modulefile or not depends on how that module was built. Upon pulling a module from the Puppet Forge, Geppetto will open the Modulefile or metadata.json in the editor automatically.
 
 ####Working With Metadata.json
 
 Currently, Geppetto can work with metadata.json in two modes:
 
 * As "derived" from the Modulefile
-* As a first class file 
+* As a first class file
 
 When it's derived, the metadata.json file will change whenever the Modulefile changes. It will also be deleted if the Modulefile is deleted. Eventually, the Modulefile will be deprecated. For this reason, you might want to delete the Modulfile but _keep_ the metadata.json. Here's how:
 
@@ -196,34 +196,34 @@ When it's derived, the metadata.json file will change whenever the Modulefile ch
 
 ####The Metadata Editor
 
-Opening the metadata editor will bring you to the *Overview* screen. The *Overview* screen will display your metadata in individual text fields for editing. This metadata is split into two groups: *General Information* and *Details*.  
+Opening the metadata editor will bring you to the *Overview* screen. The *Overview* screen will display your metadata in individual text fields for editing. This metadata is split into two groups: *General Information* and *Details*.
 
-Within *General Information*: 
+Within *General Information*:
 
-* **Name**: This field is unique as it has two text fields separated by a '-'. If you are planning to upload your module to the Puppet Forge at any point, the first field should contain your Puppet Forge username. The second field should contain the name of your module. For more information on module naming, see [this article about publishing modules](/puppet/3/reference/modules_publishing.html#a-note-on-module-names).
-* **Version**: Your module's current version number. It is important that this is kept up-to-date, as it impacts the ability for your modules to connect with one another via dependencies. We highly recommend using [semver](http://semver.org/) to guide your versioning. 
+* **Name**: This field is unique as it has two text fields separated by a '-'. If you are planning to upload your module to the Puppet Forge at any point, the first field should contain your Puppet Forge username. The second field should contain the name of your module. For more information on module naming, see [this article about publishing modules](/puppet/latest/reference/modules_publishing.html#a-note-on-module-names).
+* **Version**: Your module's current version number. It is important that this is kept up-to-date, as it impacts the ability for your modules to connect with one another via dependencies. We highly recommend using [semver](http://semver.org/) to guide your versioning.
 * **Author**: The name of the module's author.
-* **License**: Any applicable license guiding the module's use. 
+* **License**: Any applicable license guiding the module's use.
 
 Within *Details*:
 
-* **Source**: The repo where the module lives. If you used Geppetto to create your module, you can ignore this. 
-* **Project Page**: The GitHub page where the module's source code is published. 
+* **Source**: The repo where the module lives. If you used Geppetto to create your module, you can ignore this.
+* **Project Page**: The GitHub page where the module's source code is published.
 * **Summary**: A brief description of the module's functionality.
-* **Description**: Originally, this was a space to give some more detailed information about your module, but this feature is being deprecated. Information you put in this field will be lost. Please enter detailed information about your module in the [README](/puppet/3/reference/modules_documentation.html) instead.
+* **Description**: Originally, this was a space to give some more detailed information about your module, but this feature is being deprecated. Information you put in this field will be lost. Please enter detailed information about your module in the [README](/puppet/latest/reference/modules_documentation.html) instead.
 
-If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module. From the *Dependencies* tab, you can add, delete, or edit dependencies for your module. 
+If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module. From the *Dependencies* tab, you can add, delete, or edit dependencies for your module.
 
 To add a dependency:
 
-1. Click the **Add...** button. 
+1. Click the **Add...** button.
 2. Choose the module from the list of modules in your environment, and specify the version range (for instance, `>= 0.1.6`).
 3. Click the **OK** button.
 
 To edit a dependency:
 
 1. Select the module from the list of dependencies, and click the **Edit…** button.
-2. Update the module's name or version range as appropriate, or choose an entirely different module from the list to replace it. 
+2. Update the module's name or version range as appropriate, or choose an entirely different module from the list to replace it.
 3. Click the **OK** button.
 
 To remove a dependency, simply select the module from the list of dependencies and click the **Remove** button.
@@ -232,19 +232,19 @@ You also have the option of editing your module's metadata within the raw json f
 
 ###Publishing Modules to the Forge
 
-The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules written by the Puppet community. Using and contributing to the Forge is a great way to crowdsource your work, and Geppetto makes publishing your modules to the Forge easy! 
+The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules written by the Puppet community. Using and contributing to the Forge is a great way to crowdsource your work, and Geppetto makes publishing your modules to the Forge easy!
 
-Geppetto allows you to publish one or several modules, as well as allowing you to publish only specific parts of a module. To get started publishing modules to the Forge, make sure the *Project Explorer* window is open. Then, 
+Geppetto allows you to publish one or several modules, as well as allowing you to publish only specific parts of a module. To get started publishing modules to the Forge, make sure the *Project Explorer* window is open. Then,
 
 1. Right-click (or control+click) anywhere in the *Project Explorer* window and on the shortcut menu, click **Export**. OR, choose **File** -> **Export…** to open the Export Wizard.
-2. In the *Export Wizard*, you can either type 'Forge' in the text box OR expand the Puppet folder. 
+2. In the *Export Wizard*, you can either type 'Forge' in the text box OR expand the Puppet folder.
 3. Then choose **Export Modules to Forge** and click **Next**.
-4. From here, you can choose to publish one or several modules, as well as choose what parts of the modules you would like to publish. 
-    * To publish all of one or more modules, simply click the checkbox(es) next to the name of the project(s) housing the module. 
+4. From here, you can choose to publish one or several modules, as well as choose what parts of the modules you would like to publish.
+    * To publish all of one or more modules, simply click the checkbox(es) next to the name of the project(s) housing the module.
     * To publish only part of a module:
         * Select the project name and choose the individual files to include by clicking the checkboxes next to those filenames, OR
-        * Click the arrow next to the project name and choose the individual folders/files by clicking the checkboxes next to the folder or filenames. 
-5. Enter your Forge username and password in the text boxes below the pane where you selected your modules. (If you do not have a Forge username, see the instructions [here](http://docs.puppetlabs.com/puppet/3/reference/modules_publishing.html#create-a-puppet-forge-account).)
+        * Click the arrow next to the project name and choose the individual folders/files by clicking the checkboxes next to the folder or filenames.
+5. Enter your Forge username and password in the text boxes below the pane where you selected your modules. (If you do not have a Forge username, see the instructions [here](/puppet/latest/reference/modules_publishing.html#create-a-puppet-forge-account).)
 6. Click **Finish**.
 
 Geppetto will generate a pop-up confirmation window when your modules have been uploaded successfully. Clicking **OK** on this confirmation message will bring you back to your main Geppetto screens. Otherwise, you will recieve a pop up stating there were problems. Clicking **OK** on this error message will bring you back to the *Export Wizard*.
@@ -255,14 +255,14 @@ Geppetto offers a special view for Puppet Enterprise users, the *Puppet Resource
 
 The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to view the resource, file, etc. in the source code to help determine why the failure or success is occurring.
 
-To access the *Puppet Resource Events View*  
+To access the *Puppet Resource Events View*
 
 1. Click the **Window** menu,
 2. Choose **Show View** -> **Other…**.
 3. Then, when the *Show View* window pops up, expand the Geppetto folder and select **Puppet Resource Events**,
 4. Click **OK**.
 
-The *Puppet Resource Events View* window should now be available next to the *Tasks* and *Problems* tabs. 
+The *Puppet Resource Events View* window should now be available next to the *Tasks* and *Problems* tabs.
 
 ![Puppet Resource Event View in Geppetto][prev]
 
@@ -273,7 +273,7 @@ To set up a connection to your puppet master server, click the database image wi
 A setup window will pop up with the following fields:
 
 * **Hostname**: The hostname of your PuppetDB server
-* **Port**: The port to connect to PuppetDB on, defaults to 8080. 
+* **Port**: The port to connect to PuppetDB on, defaults to 8080.
 
 The following settings are optional. Use them only if you want to make an SSL connection.
 
@@ -282,12 +282,12 @@ The following settings are optional. Use them only if you want to make an SSL co
 * **Host Cert File**: This file behaves like a puppet agent for authentication, setting up your public key for the machine Geppetto is connecting as.
 * **Host Private Key File**: This file behaves like a puppet agent for authentication, setting up your private key for the machine Geppetto is connecting as.
 
-If any of your required information is missing, it will be listed at the top of the window next to the red button and the **OK** button will be disabled. 
+If any of your required information is missing, it will be listed at the top of the window next to the red button and the **OK** button will be disabled.
 
 
-In the *Description* column, you should see your PuppetDB server listed. Once added, PuppetDB connections cannot be edited. However, you may delete a connection by selecting it and clicking the database icon with the red 'x'. 
+In the *Description* column, you should see your PuppetDB server listed. Once added, PuppetDB connections cannot be edited. However, you may delete a connection by selecting it and clicking the database icon with the red 'x'.
 
-If you expand your connected server, you should see *Failures* and *Changes*. Each of these can be expanded to show details of the events of the most recent puppet run. 
+If you expand your connected server, you should see *Failures* and *Changes*. Each of these can be expanded to show details of the events of the most recent puppet run.
 
 By hovering over any listed event detail, you will see additional information about the event. Double-clicking on a listed event detail will open the source file to the place where the resource or file, etc. is defined so you can look it over to see what might be going wrong.
 
