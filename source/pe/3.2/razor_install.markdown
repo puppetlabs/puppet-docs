@@ -33,9 +33,10 @@ Things you should know before you set up provisioning:
 Install the Razor Server
 -------------
 
-The actual Razor software is stored in an external location. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes. 
+The actual Razor software is stored in an external online location, so you need an internet connection. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes. 
 
-1. To add the `pe_razor` class and classify the Razor server using the PE Console, see the [Adding New Classes](./console_classes_groups.html#adding-new-classes.html) and [Editing Classes on Nodes](./console_classes_groups.html#editing-classes-on-nodes) sections of this guide.
+1. Manually add the `pe-razor` class in the PE console. To do so, on the console sidebar, click the **Add classes** button. Then, in **Add classes** under **Don't see a class?** type in "pe-razor" and click the green plus (+) button. For information about adding a  class and classifying the Razor server using the PE Console, see the [Adding New Classes](./console_classes_groups.html#adding-new-classes.html) and [Editing Classes on Nodes](./console_classes_groups.html#editing-classes-on-nodes) sections of this guide. 
+
 
 	**Note**: You can also add the following to site.pp:
 	
