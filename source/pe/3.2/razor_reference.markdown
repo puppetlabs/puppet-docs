@@ -6,7 +6,7 @@ canonical: "/pe/latest/razor_reference.html"
 
 ---
 
-The Razor API is REST-based. For best results, use this as the base URL for your calls:  `http://razor:8080/api`.
+The Razor API is REST-based. For best results, use the following as the base URL for your calls:  `http://razor:8080/api`.
 
 **Note:** The following sections contain some example URL's that might be structured differently from the URLs your server uses.
 

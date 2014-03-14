@@ -25,30 +25,30 @@ Razor's policy-based bare-metal provisioning lets you inventory and manage the l
 
 Razor policies use discovered characteristics of the underlying hardware and on user-provided data to make provisioning decisions. The following steps show a high-level view of provisioning a node with Razor.
 
-###1 - Razor identifies a new node
+###Razor identifies a new node
 
 ![bare node][razor-1]
 
 When a new node appears, Razor discovers its characteristics by booting it with the Razor microkernel and inventorying its facts.
 
-###2 - The node is tagged
+###The node is tagged
 
 ![tags applied][razor-2]
 
 The node is tagged based on its characteristics. Tags contain a match condition &#8212; a Boolean expression that has access to the node's facts and determines whether the tag should be applied to the node or not.
 
-###3 - The node tags match a Razor policy
+###The node tags match a Razor policy
 
 ![tags compared to policies][razor-3]
 
 Node tags are compared to tags in the policy table. The first policy with tags that match the node's tags is applied to the node.
 
-###4 - Policies pull together all the provisioning elements
+###Policies pull together all the provisioning elements
 
 ![policies][razor-4]
 
 
-###5 - The node is provisioned with the designated OS and managed with PE
+###The node is provisioned with the designated OS and managed with PE
 
 ![policy applied][razor-5]
 
