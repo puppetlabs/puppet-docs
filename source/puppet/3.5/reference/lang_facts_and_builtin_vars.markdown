@@ -18,6 +18,8 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 [scope]: ./lang_scope
 [extensions]: ./ssl_attributes_extensions.html
+[structured_facts_on]: ./config_important_settings.html#getting-new-features-early
+[strings]: ./lang_datatypes.html#strings
 
 Puppet provides many built-in variables that you can use in your manifests. This page covers where they come from and how to use them.
 
@@ -28,13 +30,13 @@ Before requesting a [catalog][] from a puppet master (or compiling one locally w
 
 Puppet receives this information as **facts,** which are pre-set variables you can use anywhere in your manifests. Puppet can use both the built-in [core facts][core_facts] and any [custom facts][customfacts] present in your modules.
 
-> ### General Info About Facts
->
-> * [See here for a complete list of built-in facts][core_facts]. Note that the list depends on the version of Facter you are using.
-> * [See here for a guide to writing custom facts][customfacts]. They're useful and easy, and most Puppet users should learn how to make them.
-> * In Puppet Enterprise, any node detail page in the PE console will contain a list of that node's facts.
-> * You can run `facter -p` on one of your nodes to get a complete report of the facts that node will report to the master.
-> * You can use [PuppetDB's APIs][puppetdb_facts] to search and report on your entire deployment's facts. (PE users already have PuppetDB installed.)
+By default, all facts are [strings][]. If you use Facter 2.0 and [enable structured facts in Puppet][structured_facts_on], facts can contain any data type, including arrays and hashes. At this time, structured facts don't work with extensions like PuppetDB.
+
+* [See here for a complete list of built-in facts][core_facts]. Note that the list depends on the version of Facter you are using.
+* [See here for a guide to writing custom facts][customfacts]. They're useful and easy, and most Puppet users should learn how to make them.
+* In Puppet Enterprise, any node detail page in the PE console will contain a list of that node's facts.
+* You can run `facter -p` on one of your nodes to get a complete report of the facts that node will report to the master.
+* You can use [PuppetDB's APIs][puppetdb_facts] to search and report on your entire deployment's facts. (PE users already have PuppetDB installed.)
 
 ### Classic Facts
 
