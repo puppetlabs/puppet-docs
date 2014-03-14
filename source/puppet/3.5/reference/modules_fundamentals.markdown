@@ -4,7 +4,7 @@ title: "Module Fundamentals"
 canonical: "/puppet/latest/reference/modules_fundamentals.html"
 ---
 
-[modulepath]: /references/stable/configuration.html#modulepath
+[modulepath]: ./dirs_modulepath.html
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
 [documentation]: ./modules_documentation.html

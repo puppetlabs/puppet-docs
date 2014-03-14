@@ -3,11 +3,12 @@ layout: default
 title: "Configuration: Short List of Important Settings"
 ---
 
-[cli_settings]: todo
-[trusted_and_facts]: todo
-[config_environments]: todo
+<!-- TODO: replace these -->
+[cli_settings]: ./config_about_settings.html
 
 
+[trusted_and_facts]: ./lang_facts_and_builtin_vars.html
+[config_environments]: ./environments_classic.html
 [config_reference]: /references/3.5.latest/configuration.html
 [environments]: /guides/environment.html
 [future]: ./experiments_future.html
@@ -159,7 +160,7 @@ These settings should usually go in `[master]`. However, if you're using puppet 
     * Run `sudo puppet cert generate <MASTER'S CERTNAME> --dns_alt_names <ALT NAME 1>,<ALT NAME 2>,...`.
     * Re-start the puppet master service.
 * [`basemodulepath`][basemodulepath] --- A list of directories containing Puppet modules that can be used in all environments. [See the modulepath page][modulepath_dir] for details.
-    * The [`modulepath`][modulepath] setting controls the final modulepath, and can be set for each environment (when using [config block environments][config_environments]). Starting with Puppet 3.5, though, we recommend setting `basemodulepath` and letting `modulepath` take care of itself.
+    * The [`modulepath`][modulepath] setting controls the final modulepath, and can be set for each environment (when using [config file environments][config_environments]). Starting with Puppet 3.5, though, we recommend setting `basemodulepath` and letting `modulepath` take care of itself.
 * [`manifest`][manifest] --- The main entry point for compiling catalogs. Defaults to a single site.pp file, but can also point to a directory of manifests. [See the manifest page][manifest_dir] for details.
 * [`reports`][reports] --- Which report handlers to use. For a list of available report handlers, see [the report reference][report_reference]. You can also [write your own report handlers][write_reports]. Note that the report handlers might require settings of their own, like `tagmail`'s various email settings.
 

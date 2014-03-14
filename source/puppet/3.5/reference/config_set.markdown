@@ -3,10 +3,12 @@ layout: default
 title: "Configuration: Changing Settings on the Command Line"
 ---
 
-[puppet.conf]: todo
-[config_sections]: todo
-[environments]: todo
-[confdir_sys]: todo
+<!-- TODO: replace these -->
+[config_sections]: ./config_file_main.html
+
+[puppet.conf]: ./config_file_main.html
+[environments]: ./environments.html
+[confdir_sys]: ./dirs_confdir.html#system-and-user-confdirs
 
 Puppet loads most of its settings from [the puppet.conf config file.][puppet.conf] You can edit this file directly, or you can change individual settings with the `puppet config set` command.
 

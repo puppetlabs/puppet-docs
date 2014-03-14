@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 
 > **Status:** As of Puppet 3.5, the future parser performs much better than it used to. We think it's about on par with the default parser, but haven't extensively speed tested it with real-world manifests. It should still be considered a preview, but can now be used with larger test environments.
 >
-> The new language features in the future parser are still being designed and considered. If you want to join the conversation, or if some of your manifests don't work the way you think they should under the future parser, please join [the puppet-users group][users_group].
+> The new language features in the future parser are still being designed and considered. If you want to join the conversation, or if some of your manifests don't work the way you think they should under the future parser, please join [the puppet-users group][users_group] and tell us what you've learned.
 
 You can set `parser = future` in puppet.conf to enable experimental new language features, which may or may not be included in a future Puppet version.
 

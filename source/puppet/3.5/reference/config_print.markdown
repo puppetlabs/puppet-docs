@@ -4,14 +4,17 @@ title: "Configuration: Checking Values of Settings"
 ---
 
 
-[setting_sources]: todo
-[confdir_sys]: todo
-[config_sections]: todo
-[environment]: todo
-[confdir]: todo
-[vardir]: todo
-[modulepath]: todo
-[facts_and_trusted]: todo
+<!-- TODO: replace these -->
+[config_sections]: ./config_file_main.html
+[setting_sources]: ./config_about_settings.html
+
+
+[confdir_sys]: ./dirs_confdir.html#system-and-user-confdirs
+[environment]: ./environments.html
+[confdir]: ./dirs_confdir.html
+[vardir]: ./dirs_vardir.html
+[modulepath]: ./dirs_modulepath.html
+[facts_and_trusted]: ./lang_facts_and_builtin_vars.html
 
 Puppet settings are highly dynamic, and their values can come from [several different places][setting_sources].
 
