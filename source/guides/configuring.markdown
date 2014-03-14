@@ -31,6 +31,11 @@ When retrieving the value for a given setting, Puppet follows a simple lookup pa
 * Values in the main block of `puppet.conf`
 * The default values
 
+Important Settings
+-----
+
+Although Puppet has about 230 settings, the number you actually need to care about is much smaller. [See here for a short list of Puppet's most important settings.](/puppet/latest/reference/config_important_settings.html)
+
 `puppet.conf`
 ------------
 
