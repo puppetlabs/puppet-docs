@@ -12,8 +12,6 @@ Welcome to part two of the PE 3.2 quick start guide. This document is a continua
 * Create a site module that composes other modules into machine roles
 * Apply Puppet classes to groups with the console
 
-For a comprehensive introduction to module writing, visit the 
-
 > Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 Getting Started
@@ -21,7 +19,7 @@ Getting Started
 
 First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of MS Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the first agent node in part one of this guide.
 
-Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you installed the NTP module in part one. Once the module has been installed, add its class
+Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you installed the NTP module in part one. Once the module has been installed, add its class.
 
 Editing a Forge Module
 -----
@@ -221,7 +219,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node does not have a Windows OS, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node is not a Windows agent, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. **On the console,** remove all of the previous example classes from your nodes and groups, using the "edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
 2. Add the `site::basic` class to the console with the "add classes" button in the sidebar as before.
