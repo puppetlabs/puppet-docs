@@ -88,6 +88,7 @@ The Razor client is installed as a Ruby gem.
 		gem install json_pure
 
 **Note**: There is also a `razor-client` gem that contains the client for the open source Razor client. It is strongly recommended to not install the two clients simultaneously, and to only use `pe-razor-client` with the Razor shipped as part of Puppet Enterprise. If you already have `razor-client` installed, or are not sure if you do, run `gem uninstall razor-client` prior to step (1) above.
-		
+
+* * *
 
 [Next: Razor Provisioning Setup](./razor_using.html)
