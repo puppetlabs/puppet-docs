@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Puppet 3 Release Notes
-description: Puppet release notes for version 3.x
+title: "Puppet 3.5 Release Notes"
+description: "Puppet release notes for version 3.5"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
@@ -28,8 +28,6 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [future_heredoc]: http://puppet-on-the-edge.blogspot.se/2014/03/heredoc-is-here.html
 [future_puppet_templates]: http://puppet-on-the-edge.blogspot.se/2014/03/templating-with-embedded-puppet.html
 
-Puppet 3.5 Release Notes
-------------------------
 
 This page tells the history of the Puppet 3.5 series. (Elsewhere: [release notes for Puppet 3.0 -- 3.4][puppet_3])
 
@@ -39,7 +37,8 @@ Puppet's version numbers use the format X.Y.Z, where:
 * Y may increase for backwards-compatible new functionality
 * Z may increase for bug fixes
 
-### How to Upgrade
+How to Upgrade
+-----
 
 If you're upgrading from a 3.x version of Puppet, you can usually just go for it. Upgrade your puppet master servers before upgrading the agents they serve. (But do look at the table of contents above and see if there are any "Upgrade Warning" notes for the new version.)
 
