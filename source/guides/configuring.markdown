@@ -31,19 +31,10 @@ When retrieving the value for a given setting, Puppet follows a simple lookup pa
 * Values in the main block of `puppet.conf`
 * The default values
 
-The settings you'll have to interact with will vary a lot, depending on what you're doing with Puppet. But at the least, you should get familiar with the following:
+Important Settings
+-----
 
-* [`certname`](/references/stable/configuration.html#certname) --- The locally unique name for this node. If you aren't using DNS names to identify your nodes, you'll need to set it yourself.
-* [`server`](/references/stable/configuration.html#server) --- The puppet master server to request configurations from. If your puppet master server isn't reachable at the default hostname of `puppet`, you'll need to set this yourself.
-* [`pluginsync`](/references/stable/configuration.html#pluginsync) --- Whether to use [plugins from modules][plugins]. Most users should set this to true on all agent nodes.
-* [`report`](/references/stable/configuration.html#report) --- Whether to send reports to the puppet master. Most users should set this to true on all agent nodes.
-* [`reports`][reports] --- On the puppet master, which report handler(s) to use.
-* [`modulepath`](/references/stable/configuration.html#modulepath) --- The search path for Puppet modules. Defaults to `/etc/puppet/modules:/usr/share/puppet/modules`.
-* [`environment`](/references/stable/configuration.html#environment) --- On agent nodes, the [environment][environments] to request configuration in.
-* [`node_terminus`](/references/stable/configuration.html#nodeterminus) --- How puppet master should get node definitions; if you use an ENC, you'll need to set this to "exec" on the master (or on all nodes if running in a standalone arrangement).
-* [`external_nodes`](/references/stable/configuration.html#externalnodes) --- The script to run for node definitions (if `node_terminus` is set to "exec").
-* [`confdir`](/references/stable/configuration.html#confdir) --- One of Puppet's main working directories, which usually contains config files, manifests, modules, and certificates.
-* [`vardir`](/references/stable/configuration.html#vardir) --- Puppet's other main working directory, which usually contains cached data and configurations, reports, and file backups.
+Although Puppet has about 230 settings, the number you actually need to care about is much smaller. [See here for a short list of Puppet's most important settings.](/puppet/latest/reference/config_important_settings.html)
 
 `puppet.conf`
 ------------
@@ -169,140 +160,26 @@ You can also inspect settings for specific environments with the `--environment`
 
 (As implied above, this doesn't work in the master run mode, since the master effectively has no environment.)
 
+<!-- Protect inbound links to the old headers that were below. -->
+<a id="authconf">
+<a id="puppetdbconf">
+<a id="routesyaml">
+<a id="autosignconf">
+<a id="deviceconf">
+<a id="fileserverconf">
+<a id="tagmailconf">
+
 Other configuration files
 -------------------------
 
-In addition to the main configuration file, there are five special-purpose config files you might need to interact with: `auth.conf`, `fileserver.conf`, `tagmail.conf`, `autosign.conf`, and `device.conf`.
+In addition to the main configuration file, there are nine special-purpose config files you might need to interact with:
 
-### `auth.conf`
-
-**[See the `auth.conf` documentation for more details about this file](./rest_auth_conf.html).**
-
-Access to Puppet's HTTP API is configured in `auth.conf`, the location of which is determined by the `rest_authconfig` setting. (Default: `/etc/puppet/auth.conf`.) It consists of a series of ACL stanzas, and behaves quite differently from `puppet.conf`.
-
-    # Example auth.conf:
-
-    path /
-    auth true
-    environment override
-    allow magpie.example.com
-
-    path /certificate_status
-    auth true
-    environment production
-    allow magpie.example.com
-
-    path /facts
-    method save
-    auth true
-    allow magpie.example.com
-
-    path /facts
-    auth true
-    method find, search
-    allow magpie.example.com, dashboard.example.com, finch.example.com
-
-### `puppetdb.conf`
-
-The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppetdb/latest/) server. It is only used if you are using PuppetDB and have [connected your puppet master to it](/puppetdb/latest/connect_puppet_master.html).
-
-This file uses the same ini-like format as `puppet.conf`, but only uses a `[main]` block and only has two settings (`server` and `port`):
-
-    [main]
-    server = puppetdb.example.com
-    port = 8081
-
-See the [PuppetDB manual](/puppetdb/latest/) for more information.
-
-
-### `routes.yaml`
-
-This file overrides configuration settings involving indirector termini, and allows termini to be set in greater detail than `puppet.conf` allows.
-
-This file should be a YAML hash. Each top level key should be the name of a run mode (master, agent, user), and its value should be another hash. Each key of these second-level hashes should be the name of an indirection, and its value should be another hash. The only keys allowed in these third-level hashes are `terminus` and `cache`. The value of each of these keys should be the name of a valid terminus for the indirection.
-
-Example:
-
-    ---
-    master:
-      facts:
-        terminus: puppetdb
-        cache: yaml
-
-### `autosign.conf`
-
-The `autosign.conf` file (located at `/etc/puppet/autosign.conf` by default, and configurable with the `autosign` setting) is a list of certnames or domain name globs (one per line) whose certificate requests will automatically be signed.
-
-    rebuilt.example.com
-    *.scratch.example.com
-    *.local
-
-Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
-
-Since any host can provide any certname, autosigning should only be used with great care, and only in situations where you essentially trust any computer able to connect to the puppet master.
-
-### `device.conf`
-
-Puppet device, added in Puppet 2.7, configures network hardware using a catalog downloaded from the puppet master; in order to function, it requires that the relevant devices be configured in `/etc/puppet/device.conf` (configurable with the `deviceconfig` setting).
-
-`device.conf` is organized in INI-like blocks, with one block per device:
-
-    [device certname]
-        type <type>
-        url <url>
-    [router6.example.com]
-        type cisco
-        url ssh://admin:password@ef03c87a.local
-
-### `fileserver.conf`
-
-By default, `fileserver.conf` isn't necessary, provided that you only need to serve files from modules. If you want to create additional fileserver mount points, you can do so in `/etc/puppet/fileserver.conf` (or whatever is set in the `fileserverconfig` setting).
-
-`fileserver.conf` consists of a collection of mount-point stanzas, and looks like a hybrid of `puppet.conf` and `auth.conf`:
-
-    # Files in the /path/to/files directory will be served
-    # at puppet:///mount_point/.
-    [mount_point]
-        path /path/to/files
-        allow *.example.com
-        deny *.wireless.example.com
-
-See the [file serving documentation](./file_serving.html) for more details.
-
-Note that certname globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
-
-### `tagmail.conf`
-
-Your puppet master server can send targeted emails to different admin users whenever certain resources are changed. This requires that you:
-
-* Set `report = true` on your agent nodes
-* Set `reports = tagmail` on the puppet master ([the `reports` setting][reports] accepts a list, so you can enable any number of reports)
-* Set the [`reportfrom`][reportfrom] email address and either the [`smtpserver`][smtpserver] or [`sendmail`][sendmail] setting on the puppet master
-* Create a `tagmail.conf` file at the location specified in the `tagmap` setting
-
-More details are available at the [tagmail report reference](http://docs.puppetlabs.com/references/stable/report.html#tagmail).
-
-[reportfrom]: /references/latest/configuration.html#reportfrom
-[smtpserver]: /references/latest/configuration.html#smtpserver
-[sendmail]: /references/latest/configuration.html#sendmail
-
-The `tagmail.conf` file (located at `/etc/puppet/tagmail.conf` by default, and configurable with the `tagmap` setting) is list of lines, each of which consists of:
-
-* A comma-separated list of tags and !negated tags; valid tags include:
-    * Explicit tags
-    * Class names
-    * "`all`"
-    * Any valid Puppet log level (`debug`, `info`, `notice`, `warning`, `err`, `alert`, `emerg`, `crit`, or `verbose`)
-* A colon
-* A comma-separated list of email addresses
-
-The list of tags on a line builds the set of resources whose messages will be included in the mailing; each additional tag adds to the set, and each !negated tag subtracts from the set.
-
-So, for example:
-
-    all: log-archive@example.com
-    webserver, !mailserver: httpadmins@example.com
-    emerg, crit: james@example.com, zach@example.com, ben@example.com
-
-This `tagmail.conf` file will mail any resource events tagged with `webserver` but _not_ with `mailserver` to the httpadmins group; any emergency or critical events to to James, Zach, and Ben, and all events to the log-archive group.
-
+* [`auth.conf`](/puppet/latest/reference/config_file_auth.html)
+* [`autosign.conf`](/puppet/latest/reference/config_file_autosign.html)
+* [`csr_attributes.yaml`](/puppet/latest/reference/config_file_csr_attributes.html)
+* [`device.conf`](/puppet/latest/reference/config_file_device.html)
+* [`fileserver.conf`](/puppet/latest/reference/config_file_fileserver.html)
+* [`hiera.yaml`](/puppet/latest/reference/config_file_hiera.html)
+* [`puppetdb.conf`](/puppet/latest/reference/config_file_puppetdb.html)
+* [`routes.yaml`](/puppet/latest/reference/config_file_routes.html)
+* [`tagmail.conf`](/puppet/latest/reference/config_file_tagmail.html)
