@@ -3,7 +3,7 @@ layout: default
 title: "Config Files: csr_attributes.yaml"
 ---
 
-[csr_attributes]: /references/3.stable/configuration.html#csrattributes
+[csr_attributes]: /references/3.5.latest/configuration.html#csrattributes
 
 The `csr_attributes.yaml` file defines custom data for new certificate signing requests (CSRs). It can set:
 

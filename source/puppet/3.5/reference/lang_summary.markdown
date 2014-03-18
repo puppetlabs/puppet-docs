@@ -27,7 +27,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering]: /references/3.stable/configuration.html#ordering
+[ordering]: /references/3.5.latest/configuration.html#ordering
 [hiera]: /hiera/latest
 
 Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
