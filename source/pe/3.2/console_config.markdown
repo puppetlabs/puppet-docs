@@ -238,6 +238,19 @@ If you wish to disable update checks (e.g. if your company policy forbids transm
 
 Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` file, update checking will resume.
 
+Fine Tuning Live Management Node Discovery
+-----
+
+If you're running Live Management on a network that's slow, or has intermittent connectivity issues, you may need to tweak the timeouts for node discovery.
+
+On your console node (the master if this is an all-in-one installation), the file `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` contains the setting `#SetEnv LM_DISCOVERY_TIMEOUT 4`, commented out.
+
+The number represents seconds allowed for node discovery. You can uncomment this line and increase the number to allow more time for node discovery.
+
+After tweaking this setting, you'll want to restart the `pe-httpd` and `pe-memcached` services to force-refresh node discovery.
+
+
+
 
 * * *
 
