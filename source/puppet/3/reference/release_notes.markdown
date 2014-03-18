@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Puppet 3 Release Notes
-description: Puppet release notes for version 3.x
+title: "Puppet 3.0 — 3.4 Release Notes"
+description: "Puppet release notes for version 3.0 through 3.4"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
@@ -61,9 +61,6 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [17474]: http://projects.puppetlabs.com/issues/17474 "Indirector treats false from a terminus as nil"
 
 
-Puppet 3.x Release Notes
-------------------------
-
 This page documents the history of the Puppet 3 series.
 
 Starting from version 3.0.0, Puppet is semantically versioned with a three-part version number. In version X.Y.Z:
@@ -87,7 +84,7 @@ Released February 19, 2014.
 
 [PUP-1473: User resource fails on UTF-8 comment](https://tickets.puppetlabs.com/browse/PUP-1473)
 
-Puppet's `user` resource now supports UTF-8 characters for the `comment` attribute, rather than just ASCII. 
+Puppet's `user` resource now supports UTF-8 characters for the `comment` attribute, rather than just ASCII.
 
 [PUP-736: Encoding mis-matches cause package prefetching to fail](https://tickets.puppetlabs.com/browse/PUP-736)
 

@@ -72,8 +72,8 @@ In addition to the above processes, you can learn more about:
 + [Razor tags](./razor_tags.html)
 + [Razor command reference](./razor_reference.html)
 
- 
 
+ * * *
 
 
 [Next: Set Up a Virtual Environment for Razor](./razor_prereqs)

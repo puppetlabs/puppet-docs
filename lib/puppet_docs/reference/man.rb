@@ -66,6 +66,7 @@ module PuppetDocs
           resource
         )
         categories[:occasional] = %w(
+          config
           describe
           device
           doc
@@ -85,7 +86,6 @@ module PuppetDocs
           certificate
           certificate_request
           certificate_revocation_list
-          config
           facts
           file
           filebucket

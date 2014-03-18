@@ -360,9 +360,9 @@ Once the agent has been installed on the target node, it can be configured using
 
 Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware:
 
-1. Start by going to the console and adding the `pe_repo::platform::debian_6_amd64` class.
-2. Next, kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`.
-3. Now you can SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`.
+1. Use the console to add the `pe_repo::platform::debian_6_amd64` class.
+2. Kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`.
+3. SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`.
 
 The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
 
@@ -439,7 +439,7 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 Important Notes & Warnings
 -----
 
-**Installing Without Internet Connectivity**: 
+**Installing Without Internet Connectivity** 
 
 By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet in order to access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
 
