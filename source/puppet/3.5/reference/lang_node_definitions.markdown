@@ -5,9 +5,8 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
 [hiera]: /hiera/latest
-<!-- TODO: need better link for site.pp and certname-->
-[sitepp]: lang_summary.html#files
-[certname]: /references/latest/configuration.html#certname
+[sitepp]: ./dirs_manifest.html
+[certname]: ./config_important_settings.html#basics
 [classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope

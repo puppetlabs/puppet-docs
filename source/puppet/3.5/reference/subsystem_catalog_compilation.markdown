@@ -3,9 +3,7 @@ layout: default
 title: "Subsystems: Catalog Compilation"
 ---
 
-<!-- TODO: replace these first links -->
-[environment]: /guides/environment.html
-
+[environment]: ./environments.html
 [certname]: ./config_important_settings.html#basics
 [resource_declaration]: ./lang_resources.html
 [relationships]: ./lang_relationships.html

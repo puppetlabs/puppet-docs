@@ -1,15 +1,14 @@
 ---
 layout: default
-title: "Language: Summary"
+title: "Language: Basics"
 canonical: "/puppet/latest/reference/lang_summary.html"
 ---
 
-
+[site_manifest]: ./dirs_manifest.html
 [autoload]: ./lang_namespaces.html#autoloader-behavior
 [config]: /guides/configuring.html
 [usecacheonfailure]: /references/latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
-[sitepp]: /references/glossary.html#site-manifest
 [classes]: ./lang_classes.html
 [enc]: /guides/external_nodes.html
 [resources]: ./lang_resources.html
@@ -29,6 +28,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [node]: ./lang_node_definitions.html
 [ordering]: /references/3.5.latest/configuration.html#ordering
 [hiera]: /hiera/latest
+[compilation]: ./subsystem_catalog_compilation.html
 
 Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
 
@@ -69,11 +69,11 @@ Puppet language files are called **manifests,** and are named with the `.pp` fil
 * Should use UTF8 encoding
 * May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
 
-Puppet always begins compiling with a single manifest. When using a puppet master, this file is called [site.pp][sitepp]; when using puppet apply, it's whatever was specified on the command line.
+Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the "site manifest" or "main manifest." See [the reference page on the main manifest][site_manifest] for details about this special file/directory.
 
-Any [classes][] [declared][] in the manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also autoload any classes declared by an optional [external node classifier][enc].
+Any [classes][] [declared][] in the main manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also autoload any classes declared by an optional [external node classifier][enc]. See [the reference page on catalog compilation][compilation] for details.
 
-Thus, the simplest Puppet deployment is a lone manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.
+The simplest Puppet deployment is a lone main manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.
 
 Compilation and Catalogs
 -----
@@ -85,6 +85,8 @@ Catalogs are static documents which contain resources and relationships. At vari
 In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them to nodes as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.
 
 Agent nodes cache their most recent catalog. If they request a catalog and the master fails to compile one, they will re-use their cached catalog. This recovery behavior is governed by the [`usecacheonfailure`][usecacheonfailure] setting in [puppet.conf][config]. When testing updated manifests, you can save time by turning it off.
+
+For more information, see [the reference page on catalog compilation][compilation].
 
 
 Example

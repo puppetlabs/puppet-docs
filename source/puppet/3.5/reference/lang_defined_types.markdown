@@ -4,8 +4,7 @@ layout: default
 canonical: "/puppet/latest/reference/lang_defined_types.html"
 ---
 
-<!-- TODO: need better link for site.pp -->
-[sitedotpp]: ./lang_summary.html#files
+[sitedotpp]: ./dirs_manifest.html
 [namespaces]: ./lang_namespaces.html
 [collector]: ./lang_collectors.html
 [resource]: ./lang_resources.html
