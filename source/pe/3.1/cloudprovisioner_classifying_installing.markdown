@@ -17,9 +17,12 @@ Once you have created instances for your cloud infrastructure, you need to start
 [g2n]: ./console_classes_groups.html#assigning-classes-and-groups-to-nodes
 [n2g]: ./console_classes_groups.html#adding-nodes-to-a-group
 
-To classify nodes and add them to a console group, run `puppet node classify`.
+To classify nodes and add them to a console group, run `puppet node classify`, as follows. 
+
+**Note** - With `classify` and `init`, you need to specify the `--insecure` option because the console in PE 3.1 uses the internal certificate name, `pe-internal-dashboard`, which fails verification because it doesn't match the host name of the host where the console is running.
 
     $ puppet node classify \
+    --insecure \
     --node-group=appserver_pool \
     --enc-server=localhost \
     --enc-port=443 \
@@ -93,9 +96,14 @@ Classifying and Installing Puppet in One Command
 
 Rather than using multiple commands to classify and install Puppet on a node, there are a couple of other options that combine actions into a "wrapper" command. Note that you will need access to the PE installer, which is typically specified with the `--installer-payload` argument.
 
-If a node has been prepared to remotely sign certificates, you can use the `init` action which will `install` Puppet, `classify` the node and sign the certificate in one step. For example:
+If a node has been prepared to remotely sign certificates, you can use the `init` action which will `install` Puppet, `classify` the node and sign the certificate in one step. 
+
+**Note** - With `classify` and `init`, you need to specify the `--insecure` option because the console in PE 3.1 uses the internal certificate name, `pe-internal-dashboard`, which fails verification because it doesn't match the host name of the host where the console is running.
+
+For example:
 
     $ puppet node init \
+    --insecure \
     --node-group=appserver_pool \
     --enc-server=localhost \
     --enc-port=443 \

@@ -717,14 +717,6 @@ Returns the total amount of memory on the system.
 
 * * *
 
-## `memorytotal`
-
-Synonym for `memorysize`. Deprecated.
-
-([↑ Back to top](#page-nav))
-
-* * *
-
 ## `netmask`
 
 
@@ -998,15 +990,6 @@ Returns whether SE Linux is enabled (`true`) or not (`false`).
 **Resolution:**
 
 Returns the value found in the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`).
-
-([↑ Back to top](#page-nav))
-
-* * *
-
-## `selinux_mode`
-
-
-Returns the value of `selinux_config_policy`. Deprecated.
 
 ([↑ Back to top](#page-nav))
 

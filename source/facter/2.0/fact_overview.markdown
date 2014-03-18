@@ -1,83 +1,219 @@
-Delaying YAML frontmatter, to prevent Jekyll from building this file.
-
 ---
 layout: default
-title: "Facter 2.0: Overview of Facter Facts"
+title: "Facter 2.0: Overview of Custom Facts With Examples"
 ---
 
-Overview of Facts in Facter
-===========================
+Anatomy of a Facter Fact
+========================
 
-## What is a fact?
+A typical Facter fact is a fairly simple assemblage of just a few different elements.
+This page is an example-driven tour of those elements, and is intended as a quick primer or reference
+for authors of custom facts. You'll need some familiarity with Ruby to understand most of these examples.
+For a gentler introduction, check out the [Custom Facts Walkthrough](custom_facts.html).
 
-Facter examines the system it's running on and returns what it finds as a set of **facts**. You can get the set of facts for a system by running `facter` at the command line, but it's most useful as an integrated part of Puppet. Within Puppet, facts are [top-scope](/puppet/3/reference/lang_scope.html#top-scope) variables that hold information about the puppet agent. For example, if the puppet agent node is a virtual machine running CentOS 6.4, the following facts (among many others) will be available:
+>**Note:** If you're using any part of the Facter API, you'll need to add `require 'facter'` to the top of your source file. We'll omit it for the examples on this page to focus on more important details.
 
-  * $::operatingsystem = "CentOS"
-  * $::operatingsystemrelease = "6.4"
-  * $::osfamily = "redhat"
-  * $::is_virtual = "true"
+First off, it's important to distinguish between **facts** and **resolutions**. A fact is a piece of information about a given node,
+while a resolution is a way of obtaining that information from the system. That means that every fact needs to have **at least one**
+resolution, and facts that can run on different operating systems may need to have different resolutions for each one.
 
-Facts are always strings. That includes facts like `$operatingsystemrelease` and `$is_virtual`, which look like other data types (float and boolean, respectively). If you want to do, say, numerical comparison or boolean logic using facts, you'll have to take additional steps to convert them first. Facter comes with a number of built-in **core facts**, but you can also write your own [custom facts](custom_facts.html).
+Even though facts and resolutions are conceptually very different, the line can get a bit blurry at times. That's because declaring a second
+(or third, etc.) resolution for a fact looks just like declaring a completely new fact, only with the same name as an existing fact, as
+you can see in this example: [different resolutions for different operating systems](#example-different-resolutions-for-different-operating-systems).
 
+## Writing Facts with Simple Resolutions
 
-## Flat and Structured Facts
+Most facts are resolved all at once, without any need to merge data from different sources. In that case, the resolution is **simple**.
+Both flat and structured facts can have simple resolutions.
 
-There are two major categories of facts: flat and structured. **Flat facts** are those that return a single string corresponding to one piece of data, like all of the examples above. All facts were flat prior to Facter 2, and most core facts still are. You can refer to them in puppet manifests just like any other string variable:
-
-{% highlight ruby %}
-
-				# Interpolating flat facts
-				notify { "This agent node is running $::operatingsystem version $::operatingsystemrelease": }
-
-{% endhighlight %}
-
-Flat facts are great when you have a neat one-to-one mapping between facts and strings, but they're not ideal for examining parts of the system that may have multiple parts. The classic example for this is IP addresses, since a node could have several of them. Earlier versions of Facter generated individual facts with unique suffixes for cases like this, but Facter 2 introduced **structured facts**. Now, all IP addresses are stored in a single fact that's structured like a whatnow?:
-
-
-## Examples
-
-### Facts in Puppet
+### Example: minimal fact that relies on a single shell command
 
 {% highlight ruby %}
-
-    # Facts are always strings
-    case $::is_virtual {
-     true: { notice "This will never be evaluated because it attempts to match a fact to a boolean." }
-     "true": { notice "But this could be, since we're matching 'true' as a string." }
-    }
-
+Facter.add(:rubypath) do
+  setcode 'which ruby'
+end
 {% endhighlight %}
+
+### Example: slightly more complex fact, confined to Linux
 
 {% highlight ruby %}
+Facter.add(:jruby_installed) do
 
-    # Pulling out part of a structured fact
-    # No idea how to do this yet
+  confine :kernel => "Linux"
 
+  setcode do
+    jruby_path = Facter::Core::Execution.exec('which jruby')
+    # if 'which jruby' exits with an error, jruby_path will be an empty string
+    if jruby_path == ""
+      false
+    else
+      true
+    end
+  end
+end
 {% endhighlight %}
+
+### Example: different resolutions for different operating systems
 
 {% highlight ruby %}
+Facter.add(:rubypath) do
+  setcode 'which ruby'
+end
 
-    # Iterating through a structured fact
-    # No idea how to do this yet
-
+Facter.add(:rubypath) do
+  confine :osfamily => "Windows"
+  # Windows uses 'where' instead of 'which'
+  setcode 'where ruby'
+end
 {% endhighlight %}
-### Facter on the Command Line
 
-It's not the most common way to use Facter, but the `facter` command-line tool is very useful for quickly checking what the value of a fact is on a particular system. If you run it without any arguments, you'll get a listing of every available fact and its value:
+### Main Components of Simple Resolutions
 
-    root@master$ facter
-    architecture => x86_64
-    augeasversion => 1.1.0
-    bios_release_date => 12/01/2006
-    bios_vendor => innotek GmbH
-    bios_version => VirtualBox
-    ...
-    virtual => virtualbox
+Simple facts are typically made up of the following parts:
 
-If you pass facter the name of a fact, it will return only the value for that fact. If the fact is not available on the system, facter will exit silently:
+  1. A call to `Facter.add(:fact_name)`
+     * introduces a new fact *or* a new resolution for an existing fact
+     * the name can be either a symbol or a string
+     * you can optionally pass `:type => :simple` as a parameter, but it will have no effect since that's already the default
+     * the rest of the fact is wrapped in the constructor's `do ... end` block
+  2. Zero or more `confine` statements
+     * determines whether the fact/resolution will be executed
+     * can either match against the value of another fact or evaluate an arbitrary Ruby expression/block
+  3. An optional `has_weight` statement
+     * when multiple resolutions are available, the one with the highest weight will be executed and the rest will be ignored
+     * must be an integer greater than 0
+     * defaults to the number of `confine` statements for the resolution
+  4. A `setcode` statement that determines the value of the fact
+     * can take either a string or a block
+     * if given a string, Facter will execute it as a shell command and the output will be the value of the fact
+     * if given a block, the block's return value will be the value of the fact
+     * to execute shell commands within a `setcode` block, use the `Facter::Core::Execution.exec` function
+     * if multiple `setcode` statements are evaluated for a single fact, Facter will only retain the newest value
 
-    root@master$ facter not_a_real_fact
-    root@master$ facter is_virtual
-    true
+## Writing Structured Facts
 
-You can get more usage information by running `facter --help`.
+Facter 2.0 introduced **structured facts**, which can take the form of hashes or arrays. You don't have to do anything special to mark the fact as structured --- if your fact returns a hash or array, Facter will recognize it as a structured fact. Structured facts can have [simple](#main_components_of_simple_resolutions) or [aggregate resolutions](#main_components_of_aggregate_resolutions).
+
+### Example: returning an array of network interfaces
+{% highlight ruby %}
+Facter.add(:interfaces_array) do
+  setcode do
+   interfaces = Facter.value(:interfaces)
+   # the 'interfaces' fact returns a single comma-delimited string, e.g., "lo0,eth0,eth1"
+   interfaces_array = interfaces.split(',')
+   interfaces_array
+  end
+end
+{% endhighlight %}
+
+### Example: returning a hash of IP addresses
+{% highlight ruby %}
+Facter.add(:interfaces_hash) do
+  setcode do
+    interfaces_array = Facter.value(:interfaces_array)
+    interfaces_hash = {}
+
+    interfaces_array.each do |interface|
+      ipaddress = Facter.value("ipaddress_#{interface}")
+      if ipaddress
+        interfaces_hash[interface] = ipaddress
+      end
+    end
+
+    interfaces_hash
+  end
+end
+{% endhighlight %}
+
+## Writing Facts with Aggregate Resolutions
+
+Aggregate resolutions allow you to split up the resolution of a fact into separate chunks. 
+By default, Facter will merge hashes with hashes or arrays with arrays, resulting in a 
+[structured fact](#structured_facts), but you can also aggregate the chunks into a flat fact 
+using concatenation, summation, or any other method that you can express in Ruby code.
+
+### Example: building a structured fact progressively
+
+{% highlight ruby %}
+Facter.add(:networking, :type => :aggregate) do
+
+  confine :kernel => "Linux"
+
+  chunk(:macaddrs) do
+    interfaces = {}
+
+    Sysfs.net_devs.each do |dev|
+      interfaces[dev.name] = {
+        'macaddr' => dev.macaddr,
+        'macbrd'  => dev.macbrd,
+      }
+    end
+
+    interfaces
+  end
+
+  chunk(:ipv4) do
+    interfaces = {}
+    Facter::Util::IP.get_interfaces.each do |interface|
+      interfaces[interface] = {
+        'ipaddress' => Facter::Util::IP.get_ipaddress_value(interface),
+        'netmask'   => Facter::Util::IP.get_netmask_value(interface),
+      }
+    end
+
+    interfaces
+  end
+  # Facter will merge the return values for the two chunks 
+  # automatically, so there's no setcode statement.
+end
+{% endhighlight %}
+
+### Example: building a flat fact progressively with addition
+
+{% highlight ruby %}
+Facter.add(:total_free_memory_mb, :type => :aggregate) do
+  chunk(:physical_memory) do
+    Facter.value(:memoryfree_mb).to_i
+    # The 'memoryfree_mb' fact returns the number of megabytes of free memory as a string.
+  end
+
+  chunk(:virtual_memory) do
+    Facter.value(:swapfree_mb).to_i
+    # The 'swapfree_mb' fact returns the number of megabytes of free swap as a string.
+  end
+  
+  aggregate do |chunks|
+    # The return value for this block will determine the value of the fact.
+    sum = 0
+    chunks.each_value do |i|
+      sum += i
+    end
+    
+    sum
+  end
+end
+{% endhighlight %}
+
+### Main Components of Aggregate Resolutions
+
+Aggregate resolutions have two key differences compared to simple resolutions: the presence of `chunk` statements and the lack of a `setcode` statement. The `aggregate` block is optional, and without it Facter will merge hashes with hashes or arrays with arrays.
+
+  1. A call to `Facter.add(:fact_name, :type => :aggregate)`
+     * introduces a new fact *or* a new resolution for an existing fact
+     * the name can be either a symbol or a string
+     * the `:type => :aggregate` parameter is required for aggregate resolutions
+     * the rest of the fact is wrapped in the constructor's `do ... end` block
+  2. Zero or more `confine` statements
+     * determines whether the fact/resolution will be executed
+     * can either match against the value of another fact or evaluate an arbitrary Ruby expression/block
+  3. An optional `has_weight` statement
+     * when multiple resolutions are available, the one with the highest weight will be executed and the rest will be ignored
+     * defaults to the number of `confine` statements for the resolution
+  4. One or more `chunk` blocks, each containing:
+     * a name parameter (used only for internal organization)
+     * some amount of code for (partially) resolving the fact
+     * a return value (any type, but typically a hash or array)
+  5. An optional `aggregate` block
+     * if absent, Facter will merge hashes with hashes or arrays with arrays
+     * if you want to merge the chunks in any other way, you'll need to specify it here
+     * the `chunks` object contains the return values for all of the chunks in the resolution
