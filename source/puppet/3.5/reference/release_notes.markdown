@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 
 <!-- TODO: replace these -->
 [external_facts]: /guides/custom_facts.html#external-facts
-[auto_import]: ./dirs_manifests.html
+[auto_import]: ./dirs_manifest.html
 [future_heredoc]: http://puppet-on-the-edge.blogspot.se/2014/03/heredoc-is-here.html
 [future_puppet_templates]: http://puppet-on-the-edge.blogspot.se/2014/03/templating-with-embedded-puppet.html
 

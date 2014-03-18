@@ -4,33 +4,33 @@ title: "Directories: The SSLdir"
 ---
 
 
-[ssldir]: /references/3.stable/configuration.html#ssldir
-[cadir]: /references/3.stable/configuration.html#cadir
-[cacrl]: /references/3.stable/configuration.html#cacrl
-[cacert]: /references/3.stable/configuration.html#cacert
-[cakey]: /references/3.stable/configuration.html#cakey
-[capub]: /references/3.stable/configuration.html#capub
-[cert_inventory]: /references/3.stable/configuration.html#certinventory
-[caprivatedir]: /references/3.stable/configuration.html#caprivatedir
-[capass]: /references/3.stable/configuration.html#capass
-[csrdir]: /references/3.stable/configuration.html#csrdir
-[serial]: /references/3.stable/configuration.html#serial
-[signeddir]: /references/3.stable/configuration.html#signeddir
-[requestdir]: /references/3.stable/configuration.html#requestdir
-[hostcsr]: /references/3.stable/configuration.html#hostcsr
-[certdir]: /references/3.stable/configuration.html#certdir
-[hostcert]: /references/3.stable/configuration.html#hostcert
-[localcacert]: /references/3.stable/configuration.html#localcacert
-[hostcrl]: /references/3.stable/configuration.html#hostcrl
-[privatedir]: /references/3.stable/configuration.html#privatedir
-[passfile]: /references/3.stable/configuration.html#passfile
-[privatekeydir]: /references/3.stable/configuration.html#privatekeydir
-[hostprivkey]: /references/3.stable/configuration.html#hostprivkey
-[publickeydir]: /references/3.stable/configuration.html#publickeydir
-[hostpubkey]: /references/3.stable/configuration.html#hostpubkey
+[ssldir]: /references/3.5.latest/configuration.html#ssldir
+[cadir]: /references/3.5.latest/configuration.html#cadir
+[cacrl]: /references/3.5.latest/configuration.html#cacrl
+[cacert]: /references/3.5.latest/configuration.html#cacert
+[cakey]: /references/3.5.latest/configuration.html#cakey
+[capub]: /references/3.5.latest/configuration.html#capub
+[cert_inventory]: /references/3.5.latest/configuration.html#certinventory
+[caprivatedir]: /references/3.5.latest/configuration.html#caprivatedir
+[capass]: /references/3.5.latest/configuration.html#capass
+[csrdir]: /references/3.5.latest/configuration.html#csrdir
+[serial]: /references/3.5.latest/configuration.html#serial
+[signeddir]: /references/3.5.latest/configuration.html#signeddir
+[requestdir]: /references/3.5.latest/configuration.html#requestdir
+[hostcsr]: /references/3.5.latest/configuration.html#hostcsr
+[certdir]: /references/3.5.latest/configuration.html#certdir
+[hostcert]: /references/3.5.latest/configuration.html#hostcert
+[localcacert]: /references/3.5.latest/configuration.html#localcacert
+[hostcrl]: /references/3.5.latest/configuration.html#hostcrl
+[privatedir]: /references/3.5.latest/configuration.html#privatedir
+[passfile]: /references/3.5.latest/configuration.html#passfile
+[privatekeydir]: /references/3.5.latest/configuration.html#privatekeydir
+[hostprivkey]: /references/3.5.latest/configuration.html#hostprivkey
+[publickeydir]: /references/3.5.latest/configuration.html#publickeydir
+[hostpubkey]: /references/3.5.latest/configuration.html#hostpubkey
 [vardir]: ./dirs_vardir.html
 [confdir]: ./dirs_confdir.html
-[certname]: /references/3.stable/configuration.html#certname
+[certname]: /references/3.5.latest/configuration.html#certname
 [print_settings]: ./config_print.html
 
 
@@ -40,9 +40,9 @@ Puppet stores its certificate infrastructure in the `ssldir`. This directory is 
 
 ## Location
 
-The location of the `ssldir` can be configured with the [`ssldir` setting][ssldir]. To check the actual ssldir on one of your nodes, [use the puppet config command to see the value of this setting][print_settings].
-
 By default, the `ssldir` is located at `$confdir/ssl`. ([See here for info about the confdir][confdir].)
+
+Its location can be configured with the [`ssldir` setting][ssldir]. To check the actual ssldir on one of your nodes, [run `puppet config print ssldir`][print_settings].
 
 > **Note:** Many open-source Puppet packages for Linux put the ssldir in the [vardir][] instead of the [confdir][]. (The right place for it under the FHS is debatable; the contents are automatically generated and will tend to grow, but are also important, relatively difficult to replace, and can be considered configuration.)
 >

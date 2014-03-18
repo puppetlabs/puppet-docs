@@ -3,9 +3,9 @@ layout: default
 title: "Config Files: fileserver.conf"
 ---
 
-[file]: /references/3.stable/type.html#file
+[file]: /references/3.5.latest/type.html#file
 [module_files]: ./modules_fundamentals.html#files
-[fileserverconfig]: /references/3.stable/configuration.html#fileserverconfig
+[fileserverconfig]: /references/3.5.latest/configuration.html#fileserverconfig
 [auth_conf]: ./config_file_auth.html
 
 The `fileserver.conf` file configures custom static mount points for Puppet's file server. If custom mount points are present, [`file` resources][file] can access them with their `source` attributes.

@@ -3,7 +3,7 @@ layout: default
 title: "Directories: The Main Config Directory (Confdir)"
 ---
 
-[listen]: /references/3.stable/configuration.html#listen
+[listen]: /references/3.5.latest/configuration.html#listen
 
 
 
