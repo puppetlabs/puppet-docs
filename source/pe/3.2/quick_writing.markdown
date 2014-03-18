@@ -17,37 +17,37 @@ Welcome to part two of the PE 3.2 quick start guide. This document is a continua
 Getting Started
 -----
 
-First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of MS Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the first agent node in part one of this guide.
+First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the first agent node in part one of this guide.
 
 Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you installed the NTP module in part one. Once the module has been installed, add its class.
 
 Editing a Forge Module
 -----
 
-Although many Forge modules are exact solutions that fit your site, many more are *almost* what you need. Typically, you will edit many of your Forge modules.
+Although many Forge modules are exact solutions that fit your site, many more are *almost* but not quite what you need. Typically, you will edit many of your Forge modules.
 
 ### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. Their basic structure looks like this:
 
 - `registry/` (the module name)
     - `manifests/`
         - `init.pp` (contains the `registry` class)
-        - `service_example.pp` (contains the `registry::service` class we will use in an example below)
+        - `service_example.pp` (contains the `registry::service` class used in an example below)
         - `compliance_example.pp` (provides an example `registry::compliance_example` class)
         - `purge_example.pp` (provides an example `registry::purge_example` class)
         - `service.pp` (defines `registry::service`)
         - `value.pp` (defines `registry::value`)
 
-Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` will contain a class with the same name as the module; `<NAME>.pp` will contain a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` will contain `<MODULE NAME>::<NAME>::<OTHER NAME>`.
+Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` contains a class with the same name as the module; `<NAME>.pp` contains a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` contains `<MODULE NAME>::<NAME>::<OTHER NAME>`.
 
-Many modules contain directories other than `manifests`; for simplicity's sake, we will not be cover them in this introductory guide.
+Many modules contain directories other than `manifests`; for simplicity's sake, we will not cover them in this introductory guide.
 
 * For more on how modules work, see [Module Fundamentals](/puppet/3/reference/modules_fundamentals.html) in the Puppet documentation.
-* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html)
-* For a more detailed guided tour, see [the module chapters of Learning Puppet](/learning/modules1.html).
+* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
+* For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
 ### Editing a Manifest
 
@@ -100,7 +100,7 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
 6. **On the console**, add `registry::service_example` to the available classes, and then add that class to the Windows agent node. Refer to [the introductory section of this guide if you need help adding classes in the console](./quick_start#using_modules_in_the_pe_console).
 7. Kick off a puppet run. 
 
-On the windows agent node, navigate to your `C:\` directory. Puppet has created the `file` resource `PuppetExample1.bat`, which one of the resources puppet manages when it applies the class `registry::service_example`. 
+On the windows agent node, navigate to your `C:\` directory. Puppet has created the `file` resource `PuppetExample1.bat`, which is one of the resources that Puppet manages when it applies the class `registry::service_example`. 
 
 ![PuppetExample1][puppet_example_batch]
 
@@ -108,7 +108,7 @@ Puppet has also set a number of Registry keys to define the `PuppetExample1` Win
 
 ![EI registry service example][ei_registry_example]
 
-To see `PuppetExample1` in the list of services running, you'll first need to reboot your Windows agent node, and then navigate to "Services" via the "Administrative Tools". 
+To see `PuppetExample1` in the list of services that are running, you'll first need to reboot your Windows agent node, and then navigate to "Services" via the "Administrative Tools." 
 
 [puppet_example_batch]: ./images/quick/puppet_example_batch.png
 [ei_registry_example]: ./images/quick/ei_registry_example.png
@@ -116,7 +116,7 @@ To see `PuppetExample1` in the list of services running, you'll first need to re
 Writing a Puppet Module
 --------------
 
-Puppet Labs modules save time, but at some point **most users will also need to write their own modules.**
+Puppet Labs modules save time, but at some point most users will also need to write their own modules.
 
 ### Writing a Class in a Module
 
@@ -154,8 +154,8 @@ During this exercise, you will create a class called `critical_policy` that will
 > Note the following about this new class:
 >
 > * The `registry::value` defined resource type allows you to use Puppet to manage the parent key for a particular value automatically. 
-> * The `key` parameter specifies the path of the key the value(s) must be in.
-> * The `value` parameter lists the name of the registry value(s) to manage. This will be copied from the resource title if not specified.
+> * The `key` parameter specifies the path the key the value(s) must be in.
+> * The `value` parameter lists the name of the registry value(s) to manage. This is copied from the resource title if not specified.
 > * The `type` parameter determines the type of the registry value(s). Defaults to 'string'. Valid values are 'string', 'array', 'dword', 'qword', 'binary', or 'expand'.
 > * `data` Lists the data inside the registry value. 
 
@@ -190,20 +190,20 @@ For more information about writing classes, refer to the following documentation
 
  ![Legal notice text original value][legal_notice_text_values]
 
-Also, if you reboot your Windows machine, you will see the legal caption and text before you log in again. 
+If you reboot your Windows machine, you will see the legal caption and text before you log in again. 
        
-> You have created a new class from scratch and used it to manage registry settings on your Window server.
+> You have created a new class from scratch and used it to manage registry settings on your Windows server.
 
 Using a Site Module
 -----
 
-Many users create a "site" module. Instead of describing smaller units of a configuration, the classes in a site module describe **a complete configuration** for a given _type_ of machine. For example, a site module might contain:
+Many users create a "site" module. Instead of describing smaller units of a configuration, the classes in a site module describe a complete configuration for a given _type_ of machine. For example, a site module might contain:
 
 * A `site::basic` class, for nodes that require security management but haven't been given a specialized role yet.
 * A `site::webserver` class for nodes that serve web content.
 * A `site::dbserver` class for nodes that provide a database server to other applications.
 
-Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls **policy,** not fine-grained implementation.
+Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls policy, not fine-grained implementation.
 
 * **On the puppet master,** create the `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp` file, and edit it to contain the following:
 
@@ -219,10 +219,10 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node is not a Windows agent, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node is not a Windows agent, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
-1. **On the console,** remove all of the previous example classes from your nodes and groups, using the "edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
-2. Add the `site::basic` class to the console with the "add classes" button in the sidebar as before.
+1. **On the console,** remove all of the previous example classes from your nodes and groups, using the "Edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
+2. Add the `site::basic` class to the console with the "Add classes" button in the sidebar as before.
 3. Assign the `site::basic` class to the default group.
 
 > Your nodes are now receiving the same configurations as before, but with a simplified interface in the console. Instead of deciding which classes a new node should receive, you can decide what _type_ of node it is and take advantage of decisions you made earlier.
@@ -231,7 +231,7 @@ This class **declares** other classes with the `include` function. Note the "if"
 Summary
 -----
 
-You have now performed the core workflows of an intermediate Puppet user. In the course of their normal work, intermediate users will:
+You have now performed the core workflows of an intermediate Puppet user. In the course of their normal work, intermediate users:
 
 * Download and modify Forge modules to fit their deployment's needs.
 * Create new modules and write new classes to manage many types of resources, including files, services, packages, user accounts, and more.
