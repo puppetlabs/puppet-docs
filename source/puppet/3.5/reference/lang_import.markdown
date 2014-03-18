@@ -13,11 +13,20 @@ Puppet's normal behavior is to compile a single manifest (the "[site manifest][s
 
 The `import` keyword causes Puppet to compile more than one manifest without autoloading from modules.
 
-> #### Aside: Best Practices
+> Deprecation Notice
+> -----
 >
-> You should generally **avoid the `import` keyword.** It was introduced to the language before modules existed, and was rendered mostly obsolete once Puppet could autoload classes and defined types from modules. Mixing `import` and modules can often cause bizarre results.
+> As of Puppet 3.5, the `import` keyword is deprecated. Using it will cause deprecation warnings to be logged on the puppet master, and we plan to remove `import` completely in Puppet 4.
 >
-> The one modern use for importing is to allow [node definitions][node_definition] to be stored in several files. However, note that this requires you to restart the puppet master or edit site.pp whenever you edit your nodes.
+> ### What to Use Instead
+>
+> New users should avoid the `import` keyword, and existing users should stop using it. Instead, do the following:
+>
+> * To keep your [node definitions][node_definition] in separate files, [specify a directory as your main manifest][site_manifest].
+> * To load classes and defined types, use [modules][].
+>
+> Together, these two features replace `import` completely.
+
 
 Syntax
 -----
