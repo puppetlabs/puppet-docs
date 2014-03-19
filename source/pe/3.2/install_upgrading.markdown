@@ -27,7 +27,9 @@ If more than one of these roles is present on a given node (for example your mas
 Important Notes and Warnings
 ---
 
-- **Upgrading from PE 2.x or 3.0.0?** Check the [upgrade instructions for PE 3.1](../3.1/install_upgrading.html) for specific instructions, issues, and warnings.
+- **Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages**
+
+Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.1) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
 
 - **Upgrading Split Console and Custom PostgreSQL Databases**  When upgrading from 3.1 to 3.2, the console database tables are upgraded from 32-bit integers to 64-bit. This helps to avoid ID overflows in large databases. In order to migrate the database, the upgrader will temporarily require disc space equivalent to 20% more than the largest table in the console's database (by default, located here: `/opt/puppet/var/lib/pgsqul/9.2/console`). If the database is in this default location, on the same node as the console, the upgrader can successfully determine the amount of disc space needed and provide warnings if needed. However, there are certain circumstances in which the upgrader cannot make this determination automatically. Specifically, the installer cannot determine the disc space requirement if:
 

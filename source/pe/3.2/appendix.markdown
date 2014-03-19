@@ -127,6 +127,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
 
+### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
+
+Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.1) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
+
 ### Live Management Cannot Uninstall Packages on Windows Nodes
 
 An issue with MCollective prevents correct uninstallation of packages on nodes running Windows. Packages on Windows nodes can be uninstalled using Puppet, for example:
