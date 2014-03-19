@@ -64,7 +64,7 @@ An expression such as...
 
 ### Array/Hash Literals are Now Allowed Anywhere Arrays/Hashes are Allowed
 
-In Puppet 3. if you wanted to operate on a literal array or hash, you typically had to assign it to a variable first. This was due to how the internal grammar for the language was organized. You can now use literal arrays and hashes more naturally in a puppet manifest.
+In Puppet 3, if you wanted to operate on a literal array or hash, you typically had to assign it to a variable first. This was due to how the internal grammar for the language was organized. You can now use literal arrays and hashes more naturally in a puppet manifest.
 
     notice([1, 2][1])
     # produces the output

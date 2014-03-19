@@ -20,7 +20,7 @@ canonical: "/puppet/latest/reference/lang_namespaces.html"
 
 [Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module].
 
-> **Important note:** Earlier versions of Puppet used namespaces to navigate nested class/type definitions, and the code that resolves names still behaves as though this were their primary use. **This can sometimes result in the wrong class being loaded.** This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 3. [See below][relative_below] for a full description of the issue.
+> **Important note:** Earlier versions of Puppet used namespaces to navigate nested class/type definitions, and the code that resolves names still behaves as though this were their primary use. **This can sometimes result in the wrong class being loaded.** This is a major outstanding design issue ([issue #2053][2053]). [See below][relative_below] for a full description of the issue.
 
 Syntax
 -----
@@ -65,7 +65,7 @@ Note again that `init.pp` always contains a class or defined type named after th
 Relative Name Lookup and Incorrect Name Resolution
 -----
 
-In Puppet 3, class name resolution is **partially broken** --- if the final namespace segment of a class in one module matches the name of another module, Puppet will sometimes load the wrong class.
+In this version of Puppet, class name resolution is **partially broken** --- if the final namespace segment of a class in one module matches the name of another module, Puppet will sometimes load the wrong class.
 
 {% highlight ruby %}
     class bar {

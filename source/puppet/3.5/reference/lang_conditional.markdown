@@ -23,7 +23,7 @@ Conditional statements let your Puppet code behave differently in different situ
 Summary
 -----
 
-Puppet 3 supports "if" and "unless" statements, case statements, and selectors.
+Puppet supports "if" and "unless" statements, case statements, and selectors.
 
 An "if" statement:
 
