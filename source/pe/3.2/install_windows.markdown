@@ -75,10 +75,10 @@ For example:
 
 **Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT override that value.
 
-[s]: /references/3.3.latest/configuration.html#server
-[c]: /references/3.3.latest/configuration.html#caserver
-[r]: /references/3.3.latest/configuration.html#certname
-[e]: /references/3.3.latest/configuration.html#environment
+[s]: /references/3.4.latest/configuration.html#server
+[c]: /references/3.4.latest/configuration.html#caserver
+[r]: /references/3.4.latest/configuration.html#certname
+[e]: /references/3.4.latest/configuration.html#environment
 
 Upgrading
 -----
