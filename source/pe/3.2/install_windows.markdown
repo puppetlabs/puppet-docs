@@ -66,8 +66,10 @@ The following public MSI properties can also be specified:
 `PUPPET_CA_SERVER`             | [`ca_server`][c]  | Value of `PUPPET_MASTER_SERVER`
 `PUPPET_AGENT_CERTNAME`        | [`certname`][r]   | Value of `facter fdqn` (must be lowercase)
 `PUPPET_AGENT_ENVIRONMENT`     | [`environment`][e]| `production`
-
-{% comment %}This is specific to PE 3.1! For the 3.2 release, note that we'll have more MSI properties available -- see source/windows/installing.markdown for details. You'll also need to pull in stuff under the "Agent startup mode" and "agent account" headers, later in the document. {% endcomment %}
+`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
+`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
+`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
+`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
 
 For example:
 
@@ -140,6 +142,17 @@ puppet              | Puppet source
 service             | code to run puppet agent as a service
 sys                 | Ruby and other tools
 
+### Agent Startup Mode
+
+The agent is set to `Automatic` startup by default, but allows for you to pass `Manual` or `Disabled` as well.
+
+ * `Automatic` means that the Puppet agent will start with windows and be running all the time in the background. This is the what you would choose when you want to run Puppet with a master.
+ * `Manual` means that the agent will start up only when it is started in the services console or through `net start` on the command line. Typically this used in advanced usages of Puppet.
+ * `Disabled` means that the agent will be installed but disabled and will not be able to start in the services console (unless you change the start up type in the services console first). This is desirable when you want to install puppet but you only want to invoke it as you specify and not use it with a master.
+
+### Agent Account
+
+By default, Puppet installs the agent with the built in `SYSTEM` account. This account does not have access to the network, therefore it is suggested that another account that has network access be specified. The account must be an existing account. In the case of a domain user, the account does not need to have accessed the box. If this account is not a local administrator and it is specified as part of the install, it will be added to the `Administrators` group on that particular node. The account will also be granted [`Logon as Service`](http://msdn.microsoft.com/en-us/library/ms813948.aspx) as part of the installation process. As an example, if you wanted to set the agent account to a domain user `AbcCorp\bob` you would call the installer from the command line appending the following items: `PUPPET_AGENT_ACCOUNT_DOMAIN=AbcCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password`.
 
 ### Data Directory
 

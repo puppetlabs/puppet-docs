@@ -90,10 +90,10 @@ Minimum Version      | MSI Property                  | Puppet Setting    | Defau
 2.7.12 / PE 2.5.0    |`PUPPET_CA_SERVER`             | [`ca_server`][c]  | Value of `PUPPET_MASTER_SERVER`
 2.7.12 / PE 2.5.0    |`PUPPET_AGENT_CERTNAME`        | [`certname`][r]   | Value of `facter fdqn` (must be lowercase)
 3.3.1  / PE 3.1.0    |`PUPPET_AGENT_ENVIRONMENT`     | [`environment`][e]| `production`
-3.4.0  / pending     |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
-3.4.0  / pending     |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
-3.4.0  / pending     |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
-3.4.0  / pending     |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
+3.4.0  / PE 3.2      |`PUPPET_AGENT_STARTUP_MODE`    | n/a               | `Automatic`; [see startup mode](#agent-startup-mode)
+3.4.0  / PE 3.2      |`PUPPET_AGENT_ACCOUNT_USER`    | n/a               | `LocalSystem`; [see agent account](#agent-account)
+3.4.0  / PE 3.2      |`PUPPET_AGENT_ACCOUNT_PASSWORD`| n/a               | No Value; [see agent account](#agent-account)
+3.4.0  / PE 3.2      |`PUPPET_AGENT_ACCOUNT_DOMAIN`  | n/a               | `.`; [see agent account](#agent-account)
 
 For example:
 
