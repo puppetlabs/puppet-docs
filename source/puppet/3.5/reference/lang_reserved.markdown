@@ -4,8 +4,7 @@ title: "Language: Reserved Words and Acceptable Names"
 canonical: "/puppet/latest/reference/lang_reserved.html"
 ---
 
-<!-- TODO: Bring configuration guide into reference manual -->
-[settings]: /guides/configuring.html
+[settings]: ./config_about_settings.html
 [tags]: ./lang_tags.html
 [built_in]: ./lang_variables.html#facts-and-built-in-variables
 [facts]: /facter/latest/core_facts.html

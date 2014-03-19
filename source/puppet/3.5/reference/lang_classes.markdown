@@ -4,8 +4,7 @@ title: "Language: Classes"
 canonical: "/puppet/latest/reference/lang_classes.html"
 ---
 
-<!-- TODO: need better link for site.pp -->
-[sitedotpp]: ./lang_summary.html#files
+[sitedotpp]: ./dirs_manifest.html
 [collector_override]: ./lang_resources.html#amending-attributes-with-a-collector
 [namespace]: ./lang_namespaces.html
 [enc]: /guides/external_nodes.html
@@ -127,7 +126,7 @@ Classes should be stored in their module's `manifests/` directory as one class p
 >
 > Most users should **only** load classes from modules. However, you can also put classes in the following additional locations:
 >
-> * [The site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
+> * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 > * [Imported manifests][import]. If you do so, you must [import][] the file containing the class before you may declare it.
 > * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an [import][] statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is **very much** not recommended.
 
