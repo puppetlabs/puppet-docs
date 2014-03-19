@@ -35,6 +35,8 @@ Install the Razor Server
 
 The actual Razor software is stored in an external online location, so you need an internet connection. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes. 
 
+If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server. 
+
 1. Manually add the `pe-razor` class in the PE console. To do so, on the console sidebar, click the **Add classes** button. Then, in **Add classes** under **Don't see a class?** type in "pe-razor" and click the green plus (+) button. For information about adding a  class and classifying the Razor server using the PE Console, see the [Adding New Classes](./console_classes_groups.html#adding-new-classes.html) and [Editing Classes on Nodes](./console_classes_groups.html#editing-classes-on-nodes) sections of this guide. 
 
 
