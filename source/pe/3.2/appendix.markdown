@@ -32,6 +32,16 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### PE 3.2.1 (3/19/2014)
+
+#### Bug Fixes
+
+This release fixes several minor bugs, including issues with upgrades and installations in environments with separated `/var` and `/opt` directories.
+
+#### OpenSSL Support on AIX
+
+With this release, it is no longer necessary to manually install OpenSSL on AIX nodes. OpenSSL is now automatically added with PE.
+
 ### PE 3.2.0 (3/4/2014)
 
 #### Puppet Enterprise Supported Modules
@@ -116,9 +126,14 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
-### Install and Upgrade Failures on Nodes with Separated `/var` and `/opt`. 
 
-In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the the [installation](./install_basic.html) or [upgrading](./install_upgrading.html) instructions to find out how to prevent the issues and/or recover from a failed upgrade or installation.
+### Live Management Cannot Uninstall Packages on Windows Nodes
+
+An issue with MCollective prevents correct uninstallation of packages on nodes running Windows. Packages on Windows nodes can be uninstalled using Puppet, for example:
+        package
+            { 'Google Chrome': ensure => absent, } 
+
+The issue is being tracked on [this support ticket](https://tickets.puppetlabs.com/browse/MCOP-14).
 
 ### `pe_mcollective` Module Integer Parameter Issue
 

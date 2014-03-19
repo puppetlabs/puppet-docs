@@ -22,34 +22,6 @@ Depending on your particular deployment there are three ways you can resolve thi
 
 * Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
-### Installing on to a Master with Separated `/var` and `/opt` Directories 
-
-In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during installation. See the following to find out how to prevent the issues and/or recover from a failed upgrade.
-    
-* **To prevent a failed installation** follow these steps:  
-  1. Unpack the PE tarball.
-  2. Edit `erb/puppet.conf.erb [main]` by adding: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
-  3. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
-  4. Run the installer in the standard manner.
-        
-* **To recover from a failed installation** follow these steps:
-    1. Run the [uninstaller](./install_uninstalling.html).
-    2. Follow the preventative steps above.
-
-### Upgrading a Master with Separated `/var` and `/opt` Directories
-    
-* **To prevent a failed upgrade** follow these steps:  
-   1. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
-    2. Define the directory created above as the `module_working_dir` by adding the following to `/etc/puppetlabs/puppet/puppet.conf [main]`: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
-        
-* **To recover from a failed upgrade** follow these steps:
-    1. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
-    2. Define the directory created above as the `module_working_dir` by adding the following to `/etc/puppetlabs/puppet/puppet.conf [main]`: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
-    3. To prevent the installer from detecting that PE 3.2.0 is already installed, first echo the version of the existing PE version (e.g. '3.1.3') into the `pe_version` file
-`echo '3.1.3' > /opt/puppet/pe_version` Then, delete the `pe_build` file: `rm /opt/puppet/pe_build`.
-    4. Rerun the installer: 
-        `cd /<path to puppet-enterprise-3.2.0-installer>`
-        `./puppet-enterprise-installer `       
 
 ### Is DNS Wrong?
 

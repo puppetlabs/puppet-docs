@@ -361,7 +361,7 @@ Once the agent has been installed on the target node, it can be configured using
 Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware:
 
 1. Use the console to add the `pe_repo::platform::debian_6_amd64` class.
-2. Kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.0-debian-6-amd64-agent`.
+2. Kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.1-debian-6-amd64-agent`.
 3. SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`.
 
 The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
@@ -451,9 +451,6 @@ Depending on your particular deployment there are three ways you can resolve thi
 
 * Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
-**Installing on to a Master with Separated `/var` and `/opt` Directories** 
-
-In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, in some cases this may cause serious problems during installation. Contact [Puppet Labs Support](http://puppetlabs.com/services/customer-support) if you experience these issues.
     
 * * *
 

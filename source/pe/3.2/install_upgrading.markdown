@@ -27,6 +27,8 @@ If more than one of these roles is present on a given node (for example your mas
 Important Notes and Warnings
 ---
 
+- **Upgrading from PE 2.x or 3.0.0?** Check the [upgrade instructions for PE 3.1](../3.1/install_upgrading.html) for specific instructions, issues, and warnings.
+
 - **Upgrading Split Console and Custom PostgreSQL Databases**  When upgrading from 3.1 to 3.2, the console database tables are upgraded from 32-bit integers to 64-bit. This helps to avoid ID overflows in large databases. In order to migrate the database, the upgrader will temporarily require disc space equivalent to 20% more than the largest table in the console's database (by default, located here: `/opt/puppet/var/lib/pgsqul/9.2/console`). If the database is in this default location, on the same node as the console, the upgrader can successfully determine the amount of disc space needed and provide warnings if needed. However, there are certain circumstances in which the upgrader cannot make this determination automatically. Specifically, the installer cannot determine the disc space requirement if:
 
     1. The console database is installed on a different node than the console.
@@ -36,22 +38,6 @@ In case 1, the installer can determine how much space is needed, but it will be 
 In case 2, the installer is unable to obtain any information about the size or state of the database. The user will not to locate the large console database table 
 
 - **Upgrading from PE 2.x or 3.0.0?** Check the [upgrade instructions for PE 3.1](../3.1/install_upgrading.html) for specific instructions, issues, and warnings.
-
--**Upgrading a Master with Separated `/var` and `/opt` Directories** In order to manage disc space or for other reasons, some PE deployments may have the `/var` and `/opt` directories on different mount points. Due to an issue in the `puppetlabs-firewall` module, this can cause serious problems during upgrades. See the following to find out how to prevent the issues and/or recover from a failed upgrade.
-    
-* **To prevent a failed upgrade** follow these steps:  
-   1. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
-    2. Define the directory created above as the `module_working_dir` by adding the following to `/etc/puppetlabs/puppet/puppet.conf [main]`: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
-        
-* **To recover from a failed upgrade** follow these steps:
-    1. Create a directory to use as the module working directory mkdir -p /opt/puppet/share/puppet/module_working_dir/cache
-    2. Define the directory created above as the `module_working_dir` by adding the following to `/etc/puppetlabs/puppet/puppet.conf [main]`: `module_working_dir = /opt/puppet/share/puppet/module_working_dir/cache`
-    3. To prevent the installer from detecting that PE 3.2.0 is already installed, first echo the version of the existing PE version (e.g. '3.1.3') into the `pe_version` file
-`echo '3.1.3' > /opt/puppet/pe_version` Then, delete the `pe_build` file: `rm /opt/puppet/pe_build`.
-    4. Rerun the installer: 
-        `cd /<path to puppet-enterprise-3.2.0-installer>`
-        `./puppet-enterprise-installer `       
-
 
 Downloading PE
 -----

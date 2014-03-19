@@ -5,6 +5,11 @@ subtitle: "New Features in PE 3.2"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
 
+### Version 3.2.1
+
+PE 3.2.1 is a maintenance release that fixes several minor bugs, including issues related to specific install and upgrade scenarios.  PE 3.2.1 also adds built-in support for OpenSSL on AIX nodes.
+For details, check the [release notes](appendix.html#release-notes).
+
 ### Version 3.2.0
 
 Puppet Enterprise (PE) version 3.2.0 is a feature and maintenance release. It adds new features and improvements, fixes bugs, and addresses security issues. Specifically, the 3.2.0 release includes the following major changes and additions (a comprehensive list of updates, changes and additions can be found in the [release notes](appendix.html#release-notes)):

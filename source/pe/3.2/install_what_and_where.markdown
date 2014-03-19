@@ -44,7 +44,7 @@ On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdir
 If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
 ### OpenSSL Requirement
-OpenSSL is a ruby dependency that PE installs on RHEL 4, Windows, and Solaris 10 nodes. Manual installation of OpenSSL is required for all other PE-supported platforms. Version 0.9.8l or higher is required.
+OpenSSL is a dependency required for PE. For RHEL 4, Windows, AIX, and Solaris 10 nodes, OpenSSL is included with PE; for all other platforms it is installed directly from the system repositories.
 
 ##Configuration Files
 
