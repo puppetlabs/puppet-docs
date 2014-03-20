@@ -45,6 +45,8 @@ If you provide an empty string to the `--iso-url` parameter of the `create-repo`
 
 The error is meant to indicate that you cannot supply both those attributes at the same time on a single repo instance.
 
+###Updates might be required for VMware ESXi 5.5 igb files
+You might have to update your VMware ESXi 5.5 ISO with updated igb drivers before you can install ESXi with Razor. See this [driver package download page on the VMware site](https://my.vmware.com/web/vmware/details?downloadGroup=DT-ESXI55-INTEL-IGB-42168&productId=353) for the updated igb drivers you need.
 
 * * *
 
