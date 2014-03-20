@@ -9,7 +9,7 @@ Welcome to part two of the PE 3.2 quick start guide. This document is a continua
 
 * Modify a module obtained from the Forge
 * Write your own Puppet module
-* Create a site module that composes other modules into machine roles
+* Create a site module that assigns other modules into machine roles
 * Apply Puppet classes to groups with the console
 
 > Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
@@ -30,7 +30,7 @@ Although many Forge modules are exact solutions that fit your site, many more ar
 
 By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
-Modules are directory trees. Their basic structure looks like this:
+Modules are directory trees. The manifest directory of the Puppet Labs Registry module contains the following files:
 
 - `registry/` (the module name)
     - `manifests/`
@@ -174,21 +174,19 @@ For more information about writing classes, refer to the following documentation
 [legal_notice_text_larry]: ./images/quick/legal_notice_larry.png
 [legal_notice_text_values]: ./images/quick/legal_notice_values.png
 
-1. **On the console,** use the "Add classes" button to choose the `critical_policy` class from the list and make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
-
-
-2. **On the Windows agent node,** manually set the data values of `legalnoticecaption` and `legalnoticetext` to some other values. For example, set `legalnoticecaption` to "Larry's Computer" and set `legalnoticetext` to "This is Larry's computer."
+1. **On the console,** use the "Add classes" button to choose the `critical_policy` class from the list, and then click the "Add selected classes" button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
+2. Add the `critical_policy` class to your Wiindows agent node.
+3. **On the Windows agent node,** manually set the data values of `legalnoticecaption` and `legalnoticetext` to some other values. For example, set `legalnoticecaption` to "Larry's Computer" and set `legalnoticetext` to "This is Larry's computer."
 
   ![Legal notice text larry][legal_notice_text_larry]
     
-3. **Run puppet agent on your Windows agent node.** You can do this by
+4. **Run puppet agent on your Windows agent node.** You can do this by
     * Doing nothing and waiting 30 minutes
     * Using live management to run the "runonce" action on the agent node
-    * Triggering a manual run on the node, with either `puppet agent --test` or the Windows "Run Puppet Agent" Start menu item 
-    
-4. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
+    * Triggering a manual run on the node, with either `puppet agent --test` or the Windows "Run Puppet Agent" Start menu item     
+5. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
 
- ![Legal notice text original value][legal_notice_text_values]
+  ![Legal notice text original value][legal_notice_text_values]
 
 If you reboot your Windows machine, you will see the legal caption and text before you log in again. 
        
