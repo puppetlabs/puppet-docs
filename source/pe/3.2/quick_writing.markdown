@@ -5,7 +5,7 @@ subtitle: "Module Writing Basics"
 canonical: "/pe/latest/quick_writing.html"
 ---
 
-Welcome to part two of the PE 3.2 quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with Puppet modules, module development, and additional PE features. Follow along to learn how to:
+Welcome to part two of the PE 3.2 quick start guide. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with Puppet modules, module development, and additional PE features for your Windows agent nodes. Follow along to learn how to:
 
 * Modify a module obtained from the Forge
 * Write your own Puppet module
