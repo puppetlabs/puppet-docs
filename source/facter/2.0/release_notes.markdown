@@ -9,7 +9,7 @@ This page documents the history of the Facter 2.0 series.
 Facter 2.0.1
 -----
 
-**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC 2 on March 12, 2014.
+**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC 3 on March 20, 2014.
 
 Facter 2.0.1 is the first release in the Facter 2 series. (See the [note below](#facter-200) about Facter 2.0.0.)
 
@@ -78,6 +78,10 @@ The man page for Facter 2 now includes the new command line options.
 This release adds spec and accceptance tests for Ubuntu 14.04, also known as Trusty Tahr.
 
 ### Bug Fixes
+
+[FACT-155: operatingsystemrelease in Solaris 10 behaves differently from Solaris 11](https://tickets.puppetlabs.com/browse/FACT-155)
+
+On Solaris 10, the operatingsystemrelease fact would incorrectly be set to the update version. This release corrects the bug.
 
 [FACT-202: Fix undefined path in macaddress.rb](https://tickets.puppetlabs.com/browse/FACT-202)
 
