@@ -26,7 +26,7 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Release
 
-- [Puppet Enterprise 3.1][pe3.1]
+- [Puppet Enterprise 3.2][pe3.2]
 
 ### Maintenance and Security Branches
 - [Puppet Enterprise 2.8][pe2.8]
@@ -61,6 +61,7 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 [semver]: http://semver.org
 [3.5]: /puppet/3.5/reference/release_notes.html
 [3.x]: /puppet/3/reference/release_notes.html
+[pe3.2]: /pe/3.2/appendix.html#release-notes
 [pe3.1]: /pe/3.1/appendix.html#release-notes
 [pe2.8]: /pe/2.8/appendix.html#release-notes
 [pe2.7]: /pe/2.7/appendix.html#release-notes
