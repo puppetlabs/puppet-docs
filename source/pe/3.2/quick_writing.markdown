@@ -178,12 +178,12 @@ For more information about writing classes, refer to the following documentation
 2. Add the `critical_policy` class to your Wiindows agent node.
 3. **On the Windows agent node,** manually set the data values of `legalnoticecaption` and `legalnoticetext` to some other values. For example, set `legalnoticecaption` to "Larry's Computer" and set `legalnoticetext` to "This is Larry's computer."
 
-  ![Legal notice text larry][legal_notice_text_larry]
+   ![Legal notice text larry][legal_notice_text_larry]
     
 4. Use live management to run the "runonce" action on your Windows agent node.         
 5. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
 
-  ![Legal notice text original value][legal_notice_text_values]
+   ![Legal notice text original value][legal_notice_text_values]
 
 If you reboot your Windows machine, you will see the legal caption and text before you log in again. 
        
