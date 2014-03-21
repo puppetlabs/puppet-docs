@@ -180,10 +180,7 @@ For more information about writing classes, refer to the following documentation
 
   ![Legal notice text larry][legal_notice_text_larry]
     
-4. **Run puppet agent on your Windows agent node.** You can do this by
-    * Doing nothing and waiting 30 minutes
-    * Using live management to run the "runonce" action on the agent node
-    * Triggering a manual run on the node, with either `puppet agent --test` or the Windows "Run Puppet Agent" Start menu item     
+4. Use live management to run the "runonce" action on your Windows agent node.         
 5. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
 
   ![Legal notice text original value][legal_notice_text_values]
