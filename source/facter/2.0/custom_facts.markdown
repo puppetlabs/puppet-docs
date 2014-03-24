@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Custom Facts
+title: "Facter 2.0: Custom Facts Walkthrough"
 ---
 
 Custom Facts
