@@ -163,7 +163,7 @@ Defined types can (and should) be stored in [modules][]. Puppet is automatically
 
 You can also put type definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 
-Type definitions may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in Puppet 3, but may become so in a future release.
+Type definitions may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but may become so in a future release.
 
 
 Naming

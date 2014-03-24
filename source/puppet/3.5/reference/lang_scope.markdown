@@ -216,7 +216,7 @@ Scope Lookup Rules
 
 The scope lookup rules determine when a local scope becomes the parent of another local scope.
 
-There are two different sets of scope lookup rules: **static scope** and **dynamic scope.** Puppet 3 uses static scope for variables and dynamic scope for resource defaults.
+There are two different sets of scope lookup rules: **static scope** and **dynamic scope.** This version of Puppet uses static scope for variables and dynamic scope for resource defaults.
 
 > **Note:** To help users prepare, Puppet 2.7 will print warnings to its log file whenever a variable's value would be different under static scope in Puppet 3. More details about the elimination of dynamic scope can be found [here][scopedoc].
 
@@ -231,7 +231,7 @@ In **static scope,** parent scopes are **only** assigned by [class inheritance][
 > * Scope contents are predictable and do not depend on parse order.
 > * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or type is _declared_ has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
 
-Puppet 3 uses static scope for looking up variables.
+This version of Puppet uses static scope for looking up variables.
 
 ### Dynamic Scope
 
@@ -248,7 +248,7 @@ In **dynamic scope,** parent scopes are assigned by both **inheritance** and **d
 > * In some cases, you can only determine a scope's contents by executing the code.
 > * Since classes may be declared multiple times with the `include` function, the contents of a given scope are parse-order dependent.
 
-Puppet 3 uses dynamic scope for resource defaults.
+This version of Puppet uses dynamic scope for resource defaults.
 
 Messy Under-the-Hood Details
 -----
