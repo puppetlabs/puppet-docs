@@ -53,7 +53,7 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
 1. **On the puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
 2. Run `ls` to view the currently installed modules; note that `apache` is present.
 3. Open `apache/templates/vhosts.conf.erb`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors. 
-    `vhosts.conf.erb` contains the following header:
+      `vhosts.conf.erb` contains the following header:
     
         # ************************************
         # Vhost template in module puppetlabs-apache
@@ -164,11 +164,11 @@ For more information about writing classes, refer to the following documentation
 
 3. Use live management to run the "runonce" action your puppet master. 
 
- When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
+     When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
     
 4. Use a browser to navigate to port 80 of the IP address for your node; e.g, `http://<yournodeip>:80`.
 
- >**Tip**: Be sure to use `http` instead of `https`.
+  >**Tip**: Be sure to use `http` instead of `https`.
 
  ![PHP Info Page][php_info]
        
