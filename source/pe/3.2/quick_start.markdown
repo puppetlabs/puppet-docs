@@ -23,9 +23,10 @@ In this first part, follow along to learn how to:
 
 ####  Quick Start Part Two: Developing Modules
 
-In the [second part](./quick_writing.html), you'll learn about:
+For [part two](./quick_writing.html), you'll choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows) to learn about module development on those platform types. 
 
-* Installing the agent on a Windows node and adding a Windows module to your master
+In part two, you'll learn about:
+
 * Basic module structure
 * Editing manifests and templates
 * Writing your own modules
