@@ -1,3 +1,10 @@
+---
+layout: default
+title: "PE 3.2 » Deploying PE » External CA"
+subtitle: "Using an External Certificate Authority with Puppet Enterprise"
+canonical: "/pe/latest/external_ca.html"
+---
+
 #Using an External Certificate Authority with Puppet Enterprise
 
 PE uses its own certificate authority (CA) to generate and verify certificates and security credentials (private and public keys and certificate revocation lists) for the various elements that make up a PE deployment. However, you may need to use your own external CA. This doc will familiarize you with the certs signed by the PE certificate authority and then detail the procedures for replacing those certs and security credentials.    
