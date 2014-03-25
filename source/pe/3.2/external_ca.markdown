@@ -5,8 +5,6 @@ subtitle: "Using an External Certificate Authority with Puppet Enterprise"
 canonical: "/pe/latest/external_ca.html"
 ---
 
-#Using an External Certificate Authority with Puppet Enterprise
-
 PE uses its own certificate authority (CA) to generate and verify certificates and security credentials (private and public keys and certificate revocation lists) for the various elements that make up a PE deployment. However, you may need to use your own external CA. This doc will familiarize you with the certs signed by the PE certificate authority and then detail the procedures for replacing those certs and security credentials.    
 
 > ###*Before You Begin* 
@@ -106,7 +104,7 @@ Here is a list of the things you'll do:
 
 1. Refer to [Locating the PuppetDB Certificate and Security Credentials](#locating-the-puppetdb-certificate-and-security-credentials) and replace the files. 
 
- >**WARNING**: Be sure you replace `/etc/puppetlabs/puppetdb/ssl/public.pem` with your master's cert——not your master's public key.
+ >**WARNING**: Be sure you replace `/etc/puppetlabs/puppetdb/ssl/public.pem` with your master's cert---not your master's public key.
 
 2. Run `service pe-puppetdb restart`.
 3. Run puppet.
