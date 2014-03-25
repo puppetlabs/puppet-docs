@@ -158,19 +158,19 @@ For more information about writing classes, refer to the following documentation
 [php_info]: ./images/quick/php_info.png
 
 1. **On the console**, click the "Add classes" button, choose the `pe_quickstart_app` class from the list, and then click the "Add selected classes" button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
-2. Navigate to the node view page for your master node, and use the "Edit" button to add the `pe_quickstart_app` class to your puppet master, and remove the `apache` class you previously added. 
+2. Navigate to the node view page for your master node, and use the "Edit" button to add the `pe_quickstart_app` class to your puppet master, and remove the `apache` class you previously added.
 
-  >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as puppet will only allow you to declare a class once.
-  
+   >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as puppet will only allow you to declare a class once. 
+
 3. Use live management to run the "runonce" action your puppet master. 
 
      When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
      
 4. Use a browser to navigate to port 80 of the IP address for your node; e.g, `http://<yournodeip>:80`.
 
-  >**Tip**: Be sure to use `http` instead of `https`.
+   >**Tip**: Be sure to use `http` instead of `https`.
 
-  ![PHP Info Page][php_info]
+   ![PHP Info Page][php_info]
        
 You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how PE is managing your app. 
 
