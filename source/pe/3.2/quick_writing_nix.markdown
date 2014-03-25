@@ -52,9 +52,8 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
 
 1. **On the puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
 2. Run `ls` to view the currently installed modules; note that `apache` is present.
-3. Open `apache/templates/vhosts.conf.erb`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors.
-
- `vhosts.conf.erb` contains the following header:
+3. Open `apache/templates/vhosts.conf.erb`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors. 
+    `vhosts.conf.erb` contains the following header:
     
         # ************************************
         # Vhost template in module puppetlabs-apache
@@ -156,7 +155,7 @@ For more information about writing classes, refer to the following documentation
 
 ### Using Your Custom Module in the Console
 
-[qsg_php_info]: ./images/quick/qsg_php_info.png
+[php_info]: ./images/quick/php_info.png
 
 1. **On the console**, click the "Add classes" button, choose the `pe_quickstart_app` class from the list, and then click the "Add selected classes" button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
 2. Navigate to the node view page for your master node, and use the "Edit" button to add the `pe_quickstart_app` class to your puppet master, and remove the `apache` class you previously added. 
@@ -171,7 +170,7 @@ For more information about writing classes, refer to the following documentation
 
  >**Tip**: Be sure to use `http` instead of `https`.
 
- ![PHP Info Page][qsg_php_info]
+ ![PHP Info Page][php_info]
        
 You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how PE is managing your app. 
 

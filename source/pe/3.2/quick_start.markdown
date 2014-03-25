@@ -23,7 +23,7 @@ In this first part, follow along to learn how to:
 
 ####  Quick Start Part Two: Developing Modules
 
-For [part two](./quick_writing.html), you'll choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows) to learn about module development on those platform types. 
+For part two, you'll choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows) to learn about module development on those platform types. 
 
 In part two, you'll learn about:
 
