@@ -161,16 +161,16 @@ For more information about writing classes, refer to the following documentation
 2. Navigate to the node view page for your master node, and use the "Edit" button to add the `pe_quickstart_app` class to your puppet master, and remove the `apache` class you previously added. 
 
   >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as puppet will only allow you to declare a class once.
-
+  
 3. Use live management to run the "runonce" action your puppet master. 
 
      When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
-    
+     
 4. Use a browser to navigate to port 80 of the IP address for your node; e.g, `http://<yournodeip>:80`.
 
   >**Tip**: Be sure to use `http` instead of `https`.
 
- ![PHP Info Page][php_info]
+  ![PHP Info Page][php_info]
        
 You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how PE is managing your app. 
 
