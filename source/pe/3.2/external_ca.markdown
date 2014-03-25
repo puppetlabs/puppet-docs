@@ -104,7 +104,7 @@ Here is a list of the things you'll do:
 
 1. Refer to [Locating the PuppetDB Certificate and Security Credentials](#locating-the-puppetdb-certificate-and-security-credentials) and replace the files. 
 
- >**WARNING**: Be sure you replace `/etc/puppetlabs/puppetdb/ssl/public.pem` with your master's cert---not your master's public key.
+   >**WARNING**: Be sure you replace `/etc/puppetlabs/puppetdb/ssl/public.pem` with your master's cert---not your master's public key.
 
 2. Run `service pe-puppetdb restart`.
 3. Run puppet.
