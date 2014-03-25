@@ -12,11 +12,9 @@ PE uses its own certificate authority (CA) to generate and verify certificates a
 > ###*Before You Begin* 
 > Setting up an external certificate authority (CA) to use with PE is beyond the scope of this document; in fact, this writing assumes that you already have some knowledge of CA and security credential creation and have the ability to set up your own external CA. This document will lead you through the certs and security credentials you'll need to replace in PE. However, before beginning, we recommend you familiarize yourself with the following docs:
 >
->- [SSL Configuration: External CA Support](http://docs.puppetlabs.com/puppet/latest/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE). 
-
+>- [SSL Configuration: External CA Support](http://docs.puppetlabs.com/puppet/latest/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE).
+> 
 >- [ActiveMQ TLS](http://docs.puppetlabs.com/mcollective/reference/integration/activemq_ssl.html) explains MCollective’s security layer.
-
-{% comment %} Note: if you're coming to this with NO understanding of CA and Security credentials, we recommend reading (Nick's stuff on SSL when it's available) {% end comment%}
 
 ##About the PE Certificate Authority and Security Credentials
 
