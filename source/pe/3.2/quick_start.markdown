@@ -355,7 +355,7 @@ Beyond what this brief walkthrough has covered, most users will go on to:
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
 * Configure multiple nodes at once by adding classes to groups in the console instead of individual nodes.
 
-To learn about these workflows, continue to [part two of this quick start guide](./quick_writing.html).
+To learn about these workflows, continue to part two of this quick start guide.
 
 #### Other Resources
 
