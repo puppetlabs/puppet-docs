@@ -283,16 +283,14 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 4. Note that the `ntp` class now appears in the list of classes on `agent1`.
 5. Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 6. On the agent node, run `service ntpd stop`.
-7. Run `nptdate us.pool.ntp.org`.
 
    **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."
- 
-   The result should resemble the following:
+7. Run `nptdate us.pool.ntp.org`. The result should resemble the following:
 
-	 28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec
+   `28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec`
 
 8. Finally, run `service ntpd start`.
- 		
+
 > Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. 
 
 #### Setting Class Parameters
@@ -369,4 +367,4 @@ Puppet Labs offers many opportunities for learning and training, from formal cer
 
 * * *
 
-- [Next: Quick Start: Writing Modules](./quick_writing.html)
+- Next: [Quick Start: Writing Modules (Windows)](./quick_writing_windows.html) or [Quick Start Writing Modules (Linux)](./quick_writing_nix.html)
