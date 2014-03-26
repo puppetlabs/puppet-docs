@@ -48,7 +48,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.5.0
 -----
 
-**Not yet released.** Entered RC1 on March 14, 2014.
+**Not yet released.** Entered RC2 on March 24, 2014. The RC2 changes included a fix for which directories are allowed to be used in the `manifest` setting, a fix for dynamic environments that use the `manifestdir` setting, and several fixes to the future parser. (RC1: March 14.)
 
 3.5.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
@@ -236,6 +236,7 @@ Misc features:
 * The `http` report processor can use basic auth now when forwarding reports.
 * Puppet apply now has a `--test` option that acts much like puppet agent's `--test`.
 * On Windows, the puppet agent service will now log activity using the Windows Event Log instead of a logfile.
+* Environment and transaction UUID information is now included when submitting facts to PuppetDB. (This will be used in a future version of PuppetDB.)
 
 Type and provider features:
 
@@ -258,6 +259,7 @@ Features for extension writers:
 
 Related issues:
 
+- [PUP-1975: Environment & transaction_uuid is not passed to facts indirector during compilation](https://tickets.puppetlabs.com/browse/PUP-1975)
 - [PUP-1068: Puppet master can't submit reports to an HTTP server using basic auth](https://tickets.puppetlabs.com/browse/PUP-1068)
 - [PUP-1218: Improve ssh-ed25519 integration](https://tickets.puppetlabs.com/browse/PUP-1218)
 - [PUP-1219: PR (2182): Improve ssh-ed25519 integration - jasperla](https://tickets.puppetlabs.com/browse/PUP-1219)
@@ -327,6 +329,7 @@ We fixed a bunch of bugs in types and providers (including a big cleanup of the 
 
 Type and provider bugs:
 
+- [PUP-1210: authentication_authority key is not set when managing root's password using the puppet user provider](https://tickets.puppetlabs.com/browse/PUP-1210) (An OS X bug, most visible when managing the root user.)
 - [PUP-1051: gem package provider is confused by platform components in version strings](https://tickets.puppetlabs.com/browse/PUP-1051)
 - [PUP-1158: Augeas provider warns on parse errors in other files handled by same lens](https://tickets.puppetlabs.com/browse/PUP-1158)
 - [PUP-1421: appdmg prematurely filters for sources ending in .dmg](https://tickets.puppetlabs.com/browse/PUP-1421)
@@ -395,6 +398,17 @@ General bugs:
 - [PUP-1839: Puppet device results in SSL stack too deep error](https://tickets.puppetlabs.com/browse/PUP-1839)
 - [PUP-1885: File type ignore can't convert Fixnum into String](https://tickets.puppetlabs.com/browse/PUP-1885) (This one was a regression from 3.3.0.)
 - [PUP-1404: PR (2234): ensure Puppet::Util::Execution.execpipe always run the command with LANG... - doc75](https://tickets.puppetlabs.com/browse/PUP-1404)
+
+Bugs discovered during the RC period:
+
+- [PUP-1944: Error when manifest is a directory but not the same as manifestdir](https://tickets.puppetlabs.com/browse/PUP-1944)
+- [PUP-2009: Dynamic environments not working with manifestdir setting](https://tickets.puppetlabs.com/browse/PUP-2009)
+- [PUP-1962: Relationships with Classes in future parser broken](https://tickets.puppetlabs.com/browse/PUP-1962)
+- [PUP-1973: future parser doesn't bind variables from inherited scope](https://tickets.puppetlabs.com/browse/PUP-1973)
+- [PUP-1978: future parser doesn't accept empty array as title](https://tickets.puppetlabs.com/browse/PUP-1978)
+- [PUP-1979: future parser Class reference with leading :: doesn't work](https://tickets.puppetlabs.com/browse/PUP-1979)
+- [PUP-2017: TupleType applies size constraint to last element only](https://tickets.puppetlabs.com/browse/PUP-2017)
+
 
 
 ### All Resolved Issues for 3.5.0

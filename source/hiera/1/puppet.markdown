@@ -69,6 +69,8 @@ When doing any Hiera lookup, with both automatic parameter lookup and the Hiera 
 * `calling_module` --- The module in which the lookup is written. This has the same value as the [Puppet `$module_name` variable.][module_name]
 * `calling_class` --- The class in which the lookup is evaluated. If the lookup is written in a defined type, this is the class in which the current instance of the defined type is declared.
 
+Note that these variables are effectively local scope, as they are pseudo-variables that only exist within the context of a specific class, and only inside of hiera. Therefore, they must be called as `%{variable_name}` and never `%{::variable_name}`. They are not top-scope.
+
 > **Note:** These variables were broken in some versions of Puppet.
 >
 > Version                                        | Status

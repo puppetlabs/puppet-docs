@@ -144,7 +144,7 @@ Every resource in a class gets automatically [tagged][tags] with the class's nam
 
 Classes can be derived from other classes using the `inherits` keyword. This allows you to make special-case classes that extend the functionality of a more general "base" class.
 
-> Note: Puppet 3 does not support using parameterized classes for inheritable base classes. The base class **must** have no parameters.
+> Note: This version of Puppet does not support using parameterized classes for inheritable base classes. The base class **must** have no parameters.
 
 Inheritance causes three things to happen:
 
@@ -250,7 +250,7 @@ Include-like behavior relies on [external data][external_data] and defaults for 
 >
 > **Most** users in **most** situations should use include-like declarations and set parameter values in their external data. However, compatibility with earlier versions of Puppet may require compromises. See [Aside: Writing for Multiple Puppet Versions][aside_history] below for details.
 
-> **Version Note:** Automatic external parameter lookup is a new feature in Puppet 3. Puppet 2.7 and earlier could only use default values or override values from resource-like declarations. [See below for more details.][aside_history]
+> **Version Note:** Automatic external parameter lookup was a new feature in Puppet 3. Puppet 2.7 and earlier could only use default values or override values from resource-like declarations. [See below for more details.][aside_history]
 
 #### Resource-like Behavior
 
@@ -411,7 +411,7 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 > Aside: Writing for Multiple Puppet Versions
 > -----
 >
-> Hiera integration and automatic parameter lookup are new features in Puppet 3; older versions may install the Hiera functions as an add-on, but will not automatically find parameters. If you are writing code for multiple Puppet versions, you have several options:
+> Hiera integration and automatic parameter lookup were new features in Puppet 3; older versions may install the Hiera functions as an add-on, but will not automatically find parameters. If you are writing code for multiple Puppet versions, you have several options:
 >
 > ### Expect Users to Handle Parameters
 >
@@ -445,7 +445,7 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 > * It requires 2.x users to install Hiera and `hiera-puppet`.
 > * It's slower on Puppet 3 --- if you don't set a value in your external data, Puppet will do _two_ searches before falling back to the default value.
 >
-> However, depending on your needs, it can be a useful stopgap until Puppet 3 is widely adopted.
+> However, depending on your needs, it can be a useful stopgap until all of your users are off Puppet 2.7.
 >
 > ### Avoid Class Parameters
 >
