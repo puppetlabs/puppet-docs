@@ -11,7 +11,7 @@ canonical: "/pe/latest/install_basic.html"
 > ![windows logo](./images/windows-logo-small.jpg) This chapter covers \*nix operating systems. To install PE on Windows, see [Installing Windows Agents](./install_windows.html).
 
 
-    
+
 Downloading PE
 -----
 
@@ -340,7 +340,7 @@ If you are using a supported OS that is capable of using remote package repos, t
 
 If you are currently using native package management, you just need to add the agent packages to the appropriate repo, configure your package manager (Yum, apt) to point at that repo, and then install the packages as you would any other. You can find agent packages that correspond to the master's OS/architecture in `/opt/puppet/packages/public` on the master. In that directory you will find a `<installed version of PE & platform>-agent/agent_packages` directory which in turn contains a directory with all the packages needed to install an agent (as well as a JSON file that lists the versions of those packages).
 
-For nodes running an OS and/or architecture different from the master, [download the appropriate agent tarball](http://puppetlabs.com/misc/pe-files). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
+For nodes running an OS and/or architecture different from the master, [download the appropriate agent tarball](http://puppetlabs.com/misc/pe-files/agent-downloads). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
 Once the agent has been installed on the target node, it can be configured using `puppet config set`. See "[Configuring Agents](#Configuring-Agents)" below.
 
@@ -439,11 +439,11 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 Important Notes & Warnings
 -----
 
-**Installing Without Internet Connectivity** 
+**Installing Without Internet Connectivity**
 
 By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet in order to access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
 
-Depending on your particular deployment there are three ways you can resolve this issue. In each case, you will need to procure the agent tarball beforehand. 
+Depending on your particular deployment there are three ways you can resolve this issue. In each case, you will need to procure the agent tarball beforehand.
 
 * If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
 
@@ -451,7 +451,7 @@ Depending on your particular deployment there are three ways you can resolve thi
 
 * Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
-    
+
 * * *
 
 - [Next: Upgrading](./install_upgrading.html)
