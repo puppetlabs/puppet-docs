@@ -39,7 +39,7 @@ Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, whi
  * Hiera 1.3.2
  * Dashboard 2.1.1
 
-The "What Gets Installed Where" page includes a [list of all the major packages that comprise PE 3.2](./overview_about_pe.html#about-puppet-enterprise).
+The "What Gets Installed Where" page includes a [list of all the major packages that comprise PE 3.2](./install_what_and_where.html#puppet-enterprise-components).
 
 About Puppet
 -----
