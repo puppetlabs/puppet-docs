@@ -132,7 +132,7 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 
 1. **On the agent node,** log in as root and run `puppet agent --test` on the command line. This will trigger a single puppet run on the agent with verbose logging.
 
-  > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
+   > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
       
 2. Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 
@@ -244,7 +244,7 @@ We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While yo
         thias-ntp        Network Time Protocol...                                    @thias        ntp ntpd
         warriornew-ntp   ntp setup                                                   @warriornew   ntp 
         
-  We want `puppetlabs-ntp`, which is the PE supported ntp module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited: <http://forge.puppetlabs.com/puppetlabs/ntp>. 
+   We want `puppetlabs-ntp`, which is the PE supported ntp module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited: <http://forge.puppetlabs.com/puppetlabs/ntp>.
 
 4. Install the module by running `puppet module install puppetlabs-ntp`:
 
@@ -270,15 +270,15 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 
 1. **On the console**, click the "Add classes" button in the sidebar:
 
-  ![The console's add classes button][classbutton]
+   ![The console's add classes button][classbutton]
 
 2. Locate the `ntp` class in the list of classes, and click its checkbox to select it. Click the "Add selected classes" button at the bottom of the page.
 
-  ![the add class field][add_ntp]
+   ![the add class field][add_ntp]
 
 3. Navigate to `agent1.example.com` (by clicking the "Nodes" link in the top nav bar and clicking `agent1`'s name), click the "Edit" button, and begin typing "`ntp`" in the "Classes" field; you can select the `ntp` class from the list of autocomplete suggestions. Click the "Update" button after you have selected it.
 
-  ![assigning the ntp class][assign_ntp]
+   ![assigning the ntp class][assign_ntp]
 
 4. Note that the `ntp` class now appears in the list of classes on `agent1`.
 5. Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
@@ -303,7 +303,7 @@ You can use the console to set the values of the class parameters of nodes by se
 2. On the node view page, click the "Edit" button.
 3. Find "ntp" in the class list, and click "Edit Parameters".
 
-  ![the node class list][edit-params]
+   ![the node class list][edit-params]
 
 4. Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the "servers" parameter. 
 
