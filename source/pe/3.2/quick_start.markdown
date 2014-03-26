@@ -132,7 +132,8 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 
 1. **On the agent node,** log in as root and run `puppet agent --test` on the command line. This will trigger a single puppet run on the agent with verbose logging.
 
-  > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.    
+  > **Note**: If you receive a `-bash: puppet: command not found` error, run `export PATH=/usr/local/sbin:/usr/local/bin:$PATH`, then try again. This error can appear when the `/usr/local/bin` directory is not present in the root user's `$PATH` by default.
+      
 2. Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 
 
@@ -161,16 +162,16 @@ Puppet Enterprise does this automatically within 30 minutes of a node's first ch
 
 1. **On the console**, use the sidebar to navigate to the "mcollective" group:
 
-  ![the mcollective group link](./images/quick/mcollective_link.png)
+   ![the mcollective group link](./images/quick/mcollective_link.png)
 
 2. Check the list of nodes at the bottom of the page for `agent1.example.com` --- depending on your timing, it may already be present. If so, skip to "on each agent node" below.
 3. If `agent1` is not a member of the group already, click the "Edit" button:
 
-  ![the edit button](./images/quick/mcollective_edit.png)
+   ![the edit button](./images/quick/mcollective_edit.png)
 
 4. In the "nodes" field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the "Update" button after you have selected it.
 
-  ![the nodes field](./images/quick/default_nodes.png)
+   ![the nodes field](./images/quick/default_nodes.png)
 
 5. **On each agent node**, run `puppet agent --test` again, [as described above](#testing-the-agent-nodes). Note the long string of log messages related to the `pe_mcollective` class.
 
@@ -185,7 +186,7 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 1. **On the console**, click the "Live Management" tab in the top navigation.
 
-  ![live management](./images/quick/live_mgmt.png)
+   ![live management](./images/quick/live_mgmt.png)
 
 2. Note that the master and the agent nodes are all listed in the sidebar.
 
@@ -198,7 +199,7 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 3. Examine the **complete list of user accounts** found on all of the nodes currently selected in the sidebar node list. (In this case, both the master and the agent node are selected.) Most of the users will be identical, as these machines are very close to a default OS install, but some users related to the puppet master's functionality are only on one node:
 
-  ![different users](./images/quick/different_users.png)
+   ![different users](./images/quick/different_users.png)
 
 4. Click on any user to view details about its properties and where it is present.
 
