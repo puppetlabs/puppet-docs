@@ -26,18 +26,27 @@ If more than one of these roles is present on a given node (for example your mas
 
 Important Notes and Warnings
 ---
+- **Before Upgrading Back up Your Databases and Other PE Files**
+
+   We recommend that you backup the following databases and PE files:
+
+   - `/etc/puppetlabs`
+   - `/opt/puppet/share/puppet-dashboard/certs`
+   - [The console and console_auth databases](./maintain_console-db.html#database-backups)
+   - [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#exporting-data-from-an-existing-puppetdb-database)
+   - Any custom configuration files you may have created
 
 - **Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.1.1. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.1.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
 - If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
 
   Before upgrading, remove the following:
-  	 * `/etc/puppetlabs/puppet/routes.yaml`
-	 * `/etc/puppetlabs/puppet/puppetdb.conf`
-	 * PostgreSQL (if installed on the master), including any data and config directories
+   * `/etc/puppetlabs/puppet/routes.yaml`
+   * `/etc/puppetlabs/puppet/puppetdb.conf`
+   * PostgreSQL (if installed on the master), including any data and config directories
 	
   Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
-      * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
-      * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
+   * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
+   * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
 
   Finally, perform your upgrade.
 
