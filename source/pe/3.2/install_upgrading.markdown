@@ -19,7 +19,7 @@ The process involves the following steps, which *must be performed in the follow
 4. Upgrade Console
 5. Upgrade Agents
 
-If you have an all-in-one master (e.g. the master, console, and PuppetDB are installed on the same node) the installer will upgrade each role in order, automatically.
+If you have multiple roles on the master (e.g., you have a monolithic installation with the master, console, and database role  on the same node), the installer will upgrade each role in the correct order, automatically.
 
 > ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console, and database nodes first.
 
