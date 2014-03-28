@@ -14,6 +14,23 @@ PostgreSQL is Taking Up Too Much Space
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 
+PostgreSQL Buffer Memory Causes PE Install to Fail
+------- 
+
+In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. The following error will be present in `/var/log/pe-postgresql/pgstartup.log`:
+
+    FATAL: could not create shared memory segment: No space left on device
+    DETAIL: Failed system call was shmget(key=5432001, size=34427584512,03600).
+
+A suggested workaround is tweak the machine's `shmmax` and `shmall` kernel settings before installing PE. The `shmmax` setting should be set to approximately  50% of the total RAM; the `shmall` setting can be calculated by dividing the new `shmmax` setting by the PAGE_SIZE.  (`PAGE_SIZE` can be confirmed by running `getconf PAGE_SIZE`).
+
+Use the following commands to set the new kernel settings:
+
+    sysctl -w kernel.shmmax=<your shmmax calculation>
+    sysctl -w kernel.shmall=<your shmall calculation>
+
+Alternatively, you can also report the issue to the [Puppet Labs customer support portal](https://support.puppetlabs.com/access/unauthenticated). 
+
 Recovering from a Lost Console Admin Password
 -----
 
