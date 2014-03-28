@@ -26,6 +26,16 @@ Adding Actions
 
 [See the "Adding Actions" page of this manual.](./orchestration_adding_actions.html)
 
+Changing the Port Used by MCollective/ActiveMQ
+------
+
+You can change the port that MCollective/ActiveMQ uses with a simple variable change in the console. 
+
+1. In the sidebar, select the `mcollective` group. 
+2. On the `mcollective` group page, click "Edit". 
+3. Under "Variables", in the "key" field, add `fact_stomp_port`, and in the "value" field, add the port number you want to use.
+4. Click "Update".
+
 Configuring Orchestration Plugins
 -----
 
@@ -75,8 +85,10 @@ The puppet master node runs an ActiveMQ server to route orchestration commands. 
 
 You can set a new heap size by doing the following:
 
-* Navigate to the special `puppet_master` group in the PE console.
-* Create a new variable called `activemq_heap_mb`. Set its value to a new heap size to use (in MB).
+1. In the PE console, navigate to the special `puppet_master` group.
+2. On the `puppet_master` group page, click "Edit".
+3. Under "Variables", in the "key" field, add `activemq_heap_mb`, and in the "value" field add a new heap size to use (in MB).
+4. Click "Update".
 
 You can later delete the variable to revert to the default setting.
 
@@ -87,6 +99,11 @@ You can later delete the variable to revert to the default setting.
 By default, all agent nodes will send dummy registration messages over the orchestration middleware every ten minutes. [We use these as a heartbeat to work around weaknesses in the underlying Stomp network protocol.][register]
 
 Most users shouldn't need to change this behavior, but you can adjust the frequency of the heartbeat messages as follows:
+
+1. In the PE console, navigate to the special `mcollective` group.
+2. On the `mcollective` group page, click "Edit".
+3. Under "Variables", in the "key" field, add `mcollective_registerinterval`, and in the "value" field add a new interval (in seconds).
+4. Click "Update".
 
 * Navigate to the special `mcollective` group in the PE console.
 * Create a new variable called `mcollective_registerinterval`. Set its value to a new interval (in seconds).
@@ -99,8 +116,10 @@ By default, the orchestration engine uses SSL to encrypt all orchestration messa
 
 To disable SSL:
 
-* Navigate to the special `mcollective` group in the PE console.
-* Create a new variable called `mcollective_enable_stomp_ssl`. Set its value to `false`.
+1. In the PE console, navigate to the `mcollective` group.
+2. On the `mcollective` group page, click "Edit".
+3. Under "Variables", in the "key" field, add `mcollective_enable_stopmp_ssl`, and in the "value" field add `false`.
+4. Click "Update".
 
 You can later delete the variable to revert to the default setting.
 
