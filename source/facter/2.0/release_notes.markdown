@@ -9,7 +9,7 @@ This page documents the history of the Facter 2.0 series.
 Facter 2.0.1
 -----
 
-**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC 3 on March 25, 2014.
+**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC4 on March 28, 2014.
 
 Facter 2.0.1 is the first release in the Facter 2 series. (See the [note below](#facter-200) about Facter 2.0.0.)
 
@@ -76,6 +76,10 @@ The man page for Facter 2 now includes the new command line options.
 [FACT-342: Add Ubuntu 14.04 (Trusty Tahr) support](https://tickets.puppetlabs.com/browse/FACT-342)
 
 This release adds spec and accceptance tests for Ubuntu 14.04, also known as Trusty Tahr.
+
+[FACT-447: Remove Ruby 1.8.5 support](https://tickets.puppetlabs.com/browse/FACT-447)
+
+Earlier versions of Facter included support for Ruby 1.8.5, which required a number of monkey patches for compatibility. As of Facter 2.0.1 RC4, the minimum supported version of Ruby is 1.8.7.
 
 ### Bug Fixes
 
