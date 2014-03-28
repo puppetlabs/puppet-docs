@@ -7,7 +7,7 @@ canonical: "/pe/latest/quick_start.html"
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 
-Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) that demonstrates basic use and concepts and a [follow-up guide](./quick_writing.html) where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules.
+Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) that demonstrates basic use and concepts and a follow-up guide where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules for either [Windows](./quick_writing_windows) or [*nix](./quick_writing_nix) platforms.
 
 #### Quick Start Part One: Introduction
 
@@ -23,7 +23,7 @@ In this first part, follow along to learn how to:
 
 ####  Quick Start Part Two: Developing Modules
 
-For part two, you'll choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows) to learn about module development on those platform types. 
+For part two, you can choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows) to learn about module development on those platforms. 
 
 In part two, you'll learn about:
 
@@ -54,7 +54,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 > * At least two computers ("nodes") running a \*nix operating system [supported by Puppet Enterprise](./install_system_requirements.html).
 >     * These can be virtual machines or physical servers.
 >     * One of these nodes (the puppet master server) should have at least 1 GB of RAM. **Note:** For actual production use, a puppet master node should have at least 4 GB of RAM.
-> * For part two, a computer running a version of Microsoft Windows [supported by Puppet Enterprise](./install_system_requirements.html).
+> * For part two, if you choose to follow the Windows track you'll need a computer running a version of Microsoft Windows [supported by Puppet Enterprise](./install_system_requirements.html).
 > * [Puppet Enterprise installer tarballs][downloads] suitable for the OS and architecture your nodes are using.
 > * A network --- all of your nodes should be able to reach each other.
 > * All of the nodes you intend to use should have their system clocks set to within a minute of each other.
@@ -256,7 +256,7 @@ We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While yo
         
 > You have just installed a Puppet module. All of the classes in it are now available to be added to the console and assigned to nodes.
 
-There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com). In [part two](./quick_writing.html) of this guide you'll learn more about modules, including customizing and writing your own modules.
+There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com). In part two of this guide you'll learn more about modules, including customizing and writing your own modules on either  [Windows](./quick_writing_windows) or [*nix](./quick_writing_nix) platforms.
 
 ### Using Modules in the PE Console
 
