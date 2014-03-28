@@ -44,9 +44,6 @@ These answers are always needed.
 `q_vendor_packages_install`
 : **Y or N** --- Whether the installer has permission to install additional packages from the OS's repositories. If this is set to N, the installation will fail if the installer detects missing dependencies.
 
-`q_puppet_symlinks_install`
-: **Y or N** --- Whether to make the Puppet tools more visible to all users by installing symlinks in `/usr/local/bin`.
-
 `q_run_updtvpkg`
 : **Y or N** --- Only used on AIX. Whether to run the `updtvpkg` command to add info about native libraries to the RPM database. The answer should usually be Y, unless you have special needs around the RPM database.
 
@@ -128,14 +125,11 @@ These answers are generally needed if you are installing the console role.
 `q_database_port`
 : **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
 
-`q_pe_database`
-:**Y or N** "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
-
 `q_disable_live_manangement`
 : **Y or N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
 
 `q_pe_database`
-:**Y or N** -- "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
+:**Y or N** -- Whether to have the Postgres server for the console installed by PE or to manage it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
 `q_puppet_enterpriseconsole_master_hostname`
 : **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
@@ -194,7 +188,7 @@ These answers are generally needed if you are installing the console role.
 
   If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
   
-  `q_public_hostname` 
+`q_public_hostname` 
 : **String** ---   A publicly accessible hostname where the console can be accessed if the host name resolves  to a private interface (e.g., Amazon EC2). This is set automatically by the installer on EC2 nodes, but can be set manually in environments with multiple hostnames.
 
 
@@ -252,10 +246,6 @@ Uninstaller Answers
 
 `q_pe_remove_db`
 : **Y or N** --- Whether to remove any PE-specific databases when uninstalling.
-
-`q_pe_db_root_pass`
-: **String** --- The PostgreSQL root user's password, to be used when deleting
-  databases. Only used when `q_pe_remove_db` is Y.
 
 
 * * *
