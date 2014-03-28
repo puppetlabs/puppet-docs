@@ -144,7 +144,7 @@ This section details the packages that are installed from the various OS repos. 
 |                            |  libcap2                        |  libcap2                       |
 |                            |  libaprutil1                    |  libaprutil1                   |
 |                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
-|                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
+|                            |  libaprutil1-ldap            |  libaprutil1-ldap            |
 |                            |  openjdk-6-jre-headless |
 
 <br>
@@ -165,7 +165,7 @@ This section details the packages that are installed from the various OS repos. 
 |                            |  libcap2                        |  libcap2                       |
 |                            |  libaprutil1                    |  libaprutil1                   |
 |                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
-|                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
+|                            |  libaprutil1-ldap            |  libaprutil1-ldap            |
 |                            |  openjdk-6-jre-headless |
 
 <br>

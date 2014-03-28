@@ -153,7 +153,7 @@ libreadline5  | libapr1                 | libapr1                 |             
 virt-what     | libcap2                 | libcap2                 |                          |
               | libaprutil1             | libaprutil1             |                          |
               | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | ibaprutil1-ldap         |                          |
+              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
               | libjpeg62               |                         |                          |
 
 <br>
@@ -174,7 +174,7 @@ libreadline5  | libapr1                 | libapr1                 |             
 virt-what     | libcap2                 | libcap2                 |                          |
               | libaprutil1             | libaprutil1             |                          |
               | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | ibaprutil1-ldap         |                          |
+              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
               | libjpeg62               |                         |                          |
 
 <br>
