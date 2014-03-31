@@ -169,6 +169,17 @@ In [puppet.conf][] on each agent node, you can set [the `environment` setting][e
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
+Querying Environment Info via the Master's HTTP API
+-----
+
+If you are extending Puppet and need a way to query information about the available environments, you can do this via the [environments endpoint.][env_endpoint] (This endpoint uses the new [v2 HTTP API.][v2_api])
+
+This _only works for directory environments._ When you query environments via the API, any [config file environments][config_file_envs] will be omitted.
+
+For more details, see [the reference page about the environments endpoint.][env_endpoint]
+
+[v2_api]: /references/3.5.latest/developer/file.http_api_index.html#V2_HTTP_API
+[env_endpoint]: /references/3.5.latest/developer/file.http_environments.html
 
 Limitations of Environments
 -----
