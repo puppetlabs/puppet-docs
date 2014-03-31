@@ -48,11 +48,11 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.5.0
 -----
 
-**Not yet released.** Entered RC2 on March 24, 2014. The RC2 changes included a fix for which directories are allowed to be used in the `manifest` setting, a fix for dynamic environments that use the `manifestdir` setting, and several fixes to the future parser. (RC1: March 14.)
+**Not yet released.** Entered RC2 on March 24, 2014. The RC2 changes included a fix for which directories are allowed to be used in the `manifest` setting, a fix for directory environments that use the `manifestdir` setting, and several fixes to the future parser. (RC1: March 14.)
 
 3.5.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
-* Better support for dynamic environments
+* Better support for environments
 * A cleaner replacement for the classic `import nodes/*.pp` pattern
 * Scriptable configuration with a new `puppet config set` command
 * A new global `$facts` hash
@@ -62,22 +62,22 @@ Puppet 3.5.0
 
 ...along with the usual flurry of smaller improvements and bug fixes.
 
-### Dynamic Environments
+### Directory Environments
 
-Lots of people have been using dynamic temporary environments based on VCS checkouts to test and roll out their Puppet code, [as described in this classic blog post][blog_environments]. This pattern is great, but it pretty much works by accident, so we wanted a better way to support it.
+Lots of people have been using dynamic environments based on VCS checkouts to test and roll out their Puppet code, [as described in this classic blog post][blog_environments]. This pattern is great, but it pretty much works by accident, so we wanted a better way to support it.
 
-Now we have one! The short version is:
+Now we have one! It's called "Directory Environments" (as a way to disambiguate it from the earlier "dynamic environment" pattern and the even-earlier "Static Environments"), and the short version is:
 
 * Create a `$confdir/environments` directory on your puppet master.
 * Each new environment is a subdirectory of that directory. The name of the directory will become the name of the environment.
 * Each environment dir contains a `modules` directory and a `manifests` directory.
-    * The `modules` directory will get stuck in front of the `modulepath`.
+    * The `modules` directory will get stuck in front of the global `modulepath` from puppet.conf.
     * The `manifests` directory will be used as the `manifest` setting (see "Auto-Import" below).
-* No other configuration is needed. Puppet will automatically discover environments.
+* No other configuration is needed. Puppet will automatically discover new environments.
 
-So basically, you do a `git clone` or `git-new-workdir` in your `environments` directory, and nodes can immediately start requesting catalogs in that environment.
+The upshot is that you can do a `git clone` or `git-new-workdir` in your `environments` directory, and nodes can immediately start requesting catalogs in that environment.
 
-This feature isn't _quite_ finished yet: it's missing the ability to set the `config_version` setting per-environment, which is something we're hoping to add in 3.6. But depending on what you're doing, it's probably good enough to start using today.
+This feature isn't _quite_ finished yet: it's missing the ability to set the `modulepath`, `manifest`, and `config_version` settings per-environment, which didn't make the release deadline. But depending on what you're doing, it's probably good enough to start using today.
 
 For full details, see:
 
