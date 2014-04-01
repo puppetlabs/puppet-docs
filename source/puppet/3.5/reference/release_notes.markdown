@@ -60,28 +60,30 @@ Puppet 3.5.0
 * Improvements to the future parser
 * Support for RHEL 7, Ruby 2.1, and Facter 2.0
 
-...along with the usual flurry of smaller improvements and bug fixes.
+...along with many smaller improvements and bug fixes.
 
 ### Directory Environments
 
-Lots of people have been using dynamic temporary environments based on VCS checkouts to test and roll out their Puppet code, [as described in this classic blog post][blog_environments]. That pattern is great, but it's complicated to set up and it pretty much works by accident, so we wanted a better way to support it.
+Lots of people have been using dynamic environments based on VCS checkouts to test and roll out their Puppet code, [as described in this classic blog post][blog_environments]. That pattern is great, but it's complicated to set up and it pretty much works by accident, so we wanted a better way to support it.
 
-Now we have one! The short version is:
+Now we have one! The new feature is called **directory environments,** to distinguish them from the older environments that had to be set in the config file.
+
+The short version is:
 
 * Create a `$confdir/environments` directory on your puppet master.
 * Each new environment is a subdirectory of that directory. The name of the directory will become the name of the environment.
 * Each environment dir contains a `modules` directory and a `manifests` directory.
-    * The `modules` directory will get stuck in front of the `modulepath`.
+    * The `modules` directory will become the first directory in the modulepath (with the new `basemodulepath` setting providing a global list of other directories to use).
     * The `manifests` directory will be used as the `manifest` setting (see "Auto-Import" below).
-* No other configuration is needed. Puppet will automatically discover environments.
+* No other configuration is needed. Puppet will automatically discover new environments.
 
-So basically, you do a `git clone` or `git-new-workdir` in your `environments` directory, and nodes can immediately start requesting catalogs in that environment.
+The upshot is that you can do a `git clone` or `git-new-workdir` in your `environments` directory, and nodes can immediately start requesting catalogs in that environment.
 
-This feature isn't _quite_ finished yet: it's missing the ability to do complex edits to the `modulepath` or set the `config_version` setting per-environment. (That code is mostly done, but won't be released until 3.6.)
+This feature isn't _quite_ finished yet: it's missing the ability to do complex edits to the `modulepath` or set the `config_version` setting per-environment, which didn't make the release deadline. However, it should already be good enough for most users.
 
 For full details, see:
 
-* [The reference page about simple environments][environments_simple]
+* [The reference page about directory environments][environments_simple]
 * [The reference page about the modulepath][dirs_modulepath_simple_envs]
 
 Related issues:
