@@ -9,7 +9,7 @@ This page documents the history of the Facter 2.0 series.
 Facter 2.0.1
 -----
 
-**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC4 on March 28, 2014.
+Released April 1, 2014. (RC1: February 28; RC2: March 12; RC3: March 25; RC4: March 28.)
 
 Facter 2.0.1 is the first release in the Facter 2 series. (See the [note below](#facter-200) about Facter 2.0.0.)
 
