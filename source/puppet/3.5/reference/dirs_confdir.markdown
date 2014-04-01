@@ -53,6 +53,15 @@ Depending on the run environment, Puppet will use either a system-wide confdir o
 
 The system confdir is the most common, since Puppet generally runs as a service with administrator privileges and the admin commands (like `puppet cert`) must be run with `sudo`.
 
+## Interpolation of `$confdir`
+
+Since the value of the confdir is discovered before other settings, you can safely reference it (with the `$confdir` variable) in the value of any other setting in puppet.conf or on the command line:
+
+    [master]
+      modulepath = $confdir/patched_modules:$confdir/modules:/usr/share/puppet/modules
+
+If you need to set nonstandard values for some settings, this allows you to avoid absolute paths and keep your Puppet-related files together.
+
 ## Contents
 
 Puppet's confdir contains several config files and several directories of data and Puppet code. Their locations can be changed with settings, but most users should use the default layout.
