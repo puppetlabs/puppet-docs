@@ -123,6 +123,11 @@ Starting with PE 3.0 and later, group names with periods in them (e.g., group.na
 
 After you remove the broken group names, you can create new groups with valid names and re-add your nodes as needed.
 
+Running a 3.x Master with 2.8.x Agents is not Supported
+----------
+  
+3.x versions of PE contain changes to the MCollective module that are not compatible with 2.8.x agents. When running a 3.x master with a 2.8.x agent, it is possible that puppet will still continue to run and check into the console, but this means puppet is running in a degraded state that is not supported.
+
 * * *
 
 - [Next: Troubleshooting Orchestration](./trouble_orchestration.html)
