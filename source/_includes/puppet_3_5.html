@@ -4,11 +4,59 @@
 
 
 <ul>
-  <li><strong>Puppet 3.5 Overview</strong>
+  <li>{% iflink "Introduction", "./index.html" %}</li>
+  <li>{% iflink "Puppet 3.5 Release Notes", "./release_notes.html" %}</li>
+  <li>{% iflink "System Requirements", "./system_requirements.html" %}</li>
+  <li><strong>The Puppet Language</strong>
     <ul>
-      <li>{% iflink "Introduction", "./index.html" %}</li>
-      <li>{% iflink "Puppet 3.5 Release Notes", "./release_notes.html" %}</li>
-      <li>{% iflink "System Requirements", "./system_requirements.html" %}</li>
+      <li>{% iflink "Visual Index", "./lang_visual_index.html" %}</li>
+      <li>{% iflink "Basics", "./lang_summary.html" %}</li>
+      <li>{% iflink "Reserved Words and Allowed Names", "./lang_reserved.html" %}</li>
+      <li>{% iflink "Resources", "./lang_resources.html" %}</li>
+      <li>{% iflink "Relationships and Ordering", "./lang_relationships.html" %}</li>
+      <li>{% iflink "Resource Defaults", "./lang_defaults.html" %}</li>
+      <li>{% iflink "Variables", "./lang_variables.html" %}</li>
+      <li>{% iflink "Facts and Built-in Variables", "./lang_facts_and_builtin_vars.html" %}</li>
+      <li>{% iflink "Scope", "./lang_scope.html" %}</li>
+      <li>{% iflink "Conditional Statements", "./lang_conditional.html" %}</li>
+      <li>{% iflink "Expressions", "./lang_expressions.html" %}</li>
+      <li>{% iflink "Functions", "./lang_functions.html" %}</li>
+      <li>{% iflink "Classes", "./lang_classes.html" %}</li>
+      <li>{% iflink "Defined Types", "./lang_defined_types.html" %}</li>
+      <li>{% iflink "Containment", "./lang_containment.html" %}</li>
+      <li>{% iflink "Namespaces and Autoloading", "./lang_namespaces.html" %}</li>
+      <li>{% iflink "Resource Collectors", "./lang_collectors.html" %}</li>
+      <li>{% iflink "Node Definitions", "./lang_node_definitions.html" %}</li>
+      <li>{% iflink "Data Types", "./lang_datatypes.html" %}</li>
+      <li>{% iflink "Comments", "./lang_comments.html" %}</li>
+      <li>{% iflink "Virtual Resources", "./lang_virtual.html" %}</li>
+      <li>{% iflink "Exported Resources", "./lang_exported.html" %}</li>
+      <li>{% iflink "Tags", "./lang_tags.html" %}</li>
+      <li>{% iflink "Run Stages", "./lang_run_stages.html" %}</li>
+      <li>{% iflink "Importing Manifest Files", "./lang_import.html" %}</li>
+    </ul>
+  </li>
+
+  <li><strong>Modules</strong>
+    <ul>
+      <li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
+      <li>{% iflink "Plugins in Modules", "/guides/plugins_in_modules.html" %}</li>
+      <li>{% iflink "Installing Modules", "./modules_installing.html" %}</li>
+      <li>{% iflink "Publishing Modules on the Puppet Forge", "./modules_publishing.html" %}</li>
+      <li>{% iflink "Module Documentation", "./modules_documentation.html" %}</li>
+    </ul>
+  </li>
+
+  <li>{% iflink "The Resource Type Reference", "/references/3.5.latest/type.html" %}</li>
+  <li><strong>Other References (Settings, Functions, HTTP, etc.)</strong>
+    <ul>
+      <li>{% iflink "Settings (Configuration Reference)", "/references/3.5.latest/configuration.html" %}</li>
+      <li>{% iflink "Functions", "/references/3.5.latest/function.html" %}</li>
+      <li>{% iflink "Metaparameters", "/references/3.5.latest/metaparameter.html" %}</li>
+      <li>{% iflink "Report Handlers", "/references/3.5.latest/report.html" %}</li>
+      <li>{% iflink "Indirections and Termini", "/references/3.5.latest/indirection.html" %}</li>
+      <li>{% iflink "Ruby API for Developing Extensions", "/references/3.5.latest/developer/index.html" %}</li>
+      <li>{% iflink "Puppet's HTTP API", "/references/3.5.latest/developer/file.http_api_index.html" %}</li>
     </ul>
   </li>
   <li><strong>Important Directories and Files</strong>
@@ -47,47 +95,6 @@
       <li>{% iflink "The tagmail.conf File", "./config_file_tagmail.html" %}</li>
     </ul>
   </li>
-  <li><strong>The Puppet Language</strong>
-    <ul>
-      <li>{% iflink "Visual Index", "./lang_visual_index.html" %}</li>
-      <li>{% iflink "Basics", "./lang_summary.html" %}</li>
-      <li>{% iflink "Reserved Words and Allowed Names", "./lang_reserved.html" %}</li>
-      <li>{% iflink "Resources", "./lang_resources.html" %}</li>
-      <li>{% iflink "Relationships and Ordering", "./lang_relationships.html" %}</li>
-      <li>{% iflink "Resource Defaults", "./lang_defaults.html" %}</li>
-      <li>{% iflink "Variables", "./lang_variables.html" %}</li>
-      <li>{% iflink "Facts and Built-in Variables", "./lang_facts_and_builtin_vars.html" %}</li>
-      <li>{% iflink "Scope", "./lang_scope.html" %}</li>
-      <li>{% iflink "Conditional Statements", "./lang_conditional.html" %}</li>
-      <li>{% iflink "Expressions", "./lang_expressions.html" %}</li>
-      <li>{% iflink "Functions", "./lang_functions.html" %}</li>
-      <li>{% iflink "Classes", "./lang_classes.html" %}</li>
-      <li>{% iflink "Defined Types", "./lang_defined_types.html" %}</li>
-      <li>{% iflink "Containment", "./lang_containment.html" %}</li>
-      <li>{% iflink "Namespaces and Autoloading", "./lang_namespaces.html" %}</li>
-      <li>{% iflink "Resource Collectors", "./lang_collectors.html" %}</li>
-      <li>{% iflink "Node Definitions", "./lang_node_definitions.html" %}</li>
-      <li>{% iflink "Data Types", "./lang_datatypes.html" %}</li>
-      <li>{% iflink "Comments", "./lang_comments.html" %}</li>
-      <li>{% iflink "Virtual Resources", "./lang_virtual.html" %}</li>
-      <li>{% iflink "Exported Resources", "./lang_exported.html" %}</li>
-      <li>{% iflink "Tags", "./lang_tags.html" %}</li>
-      <li>{% iflink "Run Stages", "./lang_run_stages.html" %}</li>
-      <li>{% iflink "Importing Manifest Files", "./lang_import.html" %}</li>
-    </ul>
-  </li>
-
-
-  <li><strong>Modules</strong>
-    <ul>
-      <li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
-      <li>{% iflink "Plugins in Modules", "/guides/plugins_in_modules.html" %}</li>
-      <li>{% iflink "Installing Modules", "./modules_installing.html" %}</li>
-      <li>{% iflink "Publishing Modules on the Puppet Forge", "./modules_publishing.html" %}</li>
-      <li>{% iflink "Module Documentation", "./modules_documentation.html" %}</li>
-    </ul>
-  </li>
-
   <li><strong>SSL and Certificates</strong>
     <ul>
       <li>{% iflink "Using an External CA", "./config_ssl_external_ca.html" %}</li>
@@ -114,17 +121,6 @@
       <li>{% iflink "The Future Parser and Evaluator", "./experiments_future.html" %}</li>
       <li>{% iflink "Iteration and Lambdas", "./experiments_lambdas.html" %}</li>
       <li>{% iflink "Msgpack Support", "./experiments_msgpack.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Generated References</strong>
-    <ul>
-      <li>{% iflink "Resource Types", "/references/3.stable/type.html" %}</li>
-      <li>{% iflink "Configuration Settings", "/references/3.stable/configuration.html" %}</li>
-      <li>{% iflink "Functions", "/references/3.stable/function.html" %}</li>
-      <li>{% iflink "Metaparameters", "/references/3.stable/metaparameter.html" %}</li>
-      <li>{% iflink "Report Handlers", "/references/3.stable/report.html" %}</li>
-      <li>{% iflink "Indirections and Termini", "/references/3.stable/indirection.html" %}</li>
-      <li>{% iflink "Developer Documentation", "/references/3.stable/developer/index.html" %}</li>
     </ul>
   </li>
 </ul>
