@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Directory Environments"
+canonical: "/puppet/latest/reference/environments.html"
 ---
 
 [manifest_dir]: ./dirs_manifest.html

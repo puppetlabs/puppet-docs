@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Config-file Environments"
+canonical: "/puppet/latest/reference/environments_classic.html"
 ---
 
 [config_blocks]: /guides/configuring.html#config-blocks

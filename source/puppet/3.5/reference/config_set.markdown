@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Configuration: Changing Settings on the Command Line"
+canonical: "/puppet/latest/reference/config_set.html"
 ---
 
 <!-- TODO: replace these -->

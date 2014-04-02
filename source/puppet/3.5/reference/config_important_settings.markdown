@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Configuration: Short List of Important Settings"
+canonical: "/puppet/latest/reference/config_important_settings.html"
 ---
 
 <!-- TODO: replace these -->
