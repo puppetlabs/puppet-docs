@@ -22,7 +22,7 @@ The console's account system sends verification emails to new users, and require
 
 ### Allowing Global Unauthenticated Access
 
->**Important**: Do not enable global unauthenticated access alongside third-party authenticated services. 
+>**Important**: Do not enable global unauthenticated access alongside third-party authentication services. 
 
 To allow anonymous, read-only access to the console, do the following:
 
