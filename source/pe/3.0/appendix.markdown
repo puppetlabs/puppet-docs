@@ -158,6 +158,10 @@ On Windows systems, puppet agent runs started locally from the command line requ
 
 This issue only affects PE 3.0 and later.
 
+### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
+
+In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. For more information and a suggested workaround, refer to [Troubleshooting the Console and Database](./trouble_console-db.html#postgresql-memory-buffer-causes-pe-install-to-fail).
+
 ### MCollective `server.cfg` File May Have Wrong Owner Permissions on Windows Agents 
 
 In some cases, `server.cfg`, managed by the pe-mcollective module, may have file owner permissions set to "Administrator" instead of "Administrators", which will prevent MCollective from functioning correctly. If this happens, you will need to manually change the file permissions for this file. 

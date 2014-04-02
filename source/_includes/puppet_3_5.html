@@ -4,49 +4,9 @@
 
 
 <ul>
-  <li><strong>Puppet 3.5 Overview</strong>
-    <ul>
-      <li>{% iflink "Introduction", "./index.html" %}</li>
-      <li>{% iflink "Puppet 3.5 Release Notes", "./release_notes.html" %}</li>
-      <li>{% iflink "System Requirements", "./system_requirements.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Important Directories and Files</strong>
-    <ul>
-      <li>{% iflink "The Main Config Directory (Confdir)", "./dirs_confdir.html" %}</li>
-      <li>{% iflink "The Main Manifest(s)", "./dirs_manifest.html" %}</li>
-      <li>{% iflink "The Modulepath", "./dirs_modulepath.html" %}</li>
-      <li>{% iflink "Environments", "./dirs_environments.html" %}</li>
-      <li>{% iflink "The SSLdir", "./dirs_ssldir.html" %}</li>
-      <li>{% iflink "The Vardir", "./dirs_vardir.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Environments</strong>
-    <ul>
-      <li>{% iflink "Simple Environments", "./environments.html" %}</li>
-      <li>{% iflink "Config-file Environments", "./environments_classic.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Configuration</strong>
-    <ul>
-      <li>{% iflink "About Puppet's Settings", "./config_about_settings.html" %}</li>
-      <li>{% iflink "Checking Values of Settings", "./config_print.html" %}</li>
-      <li>{% iflink "Changing Settings on the Command Line", "./config_set.html" %}</li>
-      <li>{% iflink "Short List of Important Settings", "./config_important_settings.html" %}</li>
-      <li><a href="/references/3.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
-      <li><em>Config Files:</em></li>
-      <li>{% iflink "puppet.conf: The Main Config File", "./config_file_main.html" %}</li>
-      <li>{% iflink "The auth.conf File", "./config_file_auth.html" %}</li>
-      <li>{% iflink "The autosign.conf File", "./config_file_autosign.html" %}</li>
-      <li>{% iflink "The csr_attributes.yaml File", "./config_file_csr_attributes.html" %}</li>
-      <li>{% iflink "The device.conf File", "./config_file_device.html" %}</li>
-      <li>{% iflink "The fileserver.conf File", "./config_file_fileserver.html" %}</li>
-      <li>{% iflink "The hiera.yaml File", "./config_file_hiera.html" %}</li>
-      <li>{% iflink "The puppetdb.conf File", "./config_file_puppetdb.html" %}</li>
-      <li>{% iflink "The routes.yaml File", "./config_file_routes.html" %}</li>
-      <li>{% iflink "The tagmail.conf File", "./config_file_tagmail.html" %}</li>
-    </ul>
-  </li>
+  <li>{% iflink "Introduction", "./index.html" %}</li>
+  <li>{% iflink "Puppet 3.5 Release Notes", "./release_notes.html" %}</li>
+  <li>{% iflink "System Requirements", "./system_requirements.html" %}</li>
   <li><strong>The Puppet Language</strong>
     <ul>
       <li>{% iflink "Visual Index", "./lang_visual_index.html" %}</li>
@@ -77,7 +37,6 @@
     </ul>
   </li>
 
-
   <li><strong>Modules</strong>
     <ul>
       <li>{% iflink "Fundamentals", "./modules_fundamentals.html" %}</li>
@@ -88,6 +47,54 @@
     </ul>
   </li>
 
+  <li>{% iflink "The Resource Type Reference", "/references/3.5.latest/type.html" %}</li>
+  <li><strong>Other References (Settings, Functions, HTTP, etc.)</strong>
+    <ul>
+      <li>{% iflink "Settings (Configuration Reference)", "/references/3.5.latest/configuration.html" %}</li>
+      <li>{% iflink "Functions", "/references/3.5.latest/function.html" %}</li>
+      <li>{% iflink "Metaparameters", "/references/3.5.latest/metaparameter.html" %}</li>
+      <li>{% iflink "Report Handlers", "/references/3.5.latest/report.html" %}</li>
+      <li>{% iflink "Indirections and Termini", "/references/3.5.latest/indirection.html" %}</li>
+      <li>{% iflink "Ruby API for Developing Extensions", "/references/3.5.latest/developer/index.html" %}</li>
+      <li>{% iflink "Puppet's HTTP API", "/references/3.5.latest/developer/file.http_api_index.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Important Directories and Files</strong>
+    <ul>
+      <li>{% iflink "The Main Config Directory (Confdir)", "./dirs_confdir.html" %}</li>
+      <li>{% iflink "The Main Manifest(s)", "./dirs_manifest.html" %}</li>
+      <li>{% iflink "The Modulepath", "./dirs_modulepath.html" %}</li>
+      <li>{% iflink "Environments", "./dirs_environments.html" %}</li>
+      <li>{% iflink "The SSLdir", "./dirs_ssldir.html" %}</li>
+      <li>{% iflink "The Vardir", "./dirs_vardir.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Environments</strong>
+    <ul>
+      <li>{% iflink "Directory Environments", "./environments.html" %}</li>
+      <li>{% iflink "Config File Environments", "./environments_classic.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Configuration</strong>
+    <ul>
+      <li>{% iflink "About Puppet's Settings", "./config_about_settings.html" %}</li>
+      <li>{% iflink "Checking Values of Settings", "./config_print.html" %}</li>
+      <li>{% iflink "Changing Settings on the Command Line", "./config_set.html" %}</li>
+      <li>{% iflink "Short List of Important Settings", "./config_important_settings.html" %}</li>
+      <li><a href="/references/3.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><em>Config Files:</em></li>
+      <li>{% iflink "puppet.conf: The Main Config File", "./config_file_main.html" %}</li>
+      <li>{% iflink "The auth.conf File", "./config_file_auth.html" %}</li>
+      <li>{% iflink "The autosign.conf File", "./config_file_autosign.html" %}</li>
+      <li>{% iflink "The csr_attributes.yaml File", "./config_file_csr_attributes.html" %}</li>
+      <li>{% iflink "The device.conf File", "./config_file_device.html" %}</li>
+      <li>{% iflink "The fileserver.conf File", "./config_file_fileserver.html" %}</li>
+      <li>{% iflink "The hiera.yaml File", "./config_file_hiera.html" %}</li>
+      <li>{% iflink "The puppetdb.conf File", "./config_file_puppetdb.html" %}</li>
+      <li>{% iflink "The routes.yaml File", "./config_file_routes.html" %}</li>
+      <li>{% iflink "The tagmail.conf File", "./config_file_tagmail.html" %}</li>
+    </ul>
+  </li>
   <li><strong>SSL and Certificates</strong>
     <ul>
       <li>{% iflink "Using an External CA", "./config_ssl_external_ca.html" %}</li>
@@ -114,17 +121,6 @@
       <li>{% iflink "The Future Parser and Evaluator", "./experiments_future.html" %}</li>
       <li>{% iflink "Iteration and Lambdas", "./experiments_lambdas.html" %}</li>
       <li>{% iflink "Msgpack Support", "./experiments_msgpack.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Generated References</strong>
-    <ul>
-      <li>{% iflink "Resource Types", "/references/3.stable/type.html" %}</li>
-      <li>{% iflink "Configuration Settings", "/references/3.stable/configuration.html" %}</li>
-      <li>{% iflink "Functions", "/references/3.stable/function.html" %}</li>
-      <li>{% iflink "Metaparameters", "/references/3.stable/metaparameter.html" %}</li>
-      <li>{% iflink "Report Handlers", "/references/3.stable/report.html" %}</li>
-      <li>{% iflink "Indirections and Termini", "/references/3.stable/indirection.html" %}</li>
-      <li>{% iflink "Developer Documentation", "/references/3.stable/developer/index.html" %}</li>
     </ul>
   </li>
 </ul>

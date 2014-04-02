@@ -8,7 +8,7 @@ canonical: "/pe/latest/puppet_overview.html"
 > **Note:** This page gives a broad overview of how Puppet configures systems, and provides links to deeper information. If you prefer to learn by doing, you can follow the Puppet Enterprise quick start guide:
 >
 > * [Quick Start: Using PE](./quick_start.html)
-> * [Quick Start: Writing Modules](./quick_writing.html)
+> * [Quick Start: Writing Modules](./quick_writing_nix.html)
 
 
 Summary of Puppet

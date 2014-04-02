@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Directories: The Vardir"
+canonical: "/puppet/latest/reference/dirs_vardir.html"
 ---
 
 [confdir]: ./dirs_confdir.html
@@ -51,6 +52,15 @@ Depending on the run environment, Puppet will use either a system-wide vardir or
     * The system vardir is also used when Puppet is started as root before switching users and dropping privileges, which is what a WEBrick puppet master does. Note that when puppet master is running as a Rack application, the `config.ru` file must explicitly set `--vardir` to the system vardir. The example `config.ru` file provided with the Puppet source does this.
 
 The system vardir is the most common, since Puppet generally runs as a service with administrator privileges and the admin commands (like `puppet cert`) must be run with `sudo`.
+
+## Interpolation of `$vardir`
+
+Since the value of the vardir is discovered before other settings, you can safely reference it (with the `$vardir` variable) in the value of any other setting in puppet.conf or on the command line:
+
+    [main]
+      ssldir = $vardir/ssl
+
+If you need to set nonstandard values for some settings, this allows you to avoid absolute paths and keep your Puppet-related files together.
 
 
 ## Contents

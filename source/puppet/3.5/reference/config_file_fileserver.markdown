@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Config Files: fileserver.conf"
+canonical: "/puppet/latest/reference/config_file_fileserver.html"
 ---
 
 [file]: /references/3.5.latest/type.html#file

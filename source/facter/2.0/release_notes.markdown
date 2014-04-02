@@ -9,23 +9,29 @@ This page documents the history of the Facter 2.0 series.
 Facter 2.0.1
 -----
 
-**Release Candidate:** Facter 2.0.1 is not yet released. It entered RC4 on March 28, 2014.
+Released April 1, 2014. (RC1: February 28; RC2: March 12; RC3: March 25; RC4: March 28.)
 
 Facter 2.0.1 is the first release in the Facter 2 series. (See the [note below](#facter-200) about Facter 2.0.0.)
 
-### Features
+### More Return Types and Structured Facts
+
+Facts are no longer limited to strings; they can now return any of the following types: Integer, Float, TrueClass, FalseClass, NilClass, String, Array, Hash. The last two are especially significant -- facts can now combine associated pieces of information into a single data structure. Facter 2.0.1 doesn't include any structured facts yet, but you can start writing your own [custom structured facts](fact_overview.html#writing-structured-facts) immediately.
+
+### Aggregate Resolutions
+
+Facter 2 also adds **aggregate resolutions**, which allow you to resolve a fact in multiple steps rather than all in one `setcode` statement. Aggregate resolutions are great for structured facts, but you can also use them to resolve complex flat facts as well. See [Writing Facts With Aggregate Resolutions](fact_overview.html#writing-facts-with-aggregate-resolutions) for more details and examples.
+
+Related issues:
+
+- [FACT-237: Allow fact resolutions to be built up piece-wise](https://tickets.puppetlabs.com/browse/FACT-237)
+
+- [FACT-239: Expose different resolution types in DSL](https://tickets.puppetlabs.com/browse/FACT-239)
+
+### Other Features
 
 [FACT-134: Perform basic sanity checks on Facter output](https://tickets.puppetlabs.com/browse/FACT-134)
 
 Facter now does sanity checking on the output of facts. Facter previously assumed that all facts would be of type String but did not enforce this; Facter now validates that facts are one of (Integer, Float, TrueClass, FalseClass, NilClass, String, Array, Hash).
-
-[FACT-237: Allow fact resolutions to be built up piece-wise](https://tickets.puppetlabs.com/browse/FACT-237)
-
-[FACT-239: Expose different resolution types in DSL](https://tickets.puppetlabs.com/browse/FACT-239)
-
-Introduces aggregate resolutions for facts. Aggregate resolutions allow facts
-to be extended at runtime and provide a simplified way of building up complex
-fact values.
 
 [FACT-341: Windows operatingsystemrelease support](https://tickets.puppetlabs.com/browse/FACT-341)
 

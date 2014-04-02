@@ -171,4 +171,4 @@ Lastly, note that while built-in auth accounts use the email address provided, A
 
 * * *
 
-- [Next: Beginners Guide to Modules](../guides/module_guides/bgtm.html)
+- [Next: Beginners Guide to Modules](./guides/module_guides/bgtm.html)

@@ -46,7 +46,7 @@ This page covers the first part of that process: writing manifests and modules. 
 > For those who learn by doing, the PE user's guide includes a pair of interactive quick start guides, which walk you through installing, using, hacking, and creating Puppet modules.
 >
 > * [Quick Start: Using PE](./quick_start.html)
-> * [Quick Start: Writing Modules](./quick_writing.html)
+> * [Quick Start: Writing Modules](./quick_writing_nix.html)
 >
 > ### Modules in Context
 >

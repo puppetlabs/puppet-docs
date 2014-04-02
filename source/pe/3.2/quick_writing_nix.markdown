@@ -76,12 +76,12 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
         # Deployment by any other user or on any other system is strictly prohibited.
         # ************************************
 
-6. **On the console**, add `apache` to the available classes, and then add that class to your master node. Refer to [the introductory section of this guide if you need help adding classes in the console](./quick_start#using_modules_in_the_pe_console).
+6. **On the console**, add `apache` to the available classes, and then add that class to your agent node. Refer to [the introductory section of this guide if you need help adding classes in the console](./quick_start#using_modules_in_the_pe_console).
 7. Use live management to kick off a puppet run. 
 
 At this point, puppet configures apache and starts the httpd service. When this happens, a default apache vhost is created based on the contents of `vhosts.conf.erb`. 
 
-8. **On the puppet master**, navigate to one of the following locations based on your operating system:
+8. **On the agent node**, navigate to one of the following locations based on your operating system:
    - Redhat-based: `/etc/httpd/conf.d`
    - Debian-based: `/etc/apache2/sites-available`
    
@@ -158,11 +158,11 @@ For more information about writing classes, refer to the following documentation
 [php_info]: ./images/quick/php_info.png
 
 1. **On the console**, click the "Add classes" button, choose the `pe_quickstart_app` class from the list, and then click the "Add selected classes" button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
-2. Navigate to the node view page for your master node, and use the "Edit" button to add the `pe_quickstart_app` class to your puppet master, and remove the `apache` class you previously added.
+2. Navigate to the node view page for your agent node, and use the "Edit" button to add the `pe_quickstart_app` class to your agent node, and remove the `apache` class you previously added.
 
    >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as puppet will only allow you to declare a class once. 
 
-3. Use live management to run the "runonce" action your puppet master. 
+3. Use live management to run the "runonce" action your agent node. 
 
      When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
      
@@ -176,7 +176,7 @@ You have created a new class from scratch and used it to launch a Apache PHP-bas
 
 ### Using PE to Manage Your App
 
-1. **On the puppet master**, open `/var/www/pe_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
+1. **On the agent node**, open `/var/www/pe_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
 3. **On the console**, use live management to run the "runonce" action on your node.
 4. Refresh your browser, and notice that puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/pe_quickstart_app/index.php` has been reset to what was specified in your manifest.)

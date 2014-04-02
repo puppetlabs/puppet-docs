@@ -126,7 +126,7 @@ These answers are generally needed if you are installing the console role.
 : **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
 
 `q_pe_database`
-:**Y or N** "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
+: **Y or N** --- Whether to have the Postgres server for the console installed by PE or to manage it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
 `q_puppet_enterpriseconsole_master_hostname`
 : **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.

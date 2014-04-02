@@ -23,11 +23,41 @@ PostgreSQL is Taking Up Too Much Space
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 
+PostgreSQL Buffer Memory Causes PE Install to Fail
+------- 
+
+In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. The following error will be present in `/var/log/pe-postgresql/pgstartup.log`:
+
+    FATAL: could not create shared memory segment: No space left on device
+    DETAIL: Failed system call was shmget(key=5432001, size=34427584512,03600).
+
+A suggested workaround is tweak the machine's `shmmax` and `shmall` kernel settings before installing PE. The `shmmax` setting should be set to approximately  50% of the total RAM; the `shmall` setting can be calculated by dividing the new `shmmax` setting by the PAGE_SIZE.  (`PAGE_SIZE` can be confirmed by running `getconf PAGE_SIZE`).
+
+Use the following commands to set the new kernel settings:
+
+    sysctl -w kernel.shmmax=<your shmmax calculation>
+    sysctl -w kernel.shmall=<your shmall calculation>
+
+Alternatively, you can also report the issue to the [Puppet Labs customer support portal](https://support.puppetlabs.com/access/unauthenticated). 
 
 PuppetDB's Default Port Conflicts with Another Service
 -----
 
 By default, PuppetDB communicates over port 8081. In some cases, this may conflict with existing services (e.g., McAfee's ePO). You can work around this issue by installing with an answer file that specifies a different port with `q_puppetdb_port`. For more information on using answer files, take a look at the [documentation for automated installs](./install_automated.html) 
+
+New Script to curl the PE Console ENC
+--------
+
+In PE versions earlier than 3.2, you could run the external node script (`/etc/puppetlabs/puppet-dashboard/external_node`) to reach the console ENC. PE 3.2 introduced changes in console authentication and the external node script was removed. You can now curl the console ENC using the following script (but be sure to replace \<NODE NAME> with an actual node name from your deployment):
+
+     CERT=$(puppet master --configprint hostcert)
+     CACERT=$(puppet master --configprint localcacert)
+     PRVKEY=$(puppet master --configprint hostprivkey)
+     CERT_OPTIONS="--cert ${CERT} --cacert ${CACERT} --key ${PRVKEY}"
+     CONSOLE=$(awk '/server =/{print $NF}' /etc/puppetlabs/puppet/console.conf)
+     MASTER="https://${CONSOLE}:443"
+
+     curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/<NODE NAME>"
 
 Recovering from a Lost Console Admin Password
 -----
@@ -92,6 +122,11 @@ Starting with PE 3.0 and later, group names with periods in them (e.g., group.na
         $ sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production nodegroup:del name={bad.group.name.here}
 
 After you remove the broken group names, you can create new groups with valid names and re-add your nodes as needed.
+
+Running a 3.x Master with 2.8.x Agents is not Supported
+----------
+  
+3.x versions of PE contain changes to the MCollective module that are not compatible with 2.8.x agents. When running a 3.x master with a 2.8.x agent, it is possible that puppet will still continue to run and check into the console, but this means puppet is running in a degraded state that is not supported.
 
 * * *
 
