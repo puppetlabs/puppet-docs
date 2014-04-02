@@ -19,10 +19,11 @@ title: "Directory Environments"
 [manifest_setting]: /references/3.5.latest/configuration.html#manifest
 [modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
 [config_print]: ./config_print.html
-
-<!-- TODO direct this to the right header -->
-[config_file_envs_blocks]: ./environments_classic.html
-
+[env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
+[config_file_envs_blocks]: ./environments_classic.html#environment-config-blocks
+[v1 api]: /references/3.5.latest/developer/file.http_api_index.html#V1_API_Services
+[http_api]: /references/3.5.latest/developer/file.http_api_index.html
+[auth.conf file]: ./config_file_auth.html
 
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
@@ -120,7 +121,7 @@ Additionally, there are four forbidden environment names:
 * `agent`
 * `user`
 
-These names can't be used because they conflict with the primary [config blocks](./configuring.html#config-blocks). <!-- TODO better config block link --> **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
+These names can't be used because they conflict with the primary [config blocks](/guides/configuring.html#config-blocks). <!-- TODO better config block link --> **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
 
 ### The `environmentpath`
 
@@ -134,7 +135,7 @@ If you've accidentally configured the same environment in multiple ways (see [th
 
 Config blocks → directory environments → dynamic (`$environment`) environments
 
-If an [environment config block][config_file_envs_blocks] exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config block, those will be used; otherwise, Puppet will use the global values.
+If an [environment config block][config_file_envs_blocks] exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the standard [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config block, those will be used; otherwise, Puppet will use the global values.
 
 If the global values for the [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings use the `$environment` variable, they will only be used when a directory environment **doesn't** exist for the active environment.
 
@@ -169,6 +170,51 @@ In [puppet.conf][] on each agent node, you can set [the `environment` setting][e
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
+Referencing the Environment in Manifests
+-----
+
+In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
+
+Internals: Environments in Puppet's HTTPS Requests
+-----
+
+Puppet's agent and master applications communicate via an HTTP API. All of the URLs used today by puppet agent (the [v1 API][]) start with an environment. See the [HTTP API reference][http_api] for details.
+
+For some endpoints, making a request "in" an environment is meaningless; for others, it influences which modules and manifests the configuration data will come from. Regardless, the API dictates that an environment always be included.
+
+Endpoints where the requested environment can be overridden by the ENC/node terminus:
+
+- [Catalog](/references/3.5.latest/developer/file.http_catalog.html) --- For this endpoint, the environment is just a request, as described above in the section on assigning nodes to environments; if the ENC specifies an environment for the node, it will override the environment in the request.
+
+Endpoints where the requested environment is always used:
+
+- [File content](/references/3.5.latest/developer/file.http_file_content.html) and [file metadata](/references/3.5.latest/developer/file.http_file_metadata.html) --- Files in modules, including plugins like custom facts and resource types, will always be served from the requested environment. Puppet agent has to account for this when fetching files; it does so by fetching its node object (see "node" below), then resetting the environment it will request to whatever the ENC specified and using that new environment for all subsequent requests. (Since custom facts might influence the decision of the ENC, the agent will repeat this process up to three times before giving up.)
+- [Resource type](/references/3.5.latest/developer/file.http_resource_type.html) --- Puppet agent doesn't use this; it's just for extensions. The puppet master will always respond with information for the requested environment.
+
+Endpoints where environment makes no difference:
+
+- [File Bucket File](/references/3.5.latest/developer/file.http_file_bucket_file.html) --- There's only one filebucket.)
+- [Report](/references/3.5.latest/developer/file.http_report.html) --- Reports already contain environment info, and each report handler can decide what, if anything, to do with it.)
+- [Facts](/references/3.5.latest/developer/file.http_facts.html) --- Puppet agent doesn't actually use this endpoint. When used as the inventory service, environment has no effect.)
+- [Node](/references/3.5.latest/developer/file.http_node.html) --- Puppet agent uses this to learn whether the master's ENC has overridden its preferred environment. Theoretically, a node terminus could use the environment of the first node object request to decide whether to override the environment, but we're not aware of anyone doing that and there wouldn't seem to be much point to it.)
+- [Status](/references/3.5.latest/developer/file.http_status.html)
+- [Certificate](/references/3.5.latest/developer/file.http_certificate.html), [certificate signing request](/references/3.5.latest/developer/file.http_certificate_request.html), [certificate status](/references/3.5.latest/developer/file.http_certificate_status.html), and [certificate revocation list](/references/3.5.latest/developer/file.http_certificate_revocation_list.html) --- The CA doesn't differ by environment.)
+
+### Controlling HTTPS Access Based on Environment
+
+The puppet master's [auth.conf file][] can use the environment of a request to help decide whether to authorize a request. This generally isn't necessary or useful, but it's there if the need arises. See the [auth.conf documentation][auth.conf file] for details.
+
+Querying Environment Info via the Master's HTTP API
+-----
+
+If you are extending Puppet and need a way to query information about the available environments, you can do this via the [environments endpoint.][env_endpoint] (This endpoint uses the new [v2 HTTP API.][v2_api])
+
+This _only works for directory environments._ When you query environments via the API, any [config file environments][config_file_envs] will be omitted.
+
+For more details, see [the reference page about the environments endpoint.][env_endpoint]
+
+[v2_api]: /references/3.5.latest/developer/file.http_api_index.html#V2_HTTP_API
+[env_endpoint]: /references/3.5.latest/developer/file.http_environments.html
 
 Limitations of Environments
 -----
@@ -182,6 +228,18 @@ The short version is: any plugins destined for the _agent node_ (e.g. custom fac
 This has to do with the way Ruby loads code, and we're not sure if it can be fixed given Puppet's current architecture. (Some of us think this would require separate Ruby puppet master processes for each environment, which isn't currently practical with the way Rack manages Puppet.)
 
 If you're interested in the issue, it's being tracked as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
+
+### Most Extensions Aren't Environment-Aware
+
+As of today, most extensions to Puppet (including PuppetDB and the Puppet Enterprise console) don't receive, store, or control information about Puppet's use of environments.
+
+We're in the process of working on this; one of the most important steps was adding the ability to query the master for environment info, as mentioned above.
+
+### Exported Resources Can Conflict or Cross Over
+
+Nodes in one environment can accidentally collect resources that were exported from another environment, which causes problems --- either a compilation error due to identically titled resources, or creation and management of unintended resources.
+
+Right now, the only solution is to run multiple puppet masters if you heavily use exported resources. We're working on making PuppetDB environment-aware, which will fix the problem in a more permanent way.
 
 
 Suggestions for Use

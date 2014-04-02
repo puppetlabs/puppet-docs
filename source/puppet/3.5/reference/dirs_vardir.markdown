@@ -52,6 +52,15 @@ Depending on the run environment, Puppet will use either a system-wide vardir or
 
 The system vardir is the most common, since Puppet generally runs as a service with administrator privileges and the admin commands (like `puppet cert`) must be run with `sudo`.
 
+## Interpolation of `$vardir`
+
+Since the value of the vardir is discovered before other settings, you can safely reference it (with the `$vardir` variable) in the value of any other setting in puppet.conf or on the command line:
+
+    [main]
+      ssldir = $vardir/ssl
+
+If you need to set nonstandard values for some settings, this allows you to avoid absolute paths and keep your Puppet-related files together.
+
 
 ## Contents
 
