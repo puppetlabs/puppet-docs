@@ -1382,10 +1382,6 @@ Puppet agent now uses two lockfiles instead of one:
 * The run-in-progress lockfile (configured with the `agent_catalog_run_lockfile` setting) is present if an agent catalog run is in progress. It contains the PID of the currently running process.
 * The disabled lockfile (configured with the `agent_disabled_lockfile` setting) is present if the agent was disabled by an administrator. The file is a JSON hash which **may** contain a `disabled_message` key, whose value should be a string with an explanatory message from the administrator.
 
-### BREAK: Non-Administrator Windows Data Directory Is Changed
-
-When running as a non-privileged user (i.e. not an Administrator), the location of Puppet's data directory has changed. Previously, it was in `~/.puppet`, but it is now located in the Local Application Data directory following Microsoft best-practices for per-user, non-roaming data. The location of the directory is contained in the `%LOCALAPPDATA%` environment variable, which on Windows 2003 and earlier is: `%USERPROFILE%\Local Settings\Application Data` On Windows Vista and later: `%USERPROFILE%\AppData\Local`
-
 ### DEPRECATION: Ruby DSL is Deprecated
 
 The [Ruby DSL that was added in Puppet 2.6](http://projects.puppetlabs.com/projects/puppet/wiki/Ruby_Dsl) (and then largely ignored) is deprecated. Deprecation warnings have been added to Puppet 3.1.

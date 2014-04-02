@@ -158,19 +158,6 @@ If this happens, click "Cancel" to access the console. (In some cases, you may n
 
 This issue will be fixed in a future release.
 
-### `puppet module list --tree` Doesn't Work Without `metadata.json`
-
-If you run `puppet module generate <module name>` or manually create a module directory on the PE module path (`/etc/puppetlabs/puppet/module`) you will get a module structure that does not include `metadata.json`, which is required to run `puppet module list --tree`. 
-
-Running the `--tree` command in this situation will generate the following error:
-
-	Error: undefined method 'tr' for nil:NilClass
-	Error: Try 'puppet help module list' for usage
-
-If using the `--tree` command is necessary, a suggested workaround is to run `puppet module generate <module name>` and then `puppet module build <module name>` from a different location, which will generate `metadata.json`. You can then move the module to the PE module path and use `puppet module list --tree` as normal.  
-
-This will be fixed in a future release.
-
 ### `puppet module list --tree` Shows Incorrect Dependencies After Uninstalling Modules
 
 If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. 

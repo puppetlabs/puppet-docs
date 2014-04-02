@@ -278,8 +278,7 @@ The console needs multiple PostgresSQL databases and PostgresSQL users in order 
 
 The installer gives slightly different options to choose from, depending on your system's configuration:
 
-* Automatically install a PostgreSQL server and auto-configure databases on a local or remote server (only available if PostgreSQL is not yet installed). **This option will generate a random root PostgreSQL password,** and you will need to look it up in the saved answer file after installation finishes. A message at the end of the installer will tell you the location of the answer file.
-* Auto-configure databases on an existing local or remote PostgreSQL server. You will need to provide your server's root PostgreSQL password to the installer. (Note that if you want to auto-configure databases on a remote server, you must make sure the root PostgreSQL user is allowed to log in remotely.)
+* Automatically install a PostgreSQL server and auto-configure databases on a local server. **This option will generate a random root PostgreSQL password,** and you will need to look it up in the saved answer file after installation finishes. A message at the end of the installer will tell you the location of the answer file.
 * Use a set of pre-existing manually configured databases and users.
 
 ##### Manual Database Configuration
