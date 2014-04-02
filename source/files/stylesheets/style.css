@@ -1364,7 +1364,7 @@ li.currentpage > ol.toc a {
 
 /* end prototype nav work. (NF 2011.11.07) */
 
-/* @group #masthead */
+/* Quick nav styling (after being moved to the sidebar instead of the masthead) (NF 2014.04.02) */
 
 ul#doc-navigation li.with-submenu > a {
   display: block;
@@ -1395,7 +1395,7 @@ ul#doc-navigation li {
   display: inline-block;
   color: white;
   margin: 0;
-  margin-right: 1em;
+  margin-left: 0 !important;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
@@ -1487,6 +1487,8 @@ ul#doc-navigation {
 /* @end */
 
 /* @end */
+
+/* @group #masthead */
 
 
 section#masthead h1 h1:before {
