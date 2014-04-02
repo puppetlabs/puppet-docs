@@ -6,6 +6,7 @@ canonical: "/pe/latest/quick_start.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
+[agent-install]: ./install_basic.html#installing-agents
 
 Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) that demonstrates basic use and concepts and a follow-up guide where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules for either [Windows](./quick_writing_windows) or [*nix](./quick_writing_nix) platforms.
 
@@ -13,8 +14,7 @@ Welcome to the Puppet Enterprise 3.2 quick start guide. This document is a short
 
 In this first part, follow along to learn how to:
 
-* Install a small proof-of-concept deployment
-* Add nodes to your deployment
+* Create a small proof-of-concept deployment
 * Examine and control nodes in real time with live management
 * Install a PE-supported Puppet module
 * Apply Puppet classes to nodes using the console
@@ -23,7 +23,7 @@ In this first part, follow along to learn how to:
 
 ####  Quick Start Part Two: Developing Modules
 
-For part two, you can choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows) to learn about module development on those platforms. 
+For part two, you'll build on your knowledge of PE and  learn about module development . You can choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows). 
 
 In part two, you'll learn about:
 
@@ -71,7 +71,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 ### Installing the Puppet Master
 
 1. **On the puppet master node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled, as on Debian and Ubuntu.)
-2.  [Download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
+2.  [Download the full (NOT agent-only) Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates. (The agent-only tarball is used for [package-management based agent installation](agent-install), which is not covered by this guide.)
 3. Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
     * **Install** the puppet master, database support, and console roles; the cloud provisioner role is not required, but may be useful if you later promote this machine to production or just want to experiment with PE provisioning features.
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `master.example.com`.)
@@ -79,14 +79,14 @@ For this walk-through, you will create a simple deployment where the puppet mast
     * None of the **other passwords** are relevant to this quick start guide. **Choose something random.**
     * For purposes of this walkthrough, when prompted for an SMTP server you can enter `localhost` or other inert text. Otherwise, you can **accept the default responses for every other question** by hitting enter.
      
-The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take 10-15 minutes.**
+The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take up to 10-15 minutes.**
 
 > You have now installed the puppet master node. As indicated by the installer, the puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
 
-### Installing the Agent Node
+### Installing the PE Agent
 
 1. **On the agent node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled.)
-2. Copy or [download the Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates.
+2. Copy the Puppet Enterprise tarball you downloaded previously onto your agent node, extract it, and navigate to the directory it creates.
 3. Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
     * **Skip** the puppet master role by answering "No" in the installer script.
     * Provide the puppet master hostname; in this case, **`master.example.com`**. If you configured the master to be reachable at `puppet`, you can alternately accept the default.
@@ -101,7 +101,7 @@ The installer will then install and configure the Puppet Enterprise agent.
 
 > You have now installed the puppet agent node. Stay logged in as root for further exercises.
 
-Adding Nodes to a Deployment
+Connecting Agents to the Master
 -----
 
 After installing, the agent nodes are **not yet allowed** to fetch configurations from the puppet master; they must be explicitly approved and granted a certificate.
@@ -110,19 +110,19 @@ After installing, the agent nodes are **not yet allowed** to fetch configuration
 
 [console_cert]: ./console_accessing.html#accepting-the-consoles-certificate
 
-During installation, the agent node contacted the puppet master and requested a certificate. To add the agent node to the deployment, you'll need to **approve its request on the puppet master**. This is most easily done via the console.
+During installation, the agent node contacted the puppet master and requested a certificate. To add the node to the console and to start managing its configuration, you'll need to **approve its request on the puppet master**. This is most easily done via the console.
 
 1. **On your control workstation**, open a web browser and point it to https://master.example.com.
-   You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate**. The steps to do this vary by browser; [see here][console_cert] for detailed steps for the major web browsers.
+   You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate**. The steps to do this [vary by browser][console_cert].
 2. On the login screen for the console, **log in** with the email address and password you provided when installing the puppet master.
 
    ![The console login screen](./images/quick/login.png)
 
-   The console GUI loads in your browser. Note the pending "node requests" indicator in the upper right corner. Click it to load a list of pending node requests.
+   The console GUI loads in your browser. Note the pending "node requests" indicator in the upper right corner. Click it to load a list of currently pending node requests.
 
    ![Node Request Indicator](./images/console/request_indicator.png)
 
-3. Click the "Accept All" button to approve all the requests and add the nodes to the deployment.
+3. Click the "Accept All" button to approve all the requests and add the nodes.
 
 > The puppet agents can now retrieve configurations from the master the next time puppet runs.
 
@@ -146,19 +146,19 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 
 
 1. Click "Nodes" in the primary navigation bar. 
-   You'll see various UI elements, which show a summary of your deployment's recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
+   You'll see various UI elements, which show a summary of recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
    
    ![The console front page](./images/quick/front.png)
 
 2. **Explore the console**. Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
 
-> You now know how to find detailed information about any node in your deployment, including its status, inventory details, and the results of its last puppet run.
+> You now know how to find detailed information about any node PE is managing, including its status, inventory details, and the results of its last puppet run.
 
 ### Avoiding the Wait
 
 Although the puppet agent is now fully functional on the agent node, some other Puppet Enterprise software is not; specifically, the daemon that listens for orchestration messages is not yet configured. This is because Puppet Enterprise **uses Puppet to configure itself**.
 
-Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To fast-track the process and avoid the wait, do the following:
+Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To speed up the process and avoid the wait, do the following:
 
 1. **On the console**, use the sidebar to navigate to the "mcollective" group:
 
@@ -317,7 +317,7 @@ For more information, see the page on [classifying nodes with the console](./con
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-The event inspector lets you view and research changes and other eventsClick the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
+The event inspector lets you view and research changes and other events. Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
 
 ![The default event inspector view][EI-default]
 
@@ -329,7 +329,7 @@ You can keep clicking to drill down and see more detail. You can click the previ
 
 ![Event detail][EI-detail]
 
-If there had been a problem with applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing NTP.
+If there had been a problem applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing NTP.
 
 In the upper right corner of the detail pane is a link to a run report which contains information about the puppet run that made the change, including metrics about the run, logs, and more information. Visit the [reports page](./console_reports.html#reading-reports) for more information.
 
@@ -338,7 +338,7 @@ Summary
 
 You have now experienced the core features and workflows of Puppet Enterprise. In summary, a Puppet Enterprise user will:
 
-* Deploy new nodes, install PE on them ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add them to their deployment by approving their certificate requests](./console_cert_mgmt.html).
+* Install the PE agent on nodes they wish to manage ([\*nix](./install_basic.html) and [Windows](./install_windows.html) instructions), and [add the nodes by approving their certificate requests](./console_cert_mgmt.html).
 * Use [pre-built, PE supported modules from the Puppet Forge](http://forge.puppetlabs.com) to save time and effort.
 * [Assign classes from modules to nodes in the console.](./console_classes_groups.html)
 * [Use the console to set values for class parameters.](./console_classes_groups.html)
@@ -350,7 +350,7 @@ You have now experienced the core features and workflows of Puppet Enterprise. I
 
 Beyond what this brief walkthrough has covered, most users will go on to:
 
-* Edit Forge modules to customize them to the deployment.
+* Edit Forge modules to customize them to your infrastructure's needs.
 * Create new modules from scratch by writing classes that manage resources.
 * Use a **site module** to compose other modules into machine roles, allowing console users to control policy instead of implementation.
 * Configure multiple nodes at once by adding classes to groups in the console instead of individual nodes.
@@ -361,7 +361,7 @@ To learn about these workflows, continue to part two of this quick start guide.
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides a pre-built PE deployment on VMware and VirtualBox virtualization platforms. 
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides PE pre-installed and configured on VMware and VirtualBox virtualization platforms. 
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 * To explore the rest of the PE user's manual, use the sidebar at the top of this page, or [return to the index](./index.html).
 
