@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Subsystems: Catalog Compilation"
+canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 ---
 
 [environment]: ./environments.html

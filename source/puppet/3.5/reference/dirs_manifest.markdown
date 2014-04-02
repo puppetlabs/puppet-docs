@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Directories: The Main Manifest(s)"
+canonical: "/puppet/latest/reference/dirs_manifest.html"
 ---
 
 <!-- TODO point at relevant subhead -->

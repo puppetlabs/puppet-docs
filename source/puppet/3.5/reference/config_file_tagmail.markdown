@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Config Files: tagmail.conf"
+canonical: "/puppet/latest/reference/config_file_tagmail.html"
 ---
 
 [tags]: ./lang_tags.html
