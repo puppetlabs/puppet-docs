@@ -1366,7 +1366,7 @@ li.currentpage > ol.toc a {
 
 /* @group #masthead */
 
-body#puppetlabsdocs.docs #masthead li.with-submenu > a {
+ul#doc-navigation li.with-submenu > a {
   display: block;
   position: relative;
   background: #804223;
@@ -1380,18 +1380,18 @@ body#puppetlabsdocs.docs #masthead li.with-submenu > a {
   width: 118px;
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu:hover > a {
+ul#doc-navigation li.with-submenu:hover > a {
   background: #370e01;
   background: rgba(0,0,0,0.5);
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu.active > a,
-body#puppetlabsdocs.docs #masthead li.with-submenu.active:hover > a {
+ul#doc-navigation li.with-submenu.active > a,
+ul#doc-navigation li.with-submenu.active:hover > a {
     background: #333;
 	background: rgba(0,0,0,0.85);
 }
 
-body#puppetlabsdocs.docs #masthead li {
+ul#doc-navigation li {
   display: inline-block;
   color: white;
   margin: 0;
@@ -1402,7 +1402,11 @@ body#puppetlabsdocs.docs #masthead li {
   position: relative;
 }
 
-body#puppetlabsdocs.docs #masthead li.active a {
+ul#doc-navigation dt {
+  color: white;
+}
+
+ul#doc-navigation li.active a {
   -webkit-border-bottom-left-radius: 0;
   -webkit-border-bottom-right-radius: 0;
   -moz-border-radius-bottomleft: 0;
@@ -1411,7 +1415,7 @@ body#puppetlabsdocs.docs #masthead li.active a {
   border-bottom-right-radius: 0;
 }
 
-body#puppetlabsdocs.docs #masthead span.drop-down-trigger {
+ul#doc-navigation span.drop-down-trigger {
   display: block;
   width: 20px;
   height: 1.4em;
@@ -1427,12 +1431,12 @@ body#puppetlabsdocs.docs #masthead span.drop-down-trigger {
   padding: 0;
 }
 
-body#puppetlabsdocs.docs #masthead ol li:hover span.drop-down-trigger {
+ul#doc-navigation ol li:hover span.drop-down-trigger {
   opacity: 1;
   visibility: visible;
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu dl {
+ul#doc-navigation li.with-submenu dl {
   background: #333;
   background: rgba(0,0,0,0.85);
   left: 0;
@@ -1446,12 +1450,12 @@ body#puppetlabsdocs.docs #masthead li.with-submenu dl {
   visibility: hidden;
 }
 
-body#puppetlabsdocs.docs #masthead li.active.with-submenu dl {
+ul#doc-navigation li.active.with-submenu dl {
   opacity: 1;
   visibility: visible;
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu dl:last-child {
+ul#doc-navigation li.with-submenu dl:last-child {
   -webkit-border-bottom-left-radius: 0.5em;
   -webkit-border-bottom-right-radius: 0.5em;
   -moz-border-radius-bottomleft: 0.5em;
@@ -1460,20 +1464,25 @@ body#puppetlabsdocs.docs #masthead li.with-submenu dl:last-child {
   border-bottom-right-radius: 0.5em;
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu dl dt {
+ul#doc-navigation li.with-submenu dl dt {
   padding: 0.75em 10px 0;
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu dl a {
+ul#doc-navigation li.with-submenu dl a {
   padding: 0.25em 10px;
   display: block;
   line-height: 1.33em;
   margin-bottom: 0.25em;
 }
 
-body#puppetlabsdocs.docs #masthead li.with-submenu dl a:hover {
+ul#doc-navigation li.with-submenu dl a:hover {
 	background: rgba(0,0,0,0.5);
 }
+
+ul#doc-navigation {
+  margin: 0;
+}
+
 
 /* @end */
 
@@ -1484,14 +1493,6 @@ section#masthead h1 h1:before {
   content: ": ";
   margin-left: -0.15em;
 }
-
-section#masthead ul#doc-navigation {
-  float: right;
-  margin: 0;
-  position: relative;
-  top: 1.25em;
-}
-
 
 /* @end */
 

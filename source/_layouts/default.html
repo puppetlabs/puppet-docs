@@ -294,19 +294,6 @@
       <section id="masthead">
         <div class="site-width">
           <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
-          <ul id="doc-navigation">
-            <li><a href="/">Docs Home</a></li>
-            <li class="with-submenu">
-              <a href="#">
-                <span>Quick Nav</span>
-                <span class="drop-down-trigger"></span>
-              </a>
-               <!-- the following links can't be relative, unfortunately -->
-               <!-- future: add some JS to disable this if running from file:// -->
-               {% include quick_nav.html %}
-            </li>
-            <li><a href="/contribute.html">Contribute</a></li>
-          </ul>
         </div>
         <br />
       </section>
@@ -322,6 +309,15 @@
             </div>
             <nav class="main">
                   <div id="subCol">
+                      <ul id="doc-navigation">
+                        <li class="with-submenu">
+                          <a href="#">
+                            <span>Docs Quick Nav</span>
+                            <span class="drop-down-trigger"></span>
+                          </a>
+                           {% include quick_nav.html %}
+                        </li>
+                      </ul>
                       {% render_nav %}
                       <div style="margin-top: 1.5em; padding-bottom: 10px;">
                           <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Download the Docs</p>
