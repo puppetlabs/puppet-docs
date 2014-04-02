@@ -17,7 +17,7 @@ Welcome to part two of the PE 3.2 quick start guide---the Linux track. This docu
 Getting Started
 -----
 
-Since you'll be using the same master and agent nodes you configured in part one, all you need to install for the following exercises is the [Puppet Labs Apache module](https://forge.puppetlabs.com/puppetlabs/apache). The process is identical to how you installed the NTP module in part one, but just be sure to install the module on your master. Once the module has been installed, use the console to add its class.
+Since you'll be using the same master and agent nodes you configured in part one, all you need to install for the following exercises is the [Puppet Labs Apache module](https://forge.puppetlabs.com/puppetlabs/apache). The process is identical to how you [installed the NTP module](./quick_start.html#installing-a-forge-module) in part one, but just be sure to install the module on your master. Once the module has been installed, use the console to add its class as you did with NTP.
 
 Editing a Forge Module
 -----

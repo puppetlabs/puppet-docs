@@ -19,7 +19,7 @@ Getting Started
 
 First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the first agent node in part one of this guide.
 
-Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you installed the NTP module in part one. Once the module has been installed, add its class.
+Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you [installed the NTP module](./quick_start.html#installing-a-forge-module) in part one. Once the module has been installed, add its class as you did with NTP.
 
 Editing a Forge Module
 -----
