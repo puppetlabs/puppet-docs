@@ -24,7 +24,7 @@ Enabling the Future Parser
 To enable the future parser:
 
 * On your puppet master(s) (or all nodes, if running puppet apply), ensure the `rgen` gem is installed. If you installed Puppet from the official packages, this was already installed as a dependency; otherwise, you may need to install it manually.
-* On your puppet master(s) (or each node, if running puppet apply), set [`parser = future`][parser_setting] in the `[master]` or `[main]` block of puppet.conf. (In a masterless "puppet apply" deployment, use `[main]`.)
+* On your puppet master(s) (or each node, if running puppet apply), set [`parser = future`][parser_setting] in the `[master]` or `[main]` section of puppet.conf. (In a masterless "puppet apply" deployment, use `[main]`.)
     * Alternately, for one-off tests, you can set `--parser future` on the command line when running puppet apply.
 
 ### Toggling the Future Evaluator

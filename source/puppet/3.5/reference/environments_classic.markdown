@@ -4,9 +4,7 @@ title: "Config-file Environments"
 canonical: "/puppet/latest/reference/environments_classic.html"
 ---
 
-[config_blocks]: /guides/configuring.html#config-blocks
-<!-- TODO better config block link -->
-
+[config_sections]: ./config_file_main.html#config-sections
 [manifest_dir]: ./dirs_manifest.html
 [modulepath]: ./dirs_modulepath.html
 [config_version]: /references/3.5.latest/configuration.html#configversion
@@ -33,13 +31,13 @@ This frees you to use different versions of the same modules for different popul
 Setting Up Environments on a Puppet Master
 -----
 
-Puppet's config file provides two ways to configure environments: per-environment **config blocks,** and interpolation of the `$environment` variable in settings values (AKA **dynamic environments**).
+Puppet's config file provides two ways to configure environments: per-environment **config sections,** and interpolation of the `$environment` variable in settings values (AKA **dynamic environments**).
 
-### Environment Config Blocks
+### Environment Config Sections
 
-The [puppet.conf file][puppet.conf] has four primary [config blocks][config_blocks]. The puppet master application will usually use settings from the `master` block, and will fall back to the `main` block for settings that aren't defined in `master`.
+The [puppet.conf file][puppet.conf] has four primary [config sections][config_sections]. The puppet master application will usually use settings from the `master` section, and will fall back to the `main` section for settings that aren't defined in `master`.
 
-You can also make additional config blocks for environments. If available, Puppet will use settings from an environment config block when serving nodes assigned to that environment. If an environment-specific block doesn't exist or doesn't set values for some settings, Puppet will fall back to the `master` and `main` blocks as normal.
+You can also make additional config sections for environments. If available, Puppet will use settings from an environment config section when serving nodes assigned to that environment. If an environment-specific section doesn't exist or doesn't set values for some settings, Puppet will fall back to the `master` and then `main` sections as normal.
 
     [main]
       server = puppet.example.com
@@ -57,7 +55,7 @@ In this example, the `test` environment has its own separate values for the `mod
 
 #### Usable Settings
 
-Only certain settings can be used in an environment config block. Although Puppet will allow you to set any settings there, it will only actually read and use a few of them. Those usable settings are:
+Only certain settings can be used in an environment config section. Although Puppet will allow you to set any settings there, it will only actually read and use a few of them. Those usable settings are:
 
 - [`modulepath`][modulepath_setting]
 - [`manifest`][manifest_setting]
@@ -67,7 +65,7 @@ The `templatedir` setting will also work, but we recommend against using the old
 
 ### Dynamic Environments
 
-Alternately, you can use the global values for the `modulepath` and `manifest` settings (via the `master` or `main` block), but set their values to use the special `$environment` variable.
+Alternately, you can use the global values for the `modulepath` and `manifest` settings (via the `master` or `main` section), but set their values to use the special `$environment` variable.
 
 When getting values for settings, Puppet will replace `$environment` with the name of the active environment. This allows you to mimic [directory environments][directory_environments]:
 
@@ -94,23 +92,23 @@ Additionally, there are four forbidden environment names:
 * `agent`
 * `user`
 
-These names can't be used because they conflict with the primary [config blocks][config_blocks]. **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
+These names can't be used because they conflict with the primary [config sections][config_sections]. **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
 
 ### Interaction with Directory Environments
 
 If you've accidentally configured the same environment in multiple ways (see [the page on directory environments][directory_environments]), the precedence goes like this:
 
-Config blocks → directory environments → dynamic (`$environment`) environments
+Config sections → directory environments → dynamic (`$environment`) environments
 
-If an environment config block exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the standard [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config block, those will be used; otherwise, Puppet will use the global values.
+If an environment config section exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the standard [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config section, those will be used; otherwise, Puppet will use the global values.
 
 If the global values for the [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings use the `$environment` variable, they will only be used when a directory environment **doesn't** exist for the active environment.
 
-Similarly, if the global `manifest` or `modulepath` use `$environment`, any config block environments will override them.
+Similarly, if the global `manifest` or `modulepath` use `$environment`, any config section environments will override them.
 
 ### Unconfigured Environments
 
-If a node is assigned to an environment for which a config block doesn't exist, the puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
+If a node is assigned to an environment for which a config section doesn't exist, the puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
 
 If the values of those settings point to any files or directories that don't exist (due to interpolating `$environment` for an unexpected environment name), Puppet will act as though those directories were empty.
 

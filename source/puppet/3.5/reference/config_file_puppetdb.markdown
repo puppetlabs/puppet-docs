@@ -24,7 +24,7 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
 
 ## Format
 
-The `puppetdb.conf` file uses the same ini-like format as `puppet.conf`, but only uses a `[main]` block and only has two settings:
+The `puppetdb.conf` file uses the same INI-like format as `puppet.conf`, but only uses a `[main]` section and only has two settings:
 
 * The `server` setting must be set to the hostname of the PuppetDB server.
 * The `port` setting must be set to the port of the PuppetDB server.

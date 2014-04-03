@@ -26,7 +26,7 @@ Disabling Autosigning
 
 By default, the CA puppet master will use the `$confdir/autosign.conf` file as a whitelist; [see "Basic Autosigning" below][inpage_basic]. Since this file doesn't exist by default, autosigning is implicitly disabled, and the CA will not autosign any certificates.
 
-To _explicitly_ disable autosigning, you can set `autosign = false` in the `[master]` block of the CA puppet master's puppet.conf. This will cause the CA to never autosign even if an autosign.conf file is written later.
+To _explicitly_ disable autosigning, you can set `autosign = false` in the `[master]` section of the CA puppet master's puppet.conf. This will cause the CA to never autosign even if an autosign.conf file is written later.
 
 Naïve Autosigning
 -----
@@ -35,7 +35,7 @@ Naïve autosigning causes the CA to autosign **all** CSRs.
 
 ### Enabling Naïve Autosigning
 
-To enable naïve autosigning, set `autosign = true` in the `[master]` block of the CA puppet master's puppet.conf.
+To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA puppet master's puppet.conf.
 
 ### Security Implications of Naïve Autosigning
 
@@ -50,7 +50,7 @@ In basic autosigning, the CA uses a config file containing a whitelist of certif
 
 ### Enabling Basic Autosigning
 
-To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` block of the CA puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the puppet master; otherwise it will be treated as a policy executable.
+To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` section of the CA puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the puppet master; otherwise it will be treated as a policy executable.
 
 > **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. See ["Configuring Puppet"](/guides/configuring.html) for details about Puppet's confdir.
 
@@ -78,7 +78,7 @@ In policy-based autosigning, the CA will run an external policy executable every
 
 ### Enabling Policy-Based Autosigning
 
-To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` block of the CA puppet master's puppet.conf.
+To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` section of the CA puppet master's puppet.conf.
 
 The policy executable file **must be executable by the same user as the puppet master.** If not, it will be treated as a certname whitelist file.
 
