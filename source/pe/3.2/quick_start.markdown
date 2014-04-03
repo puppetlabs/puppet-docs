@@ -292,7 +292,7 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 
 9. Finally, run `service ntpd start`.
 
-> Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. 
+> Puppet is now managing NTP on the `agent.1` and `master.example` nodes. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next puppet run. 
 
 #### Setting Class Parameters
 
