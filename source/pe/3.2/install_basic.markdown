@@ -333,7 +333,7 @@ The installer will attempt to contact the puppet master before completing the in
 Installing Agents
 -----
 
-If you are using a supported OS that is capable of using remote package repos, the easiest way to install the PE agent is with standard *nix package management tools. To install the agent on other OS's (Solaris, AIX, RHEL 4, Windows) you'll need to use the installer script just as you did above.
+If you are using a supported OS that is capable of using remote package repos, the simplest way to install the PE agent is with standard *nix package management tools. To install the agent on other OS's (Solaris, AIX, RHEL 4, Windows) you'll need to use the installer script just as you did above.
 
 ### Installing Agents with Your Package Management Tools
 
