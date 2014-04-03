@@ -227,10 +227,6 @@ RubyCAS server, the component which provides console log-in services will not au
 
 In the Browse Resources tab, comparing a service across a mixture of RedHat-based and Debian-based nodes will give different numbers in the list view and the detail view.
 
-### Bad Data in Facter's `architecture` Fact
-
-On AIX agents, a bug causes facter to return the system's model number (e.g., IBM 3271) instead of the processor's architecture (e.g. Power6). There is no known workaround.
-
 ### Augeas File Access Issue
 
 On AIX agents, the Augeas lens is unable to access or modify `etc/services`. There is no known workaround.
