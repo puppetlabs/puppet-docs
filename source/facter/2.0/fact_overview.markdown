@@ -11,8 +11,6 @@ This page is an example-driven tour of those elements, and is intended as a quic
 for authors of custom facts. You'll need some familiarity with Ruby to understand most of these examples.
 For a gentler introduction, check out the [Custom Facts Walkthrough](custom_facts.html).
 
->**Note:** If you're using any part of the Facter API, you'll need to add `require 'facter'` to the top of your source file. We'll omit it for the examples on this page to focus on more important details.
-
 First off, it's important to distinguish between **facts** and **resolutions**. A fact is a piece of information about a given node,
 while a resolution is a way of obtaining that information from the system. That means that every fact needs to have **at least one**
 resolution, and facts that can run on different operating systems may need to have different resolutions for each one.
@@ -93,6 +91,8 @@ Simple facts are typically made up of the following parts:
 ## Writing Structured Facts
 
 Facter 2.0 introduced **structured facts**, which can take the form of hashes or arrays. You don't have to do anything special to mark the fact as structured --- if your fact returns a hash or array, Facter will recognize it as a structured fact. Structured facts can have [simple](#main_components_of_simple_resolutions) or [aggregate resolutions](#main_components_of_aggregate_resolutions).
+
+> **Note:** Structured facts are supported in Puppet 3.3 and greater, but they're not enabled by default. To enable structured facts when using `puppet apply`, the [stringify_facts](/references/latest/configuration.html#stringifyfacts) option must be set to `false` in the `[main]` section of puppet.conf. To enable structured facts in a master/agent setup, `stringify_facts` must be set to `false` in the `[main]` or `[master]` section on the master as well as either the `[main]` or `[agent]` section on the agent.
 
 ### Example: returning an array of network interfaces
 {% highlight ruby %}
