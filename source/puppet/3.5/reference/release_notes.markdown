@@ -48,7 +48,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.5.0
 -----
 
-**Not yet released.** Entered RC3 on March 31, 2014. (RC1: March 14. RC2: March 24.) RC3 fixed a regression in the RPM package provider that prevented managing architecture-specific packages ([PUP-2039](https://tickets.puppetlabs.com/browse/PUP-2039)). RC2 included a fix for the `manifest` setting not allowing certain directories as its value ([PUP-1944](https://tickets.puppetlabs.com/browse/PUP-1944)), a fix for dynamic environments that use the `manifestdir` setting ([PUP-2009](https://tickets.puppetlabs.com/browse/PUP-2009)), and several fixes to the future parser.
+Released April 3, 2014. (RC1: March 14. RC2: March 24. RC3: March 31.)
 
 3.5.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
@@ -401,7 +401,13 @@ General bugs:
 - [PUP-1885: File type ignore can't convert Fixnum into String](https://tickets.puppetlabs.com/browse/PUP-1885) (This one was a regression from 3.3.0.)
 - [PUP-1404: PR (2234): ensure Puppet::Util::Execution.execpipe always run the command with LANG... - doc75](https://tickets.puppetlabs.com/browse/PUP-1404)
 
-Bugs discovered during the RC period:
+Bugs introduced in 3.5 and fixed during the release candidate period:
+
+Fixed in RC3:
+
+- [PUP-2039: rpm provider broken for architecture specifications in 3.5.0-RC2 due to whatprovides functionality change](https://tickets.puppetlabs.com/browse/PUP-2039)
+
+Fixed in RC2:
 
 - [PUP-1944: Error when manifest is a directory but not the same as manifestdir](https://tickets.puppetlabs.com/browse/PUP-1944)
 - [PUP-2009: Dynamic environments not working with manifestdir setting](https://tickets.puppetlabs.com/browse/PUP-2009)
@@ -410,7 +416,6 @@ Bugs discovered during the RC period:
 - [PUP-1978: future parser doesn't accept empty array as title](https://tickets.puppetlabs.com/browse/PUP-1978)
 - [PUP-1979: future parser Class reference with leading :: doesn't work](https://tickets.puppetlabs.com/browse/PUP-1979)
 - [PUP-2017: TupleType applies size constraint to last element only](https://tickets.puppetlabs.com/browse/PUP-2017)
-
 
 
 ### All Resolved Issues for 3.5.0
