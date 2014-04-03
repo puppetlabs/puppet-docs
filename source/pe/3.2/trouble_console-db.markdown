@@ -50,14 +50,14 @@ New Script to curl the PE Console ENC
 
 In PE versions earlier than 3.2, you could run the external node script (`/etc/puppetlabs/puppet-dashboard/external_node`) to reach the console ENC. PE 3.2 introduced changes in console authentication and the external node script was removed. You can now curl the console ENC using the following script (but be sure to replace \<NODE NAME> with an actual node name from your deployment):
 
-     CERT=$(puppet master --configprint hostcert)
-     CACERT=$(puppet master --configprint localcacert)
-     PRVKEY=$(puppet master --configprint hostprivkey)
-     CERT_OPTIONS="--cert ${CERT} --cacert ${CACERT} --key ${PRVKEY}"
-     CONSOLE=$(awk '/server =/{print $NF}' /etc/puppetlabs/puppet/console.conf)
-     MASTER="https://${CONSOLE}:443"
+    CERT=$(puppet master --configprint hostcert)
+    CACERT=$(puppet master --configprint localcacert)
+    PRVKEY=$(puppet master --configprint hostprivkey)
+    CERT_OPTIONS="--cert ${CERT} --cacert ${CACERT} --key ${PRVKEY}"
+    CONSOLE=$(awk '/server =/{print $NF}' /etc/puppetlabs/puppet/console.conf)
+    MASTER="https://${CONSOLE}:443"
 
-     curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/<NODE NAME>"
+    curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/<NODE NAME>"
 
 Recovering from a Lost Console Admin Password
 -----
