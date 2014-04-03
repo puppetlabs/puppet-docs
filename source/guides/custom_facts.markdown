@@ -8,6 +8,8 @@ Custom Facts
 
 Extend facter by writing your own custom facts to provide information to Puppet.
 
+> This guide applies to Facter 1.7 and below. See the [Facter 2.0 documentation](/facter/2.0/) for an [updated version of this guide](/facter/2.0/custom_facts.html) and the new [example-driven overview](/facter/2.0/fact_overview.html) of custom facts.
+
 * * *
 
 [executionpolicy]: http://technet.microsoft.com/en-us/library/ee176949.aspx
