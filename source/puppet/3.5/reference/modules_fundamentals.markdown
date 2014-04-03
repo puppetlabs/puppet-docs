@@ -70,7 +70,7 @@ To make a module available to Puppet, **place it in one of the directories in Pu
 >
 > Use `puppet config print modulepath` to see your currently configured modulepath.
 >
->  If you want both puppet master and puppet apply to have access to the modules, set the modulepath in [puppet.conf][conf] to go to the `[main]` block. Modulepath is also one of the settings that can be different per [environment][].
+>  If you want both puppet master and puppet apply to have access to the modules, set the modulepath in [puppet.conf][conf] to go to the `[main]` section. Modulepath is also one of the settings that can be different per [environment][].
 
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
