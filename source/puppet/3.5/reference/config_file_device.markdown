@@ -18,13 +18,13 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
 
 ## Format
 
-`device.conf` is organized in INI-like blocks, with one block per device:
+`device.conf` is organized in INI-like sections, with one section per device:
 
     [router6.example.com]
         type cisco
         url ssh://admin:password@ef03c87a.local
 
-The name of each block should be the name that will be used with puppet device to access the device.
+The name of each section should be the name that will be used with puppet device to access the device.
 
-The body of the block should contain a `type` directive (the only current valid value is `cisco`) and a `url` directive (which should be an SSH URL to the device's management interface).
+The body of the section should contain a `type` directive (the only current valid value is `cisco`) and a `url` directive (which should be an SSH URL to the device's management interface).
 

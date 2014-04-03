@@ -68,7 +68,7 @@ The `--environment` option specifies which [environment][] use when finding sett
 
 Any valid environment can be specified, including environments that don't exist or don't have any settings configured.
 
-This option is generally only useful when looking up settings used by the puppet master service, since it's rare to use environment config blocks for puppet apply and puppet agent.
+This option is generally only useful when looking up settings used by the puppet master service, since it's rare to use environment config sections for puppet apply and puppet agent.
 
 
 Imitating Puppet Master and Puppet Cert

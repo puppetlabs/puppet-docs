@@ -21,7 +21,7 @@ canonical: "/puppet/latest/reference/environments.html"
 [modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
 [config_print]: ./config_print.html
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
-[config_file_envs_blocks]: ./environments_classic.html#environment-config-blocks
+[config_file_envs_sections]: ./environments_classic.html#environment-config-sections
 [v1 api]: /references/3.5.latest/developer/file.http_api_index.html#V1_API_Services
 [http_api]: /references/3.5.latest/developer/file.http_api_index.html
 [auth.conf file]: ./config_file_auth.html
@@ -122,7 +122,7 @@ Additionally, there are four forbidden environment names:
 * `agent`
 * `user`
 
-These names can't be used because they conflict with the primary [config blocks](/guides/configuring.html#config-blocks). <!-- TODO better config block link --> **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
+These names can't be used because they conflict with the primary [config sections](./config_file_main.html#config-sections). **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
 
 ### The `environmentpath`
 
@@ -134,9 +134,9 @@ If you need to keep environments in multiple directories, you can configure them
 
 If you've accidentally configured the same environment in multiple ways (see [the page on config file environments][config_file_envs]), the precedence goes like this:
 
-Config blocks → directory environments → dynamic (`$environment`) environments
+Config sections → directory environments → dynamic (`$environment`) environments
 
-If an [environment config block][config_file_envs_blocks] exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the standard [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config block, those will be used; otherwise, Puppet will use the global values.
+If an [environment config section][config_file_envs_sections] exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the standard [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config section, those will be used; otherwise, Puppet will use the global values.
 
 If the global values for the [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings use the `$environment` variable, they will only be used when a directory environment **doesn't** exist for the active environment.
 
@@ -167,7 +167,7 @@ If the environment key isn't set in the ENC's YAML output, the puppet master wil
 
 ### Via the Agent's Config File
 
-In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config block. When that node requests a catalog from the puppet master, it will request that environment.
+In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config section. When that node requests a catalog from the puppet master, it will request that environment.
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 

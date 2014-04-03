@@ -94,7 +94,7 @@ Hiera is a key/value lookup tool for configuration data, built to make Puppet be
 * [Using Hiera from the command line](/hiera/1/command_line.html)
 
 
-[Facter](/facter/latest/core_facts.html)
+[Facter](/facter/latest/)
 -----
 
 Facter is Puppet's cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables.

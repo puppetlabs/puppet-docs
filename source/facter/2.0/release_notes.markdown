@@ -27,6 +27,18 @@ Related issues:
 
 - [FACT-239: Expose different resolution types in DSL](https://tickets.puppetlabs.com/browse/FACT-239)
 
+### Breaking Changes
+
+Removed facts:
+
+- `selinux_mode` has been removed since it was duplicated by `selinux_config_policy`.
+- `memorytotal` has been removed since it was duplicated by `memorysize`.
+
+API changes:
+
+- Fact values can now only be accessed using the `Facter.value` method. See [Using other facts](custom_facts.html#using-other-facts) in the Custom Facts Walkthrough for more information and examples. Facts that refer to other facts with the deprecated `Facter.fact_name` notation will have to be updated.
+- Previously, Facter would treat the empty string as `nil` (a falsey value). Because Facter 2 allows resolutions to return `nil` directly, the empty string is now treated just like any other string (i.e., truthy). Custom facts that relied on this behavior in the past will need to be updated. The only exception is the string form of the `setcode` method (e.g., `setcode 'lsb_release -a'`), which still treats the empty string (or a non-zero exit code) as `nil`.
+
 ### Other Features
 
 [FACT-134: Perform basic sanity checks on Facter output](https://tickets.puppetlabs.com/browse/FACT-134)

@@ -281,17 +281,18 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
    ![assigning the ntp class][assign_ntp]
 
 4. Note that the `ntp` class now appears in the list of classes on `agent1`.
-5. Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
-6. On the agent node, run `service ntpd stop`.
+5. Repeat step 3 to add the `ntp` class to the puppet master. 
+6. Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+7. On the agent node, run `service ntpd stop`.
 
    **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."
-7. Run `nptdate us.pool.ntp.org`. The result should resemble the following:
+8. Run `nptdate us.pool.ntp.org`. The result should resemble the following:
 
    `28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec`
 
-8. Finally, run `service ntpd start`.
+9. Finally, run `service ntpd start`.
 
-> Puppet is now managing NTP on the `agent.1` node. So, for example, if you forget to restart the NTP service after running `ntpdate`, PE will automatically restart it on the next puppet run. 
+> Puppet is now managing NTP on the `agent.1` and `master.example` nodes. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next puppet run. 
 
 #### Setting Class Parameters
 
