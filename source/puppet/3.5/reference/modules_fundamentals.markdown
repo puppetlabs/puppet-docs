@@ -106,7 +106,7 @@ This example module, named "`my_module`," shows the standard module layout in mo
     * `files/` --- Contains static files, which managed nodes can download.
         * `service.conf` --- This file's URL would be **`puppet:///modules/my_module/service.conf`.**
     * `lib/` --- Contains plugins, like [custom facts][] and custom resource types. These will be used by both the puppet master server and the puppet agent service, and they'll be synced to all agent nodes whenever they request their configurations. See ["Using Plugins"][plugins] for more details.
-    * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the puppet master.
+    * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the puppet master. (Requires Facter 2.0.1 or later.)
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
