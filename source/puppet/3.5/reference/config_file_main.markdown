@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/config_file_main.html"
 [ssldir]: /references/3.5.latest/configuration.html#ssldir
 [dir_environments]: ./environments.html
 
-The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet applications, including puppet agent, puppet master, puppet apply, and puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
+The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including puppet agent, puppet master, puppet apply, and puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
 
 It resembles a standard INI file, with a few syntax extensions. Settings may go into application-specific sections, or into a `[main]` section that affects all applications.
 
@@ -94,10 +94,10 @@ As soon as a new config section `[name]` appears in the file, the former config 
 
 Puppet uses four **primary config sections:**
 
-* `main` is the global section used by all applications. It can be overridden by the other sections.
-* `master` is used by the puppet master and puppet cert applications.
-* `agent` is used by the puppet agent application.
-* `user` is used by the puppet apply application, as well as many of the less common [Puppet subcommands][subcommands].
+* `main` is the global section used by all commands and services. It can be overridden by the other sections.
+* `master` is used by the puppet master service and the puppet cert command.
+* `agent` is used by the puppet agent service.
+* `user` is used by the puppet apply command, as well as many of the less common [Puppet subcommands][subcommands].
 
 Puppet will prefer to use settings from one of the three application-specific sections (`master`, `agent`, or `user`). If it doesn't find a setting in the application section, it will use the value from `main`. (If `main` doesn't set one, it will fall back to the default value.)
 
