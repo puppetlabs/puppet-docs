@@ -75,12 +75,12 @@ In more detail:
 
 Most people who use dynamic environments put their environment data in `$confdir/environments`. This also happens to be the default home for the new-style [directory environments][environments_simple], and Puppet will attempt to use your existing environments with the new conventions.
 
-Unfortunately, there are some bugs if your dynamic environments don't work exactly like directory environments. [PUP-2158](https://tickets.puppetlabs.com/browse/PUP-2158) is the master ticket for working on these. A few of the more frustrating ones:
+Unfortunately, there are some problems if your dynamic environments don't work exactly like directory environments. [PUP-2158](https://tickets.puppetlabs.com/browse/PUP-2158) is the master ticket for working on these. A few of the more frustrating ones:
 
 - If your environments only include a `modules` directory and don't reliably include a [main mainfest][dirs_manifest], Puppet won't fall back to your global main manifest; it'll act like the main manifest is empty.
 - If your modulepath includes any directories other than `$confdir/modules` and `$confdir/environments/$environment/modules`, they won't get used.
 
-We didn't break these on purpose, and we're working on fixing them for 3.5.1. In the meantime, you have two options if you use dynamic environments and want to run 3.5.0:
+We want dynamic environment users to be able to transition smoothly, so we consider these to be bugs. We're working on fixing them for 3.5.1. In the meantime, you have two options if you use dynamic environments and want to run 3.5.0:
 
 - Tell Puppet not to treat your dynamic environments like directory environments, by pointing [the `environmentpath` setting][env_path] at a dummy directory. Things will now work like they always did. (At some point you'll want to reverse that, so make a note to yourself in the config file comments.)
 - Switch over to directory environments completely. You'll need to add a `manifests` directory to each environment, and you may want to set the `basemodulepath` setting. See [the page on directory environments][environments_simple] for more details.
