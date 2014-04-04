@@ -11,7 +11,8 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 <!-- {% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %} -->
 [plugins]: /guides/plugins_in_modules.html
 
-
+[external facts]: /facter/latest/custom_facts.html#external-facts
+[custom facts]: /facter/latest/custom_facts.html
 [classes]: ./lang_classes.html
 [defined_types]: ./lang_defined_types.html
 [enc]: /guides/external_nodes.html
@@ -80,13 +81,14 @@ Module Layout
 
 On disk, a module is simply **a directory tree with a specific, predictable structure:**
 
-* MODULE NAME
-    * manifests
-    * files
-    * templates
-    * lib
-    * tests
-    * spec
+* `<MODULE NAME>`
+    * `manifests`
+    * `files`
+    * `templates`
+    * `lib`
+    * `facts.d`
+    * `tests`
+    * `spec`
 
 
 ### Example
@@ -103,7 +105,8 @@ This example module, named "`my_module`," shows the standard module layout in mo
             * `bar.pp` --- Contains a class named **`my_module::implementation::bar`.**
     * `files/` --- Contains static files, which managed nodes can download.
         * `service.conf` --- This file's URL would be **`puppet:///modules/my_module/service.conf`.**
-    * `lib/` --- Contains plugins, like custom facts and custom resource types. See ["Using Plugins"][plugins] for more details.
+    * `lib/` --- Contains plugins, like [custom facts][] and custom resource types. These will be used by both the puppet master server and the puppet agent service, and they'll be synced to all agent nodes whenever they request their configurations. See ["Using Plugins"][plugins] for more details.
+    * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the puppet master.
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
