@@ -188,6 +188,12 @@ When there are events on a Debian node, event inspector shows the affected resou
 
 When you have an event inspector page open for a period of time and your session times out (or you log out in a different tab), an alert is raised to indicate that "You are no longer logged into the console." However, in PE 3.1, the alert is hidden behind the header. Reloading the page will take you to the console login page, as normal.
 
+To change the auto-logout period:  
+
+1. In `/etc/puppetlabs/rubycas-server/config.yml`, edit the `maximum_session_lifetime` setting. 
+2. In `/etc/puppetlabs/console-auth/cas_client_config.yml`, edit the `session_timeout` setting to match the setting you edited in step 1.
+3. Run `serivce pe-httpd restart`.
+
 ### Passenger Global Queue Error on Upgrade
 
 When upgrading a PE 2.8.3 master to PE 3.1.0, restarting `pe-httpd` produces a warning: `The 'PassengerUseGlobalQueue' option is obsolete: global queueing is now always turned on. Please remove this option from your configuration file.` This error will not affect anything in PE, but if you wish you can turn it off by removing the line in question from `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`.
@@ -238,9 +244,11 @@ This will set the order of ciphers to:
 Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 may leave you vulnerable to other types of attacks.
 
 ### PE Install Fails if Port 8080 or 8081 is in Use
+
 PuppetDB requires access to port 8080 and 8081. The installer will check to make sure these ports are available and if they are not, the install will fail with an error message. To fix this, either disable the service currently using 8080/8081 or install the database role on a different node that has port 8080 available. A slightly more complicated workaround is to temporaily disable the service running on 8080/8081, complete the PE installation and then add a class parameter for puppetDB that makes it use a different, available port. Note that you will still need to temporarily disable the service using the ports even if you implement this class parameter workaround.
 
 ### Puppet Code Issues with UTF-8 Encoding
+
 PE 3 uses an updated version of Ruby, 1.9 that is much stricter about character encodings than the version of Ruby used in PE 2.8. As a result, puppet code that contains UTF-8 characters such as accents or other non-ASCII characters can fail or act unpredictably. There are a number of ways UTF-8 characters can make it into puppet code, including, but not limited to, downloading a Forge module where some piece of metadata (e.g., author's name) contains UTF-8 characters. With apologies to our international customers, the current solution is to strictly limit puppet code to the ASCII character set only, including any code comments or metadata. Puppet Labs is working on cleaning up character encoding issues in Puppet and the various libraries it interfaces with.
 
 ### PostgreSQL Requires the en_US.UTF8 Locale Prior to Installation
@@ -259,11 +267,13 @@ The node selected to run the PostgreSQL instance required by PuppetDB and the co
 If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the installation or upgrade (you can verify the installation with  `rpm -q readline`).
 
 ### Debian/Ubuntu Local Hostname Issue
+
 On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname will cause it to resolve to the local-only IP address rather than its public IP. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
 
 To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. However, if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
 
 ### Console_auth Fails After PostgreSQL Restart
+
 RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`.
 
 ### Inconsistent Counts When Comparing Service Resources in Live Management
