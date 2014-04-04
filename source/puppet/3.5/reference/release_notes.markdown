@@ -11,6 +11,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [vars_trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [v2_api_yard]: /references/3.5.latest/developer/file.http_api_index.html
 [puppet_3]: /puppet/3/reference/release_notes.html
+[dynamic environments]: ./environments_classic.html#dynamic-environments
 [blog_environments]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
 [node definitions]: ./lang_node_definitions.html
 [dirs_manifest]: ./dirs_manifest.html
@@ -21,10 +22,10 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [core_facts]: /facter/latest/core_facts.html
 [future_parser]: ./experiments_future.html
 [puppet_users]: https://groups.google.com/forum/#!forum/puppet-users
-
-<!-- TODO: replace these -->
 [external_facts]: /facter/latest/custom_facts.html#external-facts
 [auto_import]: ./dirs_manifest.html
+
+<!-- TODO: replace these -->
 [future_heredoc]: http://puppet-on-the-edge.blogspot.se/2014/03/heredoc-is-here.html
 [future_puppet_templates]: http://puppet-on-the-edge.blogspot.se/2014/03/templating-with-embedded-puppet.html
 
@@ -61,6 +62,30 @@ Released April 3, 2014. (RC1: March 14. RC2: March 24. RC3: March 31.)
 * Support for RHEL 7, Ruby 2.1, and Facter 2.0
 
 ...along with many smaller improvements and bug fixes.
+
+### UPGRADE WARNING: Bugs With Old-Style Dynamic Environments
+
+If you use [dynamic environments][] --- that is, if your puppet.conf file references the `$environment` variable --- either wait for 3.5.1 or temporarily set the following in the `[main]` or `[master]` section of your puppet master's puppet.conf:
+
+    environmentpath = $confdir/no_environments_here
+
+If you just upgrade without doing that, your setup might break.
+
+In more detail:
+
+Most people who use dynamic environments put their environment data in `$confdir/environments`. This also happens to be the default home for the new-style [directory environments][environments_simple], and Puppet will attempt to use your existing environments with the new conventions.
+
+Unfortunately, there are some bugs if your dynamic environments don't work exactly like directory environments. [PUP-2158](https://tickets.puppetlabs.com/browse/PUP-2158) is the master ticket for working on these. A few of the more frustrating ones:
+
+- If your environments only include a `modules` directory and don't reliably include a [main mainfest][dirs_manifest], Puppet won't fall back to your global main manifest; it'll act like the main manifest is empty.
+- If your modulepath includes any directories other than `$confdir/modules` and `$confdir/environments/$environment/modules`, they won't get used.
+
+We didn't break these on purpose, and we're working on fixing them for 3.5.1. In the meantime, you have two options if you use dynamic environments and want to run 3.5.0:
+
+- Tell Puppet not to treat your dynamic environments like directory environments, by pointing [the `environmentpath` setting][env_path] at a dummy directory. Things will now work like they always did. (At some point you'll want to reverse that, so make a note to yourself in the config file comments.)
+- Switch over to directory environments completely. You'll need to add a `manifests` directory to each environment, and you may want to set the `basemodulepath` setting. See [the page on directory environments][environments_simple] for more details.
+
+[env_path]: ./environments.html#the-environmentpath
 
 ### UPGRADE WARNING: Bad Yumrepo Bugs
 
