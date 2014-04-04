@@ -62,6 +62,21 @@ Released April 3, 2014. (RC1: March 14. RC2: March 24. RC3: March 31.)
 
 ...along with many smaller improvements and bug fixes.
 
+### UPGRADE WARNING: Bad Yumrepo Bugs
+
+If you use the `yumrepo` type, don't upgrade quite yet; wait for 3.5.1.
+
+We refactored the [yumrepo resource type][yumrepo] as part of this release, in order to improve the code quality, fix a few minor issues, and make it easier to fix future issues.
+
+Unfortunately, this introduced new bugs, which break existing configurations. Our users discovered these after 3.5.0 went final:
+
+* [PUP-2162](https://tickets.puppetlabs.com/browse/PUP-2162) --- If `baseurl` or `gpgkey` use multiple URLs, the resource will fail.
+* [PUP-2150](https://tickets.puppetlabs.com/browse/PUP-2150) --- Setting attributes like `baseurl => absent` to suppress settings in the generated repo file is broken.
+
+Sorry for the annoyance! We have fixes that will go into Puppet 3.5.1.
+
+[yumrepo]: /references/3.5.latest/type.html#yumrepo
+
 ### Directory Environments
 
 Lots of people have been using dynamic environments based on VCS checkouts to test and roll out their Puppet code, [as described in this classic blog post][blog_environments]. That pattern is great, but it's complicated to set up and it pretty much works by accident, so we wanted a better way to support it.
@@ -327,7 +342,7 @@ Related issues:
 
 ### Bug Fixes and Clean-Ups
 
-We fixed a bunch of bugs in types and providers (including a big cleanup of the yumrepo type), improved standards-compliance in our use of certificates, fixed a bunch of Windows-specific problems, cleaned up some inconsistencies, and fixed some bugs that don't fit in any particular bucket.
+We fixed a bunch of bugs in types and providers (including a big cleanup of the [yumrepo type][yumrepo]), improved standards-compliance in our use of certificates, fixed a bunch of Windows-specific problems, cleaned up some inconsistencies, and fixed some bugs that don't fit in any particular bucket.
 
 Type and provider bugs:
 
