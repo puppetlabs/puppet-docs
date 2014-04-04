@@ -23,7 +23,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [puppet_users]: https://groups.google.com/forum/#!forum/puppet-users
 
 <!-- TODO: replace these -->
-[external_facts]: /guides/custom_facts.html#external-facts
+[external_facts]: /facter/latest/custom_facts.html#external-facts
 [auto_import]: ./dirs_manifest.html
 [future_heredoc]: http://puppet-on-the-edge.blogspot.se/2014/03/heredoc-is-here.html
 [future_puppet_templates]: http://puppet-on-the-edge.blogspot.se/2014/03/templating-with-embedded-puppet.html
