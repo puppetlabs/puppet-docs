@@ -27,6 +27,12 @@ Related issues:
 
 - [FACT-239: Expose different resolution types in DSL](https://tickets.puppetlabs.com/browse/FACT-239)
 
+### Pluginsync for External Facts
+
+[External facts](./custom_facts.html#external-facts) have been around since Facter 1.7, but there hasn't been a way to effectively include them in modules until now. If you're using Puppet 3.4 or later with Facter 2.0.1, you can now include external facts in `<MODULEPATH>/<MODULE>/facts.d/` and they will be distributed to agent nodes.
+
+- [FACT-194: Merge external facts support to Facter 2](https://tickets.puppetlabs.com/browse/FACT-194)
+
 ### Breaking Changes
 
 Removed facts:
@@ -74,10 +80,6 @@ Previous versions of Facter would interpret an empty string (and only an empty s
 [FACT-186: Build Windows-specific gem](https://tickets.puppetlabs.com/browse/FACT-186)
 
 Adds Windows-specific gem dependencies for Facter 2.
-
-[FACT-194: Merge external facts support to Facter 2](https://tickets.puppetlabs.com/browse/FACT-194)
-
-Adds pluginsync support for external facts to Facter 2.
 
 [FACT-207: Remove deprecated ldapname](https://tickets.puppetlabs.com/browse/FACT-207)
 

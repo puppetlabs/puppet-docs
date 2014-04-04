@@ -300,7 +300,9 @@ External facts provide a way to use arbitrary executables or scripts as facts, o
 
 ### Fact Locations
 
-External facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
+The best way to distribute external facts is with pluginsync, which added support for them in [Puppet 3.4](/puppet/3/reference/release_notes.html#preparations-for-syncing-external-facts)/[Facter 2.0.1](release_notes.html#pluginsync-for-external-facts). To add external facts to your puppet modules, just place them in `<MODULEPATH>/<MODULE>/facts.d/`.
+
+If you're not using pluginsync, then external facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
 
 > **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
 to restrict access so that only Administrators can write to the
