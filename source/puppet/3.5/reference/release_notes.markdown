@@ -23,7 +23,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [puppet_users]: https://groups.google.com/forum/#!forum/puppet-users
 
 <!-- TODO: replace these -->
-[external_facts]: /guides/custom_facts.html#external-facts
+[external_facts]: /facter/latest/custom_facts.html#external-facts
 [auto_import]: ./dirs_manifest.html
 [future_heredoc]: http://puppet-on-the-edge.blogspot.se/2014/03/heredoc-is-here.html
 [future_puppet_templates]: http://puppet-on-the-edge.blogspot.se/2014/03/templating-with-embedded-puppet.html
@@ -231,7 +231,7 @@ In addition to the big-ticket improvements above, we added a lot of smaller feat
 
 Misc features:
 
-* Pluginsync can now sync [external facts][external_facts] to agent nodes! This requires Facter 2.0.1 or later. (At the time of RC1, Facter 2.0.1 was still in RC.)
+* You can now put [external facts][external_facts] in modules, and they will be synced to all agent nodes. This requires Facter 2.0.1 or later. To use this feature, put your external facts in a `facts.d` directory, which should exist at the top level of the module.
 * Certificate extensions will now appear in [the `$trusted` hash.][vars_trusted_hash]
 * There's a new `strict_variables` setting; if set to true, it will throw parse errors when accessing undeclared variables. Right now, this will wreak havoc; eventually, it will make Puppet code easier to debug.
 * Related to the last: The `defined` function can now test whether a variable is defined. Note that you have to _single-quote_ the variable name, like this: `defined('$my_var')` --- otherwise, the function will receive the _value_ of the variable instead of its _name._ Anyway, going forward, this will be a more accurate way to distinguish between `false`, `undef`, and uninitialized variables, especially if you're using `strict_variables = true`.
