@@ -5,7 +5,7 @@ subtitle: "Using an External Certificate Authority with Puppet Enterprise"
 canonical: "/pe/latest/external_ca.html"
 ---
 
-PE uses its own certificate authority (CA) to generate and verify certificates and security credentials (private and public keys and certificate revocation lists) for the various elements that make up a PE installation. However, you may need to use your own external CA. This doc will familiarize you with the certs signed by the PE certificate authority and then detail the procedures for replacing those certs and security credentials.    
+PE uses its own certificate authority (CA) to generate and verify certificates and security credentials (private and public keys and certificate revocation lists) for the various elements that make up a PE deployment. However, you may need to use your own external CA. This doc will familiarize you with the certs signed by the PE certificate authority and then detail the procedures for replacing those certs and security credentials.    
 
 > ###*Before You Begin* 
 > Setting up an external certificate authority (CA) to use with PE is beyond the scope of this document; in fact, this writing assumes that you already have some knowledge of CA and security credential creation and have the ability to set up your own external CA. This document will lead you through the certs and security credentials you'll need to replace in PE. However, before beginning, we recommend you familiarize yourself with the following docs:
@@ -136,5 +136,5 @@ You should now see the master node in live management and be able to perform pup
 
 You should now be able to access your agent node from the console; however, you may not yet see your node in live management (controlled by MCollective). In such cases, you can often force the connection by waiting a few minutes and then running `puppet agent -t`. Once the connection has been made, the output in your terminal will show that the MCollective server has picked up the node. 
 
-If you still don't see your agent node in live management, use NTP to verify that time is in sync across your PE installation. (You should *always* do this anyway.)
+If you still don't see your agent node in live management, use NTP to verify that time is in sync across your PE deployment. (You should *always* do this anyway.)
  
