@@ -262,7 +262,7 @@ There are many more modules, including PE supported modules, on [the Forge](http
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_ntp]: ./images/quick/add_ntp.png
-[assign_ntp]: ./images/quick/assign_ntp.png
+[assign_ntp_default]: ./images/quick/assign_ntp_default.png
 [edit-params]: ./images/quick/edit-parameters.png
 [ntp-params]: ./images/quick/ntp-params.png
 
