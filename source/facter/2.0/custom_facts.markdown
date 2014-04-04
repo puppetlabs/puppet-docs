@@ -306,6 +306,10 @@ External facts must go in a standard directory. The location of this directory v
 to restrict access so that only Administrators can write to the
 directory.
 
+In a module (recommended):
+    
+    <MODULEPATH>/<MODULE>/facts.d/
+
 On Unix/Linux/Mac OS X:
 
     /etc/facter/facts.d/ # Puppet Open Source
