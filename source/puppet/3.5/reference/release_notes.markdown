@@ -63,6 +63,17 @@ Released April 3, 2014. (RC1: March 14. RC2: March 24. RC3: March 31.)
 
 ...along with many smaller improvements and bug fixes.
 
+### RECALLED on April 4, 2014
+
+When 3.5.0 went final, users found breaking issues with the `yumrepo` resource type and with dynamic environments which hadn't been uncovered in the release candidate period. (See the "UPGRADE WARNING" headers below.)
+
+We decided these issues were annoying enough to cause a bad user experience, so:
+
+* We have pulled 3.5.0 from public repositories.
+* We recommend that users who _have_ upgraded revert to Puppet 3.4.3 until we can address these issues.
+
+Sorry about the inconvenience, and we'll be issuing a 3.5.1 bugfix release very soon.
+
 ### UPGRADE WARNING: Bugs With Old-Style Dynamic Environments
 
 If you use [dynamic environments][] --- that is, if your puppet.conf file references the `$environment` variable --- either wait for 3.5.1 or temporarily set the following in the `[main]` or `[master]` section of your puppet master's puppet.conf:
@@ -89,7 +100,7 @@ We want dynamic environment users to be able to transition smoothly, so we consi
 
 ### UPGRADE WARNING: Bad Yumrepo Bugs
 
-If you use the `yumrepo` type, don't upgrade quite yet; wait for 3.5.1.
+If you use the `yumrepo` type, don't upgrade quite yet; wait for 3.5.1. If you already upgraded, you may need to downgrade to the latest 3.4 release.
 
 We refactored the [yumrepo resource type][yumrepo] as part of this release, in order to improve the code quality, fix a few minor issues, and make it easier to fix future issues.
 
