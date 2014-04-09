@@ -111,6 +111,13 @@ Geppetto is an integrated development environment (IDE) for Puppet. It provides 
 
 * [The Geppetto Manual](/geppetto/latest/index.html) has installation and usage instructions.
 
+Razor
+-----
+
+Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. For information about the Razor integration with PE, see [Bare Metal Provisioning with Razor](http://docs.puppetlabs.com/pe/latest/razor_intro.html).
+
+[Razor is also available as an open source project](https://github.com/puppetlabs/razor-server). See the [Razor wiki](https://github.com/puppetlabs/razor-server/wiki) for further information.
+
 Community
 -----
 
