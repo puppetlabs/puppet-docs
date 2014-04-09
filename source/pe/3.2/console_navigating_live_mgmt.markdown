@@ -26,7 +26,7 @@ Related pages:
 
 ### Disabling/Enabling Live Management
 
-In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master. Note that after making your change, you must run `service pe-httpd restart` to complete the process. 
+In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process. 
 
 By default, `disable_live_managment` is set to `false`, but you can also configure your [installations][basic_install] or [upgrades][install_upgrading] to disable/enable live management as needed during installation or upgrade.
 
