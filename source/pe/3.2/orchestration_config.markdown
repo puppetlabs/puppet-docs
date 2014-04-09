@@ -105,9 +105,6 @@ Most users shouldn't need to change this behavior, but you can adjust the freque
 3. Under "Variables", in the "key" field, add `mcollective_registerinterval`, and in the "value" field add a new interval (in seconds).
 4. Click "Update".
 
-* Navigate to the special `mcollective` group in the PE console.
-* Create a new variable called `mcollective_registerinterval`. Set its value to a new interval (in seconds).
-
 You can later delete the variable to revert to the default setting.
 
 ### Orchestration SSL
