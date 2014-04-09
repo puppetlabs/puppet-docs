@@ -6,6 +6,11 @@ canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 description: "This page explains how to regenerate all SSL certificates in monolithic Puppet Enterprise deployments."
 ---
 
+> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide.
+
+[blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
+[cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
+
 > **Note:** This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the puppet master, PuppetDB, and PE console roles are all installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment.**][split_regen]
 
 [split_regen]: ./trouble_regenerate_certs_split.html
