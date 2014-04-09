@@ -54,7 +54,7 @@ This will be the configuration file for [Fog](https://github.com/fog/fog), the c
 
 See below to learn how to find these credentials.
 
-You can also specify multiple sets of of configuration by creating additional mappings, e.g.:
+You can also specify multiple sets of configurations by creating additional mappings, as follows:
 
     :default:
       :vsphere_server: vc01.example.com
