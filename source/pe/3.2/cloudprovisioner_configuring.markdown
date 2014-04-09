@@ -54,6 +54,29 @@ This will be the configuration file for [Fog](https://github.com/fog/fog), the c
 
 See below to learn how to find these credentials.
 
+You can also specify multiple sets of of configuration by creating additional mappings, e.g.:
+
+    :default:
+      :vsphere_server: vc01.example.com
+      :vsphere_username: cloudprovisioner
+      :vsphere_password: abc123
+      :vsphere_expected_pubkey_hash: 431dd5d0412aab11b14178290d9fcc5acb041d37f90f36f888de0cebfffff0a8
+      :aws_access_key_id: AKIAIISJV5TZ3FPWU3TA
+      :aws_secret_access_key: ABCDEFGHIJKLMNOP1234556/s
+    :production:
+      :vsphere_server: vc01.prod.example.com
+      :vsphere_username: cloudprovisioner
+      :vsphere_password: abc123
+      :vsphere_expected_pubkey_hash: 431dd5d0412aab11b14178290d9fcc5acb041d37f90f36f888de0cebfffff0a8
+      :aws_access_key_id: AKIAIISJV5TZ3FPWU3TA
+      :aws_secret_access_key: ABCDEFGHIJKLMNOP1234556/s
+
+You can access these configurations by prepending cloud provisioner commands with a special environment variable, `FOG_CREDENTIAL`:
+
+    FOG_CREDENTIAL=default puppet node_vmware <somecommands>
+    FOG_CREDENTIAL=production puppet node_vmware <somecommands>
+
+
 ### Adding VMware Credentials
 
 To connect to a VMware vSphere server, you must put the following information in your `~/.fog` file:
