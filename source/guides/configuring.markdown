@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Configuring Puppet
+canonical: /puppet/latest/reference/config_about_settings.html
 ---
 
 Configuring Puppet

@@ -11,6 +11,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [vars_trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [v2_api_yard]: /references/3.5.latest/developer/file.http_api_index.html
 [puppet_3]: /puppet/3/reference/release_notes.html
+[dynamic environments]: ./environments_classic.html#dynamic-environments
 [blog_environments]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
 [node definitions]: ./lang_node_definitions.html
 [dirs_manifest]: ./dirs_manifest.html
@@ -21,10 +22,10 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [core_facts]: /facter/latest/core_facts.html
 [future_parser]: ./experiments_future.html
 [puppet_users]: https://groups.google.com/forum/#!forum/puppet-users
+[external_facts]: /facter/latest/custom_facts.html#external-facts
+[auto_import]: ./dirs_manifest.html
 
 <!-- TODO: replace these -->
-[external_facts]: /guides/custom_facts.html#external-facts
-[auto_import]: ./dirs_manifest.html
 [future_heredoc]: http://puppet-on-the-edge.blogspot.se/2014/03/heredoc-is-here.html
 [future_puppet_templates]: http://puppet-on-the-edge.blogspot.se/2014/03/templating-with-embedded-puppet.html
 
@@ -61,6 +62,56 @@ Released April 3, 2014. (RC1: March 14. RC2: March 24. RC3: March 31.)
 * Support for RHEL 7, Ruby 2.1, and Facter 2.0
 
 ...along with many smaller improvements and bug fixes.
+
+### RECALLED on April 4, 2014
+
+When 3.5.0 went final, users found breaking issues with the `yumrepo` resource type and with dynamic environments which hadn't been uncovered in the release candidate period. (See the "UPGRADE WARNING" headers below.)
+
+We decided these issues were annoying enough to cause a bad user experience, so:
+
+* We have pulled 3.5.0 from public repositories.
+* We recommend that users who _have_ upgraded revert to Puppet 3.4.3 until we can address these issues.
+
+Sorry about the inconvenience, and we'll be issuing a 3.5.1 bugfix release very soon.
+
+### UPGRADE WARNING: Bugs With Old-Style Dynamic Environments
+
+If you use [dynamic environments][] --- that is, if your puppet.conf file references the `$environment` variable --- either wait for 3.5.1 or temporarily set the following in the `[main]` or `[master]` section of your puppet master's puppet.conf:
+
+    environmentpath = $confdir/no_environments_here
+
+If you just upgrade without doing that, your setup might break.
+
+In more detail:
+
+Most people who use dynamic environments put their environment data in `$confdir/environments`. This also happens to be the default home for the new-style [directory environments][environments_simple], and Puppet will attempt to use your existing environments with the new conventions.
+
+Unfortunately, there are some problems if your dynamic environments don't work exactly like directory environments. [PUP-2158](https://tickets.puppetlabs.com/browse/PUP-2158) is the master ticket for working on these. A few of the more frustrating ones:
+
+- If your environments only include a `modules` directory and don't reliably include a [main mainfest][dirs_manifest], Puppet won't fall back to your global main manifest; it'll act like the main manifest is empty.
+- If your modulepath includes any directories other than `$confdir/modules` and `$confdir/environments/$environment/modules`, they won't get used.
+
+We want dynamic environment users to be able to transition smoothly, so we consider these to be bugs. We're working on fixing them for 3.5.1. In the meantime, you have two options if you use dynamic environments and want to run 3.5.0:
+
+- Tell Puppet not to treat your dynamic environments like directory environments, by pointing [the `environmentpath` setting][env_path] at a dummy directory. Things will now work like they always did. (At some point you'll want to reverse that, so make a note to yourself in the config file comments.)
+- Switch over to directory environments completely. You'll need to add a `manifests` directory to each environment, and you may want to set the `basemodulepath` setting. See [the page on directory environments][environments_simple] for more details.
+
+[env_path]: ./environments.html#the-environmentpath
+
+### UPGRADE WARNING: Bad Yumrepo Bugs
+
+If you use the `yumrepo` type, don't upgrade quite yet; wait for 3.5.1. If you already upgraded, you may need to downgrade to the latest 3.4 release.
+
+We refactored the [yumrepo resource type][yumrepo] as part of this release, in order to improve the code quality, fix a few minor issues, and make it easier to fix future issues.
+
+Unfortunately, this introduced new bugs, which break existing configurations. Our users discovered these after 3.5.0 went final:
+
+* [PUP-2162](https://tickets.puppetlabs.com/browse/PUP-2162) --- If `baseurl` or `gpgkey` use multiple URLs, the resource will fail.
+* [PUP-2150](https://tickets.puppetlabs.com/browse/PUP-2150) --- Setting attributes like `baseurl => absent` to suppress settings in the generated repo file is broken.
+
+Sorry for the annoyance! We have fixes that will go into Puppet 3.5.1.
+
+[yumrepo]: /references/3.5.latest/type.html#yumrepo
 
 ### Directory Environments
 
@@ -231,7 +282,7 @@ In addition to the big-ticket improvements above, we added a lot of smaller feat
 
 Misc features:
 
-* Pluginsync can now sync [external facts][external_facts] to agent nodes! This requires Facter 2.0.1 or later. (At the time of RC1, Facter 2.0.1 was still in RC.)
+* You can now put [external facts][external_facts] in modules, and they will be synced to all agent nodes. This requires Facter 2.0.1 or later. To use this feature, put your external facts in a `facts.d` directory, which should exist at the top level of the module.
 * Certificate extensions will now appear in [the `$trusted` hash.][vars_trusted_hash]
 * There's a new `strict_variables` setting; if set to true, it will throw parse errors when accessing undeclared variables. Right now, this will wreak havoc; eventually, it will make Puppet code easier to debug.
 * Related to the last: The `defined` function can now test whether a variable is defined. Note that you have to _single-quote_ the variable name, like this: `defined('$my_var')` --- otherwise, the function will receive the _value_ of the variable instead of its _name._ Anyway, going forward, this will be a more accurate way to distinguish between `false`, `undef`, and uninitialized variables, especially if you're using `strict_variables = true`.
@@ -327,7 +378,7 @@ Related issues:
 
 ### Bug Fixes and Clean-Ups
 
-We fixed a bunch of bugs in types and providers (including a big cleanup of the yumrepo type), improved standards-compliance in our use of certificates, fixed a bunch of Windows-specific problems, cleaned up some inconsistencies, and fixed some bugs that don't fit in any particular bucket.
+We fixed a bunch of bugs in types and providers (including a big cleanup of the [yumrepo type][yumrepo]), improved standards-compliance in our use of certificates, fixed a bunch of Windows-specific problems, cleaned up some inconsistencies, and fixed some bugs that don't fit in any particular bucket.
 
 Type and provider bugs:
 

@@ -136,5 +136,5 @@ You should now see the master node in live management and be able to perform pup
 
 You should now be able to access your agent node from the console; however, you may not yet see your node in live management (controlled by MCollective). In such cases, you can often force the connection by waiting a few minutes and then running `puppet agent -t`. Once the connection has been made, the output in your terminal will show that the MCollective server has picked up the node. 
 
-If you still don't see your agent node in live management, use NTP to verify that time is in sync across your deployment. (You should *always* do this anyway.)
+If you still don't see your agent node in live management, use NTP to verify that time is in sync across your PE deployment. (You should *always* do this anyway.)
  

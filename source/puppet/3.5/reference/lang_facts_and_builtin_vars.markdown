@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [topscope]: ./lang_scope.html#top-scope
 [core_facts]: /facter/latest/core_facts.html
 [facter]: /facter/latest
-[customfacts]: /guides/custom_facts.html
+[customfacts]: /facter/latest/custom_facts.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [noop]: /references/3.5.latest/configuration.html#noop
 [certname]: /references/3.5.latest/configuration.html#certname
