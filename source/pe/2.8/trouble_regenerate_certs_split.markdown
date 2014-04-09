@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "PE 3.2 » Deploying PE » Cert Regeneration: Split Deployments"
+title: "PE 2.8 » Deploying PE » Cert Regeneration: Split Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Split Puppet Enterprise Deployments"
-canonical: "/pe/latest/cert_regen_split.html"
+canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 ---
 
 
@@ -52,11 +52,17 @@ Note that this process **destroys the certificate authority and all other certif
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the console service with `sudo puppet resource service pe-httpd ensure=stopped`.
 5. Delete puppet agent's SSL credentials with `sudo rm -rf /etc/puppetlabs/puppet/ssl/*`.
-6. Request an agent certificate from the CA puppet master with `sudo puppet agent -t`. It will probably fail to retrieve a cert, unless autosigning is enabled.
+6. Request an agent certificate from the CA puppet master with `sudo puppet agent -t`. The puppet master will autosign the request, and puppet agent will fetch the certificate.
+
+   Puppet agent will also try to do a full Puppet run, which will fail. This is as expected, so don't worry about it.
+
+   If the master doesn't autosign the certificate in this step, you may have changed its autosign configuration. You'll need to manually sign the certificate ([see below][agent_certs]).
 7. Navigate to the console certs directory with `sudo cd /opt/puppet/share/puppet-dashboard/certs`. Stay in this directory for the following steps.
 8. Remove all the credentials in this directory with `sudo rm -rf /opt/puppet/share/puppet-dashboard/certs/*`.
 9. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:create_key_pair`.
-10. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:request`. It will probably fail to retrieve a cert, unless autosigning is enabled.
+10. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:request`. The puppet master will autosign the request, and the script will fetch the certificate.
+
+   If the master doesn't autosign the certificate in this step, you may have changed its autosign configuration. You'll need to manually sign the certificate ([see below][agent_certs]).
 11. Log into the puppet master and use `puppet cert list` and `puppet cert sign` to sign the agent and console certificate requests.
 12. On the console node again, run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:retrieve`.
 13. Ensure the console can access the new credentials with `sudo chown -R puppet-dashboard:puppet-dashboard /opt/puppet/share/puppet-dashboard/certs`.

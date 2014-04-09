@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "PE 3.2 » Deploying PE » Cert Regeneration: Monolithic Deployments"
+title: "PE 2.8 » Deploying PE » Cert Regeneration: Monolithic Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Monolithic Puppet Enterprise Deployments"
-canonical: "/pe/latest/cert_regen.html"
+canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 ---
 
 > **Note:** This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the puppet master, PuppetDB, and PE console roles are all installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment.**][split_regen]

@@ -2,7 +2,7 @@
 layout: default
 title: "PE 3.2 » Deploying PE » Cert Regeneration: Split Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Split Puppet Enterprise Deployments"
-canonical: "/pe/latest/cert_regen_split.html"
+canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 ---
 
 
