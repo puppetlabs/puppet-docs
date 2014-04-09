@@ -20,16 +20,16 @@ In some cases, you may find that you need to regenerate the certificates and sec
 Regardless of your situation, regenerating your certs involves the following three steps (complete procedures follow below):
 
 1. On your master, you'll clear the certs and security credentials, regenerate the CA, and then regenerate the certs and security credentials.
-3. Then, you'll clear and regenerate certs and security credentials for the PE console
-4. Lastly, you'll clear and regenerate certs and security credentials for all agent nodes.
+2. Then, you'll clear and regenerate certs and security credentials for the PE console
+3. Lastly, you'll clear and regenerate certs and security credentials for all agent nodes.
 
-Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your puppet master and then follow step 4 for any agents that need to be replaced.
+Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your puppet master and then follow step three for any agents that need to be replaced.
 
 ## Step 1: Clear and Regenerate Certs on Your Puppet Master
 
 **On your puppet master:**
 
-1. Back up the `/etc/puppetlabs/puppet/ssl/` directory. If something goes wrong, you may need to reinstate this directory so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service, so we can help you secure your site.
+1. Back up the `/etc/puppetlabs/puppet/ssl/` directory. If something goes wrong, you may need to restore this directory so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service, so we can help you secure your site.
 2. Stop the puppet agent service with `sudo puppet resource service pe-puppet ensure=stopped`.
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the puppet master service with `sudo puppet resource service pe-httpd ensure=stopped`.
@@ -52,7 +52,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 **On your console server:**
 
-1. Back up the `/etc/puppetlabs/puppet/ssl/` and `/opt/puppet/share/puppet-dashboard/certs` directories. If something goes wrong, you may need to reinstate these directories so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service, so we can help you secure your site.
+1. Back up the `/etc/puppetlabs/puppet/ssl/` and `/opt/puppet/share/puppet-dashboard/certs` directories. If something goes wrong, you may need to restore these directories so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service, so we can help you secure your site.
 2. Stop the puppet agent service with `sudo puppet resource service pe-puppet ensure=stopped`.
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the console service with `sudo puppet resource service pe-httpd ensure=stopped`.
@@ -105,9 +105,7 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 
 Once an agent node's new certificate is signed, it will fetch it automatically within a few minutes and begin a Puppet run. After a node has fetched its new certificate and completed a full Puppet run, it will once again appear in orchestration and live management. If, after waiting for a short time, you don't see the agent node in live management, use NTP to make sure time is in sync aross your PE deployment.
 
-> At this point, after you have regenerated all agents' certificates:
->
-> * Everything should be back to normal and fully functional under the new CA.
+> Once you have regenerated all agents' certificates, **everything should now be back to normal and fully functional under the new CA**.
 
 [confdir]: /puppet/3.5/reference/dirs_confdir.html#windows-systems
 [request_manager]: ./console_cert_mgmt.html
