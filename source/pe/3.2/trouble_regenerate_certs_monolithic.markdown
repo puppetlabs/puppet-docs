@@ -8,7 +8,7 @@ description: "This page explains how to regenerate all SSL certificates in monol
 
 > **Note:** This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the puppet master, PuppetDB, and PE console roles are all installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment.**][split_regen]
 
-[split_regen]: ./cert_regen_split.html
+[split_regen]: ./trouble_regenerate_certs_split.html
 
 ## Overview
 
