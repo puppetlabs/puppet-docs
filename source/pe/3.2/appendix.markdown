@@ -221,7 +221,7 @@ To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to it
 
 ### console_auth Fails After PostgreSQL Restart
 
-RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `service pe-httpd restart`.
+RubyCAS server, the component which provides console log-in services will not automatically reconnect if it loses connection to its database, which can result in a `500 Internal Server Error` when attempting to log in or out. The issue can be resolved by restarting Apache on the console's node with `sudo /etc/init.d/pe-httpd restart`.
 
 ### Inconsistent Counts When Comparing Service Resources in Live Management
 

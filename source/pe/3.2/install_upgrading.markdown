@@ -139,7 +139,7 @@ The status of live management is not managed during an upgrade of PE unless you 
 
 Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master will be set to either `true` or `false` after the upgrade is complete.
 
-(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `service pe-httpd restart`.)
+(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `sudo /etc/init.d/pe-httpd restart`.)
 
 ### Upgrade Agents and Complete the Upgrade
 
