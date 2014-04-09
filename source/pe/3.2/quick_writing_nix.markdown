@@ -26,7 +26,7 @@ Although many Forge modules are exact solutions that fit your site, many more ar
 
 ### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. If need be, you can configure this path with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. For these exercises you'll use the following files:
 
