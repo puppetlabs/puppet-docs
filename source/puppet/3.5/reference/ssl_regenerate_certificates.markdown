@@ -4,6 +4,12 @@ title: "SSL: Regenerating All Certificates in a Puppet Deployment"
 canonical: "/puppet/latest/reference/ssl_regenerate.html"
 ---
 
+[split]: /pe/latest/trouble_regenerate_certs_split.html
+[monolithic]: /pe/latest/trouble_regenerate_certs_monolithic.html
+[puppetdb]: /puppetdb/latest
+[puppet dashboard]: /dashboard/1.2
+[mcollective]: /mcollective
+
 
 > **Note:** This page describes the steps for regenerating certs under an open source Puppet deployment. Puppet Enterprise includes several additional services that rely on certificates, and following this page will leave you with an incomplete replacement. Instead, PE customers should follow one of these pages:
 >
@@ -50,9 +56,11 @@ It's fairly likely that you're using extensions like PuppetDB or Puppet Dashboar
 
 For each extension like this, you'll need to regenerate the certificate(s) it uses. Many tools have scripts or documentation to help you set up SSL, and you can often just re-run the setup instructions.
 
-* [PuppetDB][] users should first follow [the instructions below on regenerating agent certificates][inpage_agent], since PuppetDB re-uses puppet agent's certificates. After that, [run PuppetDB's ssl configuration script][puppetdb_ssl] to regenerate its SSL configuration, and restart the PuppetDB service.
+* [PuppetDB][] users should first follow [the instructions below on regenerating agent certificates][agent_certs], since PuppetDB re-uses puppet agent's certificates. After that, [run PuppetDB's ssl configuration script][puppetdb_ssl] to regenerate its SSL configuration, and restart the PuppetDB service.
 * [Puppet Dashboard][] can use certificates for its inventory service. Re-follow the [SSL config instructions.](/dashboard/manual/1.2/configuring.html#advanced-features)
+* [MCollective][] often uses SSL certificates from Puppet's CA. If you are replacing your Puppet CA and are using the same certs for MCollective, you should [go through the standard deployment guide][standard_mco] and re-do any steps involving security credentials. You'll generally need to replace client certificates, your server keypair, and the ActiveMQ server's keystore and truststore.
 
+[standard_mco]: /mcollective/deploy/standard.html
 [puppetdb_ssl]: /puppetdb/latest/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 
 
