@@ -60,7 +60,7 @@ Note that this process **destroys the certificate authority and all other certif
 2. Remove all the credentials in this directory with `sudo rm -rf /opt/puppet/share/puppet-dashboard/certs/*`.
 3. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:create_key_pair`.
 4. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:request`.  The cert will be generated, and a CSR submitted.
-5. Use `puppet cert list` and then `puppet cert sign --allow-dns-alt-names <NAME>` to sign the console certificate request.
+5. Use `puppet cert list` and `puppet cert sign` to sign the console certificate request.
 5. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:retrieve`.
 6. Ensure the console can access the new credentials with `sudo chown -R puppet-dashboard:puppet-dashboard /opt/puppet/share/puppet-dashboard/certs`.
 7. Restart the console service with `sudo service pe-httpd restart`.
