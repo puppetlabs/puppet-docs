@@ -23,8 +23,8 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [32issues]: http://projects.puppetlabs.com/versions/371
 [32splay]: /references/latest/configuration.html#splay
 [32modulo_operator]: /puppet/3/reference/lang_expressions.html#modulo
-[32profiling_setting]: /references/3.stable/configuration.html#profile
-[32cron_type]: /references/3.stable/type.html#cron
+[32profiling_setting]: /references/3.4.stable/configuration.html#profile
+[32cron_type]: /references/3.4.stable/type.html#cron
 [32hiera_auto_param]: /hiera/1/puppet.html#automatic-parameter-lookup
 [19983]: http://projects.puppetlabs.com/issues/19983 "egrammar parser loses filename in error messages"
 [11331]: http://projects.puppetlabs.com/issues/11331 "Add 'foreach' structure in manifests"
@@ -186,7 +186,7 @@ It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/br
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
-Puppet now includes [a `contain` function](/references/3.latest/function.html#contain) to allow classes to contain other classes. It works similarly to the `include` function, with the added effect of creating a containment relationship. For more information, see:
+Puppet now includes [a `contain` function](/references/3.4.stable/function.html#contain) to allow classes to contain other classes. It works similarly to the `include` function, with the added effect of creating a containment relationship. For more information, see:
 
 * [The containment page of the language reference](/puppet/3/reference/lang_containment.html), for background information about class containment issues and an explanation of the anchor pattern.
 * [The classes page of the language reference](/puppet/3/reference/lang_classes.html), for complete information on declaring classes with `contain`, `include`, and more.
@@ -204,7 +204,7 @@ Prior to 3.4, Puppet would accept a whitelist of nodes whose requests should be 
 For details, see:
 
 * [The "Policy-Based Autosigning" section of the autosigning reference page][ssl_policy_autosign]
-* [Documentation for the `autosign` setting](/references/3.latest/configuration.html#autosign)
+* [Documentation for the `autosign` setting](/references/3.4.stable/configuration.html#autosign)
 
 ([Issue 7244](https://projects.puppetlabs.com/issues/7244), [PUP-664](https://tickets.puppetlabs.com/browse/PUP-664), [PUP-453](https://tickets.puppetlabs.com/browse/PUP-453))
 
@@ -220,7 +220,7 @@ Two kinds of custom data are available: "custom attributes," which are discarded
 For details on custom CSR data, see:
 
 * [The "CSR Attributes and Certificate Extensions" reference page][ssl_attributes]
-* [Documentation for the `csr_attributes` setting](/references/3.latest/configuration.html#csrattributes)
+* [Documentation for the `csr_attributes` setting](/references/3.4.stable/configuration.html#csrattributes)
 
 ([Issue 7243](http://projects.puppetlabs.com/issues/7243),
 [PUP-669](https://tickets.puppetlabs.com/browse/PUP-669),
@@ -229,7 +229,7 @@ For details on custom CSR data, see:
 
 ### Priority Level Can Be Set for Puppet Processes
 
-Puppet's processes, including puppet agent and puppet apply, can now lower or raise their own priority level using [the `priority` setting](/references/3.latest/configuration.html#priority). (Note that they can't _raise_ their priority unless they are running as a privileged user.)
+Puppet's processes, including puppet agent and puppet apply, can now lower or raise their own priority level using [the `priority` setting](/references/3.4.stable/configuration.html#priority). (Note that they can't _raise_ their priority unless they are running as a privileged user.)
 
 This is especially useful for making sure resource-intensive Puppet runs don't interfere with a machine's real duties.
 
@@ -312,7 +312,7 @@ Package resources using the `rpm` package provider can now specify command-line 
 
 ### HTTP API Documentation
 
-Puppet's HTTP API endpoints now have extensive documentation for the formatting of their requests and the objects they return. For version-specific endpoint documentation, see [the HTTP API section of the developer docs](/references/3.latest/developer/file.http_api_index.html).
+Puppet's HTTP API endpoints now have extensive documentation for the formatting of their requests and the objects they return. For version-specific endpoint documentation, see [the HTTP API section of the developer docs](/references/3.4.stable/developer/file.http_api_index.html).
 
 ([PUP-124](https://tickets.puppetlabs.com/browse/PUP-124),
 [PUP-125](https://tickets.puppetlabs.com/browse/PUP-125),
@@ -376,7 +376,7 @@ This is now fixed, and the cert inventory is handled more safely. To accommodate
 
 #### Cached Catalogs Work Again
 
-This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke the puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](/references/3.latest/configuration.html#usecacheonfailure).
+This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke the puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](/references/3.4.stable/configuration.html#usecacheonfailure).
 
 ([Issue 22925](http://projects.puppetlabs.com/issues/22925), [PUP-580](https://tickets.puppetlabs.com/browse/PUP-580))
 
@@ -550,7 +550,7 @@ Although 3.3.0 is backward-compatible, its default configuration will cause repo
 
 Puppet can now optionally apply unrelated resources in the order they were written in their manifest files.
 
-A [new `ordering` setting](/references/3.latest/configuration.html#ordering) configures how unrelated resources should be ordered when applying a catalog. This setting affects puppet agent and puppet apply, but not puppet master.
+A [new `ordering` setting](/references/3.4.stable/configuration.html#ordering) configures how unrelated resources should be ordered when applying a catalog. This setting affects puppet agent and puppet apply, but not puppet master.
 
 The allowed values for this setting are `title-hash`, `manifest`, and `random`:
 
@@ -667,7 +667,7 @@ items as one item per line.
 
 [(Issue 21170: enhancement of the module generate functionality)][21170]
 
-Previously, you could provide your own template for the `puppet module generate` action by creating a directory called `skeleton` in the directory specified by [the `module_working_dir` setting](/references/3.latest/configuration.html#module_working_dir). (The layout of the directory should match that of [`lib/puppet/module_tool/skeleton`](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/module_tool/skeleton).) This directory can now be configured independently with [the `module_skeleton_dir` setting](/references/3.latest/configuration.html#module_skeleton_dir).
+Previously, you could provide your own template for the `puppet module generate` action by creating a directory called `skeleton` in the directory specified by [the `module_working_dir` setting](/references/3.4.stable/configuration.html#module_working_dir). (The layout of the directory should match that of [`lib/puppet/module_tool/skeleton`](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/module_tool/skeleton).) This directory can now be configured independently with [the `module_skeleton_dir` setting](/references/3.4.stable/configuration.html#module_skeleton_dir).
 
 ### Improvements to Resource Types
 
@@ -1068,7 +1068,7 @@ Puppet 3.1.0 is a features and fixes release in the 3.x series, focused on addin
 
 ### New: YARD API Documentation
 
-To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.stable/index.html) under [Developer Documentation](/references/3.stable/developer/).
+To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.4.stable/index.html) under [Developer Documentation](/references/3.4.stable/developer/).
 
 
 ### Fix: YAML Node Cache Restored on Master
