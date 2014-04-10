@@ -6,18 +6,40 @@ canonical: "/puppet/latest/reference/system_requirements.html"
 
 > To install Puppet 3.5, see [the Puppet installation guide](/guides/installation.html).
 
-Platform Support
+Platforms With Packages
 -----
 
-Puppet 3.5 and all of its prerequisites will run on the following platforms:
+Puppet 3.5 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](http://docs.puppetlabs.com/guides/puppetlabs_package_repositories.html)
 
-### Linux
+### Red Hat Enterprise Linux (and Derivatives)
 
-- Red Hat Enterprise Linux, versions 5 through 7 (note that RHEL 5 requires an [updated Ruby ≥ 1.8.7 from our yum repo](http://docs.puppetlabs.com/guides/puppetlabs_package_repositories.html))
-- RHEL-derived distributions (including CentOS, Scientific Linux, and Oracle Linux), versions 5 through 7
-- Debian, version 5 (Lenny) and higher
-- Ubuntu, version 8.04 LTS and higher
-- Fedora, version 15 and higher
+{% include platforms_redhat_like.markdown %}
+
+### Debian and Ubuntu
+
+{% include platforms_debian_like.markdown %}
+
+### Fedora
+
+{% include platforms_fedora.markdown %}
+
+### Windows
+
+{% include platforms_windows.markdown %}
+
+### Mac OS X
+
+Although we publish packages for Mac OS X, we do not run automated testing on it.
+
+- Mac OS X, version 10.6 (Snow Leopard) and higher
+
+Platforms Without Packages
+-----
+
+Puppet and its prerequisites are known to run on the following platforms, but we do not provide official packages and do not perform automated testing.
+
+### Other Linux
+
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
 - Mandriva Corporate Server 4 <!-- Version not checked recently -->
@@ -25,18 +47,11 @@ Puppet 3.5 and all of its prerequisites will run on the following platforms:
 
 ### Other Unix
 
-- Mac OS X, version 10.5 (Leopard) and higher
-- Oracle Solaris, version 10 and higher
+- Oracle Solaris, version 10 and higher (Puppet Labs performs limited automated testing on Solaris 11.)
 - AIX, version 5.3 and higher
 - FreeBSD 4.7 and later <!-- Version not checked recently -->
 - OpenBSD 4.1 and later <!-- Version not checked recently -->
 - HP-UX
-
-### Windows
-
-- Windows Server 2003 and 2008
-- Windows 7
-
 
 Basic Requirements
 -----
@@ -49,10 +64,10 @@ Puppet 3.5 has the following prerequisites:
 
 Use one of the following versions of MRI (standard) Ruby:
 
-* 1.8.7
-* 1.9.3
-* 2.0.x
 * 2.1.x --- **Note:** We run spec tests for Ruby 2.1, but since none of our tested platforms ship with it yet, we don't run acceptance tests on it. This means we think it's good, but it might have problems we don't know about yet.
+* 2.0.x
+* 1.9.3
+* 1.8.7
 
 Other interpreters and versions of Ruby are not covered by our tests, and may or may not work.
 

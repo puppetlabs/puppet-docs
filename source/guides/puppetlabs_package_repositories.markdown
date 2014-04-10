@@ -76,16 +76,6 @@ The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the fol
 
 To enable the repository, run the command below that corresponds to your OS version and architecture:
 
-#### Fedora 18
-
-##### i386
-
-    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f18/products/i386/puppetlabs-release-18-7.noarch.rpm
-
-##### x86_64
-
-    $ sudo rpm -ivh https://yum.puppetlabs.com/fedora/f18/products/x86_64/puppetlabs-release-18-7.noarch.rpm
-
 #### Fedora 19
 
 ##### i386
