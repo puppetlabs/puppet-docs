@@ -42,13 +42,22 @@ Platform Support
 
 Puppet 3 and all of its prerequisites will run on the following platforms:
 
-### Linux
+### Red Hat Enterprise Linux (and Derivatives)
 
-- Red Hat Enterprise Linux, version 5 and higher, with an updated Ruby ≥ 1.8.7, [available from Puppetlabs' yum repositories](http://docs.puppetlabs.com/guides/puppetlabs_package_repositories.html)
-- RHEL-derived distributions (including CentOS, Scientific Linux, and Oracle Linux), version 5 and higher
-- Debian, version 5 (Lenny) and higher
-- Ubuntu, version 8.04 LTS and higher
-- Fedora, version 15 and higher
+{% include platforms_redhat_like.markdown %}
+
+### Debian and Ubuntu
+
+{% include platforms_debian_like.markdown %}
+
+### Fedora
+
+{% include platforms_fedora.markdown %}
+
+### Other Linux
+
+On these platforms, Puppet Labs does not build official packages.
+
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
 - Mandriva Corporate Server 4 <!-- Version not checked recently -->
@@ -65,5 +74,5 @@ Puppet 3 and all of its prerequisites will run on the following platforms:
 
 ### Windows
 
-- Windows Server 2003 and 2008
-- Windows 7
+{% include platforms_windows.markdown %}
+

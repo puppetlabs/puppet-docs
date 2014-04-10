@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 ---
 
 [forge]: http://forge.puppetlabs.com
-[module_man]: /references/3.stable/man/module.html
+[module_man]: /references/3.4.stable/man/module.html
 [modulepath]: /references/stable/configuration.html#modulepath
 
 [publishing]: ./modules_publishing.html

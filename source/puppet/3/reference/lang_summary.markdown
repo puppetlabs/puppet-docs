@@ -27,7 +27,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering option]: /references/3.latest/configuration.html#ordering
+[ordering option]: /references/3.4.stable/configuration.html#ordering
 <!-- TODO improve hiera link -->
 [hiera]: https://github.com/puppetlabs/hiera
 

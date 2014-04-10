@@ -6,7 +6,7 @@ canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 description: "This page explains how to regenerate all SSL certificates in monolithic Puppet Enterprise deployments."
 ---
 
-> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide.
+> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide. Before applying these instructions, please bear in mind that this is a non-trivial operation that contains some manual steps and will require you to replace certificates on  every agent node managed by your puppet master.
 
 [blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
 [cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
@@ -74,7 +74,7 @@ Note that this process **destroys the certificate authority and all other certif
 2. Remove all the credentials in this directory with `sudo rm -rf /opt/puppet/share/puppet-dashboard/certs/*`.
 3. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:create_key_pair`.
 4. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:request`.  The cert will be generated, and a CSR submitted.
-5. Use `puppet cert list` and `puppet cert sign` to sign the console certificate request.
+5. Use `puppet cert sign pe-internal-dashboard` to sign the console certificate request.
 5. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:retrieve`.
 6. Ensure the console can access the new credentials with `sudo chown -R puppet-dashboard:puppet-dashboard /opt/puppet/share/puppet-dashboard/certs`.
 7. Restart the console service with `sudo service pe-httpd restart`.

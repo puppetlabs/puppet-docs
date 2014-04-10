@@ -6,7 +6,7 @@ canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 description: "This page explains how to regenerate all SSL certificates in Puppet Enterprise deployments with separate servers for different roles. "
 ---
 
-> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide.
+> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide. Before applying these instructions, please bear in mind that this is a non-trivial operation that contains some manual steps and will require you to replace certificates on  every agent node managed by your puppet master.
 
 [blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
 [cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
