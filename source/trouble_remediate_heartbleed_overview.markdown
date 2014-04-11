@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: frontpage
 title: "Puppet » Troubleshooting » Remediating Heartbleed"
 subtitle: "Remediation for Recovering from the Heartbleed Bug"
 canonical: "/trouble_remediate_heartbleed_overview.html"
