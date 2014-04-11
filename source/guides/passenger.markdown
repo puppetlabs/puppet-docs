@@ -91,7 +91,7 @@ These steps will look something like this:
     $ sudo cp /usr/share/puppet/ext/rack/config.ru /usr/share/puppet/rack/puppetmasterd/
     $ sudo chown puppet:puppet /usr/share/puppet/rack/puppetmasterd/config.ru
 
-The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/master/ext/rack/config.ru).
+The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/stable/ext/rack/config.ru).
 
 ### Create and Enable the Puppet Master Vhost
 
