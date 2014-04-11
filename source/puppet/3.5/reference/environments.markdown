@@ -174,6 +174,8 @@ If you are using an ENC and it specifies an environment for that node, it will o
 Referencing the Environment in Manifests
 -----
 
+[inpage_env_var]: #referencing-the-environment-in-manifests
+
 In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
 
 Internals: Environments in Puppet's HTTPS Requests
@@ -229,6 +231,12 @@ The short version is: any plugins destined for the _agent node_ (e.g. custom fac
 This has to do with the way Ruby loads code, and we're not sure if it can be fixed given Puppet's current architecture. (Some of us think this would require separate Ruby puppet master processes for each environment, which isn't currently practical with the way Rack manages Puppet.)
 
 If you're interested in the issue, it's being tracked as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
+
+### Hiera Configuration Can't be Specified Per Environment
+
+Puppet will only use a global [hiera.yaml](./config_file_hiera.html) file; you can't put per-environment configs in an environment directory.
+
+When using the built-in YAML or JSON backends, it _is_ possible to separate your Hiera data per environment; you will need to interpolate [the `$environment` variable][inpage_env_var] into [the `:datadir` setting.](/hiera/latest/configuring.html#yaml-and-json) (e.g. `:datadir: /etc/puppet/environments/%{::environment}/hieradata`)
 
 ### Most Extensions Aren't Environment-Aware
 
