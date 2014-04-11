@@ -123,32 +123,12 @@ For details, [see the relevant section of the directory environments page.][assi
 [assign_nodes]: ./environments.html#assigning-nodes-to-environments
 [limitations]: ./environments.html#limitations-of-environments
 
-Limitations of Environments
+
+Other Information About Environments
 -----
 
-As implemented today, environments have several limitations. These are generally identical for both directory environments and config file environments.
+This section of the Puppet reference manual has several other pages about environments:
 
-For details, [see the relevant section of the directory environments page.][limitations]
-
-
-Suggestions for Use
------
-
-The main uses for environments tend to fall into a few categories. A single group of admins might use several of them for different purposes.
-
-### Permanent Test Environments
-
-In this pattern, you have a relatively stable group of test nodes in a permanent `test` environment, where all changes must succeed before they can be merged into your production code.
-
-The test nodes probably closely resemble the whole production infrastructure in miniature. They might be short-lived cloud instances, or longer-lived VMs in a private cloud. They'll probably stay in the `test` environment for their whole lifespan.
-
-### Temporary Test Environments
-
-In this pattern, developers and admins can create temporary environments to test out a single change or group of changes. This usually means doing a fresh checkout from your version control into an environments directory.
-
-This pattern works best with [directory environments.][directory_environments] If you really do need to combine them with config file environments, you can use the pattern from [Adrien Thebo's blog post on the subject][adrien_blog].
-
-
-### Divided Infrastructure
-
-If parts of your infrastructure are managed by different teams that don't need to coordinate their code, it may make sense to split them into environments.
+- [Suggestions for Use](./environments_suggestions.html) --- common patterns and best practices for using environments.
+- [Limitations of Environments](./environments_limitations.html) --- environments mostly work, but they can be a bit wobbly in several situations.
+- [Environments and Puppet's HTTPS Interface](./environments_https.html) --- this page explains how environment information is embedded in Puppet's HTTPS requests, and how you can query environment data in order to build Puppet extensions.

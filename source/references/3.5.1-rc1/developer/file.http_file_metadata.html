@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_file_metadata
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_file_metadata</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>File Metadata</h1>
+
+<p>The <code>file_metadata</code> endpoint returns select metadata for a single file or many files. There are find and search variants
+of the endpoint; the search variant has a trailing 's' so is actually <code>file_metadatas</code>.</p>
+
+<p>Although the term 'file' is used generically in the endpoint name and documentation, each returned item can be one of
+the following three types:</p>
+
+<ul>
+<li>file</li>
+<li>directory</li>
+<li>symbolic link</li>
+</ul>
+
+
+<p>Note that an <code>:environment</code> must be specified in the endpoint, but is actually ignored since the puppet file server
+is not environment-specific.  (In fact, the specified <code>:environment</code> does even need to be valid.)</p>
+
+<p>The endpoint path includes a <code>:mount</code> which can be one of three types:</p>
+
+<ul>
+<li>custom file serving mounts as specified in fileserver.conf -- see <a href="http://docs.puppetlabs.com/guides/file_serving.html#serving-files-from-custom-mount-points">the puppet file serving guide</a></li>
+<li><code>modules/&lt;module&gt;</code> -- a semi-magical mount point which allows access to the <code>files</code> subdirectory of <code>module</code> -- see <a href="http://docs.puppetlabs.com/guides/file_serving.html#serving-module-files">the puppet file serving guide</a></li>
+<li><code>plugins</code> -- a highly magical mount point which merges many directories together: used for plugin sync, sub-paths can not be specified, not intended for general consumption</li>
+</ul>
+
+
+<p>Note: pson responses in the examples below are pretty-printed for readability.</p>
+
+<h2>Find</h2>
+
+<p>Get file metadata for a single file</p>
+
+<pre class="code ruby"><code class="ruby">GET /:environment/file_metadata/:mount/path/to/file
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>PSON</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Example Response</h3>
+
+<h4>File metadata found for a file</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadata/modules/example/just_a_file.txt
+
+HTTP/1.1 200 OK
+Content-Type: text/pson
+
+{
+    &quot;data&quot;: {
+        &quot;checksum&quot;: {
+            &quot;type&quot;: &quot;md5&quot;,
+            &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+        },
+        &quot;destination&quot;: null,
+        &quot;group&quot;: 20,
+        &quot;links&quot;: &quot;manage&quot;,
+        &quot;mode&quot;: 420,
+        &quot;owner&quot;: 501,
+        &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files/just_a_file.txt&quot;,
+        &quot;relative_path&quot;: null,
+        &quot;type&quot;: &quot;file&quot;
+    },
+    &quot;document_type&quot;: &quot;FileMetadata&quot;,
+    &quot;metadata&quot;: {
+        &quot;api_version&quot;: 1
+    }
+}
+</code></pre>
+
+<h4>File metadata found for a directory</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadata/modules/example/subdirectory
+
+HTTP/1.1 200 OK
+Content-Type: text/pson
+
+{
+    &quot;data&quot;: {
+        &quot;checksum&quot;: {
+            &quot;type&quot;: &quot;ctime&quot;,
+            &quot;value&quot;: &quot;{ctime}2013-10-01 13:16:10 -0700&quot;
+        },
+        &quot;destination&quot;: null,
+        &quot;group&quot;: 20,
+        &quot;links&quot;: &quot;manage&quot;,
+        &quot;mode&quot;: 493,
+        &quot;owner&quot;: 501,
+        &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files/subdirectory&quot;,
+        &quot;relative_path&quot;: null,
+        &quot;type&quot;: &quot;directory&quot;
+    },
+    &quot;document_type&quot;: &quot;FileMetadata&quot;,
+    &quot;metadata&quot;: {
+        &quot;api_version&quot;: 1
+    }
+}
+</code></pre>
+
+<h4>File metadata found for a link</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadata/modules/example/link_to_file.txt
+
+HTTP/1.1 200 OK
+Content-Type: text/pson
+
+{
+    &quot;data&quot;: {
+        &quot;checksum&quot;: {
+            &quot;type&quot;: &quot;md5&quot;,
+            &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+        },
+        &quot;destination&quot;: &quot;/etc/puppet/conf/modules/example/files/just_a_file.txt&quot;,
+        &quot;group&quot;: 20,
+        &quot;links&quot;: &quot;manage&quot;,
+        &quot;mode&quot;: 493,
+        &quot;owner&quot;: 501,
+        &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files/link_to_file.txt&quot;,
+        &quot;relative_path&quot;: null,
+        &quot;type&quot;: &quot;link&quot;
+    },
+    &quot;document_type&quot;: &quot;FileMetadata&quot;,
+    &quot;metadata&quot;: {
+        &quot;api_version&quot;: 1
+    }
+}
+</code></pre>
+
+<h4>File not found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadata/modules/example/does_not_exist
+
+HTTP/1.1 404 Not Found
+
+Not Found: Could not find file_metadata modules/example/does_not_exist
+</code></pre>
+
+<h2>Search</h2>
+
+<p>Get a list of metadata for multiple files</p>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadatas/foo.txt
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Format</h3>
+
+<p>Accept: pson, text/pson</p>
+
+<h3>Parameters</h3>
+
+<ul>
+<li><code>recurse</code> -- should always be set to <code>yes</code>; unfortunately the default is <code>no</code> which causes renders this a Find operation</li>
+<li><code>ignore</code> -- file or directory regex to ignore; can be repeated</li>
+<li><code>links</code> -- either <code>manage</code> (default) or <code>follow</code>.  See examples below.</li>
+</ul>
+
+
+<h3>Example Response</h3>
+
+<h4>Basic search</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadatas/modules/example?recurse=yes
+
+HTTP 200 OK
+Content-Type: text/pson
+
+[
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;ctime&quot;,
+                &quot;value&quot;: &quot;{ctime}2013-10-01 13:15:59 -0700&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 493,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;.&quot;,
+            &quot;type&quot;: &quot;directory&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 420,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;just_a_file.txt&quot;,
+            &quot;type&quot;: &quot;file&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+            },
+            &quot;destination&quot;: &quot;/etc/puppet/conf/modules/example/files/just_a_file.txt&quot;,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 493,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;link_to_file.txt&quot;,
+            &quot;type&quot;: &quot;link&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;ctime&quot;,
+                &quot;value&quot;: &quot;{ctime}2013-10-01 13:15:59 -0700&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 493,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;subdirectory&quot;,
+            &quot;type&quot;: &quot;directory&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d41d8cd98f00b204e9800998ecf8427e&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 420,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;subdirectory/another_file.txt&quot;,
+            &quot;type&quot;: &quot;file&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    }
+]
+</code></pre>
+
+<h4>Search ignoring 'sub*' and links = manage</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadatas/modules/example?recurse=true&amp;ignore=sub*&amp;links=manage
+
+HTTP 200 OK
+Content-Type: text/pson
+
+[
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;ctime&quot;,
+                &quot;value&quot;: &quot;{ctime}2013-10-01 13:15:59 -0700&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 493,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;.&quot;,
+            &quot;type&quot;: &quot;directory&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 420,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;just_a_file.txt&quot;,
+            &quot;type&quot;: &quot;file&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+            },
+            &quot;destination&quot;: &quot;/etc/puppet/conf/modules/example/files/just_a_file.txt&quot;,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;manage&quot;,
+            &quot;mode&quot;: 493,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;link_to_file.txt&quot;,
+            &quot;type&quot;: &quot;link&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    }
+]
+</code></pre>
+
+<h4>Search ignoring 'sub*' and links = follow</h4>
+
+<p>This example is identical to the above example, except for the different links parameter.  The result pson, then,
+is identical to the above example, except for:</p>
+
+<ul>
+<li>the 'links' field is set to "follow" rather than "manage" in all metadata objects</li>
+<li>in the 'link_to_file.txt' metadata:
+
+<ul>
+<li>for 'manage' the 'destination' field is the link destination; for 'follow', it's null</li>
+<li>for 'manage' the 'type' field is 'link'; for 'follow' it's 'file'</li>
+<li>for 'manage' the 'mode', 'owner' and 'group' fields are the link's values; for 'follow' the destination's values</li>
+</ul>
+</li>
+</ul>
+
+
+<p><code></code></p>
+
+<pre class="code ruby"><code class="ruby">GET /env/file_metadatas/modules/example?recurse=true&amp;ignore=sub*&amp;links=follow
+
+HTTP 200 OK
+Content-Type: text/pson
+
+[
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;ctime&quot;,
+                &quot;value&quot;: &quot;{ctime}2013-10-01 13:15:59 -0700&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;follow&quot;,
+            &quot;mode&quot;: 493,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;.&quot;,
+            &quot;type&quot;: &quot;directory&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;follow&quot;,
+            &quot;mode&quot;: 420,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;just_a_file.txt&quot;,
+            &quot;type&quot;: &quot;file&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    },
+    {
+        &quot;data&quot;: {
+            &quot;checksum&quot;: {
+                &quot;type&quot;: &quot;md5&quot;,
+                &quot;value&quot;: &quot;{md5}d0a10f45491acc8743bc5a82b228f89e&quot;
+            },
+            &quot;destination&quot;: null,
+            &quot;group&quot;: 20,
+            &quot;links&quot;: &quot;follow&quot;,
+            &quot;mode&quot;: 420,
+            &quot;owner&quot;: 501,
+            &quot;path&quot;: &quot;/etc/puppet/conf/modules/example/files&quot;,
+            &quot;relative_path&quot;: &quot;link_to_file.txt&quot;,
+            &quot;type&quot;: &quot;file&quot;
+        },
+        &quot;document_type&quot;: &quot;FileMetadata&quot;,
+        &quot;metadata&quot;: {
+            &quot;api_version&quot;: 1
+        }
+    }
+]
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>The representation of file metadata conforms to the schema at <a href="file.file_metadata.html" title="api/schemas/file_metadata.json">api/schemas/file_metadata.json</a>.</p>
+
+<h2>Sample Module</h2>
+
+<p>The examples above use this (faux) module:</p>
+
+<pre class="code ruby"><code class="ruby">/etc/puppet/conf/modules/example/
+  files/
+    just_a_file.txt
+    link_to_file.txt -&gt; /etc/puppet/conf/modules/example/files/just_a_file.txt
+    subdirectory/
+      another_file.txt
+</code></pre>
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Apr 10 18:10:13 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

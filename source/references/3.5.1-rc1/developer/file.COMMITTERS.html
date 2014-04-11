@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: COMMITTERS
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: COMMITTERS</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Committing changes to Puppet</h1>
+
+<p>We would like to make it easier for community members to contribute to Puppet
+using pull requests, even if it makes the task of reviewing and committing
+these changes a little harder.  Pull requests are only ever based on a single
+branch, however, we maintain more than one active branch.  As a result
+contributors should target their changes at the master branch. This makes the
+process of contributing a little easier for the contributor since they don't
+need to concern themselves with the question, "What branch do I base my changes
+on?"  This is already called out in the <a href="http://goo.gl/XRH2J">CONTRIBUTING.md</a>.</p>
+
+<p>Therefore, it is the responsibility of the committer to re-base the change set
+on the appropriate branch which should receive the contribution.</p>
+
+<p>It is also the responsibility of the committer to review the change set in an
+effort to make sure the end users must opt-in to new behavior that is
+incompatible with previous behavior.  We employ the use of <a href="http://stackoverflow.com/questions/7707383/what-is-a-feature-flag">feature
+flags</a> as
+the primary way to achieve this user opt-in behavior.  Finally, it is the
+responsibility of the committer to make sure the <code>master</code> and <code>stable</code> branches
+are both clean and working at all times.  Clean means that dead code is not
+allowed, everything needs to be usable in some manner at all points in time.
+Stable is not an indication of the build status, but rather an expression of
+our intent that the <code>stable</code> branch does not receive new functionality.</p>
+
+<p>The rest of this document addresses the concerns of the committer.  This
+document will help guide the committer decide which branch to base, or re-base
+a contribution on top of.  This document also describes our branch management
+strategy, which is closely related to the decision of what branch to commit
+changes into.</p>
+
+<h1>Terminology</h1>
+
+<p>Many of these terms have more than one meaning.  For the purposes of this
+document, the following terms refer to specific things.</p>
+
+<p><strong>contributor</strong> - A person who makes a change to Puppet and submits a change
+set in the form of a pull request.</p>
+
+<p><strong>change set</strong> - A set of discrete patches which combined together form a
+contribution.  A change set takes the form of Git commits and is submitted to
+Puppet in the form of a pull request.</p>
+
+<p><strong>committer</strong> - A person responsible for reviewing a pull request and then
+making the decision what base branch to merge the change set into.</p>
+
+<p><strong>base branch</strong> - A branch in Git that contains an active history of changes
+and will eventually be released using semantic version guidelines.  The branch
+named <code>master</code> will always exist as a base branch.  The other base branches are
+<code>stable</code>, and <code>security</code> described below.</p>
+
+<p><strong>master branch</strong> - The branch where new functionality that are not bug fixes
+is merged.</p>
+
+<p><strong>stable branch</strong> - The branch where bug fixes against the latest release or
+release candidate are merged.</p>
+
+<p><strong>security</strong> - Where critical security fixes are merged.  These change sets
+will then be merged into release branches independently from one another. (i.e.
+no merging up).  Please do not submit pull requests against the security branch
+and instead report all security related issues to <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x73;&#101;&#99;&#x75;&#114;&#x69;&#116;&#x79;&#64;&#x70;&#117;&#112;&#112;&#101;&#116;&#x6c;&#x61;&#98;&#115;&#46;&#x63;&#111;&#109;">&#x73;&#x65;&#x63;&#x75;&#x72;&#x69;&#116;&#x79;&#64;&#112;&#117;&#x70;&#112;&#x65;&#x74;&#x6c;&#x61;&#98;&#x73;&#46;&#x63;&#x6f;&#109;</a> as
+per our security policy published at
+<a href="https://puppetlabs.com/security/">https://puppetlabs.com/security/</a>.</p>
+
+<h1>Committer Guide</h1>
+
+<p>This section provides a guide to follow while committing change sets to Puppet
+base branches.</p>
+
+<h2>How to decide what release(s) should be patched</h2>
+
+<p>This section provides a guide to help a committer decide the specific base
+branch that a change set should be merged into.</p>
+
+<p>The latest minor release of a major release is the only base branch that should
+be patched.  These patches will be merged into <code>master</code> if they contain new
+functionality.  They will be merged into <code>stable</code> and <code>master</code> if they fix a
+critical bug.  Older minor releases in a major release do not get patched.</p>
+
+<p>Before the switch to <a href="http://semver.org/">semantic versions</a> committers did not
+have to think about the difference between minor and major releases.
+Committing to the latest minor release of a major release is a policy intended
+to limit the number of active base branches that must be managed.</p>
+
+<p>Security patches are handled as a special case.  Security patches may be
+applied to earlier minor releases of a major release, but the patches should
+first be merged into the <code>security</code> branch.  Security patches should be merged
+by Puppet Labs staff members.  Pull requests should not be submitted with the
+security branch as the base branch.  Please send all security related
+information or patches to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#x73;&#x65;&#x63;&#117;&#114;&#105;&#x74;&#121;&#x40;&#x70;&#x75;&#x70;&#x70;&#x65;&#x74;&#108;&#x61;&#98;&#x73;&#46;&#99;&#111;&#109;">&#115;&#101;&#99;&#x75;&#114;&#x69;&#x74;&#121;&#64;&#112;&#x75;&#112;&#112;&#x65;&#116;&#108;&#97;&#x62;&#x73;&#46;&#99;&#x6f;&#x6d;</a> as per our <a href="https://puppetlabs.com/security/">Security
+Policy</a>.</p>
+
+<p>The CI systems are configured to run against <code>master</code> and <code>stable</code>.  Over time,
+these branches will refer to different versions, but their name will remain
+fixed to avoid having to update CI jobs and tasks as new versions are released.</p>
+
+<h2>How to commit a change set to multiple base branches</h2>
+
+<p>A change set may apply to multiple branches, for example a bug fix should be
+applied to the stable release and the development branch.  In this situation
+the change set needs to be committed to multiple base branches.  This section
+provides a guide for how to merge patches into these branches, e.g.
+<code>stable</code> is patched, how should the changes be applied to <code>master</code>?</p>
+
+<p>First, rebase the change set onto the <code>stable</code> branch.  Next, merge the change
+set into the <code>stable</code> branch using a merge commit.  Once merged into <code>stable</code>,
+merge the same change set into <code>master</code> without doing a rebase as to preserve
+the commit identifiers.  This merge strategy follows the <a href="http://nvie.com/posts/a-successful-git-branching-model/">git
+flow</a> model.  Both of
+these change set merges should have a merge commit which makes it much easier
+to track a set of commits as a logical change set through the history of a
+branch.  Merge commits should be created using the <code>--no-ff --log</code> git merge
+options.</p>
+
+<p>Any merge conflicts should be resolved using the merge commit in order to
+preserve the commit identifiers for each individual change.  This ensures <code>git
+branch --contains</code> will accurately report all of the base branches which
+contain a specific patch.</p>
+
+<p>Using this strategy, the stable branch need not be reset.  Both <code>master</code> and
+<code>stable</code> have infinite lifetimes.  Patch versions, also known as bug fix
+releases, will be tagged and released directly from the <code>stable</code> branch.  Major
+and minor versions, also known as feature releases, will be tagged and released
+directly from the <code>master</code> branch.  Upon release of a new major or minor
+version all of the changes in the <code>master</code> branch will be merged into the
+<code>stable</code> branch.</p>
+
+<h2>Code review checklist</h2>
+
+<p>This section aims to provide a checklist of things to look for when reviewing a
+pull request and determining if the change set should be merged into a base
+branch:</p>
+
+<ul>
+<li>All tests pass</li>
+<li>Are there any platform gotchas? (Does a change make an assumption about
+platform specific behavior that is incompatible with other platforms?  e.g.
+Windows paths vs. POSIX paths.)</li>
+<li>Is the change backwards compatible? (It should be)</li>
+<li>Are there YARD docs for API changes?</li>
+<li>Does the change set also require documentation changes? If so is the
+documentation being kept up to date?</li>
+<li>Does the change set include clean code?  (software code that is formatted
+correctly and in an organized manner so that another coder can easily read
+or modify it.)  HINT: <code>git diff master --check</code></li>
+<li>Does the change set conform to the contributing guide?</li>
+</ul>
+
+
+<h2>Commit citizen guidelines:</h2>
+
+<p>This section aims to provide guidelines for being a good commit citizen by
+paying attention to our automated build tools.</p>
+
+<ul>
+<li>Don’t push on a broken build.  (A broken build is defined as a failing job
+in the <a href="https://jenkins.puppetlabs.com/view/Puppet%20FOSS/">Puppet FOSS</a>
+page.)</li>
+<li>Watch the build until your changes have gone through green</li>
+<li>Update the ticket status and target version.  The target version field in
+our issue tracker should be updated to be the next release of Puppet.  For
+example, if the most recent release of Puppet is 3.1.1 and you merge a
+backwards compatible change set into master, then the target version should
+be 3.2.0 in the issue tracker.)</li>
+<li>Ensure the pull request is closed (Hint: amend your merge commit to contain
+the string <code>closes #123</code> where 123 is the pull request number and github
+will automatically close the pull request when the branch is pushed.)</li>
+</ul>
+
+
+<h1>Example Procedure</h1>
+
+<p>This section helps a committer rebase a contribution onto an earlier base
+branch, then merge into the base branch and up through all active base
+branches.</p>
+
+<p>Suppose a contributor submits a pull request based on master.  The change set
+fixes a bug reported against Puppet 3.1.1 which is the most recently released
+version of Puppet.</p>
+
+<p>In this example the committer should rebase the change set onto the <code>stable</code>
+branch since this is a bug rather than new functionality.</p>
+
+<p>First, the committer pulls down the branch using the <code>hub</code> gem.  This tool
+automates the process of adding the remote repository and creating a local
+branch to track the remote branch.</p>
+
+<pre class="code ruby"><code class="ruby">$ hub checkout https://github.com/puppetlabs/puppet/pull/1234
+Branch jeffmccune-fix_foo_error set up to track remote branch fix_foo_error from jeffmccune.
+Switched to a new branch &#39;jeffmccune-fix_foo_error&#39;
+</code></pre>
+
+<p>At this point the topic branch is a descendant of master, but we want it to
+descend from <code>stable</code>.  The committer rebases the change set onto <code>stable</code>.</p>
+
+<pre class="code ruby"><code class="ruby">$ git branch bug/stable/fix_foo_error
+$ git rebase --onto stable master bug/stable/fix_foo_error
+First, rewinding head to replay your work on top of it...
+Applying: (#23456) Fix FooError that always bites users in 3.1.1
+</code></pre>
+
+<p>The <code>git rebase</code> command may be interpreted as, "First, check out the branch
+named <code>bug/stable/fix_foo_error</code>, then take the changes that were previously
+based on <code>master</code> and re-base them onto <code>stable</code>.</p>
+
+<p>Now that we have a topic branch containing the change set based on the <code>stable</code>
+release branch, the committer merges in:</p>
+
+<pre class="code ruby"><code class="ruby">$ git checkout stable
+Switched to branch &#39;stable&#39;
+$ git merge --no-ff --log bug/stable/fix_foo_error
+Merge made by the &#39;recursive&#39; strategy.
+ foo | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 foo
+</code></pre>
+
+<p>Once merged into the first base branch, the committer merges the <code>stable</code>
+branch into <code>master</code>, being careful to preserve the same commit identifiers.</p>
+
+<pre class="code ruby"><code class="ruby">$ git checkout master
+Switched to branch &#39;master&#39;
+$ git merge --no-ff --log stable
+Merge made by the &#39;recursive&#39; strategy.
+ foo | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 foo
+</code></pre>
+
+<p>Once the change set has been merged into one base branch, the change set should
+not be modified in order to keep the history clean, avoid "double" commits, and
+preserve the usefulness of <code>git branch --contains</code>.  If there are any merge
+conflicts, they are to be resolved in the merge commit itself and not by
+re-writing (rebasing) the patches for one base branch, but not another.</p>
+
+<p>Once the change set has been merged into <code>stable</code> and into <code>master</code>, the
+committer pushes.  Please note, the checklist should be complete at this point.
+It's helpful to make sure your local branches are up to date to avoid one of
+the branches failing to fast forward while the other succeeds.  Both the
+<code>stable</code> and <code>master</code> branches are being pushed at the same time.</p>
+
+<pre class="code ruby"><code class="ruby">$ git push puppetlabs master:master stable:stable
+</code></pre>
+
+<p>That's it!  The committer then updates the pull request, updates the issue in
+our issue tracker, and keeps an eye on the <a href="http://jenkins.puppetlabs.com">build
+status</a>.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Apr 10 18:10:13 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
