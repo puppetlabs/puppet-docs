@@ -1,0 +1,914 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::SSL::Validator::DefaultValidator
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>SSL</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Validator.html" title="Puppet::SSL::Validator (class)">Validator</a></span></span>
+     &raquo; 
+    <span class="title">DefaultValidator</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::SSL::Validator::DefaultValidator
+  
+  
+  <span class="private note title">Private</span>
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::SSL::Validator::DefaultValidator</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/ssl/validator/default_validator.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This class is part of a private API.</strong>
+  You should avoid using this class if possible, as it may be removed or be changed in the future.
+</p>
+<p>Perform peer certificate verification against the known CA.
+If there is no CA information known, then no verification is performed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call-instance_method" title="#call (instance method)">- (Boolean) <strong>call</strong>(preverify_ok, ssl_context) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs verification of the SSL connection and collection of the certificates for use in constructing the error message if the verification failed.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_authz_peer_cert-instance_method" title="#has_authz_peer_cert (instance method)">- (Boolean) <strong>has_authz_peer_cert</strong>(peer_certs, authz_certs) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks if the set of peer_certs contains at least one certificate issued by a certificate listed in authz_certs.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (DefaultValidator) <strong>initialize</strong>(ssl_configuration = Puppet::SSL::Configuration.new(                                         Puppet[:localcacert], {                                           :ca_chain_file =&gt; Puppet[:ssl_client_ca_chain],                                           :ca_auth_file  =&gt; Puppet[:ssl_client_ca_auth]                                         }), ssl_host = Puppet::SSL::Host.localhost) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new DefaultValidator, optionally with an SSL Configuration and SSL Host.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset%21-instance_method" title="#reset! (instance method)">- (Object) <strong>reset!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Resets this validator to its initial validation state.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup_connection-instance_method" title="#setup_connection (instance method)">- <strong>setup_connection</strong>(connection) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Registers the instance's call method with the connection.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ssl_certificates_are_present%3F-instance_method" title="#ssl_certificates_are_present? (instance method)">- (Boolean) <strong>ssl_certificates_are_present?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_peer%3F-instance_method" title="#valid_peer? (instance method)">- (Boolean) <strong>valid_peer?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Validates the peer certificates against the authorized certificates.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::SSL::Validator::DefaultValidator (class)">DefaultValidator</a></span></tt>) <strong>initialize</strong>(ssl_configuration = Puppet::SSL::Configuration.new(
+                                        Puppet[:localcacert], {
+                                          :ca_chain_file =&gt; Puppet[:ssl_client_ca_chain],
+                                          :ca_auth_file  =&gt; Puppet[:ssl_client_ca_auth]
+                                        }), ssl_host = Puppet::SSL::Host.localhost) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Creates a new DefaultValidator, optionally with an SSL Configuration and SSL Host.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>(a</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::SSL::Configuration</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>default configuration) ssl_configuration the SSL configuration to use</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>(Puppet::SSL::Host.localhost)</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::SSL::Host</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the SSL host to use</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+                                      <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:localcacert</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span>
+                                        <span class='symbol'>:ca_chain_file</span> <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:ssl_client_ca_chain</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                        <span class='symbol'>:ca_auth_file</span>  <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:ssl_client_ca_auth</span><span class='rbracket'>]</span>
+                                      <span class='rbrace'>}</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_ssl_host'>ssl_host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Host</span><span class='period'>.</span><span class='id identifier rubyid_localhost'>localhost</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_reset!'>reset!</span>
+  <span class='ivar'>@ssl_configuration</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span>
+  <span class='ivar'>@ssl_host</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_host'>ssl_host</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="call-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>call</strong>(preverify_ok, ssl_context) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Performs verification of the SSL connection and collection of the
+certificates for use in constructing the error message if the verification
+failed.  This callback will be executed once for each certificate in a
+chain being verified.</p>
+
+<p>From the <a href="http://www.openssl.org/docs/ssl/SSL_CTX_set_verify.html">OpenSSL
+documentation</a>:
+The <code>verify_callback</code> function is used to control the behaviour when the
+SSL_VERIFY_PEER flag is set. It must be supplied by the application and
+receives two arguments: preverify_ok indicates, whether the verification of
+the certificate in question was passed (preverify_ok=1) or not
+(preverify_ok=0). x509_ctx is a pointer to the complete context used for
+the certificate chain verification.</p>
+
+<p>See href="HTTP::Connection">HTTP::Connection</a> for more information and where this
+class is intended to be used.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>preverify_ok</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>indicates whether the verification of the
+certificate in question was passed (preverify_ok=true)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_context</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>OpenSSL::SSL::SSLContext</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>holds the SSLContext for the
+chain being verified.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>false if the peer is invalid, true otherwise.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_preverify_ok'>preverify_ok</span><span class='comma'>,</span> <span class='id identifier rubyid_ssl_context'>ssl_context</span><span class='rparen'>)</span>
+  <span class='comment'># We must make a copy since the scope of the ssl_context will be lost
+</span>  <span class='comment'># across invocations of this method.
+</span>  <span class='id identifier rubyid_current_cert'>current_cert</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_context'>ssl_context</span><span class='period'>.</span><span class='id identifier rubyid_current_cert'>current_cert</span>
+  <span class='ivar'>@peer_certs</span> <span class='op'>&lt;&lt;</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Certificate</span><span class='period'>.</span><span class='id identifier rubyid_from_instance'>from_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_current_cert'>current_cert</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_preverify_ok'>preverify_ok</span>
+    <span class='comment'># If we&#39;ve copied all of the certs in the chain out of the SSL library
+</span>    <span class='kw'>if</span> <span class='ivar'>@peer_certs</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='id identifier rubyid_ssl_context'>ssl_context</span><span class='period'>.</span><span class='id identifier rubyid_chain'>chain</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+      <span class='comment'># (#20027) The peer cert must be issued by a specific authority
+</span>      <span class='id identifier rubyid_preverify_ok'>preverify_ok</span> <span class='op'>=</span> <span class='id identifier rubyid_valid_peer?'>valid_peer?</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ssl_context'>ssl_context</span><span class='period'>.</span><span class='id identifier rubyid_error_string'>error_string</span>
+      <span class='ivar'>@verify_errors</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ssl_context'>ssl_context</span><span class='period'>.</span><span class='id identifier rubyid_error_string'>error_string</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_current_cert'>current_cert</span><span class='period'>.</span><span class='id identifier rubyid_subject'>subject</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_preverify_ok'>preverify_ok</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ex'>ex</span>
+  <span class='ivar'>@verify_errors</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ex'>ex</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_authz_peer_cert-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_authz_peer_cert</strong>(peer_certs, authz_certs) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks if the set of peer_certs contains at least one certificate issued
+by a certificate listed in authz_certs</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142
+143
+144
+145
+146</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_authz_peer_cert'>has_authz_peer_cert</span><span class='lparen'>(</span><span class='id identifier rubyid_peer_certs'>peer_certs</span><span class='comma'>,</span> <span class='id identifier rubyid_authz_certs'>authz_certs</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_peer_certs'>peer_certs</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='op'>|</span>
+    <span class='id identifier rubyid_authz_certs'>authz_certs</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_authz_cert'>authz_cert</span><span class='op'>|</span>
+      <span class='id identifier rubyid_peer_cert'>peer_cert</span><span class='period'>.</span><span class='id identifier rubyid_verify'>verify</span><span class='lparen'>(</span><span class='id identifier rubyid_authz_cert'>authz_cert</span><span class='period'>.</span><span class='id identifier rubyid_public_key'>public_key</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reset!-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>reset!</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Resets this validator to its initial validation state. The ssl configuration is not changed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_reset!'>reset!</span>
+  <span class='ivar'>@peer_certs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@verify_errors</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setup_connection-instance_method">
+  
+    - <strong>setup_connection</strong>(connection) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p><p>Registers the instance's call method with the connection.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>connection</span>
+      
+      
+        <span class='type'>(<tt>Net::HTTP</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The connection to validate</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setup_connection'>setup_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_connection'>connection</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_ssl_certificates_are_present?'>ssl_certificates_are_present?</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_cert_store'>cert_store</span> <span class='op'>=</span> <span class='ivar'>@ssl_host</span><span class='period'>.</span><span class='id identifier rubyid_ssl_store'>ssl_store</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_ca_file'>ca_file</span> <span class='op'>=</span> <span class='ivar'>@ssl_configuration</span><span class='period'>.</span><span class='id identifier rubyid_ca_auth_file'>ca_auth_file</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_cert'>cert</span> <span class='op'>=</span> <span class='ivar'>@ssl_host</span><span class='period'>.</span><span class='id identifier rubyid_certificate'>certificate</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='ivar'>@ssl_host</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_verify_mode'>verify_mode</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>VERIFY_PEER</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_verify_callback'>verify_callback</span> <span class='op'>=</span> <span class='kw'>self</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_verify_mode'>verify_mode</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>VERIFY_NONE</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ssl_certificates_are_present?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>ssl_certificates_are_present?</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ssl_certificates_are_present?'>ssl_certificates_are_present?</span>
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:hostcert</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='ivar'>@ssl_configuration</span><span class='period'>.</span><span class='id identifier rubyid_ca_auth_file'>ca_auth_file</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_peer?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>valid_peer?</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Validates the peer certificates against the authorized certificates.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_peer?'>valid_peer?</span>
+  <span class='id identifier rubyid_descending_cert_chain'>descending_cert_chain</span> <span class='op'>=</span> <span class='ivar'>@peer_certs</span><span class='period'>.</span><span class='id identifier rubyid_reverse'>reverse</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_authz_ca_certs'>authz_ca_certs</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span><span class='period'>.</span><span class='id identifier rubyid_ca_auth_certificates'>ca_auth_certificates</span>
+
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_has_authz_peer_cert'>has_authz_peer_cert</span><span class='lparen'>(</span><span class='id identifier rubyid_descending_cert_chain'>descending_cert_chain</span><span class='comma'>,</span> <span class='id identifier rubyid_authz_ca_certs'>authz_ca_certs</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The server presented a SSL certificate chain which does not include a </span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CA listed in the ssl_client_ca_auth file.  </span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorized Issuers: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_authz_ca_certs'>authz_ca_certs</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_subject'>subject</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>  </span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Peer Chain: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_descending_cert_chain'>descending_cert_chain</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_subject'>subject</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> =&gt; </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@verify_errors</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_msg'>msg</span>
+    <span class='kw'>false</span>
+  <span class='kw'>else</span>
+    <span class='kw'>true</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Apr 10 18:10:31 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
