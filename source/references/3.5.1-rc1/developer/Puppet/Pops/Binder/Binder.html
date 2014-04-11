@@ -1,0 +1,1322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Binder::Binder
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span>
+     &raquo; 
+    <span class="title">Binder</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Binder::Binder
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Binder::Binder</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/binder/binder.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>The Binder is responsible for processing layered bindings that can be used to setup an Injector.</p>
+
+<p>An instance should be created and a call to <span class='object_link'><a href="#define_layers-instance_method" title="Puppet::Pops::Binder::Binder#define_layers (method)">#define_layers</a></span> should be made which will process the layered bindings
+(handle overrides, abstract entries etc.).
+The constructed hash with <code>key =&gt; InjectorEntry</code> mappings is obtained as <span class='object_link'><a href="#injector_entries-instance_method" title="Puppet::Pops::Binder::Binder#injector_entries (method)">#injector_entries</a></span>, and is used to initialize an
+<span class='object_link'><a href="Injector.html" title="Puppet::Pops::Binder::Injector (class)">Injector</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Binder/LayerProcessor.html" title="Puppet::Pops::Binder::Binder::LayerProcessor (class)">LayerProcessor</a></span>
+    
+  
+</p>
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#anonymous_key-instance_method" title="#anonymous_key (instance method)">- (Object) <strong>anonymous_key</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The next anonymous key to use.</p>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#binder_precedence-instance_method" title="#binder_precedence (instance method)">- (Object) <strong>binder_precedence</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>This binder's precedence.</p>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#id_index-instance_method" title="#id_index (instance method)">- (Object) <strong>id_index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#injector_entries-instance_method" title="#injector_entries (instance method)">- (Object) <strong>injector_entries</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#key_factory-instance_method" title="#key_factory (instance method)">- (Object) <strong>key_factory</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parent-instance_method" title="#parent (instance method)">- (Object) <strong>parent</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>A parent Binder or nil.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format_binding-class_method" title="format_binding (class method)">+ (Object) <strong>format_binding</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format_contribution_source-class_method" title="format_contribution_source (class method)">+ (Object) <strong>format_contribution_source</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_named_binding_layer_and_name-class_method" title="get_named_binding_layer_and_name (class method)">+ (Object) <strong>get_named_binding_layer_and_name</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_named_layer-class_method" title="get_named_layer (class method)">+ (Object) <strong>get_named_layer</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#define_layers-instance_method" title="#define_layers (instance method)">- (Puppet::Pops::Binder::Binder) <strong>define_layers</strong>(layered_bindings) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Binds layers from highest to lowest as defined by the given LayeredBindings.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Binder) <strong>initialize</strong>(layered_bindings, parent_binder = nil) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Binder.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#next_anonymous_key-instance_method" title="#next_anonymous_key (instance method)">- (Object) <strong>next_anonymous_key</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Binder::Binder (class)">Binder</a></span></tt>) <strong>initialize</strong>(layered_bindings, parent_binder = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of Binder</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_binder'>parent_binder</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='id identifier rubyid_parent_binder'>parent_binder</span>
+  <span class='ivar'>@id_index</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+
+  <span class='ivar'>@key_factory</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>KeyFactory</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='comment'># Resulting hash of all key -&gt; binding
+</span>  <span class='ivar'>@injector_entries</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@anonymous_key</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='ivar'>@binder_precedence</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='kw'>else</span>
+    <span class='comment'># First anonymous key is the parent&#39;s next (non incremented key). (The parent can not change, it is
+</span>    <span class='comment'># the final, free key).
+</span>    <span class='ivar'>@anonymous_key</span> <span class='op'>=</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_anonymous_key'>anonymous_key</span>
+    <span class='ivar'>@binder_precedence</span> <span class='op'>=</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_binder_precedence'>binder_precedence</span> <span class='op'>+</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_define_layers'>define_layers</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="anonymous_key-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>anonymous_key</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The next anonymous key to use</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_anonymous_key'>anonymous_key</span>
+  <span class='ivar'>@anonymous_key</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="binder_precedence-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>binder_precedence</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This binder's precedence</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_binder_precedence'>binder_precedence</span>
+  <span class='ivar'>@binder_precedence</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="id_index-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>id_index</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_id_index'>id_index</span>
+  <span class='ivar'>@id_index</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="injector_entries-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>injector_entries</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_injector_entries'>injector_entries</span>
+  <span class='ivar'>@injector_entries</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="key_factory-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>key_factory</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_key_factory'>key_factory</span>
+  <span class='ivar'>@key_factory</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="parent-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>parent</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>A parent Binder or nil</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parent'>parent</span>
+  <span class='ivar'>@parent</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="format_binding-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>format_binding</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_format_binding'>format_binding</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_layer_name'>layer_name</span><span class='comma'>,</span> <span class='id identifier rubyid_bindings_name'>bindings_name</span> <span class='op'>=</span> <span class='id identifier rubyid_get_named_binding_layer_and_name'>get_named_binding_layer_and_name</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>binding: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type_name'>type_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; in: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bindings_name'>bindings_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; in layer: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_layer_name'>layer_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="format_contribution_source-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>format_contribution_source</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149
+150</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_format_contribution_source'>format_contribution_source</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> 
+  <span class='id identifier rubyid_layer_name'>layer_name</span><span class='comma'>,</span> <span class='id identifier rubyid_bindings_name'>bindings_name</span> <span class='op'>=</span> <span class='id identifier rubyid_get_named_binding_layer_and_name'>get_named_binding_layer_and_name</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(layer: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_layer_name'>layer_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>, bindings: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bindings_name'>bindings_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_named_binding_layer_and_name-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>get_named_binding_layer_and_name</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_named_binding_layer_and_name'>get_named_binding_layer_and_name</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;unknown&gt;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;unknown&gt;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='id identifier rubyid_get_named_layer'>get_named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>NamedBindings</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_named_binding_layer_and_name'>get_named_binding_layer_and_name</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_eContainer'>eContainer</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_named_layer-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>get_named_layer</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_named_layer'>get_named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;unknown&gt;</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='kw'>if</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>NamedLayer</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_get_named_layer'>get_named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_eContainer'>eContainer</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="define_layers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Binder::Binder (class)">Puppet::Pops::Binder::Binder</a></span></tt>) <strong>define_layers</strong>(layered_bindings)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>The model should have been
+validated to get better error messages if the model is invalid. This implementation expects the model
+to be valid, and any errors raised will be more technical runtime errors.</p>
+</div>
+  </div>
+
+<p>Binds layers from highest to lowest as defined by the given LayeredBindings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>layered_bindings</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Bindings/LayeredBindings.html" title="Puppet::Pops::Binder::Bindings::LayeredBindings (class)">Puppet::Pops::Binder::Bindings::LayeredBindings</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the named and ordered layers</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Pops::Binder::Binder (class)">Puppet::Pops::Binder::Binder</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>self</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>ArgumentError if this binder is already configured</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>ArgumentError if bindings with unresolved 'override' surfaces as an effective binding</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>ArgumentError if the given argument has the wrong type, or if model is invalid in some way</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_define_layers'>define_layers</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span>
+
+  <span class='const'>LayerProcessor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_key_factory'>key_factory</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_contribution_keys'>contribution_keys</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='comment'># make one pass over entries to collect contributions, and check overrides
+</span>  <span class='id identifier rubyid_injector_entries'>injector_entries</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_key_factory'>key_factory</span><span class='period'>.</span><span class='id identifier rubyid_is_contributions_key?'>is_contributions_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_contribution_keys'>contribution_keys</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
+    <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_is_resolved?'>is_resolved?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Binding with unresolved &#39;override&#39; detected: </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_format_binding'>format_binding</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='comment'># if binding has an id, add it to the index
+</span>      <span class='id identifier rubyid_add_id_to_index'>add_id_to_index</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># If a lower level binder has contributions for a key also contributed to in this binder
+</span>  <span class='comment'># they must included in the higher shadowing contribution.
+</span>  <span class='comment'># If a contribution is made to an id that is defined in a parent
+</span>  <span class='comment'># contribute to an id that is defined in a lower binder, it must be promoted to this binder (copied) or
+</span>  <span class='comment'># there is risk of making the lower level injector dirty.
+</span>  <span class='comment'>#
+</span>  <span class='id identifier rubyid_contribution_keys'>contribution_keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_kv'>kv</span><span class='op'>|</span>
+    <span class='id identifier rubyid_parent_contribution'>parent_contribution</span> <span class='op'>=</span> <span class='id identifier rubyid_lookup_in_parent'>lookup_in_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_kv'>kv</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parent_contribution'>parent_contribution</span>
+    <span class='id identifier rubyid_injector_entries'>injector_entries</span><span class='lbracket'>[</span><span class='id identifier rubyid_kv'>kv</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_kv'>kv</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_parent_contributions'>parent_contributions</span>
+
+    <span class='comment'># key the multibind_id from the contribution key
+</span>    <span class='id identifier rubyid_multibind_id'>multibind_id</span> <span class='op'>=</span> <span class='id identifier rubyid_key_factory'>key_factory</span><span class='period'>.</span><span class='id identifier rubyid_multibind_contribution_key_to_id'>multibind_contribution_key_to_id</span><span class='lparen'>(</span><span class='id identifier rubyid_kv'>kv</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_promote_matching_bindings'>promote_matching_bindings</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='ivar'>@parent</span><span class='comma'>,</span> <span class='id identifier rubyid_multibind_id'>multibind_id</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="next_anonymous_key-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>next_anonymous_key</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_next_anonymous_key'>next_anonymous_key</span>
+  <span class='id identifier rubyid_tmp'>tmp</span> <span class='op'>=</span> <span class='ivar'>@anonymous_key</span>
+  <span class='ivar'>@anonymous_key</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_tmp'>tmp</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Apr 10 18:10:24 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
