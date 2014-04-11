@@ -49,7 +49,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.5.1
 -----
 
-**Not yet released.** Entered RC1 on April 9, 2014.
+**Not yet released.** Entered RC1 on April 10, 2014.
 
 3.5.1 is a backward-compatible features and fixes release in the Puppet 3 series. It fixes the problems that 3.5.0 caused with dynamic environments and the yumrepo provider, as well as a couple of smaller bugs.
 
