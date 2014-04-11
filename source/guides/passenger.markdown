@@ -77,7 +77,7 @@ To configure Apache to run the puppet master application, you must:
 Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. To install this Rack application in a form Passenger can use, you'll need to:
 
 * Create three directories for the application (a parent directory, a "public" directory, and a "tmp" directory)
-* Copy the `ext/rack/files/config.ru` file from the Puppet source code into the parent directory
+* Copy the `ext/rack/config.ru` file from the Puppet source code into the parent directory
 * Set the ownership of the config.ru file
 
 > **Note:** The `chown` step is important --- the owner of this file is the user the puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
@@ -91,7 +91,7 @@ These steps will look something like this:
     $ sudo cp /usr/share/puppet/ext/rack/config.ru /usr/share/puppet/rack/puppetmasterd/
     $ sudo chown puppet:puppet /usr/share/puppet/rack/puppetmasterd/config.ru
 
-The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/master/ext/rack/config.ru).
+The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/stable/ext/rack/config.ru).
 
 ### Create and Enable the Puppet Master Vhost
 
@@ -113,7 +113,7 @@ See "Example Vhost Configuration" below for the contents of the `puppetmaster.co
 #### Example Vhost Configuration
 
 This Apache Virtual Host configures the puppet master on the default
-puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apache2.conf` in the Puppet source.
+puppetmaster port (8140). You can also see a similar file at `ext/rack/example-passenger-vhost.conf` in the Puppet source.
 
     # You'll need to adjust the paths in the Passenger config depending on which OS
     # you're using, as well as the installed version of Passenger.
