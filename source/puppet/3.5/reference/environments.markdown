@@ -178,98 +178,11 @@ Referencing the Environment in Manifests
 
 In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
 
-Internals: Environments in Puppet's HTTPS Requests
+Other Information About Environments
 -----
 
-Puppet's agent and master applications communicate via an HTTP API. All of the URLs used today by puppet agent (the [v1 API][]) start with an environment. See the [HTTP API reference][http_api] for details.
+This section of the Puppet reference manual has several other pages about environments:
 
-For some endpoints, making a request "in" an environment is meaningless; for others, it influences which modules and manifests the configuration data will come from. Regardless, the API dictates that an environment always be included.
-
-Endpoints where the requested environment can be overridden by the ENC/node terminus:
-
-- [Catalog](/references/3.5.latest/developer/file.http_catalog.html) --- For this endpoint, the environment is just a request, as described above in the section on assigning nodes to environments; if the ENC specifies an environment for the node, it will override the environment in the request.
-
-Endpoints where the requested environment is always used:
-
-- [File content](/references/3.5.latest/developer/file.http_file_content.html) and [file metadata](/references/3.5.latest/developer/file.http_file_metadata.html) --- Files in modules, including plugins like custom facts and resource types, will always be served from the requested environment. Puppet agent has to account for this when fetching files; it does so by fetching its node object (see "node" below), then resetting the environment it will request to whatever the ENC specified and using that new environment for all subsequent requests. (Since custom facts might influence the decision of the ENC, the agent will repeat this process up to three times before giving up.)
-- [Resource type](/references/3.5.latest/developer/file.http_resource_type.html) --- Puppet agent doesn't use this; it's just for extensions. The puppet master will always respond with information for the requested environment.
-
-Endpoints where environment makes no difference:
-
-- [File Bucket File](/references/3.5.latest/developer/file.http_file_bucket_file.html) --- There's only one filebucket.)
-- [Report](/references/3.5.latest/developer/file.http_report.html) --- Reports already contain environment info, and each report handler can decide what, if anything, to do with it.)
-- [Facts](/references/3.5.latest/developer/file.http_facts.html) --- Puppet agent doesn't actually use this endpoint. When used as the inventory service, environment has no effect.)
-- [Node](/references/3.5.latest/developer/file.http_node.html) --- Puppet agent uses this to learn whether the master's ENC has overridden its preferred environment. Theoretically, a node terminus could use the environment of the first node object request to decide whether to override the environment, but we're not aware of anyone doing that and there wouldn't seem to be much point to it.)
-- [Status](/references/3.5.latest/developer/file.http_status.html)
-- [Certificate](/references/3.5.latest/developer/file.http_certificate.html), [certificate signing request](/references/3.5.latest/developer/file.http_certificate_request.html), [certificate status](/references/3.5.latest/developer/file.http_certificate_status.html), and [certificate revocation list](/references/3.5.latest/developer/file.http_certificate_revocation_list.html) --- The CA doesn't differ by environment.)
-
-### Controlling HTTPS Access Based on Environment
-
-The puppet master's [auth.conf file][] can use the environment of a request to help decide whether to authorize a request. This generally isn't necessary or useful, but it's there if the need arises. See the [auth.conf documentation][auth.conf file] for details.
-
-Querying Environment Info via the Master's HTTP API
------
-
-If you are extending Puppet and need a way to query information about the available environments, you can do this via the [environments endpoint.][env_endpoint] (This endpoint uses the new [v2 HTTP API.][v2_api])
-
-This _only works for directory environments._ When you query environments via the API, any [config file environments][config_file_envs] will be omitted.
-
-For more details, see [the reference page about the environments endpoint.][env_endpoint]
-
-[v2_api]: /references/3.5.latest/developer/file.http_api_index.html#V2_HTTP_API
-[env_endpoint]: /references/3.5.latest/developer/file.http_environments.html
-
-Limitations of Environments
------
-
-### Plugins Running on the Puppet Master are Weird
-
-Puppet modules can contain Puppet code, templates, file sources, and Ruby plugin code (in the `lib` directory). Environments work perfectly with most of those, but there's a lingering problem with plugins.
-
-The short version is: any plugins destined for the _agent node_ (e.g. custom facts and custom resource providers) will work fine, but plugins to be used by the _puppet master_ (functions, resource types, report processers, indirector termini) can get mixed up, and you won't be able to control which version the puppet master is using. So if you need to do testing while developing custom resource types or functions, you may need to spin up a second puppet master, since environments won't be reliable.
-
-This has to do with the way Ruby loads code, and we're not sure if it can be fixed given Puppet's current architecture. (Some of us think this would require separate Ruby puppet master processes for each environment, which isn't currently practical with the way Rack manages Puppet.)
-
-If you're interested in the issue, it's being tracked as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
-
-### Hiera Configuration Can't be Specified Per Environment
-
-Puppet will only use a global [hiera.yaml](./config_file_hiera.html) file; you can't put per-environment configs in an environment directory.
-
-When using the built-in YAML or JSON backends, it _is_ possible to separate your Hiera data per environment; you will need to interpolate [the `$environment` variable][inpage_env_var] into [the `:datadir` setting.](/hiera/latest/configuring.html#yaml-and-json) (e.g. `:datadir: /etc/puppet/environments/%{::environment}/hieradata`)
-
-### Most Extensions Aren't Environment-Aware
-
-As of today, most extensions to Puppet (including PuppetDB and the Puppet Enterprise console) don't receive, store, or control information about Puppet's use of environments.
-
-We're in the process of working on this; one of the most important steps was adding the ability to query the master for environment info, as mentioned above.
-
-### Exported Resources Can Conflict or Cross Over
-
-Nodes in one environment can accidentally collect resources that were exported from another environment, which causes problems --- either a compilation error due to identically titled resources, or creation and management of unintended resources.
-
-Right now, the only solution is to run multiple puppet masters if you heavily use exported resources. We're working on making PuppetDB environment-aware, which will fix the problem in a more permanent way.
-
-
-Suggestions for Use
------
-
-The main uses for environments tend to fall into a few categories. A single group of admins might use several of them for different purposes.
-
-### Permanent Test Environments
-
-In this pattern, you have a relatively stable group of test nodes in a permanent `test` environment, where all changes must succeed before they can be merged into your production code.
-
-The test nodes probably closely resemble the whole production infrastructure in miniature. They might be short-lived cloud instances, or longer-lived VMs in a private cloud. They'll probably stay in the `test` environment for their whole lifespan.
-
-### Temporary Test Environments
-
-In this pattern, developers and admins can create temporary environments to test out a single change or group of changes. This usually means doing a fresh checkout from your version control into the `$confdir/environments` directory, where it will be detected as a new environment. These environments might have descriptive names, or might just use the commit IDs from the version of the code they're based on.
-
-Temporary environments are good for testing individual changes, especially if you need to iterate quickly while developing them. Since it's easy to create many of them, you don't have to worry about coordinating with other developers and admins the way you would with a monolithic `test` environment; everyone can have a personal environment for their current development work.
-
-Once you're done with a temporary environment, you can delete it. Usually, the nodes in a temporary environment will be short-lived cloud instances or VMs, which can be destroyed when the environment ends; otherwise, you'll need to move the nodes back into a stable environment.
-
-### Divided Infrastructure
-
-If parts of your infrastructure are managed by different teams that don't need to coordinate their code, it may make sense to split them into environments.
+- [Suggestions for Use](./environments_suggestions.html) --- common patterns and best practices for using environments.
+- [Limitations of Environments](./environments_limitations.html) --- environments mostly work, but they can be a bit wobbly in several situations.
+- [Environments and Puppet's HTTPS Interface](./environments_https.html) --- this page explains how environment information is embedded in Puppet's HTTPS requests, and how you can query environment data in order to build Puppet extensions.
