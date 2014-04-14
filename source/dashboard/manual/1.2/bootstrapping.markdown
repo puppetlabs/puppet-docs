@@ -259,7 +259,7 @@ For Dashboard to receive reports, there are two requirements:
 
 You can use Dashboard's external node classifier (ENC) alongside traditional Puppet DSL node definitions. However, if you use your own custom ENC (or LDAP nodes), you won't be able to use Dashboard's ENC.
 
-To use Dashboard's ENC, you'll need to set the puppet master's `node_terminus` and `external_nodes` settings, and make sure the master can access Dashboard's node classification script, which is located at `bin/external_nodes`. This script's behavior can be overridden by setting environment variables; unless you're [serving Dashboard over HTTPS][https], the only one you'll need to set is `PUPPET_DASHBOARD_URL`.
+To use Dashboard's ENC, you'll need to set the puppet master's `node_terminus` and `external_node` settings, and make sure the master can access Dashboard's node classification script, which is located at `bin/external_node`. This script's behavior can be overridden by setting environment variables; unless you're [serving Dashboard over HTTPS][https], the only one you'll need to set is `PUPPET_DASHBOARD_URL`.
 
     # puppet.conf (on puppet master)
     [master]
