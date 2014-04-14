@@ -18,7 +18,7 @@ Razor is an advanced provisioning application that can deploy both bare metal an
 
 Razor's policy-based bare-metal provisioning lets you inventory and manage the lifecycle of your physical machines. With Razor, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to Puppet Enterprise for workload configuration. 
 
-Razor policies use discovered characteristics of the underlying hardware and on user-provided data to make provisioning decisions. The steps below show a high-level view of provisioning a node with Razor.
+Razor policies use discovered characteristics of the underlying hardware and on user-provided data to make provisioning decisions. 
 
 ####Razor As Tech Preview
 
@@ -26,6 +26,9 @@ This is a Tech Preview release of Razor. This means you are getting early access
 
 For details about Tech Preview software from Puppet Labs, visit [Tech Preview feature support scope](http://puppetlabs.com/services/tech-preview).
 
+
+##How Razor Works
+The following steps provide a high-level view of the process for provisioning a node with Razor.
 
 ###Razor identifies a new node
 

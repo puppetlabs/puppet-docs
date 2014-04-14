@@ -11,6 +11,11 @@ canonical: "/pe/latest/razor_knownissues.html"
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 + Razor has a minimum RAM requirement of 512MB. 
 
+To successfully use a machine with Razor and install an operating system on it, the machine must:
++ Be supported by the operating system to be installed on it.
++ Be able to successfully boot into the microkernel, which is based on Fedora 19.
++ Be able to successfully boot the iPXE firmware.
+
 ####Using Razor
 The repo contains the actual bits that are used when installing a node; the installation instructions are contained in tasks. Razor comes with a few predefined tasks to get you started. They can be found in the `tasks/ directory` in the razor-server repo, and they can all be used by simply mentioning their name in a policy. This includes the `vmware_esxi` installer.
 
