@@ -18,6 +18,46 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### PE 2.8.6 (4/15/2014)
+
+#### Security Fixes
+
+*[CVE-2014-0098 Apache vulnerability in config module could allow denial of service attacks via cookies](http://puppetlabs.com/security/cve/cve-2014-0098)*
+
+Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `log_cookie` function in `mod_log_config.c` in the `mod_log_config` module could allow remote attackers to cause a denial of service attack via a crafted cookie that is not properly handled during truncation.
+
+For RHEL, SLES, CentOS, and Scientific Linux systems CVSS v2 score: 5.3 v2 Vector (AV:N/AC:M/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+
+For Debian and Ubuntu systems CVSS v2 score: 4.0 v2 Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+
+The variation in score is because `mod_log_config` is enabled by default on RHEL, CentOS, SLES, and Scientific Linux systems. The module is not enabled by default on Debian and Ubuntu.
+
+*[CVE-2013-6438 Apache vulnerability in `mod_dav` module could allow denial of service attacks via DAV WRITE requests](http://puppetlabs.com/security/cve/cve-2013-6438)*
+
+Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `dav_xml_get_cdata` function in `main/util.c` in the `mod_dav` module does not properly remove leading spaces could allow remote attackers to cause a denial of service attack via a crafted DAV WRITE request. 
+
+CVSS v2 score: 4.0 with v2 Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+
+#### A Note about the "Heartbleed" Bug
+
+We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.  
+
+No version of Puppet Enterprise has been shipped with a vulnerable version of OpenSSL, so Puppet Enterprise is not itself vulnerable to the security bug known as Heartbleed, and does not require a patch from Puppet Labs.
+
+However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Tools included in Puppet Enterprise such as PuppetDB and Console also make use of SSL certificates. We believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates. 
+
+We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](http://docs.puppetlabs.com/trouble_remediate_heartbleed_overview.html).
+
+We’re here to help. If you have any issues with remediating the Heartbleed vulnerability, one of your authorized Puppet Enterprise support users can always log into the [customer support portal](https://support.puppetlabs.com/access/unauthenticated). We’ll continue to update the email list with any new information.
+
+Links:
+
+* [Heartbleed and Puppet-Supported Operating Systems](https://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
+
+* [Heartbleed Update: Regeneration Still the Safest Path](https://puppetlabs.com/blog/heartbleed-update-regeneration-still-safest-path)
+
+* [Heartbleed and Puppet-Supported Operating Systems](http://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
+
 ### PE 2.8.5 (1/30/2014)
 
 #### Security Fixes
