@@ -34,6 +34,18 @@ Release Notes
 
 ### PE 3.2.2 (4/15/2014)
 
+#### Bug Fixes
+
+This release fixes several minor bugs.
+
+#### Bad Data in Facter’s `architecture` Fact
+
+Previously on AIX agents, a bug caused Facter to return the system’s model number (e.g., IBM 3271) instead of the processor’s architecture (e.g. Power6). 
+
+#### `puppet module list --tree` Didn't Work Without `metadata.json`
+
+Previously, if you ran `puppet module generate <module name>` or manually created a module directory on the PE module path (`/etc/puppetlabs/puppet/module`) you would get a module structure that did not include `metadata.json`, which is required to run `puppet module list --tree`. 
+
 #### Security Fixes
 
 *[CVE-2014-2525 LibYAML vulnerability could allow arbitrary code execution in a URI in a YAML file](http://puppetlabs.com/security/cve/cve-2014-2525)*

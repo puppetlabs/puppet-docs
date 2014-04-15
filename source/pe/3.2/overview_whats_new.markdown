@@ -7,7 +7,7 @@ canonical: "/pe/latest/overview_whats_new.html"
 
 ### Version 3.2.2
 
-PE 3.2.2 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes).
+PE 3.2.2 is a maintenance release that patches several security vulnerabilities and a few minor bugs. For details, check the [release notes](appendix.html#release-notes).
 
 #### A Note about the Heartbleed Bug
 
