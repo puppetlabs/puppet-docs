@@ -58,7 +58,7 @@ Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `dav_xm
 
 CVSS v2 score: 4.0 with v2 Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
 
-#### A Note about the "Heartbleed" Bug
+#### A Note about the Heartbleed Bug
 
 We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.  
 

@@ -9,7 +9,7 @@ canonical: "/pe/latest/overview_whats_new.html"
 
 PE 3.2.2 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes).
 
-#### A Note about the "Heartbleed" Bug
+#### A Note about the Heartbleed Bug
 
 We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed. 
 
