@@ -36,6 +36,11 @@ If you wish to change the duration of a user's session before they have to re-au
 
 Next, in `/etc/puppetlabs/console-auth/cas_client_config.yml`, edit the `session_timeout` setting so it is the same as `maximum_session_lifetime`. Again, the default is 1200 seconds.
 
+Configuring the Console to Use a Custom SSL Certificate
+-------
+
+Full instructions are available [here](./custom_console_cert.html).  
+
 
 Configuring Third-Party Authentication Services
 -----
