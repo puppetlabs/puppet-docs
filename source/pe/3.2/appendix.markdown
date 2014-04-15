@@ -64,7 +64,7 @@ We want to emphasize that Puppet Enterprise does not need to be patched for Hear
 
 No version of Puppet Enterprise has been shipped with a vulnerable version of OpenSSL, so Puppet Enterprise is not itself vulnerable to the security bug known as Heartbleed, and does not require a patch from Puppet Labs.
 
-However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Tools included in Puppet Enterprise such as PuppetDB and Console also make use of SSL certificates. We believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates. 
+However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Since tools included in Puppet Enterprise, such as PuppetDB and the Console, make use of SSL certificates we believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates. 
 
 We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](http://docs.puppetlabs.com/trouble_remediate_heartbleed_overview.html).
 
