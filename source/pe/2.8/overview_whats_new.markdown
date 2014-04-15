@@ -27,8 +27,6 @@ Links:
 
 * [Heartbleed Update: Regeneration Still the Safest Path](https://puppetlabs.com/blog/heartbleed-update-regeneration-still-safest-path)
 
-* [Heartbleed and Puppet-Supported Operating Systems](http://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
-
 ### Version 2.8.5
 
 PE 2.8.5 is a maintenance release that patches a security vulnerability and fixes several minor bugs. For details, check the [release notes](appendix.html#release-notes).

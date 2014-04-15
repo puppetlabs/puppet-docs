@@ -56,8 +56,6 @@ Links:
 
 * [Heartbleed Update: Regeneration Still the Safest Path](https://puppetlabs.com/blog/heartbleed-update-regeneration-still-safest-path)
 
-* [Heartbleed and Puppet-Supported Operating Systems](http://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
-
 ### PE 2.8.5 (1/30/2014)
 
 #### Security Fixes

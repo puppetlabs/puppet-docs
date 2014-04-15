@@ -27,9 +27,6 @@ Links:
 
 * [Heartbleed Update: Regeneration Still the Safest Path](https://puppetlabs.com/blog/heartbleed-update-regeneration-still-safest-path)
 
-* [Heartbleed and Puppet-Supported Operating Systems](http://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
-
-
 ### Version 3.2.1
 
 PE 3.2.1 is a maintenance release that fixes several minor bugs, including issues related to specific install and upgrade scenarios.  PE 3.2.1 also adds built-in support for OpenSSL on AIX nodes.
