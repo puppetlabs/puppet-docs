@@ -23,7 +23,7 @@ A repo contains all of the actual bits used when installing a node with Razor. T
 
 To load a repo onto the server, you use: `razor create-repo --name=<repo name> --iso-url <URL>`.
 	
-For example: `razor create-repo --name=centos-6.4 --iso-url http://mirrors.usc.edu/pub/linux/distributions/centos/6.4/isos/x86_64/ `.
+For example: `razor create-repo --name=centos-6.4 --iso-url http://mirrors.usc.edu/pub/linux/distributions/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso`.
 
 **Note**: Creating the repo can take five or so minutes, plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the log file.
 

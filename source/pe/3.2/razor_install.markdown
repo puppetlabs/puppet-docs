@@ -20,13 +20,13 @@ Things you should know before you set up provisioning:
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
->     export RAZOR_HOSTNAME = <server name> 
+>     export RAZOR_HOSTNAME=<server name> 
 >     export RAZOR_PORT=8080
 >    
 > For example: 
 >
->	  export RAZOR_HOSTNAME = http://centos6.4 
->    export RAZOR_PORT=8080	
+>	  export RAZOR_HOSTNAME=http://centos6.4 
+>	  export RAZOR_PORT=8080	
 >	
 > The steps below therefore use `$RAZOR_HOSTNAME` and `$RAZOR_PORT` for brevity.
 
