@@ -55,7 +55,11 @@ Released April 16, 2014. (RC1: April 10.)
 
 ### Dynamic Environment Fixes
 
-Puppet 3.5.0 introduced [directory environments][environments_simple], which provide a simpler alternative to the very powerful [dynamic environments][blog_environments] pattern. Unfortunately, the added functionality conflicted pretty badly with old-style dynamic environments. This release changes the behavior of directory environments so that they have to be enabled by a feature flag (`$environmentpath`) before they can be used. See the reference page for [directory environments][environments_simple] for more details.
+Puppet 3.5.0 introduced [directory environments][environments_simple], which provide a simpler alternative to the very powerful [dynamic environments][blog_environments] pattern. Unfortunately, the added functionality conflicted pretty badly with old-style dynamic environments.
+
+This release changes the behavior of directory environments so that they have to be enabled by a feature flag (the `environmentpath` setting) before they can be used. To enable directory environments, you can set `environmentpath = $confdir/environments` in the `[main]` section of puppet.conf.
+
+See the reference page for [directory environments][environments_simple] for more details.
 
 Related issue:
 
