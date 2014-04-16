@@ -251,7 +251,7 @@ MSI example:
 {% highlight ruby %}
     package { 'mysql':
       ensure          => '5.5.16',
-      source          => 'N:/packages/mysql-5.5.16-winx64.msi',
+      source          => 'N:\packages\mysql-5.5.16-winx64.msi',
       install_options => ['INSTALLDIR=C:\mysql-5.5'],
     }
 {% endhighlight %}
@@ -261,7 +261,7 @@ Executable installer example:
 {% highlight ruby %}
     package { "Git version 1.8.4-preview20130916":
      ensure   => installed,
-     source   => 'C:\\code\\puppetlabs\\temp\\windowsexample\\Git-1.8.4-preview20130916.exe',
+     source   => 'C:\code\puppetlabs\temp\windowsexample\Git-1.8.4-preview20130916.exe',
      install_options => ['/VERYSILENT']
     }
 {% endhighlight %}
@@ -280,11 +280,13 @@ Some packages (Git is a notable example) will change their display names with ev
 
 #### Install and Uninstall Options
 
-The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings.
+The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings and/or hashes.
 
 MSI properties can be specified as an array of strings following the 'property=key' pattern; you should use one string per property. Command line flags to executable installers can be specified as an array of strings, with one string per flag.
 
-Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately.
+Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately. It's a good idea to use the hash notation for file path arguments since they may contain spaces, for example:
+
+    install_options => [ { 'INSTALLDIR' => "${packagedir" } ]
 
 #### Versioning and Upgrades
 
