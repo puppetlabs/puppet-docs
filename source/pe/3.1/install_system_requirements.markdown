@@ -58,6 +58,10 @@ Configuration
 
 Before installing Puppet Enterprise at your site, you should make sure that your nodes and network are properly configured.
 
+### Timekeeping
+
+We recommend using NTP or an equivalent service to ensure that time is in sync between your puppet master and any puppet agent nodes. If time drifts out of sync in your PE infrastructure, you may encounter issues such as nodes disappearing from live manangement in the console. A service like NTP ([available as a Forge module](https://forge.puppetlabs.com/puppetlabs/ntp)) will ensure accurate timekeeping.
+
 ### Name Resolution
 
 * Decide on a preferred name or set of names agent nodes can use to contact the puppet master server.
