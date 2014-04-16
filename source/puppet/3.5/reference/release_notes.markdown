@@ -49,13 +49,17 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.5.1
 -----
 
-**Not yet released.** Entered RC1 on April 10, 2014.
+Released April 16, 2014. (RC1: April 10.)
 
 3.5.1 is a backward-compatible features and fixes release in the Puppet 3 series. It fixes the problems that 3.5.0 caused with dynamic environments and the yumrepo provider, as well as a couple of smaller bugs.
 
 ### Dynamic Environment Fixes
 
-Puppet 3.5.0 introduced [directory environments][environments_simple], which provide a simpler alternative to the very powerful [dynamic environments][blog_environments] pattern. Unfortunately, the added functionality conflicted pretty badly with old-style dynamic environments. This release changes the behavior of directory environments so that they have to be enabled by a feature flag (`$environmentpath`) before they can be used. See the reference page for [directory environments][environments_simple] for more details.
+Puppet 3.5.0 introduced [directory environments][environments_simple], which provide a simpler alternative to the very powerful [dynamic environments][blog_environments] pattern. Unfortunately, the added functionality conflicted pretty badly with old-style dynamic environments.
+
+This release changes the behavior of directory environments so that they have to be enabled by a feature flag (the `environmentpath` setting) before they can be used. To enable directory environments, you can set `environmentpath = $confdir/environments` in the `[main]` section of puppet.conf.
+
+See the reference page for [directory environments][environments_simple] for more details.
 
 Related issue:
 
@@ -65,10 +69,11 @@ Related issue:
 
 Puppet 3.5.0 included some changes to the [yumrepo resource type][yumrepo] that inadvertently broke existing configurations. This release fixes the following issues:
 
-* [PUP-2163: yumrepo resource completely broken](https://tickets.puppetlabs.com/browse/PUP-2163)
-* [PUP-2150: yumrepo removable URL properties cannot be set to 'absent'](https://tickets.puppetlabs.com/browse/PUP-2150)
-* [PUP-2179: Ensuring absent on a yumrepo removes all repos in the same file](https://tickets.puppetlabs.com/browse/PUP-2179)
+* [PUP-2150: yumrepo removable URL properties cannot be set to 'absent' in Puppet 3.5.0](https://tickets.puppetlabs.com/browse/PUP-2150)
+* [PUP-2162: yumrepo gpgkey and baseurl with multiple URLs broken in 3.5.0](https://tickets.puppetlabs.com/browse/PUP-2162)
+* [PUP-2163: yumrepo resource completely broken with 3.5 release](https://tickets.puppetlabs.com/browse/PUP-2163)
 * [PUP-2178: yumrepo 'descr' property doesn't map to the 'name' INI property](https://tickets.puppetlabs.com/browse/PUP-2178)
+* [PUP-2179: Ensuring absent on a yumrepo removes all repos in the same file](https://tickets.puppetlabs.com/browse/PUP-2179)
 * [PUP-2181: Setting yumrepo string properties to absent assigns the literal 'absent' string](https://tickets.puppetlabs.com/browse/PUP-2181)
 
 ### Other Fixes

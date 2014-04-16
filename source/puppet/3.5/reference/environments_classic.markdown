@@ -13,6 +13,7 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 [modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
 [adrien_blog]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
 [directory_environments]: ./environments.html
+[dir_envs_enable]: ./environments.html#enabling-directory-environments
 
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
@@ -65,7 +66,7 @@ The `templatedir` setting will also work, but we recommend against using the old
 
 ### Dynamic Environments
 
-Alternately, you can use the global values for the `modulepath` and `manifest` settings (via the `master` or `main` section), but set their values to use the special `$environment` variable.
+Alternately, you can use the global values for the `modulepath` and `manifest` settings (via the `master` or `main` section), but set their values to use the special `$environment` variable. (Note that if an environment config section exists for the active environment, it will get priority.)
 
 When getting values for settings, Puppet will replace `$environment` with the name of the active environment. This allows you to mimic [directory environments][directory_environments]:
 
@@ -94,7 +95,9 @@ Additionally, there are four forbidden environment names:
 
 These names can't be used because they conflict with the primary [config sections][config_sections]. **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
 
-### Interaction with Directory Environments
+### No Interaction with Directory Environments
+
+If directory environments are enabled (by setting the `environmentpath` setting; see [Enabling Directory Environments][dir_envs_enable]), any config file environments will be completely ignored.
 
 If you've accidentally configured the same environment in multiple ways (see [the page on directory environments][directory_environments]), the precedence goes like this:
 
@@ -106,11 +109,11 @@ If the global values for the [`manifest`][manifest_setting] and [`modulepath`][m
 
 Similarly, if the global `manifest` or `modulepath` use `$environment`, any config section environments will override them.
 
-### Unconfigured Environments
+### Unconfigured Environments → Global Settings
 
-If a node is assigned to an environment for which a config section doesn't exist, the puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
+If a node is assigned to an environment for which a config section doesn't exist, or if the config section does not specify a value for one or more settings, the puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
 
-If the values of those settings point to any files or directories that don't exist (due to interpolating `$environment` for an unexpected environment name), Puppet will act as though those directories were empty.
+If the values of the `manifest` or `modulepath` settings point to any files or directories that don't exist (due to interpolating `$environment` for an unexpected environment name), Puppet will act as though those directories were empty.
 
 
 Assigning Nodes to Environments
@@ -121,7 +124,13 @@ Assigning nodes to environments works identically for both directory environment
 For details, [see the relevant section of the directory environments page.][assign_nodes]
 
 [assign_nodes]: ./environments.html#assigning-nodes-to-environments
-[limitations]: ./environments.html#limitations-of-environments
+
+Referencing the Environment in Manifests
+-----
+
+[inpage_env_var]: #referencing-the-environment-in-manifests
+
+In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
 
 
 Other Information About Environments

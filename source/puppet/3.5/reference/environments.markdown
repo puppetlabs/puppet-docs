@@ -22,9 +22,10 @@ canonical: "/puppet/latest/reference/environments.html"
 [config_print]: ./config_print.html
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 [config_file_envs_sections]: ./environments_classic.html#environment-config-sections
-[v1 api]: /references/3.5.latest/developer/file.http_api_index.html#V1_API_Services
-[http_api]: /references/3.5.latest/developer/file.http_api_index.html
-[auth.conf file]: ./config_file_auth.html
+[dynamic environments]: ./environments_classic.html#dynamic-environments
+
+<!-- TODO: replace with good anchor link -->
+[modulepath_duplicates]: ./dirs_modulepath.html
 
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
@@ -34,17 +35,66 @@ This frees you to use different versions of the same modules for different popul
 > Directory Environments vs. Config File Environments
 > -----
 >
-> There are two ways to set up environments on a puppet master: **directory environments,** and [**config file environments.**][config_file_envs]
+> There are two ways to set up environments on a puppet master: **directory environments,** and [**config file environments.**][config_file_envs] Note that these **are mutually exclusive** --- enabling one will completely disable the other.
 >
 > This page is about directory environments, which are easier to use and will eventually replace config file environments completely. However, in Puppet 3.5, they cannot:
 >
 > - Set [`config_version`][config_version] per-environment
 > - Change the order of the `modulepath` or remove parts of it
 >
-> Those features are coming in Puppet 3.6.
+> Those features are coming soon, probably in Puppet 3.6.
+
+Enabling Directory Environments
+-----
+
+[inpage_enable]: #enabling-directory-environments
+
+In Puppet 3.5.1 and later, directory environments are disabled by default. To enable them, you must:
+
+* Set a value for the `environmentpath` setting in the puppet master's puppet.conf file.
+    * Most people should set `environmentpath = $confdir/environments`. See the "About environmentpath" section below for more details.
+* Create at least one directory environment; you must have a directory environment for every environment that any nodes are assigned to. At minimum, you must have a `production` environment.
+    * Most people should move their `$confdir/manifests` directory to `$confdir/environments/production/manifests`. See the ["Setting Up Environments on a Puppet Master"][inpage_set_up] section below for details.
+* Optionally, set the `basemodulepath` setting for global modules that should be available in all environments.
+    * Most people are fine with the default value. See the "About basemodulepath" section below for more details.
+
+### Warning: This Will Disable Config File Environments
+
+If directory environments are enabled with the `environmentpath` setting, they will completely disable config file environments. This means:
+
+* Puppet will always ignore the `manifest` setting in puppet.conf.
+* Puppet will always ignore the `modulepath` setting in puppet.conf.
+* Puppet will always ignore any [environment config sections][config_file_envs_sections] in puppet.conf.
+* If a node is assigned to a non-existant environment, the puppet master will fail compilation of its catalog.
+
+Puppet will **always** use environment-specific values for the effective [site manifest][manifest_dir] and [modulepath][]; it will never fall back to a global value if the environment-specific directory is missing.
+
+### About `environmentpath`
+
+The puppet master will only look for environments in certain directories, and only if [the `environmentpath` setting][environmentpath] is set, in the `[main]` section of puppet.conf. The recommended value for `environmentpath` is `$confdir/environments`. ([See here for info on the confdir][confdir].)
+
+If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) Puppet will search these directories in order, with earlier directories having precedence.
+
+> **Note:** In Puppet 3.5, there is a problem with setting `environmentpath` in the `[master]` section of puppet.conf, which causes `puppet config print` to display wrong info about the effective modulepath or manifest values. You should set it in `[main]` instead.
+
+### About `basemodulepath`
+
+Although environments should contain their own modules, you might want some modules to be available to all environments. (Since the environment's module directory comes first in the modulepath, global modules can be [overridden by duplicates in the environment's directory.][modulepath_duplicates])
+
+[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$confdir/modules`, which is good enough for most users. The default may also include another directory for "system" modules, depending on your OS and Puppet distribution:
+
+OS and Distro             | Default `basemodulepath`
+--------------------------|----------------------------------------------------
+\*nix (Puppet Enterprise) | `$confdir/modules:/opt/puppet/share/puppet/modules`
+\*nix (open source)       | `$confdir/modules:/usr/share/puppet/modules`
+Windows (PE and foss)     | `$confdir\modules`
+
+To add additional directories containing global modules, you can set your own value for `basemodulepath`. See [the page on the modulepath][modulepath] for more details about how Puppet loads modules from the modulepath.
 
 Setting Up Environments on a Puppet Master
 -----
+
+[inpage_set_up]: #setting-up-environments-on-a-puppet-master
 
 A directory environment is just a directory that follows a few conventions:
 
@@ -71,7 +121,6 @@ A directory environment is just a directory that follows a few conventions:
       ...
 
 Once those conditions are met, the environment is fully configured. When serving nodes assigned to that environment, the puppet master will use the modules and the main manifest from that environment.
-
 
 ### Manifests Directory → Main Manifest
 
@@ -124,26 +173,17 @@ Additionally, there are four forbidden environment names:
 
 These names can't be used because they conflict with the primary [config sections](./config_file_main.html#config-sections). **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
 
-### The `environmentpath`
+### No Interaction with Config File Environments
 
-The puppet master will only look for environments in certain directories. By default, it will only search `$confdir/environments`. ([See here for info on the confdir][confdir].)
+If directory environments are enabled (by setting the `environmentpath` setting; see [Enabling Directory Environments above][inpage_enable]), any config file environments will be completely ignored.
 
-If you need to keep environments in multiple directories, you can configure them with [the `environmentpath` setting][environmentpath]. Its value should be a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) Puppet will search these directories in order, with earlier directories having precedence.
+If you previously used [dynamic environments][] and your `modulepath` setting included additional global module directories, you may need to set a value for the `basemodulepath` setting so that your directory environments will include those extra global directories.
 
-### Interaction with Config File Environments
+### Unconfigured Environments → Catalog Failure
 
-If you've accidentally configured the same environment in multiple ways (see [the page on config file environments][config_file_envs]), the precedence goes like this:
+If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the puppet master will fail compilation of its catalog.
 
-Config sections → directory environments → dynamic (`$environment`) environments
-
-If an [environment config section][config_file_envs_sections] exists for the active environment, Puppet will **ignore the directory environment** it would have otherwise used. This means it will use the standard [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve nodes in that environment. If values for those settings are specified in the environment config section, those will be used; otherwise, Puppet will use the global values.
-
-If the global values for the [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings use the `$environment` variable, they will only be used when a directory environment **doesn't** exist for the active environment.
-
-### Unconfigured Environments
-
-If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories and a [config file environment][config_file_envs] isn't configured --- the puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
-
+> **Note:** This is a change from the initial 3.5.0 release, which would fall back to the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings for unconfigured environments.
 
 Assigning Nodes to Environments
 -----
