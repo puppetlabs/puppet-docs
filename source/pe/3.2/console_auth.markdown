@@ -53,7 +53,7 @@ In order to sign up as a console user at any access level, an account must be cr
 
 You will encounter the login screen whenever you try to access a protected part of the console. The screen will ask for your email address and password. After successfully authenticating, you will be taken to the part of the console you were trying to access.
 
-When you're done working in the console, choose *Logout* from the user account menu. Note that you will be logged out automatically after 48 hours.
+When you're done working in the console, choose *Logout* from the user account menu. Note that you will be logged out automatically after 20 minutes.
 
 ![login screen](./images/console/login.png)
 
