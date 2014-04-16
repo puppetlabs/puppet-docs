@@ -42,7 +42,7 @@ You create brokers with the `create-broker` command. For example, the following 
 	
 This command sets up the PE broker, which requires the server parameter. 
 
-	razor create-broker --name foo --broker-type puppet-pe --configuration '{ "server": "puppet.example.com" }
+	razor create-broker --name foo --broker-type puppet-pe --configuration '{ "server": "puppet.example.com" }'
 
 **Stock Broker Types**
 
