@@ -23,9 +23,7 @@ canonical: "/puppet/latest/reference/environments.html"
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 [config_file_envs_sections]: ./environments_classic.html#environment-config-sections
 [dynamic environments]: ./environments_classic.html#dynamic-environments
-
-<!-- TODO: replace with good anchor link -->
-[modulepath_duplicates]: ./dirs_modulepath.html
+[modulepath_duplicates]: ./dirs_modulepath.html#duplicate-or-conflicting-modules-and-content
 
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
@@ -83,7 +81,7 @@ Although environments should contain their own modules, you might want some modu
 
 [The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$confdir/modules`, which is good enough for most users. The default may also include another directory for "system" modules, depending on your OS and Puppet distribution:
 
-OS and Distro             | Default `basemodulepath`
+OS and Distro             | Default basemodulepath
 --------------------------|----------------------------------------------------
 \*nix (Puppet Enterprise) | `$confdir/modules:/opt/puppet/share/puppet/modules`
 \*nix (open source)       | `$confdir/modules:/usr/share/puppet/modules`
