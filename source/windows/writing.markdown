@@ -286,7 +286,9 @@ MSI properties can be specified as an array of strings following the 'property=k
 
 Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately. It's a good idea to use the hash notation for file path arguments since they may contain spaces, for example:
 
-    install_options => [ { 'INSTALLDIR' => "${packagedir" } ]
+{% highlight ruby %}
+install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
+{% endhighlight %}
 
 #### Versioning and Upgrades
 
