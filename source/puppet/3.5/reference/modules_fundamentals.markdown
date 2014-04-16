@@ -19,18 +19,19 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [conf]: /guides/configuring.html
 [environment]: /guides/environment.html
 [templates]: /guides/templating.html
+[forge]: http://forge.puppetlabs.com
 
 Puppet Modules
 =====
 
-**Modules** are self-contained bundles of code and data. You can write your own modules or you can download pre-built modules from Puppet Labs' online collection, the Puppet Forge.
+**Modules** are self-contained bundles of code and data. You can write your own modules or you can download pre-built modules from [the Puppet Forge][forge].
 
 **Nearly all Puppet manifests belong in modules.** The sole exception is the main `site.pp` manifest, which contains site-wide and node-specific code.
 
 **Every Puppet user should expect to write at least some of their own modules.**
 
 * Continue reading to learn how to write and use Puppet modules.
-* [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
+* [See "Installing Modules"][installing] for how to install pre-built modules from [the Puppet Forge][forge].
 * [See "Publishing Modules"][publishing] for how to publish your modules to the Puppet Forge.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
@@ -61,17 +62,6 @@ Using Modules
 Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see ["Using Plugins"][plugins] for more details.
 
 To make a module available to Puppet, **place it in one of the directories in Puppet's [modulepath][].**
-
-> ### The Modulepath
->
-> **Note:** The `modulepath` is a list of directories separated by the system path-separator character. On 'nix systems, this is the colon (:), while Windows uses the semi-colon (;). The most common default modulepaths are:
->
-> * `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules` (for Puppet Enterprise)
-> * `/etc/puppet/modules:/usr/share/puppet/modules` (for open source Puppet)
->
-> Use `puppet config print modulepath` to see your currently configured modulepath.
->
->  If you want both puppet master and puppet apply to have access to the modules, set the modulepath in [puppet.conf][conf] to go to the `[main]` section. Modulepath is also one of the settings that can be different per [environment][].
 
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
