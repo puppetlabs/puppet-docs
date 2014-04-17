@@ -23,14 +23,13 @@ toc: false
 
 
 ## Continue Learning
-Don't stop learning when you complete the quests in our new Learning VM. Take our self-paced courses in the Puppet Labs Workshop, or enroll in one of our training courses.
-[Keep learning](https://puppetlabs.com/learn).
+Don't stop learning when you complete the quests in our new Learning Puppet VM. Take our self-paced courses in the Puppet Labs Workshop, or enroll in one of our training courses. [Keep learning](https://puppetlabs.com/learn).
 
-### Are you looking for the Original Learning VM Tutorials?
-Don't worry, the original, "Guided Tour" tutorials for the Learning VM still exist. 
+### Are you looking for the original learning VM tutorials?
+Don't worry, the original "guided tour" tutorials for the Learning Puppet VM still exist. 
 Continue here: 
 
 [http://docs.puppetlabs.com/learning/introduction.html](http://docs.puppetlabs.com/learning/introduction.html)
 
-The Learning VM is suitable for both the new Quest Based material, AND the original tutorials.
+The Learning Puppet VM is suitable for both the new quest-based material and the original tutorials.
 
