@@ -7,15 +7,9 @@ title: "Background Reference: What is HTTPS?"
 [index]: ./index.html
 [tls_ssl]: ./tls_ssl.html
 [passenger]: /guides/passenger.html
-[other_ssl_docs]: ./index.html#other-ssl-related-documentation
+[certificate_anatomy]: ./cert_anatomy.html
 
-> **Note:** If you already understand basic SSL-related concepts and want practical info on managing certificates, see [this list of SSL-related documentation][other_ssl_docs].
->
-> This article is [part of a series][index] of background references about SSL. We provide it to help new users understand the basic concepts and workflows that Puppet's security systems are constructed from.
->
-> * To understand this article, you must first understand the basics of [the TLS/SSL protocol][tls_ssl].
-> * Once you understand the concepts in this article and the preceding ones, you should be reasonably equipped to read any documentation about managing Puppet's certificates, CA, and HTTPS authorization tools.
-
+> This article is [part of a series][index]. The previous article covered the basics of [the TLS/SSL protocol][tls_ssl].
 
 Since SSL is a relatively generic protocol, it is usually used to wrap a more specific protocol, like HTTP or SMTP.
 
@@ -86,4 +80,4 @@ End of Series
 
 At this point, you should understand enough about the fundamentals to understand any documentation on this site about managing Puppet's certificates, CA, and HTTPS authorization tools.
 
-For a list of relevant documentation, including how to manage certificates with Puppet's CA tools, see the introductory page of this series for [a list of SSL-related documentation][other_ssl_docs].
+For a little more practical depth, you may also want to see the [appendix on certificate anatomy.][certificate_anatomy]

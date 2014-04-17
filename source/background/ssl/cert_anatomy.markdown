@@ -3,7 +3,6 @@ layout: default
 title: "Background Reference: X.509 Certificate Anatomy"
 ---
 
-
 [pem]: http://en.wikipedia.org/wiki/X.509#Certificate_filename_extensions
 [der]: http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules
 [altnames]: /references/latest/configuration.html#dnsaltnames
@@ -13,13 +12,15 @@ title: "Background Reference: X.509 Certificate Anatomy"
 [certname]: /references/latest/configuration.html#certname
 [lang_node]: /puppet/latest/reference/lang_node_definitions.html
 [enc]: /guides/external_nodes.html
-[series_index]: ./index.html
+[index]: ./index.html
 [ca_name]: /references/latest/configuration.html#caname
 [wiki_x509]: http://en.wikipedia.org/wiki/X.509
 
 <!-- The following references are not used in the text:
 [pem]:
 -->
+
+> This article is [part of a series][index].
 
 As described in the background reference article about [certificates and PKI][certs], certificates are documents containing a public key, metadata, and a signature.
 
@@ -269,7 +270,7 @@ These fields are listed under the "X509v3 extensions" section of the certificate
     X509v3 Extended Key Usage: critical
         TLS Web Server Authentication, TLS Web Client Authentication
 
-This defines the things the certificate can be used for. If you've read the [series of background articles on SSL][series_index], there should be no major surprises here. However, one note is that both agent and master certificates have both server and client authentication listed. This is because:
+This defines the things the certificate can be used for. If you've read the [series of background articles on SSL][index], there should be no major surprises here. However, one note is that both agent and master certificates have both server and client authentication listed. This is because:
 
 * The puppet master cert is also used by puppet agent running on the puppet master node, in order to request a catalog. (From itself, but rules are rules: it still uses HTTPS to do so.)
 * The puppet master server process can sometimes act as a client, requesting services provided by a PuppetDB server, a different puppet master server, or another HTTPS service.

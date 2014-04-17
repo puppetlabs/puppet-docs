@@ -5,15 +5,9 @@ title: "Background Reference: What is Public Key Cryptography?"
 
 [certs]: ./certificates_pki.html
 [index]: ./index.html
-[other_ssl_docs]: ./index.html#other-ssl-related-documentation
+[rsa_explanation]: http://www.muppetlabs.com/~breadbox/txt/rsa.html
 
-> **Note:** If you already understand basic SSL-related concepts and want practical info on managing certificates, see [this list of SSL-related documentation][other_ssl_docs].
->
-> This article is [part of a series][index] of background references about SSL. We provide it to help new users understand the basic concepts and workflows that Puppet's security systems are constructed from.
->
-> * This article has no particular prerequisites for understanding it. (Hopefully.)
-> * The concepts in this article are necessary for understanding the next article in the series, [What are Certificates and PKI][certs].
-
+> This article is [part of a series][index].
 
 **Public key cryptography** is a family of algorithms and practices for encrypting and verifying information.
 
@@ -28,7 +22,7 @@ In public key crypto, each participant possesses a **key pair,** which consists 
 * A private key can't be reverse-engineered from its corresponding public key. (Or at least, doing so isn't practical with current or foreseeable-future technology.)
 * Using one part of the key pair, you can perform a calculation that can only be reversed by using the other part.
 
-There are several ways to create these kinds of related numbers, but the actual mathematics are far outside the scope of this guide.
+There are several ways to create these kinds of related numbers, but the actual mathematics are far outside the scope of this guide. (Although [this explanation of the RSA cipher][rsa_explanation] is relatively readable, if you're interested.)
 
 The public key can and should be shared freely. The private key must stay private. If a copy of it is stolen, the thief can impersonate the rightful owner until all other participants have stopped using and trusting the corresponding public key.
 

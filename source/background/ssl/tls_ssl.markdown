@@ -7,15 +7,8 @@ title: "Background Reference: What is TLS/SSL?"
 [index]: ./index.html
 [certs]: ./certificates_pki.html
 [https]: ./https.html
-[other_ssl_docs]: ./index.html#other-ssl-related-documentation
 
-> **Note:** If you already understand basic SSL-related concepts and want practical info on managing certificates, see [this list of SSL-related documentation][other_ssl_docs].
->
-> This article is [part of a series][index] of background references about SSL. We provide it to help new users understand the basic concepts and workflows that Puppet's security systems are constructed from.
->
-> * To understand this article, you must first understand the concepts of [certificates and PKI][certs].
-> * The concepts in this article are necessary for understanding the next article in the series, [What is HTTPS][https].
-
+> This article is [part of a series][index]. The previous article covered the concepts of [certificates and PKI][certs].
 
 TLS ("transport layer security") is a protocol that uses an X.509 PKI to create secure and authenticated channels of network communication. SSL ("secure socket layer") is an older version of that same protocol, which is still in widespread use.
 

@@ -9,15 +9,9 @@ title: "Background Reference: What are Certificates and PKI?"
 [tls_ssl]: ./tls_ssl.html
 [x509]: http://tools.ietf.org/html/rfc5280
 [certificate_anatomy]: ./cert_anatomy.html
-[other_ssl_docs]: ./index.html#other-ssl-related-documentation
 [file_extensions]: http://en.wikipedia.org/wiki/X.509#Certificate_filename_extensions
 
-> **Note:** If you already understand basic SSL-related concepts and want practical info on managing certificates, see [this list of SSL-related documentation][other_ssl_docs].
->
-> This article is [part of a series][index] of background references about SSL. We provide it to help new users understand the basic concepts and workflows that Puppet's security systems are constructed from.
->
-> * To understand this article, you must first understand the concept of [public key cryptography][public_key].
-> * The concepts in this article are necessary for understanding the next article in the series, [What is TLS/SSL][tls_ssl].
+> This article is [part of a series][index]. The previous article covered the concept of [public key cryptography][public_key].
 
 
 A public key infrastructure (PKI) is a way to associate public keys with trusted information about their owners. This makes public key crypto significantly more useful, since each participant doesn't have to keep a personal list of all known public keys.
