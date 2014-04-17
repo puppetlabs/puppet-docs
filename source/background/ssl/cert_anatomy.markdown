@@ -9,7 +9,7 @@ title: "Background Reference: X.509 Certificate Anatomy"
 [altnames]: /references/latest/configuration.html#dnsaltnames
 [extensions]: /puppet/3/reference/ssl_attributes_extensions.html
 [certs]: ./certificates_pki.html
-[ssldir]: todo
+[ssldir]: /puppet/latest/reference/dirs_ssldir.html
 [certname]: /references/latest/configuration.html#certname
 [lang_node]: /puppet/latest/reference/lang_node_definitions.html
 [enc]: /guides/external_nodes.html
@@ -34,7 +34,7 @@ In this case, we will be inspecting the certificate of a node named `magpie.exam
 
 ### PEM File
 
-A certificate is stored on disk as a [.pem file][pem] in puppet's `certdir`. The `certdir` is part of Puppet's `ssldir` hierarchy, which is documented elsewhere ([Puppet reference manual: ssldir layout][ssldir]). Another copy of the certificate is stored in the CA's `signed` directory. (The `puppet cert print` command uses this copy, which is why it can only be used on the CA node.)
+A certificate is stored on disk as a [.pem file][pem] in puppet's `certdir`. The `certdir` is part of Puppet's `ssldir` hierarchy, which is documented elsewhere ([Puppet reference manual » important directories and files » ssldir][ssldir]). Another copy of the certificate is stored in the CA's `signed` directory. (The `puppet cert print` command uses this copy, which is why it can only be used on the CA node.)
 
 The name of the "privacy enhanced mail" (PEM) extension is somewhat misleading, since it has nothing to do with email; it's just a historical quirk of X.509 implementations.
 

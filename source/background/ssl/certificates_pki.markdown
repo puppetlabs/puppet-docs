@@ -7,8 +7,8 @@ title: "Background Reference: What are Certificates and PKI?"
 [index]: ./index.html
 [public_key]: ./public_key.html
 [tls_ssl]: ./tls_ssl.html
-[x509]: todo
-[certificate_anatomy]: todo
+[x509]: http://tools.ietf.org/html/rfc5280
+[certificate_anatomy]: ./cert_anatomy.html
 [other_ssl_docs]: ./index.html#other-ssl-related-documentation
 [file_extensions]: http://en.wikipedia.org/wiki/X.509#Certificate_filename_extensions
 
@@ -60,7 +60,7 @@ Fundamentally, a CA is just a trusted person or institution that controls a key 
 
 * Other participants agree to trust that key pair's owner as a CA. For a root CA, this is usually a social/legal/contractual agreement that originates outside the PKI. For an intermediate CA, participants will trust it because they trust the root CA that endorses it.
 * The CA either creates or obtains a special certificate, whose metadata states that the CA is allowed to sign new certificates. (This is a rare permission that most certificates do not have.)
-    * For intermediate CAs, this certificate is issued by another (probably root) CA. Root CAs will use their own key pair to craft a _self-signed certificate._ (That is, the signature is provided by the same key pair that the certificate describes. This is why the decision to trust a root CA happens outside the PKI: their certificates amount to a tautological "trust me because you trust me."
+    * For intermediate CAs, this certificate is issued by another (probably root) CA. Root CAs will use their own key pair to craft a _self-signed certificate._ (That is, the signature is provided by the same key pair that the certificate describes.) This is why the decision to trust a root CA happens outside the PKI: their certificates amount to a tautological "trust me because you trust me."
 * The CA certificate is distributed to other participants in the PKI. This is often done out-of-band as part of some bootstrapping process. (For example, the root CA certificates used by web browsers can be bundled with the executable and installed alongside it. Most modern operating systems also ship with root CA certs included.)
 
 At this point, other participants can use the CA's certificate to verify signatures on any certificates that claim to be vetted by that CA. If the signature fails to validate, they will consider that certificate forged and decline to trust it.
