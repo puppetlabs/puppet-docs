@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Background Reference: SSL and Related Topics"
+toc: false
 ---
 
 [wiki_pki]: http://en.wikipedia.org/wiki/Public_key_infrastructure

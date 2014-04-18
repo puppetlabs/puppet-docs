@@ -77,6 +77,8 @@ Trusted certificates sometimes need to become untrusted, often as a result of a 
 
 Participants in the PKI should regularly retrieve a copy of each CA's CRL, and should double-check certificates against it when checking their validity.
 
+This is one of the harder parts of a PKI to manage correctly --- keeping CRLs up to date and making sure that each participant is configured to check them is more complicated than it seems.
+
 Certificate Lifespans
 -----
 
@@ -116,7 +118,7 @@ The Puppet CA consists of the following components:
 >     * (A fun example was Puppet's [CVE-2011-3872](http://puppetlabs.com/security/cve/cve-2011-3872), where the CA could be configured to trick _itself_ into silently adding forged metadata to agent certs.)
 > * **Subvert participants' credentials.** If you can get access to a participant's private key, you can impersonate them at will. To recover, the CA will need to revoke their certificate and they will need to get re-certified.
 > * **Subvert a participant's list of trusted CAs.** If you can insert an evil CA certificate into a user's collection of CA certs, they will often trust certificates issued by that rogue CA. (This could be done by, e.g., redirecting a user to a doctored browser executable with bogus root CAs inserted. It could also be done with a trojan or other means of partial control over the user's computer.) To recover, the user would need to be keeping track of their trusted CAs, and would need to remove the evil one and patch whatever vulnerability allowed it to be placed there.
-> * **Attack the implementation.** If you can find a vulnerability in the protocol that is using the PKI --- for example, a cipher crack or the BEAST and CRIME attacks on SSL/TLS --- you may be able to steal information from or insert information into the secure channel without actually needing to attack the PKI itself. To recover or defend, the participants must make sure they're using a version of their protocol that isn't vulnerable to that attack.
+> * **Attack the implementation.** If you can find a vulnerability in the protocol that is using the PKI --- for example, the BEAST and CRIME attacks on SSL/TLS, the Heartbleed attack on OpenSSL, and the occasional straight-up cipher crack --- you may be able to steal information from or insert information into the secure channel without actually needing to attack the PKI itself. To recover or defend, the participants must make sure they're using a version of their protocol that isn't vulnerable to that attack.
 > * **Attack outside the protocol.** If the target terminates SSL and sends unencrypted traffic over leased fiber, attack the leased fiber. Or get a keylogger onto the target's machine, or something; the point is, cheating is easier and more effective than fussing with a PKI or a secure protocol.
 >
 > In short: protect your private keys, make sure you actually trust the CA (in intentions _and_ competence), stay up to date on protocol exploits, and above all keep an eye on the unsecured portions of your system.
@@ -132,7 +134,7 @@ This article was longer than the others in this series, so a recap is in order:
 * The CA issues all certificates. If it's a certificate at all, the CA has seen it and approved it.
 * Because the CA approves all certificate metadata, participants don't have to keep a list of all the public keys they'll need to know about; instead, they can just trust any valid certificate they are shown.
 * Because certs include public keys, only their rightful owner can present them as ID. A stolen cert is inert without a stolen private key.
-* The CA can also revoke certificates, but that only works if everybody regularly checks the list of revoked certs  (CRL).
+* The CA can also revoke certificates, but that only works if everybody regularly checks the list of revoked certs (CRL), which is harder to ensure than it sounds.
 * Puppet has built-in tools to make managing a CA easier. These are covered in other documentation.
 
 

@@ -129,7 +129,12 @@ Puppet has a large community and many resources for users.
 - [Workflow for Puppet Open-Source Projects](/community/puppet_projects_workflow.html) --- Info about how the Puppet projects use their issue trackers, and how you can help.
 - [Trivial Patch Exemption Policy](/community/trivial_patch_exemption.html) --- Details about which contributions are exempted from our contributor agreement.
 
+Background Information
+-----
 
+We occasionally publish articles about foundational technologies and practices. These are not tied to any specific Puppet Labs' product, but we believe many of our users will either need to or want to be familiar with them.
+
+- [SSL and Related Topics](/background/ssl) --- If you're wondering what a certificate or a CA is, read this. In five short articles, we explain the basics of the security technologies Puppet relies upon.
 
 * * *
 
