@@ -45,7 +45,7 @@ To determine the proper locations for the CA and security credential files, run 
 
 ###Locating the PE Console Certificate and Security Credentials
 
-The following files, located on the puppet master, need to be replaced:
+The following files, located on the puppet master or on the console server in a split install, need to be replaced:
 
 - `pe-internal-dashboard.ca_cert.pem` (replace with your CA cert)
 - `pe-internal-dashboard.private_key.pem`
@@ -57,7 +57,7 @@ These files are stored at `/opt/puppet/share/puppet-dashboard/certs/`.
 
 ###Locating the PuppetDB Certificate and Security Credentials
 
-The following files, located on the puppet master, need to be replaced: 
+The following files, located on the puppet master or on the PuppetDB server in a split install, need to be replaced: 
 
 - `/etc/puppetlabs/puppetdb/ssl/ca.pem` (replace with your CA cert)
 - `/etc/puppetlabs/puppetdb/ssl/private.pem` (replace with your master's private key)
