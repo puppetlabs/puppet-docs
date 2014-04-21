@@ -76,7 +76,6 @@ The software distributed with Puppet Enterprise generates the following log file
 
 - `/var/log/pe-httpd/access.log`
 - `/var/log/pe-httpd/puppetmasteraccess.log` contains all the endpoints that have been accessed with the puppet master REST API.
-- `/var/log/pe-httpd/puppetmasteraccess.log` contains all the endpoints that have been accessed with the puppet master REST API.
  
 ### Puppet Agent Logs
 
