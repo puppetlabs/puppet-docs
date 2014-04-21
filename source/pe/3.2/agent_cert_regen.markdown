@@ -17,7 +17,7 @@ The following steps explain how to regenerate a certificate for a puppet agent n
 
 3. On the puppet agent node, move `/etc/puppetlabs/puppet/ssl` to a back up directory, such as `/etc/puppetlabs/puppet/ssl_bak`. 
 
-   **Important**: Ensure you are on the puppet agent node when you do this. Backing up the ssl directory, as opposed to deleting it, will enable you to easily recover in the event of a problem. DO NOT perform step 2 on the puppet master.
+   >**Important**: Ensure you are on the puppet agent node when you do this. Backing up the ssl directory, as opposed to deleting it, will enable you to easily recover in the event of a problem. DO NOT perform step 3 on the puppet master.
 
 4. On the puppet agent node, run `puppet agent -t`. 
 
