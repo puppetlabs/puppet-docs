@@ -365,6 +365,14 @@ or, when attempting to request a catalog:
 
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
+### puppetlabs-apt 1.4.0 uses functions that are not shipped as part of puppetlabs-stdlib 3.2.0
+
+PE 3.2.x ships with puppetlabs-apt 1.4.0 and puppetlabs-stdlib 3.2.0 preinstalled. The puppetlabs-apt module attempts to use a function from stdlib that is not present in puppetlabs-stdlib 3.2.0.
+
+To work around this issue, you may upgrade to puppetlabs-apt 1.4.2, which is the latest supported release, using the puppet module tool:
+
+`puppet module upgrade puppetlabs-apt`
+
 ### Razor Known Issues
 Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html). 
 
