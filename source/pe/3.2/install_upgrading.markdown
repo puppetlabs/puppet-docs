@@ -40,7 +40,7 @@ Important Notes and Warnings
    
    On a split install, the databases and PE files will be located across the various roles assigned to your servers.
 
-   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master role, the server assigned to the console role, and the server assigned to the database support role (i.e., PuppetDB and Postgres). You should back up each version.
+   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master role, the server assigned to the console role, and the server assigned to the database support role (i.e., PuppetDB and PostgreSQL). You should back up each version.
    - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console role. 
    - The console and console_auth databases: located on the server assigned to the database support role.
    - The PuppetDB database: located on the server assigned to the database support role. 

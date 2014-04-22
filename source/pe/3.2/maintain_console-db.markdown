@@ -82,12 +82,28 @@ Although this task [**should be run regularly as a cron job,**](#Pruning_the_con
 
 If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `yr`, `mon`, `wk`, `day`, `hr`, and `min`.
 
-
-Database backups
+Database Backups
 ----------------
 
-You can back up and restore the console's database using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for the `console`, `console_auth` and `puppetdb` databases, or as dictated by your company policy.
+You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for the `console`, `console_auth` and `puppetdb` databases, or as dictated by your company policy.
 
+Providing comprehensive documentation about backing up and restoring PostgreSQL databases is beyond the scope of this guide, but the following commands should provide you enough guidance to perform back ups and restorations of your PE databases.
+
+To backup the databases, run:
+
+    su - pe-postgres -s /bin/bash
+        
+    pg_dump pe-puppetdb -f /tmp/pe-puppetdb.backup --create
+    pg_dump console -f /tmp/console.backup --create
+    pg_dump console_auth -f /tmp/console_auth.backup --create
+
+To restore the databases, run:
+
+    su - pe-postgres -s /bin/bash
+        
+    psql -f /tmp/pe-puppetdb.backup
+    psql -f /tmp/console.backup
+    psql -f /tmp/console_auth.backup
 
 Changing the Console's Database User/Password
 -----
