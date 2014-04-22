@@ -26,29 +26,47 @@ If more than one of these roles is present on a given node (for example your mas
 
 Important Notes and Warnings
 ---
-- **Before Upgrading Back up Your Databases and Other PE Files**
+### Before Upgrading Back up Your Databases and Other PE Files
 
-   We recommend that you backup the following databases and PE files:
+   We recommend that you backup the following databases and PE files. 
 
-   - `/etc/puppetlabs`
+   On a monolithic (all-in-one) install, the databases and PE files will all be located on the same node as the puppet master.
+
+   - `/etc/puppetlabs/`
    - `/opt/puppet/share/puppet-dashboard/certs`
    - [The console and console_auth databases](./maintain_console-db.html#database-backups)
    - [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#exporting-data-from-an-existing-puppetdb-database)
-   - Any custom configuration files you may have created
+   
+On a split install, the databases and PE files will be located across the various roles assigned to your servers.
 
-- **Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.** To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.1.1. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.1.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
+   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master role, the server assigned to the console role, and the server assigned to the database support role (i.e., PuppetDB and PostgreSQL). You should back up each version.
+   - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console role. 
+   - The console and console_auth databases: located on the server assigned to the database support role.
+   - The PuppetDB database: located on the server assigned to the database support role. 
+
+### Upgrading is only supported from PE 2.8.3 or the latest point release of newer versions.
+
+ To upgrade from a version older than 2.8.3, you *must* first upgrade to 2.8.3, make sure everything is working correctly, and then move on to upgrading to 3.1.1. To upgrade from 3.0.x you *must* first upgrade to the latest point release of the 3.0.x series, make sure everything is working, and then move on to upgrading to 3.1.1. You can find older versions of PE on the [previous releases page](https://puppetlabs.com/misc/pe-files/previous-releases/). 
 - If you are upgrading from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
 
   Before upgrading, remove the following:
+  
    * `/etc/puppetlabs/puppet/routes.yaml`
    * `/etc/puppetlabs/puppet/puppetdb.conf`
    * PostgreSQL (if installed on the master), including any data and config directories
-	
-  Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
+   
+Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
+  
    * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
    * make sure the `facts_terminus` parameter is set to `inventory_active_record`.
 
-  Finally, perform your upgrade.
+Finally, perform your upgrade.
+
+### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
+
+This issue has been documented in the [Known Issues section of the Appendix](./appendix.html#Upgrades-to-PE-3.x-from-2.8.3-Can-Fail-if-PostgreSQL-is-Already-Installed).
+
+### Other Important Notes
 
 - Upgrading is now handled by the installer, which will detect whether or not a previous version of PE is present and will then run in "install" or "upgrade" mode as appropriate.
 - After upgrading your puppet master server, you will not be able to issue orchestration commands to PE 2.x agent nodes until they have been upgraded to PE 3.1. The version of the orchestration engine used in PE 3.x is incompatible with that used by PE 2.x.

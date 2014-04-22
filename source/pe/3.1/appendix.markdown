@@ -169,6 +169,27 @@ Solaris 10 SPARC systems are not affected by this issue.
 
 In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. For more information and a suggested workaround, refer to [Troubleshooting the Console and Database](./trouble_console-db.html#postgresql-memory-buffer-causes-pe-install-to-fail).
 
+### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
+
+There are two scenarios in which your upgrade can fail:
+
+1. If PostgreSQL is already running on port 5432 on the server assigned the database support role, pe-postgresql won't be able to start.
+
+2. Another version of PostgreSQL is not running, but `which psql` resolves to something other than `/opt/puppet/bin/psql`, which is the instance used by PE.
+
+   In this second scenario, you'll see the following failure output:
+
+       ## Performing migration of the console database. This may take a while...
+       DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in  Rails    4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and  config/initializers/myplugin.rb. See the release notes for more on this:    http://weblog.rubyonrails.org/2012/1/4/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at   /opt/puppet/share/puppet-dashboard/Rakefile:16)
+       psql: could not connect to server: No such file or directory
+       Is the server running locally and accepting
+       connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+       Database transfer failed.
+
+To work around these issues, ensure the PostgreSQL service is stopped before installing PE. To determine if PostgreSQL is running, run `service status postgresql`. If an equivalent of "stopped" or "no such service" is returned, the service is not running. If the service is running, stop it (e.g., `service postgresql stop`) and disable it (`chkconfig postgresql off`). 
+
+To resolve the issue make sure that `which psql` resolves to `/opt/puppet/bin/psql`.
+
 ### Puppet Agent on Windows Requires `--onetime`
 
 On Windows systems, puppet agent runs started locally from the command line require either the `--onetime` or `--test` option to be set. This is due to Puppet bug [PUP-1275](https://tickets.puppetlabs.com/browse/PUP-1275).
