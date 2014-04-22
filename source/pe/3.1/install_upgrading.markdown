@@ -64,7 +64,7 @@ Finally, perform your upgrade.
 
 ### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
 
-This issue has been documented in the [Known Issues section of the Appendix](./appendix.html#Upgrades-to-PE-3.x-from-2.8.3-Can-Fail-if-PostgreSQL-is-Already-Installed).
+This issue has been documented in the [Known Issues section of the Appendix](./appendix.html#upgrades-to-pe-3.x-from-2.8.3-can-fail-if-postgresql-is-already-installed).
 
 ### Other Important Notes
 
