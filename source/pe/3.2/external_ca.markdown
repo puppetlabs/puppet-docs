@@ -5,7 +5,7 @@ subtitle: "Using an External Certificate Authority with Puppet Enterprise"
 canonical: "/pe/latest/external_ca.html"
 ---
 
-PE uses its own certificate authority (CA) to generate and verify certificates and security credentials (private and public keys and certificate revocation lists) for the various elements that make up a PE deployment. However, you may need to use your own external CA. This doc will familiarize you with the certs signed by the PE certificate authority and then detail the procedures for replacing those certs and security credentials.    
+PE uses its own certificate authority (CA) to generate and verify certificates and security credentials (private and public keys and certificate revocation lists) for the various elements that make up a PE deployment. However, you may already have your own CA in place and wish to use it instead of PE's. This doc will familiarize you with the certs signed by the PE certificate authority and then detail the procedures for replacing those certs and security credentials.    
 
 > ###*Before You Begin* 
 > Setting up an external certificate authority (CA) to use with PE is beyond the scope of this document; in fact, this writing assumes that you already have some knowledge of CA and security credential creation and have the ability to set up your own external CA. This document will lead you through the certs and security credentials you'll need to replace in PE. However, before beginning, we recommend you familiarize yourself with the following docs:
@@ -45,7 +45,7 @@ To determine the proper locations for the CA and security credential files, run 
 
 ###Locating the PE Console Certificate and Security Credentials
 
-The following files, located on the puppet master, need to be replaced:
+The following files, located on the puppet master, or on the console server in a split install, need to be replaced:
 
 - `pe-internal-dashboard.ca_cert.pem` (replace with your CA cert)
 - `pe-internal-dashboard.private_key.pem`
@@ -57,7 +57,7 @@ These files are stored at `/opt/puppet/share/puppet-dashboard/certs/`.
 
 ###Locating the PuppetDB Certificate and Security Credentials
 
-The following files, located on the puppet master, need to be replaced: 
+The following files, located on the puppet master, or on the PuppetDB server in a split install, need to be replaced: 
 
 - `/etc/puppetlabs/puppetdb/ssl/ca.pem` (replace with your CA cert)
 - `/etc/puppetlabs/puppetdb/ssl/private.pem` (replace with your master's private key)

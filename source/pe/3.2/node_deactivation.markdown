@@ -27,14 +27,14 @@ From time to time, you may need to completely deactivate an agent node in your P
 
 5. Delete the node from the console. Navigate to the node detail page for the deactivated node, and click the "Delete" button. 
 
-   Alternatively, you can also run the following rake command:
-
- 	 	/opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[<node name>]
+   Alternatively, you can also run `/opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[node name]`.
 
    This action does **NOT** disable MCollective/live management on the node. 
-
-  > **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrement, and on the next puppet run, the node will be listed in the console. 
+   
+   **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrement, and on the next puppet run, the node will be listed in the console. 
 
 6. To disable MCollective/live management on the node, [uninstall the puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
 
 7. You should also manually remove the node certificates in `/etc/pupuppetlabs/mcollective/ssl/clients`. 
+
+At this point, the node should be fully deactivated.

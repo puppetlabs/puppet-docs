@@ -29,17 +29,29 @@ Important Notes and Warnings
 
 ### Before Upgrading Back up Your Databases and Other PE Files
 
-   We recommend that you backup the following databases and PE files:
+   We recommend that you backup the following databases and PE files. 
 
-   - `/etc/puppetlabs`
+   On a monolithic (all-in-one) install, the databases and PE files will all be located on the same node as the puppet master.
+
+   - `/etc/puppetlabs/`
    - `/opt/puppet/share/puppet-dashboard/certs`
    - [The console and console_auth databases](./maintain_console-db.html#database-backups)
    - [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#exporting-data-from-an-existing-puppetdb-database)
-   - Any custom configuration files you may have created
    
+   On a split install, the databases and PE files will be located across the various roles assigned to your servers.
+
+   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master role, the server assigned to the console role, and the server assigned to the database support role (i.e., PuppetDB and PostgreSQL). You should back up each version.
+   - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console role. 
+   - The console and console_auth databases: located on the server assigned to the database support role.
+   - The PuppetDB database: located on the server assigned to the database support role. 
+
 ### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
 
    Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.2) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
+   
+### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
+
+This issue has been documented in the [Known Issues section of the Appendix](./appendix.html#upgrades-to-pe-3.x-from-2.8.3-can-fail-if-postgresql-is-already-installed).
    
 ### A Note about Changes to `puppet.conf` that Can Cause Issues During Upgrades
 

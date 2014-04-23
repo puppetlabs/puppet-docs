@@ -52,7 +52,7 @@ Puppet has a healthy community full of people who are happy to help you get unst
 
 Puppet has a relatively long history and open development process for an open-source project, so there is a ton of information returned from google searches for various problems. To narrow down your results to the most relevant, try these google tips:
 
-1. Restrict your search to site:projects.puppetlabs.com – this will cut out the old Trac / reductivelabs wiki and get you more recent hits.
+1. Restrict your search to site:tickets.puppetlabs.com – this will cut out the old Trac / reductivelabs wiki and get you more recent hits.
 2. Join the [puppet-users google group](http://groups.google.com/group/puppet-users) and use the search box on the group page to search the mailing list. this eliminates duplicate hits from ML mirrors like nabble and lets you order results by date so you aren’t getting confused by a bug that was fixed three versions ago.
 3. Use correct Puppet-specific terminology for your problem like yum provider, file resource, and manifest.
 
@@ -163,12 +163,12 @@ Here are a few guidelines:
 * This is a community website, you are encouraged to add relevant tags and make other improvements.
 * You get karma points to encourage people who are being helpful on the site. The site administrator can also remove karma points in the unlikely event that someone might try to abuse the system :)
 * If you see spam or any inappropriate content, please flag it as offensive so that our moderators can take a look at it.
-* If you find a bug in the way the Ask site itself works or you want to suggest a feature, you can submit your issue into our [Ask bug tracker](https://projects.puppetlabs.com/projects/ask/issues).
+* If you find a bug in the way the Ask site itself works or you want to suggest a feature, you can submit your issue into our [Ask bug tracker](https://tickets.puppetlabs.com/browse/ASK).
 
 ### Bug Guidelines
 
 
-You can log bug reports and support tickets for Puppet using our [ticketing system](http://projects.puppetlabs.com/projects/puppet). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
+You can log bug reports and support tickets for Puppet using our [ticketing system](https://tickets.puppetlabs.com/browse/PUP). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
 
 
 Here are a few guidelines that apply specifically to our bug tracker:

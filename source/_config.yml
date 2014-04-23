@@ -38,6 +38,7 @@ defaultnav:
   /release_notes: release_notes.html
   /learning: learning_nav.html
   /community: community_nav.html
+  /background/ssl: background_ssl.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 #Anatomy of an external source:

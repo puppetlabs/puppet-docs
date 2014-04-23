@@ -49,6 +49,7 @@ This is a doorway for passing information into the class:
 {% endhighlight %}
 
 * If you declare the class with a [resource-like class declaration](./modules1.html#resource-like-class-declarations), the parameters are available as **resource attributes.**
+* If you declare the class with `include` (or leave out some parameters when using a resource-like declaration), Puppet will [automatically look up values][autolookup] for the parameters in your Hiera data.
 * Inside the definition of the class, they appear as **local variables.**
 
 
@@ -71,6 +72,14 @@ The best way to deal with class parameters in the Puppet Enterprise 2.x series i
 To make your roles and profiles more flexible and avoid repeating yourself, you can also install and configure [Hiera][] on your puppet master and specify [Hiera lookup functions][hiera_functions] as the values of class parameters.
 
 [craigdunn_roles_profiles]: http://www.craigdunn.org/2012/05/239/
+
+#### In Puppet Enterprise 3.x
+
+In Puppet 3 and later, which are used in the Puppet Enterprise 3.x series, Puppet will automatically look up any unspecified class parameters in your [Hiera][] data. This means you can safely use `include` and the PE console with _any_ class (including those with mandatory no-default parameters), as long as you specify parameter values in your Hiera data.
+
+Once you find yourself managing multiple nodes with Puppet, you should [read the section of the Hiera manual about automatic parameter lookup][autolookup]. Also, the [roles and profiles pattern][craigdunn_roles_profiles] recommended for Puppet Enterprise 2.x users remains relevant in PE 3.x.
+
+You can also now specify class parameters directly in the PE console. However, this works best when using a small number of classes across a small number of nodes; for medium and large deployments, we recommend a combination of Hiera auto-lookup and the roles and profiles pattern.
 
 #### Why `include` Can't Directly Take Class Parameters
 
@@ -211,3 +220,10 @@ Okay, we can pass parameters into classes now and change their behavior. Great! 
 
 Well, you'd [whip up a defined resource type](./definedtypes.html).
 
+**Off-Road:**
+
+You've seen how to configure classes in both your Hiera data and the PE console; why not grab a module and configure it for your own systems? [Download Puppet Enterprise for free][dl], follow [the quick start guide][quick] to get a small environment installed, install a module from the Puppet Forge ([maybe puppetlabs/ntp?](http://forge.puppetlabs.com/puppetlabs/ntp)), and assign it to a node in the console; don't forget to [add parameters][console_params].
+
+[console_params]: insert_link_here
+[dl]: http://info.puppetlabs.com/download-pe.html
+[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
