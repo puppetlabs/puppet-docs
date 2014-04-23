@@ -90,7 +90,7 @@ Simple facts are typically made up of the following parts:
 
 ## Writing Structured Facts
 
-Facter 2.0 introduced **structured facts**, which can take the form of hashes or arrays. You don't have to do anything special to mark the fact as structured --- if your fact returns a hash or array, Facter will recognize it as a structured fact. Structured facts can have [simple](#main_components_of_simple_resolutions) or [aggregate resolutions](#main_components_of_aggregate_resolutions).
+Facter 2.0 introduced **structured facts**, which can take the form of hashes or arrays. You don't have to do anything special to mark the fact as structured --- if your fact returns a hash or array, Facter will recognize it as a structured fact. Structured facts can have [simple](#main-components-of-simple-resolutions) or [aggregate resolutions](#main-components-of-aggregate-resolutions).
 
 > **Note:** Structured facts are supported in Puppet 3.3 and greater, but they're not enabled by default. To enable structured facts when using `puppet apply`, the [stringify_facts](/references/latest/configuration.html#stringifyfacts) option must be set to `false` in the `[main]` section of puppet.conf. To enable structured facts in a master/agent setup, `stringify_facts` must be set to `false` in the `[main]` or `[master]` section on the master as well as either the `[main]` or `[agent]` section on the agent.
 
@@ -127,9 +127,9 @@ end
 
 ## Writing Facts with Aggregate Resolutions
 
-Aggregate resolutions allow you to split up the resolution of a fact into separate chunks. 
-By default, Facter will merge hashes with hashes or arrays with arrays, resulting in a 
-[structured fact](#structured_facts), but you can also aggregate the chunks into a flat fact 
+Aggregate resolutions allow you to split up the resolution of a fact into separate chunks.
+By default, Facter will merge hashes with hashes or arrays with arrays, resulting in a
+[structured fact](#structured_facts), but you can also aggregate the chunks into a flat fact
 using concatenation, summation, or any other method that you can express in Ruby code.
 
 ### Example: building a structured fact progressively
@@ -163,7 +163,7 @@ Facter.add(:networking, :type => :aggregate) do
 
     interfaces
   end
-  # Facter will merge the return values for the two chunks 
+  # Facter will merge the return values for the two chunks
   # automatically, so there's no setcode statement.
 end
 {% endhighlight %}
@@ -181,14 +181,14 @@ Facter.add(:total_free_memory_mb, :type => :aggregate) do
     Facter.value(:swapfree_mb).to_i
     # The 'swapfree_mb' fact returns the number of megabytes of free swap as a string.
   end
-  
+
   aggregate do |chunks|
     # The return value for this block will determine the value of the fact.
     sum = 0
     chunks.each_value do |i|
       sum += i
     end
-    
+
     sum
   end
 end
