@@ -5,7 +5,7 @@ subtitle: "Provisioning With Amazon Web Services"
 canonical: "/pe/latest/cloudprovisioner_aws.html"
 ---
 
-Puppet Enterprise provides support for working with EC2 virtual machine instances using Amazon Web Services. Using the `puppet node_aws` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
+Puppet Enterprise provides support for working with Elastic Compute Cloud (EC2) virtual machine instances using Amazon Web Services. Using the `puppet node_aws` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
 
 The main actions used for AWS cloud provisioning include:
 
