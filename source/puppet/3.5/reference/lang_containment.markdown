@@ -98,7 +98,7 @@ To contain classes that are declared with the resource-like declaration syntax, 
 
 ### Faux Containment (for Compatibility With Puppet ≤ 3.4.0)
 
-Versions prior to Puppet 3.4.0 do not ship with the `contain` function. To support these versions, you must mimic containment with the **anchor pattern.**
+Versions prior to Puppet 3.4.0 and Puppet Enterprise 3.2 do not ship with the `contain` function. To support these versions, you must mimic containment with the **anchor pattern.**
 
 > **Note:** To use the anchor pattern, [the `puppetlabs/stdlib` module][stdlib] must be installed. This module includes the dummy `anchor` resource type.
 

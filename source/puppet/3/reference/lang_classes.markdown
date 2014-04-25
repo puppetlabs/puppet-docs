@@ -315,7 +315,7 @@ The `require` function uses [include-like behavior][include-like]. (Multiple dec
 
 ### Using `contain`
 
-> **Version note:** `contain` is only available in Puppet 3.4.0 and later.
+> **Version note:** `contain` is only available in Puppet 3.4.0 / Puppet Enterprise 3.2 and later.
 
 The `contain` function is meant to be used _inside another class definition._ It declares one or more classes, then causes them to become [contained][contains] by the surrounding class. For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
 
@@ -466,7 +466,7 @@ This design pattern can make for significantly cleaner code while enabling some 
 
 {% highlight ruby %}
     # /etc/puppet/modules/webserver/manifests/params.pp
-    
+
     class webserver::params {
      $packages = $operatingsystem ? {
        /(?i-mx:ubuntu|debian)/        => 'apache2',
@@ -477,16 +477,16 @@ This design pattern can make for significantly cleaner code while enabling some 
        /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
      }
     }
-    
+
     # /etc/puppet/modules/webserver/manifests/init.pp
-    
+
     class webserver(
      $packages  = $webserver::params::packages,
      $vhost_dir = $webserver::params::vhost_dir
     ) inherits webserver::params {
-    
+
      package { $packages: ensure => present }
-    
+
      file { 'vhost_dir':
        path   => $vhost_dir,
        ensure => directory,
@@ -497,15 +497,15 @@ This design pattern can make for significantly cleaner code while enabling some 
     }
 {% endhighlight %}
 
-To summarize what's happening here: When a class inherits from another class, it implicitly declares the base class. Since the base class's local scope already exists before the new class's parameters get declared, those parameters can be set based on information in the base class. 
+To summarize what's happening here: When a class inherits from another class, it implicitly declares the base class. Since the base class's local scope already exists before the new class's parameters get declared, those parameters can be set based on information in the base class.
 
 This is functionally equivalent to doing the following:
 
 {% highlight ruby %}
     # /etc/puppet/modules/webserver/manifests/init.pp
-    
+
     class webserver( $packages = 'UNSET', $vhost_dir = 'UNSET' ) {
-     
+
      if $packages == 'UNSET' {
        $real_packages = $operatingsystem ? {
          /(?i-mx:ubuntu|debian)/        => 'apache2',
@@ -515,7 +515,7 @@ This is functionally equivalent to doing the following:
      else {
         $real_packages = $packages
      }
-     
+
      if $vhost_dir == 'UNSET' {
        $real_vhost_dir = $operatingsystem ? {
          /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
@@ -525,9 +525,9 @@ This is functionally equivalent to doing the following:
      else {
         $real_vhost_dir = $vhost_dir
     }
-     
+
      package { $real_packages: ensure => present }
-    
+
      file { 'vhost_dir':
        path   => $real_vhost_dir,
        ensure => directory,
