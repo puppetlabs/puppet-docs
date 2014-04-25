@@ -1363,6 +1363,7 @@ XML-RPC support has been removed entirely, in favor of the HTTP API introduced i
 
 The following hard changes have been made to Puppet's internal Ruby API:
 
+* **Utility code:** The `Puppet::Util.symbolize` method has been removed. Some older types and providers (notably the MySql module) used this function; if you get errors like `undefined method 'symbolize' for #<Puppet::Type::...`, you may need to upgrade your modules to newer versions. See [ticket 16791](http://projects.puppetlabs.com/issues/16791) for more information.
 * **Helper code:** `String#lines` and `IO#lines` revert to standard Ruby semantics. Puppet used to emulate these methods to accomodate ancient Ruby versions, and its emulation was slightly inaccurate. We've stopped emulating them, so they now include the separator character (`$/`, default value `\n`) in the output and include content where they previously wouldn't.
 * **Functions:** Puppet functions called from Ruby code (templates, other functions, etc.) must be called with an **array of arguments.** Puppet has always expected this, but was not enforcing it. See [ticket #15756](https://projects.puppetlabs.com/issues/15756) for more information.
 * **Faces:** The `set_default_format` method has been removed. It had been deprecated and replaced by `render_as`.
