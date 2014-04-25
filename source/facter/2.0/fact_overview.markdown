@@ -75,7 +75,7 @@ Simple facts are typically made up of the following parts:
      * You can optionally pass `:type => :simple` as a parameter, but it will have no effect since that's already the default.
      * The rest of the fact is wrapped in the constructor's `do ... end` block.
   2. Zero or more `confine` statements:
-     * These Determine whether the fact/resolution will be executed.
+     * These determine whether the fact/resolution will be executed.
      * They can either match against the value of another fact or evaluate an arbitrary Ruby expression/block.
   3. An optional `has_weight` statement:
      * When multiple resolutions are available, the one with the highest weight will be executed and the rest will be ignored.
