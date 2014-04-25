@@ -126,3 +126,6 @@ If a virtual resource is contained in a class, it cannot be realized unless the 
 
 You may declare virtual resources of defined resource types. This will cause every resource contained in the defined resource to behave virtually --- they will not be added to the catalog unless the defined resource is realized.
 
+### Run Stages
+
+Virtual resources will be evaluated in the [run stage](./lang_run_stages.html) in which they are **declared,** not the run stage in which they are **realized.**
