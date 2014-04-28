@@ -251,7 +251,13 @@ Mount the Hiera disk image, and run the installer package it contains.
 
 Mount the Puppet disk image, and run the installer package it contains.
 
-#### 5. Configure and Enable
+#### 5. 10.8 and Earlier: Install JSON Gem
+
+OS X 10.9 Mavericks includes the Ruby JSON library by default, but earlier versions don't. If installing on 10.8 or earlier, make sure JSON is installed by running:
+
+    $ sudo gem install json
+
+#### 6. Configure and Enable
 
 The OS X packages are currently fairly minimal, and do not create launchd jobs, users, or default configuration or manifest files. You will have to:
 
