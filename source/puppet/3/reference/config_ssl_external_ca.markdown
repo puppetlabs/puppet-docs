@@ -291,7 +291,9 @@ An example of this configuration for Apache:
         # Allow only clients with a SSL certificate issued by the intermediate CA with
         # common name "Puppet CA"  Replace "Puppet CA" with the CN of your
         # intermediate CA certificate.
-        SSLRequire %{SSL_CLIENT_I_DN_CN} eq "Puppet CA"
+        <Location />
+            SSLRequire %{SSL_CLIENT_I_DN_CN} eq "Puppet CA"
+        </Location>
 
         SSLVerifyClient optional
         SSLVerifyDepth 2
@@ -407,7 +409,9 @@ An example of this configuration for Apache:
         # Allow only clients with a SSL certificate issued by the intermediate CA with
         # common name "Puppet Agent CA"  Replace "Puppet Agent CA" with the CN of your
         # Agent CA certificate.
-        SSLRequire %{SSL_CLIENT_I_DN_CN} eq "Puppet Agent CA"
+        <Location />
+            SSLRequire %{SSL_CLIENT_I_DN_CN} eq "Puppet Agent CA"
+        </Location>
 
         SSLVerifyClient optional
         SSLVerifyDepth 2
