@@ -20,7 +20,7 @@ However, you may already have your own CA in place and wish to use it instead of
 
 After installing PE, you can run `puppet cert list --all` on your puppet master server to inspect the inventory of certificates signed using PE's built-in CA. It will include the following:
 
-- Per-node certificates for the puppet master (and any agent nodes)
+-  Per-node certificates for the puppet master (and any agent nodes)
 - `pe-internal-broker`
 - `pe-internal-dashboard`
 - `pe-internal-mcolllective-servers`
@@ -29,11 +29,24 @@ After installing PE, you can run `puppet cert list --all` on your puppet master 
 
 Each of these will need to be replaced with new certificates signed by your external CA. The steps below will explain how to find and replace these credentials.
 
+###Locating the PE Agent Certificate and Security Credentials
+
+Every system under PE management (including the puppet master, console, and PuppetDB) runs the puppet agent service. To determine the proper locations for the certificate and security credential files used by the puppet agent, run the following commands:
+
+- Certificate: `puppet agent --configprint hostcert`
+- Private key: `puppet agent --configprint hostprivkey`
+- Public key: `puppet agent --configprint hostpubkey`
+- Certificate Revocation List: `puppet agent --configprint hostcrl`
+- Local copy of the CA's certificate: `puppet agent --configprint localcacert`
+
+>**Important: Shared Certificate and Security Credentials**
+>
+>In Puppet Enterprise, the puppet master and the puppet agent services share the same certificate, so replacing the shared certificate will suffice for both services. In other words, if you replace the puppet master certificate, you don't need to separately replace the agent certificate.
+
 ### Locating the PE Master Certificate and Security Credentials
 
 [inpage_locate_master]: #locating-the-pe-master-certificate-and-security-credentials
-
-You will need to replace the CA and security credential files on the puppet master. (We've included instructions for adding agent nodes at the end of the doc.)
+[inpage_locate_agent]: #locating-the-pe-agent-certificate-and-security-credentials
 
 To determine the proper locations for the CA and security credential files, run the following commands with `puppet master`:
 
@@ -42,6 +55,10 @@ To determine the proper locations for the CA and security credential files, run 
 - **Public key**: `puppet master --configprint hostpubkey`
 - **Certificate Revocation List**: `puppet master --configprint hostcrl`
 - **Local copy of the CA's certificate**: `puppet master --configprint localcacert`
+
+>**Important: Shared Certificate and Security Credentials**
+>
+>In Puppet Enterprise, the puppet master and the puppet agent services share the same certificate, so replacing the shared certificate will suffice for both services. In other words, if you replace the Puppet agent certificate, you don't need to separately replace the master certificate.
 
 >**Tip**: You will also need to [create a cert and security credentials for any agent nodes](#adding-agent-nodes-using-your-external-ca) using the same CA as you used for the puppet master. We've included instructions at the end of the doc.
 
@@ -69,7 +86,9 @@ The following files, located on the puppet master, or on the PuppetDB server in 
 - `/etc/puppetlabs/puppetdb/ssl/private.pem` (replace with a copy of the PuppetDB server's private key)
 - `/etc/puppetlabs/puppetdb/ssl/public.pem` (replace with a copy of the PuppetDB server's certificate)
 
-The PuppetDB server also runs the puppet agent service to configure itself, and the PuppetDB service re-uses the certificate and private key issued to puppet agent on that node. You can do the same when replacing the certificates, or you can give PuppetDB its own certificate.
+>**Important: Shared Certificate and Security Credentials**
+>
+>In Puppet Enterprise, the PuppetDB service uses a copy of the puppet agent's private key and certificate. If you have a split install, you will first replace the puppet agent's private key and certificate on the PuppetDB server (`/etc/puppetlabs/puppet/ssl/private_keys/<certname>.pem` and `/etc/puppetlabs/puppet/ssl/certs/<certname>.pem`) and copy them over to the PuppetDB SSL directories listed above.
 
 ###Locating PE MCollective Certificates and Security Credentials
 
@@ -77,7 +96,7 @@ The PuppetDB server also runs the puppet agent service to configure itself, and 
 
 The orchestration credentials, located on the puppet master, need to be replaced.
 
-For each of the file names below, you'll need to replace **three** files: a cert in `/etc/puppetlabs/puppet/ssl/certs`, a private key in `/etc/puppetlabs/puppet/ssl/private_keys`, and a public key in `/etc/puppetlabs/puppet/ssl/public_keys`. The file names to look for are:
+For each of the file names below, you'll need to replace **three** files: a cert in `/etc/puppetlabs/puppet/ssl/certs`, a private key in `/etc/puppetlabs/puppet/ssl/private_keys`, and a public key in `/etc/puppetlabs/puppet/ssl/public_keys`. Look for the following files:
 
 - `pe-internal-broker.pem` (controls the ActiveMQ server)
 - `pe-internal-mcollective-servers.pem`
@@ -99,7 +118,7 @@ Here is a list of the things you'll do:
 1. [Install PE.](./install_basic.html)
 2. Choose a certificate authority option.
 3. Use your external CA to generate new certificates and security credentials to replace all existing certificates and security credentials.
-4. Replace the PE master, PE agent, and PE console certs and security credentials.
+4. Replace the PE master and PE console certs and security credentials.
 5. Replace the PE PuppetDB certs and security credentials.
 6. Replace the PE MCollective certs and security credentials.
 
@@ -115,12 +134,10 @@ Continue to the next step, where you'll replace the PuppetDB certs.
 
 ###Replace the PuppetDB Certificates and Security Credentials
 
-1. Refer to [Locating the PuppetDB Certificate and Security Credentials][inpage_locate_puppetdb] and replace the files.
-
-   >**WARNING**: Be sure you replace `/etc/puppetlabs/puppetdb/ssl/public.pem` with your master's cert---not your master's public key.
-
-2. Run `service pe-puppetdb restart`.
-3. Run `service pe-puppet restart`.
+1. (Optional—for split installs only) Refer to [Locating the Puppet Agent Certificate and Security Credentials](#locating-the-puppet-agent-certificate-and-security-credentials) and replace the puppet agent service files. These files will be copied to the PuppetDB SSL directory in the step 2.
+2. Refer to [Locating the PuppetDB Certificate and Security Credentials](#locating-the-puppetdb-certificate-and-security-credentials) and replace the files. 
+3. Run `service pe-puppetdb restart`.
+4. Run puppet.
 
 After running Puppet, you should be able to access the console, and view your new certificate in your browser. However, live management will not work; you can access that part of the console, but it won't be able to find the master node.
 
@@ -142,7 +159,7 @@ You should now see the master node in live management and be able to perform Pup
 
 1. Install Puppet Enterprise on the node, if it isn't already installed.
 1. Using the same external CA you used for the puppet master, create a cert and private key for your agent node.
-2. Locate the files you will need to replace on the agent. You can use commands similar to those in [Locating the PE Master Certificate and Security Credentials][inpage_locate_master] to find them, but you should use `puppet agent --configprint` instead of `puppet master --configprint`.
+2. Locate the files you will need to replace on the agent. Refer to  [Locating the PE Agent Certificate and Security Credentials][inpage_locate_agent] to find them, but you should use `puppet agent --configprint` instead of `puppet master --configprint`.
 3. Copy the agent's certificate, private key, and public key into place. Do the same with the external CA's CRL and CA certificate.
 4. Restart the `pe-puppet` service.
 
