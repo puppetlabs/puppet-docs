@@ -206,7 +206,9 @@ The **subject** is the owner of the certificate, and the "Subject" field of the 
 
 The DN is a string that represents the subject's identity. It can consist of several different chunks of information, which are identified by one- or two-letter codes. Any number of these chunks can be appended together (separated by commas) to form a complete DN.
 
-The **common name (CN)** is the most important piece of info in the DN. In this example, the node's CN is `magpie.example.com`. Within the set of certificates issued by a given CA, all CNs must be unique.
+You won't see multiple certificates with the same DN very frequently, since the DN represents the cert owner's identity. Usually a reused DN means that an entity's certificate has been reissued, due to expiration or revocation.
+
+The **common name (CN)** is the most important piece of info in the DN. In this example, the node's CN is `magpie.example.com`.
 
 The CN is the _only_ part of the DN used by Puppet. Puppet's settings and documentation often refer to the CN as the **certname** --- when a node sends a CSR to the CA, it uses the [`certname` setting][certname] to decide what to request as the CN portion of its DN. (Again, note that Puppet nodes will never request other DN components; Puppet only cares about the CN.)
 
