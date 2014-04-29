@@ -403,9 +403,9 @@ works on puppet 2.6.1; fedora 12; ubuntu 10.04
        }
 
        exec { "sysctl -p":
-          alias => "sysctl",
+          alias       => "sysctl",
           refreshonly => true,
-          subscribe => File["sysctl_conf"],
+          subscribe   => File["sysctl_conf"],
        }
     }
 
@@ -492,12 +492,12 @@ Configure `sshd`:
 
     service { "sshd":
       name => $operatingsystem ? {
-        Debian => "ssh",
+        Debian  => "ssh",
         default => "sshd",
       },
       require => Augeas["sshd_config"],
-      enable => true,
-      ensure => running,
+      enable  => true,
+      ensure  => running,
     }
 
 ### Default Runlevel

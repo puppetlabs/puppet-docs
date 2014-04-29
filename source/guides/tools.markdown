@@ -95,13 +95,13 @@ For example, to list information about the user 'xyz':
     > puppet resource User "xyz"
 
     user { 'xyz':
-       home => '/home/xyz',
-       shell => '/bin/bash',
-       uid => '1000',
+       home    => '/home/xyz',
+       shell   => '/bin/bash',
+       uid     => '1000',
        comment => 'xyz,,,',
-       gid => '1000',
-       groups => ['adm','dialout','cdrom','sudo','plugdev','lpadmin','admin','sambashare','libvirtd'],
-       ensure => 'present'
+       gid     => '1000',
+       groups  => ['adm','dialout','cdrom','sudo','plugdev','lpadmin','admin','sambashare','libvirtd'],
+       ensure  => 'present'
     }
 
 It can also be used to make additions and removals, as well as to list resources found on a system:
@@ -110,11 +110,11 @@ It can also be used to make additions and removals, as well as to list resources
 
     notice: /User[bob]/ensure: created
     user { 'bob':
-        shell => '/bin/sh',
-        home => '/home/bob',
-        uid => '1001',
-        gid => '1001',
-        ensure => 'present',
+        shell    => '/bin/sh',
+        home     => '/home/bob',
+        uid      => '1001',
+        gid      => '1001',
+        ensure   => 'present',
         password => '!'
     }
 

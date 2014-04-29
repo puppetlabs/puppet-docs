@@ -230,7 +230,7 @@ Example: This code would completely disable the package plugin's `update` option
     file {"${mco_etc}/policies": ensure => directory,}
 
     file {"${mco_etc}/policies/package.policy":
-      ensure => file,
+      ensure  => file,
       content => "policy default allow
     deny	*	update	*	*
     ",
@@ -322,7 +322,7 @@ This is an example of a Puppet class that installs [the Puppet Labs nrpe plugin]
     }
 {% endhighlight %}
 
-* * * 
+* * *
 
 - [Next: Configuring Orchestration](./orchestration_config.html)
 

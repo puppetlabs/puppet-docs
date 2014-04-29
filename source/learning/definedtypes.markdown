@@ -154,8 +154,8 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
     # Sample Usage:
     #  apache::vhost { 'site.name.fqdn':
     #    priority => '20',
-    #    port => '80',
-    #    docroot => '/path/to/docroot',
+    #    port     => '80',
+    #    docroot  => '/path/to/docroot',
     #  }
     #
     define apache::vhost(
@@ -236,9 +236,9 @@ And that's more or less a wrap. You can apply a manifest like this:
 
 {% highlight ruby %}
     apache::vhost {'testhost':
-      port => 8081,
-      docroot => '/var/www-testhost',
-      priority => 25,
+      port       => 8081,
+      docroot    => '/var/www-testhost',
+      priority   => 25,
       servername => 'puppet',
     }
 {% endhighlight %}

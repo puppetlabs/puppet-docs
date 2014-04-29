@@ -65,25 +65,25 @@ cURL), or revert to the original Webrick installation.
 
 ### Agents are failing with a "hostname was not match with the server certificate" error; what's wrong?
 
-Agent nodes determine the validity of the master's certificate based on hostname; if they're contacting it using a hostname that wasn't included when the certificate was signed, they'll reject the certificate. 
+Agent nodes determine the validity of the master's certificate based on hostname; if they're contacting it using a hostname that wasn't included when the certificate was signed, they'll reject the certificate.
 
-To fix this error, either: 
+To fix this error, either:
 
 - Modify your agent nodes' settings to point to one of the master's certified hostnames. (This may also require adjusting your site's DNS.) To see the puppet master's certified hostnames, run:
 
         $ sudo puppet master --configprint certname
-    
+
     ...on the puppet master server.
-- Re-generate the puppet master's certificate: 
+- Re-generate the puppet master's certificate:
     - Stop puppet master.
     - Delete the puppet master's certificate, private key, and public key:
-    
+
             $ sudo find $(puppet master --configprint ssldir) -name "$(puppet master --configprint certname).pem" -delete
     - Edit the `certname` setting in the puppet master's `/etc/puppet/puppet.conf` file to match the puppet master's actual hostname, and the `dns_alt_names` setting in that file to match any other DNS names you expect the master to need to respond to.
     - Start a non-daemonized WEBrick puppet master instance, and wait for it to generate and sign a new certificate:
-    
+
             $ sudo puppet master --no-daemonize --verbose
-            
+
         You should stop the temporary puppet master with ctrl-C after you see the "notice: Starting Puppet master version 2.6.9" message.
     - Restart the puppet master.
 
@@ -175,7 +175,7 @@ instance, in this example the comma is missing at the end of line
     service {
       "myservice":
         provider => "runit"
-        path => "/path/to/daemons"
+        path     => "/path/to/daemons"
     }
 
 ### Syntax error at ':'; expected ']' at manifest.pp:nnn
@@ -273,7 +273,7 @@ You may get this error when using a manifest like:
     node b {
        #where we collect things
        .....
-       
+
        foo_module::bar_exported_resource <<| |>>
     }
 
@@ -309,7 +309,7 @@ It is generally assumed that the following will result in the
     class test_class {
         file { "/tmp/puppet-test.variable":
            content => "$testname",
-           ensure => present,
+           ensure  => present,
         }
     }
 
@@ -335,7 +335,7 @@ include classes rather than inheriting them. For example:
     class test_class {
         file { "/tmp/puppet-test.variable":
            content => "$testname",
-           ensure => present,
+           ensure  => present,
         }
     }
 
@@ -358,7 +358,7 @@ The following would also not work as generally expected:
         $myvar = 'bob'
         file {"/tmp/testvar":
              content => "$myvar",
-             ensure => present,
+             ensure  => present,
         }
     }
 
@@ -379,7 +379,7 @@ $myvar would be set twice in the same child\_class scope):
     class base_class {
         file {"/tmp/testvar":
              content => "$myvar",
-             ensure => present,
+             ensure  => present,
         }
     }
 

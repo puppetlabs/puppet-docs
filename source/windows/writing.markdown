@@ -260,8 +260,8 @@ Executable installer example:
 
 {% highlight ruby %}
     package { "Git version 1.8.4-preview20130916":
-     ensure   => installed,
-     source   => 'C:\code\puppetlabs\temp\windowsexample\Git-1.8.4-preview20130916.exe',
+     ensure          => installed,
+     source          => 'C:\code\puppetlabs\temp\windowsexample\Git-1.8.4-preview20130916.exe',
      install_options => ['/VERYSILENT']
     }
 {% endhighlight %}

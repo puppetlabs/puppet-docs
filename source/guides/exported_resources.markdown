@@ -26,15 +26,15 @@ automatically monitoring the web server:
     # /etc/puppetlabs/puppet/modules/nagios/manifests/target/apache.pp
     class nagios::target::apache {
        @@nagios_host { $fqdn:
-            ensure => present,
-            alias => $hostname,
+            ensure  => present,
+            alias   => $hostname,
             address => $ipaddress,
-            use => "generic-host",
+            use     => "generic-host",
        }
        @@nagios_service { "check_ping_${hostname}":
-            check_command => "check_ping!100.0,20%!500.0,60%",
-            use => "generic-service",
-            host_name => "$fqdn",
+            check_command       => "check_ping!100.0,20%!500.0,60%",
+            use                 => "generic-service",
+            host_name           => "$fqdn",
             notification_period => "24x7",
             service_description => "${hostname}_check_ping"
        }
@@ -44,10 +44,10 @@ automatically monitoring the web server:
     class nagios::monitor {
         package { [ nagios, nagios-plugins ]: ensure => installed, }
         service { nagios:
-            ensure => running,
-            enable => true,
+            ensure     => running,
+            enable     => true,
             #subscribe => File[$nagios_cfgdir],
-            require => Package[nagios],
+            require    => Package[nagios],
         }
         # collect resources and populate /etc/nagios/nagios_*.cfg
         Nagios_host <<||>>

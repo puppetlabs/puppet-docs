@@ -53,7 +53,7 @@ Using exported resources requires two steps: declaring and collecting.
       # Declare:
       @@sshkey { $hostname:
         type => dsa,
-        key => $sshdsakey,
+        key  => $sshdsakey,
       }
       # Collect:
       Sshkey <<| |>>

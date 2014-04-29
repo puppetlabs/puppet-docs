@@ -14,9 +14,9 @@ The `puppet master` service includes a file server for transferring static files
 
     # copy a remote file to /etc/sudoers
     file { "/etc/sudoers":
-        mode => 440,
-        owner => root,
-        group => root,
+        mode   => 440,
+        owner  => root,
+        group  => root,
         source => "puppet:///modules/module_name/sudoers"
     }
 

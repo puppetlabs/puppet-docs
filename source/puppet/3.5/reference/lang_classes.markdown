@@ -83,8 +83,8 @@ Defining a class makes it available for later use. It doesn't yet add any resour
         content => template('apache/httpd.conf.erb'), # Template from a module
       }
       service {'httpd':
-        ensure => running,
-        enable => true,
+        ensure    => running,
+        enable    => true,
         subscribe => File['/etc/httpd.conf'],
       }
     }

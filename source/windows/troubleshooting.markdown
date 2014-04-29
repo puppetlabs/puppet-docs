@@ -84,7 +84,7 @@ Several resources are case-insensitive on Windows (file, user, group). When esta
 
     file { 'c:\foo\bar':
       ensure => directory,
-      owner => 'FOOBAR'
+      owner  => 'FOOBAR'
     }
     user { 'foobar':
       ensure => present
@@ -134,7 +134,7 @@ By default, powershell enforces a restricted execution policy which prevents the
 
     exec { 'test':
       command => 'powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
-      path => $::path
+      path    => $::path
     }
 
 ### Package
@@ -216,17 +216,17 @@ If the owner and/or group are specified in a file resource on Windows, the mode 
 
     file { 'c:/path/to/file.bat':
       ensure => present,
-      owner => 'Administrator',
-      group => 'Administrators',
-      mode => 0770
+      owner  => 'Administrator',
+      group  => 'Administrators',
+      mode   => 0770
     }
 
 But this is not:
 
     file { 'c:/path/to/file.bat':
       ensure => present,
-      owner => 'Administrator',
-      group => 'Adminstrators',
+      owner  => 'Administrator',
+      group  => 'Adminstrators',
     }
 
 The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!

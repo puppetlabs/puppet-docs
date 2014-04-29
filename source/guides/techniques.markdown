@@ -18,7 +18,7 @@ chosen source. In the example below, the entire /etc/httpd/conf.d
 directory is synchronized recursively with the copy on the server:
 
     file { "/etc/httpd/conf.d":
-      source => "puppet://server/vol/mnt1/adm/httpd/conf.d",
+      source  => "puppet://server/vol/mnt1/adm/httpd/conf.d",
       recurse => true,
     }
 
@@ -34,7 +34,7 @@ when it changes:
     file { "/etc/bind": source => "/dist/apps/bind" }
 
     exec { "/usr/bin/ndc reload":
-      subscribe => File["/etc/bind"],
+      subscribe   => File["/etc/bind"],
       refreshonly => true
     }
 
@@ -51,15 +51,15 @@ puppet is certain that the fearme group exists.
 
     group { "fearme":
             ensure => present,
-            gid => 1000
+            gid    => 1000
     }
     user { "tim":
-            ensure => present,
-            gid => "fearme",
-            groups => ["adm", "staff", "root"],
+            ensure     => present,
+            gid        => "fearme",
+            groups     => ["adm", "staff", "root"],
             membership => minimum,
-            shell => "/bin/bash",
-            require => Group["fearme"]
+            shell      => "/bin/bash",
+            require    => Group["fearme"]
     }
 
 Note that Puppet will set this relationship up for you
@@ -75,12 +75,12 @@ fearmenot. Any reasonable number of resources can be required in
 this way.
 
     user { "tim":
-            ensure => present,
-            gid => "fearme",
-            groups => ["adm", "staff", "root", "fearmenot"],
+            ensure     => present,
+            gid        => "fearme",
+            groups     => ["adm", "staff", "root", "fearmenot"],
             membership => minimum,
-            shell => "/bin/bash",
-            require => [ Group["fearme"],
+            shell      => "/bin/bash",
+            require    => [ Group["fearme"],
                                 Group["fearmenot"]
                               ]
             }
