@@ -19,6 +19,7 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
 [type_ref]: /references/latest/type.html
 [func_ref]: /references/latest/function.html
+[environment]: ./environments.html
 
 Reserved Words
 -----
