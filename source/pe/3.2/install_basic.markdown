@@ -360,7 +360,7 @@ Once the agent has been installed on the target node, it can be configured using
 Let's say your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware:
 
 1. Use the console to add the `pe_repo::platform::debian_6_amd64` class.
-2. Kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.2-debian-6-amd64-agent`.
+2. Kick off a puppet run with live management to actually create the new repo with the agent packages in `/opt/puppet/packages/public` called `puppet-enterprise-3.2.3-debian-6-amd64-agent`.
 3. SSH into the node where you want to install the agent and run `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`.
 
 The `-k` flag is needed in order to get curl to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.

@@ -12,7 +12,7 @@ Here are some common problems that can cause an install to go awry.
 
 ### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
 
-Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.2) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. The issue is caused by an incorrectly set parameter of the `pe_repo` class. It can be fixed as follows:
+Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. The issue is caused by an incorrectly set parameter of the `pe_repo` class. It can be fixed as follows:
 
 1. In the console, navigate to the node page for each master node where you wish to add agent packages.
 2. On the master's node page, click "Edit" and then, for the `pe_repo` parameter, click "Edit parameters"    

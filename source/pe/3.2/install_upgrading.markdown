@@ -47,7 +47,7 @@ Important Notes and Warnings
 
 ### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
 
-   Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.2) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
+   Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
    
 ### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
 

@@ -5,6 +5,10 @@ subtitle: "New Features in PE 3.2"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
 
+### Version 3.2.3
+
+PE 3.2.3 is a maintenance release that patches several security vulnerabilities in Java. For details, check the [release notes](appendix.html#release-notes). 
+
 ### Version 3.2.2
 
 PE 3.2.2 is a maintenance release that patches several security vulnerabilities and a few minor bugs. For details, check the [release notes](appendix.html#release-notes).

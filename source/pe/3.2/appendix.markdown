@@ -32,6 +32,14 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### PE 3.2.3 (5/1/2014)
+
+#### Patched Java Security Vulnerabilities
+
+Earlier this month, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions 3.0.0 through 3.2.2 contain a vulnerable version of Java. Puppet Enterprise 3.2.3 contains an updated version of Java that has patched the vulnerabilities.
+
+For more information about the Java vulnerabilities, refer to the [Oracle security site](http://www.oracle.com/technetwork/topics/security/cpuapr2014-1972952.html).
+
 ### PE 3.2.2 (4/15/2014)
 
 #### Bug Fixes
@@ -209,7 +217,7 @@ To resolve the issue make sure that `which psql` resolves to `/opt/puppet/bin/ps
 
 ### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
 
-Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.2) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
+Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
 
 ### Live Management Cannot Uninstall Packages on Windows Nodes
 
