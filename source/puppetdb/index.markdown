@@ -29,4 +29,5 @@ Development and Pre-release Versions
 
 This version of the documentation represents a future feature or major release. This content only applies to the code available in the master branch of the PuppetDB git repository or a release candidate, so if you have downloaded a stable release you should consult the documentation above.
 
+* [PuppetDB 2.0](./2.0)
 * [PuppetDB (master)](./master)
