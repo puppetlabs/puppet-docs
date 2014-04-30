@@ -115,7 +115,7 @@ if it provides plugins, files, or templates.</p>
 
 <p>The specified module will be installed into the directory
 specified with the <code>--target-dir</code> option, which defaults to
-/Users/nick/Documents/modules.</p>
+/Users/nick/.puppet/modules.</p>
 
 <p><code>OPTIONS</code>
 <var>--force</var> | <var>-f</var> -
