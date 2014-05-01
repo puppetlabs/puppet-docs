@@ -10,10 +10,10 @@ canonical: "/puppet/latest/reference/dirs_manifest.html"
 [environment]: ./environments.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
 [confdir]: ./dirs_confdir.html
-[manifest_setting]: /references/3.5.latest/configuration.html#manifest
+[manifest_setting]: /references/3.6.latest/configuration.html#manifest
 [print_settings]: ./config_print.html
 [enc]: /guides/external_nodes.html
-[environmentpath]: /references/3.5.latest/configuration.html#environmentpath
+[environmentpath]: /references/3.6.latest/configuration.html#environmentpath
 [classic_environments]: ./environments_classic.html
 
 Puppet always starts compiling with either a single manifest file or a directory of manifests that get treated like a single file. This main starting point is called the **main manifest** or **site manifest.**
@@ -32,9 +32,6 @@ Location
 The main manifest may be a single file or a directory of `.pp` files. To check the actual manifest your puppet master will use, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
 
 > **Recommended:** If you're using the main manifest heavily instead of relying on an [ENC][], consider changing the `manifest` setting to `$confdir/manifests`. This lets you split up your top-level code into multiple files while [avoiding the `import` keyword][import_deprecation]. It will also match the behavior of [simple environments][environment].
-
-> **Bug warning:**  [PUP-1944](https://tickets.puppetlabs.com/browse/PUP-1944) --- In Puppet 3.5.0-rc1, the puppet master will malfunction if the value of the `manifest` setting is a directory but doesn't exactly match the (otherwise unused) `manifestdir` setting.
-
 
 ### With Puppet Apply
 

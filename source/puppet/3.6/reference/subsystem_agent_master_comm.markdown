@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 [authconf]: /guides/rest_auth_conf.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[file]: /references/3.5.latest/type.html#file
-[static]: /references/3.5.latest/indirection.html#catalog
+[file]: /references/3.6.latest/type.html#file
+[static]: /references/3.6.latest/indirection.html#catalog
 
 <!-- TODO insert info about the CRL at the appropriate locations. Does the agent check it, these days? -->
 

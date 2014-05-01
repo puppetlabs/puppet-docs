@@ -7,18 +7,18 @@ canonical: "/puppet/latest/reference/environments.html"
 [manifest_dir]: ./dirs_manifest.html
 [manifest_dir_dir]: ./dirs_manifest.html#directory-behavior-vs-single-file
 [config_file_envs]: ./environments_classic.html
-[config_version]: /references/3.5.latest/configuration.html#configversion
-[environmentpath]: /references/3.5.latest/configuration.html#environmentpath
+[config_version]: /references/3.6.latest/configuration.html#configversion
+[environmentpath]: /references/3.6.latest/configuration.html#environmentpath
 [confdir]: ./dirs_confdir.html
 [enc]: /guides/external_nodes.html
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc_environment]: /guides/external_nodes.html#environment
 [puppet.conf]: ./config_file_main.html
-[env_setting]: /references/3.5.latest/configuration.html#environment
+[env_setting]: /references/3.6.latest/configuration.html#environment
 [modulepath]: ./dirs_modulepath.html
-[basemodulepath]: /references/3.5.latest/configuration.html#basemodulepath
-[manifest_setting]: /references/3.5.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
+[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
+[manifest_setting]: /references/3.6.latest/configuration.html#manifest
+[modulepath_setting]: /references/3.6.latest/configuration.html#modulepath
 [config_print]: ./config_print.html
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 [config_file_envs_sections]: ./environments_classic.html#environment-config-sections
@@ -40,14 +40,14 @@ This frees you to use different versions of the same modules for different popul
 > - Set [`config_version`][config_version] per-environment
 > - Change the order of the `modulepath` or remove parts of it
 >
-> Those features are coming soon, probably in Puppet 3.6.
+> Those features are coming soon, probably in Puppet 3.6. TODO dir env stuff
 
 Enabling Directory Environments
 -----
 
 [inpage_enable]: #enabling-directory-environments
 
-In Puppet 3.5.1 and later, directory environments are disabled by default. To enable them, you must:
+In Puppet 3.5.1 and later TODO dir env stuff, directory environments are disabled by default. To enable them, you must:
 
 * Set a value for the `environmentpath` setting in the puppet master's puppet.conf file.
     * Most people should set `environmentpath = $confdir/environments`. See the "About environmentpath" section below for more details.
@@ -73,7 +73,7 @@ The puppet master will only look for environments in certain directories, and on
 
 If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) Puppet will search these directories in order, with earlier directories having precedence.
 
-> **Note:** In Puppet 3.5, there is a problem with setting `environmentpath` in the `[master]` section of puppet.conf, which causes `puppet config print` to display wrong info about the effective modulepath or manifest values. You should set it in `[main]` instead.
+> **Note:** In Puppet 3.5, there is a problem with setting `environmentpath` in the `[master]` section of puppet.conf, which causes `puppet config print` to display wrong info about the effective modulepath or manifest values. You should set it in `[main]` instead. TODO is this still a thing?
 
 ### About `basemodulepath`
 
@@ -181,7 +181,6 @@ If you previously used [dynamic environments][] and your `modulepath` setting in
 
 If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the puppet master will fail compilation of its catalog.
 
-> **Note:** This is a change from the initial 3.5.0 release, which would fall back to the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings for unconfigured environments.
 
 Assigning Nodes to Environments
 -----

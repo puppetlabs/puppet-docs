@@ -16,7 +16,7 @@ The `import` keyword causes Puppet to compile more than one manifest without aut
 > Deprecation Notice
 > -----
 >
-> As of Puppet 3.5, the `import` keyword is deprecated. Using it will cause deprecation warnings to be logged on the puppet master, and we plan to remove `import` completely in Puppet 4.
+> The `import` keyword is deprecated. Using it will cause deprecation warnings to be logged on the puppet master, and we plan to remove `import` completely in Puppet 4.
 >
 > ### What to Use Instead
 >

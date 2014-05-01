@@ -10,72 +10,72 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
 [config_environments]: ./environments_classic.html
-[config_reference]: /references/3.5.latest/configuration.html
+[config_reference]: /references/3.6.latest/configuration.html
 [environments]: /guides/environment.html
 [future]: ./experiments_future.html
 [multi_master]: /guides/scaling_multiple_masters.html
 [enc]: /guides/external_nodes.html
-[meta_noop]: /references/3.5.latest/metaparameter.html#noop
-[meta_schedule]: /references/3.5.latest/metaparameter.html#schedule
+[meta_noop]: /references/3.6.latest/metaparameter.html#noop
+[meta_schedule]: /references/3.6.latest/metaparameter.html#schedule
 [lang_tags]: ./lang_tags.html
 [modulepath_dir]: ./dirs_modulepath.html
 [manifest_dir]: ./dirs_manifest.html
-[report_reference]: /references/3.5.latest/report.html
+[report_reference]: /references/3.6.latest/report.html
 [write_reports]: /guides/reporting.html#writing-custom-reports
 [passenger_headers]: /guides/passenger.html#notes-on-ssl-verification
 [puppetdb_install]: /puppetdb/latest/connect_puppet_master.html
-[static_compiler]: /references/3.5.latest/indirection.html#staticcompiler-terminus
+[static_compiler]: /references/3.6.latest/indirection.html#staticcompiler-terminus
 [ssl_autosign]: ./ssl_autosign.html
 
-[trusted_node_data]: /references/3.5.latest/configuration.html#trustednodedata
-[immutable_node_data]: /references/3.5.latest/configuration.html#immutablenodedata
-[strict_variables]: /references/3.5.latest/configuration.html#strictvariables
-[stringify_facts]: /references/3.5.latest/configuration.html#stringifyfacts
-[structured_facts]: /references/3.5.latest/configuration.html#structuredfacts
-[ordering]: /references/3.5.latest/configuration.html#ordering
-[reports]: /references/3.5.latest/configuration.html#reports
-[parser]: /references/3.5.latest/configuration.html#parser
-[server]: /references/3.5.latest/configuration.html#server
-[ca_server]: /references/3.5.latest/configuration.html#caserver
-[report_server]: /references/3.5.latest/configuration.html#reportserver
-[certname]: /references/3.5.latest/configuration.html#certname
-[node_name_fact]: /references/3.5.latest/configuration.html#nodenamefact
-[node_name_value]: /references/3.5.latest/configuration.html#nodenamevalue
-[environment]: /references/3.5.latest/configuration.html#environment
-[noop]: /references/3.5.latest/configuration.html#noop
-[priority]: /references/3.5.latest/configuration.html#priority
-[report]: /references/3.5.latest/configuration.html#report
-[tags]: /references/3.5.latest/configuration.html#tags
-[trace]: /references/3.5.latest/configuration.html#trace
-[profile]: /references/3.5.latest/configuration.html#profile
-[graph]: /references/3.5.latest/configuration.html#graph
-[show_diff]: /references/3.5.latest/configuration.html#showdiff
-[usecacheonfailure]: /references/3.5.latest/configuration.html#usecacheonfailure
-[ignoreschedules]: /references/3.5.latest/configuration.html#ignoreschedules
-[prerun_command]: /references/3.5.latest/configuration.html#preruncommand
-[postrun_command]: /references/3.5.latest/configuration.html#postruncommand
-[pluginsync]: /references/3.5.latest/configuration.html#pluginsync
-[runinterval]: /references/3.5.latest/configuration.html#runinterval
-[waitforcert]: /references/3.5.latest/configuration.html#waitforcert
-[splay]: /references/3.5.latest/configuration.html#splay
-[splaylimit]: /references/3.5.latest/configuration.html#splaylimit
-[daemonize]: /references/3.5.latest/configuration.html#daemonize
-[onetime]: /references/3.5.latest/configuration.html#onetime
-[dns_alt_names]: /references/3.5.latest/configuration.html#dnsaltnames
-[basemodulepath]: /references/3.5.latest/configuration.html#basemodulepath
-[modulepath]: /references/3.5.latest/configuration.html#modulepath
-[manifest]: /references/3.5.latest/configuration.html#manifest
-[ssl_client_header]: /references/3.5.latest/configuration.html#sslclientheader
-[ssl_client_verify_header]: /references/3.5.latest/configuration.html#sslclientverifyheader
-[node_terminus]: /references/3.5.latest/configuration.html#nodeterminus
-[external_nodes]: /references/3.5.latest/configuration.html#externalnodes
-[storeconfigs]: /references/3.5.latest/configuration.html#storeconfigs
-[storeconfigs_backend]: /references/3.5.latest/configuration.html#storeconfigsbackend
-[catalog_terminus]: /references/3.5.latest/configuration.html#catalogterminus
-[config_version]: /references/3.5.latest/configuration.html#configversion
-[ca]: /references/3.5.latest/configuration.html#ca
-[ca_ttl]: /references/3.5.latest/configuration.html#cattl
-[autosign]: /references/3.5.latest/configuration.html#autosign
+[trusted_node_data]: /references/3.6.latest/configuration.html#trustednodedata
+[immutable_node_data]: /references/3.6.latest/configuration.html#immutablenodedata
+[strict_variables]: /references/3.6.latest/configuration.html#strictvariables
+[stringify_facts]: /references/3.6.latest/configuration.html#stringifyfacts
+[structured_facts]: /references/3.6.latest/configuration.html#structuredfacts
+[ordering]: /references/3.6.latest/configuration.html#ordering
+[reports]: /references/3.6.latest/configuration.html#reports
+[parser]: /references/3.6.latest/configuration.html#parser
+[server]: /references/3.6.latest/configuration.html#server
+[ca_server]: /references/3.6.latest/configuration.html#caserver
+[report_server]: /references/3.6.latest/configuration.html#reportserver
+[certname]: /references/3.6.latest/configuration.html#certname
+[node_name_fact]: /references/3.6.latest/configuration.html#nodenamefact
+[node_name_value]: /references/3.6.latest/configuration.html#nodenamevalue
+[environment]: /references/3.6.latest/configuration.html#environment
+[noop]: /references/3.6.latest/configuration.html#noop
+[priority]: /references/3.6.latest/configuration.html#priority
+[report]: /references/3.6.latest/configuration.html#report
+[tags]: /references/3.6.latest/configuration.html#tags
+[trace]: /references/3.6.latest/configuration.html#trace
+[profile]: /references/3.6.latest/configuration.html#profile
+[graph]: /references/3.6.latest/configuration.html#graph
+[show_diff]: /references/3.6.latest/configuration.html#showdiff
+[usecacheonfailure]: /references/3.6.latest/configuration.html#usecacheonfailure
+[ignoreschedules]: /references/3.6.latest/configuration.html#ignoreschedules
+[prerun_command]: /references/3.6.latest/configuration.html#preruncommand
+[postrun_command]: /references/3.6.latest/configuration.html#postruncommand
+[pluginsync]: /references/3.6.latest/configuration.html#pluginsync
+[runinterval]: /references/3.6.latest/configuration.html#runinterval
+[waitforcert]: /references/3.6.latest/configuration.html#waitforcert
+[splay]: /references/3.6.latest/configuration.html#splay
+[splaylimit]: /references/3.6.latest/configuration.html#splaylimit
+[daemonize]: /references/3.6.latest/configuration.html#daemonize
+[onetime]: /references/3.6.latest/configuration.html#onetime
+[dns_alt_names]: /references/3.6.latest/configuration.html#dnsaltnames
+[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
+[modulepath]: /references/3.6.latest/configuration.html#modulepath
+[manifest]: /references/3.6.latest/configuration.html#manifest
+[ssl_client_header]: /references/3.6.latest/configuration.html#sslclientheader
+[ssl_client_verify_header]: /references/3.6.latest/configuration.html#sslclientverifyheader
+[node_terminus]: /references/3.6.latest/configuration.html#nodeterminus
+[external_nodes]: /references/3.6.latest/configuration.html#externalnodes
+[storeconfigs]: /references/3.6.latest/configuration.html#storeconfigs
+[storeconfigs_backend]: /references/3.6.latest/configuration.html#storeconfigsbackend
+[catalog_terminus]: /references/3.6.latest/configuration.html#catalogterminus
+[config_version]: /references/3.6.latest/configuration.html#configversion
+[ca]: /references/3.6.latest/configuration.html#ca
+[ca_ttl]: /references/3.6.latest/configuration.html#cattl
+[autosign]: /references/3.6.latest/configuration.html#autosign
 
 Puppet has about 230 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 200 of those.
 
@@ -163,7 +163,7 @@ These settings should usually go in `[master]`. However, if you're using puppet 
     * Run `sudo puppet cert generate <MASTER'S CERTNAME> --dns_alt_names <ALT NAME 1>,<ALT NAME 2>,...`.
     * Re-start the puppet master service.
 * [`basemodulepath`][basemodulepath] --- A list of directories containing Puppet modules that can be used in all environments. [See the modulepath page][modulepath_dir] for details.
-    * The [`modulepath`][modulepath] setting controls the final modulepath, and can be set for each environment (when using [config file environments][config_environments]). Starting with Puppet 3.5, though, we recommend setting `basemodulepath` and letting `modulepath` take care of itself.
+    * The [`modulepath`][modulepath] setting controls the final modulepath, and can be set for each environment (when using [config file environments][config_environments]). Starting with Puppet 3.5, TODO deprecation though, we recommend setting `basemodulepath` and letting `modulepath` take care of itself.
 * [`manifest`][manifest] --- The main entry point for compiling catalogs. Defaults to a single site.pp file, but can also point to a directory of manifests. [See the manifest page][manifest_dir] for details.
 * [`reports`][reports] --- Which report handlers to use. For a list of available report handlers, see [the report reference][report_reference]. You can also [write your own report handlers][write_reports]. Note that the report handlers might require settings of their own, like `tagmail`'s various email settings.
 

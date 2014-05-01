@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
-> **Status:** As of Puppet 3.5, the future parser performs much better than it used to. We think it's about on par with the default parser, but haven't extensively speed tested it with real-world manifests. It should still be considered a preview, but can now be used with larger test environments.
+> **Status:** As of Puppet 3.5, the future parser performs much better than it used to. We think it's about on par with the default parser, but haven't extensively speed tested it with real-world manifests. It should still be considered a preview, but can now be used with larger test environments. TODO update this status
 >
 > The new language features in the future parser are still being designed and considered. If you want to join the conversation, or if some of your manifests don't work the way you think they should under the future parser, please join [the puppet-users group][users_group] and tell us what you've learned.
 
@@ -30,7 +30,7 @@ To enable the future parser:
 
 ### Toggling the Future Evaluator
 
-As of 3.5, the future parser also uses a new evaluator. (The parser is what turns the source text into a model; the evaluator is what takes actions based on the model --- for example, reducing a complex expression into a simpler expression, or adding a resource to the catalog based on a resource declaration.)
+By default, the future parser also uses a new evaluator. (The parser is what turns the source text into a model; the evaluator is what takes actions based on the model --- for example, reducing a complex expression into a simpler expression, or adding a resource to the catalog based on a resource declaration.)
 
 The new evaluator defaults to enabled when the future parser is turned on, but it can be independently deactivated by setting [`evaluator = current`][evaluator_setting] in puppet.conf or `--evaluator current` on the command line.
 

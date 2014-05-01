@@ -7,10 +7,10 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 [config_sections]: ./config_file_main.html#config-sections
 [manifest_dir]: ./dirs_manifest.html
 [modulepath]: ./dirs_modulepath.html
-[config_version]: /references/3.5.latest/configuration.html#configversion
+[config_version]: /references/3.6.latest/configuration.html#configversion
 [puppet.conf]: ./config_file_main.html
-[manifest_setting]: /references/3.5.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
+[manifest_setting]: /references/3.6.latest/configuration.html#manifest
+[modulepath_setting]: /references/3.6.latest/configuration.html#modulepath
 [adrien_blog]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
 [directory_environments]: ./environments.html
 [dir_envs_enable]: ./environments.html#enabling-directory-environments
@@ -24,7 +24,7 @@ This frees you to use different versions of the same modules for different popul
 >
 > There are two ways to set up environments on a puppet master: [**directory environments,**][directory_environments] and **config file environments.**
 >
-> This page is about config file environments, which are more complex to use but which allow you to set [`config_version`][config_version] per-environment and change the order of the `modulepath` (or remove parts of it). Directory environments will be able to do those things soon, but the code didn't make the 3.5.0 release deadline.
+> This page is about config file environments, which are more complex to use but which allow you to set [`config_version`][config_version] per-environment and change the order of the `modulepath` (or remove parts of it). Directory environments will be able to do those things soon, but the code didn't make the 3.5.0 release deadline. TODO update this
 >
 > Directory environments will eventually replace config file environments.
 

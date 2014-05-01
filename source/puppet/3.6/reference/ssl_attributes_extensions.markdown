@@ -5,8 +5,8 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 ---
 
 [cert_request]: ./subsystem_agent_master_comm.html#check-for-keys-and-certificates
-[csr_attributes]: /references/3.5.latest/configuration.html#csrattributes
-[confdir]: /references/3.5.latest/configuration.html#confdir
+[csr_attributes]: /references/3.6.latest/configuration.html#csrattributes
+[confdir]: /references/3.6.latest/configuration.html#confdir
 [autosign_policy]: ./ssl_autosign.html#policy-based-autosigning
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
@@ -20,7 +20,7 @@ When puppet agent nodes request their certificates, the certificate signing requ
 
 ### Status as of Early 2014
 
-In Puppet 3.5, embedding additional data into CSRs is mostly useful in deployments where:
+In this version of Puppet, embedding additional data into CSRs is mostly useful in deployments where:
 
 * Large numbers of nodes are regularly created and destroyed as part of an elastic scaling system.
 * You are willing to build custom tooling to make certificate autosigning more secure and useful.

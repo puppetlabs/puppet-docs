@@ -20,7 +20,7 @@ This page describes the supported and tested configurations for external CAs in 
 Supported External CA Configurations
 -----
 
-Puppet 3.5 supports _some_ external CA configurations, but not every possible arrangement. We fully support the following setups:
+This version of Puppet supports _some_ external CA configurations, but not every possible arrangement. We fully support the following setups:
 
 1. [Single self-signed CA which directly issues SSL certificates.](#option-1-single-ca)
 2. [Single, intermediate CA issued by a root self-signed CA.](#option-2-single-intermediate-ca)  The intermediate
