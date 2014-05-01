@@ -100,23 +100,7 @@ A directory environment is just a directory that follows a few conventions:
 * It should contain a `modules` directory and a `manifests` directory. (These are allowed to be empty or absent; see sections below for details.)
 * It must be located in a directory that the puppet master searches for environments. (By default, that's `$confdir/environments`. [See below for more info about this directory,](./environments.html#the-environmentpath) including how to search additional directories.)
 
-<!-- TODO replace the following with an image -->
-
-    $confdir
-     \- environments
-         |- production
-         |   |- modules
-         |   |   |- apache
-         |   |   |- stdlib
-         |   |   \- ...
-         |   \- manifests
-         |       \- site.pp
-         |- test
-         |   |- modules
-         |   |   \- ...
-         |   \- manifests
-         |       \- site.pp
-      ...
+![Diagram: A directory with four directory environments. Each directory environment contains a modules directory and a manifests directory.](./images/environment_directories.jpg)
 
 Once those conditions are met, the environment is fully configured. When serving nodes assigned to that environment, the puppet master will use the modules and the main manifest from that environment.
 
