@@ -36,7 +36,7 @@ Release Notes
 
 #### Security Fixes
 
-Earlier this month, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions 3.0.0 through 3.2.2 contain a vulnerable version of Java. [Puppet Enterprise 3.2.3 contains an updated version of Java that has patched the vulnerabilities](https://puppetlabs.com/security/cve/oracle-april-vulnerability-fix).
+On April 15th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions 3.0.0 through 3.2.2 contain a vulnerable version of Java. [Puppet Enterprise 3.2.3 contains an updated version of Java that has patched the vulnerabilities](https://puppetlabs.com/security/cve/oracle-april-vulnerability-fix).
 
 For more information about the Java vulnerabilities, refer to the [Oracle security site](http://www.oracle.com/technetwork/topics/security/cpuapr2014-1972952.html).
 
