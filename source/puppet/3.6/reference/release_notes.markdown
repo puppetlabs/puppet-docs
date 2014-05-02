@@ -25,11 +25,10 @@ If you're upgrading from a 3.x version of Puppet, you can usually just go for it
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
-
 Puppet 3.6.0
 -----
 
-**Not yet released.** Entered RC1 on May 1, 2014.
+**Not yet released.** Entered RC1 on May 2, 2014.
 
 Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
@@ -42,44 +41,50 @@ Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3
 ### New Features
 
 #### Ability to purge .ssh/authorized_keys
+
 It's now possible to purge authorized ssh keys that aren't managed by puppet via the [user type's](/reference/3.6/type.html#user) `purge_ssh_keys` attribute. Adding this to the user type means that keys can be purged on a per-user basis.
 
-Related tickets:
+Related issues:
 
 - [PUP-1174: PR (2247) Ability to purge .ssh/authorized_keys](https://tickets.puppetlabs.com/browse/PUP-1174)
 - [PUP-1955: purge_ssh_keys causes stack trace when creating new users on redhat](https://tickets.puppetlabs.com/browse/PUP-1955)
 
 #### New global `log_level` parameter
+
 You can now set the global log level using the `log_level` parameter in puppet.conf. It defaults to `notice`, and can be set to `debug`, `info`, `notice`, `warning`, `err`, `alert`, `emerg`, or `crit`.
 
-Related ticket:
+Related issue:
 
 - [PUP-1854: Global log_level param](https://tickets.puppetlabs.com/browse/PUP-1854)
 
 #### Ability to install gems for a custom provider during puppet runs
-Custom providers that require one or more gems would previously fail if at least one gem was missing *before* the current puppet run, even if it had been installed by the time the provider was actually called. This release fixes the behavior so that custom providers can rely on gems installed during the same puppet run.
 
-Related ticket:
+Previously, custom providers that required one or more gems would fail if at least one gem was missing *before* the current puppet run, even if they had been installed by the time the provider was actually called. This release fixes the behavior so that custom providers can rely on gems installed during the same puppet run.
+
+Related issue:
 
 - [PUP-1879: Library load tests in features should clear rubygems path cache](https://tickets.puppetlabs.com/browse/PUP-1879)
 
 #### New `digest_algorithm` parameter
-You can now change the hashing algorithm that puppet uses by setting the `digest_algorithm` parameter in puppet.conf, which has the nice effect of avoiding crashes on FIPS-compliant hosts. The parameter must be set on all agents and all masters simultaneously. Changing the setting won't affect the `md5` or `fqdn_rand` functions.
 
-Related ticket:
+You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new `digest_algorithm` parameter in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. The parameter **must** be set to the same value on all agents and all masters simultaneously. Changing the setting won't affect the `md5` or `fqdn_rand` functions.
+
+Related issue:
 
 - [PUP-1840: Let user change hashing algorithm, to avoid crashing on FIPS-compliant hosts](https://tickets.puppetlabs.com/browse/PUP-1840)
 
-### Deprecations
+### Config-File Environments Deprecated
+
 With the new [directory environments](/puppet/3.6/reference/environments.html) feature, config-file environments are now deprecated. Defining environment blocks in puppet.conf will cause a deprecation warning, as will any use of the `modulepath`, `manifest`, and `config_version` parameters in puppet.conf.
 
-Related tickets:
+Related issues:
 
 - [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
 - [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
 
 ### Improvements to the Future Parser
-It remains experimental, but the future parser has gotten a lot of attention in this release. For example, functions can now accept lambdas as arguments using the new Callable type. There are also a few changes laying the groundwork for the upcoming catalog builder.
+
+It's still experimental, but the future parser has gotten a lot of attention in this release. For example, functions can now accept lambdas as arguments using the new Callable type. There are also a few changes laying the groundwork for the upcoming catalog builder.
 
 - [PUP-1960: realizing an empty array of resources fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1960)
 - [PUP-1964: Using undefined variable as class parameter default fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1964)
@@ -99,50 +104,24 @@ It remains experimental, but the future parser has gotten a lot of attention in 
 - [PUP-2035: Implement Loader infrastructure API](https://tickets.puppetlabs.com/browse/PUP-2035)
 - [PUP-2241: Add logging functions to static loader](https://tickets.puppetlabs.com/browse/PUP-2241)
 
+### OS Support Changes
 
-### Type and Provider Fixes
+This release improves compatibility with Solaris 10 and adds support for Ubuntu 14.04 (Trusty Tahr).
 
-#### Package:
-- [PUP-748: PR (2067): Zypper provider install options - darix](https://tickets.puppetlabs.com/browse/PUP-748)
-- [PUP-620: (PR 2429) Add install_options to gem provider](https://tickets.puppetlabs.com/browse/PUP-620)
-- [PUP-1769: PR (2414) yum provider to support install_options](https://tickets.puppetlabs.com/browse/PUP-1769)
-- [PUP-772: PR (2082): Add install options to apt](https://tickets.puppetlabs.com/browse/PUP-772)
-- [PUP-1060: enablerepo and disablerepo for yum type](https://tickets.puppetlabs.com/browse/PUP-1060)
+Support for Ubuntu 13.04 (Raring Ringtail) has been discontinued; it was EOL'd in January 2014.
 
-#### Nagios:
-- [PUP-1041: PR (2385) naginator not parsing blank parameters](https://tickets.puppetlabs.com/browse/PUP-1041)
-
-#### Cron:
-- [PUP-1585: PR (2342) cron resources with target specified generate duplicate entries](https://tickets.puppetlabs.com/browse/PUP-1585)
-- [PUP-1586: PR (2331) Cron Type sanity check for the command parameter is broken](https://tickets.puppetlabs.com/browse/PUP-1586)
-- [PUP-1624: PR (2342) Cron handles crontab's equality of target and user strangely](https://tickets.puppetlabs.com/browse/PUP-1624)
-
-#### Service:
-- [PUP-1751: PR (2383): Suse chkconfig --check boot.\<service\> always returns 1 whether the service is enabled/disabled. - m4ce](https://tickets.puppetlabs.com/browse/PUP-1751)
-- [PUP-1932: systemd reports transient (in-memory) services](https://tickets.puppetlabs.com/browse/PUP-1932)
-- [PUP-1938: Remove Ubuntu default from Debian service provider](https://tickets.puppetlabs.com/browse/PUP-1938)
-- [PUP-1332: "puppet resource service" fails on Ubuntu 13.04 and higher](https://tickets.puppetlabs.com/browse/PUP-1332)
-- [PUP-2143: Allow OpenBSD service provider to implement :enableable](https://tickets.puppetlabs.com/browse/PUP-2143)
-
-#### File:
-- [PUP-1892: PR (2420) Puppet remote fileserver facility for file resources.](https://tickets.puppetlabs.com/browse/PUP-1892)
-
-#### Yumrepo:
-- [PUP-2218: yumrepo can no longer manage repositories in yum.conf](https://tickets.puppetlabs.com/browse/PUP-2218)
-- [PUP-2291: yumrepo priority can not be sent to absent](https://tickets.puppetlabs.com/browse/PUP-2291)
-- [PUP-2292: Insufficient tests on yumrepo's => absent](https://tickets.puppetlabs.com/browse/PUP-2292)
-- [PUP-2279: Add support for 'skip_if_unavailable' parameter to `yumrepo`](https://tickets.puppetlabs.com/browse/PUP-2279)
-
-#### Augeas:
-- [PUP-2033: Allow augeas diffs to respect loglevel](https://tickets.puppetlabs.com/browse/PUP-2033)
-- [PUP-2048: Allow suppressing diffs on augeas](https://tickets.puppetlabs.com/browse/PUP-2048)
+- [PUP-1749: Puppet module tool does not work on Solaris](https://tickets.puppetlabs.com/browse/PUP-1749)
+- [PUP-2100: Allow Inheritance when setting Deny ACEs](https://tickets.puppetlabs.com/browse/PUP-2100)
+- [PUP-1711: Add Ubuntu 14.04 packages](https://tickets.puppetlabs.com/browse/PUP-1711)
+- [PUP-1712: Add Ubuntu 14.04 to acceptance](https://tickets.puppetlabs.com/browse/PUP-1712)
+- [PUP-2347: Remove raring from build_defaults, it is EOL](https://tickets.puppetlabs.com/browse/PUP-2347)
+- [PUP-2418: Remove Tar::Solaris from module_tool](https://tickets.puppetlabs.com/browse/PUP-2418)
 
 ### Module Tool Changes
+
 The puppet module tool has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, the module tool will automatically generate metadata.json based on a Modulefile if it finds one. If neither Modulefile nor metadata.json is available, it will kick off an interview and generate metadata.json based on your responses.
 
 The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](/puppet/3.6/reference/modules_publishing.html).
-
-Related tickets:
 
 - [PUP-1976: `puppet module build` should use `metadata.json` as input format](https://tickets.puppetlabs.com/browse/PUP-1976)
 - [PUP-1977: `puppet module build` should create `metadata.json` instead of `Modulefile`](https://tickets.puppetlabs.com/browse/PUP-1977)
@@ -152,6 +131,49 @@ Related tickets:
 - [PUP-2285: Update PMT generate's README template](https://tickets.puppetlabs.com/browse/PUP-2285)
 - [PUP-1046: puppet module generate should produce a skeleton spec test](https://tickets.puppetlabs.com/browse/PUP-1046)
 
+### Type and Provider Fixes
+
+#### Package:
+
+- [PUP-748: PR (2067): Zypper provider install options - darix](https://tickets.puppetlabs.com/browse/PUP-748)
+- [PUP-620: (PR 2429) Add install_options to gem provider](https://tickets.puppetlabs.com/browse/PUP-620)
+- [PUP-1769: PR (2414) yum provider to support install_options](https://tickets.puppetlabs.com/browse/PUP-1769)
+- [PUP-772: PR (2082): Add install options to apt](https://tickets.puppetlabs.com/browse/PUP-772)
+- [PUP-1060: enablerepo and disablerepo for yum type](https://tickets.puppetlabs.com/browse/PUP-1060)
+
+#### Nagios:
+
+- [PUP-1041: PR (2385) naginator not parsing blank parameters](https://tickets.puppetlabs.com/browse/PUP-1041)
+
+#### Cron:
+
+- [PUP-1585: PR (2342) cron resources with target specified generate duplicate entries](https://tickets.puppetlabs.com/browse/PUP-1585)
+- [PUP-1586: PR (2331) Cron Type sanity check for the command parameter is broken](https://tickets.puppetlabs.com/browse/PUP-1586)
+- [PUP-1624: PR (2342) Cron handles crontab's equality of target and user strangely](https://tickets.puppetlabs.com/browse/PUP-1624)
+
+#### Service:
+
+- [PUP-1751: PR (2383): Suse chkconfig --check boot.\<service\> always returns 1 whether the service is enabled/disabled. - m4ce](https://tickets.puppetlabs.com/browse/PUP-1751)
+- [PUP-1932: systemd reports transient (in-memory) services](https://tickets.puppetlabs.com/browse/PUP-1932)
+- [PUP-1938: Remove Ubuntu default from Debian service provider](https://tickets.puppetlabs.com/browse/PUP-1938)
+- [PUP-1332: "puppet resource service" fails on Ubuntu 13.04 and higher](https://tickets.puppetlabs.com/browse/PUP-1332)
+- [PUP-2143: Allow OpenBSD service provider to implement :enableable](https://tickets.puppetlabs.com/browse/PUP-2143)
+
+#### File:
+
+- [PUP-1892: PR (2420) Puppet remote fileserver facility for file resources.](https://tickets.puppetlabs.com/browse/PUP-1892)
+
+#### Yumrepo:
+
+- [PUP-2218: yumrepo can no longer manage repositories in yum.conf](https://tickets.puppetlabs.com/browse/PUP-2218)
+- [PUP-2291: yumrepo priority can not be sent to absent](https://tickets.puppetlabs.com/browse/PUP-2291)
+- [PUP-2292: Insufficient tests on yumrepo's => absent](https://tickets.puppetlabs.com/browse/PUP-2292)
+- [PUP-2279: Add support for 'skip_if_unavailable' parameter to `yumrepo`](https://tickets.puppetlabs.com/browse/PUP-2279)
+
+#### Augeas:
+
+- [PUP-2033: Allow augeas diffs to respect loglevel](https://tickets.puppetlabs.com/browse/PUP-2033)
+- [PUP-2048: Allow suppressing diffs on augeas](https://tickets.puppetlabs.com/browse/PUP-2048)
 
 ### Fixes for Directory Environments
 
@@ -162,15 +184,6 @@ Related tickets:
 - [PUP-1596: Make modulepath, manifest, and config_version configurable per-environment](https://tickets.puppetlabs.com/browse/PUP-1596)
 - [PUP-1699: Cache environments](https://tickets.puppetlabs.com/browse/PUP-1699)
 - [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
-
-### OS Support
-
-- [PUP-1749: Puppet module tool does not work on Solaris](https://tickets.puppetlabs.com/browse/PUP-1749)
-- [PUP-2100: Allow Inheritance when setting Deny ACEs](https://tickets.puppetlabs.com/browse/PUP-2100)
-- [PUP-1711: Add Ubuntu 14.04 packages](https://tickets.puppetlabs.com/browse/PUP-1711)
-- [PUP-1712: Add Ubuntu 14.04 to acceptance](https://tickets.puppetlabs.com/browse/PUP-1712)
-- [PUP-2347: Remove raring from build_defaults, it is EOL](https://tickets.puppetlabs.com/browse/PUP-2347)
-- [PUP-2418: Remove Tar::Solaris from module_tool](https://tickets.puppetlabs.com/browse/PUP-2418)
 
 ### General Bug Fixes
 
