@@ -31,7 +31,7 @@ For example: if your [`environmentpath` setting][environmentpath] is set to `$co
 
 The environment.conf file uses the same INI-like format as puppet.conf, with one exception: it cannot contain config sections like `[main]`. All settings in environment.conf must be outside any config section.
 
-## Allowed Settings
+### Allowed Settings
 
 In this version of Puppet, the environment.conf file is only allowed to override four settings:
 
@@ -40,15 +40,21 @@ In this version of Puppet, the environment.conf file is only allowed to override
 * [`config_version`][config_version]
 * [`environment_timeout`][environment_timeout]
 
-## Relative Paths in Values
+### Relative Paths in Values
 
 Most of the allowed settings accept file paths or lists of paths as their values.
 
 If any of these paths are **relative paths** --- that is, they start _without_ a leading slash or drive letter --- they will be resolved relative to that environment's main directory.
 
-### Examples
+#### Relative Path Examples
 
 The example environment.conf file above configures an environment called `test`, which is located in `$confdir/environments`. This means:
 
 * The `modulepath = modules` line will resolve to `modulepath = /etc/puppetlabs/puppet/environments/test/modules`. This removes all of the global directories inherited from the `basemodulepath` setting, and limits the environment to only its local modules.
 * Likewise, `config_version = get_environment_commit.sh` in that environment will be interpreted as `config_version = /etc/puppetlabs/puppet/environments/test/get_environment_commit.sh`
+
+### Interpolating `$environment`
+
+Settings in environment.conf can use the special `$environment` variable in their values. Puppet will replace `$environment` with the name of the active environment.
+
+This is almost never necessary for `modulepath` or `manifest`, but it can be useful as an argument to your `config_version` script.

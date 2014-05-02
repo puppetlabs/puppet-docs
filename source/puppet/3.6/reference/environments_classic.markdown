@@ -11,9 +11,13 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 [puppet.conf]: ./config_file_main.html
 [manifest_setting]: /references/3.6.latest/configuration.html#manifest
 [modulepath_setting]: /references/3.6.latest/configuration.html#modulepath
-[adrien_blog]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
 [directory_environments]: ./environments.html
 [dir_envs_enable]: ./environments.html#enabling-directory-environments
+[enc]: /guides/external_nodes.html
+[node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
+[enc_environment]: /guides/external_nodes.html#environment
+[env_setting]: /references/3.6.latest/configuration.html#environment
+[env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
@@ -24,10 +28,19 @@ This frees you to use different versions of the same modules for different popul
 >
 > There are two ways to set up environments on a puppet master: [**directory environments,**][directory_environments] and **config file environments.**
 >
-> This page is about config file environments, which are more complex to use but which allow you to set [`config_version`][config_version] per-environment and change the order of the `modulepath` (or remove parts of it). Directory environments will be able to do those things soon, but the code didn't make the 3.5.0 release deadline. TODO update this
->
-> Directory environments will eventually replace config file environments.
+> This page is about config file environments, which are deprecated and are more complex to use. You should consider moving to directory environments soon.
 
+Config File Environments Are Deprecated
+-----
+
+If your puppet.conf file:
+
+* Contains any environment config blocks
+* Sets global values for the `manifest`, `modulepath`, or `config_version` settings
+
+...then the puppet master will log deprecation warnings. (Interpolating the `$environment` variable won't log warnings, since it's benign without the global settings and is useful in `environment.conf` files.)
+
+In a future version of Puppet (probably Puppet 4), directory environments will always be enabled, and the default `production` environment will take the place of the global `manifest`/`modulepath`/`config_version` settings.
 
 Setting Up Environments on a Puppet Master
 -----
@@ -119,16 +132,33 @@ If the values of the `manifest` or `modulepath` settings point to any files or d
 Assigning Nodes to Environments
 -----
 
-Assigning nodes to environments works identically for both directory environments and config file environments.
+By default, all nodes are assigned to a default environment named `production`.
 
-For details, [see the relevant section of the directory environments page.][assign_nodes]
+There are two ways to assign nodes to a different environment:
 
-[assign_nodes]: ./environments.html#assigning-nodes-to-environments
+* Via your [ENC][] or [node terminus][]
+* Via each agent node's puppet.conf
+
+The value from the ENC is authoritative, if it exists. If the ENC doesn't specify an environment, the node's config value is used.
+
+With config file environments, nodes can be assigned to environments that are not configured. This will cause them to fall back to global values for `modulepath` and `manifest`.
+
+### Via an ENC
+
+The interface to set the environment for a node will be different for each ENC. Some ENCs cannot manage environments.
+
+When writing an ENC, simply ensure that the `environment:` key is set in the YAML output that the ENC returns. [See the documentation on writing ENCs for details.][enc_environment]
+
+If the environment key isn't set in the ENC's YAML output, the puppet master will just use the environment requested by the agent.
+
+### Via the Agent's Config File
+
+In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config section. When that node requests a catalog from the puppet master, it will request that environment.
+
+If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
 Referencing the Environment in Manifests
 -----
-
-[inpage_env_var]: #referencing-the-environment-in-manifests
 
 In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
 
