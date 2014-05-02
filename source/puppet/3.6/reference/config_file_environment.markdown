@@ -53,8 +53,10 @@ The example environment.conf file above configures an environment called `test`,
 * The `modulepath = modules` line will resolve to `modulepath = /etc/puppetlabs/puppet/environments/test/modules`. This removes all of the global directories inherited from the `basemodulepath` setting, and limits the environment to only its local modules.
 * Likewise, `config_version = get_environment_commit.sh` in that environment will be interpreted as `config_version = /etc/puppetlabs/puppet/environments/test/get_environment_commit.sh`
 
-### Interpolating `$environment`
+### Interpolation and `$environment`
 
 Settings in environment.conf can use the special `$environment` variable in their values. Puppet will replace `$environment` with the name of the active environment.
 
 This is almost never necessary for `modulepath` or `manifest`, but it can be useful as an argument to your `config_version` script.
+
+Settings in environment.conf can also interpolate other settings as variables, such as `$confdir`.
