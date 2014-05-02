@@ -37,12 +37,12 @@ Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3
 * The ability to set puppet's global logging level with the `log_level` parameter
 * Support for installing gems for a custom provider as part of a puppet run
 * The ability to change puppet's hashing algorithm with the `digest_algorithm` parameter
-* Improvements to the future parser, evaluator, and catalog builder
+* Improvements to the experimental future parser
 
 ### New Features
 
 #### Ability to purge .ssh/authorized_keys
-It's now possible to purge authorized ssh keys that aren't managed by puppet via the [user type's](http://docs.puppetlabs.com/references/3.6/type.html#user) `purge_ssh_keys` attribute. Adding this to the user type means that keys can be purged on a per-user basis.
+It's now possible to purge authorized ssh keys that aren't managed by puppet via the [user type's](/references/3.6/type.html#user) `purge_ssh_keys` attribute. Adding this to the user type means that keys can be purged on a per-user basis.
 
 Related tickets:
 
@@ -57,18 +57,28 @@ Related ticket:
 - [PUP-1854: Global log_level param](https://tickets.puppetlabs.com/browse/PUP-1854)
 
 #### Ability to install gems for a custom provider during puppet runs
+Custom providers that require rubygems would previously fail if at least one gem was missing *before* the current puppet run, even if it had been installed by the time the provider was actually called. This release fixes the behavior so that custom providers can rely on gems installed during the same puppet run.
 
 Related ticket:
 
 - [PUP-1879: Library load tests in features should clear rubygems path cache](https://tickets.puppetlabs.com/browse/PUP-1879)
 
 #### New `digest_algorithm` parameter
+You can now change the hashing algorithm that puppet uses by setting the `digest_algorithm` parameter in puppet.conf, which has the nice effect of avoiding crashes on FIPS-compliant hosts. The parameter must be set on all agents and all masters simultaneously. Changing the setting won't affect the `md5` or `fqdn_rand` functions.
 
 Related ticket:
 
 - [PUP-1840: Let user change hashing algorithm, to avoid crashing on FIPS-compliant hosts](https://tickets.puppetlabs.com/browse/PUP-1840)
 
-### Deprecations and Removals
+### Deprecations
+With the new [directory environments](/puppet/3.6/reference/environments.html) feature, config-file environments are now deprecated. Defining environment blocks in puppet.conf will cause a deprecation warning, as will any use of the `modulepath`, `manifest`, and `config_version` parameters in puppet.conf.
+
+Related tickets:
+- [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
+- [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
+
+### Improvements Future Parser
+It remains experimental, but the future parser has gotten a lot of attention in this release. For example, functions can now accept lambdas as arguments using the new Callable type. There are also a few changes laying the groundwork for the upcoming catalog builder.
 
 - [PUP-1960: realizing an empty array of resources fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1960)
 - [PUP-1964: Using undefined variable as class parameter default fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1964)
@@ -79,20 +89,11 @@ Related ticket:
 - [PUP-2027: Add support for Lambda in Function Call API](https://tickets.puppetlabs.com/browse/PUP-2027)
 - [PUP-1956: Add function loader for new function API](https://tickets.puppetlabs.com/browse/PUP-1956)
 - [PUP-2344: Functions unable to call functions in different modules](https://tickets.puppetlabs.com/browse/PUP-2344)
-
-### Future Parser, Evaluator, and Catalog Builder
-
-- [PUP-1960: realizing an empty array of resources fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1960)
-- [PUP-1964: Using undefined variable as class parameter default fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1964)
-- [PUP-2190: Accessing resource metaparameters fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-2190)
-- [PUP-2317: Future parser does not error on import statements](https://tickets.puppetlabs.com/browse/PUP-2317)
-- [PUP-2302: New evaluator does not properly handle resource defaults](https://tickets.puppetlabs.com/browse/PUP-2302)
-- [PUP-2026: Add a LambdaType to the type system](https://tickets.puppetlabs.com/browse/PUP-2026)
-- [PUP-2027: Add support for Lambda in Function Call API](https://tickets.puppetlabs.com/browse/PUP-2027)
-- [PUP-1956: Add function loader for new function API](https://tickets.puppetlabs.com/browse/PUP-1956)
-- [PUP-2344: Functions unable to call functions in different modules](https://tickets.puppetlabs.com/browse/PUP-2344)
-<!--- Builder-specific -->
 - [PUP-485: Add assert\_type functions for type checks](https://tickets.puppetlabs.com/browse/PUP-485)
+- [PUP-1799: New Function API](https://tickets.puppetlabs.com/browse/PUP-1799)
+- [PUP-2035: Implement Loader infrastructure API](https://tickets.puppetlabs.com/browse/PUP-2035)
+- [PUP-2241: Add logging functions to static loader](https://tickets.puppetlabs.com/browse/PUP-2241)
+- [PUP-485: Add assert_type functions for type checks](https://tickets.puppetlabs.com/browse/PUP-485)
 - [PUP-1799: New Function API](https://tickets.puppetlabs.com/browse/PUP-1799)
 - [PUP-2035: Implement Loader infrastructure API](https://tickets.puppetlabs.com/browse/PUP-2035)
 - [PUP-2241: Add logging functions to static loader](https://tickets.puppetlabs.com/browse/PUP-2241)
@@ -136,7 +137,6 @@ Related ticket:
 - [PUP-2048: Allow suppressing diffs on augeas](https://tickets.puppetlabs.com/browse/PUP-2048)
 
 ### Module Tool Changes
-
 - [PUP-1976: `puppet module build` should use `metadata.json` as input format](https://tickets.puppetlabs.com/browse/PUP-1976)
 - [PUP-1977: `puppet module build` should create `metadata.json` instead of `Modulefile`](https://tickets.puppetlabs.com/browse/PUP-1977)
 - [PUP-2045: puppet module generate should produce a skeleton Rakefile](https://tickets.puppetlabs.com/browse/PUP-2045)
@@ -146,7 +146,7 @@ Related ticket:
 - [PUP-1046: puppet module generate should produce a skeleton spec test](https://tickets.puppetlabs.com/browse/PUP-1046)
 
 
-### Changes to Directory Environments
+### Fixes for Directory Environments
 
 - [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
 - [PUP-2213: The environmentpath setting is ignored by puppet faces unless set in \[main\]](https://tickets.puppetlabs.com/browse/PUP-2213)
@@ -157,6 +157,7 @@ Related ticket:
 - [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
 
 ### OS Support
+
 - [PUP-1749: Puppet module tool does not work on Solaris](https://tickets.puppetlabs.com/browse/PUP-1749)
 - [PUP-2100: Allow Inheritance when setting Deny ACEs](https://tickets.puppetlabs.com/browse/PUP-2100)
 - [PUP-1711: Add Ubuntu 14.04 packages](https://tickets.puppetlabs.com/browse/PUP-1711)
@@ -175,6 +176,7 @@ Related ticket:
 - [PUP-2073: PR (2477) Multiple values for diff_args causes diff execution failure](https://tickets.puppetlabs.com/browse/PUP-2073)
 - [PUP-2278: puppet module install fails when given path containing spaces](https://tickets.puppetlabs.com/browse/PUP-2278)
 - [PUP-2101: resource parser: add the resource name on the validation error message when using create_resources](https://tickets.puppetlabs.com/browse/PUP-2101)
+- [PUP-2282: Deprecation warnings issued with different messages from the same line are suppressed.](https://tickets.puppetlabs.com/browse/PUP-2282)
 - [PUP-2306: Puppet::Util::Execution.execute no longer returns a String](https://tickets.puppetlabs.com/browse/PUP-2306)
 - [PUP-2415: Puppet Agent Service - Rename /etc/sysconfig/puppetagent to /etc/sysconfig/puppet](https://tickets.puppetlabs.com/browse/PUP-2415)
 - [PUP-2416: Puppet Service - Use no-daemonize and no forking (Master and Agent)](https://tickets.puppetlabs.com/browse/PUP-2416)
