@@ -42,7 +42,7 @@ Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3
 ### New Features
 
 #### Ability to purge .ssh/authorized_keys
-It's now possible to purge authorized ssh keys that aren't managed by puppet via the [user type's](/references/3.6/type.html#user) `purge_ssh_keys` attribute. Adding this to the user type means that keys can be purged on a per-user basis.
+It's now possible to purge authorized ssh keys that aren't managed by puppet via the [user type's](/reference/3.6/type.html#user) `purge_ssh_keys` attribute. Adding this to the user type means that keys can be purged on a per-user basis.
 
 Related tickets:
 
@@ -57,7 +57,7 @@ Related ticket:
 - [PUP-1854: Global log_level param](https://tickets.puppetlabs.com/browse/PUP-1854)
 
 #### Ability to install gems for a custom provider during puppet runs
-Custom providers that require rubygems would previously fail if at least one gem was missing *before* the current puppet run, even if it had been installed by the time the provider was actually called. This release fixes the behavior so that custom providers can rely on gems installed during the same puppet run.
+Custom providers that require one or more gems would previously fail if at least one gem was missing *before* the current puppet run, even if it had been installed by the time the provider was actually called. This release fixes the behavior so that custom providers can rely on gems installed during the same puppet run.
 
 Related ticket:
 
@@ -74,10 +74,11 @@ Related ticket:
 With the new [directory environments](/puppet/3.6/reference/environments.html) feature, config-file environments are now deprecated. Defining environment blocks in puppet.conf will cause a deprecation warning, as will any use of the `modulepath`, `manifest`, and `config_version` parameters in puppet.conf.
 
 Related tickets:
+
 - [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
 - [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
 
-### Improvements Future Parser
+### Improvements to the Future Parser
 It remains experimental, but the future parser has gotten a lot of attention in this release. For example, functions can now accept lambdas as arguments using the new Callable type. There are also a few changes laying the groundwork for the upcoming catalog builder.
 
 - [PUP-1960: realizing an empty array of resources fails in future evaluator](https://tickets.puppetlabs.com/browse/PUP-1960)
@@ -137,6 +138,12 @@ It remains experimental, but the future parser has gotten a lot of attention in 
 - [PUP-2048: Allow suppressing diffs on augeas](https://tickets.puppetlabs.com/browse/PUP-2048)
 
 ### Module Tool Changes
+The puppet module tool has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, the module tool will automatically generate metadata.json based on a Modulefile if it finds one. If neither Modulefile nor metadata.json is available, it will kick off an interview and generate metadata.json based on your responses.
+
+The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](/puppet/3.6/reference/modules_publishing.html).
+
+Related tickets:
+
 - [PUP-1976: `puppet module build` should use `metadata.json` as input format](https://tickets.puppetlabs.com/browse/PUP-1976)
 - [PUP-1977: `puppet module build` should create `metadata.json` instead of `Modulefile`](https://tickets.puppetlabs.com/browse/PUP-1977)
 - [PUP-2045: puppet module generate should produce a skeleton Rakefile](https://tickets.puppetlabs.com/browse/PUP-2045)
@@ -181,4 +188,3 @@ It remains experimental, but the future parser has gotten a lot of attention in 
 - [PUP-2415: Puppet Agent Service - Rename /etc/sysconfig/puppetagent to /etc/sysconfig/puppet](https://tickets.puppetlabs.com/browse/PUP-2415)
 - [PUP-2416: Puppet Service - Use no-daemonize and no forking (Master and Agent)](https://tickets.puppetlabs.com/browse/PUP-2416)
 - [PUP-2417: Puppet Agent Should wait for Puppet Master to finish starting, if puppet master is installed](https://tickets.puppetlabs.com/browse/PUP-2417)
-
