@@ -65,9 +65,14 @@ Related issue:
 
 - [PUP-1879: Library load tests in features should clear rubygems path cache](https://tickets.puppetlabs.com/browse/PUP-1879)
 
-#### New `digest_algorithm` parameter
+#### New `digest_algorithm` Setting
 
-You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new `digest_algorithm` parameter in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. The parameter **must** be set to the same value on all agents and all masters simultaneously. Changing the setting won't affect the `md5` or `fqdn_rand` functions.
+You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new [`digest_algorithm` setting](/references/3.6.latest/configuration.html#digestalgorithm) in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. Changing this setting won't affect the `md5` or `fqdn_rand` functions.
+
+This setting **must** be set to the same value on all agents and all masters simultaneously; if they mismatch, you'll run into two problems:
+
+- [PUP-2427: Pluginsync will download every file every time if digest_algorithms do not agree](https://tickets.puppetlabs.com/browse/PUP-2427) --- All files with a `source` attribute will download on every run, which wastes a lot of time and can swamp your puppet master.
+- [PUP-2423: Filebucket server should warn, not fail, if checksum type is not supported](https://tickets.puppetlabs.com/browse/PUP-2423) --- If you're using a remote filebucket to back up file content, agent runs will fail.
 
 Related issue:
 
