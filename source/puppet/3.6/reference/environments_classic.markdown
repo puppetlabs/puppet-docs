@@ -132,6 +132,11 @@ Referencing the Environment in Manifests
 
 In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
 
+Tuning Environment Caching
+-----
+
+With config file environments, there's very little performance to be gained by tuning the `environment_timeout` setting. It can be ignored until you're ready to switch to directory environments.
+
 
 Other Information About Environments
 -----

@@ -200,6 +200,21 @@ Referencing the Environment in Manifests
 
 In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
 
+Tuning Environment Caching
+-----
+
+The puppet master loads environments on request, and it caches data associated with them to give faster service to other nodes in that environment. Cached environments will time out and be discarded after a while, after which they'll be loaded on request again.
+
+You can tune environment cache timeouts with the `environment_timeout` setting. This can be set globally in [puppet.conf][], and can also be overridden per-environment in [environment.conf][]. See [the description of the `environment_timeout` setting][environment_timeout] for details on allowed values. The default cache timeout is five seconds, which doesn't give much of a performance boost but also won't surprise anyone by ignoring their file changes.
+
+Tuning the timeout for most benefit involves a tradeoff between speed of catalog service, memory usage, and responsiveness to changed files. The general best practice is:
+
+- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production`) will give the most benefit from longer timeouts. You might be able to set this to hours, or `unlimited` if you're content to let cache stick around until your Rack server kills a given puppet master process.
+- Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.
+- Sparsely populated environments should have short-ish timeouts, which are just long enough to help out if a cluster of nodes all hit the master at once, but won't retain a bunch of rarely used data in memory. Five to ten seconds is fine.
+- Extremely heterogeneous environments --- where you have a lot of modules and each node uses a different tiny subset --- will sometimes perform _worse_ with a long timeout. (In short, it can cause excessive memory usage and garbage collection without giving back any performance boost.) Leave these with short timeouts of 5-10 seconds.
+
+
 Other Information About Environments
 -----
 
