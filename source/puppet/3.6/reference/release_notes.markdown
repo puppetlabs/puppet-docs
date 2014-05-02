@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [upgrade]: /guides/upgrading.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 [puppet_35]: /puppet/3.5/reference/release_notes.html
-
+[directory environments]: ./environments.html
 
 This page tells the history of the Puppet 3.6 series. (Elsewhere: release notes for [Puppet 3.0 -- 3.4][puppet_3] and [Puppet 3.5][puppet_35].)
 
@@ -32,32 +32,62 @@ Puppet 3.6.0
 
 Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
-* A new `purge_ssh_keys` metaparameter for the `user` type
-* The ability to set puppet's global logging level with the `log_level` parameter
-* Support for installing gems for a custom provider as part of a puppet run
-* The ability to change puppet's hashing algorithm with the `digest_algorithm` parameter
+* Improvements to [directory environments][], and the deprecation of config file environments
+* Support for purging unmanaged `ssh_authorized_key` resources
+* Support for installing gems for a custom provider as part of a Puppet run
+* A configurable global logging level
+* A configurable hashing algorithm (for FIPS compliance and other purposes)
 * Improvements to the experimental future parser
 
-### New Features
+### Improvements for Directory Environments
 
-#### Ability to purge .ssh/authorized_keys
+[environment.conf]: ./config_file_environment.html
+[timeout]: ./environments.html#tuning-environment-caching
 
-It's now possible to purge authorized ssh keys that aren't managed by puppet via the [user type's](/reference/3.6/type.html#user) `purge_ssh_keys` attribute. Adding this to the user type means that keys can be purged on a per-user basis.
+Directory environments were introduced in [Puppet 3.5][puppet_35] as a partially finished (but good enough for most people) feature. With Puppet 3.6, we consider them completed. We're pretty sure they can now handle every use case for environments we've ever heard of.
+
+The final piece is [the `environment.conf` file][environment.conf]. This optional file allows any environment to override the `manifest`, `modulepath`, and `config_version` settings, which is necessary for some people and wasn't possible in Puppet 3.5. You can now exclude global module directories for some environments, or point all environments at a global main manifest file. For details, see [the page on directory environments][directory environments] and [the page on environment.conf][environment.conf].
+
+It's also now possible to tune the cache timeout for environments, to improve performance on your puppet master. [See the note on timeout tuning][timeout] in the directory environments page.
+
+- [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
+- [PUP-2213: The environmentpath setting is ignored by puppet faces unless set in \[main\]](https://tickets.puppetlabs.com/browse/PUP-2213)
+- [PUP-2215: An existing directory environment will use config_version from an underlying legacy environment of the same name.](https://tickets.puppetlabs.com/browse/PUP-2215)
+- [PUP-2290: ca_server and directory based environments don't play nice together](https://tickets.puppetlabs.com/browse/PUP-2290)
+- [PUP-1596: Make modulepath, manifest, and config_version configurable per-environment](https://tickets.puppetlabs.com/browse/PUP-1596)
+- [PUP-1699: Cache environments](https://tickets.puppetlabs.com/browse/PUP-1699)
+- [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
+
+### Deprecation: Config-File Environments and the Global `manifest`/`modulepath`/`config_version` Settings
+
+Now that [directory environments][] are completed, [config-file environments](./environments_classic.html) are deprecated. Defining environment blocks in puppet.conf will cause a deprecation warning, as will any use of the `modulepath`, `manifest`, and `config_version` settings in puppet.conf.
+
+This also means that using _no_ environments is deprecated. In a future version of Puppet (probably Puppet 4), directory environments will always be enabled, and the default `production` environment will take the place of the global `manifest`/`modulepath`/`config_version` settings.
+
+Related issues:
+
+- [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
+- [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
+
+### Feature: Purging Unmanaged SSH Authorized Keys
+
+Purging unmanaged [`ssh_authorized_key`](/references/3.6.latest/type.html#sshauthorizedkey) resources has been on the most-wanted features list for a very long time, and we haven't been able to make [the `resources` meta-type](/references/3.6.latest/type.html#resources) accommodate it.
+
+Fortunately, the [user type](/references/3.6.latest/type.html#user) accommodates it very nicely. You can now purge unmanaged SSH keys for a user by setting the `purge_ssh_keys` attribute:
+
+    user { 'nick':
+      ensure         => present,
+      purge_ssh_keys => true,
+    }
+
+This will purge any keys in `~nick/.ssh/authorized_keys` that aren't being managed as Puppet resources.
 
 Related issues:
 
 - [PUP-1174: PR (2247) Ability to purge .ssh/authorized_keys](https://tickets.puppetlabs.com/browse/PUP-1174)
 - [PUP-1955: purge_ssh_keys causes stack trace when creating new users on redhat](https://tickets.puppetlabs.com/browse/PUP-1955)
 
-#### New global `log_level` parameter
-
-You can now set the global log level using the `log_level` parameter in puppet.conf. It defaults to `notice`, and can be set to `debug`, `info`, `notice`, `warning`, `err`, `alert`, `emerg`, or `crit`.
-
-Related issue:
-
-- [PUP-1854: Global log_level param](https://tickets.puppetlabs.com/browse/PUP-1854)
-
-#### Ability to install gems for a custom provider during puppet runs
+### Feature: Installing Gems for a Custom Provider During Puppet Runs
 
 Previously, custom providers that required one or more gems would fail if at least one gem was missing *before* the current puppet run, even if they had been installed by the time the provider was actually called. This release fixes the behavior so that custom providers can rely on gems installed during the same puppet run.
 
@@ -65,7 +95,15 @@ Related issue:
 
 - [PUP-1879: Library load tests in features should clear rubygems path cache](https://tickets.puppetlabs.com/browse/PUP-1879)
 
-#### New `digest_algorithm` Setting
+### Feature: Global `log_level` Setting
+
+You can now set the global log level using the `log_level` setting in puppet.conf. It defaults to `notice`, and can be set to `debug`, `info`, `notice`, `warning`, `err`, `alert`, `emerg`, or `crit`.
+
+Related issue:
+
+- [PUP-1854: Global log_level param](https://tickets.puppetlabs.com/browse/PUP-1854)
+
+### Feature: `digest_algorithm` Setting
 
 You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new [`digest_algorithm` setting](/references/3.6.latest/configuration.html#digestalgorithm) in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. Changing this setting won't affect the `md5` or `fqdn_rand` functions.
 
@@ -77,15 +115,6 @@ This setting **must** be set to the same value on all agents and all masters sim
 Related issue:
 
 - [PUP-1840: Let user change hashing algorithm, to avoid crashing on FIPS-compliant hosts](https://tickets.puppetlabs.com/browse/PUP-1840)
-
-### Config-File Environments Deprecated
-
-With the new [directory environments](/puppet/3.6/reference/environments.html) feature, config-file environments are now deprecated. Defining environment blocks in puppet.conf will cause a deprecation warning, as will any use of the `modulepath`, `manifest`, and `config_version` parameters in puppet.conf.
-
-Related issues:
-
-- [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
-- [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
 
 ### Improvements to the Future Parser
 
@@ -115,6 +144,8 @@ This release improves compatibility with Solaris 10 and adds support for Ubuntu 
 
 Support for Ubuntu 13.04 (Raring Ringtail) has been discontinued; it was EOL'd in January 2014.
 
+Related issues:
+
 - [PUP-1749: Puppet module tool does not work on Solaris](https://tickets.puppetlabs.com/browse/PUP-1749)
 - [PUP-2100: Allow Inheritance when setting Deny ACEs](https://tickets.puppetlabs.com/browse/PUP-2100)
 - [PUP-1711: Add Ubuntu 14.04 packages](https://tickets.puppetlabs.com/browse/PUP-1711)
@@ -128,6 +159,8 @@ The puppet module tool has been updated to deprecate the Modulefile in favor of 
 
 The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](/puppet/3.6/reference/modules_publishing.html).
 
+Related issues:
+
 - [PUP-1976: `puppet module build` should use `metadata.json` as input format](https://tickets.puppetlabs.com/browse/PUP-1976)
 - [PUP-1977: `puppet module build` should create `metadata.json` instead of `Modulefile`](https://tickets.puppetlabs.com/browse/PUP-1977)
 - [PUP-2045: puppet module generate should produce a skeleton Rakefile](https://tickets.puppetlabs.com/browse/PUP-2045)
@@ -139,6 +172,8 @@ The new module template has also been updated to include a basic README and spec
 ### Type and Provider Fixes
 
 #### Package:
+
+Several providers were updated to support the `install_options` attribute, and the yum provider now has special behavior to make `--enablerepo` and `--disablerepo` work well when you set them as `install_options`.
 
 - [PUP-748: PR (2067): Zypper provider install options - darix](https://tickets.puppetlabs.com/browse/PUP-748)
 - [PUP-620: (PR 2429) Add install_options to gem provider](https://tickets.puppetlabs.com/browse/PUP-620)
@@ -158,6 +193,8 @@ The new module template has also been updated to include a basic README and spec
 
 #### Service:
 
+OpenBSD services can now be enabled and disabled, and we fixed some bugs on other platforms.
+
 - [PUP-1751: PR (2383): Suse chkconfig --check boot.\<service\> always returns 1 whether the service is enabled/disabled. - m4ce](https://tickets.puppetlabs.com/browse/PUP-1751)
 - [PUP-1932: systemd reports transient (in-memory) services](https://tickets.puppetlabs.com/browse/PUP-1932)
 - [PUP-1938: Remove Ubuntu default from Debian service provider](https://tickets.puppetlabs.com/browse/PUP-1938)
@@ -166,9 +203,13 @@ The new module template has also been updated to include a basic README and spec
 
 #### File:
 
+We fixed a regression from Puppet 3.0 that broke file resources whose `source` URL specified a server other than the default. (That is, `puppet://myserver/modules/...` instead of `puppet:///modules/...`.)
+
 - [PUP-1892: PR (2420) Puppet remote fileserver facility for file resources.](https://tickets.puppetlabs.com/browse/PUP-1892)
 
 #### Yumrepo:
+
+We fixed a few lingering regressions from the big yumrepo cleanup of Puppet 3.5, and added support for the `skip_if_unavailable` parameter.
 
 - [PUP-2218: yumrepo can no longer manage repositories in yum.conf](https://tickets.puppetlabs.com/browse/PUP-2218)
 - [PUP-2291: yumrepo priority can not be sent to absent](https://tickets.puppetlabs.com/browse/PUP-2291)
@@ -177,18 +218,10 @@ The new module template has also been updated to include a basic README and spec
 
 #### Augeas:
 
+We added better control over the way Augeas resources display diffs, for better security and less noise.
+
 - [PUP-2033: Allow augeas diffs to respect loglevel](https://tickets.puppetlabs.com/browse/PUP-2033)
 - [PUP-2048: Allow suppressing diffs on augeas](https://tickets.puppetlabs.com/browse/PUP-2048)
-
-### Fixes for Directory Environments
-
-- [PUP-1114: Deprecate environment configuration in puppet.conf](https://tickets.puppetlabs.com/browse/PUP-1114)
-- [PUP-2213: The environmentpath setting is ignored by puppet faces unless set in \[main\]](https://tickets.puppetlabs.com/browse/PUP-2213)
-- [PUP-2215: An existing directory environment will use config_version from an underlying legacy environment of the same name.](https://tickets.puppetlabs.com/browse/PUP-2215)
-- [PUP-2290: ca_server and directory based environments don't play nice together](https://tickets.puppetlabs.com/browse/PUP-2290)
-- [PUP-1596: Make modulepath, manifest, and config_version configurable per-environment](https://tickets.puppetlabs.com/browse/PUP-1596)
-- [PUP-1699: Cache environments](https://tickets.puppetlabs.com/browse/PUP-1699)
-- [PUP-1433: Deprecate 'implicit' environment settings and update packaging](https://tickets.puppetlabs.com/browse/PUP-1433)
 
 ### General Bug Fixes
 
@@ -206,3 +239,7 @@ The new module template has also been updated to include a basic README and spec
 - [PUP-2415: Puppet Agent Service - Rename /etc/sysconfig/puppetagent to /etc/sysconfig/puppet](https://tickets.puppetlabs.com/browse/PUP-2415)
 - [PUP-2416: Puppet Service - Use no-daemonize and no forking (Master and Agent)](https://tickets.puppetlabs.com/browse/PUP-2416)
 - [PUP-2417: Puppet Agent Should wait for Puppet Master to finish starting, if puppet master is installed](https://tickets.puppetlabs.com/browse/PUP-2417)
+
+### All Resolved Issues for 3.6.0
+
+Our ticket tracker has the list of [all issues resolved in Puppet 3.6.0.](https://tickets.puppetlabs.com/browse/PUP/fixforversion/11200)
