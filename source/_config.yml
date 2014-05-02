@@ -91,6 +91,21 @@ externalsources:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/master
     subdirectory: documentation
+  pe_puppetdb_31:
+    url: /pe-puppetdb/3.1
+    repo: git://github.com/puppetlabs/pe-puppetdb.git
+    commit: origin/3.1.x
+    subdirectory: documentation
+  pe_puppetdb_32:
+    url: /pe-puppetdb/3.2
+    repo: git://github.com/puppetlabs/pe-puppetdb.git
+    commit: origin/3.2.x
+    subdirectory: documentation
+  pe_puppetdb_33:
+    url: /pe-puppetdb/3.3
+    repo: git://github.com/puppetlabs/pe-puppetdb.git
+    commit: origin/3.3.x
+    subdirectory: documentation
   mcollective:
     url: /mcollective
     repo: git://github.com/puppetlabs/marionette-collective.git
