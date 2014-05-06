@@ -74,7 +74,7 @@ externalsources:
   puppetdb_1.5:
     url: /puppetdb/1.5
     repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/1.5.x
+    commit: 1.5.x-docs
     subdirectory: documentation
   puppetdb_1.6:
     url: /puppetdb/1.6
