@@ -1,6 +1,6 @@
 We publish official packages and run automated testing on the following versions:
 
-* Windows Server 2012 (also supported by [Puppet Enterprise][peinstall])
+* Windows Server 2012 and 2012 R2 (also supported by [Puppet Enterprise][peinstall])
 * Windows Server 2008 R2 (also supported by [Puppet Enterprise][peinstall])
 * Windows Server 2003 R2 (also supported by [Puppet Enterprise][peinstall])
 
