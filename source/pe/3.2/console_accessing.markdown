@@ -23,7 +23,7 @@ Browser Requirements
 
 * Chrome: Current version (plus one version back)
 * Firefox: Current version (plus one version back)
-* Internet Explorer: 10 and 11
+* Internet Explorer: 9 or higher
 * Safari: 6.x and 7.x
 
 Reaching the Console
