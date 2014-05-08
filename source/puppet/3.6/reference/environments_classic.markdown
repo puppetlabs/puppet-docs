@@ -19,6 +19,20 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 [env_setting]: /references/3.6.latest/configuration.html#environment
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 
+> Config File Environments Are Deprecated
+> -----
+>
+> If your puppet.conf file:
+>
+> * Contains any environment config blocks
+> * Sets global values for the `manifest`, `modulepath`, or `config_version` settings
+>
+> ...then the puppet master will log deprecation warnings. (Interpolating the `$environment` variable won't log warnings, since it's benign without the global settings and is useful in `environment.conf` files.)
+>
+> In a future version of Puppet (probably Puppet 4), [directory environments][directory_environments] will always be enabled, and the default `production` environment will take the place of the global `manifest`/`modulepath`/`config_version` settings.
+>
+> When you have time, you should read up on [directory environments][directory_environments] and start using them.
+
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
 This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate puppet master for testing, but using environments is often easier.)
@@ -29,18 +43,6 @@ This frees you to use different versions of the same modules for different popul
 > There are two ways to set up environments on a puppet master: [**directory environments,**][directory_environments] and **config file environments.**
 >
 > This page is about config file environments, which are deprecated and are more complex to use. You should consider moving to directory environments soon.
-
-Config File Environments Are Deprecated
------
-
-If your puppet.conf file:
-
-* Contains any environment config blocks
-* Sets global values for the `manifest`, `modulepath`, or `config_version` settings
-
-...then the puppet master will log deprecation warnings. (Interpolating the `$environment` variable won't log warnings, since it's benign without the global settings and is useful in `environment.conf` files.)
-
-In a future version of Puppet (probably Puppet 4), directory environments will always be enabled, and the default `production` environment will take the place of the global `manifest`/`modulepath`/`config_version` settings.
 
 Setting Up Environments on a Puppet Master
 -----

@@ -157,7 +157,7 @@ Related issues:
 
 The puppet module tool has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, the module tool will automatically generate metadata.json based on a Modulefile if it finds one. If neither Modulefile nor metadata.json is available, it will kick off an interview and generate metadata.json based on your responses.
 
-> **Note:** In 3.6.0 RC1, this behavior is partially broken; the module tool won't use the Modulefile if it exists. We plan to fix this before the final release. See [PUP-2484](https://tickets.puppetlabs.com/browse/PUP-2484).
+> **Note:** In 3.6.0 RC1, this behavior is partially broken; the module tool will use the Modulefile if a metadata.json file doesn't exist, but will ignore it as soon the json file is created. We plan to fix this before the final release. See [PUP-2484](https://tickets.puppetlabs.com/browse/PUP-2484).
 
 The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](/puppet/3.6/reference/modules_publishing.html).
 

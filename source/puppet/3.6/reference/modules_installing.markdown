@@ -19,8 +19,8 @@ Installing Modules
 
 > ![Windows note](/images/windows-logo-small.jpg) The puppet module tool does not currently work on Windows.
 >
-> * Windows nodes which pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
-> * On Windows nodes which compile their own catalogs, you can install a Forge module by downloading and extracting the module's release tarball, renaming the module directory to remove the user name prefix, and moving it into place in Puppet's [modulepath][].
+> * Windows nodes that pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
+> * On Windows nodes that compile their own catalogs, you can install a Forge module by downloading and extracting the module's release tarball, renaming the module directory to remove the user name prefix, and moving it into place in Puppet's [modulepath][].
 
 The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems so using them can save you time and effort.
 
@@ -64,6 +64,18 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
       # puppet module upgrade puppetlabs-apache --version 0.0.3
 
 If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man].
+
+###Using the Module Tool Behind a Proxy
+
+In order to use the puppet module tool behind a proxy, you need to set the following:
+
+	export http_proxy=http://10.187.255.9:8080 
+	export https_proxy=http://10.187.255.9:8080
+	
+Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](http://docs.puppetlabs.com/references/latest/configuration.html).
+
+**Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects. 
+
 
 Installing Modules
 -----
