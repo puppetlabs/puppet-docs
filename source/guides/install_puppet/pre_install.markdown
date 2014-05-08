@@ -1,6 +1,5 @@
 ---
 layout: default
-nav: puppet_general.html
 title: "Installing Puppet: Pre-Install Tasks"
 ---
 
