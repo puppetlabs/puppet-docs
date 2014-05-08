@@ -34,6 +34,17 @@ Solaris                      | 10 (Update 9 or later)                           
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2, 7, 8, & 2012 | x86 & x86\_64 | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 
+*Note:* Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you'll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
+
+1. [Back up](/pe/latest/install_upgrading.html#before-upgrading-back-up-your-databases-and-other-pe-files) your databases and other PE files
+
+2. Perform a complete [uninstall](/pe/latest/install_uninstalling.html) (including the -pd uninstaller option).
+
+3. Upgrade your OS
+
+4. [Install PE](/pe/latest/install_basic.html)
+
+5. Restore your backup.
 
 Hardware
 -----
