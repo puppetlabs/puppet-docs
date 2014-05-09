@@ -32,6 +32,12 @@ The newest versions of Puppet can be installed from the [yum.puppetlabs.com](htt
 
 {% include repo_el.markdown %}
 
+### Optionally: Enable Prereleases
+
+If you want to be able to test release candidate (RC) versions of Puppet and related projects, you can turn on the prerelease repo, which is disabled by default. Note that RCs may contain unexpected changes, so be careful.
+
+{% include repo_pre_redhat.markdown %}
+
 Step 3: Install Puppet on the Puppet Master Server
 -----
 
