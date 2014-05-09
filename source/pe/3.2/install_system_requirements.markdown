@@ -67,6 +67,17 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
     * Minimum requirements: Any hardware able to comfortably run a supported operating system.
 
 
+Browser
+-----
+
+ The following browsers are supported for use with the console:
+
+* Chrome: Current version 
+* Firefox: Current version
+* Internet Explorer: 9 or higher
+* Safari: 5.1 and higher
+
+
 Configuration
 -----
 
