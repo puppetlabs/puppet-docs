@@ -6,15 +6,13 @@ Enabling this repository will let you install Puppet in Enterprise Linux 5 witho
 
 To enable the repository, run the command below that corresponds to your OS version and architecture:
 
-#### Enterprise Linux 5
+#### Enterprise Linux 7
 
-##### i386
-
-    $ sudo rpm -ivh https://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm
+(At this point, RHEL 7 is only available as a 64-bit version, and the derived distros aren't out yet.)
 
 ##### x86_64
 
-    $ sudo rpm -ivh https://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm
+    $ sudo rpm -ivh http://yum.puppetlabs.com/el/7/products/x86_64/puppetlabs-release-7-10.noarch.rpm
 
 #### Enterprise Linux 6
 
@@ -25,4 +23,14 @@ To enable the repository, run the command below that corresponds to your OS vers
 ##### x86_64
 
     $ sudo rpm -ivh https://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
+
+#### Enterprise Linux 5
+
+##### i386
+
+    $ sudo rpm -ivh https://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-5-7.noarch.rpm
+
+##### x86_64
+
+    $ sudo rpm -ivh https://yum.puppetlabs.com/el/5/products/x86_64/puppetlabs-release-5-7.noarch.rpm
 
