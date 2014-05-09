@@ -20,6 +20,8 @@ Supported Versions
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
+To install on other operating systems, see the pages linked in the navigation sidebar.
+
 Step 1: Enable the Puppet Labs Package Repository
 -----
 
