@@ -1,48 +1,54 @@
-These instructions apply to currently supported versions of Debian, Ubuntu, and derived Linux distributions, including:
+---
+layout: default
+title: "Installing Puppet: Debian and Ubuntu"
+---
+
+[peinstall]: /pe/latest/install_basic.html
+[puppet enterprise]: /pe/latest/
+
+> This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+
+First
+-----
+
+Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+
+Supported Versions
+-----
 
 {% include platforms_debian_like.markdown %}
 
 Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
 
-#### 1. Choose a Package Source
+Step 1: Enable the Puppet Labs Package Repository
+-----
 
-Debian and Ubuntu systems can install Puppet from Puppet Labs' official repo, or from the OS vendor's default repo.
+The newest versions of Puppet can be installed from the [apt.puppetlabs.com](http://apt.puppetlabs.com) package repository.
 
-##### Using Puppet Labs' Packages
+{% include repo_debian_ubuntu.markdown %}
 
-Puppet Labs provides an official package repo at [apt.puppetlabs.com](http://apt.puppetlabs.com). It contains up-to-date packages, and can install Puppet and its prerequisites without requiring any other external repositories.
+### Optionally: Enable Prereleases
 
-To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_package_repositories.html#for-debian-and-ubuntu).
+If you want to be able to test release candidate (RC) versions of Puppet and related projects, you can turn on the prerelease repo, which is disabled by default. Note that RCs may contain unexpected changes, so be careful.
 
-##### Using Vendor Packages
+{% include repo_pre_debian_ubuntu.markdown %}
 
-Debian and Ubuntu distributions include Puppet in their default package repos. No extra steps are necessary to enable it.
+Step 2: Install Puppet on the Puppet Master Server
+-----
 
-Older OS versions will have outdated Puppet versions, which are updated only with security patches. As a general guideline to how current OS packages tend to be, we found the following when checking versions in April 2012:
-
-* Debian unstable's Puppet was current.
-* Debian testing's Puppet was nearly current (one point release behind the current version).
-* Debian stable's Puppet was more than 18 months old, with additional security patches.
-* The latest Ubuntu's Puppet was nearly current (one point release behind).
-* The prior (non-LTS) Ubuntu's Puppet was nine months old, with additional security patches.
-* The prior LTS Ubuntu's Puppet was more than two years old, with additional security patches.
-
-
-#### 2. Install the Puppet Master
-
-Skip this step for a standalone deployment.
+(Skip this step for a standalone deployment.)
 
 On your puppet master node, run one of the following:
 
+* `sudo apt-get install puppetmaster-passenger` --- We recommend this one, as it will save you a step in the post-install tasks. It will install Puppet and its prerequisites, and automatically configure a production-capacity web server.
 * `sudo apt-get install puppetmaster` --- This will install Puppet, its prerequisites, and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
-* `sudo apt-get install puppetmaster-passenger` --- (May not be available for all OS versions.) This will automatically configure a production-capacity web server for the Puppet master, using Passenger and Apache. In this configuration, do not use the puppetmaster init script; instead, control the puppet master by turning the Apache web server on and off or by disabling the puppet master vhost.
 
-#### 3. Install Puppet on Agent Nodes
+Step 3: Install Puppet on Agent Nodes
+-----
 
 On your other nodes, run `sudo apt-get install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
 
-For a standalone deployment, run `sudo apt-get install puppet-common` on all nodes instead. This will install Puppet without the agent init script.
+Next
+----
 
-#### 4. Configure and Enable
-
-{{ after }}
+At this point, Puppet is installed on all of your nodes, but it isn't configured or running. You should now [do the post-install tasks](./post_install.html).
