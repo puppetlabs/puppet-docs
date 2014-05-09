@@ -20,13 +20,27 @@ Use these repositories to install open source releases of Puppet, Facter, MColle
 
 ### For Red Hat Enterprise Linux and Derivatives
 
+The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following versions of Red Hat Enterprise Linux and distributions based on it:
+
+{% include platforms_redhat_like.markdown %}
+
+Enabling this repository will let you install Puppet in Enterprise Linux 5 without requiring any other external repositories like EPEL. For Enterprise Linux 6, you will need to [enable the Optional Channel](https://access.redhat.com/site/documentation/en-US/OpenShift_Enterprise/1/html/Client_Tools_Installation_Guide/Installing_Using_the_Red_Hat_Enterprise_Linux_Optional_Channel.html) for the rubygems dependency.
+
 {% include repo_el.markdown %}
 
 ### For Debian and Ubuntu
 
+The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
+
+{% include platforms_debian_like.markdown %}
+
 {% include repo_debian_ubuntu.markdown %}
 
 ### For Fedora
+
+The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following Fedora versions:
+
+{% include platforms_fedora.markdown %}
 
 {% include repo_fedora.markdown %}
 

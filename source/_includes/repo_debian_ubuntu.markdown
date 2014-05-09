@@ -1,7 +1,3 @@
-The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
-
-{% include platforms_debian_like.markdown %}
-
 To enable the repository:
 
 1. Download the "puppetlabs-release" package for your OS version.
