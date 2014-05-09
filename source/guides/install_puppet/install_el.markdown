@@ -1,42 +1,50 @@
-These instructions apply to the following Enterprise Linux (EL) versions:
+---
+layout: default
+title: "Installing Puppet: Red Hat Enterprise Linux (and Derivatives)"
+---
+
+[peinstall]: /pe/latest/install_basic.html
+[puppet enterprise]: /pe/latest/
+
+> This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+
+First
+-----
+
+Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+
+Supported Versions
+-----
 
 {% include platforms_redhat_like.markdown %}
 
-CentOS and other community forks have all of Puppet's requirements in the main repo, but RHEL itself is split into channels. If you're installing Puppet on RHEL, you'll want to make sure the "optional" channel is enabled.
+To install on other operating systems, see the pages linked in the navigation sidebar.
 
-Users of out-of-production EL systems (i.e. RHEL 4) may need to compile their own copy of Ruby before installing, or use an older snapshot of EPEL.
+Step 1: Enable Dependencies (RHEL Only)
+-----
 
-#### 1. Choose a Package Source
+CentOS and other community forks have several packages Puppet depends on in their main repos, but RHEL itself is split into channels. If you're installing Puppet on RHEL, you'll want to make sure the "optional" channel is enabled. [Instructions are available here.](https://access.redhat.com/site/documentation/en-US/OpenShift_Enterprise/1/html/Client_Tools_Installation_Guide/Installing_Using_the_Red_Hat_Enterprise_Linux_Optional_Channel.html)
 
-Enterprise Linux users can install from Puppet Labs' official repo, or from [EPEL][].
+Step 2: Enable the Puppet Labs Package Repository
+-----
 
-##### Using Puppet Labs' Packages
+The newest versions of Puppet can be installed from the [yum.puppetlabs.com](http://yum.puppetlabs.com) package repository.
 
-Puppet Labs provides an official package repo at [yum.puppetlabs.com](http://yum.puppetlabs.com). It contains up-to-date packages, and can install Puppet and its prerequisites without requiring any other external repositories.
+{% include repo_el.markdown %}
 
-To use the Puppet Labs repo, [follow the instructions here](/guides/puppetlabs_package_repositories.html#for-red-hat-enterprise-linux-and-derivatives).
+Step 3: Install Puppet on the Puppet Master Server
+-----
 
-##### Using EPEL
+(Skip this step for a standalone deployment.)
 
-The [Extra Packages for Enterprise Linux (EPEL)][epel] repo includes Puppet and its prerequisites. These packages are usually older Puppet versions with security patches. <!-- dated --> As of April 2012, EPEL was shipping a Puppet version from the prior, maintenance-only release series.
+On your puppet master node(s), run `sudo yum install puppet-server`. This will install Puppet and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
 
-To install Puppet from EPEL, follow [EPEL's own instructions][epelinstall] for enabling their repository on all of your target systems.
-
-
-#### 2. Install the Puppet Master
-
-Skip this step for a standalone deployment.
-
-On your puppet master node, run `sudo yum install puppet-server`. This will install Puppet and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
-
-#### 3. Install Puppet on Agent Nodes
+Step 4: Install Puppet on Agent Nodes
+-----
 
 On your other nodes, run `sudo yum install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
 
-For a standalone deployment, install this same package on all nodes.
+Next
+----
 
-
-#### 4. Configure and Enable
-
-{{ after }}
-
+At this point, Puppet is installed on all of your nodes, but it isn't configured or running. You should now [do the post-install tasks](./post_install.html).
