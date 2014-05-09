@@ -37,6 +37,20 @@ Next, run the uninstaller script. [See the uninstallation instructions in this g
 
 After you have run the uninstaller, you can safely run the installer again.
 
+###  Problems with PE when upgrading your OS
+ 
+Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you'll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
+
+1. Back up your databases and other PE files.
+
+2. Perform a complete [uninstall](/pe/3.1/install_uninstalling.html) (including the -pd uninstaller option).
+
+3. Upgrade your OS.
+
+4. [Install PE](/pe/3.1/install_basic.html).
+
+5. Restore your backup.
+
 
 * * * 
 
