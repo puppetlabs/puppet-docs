@@ -1,4 +1,4 @@
-To enable the repository, run the command below that corresponds to your OS version and architecture:
+To enable the repository, run the command below that corresponds to your OS version:
 
 #### Fedora 19
 
