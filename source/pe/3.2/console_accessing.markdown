@@ -19,12 +19,7 @@ The console is Puppet Enterprise's web GUI. Use it to:
 Browser Requirements
 -----
 
- The following browsers are supported for use with the console:
-
-* Chrome: Current version 
-* Firefox: Current version
-* Internet Explorer: 9 or higher
-* Safari: 5.1 and higher
+For the browser requirements, see [system requirements](/pe/3.2/install_system_requirements.html#browser).
 
 Reaching the Console
 -----
