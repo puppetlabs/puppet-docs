@@ -22,13 +22,19 @@ Most people should use agent/master Puppet. Although it requires a central serve
 
 In agent/master Puppet, you run a central puppet master server (or servers) that hosts and compiles all of your configuration data. Other nodes run the puppet agent service, which periodically pulls their configurations from the master. Each agent will only get its own configuration, and will be unable to see how other nodes are configured.
 
-You must decide in advance which server will be the master; install Puppet on it before installing on any agents. The master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk.
+#### Choose Your Puppet Master Server(s)
+
+Before installing Puppet everywhere, decide which server(s) will act as your puppet master(s).
+
+You should completely install and configure Puppet on any puppet masters before installing on any agent nodes. The master must be running some kind of \*nix; Windows machines can't be masters.
+
+A puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname. You can reduce setup time on your agents by making sure the master is available at the default hostname of `puppet`.
 
 ### Standalone Puppet
 
-If you can't allocate a puppet master server, are managing only a few nodes, or are managing a really large number of nodes, you may want a standalone Puppet deployment.
-
 In standalone Puppet, every node periodically uses the puppet apply command to compile and apply its own configuration, using a full set of Puppet modules and manifests. In other words, each node requires the same files and data that the puppet master requires in agent/master Puppet.
+
+This distributes the burden of compilation instead of concentrating it on a few puppet master servers, and it doesn't require keeping the puppet master service available and responsive. The cost is that it's more unwieldy to update your configurations, it doesn't play as well with central reporting and external data sources, and every node can see how other nodes are configured. These tradeoffs can be worth it in certain situations (two or three nodes, 10,000 nodes, DMZ with limited LAN access), but you should consider the agent/master deployment the default.
 
 You will need to come up with your own solution for distributing updated manifests, modules, and data to each node.
 
