@@ -45,10 +45,32 @@ On your puppet master node, run one of the following:
 * `sudo apt-get install puppetmaster-passenger` --- We recommend this one, as it will save you a step in the post-install tasks. It will install Puppet and its prerequisites, and automatically configure a production-capacity web server.
 * `sudo apt-get install puppetmaster` --- This will install Puppet, its prerequisites, and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
 
+### Upgrading
+
+**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+
+To upgrade to the latest version of Puppet, you can run:
+
+    $ sudo apt-get update
+    $ sudo puppet resource package puppetmaster ensure=latest
+
+You'll need to restart the puppet master web server after upgrading.
+
 Step 3: Install Puppet on Agent Nodes
 -----
 
 On your other nodes, run `sudo apt-get install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
+
+### Upgrading
+
+**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+
+To upgrade to the latest version of Puppet, you can run:
+
+    $ sudo apt-get update
+    $ sudo puppet resource package puppet ensure=latest
+
+You'll need to restart the `puppet` service after upgrading.
 
 Next
 ----

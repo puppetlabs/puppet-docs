@@ -49,6 +49,14 @@ Mount the Puppet disk image, and run the installer package it contains.
 
 Although OS X systems can act as puppet master servers, we don't ship separate packages for that. This is mostly because the OS X package is very minimal compared to the Linux packages, and it doesn't include the relevant init scripts.
 
+### Upgrading
+
+**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+
+To upgrade to the latest versions of Puppet, Facter, and Hiera, download new packages and run the installers again.
+
+You'll need to restart the `com.puppetlabs.puppet` service and/or the puppet master web server after upgrading. To restart a launchd service, run something like `sudo launchctl stop com.puppetlabs.puppet`; the service will be restarted as soon as it stops.
+
 Step 5: Install JSON Gem (10.8 and Earlier)
 -----
 

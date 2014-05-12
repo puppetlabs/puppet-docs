@@ -42,12 +42,32 @@ Step 2: Install Puppet on the Puppet Master Server
 
 On your puppet master node, run `sudo yum install puppet-server`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppetmaster.service`) for running a test-quality puppet master server.
 
+### Upgrading
+
+**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+
+To upgrade to the latest version of Puppet, you can run:
+
+    $ sudo puppet resource package puppet-server ensure=latest
+
+You'll need to restart the puppet master web server after upgrading.
+
 Step 3: Install Puppet on Agent Nodes
 -----
 
 On your other nodes, run `sudo yum install puppet`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppet.service`) for running the puppet agent daemon.
 
 (Note that prior to Puppet 3.4.0, the agent service name on Fedora ≥ 17 was `puppetagent` instead of puppet. This name will continue to work until Puppet 4, but you should use the more consistent `puppet` instead.)
+
+### Upgrading
+
+**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+
+To upgrade to the latest version of Puppet, you can run:
+
+    $ sudo puppet resource package puppet ensure=latest
+
+You'll need to restart the `puppet` service after upgrading.
 
 
 Next
