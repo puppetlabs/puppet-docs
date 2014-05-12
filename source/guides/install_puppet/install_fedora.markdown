@@ -6,7 +6,7 @@ title: "Installing Puppet: Fedora"
 [peinstall]: /pe/latest/install_basic.html
 [puppet enterprise]: /pe/latest/
 
-> This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 
 First
 -----
@@ -73,4 +73,4 @@ You'll need to restart the `puppet` service after upgrading.
 Next
 ----
 
-At this point, Puppet is installed on all of your nodes, but it isn't configured or running. You should now [do the post-install tasks](./post_install.html).
+At this point, Puppet is installed, but it isn't configured or running. You should now [do the post-install tasks](./post_install.html).

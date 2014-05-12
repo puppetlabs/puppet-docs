@@ -5,7 +5,7 @@ title: "Installing Puppet: Mac OS X"
 
 [peinstall]: /pe/latest/install_basic.html
 
-> This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 
 First
 -----
@@ -156,4 +156,4 @@ As long as a service plist is in the `/Library/LaunchDaemons` directory, `puppet
 Next
 ----
 
-At this point, Puppet is installed on all of your nodes, but it isn't configured or running. You should now [do the post-install tasks](./post_install.html).
+At this point, Puppet is installed, but it isn't configured or running. You should now [do the post-install tasks](./post_install.html).
