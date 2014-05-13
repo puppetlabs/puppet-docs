@@ -125,6 +125,8 @@ Once you've created the plist, make sure it can only be modified by the root use
     $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppet.plist
     $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppet.plist
 
+Do not start the `com.puppetlabs.puppet` service yet. If this node will also be a puppet master, do not start the puppet master's web server yet.
+
 #### Customize the Launchd Config
 
 You can customize this configuration if you want to.

@@ -73,6 +73,8 @@ Each platform handles init scripts a little differently, so you'll need to eithe
 * [Gentoo](https://github.com/puppetlabs/puppet/blob/master/ext/gentoo)
 * [Solaris](https://github.com/puppetlabs/puppet/blob/master/ext/solaris)
 
+Do not start the `puppet` or puppet master services yet.
+
 ### Create a Confdir and Config Files
 
 When you install with gems, your [confdir][] may be empty or missing. You will need to populate it with the required files

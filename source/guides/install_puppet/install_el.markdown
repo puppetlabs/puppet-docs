@@ -45,6 +45,8 @@ Step 3: Install Puppet on the Puppet Master Server
 
 On your puppet master node(s), run `sudo yum install puppet-server`. This will install Puppet and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
 
+Do not start the puppet master service yet.
+
 ### Upgrading
 
 **Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
@@ -59,6 +61,8 @@ Step 4: Install Puppet on Agent Nodes
 -----
 
 On your other nodes, run `sudo yum install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
+
+Do not start the `puppet` service yet.
 
 ### Upgrading
 
