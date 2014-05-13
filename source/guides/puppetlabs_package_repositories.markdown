@@ -16,7 +16,7 @@ Our repositories will be maintained for the life of the corresponding operating 
 Open Source Repositories
 -----
 
-Use these repositories to install open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet](./installation.html).
+Use these repositories to install open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet](/guides/install_puppet/pre_install.html).
 
 ### For Red Hat Enterprise Linux and Derivatives
 

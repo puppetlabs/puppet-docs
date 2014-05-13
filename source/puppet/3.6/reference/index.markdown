@@ -16,7 +16,7 @@ Welcome to the Puppet 3.6 Reference Manual! Use the navigation to the left to ge
 
 ## Getting Started
 
-To install Puppet 3.6, see [the Puppet installation guide](/guides/installation.html). For general advice on upgrading between major versions, see [Upgrading Puppet](/guides/upgrading.html).
+To install Puppet 3.6, see [the Puppet installation guide](/guides/install_puppet/pre_install.html). For general advice on upgrading between major versions, see [Upgrading Puppet](/guides/install_puppet/upgrading.html).
 
 ## Getting Around
 
