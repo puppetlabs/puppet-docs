@@ -8,7 +8,7 @@ title: "Installing Puppet: Pre-Install Tasks"
 [sysreqs]: /puppet/latest/reference/system_requirements.html
 [ruby]: /puppet/latest/reference/system_requirements.html#basic-requirements
 
-> This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 
 Before you install Puppet, you should do the following tasks.
 
