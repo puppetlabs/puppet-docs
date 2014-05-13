@@ -1,118 +1,177 @@
-Perform the following tasks after you finish installing Puppet.
+---
+layout: default
+title: "Installing Puppet: Post-Install Tasks"
+---
+
+[peinstall]: /pe/latest/install_basic.html
+[hiera_include]: /hiera/latest/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
+[hiera]: /hiera/latest/
+[puppet.conf]: /puppet/latest/reference/config_file_main.html
+[dns_alt_names]: /references/latest/configuration.html#dnsaltnames
+[about_settings]: /puppet/latest/reference/config_about_settings.html
+[manifest]: /puppet/latest/reference/dirs_manifest.html
+[install_modules]: /puppet/latest/reference/modules_installing.html
+[directory environments]: /puppet/latest/reference/environments.html
+[modulepath]: /puppet/latest/reference/dirs_modulepath.html
+[rack]: http://rack.github.io/
+[multi_masters]: /guides/scaling_multiple_masters.html
+[puppet classes]: /puppet/latest/reference/lang_classes.html
+[modules_fundamentals]: /puppet/latest/reference/modules_fundamentals.html
+[node definitions]: /puppet/latest/reference/lang_node_definitions.html
+[external node classifier]: /guides/external_nodes.html
+[ssldir]: /puppet/latest/reference/dirs_ssldir.html
+
+> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+
+
+Perform the following tasks after you finish installing Puppet. You should have already done the [pre-install tasks](./pre_install.html) and followed the installation instructions for your OS.
+
+Configure a Puppet Master Server
+-----
+
+After installing Puppet on a node that will act as a puppet master server, you need to:
+
+* Get the master's names and certificates set up
+* Configure any necessary settings
+* Put your Puppet modules and manifests in place
+* Configure a production-ready web server
+* Configure load balancing and CA service routing if you're using multiple masters
+* Start the puppet master service
+
+### Get the Master's Names and Certificates Set Up
+
+When you create the puppet master's certificate, you must include every DNS name at which agent nodes might try to contact the master.
+
+Decide on a main name for Puppet services at your site, and make sure your DNS resolves it to the puppet master (or its load balancer). Unconfigured agents will try to find a master at `puppet`, so if you use this name it can reduce setup time.
+
+In the `[main]` section of the master's [puppet.conf][] file, set [the `dns_alt_names` setting][dns_alt_names] to a comma-separated list of each hostname the master should be allowed to use:
+
+    dns_alt_names = puppet,puppet.example.com,puppetmaster01,puppetmaster01.example.com
+
+#### For CA Masters
+
+If this is the only puppet master in your deployment, or if it will be acting as the CA server for a multi-master site, you should now run:
+
+    $ sudo puppet master --verbose --no-daemonize
+
+This will create the CA certificate and the puppet master certificate, with the appropriate DNS names included. Once it says `Notice: Starting Puppet master version <VERSION>`, type ctrl-C to kill the process.
+
+#### For Non-CA Masters
+
+You have two main options:
+
+* Run `puppet cert generate <NAME> --dns-alt-names=<NAME 1>,<NAME 2>,<NAME 3>` on your CA server, then manually copy the new master's cert, private key, and public key into place on the new master. You will also need to give it a copy of the CA's certificate and the CRL. See [the reference page on the ssldir][ssldir] for more info about these files.
+* Run `puppet agent --test --ca_server=<SERVER>` to request a certificate. On the CA server, run `puppet cert list` and `puppet cert --allow-dns-alt-names sign <NAME>` to sign the certificate. On the new master, run `puppet agent --test --ca_server=<SERVER>` again to retrieve the cert.
+
+### Configure Any Necessary Settings
+
+You'll want to set a few settings in [puppet.conf][] before putting the new master to work. See [the list of master-related settings][master_settings] for details. You may also want to read about [how Puppet loads settings][about_settings] and [the syntax of the puppet.conf file][puppet.conf].
+
+[master_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-puppet-master-servers
+
+### Put Your Puppet Modules and Manifests in Place
+
+If you already have a set of modules and a main manifest you use in your deployment, put them into place now. You will probably be checking them out with version control.
+
+If you're starting from scratch, ensure that [the main manifest][manifest] exists. You may also want to [install some modules from the Puppet Forge][install_modules].
+
+Relevant reference pages:
+
+* [Directory environments][]
+* [The main manifest][manifest]
+* [The modulepath][modulepath]
+
+
+### Configure a Production-Ready Web Server
+
+Puppet includes a basic puppet master web server, but you cannot use it for real-life loads. You must configure a production quality web server before you start managing your nodes with Puppet.
+
+If you have no particular preference, you should use Passenger with Apache, since it works well and is simple to set up. If you installed the puppetmaster-passenger package on Debian or Ubuntu, this is already configured; otherwise, [follow the instructions in the Puppet with Passenger setup guide.](/guides/passenger.html)
+
+Alternately, Puppet supports the [Rack][] interface, and you can configure your puppet master with any Rack web server stack. You can follow the Passenger guide for general guidelines. You will need to:
+
+* [Grab the config.ru file from the `ext/rack` directory in the Puppet source][ext_rack], and set its ownership to the `puppet` user and group.
+* Configure your web stack to listen on port 8140 and use that config.ru file to route requests to the puppet master application.
+* Configure your front end to terminate SSL using the puppet master server's SSL certificate and the local Puppet CA. Make sure that it sets the `SSL_CLIENT_CERT` environment variable and the `X_CLIENT_VERIFY` and `X_CLIENT_DN` HTTP headers.
+
+[ext_rack]: https://github.com/puppetlabs/puppet/tree/master/ext/rack
+
+### Configure Load Balancing and CA Service Routing
+
+If you're using multiple masters, you'll need to make sure traffic is being directed properly. See [the guide to configuring multiple masters][multi_masters] for details.
+
+### Start the Puppet Master Service
+
+The exact service you need to start will depend on the web server you configured. If you followed the Passenger guide, you'll want to start the `httpd` or `apache2` service, depending on your OS.
+
+
+
+
+
+
+Configure a Puppet Agent Node
+-----
+
+After installing Puppet on a normal puppet agent node, you'll need to:
+
+* Configure Puppet
+* Start the puppet agent service (or configure a cron job)
+* Sign the new node's certificate
+* Classify (assign configurations to) the new node
+
 
 ### Configure Puppet
 
-Puppet's main configuration file is found at `/etc/puppet/puppet.conf`. See [Configuring Puppet][configuring] for more details.
+You will probably need to configure some settings in each agent's [puppet.conf][] file, to connect it to your puppet master server and change certain behavior.
 
-Most users should specify the following settings:
+See [the list of agent-related settings][agent_settings] for details. You may also want to read about [how Puppet loads settings][about_settings] and [the syntax of the puppet.conf file][puppet.conf].
 
-#### On Agent Nodes
-
-Settings for agent nodes should go in the `[agent]` or `[main]` block of `puppet.conf`.
-
-* [`server`](/references/latest/configuration.html#server): The hostname of your puppet master server. Defaults to `puppet`.
-* [`report`](/references/latest/configuration.html#report): Most users should set this to `true`.
-* [`pluginsync`](/references/latest/configuration.html#pluginsync): Most users should set this to `true`.
-* [`certname`](/references/latest/configuration.html#certname): The sitewide unique identifier for this node. Defaults to the node's fully qualified domain name, which is usually fine.
-
-#### On Puppet Masters
-
-Settings for puppet master servers should go in the `[master]` or `[main]` block of `puppet.conf`.
-
-> **Note:** puppet masters are usually also agent nodes; settings in `[main]` will be available to both services, and settings in the `[master]` and `[agent]` blocks will override the settings in `[main]`.
-
-* [`dns_alt_names`](/references/latest/configuration.html#dnsaltnames): A list of valid hostnames for the master, which will be embedded in its certificate. Defaults to the puppet master's `certname` and `puppet`, which is usually fine. If you are using a non-default setting, set it **before** starting the puppet master for the first time.
-
-#### On Standalone Nodes
-
-Settings for standalone puppet nodes should go in the `[main]` block of `puppet.conf`.
-
-Puppet's default settings are generally appropriate for standalone nodes. No additional configuration is necessary unless you intend to use centralized reporting or an [external node classifier](/guides/external_nodes.html).
+[agent_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-agents-all-nodes
 
 
-### Start and Enable the Puppet Services
+### Start the Puppet Agent Service
 
-Some packages do not automatically start the puppet services after installing the software. You may need to start them manually in order to use Puppet.
+If the puppet agent service isn't already running, you should now start it and configure it to start on boot. Alternately, you may want to run puppet agent via a cron job instead, or run puppet apply with a cron job for a standalone deployment.
 
-#### With Init Scripts / Service Configs
+#### Starting the Service
 
-Most packages create init scripts or service configuration files called `puppet` and `puppetmaster`, which run the puppet agent and puppet master services.
+The name of the puppet agent service may vary by platform. On Windows and most \*nix platforms, it will be `puppet`; on OS X, it is `com.puppetlabs.puppet`.
 
-You can start and permanently enable these services using Puppet:
+You can start and enable the service by running:
 
-    $ sudo puppet resource service puppet ensure=running enable=true
-    $ sudo puppet resource service puppetmaster ensure=running enable=true
+    $ sudo puppet resource service <NAME> ensure=running enable=true
 
-> **Note:** On Fedora prior to Puppet 3.4.0, the agent service name was `puppetagent` instead of puppet.
+(Although on Windows you would omit the `sudo`.)
 
-> **Note:** If you have configured puppet master to use a production web server, do not use the default init script; instead, start and stop the web server that is managing the puppet master service.
+#### Creating a Cron Job
 
-#### With Cron
-
-Standalone deployments do not use services with init scripts; instead, they require a cron task to regularly run puppet apply on a main manifest (usually the same `/etc/puppet/manifests/site.pp` manifest that puppet master uses). You can create this cron job with Puppet:
-
-    $ sudo puppet resource cron puppet-apply ensure=present user=root minute=30 command='/usr/bin/puppet apply $(puppet apply --configprint manifest)'
-
-In an agent/master deployment, you may wish to run puppet agent with cron rather than its init script; this can sometimes perform better and use less memory. You can create this cron job with Puppet:
+You may want to run puppet agent with cron rather than its init script; this can sometimes perform better and use less memory. You can create this cron job with Puppet:
 
     $ sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
 
-#### With Launchd
+(On Windows nodes, you should just run the service.)
 
-Apple [recommends you use launchd][launchd] to manage the execution of services and daemons. You can define a launchd service with XML property lists (plists), and manage it with the [`launchctl`][launchctl] command line utility. If you'd like to use launchd to manage execution of your puppet master or agent, download the following files and copy each into `/Library/LaunchDaemons/`:
+If you are creating a standalone deployment, you can create a similar cron job to run puppet apply instead of puppet agent:
 
-  - [com.puppetlabs.puppetmaster.plist](files/com.puppetlabs.puppetmaster.plist) (to manage launch of a puppet master)
-  - [com.puppetlabs.puppet.plist](files/com.puppetlabs.puppet.plist) (to manage launch of a puppet agent)
+    $ sudo puppet resource cron puppet-apply ensure=present user=root minute=30 command='/usr/bin/puppet apply $(puppet apply --configprint manifest)'
 
-Set the correct owner and permissions on the files. Both must be owned by the root user and both must be writable only by the root user:
 
-    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppet.plist
-    $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppet.plist
-    $ sudo chown root:wheel /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
-    $ sudo chmod 644 /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
-
-Make launchd aware of the new services:
-
-    $ sudo launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppet.plist
-    $ sudo launchctl load -w /Library/LaunchDaemons/com.puppetlabs.puppetmaster.plist
-
-Note that the files we provide here are responsible only for initial launch of a puppet master or puppet agent at system start. How frequently each conducts a run is determined by Puppet's configuration, not the plists.
-
-See the OS X `launchctl` man page for more information on how to stop, start, and manage launchd jobs.
-
-### Sign Node Certificates
+### Sign the New Node's Certificate
 
 In an agent/master deployment, an admin must approve a certificate request for each agent node before that node can fetch configurations. Agent nodes will request certificates the first time they attempt to run.
 
-* Periodically log into the puppet master server and run `sudo puppet cert list` to view outstanding requests.
+* Periodically log into the CA puppet master server and run `sudo puppet cert list` to view outstanding requests.
 * Run `sudo puppet cert sign <NAME>` to sign a request, or `sudo puppet cert sign --all` to sign all pending requests.
 
 An agent node whose request has been signed on the master will run normally on its next attempt.
 
+### Classify the Node
 
-### Change Puppet Master's Web Server
+At this point, the new agent node will fetch and apply configurations from the puppet master server. It's up to you to make sure the configurations it fetches will actually do something. You can do this by assigning [Puppet classes][] to the node.
 
-In an agent/master deployment, you **must** [configure the puppet master to run under a scalable web server][scaling] after you have done some reasonable testing. The default web server is simpler to configure and better for testing, but **cannot** support real-life workloads.
+Classes are made available by Puppet modules; you'll need to [install some on the puppet master][install_modules] or [write your own][modules_fundamentals]. Once you have classes available, you can:
 
-A replacement web server can be configured at any time, and does not affect the configuration of agent nodes.
-
-
-Next
-----
-
-Now that you have installed and configured Puppet:
-
-### Learn to Use Puppet
-
-If you have not used Puppet before, you should read the [Learning Puppet](/learning/) series and experiment, either with the Learning Puppet VM or with your own machines. This series will introduce the concepts underpinning Puppet, and will guide you through the process of writing Puppet code, using modules, and classifying nodes.
-
-
-### Install Optional Software
-
-You can extend and improve Puppet with other software:
-
-* [Puppet Dashboard][dashboard] is an open-source report analyzer, node classifier, and web GUI for Puppet.
-* [The stdlib module][stdlib] adds extra functions, an easier way to write custom facts, and more.
-* For Puppet 2.6 and 2.7, the [Hiera][] data lookup tool can help you separate your data from your Puppet manifests and write cleaner code. <!-- (Puppet 3.0 and higher install Hiera as a dependency.) -->
-* User-submitted modules that solve common problems are available at the [Puppet Forge][forge]. Search here first before writing a new Puppet module from scratch; you can often find something that matches your need or can be quickly hacked to do so.
+* Use [node definitions][] in the [main manifest][manifest] to determine which nodes receive which classes.
+* Use an [external node classifier][] to assign classes to nodes.
+* Use [Hiera][] to classify your nodes via [the `hiera_include` function][hiera_include].
 
