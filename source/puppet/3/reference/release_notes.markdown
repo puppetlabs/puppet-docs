@@ -289,7 +289,7 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### Packaging and Installer Improvements
 
-- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. See [the docs on automated installation on Windows](/windows/installing.html#automated-installation) for details. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
+- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. See [the docs on automated installation on Windows](/guides/install_puppet/install_windows.html#automated-installation) for details. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
 - The Windows installer now puts Puppet on the PATH, so a special command prompt is no longer necessary. ([Issue 22700](http://projects.puppetlabs.com/issues/22700), [PUP-415](https://tickets.puppetlabs.com/browse/PUP-415))
 - Windows installer options can now override existing settings. ([Issue 20281](https://projects.puppetlabs.com/issues/20281), [PUP-388](https://tickets.puppetlabs.com/browse/PUP-388))
 
