@@ -28,7 +28,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.6.0
 -----
 
-**Not yet released.** Entered RC1 on May 6, 2014.
+Released May 14, 2014. (RC1: May 6.)
 
 Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
@@ -157,8 +157,6 @@ Related issues:
 
 The puppet module tool has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, the module tool will automatically generate metadata.json based on a Modulefile if it finds one. If neither Modulefile nor metadata.json is available, it will kick off an interview and generate metadata.json based on your responses.
 
-> **Note:** In 3.6.0 RC1, this behavior is partially broken; the module tool will use the Modulefile if a metadata.json file doesn't exist, but will ignore it as soon the json file is created. We plan to fix this before the final release. See [PUP-2484](https://tickets.puppetlabs.com/browse/PUP-2484).
-
 The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](/puppet/3.6/reference/modules_publishing.html).
 
 Related issues:
@@ -169,7 +167,12 @@ Related issues:
 - [PUP-2093: PMT should use the Forge's /v3 API](https://tickets.puppetlabs.com/browse/PUP-2093)
 - [PUP-2284: Add a user interview for creating a metadata.json file](https://tickets.puppetlabs.com/browse/PUP-2284)
 - [PUP-2285: Update PMT generate's README template](https://tickets.puppetlabs.com/browse/PUP-2285)
-- [PUP-1046: puppet module generate should produce a skeleton spec test](https://tickets.puppetlabs.com/browse/PUP-1046)
+
+Issues fixed during RC:
+
+- [PUP-2484: `puppet module build` should provide deprecated functionality with warning until Puppet v4](https://tickets.puppetlabs.com/browse/PUP-2484) --- this would cause the Modulefile to be ignored if a metadata.json file also existed.
+- [PUP-2561: PMT may deadlock when packing or unpacking large tarballs](https://tickets.puppetlabs.com/browse/PUP-2561)
+- [PUP-2562: PMT will not install puppetlabs/openstack 4.0.0](https://tickets.puppetlabs.com/browse/PUP-2562)
 
 ### Type and Provider Fixes
 
@@ -241,7 +244,8 @@ We added better control over the way Augeas resources display diffs, for better 
 - [PUP-2415: Puppet Agent Service - Rename /etc/sysconfig/puppetagent to /etc/sysconfig/puppet](https://tickets.puppetlabs.com/browse/PUP-2415)
 - [PUP-2416: Puppet Service - Use no-daemonize and no forking (Master and Agent)](https://tickets.puppetlabs.com/browse/PUP-2416)
 - [PUP-2417: Puppet Agent Should wait for Puppet Master to finish starting, if puppet master is installed](https://tickets.puppetlabs.com/browse/PUP-2417)
+- [PUP-2395: Installation problem for puppetmaster-puppet 3.5.1 on Ubuntu 13.10](https://tickets.puppetlabs.com/browse/PUP-2395)
 
 ### All Resolved Issues for 3.6.0
 
-Our ticket tracker has the list of [all issues resolved in Puppet 3.6.0.](https://tickets.puppetlabs.com/browse/PUP/fixforversion/11200)
+Our ticket tracker has the list of [all issues resolved in Puppet 3.6.0.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=11200)
